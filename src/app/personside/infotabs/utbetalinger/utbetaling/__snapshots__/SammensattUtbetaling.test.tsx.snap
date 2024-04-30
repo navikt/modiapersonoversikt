@@ -1,12 +1,252 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.c2 {
+  font-weight: 600;
+}
+
+.c9 {
+  position: relative;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  padding-left: 1.5rem;
+}
+
+.c9::before {
+  position: absolute;
+  left: -0.5rem;
+  content: '•';
+  font-size: 4rem;
+  line-height: 1.8rem;
+  color: #cce1f3;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c12 {
+  position: relative;
+  border: none;
+  padding: 0;
+  border-radius: .35rem;
+  cursor: pointer;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #0067c5;
+}
+
+.c12:after {
+  border-bottom: 1px #b7b1a9 solid;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.c12:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c12:hover {
+  opacity: 0.8;
+}
+
+.c12:hover:after {
+  content: '';
+  border-color: #0067c5;
+}
+
+.c5 {
+  border: none;
+  background-color: transparent;
+  padding: 0.1rem 0.2rem;
+  border-radius: .35rem;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  color: #0067c5;
+}
+
+.c5 svg {
+  margin-left: 0.5rem;
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+.c5:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c5:hover {
+  opacity: 0.8;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c15 th:not(:first-child) {
+  font-weight: normal;
+  font-style: italic;
+}
+
+.c16 td:not(:first-child) {
+  font-weight: 600;
+}
+
+.c17 {
+  border-top: solid 0.0625rem #b7b1a9;
+  margin: 0.5rem 0;
+}
+
+.c13 {
+  margin-right: 0.5rem;
+}
+
+.c8 {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  padding: 1.25rem;
+}
+
+.c14 {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  padding: 0 1.25rem;
+}
+
+.c10 {
+  margin-bottom: 1.25rem;
+}
+
+.c7 {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.c7:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c1 table {
+  width: 100%;
+  text-align: right;
+  border-spacing: 0;
+}
+
+.c1 table * {
+  padding: 0;
+  margin: 0;
+}
+
+.c1 table tr > * {
+  padding: 0.1rem;
+  text-align: right;
+}
+
+.c1 table tr > *:first-child {
+  text-align: left;
+}
+
+.c1 table tr > *:not(:first-child) {
+  width: 6rem;
+}
+
+.c0 {
+  padding: 0.9375rem;
+}
+
+.c0 > *:nth-child(3) {
+  margin-bottom: 0.8rem;
+}
+
+.c0:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 0.1875rem #254b6d;
+}
+
+.c6 {
+  margin-top: 2rem;
+  padding: 0;
+  list-style: none;
+  border-radius: .25rem;
+  border: solid 0.0625rem #b7b1a9;
+}
+
+.c6 > li:not(:first-child) {
+  border-top: solid 0.0625rem #b7b1a9;
+}
+
+@media print {
+  .c5 {
+    display: none;
+  }
+}
+
+@media print {
+  .c11 {
+    display: none;
+  }
+}
+
+@media print {
+  .c0 {
+    list-style-type: none;
+  }
+
+  .c0 li {
+    page-break-inside: avoid;
+  }
+}
+
+@media print {
+  .c6 {
+    border: none;
+  }
+}
+
 <li
-  className="sc-hGPAah djLAuH test-utbetaling-utbetalinglamell"
+  className="c0 test-utbetaling-utbetalinglamell"
   tabIndex={-1}
 >
   <div
-    className="sc-bkkfTU PiCYT"
+    className="c1"
   >
     <p
       className="typo-normal"
@@ -14,13 +254,13 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
       29. Mars 2017
        / 
       <span
-        className="sc-jRQAMF fPBBHY"
+        className="c2"
       >
         Utbetalt
       </span>
     </p>
     <div
-      className="sc-dkPtyc iJKfIC"
+      className="c3"
     >
       <h4
         className="typo-element"
@@ -34,7 +274,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
       </p>
     </div>
     <div
-      className="sc-hKwCoD hTZkKi"
+      className="c4"
     >
       <p
         className="typo-normal"
@@ -43,7 +283,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
       </p>
     </div>
     <div
-      className="sc-dkPtyc iJKfIC"
+      className="c3"
     >
       <p
         className="typo-normal"
@@ -53,7 +293,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
       </p>
       <button
         aria-label="Skriv ut"
-        className="sc-pVTma inCTSx"
+        className="c5"
         onClick={[Function]}
       >
         <span
@@ -81,10 +321,10 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
     </div>
     <ul
       aria-label="Diverse ytelser"
-      className="sc-dlVyqM isSLJO"
+      className="c6"
     >
       <li
-        className="sc-fFehDp kcPlCv"
+        className="c7"
         onClick={[Function]}
         onFocus={[Function]}
         tabIndex={0}
@@ -94,15 +334,15 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
           aria-label="Delutbetaling Sykepenger"
         >
           <div
-            className="sc-egiSv hLhNal"
+            className="c8"
             open={false}
           >
             <div
-              className="sc-gKckTs hCqxvE"
+              className="c9"
               color="#cce1f3"
             >
               <div
-                className="sc-dkPtyc iJKfIC"
+                className="c3"
               >
                 <h5
                   className="typo-element"
@@ -122,21 +362,21 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
               </p>
             </div>
             <div
-              className="sc-hBURRC IKXpa"
+              className="c10"
             >
               <div
-                className="sc-fotPbf jsPVON"
+                className="c11"
               >
                 <div
-                  className="sc-hKwCoD hTZkKi"
+                  className="c4"
                 >
                   <button
                     aria-expanded={false}
-                    className="sc-iCfLBT bWVfCZ"
+                    className="c12"
                     onClick={[Function]}
                   >
                     <span
-                      className="sc-crHlIS iIFFbm"
+                      className="c13"
                     >
                       <span
                         className="typo-normal"
@@ -152,18 +392,18 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
               </div>
             </div>
             <div
-              className="sc-bqiQRQ QYxGV"
+              className="c14"
               open={false}
             >
               <aside
                 aria-label="Utbetalingsdetaljer"
-                className="sc-jrQzUz hxvFGx"
+                className="c15"
               >
                 <span
                   className="typo-normal"
                 >
                   <div
-                    className="sc-kDThTU lcumkW"
+                    className="c16"
                   >
                     <table
                       role="table"
@@ -228,7 +468,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
                   </div>
                 </span>
                 <div
-                  className="sc-iqsfdx clqAFd"
+                  className="c17"
                 />
                 <span
                   className="typo-normal"
@@ -415,7 +655,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
                   </table>
                 </span>
                 <div
-                  className="sc-iqsfdx clqAFd"
+                  className="c17"
                 />
                 <h4
                   className="typo-element"
@@ -433,7 +673,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
         </article>
       </li>
       <li
-        className="sc-fFehDp kcPlCv"
+        className="c7"
         onClick={[Function]}
         onFocus={[Function]}
         tabIndex={0}
@@ -443,15 +683,15 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
           aria-label="Delutbetaling Sykepenger"
         >
           <div
-            className="sc-egiSv hLhNal"
+            className="c8"
             open={false}
           >
             <div
-              className="sc-gKckTs hCqxvE"
+              className="c9"
               color="#cce1f3"
             >
               <div
-                className="sc-dkPtyc iJKfIC"
+                className="c3"
               >
                 <h5
                   className="typo-element"
@@ -471,21 +711,21 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
               </p>
             </div>
             <div
-              className="sc-hBURRC IKXpa"
+              className="c10"
             >
               <div
-                className="sc-fotPbf jsPVON"
+                className="c11"
               >
                 <div
-                  className="sc-hKwCoD hTZkKi"
+                  className="c4"
                 >
                   <button
                     aria-expanded={false}
-                    className="sc-iCfLBT bWVfCZ"
+                    className="c12"
                     onClick={[Function]}
                   >
                     <span
-                      className="sc-crHlIS iIFFbm"
+                      className="c13"
                     >
                       <span
                         className="typo-normal"
@@ -501,18 +741,18 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
               </div>
             </div>
             <div
-              className="sc-bqiQRQ QYxGV"
+              className="c14"
               open={false}
             >
               <aside
                 aria-label="Utbetalingsdetaljer"
-                className="sc-jrQzUz hxvFGx"
+                className="c15"
               >
                 <span
                   className="typo-normal"
                 >
                   <div
-                    className="sc-kDThTU lcumkW"
+                    className="c16"
                   >
                     <table
                       role="table"
@@ -577,7 +817,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
                   </div>
                 </span>
                 <div
-                  className="sc-iqsfdx clqAFd"
+                  className="c17"
                 />
                 <span
                   className="typo-normal"
@@ -764,7 +1004,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
                   </table>
                 </span>
                 <div
-                  className="sc-iqsfdx clqAFd"
+                  className="c17"
                 />
                 <h4
                   className="typo-element"

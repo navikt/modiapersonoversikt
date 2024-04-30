@@ -1,41 +1,247 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`viser dialogpanel 1`] = `
+.c13 label {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  -webkit-clip: rect(1px 1px 1px 1px);
+  clip: rect(1px 1px 1px 1px);
+  -webkit-clip: rect(1px,1px,1px,1px);
+  clip: rect(1px,1px,1px,1px);
+}
+
+.c15 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c15 > *:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.c7 {
+  position: absolute;
+  height: 2rem;
+  width: 2rem;
+  border-bottom-right-radius: 50%;
+  padding: 0;
+  background-color: #0067c5;
+  border: none;
+  z-index: 10;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+.c7:after {
+  background: none;
+}
+
+.c7:hover {
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+.c8 {
+  position: relative;
+  top: 2px;
+  width: 18px;
+}
+
+.c11 {
+  position: absolute;
+  top: 2.8rem;
+  left: 0.25rem;
+}
+
+.c11 ul {
+  list-style: circle;
+  margin-top: 1rem;
+}
+
+.c11 ul li {
+  margin-left: 1.5rem;
+}
+
+.c10 {
+  position: relative;
+}
+
+.c6 {
+  position: relative;
+}
+
+.c6 textarea {
+  min-height: 9rem;
+}
+
+.c6 label {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  -webkit-clip: rect(1px 1px 1px 1px);
+  clip: rect(1px 1px 1px 1px);
+  -webkit-clip: rect(1px,1px,1px,1px);
+  clip: rect(1px,1px,1px,1px);
+}
+
+.c9 textarea,
+.c9 .textareamirror {
+  padding-left: 2.25rem;
+}
+
+.c16 {
+  margin-top: 1rem;
+}
+
+.c16 label {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  -webkit-clip: rect(1px 1px 1px 1px);
+  clip: rect(1px 1px 1px 1px);
+  -webkit-clip: rect(1px,1px,1px,1px);
+  clip: rect(1px,1px,1px,1px);
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
+
+.c5 .skjemaelement {
+  margin-bottom: 0;
+}
+
+.c5 > * {
+  margin-bottom: 1rem;
+}
+
+.c12 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c12 > * {
+  margin-top: 0.3rem;
+}
+
+.c12 > *:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.c2 {
+  position: relative;
+}
+
+.c3 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.c1 {
+  padding: 1rem .5rem;
+}
+
+.c18 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c18 > * {
+  margin-bottom: 0.7rem;
+}
+
+.c14 {
+  margin-top: 1rem;
+}
+
+.c17 {
+  margin-top: 1rem;
+}
+
+.c4 {
+  margin-bottom: 1rem !important;
+}
+
+.c0 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  word-break: break-word;
+}
+
 <div
-  className="sc-jlRMkV ezhoCK"
+  className="c0"
 >
   <article
     aria-labelledby="Helt tilfeldig ID"
-    className="sc-uoixf GKZjK"
+    className="c1"
   >
     <div
-      className="sc-XxOsz dHueJA"
+      className="c2"
     >
       <div
-        className="sc-ilftOa geFaiZ"
+        className="c3"
       >
         <h2
-          className="typo-undertittel sc-kYHenr egpEvQ"
+          className="typo-undertittel c4"
           id="Helt tilfeldig ID"
         >
           Send ny melding
         </h2>
         <form
-          className="sc-brSwnh bcLknc"
+          className="c5"
           onSubmit={[Function]}
         >
           <fieldset
             aria-invalid={false}
-            className="skjemagruppe sc-dPiKHq kAUVxl"
+            className="skjemagruppe c6"
           >
             <button
-              className="knapp sc-iAKVOt iA-dcLn knapp--hoved"
+              className="knapp c7 knapp--hoved"
               disabled={false}
               onClick={[Function]}
               type="button"
             >
               <svg
-                className="sc-efQUeY dxzPAf"
+                className="c8"
                 height="24px"
                 preserveAspectRatio="xMidYMid meet"
                 viewBox="0 0 24 24"
@@ -56,10 +262,10 @@ exports[`viser dialogpanel 1`] = `
               </span>
             </button>
             <div
-              className="sc-bBHHQT HbSsb"
+              className="c9"
             >
               <div
-                className="sc-jObXwK cAFQit"
+                className="c10"
               >
                 <div
                   className="skjemaelement textarea__container"
@@ -113,7 +319,7 @@ exports[`viser dialogpanel 1`] = `
                   />
                 </div>
                 <div
-                  className="sc-cTApHj gNWAeC"
+                  className="c11"
                 >
                   <div
                     className="hjelpetekst"
@@ -272,7 +478,7 @@ exports[`viser dialogpanel 1`] = `
             />
           </fieldset>
           <div
-            className="sc-dtDOJZ fytaRd"
+            className="c12"
           >
             <div
               className="skjemaelement"
@@ -338,7 +544,7 @@ exports[`viser dialogpanel 1`] = `
               className="skjemagruppe"
             >
               <div
-                className="skjemaelement sc-eCImvq eahWFl"
+                className="skjemaelement c13"
               >
                 <label
                   className="skjemaelement__label"
@@ -402,7 +608,7 @@ exports[`viser dialogpanel 1`] = `
               />
             </fieldset>
             <div
-              className="alertstripe sc-eGPWxh imjzTN alertstripe--info"
+              className="alertstripe c14 alertstripe--info"
             >
               <span
                 className="alertstripe__ikon"
@@ -445,7 +651,7 @@ exports[`viser dialogpanel 1`] = `
               className="panel"
             >
               <div
-                className="sc-bkkfTU jGsnxV"
+                className="c15"
               >
                 <button
                   className="knapp knapp--hoved knapp--mini"
@@ -462,7 +668,7 @@ exports[`viser dialogpanel 1`] = `
                 </p>
               </div>
               <div
-                className="skjemaelement sc-cNKpQo eqKVSI"
+                className="skjemaelement c16"
               >
                 <label
                   className="skjemaelement__label"
@@ -498,7 +704,7 @@ exports[`viser dialogpanel 1`] = `
                 </div>
               </div>
               <div
-                className="alertstripe sc-eGPWxh imjzTN alertstripe--info"
+                className="alertstripe c14 alertstripe--info"
               >
                 <span
                   className="alertstripe__ikon"
@@ -538,7 +744,7 @@ exports[`viser dialogpanel 1`] = `
                 </div>
               </div>
               <div
-                className="skjemaelement sc-hAcGfq kGONYC"
+                className="skjemaelement c17"
               >
                 <input
                   aria-invalid={false}
@@ -558,7 +764,7 @@ exports[`viser dialogpanel 1`] = `
             </div>
           </div>
           <div
-            className="sc-bilypg kvTRLz"
+            className="c18"
           >
             <button
               className="knapp knapp--hoved"

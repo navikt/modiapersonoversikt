@@ -1,12 +1,64 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`viser sikkerhetstiltak 1`] = `
+.c0 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c1 {
+  position: absolute;
+  left: -3.125rem;
+  width: 3.125rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c1 > svg {
+  height: 1.5rem;
+  width: auto;
+}
+
+.c2 {
+  margin-bottom: 1rem;
+}
+
+.c3 {
+  margin: 10px 0 20px 0;
+}
+
+.c3:last-child {
+  margin: 10px 0 0 0;
+}
+
+.c4 {
+  color: #645f5a;
+  margin-top: 3px;
+}
+
+.c4 .typo-etikett-liten {
+  line-height: 1rem;
+}
+
 <section>
   <div
-    className="sc-eCImvq gyUlA-D"
+    className="c0"
   >
     <div
-      className="sc-jRQAMF eUvSFO"
+      className="c1"
     >
       <svg
         height={100}
@@ -57,19 +109,19 @@ exports[`viser sikkerhetstiltak 1`] = `
     </h3>
   </div>
   <div
-    className="sc-furvIG dPPmvp"
+    className="c2"
   />
   <div
-    className="sc-pVTma ewWTWv"
+    className="c3"
   >
     <div
-      className="sc-eCImvq gyUlA-D"
+      className="c0"
     >
       
     </div>
     <div>
       <div
-        className="sc-jrQzUz gTSvrx"
+        className="c4"
       >
         <p
           className="typo-undertekst"

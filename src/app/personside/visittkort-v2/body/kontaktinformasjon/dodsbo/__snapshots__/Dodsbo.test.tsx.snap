@@ -1,14 +1,66 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`viser dodsbo 1`] = `
+.c1 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c2 {
+  position: absolute;
+  left: -3.125rem;
+  width: 3.125rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c2 > svg {
+  height: 1.5rem;
+  width: auto;
+}
+
+.c0 {
+  margin: 10px 0 20px 0;
+}
+
+.c0:last-child {
+  margin: 10px 0 0 0;
+}
+
+.c4 {
+  color: #645f5a;
+  margin-top: 3px;
+}
+
+.c4 .typo-etikett-liten {
+  line-height: 1rem;
+}
+
+.c3 {
+  margin-top: 0.5rem;
+}
+
 <div
-  className="sc-gKckTs bfBLbu"
+  className="c0"
 >
   <div
-    className="sc-eCImvq gyUlA-D"
+    className="c1"
   >
     <div
-      className="sc-jRQAMF eUvSFO"
+      className="c2"
     >
       <svg
         height={24}
@@ -67,7 +119,7 @@ exports[`viser dodsbo 1`] = `
     01234567891011
   </p>
   <div
-    className="sc-furvIG kEEfPj"
+    className="c3"
   >
     <p
       className="typo-normal"
@@ -76,7 +128,7 @@ exports[`viser dodsbo 1`] = `
     </p>
   </div>
   <div
-    className="sc-iCfLBT htmePD"
+    className="c4"
   >
     <p
       className="typo-undertekst"

@@ -1,38 +1,236 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`viser send ny melding 1`] = `
+.c12 label {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  -webkit-clip: rect(1px 1px 1px 1px);
+  clip: rect(1px 1px 1px 1px);
+  -webkit-clip: rect(1px,1px,1px,1px);
+  clip: rect(1px,1px,1px,1px);
+}
+
+.c14 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c14 > *:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.c6 {
+  position: absolute;
+  height: 2rem;
+  width: 2rem;
+  border-bottom-right-radius: 50%;
+  padding: 0;
+  background-color: #0067c5;
+  border: none;
+  z-index: 10;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+.c6:after {
+  background: none;
+}
+
+.c6:hover {
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+.c7 {
+  position: relative;
+  top: 2px;
+  width: 18px;
+}
+
+.c10 {
+  position: absolute;
+  top: 2.8rem;
+  left: 0.25rem;
+}
+
+.c10 ul {
+  list-style: circle;
+  margin-top: 1rem;
+}
+
+.c10 ul li {
+  margin-left: 1.5rem;
+}
+
+.c9 {
+  position: relative;
+}
+
+.c5 {
+  position: relative;
+}
+
+.c5 textarea {
+  min-height: 9rem;
+}
+
+.c5 label {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  -webkit-clip: rect(1px 1px 1px 1px);
+  clip: rect(1px 1px 1px 1px);
+  -webkit-clip: rect(1px,1px,1px,1px);
+  clip: rect(1px,1px,1px,1px);
+}
+
+.c8 textarea,
+.c8 .textareamirror {
+  padding-left: 2.25rem;
+}
+
+.c15 {
+  margin-top: 1rem;
+}
+
+.c15 label {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  -webkit-clip: rect(1px 1px 1px 1px);
+  clip: rect(1px 1px 1px 1px);
+  -webkit-clip: rect(1px,1px,1px,1px);
+  clip: rect(1px,1px,1px,1px);
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
+
+.c4 .skjemaelement {
+  margin-bottom: 0;
+}
+
+.c4 > * {
+  margin-bottom: 1rem;
+}
+
+.c11 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c11 > * {
+  margin-top: 0.3rem;
+}
+
+.c11 > *:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.c1 {
+  position: relative;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.c0 {
+  padding: 1rem .5rem;
+}
+
+.c17 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c17 > * {
+  margin-bottom: 0.7rem;
+}
+
+.c13 {
+  margin-top: 1rem;
+}
+
+.c16 {
+  margin-top: 1rem;
+}
+
+.c3 {
+  margin-bottom: 1rem !important;
+}
+
 <article
   aria-labelledby="Helt tilfeldig ID"
-  className="sc-uoixf GKZjK"
+  className="c0"
 >
   <div
-    className="sc-XxOsz dHueJA"
+    className="c1"
   >
     <div
-      className="sc-ilftOa geFaiZ"
+      className="c2"
     >
       <h2
-        className="typo-undertittel sc-kYHenr egpEvQ"
+        className="typo-undertittel c3"
         id="Helt tilfeldig ID"
       >
         Send ny melding
       </h2>
       <form
-        className="sc-brSwnh bcLknc"
+        className="c4"
         onSubmit={[Function]}
       >
         <fieldset
           aria-invalid={false}
-          className="skjemagruppe sc-dPiKHq kAUVxl"
+          className="skjemagruppe c5"
         >
           <button
-            className="knapp sc-iAKVOt iA-dcLn knapp--hoved"
+            className="knapp c6 knapp--hoved"
             disabled={false}
             onClick={[Function]}
             type="button"
           >
             <svg
-              className="sc-efQUeY dxzPAf"
+              className="c7"
               height="24px"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 24 24"
@@ -53,10 +251,10 @@ exports[`viser send ny melding 1`] = `
             </span>
           </button>
           <div
-            className="sc-bBHHQT HbSsb"
+            className="c8"
           >
             <div
-              className="sc-jObXwK cAFQit"
+              className="c9"
             >
               <div
                 className="skjemaelement textarea__container"
@@ -110,7 +308,7 @@ exports[`viser send ny melding 1`] = `
                 />
               </div>
               <div
-                className="sc-cTApHj gNWAeC"
+                className="c10"
               >
                 <div
                   className="hjelpetekst"
@@ -269,7 +467,7 @@ exports[`viser send ny melding 1`] = `
           />
         </fieldset>
         <div
-          className="sc-dtDOJZ fytaRd"
+          className="c11"
         >
           <div
             className="skjemaelement"
@@ -335,7 +533,7 @@ exports[`viser send ny melding 1`] = `
             className="skjemagruppe"
           >
             <div
-              className="skjemaelement sc-eCImvq eahWFl"
+              className="skjemaelement c12"
             >
               <label
                 className="skjemaelement__label"
@@ -399,7 +597,7 @@ exports[`viser send ny melding 1`] = `
             />
           </fieldset>
           <div
-            className="alertstripe sc-eGPWxh imjzTN alertstripe--info"
+            className="alertstripe c13 alertstripe--info"
           >
             <span
               className="alertstripe__ikon"
@@ -442,7 +640,7 @@ exports[`viser send ny melding 1`] = `
             className="panel"
           >
             <div
-              className="sc-bkkfTU jGsnxV"
+              className="c14"
             >
               <button
                 className="knapp knapp--hoved knapp--mini"
@@ -459,7 +657,7 @@ exports[`viser send ny melding 1`] = `
               </p>
             </div>
             <div
-              className="skjemaelement sc-cNKpQo eqKVSI"
+              className="skjemaelement c15"
             >
               <label
                 className="skjemaelement__label"
@@ -495,7 +693,7 @@ exports[`viser send ny melding 1`] = `
               </div>
             </div>
             <div
-              className="alertstripe sc-eGPWxh imjzTN alertstripe--info"
+              className="alertstripe c13 alertstripe--info"
             >
               <span
                 className="alertstripe__ikon"
@@ -535,7 +733,7 @@ exports[`viser send ny melding 1`] = `
               </div>
             </div>
             <div
-              className="skjemaelement sc-hAcGfq kGONYC"
+              className="skjemaelement c16"
             >
               <input
                 aria-invalid={false}
@@ -555,7 +753,7 @@ exports[`viser send ny melding 1`] = `
           </div>
         </div>
         <div
-          className="sc-bilypg kvTRLz"
+          className="c17"
         >
           <button
             className="knapp knapp--hoved"

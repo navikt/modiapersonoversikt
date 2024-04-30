@@ -1,19 +1,135 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
+.c4 {
+  position: relative;
+  z-index: 50;
+}
+
+.c4 > * {
+  margin-bottom: 1rem;
+}
+
+.c2 {
+  padding: 0.9375rem;
+}
+
+.c3 {
+  margin-bottom: .5rem;
+}
+
+.c3:focus {
+  outline: none;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c6 dt {
+  color: #645f5a;
+}
+
+.c6 > div {
+  margin: 0.5625rem 0;
+  padding-right: 0.7rem;
+  width: 13rem;
+  overflow-wrap: break-word;
+}
+
+.c5 {
+  padding: 0.9375rem;
+}
+
+.c5 > *:first-child {
+  margin-bottom: 1rem;
+}
+
+.c8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.c8 > *:first-child {
+  -webkit-flex-basis: 10em;
+  -ms-flex-preferred-size: 10em;
+  flex-basis: 10em;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.c8 > * {
+  white-space: nowrap;
+}
+
+.c8 > *:not(:last-child) {
+  margin-right: 2rem;
+}
+
+.c7 {
+  padding: 0rem;
+}
+
+.c7 .ekspanderbartPanel__hode {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  border-bottom: solid 0.0625rem #b7b1a9;
+  z-index: 10;
+  background-color: white;
+}
+
+.c0 {
+  padding: .5rem;
+}
+
+.c0 > *:not(:last-child) {
+  margin-bottom: .5rem;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.c1 > *:last-child {
+  margin-left: .5rem;
+  -webkit-flex-basis: 75%;
+  -ms-flex-preferred-size: 75%;
+  flex-basis: 75%;
+}
+
 <div
-  className="sc-ksdxAp eKipeH"
+  className="c0"
 >
   <div
-    className="sc-hBURRC fqjhPg"
+    className="c1"
   >
     <div
       aria-labelledby="Helt tilfeldig ID"
-      className="panel sc-jRQAMF hbJfma"
+      className="panel c2"
     >
       <article>
         <div
-          className="sc-gKckTs ezrlmx"
+          className="c3"
         >
           <h2
             className="typo-undertittel"
@@ -23,7 +139,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
           </h2>
         </div>
         <div
-          className="sc-eCImvq bHabpa"
+          className="c4"
         >
           <label
             htmlFor="oppfolging-datovelger-fra"
@@ -194,7 +310,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
     </div>
     <div
       aria-labelledby="Helt tilfeldig ID"
-      className="panel sc-furvIG iEYODp"
+      className="panel c5"
     >
       <article>
         <h2
@@ -204,7 +320,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
           Arbeidsoppfølging
         </h2>
         <dl
-          className="sc-iCfLBT NoVBK"
+          className="c6"
         >
           <div>
             <dt
@@ -307,7 +423,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
     </div>
   </div>
   <div
-    className="panel sc-jrQzUz ibFotM"
+    className="panel c7"
   >
     <div
       className="ekspanderbartPanel test-ytelse-ytelselamell ekspanderbartPanel--lukket ekspanderbartPanel--border"
@@ -329,7 +445,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
             className="ekspanderbartPanel__tittel"
           >
             <div
-              className="sc-pVTma fGyFNa"
+              className="c8"
             >
               <h2
                 className="typo-undertittel"
@@ -351,7 +467,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
     </div>
   </div>
   <div
-    className="panel sc-jrQzUz ibFotM"
+    className="panel c7"
   >
     <div
       className="ekspanderbartPanel test-ytelse-ytelselamell ekspanderbartPanel--lukket ekspanderbartPanel--border"
@@ -373,7 +489,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
             className="ekspanderbartPanel__tittel"
           >
             <div
-              className="sc-pVTma fGyFNa"
+              className="c8"
             >
               <h2
                 className="typo-undertittel"

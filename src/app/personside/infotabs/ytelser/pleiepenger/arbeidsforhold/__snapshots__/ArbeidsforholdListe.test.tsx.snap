@@ -1,13 +1,44 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`ArbeidsforholdListe matcher snapshot 1`] = `
+.c2 span:not(:last-child):after {
+  content: '.';
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c1 dt {
+  color: #645f5a;
+}
+
+.c1 > div {
+  margin: 0.5625rem 0;
+  padding-right: 0.7rem;
+  width: 13rem;
+  overflow-wrap: break-word;
+}
+
+.c0 li:not(:first-child) {
+  padding-top: 1rem;
+  margin-top: 1rem;
+  border-top: solid 0.0625rem #b7b1a9;
+}
+
 <ol
   aria-label="Arbeidsgivere"
-  className="sc-eCImvq ezjQkc"
+  className="c0"
 >
   <li>
     <dl
-      className="sc-hKwCoD dBxdkI"
+      className="c1"
     >
       <div>
         <dt
@@ -55,7 +86,7 @@ exports[`ArbeidsforholdListe matcher snapshot 1`] = `
           className="typo-element"
         >
           <span
-            className="sc-bdvvaa eLanYz"
+            className="c2"
           >
             <span>
               4113

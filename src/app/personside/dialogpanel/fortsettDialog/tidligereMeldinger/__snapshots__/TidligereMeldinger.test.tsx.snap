@@ -1,8 +1,59 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`viser fortsett dialog 1`] = `
+.c5 {
+  font-size: 0.85rem;
+}
+
+.c4 {
+  width: 100%;
+  padding-right: 1rem;
+}
+
+.c3 .ekspanderbartPanel__innhold {
+  padding: 0;
+}
+
+.c3 .ekspanderbartPanel__hode:hover {
+  box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
+}
+
+.c3 .ekspanderbartPanel__hode:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 0.1875rem #254b6d;
+}
+
+.c0 {
+  margin-top: 0.7rem;
+}
+
+.c0 .ekspanderbartPanel__innhold {
+  padding: 0rem;
+}
+
+.c0 > *:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.c2 {
+  position: relative;
+}
+
+.c1 {
+  padding: 0rem;
+  margin-top: 0.1rem;
+}
+
+.c1 > li:not(:last-child) {
+  margin-bottom: 0.1rem;
+}
+
+.c1 > li:not(:only-child) {
+  border-top: solid 0.0625rem #b7b1a9;
+}
+
 <article
-  className="sc-kDThTU inOyIn"
+  className="c0"
 >
   <div
     className="ekspanderbartPanel ekspanderbartPanel--lukket ekspanderbartPanel--border"
@@ -55,14 +106,14 @@ exports[`viser fortsett dialog 1`] = `
             className="ekspanderbartPanel__innhold"
           >
             <div
-              className="panel sc-crHlIS ftVpwh"
+              className="panel c1"
             >
               <ol>
                 <li
-                  className="sc-iqsfdx cAhMOb"
+                  className="c2"
                 >
                   <div
-                    className="ekspanderbartPanel sc-jrQzUz hAAElM ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c3 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-controls="Helt tilfeldig ID"
@@ -80,7 +131,7 @@ exports[`viser fortsett dialog 1`] = `
                           className="ekspanderbartPanel__tittel"
                         >
                           <div
-                            className="sc-furvIG dGBWwY"
+                            className="c4"
                           >
                             <span
                               className="sr-only"
@@ -104,7 +155,7 @@ exports[`viser fortsett dialog 1`] = `
                               30. juli 2019 00:00
                             </p>
                             <p
-                              className="sc-gKckTs gbtnpq"
+                              className="c5"
                             >
                               Skrevet av Sander Hansen (nzxo4q)
                             </p>
@@ -123,10 +174,10 @@ exports[`viser fortsett dialog 1`] = `
                   </div>
                 </li>
                 <li
-                  className="sc-iqsfdx cAhMOb"
+                  className="c2"
                 >
                   <div
-                    className="ekspanderbartPanel sc-jrQzUz hAAElM ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c3 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-controls="Helt tilfeldig ID"
@@ -144,7 +195,7 @@ exports[`viser fortsett dialog 1`] = `
                           className="ekspanderbartPanel__tittel"
                         >
                           <div
-                            className="sc-furvIG dGBWwY"
+                            className="c4"
                           >
                             <span
                               className="sr-only"
@@ -182,10 +233,10 @@ exports[`viser fortsett dialog 1`] = `
                   </div>
                 </li>
                 <li
-                  className="sc-iqsfdx cAhMOb"
+                  className="c2"
                 >
                   <div
-                    className="ekspanderbartPanel sc-jrQzUz hAAElM ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c3 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-controls="Helt tilfeldig ID"
@@ -203,7 +254,7 @@ exports[`viser fortsett dialog 1`] = `
                           className="ekspanderbartPanel__tittel"
                         >
                           <div
-                            className="sc-furvIG dGBWwY"
+                            className="c4"
                           >
                             <span
                               className="sr-only"
@@ -241,10 +292,10 @@ exports[`viser fortsett dialog 1`] = `
                   </div>
                 </li>
                 <li
-                  className="sc-iqsfdx cAhMOb"
+                  className="c2"
                 >
                   <div
-                    className="ekspanderbartPanel sc-jrQzUz hAAElM ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c3 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-controls="Helt tilfeldig ID"
@@ -262,7 +313,7 @@ exports[`viser fortsett dialog 1`] = `
                           className="ekspanderbartPanel__tittel"
                         >
                           <div
-                            className="sc-furvIG dGBWwY"
+                            className="c4"
                           >
                             <span
                               className="sr-only"
@@ -286,7 +337,7 @@ exports[`viser fortsett dialog 1`] = `
                               13. aug. 2019 00:00
                             </p>
                             <p
-                              className="sc-gKckTs gbtnpq"
+                              className="c5"
                             >
                               Skrevet av Kristoffer Fredriksen (xy70r8)
                             </p>

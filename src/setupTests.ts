@@ -5,6 +5,7 @@ import MockDate from 'mockdate';
 import dayjs from 'dayjs';
 import 'dayjs/locale/nb';
 import './extra-polyfills';
+import 'jest-styled-components';
 import { vi } from 'vitest';
 dayjs.locale('nb');
 

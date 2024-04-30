@@ -1,11 +1,101 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Foreldrepengeperiode matcher snapshot 1`] = `
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c4 dt {
+  color: #645f5a;
+}
+
+.c4 > div {
+  margin: 0.5625rem 0;
+  padding-right: 0.7rem;
+  width: 13rem;
+  overflow-wrap: break-word;
+}
+
+.c6 {
+  overflow: auto;
+  box-shadow: 0 0 0 0.07rem rgba(0,0,0,0.25);
+  border-radius: .25rem;
+  background-color: white;
+}
+
+.c6 [role='table'] {
+  text-align: left;
+  width: 100%;
+}
+
+.c6 [role='table'] thead,
+.c6 [role='table'] .thead[role='rowgroup'] {
+  border-bottom: 0.2rem solid rgba(0,0,0,0.15);
+  font-weight: 600;
+}
+
+.c6 [role='table'] [role='cell'],
+.c6 [role='table'] [role='columnheader'] {
+  padding: 0.7rem;
+  vertical-align: middle;
+}
+
+.c6 [role='table'] [role='columnheader'] {
+  padding-bottom: 0.7rem;
+}
+
+.c6 [role='table'] [role='row']:nth-child(even) {
+  background-color: rgba(0,0,0,0.1);
+}
+
+.c1 {
+  background-color: #cce1f3;
+  padding: 0.2rem 0.9375rem;
+}
+
+.c0 ol {
+  padding: 0;
+  margin: 0;
+}
+
+.c5 {
+  border-radius: 0.5rem;
+  background-color: #f1f0f0;
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
+  padding: 1.25rem;
+  white-space: nowrap;
+}
+
+.c5 > *:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.c3 {
+  border-radius: 0.5rem;
+  background-color: #f1f0f0;
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
+  padding: 1.25rem;
+}
+
+.c3 > h3 {
+  margin-bottom: 1rem;
+}
+
+.c2 {
+  padding: .5rem;
+}
+
 <li
-  className="sc-dvQbkV jKjISW"
+  className="c0"
 >
   <div
-    className="sc-fWCJfs bpJMwW"
+    className="c1"
   >
     <h3
       className="typo-element"
@@ -14,11 +104,11 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
     </h3>
   </div>
   <article
-    className="sc-ZOsLE ebgXwz"
+    className="c2"
   >
     <article
       aria-labelledby="Helt tilfeldig ID"
-      className="sc-jIkYaL fZcHzm"
+      className="c3"
     >
       <h3
         className="typo-ingress"
@@ -27,7 +117,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
         Om foreldrepengeperioden
       </h3>
       <dl
-        className="sc-bdvvaa dquSyG"
+        className="c4"
       >
         <div>
           <dt
@@ -200,7 +290,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
       </dl>
     </article>
     <section
-      className="sc-TBWwm cfGfJO"
+      className="c5"
     >
       <h4
         className="typo-ingress"
@@ -208,7 +298,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
         Utbetalinger
       </h4>
       <div
-        className="sc-iCfLBT gEOSDn typo-normal"
+        className="c6 typo-normal"
       >
         <table
           role="table"

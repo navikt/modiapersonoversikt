@@ -1,11 +1,331 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Viser Traadliste 1`] = `
+.c15 {
+  position: relative;
+}
+
+.c15 svg {
+  height: 1.5625rem;
+  width: 1.5625rem;
+  opacity: 0.4;
+}
+
+.c16 {
+  position: absolute;
+  top: -0.1875rem;
+  right: -0.5rem;
+  background-color: #78706a;
+  color: white;
+  height: 1.1rem;
+  width: 1.1rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.c17 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  width: 0;
+  margin-left: 0.8rem;
+  overflow-wrap: break-word;
+}
+
+.c17 .order-first {
+  -webkit-order: 0;
+  -ms-flex-order: 0;
+  order: 0;
+}
+
+.c17 .order-second {
+  -webkit-order: 1;
+  -ms-flex-order: 1;
+  order: 1;
+}
+
+.c17 .order-third {
+  -webkit-order: 3;
+  -ms-flex-order: 3;
+  order: 3;
+}
+
+.c19 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  margin-top: 0.2rem;
+}
+
+.c19 > *:not(:last-child) {
+  margin-bottom: 0.2rem;
+  margin-right: 0.2rem;
+}
+
+.c18 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c18 .order-first {
+  -webkit-order: 0;
+  -ms-flex-order: 0;
+  order: 0;
+}
+
+.c18 .order-second {
+  -webkit-order: 1;
+  -ms-flex-order: 1;
+  order: 1;
+}
+
+.c14 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c14 > *:last-child {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c20 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.c12 {
+  padding: .5rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+}
+
+.c13 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c11 {
+  background-color: #cce1f3;
+}
+
+.c11:focus-within {
+  position: relative;
+  outline: none;
+  box-shadow: none;
+}
+
+.c11:focus-within::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  box-shadow: inset 0 0 0 0.1875rem #254b6d;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+}
+
+.c11 .hover-animation {
+  -webkit-transition: -webkit-transform 0.3s;
+  -webkit-transition: transform 0.3s;
+  transition: transform 0.3s;
+}
+
+.c11:hover {
+  box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
+}
+
+.c11:hover .hover-animation {
+  -webkit-transform: translateX(0.5rem);
+  -ms-transform: translateX(0.5rem);
+  transform: translateX(0.5rem);
+}
+
+.c21 {
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
+.c21 .nav-frontend-chevron {
+  width: 1.5625rem;
+}
+
+.c3 {
+  border: none;
+  background-color: transparent;
+  padding: 0.1rem 0.2rem;
+  border-radius: .35rem;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  color: #0067c5;
+}
+
+.c3 svg {
+  margin-left: 0.5rem;
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+.c3:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c3:hover {
+  opacity: 0.8;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c5 {
+  margin-bottom: 2rem;
+}
+
+.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin: 1rem 0rem;
+}
+
+.c8 > * {
+  margin-bottom: 1rem !important;
+}
+
+.c6 {
+  margin-bottom: 2rem;
+  border-bottom: solid 0.0625rem #78706a;
+  page-break-inside: avoid;
+}
+
+.c0 {
+  padding: 0rem;
+}
+
+.c0 ol {
+  list-style: none;
+}
+
+.c9 {
+  padding: 0 .5rem .5rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c2 {
+  padding: 0.5rem;
+}
+
+.c2 button {
+  padding: 0;
+}
+
+.c10 > * {
+  border-top: solid 0.0625rem #78706a;
+}
+
+.c10:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c1 {
+  padding: .5rem .5rem 0;
+}
+
+.c1 .skjemaelement {
+  margin-bottom: 0.2rem;
+}
+
+.c1 .skjemaelement__label {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  -webkit-clip: rect(1px 1px 1px 1px);
+  clip: rect(1px 1px 1px 1px);
+  -webkit-clip: rect(1px,1px,1px,1px);
+  clip: rect(1px,1px,1px,1px);
+}
+
+@media print {
+  .c3 {
+    display: none;
+  }
+}
+
+@media not print {
+  .c4 {
+    display: none;
+  }
+}
+
 <nav
   aria-label="Velg melding"
 >
   <div
-    className="panel sc-bYoCmx hVBmpm"
+    className="panel c0"
   >
     <article
       aria-labelledby="Helt tilfeldig ID"
@@ -17,7 +337,7 @@ exports[`Viser Traadliste 1`] = `
         Filtrer meldinger
       </h3>
       <div
-        className="sc-hiCivh llDGED"
+        className="c1"
       >
         <div
           className="skjemaelement move-input-label"
@@ -40,11 +360,11 @@ exports[`Viser Traadliste 1`] = `
         </div>
       </div>
       <div
-        className="sc-ikJzcn fpDsG"
+        className="c2"
       >
         <button
           aria-label="Skriv ut"
-          className="sc-bBHwJV jJyFXg"
+          className="c3"
           onClick={[Function]}
         >
           <span
@@ -70,10 +390,10 @@ exports[`Viser Traadliste 1`] = `
           </svg>
         </button>
         <div
-          className="sc-cxpRKc ilPuCk"
+          className="c4"
         >
           <div
-            className="sc-llYToB cGslcr"
+            className="c5"
           >
             <p
               className="typo-element"
@@ -92,7 +412,7 @@ exports[`Viser Traadliste 1`] = `
             </p>
           </div>
           <div
-            className="sc-ezbkgU gcNMer"
+            className="c6"
           >
             <p
               className="typo-ingress"
@@ -100,7 +420,7 @@ exports[`Viser Traadliste 1`] = `
               Samtalereferat oppmøte - Arbeid
             </p>
             <div
-              className="sc-iJKOzS hdBWii"
+              className="c7"
             >
               <div>
                 <p
@@ -149,7 +469,7 @@ exports[`Viser Traadliste 1`] = `
               </div>
             </div>
             <div
-              className="sc-giYgFv dDwHQN"
+              className="c8"
             >
               <p
                 className="typo-element"
@@ -166,7 +486,7 @@ exports[`Viser Traadliste 1`] = `
             </div>
           </div>
           <div
-            className="sc-ezbkgU gcNMer"
+            className="c6"
           >
             <p
               className="typo-ingress"
@@ -174,7 +494,7 @@ exports[`Viser Traadliste 1`] = `
               Spørsmål fra bruker - Arbeid
             </p>
             <div
-              className="sc-iJKOzS hdBWii"
+              className="c7"
             >
               <div>
                 <p
@@ -223,7 +543,7 @@ exports[`Viser Traadliste 1`] = `
               </div>
             </div>
             <div
-              className="sc-giYgFv dDwHQN"
+              className="c8"
             >
               <p
                 className="typo-element"
@@ -240,7 +560,7 @@ exports[`Viser Traadliste 1`] = `
             </div>
           </div>
           <div
-            className="sc-ezbkgU gcNMer"
+            className="c6"
           >
             <p
               className="typo-ingress"
@@ -248,7 +568,7 @@ exports[`Viser Traadliste 1`] = `
               Spørsmål fra bruker - Helse
             </p>
             <div
-              className="sc-iJKOzS hdBWii"
+              className="c7"
             >
               <div>
                 <p
@@ -297,7 +617,7 @@ exports[`Viser Traadliste 1`] = `
               </div>
             </div>
             <div
-              className="sc-giYgFv dDwHQN"
+              className="c8"
             >
               <p
                 className="typo-element"
@@ -314,7 +634,7 @@ exports[`Viser Traadliste 1`] = `
             </div>
           </div>
           <div
-            className="sc-ezbkgU gcNMer"
+            className="c6"
           >
             <p
               className="typo-ingress"
@@ -322,7 +642,7 @@ exports[`Viser Traadliste 1`] = `
               Spørsmål fra NAV - Arbeid
             </p>
             <div
-              className="sc-iJKOzS hdBWii"
+              className="c7"
             >
               <div>
                 <p
@@ -371,7 +691,7 @@ exports[`Viser Traadliste 1`] = `
               </div>
             </div>
             <div
-              className="sc-giYgFv dDwHQN"
+              className="c8"
             >
               <p
                 className="typo-element"
@@ -390,7 +710,7 @@ exports[`Viser Traadliste 1`] = `
         </div>
       </div>
       <div
-        className="sc-kLwgWK hEBWff"
+        className="c9"
       >
         <p
           aria-live="assertive"
@@ -409,11 +729,11 @@ exports[`Viser Traadliste 1`] = `
     </h3>
     <ol
       aria-labelledby="Helt tilfeldig ID"
-      className="sc-jJoQpE cmQfkS"
+      className="c10"
       tabIndex={-1}
     >
       <li
-        className="sc-egiSv bLkiZs"
+        className="c11"
       >
         <input
           checked={true}
@@ -425,14 +745,14 @@ exports[`Viser Traadliste 1`] = `
           value="sg838exr"
         />
         <label
-          className="sc-iqsfdx gssDtx"
+          className="c12"
           htmlFor="Helt tilfeldig ID"
         >
           <div
-            className="sc-crHlIS ijOQZy"
+            className="c13"
           >
             <div
-              className="sc-jrQzUz iVMBEC"
+              className="c14"
             >
               <span
                 className="sr-only"
@@ -442,7 +762,7 @@ exports[`Viser Traadliste 1`] = `
                 )
               </span>
               <span
-                className="sc-eCImvq fcxUxi"
+                className="c15"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -461,16 +781,16 @@ exports[`Viser Traadliste 1`] = `
                 </svg>
                 <p
                   aria-hidden="true"
-                  className="typo-undertekst sc-jRQAMF cxAihV"
+                  className="typo-undertekst c16"
                 >
                   4
                 </p>
               </span>
               <div
-                className="sc-iCfLBT onxlK"
+                className="c17"
               >
                 <div
-                  className="sc-pVTma bqhTNl order-first"
+                  className="c18 order-first"
                 >
                   <p
                     className="typo-element order-second"
@@ -484,7 +804,7 @@ exports[`Viser Traadliste 1`] = `
                   </p>
                 </div>
                 <div
-                  className="sc-furvIG gCSBoM order-third"
+                  className="c19 order-third"
                 >
                   <div
                     className="etikett etikett--fokus"
@@ -497,7 +817,7 @@ exports[`Viser Traadliste 1`] = `
                   </div>
                 </div>
                 <p
-                  className="typo-normal sc-kDThTU jemdqR order-second"
+                  className="typo-normal c20 order-second"
                 >
                   Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
                 </p>
@@ -505,7 +825,7 @@ exports[`Viser Traadliste 1`] = `
             </div>
           </div>
           <div
-            className="sc-bqiQRQ ucXcb hover-animation"
+            className="c21 hover-animation"
           >
             <span
               className="nav-frontend-chevron chevronboks chevron--hoyre"

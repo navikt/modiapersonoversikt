@@ -1,8 +1,364 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Viser traad med verktøylinje 1`] = `
+.c13 {
+  position: relative;
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.c4 {
+  position: relative;
+  border: none;
+  padding: 0;
+  border-radius: .35rem;
+  cursor: pointer;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #0067c5;
+}
+
+.c4:after {
+  border-bottom: 1px #b7b1a9 solid;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.c4:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c4:hover {
+  opacity: 0.8;
+}
+
+.c4:hover:after {
+  content: '';
+  border-color: #0067c5;
+}
+
+.c23 .snakkeboble-panel {
+  -webkit-flex-basis: 40rem;
+  -ms-flex-preferred-size: 40rem;
+  flex-basis: 40rem;
+  padding: 0.5rem 0.5rem 0.3rem;
+}
+
+.c23 a {
+  word-break: break-word;
+}
+
+.c23 .snakkeboble {
+  margin: 0;
+}
+
+.c25 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.c24 {
+  text-align: left;
+}
+
+.c24 em {
+  font-style: normal;
+  background-color: #eed28c;
+  box-shadow: 0 0 0 0.2rem #eed28c;
+  border-radius: 0.625rem;
+}
+
+.c24 > *:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.c26 {
+  font-size: 0.85rem;
+}
+
+.c27 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0.3rem;
+  margin-left: auto;
+}
+
+.c18 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c15 {
+  position: relative;
+}
+
+.c16 {
+  position: relative;
+}
+
+.c16 .skjemaelement {
+  margin-bottom: 0;
+}
+
+.c14 {
+  padding-top: 1rem;
+}
+
+.c14 .inputPanelGruppe__inner {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c14 .inputPanelGruppe__inner > * {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c14 label {
+  font-weight: 600;
+  margin-bottom: 0.1rem;
+}
+
+.c14 .skjemaelement {
+  margin-bottom: 0.7rem;
+}
+
+.c17 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c17 button {
+  margin: 0;
+}
+
+.c6 {
+  margin-right: 0.5rem;
+}
+
+.c7 {
+  border: none;
+  background-color: transparent;
+  padding: 0.1rem 0.2rem;
+  border-radius: .35rem;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  color: #0067c5;
+}
+
+.c7 svg {
+  margin-left: 0.5rem;
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+.c7:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c7:hover {
+  opacity: 0.8;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c9 {
+  margin-bottom: 2rem;
+}
+
+.c11 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin: 1rem 0rem;
+}
+
+.c12 > * {
+  margin-bottom: 1rem !important;
+}
+
+.c10 {
+  margin-bottom: 2rem;
+  border-bottom: solid 0.0625rem #78706a;
+  page-break-inside: avoid;
+}
+
+.c1 {
+  padding: .5rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin-bottom: 0.24rem;
+}
+
+.c1:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c3 > *:not(:last-child) {
+  margin-right: 1.5rem;
+}
+
+.c5 {
+  color: #3e3832;
+  white-space: nowrap;
+}
+
+.c19 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c19 > *:last-child {
+  margin-top: .5rem;
+}
+
+.c21 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.c20 {
+  margin-bottom: 0.3rem;
+}
+
+.c22 {
+  margin-top: 0.8rem;
+}
+
+.c22 .ekspanderbartPanel__hode,
+.c22 .ekspanderbartPanel__innhold {
+  padding: 0.1rem 0.2rem;
+}
+
+.c22 .ekspanderbartPanel__tittel {
+  color: #0067c5;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+@media print {
+  .c23 {
+    page-break-inside: avoid;
+    border: solid 0.0625rem #78706a;
+    margin-bottom: 2rem;
+  }
+
+  .c23 .snakkeboble__snakkeboble-pil-container,
+  .c23 .nav-ikon,
+  .c23 .bruker-ikon {
+    display: none;
+  }
+
+  .c23 .snakkeboble-panel {
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+  }
+}
+
+@media print {
+  .c7 {
+    display: none;
+  }
+}
+
+@media not print {
+  .c8 {
+    display: none;
+  }
+}
+
+@media print {
+  .c22 {
+    display: none;
+  }
+}
+
 <article
-  className="sc-nVjpj gSEhkI"
+  className="c0"
   role="tabpanel"
 >
   <article
@@ -10,22 +366,22 @@ exports[`Viser traad med verktøylinje 1`] = `
     aria-labelledby="Helt tilfeldig ID"
   >
     <div
-      className="panel sc-AjmZR jEPDfO"
+      className="panel c1"
       tabIndex={-1}
     >
       <div
-        className="sc-khQdMy dzLWvS"
+        className="c2"
       >
         <div
-          className="sc-hUpaWb eksvFo"
+          className="c3"
         >
           <button
             aria-expanded={false}
-            className="sc-ieebsP beQQzz sc-jgrIVw enPLDK"
+            className="c4 c5"
             onClick={[Function]}
           >
             <span
-              className="sc-caiKgP dbqERm"
+              className="c6"
             >
               <span
                 className="typo-normal"
@@ -39,11 +395,11 @@ exports[`Viser traad med verktøylinje 1`] = `
           </button>
           <button
             aria-expanded={false}
-            className="sc-ieebsP beQQzz sc-jgrIVw enPLDK"
+            className="c4 c5"
             onClick={[Function]}
           >
             <span
-              className="sc-caiKgP dbqERm"
+              className="c6"
             >
               <span
                 className="typo-normal"
@@ -57,11 +413,11 @@ exports[`Viser traad med verktøylinje 1`] = `
           </button>
           <button
             aria-expanded={false}
-            className="sc-ieebsP beQQzz sc-jgrIVw enPLDK"
+            className="c4 c5"
             onClick={[Function]}
           >
             <span
-              className="sc-caiKgP dbqERm"
+              className="c6"
             >
               <span
                 className="typo-normal"
@@ -76,7 +432,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </div>
         <button
           aria-label="Skriv ut"
-          className="sc-efQUeY cPkYpg"
+          className="c7"
           onClick={[Function]}
         >
           <span
@@ -102,10 +458,10 @@ exports[`Viser traad med verktøylinje 1`] = `
           </svg>
         </button>
         <div
-          className="sc-cTApHj hseuhJ"
+          className="c8"
         >
           <div
-            className="sc-jObXwK iloZnw"
+            className="c9"
           >
             <p
               className="typo-element"
@@ -124,7 +480,7 @@ exports[`Viser traad med verktøylinje 1`] = `
             </p>
           </div>
           <div
-            className="sc-cNKpQo djvoWn"
+            className="c10"
           >
             <p
               className="typo-ingress"
@@ -132,7 +488,7 @@ exports[`Viser traad med verktøylinje 1`] = `
               Samtalereferat oppmøte - Arbeid
             </p>
             <div
-              className="sc-dPiKHq hfemUr"
+              className="c11"
             >
               <div>
                 <p
@@ -181,7 +537,7 @@ exports[`Viser traad med verktøylinje 1`] = `
               </div>
             </div>
             <div
-              className="sc-bBHHQT jGNcpo"
+              className="c12"
             >
               <p
                 className="typo-element"
@@ -198,7 +554,7 @@ exports[`Viser traad med verktøylinje 1`] = `
             </div>
           </div>
           <div
-            className="sc-cNKpQo djvoWn"
+            className="c10"
           >
             <p
               className="typo-ingress"
@@ -206,7 +562,7 @@ exports[`Viser traad med verktøylinje 1`] = `
               Spørsmål fra bruker - Arbeid
             </p>
             <div
-              className="sc-dPiKHq hfemUr"
+              className="c11"
             >
               <div>
                 <p
@@ -255,7 +611,7 @@ exports[`Viser traad med verktøylinje 1`] = `
               </div>
             </div>
             <div
-              className="sc-bBHHQT jGNcpo"
+              className="c12"
             >
               <p
                 className="typo-element"
@@ -272,7 +628,7 @@ exports[`Viser traad med verktøylinje 1`] = `
             </div>
           </div>
           <div
-            className="sc-cNKpQo djvoWn"
+            className="c10"
           >
             <p
               className="typo-ingress"
@@ -280,7 +636,7 @@ exports[`Viser traad med verktøylinje 1`] = `
               Spørsmål fra bruker - Helse
             </p>
             <div
-              className="sc-dPiKHq hfemUr"
+              className="c11"
             >
               <div>
                 <p
@@ -329,7 +685,7 @@ exports[`Viser traad med verktøylinje 1`] = `
               </div>
             </div>
             <div
-              className="sc-bBHHQT jGNcpo"
+              className="c12"
             >
               <p
                 className="typo-element"
@@ -346,7 +702,7 @@ exports[`Viser traad med verktøylinje 1`] = `
             </div>
           </div>
           <div
-            className="sc-cNKpQo djvoWn"
+            className="c10"
           >
             <p
               className="typo-ingress"
@@ -354,7 +710,7 @@ exports[`Viser traad med verktøylinje 1`] = `
               Spørsmål fra NAV - Arbeid
             </p>
             <div
-              className="sc-dPiKHq hfemUr"
+              className="c11"
             >
               <div>
                 <p
@@ -403,7 +759,7 @@ exports[`Viser traad med verktøylinje 1`] = `
               </div>
             </div>
             <div
-              className="sc-bBHHQT jGNcpo"
+              className="c12"
             >
               <p
                 className="typo-element"
@@ -422,7 +778,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </div>
       </div>
       <section
-        className="sc-egiSv hjRgxi"
+        className="c13"
       >
         <svg
           aria-label="Laster innhold"
@@ -459,7 +815,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </svg>
       </section>
       <div
-        className="sc-cidCJl fOWKCy"
+        className="c14"
       >
         <form
           onSubmit={[Function]}
@@ -584,11 +940,11 @@ exports[`Viser traad med verktøylinje 1`] = `
             aria-haspopup="listbox"
             aria-labelledby="downshift-0-label"
             aria-owns={null}
-            className="sc-ikJzcn eLGZuV"
+            className="c15"
             role="combobox"
           >
             <div
-              className="sc-hiCivh fwSJUh"
+              className="c16"
             >
               <div
                 className="skjemaelement"
@@ -626,11 +982,11 @@ exports[`Viser traad med verktøylinje 1`] = `
             aria-haspopup="listbox"
             aria-labelledby="downshift-1-label"
             aria-owns={null}
-            className="sc-ikJzcn eLGZuV"
+            className="c15"
             role="combobox"
           >
             <div
-              className="sc-hiCivh fwSJUh"
+              className="c16"
             >
               <div
                 className="skjemaelement"
@@ -726,7 +1082,7 @@ exports[`Viser traad med verktøylinje 1`] = `
             />
           </div>
           <div
-            className="sc-jcFkyM NNNpB"
+            className="c17"
           >
             <button
               className="knapp knapp--hoved"
@@ -736,7 +1092,7 @@ exports[`Viser traad med verktøylinje 1`] = `
               Opprett oppgave
             </button>
             <button
-              className="sc-ieebsP beQQzz"
+              className="c4"
               onClick={[Function]}
               type="button"
             >
@@ -838,7 +1194,7 @@ exports[`Viser traad med verktøylinje 1`] = `
           />
         </fieldset>
         <div
-          className="sc-iJKOzS dZYZjy"
+          className="c18"
         >
           <button
             className="knapp knapp--hoved"
@@ -848,7 +1204,7 @@ exports[`Viser traad med verktøylinje 1`] = `
             Merk
           </button>
           <button
-            className="sc-ieebsP beQQzz"
+            className="c4"
             onClick={[Function]}
             type="button"
           >
@@ -859,18 +1215,18 @@ exports[`Viser traad med verktøylinje 1`] = `
     </div>
   </article>
   <section
-    className="sc-gSQGeZ egNBEQ"
+    className="c19"
   >
     <div
       className="panel"
     >
       <h2
-        className="typo-undertittel sc-iNGGwv cRciTS"
+        className="typo-undertittel c20"
       >
         Ukjent meldingstype: undefined
       </h2>
       <div
-        className="sc-lbhJmS llGFpC"
+        className="c21"
       >
         <button
           className="knapp knapp--hoved"
@@ -890,7 +1246,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         13.08.2019 00:00
       </h3>
       <div
-        className="ekspanderbartPanel sc-eJwXpk jjUYke ekspanderbartPanel--lukket"
+        className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
       >
         <button
           aria-controls="Helt tilfeldig ID"
@@ -930,7 +1286,7 @@ exports[`Viser traad med verktøylinje 1`] = `
       aria-label="Dialog"
     >
       <li
-        className="sc-dlVyqM kpyuLT snakkeboble_ikoner"
+        className="c23 snakkeboble_ikoner"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -955,7 +1311,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                 className="snakkeboble-panel__tekst"
               >
                 <div
-                  className="sc-fKVsgm kCExNY"
+                  className="c24"
                 >
                   <div>
                     <p
@@ -966,23 +1322,23 @@ exports[`Viser traad med verktøylinje 1`] = `
                   </div>
                   <div>
                     <div
-                      className="sc-kfPtPH bHOgeD"
+                      className="c25"
                     >
                       <p
-                        className="sc-bBHwJV hWnxYu"
+                        className="c26"
                       >
                         27.07.2019 00:00
                       </p>
                       <p
-                        className="sc-bBHwJV hWnxYu"
+                        className="c26"
                       >
                         Skrevet av Kristoffer Fredriksen (xy70r8)
                       </p>
                       <div
-                        className="sc-iwjezw ftomkI"
+                        className="c27"
                       >
                         <p
-                          className="sc-bBHwJV hWnxYu"
+                          className="c26"
                         >
                           Lest: 23.07.2019 00:00
                         </p>
@@ -1019,7 +1375,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </article>
       </li>
       <li
-        className="sc-dlVyqM kpyuLT snakkeboble_ikoner"
+        className="c23 snakkeboble_ikoner"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -1044,7 +1400,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                 className="snakkeboble-panel__tekst"
               >
                 <div
-                  className="sc-fKVsgm kCExNY"
+                  className="c24"
                 >
                   <div>
                     <p
@@ -1055,15 +1411,15 @@ exports[`Viser traad med verktøylinje 1`] = `
                   </div>
                   <div>
                     <div
-                      className="sc-kfPtPH bHOgeD"
+                      className="c25"
                     >
                       <p
-                        className="sc-bBHwJV hWnxYu"
+                        className="c26"
                       >
                         16.07.2019 00:00
                       </p>
                       <div
-                        className="sc-iwjezw ftomkI"
+                        className="c27"
                       />
                     </div>
                   </div>
@@ -1074,7 +1430,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </article>
       </li>
       <li
-        className="sc-dlVyqM kpyuLT snakkeboble_ikoner"
+        className="c23 snakkeboble_ikoner"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -1099,7 +1455,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                 className="snakkeboble-panel__tekst"
               >
                 <div
-                  className="sc-fKVsgm kCExNY"
+                  className="c24"
                 >
                   <div>
                     <p
@@ -1110,15 +1466,15 @@ exports[`Viser traad med verktøylinje 1`] = `
                   </div>
                   <div>
                     <div
-                      className="sc-kfPtPH bHOgeD"
+                      className="c25"
                     >
                       <p
-                        className="sc-bBHwJV hWnxYu"
+                        className="c26"
                       >
                         12.07.2019 00:00
                       </p>
                       <div
-                        className="sc-iwjezw ftomkI"
+                        className="c27"
                       />
                     </div>
                   </div>
@@ -1129,7 +1485,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </article>
       </li>
       <li
-        className="sc-dlVyqM kpyuLT snakkeboble_ikoner"
+        className="c23 snakkeboble_ikoner"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -1154,7 +1510,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                 className="snakkeboble-panel__tekst"
               >
                 <div
-                  className="sc-fKVsgm kCExNY"
+                  className="c24"
                 >
                   <div>
                     <p
@@ -1165,23 +1521,23 @@ exports[`Viser traad med verktøylinje 1`] = `
                   </div>
                   <div>
                     <div
-                      className="sc-kfPtPH bHOgeD"
+                      className="c25"
                     >
                       <p
-                        className="sc-bBHwJV hWnxYu"
+                        className="c26"
                       >
                         07.07.2019 00:00
                       </p>
                       <p
-                        className="sc-bBHwJV hWnxYu"
+                        className="c26"
                       >
                         Skrevet av Sander Hansen (nzxo4q)
                       </p>
                       <div
-                        className="sc-iwjezw ftomkI"
+                        className="c27"
                       >
                         <p
-                          className="sc-bBHwJV hWnxYu"
+                          className="c26"
                         >
                           Lest: 12.07.2019 00:00
                         </p>

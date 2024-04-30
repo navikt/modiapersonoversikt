@@ -1,9 +1,138 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`viser info om bruker i visittkortbody 1`] = `
+.c2 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c5 {
+  position: absolute;
+  left: -3.125rem;
+  width: 3.125rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c5 > svg {
+  height: 1.5rem;
+  width: auto;
+}
+
+.c0 {
+  background-color: white;
+  padding: .5rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 0.2rem;
+}
+
+.c0:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c0 > * {
+  -webkit-flex: 1 1 50%;
+  -ms-flex: 1 1 50%;
+  flex: 1 1 50%;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  -ms-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  margin-left: 3.125rem;
+  margin-right: 3.125rem;
+}
+
+.c1:last-child {
+  margin-right: 1.25rem;
+}
+
+.c1 > *:not(:last-child) {
+  margin-bottom: 2.5rem;
+}
+
+.c3 {
+  margin-bottom: 1rem;
+}
+
+.c4 {
+  margin: 10px 0 20px 0;
+}
+
+.c4:last-child {
+  margin: 10px 0 0 0;
+}
+
+.c7 {
+  color: #645f5a;
+  margin-top: 3px;
+}
+
+.c7 .typo-etikett-liten {
+  line-height: 1rem;
+}
+
+.c8 {
+  color: #645f5a;
+  margin-top: -0.275rem;
+}
+
+.c8 .typo-etikett-liten {
+  line-height: 1rem;
+}
+
+.c6 {
+  margin-top: 0.5rem;
+}
+
+.c9 {
+  margin-bottom: 5px;
+}
+
+.c10 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
 <section
   aria-label="Visittkortdetaljer"
-  className="sc-eCImvq jbdNPE"
+  className="c0"
   role="region"
 >
   <h2
@@ -13,11 +142,11 @@ exports[`viser info om bruker i visittkortbody 1`] = `
     Visittkortdetaljer
   </h2>
   <div
-    className="sc-jRQAMF DtoKY"
+    className="c1"
   >
     <section>
       <div
-        className="sc-dkPtyc fSIgdf"
+        className="c2"
       >
         
         <h3
@@ -27,16 +156,16 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </h3>
       </div>
       <div
-        className="sc-gKckTs fvVnlD"
+        className="c3"
       />
       <div
-        className="sc-iCfLBT gFNmBX"
+        className="c4"
       >
         <div
-          className="sc-dkPtyc fSIgdf"
+          className="c2"
         >
           <div
-            className="sc-hKwCoD ekZjUJ"
+            className="c5"
           >
             <svg
               height={24}
@@ -95,7 +224,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           01234567891011
         </p>
         <div
-          className="sc-kDThTU ibFGVA"
+          className="c6"
         >
           <p
             className="typo-normal"
@@ -104,7 +233,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </p>
         </div>
         <div
-          className="sc-furvIG KFZww"
+          className="c7"
         >
           <p
             className="typo-undertekst"
@@ -119,13 +248,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </div>
       </div>
       <div
-        className="sc-iCfLBT gFNmBX"
+        className="c4"
       >
         <div
-          className="sc-dkPtyc fSIgdf"
+          className="c2"
         >
           <div
-            className="sc-hKwCoD ekZjUJ"
+            className="c5"
           >
             <svg
               height={24}
@@ -182,7 +311,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           Norge
         </p>
         <div
-          className="sc-furvIG KFZww"
+          className="c7"
         >
           <p
             className="typo-undertekst"
@@ -197,13 +326,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </div>
       </div>
       <div
-        className="sc-iCfLBT gFNmBX"
+        className="c4"
       >
         <div
-          className="sc-dkPtyc fSIgdf"
+          className="c2"
         >
           <div
-            className="sc-hKwCoD ekZjUJ"
+            className="c5"
           >
             <svg
               height={24}
@@ -260,7 +389,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           0320 Aremark
         </p>
         <div
-          className="sc-furvIG KFZww"
+          className="c7"
         >
           <p
             className="typo-undertekst"
@@ -275,13 +404,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </div>
       </div>
       <div
-        className="sc-iCfLBT gFNmBX"
+        className="c4"
       >
         <div
-          className="sc-dkPtyc fSIgdf"
+          className="c2"
         >
           <div
-            className="sc-hKwCoD ekZjUJ"
+            className="c5"
           >
             <svg
               height={24}
@@ -323,7 +452,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </h4>
         </div>
         <div
-          className="sc-furvIG KFZww"
+          className="c7"
         >
           <p
             className="typo-undertekst"
@@ -344,13 +473,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </p>
       </div>
       <div
-        className="sc-iCfLBT gFNmBX"
+        className="c4"
       >
         <div
-          className="sc-dkPtyc fSIgdf"
+          className="c2"
         >
           <div
-            className="sc-hKwCoD ekZjUJ"
+            className="c5"
           >
             <svg
               height={24}
@@ -382,13 +511,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </p>
       </div>
       <div
-        className="sc-iCfLBT gFNmBX"
+        className="c4"
       >
         <div
-          className="sc-dkPtyc fSIgdf"
+          className="c2"
         >
           <div
-            className="sc-hKwCoD ekZjUJ"
+            className="c5"
           >
             <svg
               height={24}
@@ -416,10 +545,10 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </p>
       </div>
       <div
-        className="sc-iCfLBT gFNmBX"
+        className="c4"
       >
         <div
-          className="sc-dkPtyc fSIgdf"
+          className="c2"
         >
           
           <h4
@@ -435,13 +564,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </p>
       </div>
       <div
-        className="sc-iCfLBT gFNmBX"
+        className="c4"
       >
         <div
-          className="sc-dkPtyc fSIgdf"
+          className="c2"
         >
           <div
-            className="sc-hKwCoD ekZjUJ"
+            className="c5"
           >
             <svg
               viewBox="0 0 22 22"
@@ -516,10 +645,10 @@ exports[`viser info om bruker i visittkortbody 1`] = `
     </section>
     <section>
       <div
-        className="sc-dkPtyc fSIgdf"
+        className="c2"
       >
         <div
-          className="sc-hKwCoD ekZjUJ"
+          className="c5"
         >
           <svg
             viewBox="0 0 100 100"
@@ -555,13 +684,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </h3>
       </div>
       <div
-        className="sc-gKckTs fvVnlD"
+        className="c3"
       />
       <div
-        className="sc-iCfLBT gFNmBX"
+        className="c4"
       >
         <div
-          className="sc-dkPtyc fSIgdf"
+          className="c2"
         >
           
           <h4
@@ -595,7 +724,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           90 90 90 90
         </p>
         <div
-          className="sc-pVTma dXaBSB"
+          className="c8"
         >
           <p
             className="typo-undertekst"
@@ -604,7 +733,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </p>
         </div>
         <div
-          className="sc-furvIG KFZww"
+          className="c7"
         >
           <p
             className="typo-undertekst"
@@ -615,10 +744,10 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </div>
       </div>
       <div
-        className="sc-iCfLBT gFNmBX"
+        className="c4"
       >
         <div
-          className="sc-dkPtyc fSIgdf"
+          className="c2"
         >
           
           <h4
@@ -652,7 +781,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           Reservert
         </p>
         <div
-          className="sc-pVTma dXaBSB"
+          className="c8"
         >
           <p
             className="typo-undertekst"
@@ -661,7 +790,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </p>
         </div>
         <div
-          className="sc-furvIG KFZww"
+          className="c7"
         >
           <p
             className="typo-undertekst"
@@ -674,7 +803,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
     </section>
     <section>
       <div
-        className="sc-dkPtyc fSIgdf"
+        className="c2"
       >
         
         <h3
@@ -684,16 +813,16 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </h3>
       </div>
       <div
-        className="sc-gKckTs fvVnlD"
+        className="c3"
       />
       <div
-        className="sc-iCfLBT gFNmBX"
+        className="c4"
       >
         <div
-          className="sc-dkPtyc fSIgdf"
+          className="c2"
         >
           <div
-            className="sc-hKwCoD ekZjUJ"
+            className="c5"
           >
             <svg
               height={24}
@@ -728,13 +857,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </p>
       </div>
       <div
-        className="sc-iCfLBT gFNmBX"
+        className="c4"
       >
         <div
-          className="sc-dkPtyc fSIgdf"
+          className="c2"
         >
           <div
-            className="sc-hKwCoD ekZjUJ"
+            className="c5"
           >
             <svg
               viewBox="0 0 20 20"
@@ -778,13 +907,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </p>
       </div>
       <div
-        className="sc-iCfLBT gFNmBX"
+        className="c4"
       >
         <div
-          className="sc-dkPtyc fSIgdf"
+          className="c2"
         >
           <div
-            className="sc-hKwCoD ekZjUJ"
+            className="c5"
           >
             <svg
               viewBox="0 0 20 20"
@@ -830,10 +959,10 @@ exports[`viser info om bruker i visittkortbody 1`] = `
     </section>
     <section>
       <div
-        className="sc-dkPtyc fSIgdf"
+        className="c2"
       >
         <div
-          className="sc-hKwCoD ekZjUJ"
+          className="c5"
         >
           <svg
             fill="none"
@@ -857,18 +986,18 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </h3>
       </div>
       <div
-        className="sc-gKckTs fvVnlD"
+        className="c3"
       />
       <div
-        className="sc-iCfLBT gFNmBX"
+        className="c4"
       >
         <div
-          className="sc-dkPtyc fSIgdf"
+          className="c2"
         >
           
         </div>
         <div
-          className="sc-furvIG KFZww"
+          className="c7"
         >
           <p
             className="typo-undertekst"
@@ -891,10 +1020,10 @@ exports[`viser info om bruker i visittkortbody 1`] = `
     </section>
     <section>
       <div
-        className="sc-dkPtyc fSIgdf"
+        className="c2"
       >
         <div
-          className="sc-hKwCoD ekZjUJ"
+          className="c5"
         >
           <svg
             fill="none"
@@ -918,13 +1047,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </h3>
       </div>
       <div
-        className="sc-gKckTs fvVnlD"
+        className="c3"
       />
       <div
-        className="sc-iCfLBT gFNmBX"
+        className="c4"
       >
         <div
-          className="sc-dkPtyc fSIgdf"
+          className="c2"
         >
           
         </div>
@@ -941,10 +1070,10 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </p>
       </div>
       <div
-        className="sc-iCfLBT gFNmBX"
+        className="c4"
       >
         <div
-          className="sc-dkPtyc fSIgdf"
+          className="c2"
         >
           
         </div>
@@ -963,7 +1092,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
     </section>
     <section>
       <div
-        className="sc-dkPtyc fSIgdf"
+        className="c2"
       >
         
         <h3
@@ -973,16 +1102,16 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </h3>
       </div>
       <div
-        className="sc-gKckTs fvVnlD"
+        className="c3"
       />
       <div
-        className="sc-iCfLBT gFNmBX"
+        className="c4"
       >
         <div
-          className="sc-dkPtyc fSIgdf"
+          className="c2"
         >
           <div
-            className="sc-hKwCoD ekZjUJ"
+            className="c5"
           >
             <svg
               className="prefix__navLogo"
@@ -1025,10 +1154,10 @@ exports[`viser info om bruker i visittkortbody 1`] = `
     </section>
     <section>
       <div
-        className="sc-dkPtyc fSIgdf"
+        className="c2"
       >
         <div
-          className="sc-hKwCoD ekZjUJ"
+          className="c5"
         >
           <svg
             viewBox="0 0 100 100"
@@ -1064,13 +1193,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </h3>
       </div>
       <div
-        className="sc-gKckTs fvVnlD"
+        className="c3"
       />
       <div
-        className="sc-iCfLBT gFNmBX"
+        className="c4"
       >
         <div
-          className="sc-dkPtyc fSIgdf"
+          className="c2"
         >
           
         </div>
@@ -1098,10 +1227,10 @@ exports[`viser info om bruker i visittkortbody 1`] = `
     </section>
     <section>
       <div
-        className="sc-dkPtyc fSIgdf"
+        className="c2"
       >
         <div
-          className="sc-hKwCoD ekZjUJ"
+          className="c5"
         >
           <svg
             viewBox="0 0 100 100"
@@ -1137,7 +1266,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </h3>
       </div>
       <div
-        className="sc-gKckTs fvVnlD"
+        className="c3"
       />
       <p
         className="typo-normal"
@@ -1146,10 +1275,10 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         Voksen, Fremtidsfullmakt
       </p>
       <div
-        className="sc-iCfLBT gFNmBX"
+        className="c4"
       >
         <div
-          className="sc-dkPtyc fSIgdf"
+          className="c2"
         >
           
           <h4
@@ -1159,7 +1288,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </h4>
         </div>
         <div
-          className="sc-iqsfdx gCVmUv"
+          className="c9"
         >
           <p
             className="typo-normal"
@@ -1183,7 +1312,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           Ivareta personens interesser innenfor det personlige og økonomiske området
         </p>
         <div
-          className="sc-furvIG KFZww"
+          className="c7"
         >
           <p
             className="typo-undertekst"
@@ -1192,7 +1321,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </p>
         </div>
         <div
-          className="sc-furvIG KFZww"
+          className="c7"
         >
           <p
             className="typo-undertekst"
@@ -1203,10 +1332,10 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </div>
       </div>
       <div
-        className="sc-iCfLBT gFNmBX"
+        className="c4"
       >
         <div
-          className="sc-dkPtyc fSIgdf"
+          className="c2"
         >
           
           <h4
@@ -1216,7 +1345,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </h4>
         </div>
         <div
-          className="sc-iqsfdx gCVmUv"
+          className="c9"
         >
           <p
             className="typo-normal"
@@ -1240,7 +1369,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           Ivareta personens interesser innenfor det økonomiske området
         </p>
         <div
-          className="sc-furvIG KFZww"
+          className="c7"
         >
           <p
             className="typo-undertekst"
@@ -1249,7 +1378,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </p>
         </div>
         <div
-          className="sc-furvIG KFZww"
+          className="c7"
         >
           <p
             className="typo-undertekst"
@@ -1262,10 +1391,10 @@ exports[`viser info om bruker i visittkortbody 1`] = `
     </section>
     <section>
       <div
-        className="sc-dkPtyc fSIgdf"
+        className="c2"
       >
         <div
-          className="sc-hKwCoD ekZjUJ"
+          className="c5"
         >
           <svg
             height={100}
@@ -1316,19 +1445,19 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </h3>
       </div>
       <div
-        className="sc-gKckTs fvVnlD"
+        className="c3"
       />
       <div
-        className="sc-iCfLBT gFNmBX"
+        className="c4"
       >
         <div
-          className="sc-dkPtyc fSIgdf"
+          className="c2"
         >
           
         </div>
         <div>
           <div
-            className="sc-furvIG KFZww"
+            className="c7"
           >
             <p
               className="typo-undertekst"
@@ -1346,7 +1475,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       </div>
     </section>
     <div
-      className="sc-bqiQRQ fHRGzf"
+      className="c10"
     >
       <a
         className="lenke"
