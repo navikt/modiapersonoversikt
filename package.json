@@ -117,7 +117,6 @@
     },
     "devDependencies": {
         "@sentry/cli": "^2.5.2",
-        "@testing-library/react": "^12.1.5",
         "@testing-library/react-hooks": "^2.0.1",
         "@types/classnames": "^2.2.10",
         "@types/detect-browser": "^2.0.1",
