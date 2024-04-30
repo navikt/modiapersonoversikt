@@ -19,7 +19,7 @@ const fixNavFrontendStyleNoCss = (packages: string[]) =>
     }));
 
 export default defineConfig({
-    base: '',
+    base: '/modiapersonoversikt/',
     server: {
         port: 3000
     },
