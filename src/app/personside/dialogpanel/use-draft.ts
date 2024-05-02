@@ -39,6 +39,9 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
             } else {
                 const uuid: string = await response.json();
                 const loc = window.location;
+                if (import.meta.env.VITE_DRAFT_URL) {
+                    return `wss://${import.meta.env.VITE_DRAFT_URL}/api/draft/ws/${uuid}`;
+                }
                 return `wss://${loc.host}/modiapersonoversikt-draft/api/draft/ws/${uuid}`;
             }
         };
