@@ -22,6 +22,7 @@
         "start": "vite",
         "start:dev": "VITE_MOCK_ENABLED=false vite",
         "build": "vite build",
+        "build:gcp": "vite build --base=/",
         "upload-sourcemaps": "cross-env GIT_COMMIT_HASH=$(git rev-parse HEAD) node _scripts/upload-sourcemaps.js",
         "test": "vitest",
         "lint": "eslint --ext js,jsx,ts,tsx src",
