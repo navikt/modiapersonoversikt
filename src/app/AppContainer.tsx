@@ -55,12 +55,11 @@ const AppStyle = styled.div`
 `;
 
 const ContentStyle = styled.div`
-    height: 0; // IE11-hack for at flex skal funke
     @media print {
         height: auto;
     }
-    flex-grow: 1;
     display: flex;
+    flex-grow: 1;
 `;
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
