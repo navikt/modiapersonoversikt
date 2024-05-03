@@ -1,5 +1,5 @@
 /// <reference types="vitest" />
-import { defineConfig } from 'vite';
+import { ConfigEnv, defineConfig, Plugin } from 'vite';
 
 import react from '@vitejs/plugin-react';
 import vitePluginSvgr from 'vite-plugin-svgr';
@@ -17,6 +17,31 @@ const fixNavFrontendStyleNoCss = (packages: string[]) =>
         find: new RegExp(`${name}`),
         replacement: fileURLToPath(new URL(`src/nav-style/${name}.css`, import.meta.url))
     }));
+
+const gcpEntrypoint = (): Plugin => {
+    let config: ConfigEnv;
+
+    return {
+        name: 'html-transform',
+        configResolved(resolvedConfig) {
+            config = resolvedConfig;
+        },
+        transformIndexHtml(html: string) {
+            if (config.mode === 'dev-gcp') {
+                return html.replace(
+                    /<script unleash[\s\w\W]*?<\/script>/,
+                    `
+    <script unleash toggles="modiapersonoversikt.decorator-v3">
+      const applicationFeatureToggles = {
+          useNewDecorator: true
+      };
+      window.applicationFeatureToggles = applicationFeatureToggles;
+    </script>`
+                );
+            }
+        }
+    };
+};
 
 export default defineConfig({
     base: process.env.LOCAL_TOKEN ? '/' : '/modiapersonoversikt/',
@@ -41,7 +66,8 @@ export default defineConfig({
         vitePluginSvgr({
             include: '**/*.svg'
         }),
-        viteRequire()
+        viteRequire(),
+        gcpEntrypoint()
     ],
     build: {
         target: 'esnext',
