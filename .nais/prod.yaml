@@ -61,7 +61,7 @@ spec:
       value: "https://unleash.nais.io/api/"
     - name: CSP_DIRECTIVES
       value: "default-src 'self';\
-      script-src 'self' 'unsafe-inline' jsagent.adeo.no https://cdn.adeo.no;\
+      script-src 'self' 'unsafe-inline' jsagent.adeo.no https://cdn.nav.no;\
       style-src 'self' 'unsafe-inline' https://cdn.nav.no;\
       img-src 'self' data:;\
       font-src 'self' data: https://cdn.nav.no;\
