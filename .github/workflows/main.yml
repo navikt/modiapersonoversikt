@@ -19,10 +19,10 @@ jobs:
         outputs:
             image: ${{ steps.docker-build-push.outputs.image }}
         steps:
-            - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
               with:
-                  node-version: '16.13.1'
+                  node-version: '18'
                   cache: 'npm'
             - name: Install dependencies
               run: npm ci
@@ -30,9 +30,6 @@ jobs:
               run: npm run test
             - name: Build
               run: npm run build
-            - name: Upload sourcemaps
-              if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/master' || github.ref == env.Q1_TEST_BRANCH
-              run: npm run upload-sourcemaps
             - name: Publish Docker image
               if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/master' || github.ref == env.Q1_TEST_BRANCH
               uses: nais/docker-build-push@v0
@@ -62,7 +59,7 @@ jobs:
             matrix:
                 q_env: [q0, q1]
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
             - uses: nais/deploy/actions/deploy@v2
               env:
                   PRINT_PAYLOAD: true

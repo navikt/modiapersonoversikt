@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`viser personsøk-komponent 1`] = `
 .c9 {
@@ -199,7 +199,7 @@ exports[`viser personsøk-komponent 1`] = `
                 onClick={[Function]}
                 role="tooltip"
                 style={
-                  Object {
+                  {
                     "transform": "translate3d(0px, 0px, 0)",
                   }
                 }
@@ -217,7 +217,7 @@ exports[`viser personsøk-komponent 1`] = `
                 <span
                   className="popover__pil"
                   style={
-                    Object {
+                    {
                       "left": undefined,
                     }
                   }
@@ -288,7 +288,7 @@ exports[`viser personsøk-komponent 1`] = `
                 onClick={[Function]}
                 role="tooltip"
                 style={
-                  Object {
+                  {
                     "transform": "translate3d(0px, 0px, 0)",
                   }
                 }
@@ -306,7 +306,7 @@ exports[`viser personsøk-komponent 1`] = `
                 <span
                   className="popover__pil"
                   style={
-                    Object {
+                    {
                       "left": undefined,
                     }
                   }
@@ -396,7 +396,7 @@ exports[`viser personsøk-komponent 1`] = `
                 onClick={[Function]}
                 role="tooltip"
                 style={
-                  Object {
+                  {
                     "transform": "translate3d(0px, 0px, 0)",
                   }
                 }
@@ -414,7 +414,7 @@ exports[`viser personsøk-komponent 1`] = `
                 <span
                   className="popover__pil"
                   style={
-                    Object {
+                    {
                       "left": undefined,
                     }
                   }
@@ -511,7 +511,7 @@ exports[`viser personsøk-komponent 1`] = `
                               height={16}
                               role="presentation"
                               style={
-                                Object {
+                                {
                                   "pointerEvents": "none",
                                 }
                               }
@@ -602,7 +602,7 @@ exports[`viser personsøk-komponent 1`] = `
                               height={16}
                               role="presentation"
                               style={
-                                Object {
+                                {
                                   "pointerEvents": "none",
                                 }
                               }

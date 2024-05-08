@@ -186,6 +186,7 @@ export interface Verge {
     navn: Navn | null;
     vergesakstype: string;
     omfang: string;
+    tjenesteOppgaver?: string[];
     embete: string | null;
     gyldighetsPeriode: GyldighetsPeriode | null;
 }

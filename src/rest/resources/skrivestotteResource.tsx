@@ -5,7 +5,7 @@ import { Tekster } from '../../app/personside/dialogpanel/sendMelding/standardTe
 const queryKey = ['skrivestotte'];
 
 function url(): string {
-    return '/modiapersonoversikt/proxy/modia-skrivestotte/skrivestotte';
+    return `${import.meta.env.BASE_URL}proxy/modia-skrivestotte/skrivestotte`;
 }
 
 const resource = {

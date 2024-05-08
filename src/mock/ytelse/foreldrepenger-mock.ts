@@ -16,7 +16,7 @@ import { aremark } from '../persondata/aremark';
 import { getPeriode } from '../periodeMock';
 
 export function getMockForeldrepenger(fødselsnummer: string): ForeldrepengerResponse {
-    if (fødselsnummer === aremark.personIdent) {
+    if (fødselsnummer == aremark.personIdent) {
         return {
             foreldrepenger: [statiskForeldrepengeMock]
         };

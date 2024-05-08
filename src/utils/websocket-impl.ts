@@ -161,7 +161,7 @@ class WebSocketImpl {
     };
 
     private static print(...args: any[]) {
-        if (process.env.REACT_APP_MOCK_ENABLED === 'true') {
+        if (import.meta.env.VITE_MOCK_ENABLED === 'true') {
             console.log('WS:', ...args); // tslint:disable-line
         }
     }

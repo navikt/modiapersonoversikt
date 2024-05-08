@@ -401,6 +401,7 @@ export const aremark: Person = {
             },
             vergesakstype: 'Fremtidsfullmakt',
             omfang: 'Ivareta personens interesser innenfor det økonomiske området',
+            tjenesteOppgaver: ['Arbeid', 'Familie', 'Hjelpemidler', 'Sosiale Tjenester'],
             embete: 'Fylkesmannen i Troms og Finnmark',
             gyldighetsPeriode: {
                 gyldigFraOgMed: '2021-02-10' as LocalDate,

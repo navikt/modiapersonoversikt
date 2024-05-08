@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useCallback } from 'react';
 import NAVSPA from '@navikt/navspa';
 import { History } from 'history';
-import raw from 'raw.macro';
 import styled from 'styled-components/macro';
 import { DecoratorProps, DecoratorPropsV3, EnhetDisplay, FnrDisplay, Hotkey, RESET_VALUE } from './decoratorprops';
 import { fjernBrukerFraPath, paths, setNyBrukerIPath } from '../routes/routing';
@@ -23,7 +22,7 @@ import { useValgtenhet } from '../../context/valgtenhet-state';
 import { trackNavigation, updateUserEnhet } from '../../utils/amplitude';
 import { Enhet } from '../../rest/resources/saksbehandlersEnheterResource';
 
-const bjelleIkon = raw('../../svg/bjelle.svg');
+import bjelleIkon from '../../svg/bjelle.svg?raw';
 
 const InternflateDecoratorV2 = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 const InternflateDecoratorV3 = NAVSPA.importer<DecoratorPropsV3>('internarbeidsflate-decorator-v3');
@@ -92,7 +91,7 @@ function lagConfig(
         hotkeys: getHotkeys(),
         // modiacontextholder kjører på samme domene som modiapersonoversikt.
         // Som default brukes app.adeo.no, så her tvinger vi dekoratøren over på nytt domene
-        useProxy: `https://${window.location.host}/modiapersonoversikt/proxy`
+        useProxy: `https://${window.location.host}${import.meta.env.BASE_URL}proxy`
     };
 }
 
@@ -132,12 +131,11 @@ function lagConfigV3(
         hotkeys: getHotkeys(),
         // modiacontextholder kjører på samme domene som modiapersonoversikt.
         // Som default brukes app.adeo.no, så her tvinger vi dekoratøren over på nytt domene
-        proxy:
-            process.env.NODE_ENV === 'production'
-                ? `https://${window.location.host}/modiapersonoversikt/proxy`
-                : process.env.REACT_APP_CONTEXTHOLDER_URL,
-        environment: process.env.NODE_ENV === 'production' ? 'q1' : 'mock',
-        urlFormat: process.env.NODE_ENV === 'production' ? 'ADEO' : 'LOCAL',
+        proxy: import.meta.env.PROD
+            ? `https://${window.location.host}${import.meta.env.BASE_URL}proxy`
+            : import.meta.env.VITE_CONTEXTHOLDER_URL ?? `${import.meta.env.BASE_URL}proxy`,
+        environment: import.meta.env.NODE_ENV === 'production' ? 'q1' : 'mock',
+        urlFormat: import.meta.env.NODE_ENV === 'production' ? 'ADEO' : 'LOCAL',
         showEnheter: true,
         showSearchArea: true,
         fetchActiveUserOnMount: true,
@@ -147,7 +145,7 @@ function lagConfigV3(
 
 function getPathnameFromUrl(): string {
     const { pathname, hash } = window.location;
-    return removePrefix(pathname + hash, process.env.PUBLIC_URL, '/#', '#');
+    return removePrefix(pathname + hash, import.meta.env.BASE_URL, '/#', '#');
 }
 
 function getFnrFraUrl(): { sokFnr: string | null; pathFnr: string | null; userKey: string | null } {
@@ -167,7 +165,11 @@ function getFnrFraUrl(): { sokFnr: string | null; pathFnr: string | null; userKe
 }
 
 const DecoratorToggle = ({ configV2, configV3 }: { configV2: DecoratorProps; configV3: DecoratorPropsV3 }) => {
-    if (window.applicationFeatureToggles?.useNewDecorator === 'true') {
+    if (
+        (typeof window.applicationFeatureToggles?.useNewDecorator === 'boolean' &&
+            window.applicationFeatureToggles?.useNewDecorator) ||
+        window.applicationFeatureToggles.useNewDecorator === 'true'
+    ) {
         return <InternflateDecoratorV3 {...configV3} />;
     }
     return <InternflateDecoratorV2 {...configV2} />;

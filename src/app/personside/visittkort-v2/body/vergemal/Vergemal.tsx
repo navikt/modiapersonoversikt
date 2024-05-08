@@ -9,6 +9,7 @@ import { VisittkortGruppe } from '../VisittkortStyles';
 import { hentNavn } from '../../visittkort-utils';
 import GyldighetsPeriode from '../GyldighetsPeriode';
 import { harFeilendeSystemer } from '../../harFeilendeSystemer';
+import Hjelpetekst from 'nav-frontend-hjelpetekst';
 
 const Vergeinformasjon = styled.div`
     margin-bottom: 5px;
@@ -34,8 +35,24 @@ function Verge(props: { feilendeSystemer: Array<InformasjonElement>; verge: Verg
                 {harFeilendeSystemOgIngenNavn}
                 <Normaltekst>{verge.ident}</Normaltekst>
             </Vergeinformasjon>
-            <Element>Omfang</Element>
-            <Normaltekst>{verge.omfang}</Normaltekst>
+            {verge.tjenesteOppgaver ? (
+                <React.Fragment>
+                    <Element>
+                        Område{' '}
+                        <Hjelpetekst>
+                            Viser områdene verge har innsynsrett i.
+                            <br />
+                            Viser kun tjenesteoppgaver knyttet til NAV.
+                        </Hjelpetekst>
+                    </Element>
+                    <Normaltekst>{verge.tjenesteOppgaver.join(', ')}</Normaltekst>
+                </React.Fragment>
+            ) : (
+                <React.Fragment>
+                    <Element>Omfang</Element>
+                    <Normaltekst>{verge.omfang}</Normaltekst>
+                </React.Fragment>
+            )}
             <EtikettGraa>{verge.embete}</EtikettGraa>
             <GyldighetsPeriode gyldighetsPeriode={verge.gyldighetsPeriode} />
         </VisittkortElement>

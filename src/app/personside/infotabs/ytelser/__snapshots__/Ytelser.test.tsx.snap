@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Om Ytelser matcher snapshot 1`] = `
 .c6 {
@@ -398,7 +398,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                 onClick={[Function]}
                 role="tooltip"
                 style={
-                  Object {
+                  {
                     "transform": "translate3d(0px, 0px, 0)",
                   }
                 }
@@ -416,7 +416,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                 <span
                   className="popover__pil"
                   style={
-                    Object {
+                    {
                       "left": undefined,
                     }
                   }

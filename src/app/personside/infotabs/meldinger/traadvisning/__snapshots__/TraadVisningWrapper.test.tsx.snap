@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Viser traad med verktøylinje 1`] = `
 .c13 {
@@ -1069,7 +1069,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                 onBlur={[Function]}
                 onChange={[Function]}
                 style={
-                  Object {
+                  {
                     "height": "30px",
                   }
                 }
@@ -1279,22 +1279,7 @@ exports[`Viser traad med verktøylinje 1`] = `
           aria-labelledby="Helt tilfeldig ID"
           id="Helt tilfeldig ID"
           role="region"
-        >
-          <div
-            className="ekspanderbartPanel__innhold"
-          >
-            <p
-              className="typo-normal"
-            >
-              30.07.2019: Journalført på Dagpenger (ukjent saksid) av Jenny Berg
-            </p>
-            <p
-              className="typo-normal"
-            >
-              28.07.2019: Journalført på Arbeidsavklaringspenger (ukjent saksid) av Jenny Berg
-            </p>
-          </div>
-        </div>
+        />
       </div>
     </div>
     <ol

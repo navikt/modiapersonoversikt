@@ -10,9 +10,9 @@ declare global {
 
 const getApiKey = () => {
     if (window.location.href.includes('app.adeo.no')) {
-        return process.env.REACT_APP_AMPLITUDE_API_KEY;
+        return import.meta.env.VITE_AMPLITUDE_API_KEY;
     }
-    return process.env.REACT_APP_AMPLITUDE_API_KEY_DEV;
+    return import.meta.env.VITE_AMPLITUDE_API_KEY_DEV;
 };
 
 const maskereFodselsnummer = (data?: amplitude.Types.Event) => {

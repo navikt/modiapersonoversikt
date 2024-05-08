@@ -17,21 +17,15 @@ jobs:
 
         steps:
             - name: Checkout
-              uses: actions/checkout@v2
-            - uses: actions/setup-node@v1
+              uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
               with:
-                  node-version: '16.13.1'
-            - uses: actions/cache@v1
-              with:
-                  path: ~/.npm
-                  key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
-                  restore-keys: |
-                      ${{ runner.os }}-node-
+                  node-version: '18'
             - name: Install dependencies
               run: npm ci
             - name: Switch to gh-dev build
               run: |
-                  echo 'REACT_APP_USE_HASH_ROUTER=true' >> .env.development
+                  echo 'VITE_USE_HASH_ROUTER=true' >> .env.development
                   mv .env.development .env.production.local
             - name: Build
               run: npm run build

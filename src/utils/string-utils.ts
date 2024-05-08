@@ -90,7 +90,7 @@ export function periodeEllerNull(periode: Periode | null): string | null {
     if (!periode) {
         return null;
     }
-    return `${formaterDato(periode.fra)} - ${formaterDato(periode.til)}`;
+    return `${formaterDato(periode.fra)} - ${periode.til ? formaterDato(periode.til) : ''}`;
 }
 
 export function formaterTilISO8601Date(date: Date) {
@@ -98,7 +98,7 @@ export function formaterTilISO8601Date(date: Date) {
 }
 
 export function capitalizeName(name: string): string {
-    return name.replace(/[\wæøåÆØÅ][^\s'-]*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+    return name.replace(/[\wæøåÆØÅ][^\s'-]*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
 }
 
 export function capitalizeAfterPunctuation(name: string): string {
@@ -109,8 +109,5 @@ export function capitalizeAfterPunctuation(name: string): string {
 }
 
 export function captitalize(content: string): string {
-    return content
-        .split('\n')
-        .map(capitalizeAfterPunctuation)
-        .join('\n');
+    return content.split('\n').map(capitalizeAfterPunctuation).join('\n');
 }

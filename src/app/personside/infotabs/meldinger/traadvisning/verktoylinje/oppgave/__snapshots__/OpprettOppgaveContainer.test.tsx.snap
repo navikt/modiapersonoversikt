@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Viser oppgavecontainer med alt innhold 1`] = `
 .c4 {
@@ -350,7 +350,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
           onBlur={[Function]}
           onChange={[Function]}
           style={
-            Object {
+            {
               "height": "30px",
             }
           }
