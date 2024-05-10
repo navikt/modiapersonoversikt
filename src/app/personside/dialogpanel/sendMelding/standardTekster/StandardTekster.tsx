@@ -11,7 +11,6 @@ import useDebounce from '../../../../../utils/hooks/use-debounce';
 import StandardTekstValg from './velgTekst/StandardTekstValg';
 import * as StandardTeksterModels from './domain';
 import theme from '../../../../../styles/personOversiktTheme';
-import { captitalize } from '../../../../../utils/string-utils';
 import useHotkey from '../../../../../utils/hooks/use-hotkey';
 import { cyclicClamp } from '../../../../../utils/math';
 import { autofullfor, AutofullforData, byggAutofullforMap, useAutoFullforData } from '../autofullforUtils';
@@ -104,7 +103,7 @@ function velgTekst(
                     autofullforData.person,
                     autofullforData.saksbehandler
                 );
-                const ferdigTekst = captitalize(autofullfor(localeTekst, nokler));
+                const ferdigTekst = autofullfor(localeTekst, nokler);
                 settTekst(ferdigTekst);
             } else {
                 settTekst(localeTekst);
