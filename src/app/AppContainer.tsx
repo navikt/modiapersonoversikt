@@ -55,11 +55,12 @@ const AppStyle = styled.div`
 `;
 
 const ContentStyle = styled.div`
+    height: 0px;
     @media print {
         height: auto;
     }
     display: flex;
-    flex-grow: 1;
+    flex: 1 1 auto;
 `;
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
