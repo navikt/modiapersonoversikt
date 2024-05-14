@@ -18,8 +18,11 @@ export function sorterAlfabetisk(a: string, b: string) {
 
 export function removePrefix(base: string, ...prefixes: string[]): string {
     return prefixes.reduce((current, prefix) => {
-        if (current.startsWith(prefix)) {
-            return current.slice(prefix.length);
+        const match = prefix.match(/\/?(.*)/);
+        if (!match) return current;
+        const normalizedPrefix = match[1];
+        if (current.startsWith(normalizedPrefix)) {
+            return current.slice(normalizedPrefix.length);
         }
         return current;
     }, base);

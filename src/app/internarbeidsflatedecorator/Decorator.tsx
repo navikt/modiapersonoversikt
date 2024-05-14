@@ -103,6 +103,23 @@ function lagConfigV3(
 ): DecoratorPropsV3 {
     const { sokFnr, pathFnr, userKey } = getFnrFraUrl();
     const onsketFnr = sokFnr || pathFnr;
+    const getEnvFromHost = () => {
+        switch (window.location.host) {
+            case 'app.adeo.no':
+            case 'modiapersonoversikt.intern.nav.no':
+                return 'prod';
+            case 'app-q1.adeo.no':
+                return 'q1';
+            case 'app-q0.adeo.no':
+                return 'q0';
+            case 'modiapersonoversikt.intern.dev.nav.no':
+                return 'q2';
+        }
+        return 'mock';
+    };
+
+    const environment = import.meta.env.PROD ? getEnvFromHost() : 'mock';
+
     return {
         appName: 'Modia personoversikt',
         fnr: onsketFnr ?? undefined,
@@ -134,8 +151,8 @@ function lagConfigV3(
         proxy: import.meta.env.PROD
             ? `https://${window.location.host}${import.meta.env.BASE_URL}proxy`
             : import.meta.env.VITE_CONTEXTHOLDER_URL ?? `${import.meta.env.BASE_URL}proxy`,
-        environment: import.meta.env.NODE_ENV === 'production' ? 'q1' : 'mock',
-        urlFormat: import.meta.env.NODE_ENV === 'production' ? 'ADEO' : 'LOCAL',
+        environment,
+        urlFormat: import.meta.env.PROD ? (window.location.host.includes('adeo.no') ? 'ADEO' : 'NAV_NO') : 'LOCAL',
         showEnheter: true,
         showSearchArea: true,
         fetchActiveUserOnMount: true,

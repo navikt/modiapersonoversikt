@@ -7,8 +7,13 @@ import { setupTimeSpentMetrics } from './utils/timeSpentMetrics';
 import './window-variabler';
 setupTimeSpentMetrics();
 
+if (import.meta.env.DEV) {
+    window.applicationFeatureToggles = {
+        useNewDecorator: true
+    };
+}
+
 if (import.meta.env.VITE_MOCK_ENABLED === 'true') {
     await import('./mock');
 }
-
 ReactDOM.render(<AppContainer />, document.getElementById('root') as HTMLElement);

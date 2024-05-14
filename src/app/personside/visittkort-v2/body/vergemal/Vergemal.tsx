@@ -35,7 +35,7 @@ function Verge(props: { feilendeSystemer: Array<InformasjonElement>; verge: Verg
                 {harFeilendeSystemOgIngenNavn}
                 <Normaltekst>{verge.ident}</Normaltekst>
             </Vergeinformasjon>
-            {verge.tjenesteOppgaver ? (
+            {verge.tjenesteOppgaver?.length > 0 ? (
                 <React.Fragment>
                     <Element>
                         Område{' '}
