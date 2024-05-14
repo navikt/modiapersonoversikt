@@ -115,7 +115,7 @@ function lagConfigV3(
             case 'modiapersonoversikt.intern.dev.nav.no':
                 return 'q2';
         }
-        return 'prod';
+        return 'mock';
     };
 
     const environment = import.meta.env.PROD ? getEnvFromHost() : 'mock';
@@ -152,12 +152,7 @@ function lagConfigV3(
             ? `https://${window.location.host}${import.meta.env.BASE_URL}proxy`
             : import.meta.env.VITE_CONTEXTHOLDER_URL ?? `${import.meta.env.BASE_URL}proxy`,
         environment,
-        urlFormat:
-            import.meta.env.NODE_ENV === 'production'
-                ? window.location.host.includes('adeo.no')
-                    ? 'ADEO'
-                    : 'NAV_NO'
-                : 'LOCAL',
+        urlFormat: import.meta.env.PROD ? (window.location.host.includes('adeo.no') ? 'ADEO' : 'NAV_NO') : 'LOCAL',
         showEnheter: true,
         showSearchArea: true,
         fetchActiveUserOnMount: true,
