@@ -29,7 +29,7 @@ jobs:
             - name: Build
               run: npm run build:gcp
             - name: Publish Docker image
-              if: github.ref == 'refs/heads/dev' # || github.ref == 'refs/heads/master'
+              if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/gcp' # || github.ref = 'refs/heads/master'
               uses: nais/docker-build-push@v0
               id: docker-build-push
               with:
@@ -41,7 +41,7 @@ jobs:
     deploy-dev:
         name: Deploy to dev-gcp
         needs: build
-        if: github.ref == 'refs/heads/dev'
+        if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/gcp'
         runs-on: ubuntu-latest
         permissions:
           contents: read
