@@ -49,6 +49,11 @@ spec:
       autoLoginIgnorePaths:
         - /internal/*
   accessPolicy:
+    inbound:
+      rules:
+        - application: azure-token-generator
+          namespace: aura
+          cluster: dev-gcp
     outbound:
       rules:
         - application: modiapersonoversikt-innstillinger
@@ -65,8 +70,6 @@ spec:
       value: "modiapersonoversikt"
     - name: APP_VERSION
       value: "{{ version }}"
-    - name: BASE_PATH
-      value: modiapersonoversikt
     - name: CSP_DIRECTIVES
       value: "default-src 'self';\
       script-src 'self' 'unsafe-inline' https://cdn.nav.no;\
