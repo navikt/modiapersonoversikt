@@ -33,7 +33,8 @@ export default defineConfig({
     build: {
         target: 'esnext',
         outDir: 'build',
-        assetsDir: 'static'
+        assetsDir: 'static',
+        sourcemap: true
     },
     define: {
         process: { env: {} }
