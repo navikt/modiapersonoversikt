@@ -19,9 +19,18 @@ const fixNavFrontendStyleNoCss = (packages: string[]) =>
     }));
 
 export default defineConfig({
-    base: '/modiapersonoversikt/',
+    base: process.env.LOCAL_TOKEN ? '/' : '/modiapersonoversikt/',
     server: {
-        port: 3000
+        port: 3000,
+        proxy: {
+            '/proxy': {
+                target: 'https://modiapersonoversikt.intern.dev.nav.no',
+                changeOrigin: true,
+                headers: {
+                    Authorization: `Bearer ${process.env.LOCAL_TOKEN}`
+                }
+            }
+        }
     },
     plugins: [
         react(),
