@@ -48,6 +48,7 @@ spec:
       autoLogin: true
       autoLoginIgnorePaths:
         - /internal/*
+        - /proxy/**
   accessPolicy:
     inbound:
       rules:
