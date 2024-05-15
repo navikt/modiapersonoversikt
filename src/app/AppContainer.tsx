@@ -11,7 +11,7 @@ import { Provider } from 'react-redux';
 import LyttPaaFnrIURLOgSettIRedux from './PersonOppslagHandler/LyttPaaFnrIURLOgSettIRedux';
 import HentGlobaleVerdier from './FetchSessionInfoOgLeggIRedux';
 import GlobalStyling from './GlobalStyling';
-import Decorator, { LandingPage } from './internarbeidsflatedecorator/Decorator';
+import Decorator from './internarbeidsflatedecorator/Decorator';
 import Routing from './Routing';
 import styled from 'styled-components';
 import { useOnMount } from '../utils/customHooks';
@@ -46,6 +46,7 @@ import 'nav-frontend-etiketter-style';
 import { SentryRoute } from '../sentry-route';
 import { paths } from './routes/routing';
 import { Switch } from 'react-router';
+import { LandingPage } from './internarbeidsflatedecorator/LandingPage';
 
 const AppStyle = styled.div`
     height: 100vh;
