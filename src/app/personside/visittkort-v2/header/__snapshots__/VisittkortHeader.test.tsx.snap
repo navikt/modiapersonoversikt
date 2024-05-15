@@ -336,7 +336,9 @@ exports[`Tester visittkort-header sin funksjonalitet > viser info om bruker i vi
             <span
               title="Fødselsnummer"
             >
-              <span>
+              <span
+                data-test-id="person-fnr"
+              >
                 10108000398
               </span>
               <span>
