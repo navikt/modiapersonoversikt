@@ -26,6 +26,71 @@ import bjelleIkon from '../../svg/bjelle.svg?raw';
 
 const InternflateDecoratorV2 = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 const InternflateDecoratorV3 = NAVSPA.importer<DecoratorPropsV3>('internarbeidsflate-decorator-v3');
+const InternflateDecoratorV3LandingPage = NAVSPA.importer<DecoratorPropsV3>(
+    'internarbeidsflate-decorator-v3-fullscreen'
+);
+
+function Decorator() {
+    const { configV2, configV3 } = useDecoratorConfig();
+
+    return (
+        <StyledNav>
+            <DecoratorToggle configV2={configV2} configV3={configV3} />
+            <PersonsokContainer />
+            <OppdateringsloggContainer />
+            <DecoratorEasterEgg />
+        </StyledNav>
+    );
+}
+
+export function LandingPage() {
+    const { configV3 } = useDecoratorConfig();
+
+    return <InternflateDecoratorV3LandingPage {...configV3} />;
+}
+
+function useDecoratorConfig() {
+    const valgtEnhet = useValgtenhet();
+    const valgtEnhetId = valgtEnhet.enhetId;
+    const setEnhetId = valgtEnhet.setEnhetId;
+
+    const history = useHistory();
+    const queryParams = useQueryParams<{ sokFnr?: string }>();
+
+    useHandleGosysUrl();
+
+    useOnMount(() => {
+        if (queryParams.sokFnr) {
+            loggEvent('Oppslag', 'Puzzle');
+        }
+    });
+
+    const handleSetEnhet = (enhet: string, enhetValue?: Enhet) => {
+        if (enhetValue) {
+            updateUserEnhet(enhetValue.navn);
+        }
+        setEnhetId(enhet);
+    };
+
+    const handleLinkClick = (link: { text: string; url: string }) => {
+        trackNavigation(link.text, link.url);
+    };
+
+    const configV2 = useCallback(lagConfig, [valgtEnhetId, history, handleSetEnhet])(
+        valgtEnhetId,
+        history,
+        handleSetEnhet
+    );
+
+    const configV3 = useCallback(lagConfigV3, [valgtEnhetId, history, handleSetEnhet, handleLinkClick])(
+        valgtEnhetId,
+        history,
+        handleSetEnhet,
+        handleLinkClick
+    );
+
+    return { configV2, configV3 };
+}
 
 const etterSokefelt = `
         <div class="knapper_container">
@@ -261,56 +326,6 @@ function getHotkeys(): Hotkey[] {
             }
         }
     ];
-}
-
-function Decorator() {
-    const valgtEnhet = useValgtenhet();
-    const valgtEnhetId = valgtEnhet.enhetId;
-    const setEnhetId = valgtEnhet.setEnhetId;
-
-    const history = useHistory();
-    const queryParams = useQueryParams<{ sokFnr?: string }>();
-
-    useHandleGosysUrl();
-
-    useOnMount(() => {
-        if (queryParams.sokFnr) {
-            loggEvent('Oppslag', 'Puzzle');
-        }
-    });
-
-    const handleSetEnhet = (enhet: string, enhetValue?: Enhet) => {
-        if (enhetValue) {
-            updateUserEnhet(enhetValue.navn);
-        }
-        setEnhetId(enhet);
-    };
-
-    const handleLinkClick = (link: { text: string; url: string }) => {
-        trackNavigation(link.text, link.url);
-    };
-
-    const configV2 = useCallback(lagConfig, [valgtEnhetId, history, handleSetEnhet])(
-        valgtEnhetId,
-        history,
-        handleSetEnhet
-    );
-
-    const configV3 = useCallback(lagConfigV3, [valgtEnhetId, history, handleSetEnhet, handleLinkClick])(
-        valgtEnhetId,
-        history,
-        handleSetEnhet,
-        handleLinkClick
-    );
-
-    return (
-        <StyledNav>
-            <DecoratorToggle configV2={configV2} configV3={configV3} />
-            <PersonsokContainer />
-            <OppdateringsloggContainer />
-            <DecoratorEasterEgg />
-        </StyledNav>
-    );
 }
 
 export default Decorator;
