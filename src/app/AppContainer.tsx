@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import { BrowserRouter, HashRouter } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Route } from 'react-router-dom';
 import reducers from '../redux/reducers';
 import ModalWrapper from 'nav-frontend-modal';
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -27,7 +27,6 @@ import { initAmplitude } from '../utils/amplitude';
 
 import 'nav-frontend-lukknapp-style';
 import 'nav-frontend-lenker-style';
-import 'nav-frontend-lukknapp-style';
 import 'nav-frontend-popover-style';
 import 'nav-frontend-alertstriper-style';
 import 'nav-frontend-snakkeboble-style';
@@ -44,6 +43,10 @@ import 'nav-frontend-tabs-style';
 import 'nav-frontend-skjema-style';
 import 'nav-frontend-ekspanderbartpanel-style';
 import 'nav-frontend-etiketter-style';
+import { SentryRoute } from '../sentry-route';
+import { paths } from './routes/routing';
+import { Switch } from 'react-router';
+import { LandingPage } from './internarbeidsflatedecorator/LandingPage';
 
 const AppStyle = styled.div`
     height: 100vh;
@@ -121,6 +124,7 @@ const queryClient = new QueryClient({
         }
     }
 });
+
 function AppContainer() {
     useOnMount(() => {
         ModalWrapper.setAppElement('#root');
@@ -133,10 +137,18 @@ function AppContainer() {
             <ValgtEnhetProvider>
                 <Provider store={store}>
                     <Router>
-                        <AppStyle>
-                            {!window.erChatvisning && <Decorator />}
-                            <App />
-                        </AppStyle>
+                        <Switch>
+                            <SentryRoute path={paths.landingPage}>
+                                <LandingPage />
+                            </SentryRoute>
+                            <Route>
+                                <AppStyle>
+                                    Hello
+                                    {!window.erChatvisning && <Decorator />}
+                                    <App />
+                                </AppStyle>
+                            </Route>
+                        </Switch>
                     </Router>
                 </Provider>
             </ValgtEnhetProvider>

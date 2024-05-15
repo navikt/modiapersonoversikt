@@ -32,6 +32,7 @@ spec:
   ingresses:
     - https://app-{{ q_env }}.adeo.no/modiapersonoversikt
     - https://modiapersonoversikt-{{ q_env }}.intern.dev.nav.no
+    - https://modiaflate-{{ q_env }}.intern.dev.nav.no/landingpage
   replicas:
     min: 2
     max: 4
