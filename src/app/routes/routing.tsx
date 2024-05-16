@@ -9,7 +9,8 @@ export const paths = {
     saksdokumentEgetVindu: `/dokument`,
     brukerprofil: '/brukerprofil',
     basePath: '',
-    standaloneKomponenter: '/components'
+    standaloneKomponenter: '/components',
+    landingPage: '/landingpage'
 };
 
 export function usePaths() {
