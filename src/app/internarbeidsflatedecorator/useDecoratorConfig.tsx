@@ -1,5 +1,5 @@
 import { DecoratorButtonId as OppdateringsloggButtonId } from '../oppdateringslogg/OppdateringsloggContainer';
-import bjelleIkon from '../../svg/bjelle.svg';
+import bjelleIkon from '../../svg/bjelle.svg?raw';
 import { parseQueryString, useQueryParams } from '../../utils/url-utils';
 import { matchPath, useHistory } from 'react-router';
 import { fjernBrukerFraPath, paths, setNyBrukerIPath } from '../routes/routing';
@@ -170,6 +170,7 @@ function lagConfigV3(
             etterSokefelt: etterSokefelt
         },
         hotkeys: getHotkeys(),
+        enableHotkeys: true,
         // modiacontextholder kjører på samme domene som modiapersonoversikt.
         // Som default brukes app.adeo.no, så her tvinger vi dekoratøren over på nytt domene
         proxy: import.meta.env.PROD

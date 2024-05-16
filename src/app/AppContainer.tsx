@@ -143,7 +143,6 @@ function AppContainer() {
                             </SentryRoute>
                             <Route>
                                 <AppStyle>
-                                    Hello
                                     {!window.erChatvisning && <Decorator />}
                                     <App />
                                 </AppStyle>
