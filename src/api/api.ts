@@ -66,7 +66,7 @@ function parseResponse<TYPE>(response: Response): Promise<TYPE> {
         return response.text() as Promise<TYPE>;
     } else {
         loggWarning(new Error(`Unknown Content-Type: ${contentType}. Not sure what to do with response.`));
-        throw new FetchError(response, 'Not accepted content-type');
+        return Promise.resolve({} as TYPE);
     }
 }
 
