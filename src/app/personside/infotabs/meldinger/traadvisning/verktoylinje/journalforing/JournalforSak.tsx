@@ -65,7 +65,7 @@ export function JournalforSak(props: Props) {
         const url = `${apiBaseUri}/v2/journalforing/${props.traad.traadId}${enhetheader}`;
         const body = { ...props.sak, fnr };
 
-        post(url, body)
+        post(url, body, 'Journalføring')
             .then(() => {
                 setSubmitting(false);
                 setJournalforingSuksess(true);
