@@ -81,6 +81,12 @@ export function useSettAktivBruker() {
     const location = useLocation();
 
     return (fnr: string | null) => {
+        if (!fnr) {
+            dispatch(push(paths.basePath));
+            dispatch(setGjeldendeBrukerIRedux(''));
+            return;
+        }
+
         dispatch(setGjeldendeBrukerIRedux(fnr ?? ''));
         if (
             ![paths.personUri, paths.sakerFullscreen, paths.saksdokumentEgetVindu, paths.standaloneKomponenter].some(
