@@ -1,10 +1,8 @@
 import { default as React, useRef } from 'react';
 import { AdresseCelle, BostedCelle, IdentCelle, NavnCelle, UtenlandskIDCelle } from './PersonsokResultatElementer';
-import { setNyBrukerIPath } from '../routes/routing';
 import { ClickableTable } from '../../utils/table/ClickableTable';
 import { PersonsokResponse } from '../../models/person/personsok';
-import { useHistory } from 'react-router';
-import { useFocusOnMount } from '../../utils/customHooks';
+import { useFocusOnMount, useSettAktivBruker } from '../../utils/customHooks';
 
 interface Props {
     response: PersonsokResponse[];
@@ -12,20 +10,20 @@ interface Props {
 }
 function Sokeresultat(props: Props) {
     const ref = useRef<HTMLElement>(null);
-    const history = useHistory();
+    const settAktivBruker = useSettAktivBruker();
 
     useFocusOnMount(ref);
 
     const tittelRekke = ['Fødselsnummer', 'Navn', 'Adresser', 'Bosted'];
-    const trengerUtenlandskIDKolonne = props.response.some(person =>
-        person.utenlandskID?.some(utenlandskID => utenlandskID.identifikasjonsnummer !== undefined)
+    const trengerUtenlandskIDKolonne = props.response.some((person) =>
+        person.utenlandskID?.some((utenlandskID) => utenlandskID.identifikasjonsnummer !== undefined)
     );
 
     if (trengerUtenlandskIDKolonne) {
         tittelRekke.push('Utenlandsk ID');
     }
 
-    const tableEntries = props.response.map(linje => {
+    const tableEntries = props.response.map((linje) => {
         const entries = [
             <IdentCelle ident={linje.ident} />,
             <NavnCelle navn={linje.navn} status={linje.status} />,
@@ -38,9 +36,9 @@ function Sokeresultat(props: Props) {
         return entries;
     });
 
-    const handlers = props.response.map(linje => () => {
+    const handlers = props.response.map((linje) => () => {
         props.onClose();
-        setNyBrukerIPath(history, linje.ident.ident);
+        settAktivBruker(linje.ident.ident);
     });
 
     return (

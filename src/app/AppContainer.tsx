@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import { BrowserRouter, HashRouter, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import reducers from '../redux/reducers';
 import ModalWrapper from 'nav-frontend-modal';
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -47,6 +47,8 @@ import { SentryRoute } from '../sentry-route';
 import { paths } from './routes/routing';
 import { Switch } from 'react-router';
 import { LandingPage } from './internarbeidsflatedecorator/LandingPage';
+import { createBrowserHistory } from 'history';
+import { ConnectedRouter, routerMiddleware } from 'connected-react-router';
 
 const AppStyle = styled.div`
     height: 100vh;
@@ -66,7 +68,14 @@ const ContentStyle = styled.div`
     flex: 1 1 auto;
 `;
 
-const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
+const history = createBrowserHistory({
+    basename: import.meta.env.BASE_URL
+});
+
+const store = createStore(
+    reducers(history),
+    composeWithDevTools({ trace: true })(applyMiddleware(thunk), applyMiddleware(routerMiddleware(history)))
+);
 
 initAmplitude();
 
@@ -104,13 +113,6 @@ function App() {
     );
 }
 
-function Router(props: { children?: React.ReactNode }) {
-    if (import.meta.env.VITE_USE_HASH_ROUTER === 'true') {
-        return <HashRouter>{props.children}</HashRouter>;
-    }
-    return <BrowserRouter basename={import.meta.env.BASE_URL}>{props.children}</BrowserRouter>;
-}
-
 const minutes = 60 * 1000;
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -136,7 +138,7 @@ function AppContainer() {
             <DemoBanner />
             <ValgtEnhetProvider>
                 <Provider store={store}>
-                    <Router>
+                    <ConnectedRouter history={history}>
                         <Switch>
                             <SentryRoute path={paths.landingPage}>
                                 <LandingPage />
@@ -148,7 +150,7 @@ function AppContainer() {
                                 </AppStyle>
                             </Route>
                         </Switch>
-                    </Router>
+                    </ConnectedRouter>
                 </Provider>
             </ValgtEnhetProvider>
         </QueryClientProvider>

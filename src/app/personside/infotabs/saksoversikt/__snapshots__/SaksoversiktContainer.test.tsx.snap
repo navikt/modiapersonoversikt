@@ -387,7 +387,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
     >
       <a
         className="lenkepanel"
-        href="/saker/10108000398?sakstema=ALLE"
+        href="/saker/?sakstema=ALLE"
         onClick={[Function]}
         target="_blank"
       >
@@ -1056,7 +1056,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         >
                           <a
                             className="lenke typo-element"
-                            href="/dokument/10108000398?journalpost=etcoicxr&dokument=q90p8dnw"
+                            href="/dokument?journalpost=etcoicxr&dokument=q90p8dnw"
                             onClick={[Function]}
                             target="_blank"
                           >
@@ -1118,7 +1118,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                           <li>
                             <a
                               className="lenke typo-element"
-                              href="/dokument/10108000398?journalpost=etcoicxr&dokument=fbp2nc3l"
+                              href="/dokument?journalpost=etcoicxr&dokument=fbp2nc3l"
                               onClick={[Function]}
                               target="_blank"
                             >
@@ -1159,7 +1159,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                           <li>
                             <a
                               className="lenke typo-element"
-                              href="/dokument/10108000398?journalpost=etcoicxr&dokument=x2njhynn"
+                              href="/dokument?journalpost=etcoicxr&dokument=x2njhynn"
                               onClick={[Function]}
                               target="_blank"
                             >
@@ -1305,7 +1305,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                           <li>
                             <a
                               className="lenke typo-element"
-                              href="/dokument/10108000398?journalpost=lidtmy7n&dokument=428dwf43"
+                              href="/dokument?journalpost=lidtmy7n&dokument=428dwf43"
                               onClick={[Function]}
                               target="_blank"
                             >
@@ -1407,7 +1407,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         >
                           <a
                             className="lenke typo-element"
-                            href="/dokument/10108000398?journalpost=fg1w15sz&dokument=nvqxc1ip"
+                            href="/dokument?journalpost=fg1w15sz&dokument=nvqxc1ip"
                             onClick={[Function]}
                             target="_blank"
                           >
@@ -1513,7 +1513,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         >
                           <a
                             className="lenke typo-element"
-                            href="/dokument/10108000398?journalpost=o5z5pcse&dokument=me3wv1le"
+                            href="/dokument?journalpost=o5z5pcse&dokument=me3wv1le"
                             onClick={[Function]}
                             target="_blank"
                           >
@@ -1664,7 +1664,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                           <li>
                             <a
                               className="lenke typo-element"
-                              href="/dokument/10108000398?journalpost=h6p0iy3l&dokument=k51y90us"
+                              href="/dokument?journalpost=h6p0iy3l&dokument=k51y90us"
                               onClick={[Function]}
                               target="_blank"
                             >
@@ -1935,7 +1935,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         >
                           <a
                             className="lenke typo-element"
-                            href="/dokument/10108000398?journalpost=fhtkfp66&dokument=bjol9s20"
+                            href="/dokument?journalpost=fhtkfp66&dokument=bjol9s20"
                             onClick={[Function]}
                             target="_blank"
                           >
@@ -2041,7 +2041,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         >
                           <a
                             className="lenke typo-element"
-                            href="/dokument/10108000398?journalpost=s9765sz0&dokument=113wxk3r"
+                            href="/dokument?journalpost=s9765sz0&dokument=113wxk3r"
                             onClick={[Function]}
                             target="_blank"
                           >
@@ -2147,7 +2147,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         >
                           <a
                             className="lenke typo-element"
-                            href="/dokument/10108000398?journalpost=aamyoz7n&dokument=mt1cssx0"
+                            href="/dokument?journalpost=aamyoz7n&dokument=mt1cssx0"
                             onClick={[Function]}
                             target="_blank"
                           >
@@ -2312,7 +2312,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         >
                           <a
                             className="lenke typo-element"
-                            href="/dokument/10108000398?journalpost=cmlub095&dokument=nnp1em30"
+                            href="/dokument?journalpost=cmlub095&dokument=nnp1em30"
                             onClick={[Function]}
                             target="_blank"
                           >
@@ -2408,7 +2408,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         >
                           <a
                             className="lenke typo-element"
-                            href="/dokument/10108000398?journalpost=ai9t2h2n&dokument=gplzp0ho"
+                            href="/dokument?journalpost=ai9t2h2n&dokument=gplzp0ho"
                             onClick={[Function]}
                             target="_blank"
                           >

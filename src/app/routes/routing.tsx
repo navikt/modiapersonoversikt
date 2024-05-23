@@ -1,6 +1,4 @@
-import { useCallback, useMemo } from 'react';
-import { History } from 'history';
-import { useFodselsnummer } from '../../utils/customHooks';
+import { useMemo } from 'react';
 import { InfotabConfig, INFOTABS } from '../personside/infotabs/InfoTabEnum';
 
 export const paths = {
@@ -14,19 +12,12 @@ export const paths = {
 };
 
 export function usePaths() {
-    const fnr = useFodselsnummer();
-
-    const getPath = useCallback(
-        (tab: InfotabConfig) => {
-            return `${paths.personUri}/${fnr}/${tab.path}`;
-        },
-        [fnr]
-    );
+    const getPath = (tab: InfotabConfig) => `${paths.personUri}/${tab.path}`;
 
     return useMemo(
         () => ({
             ...paths,
-            sakerFullscreen: `${paths.basePath}/saker/${fnr}`,
+            sakerFullscreen: `${paths.basePath}/saker/`,
             oversikt: getPath(INFOTABS.OVERSIKT),
             oppfolging: getPath(INFOTABS.OPPFOLGING),
             meldinger: getPath(INFOTABS.MELDINGER),
@@ -35,14 +26,6 @@ export function usePaths() {
             ytelser: getPath(INFOTABS.YTELSER),
             varsler: getPath(INFOTABS.VARSLER)
         }),
-        [getPath, fnr]
+        [getPath]
     );
-}
-
-export function setNyBrukerIPath(history: History, fødselsnummer: string) {
-    history.push(`${paths.personUri}/${fødselsnummer}`);
-}
-
-export function fjernBrukerFraPath(history: History) {
-    history.push(`${paths.basePath}`);
 }

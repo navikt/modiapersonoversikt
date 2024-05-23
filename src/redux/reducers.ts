@@ -11,6 +11,8 @@ import { OppgaveState } from './oppgave/types';
 import { oppgaverReducer } from './oppgave/reducer';
 import { combineResettableReducers } from './reducer-utils';
 import varslerReducer, { VarslerState } from './varsler/varslerReducer';
+import { connectRouter, RouterState } from 'connected-react-router';
+import { History } from 'history';
 
 export interface AppState {
     utbetalinger: UtbetalingerState;
@@ -20,17 +22,22 @@ export interface AppState {
     varsler: VarslerState;
     oppfolging: OppfolgingState;
     gjeldendeBruker: GjeldendeBrukerState;
+    router: RouterState;
 }
 
-export default combineResettableReducers<AppState>(
-    {
-        utbetalinger: utbetalingerReducer,
-        saksoversikt: saksoversiktReducer,
-        oppgaver: oppgaverReducer,
-        ytelser: ytelserReducer,
-        varsler: varslerReducer,
-        oppfolging: oppfolgingReducer,
-        gjeldendeBruker: gjeldendeBrukerReducer
-    },
-    ['gjeldendeBruker']
-);
+const createRootReducer = (history: History) =>
+    combineResettableReducers<AppState>(
+        {
+            utbetalinger: utbetalingerReducer,
+            saksoversikt: saksoversiktReducer,
+            oppgaver: oppgaverReducer,
+            ytelser: ytelserReducer,
+            varsler: varslerReducer,
+            oppfolging: oppfolgingReducer,
+            gjeldendeBruker: gjeldendeBrukerReducer,
+            router: connectRouter(history)
+        },
+        ['gjeldendeBruker', 'router']
+    );
+
+export default createRootReducer;
