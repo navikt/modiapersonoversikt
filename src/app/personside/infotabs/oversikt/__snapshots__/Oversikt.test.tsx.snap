@@ -516,7 +516,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
           />
           <a
             className="c5 lenke"
-            href="/person/10108000398/oppfolging/"
+            href="/person/oppfolging/"
             onClick={[Function]}
           >
             <p
@@ -594,7 +594,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
           />
           <a
             className="c5 lenke"
-            href="/person/10108000398/utbetaling/"
+            href="/person/utbetaling/"
             onClick={[Function]}
           >
             <p
@@ -735,7 +735,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
           />
           <a
             className="c5 lenke"
-            href="/person/10108000398/saker/"
+            href="/person/saker/"
             onClick={[Function]}
           >
             <p
@@ -914,7 +914,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
           />
           <a
             className="c5 lenke"
-            href="/person/10108000398/meldinger/"
+            href="/person/meldinger/"
             onClick={[Function]}
           >
             <p
@@ -1047,7 +1047,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
           />
           <a
             className="c5 lenke"
-            href="/person/10108000398/ytelser/"
+            href="/person/ytelser/"
             onClick={[Function]}
           >
             <p
@@ -1148,7 +1148,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
           />
           <a
             className="c5 lenke"
-            href="/person/10108000398/varsler/"
+            href="/person/varsler/"
             onClick={[Function]}
           >
             <p

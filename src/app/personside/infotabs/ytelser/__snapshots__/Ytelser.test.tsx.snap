@@ -1226,7 +1226,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                 >
                   For detaljer om utførte utbetalinger 
                   <a
-                    href="/person/10108000398/utbetaling"
+                    href="/person/utbetaling"
                     onClick={[Function]}
                   >
                     se Utbetalingsoversikten.
