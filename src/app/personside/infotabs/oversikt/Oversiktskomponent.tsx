@@ -4,8 +4,6 @@ import styled from 'styled-components/macro';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import { Link, Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { AppState } from '../../../../redux/reducers';
 import { paths } from '../../../routes/routing';
 import { InfotabConfig } from '../InfoTabEnum';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
@@ -55,8 +53,7 @@ const CustomContent = styled.div`
 `;
 
 function Oversiktskomponent(props: Props) {
-    const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
-    const path = `${paths.personUri}/${valgtBrukersFnr}/${props.infotabPath.path}/`;
+    const path = `${paths.personUri}/${props.infotabPath.path}/`;
     const [customContent, setCustomContent] = useState<ReactNode>(null);
     const [redirect, setRedirect] = useState(false);
     const headerId = useRef(guid());

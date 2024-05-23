@@ -28,9 +28,12 @@ import persondataResource from '../rest/resources/persondataResource';
 import aktoridResource from '../rest/resources/aktoridResource';
 import varselResource from '../rest/resources/varselResource';
 import { MockInstance, vi } from 'vitest';
+import { createBrowserHistory } from 'history';
+
+const history = createBrowserHistory();
 
 export function getTestStore(): Store<AppState> {
-    const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
+    const testStore = createStore(reducers(history), applyMiddleware(thunkMiddleware));
     const aremarkFnr = aremark.personIdent;
 
     const dispatch = testStore.dispatch as Dispatch<any>;

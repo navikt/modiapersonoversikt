@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { useHistory } from 'react-router';
-import { setNyBrukerIPath } from '../routes/routing';
 import styled from 'styled-components/macro';
 import theme from '../../styles/personOversiktTheme';
 import { FnrValidationError, validerIdent } from '../../utils/fnr-utils';
 import { FieldError, useForm } from 'react-hook-form';
 import { buildFieldError } from '../../components/form/formUtils';
 import FormInput from '../../components/form/FormInput';
+import { useSettAktivBruker } from '../../utils/customHooks';
 
 const Form = styled.form`
     margin-top: 2rem;
@@ -53,7 +53,7 @@ function lagFeilmelding(error?: FnrValidationError): string {
 }
 
 function PersonSokInput() {
-    const history = useHistory();
+    const settAktivBruker = useSettAktivBruker();
 
     const form = useForm<PersonSokForm>({
         mode: 'onChange',
@@ -62,7 +62,7 @@ function PersonSokInput() {
     });
 
     function submit(values: PersonSokForm): Promise<any> {
-        setNyBrukerIPath(history, values.fødselsnummer);
+        settAktivBruker(values.fødselsnummer);
         return Promise.resolve();
     }
 

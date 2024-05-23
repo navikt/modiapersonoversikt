@@ -4,9 +4,11 @@ import { useFodselsnummer } from '../../utils/customHooks';
 import { Query, useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import featuretogglesResource from '../../rest/resources/featuretogglesResource';
+import { replace } from 'connected-react-router';
 
 interface Props {
     fnr: string;
+    redirect?: string;
 }
 
 function SetFnrIRedux(props: Props) {
@@ -16,6 +18,7 @@ function SetFnrIRedux(props: Props) {
     useEffect(() => {
         if (fnr !== props.fnr) {
             dispatch(setGjeldendeBrukerIRedux(props.fnr));
+            props.redirect && dispatch(replace(props.redirect));
             queryClient.removeQueries({
                 predicate(query: Query) {
                     // Alle queryKeys er typisk på formatet ['endepunkt', 'fnr']

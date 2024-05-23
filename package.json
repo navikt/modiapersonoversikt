@@ -20,6 +20,7 @@
     },
     "scripts": {
         "start": "vite",
+        "start:dev": "VITE_MOCK_ENABLED=false vite",
         "build": "vite build",
         "upload-sourcemaps": "cross-env GIT_COMMIT_HASH=$(git rev-parse HEAD) node _scripts/upload-sourcemaps.js",
         "test": "vitest",
@@ -48,6 +49,7 @@
         "@tanstack/react-query": "^4.12.0",
         "@vitejs/plugin-react": "^4.2.1",
         "classnames": "^2.2.6",
+        "connected-react-router": "^6.9.3",
         "dayjs": "^1.10.4",
         "detect-browser": "^3.0.1",
         "downshift": "^5.0.5",

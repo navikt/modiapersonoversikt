@@ -1,7 +1,21 @@
 import FetchMock from 'yet-another-fetch-mock';
 
-type Context = { aktivEnhet: string | null; aktivBruker: string | null };
-const context: Context = { aktivEnhet: '', aktivBruker: '' };
+class ContextStorage {
+    public set aktivBruker(verdi: string | null) {
+        localStorage.setItem('context-bruker', verdi ?? '');
+    }
+    public get aktivBruker() {
+        return localStorage.getItem('context-bruker') ?? '';
+    }
+    public set aktivEnhet(verdi: string | null) {
+        localStorage.setItem('context-enhet', verdi ?? '');
+    }
+    public get aktivEnhet() {
+        return localStorage.getItem('context-enhet') ?? '';
+    }
+}
+
+const context = new ContextStorage();
 
 export const enheter = [
     { enhetId: '0219', navn: 'NAV Bærum' },

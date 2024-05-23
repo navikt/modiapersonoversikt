@@ -47,7 +47,7 @@ function getUrlSaksdokumentEgetVindu(
 ) {
     const saksdokumentUrl = getSaksdokumentUrl(fodselsnummer, journalpostId, dokumentReferanse);
 
-    return `${paths.saksdokumentEgetVindu}/${fodselsnummer}?${saksdokumentUrl}`;
+    return `${paths.saksdokumentEgetVindu}?${saksdokumentUrl}`;
 }
 
 function DokumentLenke(props: Props) {
