@@ -13,7 +13,6 @@ import VarslerContainer from './varsel/VarslerContainer';
 import MeldingerContainer from './meldinger/MeldingerContainer';
 import Oversikt from './oversikt/Oversikt';
 import { useInfotabsDyplenker } from './dyplenker';
-import { useFodselsnummer } from '../../../utils/customHooks';
 import HandleInfotabsHotkeys from './HandleInfotabsHotkeys';
 import useKeepScroll from '../../../utils/hooks/useKeepScroll';
 import Ytelser from './ytelser/Ytelser';
@@ -31,7 +30,6 @@ const StyledArticle = styled.article`
 `;
 
 function InfoTabs() {
-    const fødselsnummer = useFodselsnummer();
     const paths = usePaths();
     const headerRef = useRef<HTMLHeadingElement>(null);
     const dyplenker = useInfotabsDyplenker();
@@ -42,7 +40,7 @@ function InfoTabs() {
     const visittkortStatus = useVisittkortState();
 
     const updateRouterPath = (newTab: InfotabsType) => {
-        const path = `${paths.personUri}/${fødselsnummer}/${INFOTABS[newTab].path}/`;
+        const path = `${paths.personUri}/${INFOTABS[newTab].path}/`;
         const newPath = history.location.pathname !== path;
         if (newPath) {
             history.push(path);

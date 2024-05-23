@@ -1,25 +1,22 @@
 import { DecoratorButtonId as OppdateringsloggButtonId } from '../oppdateringslogg/OppdateringsloggContainer';
 import bjelleIkon from '../../svg/bjelle.svg?raw';
 import { parseQueryString, useQueryParams } from '../../utils/url-utils';
-import { matchPath, useHistory } from 'react-router';
-import { fjernBrukerFraPath, paths, setNyBrukerIPath } from '../routes/routing';
 import { useValgtenhet } from '../../context/valgtenhet-state';
 import useHandleGosysUrl from './useHandleGosysUrl';
-import { useOnMount } from '../../utils/customHooks';
+import { useSettAktivBruker, useOnMount } from '../../utils/customHooks';
 import { loggEvent } from '../../utils/logger/frontendLogger';
 import { Enhet } from '../../rest/resources/saksbehandlersEnheterResource';
 import { trackNavigation, updateUserEnhet } from '../../utils/amplitude';
 import { useCallback } from 'react';
-import { History } from 'history';
 import { DecoratorProps, DecoratorPropsV3, EnhetDisplay, FnrDisplay, Hotkey, RESET_VALUE } from './decoratorprops';
-import { removePrefix } from '../../utils/string-utils';
+import { useGjeldendeBruker } from '../../redux/gjeldendeBruker/types';
 
 export function useDecoratorConfig() {
     const valgtEnhet = useValgtenhet();
     const valgtEnhetId = valgtEnhet.enhetId;
     const setEnhetId = valgtEnhet.setEnhetId;
+    const settAktivBruker = useSettAktivBruker();
 
-    const history = useHistory();
     const queryParams = useQueryParams<{ sokFnr?: string }>();
 
     useHandleGosysUrl();
@@ -41,15 +38,15 @@ export function useDecoratorConfig() {
         trackNavigation(link.text, link.url);
     };
 
-    const configV2 = useCallback(lagConfig, [valgtEnhetId, history, handleSetEnhet])(
+    const configV2 = useCallback(lagConfig, [valgtEnhetId, settAktivBruker, handleSetEnhet])(
         valgtEnhetId,
-        history,
+        settAktivBruker,
         handleSetEnhet
     );
 
-    const configV3 = useCallback(lagConfigV3, [valgtEnhetId, history, handleSetEnhet, handleLinkClick])(
+    const configV3 = useCallback(lagConfigV3, [valgtEnhetId, settAktivBruker, handleSetEnhet, handleLinkClick])(
         valgtEnhetId,
-        history,
+        settAktivBruker,
         handleSetEnhet,
         handleLinkClick
     );
@@ -74,11 +71,12 @@ const etterSokefelt = `
 
 function lagConfig(
     enhet: string | undefined | null,
-    history: History,
+    settAktivBruker: (fnr: string | null) => void,
     settEnhet: (enhet: string) => void
 ): DecoratorProps {
-    const { sokFnr, pathFnr } = getFnrFraUrl();
-    const onsketFnr = sokFnr || pathFnr;
+    const { sokFnr } = getFnrFraUrl();
+    const fnr = useGjeldendeBruker();
+    const onsketFnr = fnr ?? sokFnr;
     const fnrValue = onsketFnr === '0' ? RESET_VALUE : onsketFnr;
     return {
         appname: 'Modia personoversikt',
@@ -86,13 +84,10 @@ function lagConfig(
             value: fnrValue,
             display: FnrDisplay.SOKEFELT,
             onChange(fnr: string | null): void {
-                if (fnr === getFnrFraUrl().pathFnr) {
-                    return;
-                }
                 if (fnr && fnr.length > 0) {
-                    setNyBrukerIPath(history, fnr);
+                    settAktivBruker(fnr);
                 } else {
-                    fjernBrukerFraPath(history);
+                    settAktivBruker(null);
                 }
             }
         },
@@ -121,12 +116,13 @@ function lagConfig(
 
 function lagConfigV3(
     enhet: string | undefined | null,
-    history: History,
+    settAktivBruker: (fnr: string | null) => void,
     settEnhet: (enhet: string, enhetValue?: Enhet) => void,
     onLinkClick?: (link: { text: string; url: string }) => void
 ): DecoratorPropsV3 {
-    const { sokFnr, pathFnr, userKey } = getFnrFraUrl();
-    const onsketFnr = sokFnr || pathFnr;
+    const { sokFnr, userKey } = getFnrFraUrl();
+    const fnr = useGjeldendeBruker();
+    const onsketFnr = sokFnr ?? fnr;
     const getEnvFromHost = () => {
         switch (window.location.host) {
             case 'app.adeo.no':
@@ -147,15 +143,12 @@ function lagConfigV3(
     return {
         appName: 'Modia personoversikt',
         fnr: onsketFnr ?? undefined,
-        userKey: userKey ?? pathFnr ?? undefined,
+        userKey: userKey ?? fnr ?? undefined,
         onFnrChanged: (fnr) => {
-            if (fnr === getFnrFraUrl().pathFnr) {
-                return;
-            }
             if (fnr && fnr.length > 0) {
-                setNyBrukerIPath(history, fnr);
+                settAktivBruker(fnr);
             } else {
-                fjernBrukerFraPath(history);
+                settAktivBruker(null);
             }
         },
         enhet: enhet ?? undefined,
@@ -185,24 +178,14 @@ function lagConfigV3(
     };
 }
 
-function getPathnameFromUrl(): string {
-    const { pathname, hash } = window.location;
-    return removePrefix(pathname + hash, import.meta.env.BASE_URL, '/#', '#');
-}
-
-function getFnrFraUrl(): { sokFnr: string | null; pathFnr: string | null; userKey: string | null } {
+function getFnrFraUrl(): { sokFnr: string | null; userKey: string | null } {
     const location = window.location;
-    const pathname = getPathnameFromUrl();
 
     const queryParams = parseQueryString<{ sokFnr?: string; userKey?: string }>(location.search);
-    const sakerUriMatch = matchPath<{ fnr: string }>(pathname, `${paths.sakerFullscreen}/:fnr`);
-    const saksdokumentUriMatch = matchPath<{ fnr: string }>(pathname, `${paths.saksdokumentEgetVindu}/:fnr`);
-    const personUriMatch = matchPath<{ fnr: string }>(pathname, `${paths.personUri}/:fnr`);
 
     return {
         sokFnr: queryParams.sokFnr ?? null,
-        userKey: queryParams.userKey ?? null,
-        pathFnr: sakerUriMatch?.params.fnr ?? saksdokumentUriMatch?.params.fnr ?? personUriMatch?.params.fnr ?? null
+        userKey: queryParams.userKey ?? null
     };
 }
 

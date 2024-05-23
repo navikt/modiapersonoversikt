@@ -1,11 +1,15 @@
 import * as React from 'react';
 import { DependencyList, EffectCallback, RefObject, useCallback, useEffect, useMemo, useRef } from 'react';
 import { EventListener, runIfEventIsNotInsideRef } from './reactRef-utils';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import setGjeldendeBrukerIRedux from '../redux/gjeldendeBruker/actions';
 import { AppState } from '../redux/reducers';
 import { erKontaktsenter } from './enheter-utils';
 import Hotjar, { HotjarTriggers } from './hotjar';
 import { useValgtenhet } from '../context/valgtenhet-state';
+import { useLocation } from 'react-router';
+import { paths } from '../app/routes/routing';
+import { push } from 'connected-react-router';
 
 export function useFocusOnMount(ref: React.RefObject<HTMLElement>) {
     useOnMount(() => {
@@ -70,6 +74,28 @@ export function useAppState<T>(selector: (state: AppState) => T) {
 
 export function useFodselsnummer() {
     return useAppState((state) => state.gjeldendeBruker.fødselsnummer);
+}
+
+export function useSettAktivBruker() {
+    const dispatch = useDispatch();
+    const location = useLocation();
+
+    return (fnr: string | null) => {
+        if (!fnr) {
+            dispatch(push(paths.basePath));
+            dispatch(setGjeldendeBrukerIRedux(''));
+            return;
+        }
+
+        dispatch(setGjeldendeBrukerIRedux(fnr ?? ''));
+        if (
+            ![paths.personUri, paths.sakerFullscreen, paths.saksdokumentEgetVindu, paths.standaloneKomponenter].some(
+                (path) => location.pathname.startsWith(path)
+            )
+        ) {
+            dispatch(push(paths.personUri));
+        }
+    };
 }
 
 export function useTriggerHotjarForLokalKontor() {

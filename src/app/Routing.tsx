@@ -8,6 +8,7 @@ import Startbilde from './startbilde/Startbilde';
 import { useFodselsnummer } from '../utils/customHooks';
 import { CenteredLazySpinner } from '../components/LazySpinner';
 import SakerFullscreenProxy from './personside/infotabs/saksoversikt/SakerFullscreenProxy';
+import SetFnrIRedux from './PersonOppslagHandler/SetFnrIRedux';
 
 function Routing() {
     const fnr = useFodselsnummer();
@@ -16,17 +17,22 @@ function Routing() {
         <Suspense fallback={<CenteredLazySpinner />}>
             <Switch key={fnr}>
                 <SentryRoute
-                    path={`${paths.sakerFullscreen}/:fodselsnummer/`}
-                    render={(routeProps) => <SakerFullscreenProxy fnr={routeProps.match.params.fodselsnummer} />}
+                    path={`${paths.personUri}/:fodselsnummer(\\d+)`}
+                    render={(routeProps) => {
+                        return (
+                            <SetFnrIRedux
+                                fnr={routeProps.match.params.fodselsnummer}
+                                redirect={routeProps.location.pathname.replace(/\d{11}\//, '')}
+                            />
+                        );
+                    }}
                 />
+                <SentryRoute path={`${paths.sakerFullscreen}/`} render={() => <SakerFullscreenProxy fnr={fnr} />} />
                 <SentryRoute
-                    path={`${paths.saksdokumentEgetVindu}/:fodselsnummer/`}
-                    render={(routeProps) => <SaksDokumentEgetVindu fnr={routeProps.match.params.fodselsnummer} />}
+                    path={`${paths.saksdokumentEgetVindu}/`}
+                    render={() => <SaksDokumentEgetVindu fnr={fnr} />}
                 />
-                <SentryRoute
-                    path={`${paths.personUri}/:fodselsnummer`}
-                    render={(routeProps) => <Personoversikt fnr={routeProps.match.params.fodselsnummer} />}
-                />
+                <SentryRoute path={`${paths.personUri}/`} render={() => <Personoversikt fnr={fnr} />} />
                 <SentryRoute component={Startbilde} />
             </Switch>
         </Suspense>
