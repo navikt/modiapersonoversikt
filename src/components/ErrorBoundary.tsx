@@ -1,14 +1,6 @@
 import * as React from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { loggError } from '../utils/logger/frontendLogger';
-
-interface Props {
-    boundaryName?: string;
-}
-
-interface State {
-    hasError: boolean;
-}
+import { FaroErrorBoundary } from '@grafana/faro-react';
 
 /*
  * Error håndtering for enkelt-widgets.
@@ -17,31 +9,14 @@ interface State {
  *     <Component />
  * </ErrorBoundary>
  *
- * Merk: På grunn av måten vi kjører i test, så fungerer ikke error boundary skikkelig,
- * stack tracen overstyrer selv om komponenten rendres riktig. Dette skal fungere bra i
- * Prod, men er ikke verifisert enda.
  */
-
-class ErrorBoundary extends React.Component<Props, State> {
-    constructor(props: Props) {
-        super(props);
-        this.state = { hasError: false };
-    }
-
-    componentDidCatch(error: Error, info: React.ErrorInfo) {
-        this.setState({ hasError: true });
-        const message: string = `ErrorBoundary${this.props.boundaryName ? ' i ' + this.props.boundaryName : ''}`;
-        loggError(error, message, { reactInfo: info });
-    }
-
-    render() {
-        if (this.state.hasError) {
-            return (
-                <AlertStripe type={'advarsel'}>Beklager, det skjedde en feil. ({this.props.boundaryName})</AlertStripe>
-            );
-        }
-        return this.props.children;
-    }
-}
-
+const ErrorBoundary = ({ children, boundaryName }: React.PropsWithChildren<{ boundaryName: string }>) => {
+    return (
+        <FaroErrorBoundary
+            fallback={<AlertStripe type={'advarsel'}>Beklager, det skjedde en feil. ({boundaryName})</AlertStripe>}
+        >
+            {children}
+        </FaroErrorBoundary>
+    );
+};
 export default ErrorBoundary;

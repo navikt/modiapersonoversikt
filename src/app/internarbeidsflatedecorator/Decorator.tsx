@@ -8,6 +8,7 @@ import OppdateringsloggContainer from '../oppdateringslogg/OppdateringsloggConta
 import './personsokKnapp.less';
 import './decorator.less';
 import { useDecoratorConfig } from './useDecoratorConfig';
+import { getWindowFeature } from '../../utils/featureToggles';
 
 const InternflateDecoratorV2 = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 const InternflateDecoratorV3 = NAVSPA.importer<DecoratorPropsV3>('internarbeidsflate-decorator-v3');
@@ -26,11 +27,7 @@ function Decorator() {
 }
 
 const DecoratorToggle = ({ configV2, configV3 }: { configV2: DecoratorProps; configV3: DecoratorPropsV3 }) => {
-    if (
-        (typeof window.applicationFeatureToggles?.useNewDecorator === 'boolean' &&
-            window.applicationFeatureToggles?.useNewDecorator) ||
-        window.applicationFeatureToggles.useNewDecorator === 'true'
-    ) {
+    if (getWindowFeature('useNewDecorator')) {
         return <InternflateDecoratorV3 {...configV3} />;
     }
     return <InternflateDecoratorV2 {...configV2} />;

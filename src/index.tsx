@@ -9,7 +9,8 @@ setupTimeSpentMetrics();
 
 if (import.meta.env.DEV) {
     window.applicationFeatureToggles = {
-        useNewDecorator: true
+        useNewDecorator: true,
+        enableFaro: true
     };
 }
 

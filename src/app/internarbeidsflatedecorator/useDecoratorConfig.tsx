@@ -10,6 +10,7 @@ import { trackNavigation, updateUserEnhet } from '../../utils/amplitude';
 import { useCallback } from 'react';
 import { DecoratorProps, DecoratorPropsV3, EnhetDisplay, FnrDisplay, Hotkey, RESET_VALUE } from './decoratorprops';
 import { useGjeldendeBruker } from '../../redux/gjeldendeBruker/types';
+import { getEnvFromHost } from '../../utils/environment';
 
 export function useDecoratorConfig() {
     const valgtEnhet = useValgtenhet();
@@ -123,20 +124,6 @@ function lagConfigV3(
     const { sokFnr, userKey } = getFnrFraUrl();
     const fnr = useGjeldendeBruker();
     const onsketFnr = sokFnr ?? fnr;
-    const getEnvFromHost = () => {
-        switch (window.location.host) {
-            case 'app.adeo.no':
-            case 'modiapersonoversikt.intern.nav.no':
-                return 'prod';
-            case 'app-q1.adeo.no':
-                return 'q1';
-            case 'app-q0.adeo.no':
-                return 'q0';
-            case 'modiapersonoversikt.intern.dev.nav.no':
-                return 'q2';
-        }
-        return 'mock';
-    };
 
     const environment = import.meta.env.PROD ? getEnvFromHost() : 'mock';
 

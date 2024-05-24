@@ -41,6 +41,9 @@
     },
     "dependencies": {
         "@amplitude/analytics-browser": "^2.5.3",
+        "@grafana/faro-react": "^1.7.3",
+        "@grafana/faro-web-sdk": "^1.7.3",
+        "@grafana/faro-web-tracing": "^1.7.3",
         "@navikt/fnrvalidator": "^1.1.3",
         "@navikt/navspa": "^4.0.0",
         "@navikt/tag-input": "^2.0.1",

@@ -1,9 +1,13 @@
+import { Faro } from "@grafana/faro-web-sdk";
+
 declare global {
     interface Window {
         erChatvisning: boolean;
         applicationFeatureToggles: {
             useNewDecorator: string | boolean;
+            enableFaro: string | boolean;
         };
+        faro?: Faro
     }
 }
 
