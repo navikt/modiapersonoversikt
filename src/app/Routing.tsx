@@ -22,7 +22,7 @@ function Routing() {
                         return (
                             <SetFnrIRedux
                                 fnr={routeProps.match.params.fodselsnummer}
-                                redirect={routeProps.location.pathname.replace(/\d{11}\//, '')}
+                                redirect={routeProps.location.pathname.replace(/\d{11}\/?/, '')}
                             />
                         );
                     }}
