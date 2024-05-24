@@ -77,7 +77,7 @@ spec:
       style-src 'self' 'unsafe-inline' https://cdn.nav.no;\
       img-src 'self' data:;\
       font-src 'self' data: https://cdn.nav.no;\
-      connect-src 'self' amplitude.nav.no wss://veilederflatehendelser.intern.dev.nav.no;\
+      connect-src 'self' amplitude.nav.no wss://veilederflatehendelser.intern.dev.nav.no https://telemetry.ekstern.dev.nav.no;\
       object-src blob:;\
       frame-src blob:;"
     - name: REFERRER_POLICY

@@ -17,7 +17,9 @@ window.erChatvisning = (document.location.search + document.location.hash).inclu
 setupTimeSpentMetrics();
 
 if (import.meta.env.DEV) {
-    window.applicationFeatureToggles = {};
+    window.applicationFeatureToggles = {
+        enableFaro: true
+    };
 }
 
 if (import.meta.env.VITE_MOCK_ENABLED === 'true') {

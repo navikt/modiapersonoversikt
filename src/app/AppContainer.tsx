@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import { Route } from 'react-router-dom';
 import reducers from '../redux/reducers';
 import ModalWrapper from 'nav-frontend-modal';
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -49,6 +48,7 @@ import { Switch } from 'react-router';
 import { LandingPage } from './internarbeidsflatedecorator/LandingPage';
 import { createBrowserHistory } from 'history';
 import { ConnectedRouter, routerMiddleware } from 'connected-react-router';
+import { initializeObservability } from '../utils/observability';
 
 const AppStyle = styled.div`
     height: 100vh;
@@ -78,6 +78,7 @@ const store = createStore(
 );
 
 initAmplitude();
+initializeObservability(history);
 
 function App() {
     const loginStateOld = usePersistentLogin();
@@ -143,12 +144,12 @@ function AppContainer() {
                             <SentryRoute path={paths.landingPage}>
                                 <LandingPage />
                             </SentryRoute>
-                            <Route>
+                            <SentryRoute>
                                 <AppStyle>
                                     {!window.erChatvisning && <Decorator />}
                                     <App />
                                 </AppStyle>
-                            </Route>
+                            </SentryRoute>
                         </Switch>
                     </ConnectedRouter>
                 </Provider>

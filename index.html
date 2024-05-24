@@ -14,22 +14,19 @@
     <script src="%VITE_HODE_URL_V2%/latest/dist/bundle.js"></script>
     <link rel="stylesheet" href="%VITE_HODE_URL_V2%/latest/dist/index.css" />
 
-    <script type="application/javascript">
-      window.frontendlogger = { info: function(){}, warn: function(){}, error: function(){}, event: function(){}};
-      window.frontendlogger.appname = 'modiapersonoversikt';
-    </script>
-    <script type="application/javascript">
-      const global = globalThis;
-    </script>
-
-    <script type="module" src="/src/index.tsx"></script>
-
     <script unleash toggles="modiapersonoversikt.enable-faro">
       const applicationFeatureToggles = {
           enableFaro: "$unleash{modiapersonoversikt.enable-faro}"
       };
       window.applicationFeatureToggles = applicationFeatureToggles;
     </script>
+
+    <script type="application/javascript">
+      const global = globalThis;
+    </script>
+
+    <script type="module" src="/src/index.tsx"></script>
+
     <title>Modia Personoversikt</title>
 </head>
 <body>
