@@ -9,7 +9,8 @@ function gjeldendeBrukerReducer(state: GjeldendeBrukerState = initialState, acti
         case SetNyGjeldendeBrukerActionTypes.SetNyPerson:
             return {
                 ...state,
-                fødselsnummer: action.fnr
+                fødselsnummer: action.fnr,
+                hasLoaded: true
             };
         default:
             return state;

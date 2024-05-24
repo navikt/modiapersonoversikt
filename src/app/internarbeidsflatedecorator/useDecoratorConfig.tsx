@@ -76,7 +76,7 @@ function lagConfig(
 ): DecoratorProps {
     const { sokFnr } = getFnrFraUrl();
     const fnr = useGjeldendeBruker();
-    const onsketFnr = fnr ?? sokFnr;
+    const onsketFnr = sokFnr ?? fnr;
     const fnrValue = onsketFnr === '0' ? RESET_VALUE : onsketFnr;
     return {
         appname: 'Modia personoversikt',
