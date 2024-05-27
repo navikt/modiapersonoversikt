@@ -4,7 +4,7 @@ import { apiBaseUri, postConfig } from '../../api/config';
 import { FetchResponse, fetchToJson } from '../../utils/fetchToJson';
 import { lagRequestV3, PersonSokFormStateV3 as PersonSokFormState, resolver } from './personsokUtils';
 import { loggError, loggEvent } from '../../utils/logger/frontendLogger';
-import { Systemtittel } from 'nav-frontend-typografi';
+import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import LenkeDrekV2 from './LenkeDrekV2';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../components/common-styled-components';
@@ -93,6 +93,18 @@ function PersonsokSkjema(props: Props) {
                     </section>
                 </SectionStyle>
                 <LenkeDrekV2 watch={form.watch} />
+                <a
+                    className="lenke"
+                    target={'_blank'}
+                    rel={'noopener noreferrer'}
+                    href={
+                        import.meta.env.PROD
+                            ? 'https://utbetalingsportalen.intern.nav.no'
+                            : 'https://utbetalingsportalen.intern.dev.nav.no'
+                    }
+                >
+                    <Normaltekst>Kontonummersøk i utbetalingsportalen</Normaltekst>
+                </a>
                 <KnappStyle>
                     <Hovedknapp htmlType="submit">Søk</Hovedknapp>
                     <LenkeKnapp type="reset">Nullstill</LenkeKnapp>
