@@ -33,7 +33,7 @@ const gcpEntrypoint = (): Plugin => {
                     `
     <script unleash toggles="modiapersonoversikt.decorator-v3">
       const applicationFeatureToggles = {
-          useNewDecorator: true
+          useNewDecorator: true,
           enableFaro: true
       };
       window.applicationFeatureToggles = applicationFeatureToggles;
