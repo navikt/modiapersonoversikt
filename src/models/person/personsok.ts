@@ -38,7 +38,6 @@ export interface Brukerinfo {
 export interface PersonsokRequestV3 {
     enhet: string;
     navn?: string;
-    kontonummer?: string;
     utenlandskID?: string;
     alderFra?: number;
     alderTil?: number;

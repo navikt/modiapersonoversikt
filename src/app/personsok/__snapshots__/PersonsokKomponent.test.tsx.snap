@@ -329,25 +329,6 @@ exports[`viser personsøk-komponent 1`] = `
         >
           <label
             className="skjemaelement__label"
-            htmlFor="kontonummer"
-          >
-            Kontonummer (Norske nummer)
-          </label>
-          <input
-            aria-invalid={false}
-            className="skjemaelement__input input--l"
-            id="kontonummer"
-            name="kontonummer"
-            onBlur={[Function]}
-            onChange={[Function]}
-            type="text"
-          />
-        </div>
-        <div
-          className="skjemaelement"
-        >
-          <label
-            className="skjemaelement__label"
             htmlFor="utenlandskID"
           >
             Utenlandsk ID 
@@ -731,6 +712,18 @@ exports[`viser personsøk-komponent 1`] = `
         className="typo-normal"
       >
         Rekvirer D-nummer fra Folkeregisteret
+      </p>
+    </a>
+    <a
+      className="lenke"
+      href="https://utbetalingsportalen.intern.dev.nav.no"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      <p
+        className="typo-normal"
+      >
+        Kontonummersøk i utbetalingsportalen
       </p>
     </a>
     <div

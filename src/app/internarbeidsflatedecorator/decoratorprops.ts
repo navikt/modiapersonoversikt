@@ -11,22 +11,6 @@ interface Markup {
     etterSokefelt?: string;
 }
 
-interface ControlledContextvalue<T> extends BaseContextvalue<T> {
-    value: string | null;
-}
-interface UncontrolledContextvalue<T> extends BaseContextvalue<T> {
-    initialValue: string | null;
-}
-
-interface BaseContextvalue<T> {
-    display: T;
-    onChange(value: string | null): void;
-    skipModal?: boolean;
-    ignoreWsEvents?: boolean;
-}
-
-type Contextvalue<T> = ControlledContextvalue<T> | UncontrolledContextvalue<T>;
-
 export enum EnhetDisplay {
     ENHET = 'ENHET',
     ENHET_VALG = 'ENHET_VALG'
@@ -35,10 +19,6 @@ export enum EnhetDisplay {
 export enum FnrDisplay {
     SOKEFELT = 'SOKEFELT'
 }
-
-type EnhetContextvalue = Contextvalue<EnhetDisplay>;
-type FnrContextvalue = Contextvalue<FnrDisplay>;
-type ProxyConfig = boolean | string;
 
 export type KeyDescriptionObject = {
     char: string;
@@ -60,17 +40,6 @@ interface DocumentingHotkey extends BaseHotkey {
     documentationOnly: boolean;
 }
 export type Hotkey = ActionHotkey | DocumentingHotkey;
-
-export interface DecoratorProps {
-    appname: string;
-    fnr?: FnrContextvalue;
-    enhet?: EnhetContextvalue;
-    toggles?: TogglesConfig;
-    markup?: Markup;
-    hotkeys?: Hotkey[];
-    useProxy?: ProxyConfig;
-    accessToken?: string;
-}
 
 export type Environment = 'q0' | 'q1' | 'q2' | 'q3' | 'q4' | 'prod' | 'local' | 'mock';
 

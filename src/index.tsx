@@ -8,9 +8,7 @@ import './window-variabler';
 setupTimeSpentMetrics();
 
 if (import.meta.env.DEV) {
-    window.applicationFeatureToggles = {
-        useNewDecorator: true
-    };
+    window.applicationFeatureToggles = {};
 }
 
 if (import.meta.env.VITE_MOCK_ENABLED === 'true') {

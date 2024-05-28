@@ -48,11 +48,6 @@ function PersonsokNavnAdresseKontonrDnr({ form }: Props) {
             label: adresseTittel
         },
         {
-            id: 'kontonummer',
-            width: 'L',
-            label: 'Kontonummer (Norske nummer)'
-        },
-        {
             id: 'utenlandskID',
             width: 'L',
             label: utenlandskIDTittel

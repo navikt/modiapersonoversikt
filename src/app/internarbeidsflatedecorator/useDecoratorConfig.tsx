@@ -8,7 +8,7 @@ import { loggEvent } from '../../utils/logger/frontendLogger';
 import { Enhet } from '../../rest/resources/saksbehandlersEnheterResource';
 import { trackNavigation, updateUserEnhet } from '../../utils/amplitude';
 import { useCallback } from 'react';
-import { DecoratorProps, DecoratorPropsV3, EnhetDisplay, FnrDisplay, Hotkey, RESET_VALUE } from './decoratorprops';
+import { DecoratorPropsV3, Hotkey } from './decoratorprops';
 import { useGjeldendeBruker } from '../../redux/gjeldendeBruker/types';
 
 export function useDecoratorConfig() {
@@ -38,12 +38,6 @@ export function useDecoratorConfig() {
         trackNavigation(link.text, link.url);
     };
 
-    const configV2 = useCallback(lagConfig, [valgtEnhetId, settAktivBruker, handleSetEnhet])(
-        valgtEnhetId,
-        settAktivBruker,
-        handleSetEnhet
-    );
-
     const configV3 = useCallback(lagConfigV3, [valgtEnhetId, settAktivBruker, handleSetEnhet, handleLinkClick])(
         valgtEnhetId,
         settAktivBruker,
@@ -51,7 +45,7 @@ export function useDecoratorConfig() {
         handleLinkClick
     );
 
-    return { configV2, configV3 };
+    return { configV3 };
 }
 
 const etterSokefelt = `
@@ -68,51 +62,6 @@ const etterSokefelt = `
           </button>
         </div>
     `;
-
-function lagConfig(
-    enhet: string | undefined | null,
-    settAktivBruker: (fnr: string | null) => void,
-    settEnhet: (enhet: string) => void
-): DecoratorProps {
-    const { sokFnr } = getFnrFraUrl();
-    const fnr = useGjeldendeBruker();
-    const onsketFnr = sokFnr ?? fnr;
-    const fnrValue = onsketFnr === '0' ? RESET_VALUE : onsketFnr;
-    return {
-        appname: 'Modia personoversikt',
-        fnr: {
-            value: fnrValue,
-            display: FnrDisplay.SOKEFELT,
-            onChange(fnr: string | null): void {
-                if (fnr && fnr.length > 0) {
-                    settAktivBruker(fnr);
-                } else {
-                    settAktivBruker(null);
-                }
-            }
-        },
-        enhet: {
-            initialValue: enhet || null,
-            display: EnhetDisplay.ENHET_VALG,
-            onChange(enhet: string | null): void {
-                if (enhet) {
-                    settEnhet(enhet);
-                }
-            }
-        },
-        toggles: {
-            visVeileder: true,
-            visHotkeys: true
-        },
-        markup: {
-            etterSokefelt: etterSokefelt
-        },
-        hotkeys: getHotkeys(),
-        // modiacontextholder kjører på samme domene som modiapersonoversikt.
-        // Som default brukes app.adeo.no, så her tvinger vi dekoratøren over på nytt domene
-        useProxy: `https://${window.location.host}${import.meta.env.BASE_URL}proxy`
-    };
-}
 
 function lagConfigV3(
     enhet: string | undefined | null,
