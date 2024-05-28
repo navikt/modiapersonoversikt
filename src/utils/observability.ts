@@ -1,10 +1,4 @@
-import {
-    getWebInstrumentations,
-    initializeFaro,
-    InternalLoggerLevel,
-    ReactIntegration,
-    ReactRouterVersion
-} from '@grafana/faro-react';
+import { getWebInstrumentations, initializeFaro, ReactIntegration, ReactRouterVersion } from '@grafana/faro-react';
 import { History } from 'history';
 import { Route } from 'react-router-dom';
 import { getEnvFromHost } from './environment';
@@ -26,7 +20,6 @@ export const initializeObservability = (history: History) => {
         app: {
             name: 'modiapersonoversikt'
         },
-        internalLoggerLevel: InternalLoggerLevel.VERBOSE,
         instrumentations: [
             ...getWebInstrumentations(),
             new ReactIntegration({
