@@ -573,7 +573,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                 <>
                     <Normaltekst>
                         Søk etter person med kontonummer er nå fjernet fra "Avansert søk". For å søke etter personer med
-                        et gitt kontonummer kan man benytte kontonummersok i{' '}
+                        et gitt kontonummer kan man benytte kontonummersøk i{' '}
                         <a href="https://utbetalingsportalen.intern.nav.no" target="_blank" rel="noreferrer">
                             utbetalingsportalen
                         </a>
