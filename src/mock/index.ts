@@ -421,6 +421,4 @@ setUpSaksbehandlersEnheterMock(mock);
 setupSaksbehandlerInnstillingerMock(mock);
 setupDraftMock(mock);
 
-window.applicationFeatureToggles = {
-    useNewDecorator: true
-};
+window.applicationFeatureToggles = {};
