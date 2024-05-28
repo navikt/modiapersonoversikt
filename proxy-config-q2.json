@@ -1,7 +1,7 @@
 {
     "proxy": {
         "modia-skrivestotte": {
-            "url": "http://modiapersonoversikt-skrivestotte.personoversikt.svc.cluster.local/modiapersonoversikt-skrivestotte",
+            "url": "http://modiapersonoversikt-skrivestotte.personoversikt.svc.cluster.local",
             "scope": "api://dev-gcp.personoversikt.modiapersonoversikt-skrivestotte/.default"
         },
         "modia-draft": {
