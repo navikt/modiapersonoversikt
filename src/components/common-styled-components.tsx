@@ -23,16 +23,16 @@ export const Bold = styled.span`
 export const BulletPoint = styled.div<{ showBulletPoint: boolean; color: string }>`
     position: relative;
     transition: 0.3s;
-    ${props => props.showBulletPoint && 'padding-left: 1.5rem;'}
+    ${(props) => props.showBulletPoint && 'padding-left: 1.5rem;'}
     &::before {
         position: absolute;
         left: -0.5rem;
         content: '•';
         font-size: 4rem;
         line-height: 1.8rem;
-        color: ${props => props.color};
+        color: ${(props) => props.color};
         transition: 0.3s;
-        ${props => !props.showBulletPoint && 'opacity: 0'}
+        ${(props) => !props.showBulletPoint && 'opacity: 0'}
     }
 `;
 
@@ -48,7 +48,7 @@ export const LenkeKnapp = styled.button<{ underline?: boolean }>`
     color: ${theme.color.lenke};
     &:after {
         border-bottom: 1px #b7b1a9 solid;
-        ${props => props.underline && `content: ''`};
+        ${(props) => props.underline && `content: ''`};
         position: absolute;
         bottom: 0;
         left: 0;

@@ -34,7 +34,7 @@ function varslerReducer(state: VarslerState = initialState, action: Actions): Va
         case actionKeys.TOGGLE_VIS_VARSEL:
             const aapneVarsler = action.vis
                 ? [...state.aapneVarsler, action.varsel]
-                : state.aapneVarsler.filter(it => it !== action.varsel);
+                : state.aapneVarsler.filter((it) => it !== action.varsel);
             return {
                 ...state,
                 aapneVarsler: aapneVarsler

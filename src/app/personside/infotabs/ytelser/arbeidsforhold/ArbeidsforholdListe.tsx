@@ -29,7 +29,7 @@ const StyledKnappBase = styled(KnappBase)`
 `;
 
 function ArbeidsForholdListe(props: Props) {
-    const visAlleArbeidsforhold = useAppState(state => state.ytelser.visAlleArbeidsforhold).includes(props.ytelse);
+    const visAlleArbeidsforhold = useAppState((state) => state.ytelser.visAlleArbeidsforhold).includes(props.ytelse);
     const dispatch = useDispatch();
     const toggleVisAlle = (vis: boolean) => dispatch(toggleVisAlleArbeidsforhold(props.ytelse, vis));
 

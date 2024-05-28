@@ -11,9 +11,6 @@
     "engines": {
         "node": "^20.0 || ^18.0"
     },
-    "publishConfig": {
-        "registry": "https://repo.adeo.no/repository/npm-internal/"
-    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/navikt/modiapersonoversikt"
@@ -26,6 +23,7 @@
         "test": "vitest",
         "lint": "eslint .",
         "lint-staged": "lint-staged",
+        "format": "prettier --write src/**/*.{ts,js,tsx}",
         "tsc": "tsc"
     },
     "husky": {

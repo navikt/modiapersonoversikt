@@ -4,7 +4,10 @@ import { confirm } from '../components/popup-boxes/popup-boxes';
 
 const CONFLICT = 409;
 export class FetchError extends Error {
-    constructor(public response: Response, message?: string) {
+    constructor(
+        public response: Response,
+        message?: string
+    ) {
         super(message);
     }
 }

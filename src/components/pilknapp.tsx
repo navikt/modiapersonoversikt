@@ -8,8 +8,8 @@ interface StyleProps {
 }
 
 export const KnappWrapper = styled.button<StyleProps>`
-    width: ${props => props.width || '10%'};
-    height: ${props => props.width || '10%'};
+    width: ${(props) => props.width || '10%'};
+    height: ${(props) => props.width || '10%'};
     border: none;
     padding: 0;
     border-radius: 0.5em;
@@ -36,7 +36,7 @@ export const KnappWrapper = styled.button<StyleProps>`
         stroke-linecap: round;
     }
     transition: transform 0.5s;
-    transform: rotate(${props => getDirection(props.direction)});
+    transform: rotate(${(props) => getDirection(props.direction)});
 `;
 
 function getDirection(direction: String | undefined) {

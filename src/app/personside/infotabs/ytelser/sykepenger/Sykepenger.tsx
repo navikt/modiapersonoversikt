@@ -47,7 +47,7 @@ function Sykepenger(props: Props) {
     });
 
     const aktuellSykmelding = props.sykepenger.sykmeldinger.sort(
-        datoSynkende(sykmelding => sykmelding.sykmeldt.til)
+        datoSynkende((sykmelding) => sykmelding.sykmeldt.til)
     )[0];
     return (
         <ErrorBoundary boundaryName="Sykepenger">

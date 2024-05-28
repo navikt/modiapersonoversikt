@@ -54,7 +54,7 @@ test('Grupperer liste på alder', () => {
         }
     ];
 
-    const result = groupArray(listeFør, bil => bil.alder.toString());
+    const result = groupArray(listeFør, (bil) => bil.alder.toString());
 
     expect(result).toEqual(listeEtter);
 });

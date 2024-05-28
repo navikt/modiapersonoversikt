@@ -19,7 +19,7 @@ function matches(keyDescription: KeyDescription, event: KeyboardEvent): boolean 
         Boolean(ctrlKey) === event.ctrlKey,
         Boolean(metaKey) === event.metaKey,
         Boolean(shiftKey) === event.shiftKey
-    ].every(comp => comp);
+    ].every((comp) => comp);
 }
 
 export default function useHotkey(

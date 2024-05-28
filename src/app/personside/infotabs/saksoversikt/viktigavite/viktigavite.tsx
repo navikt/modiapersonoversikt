@@ -56,10 +56,8 @@ class ViktigÅVite extends React.PureComponent<Props> {
     }
 }
 
-export default connect(
-    (state: AppState): StateProps => {
-        return {
-            åpen: state.saksoversikt.viktigÅViteÅpen
-        };
-    }
-)(ViktigÅVite);
+export default connect((state: AppState): StateProps => {
+    return {
+        åpen: state.saksoversikt.viktigÅViteÅpen
+    };
+})(ViktigÅVite);

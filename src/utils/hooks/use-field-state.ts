@@ -12,13 +12,14 @@ export interface FieldState {
 
 export default function useFieldState(initialState: string): FieldState {
     const [value, setValue] = useState(initialState);
-    const onChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value), [
-        setValue
-    ]);
-    const isPristine = useCallback(trim => (trim ? value.trim() === initialState.trim() : value === initialState), [
-        value,
-        initialState
-    ]);
+    const onChange = useCallback(
+        (event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value),
+        [setValue]
+    );
+    const isPristine = useCallback(
+        (trim) => (trim ? value.trim() === initialState.trim() : value === initialState),
+        [value, initialState]
+    );
 
     return useMemo(
         () => ({

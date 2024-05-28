@@ -28,13 +28,13 @@ interface Props {
 
 function YtelserOversikt(props: Props) {
     const { ytelserMarkup, pending, feilmeldinger, harFeil } = useBrukersYtelserMarkup({
-        renderPleiepenger: pleiepenger => (
+        renderPleiepenger: (pleiepenger) => (
             <PleiepengerKomponent pleiepenger={pleiepenger} key={getUnikYtelseKey(pleiepenger)} />
         ),
-        renderForeldrepenger: foreldrepenger => (
+        renderForeldrepenger: (foreldrepenger) => (
             <ForeldrepengerKomponent foreldrepenger={foreldrepenger} key={getUnikYtelseKey(foreldrepenger)} />
         ),
-        renderSykepenger: sykepenger => (
+        renderSykepenger: (sykepenger) => (
             <SykepengerKomponent sykepenger={sykepenger} key={getUnikYtelseKey(sykepenger)} />
         )
     });

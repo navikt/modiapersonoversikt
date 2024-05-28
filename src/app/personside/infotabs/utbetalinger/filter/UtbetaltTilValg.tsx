@@ -47,7 +47,7 @@ class UtbetaltTilValg extends React.Component<Props> {
         const fjernDuplikater = (utbetaltTil: string, index: number, self: Array<string>) =>
             self.indexOf(utbetaltTil) === index;
         return utbetalinger
-            .map(utbetaling => (utbetaling.erUtbetaltTilPerson ? utbetaltTilBruker : utbetaling.utbetaltTil))
+            .map((utbetaling) => (utbetaling.erUtbetaltTilPerson ? utbetaltTilBruker : utbetaling.utbetaltTil))
             .filter(fjernDuplikater)
             .sort(sorterAlfabetisk);
     }
@@ -55,7 +55,7 @@ class UtbetaltTilValg extends React.Component<Props> {
     render() {
         const unikeMottakere = this.getUnikeMottakere(this.props.utbetalinger);
 
-        const checkboxer = unikeMottakere.map(mottaker => (
+        const checkboxer = unikeMottakere.map((mottaker) => (
             <Checkbox
                 key={mottaker}
                 label={mottaker}

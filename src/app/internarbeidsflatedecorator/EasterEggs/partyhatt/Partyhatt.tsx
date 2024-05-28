@@ -8,7 +8,7 @@ import Fireworks from './Fireworks';
 const GlobalStyles = createGlobalStyle<{ dropNavLogo: boolean }>`
   .dekorator__hode__logo svg {
       transition: 2s;
-      ${props =>
+      ${(props) =>
           props.dropNavLogo &&
           css`
               transform: translateY(1.5rem);
@@ -54,12 +54,12 @@ const StyledImg = styled.img<{ jump: boolean; clickable: boolean }>`
     position: relative;
     height: 3.3rem;
     transform: rotateY(180deg);
-    ${props =>
+    ${(props) =>
         props.clickable &&
         css`
             cursor: pointer;
         `};
-    ${props =>
+    ${(props) =>
         props.jump &&
         css`
             animation: ${jump} 1s forwards;

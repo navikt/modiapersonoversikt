@@ -15,7 +15,7 @@ interface Props {
 }
 
 function tilrettelagtKommunikasjonTekst(beskrivelse: string, tilrettelagtKommunikasjon: KodeBeskrivelse<string>[]) {
-    return tilrettelagtKommunikasjon.map(element => (
+    return tilrettelagtKommunikasjon.map((element) => (
         <Normaltekst key={element.kode}>
             {beskrivelse}: {element.beskrivelse} ({element.kode})
         </Normaltekst>

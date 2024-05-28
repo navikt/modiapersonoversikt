@@ -47,7 +47,7 @@ function ytelserReducer(state: YtelserState = initialState, action: Actions): Yt
         case actionKeys.TOGGLE_VIS_ALLE_ARBEIDSFORHOLD:
             const aapnedeArbeidsforhold = action.vis
                 ? [...state.aapnedeYtesler, action.ytelse]
-                : state.visAlleArbeidsforhold.filter(it => it !== action.ytelse);
+                : state.visAlleArbeidsforhold.filter((it) => it !== action.ytelse);
             return {
                 ...state,
                 visAlleArbeidsforhold: aapnedeArbeidsforhold
@@ -55,7 +55,7 @@ function ytelserReducer(state: YtelserState = initialState, action: Actions): Yt
         case actionKeys.TOGGLE_APNEYTELSE:
             const aapnedeYtelser = action.vis
                 ? [...state.aapnedeYtesler, action.ytelse]
-                : state.aapnedeYtesler.filter(it => it !== action.ytelse);
+                : state.aapnedeYtesler.filter((it) => it !== action.ytelse);
             return {
                 ...state,
                 aapnedeYtesler: aapnedeYtelser

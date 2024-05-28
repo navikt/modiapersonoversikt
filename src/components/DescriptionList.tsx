@@ -54,7 +54,7 @@ function getDescriptionlistEntry(term: string, description: DescriptionlistEntry
 }
 
 function createDescriptionListEntries(valuePairs: DescriptionListEntries) {
-    return Object.keys(valuePairs).map(key => getDescriptionlistEntry(key, valuePairs[key]));
+    return Object.keys(valuePairs).map((key) => getDescriptionlistEntry(key, valuePairs[key]));
 }
 
 function DescriptionList(props: Props) {

@@ -37,7 +37,7 @@ function Ytelser() {
     useKeepQueryParams();
     const ytelser = useBrukersYtelser();
     const dypLenker = useInfotabsDyplenker();
-    const valgtYtelse = ytelser.ytelser.find(ytelse => dypLenker.ytelser.erValgt(ytelse)) || ytelser.ytelser[0];
+    const valgtYtelse = ytelser.ytelser.find((ytelse) => dypLenker.ytelser.erValgt(ytelse)) || ytelser.ytelser[0];
 
     return (
         <Styling>

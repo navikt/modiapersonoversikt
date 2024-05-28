@@ -11,7 +11,7 @@ const Wrapper = styled.div<{ valgt: boolean }>`
     display: flex;
     align-items: center;
     cursor: pointer;
-    ${props =>
+    ${(props) =>
         props.valgt &&
         css`
             background-color: ${theme.color.kategori};

@@ -8,7 +8,7 @@ type Ref = RefObject<HTMLElement> | RefObject<HTMLElement>[];
 
 export function eventTagetIsInsideRef(event: EventWithTarget, ref: Ref): boolean {
     if (ref instanceof Array) {
-        return ref.some(r => eventTagetIsInsideRef(event, r));
+        return ref.some((r) => eventTagetIsInsideRef(event, r));
     }
 
     if (event.target instanceof Node && ref.current) {

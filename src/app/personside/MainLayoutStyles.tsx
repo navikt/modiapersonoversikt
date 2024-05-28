@@ -19,7 +19,7 @@ interface StyleProps {
     dialogPanelEkspandert?: boolean;
 }
 export const VenstreKolonne = styled.article<StyleProps>`
-    flex-basis: ${props => (props.dialogPanelEkspandert ? '70%' : '90%')};
+    flex-basis: ${(props) => (props.dialogPanelEkspandert ? '70%' : '90%')};
     flex-grow: 1;
     flex-shrink: 1;
     display: -ms-grid;
@@ -41,7 +41,7 @@ export const VenstreKolonne = styled.article<StyleProps>`
 `;
 
 export const HoyreKolonne = styled.article<StyleProps>`
-    ${props =>
+    ${(props) =>
         props.dialogPanelEkspandert
             ? css`
                   flex: 30% 1 1;

@@ -29,7 +29,7 @@ function Temavelger(props: Props) {
     }, [selectRef, props.visFeilmelding]);
 
     const velgTemaHandler = (event: ChangeEvent<HTMLSelectElement>) => {
-        const tema = props.temavalg.find(tema => tema === event.target.value);
+        const tema = props.temavalg.find((tema) => tema === event.target.value);
         props.setTema(tema);
     };
     return (
@@ -37,14 +37,12 @@ function Temavelger(props: Props) {
             feil={
                 props.visFeilmelding ? (
                     <SkjemaelementFeilmelding>Du må velge temagruppe</SkjemaelementFeilmelding>
-                ) : (
-                    undefined
-                )
+                ) : undefined
             }
         >
             <StyledSelect
                 // @ts-ignore
-                selectRef={ref => (selectRef = ref)}
+                selectRef={(ref) => (selectRef = ref)}
                 label="Tema"
                 onChange={velgTemaHandler}
                 value={props.valgtTema ? props.valgtTema : ''}
@@ -52,7 +50,7 @@ function Temavelger(props: Props) {
                 <option value="" disabled>
                     Velg temagruppe
                 </option>
-                {props.temavalg.map(temagruppe => (
+                {props.temavalg.map((temagruppe) => (
                     <option key={temagruppe} value={temagruppe}>
                         {temagruppeTekst(temagruppe)}
                     </option>

@@ -35,7 +35,7 @@ function Utbetalinger({ kommendeUtbetalinger }: Props) {
         'Arb.giver',
         'Org.nummer'
     ];
-    const rows = kommendeUtbetalinger.map(kommendeUtbetaling => [
+    const rows = kommendeUtbetalinger.map((kommendeUtbetaling) => [
         datoEllerNull(kommendeUtbetaling.utbetalingsdato),
         kommendeUtbetaling.type,
         periodeEllerNull(kommendeUtbetaling.vedtak),

@@ -16,7 +16,7 @@ export function focusOnFirstFocusable(element: HTMLElement | null) {
 export function useFocusOnFirstFocusable(container: MutableRefObject<HTMLElement | null>) {
     const element = container.current;
     useJustOnceEffect(
-        done => {
+        (done) => {
             const focused = focusOnFirstFocusable(container.current);
             if (focused) {
                 done();

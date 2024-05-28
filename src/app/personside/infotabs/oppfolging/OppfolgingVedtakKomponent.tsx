@@ -27,7 +27,7 @@ function formaterPeriode(vedtak: OppfolgingsVedtak) {
 }
 
 function OppfolgingsVedtakTabell(props: Props) {
-    const sortertPåDato = props.ytelseVedtak.sort(datoSynkende(vedtak => vedtak.aktivFra));
+    const sortertPåDato = props.ytelseVedtak.sort(datoSynkende((vedtak) => vedtak.aktivFra));
     const tittelrekke = ['Vedtak', 'Status', 'Aktivitetsfase'];
     const rows = sortertPåDato.map((vedtak, index) => [
         <UUOrder key={index}>

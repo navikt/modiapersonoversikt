@@ -20,9 +20,9 @@ function useAnsattePaaEnhet(enhetId?: String): Returns {
         setPending(true);
         loggEvent('Fetch', 'LagOppgave-Ansatte');
         fetch(`${apiBaseUri}/enheter/${enhetId}/ansatte`, includeCredentials)
-            .then(response => response.json())
+            .then((response) => response.json())
             .then(setAnsatte)
-            .catch(e => loggError(e, 'Feil ved henting av ansatte'))
+            .catch((e) => loggError(e, 'Feil ved henting av ansatte'))
             .finally(() => setPending(false));
     }, [enhetId]);
 

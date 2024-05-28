@@ -70,7 +70,7 @@ function SammensattUtbetaling(props: Props) {
         if (!ytelser) {
             return;
         }
-        ytelser.forEach(ytelse => ekspanderYtelse(ytelse));
+        ytelser.forEach((ytelse) => ekspanderYtelse(ytelse));
         print();
         loggEvent('Print', 'SammensattUtbetaling');
     };

@@ -64,7 +64,7 @@ describe('Sorterer etter dato', () => {
 
         const datoA: MockObject = { date: '2012-01-01' };
         const datoB: MockObject = { date: new Date('2000-01-01') };
-        const sortedDates = [datoA, datoB].sort(datoStigende(object => object.date));
+        const sortedDates = [datoA, datoB].sort(datoStigende((object) => object.date));
 
         expect(sortedDates[0]).toEqual(datoB);
     });
@@ -76,7 +76,7 @@ describe('Sorterer etter dato', () => {
 
         const datoA: MockObject = { date: '2012-01-01' };
         const datoB: MockObject = { date: new Date('2000-01-01') };
-        const sortedDates = [datoA, datoB].sort(datoSynkende(object => object.date));
+        const sortedDates = [datoA, datoB].sort(datoSynkende((object) => object.date));
 
         expect(sortedDates[0]).toEqual(datoA);
     });
@@ -92,9 +92,7 @@ test('datoVerbose henter riktig dag, måned og år', () => {
 
 describe('getNewestDate', () => {
     it('git den nyeste datoen', () => {
-        const oldDate = dayjs()
-            .subtract(1, 'year')
-            .toDate();
+        const oldDate = dayjs().subtract(1, 'year').toDate();
         const newDate = dayjs().toDate();
 
         const result = getNewestDate(newDate, oldDate);
@@ -105,9 +103,7 @@ describe('getNewestDate', () => {
     });
 
     it('aksepterer strings som argumenter', () => {
-        const oldDate = dayjs()
-            .subtract(1, 'year')
-            .format(backendDatoformat);
+        const oldDate = dayjs().subtract(1, 'year').format(backendDatoformat);
         const newDate = dayjs().format(backendDatoformat);
 
         const result = getNewestDate(newDate, oldDate);
@@ -118,9 +114,7 @@ describe('getNewestDate', () => {
 
 describe('getOldestDate', () => {
     it('git den eldste datoen', () => {
-        const oldDate = dayjs()
-            .subtract(1, 'year')
-            .toDate();
+        const oldDate = dayjs().subtract(1, 'year').toDate();
         const newDate = dayjs().toDate();
 
         const result = getOldestDate(newDate, oldDate);
@@ -131,9 +125,7 @@ describe('getOldestDate', () => {
     });
 
     it('aksepterer strings og dates som argumenter', () => {
-        const oldDate = dayjs()
-            .subtract(1, 'year')
-            .format(backendDatoformat);
+        const oldDate = dayjs().subtract(1, 'year').format(backendDatoformat);
         const newDate = dayjs().format(backendDatoformat);
 
         const result = getOldestDate(newDate, oldDate);
@@ -144,12 +136,8 @@ describe('getOldestDate', () => {
 
 describe('erMaks10MinSiden', () => {
     it('sjekker om dato er mindre enn 10 min siden', () => {
-        const dateUnder10min = dayjs()
-            .subtract(5, 'minute')
-            .toDate();
-        const dateOver10min = dayjs()
-            .subtract(15, 'minute')
-            .toDate();
+        const dateUnder10min = dayjs().subtract(5, 'minute').toDate();
+        const dateOver10min = dayjs().subtract(15, 'minute').toDate();
 
         const resultUnder10min = erMaks10MinSiden(dateUnder10min);
         const resultOver10min = erMaks10MinSiden(dateOver10min);

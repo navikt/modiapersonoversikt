@@ -16,10 +16,5 @@ test('Paginator paginerer riktig', () => {
 
     expect(pagination.currentPage).toHaveLength(pageSize);
     expect(paginator.find('option')).toHaveLength(3);
-    expect(
-        paginator
-            .find('option')
-            .first()
-            .text()
-    ).toBe('Viser item 1 til 5');
+    expect(paginator.find('option').first().text()).toBe('Viser item 1 til 5');
 });

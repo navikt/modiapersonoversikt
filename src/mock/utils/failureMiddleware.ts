@@ -18,7 +18,7 @@ const failures: ResponseData[] = [
 
 export function failurerateMiddleware(probabilityOfFailure: number): Middleware {
     return (request: MockRequest, response: ResponseData) => {
-        return new Promise<ResponseData>(resolve => {
+        return new Promise<ResponseData>((resolve) => {
             const rnd = Math.random();
             if (rnd < probabilityOfFailure) {
                 const randomFailure = failures[Math.floor(Math.random() * failures.length)];
