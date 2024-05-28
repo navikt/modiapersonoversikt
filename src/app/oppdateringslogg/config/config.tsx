@@ -31,6 +31,7 @@ import MeldingsVisning from './img/meldinger.png';
 import Revarsling from './img/revarsling.png';
 import Kunnskapsbasen from './img/kunnskapsbasen.png';
 import Journalforing from './img/journaloring.png';
+import Kontonummersok from './img/kontonummersok.png';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
@@ -304,7 +305,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             id: 16,
             tittel: 'Avslutt dialog',
             dato: new Date('2022-03-04 14:00'),
-            aktiv: true,
+            aktiv: false,
             ingress: <Normaltekst>Dialoger bestående av spørsmål og svar kan nå manuelt avsluttes.</Normaltekst>,
             beskrivelse: (
                 <>
@@ -561,6 +562,25 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                 </>
             ),
             src: Journalforing
+        },
+        {
+            id: 32,
+            tittel: 'Søk etter person med kontonummer',
+            dato: new Date('2024-05-27 12:00'),
+            aktiv: true,
+            ingress: null,
+            beskrivelse: (
+                <>
+                    <Normaltekst>
+                        Søk etter person med kontonummer er nå fjernet fra "Avansert søk". For å søke etter personer med
+                        et gitt kontonummer kan man benytte kontonummersok i{' '}
+                        <a href="https://utbetalingsportalen.intern.nav.no" target="_blank" rel="noreferrer">
+                            utbetalingsportalen
+                        </a>
+                    </Normaltekst>
+                </>
+            ),
+            src: Kontonummersok
         }
     ];
 }

@@ -1,9 +1,4 @@
 import { PersonsokRequestV3 } from '../../models/person/personsok';
-import {
-    erGyldigNorskKontonummer,
-    removeWhitespaceAndDot,
-    validerLengdeOgTallPaKontonummer
-} from './kontonummer/kontonummerUtils';
 import { erTall } from '../../utils/string-utils';
 import dayjs from 'dayjs';
 import { isISODateString } from 'nav-datovelger';
@@ -12,7 +7,6 @@ import { FieldError } from 'react-hook-form';
 
 export type PersonSokFormStateV3 = {
     navn: string;
-    kontonummer: string;
     utenlandskID: string;
     fodselsdatoFra: string;
     fodselsdatoTil: string;
@@ -25,27 +19,6 @@ export type PersonSokFormStateV3 = {
 
 export function resolver(values: PersonSokFormStateV3) {
     const errors: Record<string, FieldError | undefined> = {};
-
-    const andreFelter = [
-        values.navn,
-        values.adresse,
-        values.utenlandskID,
-        values.alderFra,
-        values.alderTil,
-        values.fodselsdatoFra,
-        values.fodselsdatoTil,
-        values.kjonn
-    ];
-
-    const andreFelterErSatt = andreFelter.some((it) => it?.length);
-
-    if (values.kontonummer && !validerLengdeOgTallPaKontonummer(values.kontonummer)) {
-        errors.kontonummer = buildFieldError('Kontonummer må kun bestå av tall og være 11 siffer');
-    } else if (values.kontonummer && !erGyldigNorskKontonummer(values.kontonummer)) {
-        errors.kontonummer = buildFieldError('Kontonummer må være et gyldig norsk kontonummer');
-    } else if (values.kontonummer && andreFelterErSatt) {
-        errors.kontonummer = buildFieldError('Kan ikke kombinere søk på kontonummer med andre felt');
-    }
 
     const fra = dayjs(values.fodselsdatoFra).toDate();
     const til = dayjs(values.fodselsdatoTil).toDate();
@@ -69,9 +42,9 @@ export function resolver(values: PersonSokFormStateV3) {
         errors.alderTil = buildFieldError('Alder må være tall');
     }
 
-    if (!values.utenlandskID && !values.adresse && !values.kontonummer && !values.navn) {
+    if (!values.utenlandskID && !values.adresse && !values.navn) {
         errors._minimumskrav = buildFieldError(
-            'Du må minimum fylle inn navn, adresse, kontonummer eller utenlandsk ID for å gjøre søk'
+            'Du må minimum fylle inn navn, adresse eller utenlandsk ID for å gjøre søk'
         );
     }
 
@@ -96,7 +69,6 @@ export function lagRequestV3(enhet: string, form: PersonSokFormStateV3): Persons
     return {
         enhet,
         navn: emptyString(form.navn),
-        kontonummer: emptyString(removeWhitespaceAndDot(form.kontonummer)),
         utenlandskID: emptyString(form.utenlandskID),
         fodselsdatoFra: emptyString(form.fodselsdatoFra),
         fodselsdatoTil: emptyString(form.fodselsdatoTil),
