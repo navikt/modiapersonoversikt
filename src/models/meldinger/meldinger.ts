@@ -35,7 +35,7 @@ export interface MeldingJournalpost {
     journalfortSaksid?: string;
 }
 
-export interface Veileder {
+interface Veileder {
     ident: string;
     navn: string;
 }
@@ -77,20 +77,20 @@ export interface SendReferatRequest {
     meldingstype: Meldingstype.SAMTALEREFERAT_TELEFON | Meldingstype.SAMTALEREFERAT_OPPMOTE;
 }
 
-export interface SendSporsmalRequest {
+interface SendSporsmalRequest {
     enhet: string;
     fritekst: string;
     sak: JournalforingsSak;
     erOppgaveTilknyttetAnsatt: boolean;
 }
 
-export interface SendInfomeldingRequest {
+interface SendInfomeldingRequest {
     enhet: string;
     fritekst: string;
     sak: JournalforingsSak;
 }
 
-export interface ForsettDialogRequest {
+interface ForsettDialogRequest {
     enhet: string;
     traadId: string;
     behandlingsId: string;

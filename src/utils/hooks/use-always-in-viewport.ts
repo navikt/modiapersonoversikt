@@ -7,7 +7,7 @@ declare global {
 }
 
 export default function useAlwaysInViewport(selector: string, deps: DependencyList = []) {
-    const query = React.useCallback(() => document.querySelector(selector), [selector]);
+    const query = React.useCallback(() => document.querySelector(selector) as HTMLElement, [selector]);
     useEffect(() => {
         const element = query();
         if (element) {

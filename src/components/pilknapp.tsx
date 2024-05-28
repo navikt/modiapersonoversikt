@@ -39,7 +39,7 @@ export const KnappWrapper = styled.button<StyleProps>`
     transform: rotate(${(props) => getDirection(props.direction)});
 `;
 
-function getDirection(direction: String | undefined) {
+function getDirection(direction: string | undefined) {
     if (!direction) {
         return '0';
     }

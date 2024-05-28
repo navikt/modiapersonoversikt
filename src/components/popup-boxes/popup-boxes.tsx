@@ -159,7 +159,7 @@ function Prompt(props: PopupComponentProps<string | null, PromptProps>) {
     );
 }
 
-export function alert(props: CommonPopupComponentProps): Promise<void> {
+function alert(props: CommonPopupComponentProps): Promise<void> {
     return renderPopup(null, Alert, props);
 }
 
@@ -167,10 +167,10 @@ export function confirm(props: CommonPopupComponentProps): Promise<boolean> {
     return renderPopup(null, Confirm, props);
 }
 
-export function prompt(props: CommonPopupComponentProps): Promise<string | null> {
+function prompt(props: CommonPopupComponentProps): Promise<string | null> {
     return renderPopup(null, Prompt, { ...props, secret: false });
 }
 
-export function promptSecret(props: CommonPopupComponentProps): Promise<string | null> {
+function promptSecret(props: CommonPopupComponentProps): Promise<string | null> {
     return renderPopup(null, Prompt, { ...props, secret: true });
 }

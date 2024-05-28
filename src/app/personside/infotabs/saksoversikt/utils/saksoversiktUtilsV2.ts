@@ -5,9 +5,9 @@ import { formatterDato } from '../../../../../utils/date-utils';
 import { filtrerSakstemaerUtenDataV2 } from '../sakstemaliste/SakstemaListeUtils';
 
 export const sakstemakodeAlle = 'ALLE';
-export const sakstemanavnAlle = 'Alle tema';
+const sakstemanavnAlle = 'Alle tema';
 export const sakstemakodeIngen = 'INGEN';
-export const sakstemanavnIngen = 'Ingen tema valgt';
+const sakstemanavnIngen = 'Ingen tema valgt';
 
 export function aggregertSakstemaV2(
     alleSakstema: SakstemaSoknadsstatus[],
@@ -90,7 +90,7 @@ function aggregerSakstemaGenerisk<T>(
     }, []);
 }
 
-export function hentFormattertDatoForSisteHendelseV2(sakstema: SakstemaSoknadsstatus): String {
+export function hentFormattertDatoForSisteHendelseV2(sakstema: SakstemaSoknadsstatus): string {
     const sisteHendelse = hentDatoForSisteHendelseV2(sakstema);
     if (!sisteHendelse) {
         return 'Fant ikke dato';

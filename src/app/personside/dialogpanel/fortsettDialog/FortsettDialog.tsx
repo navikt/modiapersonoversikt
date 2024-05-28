@@ -60,7 +60,7 @@ function Feilmelding(props: { status: DialogPanelStatus; errors?: Error[] }) {
     return null;
 }
 
-export const tekstMaksLengde = 5000;
+const tekstMaksLengde = 5000;
 
 function FortsettDialog(props: Props) {
     const { state, updateState, handleAvbryt, handleSubmit } = props;

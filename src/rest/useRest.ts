@@ -3,7 +3,7 @@ import { UseQueryResult } from '@tanstack/react-query';
 
 type ReactElement = React.ReactElement | null;
 
-export interface Config<T> {
+interface Config<T> {
     ifPending: ReactElement | (() => ReactElement);
     ifError: ReactElement | ((error: any) => ReactElement);
     ifData: (data: T) => ReactElement;

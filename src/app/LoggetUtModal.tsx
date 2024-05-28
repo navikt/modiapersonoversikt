@@ -20,7 +20,7 @@ interface Props {
 }
 type Config = {
     visModal: boolean;
-    ikon: React.ComponentType<any> | string;
+    ikon: React.ComponentType<{ width?: string; className?: string }> | string;
     header: string;
     tekst: string;
 };

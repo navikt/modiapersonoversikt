@@ -7,4 +7,3 @@ if (!Element.prototype.matches) {
 
 // Bare for å gjøre TS happy
 const dummy = {};
-export default dummy;

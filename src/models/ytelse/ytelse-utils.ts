@@ -6,15 +6,15 @@ import { loggError } from '../../utils/logger/frontendLogger';
 export type Ytelse = Pleiepengerettighet | Foreldrepengerettighet | Sykepenger;
 
 export function isPleiepenger(ytelse: Ytelse): ytelse is Pleiepengerettighet {
-    return ytelse.hasOwnProperty('pleiepengedager');
+    return 'pleiepengedager' in ytelse;
 }
 
 export function isForeldrepenger(ytelse: Ytelse): ytelse is Foreldrepengerettighet {
-    return ytelse.hasOwnProperty('forelder');
+    return 'forelder' in ytelse;
 }
 
 export function isSykepenger(ytelse: Ytelse): ytelse is Sykepenger {
-    return ytelse.hasOwnProperty('sykmeldtFom');
+    return 'sykmeldtFom' in ytelse;
 }
 
 export function getYtelseIdDato(ytelse: Ytelse) {

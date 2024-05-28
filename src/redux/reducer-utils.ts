@@ -15,7 +15,7 @@ export function reset(): Action<Type> {
     return { type: Type.RESET };
 }
 
-export function resettable<S>(reducer: Reducer<S>): Reducer<S> {
+function resettable<S>(reducer: Reducer<S>): Reducer<S> {
     return (state: S | undefined, action: AnyAction) => {
         if (action.type === Type.RESET) {
             return reducer(undefined, { type: Type.INIT });

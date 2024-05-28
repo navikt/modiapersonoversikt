@@ -29,6 +29,8 @@ import aktoridResource from '../rest/resources/aktoridResource';
 import varselResource from '../rest/resources/varselResource';
 import { MockInstance, vi } from 'vitest';
 import { createBrowserHistory } from 'history';
+import { UseQueryResult } from '@tanstack/react-query';
+import { FeatureToggles } from '../components/featureToggle/toggleIDs';
 
 const history = createBrowserHistory();
 
@@ -36,16 +38,16 @@ export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers(history), applyMiddleware(thunkMiddleware));
     const aremarkFnr = aremark.personIdent;
 
+    // eslint-disable-next-line
     const dispatch = testStore.dispatch as Dispatch<any>;
     dispatch(setGjeldendeBrukerIRedux(aremarkFnr));
 
     return testStore;
 }
 
-export function mockReactQuery(resource: any, data: any, extra: {} = {}) {
-    (resource as MockInstance<any>).mockImplementation(() => ({
-        data,
-        ...extra
+export function mockReactQuery<A extends unknown[], R>(resource: (...args: A) => UseQueryResult<R>, data: R) {
+    (resource as unknown as MockInstance<A, Partial<UseQueryResult<R>>>).mockImplementation(() => ({
+        data
     }));
 }
 export function setupReactQueryMocks() {
@@ -70,7 +72,12 @@ export function setupReactQueryMocks() {
     });
     mockReactQuery(dialogResource.useFetch, [statiskTraadMock]);
     mockReactQuery(baseurlsResource.useFetch, mockBaseUrls());
-    mockReactQuery(featuretogglesResource.useFetch, { toggleId: false });
+    mockReactQuery(featuretogglesResource.useFetch, {
+        [FeatureToggles.BrukNyDecorator]: true,
+        [FeatureToggles.JournalforUtenSvar]: true,
+        [FeatureToggles.VisPromptMeldingSending]: true,
+        [FeatureToggles.BrukWebworkerPaaInnLogging]: true
+    });
     mockReactQuery(gsaktemaResource.useFetch, getMockGsakTema());
     mockReactQuery(foreldrepengerResource.useFetch, {
         foreldrepenger: [statiskForeldrepengeMock]
@@ -85,7 +92,7 @@ export function setupReactQueryMocks() {
     mockReactQuery(sakstemaResource.useFetch, getStaticMockSaksoversiktV2());
     mockReactQuery(utbetalingerResource.useFetch, statiskMockUtbetalingRespons);
     mockReactQuery(persondataResource.useFetch, {
-        feiledeSystemer: [],
+        feilendeSystemer: [],
         person: aremark
     });
     mockReactQuery(aktoridResource.useFetch, `000${aremark.personIdent}000`);

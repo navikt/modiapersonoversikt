@@ -53,7 +53,7 @@ function DittNavInformasjonsLinjer(varsel: { produsent: string; tekst: string; l
     );
 }
 
-export function DittNavEventVarsel({ varsel }: { varsel: DittNavEvent }) {
+function DittNavEventVarsel({ varsel }: { varsel: DittNavEvent }) {
     const aktiv = varsel.aktiv ? '' : ' (Ferdigstilt)';
     const datoer = [formaterDato(varsel.forstBehandlet)];
     const tittel = `Notifikasjon${aktiv}: ${varsel.tekst}`;

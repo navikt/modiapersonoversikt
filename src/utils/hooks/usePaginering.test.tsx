@@ -6,7 +6,7 @@ import { shallow } from 'enzyme';
 
 navfaker.seed('pagineringtest');
 
-const getRandomListe = (length: number) => [...new Array(length)].map(() => navfaker.navn.fornavn());
+const getRandomListe = (length: number) => [...new Array<string>(length)].map(() => navfaker.navn.fornavn());
 
 test('Paginator paginerer riktig', () => {
     const pageSize = 5;

@@ -11,18 +11,20 @@ dayjs.locale('nb');
 
 configure({ adapter: new EnzymeReactAdapter17() });
 
-const globalAny: any = global;
+const globalAny = global;
+// @ts-expect-error dårlig typer
 globalAny._mockEnabled = 'true';
 
 // Mocker funksjoner som returnerer dynamisk data
 MockDate.set(0);
 import JSutils from 'nav-frontend-js-utils';
+import { PropsWithChildren } from 'react';
 JSutils.guid = () => 'Helt tilfeldig ID';
 JSutils.getScrollParents = () => [];
 
 window['frontendlogger'] = { info: () => null, warn: () => null, error: () => null, event: () => null };
 
-window.matchMedia = (query: string) => {
+window.matchMedia = () => {
     const querylist = {
         matches: true,
         addEventListener() {},
@@ -31,14 +33,14 @@ window.matchMedia = (query: string) => {
     return querylist as unknown as MediaQueryList;
 };
 
-// @ts-ignore
+// @ts-expect-error dårlig typer
 global['Worker'] = undefined;
 
 // Mock react collapse sin UnmountClosed
 vi.mock('react-collapse', () => {
     return {
-        // @ts-ignore
-        UnmountClosed: (props) => props.children
+        // @ts-expect-error dårlig typer
+        UnmountClosed: (props: PropsWithChildren) => props.children
     };
 });
 

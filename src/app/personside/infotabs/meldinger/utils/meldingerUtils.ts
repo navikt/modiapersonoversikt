@@ -57,7 +57,7 @@ export function traadKanBesvares(traad?: Traad): boolean {
     }
 }
 
-export function traadErInfoMelding(traad: Traad): boolean {
+function traadErInfoMelding(traad: Traad): boolean {
     const melding = eldsteMelding(traad);
     return traad.meldinger.length === 1 && !!melding.avsluttetDato;
 }

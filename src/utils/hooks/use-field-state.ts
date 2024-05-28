@@ -3,7 +3,7 @@ import React, { Dispatch, SetStateAction, useCallback, useMemo, useState } from 
 export interface FieldState {
     input: {
         value: string;
-        onChange: any;
+        onChange: React.ChangeEventHandler;
     };
     setValue: Dispatch<SetStateAction<string>>;
 

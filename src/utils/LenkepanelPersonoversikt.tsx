@@ -37,7 +37,6 @@ function LenkepanelPersonoversikt(props: Props) {
 
 (LenkepanelPersonoversikt as React.FunctionComponent).defaultProps = {
     linkCreator: (props: React.HTMLProps<HTMLAnchorElement>) => (
-        // eslint-disable-next-line jsx-a11y/anchor-has-content
         <a target="_blank" rel="noopener noreferrer" {...props} />
     )
 };

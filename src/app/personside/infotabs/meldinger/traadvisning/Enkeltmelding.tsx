@@ -81,7 +81,7 @@ export function Avsender({ melding, rule }: { melding: Melding; rule?: Rule }) {
     return <StyledText>{avsender}</StyledText>;
 }
 
-export function LestDato({ melding }: { melding: Melding }) {
+function LestDato({ melding }: { melding: Melding }) {
     if (erMeldingFraBruker(melding.meldingstype)) {
         return null;
     }
@@ -91,7 +91,7 @@ export function LestDato({ melding }: { melding: Melding }) {
             : 'Ikke lest';
     return <StyledText>{lestDato}</StyledText>;
 }
-export function LestStatusIcon({ melding }: { melding: Melding }) {
+function LestStatusIcon({ melding }: { melding: Melding }) {
     if (erMeldingFraBruker(melding.meldingstype)) {
         return null;
     }

@@ -8,7 +8,7 @@ interface Returns {
     pending: boolean;
 }
 
-function useAnsattePaaEnhet(enhetId?: String): Returns {
+function useAnsattePaaEnhet(enhetId?: string): Returns {
     const [ansatte, setAnsatte] = useState<Ansatt[]>([]);
     const [pending, setPending] = useState(false);
 

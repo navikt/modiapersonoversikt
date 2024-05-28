@@ -11,14 +11,6 @@ export function formaterMobiltelefonnummer(telefonnummer: string) {
     }
 }
 
-export function formaterHustelefonnummer(telefonnummer: string) {
-    if (telefonnummer.length === 8) {
-        return formatNumber('## ## ## ##', telefonnummer);
-    } else {
-        return telefonnummer;
-    }
-}
-
 export function formaterTelefonnummer(telefonnummer: string) {
     const utenSpace = removeWhitespace(telefonnummer);
     if (utenSpace.length !== 8) {

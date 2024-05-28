@@ -21,7 +21,7 @@ export enum Behandlingsstatus {
     Avbrutt = 'AVBRUTT'
 }
 
-export interface Behandlingskjede {
+interface Behandlingskjede {
     status: Behandlingsstatus;
     sistOppdatert: string;
 }

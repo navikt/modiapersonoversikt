@@ -16,18 +16,6 @@ export function sorterAlfabetisk(a: string, b: string) {
     return a > b ? 1 : -1;
 }
 
-export function removePrefix(base: string, ...prefixes: string[]): string {
-    return prefixes.reduce((current, prefix) => {
-        const match = prefix.match(/(.*)\//);
-        let normalizedPrefix = prefix;
-        if (match) normalizedPrefix = match[1];
-        if (current.startsWith(normalizedPrefix)) {
-            return current.slice(normalizedPrefix.length);
-        }
-        return current;
-    }, base);
-}
-
 export function prosentEllerNull(value: number | null): string | null {
     if (!value) {
         return null;
@@ -96,10 +84,6 @@ export function periodeEllerNull(periode: Periode | null): string | null {
     return `${formaterDato(periode.fra)} - ${periode.til ? formaterDato(periode.til) : ''}`;
 }
 
-export function formaterTilISO8601Date(date: Date) {
-    return dayjs(date).format('YYYY-MM-DD');
-}
-
 export function capitalizeName(name: string): string {
     return name.replace(/[\wæøåÆØÅ][^\s'-]*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
 }
@@ -109,8 +93,4 @@ export function capitalizeAfterPunctuation(name: string): string {
         /(^|[.!?]\s+)([a-zøæå])/gm,
         (txt, group1: string, group2: string) => group1 + group2.toUpperCase()
     );
-}
-
-export function captitalize(content: string): string {
-    return content.split('\n').map(capitalizeAfterPunctuation).join('\n');
 }

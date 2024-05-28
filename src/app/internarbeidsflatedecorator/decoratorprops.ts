@@ -20,14 +20,14 @@ export enum FnrDisplay {
     SOKEFELT = 'SOKEFELT'
 }
 
-export type KeyDescriptionObject = {
+type KeyDescriptionObject = {
     char: string;
     altKey?: boolean;
     ctrlKey?: boolean;
     metaKey?: boolean;
     shiftKey?: boolean;
 };
-export type KeyDescription = string | KeyDescriptionObject;
+type KeyDescription = string | KeyDescriptionObject;
 
 interface BaseHotkey {
     key: KeyDescription;
@@ -43,7 +43,7 @@ export type Hotkey = ActionHotkey | DocumentingHotkey;
 
 export type Environment = 'q0' | 'q1' | 'q2' | 'q3' | 'q4' | 'prod' | 'local' | 'mock';
 
-export type UrlFormat = 'LOCAL' | 'ADEO' | 'NAV_NO';
+type UrlFormat = 'LOCAL' | 'ADEO' | 'NAV_NO';
 
 export interface DecoratorPropsV3 {
     appName: string;

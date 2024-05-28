@@ -25,7 +25,7 @@ export const TemaSamtalereferat = [
     Temagruppe.Øvrig
 ];
 
-export const TemaPlukkbare = [
+const TemaPlukkbare = [
     Temagruppe.Arbeid,
     Temagruppe.Helse,
     Temagruppe.Familie,
@@ -39,7 +39,7 @@ export const TemaPlukkbare = [
     Temagruppe.Øvrig
 ];
 
-export const TemaLeggTilbake = [
+const TemaLeggTilbake = [
     Temagruppe.Arbeid,
     Temagruppe.Helse,
     Temagruppe.Familie,

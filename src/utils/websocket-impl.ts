@@ -9,7 +9,7 @@ export enum Status {
     REFRESH
 }
 
-export interface Listeners {
+interface Listeners {
     onMessage?(event: MessageEvent, connection: WebSocketImpl): void;
     onOpen?(event: Event, connection: WebSocketImpl): void;
     onError?(event: Event, connection: WebSocketImpl): void;
@@ -122,10 +122,10 @@ class WebSocketImpl {
         }
     }
 
-    private onWSClose(event: CloseEvent) {
+    private async onWSClose(event: CloseEvent) {
         WebSocketImpl.print('close', event);
         if (this.status === Status.REFRESH) {
-            this.open();
+            await this.open();
             return;
         }
 
@@ -133,7 +133,7 @@ class WebSocketImpl {
             const delay = createRetrytime(this.retryCounter++);
             WebSocketImpl.print('Creating retrytimer', delay);
 
-            this.retrytimer = window.setTimeout(this.open.bind(this), delay);
+            this.retrytimer = window.setTimeout(() => this.open(), delay);
         }
         if (this.listeners.onClose) {
             this.listeners.onClose(event, this);
@@ -160,9 +160,9 @@ class WebSocketImpl {
         GOING_AWAY: 1001
     };
 
-    private static print(...args: any[]) {
+    private static print(...args: Parameters<typeof console.log>) {
         if (import.meta.env.VITE_MOCK_ENABLED === 'true') {
-            console.log('WS:', ...args); // tslint:disable-line
+            console.log('WS:', ...args);
         }
     }
 }

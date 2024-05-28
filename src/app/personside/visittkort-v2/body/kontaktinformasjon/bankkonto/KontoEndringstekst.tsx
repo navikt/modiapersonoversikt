@@ -18,7 +18,7 @@ export default KontoEndringsTekst;
 
 const FOLKEREGISTERET = 'SKD';
 
-export function endretAvTekst(rawString: string): string {
+function endretAvTekst(rawString: string): string {
     if (endretAvBruker(rawString) || endretIPSelv(rawString)) {
         return 'av bruker';
     } else if (

@@ -19,7 +19,7 @@ const defaults: DefaultConfig = {
 
 export type TilgangDTO = HarTilgang | HarIkkeTilgang;
 
-export interface HarTilgang {
+interface HarTilgang {
     harTilgang: true;
     aktivIdent?: string;
 }

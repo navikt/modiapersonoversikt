@@ -7,7 +7,7 @@ export enum easterEggs {
     klukk = 'klukk'
 }
 
-export function useListenForEasterEgg(defaultEasterEgg: string) {
+export function useListenForEasterEgg(defaultEasterEgg: easterEggs | undefined) {
     const [easterEgg, setEasterEgg] = useState(defaultEasterEgg);
 
     useOnMount(() => {
@@ -16,13 +16,13 @@ export function useListenForEasterEgg(defaultEasterEgg: string) {
             return;
         }
         const listener = (e: Event) => {
-            // @ts-ignore
-            const input = e.target.value;
+            // @ts-expect-error
+            const input = e.target.value as string;
             if (!input) {
                 return;
             }
             if (Object.keys(easterEggs).includes(input.toLowerCase())) {
-                setEasterEgg(input.toLowerCase());
+                setEasterEgg(input.toLowerCase() as easterEggs);
             }
         };
         input.addEventListener('input', listener);
