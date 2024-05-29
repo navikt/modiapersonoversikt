@@ -77,6 +77,7 @@ export interface SendReferatRequest {
     meldingstype: Meldingstype.SAMTALEREFERAT_TELEFON | Meldingstype.SAMTALEREFERAT_OPPMOTE;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface SendSporsmalRequest {
     enhet: string;
     fritekst: string;
@@ -84,12 +85,14 @@ interface SendSporsmalRequest {
     erOppgaveTilknyttetAnsatt: boolean;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface SendInfomeldingRequest {
     enhet: string;
     fritekst: string;
     sak: JournalforingsSak;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface ForsettDialogRequest {
     enhet: string;
     traadId: string;

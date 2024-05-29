@@ -95,6 +95,7 @@ function velgTekst(
         event.stopPropagation();
         if (erGyldigValg(tekst, locale)) {
             rapporterBruk(tekst);
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
             const localeTekst: string = tekst.innhold[locale]?.trim();
             if (autofullforData) {
                 const nokler = byggAutofullforMap(

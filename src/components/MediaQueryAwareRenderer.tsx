@@ -10,7 +10,7 @@ interface Props {
 }
 
 function useMatchMediaListeners(mediaQueries: Array<string>): Array<boolean> {
-    const listeners = useMemo(() => mediaQueries.map((it) => window.matchMedia(it)), mediaQueries); // eslint-disable-line react-hooks/exhaustive-deps
+    const listeners = useMemo(() => mediaQueries.map((it) => window.matchMedia(it)), mediaQueries);
     const [state, setState] = useState(listeners.map((it) => it.matches));
 
     useEffect(() => {

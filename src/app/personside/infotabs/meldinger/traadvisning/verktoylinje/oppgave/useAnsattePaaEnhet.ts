@@ -22,6 +22,7 @@ function useAnsattePaaEnhet(enhetId?: string): Returns {
         fetch(`${apiBaseUri}/enheter/${enhetId}/ansatte`, includeCredentials)
             .then((response) => response.json())
             .then(setAnsatte)
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
             .catch((e) => loggError(e, 'Feil ved henting av ansatte'))
             .finally(() => setPending(false));
     }, [enhetId]);

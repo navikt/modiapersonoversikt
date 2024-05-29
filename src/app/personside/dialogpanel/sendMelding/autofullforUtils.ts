@@ -57,10 +57,12 @@ const objektPronomenMap = {
 };
 
 function objektPronomen(kjonn: Kjonn, locale: string) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
     return (objektPronomenMap[kjonn] || {})[locale] || null;
 }
 
 function subjectPronomen(kjonn: Kjonn, locale: string) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
     return (subjectPronomenMap[kjonn] || {})[locale] || null;
 }
 
@@ -89,7 +91,9 @@ export function byggAutofullforMap(
                 [person.navn.firstOrNull()?.mellomnavn, person.navn.firstOrNull()?.etternavn].filter((v) => v).join(' ')
             ),
             'bruker.navn': capitalizeName(hentNavn(person.navn.firstOrNull())),
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             'bruker.subjekt': kjonn && subjectPronomen(kjonn, locale),
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             'bruker.objekt': kjonn && objektPronomen(kjonn, locale)
         };
     }
@@ -107,11 +111,14 @@ export function byggAutofullforMap(
 export function autofullfor(tekst: string, autofullforMap: AutofullforMap): string {
     const keys = Object.keys(autofullforMap);
     return tekst.replace(/\[(.*?)\]/g, (fullmatch, key) => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         if (!keys.includes(key)) {
             loggWarning(new Error(`Standardtekster::autofullfor Fant ikke nøkkel: ${key}`));
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             loggEvent('manglendeNokkel', 'autofullfør', { nøkkel: key });
             return '[ukjent nøkkel]';
         }
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
         return autofullforMap[key] || '[fant ingen verdi]';
     });
 }

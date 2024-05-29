@@ -75,6 +75,7 @@ export function JournalforSak(props: Props) {
             .catch((error) => {
                 setSubmitting(false);
                 setError('Kunne ikke gjennomføre journalføring');
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
                 loggError(error, `Kunne ikke gjennomføre journalføring`, {
                     traadId: props.traad.traadId,
                     saksId: props.sak.saksId

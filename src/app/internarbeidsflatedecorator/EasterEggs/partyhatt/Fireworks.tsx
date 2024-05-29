@@ -58,6 +58,7 @@ function Fireworks() {
 
     return (
         <Base>
+            {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
             {[...new Array(15)].map((_, index) => (
                 <Glow key={index} xSpeed={0.5 - Math.random()} ySpeed={-Math.random()} />
             ))}

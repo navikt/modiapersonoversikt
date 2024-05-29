@@ -31,6 +31,7 @@ import { MockInstance, vi } from 'vitest';
 import { createBrowserHistory } from 'history';
 import { UseQueryResult } from '@tanstack/react-query';
 import { FeatureToggles } from '../components/featureToggle/toggleIDs';
+import { FetchError } from '../api/api';
 
 const history = createBrowserHistory();
 
@@ -45,10 +46,18 @@ export function getTestStore(): Store<AppState> {
     return testStore;
 }
 
-export function mockReactQuery<A extends unknown[], R>(resource: (...args: A) => UseQueryResult<R>, data: R) {
-    (resource as unknown as MockInstance<A, Partial<UseQueryResult<R>>>).mockImplementation(() => ({
-        data
-    }));
+export function mockReactQuery<A extends unknown[], R>(
+    resource: (...args: A) => UseQueryResult<R>,
+    data: R,
+    extra: Partial<Omit<UseQueryResult<R>, 'data'>>
+) {
+    (resource as unknown as MockInstance<A, Partial<UseQueryResult<R, FetchError>>>).mockImplementation(
+        () =>
+            ({
+                data,
+                ...extra
+            }) as Partial<UseQueryResult<R, FetchError>>
+    );
 }
 export function setupReactQueryMocks() {
     vi.spyOn(innstillingerResource, 'useFetch');

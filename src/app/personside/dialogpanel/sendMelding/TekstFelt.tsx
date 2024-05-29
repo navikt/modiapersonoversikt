@@ -59,6 +59,7 @@ function TekstFelt(props: Props) {
             <TextareaWrapper>
                 <AutocompleteTextarea
                     value={props.tekst}
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-ignore
                     textareaRef={(ref) => (textareaRef.current = ref)}
                     onChange={(e) => props.updateTekst(e.currentTarget.value)}

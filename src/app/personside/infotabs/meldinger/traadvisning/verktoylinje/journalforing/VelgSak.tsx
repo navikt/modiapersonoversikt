@@ -30,7 +30,9 @@ const MiniRadio = styled(Radio)`
 `;
 
 function SakgruppeRadio(props: FieldState & RadioProps & { label: SakKategori }) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { input, setValue, isPristine, ...rest } = props;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
     return <MiniRadio onChange={input.onChange} checked={input.value === props.label} {...rest} />;
 }
 
@@ -110,6 +112,7 @@ function VelgSak(props: Props) {
         </AlertStripeAdvarsel>
     ));
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     const temaTable = fordelteSaker[valgtKategori.input.value].map((tema: Tema) => (
         <TemaTable
             key={tema.tema}

@@ -18,6 +18,7 @@ function FormSelect<
     const { ref, input, error } = useFieldState(name, form);
 
     return (
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
         <Select selectRef={ref as any} {...input} {...selectProps} feil={error}>
             {children}
         </Select>

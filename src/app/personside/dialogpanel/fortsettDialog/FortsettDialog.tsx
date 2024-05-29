@@ -71,6 +71,7 @@ function FortsettDialog(props: Props) {
         : 'bruker';
 
     const delMedBrukerTekst = props.erTilknyttetOppgave ? `Del med ${navn} og avslutt oppgave` : `Del med ${navn}`;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
     const erOksosTraad = props.traad.meldinger.some((it) => it.temagruppe === 'OKSOS');
     const eksisterendeSaker = props.traad.journalposter.map((jp) => ({
         temaKode: jp.journalfortTema,

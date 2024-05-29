@@ -57,6 +57,7 @@ function Sno() {
 
     return (
         <Base>
+            {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
             {[...new Array(10)].map((_, index) => (
                 <SnoFlak key={index} speed={2 + Math.random() * 4} offset={0.5 - Math.random()} sway={Math.random()} />
             ))}

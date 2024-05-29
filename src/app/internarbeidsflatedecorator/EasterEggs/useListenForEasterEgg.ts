@@ -16,6 +16,7 @@ export function useListenForEasterEgg(defaultEasterEgg: easterEggs | undefined) 
             return;
         }
         const listener = (e: Event) => {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-expect-error
             const input = e.target.value as string;
             if (!input) {

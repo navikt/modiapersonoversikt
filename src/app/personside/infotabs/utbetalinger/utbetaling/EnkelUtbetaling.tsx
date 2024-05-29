@@ -113,7 +113,6 @@ function EnkelUtbetaling(props: Props) {
                 onFocus={setYtelseIFokus}
                 className={utbetalingerTest.utbetaling}
             >
-                {/*eslint-disable-next-line jsx-a11y/role-supports-aria-props */}
                 <article aria-expanded={visDetaljer} aria-label={'Utbetaling ' + props.ytelse.type}>
                     <UtbetalingTabellStyling>
                         <UtbetalingHeaderStyle>

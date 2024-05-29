@@ -156,8 +156,10 @@ function TraadListe(props: Props) {
                     <InputStyle>
                         <Input
                             inputRef={
+                                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                                 ((ref: HTMLInputElement) => {
                                     inputRef.current = ref;
+                                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                                 }) as any
                             }
                             value={meldingsok.query}

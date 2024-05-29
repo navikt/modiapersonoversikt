@@ -186,12 +186,15 @@ export function useSokEtterMeldinger(traader: Traad[], query: string) {
 
     return useMemo(() => {
         const words = debouncedQuery.split(' ').map((word) => word.toLowerCase());
-        return database
-            .filter(({ traad, searchable }) => {
-                return words.every((word) => searchable.includes(word));
-            })
-            .map(({ traad }) => traad)
-            .sort(datoSynkende((traad) => nyesteMelding(traad).opprettetDato));
+        return (
+            database
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                .filter(({ traad, searchable }) => {
+                    return words.every((word) => searchable.includes(word));
+                })
+                .map(({ traad }) => traad)
+                .sort(datoSynkende((traad) => nyesteMelding(traad).opprettetDato))
+        );
     }, [debouncedQuery, database]);
 }
 

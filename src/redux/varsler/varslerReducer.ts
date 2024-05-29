@@ -32,6 +32,7 @@ type Actions = ToggleVisAction;
 function varslerReducer(state: VarslerState = initialState, action: Actions): VarslerState {
     switch (action.type) {
         case actionKeys.TOGGLE_VIS_VARSEL:
+            // eslint-disable-next-line no-case-declarations
             const aapneVarsler = action.vis
                 ? [...state.aapneVarsler, action.varsel]
                 : state.aapneVarsler.filter((it) => it !== action.varsel);

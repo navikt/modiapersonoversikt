@@ -17,11 +17,21 @@ interface Props {
     highlightRule: Rule;
 }
 
-const Tag = styled(({ highlight, ...rest }) => <Knapp {...rest} />)`
+const Tag = styled(({ ...rest }) => <Knapp {...rest} />)`
     padding: 0.25rem 0.5rem;
     margin-right: 0.25rem;
     &:hover {
-        color: ${(props) => (props.highlight ? theme.color.lenke : '#ffffff')};
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        color: ${(props: { highlight: boolean }) => (props.highlight ? theme.color.lenke : '#ffffff')};
     }
 `;
 

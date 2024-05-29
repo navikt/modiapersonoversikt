@@ -29,6 +29,7 @@ function Temavelger(props: Props) {
     }, [selectRef, props.visFeilmelding]);
 
     const velgTemaHandler = (event: ChangeEvent<HTMLSelectElement>) => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
         const tema = props.temavalg.find((tema) => tema === event.target.value);
         props.setTema(tema);
     };
@@ -41,7 +42,9 @@ function Temavelger(props: Props) {
             }
         >
             <StyledSelect
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-assignment
                 selectRef={(ref) => (selectRef = ref)}
                 label="Tema"
                 onChange={velgTemaHandler}

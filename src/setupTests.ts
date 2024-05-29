@@ -40,6 +40,7 @@ global['Worker'] = undefined;
 vi.mock('react-collapse', () => {
     return {
         // @ts-expect-error dårlig typer
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
         UnmountClosed: (props: PropsWithChildren) => props.children
     };
 });

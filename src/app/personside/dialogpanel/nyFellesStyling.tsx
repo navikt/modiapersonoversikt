@@ -109,6 +109,7 @@ export function DialogpanelKvittering(props: {
     );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const VelgDialogtypeStyle = styled.div`
     display: flex;
     justify-content: flex-start;
@@ -121,6 +122,7 @@ const VelgDialogtypeStyle = styled.div`
     }
 `;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const KategoriSkille = styled.div`
     background-color: ${theme.color.kategori};
     padding: 0.2rem ${pxToRem(15)};

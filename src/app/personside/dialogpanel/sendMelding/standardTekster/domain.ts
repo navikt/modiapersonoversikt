@@ -13,6 +13,7 @@ export enum Locale {
     ur = 'ur'
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const LocaleValues: Array<Locale> = Object.keys(Locale) as Array<Locale>;
 
 export const localeString: { [key in Locale]: string } = {
