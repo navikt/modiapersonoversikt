@@ -1,8 +1,8 @@
 [
     {
         "prefix": "proxy/modia-skrivestotte",
-        "url": "https://modiapersonoversikt-skrivestotte.intern.nav.no",
-        "rewriteDirectives": ["SET_ON_BEHALF_OF_TOKEN prod-gcp personoversikt modiapersonoversikt-skrivestotte"]
+        "url": "http://modiapersonoversikt-skrivestotte.personoversikt.svc.nais.local/modiapersonoversikt-skrivestotte",
+        "rewriteDirectives": ["SET_ON_BEHALF_OF_TOKEN prod-fss personoversikt modiapersonoversikt-skrivestotte"]
     },
     {
         "prefix": "proxy/modia-draft",

@@ -29,10 +29,6 @@ export default defineConfig({
                 headers: {
                     Authorization: `Bearer ${process.env.LOCAL_TOKEN}`
                 }
-            },
-            '/modiapersonoversikt-draft': {
-                target: 'wss://modiapersonoversikt-draft.intern.dev.nav.no',
-                changeOrigin: true
             }
         }
     },
