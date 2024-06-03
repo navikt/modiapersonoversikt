@@ -24,7 +24,7 @@ function Personoversikt({ fnr }: { fnr: string }) {
             loggInfo('Ugyldig fnr, redirecter til startside');
             history.push(`${paths.basePath}`);
         }
-    }, [fnr, gjeldendeBrukerHasLoaded, loadTimeout]);
+    }, [fnr, gjeldendeBrukerHasLoaded]);
 
     if (!gjeldendeBrukerHasLoaded) {
         return <CenteredLazySpinner />;
