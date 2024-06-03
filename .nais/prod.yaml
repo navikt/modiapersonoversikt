@@ -51,6 +51,10 @@ spec:
     outbound:
       external:
         - host: personoversikt-unleash-api.nav.cloud.nais.io
+      rules:
+        - application: modiapersonoversikt-skrivestotte
+          namespace: personoversikt
+          cluster: prod-gcp
   envFrom:
     - secret: modiapersonoversikt-unleash-api-token
   env:
