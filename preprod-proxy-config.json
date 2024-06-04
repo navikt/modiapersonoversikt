@@ -1,7 +1,7 @@
 [
     {
         "prefix": "proxy/modia-skrivestotte",
-        "url": "http://modiapersonoversikt-skrivestotte.personoversikt.svc.nais.local/modiapersonoversikt-skrivestotte",
+        "url": "https://modiapersonoversikt-skrivestotte.intern.dev.nav.no",
         "rewriteDirectives": ["SET_ON_BEHALF_OF_TOKEN dev-fss personoversikt modiapersonoversikt-skrivestotte"]
     },
     {
