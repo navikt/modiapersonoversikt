@@ -5,7 +5,7 @@
             "scope": "api://dev-gcp.personoversikt.modiapersonoversikt-skrivestotte/.default"
         },
         "modia-draft": {
-            "url": "http://modiapersonoversikt-draft.personoversikt.svc.cluster.local/modiapersonoversikt-draft",
+            "url": "http://modiapersonoversikt-draft.personoversikt.svc.cluster.local",
             "scope": "api://dev-gcp.personoversikt.modiapersonoversikt-draft/.default"
         },
         "modia-innstillinger": {
