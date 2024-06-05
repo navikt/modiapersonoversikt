@@ -2,11 +2,6 @@ import { Enhet } from '../../rest/resources/saksbehandlersEnheterResource';
 
 export const RESET_VALUE = '\u0000';
 
-interface TogglesConfig {
-    visVeileder?: boolean;
-    visHotkeys?: boolean;
-}
-
 interface Markup {
     etterSokefelt?: string;
 }
@@ -48,7 +43,6 @@ export type UrlFormat = 'LOCAL' | 'ADEO' | 'NAV_NO';
 export interface DecoratorPropsV3 {
     appName: string;
     hotkeys?: Hotkey[];
-    toggles?: TogglesConfig;
     markup?: Markup;
     showEnheter: boolean;
     showSearchArea: boolean;
