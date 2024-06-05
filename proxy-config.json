@@ -6,8 +6,8 @@
     },
     {
         "prefix": "proxy/modia-draft",
-        "url": "http://modiapersonoversikt-draft.personoversikt.svc.nais.local/modiapersonoversikt-draft",
-        "rewriteDirectives": ["SET_ON_BEHALF_OF_TOKEN prod-fss personoversikt modiapersonoversikt-draft"]
+        "url": "https://modiapersonoversikt-draft.intern.nav.no",
+        "rewriteDirectives": ["SET_ON_BEHALF_OF_TOKEN prod-gcp personoversikt modiapersonoversikt-draft"]
     },
     {
         "prefix": "proxy/modia-innstillinger",
