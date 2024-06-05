@@ -3,6 +3,7 @@ import debounce from 'lodash.debounce';
 import { loggError, loggInfo } from '../../../utils/logger/frontendLogger';
 import WebSocketImpl, { Status } from '../../../utils/websocket-impl';
 import { FetchError } from '../../../api/api';
+import { getEnvFromHost } from '../../../utils/environment';
 
 export interface DraftContext {
     [key: string]: string;
@@ -28,6 +29,16 @@ interface WsEvent {
 
 const okCloseCodes = Object.values(WebSocketImpl.Codes);
 
+const getWsUrl = () => {
+    const env = getEnvFromHost();
+    switch (env) {
+        case 'prod':
+            return 'modiapersonoversikt-draft.intern.nav.no';
+        default:
+            return 'modiapersonoversikt-draft.intern.dev.nav.no';
+    }
+};
+
 function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () => {}): DraftSystem {
     const wsRef = useRef<WebSocketImpl>();
     useEffect(() => {
@@ -38,8 +49,7 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
                 return '\u0000';
             } else {
                 const uuid: string = await response.json();
-                const loc = window.location;
-                return `wss://${loc.host}/modiapersonoversikt-draft/api/draft/ws/${uuid}`;
+                return `wss://${getWsUrl()}/api/draft/ws/${uuid}`;
             }
         };
         wsRef.current = new WebSocketImpl(urlProvider, {
