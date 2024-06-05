@@ -70,7 +70,7 @@ spec:
       style-src 'self' 'unsafe-inline' https://cdn.nav.no;\
       img-src 'self' data:;\
       font-src 'self' data: https://cdn.nav.no;\
-      connect-src 'self' eumgw.adeo.no amplitude.nav.no wss://veilederflatehendelser.adeo.no;\
+      connect-src 'self' eumgw.adeo.no amplitude.nav.no wss://veilederflatehendelser.adeo.no wss://modiapersonoversikt-draft.intern.nav.no;\
       object-src blob:;\
       frame-src blob:;"
     - name: REFERRER_POLICY
