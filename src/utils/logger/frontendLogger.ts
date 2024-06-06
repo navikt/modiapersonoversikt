@@ -52,6 +52,7 @@ export function loggEvent(action: string, location: string, extraTags?: ValuePai
             ...extraTags
         }
     };
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     window['frontendlogger'].event(
         event.table,
         emptyStringToUndefined(event.fields),
@@ -70,6 +71,7 @@ export function loggInfo(message: string, ekstraFelter?: ValuePairs) {
     console.info(info);
     if (uselogger()) {
         Sentry.captureMessage(message, { level: 'info', extra: ekstraFelter });
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
         window['frontendlogger'].info(info);
     }
 }
@@ -97,6 +99,7 @@ export function loggWarning(
     if (uselogger()) {
         loggEvent('Warning', 'Logger', ekstraTagsLoggEvent);
         Sentry.captureException(error, { level: 'warning', extra: ekstraFelter });
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
         window['frontendlogger'].warn(info);
     }
 }
@@ -119,6 +122,7 @@ export function loggError(error: Error, message?: string, ekstraFelter?: ValuePa
     if (uselogger()) {
         loggEvent('Error', 'Logger', ekstraTagsLoggEvent);
         Sentry.captureException(error, { level: 'error', extra: { ...ekstraFelter, ...ekstraTagsLoggEvent } });
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
         window['frontendlogger'].error(info);
     }
 }

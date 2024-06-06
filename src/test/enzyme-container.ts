@@ -1,11 +1,4 @@
-import {
-    mount as enzymeMount,
-    MountRendererProps,
-    ReactWrapper,
-    shallow as enzymeShallow,
-    ShallowRendererProps,
-    ShallowWrapper
-} from 'enzyme';
+import { mount as enzymeMount, MountRendererProps, ReactWrapper } from 'enzyme';
 import { Component, ReactElement } from 'react';
 export { ReactWrapper } from 'enzyme';
 
@@ -22,18 +15,9 @@ export function mount<C extends Component, P = C['props'], S = C['state']>(
     node: ReactElement<P>,
     options?: MountRendererProps
 ): ReactWrapper<P, S, C>;
-export function mount<P>(node: ReactElement<P>, options?: MountRendererProps): ReactWrapper<P, any>;
+export function mount<P>(node: ReactElement<P>, options?: MountRendererProps): ReactWrapper<P, unknown>;
 export function mount<P, S>(node: ReactElement<P>, options?: MountRendererProps): ReactWrapper<P, S> {
     return enzymeMount(node, { ...options, attachTo: document.getElementById(containerId) });
-}
-
-export function shallow<C extends Component, P = C['props'], S = C['state']>(
-    node: ReactElement<P>,
-    options?: ShallowRendererProps
-): ShallowWrapper<P, S, C>;
-export function shallow<P>(node: ReactElement<P>, options?: ShallowRendererProps): ShallowWrapper<P, any>;
-export function shallow<P, S>(node: ReactElement<P>, options?: ShallowRendererProps): ShallowWrapper<P, S> {
-    return enzymeShallow(node, { ...options, attachTo: document.getElementById(containerId) });
 }
 
 export function beforeEachHandler() {

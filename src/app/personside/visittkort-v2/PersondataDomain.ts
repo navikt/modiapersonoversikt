@@ -52,12 +52,12 @@ export interface Navn {
     etternavn: string;
 }
 
-export interface Statsborgerskap {
+interface Statsborgerskap {
     land: KodeBeskrivelse<string>;
     gyldighetsPeriode: GyldighetsPeriode | null;
 }
 
-export interface SivilstandRelasjon extends PersonMedAlderOgDodsdato {
+interface SivilstandRelasjon extends PersonMedAlderOgDodsdato {
     fnr: string;
     navn: Array<Navn>;
     alder: number | null;
@@ -291,7 +291,7 @@ export interface KontaktInformasjon {
     epost: DkifVerdi | null;
     mobil: DkifVerdi | null;
 }
-export interface DkifVerdi {
+interface DkifVerdi {
     value: string | null;
     sistOppdatert: LocalDate | null;
     sistVerifisert: LocalDate | null;

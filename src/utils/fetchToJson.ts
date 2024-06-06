@@ -17,7 +17,7 @@ export function hasError<T>(data: FetchResponse<T>): data is ErrorStatus {
 
 async function getErrorMessage(response: Response): Promise<string> {
     try {
-        const content = await response.json();
+        const content = (await response.json()) as { message?: string };
         if (content.message && typeof content.message === 'string' && content.message.length > 0) {
             return content.message;
         }
@@ -37,9 +37,9 @@ export async function fetchToJson<T>(input: RequestInfo, request?: RequestInit):
         if (response.redirected) {
             return { status: 302, message: 'Redirect detected' };
         }
-        const json = await response.json();
+        const json = (await response.json()) as T;
         return { status: response.status, data: json };
-    } catch (e: any) {
-        return { status: 500, message: e.toString() };
+    } catch (e: unknown) {
+        return { status: 500, message: e instanceof Error ? e.toString() : 'Unknown error' };
     }
 }

@@ -24,7 +24,7 @@ function useReduxData(): [string, string | undefined] {
     return useAppState((appState) => [appState.gjeldendeBruker.fødselsnummer, valgtEnhet]);
 }
 
-export const resource = {
+const resource = {
     queryKey(fnr: string, enhet: string | undefined) {
         return ['dialog', fnr, enhet];
     },

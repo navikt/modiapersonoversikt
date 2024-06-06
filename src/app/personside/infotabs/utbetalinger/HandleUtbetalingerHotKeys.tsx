@@ -112,7 +112,7 @@ class HandleUtbetalingerHotKeys extends React.Component<Props> {
 
 function mapDispatchToProps(dispatch: Dispatch<AnyAction>): DispatchProps {
     return {
-        settYtelseIFokus: ytelse => dispatch(setNyYtelseIFokus(ytelse)),
+        settYtelseIFokus: (ytelse) => dispatch(setNyYtelseIFokus(ytelse)),
         ekspanderYtelse: (ytelse: Ytelse, ekspander: boolean) => dispatch(setEkspanderYtelse(ytelse, ekspander))
     };
 }

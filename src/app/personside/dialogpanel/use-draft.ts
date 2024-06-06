@@ -48,6 +48,7 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
                 ws.close();
                 return '\u0000';
             } else {
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 const uuid: string = await response.json();
                 return `wss://${getWsUrl()}/api/draft/ws/${uuid}`;
             }

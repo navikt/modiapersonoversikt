@@ -36,7 +36,7 @@ const YtelsePanelStyle = styled.div`
 `;
 
 function OppfolgingYtelserListe(props: { ytelser: OppfolgingsYtelse[] }) {
-    const sortertPåDato = props.ytelser.sort(datoSynkende(ytelse => ytelse.datoKravMottatt));
+    const sortertPåDato = props.ytelser.sort(datoSynkende((ytelse) => ytelse.datoKravMottatt));
 
     const listekomponenter = sortertPåDato.map((ytelse, index) => <YtelseElement key={index} ytelse={ytelse} />);
 
@@ -83,7 +83,7 @@ function dersomDagpengerLeggTilFelter(ytelse: OppfolgingsYtelse): DescriptionLis
 }
 
 function OppfolgingYtelserEkspanderbartPanel(props: Props) {
-    const open = useAppState(state => state.oppfolging.ytelserEkspandert);
+    const open = useAppState((state) => state.oppfolging.ytelserEkspandert);
     const dispatch = useDispatch();
     const setOpen = (open: boolean) => {
         !open && loggEvent('VisYtelserPanel', 'Oppfølging');

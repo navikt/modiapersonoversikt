@@ -17,7 +17,7 @@ import { SendNyMeldingStatus } from './sendMelding/SendNyMeldingTypes';
 import Panel from 'nav-frontend-paneler';
 import { traadstittel } from '../infotabs/meldinger/utils/meldingerUtils';
 
-export const DialogpanelKvitteringStyling = styled.div`
+const DialogpanelKvitteringStyling = styled.div`
     display: flex;
     flex-direction: column;
     > *:not(:first-child) {
@@ -32,7 +32,7 @@ const SpinnerWrapper = styled(FillCenterAndFadeIn)`
     padding: 0.5rem;
 `;
 
-export function DialogpanelFeilmelding() {
+function DialogpanelFeilmelding() {
     return <AlertStripeFeil>Det skjedde en feil ved sending av melding</AlertStripeFeil>;
 }
 
@@ -109,7 +109,8 @@ export function DialogpanelKvittering(props: {
     );
 }
 
-export const VelgDialogtypeStyle = styled.div`
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const VelgDialogtypeStyle = styled.div`
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
@@ -121,7 +122,8 @@ export const VelgDialogtypeStyle = styled.div`
     }
 `;
 
-export const KategoriSkille = styled.div`
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const KategoriSkille = styled.div`
     background-color: ${theme.color.kategori};
     padding: 0.2rem ${pxToRem(15)};
 `;

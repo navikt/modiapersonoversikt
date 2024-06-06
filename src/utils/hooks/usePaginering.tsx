@@ -16,17 +16,17 @@ const KnappStyling = styled.div`
     flex-wrap: wrap;
 `;
 
-const getRange = (index: number, pageSize: number, list: any[]) => {
+const getRange = <T,>(index: number, pageSize: number, list: T[]) => {
     return {
         fra: index * pageSize,
         til: Math.min((index + 1) * pageSize - 1, list.length - 1)
     };
 };
 
-const PrevNextButton = (props: {
+const PrevNextButton = <T,>(props: {
     index: number;
     pageSize: number;
-    list: any[];
+    list: T[];
     itemLabel: string;
     setCurrentPage: (newPage: number) => void;
     className?: string;
@@ -51,7 +51,7 @@ function usePaginering<T>(
     pageSize: number,
     itemLabel: string,
     selectedItem?: T,
-    fieldCompare: (t: T) => any = (t) => t
+    fieldCompare: (t: T) => T = (t) => t
 ): PagineringsData<T> {
     const selectRef = useRef<HTMLSelectElement | null>();
     const [currentPage, setCurrentPage] = useState(0);
@@ -97,8 +97,8 @@ function usePaginering<T>(
         return list.length <= pageSize ? null : (
             <Select
                 value={currentPage}
-                // @ts-ignore
-                selectRef={(ref) => (selectRef.current = ref)}
+                // @ts-expect-error dårlig typing
+                selectRef={(ref) => (selectRef.current = ref)} //eslint-disable-line
                 label="Velg paginering"
                 onChange={(e) => setCurrentPage(parseInt(e.target.value))}
             >

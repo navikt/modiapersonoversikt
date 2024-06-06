@@ -15,7 +15,7 @@ const ChevronKnappStyle = styled.button<{ focusOnRelativeParent?: boolean }>`
     ${theme.resetButtonStyle};
     padding: 0.1rem;
     border-radius: 0.5em;
-    ${props =>
+    ${(props) =>
         props.focusOnRelativeParent &&
         css`
             &:focus {

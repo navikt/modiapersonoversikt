@@ -4,9 +4,9 @@ function bareEnumNavn(enumKeys: string[]) {
     return enumKeys.slice(enumKeys.length / 2, enumKeys.length);
 }
 
-export function mapEnumToTabProps(myEnum: {}, selected?: {}): TabProps[] {
+export function mapEnumToTabProps<T>(myEnum: Record<string, T>, selected?: Record<string, T>): TabProps[] {
     const keys = Object.keys(myEnum);
-    return bareEnumNavn(keys).map(key => ({
+    return bareEnumNavn(keys).map((key) => ({
         label: key,
         aktiv: selected === myEnum[key]
     }));

@@ -32,6 +32,7 @@ const sykepengerPlaceholder = {
 };
 
 type Placeholder = { returnOnForbidden: string; returnOnError: string; returnOnNotFound: string };
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function placeholder(resource: UseQueryResult<any, FetchError>, tekster: Placeholder) {
     if (!resource.isError) {
         return null;

@@ -25,12 +25,16 @@ test('bytter til riktig tab og setter fokus på riktig utbetaling ved bruk av dy
         </TestProvider>
     );
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.OVERSIKT.path);
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     clickOnUtbetalingIOversikt(infoTabs);
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.UTBETALING.path);
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
     const activeElement = document.activeElement ? document.activeElement.outerHTML : fail('ingen elementer i fokus');
     const expectedElement = infoTabs
         .find('li.' + utbetalingerTest.utbetaling)

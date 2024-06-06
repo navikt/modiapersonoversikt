@@ -17,10 +17,13 @@ test('bytter til riktig tab og åpner valgt ytelse ved bruk av dyplenke fra over
         </TestProvider>
     );
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.OVERSIKT.path);
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     clickOnYtelse(infoTabs);
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.YTELSER.path);
 
     const forventetMarkert = infoTabs.find('VisMerKnapp').at(1).find('button').html().includes('aria-selected="true"');

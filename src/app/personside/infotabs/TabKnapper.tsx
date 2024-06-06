@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components/macro';
 import theme, { pxToRem } from '../../../styles/personOversiktTheme';
 
 interface TabPanelProps {
+    // eslint-disable-next-line @typescript-eslint/ban-types
     onTabChange: Function;
     openTab: InfotabConfig;
 }
@@ -67,7 +68,9 @@ function TabKnapper(props: TabPanelProps) {
         const erValgt = INFOTABS[key] === props.openTab;
         return (
             <KnappWrapper key={key} role="presentation">
+                {/* eslint-disable-next-line @typescript-eslint/no-unsafe-return */}
                 <TabKnapp role="tab" aria-selected={erValgt} valgt={erValgt} onClick={() => props.onTabChange(key)}>
+                    {/* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access */}
                     {INFOTABS[key].tittel}
                 </TabKnapp>
             </KnappWrapper>

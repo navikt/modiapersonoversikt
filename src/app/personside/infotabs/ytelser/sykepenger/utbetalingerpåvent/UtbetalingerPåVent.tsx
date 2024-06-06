@@ -25,7 +25,7 @@ function getInnhold(utbetalingerpåVent: UtbetalingPåVent[]) {
         return <AlertStripeInfo>Ingen utbetalinger på vent funnet</AlertStripeInfo>;
     }
     const tittelRekke = ['Årsak', 'Utbetalingsperiode', 'Utbetalingsgrad'];
-    const rows = utbetalingerpåVent.map(utbetaling => [
+    const rows = utbetalingerpåVent.map((utbetaling) => [
         utledUtbetalingPåVentÅrsak(utbetaling),
         periodeEllerNull(utbetaling.vedtak),
         prosentEllerNull(utbetaling.utbetalingsgrad)

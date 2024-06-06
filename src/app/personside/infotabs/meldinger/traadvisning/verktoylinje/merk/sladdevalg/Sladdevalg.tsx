@@ -38,7 +38,7 @@ const Modal = styled(NavFrontendModal)`
     }
 `;
 
-export type SladdeForm = {
+type SladdeForm = {
     arsak: string;
     meldingIder: string[];
 };

@@ -46,8 +46,9 @@ const Glow = styled.div<{ xSpeed: number; ySpeed: number }>`
     border-radius: 50%;
     z-index: 10;
     box-shadow: 0 0 4px black;
-    animation: ${descend} ease-in 2s both -0.2s,
-        ${props => speed(props.xSpeed, props.ySpeed)} ease-out 2s forwards -0.2s;
+    animation:
+        ${descend} ease-in 2s both -0.2s,
+        ${(props) => speed(props.xSpeed, props.ySpeed)} ease-out 2s forwards -0.2s;
 `;
 
 function Fireworks() {
@@ -57,6 +58,7 @@ function Fireworks() {
 
     return (
         <Base>
+            {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
             {[...new Array(15)].map((_, index) => (
                 <Glow key={index} xSpeed={0.5 - Math.random()} ySpeed={-Math.random()} />
             ))}

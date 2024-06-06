@@ -159,7 +159,8 @@ function Prompt(props: PopupComponentProps<string | null, PromptProps>) {
     );
 }
 
-export function alert(props: CommonPopupComponentProps): Promise<void> {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function alert(props: CommonPopupComponentProps): Promise<void> {
     return renderPopup(null, Alert, props);
 }
 
@@ -167,10 +168,12 @@ export function confirm(props: CommonPopupComponentProps): Promise<boolean> {
     return renderPopup(null, Confirm, props);
 }
 
-export function prompt(props: CommonPopupComponentProps): Promise<string | null> {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function prompt(props: CommonPopupComponentProps): Promise<string | null> {
     return renderPopup(null, Prompt, { ...props, secret: false });
 }
 
-export function promptSecret(props: CommonPopupComponentProps): Promise<string | null> {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function promptSecret(props: CommonPopupComponentProps): Promise<string | null> {
     return renderPopup(null, Prompt, { ...props, secret: true });
 }

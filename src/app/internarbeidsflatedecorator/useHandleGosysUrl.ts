@@ -25,7 +25,7 @@ function useHandleGosysUrl() {
             });
         } else if (queryParams.sokFnr && queryParams.behandlingsid) {
             loggEvent('Henvendelse', 'FraGosys');
-            settGjeldendeBruker(queryParams.sokFnr as string);
+            settGjeldendeBruker(queryParams.sokFnr);
             dispatch(replace(linkTilValgtHenvendelse));
         }
     });

@@ -58,6 +58,7 @@ function KontaktinformasjonFullmakt(props: { kontaktinformasjon: DigitalKontakti
 
 function Fullmakt(props: { fullmakt: FullmaktInterface; harFeilendeSystem: boolean }) {
     const motpartsPersonNavn = hentNavn(props.fullmakt.motpartsPersonNavn);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
     const beskrivelse = props.fullmakt.motpartsRolle === 'FULLMEKTIG' ? 'Fullmektig' : 'Fullmaktsgiver';
     const harFeilendeSystem = props.harFeilendeSystem ? <Feilmelding>Feilet ved uthenting av navn</Feilmelding> : null;
 

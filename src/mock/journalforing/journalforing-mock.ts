@@ -1,5 +1,5 @@
-export const bidragMarkor = 'BID-HACK';
-export const feilendeSaker = {
+const bidragMarkor = 'BID-HACK';
+const feilendeSaker = {
     saker: [],
     feiledeSystemer: ['SAK', 'PENSJON']
 };

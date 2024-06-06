@@ -74,7 +74,7 @@ const IkonDiv = styled.div`
     justify-content: center;
 `;
 
-export interface VarselRowProps {
+interface VarselRowProps {
     varsel: UnifiedVarsel;
     datoer: Array<string>;
     tittel: string;

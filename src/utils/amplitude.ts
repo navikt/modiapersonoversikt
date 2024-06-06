@@ -10,13 +10,13 @@ declare global {
 
 const getApiKey = () => {
     if (window.location.href.includes('app.adeo.no')) {
-        return import.meta.env.VITE_AMPLITUDE_API_KEY;
+        return import.meta.env.VITE_AMPLITUDE_API_KEY as string;
     }
-    return import.meta.env.VITE_AMPLITUDE_API_KEY_DEV;
+    return import.meta.env.VITE_AMPLITUDE_API_KEY_DEV as string;
 };
 
 const maskereFodselsnummer = (data?: amplitude.Types.Event) => {
-    const maskertObjekt = JSON.stringify(data).replace(/\d{11}/g, (_, indexOfMatch, fullString) =>
+    const maskertObjekt = JSON.stringify(data).replace(/\d{11}/g, (_, indexOfMatch: number, fullString: string) =>
         fullString.charAt(indexOfMatch - 2) === ':' ? '"***********"' : '***********'
     );
 
@@ -29,11 +29,11 @@ const maskereFodselsnummer = (data?: amplitude.Types.Event) => {
     return null;
 };
 
-export const maskereFnrPlugin = (): amplitude.Types.BeforePlugin => ({
+const maskereFnrPlugin = (): amplitude.Types.BeforePlugin => ({
     type: 'before',
-    execute: async (event) => {
+    execute: (event) => {
         const maskertEvent = maskereFodselsnummer(event);
-        return maskertEvent;
+        return Promise.resolve(maskertEvent);
     }
 });
 
@@ -119,5 +119,3 @@ export const updateUserEnhet = (enhet: string) => {
 
     amplitudeInstance.identify(identifyEvent);
 };
-
-export default initAmplitude;

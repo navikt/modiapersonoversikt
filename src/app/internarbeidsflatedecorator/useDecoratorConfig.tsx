@@ -101,6 +101,7 @@ function lagConfigV3(
         enableHotkeys: true,
         // modiacontextholder kjører på samme domene som modiapersonoversikt.
         // Som default brukes app.adeo.no, så her tvinger vi dekoratøren over på nytt domene
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         proxy: import.meta.env.PROD
             ? `https://${window.location.host}${import.meta.env.BASE_URL}proxy`
             : import.meta.env.VITE_CONTEXTHOLDER_URL ?? `${import.meta.env.BASE_URL}proxy`,

@@ -38,15 +38,16 @@ const Base = styled.div`
 const SnoFlak = styled.div<{ offset: number; speed: number; sway: number }>`
     position: absolute;
     top: 0;
-    left: ${props => props.offset * 1.5}rem;
+    left: ${(props) => props.offset * 1.5}rem;
     height: 0.2rem;
     width: 0.2rem;
     border-radius: 50%;
     background-color: white;
     z-index: 10;
     box-shadow: 0 0 2px #0008;
-    animation: ${descend} ease-out ${props => props.speed}s both,
-        ${sway} ease-in-out 1.5s alternate 10 -${props => props.sway * 2}s;
+    animation:
+        ${descend} ease-out ${(props) => props.speed}s both,
+        ${sway} ease-in-out 1.5s alternate 10 -${(props) => props.sway * 2}s;
 `;
 
 function Sno() {
@@ -56,6 +57,7 @@ function Sno() {
 
     return (
         <Base>
+            {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
             {[...new Array(10)].map((_, index) => (
                 <SnoFlak key={index} speed={2 + Math.random() * 4} offset={0.5 - Math.random()} sway={Math.random()} />
             ))}

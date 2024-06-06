@@ -93,6 +93,7 @@ function AutoComplete(props: Props) {
     });
 
     function handleStateChange(changes: StateChangeOptions<string>) {
+        // eslint-disable-next-line no-prototype-builtins
         if (changes.hasOwnProperty('selectedItem')) {
             setValue(changes.selectedItem);
             setHightlightedItem(undefined);

@@ -26,7 +26,7 @@ function LocaleVelger(props: Props) {
     if (locales.length < 2) {
         return null;
     }
-    const options = locales.map(locale => (
+    const options = locales.map((locale) => (
         <option value={locale} key={locale}>
             {localeString[locale]}
         </option>

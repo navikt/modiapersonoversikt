@@ -11,7 +11,7 @@ interface Props {
 
 function GraderingsTabell(props: Props) {
     const tittelRekke = ['Periode', 'Gradering'];
-    const tableEntries = props.sykmelding.gradAvSykmeldingListe.map(graderingsElement => [
+    const tableEntries = props.sykmelding.gradAvSykmeldingListe.map((graderingsElement) => [
         periodeEllerNull(graderingsElement.gradert) || undefined,
         prosentEllerNull(graderingsElement.sykmeldingsgrad) || undefined
     ]);

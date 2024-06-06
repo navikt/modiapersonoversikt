@@ -21,7 +21,7 @@ export function getJournalposter(faker: Faker.FakerStatic, navfaker: NavFaker, t
         .map(() => getJournalpost(faker, navfaker, tema));
 }
 
-export function getJournalpost(faker: Faker.FakerStatic, navfaker: NavFaker, tema: string[]): Journalpost {
+function getJournalpost(faker: Faker.FakerStatic, navfaker: NavFaker, tema: string[]): Journalpost {
     const retning = getKommunikasjonsretning(navfaker);
 
     return {

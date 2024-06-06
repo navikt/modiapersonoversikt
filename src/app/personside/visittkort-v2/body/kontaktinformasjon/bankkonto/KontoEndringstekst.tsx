@@ -18,7 +18,8 @@ export default KontoEndringsTekst;
 
 const FOLKEREGISTERET = 'SKD';
 
-export function endretAvTekst(rawString: string): string {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function endretAvTekst(rawString: string): string {
     if (endretAvBruker(rawString) || endretIPSelv(rawString)) {
         return 'av bruker';
     } else if (

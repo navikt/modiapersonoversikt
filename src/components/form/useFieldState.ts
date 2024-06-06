@@ -11,6 +11,7 @@ export function useFieldState<
     TFieldValues extends FieldValues,
     TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 >(name: TFieldName, form: UseFormReturn<TFieldValues>): UseFieldStateReturn<TFieldName> {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const showError = form.formState.touchedFields[name] || form.formState.submitCount > 0;
     const error = form.formState.errors[name]?.message?.toString();
     const { ref, onChange, ...input } = form.register(name);

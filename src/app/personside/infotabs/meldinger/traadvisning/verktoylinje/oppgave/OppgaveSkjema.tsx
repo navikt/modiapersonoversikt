@@ -66,6 +66,7 @@ function OppgaveSkjema(props: OppgaveProps) {
 
     const valgtTema = useNormalPrioritet(props.gsakTema, form);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function submitHandler(values: OppgaveSkjemaForm): Promise<any> {
         const request = lagOppgaveRequest(
             values,
@@ -74,14 +75,17 @@ function OppgaveSkjema(props: OppgaveProps) {
             props.gsakTema,
             props.valgtTraad
         );
-        return post(`${apiBaseUri}/dialogoppgave/v2/opprett`, request, 'OpprettOppgave')
-            .then(() => {
-                settResultat(Resultat.VELLYKKET);
-                props.onSuccessCallback && props.onSuccessCallback();
-            })
-            .catch((error: Error) => {
-                settResultat(Resultat.FEIL);
-            });
+        return (
+            post(`${apiBaseUri}/dialogoppgave/v2/opprett`, request, 'OpprettOppgave')
+                .then(() => {
+                    settResultat(Resultat.VELLYKKET);
+                    props.onSuccessCallback && props.onSuccessCallback();
+                })
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                .catch((error: Error) => {
+                    settResultat(Resultat.FEIL);
+                })
+        );
     }
 
     if (props.valgtTraad && !erBehandlet(props.valgtTraad)) {

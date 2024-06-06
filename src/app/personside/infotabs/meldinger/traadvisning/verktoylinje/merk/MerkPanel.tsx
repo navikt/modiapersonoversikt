@@ -124,8 +124,10 @@ function MerkPanel(props: Props) {
     useFocusOnFirstFocusable(formRef);
 
     const melding = eldsteMelding(valgtTraad);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const merkPost = (url: string, object: any, name: string) => {
         setSubmitting(true);
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         post(url, object, 'MerkPanel-' + name)
             .then(() => {
                 settResultat(Resultat.VELLYKKET);
@@ -151,6 +153,7 @@ function MerkPanel(props: Props) {
                 merkPost(MERK_FEILSENDT_URL, getMerkBehandlingskjedeRequest(valgtBrukersFnr, valgtTraad), 'Feilsendt');
                 break;
             case MerkOperasjon.SLADDING:
+                // eslint-disable-next-line no-case-declarations
                 const sladdeObjekt: SladdeObjekt | null = await velgMeldingerTilSladding(valgtTraad, queryClient);
                 // If null, then modal was closed without "submitting form"
                 if (sladdeObjekt !== null) {
@@ -207,6 +210,7 @@ function MerkPanel(props: Props) {
                 name={'merk'}
                 checked={valgtOperasjon}
                 legend={''}
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
                 onChange={(_, value) => settValgtOperasjon(MerkOperasjon[value])}
             />
             {valgtOperasjon === MerkOperasjon.SLADDING && (

@@ -15,7 +15,7 @@ exports[`viser fortsett dialog 1`] = `
 }
 
 .c3 .ekspanderbartPanel__hode:hover {
-  box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
+  box-shadow: inset 0 0 0 0.1rem #0067c5, 0 0.1rem 0.1rem rgba(0,0,0,0.2);
 }
 
 .c3 .ekspanderbartPanel__hode:focus {

@@ -12,6 +12,7 @@ test('typeguard isFødsel funker', () => {
 });
 
 test('typeguard isAdopsjon funker', () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { termin, ...resten } = statiskForeldrepengeMock;
     const foreldrepengeRettighet: Adopsjon = {
         ...resten,
@@ -23,9 +24,11 @@ test('typeguard isAdopsjon funker', () => {
 });
 
 test('Hvis omsorgsovertakelse og termin er satt til null blir det ikke gjennkjent som adopsjon eller fødsel', () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { termin, ...resten } = statiskForeldrepengeMock;
     const foreldrepengeRettighet: Foreldrepengerettighet = {
         ...resten,
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         omsorgsovertakelse: null,
         termin: null

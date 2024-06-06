@@ -4,9 +4,6 @@ import { EventListener, runIfEventIsNotInsideRef } from './reactRef-utils';
 import { useDispatch, useSelector } from 'react-redux';
 import setGjeldendeBrukerIRedux from '../redux/gjeldendeBruker/actions';
 import { AppState } from '../redux/reducers';
-import { erKontaktsenter } from './enheter-utils';
-import Hotjar, { HotjarTriggers } from './hotjar';
-import { useValgtenhet } from '../context/valgtenhet-state';
 import { useLocation } from 'react-router';
 import { paths } from '../app/routes/routing';
 import { push } from 'connected-react-router';
@@ -23,10 +20,10 @@ export function useFocusOnMount(ref: React.RefObject<HTMLElement>) {
 }
 
 export function useOnMount(effect: EffectCallback) {
-    useEffect(effect, []); // eslint-disable-line
+    useEffect(effect, []);
 }
 
-export type JustOnceEffectCallback = (done: () => void) => void | (() => void | undefined);
+type JustOnceEffectCallback = (done: () => void) => void | (() => void | undefined);
 export function useJustOnceEffect(effect: JustOnceEffectCallback, deps?: DependencyList) {
     const done = useRef(false);
     const setDone = useCallback(() => {
@@ -36,7 +33,7 @@ export function useJustOnceEffect(effect: JustOnceEffectCallback, deps?: Depende
         if (!done.current) {
             return effect(setDone);
         }
-    }, deps); // eslint-disable-line react-hooks/exhaustive-deps
+    }, deps);
 }
 
 export function useOnUpdate(effect: EffectCallback, deps: DependencyList) {
@@ -96,18 +93,4 @@ export function useSettAktivBruker() {
             dispatch(push(paths.personUri));
         }
     };
-}
-
-export function useTriggerHotjarForLokalKontor() {
-    const valgtEnhet = useValgtenhet().enhetId;
-
-    useJustOnceEffect(
-        (done) => {
-            if (valgtEnhet && !erKontaktsenter(valgtEnhet)) {
-                Hotjar.trigger(HotjarTriggers.BRUKSMONSTER);
-                done();
-            }
-        },
-        [valgtEnhet]
-    );
 }

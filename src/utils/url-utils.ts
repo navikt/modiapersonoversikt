@@ -5,7 +5,7 @@ export function parseQueryString<TYPE>(queryParams: string): TYPE {
     const entries = queryParams
         .replace('?', '')
         .split('&')
-        .map(it => it.split('='));
+        .map((it) => it.split('='));
     return entries.reduce((acc, entry) => ({ ...acc, [entry[0]]: entry[1] }), {} as TYPE);
 }
 

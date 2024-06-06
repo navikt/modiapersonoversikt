@@ -13,6 +13,7 @@ if (process.env.NODE_ENV === 'production') {
     Sentry.init({
         dsn: 'https://ed466c6158934594b66801b0c194f275@sentry.gc.nav.no/149',
         integrations: [
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-call
             new BrowserTracing({
                 routingInstrumentation: Sentry.reactRouterV5Instrumentation(window.history)
             })

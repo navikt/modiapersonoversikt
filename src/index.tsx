@@ -4,7 +4,15 @@ import * as ReactDOM from 'react-dom';
 import './index.less';
 import AppContainer from './app/AppContainer';
 import { setupTimeSpentMetrics } from './utils/timeSpentMetrics';
-import './window-variabler';
+
+declare global {
+    interface Window {
+        erChatvisning: boolean;
+        applicationFeatureToggles: Record<string, never>;
+    }
+}
+window.erChatvisning = (document.location.search + document.location.hash).includes('chatvisning');
+
 setupTimeSpentMetrics();
 
 if (import.meta.env.DEV) {

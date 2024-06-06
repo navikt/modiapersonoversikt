@@ -4,7 +4,10 @@ import { confirm } from '../components/popup-boxes/popup-boxes';
 
 const CONFLICT = 409;
 export class FetchError extends Error {
-    constructor(public response: Response, message?: string) {
+    constructor(
+        public response: Response,
+        message?: string
+    ) {
         super(message);
     }
 }
@@ -61,7 +64,7 @@ function handleResponse<TYPE extends object = object>(
 function parseResponse<TYPE>(response: Response): Promise<TYPE> {
     const contentType = response.headers.get('content-type');
     if (contentType && contentType.indexOf('application/json') !== -1) {
-        return response.json();
+        return response.json() as Promise<TYPE>;
     } else if (contentType && contentType.indexOf('text/plain') !== -1) {
         return response.text() as Promise<TYPE>;
     } else {

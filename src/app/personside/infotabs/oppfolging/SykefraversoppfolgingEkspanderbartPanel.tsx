@@ -18,6 +18,7 @@ function SykefraversoppfolgingTabell(props: { syfoPunkter: SyfoPunkt[] }) {
     const sortertPaDato = props.syfoPunkter.sort(datoSynkende((syfoPunkt) => syfoPunkt.dato));
 
     const tableHeaders = ['Innen', 'Hendelse', 'Status'];
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const tableRows = sortertPaDato.map((syfopunkt, index) => [
         formatterDato(syfopunkt.dato),
         syfopunkt.syfoHendelse,

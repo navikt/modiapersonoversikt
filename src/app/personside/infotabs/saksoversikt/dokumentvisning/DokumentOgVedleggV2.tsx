@@ -89,6 +89,7 @@ function DokumentOgVedlegg(props: Props) {
 
     const aggregertSak = aggregertSakstemaV2(alleSakstema, props.valgteSakstemaer);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleTabChange = (_: any, index: number) => history.push(dyplenker.saker.link(aggregertSak, tabs[index]));
 
     const tabsHeader = !fullscreen && (

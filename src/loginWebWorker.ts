@@ -9,7 +9,9 @@ const register = () => {
     self.addEventListener('message', handleEventMessage);
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const handleEventMessage = (event: MessageEvent<{ type: IncommingMessageType; payload: any }>) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const { type, payload } = event.data;
     switch (type) {
         case 'STOP_WORKER':
@@ -17,7 +19,9 @@ const handleEventMessage = (event: MessageEvent<{ type: IncommingMessageType; pa
             console.log('[loginWebWorker] Mottok melding: ', type);
             return;
         case 'AUTH_STATE_UPDATE':
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
             loginStateManager.onUpdate(payload);
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             console.log(`[loginWebWorker] Mottok melding: ${type}, med: ${payload.expirationDate}`);
             return;
         case 'USER_ACTIVE':

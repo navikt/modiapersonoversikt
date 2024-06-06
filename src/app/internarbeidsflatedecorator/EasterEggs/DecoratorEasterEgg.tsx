@@ -12,7 +12,7 @@ import DelayRender from '../../../components/DelayRender';
 function useDefaultEasterEgg() {
     const erKontaktsenter = useErKontaktsenter();
     if (!erKontaktsenter) {
-        return '';
+        return;
     }
 
     const today = dayjs();
@@ -31,7 +31,7 @@ function useDefaultEasterEgg() {
         return easterEggs.klukk;
     }
 
-    return '';
+    return;
 }
 
 function DecoratorEasterEgg() {

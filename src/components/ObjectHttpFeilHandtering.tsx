@@ -3,7 +3,7 @@ import { ReactNode, useEffect, useState } from 'react';
 import { CenteredLazySpinner } from './LazySpinner';
 import { postConfig } from '../api/config';
 
-export type Omit<T, U> = Pick<T, Exclude<keyof T, U>>;
+type Omit<T, U> = Pick<T, Exclude<keyof T, U>>;
 
 interface Props
     extends Omit<React.DetailedHTMLProps<React.ObjectHTMLAttributes<HTMLObjectElement>, HTMLObjectElement>, 'onError'> {

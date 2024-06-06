@@ -10,9 +10,7 @@ const initialState: UtbetalingerState = {
         periode: {
             radioValg: PeriodeValg.SISTE_30_DAGER,
             egendefinertPeriode: {
-                fra: dayjs()
-                    .subtract(1, 'month')
-                    .format(ISO_DATE_STRING_FORMAT),
+                fra: dayjs().subtract(1, 'month').format(ISO_DATE_STRING_FORMAT),
                 til: dayjs().format(ISO_DATE_STRING_FORMAT)
             }
         },
@@ -37,7 +35,7 @@ export function utbetalingerReducer(state: UtbetalingerState = initialState, act
             } else {
                 return {
                     ...state,
-                    ekspanderteYtelser: state.ekspanderteYtelser.filter(y => y !== action.ytelse)
+                    ekspanderteYtelser: state.ekspanderteYtelser.filter((y) => y !== action.ytelse)
                 };
             }
         case actionKeys.OppdaterFilter:

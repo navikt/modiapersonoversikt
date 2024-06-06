@@ -17,6 +17,7 @@ test('bytter til riktig tab og setter riktig sakstema ved bruk av dyplenke fra o
         </TestProvider>
     );
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.OVERSIKT.path);
 
     const expectedSak = infoTabs
@@ -24,8 +25,10 @@ test('bytter til riktig tab og setter riktig sakstema ved bruk av dyplenke fra o
         .first()
         .text();
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     clickOnSak(infoTabs);
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.SAKER.path);
 
     const valgtSak = infoTabs

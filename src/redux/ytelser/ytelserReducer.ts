@@ -45,17 +45,19 @@ export function toggleVisAlleArbeidsforhold(ytelse: Ytelse, vis: boolean): Toggl
 function ytelserReducer(state: YtelserState = initialState, action: Actions): YtelserState {
     switch (action.type) {
         case actionKeys.TOGGLE_VIS_ALLE_ARBEIDSFORHOLD:
+            // eslint-disable-next-line no-case-declarations
             const aapnedeArbeidsforhold = action.vis
                 ? [...state.aapnedeYtesler, action.ytelse]
-                : state.visAlleArbeidsforhold.filter(it => it !== action.ytelse);
+                : state.visAlleArbeidsforhold.filter((it) => it !== action.ytelse);
             return {
                 ...state,
                 visAlleArbeidsforhold: aapnedeArbeidsforhold
             };
         case actionKeys.TOGGLE_APNEYTELSE:
+            // eslint-disable-next-line no-case-declarations
             const aapnedeYtelser = action.vis
                 ? [...state.aapnedeYtesler, action.ytelse]
-                : state.aapnedeYtesler.filter(it => it !== action.ytelse);
+                : state.aapnedeYtesler.filter((it) => it !== action.ytelse);
             return {
                 ...state,
                 aapnedeYtesler: aapnedeYtelser

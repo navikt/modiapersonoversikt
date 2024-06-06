@@ -51,7 +51,7 @@ export function resolver(values: PersonSokFormStateV3) {
     return { values, errors };
 }
 
-export function stringToNumber(input?: string): number | undefined {
+function stringToNumber(input?: string): number | undefined {
     if (!input || input.length === 0) {
         return undefined;
     }

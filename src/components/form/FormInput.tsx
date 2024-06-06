@@ -15,6 +15,7 @@ function FormInput<
 >(props: Props<TFieldValues, TFieldName>) {
     const { ref, input, error } = useFieldState(props.name, props.form);
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { form, name, ...inputProps } = props;
 
     return <Input inputRef={ref} {...inputProps} {...input} feil={props.feil || error} />;

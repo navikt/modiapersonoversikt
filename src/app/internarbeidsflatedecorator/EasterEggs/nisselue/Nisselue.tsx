@@ -29,12 +29,12 @@ const Position = styled.div`
 const StyledImg = styled.img<{ shake: boolean; clickable: boolean }>`
     height: 3rem;
     transform: rotateY(180deg);
-    ${props =>
+    ${(props) =>
         props.clickable &&
         css`
             cursor: pointer;
         `};
-    ${props =>
+    ${(props) =>
         props.shake &&
         css`
             animation: ${shake} 0.1s linear -0.05s 4.5 alternate;
