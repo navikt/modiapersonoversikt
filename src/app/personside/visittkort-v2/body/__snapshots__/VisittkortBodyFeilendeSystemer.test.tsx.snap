@@ -678,7 +678,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="typo-normal"
         >
           Gjelder 
-          alle statlige ytelser
+          Arbeidsavklaringspenger (LES, KOMMUNISER), Dagpenger (LES, KOMMUNISER, SKRIV)
         </p>
         <p
           className="typo-normal"
