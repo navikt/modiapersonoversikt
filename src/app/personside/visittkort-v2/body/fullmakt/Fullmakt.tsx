@@ -7,7 +7,6 @@ import {
     DigitalKontaktinformasjonTredjepartsperson,
     Fullmakt as FullmaktInterface,
     InformasjonElement,
-    KodeBeskrivelse,
     OmraadeMedHandling
 } from '../../PersondataDomain';
 import { hentNavn } from '../../visittkort-utils';
