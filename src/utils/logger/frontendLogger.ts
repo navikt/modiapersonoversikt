@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import { erKontaktsenter } from '../enheter-utils';
 import innloggetSaksbehandler from '../../rest/resources/innloggetSaksbehandlerResource';
 import { useValgtenhet } from '../../context/valgtenhet-state';
-import { Faro } from '@grafana/faro-web-sdk';
 
 let ident = 'ikke satt';
 let enhet = 'ikke valgt';
@@ -25,7 +24,7 @@ interface ValuePairs {
     [name: string]: string | number | boolean | object | undefined;
 }
 
-const faro = window.faro as Faro | undefined;
+const faro = window.faro;
 
 function frontendLoggerIsInitialized(): boolean {
     if (!faro) {
@@ -92,14 +91,17 @@ export function loggError(error: Error, message?: string, ekstraFelter?: ValuePa
 }
 
 export function emptyStringToUndefined(valuePairs: ValuePairs) {
-    return Object.keys(valuePairs).reduce((acc, key: string) => {
-        const value = valuePairs[key] === '' ? undefined : valuePairs[key]?.toString();
+    return Object.keys(valuePairs).reduce(
+        (acc, key: string) => {
+            const value = valuePairs[key] === '' ? undefined : valuePairs[key]?.toString();
 
-        return value
-            ? {
-                  ...acc,
-                  [key]: value
-              }
-            : acc;
-    }, {} as Record<string, string>);
+            return value
+                ? {
+                      ...acc,
+                      [key]: value
+                  }
+                : acc;
+        },
+        {} as Record<string, string>
+    );
 }

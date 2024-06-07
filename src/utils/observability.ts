@@ -1,10 +1,15 @@
-import { getWebInstrumentations, initializeFaro, ReactIntegration, ReactRouterVersion } from '@grafana/faro-react';
-import { History } from 'history';
+import {
+    getWebInstrumentations,
+    initializeFaro,
+    ReactIntegration,
+    ReactRouterHistory,
+    ReactRouterVersion
+} from '@grafana/faro-react';
 import { Route } from 'react-router-dom';
 import { getEnvFromHost } from './environment';
 import { getWindowFeature } from './featureToggles';
 
-export const initializeObservability = (history: History) => {
+export const initializeObservability = (history: ReactRouterHistory) => {
     if (!getWindowFeature('enableFaro') && !import.meta.env.VITE_GRAFANA_COLLECTOR) return;
 
     const env = getEnvFromHost();
@@ -15,7 +20,7 @@ export const initializeObservability = (history: History) => {
     console.log(import.meta.env.VITE_GRAFANA_COLLECTOR);
     initializeFaro({
         url:
-            import.meta.env.VITE_GRAFANA_COLLECTOR ??
+            (import.meta.env.VITE_GRAFANA_COLLECTOR as string) ??
             (env === 'prod' ? 'https://telemetry.nav.no/collect' : 'https://telemetry.ekstern.dev.nav.no/collect'),
         app: {
             name: 'modiapersonoversikt'

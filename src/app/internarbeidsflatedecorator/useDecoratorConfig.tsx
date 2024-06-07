@@ -73,10 +73,6 @@ function lagConfigV3(
     const { sokFnr, userKey } = getFnrFraUrl();
     const fnr = useGjeldendeBruker();
     const onsketFnr = sokFnr ?? fnr;
-<<<<<<< HEAD
-=======
-
->>>>>>> 551b9c345 (Bruk faro til frontend observability)
     const environment = import.meta.env.PROD ? getEnvFromHost() : 'mock';
 
     return {
