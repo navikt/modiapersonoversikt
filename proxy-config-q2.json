@@ -9,7 +9,7 @@
             "scope": "api://dev-gcp.personoversikt.modiapersonoversikt-draft/.default"
         },
         "modia-innstillinger": {
-            "url": "http://modiapersonoversikt-innstillinger.personoversikt.svc.cluster.local/modiapersonoversikt-innstillinger",
+            "url": "http://modiapersonoversikt-innstillinger.personoversikt.svc.cluster.local",
             "scope": "api://dev-gcp.personoversikt.modiapersonoversikt-innstillinger/.default"
         },
         "modiacontextholder": {
