@@ -45,7 +45,7 @@ function SendNyMeldingContainer(props: Props) {
         [setState]
     );
     const draftContext = useMemo(() => ({ fnr }), [fnr]);
-    const { update: updateDraft, remove: removeDraft } = useDraft(draftContext, draftLoader);
+    const { update: updateDraft, remove: removeDraft, status: draftStatus } = useDraft(draftContext, draftLoader);
     const updateState = useCallback(
         (change: Partial<SendNyMeldingState>) =>
             setState((currentState) => {
@@ -220,6 +220,7 @@ function SendNyMeldingContainer(props: Props) {
                 handleAvbryt={handleAvbryt}
                 formErEndret={state !== initialState}
                 sendNyMeldingPanelState={sendNyMeldingStatus}
+                draftState={draftStatus}
             />
         </>
     );

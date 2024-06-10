@@ -2,6 +2,7 @@ import './extra-polyfills';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import './index.less';
+import '@navikt/ds-css';
 import AppContainer from './app/AppContainer';
 import { setupTimeSpentMetrics } from './utils/timeSpentMetrics';
 
