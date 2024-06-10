@@ -24,6 +24,12 @@ import { Checkbox, SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import persondataResource from '../../../../rest/resources/persondataResource';
 import VelgDialogType from './VelgDialogType';
 import Panel from 'nav-frontend-paneler';
+import { DraftState } from '../use-draft';
+import { formatterDatoTid } from '../../../../utils/date-utils';
+import NavFrontendSpinner from 'nav-frontend-spinner';
+import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureToggleOn';
+import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
+import { CheckmarkCircleIcon, ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
 
 export enum OppgavelisteValg {
     MinListe = 'MinListe',
@@ -64,7 +70,44 @@ const StyledUndertittel = styled(Undertittel)`
     margin-bottom: 1rem !important;
 `;
 
-export const tekstMaksLengde = 15000;
+const DraftStatusWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    font-style: italic;
+`;
+
+const CheckmarkCircleIconGreen = styled(CheckmarkCircleIcon)`
+    color: var(--a-icon-success);
+`;
+
+const ErrorText = styled.span`
+    color: var(--a-text-danger);
+`;
+
+const ExclamationmarkTriangleIconRed = styled(ExclamationmarkTriangleIcon)`
+    color var(--a-text-danger);
+`;
+
+const DraftStatus = ({ state }: { state: DraftState }) => {
+    return (
+        <DraftStatusWrapper className="typo-etikett-liten">
+            {state.ok ? (
+                <>
+                    <CheckmarkCircleIconGreen />
+                    Utkast lagret {state.saveTime ? formatterDatoTid(state.saveTime.toDate()) : ''}
+                </>
+            ) : state.loading ? (
+                <>
+                    <NavFrontendSpinner type="XXS" /> Lagrer utkast...
+                </>
+            ) : (
+                <>
+                    <ExclamationmarkTriangleIconRed /> <ErrorText>Utkast ikke lagret!</ErrorText>
+                </>
+            )}
+        </DraftStatusWrapper>
+    );
+};
 
 interface Props {
     handleSubmit: (event: FormEvent) => void;
@@ -73,7 +116,10 @@ interface Props {
     updateState: (change: Partial<SendNyMeldingState>) => void;
     formErEndret: boolean;
     sendNyMeldingPanelState: SendNyMeldingPanelState;
+    draftState?: DraftState;
 }
+
+export const tekstMaksLengde = 15000;
 
 function Feilmelding(props: { sendNyMeldingPanelState: SendNyMeldingStatus }) {
     if (props.sendNyMeldingPanelState === SendNyMeldingStatus.ERROR) {
@@ -87,6 +133,7 @@ function SendNyMelding(props: Props) {
     const state = props.state;
     const personResponse = persondataResource.useFetch();
     const tittelId = useRef(guid());
+    const draftState = props.draftState;
 
     const navn = personResponse.data
         ? capitalizeName(personResponse.data.person.navn.firstOrNull()?.fornavn || '')
@@ -100,17 +147,23 @@ function SendNyMelding(props: Props) {
             <ReflowBoundry>
                 <StyledUndertittel id={tittelId.current}>Send ny melding</StyledUndertittel>
                 <FormStyle onSubmit={props.handleSubmit}>
-                    <TekstFelt
-                        tekst={state.tekst}
-                        navn={navn}
-                        tekstMaksLengde={tekstMaksLengde}
-                        updateTekst={(tekst) => updateState({ tekst })}
-                        feilmelding={
-                            !MeldingValidator.tekst(state) && state.visFeilmeldinger
-                                ? `Du må skrive en tekst på mellom 1 og ${tekstMaksLengde} tegn`
-                                : undefined
-                        }
-                    />
+                    <div>
+                        <TekstFelt
+                            tekst={state.tekst}
+                            navn={navn}
+                            tekstMaksLengde={tekstMaksLengde}
+                            updateTekst={(tekst) => updateState({ tekst })}
+                            feilmelding={
+                                !MeldingValidator.tekst(state) && state.visFeilmeldinger
+                                    ? `Du må skrive en tekst på mellom 1 og ${tekstMaksLengde} tegn`
+                                    : undefined
+                            }
+                        />
+                        <IfFeatureToggleOn toggleID={FeatureToggles.VisDraftStatus}>
+                            {draftState && state.tekst.length > 0 && <DraftStatus state={draftState} />}
+                        </IfFeatureToggleOn>
+                    </div>
+
                     <VelgDialogType
                         formState={state}
                         updateTraadType={(traadType, avsluttet) => updateState({ traadType, avsluttet })}

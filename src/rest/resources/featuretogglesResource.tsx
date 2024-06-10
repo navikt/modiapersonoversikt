@@ -12,11 +12,9 @@ type FeatureTogglesResponse = {
 };
 
 function url(): string {
-    const queryParams = Object.values(FeatureToggles)
-        .map((it) => `id=${it}`)
-        .join('&');
+    const queryParams = Object.values(FeatureToggles).join(',');
 
-    return `${apiBaseUri}/featuretoggle/?${queryParams}`;
+    return `${apiBaseUri}/featuretoggle/?id=${queryParams}`;
 }
 
 const defaults: DefaultConfig = {

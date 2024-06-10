@@ -1,9 +1,10 @@
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import debounce from 'lodash.debounce';
 import { loggError, loggInfo } from '../../../utils/logger/frontendLogger';
 import WebSocketImpl, { Status } from '../../../utils/websocket-impl';
 import { FetchError } from '../../../api/api';
 import { getEnvFromHost } from '../../../utils/environment';
+import dayjs, { Dayjs } from 'dayjs';
 
 export interface DraftContext {
     [key: string]: string;
@@ -16,9 +17,12 @@ export interface Draft {
     created: string;
 }
 
+export type DraftState = { ok: boolean; loading: boolean; saveTime: Dayjs | null };
+
 interface DraftSystem {
     update(content: string): void;
     remove(): void;
+    status: DraftState;
 }
 
 interface WsEvent {
@@ -27,30 +31,63 @@ interface WsEvent {
     content: string | null;
 }
 
+interface WsConfirmation {
+    type: 'OK';
+    time: string;
+}
+
 const okCloseCodes = Object.values(WebSocketImpl.Codes);
 
 const getWsUrl = () => {
+    if (import.meta.env.VITE_DRAFT_URL) return (import.meta.env.VITE_DRAFT_URL as string).replace('http', 'ws');
     const env = getEnvFromHost();
     switch (env) {
         case 'prod':
-            return 'modiapersonoversikt-draft.intern.nav.no';
+            return 'wss://modiapersonoversikt-draft.intern.nav.no';
         default:
-            return 'modiapersonoversikt-draft.intern.dev.nav.no';
+            return 'wss://modiapersonoversikt-draft.intern.dev.nav.no';
     }
 };
 
+const draftUrl = (import.meta.env.VITE_DRAFT_URL as string) ?? `${import.meta.env.BASE_URL}proxy/modia-draft`;
+
 function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () => {}): DraftSystem {
     const wsRef = useRef<WebSocketImpl>();
+    const [lastConfirm, setLastConfirm] = useState<{ ok: boolean; time: Date | null }>({ ok: false, time: null });
+    const [lastSent, setLastSent] = useState<Date | null>(null);
+    const [timeout, setTimeoutVal] = useState(false);
+    const timer = useRef<NodeJS.Timeout>();
+
+    const DRAFT_TIMEOUT_SECONDS = 3;
+
+    const status = useMemo(() => {
+        if (!lastSent) {
+            return { loading: false, ok: lastConfirm.ok, saveTime: lastConfirm.time ? dayjs(lastConfirm.time) : null };
+        }
+
+        const sendTime = dayjs(lastSent);
+
+        // Timeout
+        if ((!lastConfirm.time || dayjs(lastConfirm.time).isBefore(lastSent)) && timeout) {
+            return { loading: false, ok: false };
+        }
+
+        const loading = !lastConfirm.time || sendTime.isAfter(lastConfirm.time);
+        const ok = lastConfirm.time && lastConfirm.ok && dayjs(lastConfirm.time).isAfter(lastSent);
+
+        return { loading: !!loading, ok: !!ok, saveTime: lastConfirm.time ? dayjs(lastConfirm.time) : null };
+    }, [lastConfirm, lastSent, timeout]);
+
     useEffect(() => {
         const urlProvider = async (ws: WebSocketImpl) => {
-            const response: Response = await fetch(`${import.meta.env.BASE_URL}proxy/modia-draft/api/generate-uid`);
+            const response: Response = await fetch(`${draftUrl}/api/generate-uid`);
             if (!response.ok) {
                 ws.close();
                 return '\u0000';
             } else {
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 const uuid: string = await response.json();
-                return `wss://${getWsUrl()}/api/draft/ws/${uuid}`;
+                return `${getWsUrl()}/api/draft/ws/${uuid}`;
             }
         };
         wsRef.current = new WebSocketImpl(urlProvider, {
@@ -59,6 +96,17 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
                     loggInfo('WS lukket som normalt, kobler til på nytt');
                 } else if (connection.getStatus() !== Status.CLOSE) {
                     loggError(new Error(`Retry after error code: ${event.code}`));
+                }
+            },
+            onMessage(event) {
+                try {
+                    const message = JSON.parse(event.data as string) as WsConfirmation;
+
+                    if (message.type === 'OK' && message) {
+                        setLastConfirm({ ok: true, time: new Date(message.time) });
+                    }
+                } catch (e) {
+                    console.error(e);
                 }
             }
         });
@@ -73,8 +121,15 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
     const update = useMemo(
         () =>
             debounce((content: string) => {
+                setTimeoutVal(false);
+                setLastSent(new Date());
                 const data: WsEvent = { type: 'UPDATE', context, content };
                 wsRef.current?.send(JSON.stringify(data));
+                if (timer.current) {
+                    clearTimeout(timer.current);
+                }
+
+                timer.current = setTimeout(() => setTimeoutVal(true), DRAFT_TIMEOUT_SECONDS * 1000);
             }, 500),
         [context]
     );
@@ -89,7 +144,7 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
             .map(([key, value]) => `${key}=${value}`)
             .join('&');
 
-        fetch(`${import.meta.env.BASE_URL}proxy/modia-draft/api/draft?exact=true&${queryParams}`)
+        fetch(`${draftUrl}/api/draft?exact=true&${queryParams}`)
             .then((resp) => {
                 if (resp.ok) {
                     return resp.json();
@@ -100,6 +155,7 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
             .then((json: Array<Draft>) => {
                 if (json.length > 0) {
                     ifPresent(json[0]);
+                    setLastConfirm({ ok: true, time: new Date(json[0].created) });
                 }
             })
             .catch((error: Error) => {
@@ -107,7 +163,7 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
             });
     }, [context, ifPresent]);
 
-    return useMemo(() => ({ update, remove }), [update, remove]);
+    return { update, remove, status };
 }
 
 export default useDraft;
