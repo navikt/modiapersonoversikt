@@ -39,6 +39,7 @@ interface WsConfirmation {
 const okCloseCodes = Object.values(WebSocketImpl.Codes);
 
 const getWsUrl = () => {
+    if (import.meta.env.VITE_DRAFT_URL_WS) return import.meta.env.VITE_DRAFT_URL_WS as string;
     if (import.meta.env.VITE_DRAFT_URL) return (import.meta.env.VITE_DRAFT_URL as string).replace('http', 'ws');
     const env = getEnvFromHost();
     switch (env) {
