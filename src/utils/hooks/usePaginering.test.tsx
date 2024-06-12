@@ -6,7 +6,7 @@ import { shallow } from 'enzyme';
 
 navfaker.seed('pagineringtest');
 
-const getRandomListe = (length: number) => [...new Array(length)].map(() => navfaker.navn.fornavn());
+const getRandomListe = (length: number) => [...new Array<string>(length)].map(() => navfaker.navn.fornavn());
 
 test('Paginator paginerer riktig', () => {
     const pageSize = 5;
@@ -16,10 +16,5 @@ test('Paginator paginerer riktig', () => {
 
     expect(pagination.currentPage).toHaveLength(pageSize);
     expect(paginator.find('option')).toHaveLength(3);
-    expect(
-        paginator
-            .find('option')
-            .first()
-            .text()
-    ).toBe('Viser item 1 til 5');
+    expect(paginator.find('option').first().text()).toBe('Viser item 1 til 5');
 });

@@ -7,16 +7,14 @@ import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { FetchError, get } from '../../api/api';
 
-export type FeatureTogglesResponse = {
+type FeatureTogglesResponse = {
     [key in FeatureToggles]: boolean;
 };
 
 function url(): string {
-    const queryParams = Object.values(FeatureToggles)
-        .map((it) => `id=${it}`)
-        .join('&');
+    const queryParams = Object.values(FeatureToggles).join(',');
 
-    return `${apiBaseUri}/featuretoggle/?${queryParams}`;
+    return `${apiBaseUri}/featuretoggle/?id=${queryParams}`;
 }
 
 const defaults: DefaultConfig = {

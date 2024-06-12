@@ -6,7 +6,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 
 interface Props {
     onClick: (event: React.MouseEvent) => void;
-    tittel?: String;
+    tittel?: string;
 }
 
 const PrintIkonStyle = styled.button`

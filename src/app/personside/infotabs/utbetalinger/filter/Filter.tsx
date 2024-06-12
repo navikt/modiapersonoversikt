@@ -102,17 +102,21 @@ function Filtrering() {
     }, [utbetalinger, filter.periode]);
 
     const radios = Object.keys(PeriodeValg).map((key) => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const label = PeriodeValg[key];
         const checked = filter.periode.radioValg === label;
         return (
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             <RadioWrapper key={label}>
                 <Radio
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                     label={label}
                     checked={checked}
                     onChange={() =>
                         updateFilter({
                             periode: {
                                 ...filter.periode,
+                                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                                 radioValg: PeriodeValg[key]
                             }
                         })

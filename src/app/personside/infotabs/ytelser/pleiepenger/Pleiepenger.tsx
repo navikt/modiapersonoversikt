@@ -24,7 +24,7 @@ function Pleiepenger(props: Props) {
         loggEvent('Visning', 'Pleiepenger');
     });
 
-    const sortertePerioder = props.pleiepenger.perioder.sort(datoStigende(p => p.fom)).reverse();
+    const sortertePerioder = props.pleiepenger.perioder.sort(datoStigende((p) => p.fom)).reverse();
 
     return (
         <article>

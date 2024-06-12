@@ -78,5 +78,6 @@ const ugyldig_gt_map = {
     '1103': 'Stavanger'
 };
 export function mapUgyldigGT(gt: string): string {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return ugyldig_gt_map[gt] ?? 'Ukjent';
 }

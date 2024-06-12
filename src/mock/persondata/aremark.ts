@@ -14,7 +14,7 @@ import {
 } from '../../app/personside/visittkort-v2/PersondataDomain';
 import { harDiskresjonskode } from '../../app/personside/visittkort-v2/visittkort-utils';
 
-export function hentBarnAremark(): ForelderBarnRelasjon[] {
+function hentBarnAremark(): ForelderBarnRelasjon[] {
     return [
         {
             ident: '12345678910',

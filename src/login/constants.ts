@@ -1,5 +1,5 @@
-export const SECOND_IN_MS = 1000;
-export const MINUTE_IN_MS = 60 * SECOND_IN_MS;
+const SECOND_IN_MS = 1000;
+const MINUTE_IN_MS = 60 * SECOND_IN_MS;
 
 export const RECALC_LOGIN_STATUS_INTERVAL_IN_MS = 30 * SECOND_IN_MS;
 export const INACTIVITY_LIMIT_IN_MS = 10 * MINUTE_IN_MS;

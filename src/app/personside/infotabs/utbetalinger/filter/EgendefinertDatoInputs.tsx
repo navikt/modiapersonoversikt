@@ -31,6 +31,7 @@ const isoSenesteDato = senesteDato.format(ISO_DATE_STRING_FORMAT);
 
 const periodeValidering = [
     {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         erUgyldig(fra: Dayjs, til: Dayjs) {
             return !fra.isValid();
         },

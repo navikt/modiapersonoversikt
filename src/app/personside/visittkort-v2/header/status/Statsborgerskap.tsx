@@ -22,7 +22,7 @@ function Statsborgerskap({ person }: Props) {
         return null;
     }
 
-    const gyldigeStatsborgerskap = person.statsborgerskap.map(statsborgerskap =>
+    const gyldigeStatsborgerskap = person.statsborgerskap.map((statsborgerskap) =>
         formaterStatsborgerskapMedRiktigCasing(statsborgerskap.land.beskrivelse)
     );
 

@@ -132,7 +132,9 @@ export function flatMapYtelser(utbetalinger?: Utbetaling[]): Ytelse[] {
             return [...acc, ...utbetaling.ytelser];
         }, []);
         return ytelser;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (e: any) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         console.error('Feil med data i utbetalinger, kunne ikke finne ytelser for alle utbetalinger', e.message);
         return [];
     }
@@ -167,6 +169,7 @@ export function reduceUtbetlingerTilYtelser(utbetalinger: Utbetaling[]): Ytelse[
 
 export const getTypeFromYtelse = (ytelse: Ytelse) => ytelse.type || 'Mangler beskrivelse';
 
-export function fjernTommeUtbetalinger(utbetaling: Utbetaling) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function fjernTommeUtbetalinger(utbetaling: Utbetaling) {
     return utbetaling.ytelser && utbetaling.ytelser.length > 0;
 }

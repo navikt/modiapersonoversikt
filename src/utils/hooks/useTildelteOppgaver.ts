@@ -3,7 +3,7 @@ import { useFodselsnummer } from '../customHooks';
 import { Oppgave } from '../../models/meldinger/oppgave';
 import tildelteoppgaver from '../../rest/resources/tildelteoppgaverResource';
 
-const emptyList: any[] = [];
+const emptyList: Oppgave[] = [];
 function useTildelteOppgaver(): { paaBruker: Oppgave[] } {
     const tildelteOppgaverResource = tildelteoppgaver.useFetch();
     const fnr = useFodselsnummer();

@@ -34,6 +34,7 @@ function useForeslatteEnheter({ watch }: UseFormReturn<OppgaveSkjemaForm>) {
         fetchResponse
             .then((response) => response.json())
             .then(setForeslatteEnheter)
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
             .catch((e) => loggError(e, 'Feil ved henting av foreslåtte enheter'))
             .finally(() => setPending(false));
     }, [temakode, typekode, underkategori, fnr]);

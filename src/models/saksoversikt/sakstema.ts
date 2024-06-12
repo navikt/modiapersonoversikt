@@ -21,7 +21,8 @@ export enum Behandlingsstatus {
     Avbrutt = 'AVBRUTT'
 }
 
-export interface Behandlingskjede {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+interface Behandlingskjede {
     status: Behandlingsstatus;
     sistOppdatert: string;
 }

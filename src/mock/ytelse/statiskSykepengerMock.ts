@@ -11,7 +11,7 @@ const arbeidsforhold = {
     sykepengerFom: '2018-02-18'
 };
 
-export const statiskUtbetalingPåVentMock = {
+const statiskUtbetalingPåVentMock = {
     vedtak: { fra: '2017-10-13', til: '2018-10-10' },
     utbetalingsgrad: 62,
     oppgjørstype: 'Spesidaler i pung',

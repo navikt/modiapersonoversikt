@@ -8,7 +8,7 @@ interface Returns {
     pending: boolean;
 }
 
-function useAnsattePaaEnhet(enhetId?: String): Returns {
+function useAnsattePaaEnhet(enhetId?: string): Returns {
     const [ansatte, setAnsatte] = useState<Ansatt[]>([]);
     const [pending, setPending] = useState(false);
 
@@ -20,9 +20,10 @@ function useAnsattePaaEnhet(enhetId?: String): Returns {
         setPending(true);
         loggEvent('Fetch', 'LagOppgave-Ansatte');
         fetch(`${apiBaseUri}/enheter/${enhetId}/ansatte`, includeCredentials)
-            .then(response => response.json())
+            .then((response) => response.json())
             .then(setAnsatte)
-            .catch(e => loggError(e, 'Feil ved henting av ansatte'))
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+            .catch((e) => loggError(e, 'Feil ved henting av ansatte'))
             .finally(() => setPending(false));
     }, [enhetId]);
 

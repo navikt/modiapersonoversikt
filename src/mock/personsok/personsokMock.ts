@@ -181,7 +181,7 @@ function getBrukerinfoSokUtenlandsID(): Brukerinfo {
     };
 }
 
-export function mockStaticPersonsokResponse(): PersonsokResponse[] {
+function mockStaticPersonsokResponse(): PersonsokResponse[] {
     return [
         {
             diskresjonskode: {

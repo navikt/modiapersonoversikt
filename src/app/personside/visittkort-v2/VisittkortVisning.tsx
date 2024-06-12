@@ -46,7 +46,6 @@ function VisittkortVisning(props: Props) {
                 beskjed={`Visittkortet ble ${erApen ? 'åpnet' : 'lukket'}`}
                 dontShowOnFirstRender={true}
             />
-            {/*eslint-disable-next-line jsx-a11y/role-supports-aria-props */}
             <article role="region" aria-label="Visittkort" aria-expanded={erApen}>
                 <VisittkortHeader persondata={props.persondata} erApen={erApen} toggleApen={toggleApen} />
                 <SikkerhetstiltakModal sikkerhetstiltak={props.persondata.person.sikkerhetstiltak} />

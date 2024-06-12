@@ -11,7 +11,9 @@ export function pxToRem(px: number): string {
 }
 
 const hover = css`
-    box-shadow: inset 0 0 0 0.1rem #0067c5, 0 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
+    box-shadow:
+        inset 0 0 0 0.1rem #0067c5,
+        0 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
 `;
 
 const navFarger = {
@@ -59,7 +61,9 @@ export const theme = {
     graattPanel: css`
         border-radius: ${pxToRem(8)};
         background-color: #f1f0f0;
-        box-shadow: inset 0 0 0 0.3rem white, inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
+        box-shadow:
+            inset 0 0 0 0.3rem white,
+            inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
         padding: ${pxToRem(20)};
     `,
     media: {

@@ -35,7 +35,7 @@ export interface MeldingJournalpost {
     journalfortSaksid?: string;
 }
 
-export interface Veileder {
+interface Veileder {
     ident: string;
     navn: string;
 }
@@ -77,20 +77,23 @@ export interface SendReferatRequest {
     meldingstype: Meldingstype.SAMTALEREFERAT_TELEFON | Meldingstype.SAMTALEREFERAT_OPPMOTE;
 }
 
-export interface SendSporsmalRequest {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+interface SendSporsmalRequest {
     enhet: string;
     fritekst: string;
     sak: JournalforingsSak;
     erOppgaveTilknyttetAnsatt: boolean;
 }
 
-export interface SendInfomeldingRequest {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+interface SendInfomeldingRequest {
     enhet: string;
     fritekst: string;
     sak: JournalforingsSak;
 }
 
-export interface ForsettDialogRequest {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+interface ForsettDialogRequest {
     enhet: string;
     traadId: string;
     behandlingsId: string;

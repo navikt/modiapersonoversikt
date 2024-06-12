@@ -21,15 +21,15 @@ const Styling = styled.div<{
     alwaysGrayBackground: boolean;
 }>`
     transition: 0.5s;
-    padding: ${props => (props.hasHeader ? theme.margin.px20 : `0 ${theme.margin.px20} ${theme.margin.px20}`)};
-    ${props => (props.open || props.alwaysGrayBackground) && theme.graattPanel};
-    ${props => props.open && !props.hasHeader && `margin-top: ${theme.margin.px20}`};
+    padding: ${(props) => (props.hasHeader ? theme.margin.px20 : `0 ${theme.margin.px20} ${theme.margin.px20}`)};
+    ${(props) => (props.open || props.alwaysGrayBackground) && theme.graattPanel};
+    ${(props) => props.open && !props.hasHeader && `margin-top: ${theme.margin.px20}`};
 `;
 
 const CollapseAnimasjon = styled.div<{ open: boolean }>`
     transition: 0.5s;
     padding: 0 ${theme.margin.px20};
-    ${props => props.open && 'padding: 0'};
+    ${(props) => props.open && 'padding: 0'};
 `;
 
 const PaddingRight = styled.div`

@@ -1,4 +1,5 @@
 import * as React from 'react';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { useHistory } from 'react-router';
 import styled from 'styled-components/macro';
 import theme from '../../styles/personOversiktTheme';
@@ -61,6 +62,7 @@ function PersonSokInput() {
         shouldFocusError: false
     });
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function submit(values: PersonSokForm): Promise<any> {
         settAktivBruker(values.fødselsnummer);
         return Promise.resolve();

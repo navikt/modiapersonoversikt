@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { AppState } from '../../../redux/reducers';
 import { usePaths } from '../../routes/routing';
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 type Props = RouteComponentProps<{}>;
 
 function HandleInfotabsHotkeys(props: Props) {

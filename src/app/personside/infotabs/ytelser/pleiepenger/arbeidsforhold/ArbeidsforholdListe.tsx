@@ -27,7 +27,7 @@ const StyledKnappBase = styled(KnappBase)`
 `;
 
 function ArbeidsForholdListe(props: Props) {
-    const visAlle = useAppState(state => state.ytelser.visAlleArbeidsforhold).includes(props.pleiepengerettighet);
+    const visAlle = useAppState((state) => state.ytelser.visAlleArbeidsforhold).includes(props.pleiepengerettighet);
     const dispatch = useDispatch();
     const toggleVisAlle = (vis: boolean) => dispatch(toggleVisAlleArbeidsforhold(props.pleiepengerettighet, vis));
 

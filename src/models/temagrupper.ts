@@ -25,7 +25,8 @@ export const TemaSamtalereferat = [
     Temagruppe.Øvrig
 ];
 
-export const TemaPlukkbare = [
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const TemaPlukkbare = [
     Temagruppe.Arbeid,
     Temagruppe.Helse,
     Temagruppe.Familie,
@@ -39,7 +40,8 @@ export const TemaPlukkbare = [
     Temagruppe.Øvrig
 ];
 
-export const TemaLeggTilbake = [
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const TemaLeggTilbake = [
     Temagruppe.Arbeid,
     Temagruppe.Helse,
     Temagruppe.Familie,
@@ -87,6 +89,7 @@ export function temagruppeTekst(temagruppe: Temagruppe | null) {
         case null:
             return 'Ingen temagruppe';
         default:
+            // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
             return 'Ukjent temagruppe: ' + temagruppe;
     }
 }

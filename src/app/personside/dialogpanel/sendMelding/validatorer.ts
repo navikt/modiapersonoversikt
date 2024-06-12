@@ -25,7 +25,7 @@ export class MeldingValidator {
     }
 
     private static inneholderTekst(state: SendNyMeldingState) {
-        const ikkeTekst = /\S/g
-        return !!state.tekst.match(ikkeTekst)
+        const ikkeTekst = /\S/g;
+        return !!state.tekst.match(ikkeTekst);
     }
 }

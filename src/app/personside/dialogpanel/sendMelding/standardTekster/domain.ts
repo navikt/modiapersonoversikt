@@ -1,4 +1,4 @@
-export type UUID = string;
+type UUID = string;
 
 export enum Locale {
     nb_NO = 'nb_NO',
@@ -13,7 +13,8 @@ export enum Locale {
     ur = 'ur'
 }
 
-export const LocaleValues: Array<Locale> = Object.keys(Locale) as Array<Locale>;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const LocaleValues: Array<Locale> = Object.keys(Locale) as Array<Locale>;
 
 export const localeString: { [key in Locale]: string } = {
     nb_NO: 'Norsk (Bokmål)',

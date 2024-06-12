@@ -21,20 +21,26 @@ export class WebWorkerCommunicator implements IWebWorkerCom {
     initialize = (refreshToken: () => void, onLoginStateUpdate: (props: { isLoggedIn: boolean }) => void) => {
         this.refreshToken = refreshToken;
         this.onLoginStateUpdate = onLoginStateUpdate;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         this.worker.onmessage = (message: MessageEvent<WWMessage<any>>) => {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             const { type, payload } = message.data;
             this.onMessage(type as OutgoingMessageType, payload);
         };
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private sendMessage = (type: IncommingMessageType, payload?: any) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const message: WWMessage<any> = {
             type,
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             payload
         };
         this.worker.postMessage(message);
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private onMessage = (type: OutgoingMessageType, payload?: any) => {
         switch (type) {
             case 'REFRESH_TOKEN': {
@@ -50,6 +56,7 @@ export class WebWorkerCommunicator implements IWebWorkerCom {
                     throw new Error('WebWorker was not initialized before being called');
                 }
                 console.log(new Date().valueOf(), 'Login state update');
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 this.onLoginStateUpdate({ isLoggedIn: payload });
                 return;
             }

@@ -37,10 +37,6 @@ export function formatterDatoTidMedMaanedsnavn(dato?: string | Date) {
     return dayjs(dato).format(DATO_TID_MANEDSNANV_FORMAT);
 }
 
-export function formatterDatoTidNaa() {
-    return dayjs().format(DATO_TID_FORMAT);
-}
-
 const månedTilNavnMapping = (månednr: number) => {
     switch (månednr) {
         case 0:

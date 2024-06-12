@@ -17,6 +17,7 @@ export function watchGuard<TFieldValues extends FieldValues, TFieldName extends 
     form: UseFormReturn<TFieldValues>,
     fieldName: TFieldName
 ) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return form.watch(fieldName as unknown as Path<TFieldValues>);
 }
 

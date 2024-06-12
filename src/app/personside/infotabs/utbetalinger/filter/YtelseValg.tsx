@@ -53,7 +53,7 @@ class YtelseValg extends React.Component<Props> {
 
     render() {
         const unikeYtelser = this.getUnikeYtelser(this.props.utbetalinger);
-        const checkboxer = unikeYtelser.map(ytelse => (
+        const checkboxer = unikeYtelser.map((ytelse) => (
             <Checkbox
                 key={ytelse}
                 label={ytelse}

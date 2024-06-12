@@ -127,8 +127,8 @@ function JournalpostListeElementV2(props: Props) {
         const saksid = journalpost.tilhorendeFagsaksid
             ? journalpost.tilhorendeFagsaksid
             : journalpost.tilhorendeSaksid
-            ? journalpost.tilhorendeSaksid
-            : '';
+              ? journalpost.tilhorendeSaksid
+              : '';
         return (
             props.harTilgangTilSakstema &&
             journalpost.feil.feilmelding !== Feilmelding.Sikkerhetsbegrensning &&

@@ -22,7 +22,7 @@ const VedtaksTable = styled.div`
 
 function Pleiepengerperiode({ periode, ...props }: Props) {
     const tittelRekke = ['Fra og med', 'Til og med', 'Bruttobeløp', 'Anvist utbetaling', 'Dagsats', 'Pleiepengegrad'];
-    const rows = periode.vedtak.map(vedtak => [
+    const rows = periode.vedtak.map((vedtak) => [
         formaterDato(vedtak.periode.fom),
         formaterDato(vedtak.periode.tom),
         NOKellerNull(vedtak.bruttobeløp),

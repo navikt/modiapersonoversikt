@@ -52,6 +52,7 @@ function OppgaveSkjemaBegrensetTilgang(props: SkjermetOppgaveProps) {
 
     const valgtTema = useNormalPrioritet(props.gsakTema, form);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function submitHandler(values: OppgaveSkjemaBegrensetTilgangForm): Promise<any> {
         const request = lagSkjermetOppgaveRequest(values, valgtBrukersFnr, saksbehandlersEnhet || '');
         return post(`${apiBaseUri}/dialogoppgave/v2/opprettskjermetoppgave`, request, 'OpprettOppgaveSkjermetPerson')

@@ -5,7 +5,7 @@ import { fjernAnforselstegn, splitNavn } from './navn/navnUtils';
 import baseurls from '../../rest/resources/baseurlsResource';
 import { UseFormWatch } from 'react-hook-form';
 import { PersonSokFormStateV3 } from './personsokUtils';
-export interface DrekPropsV2 {
+interface DrekPropsV2 {
     watch: UseFormWatch<PersonSokFormStateV3>;
 }
 

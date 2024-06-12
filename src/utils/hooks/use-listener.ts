@@ -2,7 +2,7 @@ import { useCallback, useEffect } from 'react';
 
 export default function useListener(selector: string, event: string, fn: EventListener, parent?: Element | null) {
     const handler: EventListener = useCallback(
-        event => {
+        (event) => {
             const target = event.target;
             if (target instanceof Element && target?.matches(selector)) {
                 fn(event);

@@ -29,7 +29,7 @@ export const FormStyle = styled.form`
     }
 `;
 
-export const DialogpanelKvitteringStyling = styled.div`
+const DialogpanelKvitteringStyling = styled.div`
     display: flex;
     flex-direction: column;
     > *:not(:first-child) {

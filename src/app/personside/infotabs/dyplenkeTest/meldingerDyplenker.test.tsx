@@ -12,6 +12,7 @@ import dialogResource from '../../../../rest/resources/dialogResource';
 
 test('bytter til riktig tab og setter fokus på riktig melding ved bruk av dyplenke fra oversikt', () => {
     setupReactQueryMocks();
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access
     (dialogResource.useFetch as jest.Mock<any>).mockImplementation(() => ({
         data: getMockTraader(aremark.personIdent)
     }));
@@ -24,10 +25,13 @@ test('bytter til riktig tab og setter fokus på riktig melding ved bruk av dyple
         </TestProvider>
     );
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.OVERSIKT.path);
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     clickOnMeldingerIOversikt(infoTabs);
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     expect(getAktivTab(infoTabs)).toContain(INFOTABS.MELDINGER.tittel);
 
     const checkedMelding = infoTabs.find('input[checked=true].' + meldingerTest.melding).html();

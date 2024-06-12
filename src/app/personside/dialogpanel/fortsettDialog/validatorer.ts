@@ -19,7 +19,7 @@ export class FortsettDialogValidator {
         return state.traadType === TraadType.SAMTALEREFERAT && this.tekst(state);
     }
     private static inneholderTekst(state: FortsettDialogState) {
-        const ikkeTekst = /\S/g
-        return !!state.tekst.match(ikkeTekst)
+        const ikkeTekst = /\S/g;
+        return !!state.tekst.match(ikkeTekst);
     }
 }

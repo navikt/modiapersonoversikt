@@ -40,7 +40,7 @@ export function getMockSykepengerRespons(fødselsnummer: string): SykepengerResp
     };
 }
 
-export function getMockSykmepenger(fødselsnummer: string): Sykepenger {
+function getMockSykmepenger(fødselsnummer: string): Sykepenger {
     return {
         fødselsnummer: fødselsnummer,
         sykmeldtFom: dayjs(faker.date.past(1)).format(backendDatoformat),

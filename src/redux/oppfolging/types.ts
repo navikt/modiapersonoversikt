@@ -13,12 +13,8 @@ export interface OppfolgingState {
 
 export const initialState: OppfolgingState = {
     valgtPeriode: {
-        fra: dayjs()
-            .subtract(2, 'month')
-            .format('YYYY-MM-DD'),
-        til: dayjs()
-            .add(1, 'month')
-            .format('YYYY-MM-DD')
+        fra: dayjs().subtract(2, 'month').format('YYYY-MM-DD'),
+        til: dayjs().add(1, 'month').format('YYYY-MM-DD')
     },
     sykefraverEkspandert: false,
     ytelserEkspandert: false

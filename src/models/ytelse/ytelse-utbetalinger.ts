@@ -25,7 +25,7 @@ export interface UtbetalingPåVent {
     sykmeldt: null | Periode;
 }
 
-export interface Sanksjonsperiode {
+interface Sanksjonsperiode {
     fra: string;
     til: string | null;
 }

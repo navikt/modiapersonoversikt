@@ -21,6 +21,7 @@ export function meldingstypeTekst(meldingstype: Meldingstype) {
         case Meldingstype.CHATMELDING_FRA_NAV:
             return 'Chatmelding fra NAV';
         default:
+            // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
             return 'Ukjent meldingstype: ' + meldingstype;
     }
 }

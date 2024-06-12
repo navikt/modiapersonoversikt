@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from 'react';
 
-export interface HookType<TYPE> {
+interface HookType<TYPE> {
     values: TYPE[];
     add(value: TYPE): void;
     remove(value: TYPE): void;

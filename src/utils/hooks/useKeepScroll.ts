@@ -15,7 +15,7 @@ interface ScrollValue {
 
 const getStoredScroll = (name: string): ScrollPosition => {
     const entries = Object.entries(scrollStore);
-    const entry = entries.find(it => it[0] === name);
+    const entry = entries.find((it) => it[0] === name);
     return entry ? entry[1] : { x: 0, y: 0 };
 };
 
