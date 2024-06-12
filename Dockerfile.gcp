@@ -1,4 +1,4 @@
-FROM europe-north1-docker.pkg.dev/nais-management-233d/personoversikt/modia-frontend:0.11
+FROM europe-north1-docker.pkg.dev/nais-management-233d/personoversikt/modia-frontend:0.12
 ADD proxy-config-q2.json proxy-config.json
 COPY build ./static
 
