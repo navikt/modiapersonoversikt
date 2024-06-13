@@ -29,7 +29,7 @@ jobs:
             - name: Build
               run: npm run build:gcp
             - name: Publish Docker image
-              if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/gcp' # || github.ref = 'refs/heads/master'
+              if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/master'
               uses: nais/docker-build-push@v0
               id: docker-build-push
               with:
@@ -53,4 +53,22 @@ jobs:
                   PRINT_PAYLOAD: true
                   CLUSTER: dev-gcp
                   RESOURCE: .nais/dev.yaml
+                  VAR: version=${{ github.sha }},image=${{ needs.build.outputs.image }}
+
+    deploy-prod:
+        name: Deploy to prod-gcp
+        needs: build
+        # TODO Remove deploy from dev
+        if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/master'
+        runs-on: ubuntu-latest
+        permissions:
+          contents: read
+          id-token: write
+        steps:
+            - uses: actions/checkout@v4
+            - uses: nais/deploy/actions/deploy@v2
+              env:
+                  PRINT_PAYLOAD: true
+                  CLUSTER: prod-gcp
+                  RESOURCE: .nais/prod-gcp.yaml
                   VAR: version=${{ github.sha }},image=${{ needs.build.outputs.image }}
