@@ -11,12 +11,18 @@
           content="Intern arbeidsflate. Brukes som personoppslag og dialogverktøy av veiledere og saksbehandlere i NAV">
     <link rel="shortcut icon" href="./favicon.ico">
 
-    <script src="%VITE_HODE_URL_V2%/latest/dist/bundle.js"></script>
-    <link rel="stylesheet" href="%VITE_HODE_URL_V2%/latest/dist/index.css" />
+    <slot not-environment="production">
+        <script src="%VITE_HODE_URL_V2%/dev/latest/dist/bundle.js"></script>
+        <link rel="stylesheet" href="%VITE_HODE_URL_V2%/dev/latest/dist/index.css" />
+    </slot>
+    <slot environment="production">
+        <script src="%VITE_HODE_URL_V2%/prod/latest/dist/bundle.js"></script>
+        <link rel="stylesheet" href="%VITE_HODE_URL_V2%/prod/latest/dist/index.css" />
+    </slot>
 
     <script unleash toggles="modiapersonoversikt.enable-faro">
       const applicationFeatureToggles = {
-          enableFaro: "$unleash{modiapersonoversikt.enable-faro}"
+          enableFaro: unleash && unleash["modiapersonoversikt_enable-faro"]
       };
       window.applicationFeatureToggles = applicationFeatureToggles;
     </script>

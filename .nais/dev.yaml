@@ -75,5 +75,7 @@ spec:
       value: "no-referrer"
     - name: APP_ENVIRONMENT_NAME
       value: q2
+    - name: ENVIRONMENT
+      value: ${APP_ENVIRONMENT_NAME}
     - name: UNLEASH_ENVIRONMENT
       value: "development"

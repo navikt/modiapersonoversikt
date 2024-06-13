@@ -29,7 +29,7 @@
         "connect-src": [
             "'self'",
             "amplitude.nav.no",
-            "wss://veilederflatehendelser.intern.dev.nav.no",
+            "wss://modiaeventdistribution.intern.dev.nav.no",
             "wss://modiapersonoversikt-draft.intern.dev.nav.no",
             "https://telemetry.ekstern.dev.nav.no"
         ],
