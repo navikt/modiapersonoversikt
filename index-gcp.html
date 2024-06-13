@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="no" data-hj-suppress>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#222222">
+    <meta name="author" content="NAV">
+    <meta property="og:title" content="Modia Personoversikt">
+    <meta property="og:site_name" content="NAV Modia Personoversikt">
+    <meta property="og:description"
+          content="Intern arbeidsflate. Brukes som personoppslag og dialogverktøy av veiledere og saksbehandlere i NAV">
+    <link rel="shortcut icon" href="./favicon.ico">
+
+    <slot not-environment="production">
+        <script src="%VITE_HODE_URL_V2%/dev/latest/dist/bundle.js"></script>
+        <link rel="stylesheet" href="%VITE_HODE_URL_V2%/dev/latest/dist/index.css" />
+    </slot>
+    <slot environment="production">
+        <script src="%VITE_HODE_URL_V2%/prod/latest/dist/bundle.js"></script>
+        <link rel="stylesheet" href="%VITE_HODE_URL_V2%/prod/latest/dist/index.css" />
+    </slot>
+
+    <script unleash toggles="modiapersonoversikt.enable-faro">
+      const applicationFeatureToggles = {
+          enableFaro: unleash && unleash["modiapersonoversikt_enable-faro"]
+      };
+      window.applicationFeatureToggles = applicationFeatureToggles;
+    </script>
+
+    <script type="application/javascript">
+      const global = globalThis;
+    </script>
+
+    <script type="module" src="/src/index.tsx"></script>
+
+    <title>Modia Personoversikt</title>
+</head>
+<body>
+<noscript>
+    You need to enable JavaScript to run this app.
+</noscript>
+<div id="root"></div>
+
+</body>
+</html>

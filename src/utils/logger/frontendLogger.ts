@@ -1,6 +1,4 @@
 import { isDevelopment, isTest } from '../environment';
-import * as Sentry from '@sentry/react';
-import md5 from 'md5';
 import { detect } from 'detect-browser';
 import { useEffect } from 'react';
 import { erKontaktsenter } from '../enheter-utils';
@@ -26,9 +24,11 @@ interface ValuePairs {
     [name: string]: string | number | boolean | object | undefined;
 }
 
+const faro = window.faro;
+
 function frontendLoggerIsInitialized(): boolean {
-    if (!window['frontendlogger']) {
-        console.warn('frontend-logger er ikke satt opp riktig');
+    if (!faro) {
+        console.warn('grafana faro er ikke satt opp riktig');
         return false;
     }
     return true;
@@ -42,52 +42,27 @@ export function loggEvent(action: string, location: string, extraTags?: ValuePai
     if (!uselogger()) {
         return;
     }
-    const event = {
-        table: 'modiapersonoversikt',
-        fields: { ...fields, identHash: md5(ident) },
-        tags: {
-            action: action,
-            location: location,
-            erKontaktsenter: erKontaktsenter(enhet),
-            ...extraTags
-        }
-    };
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-    window['frontendlogger'].event(
-        event.table,
-        emptyStringToUndefined(event.fields),
-        emptyStringToUndefined(event.tags)
-    );
+    faro?.api.pushEvent(action, {
+        ...fields,
+        location: location,
+        erKontaktsenter: erKontaktsenter(enhet).toString(),
+        ...extraTags
+    });
 }
 
 export function loggInfo(message: string, ekstraFelter?: ValuePairs) {
     if (isTest()) {
         return;
     }
-    const info = {
-        message: message,
-        ...ekstraFelter
-    };
-    console.info(info);
-    if (uselogger()) {
-        Sentry.captureMessage(message, { level: 'info', extra: ekstraFelter });
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-        window['frontendlogger'].info(info);
-    }
+    console.info(message, ekstraFelter);
 }
-export function loggWarning(
-    error: Error,
-    message?: string,
-    ekstraFelter?: ValuePairs,
-    ekstraTagsLoggEvent?: ValuePairs
-) {
+export function loggWarning(error: Error, message?: string, ekstraFelter?: ValuePairs) {
     if (isTest()) {
         return;
     }
     const browser = detect();
     const msg = `${message ? message + ': ' : ''} ${error.name} ${error.message}`;
     const info = {
-        message: msg,
         url: document.URL,
         error: error.stack,
         browser: (browser && browser.name) || undefined,
@@ -95,22 +70,16 @@ export function loggWarning(
         enhet: enhet,
         ...ekstraFelter
     };
-    console.warn(info);
-    if (uselogger()) {
-        loggEvent('Warning', 'Logger', ekstraTagsLoggEvent);
-        Sentry.captureException(error, { level: 'warning', extra: ekstraFelter });
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-        window['frontendlogger'].warn(info);
-    }
+    console.warn(msg, info);
 }
 
-export function loggError(error: Error, message?: string, ekstraFelter?: ValuePairs, ekstraTagsLoggEvent?: ValuePairs) {
+export function loggError(error: Error, message?: string, ekstraFelter?: ValuePairs) {
     if (isTest()) {
         return;
     }
     const browser = detect();
+    const logLine = `${message ? message + ': ' : ''} ${error.name} ${error.message}`;
     const info = {
-        message: `${message ? message + ': ' : ''} ${error.name} ${error.message}`,
         url: document.URL,
         error: error.stack,
         browser: (browser && browser.name) || undefined,
@@ -118,21 +87,21 @@ export function loggError(error: Error, message?: string, ekstraFelter?: ValuePa
         enhet: enhet,
         ...ekstraFelter
     };
-    console.error(info);
-    if (uselogger()) {
-        loggEvent('Error', 'Logger', ekstraTagsLoggEvent);
-        Sentry.captureException(error, { level: 'error', extra: { ...ekstraFelter, ...ekstraTagsLoggEvent } });
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-        window['frontendlogger'].error(info);
-    }
+    console.error(logLine, info);
 }
 
 export function emptyStringToUndefined(valuePairs: ValuePairs) {
     return Object.keys(valuePairs).reduce(
-        (acc: ValuePairs, key: string) => ({
-            ...acc,
-            [key]: valuePairs[key] === '' ? undefined : valuePairs[key]
-        }),
-        {}
+        (acc, key: string) => {
+            const value = valuePairs[key] === '' ? undefined : valuePairs[key]?.toString();
+
+            return value
+                ? {
+                      ...acc,
+                      [key]: value
+                  }
+                : acc;
+        },
+        {} as Record<string, string>
     );
 }
