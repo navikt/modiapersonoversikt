@@ -165,22 +165,11 @@ export interface TilrettelagtKommunikasjon {
     tegnsprak: Array<KodeBeskrivelse<string>>;
 }
 
-export enum Handling {
-    LES = 'LES',
-    KOMMUNISER = 'KOMMUNISER',
-    SKRIV = 'SKRIV'
-}
-
-export interface OmraadeMedHandling<T> {
-    omraade: KodeBeskrivelse<T>;
-    handling: Array<Handling>;
-}
-
 export interface Fullmakt {
     motpartsPersonident: string;
     motpartsPersonNavn: Navn;
     motpartsRolle: FullmaktsRolle;
-    omrade: Array<OmraadeMedHandling<string>>;
+    omrade: Array<KodeBeskrivelse<string>>;
     gyldighetsPeriode: GyldighetsPeriode | null;
     digitalKontaktinformasjonTredjepartsperson: DigitalKontaktinformasjonTredjepartsperson | null;
 }
@@ -325,6 +314,5 @@ export enum InformasjonElement {
     BANKKONTO = 'BANKKONTO',
     VEILEDER_ROLLER = 'VEILEDER_ROLLER',
     NORG_NAVKONTOR = 'NORG_NAVKONTOR',
-    NORG_KONTAKTINFORMASJON = 'NORG_KONTAKTINFORMASJON',
-    FULLMAKT = 'FULLMAKT'
+    NORG_KONTAKTINFORMASJON = 'NORG_KONTAKTINFORMASJON'
 }

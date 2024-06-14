@@ -4,7 +4,6 @@ import {
     ForelderBarnRelasjon,
     ForelderBarnRelasjonRolle,
     FullmaktsRolle,
-    Handling,
     Kjonn,
     LocalDate,
     LocalDateTime,
@@ -340,18 +339,8 @@ export const aremark: Person = {
             motpartsRolle: FullmaktsRolle.FULLMEKTIG,
             omrade: [
                 {
-                    omraade: {
-                        kode: 'AAP',
-                        beskrivelse: 'Arbeidsavklaringspenger'
-                    },
-                    handling: [Handling.LES, Handling.KOMMUNISER]
-                },
-                {
-                    omraade: {
-                        kode: 'DAG',
-                        beskrivelse: 'Dagpenger'
-                    },
-                    handling: [Handling.LES, Handling.KOMMUNISER, Handling.SKRIV]
+                    kode: '*',
+                    beskrivelse: ''
                 }
             ],
             gyldighetsPeriode: {
@@ -373,11 +362,8 @@ export const aremark: Person = {
             motpartsRolle: FullmaktsRolle.FULLMEKTIG,
             omrade: [
                 {
-                    omraade: {
-                        kode: '*',
-                        beskrivelse: ''
-                    },
-                    handling: [Handling.KOMMUNISER, Handling.LES, Handling.SKRIV]
+                    kode: '*',
+                    beskrivelse: ''
                 }
             ],
             gyldighetsPeriode: {

@@ -7,7 +7,7 @@ import {
     DigitalKontaktinformasjonTredjepartsperson,
     Fullmakt as FullmaktInterface,
     InformasjonElement,
-    OmraadeMedHandling
+    KodeBeskrivelse
 } from '../../PersondataDomain';
 import { hentNavn } from '../../visittkort-utils';
 import GyldighetsPeriode from '../GyldighetsPeriode';
@@ -29,11 +29,11 @@ const GraTekst = styled.div`
     }
 `;
 
-function getOmrade(omrader: OmraadeMedHandling<string>[]): string {
-    if (omrader.map((omrade) => omrade.omraade.kode).includes('*')) {
+function getOmrade(omrader: KodeBeskrivelse<string>[]): string {
+    if (omrader.map((omrade) => omrade.kode).includes('*')) {
         return 'alle statlige ytelser';
     }
-    return omrader.map((omrade) => `${omrade.omraade.beskrivelse} (${omrade.handling.join(', ')})`).join(', ');
+    return omrader.map((omrade) => omrade.beskrivelse).join(', ');
 }
 
 function KontaktinformasjonFullmakt(props: { kontaktinformasjon: DigitalKontaktinformasjonTredjepartsperson | null }) {
@@ -88,10 +88,10 @@ function Fullmakter({ feilendeSystemer, fullmakter }: Props) {
                 <Fullmakt
                     key={index}
                     fullmakt={fullmakt}
-                    harFeilendeSystem={
-                        harFeilendeSystemer(feilendeSystemer, InformasjonElement.PDL_TREDJEPARTSPERSONER) ||
-                        harFeilendeSystemer(feilendeSystemer, InformasjonElement.FULLMAKT)
-                    }
+                    harFeilendeSystem={harFeilendeSystemer(
+                        feilendeSystemer,
+                        InformasjonElement.PDL_TREDJEPARTSPERSONER
+                    )}
                 />
             ))}
         </VisittkortGruppe>
