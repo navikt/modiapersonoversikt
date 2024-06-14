@@ -24,25 +24,26 @@ spec:
     enabled: true
   resources:
     requests:
-      cpu: 200m
-      memory: 512Mi
+      cpu: 600m
+      memory: 1024Mi
     limits:
       cpu: 3000m
-      memory: 1536Mi
+      memory: 2048Mi
   ingresses:
-    - https://modiapersonoversikt.intern.dev.nav.no
+    - https://modiapersonoversikt.intern.nav.no
+    - https://modiaflate.intern.nav.no/landingpage
   replicas:
     min: 2
     max: 4
-    cpuThresholdPercentage: 60
+    cpuThresholdPercentage: 50
   azure:
     application:
       enabled: true
-      tenant: trygdeetaten.no
+      tenant: nav.no
       allowAllUsers: false
       claims:
         groups:
-          - id: "67a06857-0028-4a90-bf4c-9c9a92c7d733" # 0000-GA-BD06_ModiaGenerellTilgang
+          - id: "ea34edea-1e80-4759-a1d2-fbe696cf1709" # 0000-GA-BD06_ModiaGenerellTilgang
     sidecar:
       enabled: true
       autoLogin: true
@@ -50,11 +51,6 @@ spec:
         - /internal/*
         - /proxy/**
   accessPolicy:
-    inbound:
-      rules:
-        - application: azure-token-generator
-          namespace: aura
-          cluster: dev-gcp
     outbound:
       rules:
         - application: modiapersonoversikt-innstillinger
@@ -63,7 +59,7 @@ spec:
         - application: modiacontextholder
       external:
         - host: personoversikt-unleash-api.nav.cloud.nais.io
-        - host: modiapersonoversikt-api-q1.dev-fss-pub.nais.io
+        - host: modiapersonoversikt-api.prod-fss-pub.nais.io
   envFrom:
     - secret: modiapersonoversikt-unleash-api-token
   env:
@@ -74,12 +70,12 @@ spec:
     - name: REFERRER_POLICY
       value: "no-referrer"
     - name: APP_ENVIRONMENT_NAME
-      value: q2
+      value: prod
     - name: ENVIRONMENT
       value: ${APP_ENVIRONMENT_NAME}
     - name: UNLEASH_ENVIRONMENT
       value: "development"
     - name: PUBLIC_DRAFT_WS_URL
-      value: wss://modiapersonoversikt-draft.intern.dev.nav.no
+      value: wss://modiapersonoversikt-draft.intern.nav.no
     - name: CONFIG_PATH
-      value: "./proxy-config-dev.json"
+      value: "./proxy-config-prod.json"

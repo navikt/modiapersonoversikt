@@ -31,8 +31,6 @@ spec:
       memory: 2048Mi
   ingresses:
     - https://app.adeo.no/modiapersonoversikt
-    - https://modiapersonoversikt.intern.nav.no
-    - https://modiaflate.intern.nav.no/landingpage
   replicas:
     min: 2
     max: 4

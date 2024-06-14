@@ -20,6 +20,9 @@
         <link rel="stylesheet" href="%VITE_HODE_URL_V2%/prod/latest/dist/index.css" />
     </slot>
 
+    <script env-vars prefix="PUBLIC_">
+    </script>
+
     <script unleash toggles="modiapersonoversikt.enable-faro">
       const applicationFeatureToggles = {
           enableFaro: unleash && unleash["modiapersonoversikt_enable-faro"]

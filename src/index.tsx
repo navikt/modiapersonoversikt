@@ -9,7 +9,8 @@ import { setupTimeSpentMetrics } from './utils/timeSpentMetrics';
 declare global {
     interface Window {
         erChatvisning: boolean;
-        applicationFeatureToggles: Record<string, never>;
+        applicationFeatureToggles: Record<string, boolean>;
+        __ENV__: Record<string, string>;
     }
 }
 window.erChatvisning = (document.location.search + document.location.hash).includes('chatvisning');
