@@ -13,8 +13,8 @@
             "scope": "api://prod-gcp.personoversikt.modiapersonoversikt-innstillinger/.default"
         },
         "modiacontextholder": {
-            "url": "http://modiacontextholder.personoversikt.svc.cluster.local/modiacontextholder",
-            "scope": "api://prod-gcp.personoversikt.modiacontextholder/.default"
+            "url": "https://modiacontextholder.prod-fss-pub.nais.io/modiacontextholder",
+            "scope": "api://prod-fss.personoversikt.modiacontextholder/.default"
         },
         "azure-api": {
             "url": "https://modiapersonoversikt-api.prod-fss-pub.nais.io/modiapersonoversikt-api/rest",
