@@ -10,7 +10,6 @@ metadata:
 spec:
   image: "{{image}}"
   port: 3000
-  webproxy: true
   liveness:
     path: /internal/liveness
     initialDelay: 20
