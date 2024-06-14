@@ -1,0 +1,80 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: modiapersonoversikt
+  namespace: personoversikt
+  labels:
+    team: personoversikt
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "8k"
+spec:
+  image: "{{image}}"
+  port: 3000
+  liveness:
+    path: /internal/liveness
+    initialDelay: 20
+  readiness:
+    path: /internal/readiness
+    initialDelay: 20
+  prometheus:
+    enabled: false
+    path: /internal/metrics
+  secureLogs:
+    enabled: true
+  resources:
+    requests:
+      cpu: 600m
+      memory: 1024Mi
+    limits:
+      cpu: 3000m
+      memory: 2048Mi
+  ingresses:
+    - https://modiapersonoversikt.intern.nav.no
+    - https://modiaflate.intern.nav.no/landingpage
+  replicas:
+    min: 2
+    max: 4
+    cpuThresholdPercentage: 50
+  azure:
+    application:
+      enabled: true
+      tenant: nav.no
+      allowAllUsers: false
+      claims:
+        groups:
+          - id: "ea34edea-1e80-4759-a1d2-fbe696cf1709" # 0000-GA-BD06_ModiaGenerellTilgang
+    sidecar:
+      enabled: true
+      autoLogin: true
+      autoLoginIgnorePaths:
+        - /internal/*
+        - /proxy/**
+  accessPolicy:
+    outbound:
+      rules:
+        - application: modiapersonoversikt-innstillinger
+        - application: modiapersonoversikt-skrivestotte
+        - application: modiapersonoversikt-draft
+        - application: modiacontextholder
+      external:
+        - host: personoversikt-unleash-api.nav.cloud.nais.io
+        - host: modiapersonoversikt-api.prod-fss-pub.nais.io
+  envFrom:
+    - secret: modiapersonoversikt-unleash-api-token
+  env:
+    - name: APP_NAME
+      value: "modiapersonoversikt"
+    - name: APP_VERSION
+      value: "{{ version }}"
+    - name: REFERRER_POLICY
+      value: "no-referrer"
+    - name: APP_ENVIRONMENT_NAME
+      value: prod
+    - name: ENVIRONMENT
+      value: ${APP_ENVIRONMENT_NAME}
+    - name: UNLEASH_ENVIRONMENT
+      value: "development"
+    - name: PUBLIC_DRAFT_WS_URL
+      value: wss://modiapersonoversikt-draft.intern.nav.no
+    - name: CONFIG_PATH
+      value: "./proxy-config-prod.json"

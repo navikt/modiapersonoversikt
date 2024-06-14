@@ -5,6 +5,7 @@ import WebSocketImpl, { Status } from '../../../utils/websocket-impl';
 import { FetchError } from '../../../api/api';
 import { getEnvFromHost } from '../../../utils/environment';
 import dayjs, { Dayjs } from 'dayjs';
+import config from '../../../config';
 
 export interface DraftContext {
     [key: string]: string;
@@ -39,7 +40,9 @@ interface WsConfirmation {
 const okCloseCodes = Object.values(WebSocketImpl.Codes);
 
 const getWsUrl = () => {
+    if (import.meta.env.VITE_DRAFT_URL_WS) return import.meta.env.VITE_DRAFT_URL_WS as string;
     if (import.meta.env.VITE_DRAFT_URL) return (import.meta.env.VITE_DRAFT_URL as string).replace('http', 'ws');
+    if (config.draftWsUrl) return config.draftWsUrl;
     const env = getEnvFromHost();
     switch (env) {
         case 'prod':
