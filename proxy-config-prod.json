@@ -2,23 +2,23 @@
     "proxy": {
         "modia-skrivestotte": {
             "url": "http://modiapersonoversikt-skrivestotte.personoversikt.svc.cluster.local",
-            "scope": "api://dev-gcp.personoversikt.modiapersonoversikt-skrivestotte/.default"
+            "scope": "api://prod-gcp.personoversikt.modiapersonoversikt-skrivestotte/.default"
         },
         "modia-draft": {
             "url": "http://modiapersonoversikt-draft.personoversikt.svc.cluster.local",
-            "scope": "api://dev-gcp.personoversikt.modiapersonoversikt-draft/.default"
+            "scope": "api://prod-gcp.personoversikt.modiapersonoversikt-draft/.default"
         },
         "modia-innstillinger": {
             "url": "http://modiapersonoversikt-innstillinger.personoversikt.svc.cluster.local",
-            "scope": "api://dev-gcp.personoversikt.modiapersonoversikt-innstillinger/.default"
+            "scope": "api://prod-gcp.personoversikt.modiapersonoversikt-innstillinger/.default"
         },
         "modiacontextholder": {
             "url": "http://modiacontextholder.personoversikt.svc.cluster.local/modiacontextholder",
-            "scope": "api://dev-gcp.personoversikt.modiacontextholder/.default"
+            "scope": "api://prod-gcp.personoversikt.modiacontextholder/.default"
         },
         "azure-api": {
             "url": "https://modiapersonoversikt-api.prod-fss-pub.nais.io/modiapersonoversikt-api/rest",
-            "scope": "api://dev-fss.personoversikt.modiapersonoversikt-api-prod/.default"
+            "scope": "api://prod-fss.personoversikt.modiapersonoversikt-api-prod/.default"
         }
     },
     "contentSecurityPolicy": {
