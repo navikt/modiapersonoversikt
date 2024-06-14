@@ -38,7 +38,7 @@ jobs:
           RESOURCE: .nais/unleash/unleash-apitoken-preprod.yaml
 
   deploy-unleash-api-token-to-prod-gcp:
-    if: github.ref == 'refs/heads/dev'
+    if: github.ref == 'refs/heads/master'
     name: Deploy unleash api-token to prod-gcp
     runs-on: ubuntu-latest
     permissions:

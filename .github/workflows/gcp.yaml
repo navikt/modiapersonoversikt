@@ -41,7 +41,7 @@ jobs:
     deploy-dev:
         name: Deploy to dev-gcp
         needs: build
-        if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/gcp'
+        if: github.ref == 'refs/heads/dev'
         runs-on: ubuntu-latest
         permissions:
           contents: read
