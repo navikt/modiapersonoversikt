@@ -18,7 +18,7 @@
         },
         "azure-api": {
             "url": "https://modiapersonoversikt-api.prod-fss-pub.nais.io/modiapersonoversikt-api/rest",
-            "scope": "api://prod-fss.personoversikt.modiapersonoversikt-api-prod/.default"
+            "scope": "api://prod-fss.personoversikt.modiapersonoversikt-api/.default"
         }
     },
     "contentSecurityPolicy": {
