@@ -9,6 +9,7 @@
     font-size: 1.2em;
     padding: 0;
     margin-right: 0.5em;
+    background-color: white;
 
     span {
         color: @navMorkGra;
@@ -17,16 +18,17 @@
         border-radius: 40px;
         text-align: center;
         vertical-align: middle;
-        background-color: #fff;
         display: inline-block;
-        padding-top: 9px;
+        padding-top: 6px;
         pointer-events: none;
     }
-    &:hover span {
+    &:hover {
         background-color: @navBlaDarken20;
         outline: none;
-        color: white;
         cursor: pointer;
+        span {
+            color: white;
+        }
     }
 
     &:focus {
@@ -34,21 +36,5 @@
         box-shadow: 0 0 0 3px #ffbd66;
     }
     &:active {
-        .personsok-pil {
-            border-top: none;
-            border-left: 7px solid transparent;
-            border-right: 7px solid transparent;
-            border-bottom: 7px solid currentColor;
-        }
-    }
-    .personsok-pil {
-        display: block;
-        width: 0;
-        height: 0;
-        padding: 0;
-        margin: 0 auto;
-        border-left: 7px solid transparent;
-        border-right: 7px solid transparent;
-        border-top: 7px solid currentColor;
     }
 }
