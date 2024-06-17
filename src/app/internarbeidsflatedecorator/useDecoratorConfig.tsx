@@ -52,7 +52,7 @@ export function useDecoratorConfig() {
 const etterSokefelt = `
         <div class="knapper_container">
           <button class="personsok-button" id="toggle-personsok" aria-label="Åpne avansert søk" title="Åpne avansert søk">
-            <span> A <span class="personsok-pil"></span></span>
+            <span> A </span>
           </button>
           <button class="${OppdateringsloggButtonId}" id="${OppdateringsloggButtonId}" title="Åpne oppdateringslogg">
             <div class="oppdateringslogg__ikon">
