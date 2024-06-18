@@ -5,8 +5,8 @@ import DokumentVisning from './dokumentvisning/SaksDokumentVisning';
 import { useQueryParams } from '../../../../utils/url-utils';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
-import SetFnrIRedux from '../../../PersonOppslagHandler/SetFnrIRedux';
 import { getSaksdokumentUrl } from './dokumentvisning/getSaksdokumentUrl';
+import VentPaaPersonLastet from '../../../../components/VentPaaPersonLastet';
 
 interface Props {
     fnr: string;
@@ -37,11 +37,12 @@ function SaksDokumentEgetVindu(props: Props) {
     }
     return (
         <>
-            <SetFnrIRedux fnr={props.fnr} />
-            <DokumentVisning
-                fnr={props.fnr}
-                url={getSaksdokumentUrl(props.fnr, queryParams.journalpost ?? null, queryParams.dokument)}
-            />
+            <VentPaaPersonLastet fnr={props.fnr}>
+                <DokumentVisning
+                    fnr={props.fnr}
+                    url={getSaksdokumentUrl(props.fnr, queryParams.journalpost ?? null, queryParams.dokument)}
+                />
+            </VentPaaPersonLastet>
         </>
     );
 }
