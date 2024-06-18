@@ -18,7 +18,7 @@
         },
         "azure-api": {
             "url": "http://modiapersonoversikt-api.personoversikt.svc.cluster.local/modiapersonoversikt-api/rest",
-            "scope": "api://dev-fss.personoversikt.modiapersonoversikt-api-q1/.default"
+            "scope": "api://dev-gcp.personoversikt.modiapersonoversikt-api/.default"
         }
     },
     "contentSecurityPolicy": {
