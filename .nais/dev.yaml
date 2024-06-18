@@ -60,6 +60,7 @@ spec:
         - application: modiapersonoversikt-skrivestotte
         - application: modiapersonoversikt-draft
         - application: modiacontextholder
+        - application: modiapersonoversikt-api
       external:
         - host: personoversikt-unleash-api.nav.cloud.nais.io
         - host: modiapersonoversikt-api-q1.dev-fss-pub.nais.io
