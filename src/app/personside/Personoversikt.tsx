@@ -12,6 +12,7 @@ import NyIdentModal from './NyIdentModal';
 import { useGjeldendeBrukerLastet } from '../../redux/gjeldendeBruker/types';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import useTimeout from '../../utils/hooks/use-timeout';
+import VentPaaPersonLastet from '../../components/VentPaaPersonLastet';
 
 function Personoversikt({ fnr }: { fnr: string }) {
     const [loadTimeout, setLoadTimeout] = useState(false);
@@ -48,4 +49,10 @@ function Personoversikt({ fnr }: { fnr: string }) {
     });
 }
 
-export default Personoversikt;
+const PersonoversiktWrapper = ({ fnr }: { fnr: string }) => (
+    <VentPaaPersonLastet fnr={fnr}>
+        <Personoversikt fnr={fnr} />
+    </VentPaaPersonLastet>
+);
+
+export default PersonoversiktWrapper;
