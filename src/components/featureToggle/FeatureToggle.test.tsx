@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 import IfFeatureToggleOff from './IfFeatureToggleOff';
-import LazySpinner from '../LazySpinner';
 import IfFeatureToggleOn from './IfFeatureToggleOn';
 import TestProvider from '../../test/Testprovider';
 import { getTestStore, mockReactQuery, setupReactQueryMocks } from '../../test/testStore';
@@ -15,40 +14,42 @@ test('viser innhold i FeatureToggle dersom feature-toggle er på', () => {
     setupReactQueryMocks();
     mockReactQuery(featuretogglesResource.useFetch, { [toggleId]: true });
 
-    const result = mount(
+    const { container } = render(
         <TestProvider customStore={testStore}>
             <IfFeatureToggleOn toggleID={toggleId}>Jeg er på</IfFeatureToggleOn>
             <IfFeatureToggleOff toggleID={toggleId}>Jeg er av</IfFeatureToggleOff>
         </TestProvider>
     );
 
-    expect(result.text()).toContain('Jeg er på');
+    expect(container).toHaveTextContent('Jeg er på');
 });
 
 test('viser innhold i IfFeatureToggleOff dersom feature-toggle er av', () => {
     setupReactQueryMocks();
     mockReactQuery(featuretogglesResource.useFetch, { [toggleId]: false });
 
-    const result = mount(
+    const { container } = render(
         <TestProvider customStore={testStore}>
             <IfFeatureToggleOn toggleID={toggleId}>Jeg er på</IfFeatureToggleOn>
             <IfFeatureToggleOff toggleID={toggleId}>Jeg er av</IfFeatureToggleOff>
         </TestProvider>
     );
 
-    expect(result.text()).toContain('Jeg er av');
+    expect(container).toHaveTextContent('Jeg er av');
 });
 
 test('viser LazySpinner dersom feature-toggle ikke er satt', () => {
     setupReactQueryMocks();
     mockReactQuery(featuretogglesResource.useFetch, { [toggleId]: false }, { isLoading: true });
 
-    const result = mount(
+    const { container, rerender } = render(
         <TestProvider customStore={testStore}>
             <IfFeatureToggleOn toggleID={toggleId}>Jeg er på</IfFeatureToggleOn>
             <IfFeatureToggleOff toggleID={toggleId}>Jeg er av</IfFeatureToggleOff>
         </TestProvider>
     );
 
-    expect(result.contains(<LazySpinner type="S" delay={1000} />)).toBe(true);
+    rerender();
+
+    expect(container).toMatchSnapshot();
 });

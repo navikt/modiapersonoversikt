@@ -1,0 +1,45 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`lager tabell basert på input 1`] = `
+<table
+  role="table"
+>
+  <thead
+    role="rowgroup"
+  >
+    <tr
+      role="row"
+    >
+      <th
+        role="columnheader"
+      >
+        kolonne 1
+      </th>
+      <th
+        role="columnheader"
+      >
+        kolonne 2
+      </th>
+    </tr>
+  </thead>
+  <tbody
+    data-testid="table-tbody"
+    role="rowgroup"
+  >
+    <tr
+      role="row"
+    >
+      <td
+        role="cell"
+      >
+        rad1 kolonne 1
+      </td>
+      <td
+        role="cell"
+      >
+        rad1 kolonne 2
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;

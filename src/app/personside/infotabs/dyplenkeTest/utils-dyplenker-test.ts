@@ -1,7 +1,7 @@
-import { ReactWrapper } from 'enzyme';
+import { getByRole } from '@testing-library/react';
 
-export function getAktivTab(infoTabs: ReactWrapper) {
-    return infoTabs.find('button[role="tab"][aria-selected=true]').text();
+export function getAktivTab(infoTabs: HTMLElement) {
+    return getByRole(infoTabs, 'tab', { selected: true });
 }
 
 export const meldingerTest = {

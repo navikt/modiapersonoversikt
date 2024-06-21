@@ -743,6 +743,7 @@ exports[`Om foreldrepenger matcher snapshot 1`] = `
                     </tr>
                   </thead>
                   <tbody
+                    data-testid="table-tbody"
                     role="rowgroup"
                   >
                     <tr
@@ -1269,6 +1270,7 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
                   </tr>
                 </thead>
                 <tbody
+                  data-testid="table-tbody"
                   role="rowgroup"
                 >
                   <tr
@@ -1409,6 +1411,7 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
                   </tr>
                 </thead>
                 <tbody
+                  data-testid="table-tbody"
                   role="rowgroup"
                 >
                   <tr
@@ -1829,6 +1832,7 @@ exports[`Om sykepenger matcher snapshot 1`] = `
                   </tr>
                 </thead>
                 <tbody
+                  data-testid="table-tbody"
                   role="rowgroup"
                 >
                   <tr
@@ -2043,6 +2047,7 @@ exports[`Om sykepenger matcher snapshot 1`] = `
               </tr>
             </thead>
             <tbody
+              data-testid="table-tbody"
               role="rowgroup"
             >
               <tr
@@ -2150,6 +2155,7 @@ exports[`Om sykepenger matcher snapshot 1`] = `
               </tr>
             </thead>
             <tbody
+              data-testid="table-tbody"
               role="rowgroup"
             >
               <tr

@@ -729,6 +729,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
                   </tr>
                 </thead>
                 <tbody
+                  data-testid="table-tbody"
                   role="rowgroup"
                 >
                   <tr

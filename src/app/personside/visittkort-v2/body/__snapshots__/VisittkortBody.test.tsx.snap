@@ -187,7 +187,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       <div
         className="c2"
       >
-        
         <h3
           className="typo-undertittel"
         >
@@ -607,7 +606,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <div
           className="c2"
         >
-          
           <h4
             className="typo-element"
           >
@@ -786,7 +784,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <div
           className="c2"
         >
-          
           <h4
             className="typo-element"
           >
@@ -838,7 +835,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <div
           className="c2"
         >
-          
           <h4
             className="typo-element"
           >
@@ -889,7 +885,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       <div
         className="c2"
       >
-        
         <h3
           className="typo-undertittel"
         >
@@ -1110,9 +1105,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       >
         <div
           className="c2"
-        >
-          
-        </div>
+        />
         <div
           className="c7"
         >
@@ -1171,9 +1164,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       >
         <div
           className="c2"
-        >
-          
-        </div>
+        />
         <p
           className="typo-normal"
         >
@@ -1192,9 +1183,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       >
         <div
           className="c2"
-        >
-          
-        </div>
+        />
         <p
           className="typo-normal"
         >
@@ -1213,7 +1202,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       <div
         className="c2"
       >
-        
         <h3
           className="typo-undertittel"
         >
@@ -1478,9 +1466,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       >
         <div
           className="c2"
-        >
-          
-        </div>
+        />
         <p
           className="typo-normal"
         >
@@ -1558,7 +1544,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <div
           className="c2"
         >
-          
           <h4
             className="typo-element"
           >
@@ -1615,7 +1600,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <div
           className="c2"
         >
-          
           <h4
             className="typo-element"
           >
@@ -1802,9 +1786,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       >
         <div
           className="c2"
-        >
-          
-        </div>
+        />
         <div>
           <div
             className="c7"

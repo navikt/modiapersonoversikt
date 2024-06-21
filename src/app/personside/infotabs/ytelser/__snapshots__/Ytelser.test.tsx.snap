@@ -773,6 +773,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                         </tr>
                       </thead>
                       <tbody
+                        data-testid="table-tbody"
                         role="rowgroup"
                       >
                         <tr
@@ -987,6 +988,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                     </tr>
                   </thead>
                   <tbody
+                    data-testid="table-tbody"
                     role="rowgroup"
                   >
                     <tr
@@ -1094,6 +1096,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                     </tr>
                   </thead>
                   <tbody
+                    data-testid="table-tbody"
                     role="rowgroup"
                   >
                     <tr

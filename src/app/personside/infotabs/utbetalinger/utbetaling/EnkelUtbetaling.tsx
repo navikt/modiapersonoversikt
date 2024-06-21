@@ -65,6 +65,7 @@ function EnkelUtbetaling(props: Props) {
         if (props.erValgtIUrl) {
             utbetalingRef.current && utbetalingRef.current.focus();
             ekspanderYtelse(true);
+            setYtelseIFokus();
         }
     });
 

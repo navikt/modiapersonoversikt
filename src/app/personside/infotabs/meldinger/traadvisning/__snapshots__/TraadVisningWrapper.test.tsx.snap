@@ -1056,7 +1056,6 @@ exports[`Viser traad med verktøylinje 1`] = `
             >
               Beskrivelse
             </label>
-            
             <div
               className="textarea--medMeta__wrapper"
             >
@@ -1108,7 +1107,6 @@ exports[`Viser traad med verktøylinje 1`] = `
           aria-invalid={false}
           className="skjemagruppe inputPanelGruppe blokk-xxs"
         >
-          
           <div
             className="inputPanelGruppe__inner"
           >

@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`viser LazySpinner dersom feature-toggle ikke er satt 1`] = `<div />`;

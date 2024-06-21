@@ -1,6 +1,6 @@
 import './extra-polyfills';
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import './index.less';
 import '@navikt/ds-css';
 import AppContainer from './app/AppContainer';
@@ -26,4 +26,8 @@ if (import.meta.env.DEV) {
 if (import.meta.env.VITE_MOCK_ENABLED === 'true') {
     await import('./mock');
 }
-ReactDOM.render(<AppContainer />, document.getElementById('root') as HTMLElement);
+
+const container = document.getElementById('root');
+const root = createRoot(container!);
+
+root.render(<AppContainer />);

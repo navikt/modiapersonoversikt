@@ -1,5 +1,5 @@
 import React, { createElement, FormEvent, useState } from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import RawModal from 'nav-frontend-modal';
 import KnappBase from 'nav-frontend-knapper';
 import { Input } from 'nav-frontend-skjema';
@@ -57,17 +57,18 @@ export function renderPopup<RESULT, PROPS>(
     return new Promise((resolve) => {
         const tmp = document.createElement('div');
         document.body.appendChild(tmp);
+        const root = createRoot(tmp);
 
         const close: (result: RESULT) => void = (result: RESULT) => {
-            unmountComponentAtNode(tmp);
+            root.unmount();
             document.body.removeChild(tmp);
             resolve(result);
         };
         const component = createElement(componentType, { ...props, close });
         if (queryClient) {
-            render(<QueryClientProvider client={queryClient}>{component}</QueryClientProvider>, tmp);
+            root.render(<QueryClientProvider client={queryClient}>{component}</QueryClientProvider>);
         } else {
-            render(component, tmp);
+            root.render(component, tmp);
         }
     });
 }

@@ -4,7 +4,7 @@ import TestProvider from '../../../../test/Testprovider';
 import VisittkortHeader from './VisittkortHeader';
 import { aremark } from '../../../../mock/persondata/aremark';
 import { Data as PersonData, LocalDate, Person } from '../PersondataDomain';
-import { mount } from '../../../../test/enzyme-container';
+import { render, screen } from '@testing-library/react';
 import { hentNavn } from '../visittkort-utils';
 
 function lagPersondataForAremark(): PersonData {
@@ -31,7 +31,7 @@ describe('Tester visittkort-header sin funksjonalitet', () => {
         };
 
         const oppdatertPerson: PersonData = { feilendeSystemer: [], person };
-        mount(
+        render(
             <TestProvider>
                 <VisittkortHeader persondata={oppdatertPerson} erApen={false} toggleApen={() => null} />
             </TestProvider>
@@ -40,7 +40,7 @@ describe('Tester visittkort-header sin funksjonalitet', () => {
         const focusedElement = document.activeElement;
 
         if (focusedElement) {
-            expect(focusedElement.innerHTML.toLowerCase()).toContain(hentNavn(person.navn[0]).toLowerCase());
+            expect(focusedElement).toHaveTextContent(new RegExp(`${hentNavn(person.navn[0])}`, 'i'));
         } else {
             assert.fail('Ingen activeElement på dokumentet');
         }
@@ -63,7 +63,7 @@ describe('Tester visittkort-header sin funksjonalitet', () => {
 
         const oppdatertPerson: PersonData = { feilendeSystemer: [], person };
 
-        mount(
+        render(
             <TestProvider>
                 <VisittkortHeader persondata={oppdatertPerson} erApen={false} toggleApen={() => null} />
             </TestProvider>
@@ -72,7 +72,7 @@ describe('Tester visittkort-header sin funksjonalitet', () => {
         const focusedElement = document.activeElement;
 
         if (focusedElement) {
-            expect(focusedElement.innerHTML).toContain('Sikkerhetstiltak');
+            expect(focusedElement).toHaveTextContent('Sikkerhetstiltak');
         } else {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-call
             fail('Ingen activeElement på dokumentet');

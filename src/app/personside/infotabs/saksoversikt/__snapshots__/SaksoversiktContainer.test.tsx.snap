@@ -864,6 +864,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     >
                       <svg
                         aria-label="Du har ikke tilgang til dette dokumentet"
+                        data-testid="ikke-tilgang-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -933,6 +934,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     >
                       <svg
                         aria-label="Du har ikke tilgang til dette dokumentet"
+                        data-testid="ikke-tilgang-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -1035,6 +1037,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       className="c18"
                     >
                       <svg
+                        data-testid="dokument-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -1256,6 +1259,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       className="c18"
                     >
                       <svg
+                        data-testid="dokument-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -1386,6 +1390,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       className="c18"
                     >
                       <svg
+                        data-testid="dokument-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -1492,6 +1497,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       className="c18"
                     >
                       <svg
+                        data-testid="dokument-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -1609,6 +1615,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     >
                       <svg
                         aria-label="Du har ikke tilgang til dette dokumentet"
+                        data-testid="ikke-tilgang-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -1732,6 +1739,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     >
                       <svg
                         aria-label="Du har ikke tilgang til dette dokumentet"
+                        data-testid="ikke-tilgang-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -1823,6 +1831,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     >
                       <svg
                         aria-label="Du har ikke tilgang til dette dokumentet"
+                        data-testid="ikke-tilgang-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -1914,6 +1923,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       className="c18"
                     >
                       <svg
+                        data-testid="dokument-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -2020,6 +2030,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       className="c18"
                     >
                       <svg
+                        data-testid="dokument-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -2126,6 +2137,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       className="c18"
                     >
                       <svg
+                        data-testid="dokument-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -2223,6 +2235,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     >
                       <svg
                         aria-label="Du har ikke tilgang til dette dokumentet"
+                        data-testid="ikke-tilgang-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -2291,6 +2304,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       className="c18"
                     >
                       <svg
+                        data-testid="dokument-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -2387,6 +2401,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       className="c18"
                     >
                       <svg
+                        data-testid="dokument-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
