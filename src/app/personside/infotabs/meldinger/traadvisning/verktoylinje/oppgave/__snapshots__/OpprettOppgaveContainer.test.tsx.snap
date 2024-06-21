@@ -8,13 +8,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
   border-radius: .35rem;
   cursor: pointer;
   background-color: transparent;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   color: #0067c5;
 }
@@ -58,16 +52,10 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
 }
 
 .c0 .inputPanelGruppe__inner {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
 }
 
-.c0 .inputPanelGruppe__inner > * {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
+.c0 .inputPanelGruppe__inner >* {
   flex-grow: 1;
 }
 
@@ -81,13 +69,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
 }
 
 .c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 

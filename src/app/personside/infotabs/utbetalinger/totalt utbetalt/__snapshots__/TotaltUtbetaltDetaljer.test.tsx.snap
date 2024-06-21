@@ -3,13 +3,7 @@
 exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utbetalt-detaljer riktig 1`] = `
 [
   .c2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-  -ms-flex-pack: end;
   justify-content: flex-end;
 }
 
@@ -20,13 +14,7 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
   border-radius: .35rem;
   cursor: pointer;
   background-color: transparent;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   color: #0067c5;
 }
@@ -102,13 +90,7 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
     </div>
   </div>,
   .c4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-  -ms-flex-pack: end;
   justify-content: flex-end;
 }
 
@@ -119,13 +101,7 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
   border-radius: .35rem;
   cursor: pointer;
   background-color: transparent;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   color: #0067c5;
 }
@@ -157,18 +133,16 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
 }
 
 .c0 {
-  -webkit-transition: 0.5s;
   transition: 0.5s;
   padding: 0 1.25rem 1.25rem;
   border-radius: 0.5rem;
   background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white, inset 0 0 0 0.37rem rgba(0,0,0,0.15);
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
   padding: 1.25rem;
   margin-top: 1.25rem;
 }
 
 .c1 {
-  -webkit-transition: 0.5s;
   transition: 0.5s;
   padding: 0 1.25rem;
   padding: 0;
@@ -189,20 +163,12 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
 }
 
 .c2 tr {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-flow: row wrap;
-  -ms-flex-flow: row wrap;
   flex-flow: row wrap;
   position: relative;
 }
 
-.c2 tr > *:first-child {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
+.c2 tr >*:first-child {
   flex-grow: 1;
   display: block;
 }
@@ -231,8 +197,6 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
 
 .c2 tr .periodeForYtelse,
 .c2 tr .ytelseDetaljer {
-  -webkit-flex-basis: 100%;
-  -ms-flex-preferred-size: 100%;
   flex-basis: 100%;
 }
 
@@ -243,38 +207,23 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
 
 .c2 tr .ytelseDetaljer {
   display: block;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
   text-align: right;
   margin-right: 12rem;
 }
 
 .c2 tr .ytelseDetaljer dl {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-flow: row wrap;
-  -ms-flex-flow: row wrap;
   flex-flow: row wrap;
 }
 
 .c2 tr .ytelseDetaljer dl dt {
-  -webkit-flex-basis: 50%;
-  -ms-flex-preferred-size: 50%;
   flex-basis: 50%;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
 .c2 tr .ytelseDetaljer dl dd {
   padding-left: 1rem;
-  -webkit-flex-basis: 7rem;
-  -ms-flex-preferred-size: 7rem;
   flex-basis: 7rem;
 }
 
@@ -282,7 +231,7 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
   margin-top: 0.5rem;
 }
 
-.c2 tbody tr > *:nth-last-child(n + 3) {
+.c2 tbody tr >*:nth-last-child(n + 3) {
   padding-top: 0.5rem;
   border-top: solid 0.0625rem #b7b1a9;
 }
@@ -304,7 +253,9 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
 }
 
 <div
+    alwaysGrayBackground={false}
     className="c0"
+    hasHeader={false}
     open={true}
   >
     <div

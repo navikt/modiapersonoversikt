@@ -2,12 +2,7 @@
 
 exports[`Om foreldrepenger matcher snapshot 1`] = `
 .c5 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
@@ -15,7 +10,7 @@ exports[`Om foreldrepenger matcher snapshot 1`] = `
   color: #645f5a;
 }
 
-.c5 > div {
+.c5 >div {
   margin: 0.5625rem 0;
   padding-right: 0.7rem;
   width: 13rem;
@@ -24,7 +19,7 @@ exports[`Om foreldrepenger matcher snapshot 1`] = `
 
 .c13 {
   overflow: auto;
-  box-shadow: 0 0 0 0.07rem rgba(0,0,0,0.25);
+  box-shadow: 0 0 0 0.07rem rgba(0, 0, 0, 0.25);
   border-radius: .25rem;
   background-color: white;
 }
@@ -36,7 +31,7 @@ exports[`Om foreldrepenger matcher snapshot 1`] = `
 
 .c13 [role='table'] thead,
 .c13 [role='table'] .thead[role='rowgroup'] {
-  border-bottom: 0.2rem solid rgba(0,0,0,0.15);
+  border-bottom: 0.2rem solid rgba(0, 0, 0, 0.15);
   font-weight: 600;
 }
 
@@ -51,7 +46,7 @@ exports[`Om foreldrepenger matcher snapshot 1`] = `
 }
 
 .c13 [role='table'] [role='row']:nth-child(even) {
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .c10 {
@@ -67,23 +62,23 @@ exports[`Om foreldrepenger matcher snapshot 1`] = `
 .c12 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white, inset 0 0 0 0.37rem rgba(0,0,0,0.15);
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
   padding: 1.25rem;
   white-space: nowrap;
 }
 
-.c12 > *:not(:last-child) {
+.c12 >*:not(:last-child) {
   margin-bottom: 1rem;
 }
 
 .c4 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white, inset 0 0 0 0.37rem rgba(0,0,0,0.15);
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
   padding: 1.25rem;
 }
 
-.c4 > h3 {
+.c4 >h3 {
   margin-bottom: 1rem;
 }
 
@@ -107,39 +102,21 @@ exports[`Om foreldrepenger matcher snapshot 1`] = `
 
 .c2 {
   padding: .5rem;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
-.c2 > * {
-  -webkit-flex-basis: 40%;
-  -ms-flex-preferred-size: 40%;
+.c2 >* {
   flex-basis: 40%;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
 .c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
 }
 
-.c3 > * {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
+.c3 >* {
   flex-grow: 1;
 }
 
@@ -147,7 +124,7 @@ exports[`Om foreldrepenger matcher snapshot 1`] = `
   padding: 0rem;
 }
 
-.c0 > * {
+.c0 >* {
   margin-bottom: 0.5rem;
 }
 
@@ -850,12 +827,7 @@ exports[`Om foreldrepenger matcher snapshot 1`] = `
 
 exports[`Om pleiepenger matcher snapshot 1`] = `
 .c4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
@@ -863,7 +835,7 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
   color: #645f5a;
 }
 
-.c4 > div {
+.c4 >div {
   margin: 0.5625rem 0;
   padding-right: 0.7rem;
   width: 13rem;
@@ -872,7 +844,7 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
 
 .c11 {
   overflow: auto;
-  box-shadow: 0 0 0 0.07rem rgba(0,0,0,0.25);
+  box-shadow: 0 0 0 0.07rem rgba(0, 0, 0, 0.25);
   border-radius: .25rem;
   background-color: white;
 }
@@ -884,7 +856,7 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
 
 .c11 [role='table'] thead,
 .c11 [role='table'] .thead[role='rowgroup'] {
-  border-bottom: 0.2rem solid rgba(0,0,0,0.15);
+  border-bottom: 0.2rem solid rgba(0, 0, 0, 0.15);
   font-weight: 600;
 }
 
@@ -899,7 +871,7 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
 }
 
 .c11 [role='table'] [role='row']:nth-child(even) {
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .c9 {
@@ -915,11 +887,11 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
 .c3 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white, inset 0 0 0 0.37rem rgba(0,0,0,0.15);
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
   padding: 1.25rem;
 }
 
-.c3 > h3 {
+.c3 >h3 {
   margin-bottom: 1rem;
 }
 
@@ -930,12 +902,12 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
 .c10 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white, inset 0 0 0 0.37rem rgba(0,0,0,0.15);
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
   padding: 1.25rem;
   margin: .5rem;
 }
 
-.c10 > *:not(:last-child) {
+.c10 >*:not(:last-child) {
   margin-bottom: 1rem;
 }
 
@@ -951,22 +923,12 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
 
 .c2 {
   padding: .5rem;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
-.c2 > * {
-  -webkit-flex-basis: 40%;
-  -ms-flex-preferred-size: 40%;
+.c2 >* {
   flex-basis: 40%;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
@@ -974,7 +936,7 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
   padding: 0rem;
 }
 
-.c0 > * {
+.c0 >* {
   margin-bottom: 0.5rem;
 }
 
@@ -1461,12 +1423,7 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
 
 exports[`Om sykepenger matcher snapshot 1`] = `
 .c5 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
@@ -1474,7 +1431,7 @@ exports[`Om sykepenger matcher snapshot 1`] = `
   color: #645f5a;
 }
 
-.c5 > div {
+.c5 >div {
   margin: 0.5625rem 0;
   padding-right: 0.7rem;
   width: 13rem;
@@ -1483,7 +1440,7 @@ exports[`Om sykepenger matcher snapshot 1`] = `
 
 .c6 {
   overflow: auto;
-  box-shadow: 0 0 0 0.07rem rgba(0,0,0,0.25);
+  box-shadow: 0 0 0 0.07rem rgba(0, 0, 0, 0.25);
   border-radius: .25rem;
   background-color: white;
 }
@@ -1495,7 +1452,7 @@ exports[`Om sykepenger matcher snapshot 1`] = `
 
 .c6 [role='table'] thead,
 .c6 [role='table'] .thead[role='rowgroup'] {
-  border-bottom: 0.2rem solid rgba(0,0,0,0.15);
+  border-bottom: 0.2rem solid rgba(0, 0, 0, 0.15);
   font-weight: 600;
 }
 
@@ -1510,29 +1467,29 @@ exports[`Om sykepenger matcher snapshot 1`] = `
 }
 
 .c6 [role='table'] [role='row']:nth-child(even) {
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .c11 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white, inset 0 0 0 0.37rem rgba(0,0,0,0.15);
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
   padding: 1.25rem;
   white-space: nowrap;
 }
 
-.c11 > *:not(:last-child) {
+.c11 >*:not(:last-child) {
   margin-bottom: 1rem;
 }
 
 .c4 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white, inset 0 0 0 0.37rem rgba(0,0,0,0.15);
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
   padding: 1.25rem;
 }
 
-.c4 > h3 {
+.c4 >h3 {
   margin-bottom: 1rem;
 }
 
@@ -1553,12 +1510,12 @@ exports[`Om sykepenger matcher snapshot 1`] = `
 .c10 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white, inset 0 0 0 0.37rem rgba(0,0,0,0.15);
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
   padding: 1.25rem;
   white-space: nowrap;
 }
 
-.c10 > *:not(:last-child) {
+.c10 >*:not(:last-child) {
   margin-bottom: 1rem;
 }
 
@@ -1567,43 +1524,25 @@ exports[`Om sykepenger matcher snapshot 1`] = `
 }
 
 .c2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
-.c2 > * {
-  -webkit-flex-basis: 40%;
-  -ms-flex-preferred-size: 40%;
+.c2 >* {
   flex-basis: 40%;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
 .c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
 }
 
-.c3 > * {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
+.c3 >* {
   flex-grow: 1;
 }
 
-.c0 > * {
+.c0 >* {
   margin-bottom: 0.5rem;
 }
 

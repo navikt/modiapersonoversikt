@@ -2,51 +2,23 @@
 
 exports[`viser fortsett dialog 1`] = `
 .c0 {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-animation: edHiKw 0.3s ease-out;
   animation: edHiKw 0.3s ease-out;
 }
 
-.c0 > * {
-  -webkit-flex: 0 1 25rem;
-  -ms-flex: 0 1 25rem;
+.c0 >* {
   flex: 0 1 25rem;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 
 .c1 {
   overflow: hidden;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-animation: edHiKw 0.3s ease-out;
   animation: edHiKw 0.3s ease-out;
 }
 
