@@ -13,7 +13,7 @@
             "scope": "api://dev-gcp.personoversikt.modiapersonoversikt-innstillinger/.default"
         },
         "modiacontextholder": {
-            "url": "http://modiacontextholder.personoversikt.svc.cluster.local/modiacontextholder",
+            "url": "http://modiacontextholder.personoversikt.svc.cluster.local",
             "scope": "api://dev-gcp.personoversikt.modiacontextholder/.default"
         },
         "azure-api": {

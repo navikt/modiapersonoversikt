@@ -13,7 +13,7 @@
             "scope": "api://prod-gcp.personoversikt.modiapersonoversikt-innstillinger/.default"
         },
         "modiacontextholder": {
-            "url": "https://modiacontextholder.prod-fss-pub.nais.io/modiacontextholder",
+            "url": "https://modiacontextholder.prod-fss-pub.nais.io",
             "scope": "api://prod-fss.personoversikt.modiacontextholder/.default"
         },
         "azure-api": {
