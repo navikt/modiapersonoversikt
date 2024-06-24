@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Traad } from '../../../../../models/meldinger/meldinger';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import EnkeltMelding from './EnkeltMelding';
 import { theme } from '../../../../../styles/personOversiktTheme';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';

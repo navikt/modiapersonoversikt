@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useEffect, useRef } from 'react';
 import { INFOTABS, InfotabsType } from './InfoTabEnum';
 import TabKnapper from './TabKnapper';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import UtbetalingerContainer from './utbetalinger/UtbetalingerContainer';
 import { usePaths } from '../../routes/routing';
 import { Switch, useHistory, useLocation } from 'react-router';

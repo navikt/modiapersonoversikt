@@ -2,7 +2,7 @@ import * as React from 'react';
 import LenkepanelPersonoversikt from '../../../../../utils/LenkepanelPersonoversikt';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../redux/reducers';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import { finnMiljoStreng } from '../../../../../utils/url-utils';
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Undertittel, Normaltekst } from 'nav-frontend-typografi';
 import theme from '../../../../../styles/personOversiktTheme';
 import { ytelserTest } from '../../dyplenkeTest/utils-dyplenker-test';

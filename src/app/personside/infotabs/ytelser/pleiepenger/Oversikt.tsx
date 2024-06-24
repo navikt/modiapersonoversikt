@@ -5,7 +5,7 @@ import DescriptionList from '../../../../../components/DescriptionList';
 import { getSisteVedtakForPleiepengerettighet } from './pleiepengerUtils';
 import { formaterDato } from '../../../../../utils/string-utils';
 import { Data as Persondata, Kjonn } from '../../../visittkort-v2/PersondataDomain';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import ArbeidsForholdListe from './arbeidsforhold/ArbeidsforholdListe';
 import theme from '../../../../../styles/personOversiktTheme';
 import persondataResource from '../../../../../rest/resources/persondataResource';

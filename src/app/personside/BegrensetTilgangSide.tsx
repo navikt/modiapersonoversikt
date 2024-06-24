@@ -3,7 +3,7 @@ import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import AlertStripe from 'nav-frontend-alertstriper';
 import BegrensetTilgangBegrunnelse from '../../components/person/BegrensetTilgangBegrunnelse';
 import OppgaveSkjemaBegrensetTilgang from './infotabs/meldinger/traadvisning/verktoylinje/oppgave/BegrensetTilgang/OppgaveSkjemaBegrensetTilgang';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { useState, useCallback } from 'react';
 import gsaktemaResource from '../../rest/resources/gsaktemaResource';

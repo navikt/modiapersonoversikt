@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { apiBaseUri } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
 import { AlertStripeAdvarsel, AlertStripeSuksess } from 'nav-frontend-alertstriper';

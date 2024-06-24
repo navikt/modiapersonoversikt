@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Pleiepengeperiode } from '../../../../../models/ytelse/pleiepenger';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import YtelserPeriode from '../felles-styling/YtelserPeriode';
 import { Ingress } from 'nav-frontend-typografi';
 import { formaterDato, NOKellerNull, prosentEllerNull } from '../../../../../utils/string-utils';

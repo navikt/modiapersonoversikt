@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import BrukerprofilSide from './BrukerprofilSide';
 import TestProvider from '../../test/Testprovider';
 
 test('Smoketeste brukerprofil', () => {
-    const brukerprofil = mount(
+    const { container } = render(
         <TestProvider>
             <BrukerprofilSide />
         </TestProvider>
     );
 
-    expect(brukerprofil).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
 });

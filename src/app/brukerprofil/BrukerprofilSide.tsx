@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { loggEvent } from '../../utils/logger/frontendLogger';
 import { useOnMount } from '../../utils/customHooks';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';

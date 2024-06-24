@@ -11,7 +11,7 @@ import {
 } from '../../app/personside/dialogpanel/sendMelding/autofullforUtils';
 import { Locale } from '../../app/personside/dialogpanel/sendMelding/standardTekster/domain';
 import * as StandardTeksterModels from '../../app/personside/dialogpanel/sendMelding/standardTekster/domain';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import Hjelpetekst from 'nav-frontend-hjelpetekst';
 import { PopoverOrientering } from 'nav-frontend-popover';
 import { guid } from 'nav-frontend-js-utils';

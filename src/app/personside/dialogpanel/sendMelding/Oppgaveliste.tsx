@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Select from 'nav-frontend-skjema/lib/select';
 import { OppgavelisteValg } from './SendNyMelding';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import saksbehandlersEnheter from '../../../../rest/resources/saksbehandlersEnheterResource';
 import { useValgtenhet } from '../../../../context/valgtenhet-state';

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useRef } from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { isForeldrepenger, isPleiepenger, isSykepenger, Ytelse } from '../../../../models/ytelse/ytelse-utils';
 import Foreldrepenger from './foreldrepenger/ForeldrePenger';
 import Pleiepenger from './pleiepenger/Pleiepenger';

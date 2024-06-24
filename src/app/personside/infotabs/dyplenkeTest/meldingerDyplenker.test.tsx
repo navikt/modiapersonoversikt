@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { mount, ReactWrapper } from 'enzyme';
+import { render, within } from '@testing-library/react';
+import userEvent, { UserEvent } from '@testing-library/user-event';
 import TestProvider from '../../../../test/Testprovider';
 import InfoTabs from '../InfoTabs';
 import { BrowserRouter } from 'react-router-dom';
@@ -10,14 +11,14 @@ import { aremark } from '../../../../mock/persondata/aremark';
 import { getMockTraader } from '../../../../mock/meldinger/meldinger-mock';
 import dialogResource from '../../../../rest/resources/dialogResource';
 
-test('bytter til riktig tab og setter fokus på riktig melding ved bruk av dyplenke fra oversikt', () => {
+test('bytter til riktig tab og setter fokus på riktig melding ved bruk av dyplenke fra oversikt', async () => {
     setupReactQueryMocks();
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access
     (dialogResource.useFetch as jest.Mock<any>).mockImplementation(() => ({
         data: getMockTraader(aremark.personIdent)
     }));
     const store = getTestStore();
-    const infoTabs = mount(
+    const { container: infoTabs } = render(
         <TestProvider customStore={store}>
             <BrowserRouter>
                 <InfoTabs />
@@ -25,28 +26,23 @@ test('bytter til riktig tab og setter fokus på riktig melding ved bruk av dyple
         </TestProvider>
     );
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.OVERSIKT.path);
+    expect(getAktivTab(infoTabs)).toHaveTextContent(new RegExp(INFOTABS.OVERSIKT.path, 'i'));
+    const user = userEvent.setup();
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    clickOnMeldingerIOversikt(infoTabs);
+    await clickOnMeldingerIOversikt(infoTabs, user);
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    expect(getAktivTab(infoTabs)).toContain(INFOTABS.MELDINGER.tittel);
+    expect(getAktivTab(infoTabs)).toHaveTextContent(new RegExp(INFOTABS.MELDINGER.tittel, 'i'));
 
-    const checkedMelding = infoTabs.find('input[checked=true].' + meldingerTest.melding).html();
-    const expectedElement = infoTabs
-        .find('input[type="radio"].' + meldingerTest.melding)
-        .at(1)
-        .html();
+    const checkedMelding = within(infoTabs).getByRole('radio', { checked: true });
+
+    const expectedElement = within(infoTabs).getAllByRole('radio')[1];
 
     expect(checkedMelding).toEqual(expectedElement);
 });
 
-function clickOnMeldingerIOversikt(infoTabs: ReactWrapper) {
-    infoTabs
-        .find('.' + meldingerTest.oversikt)
-        .find('button')
-        .at(1)
-        .simulate('click');
+async function clickOnMeldingerIOversikt(infoTabs: HTMLElement, user: UserEvent) {
+    const tab = infoTabs.querySelectorAll('.' + meldingerTest.oversikt)[1] as HTMLElement;
+    const button = within(tab).getByRole('button');
+
+    await user.click(button);
 }

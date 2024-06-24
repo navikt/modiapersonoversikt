@@ -2,28 +2,20 @@
 
 exports[`viser dialogpanel 1`] = `
 .c13 label {
-  position: absolute !important;
+  position: absolute!important;
   height: 1px;
   width: 1px;
   overflow: hidden;
-  -webkit-clip: rect(1px 1px 1px 1px);
   clip: rect(1px 1px 1px 1px);
-  -webkit-clip: rect(1px,1px,1px,1px);
-  clip: rect(1px,1px,1px,1px);
+  clip: rect(1px, 1px, 1px, 1px);
 }
 
 .c15 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
-.c15 > *:not(:last-child) {
+.c15 >*:not(:last-child) {
   margin-right: 1rem;
 }
 
@@ -36,8 +28,6 @@ exports[`viser dialogpanel 1`] = `
   background-color: #0067c5;
   border: none;
   z-index: 10;
-  -webkit-transform: none;
-  -ms-transform: none;
   transform: none;
 }
 
@@ -46,8 +36,6 @@ exports[`viser dialogpanel 1`] = `
 }
 
 .c7:hover {
-  -webkit-transform: none;
-  -ms-transform: none;
   transform: none;
 }
 
@@ -85,14 +73,12 @@ exports[`viser dialogpanel 1`] = `
 }
 
 .c6 label {
-  position: absolute !important;
+  position: absolute!important;
   height: 1px;
   width: 1px;
   overflow: hidden;
-  -webkit-clip: rect(1px 1px 1px 1px);
   clip: rect(1px 1px 1px 1px);
-  -webkit-clip: rect(1px,1px,1px,1px);
-  clip: rect(1px,1px,1px,1px);
+  clip: rect(1px, 1px, 1px, 1px);
 }
 
 .c9 textarea,
@@ -105,27 +91,17 @@ exports[`viser dialogpanel 1`] = `
 }
 
 .c16 label {
-  position: absolute !important;
+  position: absolute!important;
   height: 1px;
   width: 1px;
   overflow: hidden;
-  -webkit-clip: rect(1px 1px 1px 1px);
   clip: rect(1px 1px 1px 1px);
-  -webkit-clip: rect(1px,1px,1px,1px);
-  clip: rect(1px,1px,1px,1px);
+  clip: rect(1px, 1px, 1px, 1px);
 }
 
 .c5 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-align-items: stretch;
-  -webkit-box-align: stretch;
-  -ms-flex-align: stretch;
   align-items: stretch;
 }
 
@@ -133,29 +109,21 @@ exports[`viser dialogpanel 1`] = `
   margin-bottom: 0;
 }
 
-.c5 > * {
+.c5 >* {
   margin-bottom: 1rem;
 }
 
 .c12 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
   justify-content: flex-start;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
-.c12 > * {
+.c12 >* {
   margin-top: 0.3rem;
 }
 
-.c12 > *:not(:last-child) {
+.c12 >*:not(:last-child) {
   margin-right: 1rem;
 }
 
@@ -174,16 +142,11 @@ exports[`viser dialogpanel 1`] = `
 }
 
 .c18 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
 }
 
-.c18 > * {
+.c18 >* {
   margin-bottom: 0.7rem;
 }
 
@@ -196,13 +159,10 @@ exports[`viser dialogpanel 1`] = `
 }
 
 .c4 {
-  margin-bottom: 1rem !important;
+  margin-bottom: 1rem!important;
 }
 
 .c0 {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
   word-break: break-word;
 }
@@ -277,7 +237,6 @@ exports[`viser dialogpanel 1`] = `
                     >
                       Melding
                     </label>
-                    
                     <div
                       className="textarea--medMeta__wrapper"
                     >

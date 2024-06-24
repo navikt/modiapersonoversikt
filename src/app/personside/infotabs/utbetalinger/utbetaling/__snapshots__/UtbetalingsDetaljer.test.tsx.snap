@@ -57,6 +57,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
           </tr>
         </thead>
         <tbody
+          data-testid="table-tbody"
           role="rowgroup"
         >
           <tr
@@ -125,6 +126,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
         </tr>
       </thead>
       <tbody
+        data-testid="table-tbody"
         role="rowgroup"
       >
         <tr

@@ -7,7 +7,7 @@ import {
     Journalpost,
     Kommunikasjonsretning
 } from '../../../../../../models/saksoversikt/journalpost';
-import styled, { css } from 'styled-components/macro';
+import styled, { css } from 'styled-components';
 import theme from '../../../../../../styles/personOversiktTheme';
 import dayjs from 'dayjs';
 import { saksdatoSomDate } from '../../../../../../models/saksoversikt/fellesSak';

@@ -1,7 +1,7 @@
 import * as React from 'react';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { useHistory } from 'react-router';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import theme from '../../styles/personOversiktTheme';
 import { FnrValidationError, validerIdent } from '../../utils/fnr-utils';
 import { FieldError, useForm } from 'react-hook-form';

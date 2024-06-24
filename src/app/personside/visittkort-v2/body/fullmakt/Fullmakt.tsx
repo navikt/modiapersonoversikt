@@ -13,7 +13,7 @@ import { hentNavn } from '../../visittkort-utils';
 import GyldighetsPeriode from '../GyldighetsPeriode';
 import { harFeilendeSystemer } from '../../harFeilendeSystemer';
 import { formaterMobiltelefonnummer } from '../../../../../utils/telefon-utils';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 
 interface Props {

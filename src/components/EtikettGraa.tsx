@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Undertekst } from 'nav-frontend-typografi';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { ReactNode } from 'react';
 import { TypografiProps } from 'nav-frontend-typografi';
 import theme from '../styles/personOversiktTheme';

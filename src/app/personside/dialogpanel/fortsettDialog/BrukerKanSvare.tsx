@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Oppgaveliste from '../sendMelding/Oppgaveliste';
 import DialogpanelVelgSak from '../sendMelding/DialogpanelVelgSak';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { FortsettDialogValidator } from './validatorer';
 import { FortsettDialogState } from './FortsettDialogTypes';
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';

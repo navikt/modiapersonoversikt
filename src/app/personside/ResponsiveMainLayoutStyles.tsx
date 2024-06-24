@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import PilKnapp from '../../components/pilknapp';
 import { HoyreKolonne as HoyreKolonneBase, VenstreKolonne as VenstreKolonneBase } from './MainLayoutStyles';
 import { Undertittel } from 'nav-frontend-typografi';

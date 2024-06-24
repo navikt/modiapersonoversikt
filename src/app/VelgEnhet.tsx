@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ChangeEvent, useEffect } from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Select } from 'nav-frontend-skjema';
 import theme from '../styles/personOversiktTheme';
 import saksbehandlersEnheter from '../rest/resources/saksbehandlersEnheterResource';

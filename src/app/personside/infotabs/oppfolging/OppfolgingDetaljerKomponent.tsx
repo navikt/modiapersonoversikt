@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DetaljertOppfolging } from '../../../../models/oppfolging';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { pxToRem } from '../../../../styles/personOversiktTheme';
 import { Undertittel } from 'nav-frontend-typografi';
 import DescriptionList from '../../../../components/DescriptionList';
