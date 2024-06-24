@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Element, Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import VisittkortElement from '../VisittkortElement';
 import { InformasjonElement, Verge as VergeInterface } from '../../PersondataDomain';

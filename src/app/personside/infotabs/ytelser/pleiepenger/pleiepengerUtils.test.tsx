@@ -7,7 +7,7 @@ import {
     sorterArbeidsforholdEtterRefusjonTom
 } from './pleiepengerUtils';
 import Pleiepenger from './Pleiepenger';
-import { render  } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import * as React from 'react';
 import TestProvider from '../../../../../test/Testprovider';
 
@@ -152,7 +152,7 @@ test('rendrer fint selv om bruker ikke har noen arbeidsforhold', () => {
         ]
     };
 
-   const { container } =  render(
+    const { container } = render(
         <TestProvider>
             <Pleiepenger pleiepenger={testRettighetUtenArbeidsforhold} />
         </TestProvider>

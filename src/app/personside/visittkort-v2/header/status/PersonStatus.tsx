@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Person, PersonStatus as Status } from '../../PersondataDomain';
 import { Normaltekst } from 'nav-frontend-typografi';
 import CopyToClipboard from './CopyToClipboard';

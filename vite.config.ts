@@ -91,10 +91,6 @@ export default defineConfig({
             {
                 find: '~nav-frontend-core',
                 replacement: 'nav-frontend-core'
-            },
-            {
-                find: 'styled-components/macro',
-                replacement: 'styled-components'
             }
         ]
     },

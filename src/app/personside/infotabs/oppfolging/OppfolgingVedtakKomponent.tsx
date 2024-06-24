@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OppfolgingsVedtak } from '../../../../models/oppfolging';
 import { datoSynkende } from '../../../../utils/date-utils';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Element, Undertittel } from 'nav-frontend-typografi';
 import { datoEllerTomString } from '../../../../utils/string-utils';
 import EtikettGraa from '../../../../components/EtikettGraa';

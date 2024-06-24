@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useEffect } from 'react';
 import { Traad } from '../../../../models/meldinger/meldinger';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { pxToRem } from '../../../../styles/personOversiktTheme';
 import TraadListe from './traadliste/TraadListe';
 import { useInfotabsDyplenker } from '../dyplenker';

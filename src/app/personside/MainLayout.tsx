@@ -6,7 +6,7 @@ import { LayoutWrapper } from './MainLayoutStyles';
 import { HoyreKolonne, SmallScreenToggleButton, VenstreKolonne } from './ResponsiveMainLayoutStyles';
 import InfoTabs from './infotabs/InfoTabs';
 import EkspanderDilaogpanelKnapp from './EkspanderDilaogpanelKnapp';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import BrukerHarUbesvarteMeldinger from './dialogpanel/BrukerHarUbesvarteMeldinger';
 import { guid } from 'nav-frontend-js-utils';
 import TildelteOppgaver from './dialogpanel/TildelteOppgaver';

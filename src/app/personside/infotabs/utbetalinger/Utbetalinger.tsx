@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Utbetaling, UtbetalingerResponse } from '../../../../models/utbetalinger';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import TotaltUtbetalt from './totalt utbetalt/TotaltUtbetalt';

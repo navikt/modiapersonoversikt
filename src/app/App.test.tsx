@@ -6,6 +6,6 @@ it('renders without crashing', () => {
     const div = document.createElement('div');
     div.id = 'root';
     document.body.appendChild(div);
-    const root = createRoot(div)
+    const root = createRoot(div);
     root.render(<AppContainer />);
 });

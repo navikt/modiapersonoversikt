@@ -4,7 +4,7 @@ import TestProvider from '../../../../test/Testprovider';
 import VisittkortHeader from './VisittkortHeader';
 import { aremark } from '../../../../mock/persondata/aremark';
 import { Data as PersonData, LocalDate, Person } from '../PersondataDomain';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { hentNavn } from '../visittkort-utils';
 
 function lagPersondataForAremark(): PersonData {

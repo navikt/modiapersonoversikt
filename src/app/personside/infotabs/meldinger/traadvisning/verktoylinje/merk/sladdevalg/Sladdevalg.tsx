@@ -3,7 +3,7 @@ import NavFrontendModal from 'nav-frontend-modal';
 import { Traad } from '../../../../../../../../models/meldinger/meldinger';
 import { PopupComponentProps, renderPopup } from '../../../../../../../../components/popup-boxes/popup-boxes';
 import { useCallback } from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Systemtittel } from 'nav-frontend-typografi';
 import SladdMeldingerMedArsak from './SladdMeldingerMedArsak';
 import css from './Sladdvalg.module.css';

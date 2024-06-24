@@ -8,7 +8,7 @@ import AdvarselIkon from 'nav-frontend-ikoner-assets/assets/advarsel-sirkel-fyll
 import ErrorIkon from 'nav-frontend-ikoner-assets/assets/feil-sirkel-fyll.svg';
 import HelpIkon from 'nav-frontend-ikoner-assets/assets/help-circle_hover.svg';
 import InfoIkon from 'nav-frontend-ikoner-assets/assets/info-sirkel-fyll.svg';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { focusOnFirstFocusable } from '../../utils/hooks/use-focus-on-first-focusable';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';

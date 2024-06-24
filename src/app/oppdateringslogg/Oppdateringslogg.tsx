@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import EnkeltOppdateringslogg from './EnkeltOppdateringslogg';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import Stegindikator from 'nav-frontend-stegindikator';
 import { StegindikatorStegProps } from 'nav-frontend-stegindikator/lib/stegindikator-steg';
 import { datoSynkende } from '../../utils/date-utils';

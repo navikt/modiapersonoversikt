@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components/macro';
+import styled, { css } from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import React, { ReactNode, useRef } from 'react';
 import useKeepScroll from '../../../../utils/hooks/useKeepScroll';

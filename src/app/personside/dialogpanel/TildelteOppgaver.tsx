@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createRef, useState } from 'react';
 import { useClickOutside } from '../../../utils/customHooks';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Knapp } from 'nav-frontend-knapper';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { loggError } from '../../../utils/logger/frontendLogger';

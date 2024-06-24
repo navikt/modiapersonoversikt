@@ -7,7 +7,7 @@ import { toggleVisVarsel } from '../../../../redux/varsler/varslerReducer';
 import CompletedIcon from '../../../../svg/CompletedIcon';
 import WarningIcon from '../../../../svg/WarningIcon';
 import { useAppState } from '../../../../utils/customHooks';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import Panel from 'nav-frontend-paneler';
 import theme from '../../../../styles/personOversiktTheme';
 import { Element, Normaltekst } from 'nav-frontend-typografi';

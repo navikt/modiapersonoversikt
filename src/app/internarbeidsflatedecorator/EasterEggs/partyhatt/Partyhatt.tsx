@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import partyhatt from './partyhatt.svg';
-import styled, { createGlobalStyle, css, keyframes } from 'styled-components/macro';
+import styled, { createGlobalStyle, css, keyframes } from 'styled-components';
 import { pxToRem } from '../../../../styles/personOversiktTheme';
 import Fireworks from './Fireworks';
 

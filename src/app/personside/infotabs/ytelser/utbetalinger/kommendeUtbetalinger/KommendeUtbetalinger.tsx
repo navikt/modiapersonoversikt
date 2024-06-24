@@ -1,7 +1,7 @@
 import { KommendeUtbetaling } from '../../../../../../models/ytelse/ytelse-utbetalinger';
 import * as React from 'react';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Ingress } from 'nav-frontend-typografi';
 import { datoEllerNull, NOKellerNull, periodeEllerNull, prosentEllerNull } from '../../../../../../utils/string-utils';
 import theme from '../../../../../../styles/personOversiktTheme';

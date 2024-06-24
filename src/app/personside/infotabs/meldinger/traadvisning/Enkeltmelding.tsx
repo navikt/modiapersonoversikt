@@ -4,7 +4,7 @@ import { LestStatus, Melding } from '../../../../../models/meldinger/meldinger';
 import Snakkeboble from 'nav-frontend-snakkeboble';
 import { erMeldingFraBruker, erMeldingFraNav } from '../utils/meldingerUtils';
 import { formatterDatoTid } from '../../../../../utils/date-utils';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import Tekstomrade, { createDynamicHighlightingRule, defaultRules, Rule } from 'nav-frontend-tekstomrade';
 import { rule as sladdRule } from '../../../../../utils/sladdrule';
 import { guid } from 'nav-frontend-js-utils';

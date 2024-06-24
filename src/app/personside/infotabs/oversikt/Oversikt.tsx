@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import Oversiktskomponent from './Oversiktskomponent';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import VarselOversikt from './VarselOversikt';
