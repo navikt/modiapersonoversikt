@@ -20,4 +20,5 @@ test('viser dialogpanel', () => {
     );
 
     expect(dialogPanelBody.toJSON()).toMatchSnapshot();
+    dialogPanelBody.unmount();
 });

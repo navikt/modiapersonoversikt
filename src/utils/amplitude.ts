@@ -38,6 +38,7 @@ const maskereFnrPlugin = (): amplitude.Types.BeforePlugin => ({
 });
 
 export const initAmplitude = () => {
+    if (!import.meta.env.PROD) return;
     if (window.amplitude) {
         return;
     }

@@ -10,6 +10,7 @@ import { getEnvFromHost } from './environment';
 import { getWindowFeature } from './featureToggles';
 
 export const initializeObservability = (history: ReactRouterHistory) => {
+    if (!import.meta.env.PROD) return;
     if (!getWindowFeature('enableFaro') && !import.meta.env.VITE_GRAFANA_COLLECTOR) return;
 
     const env = getEnvFromHost();
@@ -17,7 +18,6 @@ export const initializeObservability = (history: ReactRouterHistory) => {
         console.info('Not running in GCP, web observability disabled');
     }
 
-    console.log(import.meta.env.VITE_GRAFANA_COLLECTOR);
     initializeFaro({
         url:
             (import.meta.env.VITE_GRAFANA_COLLECTOR as string) ??
