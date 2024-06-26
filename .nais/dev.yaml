@@ -63,7 +63,6 @@ spec:
         - application: modiapersonoversikt-api
       external:
         - host: personoversikt-unleash-api.nav.cloud.nais.io
-        - host: modiapersonoversikt-api-q1.dev-fss-pub.nais.io
   envFrom:
     - secret: modiapersonoversikt-unleash-api-token
   env:
