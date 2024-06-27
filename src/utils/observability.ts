@@ -10,7 +10,6 @@ import { getEnvFromHost } from './environment';
 import { getWindowFeature } from './featureToggles';
 
 export const initializeObservability = (history: ReactRouterHistory) => {
-    if (!import.meta.env.PROD) return;
     if (!getWindowFeature('enableFaro') && !import.meta.env.VITE_GRAFANA_COLLECTOR) return;
 
     const env = getEnvFromHost();
@@ -25,6 +24,7 @@ export const initializeObservability = (history: ReactRouterHistory) => {
         app: {
             name: 'modiapersonoversikt'
         },
+        paused: !import.meta.env.PROD,
         instrumentations: [
             ...getWebInstrumentations(),
             new ReactIntegration({
