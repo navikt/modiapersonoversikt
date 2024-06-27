@@ -33,7 +33,7 @@ test('bytter til riktig tab og setter fokus på riktig melding ved bruk av dyple
 
     expect(getAktivTab(infoTabs)).toHaveTextContent(new RegExp(INFOTABS.MELDINGER.tittel, 'i'));
 
-    const checkedMelding = within(infoTabs).getByRole('radio', { checked: true });
+    const checkedMelding = within(infoTabs).getAllByRole('radio', { checked: true })[0];
 
     const expectedElement = within(infoTabs).getAllByRole('radio')[1];
 

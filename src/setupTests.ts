@@ -5,6 +5,8 @@ import './extra-polyfills';
 import 'jest-styled-components';
 import '@testing-library/jest-dom/vitest';
 import { vi } from 'vitest';
+import { server } from './mock/node';
+import { setGlobalOrigin } from 'undici';
 dayjs.locale('nb');
 
 const globalAny = global;
@@ -39,6 +41,9 @@ vi.mock('react-collapse', () => {
     };
 });
 
-beforeAll(async () => {
-    await import('./mock');
+beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
+afterEach(() => {
+    setGlobalOrigin(window.location.href);
+    server.resetHandlers();
 });
+afterAll(() => server.close());

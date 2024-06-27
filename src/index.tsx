@@ -24,7 +24,8 @@ if (import.meta.env.DEV) {
 }
 
 if (import.meta.env.VITE_MOCK_ENABLED === 'true') {
-    await import('./mock');
+    const { worker } = await import('./mock/browser');
+    await worker.start();
 }
 
 const container = document.getElementById('root');

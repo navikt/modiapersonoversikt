@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { createRoot } from 'react-dom/client';
 import AppContainer from './AppContainer';
+import { render } from '@testing-library/react';
 
 it('renders without crashing', () => {
-    const div = document.createElement('div');
-    div.id = 'root';
-    document.body.appendChild(div);
-    const root = createRoot(div);
-    root.render(<AppContainer />);
+    const { unmount } = render(
+        <div id="root">
+            <AppContainer />
+        </div>
+    );
+    unmount();
 });

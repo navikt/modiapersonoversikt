@@ -17,7 +17,6 @@ export const initializeObservability = (history: ReactRouterHistory) => {
         console.info('Not running in GCP, web observability disabled');
     }
 
-    console.log(import.meta.env.VITE_GRAFANA_COLLECTOR);
     initializeFaro({
         url:
             (import.meta.env.VITE_GRAFANA_COLLECTOR as string) ??
@@ -25,6 +24,7 @@ export const initializeObservability = (history: ReactRouterHistory) => {
         app: {
             name: 'modiapersonoversikt'
         },
+        paused: !import.meta.env.PROD,
         instrumentations: [
             ...getWebInstrumentations(),
             new ReactIntegration({

@@ -1,185 +1,189 @@
 {
-    "name": "modiapersonoversikt",
-    "version": "0.4.2",
-    "private": false,
-    "license": "MIT",
-    "main": "build/dist/index.js",
-    "type": "module",
-    "files": [
-        "build/dist/"
-    ],
-    "engines": {
-        "node": "^20.0 || ^18.0"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/navikt/modiapersonoversikt"
-    },
-    "scripts": {
-        "start": "vite",
-        "start:dev": "VITE_MOCK_ENABLED=false vite",
-        "build": "vite build",
-        "build:gcp": "BUILD_GCP=true vite build --base=/ --mode gcp && mv build/index-gcp.html build/index.html",
-        "upload-sourcemaps": "cross-env GIT_COMMIT_HASH=$(git rev-parse HEAD) node _scripts/upload-sourcemaps.js",
-        "test": "vitest",
-        "lint": "eslint .",
-        "lint-staged": "lint-staged",
-        "format": "prettier --write src/**/*.{ts,js,tsx}",
-        "tsc": "tsc"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
-    },
-    "lint-staged": {
-        "*.{js,ts,tsx,json,less,css,md}": [
-            "prettier --write"
-        ]
-    },
-    "dependencies": {
-        "@amplitude/analytics-browser": "^2.5.3",
-        "@grafana/faro-react": "^1.7.3",
-        "@grafana/faro-web-sdk": "^1.7.3",
-        "@grafana/faro-web-tracing": "^1.7.3",
-        "@navikt/aksel-icons": "^6.11.0",
-        "@navikt/ds-css": "^6.11.0",
-        "@navikt/fnrvalidator": "^1.1.3",
-        "@navikt/navspa": "^6.1.0",
-        "@navikt/tag-input": "^2.0.1",
-        "@navikt/textparser": "^2.4.0",
-        "@tanstack/react-query": "^4.12.0",
-        "@vitejs/plugin-react": "^4.2.1",
-        "classnames": "^2.2.6",
-        "connected-react-router": "^6.9.3",
-        "dayjs": "^1.10.4",
-        "detect-browser": "^3.0.1",
-        "downshift": "^5.0.5",
-        "history": "^4.7.2",
-        "lodash.debounce": "^4.0.8",
-        "md5": "^2.2.1",
-        "nav-datovelger": "^11.1.2",
-        "nav-frontend-alertstriper": "^3.1.1",
-        "nav-frontend-alertstriper-style": "^2.1.1",
-        "nav-frontend-chevron": "^1.0.13",
-        "nav-frontend-chevron-style": "^1.0.4",
-        "nav-frontend-core": "^5.0.1",
-        "nav-frontend-ekspanderbartpanel": "^3.1.2",
-        "nav-frontend-ekspanderbartpanel-style": "^1.1.2",
-        "nav-frontend-etiketter": "^2.1.1",
-        "nav-frontend-etiketter-style": "^1.1.1",
-        "nav-frontend-hjelpetekst": "^2.1.1",
-        "nav-frontend-hjelpetekst-style": "^2.1.1",
-        "nav-frontend-ikoner-assets": "^2.0.10",
-        "nav-frontend-ikonknapper": "^1.0.9",
-        "nav-frontend-js-utils": "^1.0.9",
-        "nav-frontend-knapper": "^2.1.1",
-        "nav-frontend-knapper-style": "^1.1.1",
-        "nav-frontend-lenkepanel": "^1.1.1",
-        "nav-frontend-lenkepanel-style": "^1.1.1",
-        "nav-frontend-lenker": "^1.1.1",
-        "nav-frontend-lenker-style": "^1.1.1",
-        "nav-frontend-lukknapp": "^1.1.1",
-        "nav-frontend-lukknapp-style": "^1.1.1",
-        "nav-frontend-modal": "^1.1.2",
-        "nav-frontend-modal-style": "^1.1.1",
-        "nav-frontend-paneler": "^2.1.1",
-        "nav-frontend-paneler-style": "^1.1.1",
-        "nav-frontend-popover": "1.1.1",
-        "nav-frontend-popover-style": "1.1.1",
-        "nav-frontend-skjema": "^3.2.1",
-        "nav-frontend-skjema-style": "^2.2.1",
-        "nav-frontend-snakkeboble": "^2.1.1",
-        "nav-frontend-snakkeboble-style": "^1.1.1",
-        "nav-frontend-spinner": "^2.0.16",
-        "nav-frontend-spinner-style": "^1.0.2",
-        "nav-frontend-stegindikator": "0.0.52",
-        "nav-frontend-stegindikator-style": "^1.0.31",
-        "nav-frontend-tabs": "^1.1.1",
-        "nav-frontend-tabs-style": "^1.1.1",
-        "nav-frontend-tekstomrade": "^2.1.1",
-        "nav-frontend-typografi": "^3.1.1",
-        "nav-frontend-typografi-style": "^1.0.22",
-        "react": "^18.3.1",
-        "react-day-picker": "^7.3.2",
-        "react-dom": "^18.3.1",
-        "react-hook-form": "^7.39.0",
-        "react-modal": "^3.16.1",
-        "react-redux": "^7.2.0",
-        "react-router": "^5.2.0",
-        "react-router-dom": "^5.2.0",
-        "redux": "^4.0.5",
-        "redux-thunk": "^2.3.0",
-        "styled-components": "^6.1.11",
-        "vite": "^5.2.10",
-        "vite-plugin-svgr": "^4.2.0"
-    },
-    "devDependencies": {
-        "@eslint/js": "^9.3.0",
-        "@testing-library/jest-dom": "^6.4.6",
-        "@testing-library/react": "^16.0.0",
-        "@testing-library/user-event": "^14.5.2",
-        "@types/classnames": "^2.2.10",
-        "@types/detect-browser": "^2.0.1",
-        "@types/eslint__js": "^8.42.3",
-        "@types/faker": "^4.1.2",
-        "@types/lodash.debounce": "^4.0.6",
-        "@types/md5": "^2.1.33",
-        "@types/node": "^18.0.0",
-        "@types/prop-types": "^15.7.12",
-        "@types/react": "^18.3.3",
-        "@types/react-collapse": "^5.0.0",
-        "@types/react-dom": "^18.3.0",
-        "@types/react-modal": "^3.16.3",
-        "@types/react-redux": "^7.1.9",
-        "@types/react-router": "5.1.2",
-        "@types/react-router-dom": "^5.1.0",
-        "@types/react-test-renderer": "^18.3.0",
-        "cross-env": "^7.0.3",
-        "eslint": "^8.57.0",
-        "eslint-config-prettier": "^9.1.0",
-        "eslint-plugin-prettier": "^5.1.3",
-        "faker": "^4.1.0",
-        "jest-styled-components": "^7.2.0",
-        "jsdom": "^24.0.0",
-        "less": "^4.2.0",
-        "lint-staged": "^12.1.5",
-        "mockdate": "^3.0.5",
-        "nav-faker": "^3.2.3",
-        "prettier": "^3.2.5",
-        "prop-types": "^15.7.2",
-        "react-collapse": "^5.1.1",
-        "react-test-renderer": "^18.3.1",
-        "redux-devtools-extension": "^2.13.8",
-        "typescript": "^5.4.5",
-        "typescript-eslint": "^7.11.0",
-        "vite-require": "^0.2.3",
-        "vitest": "^1.5.2",
-        "yet-another-fetch-mock": "^4.0.0"
-    },
-    "overrides": {
-        "nav-frontend-js-utils": {
-            "react": "$react"
-        },
-        "@navikt/tag-input": {
-            "react": "$react"
-        },
-        "connected-react-router": {
-            "react": "$react"
-        }
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all",
-            "IE 11"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version",
-            "IE 11"
-        ]
+  "name": "modiapersonoversikt",
+  "version": "0.4.2",
+  "private": false,
+  "license": "MIT",
+  "main": "build/dist/index.js",
+  "type": "module",
+  "files": [
+    "build/dist/"
+  ],
+  "engines": {
+    "node": "^20.0 || ^18.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/navikt/modiapersonoversikt"
+  },
+  "scripts": {
+    "start": "vite",
+    "start:dev": "VITE_MOCK_ENABLED=false vite",
+    "build": "vite build",
+    "build:gcp": "BUILD_GCP=true vite build --base=/ --mode gcp && mv build/index-gcp.html build/index.html",
+    "upload-sourcemaps": "cross-env GIT_COMMIT_HASH=$(git rev-parse HEAD) node _scripts/upload-sourcemaps.js",
+    "test": "vitest",
+    "lint": "eslint .",
+    "lint-staged": "lint-staged",
+    "format": "prettier --write src/**/*.{ts,js,tsx}",
+    "tsc": "tsc"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,json,less,css,md}": [
+      "prettier --write"
+    ]
+  },
+  "dependencies": {
+    "@amplitude/analytics-browser": "^2.5.3",
+    "@grafana/faro-react": "^1.7.3",
+    "@grafana/faro-web-sdk": "^1.7.3",
+    "@grafana/faro-web-tracing": "^1.7.3",
+    "@navikt/aksel-icons": "^6.11.0",
+    "@navikt/ds-css": "^6.11.0",
+    "@navikt/fnrvalidator": "^1.1.3",
+    "@navikt/navspa": "^6.1.0",
+    "@navikt/tag-input": "^2.0.1",
+    "@navikt/textparser": "^2.4.0",
+    "@tanstack/react-query": "^4.12.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "classnames": "^2.2.6",
+    "connected-react-router": "^6.9.3",
+    "dayjs": "^1.10.4",
+    "detect-browser": "^3.0.1",
+    "downshift": "^5.0.5",
+    "history": "^4.7.2",
+    "lodash.debounce": "^4.0.8",
+    "md5": "^2.2.1",
+    "nav-datovelger": "^11.1.2",
+    "nav-frontend-alertstriper": "^3.1.1",
+    "nav-frontend-alertstriper-style": "^2.1.1",
+    "nav-frontend-chevron": "^1.0.13",
+    "nav-frontend-chevron-style": "^1.0.4",
+    "nav-frontend-core": "^5.0.1",
+    "nav-frontend-ekspanderbartpanel": "^3.1.2",
+    "nav-frontend-ekspanderbartpanel-style": "^1.1.2",
+    "nav-frontend-etiketter": "^2.1.1",
+    "nav-frontend-etiketter-style": "^1.1.1",
+    "nav-frontend-hjelpetekst": "^2.1.1",
+    "nav-frontend-hjelpetekst-style": "^2.1.1",
+    "nav-frontend-ikoner-assets": "^2.0.10",
+    "nav-frontend-ikonknapper": "^1.0.9",
+    "nav-frontend-js-utils": "^1.0.9",
+    "nav-frontend-knapper": "^2.1.1",
+    "nav-frontend-knapper-style": "^1.1.1",
+    "nav-frontend-lenkepanel": "^1.1.1",
+    "nav-frontend-lenkepanel-style": "^1.1.1",
+    "nav-frontend-lenker": "^1.1.1",
+    "nav-frontend-lenker-style": "^1.1.1",
+    "nav-frontend-lukknapp": "^1.1.1",
+    "nav-frontend-lukknapp-style": "^1.1.1",
+    "nav-frontend-modal": "^1.1.2",
+    "nav-frontend-modal-style": "^1.1.1",
+    "nav-frontend-paneler": "^2.1.1",
+    "nav-frontend-paneler-style": "^1.1.1",
+    "nav-frontend-popover": "1.1.1",
+    "nav-frontend-popover-style": "1.1.1",
+    "nav-frontend-skjema": "^3.2.1",
+    "nav-frontend-skjema-style": "^2.2.1",
+    "nav-frontend-snakkeboble": "^2.1.1",
+    "nav-frontend-snakkeboble-style": "^1.1.1",
+    "nav-frontend-spinner": "^2.0.16",
+    "nav-frontend-spinner-style": "^1.0.2",
+    "nav-frontend-stegindikator": "0.0.52",
+    "nav-frontend-stegindikator-style": "^1.0.31",
+    "nav-frontend-tabs": "^1.1.1",
+    "nav-frontend-tabs-style": "^1.1.1",
+    "nav-frontend-tekstomrade": "^2.1.1",
+    "nav-frontend-typografi": "^3.1.1",
+    "nav-frontend-typografi-style": "^1.0.22",
+    "react": "^18.3.1",
+    "react-day-picker": "^7.3.2",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.39.0",
+    "react-modal": "^3.16.1",
+    "react-redux": "^7.2.0",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^6.1.11",
+    "vite": "^5.2.10",
+    "vite-plugin-svgr": "^4.2.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.3.0",
+    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/react": "^16.0.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/classnames": "^2.2.10",
+    "@types/detect-browser": "^2.0.1",
+    "@types/eslint__js": "^8.42.3",
+    "@types/faker": "^4.1.2",
+    "@types/lodash.debounce": "^4.0.6",
+    "@types/md5": "^2.1.33",
+    "@types/node": "^18.0.0",
+    "@types/prop-types": "^15.7.12",
+    "@types/react": "^18.3.3",
+    "@types/react-collapse": "^5.0.0",
+    "@types/react-dom": "^18.3.0",
+    "@types/react-modal": "^3.16.3",
+    "@types/react-redux": "^7.1.9",
+    "@types/react-router": "5.1.2",
+    "@types/react-router-dom": "^5.1.0",
+    "@types/react-test-renderer": "^18.3.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "faker": "^4.1.0",
+    "jest-styled-components": "^7.2.0",
+    "jsdom": "^24.0.0",
+    "less": "^4.2.0",
+    "lint-staged": "^12.1.5",
+    "mockdate": "^3.0.5",
+    "msw": "^2.3.1",
+    "nav-faker": "^3.2.3",
+    "prettier": "^3.2.5",
+    "prop-types": "^15.7.2",
+    "react-collapse": "^5.1.1",
+    "react-test-renderer": "^18.3.1",
+    "redux-devtools-extension": "^2.13.8",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.11.0",
+    "undici": "^6.19.2",
+    "vite-require": "^0.2.3",
+    "vitest": "^1.5.2"
+  },
+  "overrides": {
+    "nav-frontend-js-utils": {
+      "react": "$react"
+    },
+    "@navikt/tag-input": {
+      "react": "$react"
+    },
+    "connected-react-router": {
+      "react": "$react"
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all",
+      "IE 11"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version",
+      "IE 11"
+    ]
+  },
+  "msw": {
+    "workerDirectory": "./public"
+  }
 }

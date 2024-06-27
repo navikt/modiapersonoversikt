@@ -1,6 +1,3 @@
-import faker from 'faker/locale/nb_NO';
-import navfaker from 'nav-faker';
-import FetchMock, { Middleware, MiddlewareUtils, MockRequest } from 'yet-another-fetch-mock';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { apiBaseUri } from '../api/config';
 import {
@@ -23,113 +20,95 @@ import { getForeslattEnhet, getMockAnsatte, getMockEnheter, getMockGsakTema } fr
 import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
 import { saker } from './journalforing/journalforing-mock';
 import { mockPersonsokResponse, mockStaticPersonsokRequest } from './personsok/personsokMock';
-import { setupWsControlAndMock } from './context-mock';
+import { getContextHandlers } from './context-mock';
 import { getSaksBehandlersEnheterMock } from './getSaksBehandlersEnheterMock';
 import { OppgaverBackendMock } from './mockBackend/oppgaverBackendMock';
-import { setupSaksbehandlerInnstillingerMock } from './saksbehandlerinnstillinger-mock';
-import { failurerateMiddleware } from './utils/failureMiddleware';
-import { setupDraftMock } from './draft-mock';
+import { saksbehandlerInnstillingerHandlers } from './saksbehandlerinnstillinger-mock';
+import { getDraftHandlers } from './draft-mock';
 import { authMock, tilgangskontrollMock } from './tilgangskontroll-mock';
 import { MeldingerBackendMock } from './mockBackend/meldingerBackendMock';
-import { setupSFDialogMock } from './dialoger/sf-dialoger-mock';
+import { getSFDialogHandlers } from './dialoger/sf-dialoger-mock';
 import { getAktorId } from './aktorid-mock';
 import { hentPersondata } from './persondata/persondata';
 import { FeatureToggles } from '../components/featureToggle/toggleIDs';
 
-const STATUS_OK = () => 200;
-const STATUS_BAD_REQUEST = () => 400;
+import { DefaultBodyType, http, HttpHandler, HttpResponse, PathParams, StrictRequest } from 'msw';
+import { fodselsNummerErGyldigStatus, randomDelay, STATUS_OK } from './utils-mock';
 
 const oppgaveBackendMock = new OppgaverBackendMock();
 const meldingerBackendMock = new MeldingerBackendMock(oppgaveBackendMock);
 
-const harEnhetIdSomQueryParam = (req: MockRequest) => {
-    const enhetQueryParam = req.queryParams.enhet;
+const harEnhetIdSomQueryParam = (request: StrictRequest<DefaultBodyType>) => {
+    const url = new URL(request.url);
+    const enhetQueryParam = url.searchParams.get('enhet');
     if (!enhetQueryParam) {
         return 'Skal ha enhetId i queryParameter';
     }
     return undefined;
 };
 
-export function randomDelay() {
-    if (navfaker.random.vektetSjanse(0.05)) {
-        return faker.random.number(5000);
-    }
-    return faker.random.number(750);
-}
+const innloggetSaksbehandlerMock = http.get(apiBaseUri + '/hode/me', () =>
+    HttpResponse.json(getMockInnloggetSaksbehandler())
+);
 
-export const fodselsNummerErGyldigStatus = (req: MockRequest) => {
-    return erGyldigFødselsnummer(req.body.fnr) ? STATUS_OK() : STATUS_BAD_REQUEST();
-};
+const saksbehandlerEnheterHandler = http.get(
+    apiBaseUri + '/hode/enheter',
+    withDelayedResponse(randomDelay(), STATUS_OK, getSaksBehandlersEnheterMock)
+);
 
-function setupInnloggetSaksbehandlerMock(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/hode/me',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => getMockInnloggetSaksbehandler())
-    );
-}
+const tilgangsKontrollHandler = [
+    http.get(apiBaseUri + '/tilgang/auth', withDelayedResponse(randomDelay(), STATUS_OK, authMock)),
 
-function setUpSaksbehandlersEnheterMock(mock: FetchMock) {
-    mock.get(apiBaseUri + '/hode/enheter', withDelayedResponse(randomDelay(), STATUS_OK, getSaksBehandlersEnheterMock));
-}
-
-function setupTilgangskontroll(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/tilgang/auth',
-        withDelayedResponse(randomDelay(), () => 200, authMock)
-    );
-
-    mock.get(
+    http.get(
         apiBaseUri + '/tilgang/:fodselsnummer?',
         withDelayedResponse(
             randomDelay(),
-            () => (Math.random() > 0.98 ? 400 : 200),
+            () => Promise.resolve(Math.random() > 0.98 ? 400 : 200),
             mockGeneratorMedFodselsnummer(tilgangskontrollMock)
         )
-    );
+    ),
 
-    mock.post(
+    http.post(
         apiBaseUri + '/v2/tilgang',
         withDelayedResponse(
             randomDelay(),
-            () => (Math.random() > 0.98 ? 400 : 200),
+            () => Promise.resolve(Math.random() > 0.98 ? 400 : 200),
             mockGeneratorMedFodselsnummer(tilgangskontrollMock)
         )
-    );
+    ),
 
-    mock.post(
+    http.post(
         apiBaseUri + '/v2/tilgang',
         withDelayedResponse(
             randomDelay(),
-            () => (Math.random() > 0.98 ? 400 : 200),
+            () => Promise.resolve(Math.random() > 0.98 ? 400 : 200),
             mockGeneratorMedFodselsnummerV2(tilgangskontrollMock)
         )
-    );
-}
+    )
+];
 
-function setupPersondataMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/v3/person',
-        withDelayedResponse(
-            randomDelay(),
-            fodselsNummerErGyldigStatus,
-            mockGeneratorMedFodselsnummerV2((fodselsnummer) => hentPersondata(fodselsnummer))
-        )
-    );
-}
+const persondataMock = http.post(
+    apiBaseUri + '/v3/person',
+    withDelayedResponse(
+        randomDelay(),
+        fodselsNummerErGyldigStatus,
+        mockGeneratorMedFodselsnummerV2((fodselsnummer) => hentPersondata(fodselsnummer))
+    )
+);
 
-function setupAktorIdMock(mock: FetchMock) {
-    mock.post(
+const aktorIdMock = [
+    http.post(
         apiBaseUri + '/v3/person/aktorid',
         withDelayedResponse(
             randomDelay(),
             fodselsNummerErGyldigStatus,
             mockGeneratorMedFodselsnummerV2((fodselsnummer) => getAktorId(fodselsnummer))
         )
-    );
-}
+    )
+];
 
-function setupSaksoversiktV2Mock(mock: FetchMock) {
-    mock.get(
+const saksoversiktV2Handler = [
+    http.get(
         apiBaseUri + '/saker/:fodselsnummer/v2/sakstema',
         verify(
             harEnhetIdSomQueryParam,
@@ -139,9 +118,9 @@ function setupSaksoversiktV2Mock(mock: FetchMock) {
                 mockGeneratorMedFodselsnummer(getMockSaksoversiktV2)
             )
         )
-    );
+    ),
 
-    mock.post(
+    http.post(
         apiBaseUri + '/v2/saker/v2/sakstema',
         verify(
             harEnhetIdSomQueryParam,
@@ -151,229 +130,190 @@ function setupSaksoversiktV2Mock(mock: FetchMock) {
                 mockGeneratorMedFodselsnummer(getMockSaksoversiktV2)
             )
         )
-    );
-}
+    )
+];
 
-function setupSaksoversiktV3Mock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/v2/saker/v2/sakstema',
-        verify(
-            harEnhetIdSomQueryParam,
-            withDelayedResponse(
-                randomDelay(),
-                fodselsNummerErGyldigStatus,
-                mockGeneratorMedFodselsnummerV2(getMockSaksoversiktV2)
-            )
-        )
-    );
-}
-
-function setupUtbetalingerMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/v2/utbetaling',
-        withDelayedResponse(randomDelay(), fodselsNummerErGyldigStatus, (args) =>
-            getMockUtbetalinger(args.pathParams.fodselsnummer, args.queryParams.startDato, args.queryParams.sluttDato)
-        )
-    );
-}
-
-function setupSykepengerMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/v2/ytelse/sykepenger',
+const saksoversiktV3Handler = http.post(
+    apiBaseUri + '/v2/saker/v2/sakstema',
+    verify(
+        harEnhetIdSomQueryParam,
         withDelayedResponse(
             randomDelay(),
             fodselsNummerErGyldigStatus,
-            mockGeneratorMedFodselsnummer((fodselsnummer) => getMockSykepengerRespons(fodselsnummer))
+            mockGeneratorMedFodselsnummerV2(getMockSaksoversiktV2)
         )
-    );
-}
+    )
+);
 
-function setupForeldrepengerMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/v2/ytelse/foreldrepenger',
-        withDelayedResponse(
-            randomDelay(),
-            fodselsNummerErGyldigStatus,
-            mockGeneratorMedFodselsnummer((fodselsnummer) => getMockForeldrepenger(fodselsnummer))
-        )
-    );
-}
+const utbetalingerHandler = http.post(
+    apiBaseUri + '/v2/utbetaling',
+    withDelayedResponse(randomDelay(), fodselsNummerErGyldigStatus, (req, pathParams) => {
+        const url = new URL(req.url);
+        const query = url.searchParams;
+        return getMockUtbetalinger(pathParams.fodselsnummer, query.get('startDato'), query.get('sluttDato'));
+    })
+);
 
-function setupPleiepengerMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/v2/ytelse/pleiepenger',
-        withDelayedResponse(
-            randomDelay(),
-            fodselsNummerErGyldigStatus,
-            mockGeneratorMedFodselsnummer((fodselsnummer) => getMockPleiepenger(fodselsnummer))
-        )
-    );
-}
+const sykepengerHandler = http.post(
+    apiBaseUri + '/v2/ytelse/sykepenger',
+    withDelayedResponse(
+        randomDelay(),
+        fodselsNummerErGyldigStatus,
+        mockGeneratorMedFodselsnummer((fodselsnummer) => getMockSykepengerRespons(fodselsnummer))
+    )
+);
 
-function setupOppfolgingMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/v2/oppfolging',
-        withDelayedResponse(
-            randomDelay(),
-            fodselsNummerErGyldigStatus,
-            mockGeneratorMedFodselsnummer((fodselsnummer) => getMockOppfolging(fodselsnummer))
-        )
-    );
-}
+const foreldrepengerHandler = http.post(
+    apiBaseUri + '/v2/ytelse/foreldrepenger',
+    withDelayedResponse(
+        randomDelay(),
+        fodselsNummerErGyldigStatus,
+        mockGeneratorMedFodselsnummer((fodselsnummer) => getMockForeldrepenger(fodselsnummer))
+    )
+);
 
-function setupYtelserOgKontrakter(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/v2/oppfolging/ytelserogkontrakter',
-        withDelayedResponse(
-            randomDelay(),
-            fodselsNummerErGyldigStatus,
-            mockGeneratorMedFodselsnummer((fodselsnummer) => getMockYtelserOgKontrakter(fodselsnummer))
-        )
-    );
-}
+const pleiepengerHandler = http.post(
+    apiBaseUri + '/v2/ytelse/pleiepenger',
+    withDelayedResponse(
+        randomDelay(),
+        fodselsNummerErGyldigStatus,
+        mockGeneratorMedFodselsnummer((fodselsnummer) => getMockPleiepenger(fodselsnummer))
+    )
+);
 
-function setupVarselMock(mock: FetchMock) {
-    mock.post(apiBaseUri + '/v3/varsler', (req, res, ctx) => {
-        const fnr = req.body.fnr;
-        if (!erGyldigFødselsnummer(fnr)) {
-            return res(ctx.status(400));
-        }
-        return res(ctx.status(200), ctx.json(getMockVarsler(fnr)));
-    });
-}
+const oppfolgingHandler = http.post(
+    apiBaseUri + '/v2/oppfolging',
+    withDelayedResponse(
+        randomDelay(),
+        fodselsNummerErGyldigStatus,
+        mockGeneratorMedFodselsnummer((fodselsnummer) => getMockOppfolging(fodselsnummer))
+    )
+);
 
-function setupGsakTemaMock(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/dialogoppgave/v2/tema',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => getMockGsakTema())
-    );
-}
+const ytelserogkontrakterHandler = http.post(
+    apiBaseUri + '/v2/oppfolging/ytelserogkontrakter',
+    withDelayedResponse(
+        randomDelay(),
+        fodselsNummerErGyldigStatus,
+        mockGeneratorMedFodselsnummer((fodselsnummer) => getMockYtelserOgKontrakter(fodselsnummer))
+    )
+);
 
-function setupOppgaveEnhetMock(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/enheter/oppgavebehandlere/alle',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => getMockEnheter())
-    );
-}
+const varslerHandler = http.post<PathParams, { fnr: string }>(apiBaseUri + '/v3/varsler', async ({ request }) => {
+    const body = await request.json();
+    const fnr = body.fnr;
+    if (!erGyldigFødselsnummer(fnr)) {
+        return new HttpResponse(null, { status: 400 });
+    }
+    return HttpResponse.json(getMockVarsler(fnr));
+});
 
-function setupForeslatteEnheterMock(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/enheter/oppgavebehandlere/v2/foreslatte',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => getForeslattEnhet())
-    );
-}
+const gsakHandler = http.get(
+    apiBaseUri + '/dialogoppgave/v2/tema',
+    withDelayedResponse(randomDelay(), STATUS_OK, () => getMockGsakTema())
+);
 
-function setupAnsattePaaEnhetMock(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/enheter/:enhetId/ansatte',
-        withDelayedResponse(
-            randomDelay(),
-            STATUS_OK,
-            mockGeneratorMedEnhetId((enhetId) => getMockAnsatte(enhetId))
-        )
-    );
-}
+const oppgaveEnhetHandler = http.get(
+    apiBaseUri + '/enheter/oppgavebehandlere/alle',
+    withDelayedResponse(randomDelay(), STATUS_OK, () => getMockEnheter())
+);
 
-function setupPersonsokMock(mock: FetchMock) {
-    mock.post(
+const foreslotteEnhetHandler = http.get(
+    apiBaseUri + '/enheter/oppgavebehandlere/v2/foreslatte',
+    withDelayedResponse(randomDelay(), STATUS_OK, () => getForeslattEnhet())
+);
+
+const ansattePaaEnhetHandler = http.get(
+    apiBaseUri + '/enheter/:enhetId/ansatte',
+    withDelayedResponse(
+        randomDelay(),
+        STATUS_OK,
+        mockGeneratorMedEnhetId((enhetId) => getMockAnsatte(enhetId))
+    )
+);
+
+const personsokHandler = [
+    http.post(
         apiBaseUri + '/personsok',
         withDelayedResponse(randomDelay(), STATUS_OK, () => mockPersonsokResponse(mockStaticPersonsokRequest()))
-    );
-    mock.post(
+    ),
+    http.post(
         apiBaseUri + '/personsok/v3',
         withDelayedResponse(randomDelay(), STATUS_OK, () => mockPersonsokResponse(mockStaticPersonsokRequest()))
-    );
-}
+    )
+];
 
-function setupTildelteOppgaverMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/v2/oppgaver/tildelt',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => oppgaveBackendMock.getTildelteOppgaver())
-    );
-}
+const tildelteOppgaverHandler = http.post(
+    apiBaseUri + '/v2/oppgaver/tildelt',
+    withDelayedResponse(randomDelay(), STATUS_OK, () => oppgaveBackendMock.getTildelteOppgaver())
+);
 
-function setupBaseUrlsMock(mock: FetchMock) {
-    mock.get(apiBaseUri + '/baseurls/v2', withDelayedResponse(randomDelay(), STATUS_OK, mockBaseUrls));
-}
+const baseUrlsHandler = http.get(
+    apiBaseUri + '/baseurls/v2',
+    withDelayedResponse(randomDelay(), STATUS_OK, mockBaseUrls)
+);
 
-function setupFeatureToggleMock(mock: FetchMock) {
-    mock.get(
+const featureToggleHandler = [
+    http.get(
         apiBaseUri + '/featuretoggle/:toggleId',
-        withDelayedResponse(
-            randomDelay(),
-            STATUS_OK,
-            // @ts-ignore
-            (args: HandlerArgument) => mockFeatureToggle(args.pathParams.toggleId)
+        withDelayedResponse(randomDelay(), STATUS_OK, (_req, params: PathParams<'toggleId'>) =>
+            mockFeatureToggle(params.toggleId as FeatureToggles)
         )
-    );
+    ),
 
-    mock.get(apiBaseUri + '/featuretoggle', (req, res, ctx) => {
-        const id = req.queryParams['id'];
+    http.get(apiBaseUri + '/featuretoggle', ({ request }) => {
+        const id = new URL(request.url).searchParams.get('id');
         const ids = Array.isArray(id) ? id : [id];
-        return res(ctx.json(Object.fromEntries(ids.map((it: FeatureToggles) => [it, mockFeatureToggle(it)]))));
-    });
-}
+        return HttpResponse.json(Object.fromEntries(ids.map((it: FeatureToggles) => [it, mockFeatureToggle(it)])));
+    })
+];
 
-function setupJournalforingMock(mock: FetchMock) {
-    mock.get(
+const journalForingHandler = [
+    http.get(
         apiBaseUri + '/journalforing/:fnr/saker/',
         withDelayedResponse(randomDelay(), STATUS_OK, () => saker)
-    );
-    mock.post(
+    ),
+    http.post(
         apiBaseUri + '/v2/journalforing/saker/',
         withDelayedResponse(randomDelay(), STATUS_OK, () => saker)
-    );
-    mock.post(
+    ),
+    http.post(
         apiBaseUri + '/journalforing/:fnr/:traadId',
         verify(
             harEnhetIdSomQueryParam,
             withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
         )
-    );
-    mock.post(
+    ),
+    http.post(
         apiBaseUri + '/v2/journalforing/:traadId',
         verify(
             harEnhetIdSomQueryParam,
             withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
         )
-    );
-}
+    )
+];
 
-function opprettOppgaveMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/dialogoppgave/v2/opprett',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
-    );
-}
+const opprettOppgaveHandler = http.post(
+    apiBaseUri + '/dialogoppgave/v2/opprett',
+    withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+);
 
-function opprettSkjermetOppgaveMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/dialogoppgave/v2/opprettskjermetoppgave',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
-    );
-}
+const opprettSkjermetOppgaveHandler = http.post(
+    apiBaseUri + '/dialogoppgave/v2/opprettskjermetoppgave',
+    withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+);
 
-function setupStandardteksterMock(mock: FetchMock) {
-    mock.get(
+const standardteksterHandler = [
+    http.get(
         `${import.meta.env.BASE_URL}proxy/modia-skrivestotte/skrivestotte`,
         withDelayedResponse(randomDelay(), STATUS_OK, () => '')
-    );
+    ),
 
-    mock.post(
+    http.post(
         `${import.meta.env.BASE_URL}proxy/modia-skrivestotte/skrivestotte/statistikk/:id`,
         withDelayedResponse(randomDelay(), STATUS_OK, () => undefined)
-    );
-}
-
-const contentTypeMiddleware: Middleware = (requestArgs, response) => {
-    if (response.headers) {
-        return response;
-    }
-    response.headers = {
-        'content-type': 'application/json'
-    };
-    return response;
-};
+    )
+];
 
 if (import.meta.env.MODE !== 'test') {
     console.log('=========================='); // tslint:disable-line
@@ -381,42 +321,36 @@ if (import.meta.env.MODE !== 'test') {
     console.log('=========================='); // tslint:disable-line
 }
 
-const mock = FetchMock.configure({
-    enableFallback: true,
-    middleware: MiddlewareUtils.combine(
-        contentTypeMiddleware,
-        failurerateMiddleware(0.02),
-        MiddlewareUtils.loggingMiddleware()
-    )
-});
-
-setupInnloggetSaksbehandlerMock(mock);
-setupPersondataMock(mock);
-setupTilgangskontroll(mock);
-setupSaksoversiktV2Mock(mock);
-setupSaksoversiktV3Mock(mock);
-setupUtbetalingerMock(mock);
-setupSykepengerMock(mock);
-setupForeldrepengerMock(mock);
-setupPleiepengerMock(mock);
-setupAktorIdMock(mock);
-setupSFDialogMock(mock, meldingerBackendMock);
-setupTildelteOppgaverMock(mock);
-setupBaseUrlsMock(mock);
-setupFeatureToggleMock(mock);
-setupWsControlAndMock(mock);
-setupOppfolgingMock(mock);
-setupGsakTemaMock(mock);
-setupOppgaveEnhetMock(mock);
-setupForeslatteEnheterMock(mock);
-setupAnsattePaaEnhetMock(mock);
-setupYtelserOgKontrakter(mock);
-setupVarselMock(mock);
-opprettOppgaveMock(mock);
-opprettSkjermetOppgaveMock(mock);
-setupPersonsokMock(mock);
-setupJournalforingMock(mock);
-setupStandardteksterMock(mock);
-setUpSaksbehandlersEnheterMock(mock);
-setupSaksbehandlerInnstillingerMock(mock);
-setupDraftMock(mock);
+export const handlers: HttpHandler[] = [
+    innloggetSaksbehandlerMock,
+    persondataMock,
+    ...tilgangsKontrollHandler,
+    ...saksoversiktV2Handler,
+    ...aktorIdMock,
+    saksoversiktV3Handler,
+    utbetalingerHandler,
+    sykepengerHandler,
+    foreldrepengerHandler,
+    pleiepengerHandler,
+    tildelteOppgaverHandler,
+    baseUrlsHandler,
+    ...featureToggleHandler,
+    oppfolgingHandler,
+    gsakHandler,
+    oppgaveEnhetHandler,
+    foreslotteEnhetHandler,
+    ansattePaaEnhetHandler,
+    ytelserogkontrakterHandler,
+    varslerHandler,
+    opprettOppgaveHandler,
+    opprettSkjermetOppgaveHandler,
+    saksbehandlerEnheterHandler,
+    ...personsokHandler,
+    ...journalForingHandler,
+    ...standardteksterHandler,
+    ...getSFDialogHandlers(meldingerBackendMock),
+    ...getContextHandlers(),
+    ...saksbehandlerInnstillingerHandlers,
+    ...getDraftHandlers(),
+    http.options('*', () => new HttpResponse(null, { status: 200 }))
+];
