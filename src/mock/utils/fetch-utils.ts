@@ -1,20 +1,34 @@
-import { MockHandler, MockRequest } from 'yet-another-fetch-mock';
+import { delay, HttpResponse, HttpResponseResolver, StrictRequest, PathParams, DefaultBodyType } from 'msw';
 
-export function withDelayedResponse(
-    delay: number,
-    statusCode: (args: MockRequest) => number,
-    genererMockData: (args: MockRequest) => any
-): MockHandler {
-    return (req, res, ctx) => res(ctx.delay(delay), ctx.status(statusCode(req)), ctx.json(genererMockData(req)));
+export function withDelayedResponse<T extends DefaultBodyType = { fnr: string }>(
+    delayTime: number,
+    statusCode: (request: StrictRequest<T>, parsedBody?: T) => Promise<number>,
+    genererMockData:
+        | ((request: StrictRequest<T>, params: PathParams, parsedBody?: T) => any)
+        | ((request: StrictRequest<T>, params: PathParams, parsedBody?: T) => Promise<any>)
+): HttpResponseResolver<PathParams, T> {
+    return async ({ request, params }) => {
+        const parsedBody = request.method === 'POST' ? await request.json() : undefined;
+        const status = await statusCode(request, parsedBody);
+
+        // Don't delay in test
+        if (import.meta.env.MODE !== 'test') await delay(delayTime);
+
+        const data = await Promise.resolve(genererMockData(request, params, parsedBody));
+        return HttpResponse.json(data, { status });
+    };
 }
 
-export function verify(isInvalid: (req: MockRequest) => string | undefined, handler: MockHandler): MockHandler {
-    return (req, res, ctx) => {
-        const invalid = isInvalid(req);
+export function verify<T extends DefaultBodyType = { fnr: string }>(
+    isInvalid: (req: StrictRequest<T>, params: PathParams) => string | undefined,
+    handler: HttpResponseResolver<PathParams, T>
+): HttpResponseResolver<PathParams, T> {
+    return ({ request, params, ...args }) => {
+        const invalid = isInvalid(request, params);
         if (invalid) {
-            return res(ctx.status(500), ctx.statusText(invalid));
+            return HttpResponse.text(invalid, { status: 500 });
         } else {
-            return handler(req, res, ctx);
+            return handler({ request, params, ...args });
         }
     };
 }
@@ -22,15 +36,21 @@ export function verify(isInvalid: (req: MockRequest) => string | undefined, hand
 export function mockGeneratorMedFodselsnummer(
     fn: (fodselsnummer: string) => object | object[] | undefined | string | null
 ) {
-    return (args: MockRequest) => fn(args.pathParams.fodselsnummer);
+    return (_request: StrictRequest<DefaultBodyType>, pathParams: PathParams<'fodselsnummer'>) =>
+        fn(pathParams.fodselsnummer as string);
 }
 
 export function mockGeneratorMedFodselsnummerV2(
     fn: (fodselsnummer: string) => object | object[] | undefined | string | null
 ) {
-    return (args: MockRequest) => fn(args.body.fnr);
+    return async (req: StrictRequest<{ fnr: string }>, _pathParams: PathParams, parsedBody?: { fnr: string }) => {
+        const body = parsedBody ?? (await req.json());
+
+        return fn(body.fnr);
+    };
 }
 
 export function mockGeneratorMedEnhetId(fn: (enhetId: string) => object | object[] | undefined) {
-    return (args: MockRequest) => fn(args.pathParams.enhetId);
+    return (_req: StrictRequest<DefaultBodyType>, pathParams: PathParams<'enhetId'>) =>
+        fn(pathParams.enhetId as string);
 }

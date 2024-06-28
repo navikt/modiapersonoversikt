@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FormEvent, useRef, useState } from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
 import { useDispatch, useSelector } from 'react-redux';

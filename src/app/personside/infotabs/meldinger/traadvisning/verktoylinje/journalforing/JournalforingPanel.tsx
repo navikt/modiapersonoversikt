@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import VelgSak from './VelgSak';
 import { JournalforSak } from './JournalforSak';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ChangeEvent, useEffect } from 'react';
 import { Temagruppe, temagruppeTekst } from '../../../../models/temagrupper';
 import { Select, SkjemaGruppe } from 'nav-frontend-skjema';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import SkjemaelementFeilmelding from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 

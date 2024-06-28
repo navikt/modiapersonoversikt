@@ -21,4 +21,5 @@ test('viser send ny melding', () => {
     );
 
     expect(dialogPanelBody.toJSON()).toMatchSnapshot();
+    dialogPanelBody.unmount();
 });

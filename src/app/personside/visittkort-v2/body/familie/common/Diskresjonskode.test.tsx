@@ -1,28 +1,28 @@
 import * as React from 'react';
 import Diskresjonskode from './Diskresjonskode';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import { AdresseBeskyttelse, KodeBeskrivelse } from '../../../PersondataDomain';
 
 test('Viser ikke andre diskresjonskoder enn fortrolig adresse', () => {
     const militer: KodeBeskrivelse<AdresseBeskyttelse>[] = [
         { kode: AdresseBeskyttelse.UGRADERT, beskrivelse: 'Militær' }
     ];
-    const result = shallow(<Diskresjonskode adressebeskyttelse={militer} />);
-    expect(result.html()).toBeNull();
+    const { container } = render(<Diskresjonskode adressebeskyttelse={militer} />);
+    expect(container).toHaveTextContent('');
 });
 
 test('Viser diskresjonskode fortrolig adresse', () => {
     const fortroligAdresse: KodeBeskrivelse<AdresseBeskyttelse>[] = [
         { kode: AdresseBeskyttelse.KODE7, beskrivelse: 'Sperret adresse, fortrolig' }
     ];
-    const result = shallow(<Diskresjonskode adressebeskyttelse={fortroligAdresse} />);
-    expect(result.html()).not.toBeNull();
+    const { container } = render(<Diskresjonskode adressebeskyttelse={fortroligAdresse} />);
+    expect(container).toHaveTextContent(fortroligAdresse[0].beskrivelse);
 });
 
 test('Viser diskresjonskode strengt fortrolig adresse', () => {
     const strengtFortroligAdresse: KodeBeskrivelse<AdresseBeskyttelse>[] = [
         { kode: AdresseBeskyttelse.KODE6, beskrivelse: 'Sperret adresse, strengt fortrolig' }
     ];
-    const result = shallow(<Diskresjonskode adressebeskyttelse={strengtFortroligAdresse} />);
-    expect(result.html()).not.toBeNull();
+    const { container } = render(<Diskresjonskode adressebeskyttelse={strengtFortroligAdresse} />);
+    expect(container).toHaveTextContent(strengtFortroligAdresse[0].beskrivelse);
 });

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { paths } from '../routes/routing';
 import RawModal from 'nav-frontend-modal';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Systemtittel } from 'nav-frontend-typografi';
 import ErrorIkon from '../../svg/alvorlig-advarsel.svg';
 

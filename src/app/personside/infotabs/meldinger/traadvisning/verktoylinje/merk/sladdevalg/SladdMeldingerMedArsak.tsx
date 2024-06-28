@@ -5,7 +5,7 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { Checkbox, SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import { Innholdstittel, Element, Normaltekst } from 'nav-frontend-typografi';
 import { getFormattertMeldingsDato, meldingstittel } from '../../../../utils/meldingerUtils';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { useCallback, useEffect, useRef } from 'react';
 import useList from '../../../../../../../../utils/hooks/use-list';
 import { Traad } from '../../../../../../../../models/meldinger/meldinger';

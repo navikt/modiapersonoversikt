@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ReactNode, useRef, useState } from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import { Link, Redirect } from 'react-router-dom';

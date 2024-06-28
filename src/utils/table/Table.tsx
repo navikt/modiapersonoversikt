@@ -30,7 +30,7 @@ export function Table({ tittelRekke, rows, rowsOnClickHandlers }: TableProps) {
                     ))}
                 </tr>
             </thead>
-            <tbody role="rowgroup">
+            <tbody role="rowgroup" data-testid="table-tbody">
                 {rows.map((row: TableRow, index: number) => (
                     <tr role="row" key={index} onClick={rowsOnClickHandlers && rowsOnClickHandlers[index]}>
                         {row.map((entry, i) => (

@@ -3,7 +3,7 @@ import { isDagpenger, OppfolgingsYtelse } from '../../../../models/oppfolging';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import EkspanderbartYtelserPanel from '../ytelser/felles-styling/EkspanderbartYtelserPanel';
 import { datoSynkende } from '../../../../utils/date-utils';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { Undertittel } from 'nav-frontend-typografi';
 import DescriptionList, { DescriptionListEntries, fjernEntriesUtenVerdi } from '../../../../components/DescriptionList';

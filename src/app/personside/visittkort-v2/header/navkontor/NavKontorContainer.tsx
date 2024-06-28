@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Element } from 'nav-frontend-typografi';
 import { Person } from '../../PersondataDomain';
 import { mapUgyldigGT } from '../../visittkort-utils';

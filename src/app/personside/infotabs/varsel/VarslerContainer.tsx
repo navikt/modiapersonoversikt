@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import Varsler from './Varsler';
 import theme from '../../../../styles/personOversiktTheme';
 import VarslerLoader, { VarslerRendererProps } from './varsel-loader';

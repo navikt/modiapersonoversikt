@@ -1,15 +1,13 @@
-import { configure } from 'enzyme';
-import EnzymeReactAdapter17 from '@wojtekmaj/enzyme-adapter-react-17';
-import * as EnzymeContainer from './test/enzyme-container';
 import MockDate from 'mockdate';
 import dayjs from 'dayjs';
 import 'dayjs/locale/nb';
 import './extra-polyfills';
 import 'jest-styled-components';
+import '@testing-library/jest-dom/vitest';
 import { vi } from 'vitest';
+import { server } from './mock/node';
+import { setGlobalOrigin } from 'undici';
 dayjs.locale('nb');
-
-configure({ adapter: new EnzymeReactAdapter17() });
 
 const globalAny = global;
 // @ts-expect-error dårlig typer
@@ -39,15 +37,13 @@ global['Worker'] = undefined;
 // Mock react collapse sin UnmountClosed
 vi.mock('react-collapse', () => {
     return {
-        // @ts-expect-error dårlig typer
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
         UnmountClosed: (props: PropsWithChildren) => props.children
     };
 });
 
-beforeEach(EnzymeContainer.beforeEachHandler);
-afterEach(EnzymeContainer.afterEachHandler);
-
-beforeAll(async () => {
-    await import('./mock');
+beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
+afterEach(() => {
+    setGlobalOrigin(window.location.href);
+    server.resetHandlers();
 });
+afterAll(() => server.close());

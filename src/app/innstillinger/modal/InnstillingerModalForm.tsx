@@ -2,7 +2,7 @@ import * as React from 'react';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { Undertekst } from 'nav-frontend-typografi';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import innstillingerResource, {
     Innstillinger,
     SaksbehandlerInnstillinger

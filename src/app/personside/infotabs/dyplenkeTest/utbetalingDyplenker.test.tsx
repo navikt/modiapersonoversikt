@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { mount, ReactWrapper } from '../../../../test/enzyme-container';
+import { render, within } from '@testing-library/react';
+import userEvent, { UserEvent } from '@testing-library/user-event';
 import TestProvider from '../../../../test/Testprovider';
 import InfoTabs from '../InfoTabs';
 import { BrowserRouter } from 'react-router-dom';
@@ -7,17 +8,9 @@ import { INFOTABS } from '../InfoTabEnum';
 import { getAktivTab, utbetalingerTest } from './utils-dyplenker-test';
 import { setupReactQueryMocks } from '../../../../test/testStore';
 
-function clickOnUtbetalingIOversikt(infoTabs: ReactWrapper) {
-    infoTabs
-        .find('.' + utbetalingerTest.oversikt)
-        .at(1)
-        .find('button')
-        .simulate('click');
-}
-
-test('bytter til riktig tab og setter fokus på riktig utbetaling ved bruk av dyplenke fra oversikt', () => {
+test('bytter til riktig tab og setter fokus på riktig utbetaling ved bruk av dyplenke fra oversikt', async () => {
     setupReactQueryMocks();
-    const infoTabs = mount(
+    const { container: infoTabs } = render(
         <TestProvider>
             <BrowserRouter>
                 <InfoTabs />
@@ -25,21 +18,22 @@ test('bytter til riktig tab og setter fokus på riktig utbetaling ved bruk av dy
         </TestProvider>
     );
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.OVERSIKT.path);
+    expect(getAktivTab(infoTabs)).toHaveTextContent(new RegExp(INFOTABS.OVERSIKT.path, 'i'));
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    clickOnUtbetalingIOversikt(infoTabs);
+    const user = userEvent.setup();
+    await clickOnUtbetalingIOversikt(infoTabs, user);
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.UTBETALING.path);
+    expect(getAktivTab(infoTabs)).toHaveTextContent(new RegExp(INFOTABS.UTBETALING.path, 'i'));
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
-    const activeElement = document.activeElement ? document.activeElement.outerHTML : fail('ingen elementer i fokus');
-    const expectedElement = infoTabs
-        .find('li.' + utbetalingerTest.utbetaling)
-        .at(1)
-        .html();
+    const activeElement = document.activeElement?.outerHTML;
+    const expectedElement = infoTabs.querySelectorAll('li.' + utbetalingerTest.utbetaling)[1]?.outerHTML;
 
     expect(activeElement).toEqual(expectedElement);
 });
+
+async function clickOnUtbetalingIOversikt(infoTabs: HTMLElement, user: UserEvent) {
+    const tab = infoTabs.querySelectorAll('.' + utbetalingerTest.oversikt)[1] as HTMLElement;
+    const button = within(tab).getByRole('button');
+
+    await user.click(button);
+}

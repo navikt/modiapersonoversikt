@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Ingress } from 'nav-frontend-typografi';
 import { UtbetalingPåVent } from '../../../../../../models/ytelse/ytelse-utbetalinger';
 import { utledUtbetalingPåVentÅrsak } from './utledUtbetalingerPåVentÅrsak';

@@ -1,7 +1,7 @@
 import { Meldingstype, Saksbehandler, Traad } from '../../../../../models/meldinger/meldinger';
 import { statiskTraadMock } from '../../../../../mock/meldinger/statiskTraadMock';
 import { saksbehandlerTekst, useSokEtterMeldinger } from '../utils/meldingerUtils';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import { Temagruppe } from '../../../../../models/temagrupper';
 
 function getMockSoketraad(

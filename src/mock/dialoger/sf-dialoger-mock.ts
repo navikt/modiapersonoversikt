@@ -1,9 +1,15 @@
-import FetchMock, { MockRequest } from 'yet-another-fetch-mock';
+import { DefaultBodyType, http, StrictRequest } from 'msw';
 import { apiBaseUri } from '../../api/config';
 import { mockGeneratorMedFodselsnummerV2, verify, withDelayedResponse } from '../utils/fetch-utils';
-import { fodselsNummerErGyldigStatus, randomDelay } from '../index';
+import { fodselsNummerErGyldigStatus, randomDelay } from '../utils-mock';
 import { MeldingerBackendMock } from '../mockBackend/meldingerBackendMock';
-import { Melding, Meldingstype, Traad } from '../../models/meldinger/meldinger';
+import {
+    Melding,
+    Meldingstype,
+    OpprettHenvendelseRequest,
+    SendMeldingRequest,
+    Traad
+} from '../../models/meldinger/meldinger';
 import { guid } from 'nav-frontend-js-utils';
 import {
     erChatMelding,
@@ -11,32 +17,31 @@ import {
     erMeldingstypeSamtalereferat
 } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
 
-const STATUS_OK = () => 200;
+const STATUS_OK = () => Promise.resolve(200);
 let meldingerBackendMock: MeldingerBackendMock = null as unknown as MeldingerBackendMock;
 
-const harEnhetIdSomQueryParam = (req: MockRequest) => {
-    const enhetQueryParam = req.queryParams.enhet;
+const harEnhetIdSomQueryParam = (request: StrictRequest<DefaultBodyType>) => {
+    const url = new URL(request.url);
+    const enhetQueryParam = url.searchParams.get('enhet');
     if (!enhetQueryParam) {
         return 'Skal ha enhetId i queryParameter';
     }
     return undefined;
 };
 
-function setupMeldingerMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/v2/dialog/meldinger',
-        verify(
-            harEnhetIdSomQueryParam,
-            withDelayedResponse(
-                randomDelay(),
-                fodselsNummerErGyldigStatus,
-                mockGeneratorMedFodselsnummerV2((fodselsnummer) =>
-                    simulateSf(meldingerBackendMock.getMeldinger(fodselsnummer))
-                )
+const meldingerHandler = http.post(
+    apiBaseUri + '/v2/dialog/meldinger',
+    verify(
+        harEnhetIdSomQueryParam,
+        withDelayedResponse(
+            randomDelay(),
+            fodselsNummerErGyldigStatus,
+            mockGeneratorMedFodselsnummerV2((fodselsnummer) =>
+                simulateSf(meldingerBackendMock.getMeldinger(fodselsnummer))
             )
         )
-    );
-}
+    )
+);
 
 function simulateSf(trader: Traad[]): Traad[] {
     trader.forEach((trad: Traad) => {
@@ -61,68 +66,60 @@ function simulateSf(trader: Traad[]): Traad[] {
     return trader;
 }
 
-function setupOpprettHenvendelseMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/v2/dialog/fortsett/opprett',
-        withDelayedResponse(randomDelay(), STATUS_OK, (request) =>
-            meldingerBackendMock.opprettHenvendelse(request.body)
-        )
-    );
-}
+const opprettHenvendelseHandler = http.post(
+    apiBaseUri + '/v2/dialog/fortsett/opprett',
+    withDelayedResponse<OpprettHenvendelseRequest>(randomDelay(), STATUS_OK, async (request) =>
+        meldingerBackendMock.opprettHenvendelse(await request.json())
+    )
+);
 
-function setupSendMeldingMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/v2/dialog/sendmelding',
-        withDelayedResponse(randomDelay() * 2, STATUS_OK, (request) => {
-            return meldingerBackendMock.sendMelding(request.body);
-        })
-    );
-}
+const sendMeldinghandler = http.post(
+    apiBaseUri + '/v2/dialog/sendmelding',
+    withDelayedResponse<SendMeldingRequest>(randomDelay() * 2, STATUS_OK, async (request) => {
+        return meldingerBackendMock.sendMelding(await request.json());
+    })
+);
 
-function merkFeilsendtMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/v2/dialogmerking/feilsendt',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
-    );
-}
+const merkFeilsendtHandler = http.post(
+    apiBaseUri + '/v2/dialogmerking/feilsendt',
+    withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+);
 
-function sladdingMock(mock: FetchMock) {
-    mock.post(
+const sladdingHandlers = [
+    http.post(
         apiBaseUri + '/v2/dialogmerking/sladding',
         withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
-    );
-    mock.get(
+    ),
+    http.get(
         apiBaseUri + '/v2/dialogmerking/sladdearsaker/:kjedeId',
         withDelayedResponse(randomDelay(), STATUS_OK, () => [
             'Sendt til feil bruker',
             'Innholder sensitiv informasjon',
             'Meldingen burde ikke blitt sendt til NAV'
         ])
-    );
-}
+    )
+];
 
-function setupAvsluttOppgaveGosysMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/dialogmerking/avsluttgosysoppgave',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
-    );
-}
+const avsluttOppgaveGosysHandler = http.post(
+    apiBaseUri + '/dialogmerking/avsluttgosysoppgave',
+    withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+);
 
-function lukkTraadMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/dialogmerking/lukk-traad',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
-    );
-}
+const lukkTraadHandler = http.post(
+    apiBaseUri + '/dialogmerking/lukk-traad',
+    withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+);
 
-export function setupSFDialogMock(mock: FetchMock, backend: MeldingerBackendMock) {
+export const getSFDialogHandlers = (backend: MeldingerBackendMock) => {
     meldingerBackendMock = backend;
 
-    setupMeldingerMock(mock);
-    setupOpprettHenvendelseMock(mock);
-    setupSendMeldingMock(mock);
-    merkFeilsendtMock(mock);
-    sladdingMock(mock);
-    lukkTraadMock(mock);
-    setupAvsluttOppgaveGosysMock(mock);
-}
+    return [
+        meldingerHandler,
+        opprettHenvendelseHandler,
+        sendMeldinghandler,
+        merkFeilsendtHandler,
+        ...sladdingHandlers,
+        lukkTraadHandler,
+        avsluttOppgaveGosysHandler
+    ];
+};

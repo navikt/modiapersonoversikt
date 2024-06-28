@@ -1,6 +1,6 @@
 import React from 'react';
 import DescriptionList, { DescriptionListEntries, fjernEntriesUtenVerdi } from './DescriptionList';
-import { mount } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 
 test('fjerner tomme properties fra objekt med DescriptionListEntries', () => {
     const test: DescriptionListEntries = {
@@ -21,7 +21,7 @@ test('0 blir vist som 0, og ikke som strek', () => {
         talletNull: 0
     };
 
-    const resultat = mount(<DescriptionList entries={entries} />);
+    render(<DescriptionList entries={entries} />);
 
-    expect(resultat.find('dd').contains('0')).toBe(true);
+    expect(screen.getByRole('definition')).toHaveTextContent('0');
 });

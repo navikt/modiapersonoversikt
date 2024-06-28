@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useEffect } from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import SetFnrIRedux from '../../../PersonOppslagHandler/SetFnrIRedux';
 import { useOnMount } from '../../../../utils/customHooks';

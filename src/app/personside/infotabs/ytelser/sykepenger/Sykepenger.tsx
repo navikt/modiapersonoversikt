@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useRef } from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Sykepenger as ISykepenger } from '../../../../../models/ytelse/sykepenger';
 import Sykepengertilfellet from './sykepengertilfellet/Sykepengertilfellet';
 import Sykemelding from './sykemelding/Sykemelding';

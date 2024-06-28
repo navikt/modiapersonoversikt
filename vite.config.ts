@@ -20,7 +20,6 @@ const fixNavFrontendStyleNoCss = (packages: string[]) =>
     }));
 
 export default defineConfig({
-    base: process.env.LOCAL_TOKEN ? '/' : '/modiapersonoversikt/',
     server: {
         port: 3000,
         proxy: {
@@ -91,10 +90,6 @@ export default defineConfig({
             {
                 find: '~nav-frontend-core',
                 replacement: 'nav-frontend-core'
-            },
-            {
-                find: 'styled-components/macro',
-                replacement: 'styled-components'
             }
         ]
     },
@@ -103,7 +98,7 @@ export default defineConfig({
         environment: 'jsdom',
         environmentOptions: {
             jsdom: {
-                url: 'http://localhost'
+                url: 'http://localhost:3000'
             }
         },
         setupFiles: './src/setupTests.ts',

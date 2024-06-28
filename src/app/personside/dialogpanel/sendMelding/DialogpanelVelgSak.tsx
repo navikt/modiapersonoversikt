@@ -7,7 +7,7 @@ import {
 import VelgSak from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/VelgSak';
 import { formatterDatoMedMaanedsnavn } from '../../../../utils/date-utils';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import ModalWrapper from 'nav-frontend-modal';
 import { Hovedknapp } from 'nav-frontend-knapper';
