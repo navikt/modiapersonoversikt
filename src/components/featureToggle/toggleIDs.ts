@@ -3,5 +3,6 @@ export enum FeatureToggles {
     VisPromptMeldingSending = 'modiapersonoversikt.vis-promt-naar-melding-sendes',
     BrukNyDecorator = 'modiapersonoversikt.decorator-v3',
     JournalforUtenSvar = 'modiapersonoversikt.meldinger-uten-svar-kan-journalfores',
-    VisDraftStatus = 'modiapersonoversikt.vis-draft-status'
+    VisDraftStatus = 'modiapersonoversikt.vis-draft-status',
+    FjerneContextHolderBasepath = 'modiapersonoversikt.context-uten-basepath'
 }
