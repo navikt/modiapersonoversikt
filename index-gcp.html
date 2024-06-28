@@ -11,11 +11,11 @@
           content="Intern arbeidsflate. Brukes som personoppslag og dialogverktøy av veiledere og saksbehandlere i NAV">
     <link rel="shortcut icon" href="./favicon.ico">
 
-    <slot not-environment="production">
+    <slot not-environment="prod">
         <script src="%VITE_HODE_URL_V2%/dev/latest/dist/bundle.js"></script>
         <link rel="stylesheet" href="%VITE_HODE_URL_V2%/dev/latest/dist/index.css" />
     </slot>
-    <slot environment="production">
+    <slot environment="prod">
         <script src="%VITE_HODE_URL_V2%/prod/latest/dist/bundle.js"></script>
         <link rel="stylesheet" href="%VITE_HODE_URL_V2%/prod/latest/dist/index.css" />
     </slot>
