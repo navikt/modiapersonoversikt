@@ -56,9 +56,9 @@ spec:
         - application: modiapersonoversikt-skrivestotte
         - application: modiapersonoversikt-draft
         - application: modiacontextholder
-        - application: modiapersonoversikt-api
       external:
         - host: personoversikt-unleash-api.nav.cloud.nais.io
+        - host: modiapersonoversikt-api.prod-fss-pub.nais.io
   envFrom:
     - secret: modiapersonoversikt-unleash-api-token
   env:

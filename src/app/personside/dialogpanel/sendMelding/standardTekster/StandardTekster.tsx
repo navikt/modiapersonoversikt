@@ -1,5 +1,5 @@
 import React, { FormEvent, ReactNode, useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import TagInput from '@navikt/tag-input';
 import { guid } from 'nav-frontend-js-utils';
 import Hjelpetekst from 'nav-frontend-hjelpetekst';

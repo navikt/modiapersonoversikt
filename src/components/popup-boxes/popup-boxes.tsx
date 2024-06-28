@@ -1,5 +1,5 @@
 import React, { createElement, FormEvent, useState } from 'react';
-import { createRoot } from 'react-dom/client';
+import { render, unmountComponentAtNode } from 'react-dom';
 import RawModal from 'nav-frontend-modal';
 import KnappBase from 'nav-frontend-knapper';
 import { Input } from 'nav-frontend-skjema';
@@ -8,7 +8,7 @@ import AdvarselIkon from 'nav-frontend-ikoner-assets/assets/advarsel-sirkel-fyll
 import ErrorIkon from 'nav-frontend-ikoner-assets/assets/feil-sirkel-fyll.svg';
 import HelpIkon from 'nav-frontend-ikoner-assets/assets/help-circle_hover.svg';
 import InfoIkon from 'nav-frontend-ikoner-assets/assets/info-sirkel-fyll.svg';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { focusOnFirstFocusable } from '../../utils/hooks/use-focus-on-first-focusable';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -57,18 +57,17 @@ export function renderPopup<RESULT, PROPS>(
     return new Promise((resolve) => {
         const tmp = document.createElement('div');
         document.body.appendChild(tmp);
-        const root = createRoot(tmp);
 
         const close: (result: RESULT) => void = (result: RESULT) => {
-            root.unmount();
+            unmountComponentAtNode(tmp);
             document.body.removeChild(tmp);
             resolve(result);
         };
         const component = createElement(componentType, { ...props, close });
         if (queryClient) {
-            root.render(<QueryClientProvider client={queryClient}>{component}</QueryClientProvider>);
+            render(<QueryClientProvider client={queryClient}>{component}</QueryClientProvider>, tmp);
         } else {
-            root.render(component, tmp);
+            render(component, tmp);
         }
     });
 }

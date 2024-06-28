@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import RawModal from 'nav-frontend-modal';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
 import AdvarselIkon from 'nav-frontend-ikoner-assets/assets/advarsel-sirkel-fyll.svg';

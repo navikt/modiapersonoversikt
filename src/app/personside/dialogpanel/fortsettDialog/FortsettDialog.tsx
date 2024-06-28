@@ -8,7 +8,7 @@ import { UnmountClosed } from 'react-collapse';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { DialogpanelFeilmelding, FormStyle } from '../fellesStyling';
 import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { FortsettDialogValidator } from './validatorer';
 import { DialogPanelStatus, FortsettDialogPanelState, FortsettDialogState } from './FortsettDialogTypes';
 import { erJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';

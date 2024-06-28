@@ -6,7 +6,12 @@ exports[`ArbeidsforholdListe matcher snapshot 1`] = `
 }
 
 .c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
@@ -14,7 +19,7 @@ exports[`ArbeidsforholdListe matcher snapshot 1`] = `
   color: #645f5a;
 }
 
-.c1 >div {
+.c1 > div {
   margin: 0.5625rem 0;
   padding-right: 0.7rem;
   width: 13rem;

@@ -42,16 +42,25 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 
 .c17 {
   padding: .5rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
   align-items: flex-start;
 }
 
 .c19 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
   flex-grow: 1;
   width: 0;
 }
 
-.c19 >*:not(:last-child) {
+.c19 > *:not(:last-child) {
   margin-bottom: 0.5rem;
 }
 
@@ -66,15 +75,24 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c20 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
   flex-direction: column;
 }
 
 .c20 .order-first {
+  -webkit-order: 0;
+  -ms-flex-order: 0;
   order: 0;
 }
 
 .c20 .order-second {
+  -webkit-order: 1;
+  -ms-flex-order: 1;
   order: 1;
 }
 
@@ -83,7 +101,13 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c21 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 
@@ -94,28 +118,53 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c11 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   padding: 0.9375rem;
 }
 
-.c11 >*:first-child {
+.c11 > *:first-child {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.c11 >div {
+.c11 > div {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 
-.c11 >div >* {
+.c11 > div > * {
   margin-bottom: 0.5rem;
 }
 
-.c11 >div:last-child {
+.c11 > div:last-child {
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
   align-items: flex-end;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
@@ -130,28 +179,37 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   margin: 0;
 }
 
-.c15 ol>*:not(:first-child) {
+.c15 ol > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
 .c13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
 }
 
-.c13 >*:not(:last-child) {
+.c13 > *:not(:last-child) {
   padding-right: 1rem;
 }
 
-.c13 >* {
+.c13 > * {
   margin-bottom: 0;
 }
 
 .c12 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
   display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 
-.c12 >*:last-child {
+.c12 > *:last-child {
   margin-left: 1rem;
 }
 
@@ -169,7 +227,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c2 a:visited {
-  color: currentColor!important;
+  color: currentColor !important;
 }
 
 .c2 .lenkepanel {
@@ -181,8 +239,17 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 
@@ -200,19 +267,33 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 
 .c5 {
   padding: 0.9375rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
   align-items: flex-end;
 }
 
-.c5 >*:not(:last-child) {
+.c5 > *:not(:last-child) {
   margin-right: 1rem;
 }
 
 .c6 {
   width: 100%;
   padding: 0 0.9375rem 0.9375rem 0.9375rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
   flex-direction: row;
+  -webkit-box-pack: space-evenly;
+  -webkit-justify-content: space-evenly;
+  -ms-flex-pack: space-evenly;
   justify-content: space-evenly;
 }
 
@@ -237,39 +318,59 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
   flex-direction: column;
   overflow: unset;
   max-height: none;
 }
 
 .c0 .visually-hidden {
-  position: absolute!important;
+  position: absolute !important;
   height: 1px;
   width: 1px;
   overflow: hidden;
+  -webkit-clip: rect(1px 1px 1px 1px);
   clip: rect(1px 1px 1px 1px);
-  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip: rect(1px,1px,1px,1px);
+  clip: rect(1px,1px,1px,1px);
 }
 
 .c0 a:visited:not(:focus) {
   color: purple;
 }
 
-@media (min-width: 70rem) {
+@media (min-width:70rem) {
   .c0 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
     flex-direction: row;
     height: 0;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
     flex-grow: 1;
+    -webkit-align-items: flex-start;
+    -webkit-box-align: flex-start;
+    -ms-flex-align: flex-start;
     align-items: flex-start;
   }
 
-  .c0 >*:first-child {
+  .c0 > *:first-child {
     min-width: 20rem;
+    -webkit-flex-basis: 20rem;
+    -ms-flex-preferred-size: 20rem;
     flex-basis: 20rem;
   }
 
-  .c0 >*:last-child {
+  .c0 > *:last-child {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
     flex-grow: 1;
   }
 }
@@ -757,14 +858,12 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   <article
                     aria-labelledby="Helt tilfeldig ID"
                     className="c17"
-                    valgt={false}
                   >
                     <div
                       className="c18"
                     >
                       <svg
                         aria-label="Du har ikke tilgang til dette dokumentet"
-                        data-testid="ikke-tilgang-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -828,14 +927,12 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   <article
                     aria-labelledby="Helt tilfeldig ID"
                     className="c17"
-                    valgt={false}
                   >
                     <div
                       className="c18"
                     >
                       <svg
                         aria-label="Du har ikke tilgang til dette dokumentet"
-                        data-testid="ikke-tilgang-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -933,13 +1030,11 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   <article
                     aria-labelledby="Helt tilfeldig ID"
                     className="c17"
-                    valgt={false}
                   >
                     <div
                       className="c18"
                     >
                       <svg
-                        data-testid="dokument-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -1156,13 +1251,11 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   <article
                     aria-labelledby="Helt tilfeldig ID"
                     className="c17"
-                    valgt={false}
                   >
                     <div
                       className="c18"
                     >
                       <svg
-                        data-testid="dokument-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -1288,13 +1381,11 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   <article
                     aria-labelledby="Helt tilfeldig ID"
                     className="c17"
-                    valgt={false}
                   >
                     <div
                       className="c18"
                     >
                       <svg
-                        data-testid="dokument-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -1396,13 +1487,11 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   <article
                     aria-labelledby="Helt tilfeldig ID"
                     className="c17"
-                    valgt={false}
                   >
                     <div
                       className="c18"
                     >
                       <svg
-                        data-testid="dokument-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -1514,14 +1603,12 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   <article
                     aria-labelledby="Helt tilfeldig ID"
                     className="c17"
-                    valgt={false}
                   >
                     <div
                       className="c18"
                     >
                       <svg
                         aria-label="Du har ikke tilgang til dette dokumentet"
-                        data-testid="ikke-tilgang-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -1639,14 +1726,12 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   <article
                     aria-labelledby="Helt tilfeldig ID"
                     className="c17"
-                    valgt={false}
                   >
                     <div
                       className="c18"
                     >
                       <svg
                         aria-label="Du har ikke tilgang til dette dokumentet"
-                        data-testid="ikke-tilgang-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -1732,14 +1817,12 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   <article
                     aria-labelledby="Helt tilfeldig ID"
                     className="c17"
-                    valgt={false}
                   >
                     <div
                       className="c18"
                     >
                       <svg
                         aria-label="Du har ikke tilgang til dette dokumentet"
-                        data-testid="ikke-tilgang-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -1826,13 +1909,11 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   <article
                     aria-labelledby="Helt tilfeldig ID"
                     className="c17"
-                    valgt={false}
                   >
                     <div
                       className="c18"
                     >
                       <svg
-                        data-testid="dokument-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -1934,13 +2015,11 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   <article
                     aria-labelledby="Helt tilfeldig ID"
                     className="c17"
-                    valgt={false}
                   >
                     <div
                       className="c18"
                     >
                       <svg
-                        data-testid="dokument-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -2042,13 +2121,11 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   <article
                     aria-labelledby="Helt tilfeldig ID"
                     className="c17"
-                    valgt={false}
                   >
                     <div
                       className="c18"
                     >
                       <svg
-                        data-testid="dokument-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -2140,14 +2217,12 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   <article
                     aria-labelledby="Helt tilfeldig ID"
                     className="c17"
-                    valgt={false}
                   >
                     <div
                       className="c18"
                     >
                       <svg
                         aria-label="Du har ikke tilgang til dette dokumentet"
-                        data-testid="ikke-tilgang-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -2211,13 +2286,11 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   <article
                     aria-labelledby="Helt tilfeldig ID"
                     className="c17"
-                    valgt={false}
                   >
                     <div
                       className="c18"
                     >
                       <svg
-                        data-testid="dokument-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -2309,13 +2382,11 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   <article
                     aria-labelledby="Helt tilfeldig ID"
                     className="c17"
-                    valgt={false}
                   >
                     <div
                       className="c18"
                     >
                       <svg
-                        data-testid="dokument-ikon"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >

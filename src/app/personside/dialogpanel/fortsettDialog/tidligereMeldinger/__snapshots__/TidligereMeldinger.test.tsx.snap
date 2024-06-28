@@ -15,7 +15,7 @@ exports[`viser fortsett dialog 1`] = `
 }
 
 .c3 .ekspanderbartPanel__hode:hover {
-  box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 0 0 0.1rem #0067c5, 0 0.1rem 0.1rem rgba(0,0,0,0.2);
 }
 
 .c3 .ekspanderbartPanel__hode:focus {
@@ -31,7 +31,7 @@ exports[`viser fortsett dialog 1`] = `
   padding: 0rem;
 }
 
-.c0 >*:not(:last-child) {
+.c0 > *:not(:last-child) {
   margin-bottom: 0.5rem;
 }
 
@@ -44,11 +44,11 @@ exports[`viser fortsett dialog 1`] = `
   margin-top: 0.1rem;
 }
 
-.c1 >li:not(:last-child) {
+.c1 > li:not(:last-child) {
   margin-bottom: 0.1rem;
 }
 
-.c1 >li:not(:only-child) {
+.c1 > li:not(:only-child) {
   border-top: solid 0.0625rem #b7b1a9;
 }
 

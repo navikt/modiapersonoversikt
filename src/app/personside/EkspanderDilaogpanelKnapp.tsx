@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PilKnapp from '../../components/pilknapp';
 import CogKnapp from '../innstillinger/cogknapp';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../styles/personOversiktTheme';
 import { loggEvent } from '../../utils/logger/frontendLogger';
 import { useDialogpanelState } from '../../context/dialogpanel-state';

@@ -2,7 +2,7 @@ import { Behandlingsstatus, SakstemaSoknadsstatus } from '../../../../../models/
 import * as React from 'react';
 import { saksikon, SVGStyling, visAntallSakerSomHarbehandlingsstatusV2 } from './SakstemaListeUtils';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { hentFormattertDatoForSisteHendelseV2 } from '../utils/saksoversiktUtilsV2';
 
 const CheckboksElement = styled.div`

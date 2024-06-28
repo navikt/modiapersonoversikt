@@ -8,7 +8,7 @@ import { useOnMount } from '../../../../../utils/customHooks';
 import { guid } from 'nav-frontend-js-utils';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import Panel from 'nav-frontend-paneler';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 interface Props {
     foreldrepenger: Foreldrepengerettighet | null;

@@ -8,7 +8,7 @@ import { EtikettAdvarsel, EtikettFokus, EtikettSuksess } from 'nav-frontend-etik
 import * as React from 'react';
 import useTildelteOppgaver from '../../../../../utils/hooks/useTildelteOppgaver';
 import { Temagruppe } from '../../../../../models/temagrupper';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 const ContentStyle = styled.div`
     display: flex;

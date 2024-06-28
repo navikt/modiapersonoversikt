@@ -1,12 +1,11 @@
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import AppContainer from './AppContainer';
-import { render } from '@testing-library/react';
 
 it('renders without crashing', () => {
-    const { unmount } = render(
-        <div id="root">
-            <AppContainer />
-        </div>
-    );
-    unmount();
+    const div = document.createElement('div');
+    div.id = 'root';
+    document.body.appendChild(div);
+
+    ReactDOM.render(<AppContainer />, div);
 });

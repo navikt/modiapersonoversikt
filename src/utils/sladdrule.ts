@@ -1,5 +1,5 @@
 import { Rule, RuleScope, ASTNode, RegexMatch, ReactElementDescription } from '@navikt/textparser';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 const Span = styled.span`
     border-radius: 4px;

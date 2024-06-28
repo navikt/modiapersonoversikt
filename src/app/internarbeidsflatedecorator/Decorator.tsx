@@ -1,6 +1,6 @@
 import * as React from 'react';
 import NAVSPA from '@navikt/navspa';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { DecoratorPropsV3 } from './decoratorprops';
 import PersonsokContainer from '../personsok/Personsok';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';

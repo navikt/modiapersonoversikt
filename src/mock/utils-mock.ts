@@ -1,15 +1,10 @@
-import navfaker from 'nav-faker';
 import faker from 'faker/locale/nb_NO';
-import { HttpResponseResolver, PathParams, StrictRequest } from 'msw';
-import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
+import { MockHandler } from 'yet-another-fetch-mock';
 
-export const STATUS_BAD_REQUEST = () => 400;
-export const STATUS_OK = () => Promise.resolve(200);
-
-export function delayed(ms: number, handler: HttpResponseResolver): HttpResponseResolver {
-    return async (args) => {
+export function delayed(ms: number, handler: MockHandler): MockHandler {
+    return async (req, res, ctx) => {
         await new Promise((resolve) => setTimeout(resolve, ms));
-        return handler(args);
+        return handler(req, res, ctx);
     };
 }
 
@@ -29,18 +24,3 @@ export function nArrayElement<T>(list: Array<T>, n: number, allowDuplicates: boo
     }
     return holder;
 }
-
-export function randomDelay() {
-    if (navfaker.random.vektetSjanse(0.05)) {
-        return faker.random.number(5000);
-    }
-    return faker.random.number(750);
-}
-
-export const fodselsNummerErGyldigStatus = async (
-    req: StrictRequest<{ fnr: string }>,
-    parsedBody?: { fnr: string }
-) => {
-    const body = parsedBody ?? (await req.json());
-    return erGyldigFødselsnummer(body.fnr) ? STATUS_OK() : STATUS_BAD_REQUEST();
-};

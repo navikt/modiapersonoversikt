@@ -3,7 +3,7 @@ import ModalWrapper from 'nav-frontend-modal';
 import useListener from '../../utils/hooks/use-listener';
 import Oppdateringslogg from './Oppdateringslogg';
 import { Systemtittel } from 'nav-frontend-typografi';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import useSisteLestOppdateringLogg from './useSisteLestOppdateringLogg';
 import useWaitForElement from '../../utils/hooks/use-wait-for-element';
 import { lagOppdateringsloggConfig } from './config/config';

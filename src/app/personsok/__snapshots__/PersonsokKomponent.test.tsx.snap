@@ -8,7 +8,13 @@ exports[`viser personsøk-komponent 1`] = `
   border-radius: .35rem;
   cursor: pointer;
   background-color: transparent;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   color: #0067c5;
 }
@@ -43,6 +49,8 @@ exports[`viser personsøk-komponent 1`] = `
 
 .c6 .nav-datovelger__kalenderPortal {
   position: absolute;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   top: 40px;
   left: -150px;
@@ -53,11 +61,19 @@ exports[`viser personsøk-komponent 1`] = `
 }
 
 .c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
   flex-direction: column;
 }
 
 .c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -78,21 +94,33 @@ exports[`viser personsøk-komponent 1`] = `
 }
 
 .c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   margin-bottom: 0.5rem;
 }
 
-.c1 >*:first-child {
+.c1 > *:first-child {
   margin-right: 10rem;
 }
 
 .c8 {
   padding-top: .5rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 
 .c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
 }
 

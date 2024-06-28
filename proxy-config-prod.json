@@ -17,8 +17,8 @@
             "scope": "api://prod-gcp.personoversikt.modiacontextholder/.default"
         },
         "azure-api": {
-            "url": "http://modiapersonoversikt-api.personoversikt.svc.cluster.local/modiapersonoversikt-api/rest",
-            "scope": "api://prod-gcp.personoversikt.modiapersonoversikt-api/.default"
+            "url": "https://modiapersonoversikt-api.prod-fss-pub.nais.io/modiapersonoversikt-api/rest",
+            "scope": "api://prod-fss.personoversikt.modiapersonoversikt-api/.default"
         }
     },
     "contentSecurityPolicy": {
@@ -30,8 +30,7 @@
             "'self'",
             "amplitude.nav.no",
             "wss://modiaeventdistribution.intern.nav.no",
-            "wss://veilederflatehendelser.adeo.no",
-            "wss://modiapersonoversikt-draft.nav.no",
+            "wss://modiapersonoversikt-draft.dev.nav.no",
             "https://telemetry.ekstern.nav.no"
         ],
         "object-src": [" blob:"],

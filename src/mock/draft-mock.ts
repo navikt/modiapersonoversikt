@@ -1,8 +1,9 @@
+import FetchMock, { MockHandler } from 'yet-another-fetch-mock';
 import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
 import { Draft, DraftContext } from '../app/personside/dialogpanel/use-draft';
-import { delayed, randomDelay } from './utils-mock';
+import { randomDelay } from './index';
+import { delayed } from './utils-mock';
 import MockWebsocket from './mock-websocket';
-import { HttpResponse, HttpResponseResolver, PathParams, http } from 'msw';
 
 const innloggetSaksbehandler = getMockInnloggetSaksbehandler();
 const storage = window.localStorage;
@@ -38,18 +39,16 @@ function matchContext(context: DraftContext, other: DraftContext, exact: boolean
     });
 }
 
-const findDrafts: HttpResponseResolver = ({ request }) => {
-    const queryParams = new URL(request.url).searchParams;
-    const exact = !(queryParams.get('exact') === 'false');
-    const context: DraftContext = { ...queryParams.entries };
+const findDrafts: MockHandler = ({ queryParams }, res, ctx) => {
+    const exact = !(queryParams['exact'] === 'false');
+    const context: DraftContext = { ...queryParams };
     delete context['exact'];
     const matchedDrafts: Array<Draft> = drafts.filter((draft: Draft) => matchContext(draft.context, context, exact));
 
-    return HttpResponse.json(matchedDrafts);
+    return res(ctx.json(matchedDrafts));
 };
 
-const updateDraft: HttpResponseResolver<PathParams, DraftContext> = async ({ request }) => {
-    const body = await request.json();
+const updateDraft: MockHandler = ({ body }, res, ctx) => {
     const newDraft: Draft = {
         owner: innloggetSaksbehandler.ident,
         content: body.content,
@@ -61,27 +60,27 @@ const updateDraft: HttpResponseResolver<PathParams, DraftContext> = async ({ req
     drafts.push(newDraft);
     storage.setItem(storageKey, JSON.stringify(drafts));
 
-    return HttpResponse.json(newDraft);
+    return res(ctx.json(newDraft));
 };
 
-const deleteDraft: HttpResponseResolver<PathParams, DraftContext> = async ({ request }) => {
-    const body = await request.json();
+const deleteDraft: MockHandler = ({ body }, res, ctx) => {
     const context: DraftContext = { ...body };
     drafts = drafts.filter((draft: Draft) => !matchContext(draft.context, context, true));
     storage.setItem(storageKey, JSON.stringify(drafts));
 
-    return HttpResponse.json(null);
+    return res(ctx.status(200));
 };
 
-const generateUid = () => {
-    return HttpResponse.json('abba-acdc-1231-beef');
+const generateUid: MockHandler = ({ body }, res, ctx) => {
+    return res(ctx.status(200), ctx.json('abba-acdc-1231-beef'));
 };
 
 MockWebsocket.setup();
 
-export const getDraftHandlers = () => [
-    http.get(`${import.meta.env.BASE_URL}proxy/modia-draft/api/draft`, delayed(2 * randomDelay(), findDrafts)),
-    http.post(`${import.meta.env.BASE_URL}proxy/modia-draft/api/draft`, delayed(2 * randomDelay(), updateDraft)),
-    http.delete(`${import.meta.env.BASE_URL}proxy/modia-draft/api/draft`, delayed(2 * randomDelay(), deleteDraft)),
-    http.get(`${import.meta.env.BASE_URL}proxy/modia-draft/api/generate-uid`, delayed(2 * randomDelay(), generateUid))
-];
+export function setupDraftMock(mock: FetchMock) {
+    // console.log(findDrafts, updateDraft, deleteDraft);
+    mock.get(`${import.meta.env.BASE_URL}proxy/modia-draft/api/draft`, delayed(2 * randomDelay(), findDrafts));
+    mock.post(`${import.meta.env.BASE_URL}proxy/modia-draft/api/draft`, delayed(2 * randomDelay(), updateDraft));
+    mock.delete(`${import.meta.env.BASE_URL}proxy/modia-draft/api/draft`, delayed(2 * randomDelay(), deleteDraft));
+    mock.get(`${import.meta.env.BASE_URL}proxy/modia-draft/api/generate-uid`, delayed(2 * randomDelay(), generateUid));
+}

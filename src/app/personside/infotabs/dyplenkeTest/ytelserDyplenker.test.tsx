@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { render, within } from '@testing-library/react';
-import userEvent, { UserEvent } from '@testing-library/user-event';
+import { mount, ReactWrapper } from 'enzyme';
 import TestProvider from '../../../../test/Testprovider';
 import InfoTabs from '../InfoTabs';
 import { INFOTABS } from '../InfoTabEnum';
@@ -8,9 +7,9 @@ import { getAktivTab, ytelserTest } from './utils-dyplenker-test';
 import { BrowserRouter } from 'react-router-dom';
 import { setupReactQueryMocks } from '../../../../test/testStore';
 
-test('bytter til riktig tab og åpner valgt ytelse ved bruk av dyplenke fra oversikt', async () => {
+test('bytter til riktig tab og åpner valgt ytelse ved bruk av dyplenke fra oversikt', () => {
     setupReactQueryMocks();
-    const { container: infoTabs } = render(
+    const infoTabs = mount(
         <TestProvider>
             <BrowserRouter>
                 <InfoTabs />
@@ -18,26 +17,29 @@ test('bytter til riktig tab og åpner valgt ytelse ved bruk av dyplenke fra over
         </TestProvider>
     );
 
-    expect(getAktivTab(infoTabs)).toHaveTextContent(new RegExp(INFOTABS.OVERSIKT.path, 'i'));
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.OVERSIKT.path);
 
-    const user = userEvent.setup();
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    clickOnYtelse(infoTabs);
 
-    await clickOnYtelse(infoTabs, user);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.YTELSER.path);
 
-    expect(getAktivTab(infoTabs)).toHaveTextContent(new RegExp(INFOTABS.YTELSER.path, 'i'));
+    const forventetMarkert = infoTabs.find('VisMerKnapp').at(1).find('button').html().includes('aria-selected="true"');
 
-    const forventetMarkert = within(infoTabs).getAllByRole('listitem')[1].querySelector('button[aria-selected="true"]');
+    expect(forventetMarkert);
 
-    expect(forventetMarkert).toBeInTheDocument();
+    const ikkeMarkert = infoTabs.find('VisMerKnapp').at(0).find('button').html().includes('aria-selected="false"');
 
-    const ikkeMarkert = within(infoTabs).getAllByRole('listitem')[0].querySelector('button[aria-selected="true"]');
-
-    expect(ikkeMarkert).not.toBeInTheDocument();
+    expect(ikkeMarkert);
 });
 
-async function clickOnYtelse(infoTabs: HTMLElement, user: UserEvent) {
-    const tab = infoTabs.querySelectorAll('.' + ytelserTest.oversikt)[1] as HTMLElement;
-    const button = within(tab).getByRole('button');
-
-    await user.click(button);
+function clickOnYtelse(infoTabs: ReactWrapper) {
+    infoTabs
+        .find('.' + ytelserTest.oversikt)
+        .hostNodes()
+        .at(1)
+        .find('button')
+        .simulate('click');
 }

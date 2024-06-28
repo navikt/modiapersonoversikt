@@ -3,7 +3,9 @@ import TestProvider from '../../../../../../test/Testprovider';
 import { getStaticMockSaksoversiktV2 } from '../../../../../../mock/saksoversikt/saksoversikt-mock';
 import { getTestStore } from '../../../../../../test/testStore';
 import { Journalpost, Feilmelding } from '../../../../../../models/saksoversikt/journalpost';
-import { render, screen } from '@testing-library/react';
+import { mount } from 'enzyme';
+import DokumentIkkeTilgangIkon from '../../../../../../svg/DokumentIkkeTilgangIkon';
+import DokumentIkon from '../../../../../../svg/DokumentIkon';
 import { aggregertSakstemaV2 } from '../../utils/saksoversiktUtilsV2';
 import JournalpostListeElementV2 from './JournalpostListeElementV2';
 
@@ -19,7 +21,7 @@ describe('JournalpostListeElementV2', () => {
             }
         });
 
-        render(
+        const wrapper = mount(
             <TestProvider customStore={testStore}>
                 <JournalpostListeElementV2
                     journalpost={journalposter}
@@ -28,13 +30,13 @@ describe('JournalpostListeElementV2', () => {
                 />
             </TestProvider>
         );
-        expect(screen.getByTestId('ikke-tilgang-ikon')).toBeInTheDocument();
+        expect(wrapper.find(DokumentIkkeTilgangIkon)).toHaveLength(1);
     });
 
     it('Viser ikke-tilgang-ikon hvis ikke tilgang til sakstema', () => {
         const { testStore, journalposter } = lagStoreMedJustertDokumentMetadata({});
 
-        render(
+        const wrapper = mount(
             <TestProvider customStore={testStore}>
                 <JournalpostListeElementV2
                     valgtSakstema={valgtSakstema}
@@ -43,7 +45,7 @@ describe('JournalpostListeElementV2', () => {
                 />
             </TestProvider>
         );
-        expect(screen.getByTestId('ikke-tilgang-ikon')).toBeInTheDocument();
+        expect(wrapper.find(DokumentIkkeTilgangIkon)).toHaveLength(1);
     });
 
     it('Viser tilgang-ikon hvis tilgang til sakstema og ikke sikkerhetsbegrensning, selv om ikke tilgang til alle dokumenter', () => {
@@ -63,7 +65,7 @@ describe('JournalpostListeElementV2', () => {
             ]
         });
 
-        render(
+        const wrapper = mount(
             <TestProvider customStore={testStore}>
                 <JournalpostListeElementV2
                     journalpost={journalposter}
@@ -72,8 +74,7 @@ describe('JournalpostListeElementV2', () => {
                 />
             </TestProvider>
         );
-
-        expect(screen.getByTestId('dokument-ikon')).toBeInTheDocument();
+        expect(wrapper.find(DokumentIkon)).toHaveLength(1);
     });
 
     it('Viser ikke-tilgang-ikon selv i "Alle" sakstemalisten', () => {
@@ -81,7 +82,7 @@ describe('JournalpostListeElementV2', () => {
             feil: { inneholderFeil: false, feilmelding: null }
         });
 
-        render(
+        const wrapper = mount(
             <TestProvider customStore={testStore}>
                 <JournalpostListeElementV2
                     journalpost={journalposter}
@@ -90,7 +91,7 @@ describe('JournalpostListeElementV2', () => {
                 />
             </TestProvider>
         );
-        expect(screen.getByTestId('dokument-ikon')).toBeInTheDocument();
+        expect(wrapper.find(DokumentIkon)).toHaveLength(1);
     });
 
     function lagStoreMedJustertDokumentMetadata(partialDok: Partial<Journalpost>) {

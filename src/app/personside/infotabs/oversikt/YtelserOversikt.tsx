@@ -4,7 +4,7 @@ import { getSykepengerIdDato, Sykepenger } from '../../../../models/ytelse/sykep
 import { Pleiepengerettighet } from '../../../../models/ytelse/pleiepenger';
 import { Foreldrepengerettighet, getForeldepengerIdDato } from '../../../../models/ytelse/foreldrepenger';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
 import useBrukersYtelserMarkup from '../ytelser/useBrukersYtelserMarkup';

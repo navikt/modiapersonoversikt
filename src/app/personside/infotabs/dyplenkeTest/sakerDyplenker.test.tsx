@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { render, within } from '@testing-library/react';
-import userEvent, { UserEvent } from '@testing-library/user-event';
+import { mount, ReactWrapper } from 'enzyme';
 import TestProvider from '../../../../test/Testprovider';
 import InfoTabs from '../InfoTabs';
 import { BrowserRouter } from 'react-router-dom';
@@ -8,9 +7,9 @@ import { INFOTABS } from '../InfoTabEnum';
 import { getAktivTab, sakerTest } from './utils-dyplenker-test';
 import { setupReactQueryMocks } from '../../../../test/testStore';
 
-test('bytter til riktig tab og setter riktig sakstema ved bruk av dyplenke fra oversikt', async () => {
+test('bytter til riktig tab og setter riktig sakstema ved bruk av dyplenke fra oversikt', () => {
     setupReactQueryMocks();
-    const { container: infoTabs } = render(
+    const infoTabs = mount(
         <TestProvider>
             <BrowserRouter>
                 <InfoTabs />
@@ -18,24 +17,32 @@ test('bytter til riktig tab og setter riktig sakstema ved bruk av dyplenke fra o
         </TestProvider>
     );
 
-    expect(getAktivTab(infoTabs)).toHaveTextContent(new RegExp(INFOTABS.OVERSIKT.path, 'i'));
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.OVERSIKT.path);
 
-    const user = userEvent.setup();
+    const expectedSak = infoTabs
+        .find('.' + sakerTest.oversikt)
+        .first()
+        .text();
 
-    const expectedSak = (infoTabs.querySelector('.' + sakerTest.oversikt) as HTMLElement).textContent;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    clickOnSak(infoTabs);
 
-    await clickOnSak(infoTabs, user);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.SAKER.path);
 
-    expect(getAktivTab(infoTabs)).toHaveTextContent(new RegExp(INFOTABS.SAKER.path, 'i'));
-
-    const valgtSak = infoTabs.querySelector('.' + sakerTest.dokument)?.textContent;
+    const valgtSak = infoTabs
+        .find('.' + sakerTest.dokument)
+        .first()
+        .text();
 
     expect(expectedSak).toEqual(valgtSak);
 });
 
-async function clickOnSak(infoTabs: HTMLElement, user: UserEvent) {
-    const tab = infoTabs.querySelector('.' + sakerTest.sakstema) as HTMLElement;
-    const button = within(tab).getByRole('button');
-
-    await user.click(button);
+function clickOnSak(infoTabs: ReactWrapper) {
+    infoTabs
+        .find('.' + sakerTest.sakstema)
+        .first()
+        .find('button')
+        .simulate('click');
 }

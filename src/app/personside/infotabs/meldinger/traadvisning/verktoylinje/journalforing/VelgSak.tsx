@@ -4,7 +4,7 @@ import useFieldState, { FieldState } from '../../../../../../../utils/hooks/use-
 import { Radio, RadioProps } from 'nav-frontend-skjema';
 import { AlertStripeAdvarsel, AlertStripeFeil } from 'nav-frontend-alertstriper';
 import TemaTable from './TemaTabell';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Group, groupBy } from '../../../../../../../utils/groupArray';
 import Spinner from 'nav-frontend-spinner';
 import journalsakResource from '../../../../../../../rest/resources/journalsakResource';

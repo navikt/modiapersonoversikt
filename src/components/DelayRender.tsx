@@ -7,7 +7,7 @@ interface Props {
 }
 
 function DelayRender(props: Props) {
-    const [show, setShow] = useState(props.delay !== 0);
+    const [show, setShow] = useState(false);
 
     useOnMount(() => {
         const timer = setTimeout(() => setShow(true), props.delay);

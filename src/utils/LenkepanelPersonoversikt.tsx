@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { pxToRem } from '../styles/personOversiktTheme';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel/lib';
 import Panel from 'nav-frontend-paneler';

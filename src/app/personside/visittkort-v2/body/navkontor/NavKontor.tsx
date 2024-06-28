@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Fragment } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import EtikettGraa from '../../../../../components/EtikettGraa';
 import VisittkortElement from '../VisittkortElement';

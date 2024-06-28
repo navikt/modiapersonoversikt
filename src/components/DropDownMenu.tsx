@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../styles/personOversiktTheme';
 import NavFrontendChevron from 'nav-frontend-chevron';
 

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ReactNode, useRef } from 'react';
 import { Ingress } from 'nav-frontend-typografi';
 import theme from '../../../../../styles/personOversiktTheme';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { guid } from 'nav-frontend-js-utils';
 
 interface Props {

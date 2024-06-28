@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import { Ytelse } from '../../../../models/ytelse/ytelse-utils';
 import YtelserListeElement from './YtelserListeElement';

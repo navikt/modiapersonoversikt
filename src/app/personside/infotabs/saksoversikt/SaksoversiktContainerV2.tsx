@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
 import { ScrollBar } from '../utils/InfoTabsScrollBar';

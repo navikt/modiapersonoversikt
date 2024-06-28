@@ -4,7 +4,7 @@ import OppmoteIkon from '../../../../../svg/OppmoteIkon';
 import TelefonIkon from '../../../../../svg/TelefonIkon';
 import MonologIkon from '../../../../../svg/MonologIkon';
 import DialogIkon from '../../../../../svg/DialogIkon';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { erMonolog, erUbesvartHenvendelseFraBruker, nyesteMelding } from './meldingerUtils';
 import BrevIkon from '../../../../../svg/BrevIkon';

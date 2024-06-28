@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Person } from '../../PersondataDomain';
 import DiskresjonskodeEtikett from './DiskresjonskodeEtikett';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';

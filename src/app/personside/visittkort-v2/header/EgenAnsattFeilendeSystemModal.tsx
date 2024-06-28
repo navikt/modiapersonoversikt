@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import RawModal from 'nav-frontend-modal';
 import KnappBase from 'nav-frontend-knapper';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Systemtittel } from 'nav-frontend-typografi';
 import ErrorIkon from '../../../../svg/alvorlig-advarsel.svg';
 

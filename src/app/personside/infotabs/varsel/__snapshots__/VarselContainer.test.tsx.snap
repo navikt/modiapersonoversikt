@@ -3,25 +3,30 @@
 exports[`Viser varselcontainer med alt innhold 1`] = `
 .c15 {
   padding: 0.7rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
 }
 
-.c15 >*:first-child {
+.c15 > *:first-child {
+  -webkit-flex: 0 0 20%;
+  -ms-flex: 0 0 20%;
   flex: 0 0 20%;
 }
 
-.c15 >*:last-child {
+.c15 > *:last-child {
   max-width: 30rem;
 }
 
 .c14 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0 0 0 0.3rem white, inset 0 0 0 0.37rem rgba(0,0,0,0.15);
   padding: 1.25rem;
 }
 
-.c14 >*:not(:first-child) {
+.c14 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
@@ -63,33 +68,36 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 6rem 3rem 55% 1fr auto;
-  grid-template-columns: 6rem 3rem minmax(35%, 55%) 1fr auto;
+  grid-template-columns: 6rem 3rem minmax(35%,55%) 1fr auto;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   border-radius: .25rem;
   cursor: pointer;
 }
 
-.c4 >*:nth-child(1) {
+.c4 > *:nth-child(1) {
   -ms-grid-column: 1;
 }
 
-.c4 >*:nth-child(2) {
+.c4 > *:nth-child(2) {
   -ms-grid-column: 2;
 }
 
-.c4 >*:nth-child(3) {
+.c4 > *:nth-child(3) {
   -ms-grid-column: 3;
 }
 
-.c4 >*:nth-child(4) {
+.c4 > *:nth-child(4) {
   -ms-grid-column: 4;
 }
 
 .c4:hover {
-  box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 0 0 0.1rem #0067c5, 0 0.1rem 0.1rem rgba(0,0,0,0.2);
 }
 
-.c4 >* {
+.c4 > * {
   padding: 0.7rem;
 }
 
@@ -103,6 +111,9 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
 }
 
 .c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -114,15 +125,24 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
 
 .c6 {
   width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
   justify-content: center;
 }
 
 .c10 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0 0 0 0.3rem white, inset 0 0 0 0.37rem rgba(0,0,0,0.15);
   padding: 1.25rem;
 }
 
@@ -156,32 +176,32 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 6rem 4rem 55% 1fr;
-  grid-template-columns: 6rem 4rem minmax(35%, 55%) 1fr;
+  grid-template-columns: 6rem 4rem minmax(35%,55%) 1fr;
   padding: 0;
   margin-bottom: 1rem;
 }
 
-.c1 >*:nth-child(1) {
+.c1 > *:nth-child(1) {
   -ms-grid-column: 1;
 }
 
-.c1 >*:nth-child(2) {
+.c1 > *:nth-child(2) {
   -ms-grid-column: 2;
 }
 
-.c1 >*:nth-child(3) {
+.c1 > *:nth-child(3) {
   -ms-grid-column: 3;
 }
 
-.c1 >*:nth-child(4) {
+.c1 > *:nth-child(4) {
   -ms-grid-column: 4;
 }
 
-.c1 >* {
+.c1 > * {
   padding: 0.7rem;
 }
 
-.c2 >* {
+.c2 > * {
   margin-top: 0.5rem;
 }
 
@@ -294,7 +314,6 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
               aria-expanded={false}
               aria-label="Vis mer informasjon om varsel/notifikasjon"
               className="c9"
-              focusOnRelativeParent={true}
               onClick={[Function]}
               title="Vis mer informasjon om varsel/notifikasjon"
             >
@@ -458,7 +477,6 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
               aria-expanded={false}
               aria-label="Vis mer informasjon om varsel/notifikasjon"
               className="c9"
-              focusOnRelativeParent={true}
               onClick={[Function]}
               title="Vis mer informasjon om varsel/notifikasjon"
             >
@@ -622,7 +640,6 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
               aria-expanded={false}
               aria-label="Vis mer informasjon om varsel/notifikasjon"
               className="c9"
-              focusOnRelativeParent={true}
               onClick={[Function]}
               title="Vis mer informasjon om varsel/notifikasjon"
             >
@@ -781,7 +798,6 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
               aria-expanded={false}
               aria-label="Vis mer informasjon om varsel/notifikasjon"
               className="c9"
-              focusOnRelativeParent={true}
               onClick={[Function]}
               title="Vis mer informasjon om varsel/notifikasjon"
             >
@@ -924,7 +940,6 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
               aria-expanded={false}
               aria-label="Vis mer informasjon om varsel/notifikasjon"
               className="c9"
-              focusOnRelativeParent={true}
               onClick={[Function]}
               title="Vis mer informasjon om varsel/notifikasjon"
             >

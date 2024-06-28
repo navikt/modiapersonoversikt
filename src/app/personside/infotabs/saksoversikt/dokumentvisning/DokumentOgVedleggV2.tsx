@@ -2,7 +2,7 @@ import * as React from 'react';
 import { TabsPure } from 'nav-frontend-tabs';
 import { TabProps } from 'nav-frontend-tabs/lib/tab';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useFocusOnMount, useFodselsnummer } from '../../../../../utils/customHooks';

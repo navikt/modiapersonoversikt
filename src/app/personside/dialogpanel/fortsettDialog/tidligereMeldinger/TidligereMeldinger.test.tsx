@@ -7,5 +7,4 @@ test('viser fortsett dialog', () => {
     const dialogPanelBody = renderer.create(<TidligereMeldinger traad={statiskTraadMock} />);
 
     expect(dialogPanelBody.toJSON()).toMatchSnapshot();
-    dialogPanelBody.unmount();
 });

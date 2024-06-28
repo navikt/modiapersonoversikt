@@ -17,5 +17,4 @@ test('viser fortsett dialog', () => {
     );
 
     expect(dialogPanelBody.toJSON()).toMatchSnapshot();
-    dialogPanelBody.unmount();
 });

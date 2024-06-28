@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Behandlingsstatus, SakstemaSoknadsstatus } from '../../../../../models/saksoversikt/sakstema';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import VisMerKnapp from '../../../../../components/VisMerKnapp';
 import { sakerTest } from '../../dyplenkeTest/utils-dyplenker-test';

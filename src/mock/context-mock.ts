@@ -1,4 +1,4 @@
-import { HttpResponse, PathParams, http } from 'msw';
+import FetchMock from 'yet-another-fetch-mock';
 
 class ContextStorage {
     public set aktivBruker(verdi: string | null) {
@@ -25,13 +25,79 @@ export const enheter = [
     { enhetId: '0602', navn: 'NAV Drammer' }
 ];
 
-type ContextRequest = {
-    eventType: 'NY_AKTIV_ENHET' | 'NY_AKTIV_BRUKER';
-    verdi: string;
-};
-
-export function getContextHandlers() {
+export function setupWsControlAndMock(mock: FetchMock) {
     const baseUrl = import.meta.env.BASE_URL;
+
+    mock.post(baseUrl + 'proxy/modiacontextholder/api/context', ({ body }, res, ctx) => {
+        if (body.eventType === 'NY_AKTIV_ENHET') {
+            context.aktivEnhet = body.verdi;
+            return res(ctx.status(200));
+        } else if (body.eventType === 'NY_AKTIV_BRUKER') {
+            context.aktivBruker = body.verdi;
+            return res(ctx.status(200));
+        } else {
+            return res(ctx.status(500));
+        }
+    });
+
+    mock.delete(baseUrl + 'proxy/modiacontextholder/api/context', (req, res, ctx) => {
+        context.aktivBruker = null;
+        context.aktivEnhet = null;
+        return res(ctx.status(200));
+    });
+
+    mock.get(baseUrl + 'proxy/modiacontextholder/api/context/aktivenhet', (req, res, ctx) =>
+        res(
+            ctx.json({
+                aktivEnhet: context.aktivEnhet,
+                aktivBruker: null
+            })
+        )
+    );
+
+    mock.get(baseUrl + 'proxy/modiacontextholder/api/context/v2/aktivenhet', (req, res, ctx) =>
+        res(
+            ctx.json({
+                aktivEnhet: context.aktivEnhet
+            })
+        )
+    );
+
+    mock.delete(baseUrl + 'proxy/modiacontextholder/api/context/aktivbruker', (req, res, ctx) => {
+        context.aktivBruker = null;
+        return res(ctx.status(200));
+    });
+
+    mock.get(baseUrl + 'proxy/modiacontextholder/api/context/aktivbruker', (req, res, ctx) =>
+        res(
+            ctx.json({
+                aktivEnhet: null,
+                aktivBruker: context.aktivBruker
+            })
+        )
+    );
+
+    mock.get(baseUrl + 'proxy/modiacontextholder/api/context/v2/aktivbruker', (req, res, ctx) =>
+        res(
+            ctx.json({
+                aktivBruker: context.aktivBruker
+            })
+        )
+    );
+
+    mock.get(baseUrl + 'proxy/modiacontextholder/api/context', (req, res, ctx) =>
+        res(
+            ctx.json({
+                aktivEnhet: context.aktivEnhet,
+                aktivBruker: context.aktivBruker
+            })
+        )
+    );
+
+    mock.get(baseUrl + 'proxy/modiacontextholder/api/decorator/aktor/:fnr', (req, res, ctx) =>
+        res(ctx.json({ fnr: req.pathParams.fnr, aktorId: `0000${req.pathParams.fnr}0000` }))
+    );
+
     const me = {
         ident: 'Z999999',
         navn: 'Kari Etternavn',
@@ -40,67 +106,17 @@ export function getContextHandlers() {
         enheter: enheter
     };
 
-    return [
-        http.post<PathParams, ContextRequest>(baseUrl + 'proxy/modiacontextholder/api/context', async ({ request }) => {
-            const body = await request.json();
-            if (body.eventType === 'NY_AKTIV_ENHET') {
-                context.aktivEnhet = body.verdi;
-                return HttpResponse.json(null);
-            } else if (body.eventType === 'NY_AKTIV_BRUKER') {
-                context.aktivBruker = body.verdi;
-                return HttpResponse.json(null);
-            } else {
-                return HttpResponse.json(null, { status: 500 });
-            }
-        }),
+    mock.get(baseUrl + 'proxy/modiacontextholder/api/decorator', (req, res, ctx) => res(ctx.json(me)));
 
-        http.delete(baseUrl + 'proxy/modiacontextholder/api/context', () => {
-            context.aktivBruker = null;
-            context.aktivEnhet = null;
-            return HttpResponse.json(null);
-        }),
-
-        http.get(baseUrl + 'proxy/modiacontextholder/api/context/aktivenhet', () =>
-            HttpResponse.json({
-                aktivEnhet: context.aktivEnhet,
-                aktivBruker: null
+    mock.get('https://app-q0.adeo.no/aktoerregister/api/v1/identer', (req, res, ctx) => {
+        const fnr = (req.init!.headers! as Record<string, string>)['Nav-Personidenter'];
+        return res(
+            ctx.json({
+                [fnr]: {
+                    feilmelding: null,
+                    identer: [{ gjeldende: true, ident: `000${fnr}000`, identgruppe: 'AktoerId' }]
+                }
             })
-        ),
-
-        http.get(baseUrl + 'proxy/modiacontextholder/api/context/v2/aktivenhet', () =>
-            HttpResponse.json({
-                aktivEnhet: context.aktivEnhet
-            })
-        ),
-        http.delete(baseUrl + 'proxy/modiacontextholder/api/context/aktivbruker', () => {
-            context.aktivBruker = null;
-            return HttpResponse.json(null);
-        }),
-
-        http.get(baseUrl + 'proxy/modiacontextholder/api/context/aktivbruker', () =>
-            HttpResponse.json({
-                aktivEnhet: null,
-                aktivBruker: context.aktivBruker
-            })
-        ),
-
-        http.get(baseUrl + 'proxy/modiacontextholder/api/context/v2/aktivbruker', () =>
-            HttpResponse.json({
-                aktivBruker: context.aktivBruker
-            })
-        ),
-
-        http.get(baseUrl + 'proxy/modiacontextholder/api/context', () =>
-            HttpResponse.json({
-                aktivEnhet: context.aktivEnhet,
-                aktivBruker: context.aktivBruker
-            })
-        ),
-
-        http.get(baseUrl + 'proxy/modiacontextholder/api/decorator/aktor/:fnr', ({ params }) =>
-            HttpResponse.json({ fnr: params.fnr, aktorId: `0000${params}0000` })
-        ),
-
-        http.get(baseUrl + 'proxy/modiacontextholder/api/decorator', () => HttpResponse.json(me))
-    ];
+        );
+    });
 }

@@ -3,12 +3,14 @@
 exports[`Tester visittkort-header sin funksjonalitet > viser info om bruker i visittkort-header 1`] = `
 .c7 {
   position: absolute;
-  position: absolute!important;
+  position: absolute !important;
   height: 1px;
   width: 1px;
   overflow: hidden;
+  -webkit-clip: rect(1px 1px 1px 1px);
   clip: rect(1px 1px 1px 1px);
-  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip: rect(1px,1px,1px,1px);
+  clip: rect(1px,1px,1px,1px);
 }
 
 .c6 {
@@ -17,6 +19,8 @@ exports[`Tester visittkort-header sin funksjonalitet > viser info om bruker i vi
   cursor: pointer;
   background-color: transparent;
   border-radius: 0.2rem;
+  -webkit-transition: -webkit-transform 0.2s;
+  -webkit-transition: transform 0.2s;
   transition: transform 0.2s;
 }
 
@@ -32,6 +36,8 @@ exports[`Tester visittkort-header sin funksjonalitet > viser info om bruker i vi
 }
 
 .c6:hover {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
   transform: scale(1.2);
 }
 
@@ -45,6 +51,9 @@ exports[`Tester visittkort-header sin funksjonalitet > viser info om bruker i vi
 }
 
 .c9 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
   display: inline-flex;
 }
 
@@ -59,6 +68,9 @@ exports[`Tester visittkort-header sin funksjonalitet > viser info om bruker i vi
   margin: 0;
   padding: 0;
   list-style: none;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
   display: inline-flex;
 }
 
@@ -75,18 +87,27 @@ exports[`Tester visittkort-header sin funksjonalitet > viser info om bruker i vi
   margin-right: 1em;
 }
 
-.c5 >*:not(:first-child)::before {
+.c5 > *:not(:first-child)::before {
   content: '–';
   margin: 0 0.5rem;
 }
 
 .c12 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
   justify-content: flex-end;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 
-.c12 >* {
+.c12 > * {
   margin: 6px 0 0 6px;
   white-space: nowrap;
 }
@@ -122,13 +143,28 @@ exports[`Tester visittkort-header sin funksjonalitet > viser info om bruker i vi
 
 .c13 {
   margin: 0.5rem 0 0 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
   justify-content: flex-end;
 }
 
 .c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-align-items: start;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
   align-items: start;
   margin-right: 0.5rem;
 }
@@ -143,40 +179,76 @@ exports[`Tester visittkort-header sin funksjonalitet > viser info om bruker i vi
   padding: .5rem;
   padding-right: 0;
   position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
   width: 100%;
   cursor: pointer;
 }
 
 .c1 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
   flex-grow: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
   flex-flow: row wrap;
 }
 
-.c1 >* {
+.c1 > * {
+  -webkit-flex: 1 1 15rem;
+  -ms-flex: 1 1 15rem;
   flex: 1 1 15rem;
 }
 
 .c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   min-width: 35%;
 }
 
 .c11 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-flex-flow: column nowrap;
+  -ms-flex-flow: column nowrap;
   flex-flow: column nowrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   text-align: right;
   box-sizing: border-box;
 }
 
 .c4 {
+  -webkit-flex: 1 1;
+  -ms-flex: 1 1;
   flex: 1 1;
   text-align: left;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-flex-flow: column nowrap;
+  -ms-flex-flow: column nowrap;
   flex-flow: column nowrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   word-break: break-word;
 }
@@ -186,14 +258,23 @@ exports[`Tester visittkort-header sin funksjonalitet > viser info om bruker i vi
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c4 >*:first-child {
-  margin-bottom: 0.2em!important;
+.c4 > *:first-child {
+  margin-bottom: 0.2em !important;
 }
 
 .c14 {
   padding: 0.625rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
   justify-content: center;
 }
 
@@ -473,7 +554,6 @@ exports[`Tester visittkort-header sin funksjonalitet > viser info om bruker i vi
       aria-expanded={false}
       aria-label="Åpne visittkort (Alt + N)"
       className="c15"
-      focusOnRelativeParent={true}
       onClick={[Function]}
       title="Åpne visittkort (Alt + N)"
     >

@@ -3,7 +3,7 @@ import { Utbetaling as UtbetalingInterface, Ytelse } from '../../../../../models
 import { formaterNOK, getGjeldendeDatoForUtbetaling, periodeStringFromYtelse } from '../utils/utbetalinger-utils';
 import { cancelIfHighlighting } from '../../../../../utils/function-utils';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
 import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
@@ -65,7 +65,6 @@ function EnkelUtbetaling(props: Props) {
         if (props.erValgtIUrl) {
             utbetalingRef.current && utbetalingRef.current.focus();
             ekspanderYtelse(true);
-            setYtelseIFokus();
         }
     });
 

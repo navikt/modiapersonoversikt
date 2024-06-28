@@ -8,7 +8,7 @@ import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import LenkeDrekV2 from './LenkeDrekV2';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../components/common-styled-components';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../styles/personOversiktTheme';
 import { useForm } from 'react-hook-form';
 import PersonsokNavnAdresseKontonrDnr from './PersonsokNavnAdresseKontonrDnr';

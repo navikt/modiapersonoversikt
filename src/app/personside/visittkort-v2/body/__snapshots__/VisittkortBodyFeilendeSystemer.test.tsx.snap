@@ -3,7 +3,13 @@
 exports[`viser info om bruker i visittkortbody 1`] = `
 .c2 {
   position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -11,11 +17,17 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   position: absolute;
   left: -3.125rem;
   width: 3.125rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
   justify-content: center;
 }
 
-.c5 >svg {
+.c5 > svg {
   height: 1.5rem;
   width: auto;
 }
@@ -23,6 +35,9 @@ exports[`viser info om bruker i visittkortbody 1`] = `
 .c0 {
   background-color: white;
   padding: .5rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   margin-top: 0.2rem;
 }
@@ -32,12 +47,19 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c0 >* {
+.c0 > * {
+  -webkit-flex: 1 1 50%;
+  -ms-flex: 1 1 50%;
   flex: 1 1 50%;
 }
 
 .c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-flex-flow: column nowrap;
+  -ms-flex-flow: column nowrap;
   flex-flow: column nowrap;
   margin-left: 3.125rem;
   margin-right: 3.125rem;
@@ -47,7 +69,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   margin-right: 1.25rem;
 }
 
-.c1 >*:not(:last-child) {
+.c1 > *:not(:last-child) {
   margin-bottom: 2.5rem;
 }
 
@@ -90,9 +112,21 @@ exports[`viser info om bruker i visittkortbody 1`] = `
 }
 
 .c10 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
   justify-content: flex-end;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
   align-items: flex-end;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
@@ -114,6 +148,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       <div
         className="c2"
       >
+        
         <h3
           className="typo-undertittel"
         >
@@ -515,6 +550,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <div
           className="c2"
         >
+          
           <h4
             className="typo-element"
           >
@@ -656,6 +692,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <div
           className="c2"
         >
+          
           <h4
             className="typo-element"
           >
@@ -712,6 +749,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <div
           className="c2"
         >
+          
           <h4
             className="typo-element"
           >
@@ -767,6 +805,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       <div
         className="c2"
       >
+        
         <h3
           className="typo-undertittel"
         >
@@ -954,7 +993,9 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       >
         <div
           className="c2"
-        />
+        >
+          
+        </div>
         <div
           className="c7"
         >
@@ -1013,7 +1054,9 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       >
         <div
           className="c2"
-        />
+        >
+          
+        </div>
         <p
           className="typo-normal"
         >
@@ -1031,7 +1074,9 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       >
         <div
           className="c2"
-        />
+        >
+          
+        </div>
         <p
           className="typo-normal"
         >
@@ -1049,6 +1094,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       <div
         className="c2"
       >
+        
         <h3
           className="typo-undertittel"
         >
@@ -1154,7 +1200,9 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       >
         <div
           className="c2"
-        />
+        >
+          
+        </div>
         <p
           className="typo-normal"
         >
@@ -1232,6 +1280,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <div
           className="c2"
         >
+          
           <h4
             className="typo-element"
           >
@@ -1288,6 +1337,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <div
           className="c2"
         >
+          
           <h4
             className="typo-element"
           >
@@ -1474,7 +1524,9 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       >
         <div
           className="c2"
-        />
+        >
+          
+        </div>
         <div>
           <div
             className="c7"

@@ -2,7 +2,7 @@ import * as React from 'react';
 import Utbetalinger from './Utbetalinger';
 import Filter from './filter/Filter';
 import theme from '../../../../styles/personOversiktTheme';
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import Arenalenke from './Arenalenke/Arenalenke';
 import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';

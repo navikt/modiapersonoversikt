@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Utbetaling, UtbetalingerResponse } from '../../../../models/utbetalinger';
 import { Normaltekst } from 'nav-frontend-typografi';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import { datoStigende, datoSynkende } from '../../../../utils/date-utils';
 import { formaterDato } from '../../../../utils/string-utils';

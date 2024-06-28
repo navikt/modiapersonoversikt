@@ -2,7 +2,7 @@ import * as React from 'react';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import Spinner from 'nav-frontend-spinner';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import InnstillingerModalForm from './InnstillingerModalForm';
 import innstillingerResource from '../../../rest/resources/innstillingerResource';
 

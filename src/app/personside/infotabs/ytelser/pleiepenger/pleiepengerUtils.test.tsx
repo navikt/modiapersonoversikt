@@ -7,7 +7,7 @@ import {
     sorterArbeidsforholdEtterRefusjonTom
 } from './pleiepengerUtils';
 import Pleiepenger from './Pleiepenger';
-import { render } from '@testing-library/react';
+import { mount } from 'enzyme';
 import * as React from 'react';
 import TestProvider from '../../../../../test/Testprovider';
 
@@ -152,11 +152,11 @@ test('rendrer fint selv om bruker ikke har noen arbeidsforhold', () => {
         ]
     };
 
-    const { container } = render(
+    const result = mount(
         <TestProvider>
             <Pleiepenger pleiepenger={testRettighetUtenArbeidsforhold} />
         </TestProvider>
     );
 
-    expect(container).toHaveTextContent('Ingen arbeidsgiver er registrert');
+    expect(result.html()).toContain('Ingen arbeidsgiver er registrert');
 });
