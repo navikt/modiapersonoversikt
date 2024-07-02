@@ -16,8 +16,8 @@
     },
     {
         "prefix": "proxy/modiacontextholder",
-        "url": "http://modiacontextholder.personoversikt.svc.nais.local/modiacontextholder",
-        "rewriteDirectives": ["SET_ON_BEHALF_OF_TOKEN prod-fss personoversikt modiacontextholder"]
+        "url": "https://modiacontextholder.intern.nav.no",
+        "rewriteDirectives": ["SET_ON_BEHALF_OF_TOKEN prod-gcp personoversikt modiacontextholder"]
     },
     {
         "prefix": "proxy/azure-api",
