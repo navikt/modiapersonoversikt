@@ -45,7 +45,8 @@ jobs:
     deploy-qa:
         name: Deploy to preprod
         needs: build
-        if: github.ref == 'refs/heads/dev'
+        if: github.ref == 'refs/heads/master'
+        environment: dev-fss
         runs-on: ubuntu-latest
         permissions:
           contents: read
@@ -66,6 +67,7 @@ jobs:
         name: Deploy to prod
         needs: build
         if: github.ref == 'refs/heads/master'
+        environment: prod-fss
         runs-on: ubuntu-latest
         permissions:
           contents: read
