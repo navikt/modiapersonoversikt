@@ -30,6 +30,7 @@ spec:
       memory: 1536Mi
   ingresses:
     - https://modiapersonoversikt.intern.dev.nav.no
+    - https://modiaflate.intern.dev.nav.no
   replicas:
     min: 2
     max: 4
