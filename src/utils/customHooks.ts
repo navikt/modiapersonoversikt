@@ -86,7 +86,7 @@ export function useSettAktivBruker() {
 
         dispatch(setGjeldendeBrukerIRedux(fnr ?? ''));
         if (
-            ![paths.personUri, paths.sakerFullscreen, paths.saksdokumentEgetVindu, paths.standaloneKomponenter].some(
+            ![paths.personUri, paths.sakerFullscreen, paths.saksdokumentEgetVindu, paths.standaloneKomponenter, paths.landingPage].some(
                 (path) => location.pathname.startsWith(path)
             )
         ) {
