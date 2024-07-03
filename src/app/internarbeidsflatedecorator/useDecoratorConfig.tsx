@@ -11,6 +11,7 @@ import { useCallback } from 'react';
 import { DecoratorPropsV3, Hotkey } from './decoratorprops';
 import { useGjeldendeBruker } from '../../redux/gjeldendeBruker/types';
 import { getEnvFromHost } from '../../utils/environment';
+import { useRouteMatch } from 'react-router';
 
 export function useDecoratorConfig() {
     const valgtEnhet = useValgtenhet();
@@ -70,9 +71,9 @@ function lagConfigV3(
     settEnhet: (enhet: string, enhetValue?: Enhet) => void,
     onLinkClick?: (link: { text: string; url: string }) => void
 ): DecoratorPropsV3 {
-    const { sokFnr, userKey } = getFnrFraUrl();
+    const { urlFnr, sokFnr, userKey } = getFnrFraUrl();
     const fnr = useGjeldendeBruker();
-    const onsketFnr = sokFnr ?? fnr;
+    const onsketFnr = urlFnr ?? sokFnr ?? fnr;
     const environment = import.meta.env.PROD ? getEnvFromHost() : 'mock';
 
     return {
@@ -114,12 +115,15 @@ function lagConfigV3(
     };
 }
 
-function getFnrFraUrl(): { sokFnr: string | null; userKey: string | null } {
+function getFnrFraUrl(): { sokFnr: string | null; userKey: string | null; urlFnr: string | null } {
     const location = window.location;
+    const match = useRouteMatch<{ fnr: string }>('/person/:fnr(\\d+)');
+    const urlFnr = match?.params.fnr;
 
     const queryParams = parseQueryString<{ sokFnr?: string; userKey?: string }>(location.search);
 
     return {
+        urlFnr,
         sokFnr: queryParams.sokFnr ?? null,
         userKey: queryParams.userKey ?? null
     };
