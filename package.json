@@ -44,9 +44,9 @@
         "@grafana/faro-web-tracing": "^1.7.3",
         "@navikt/aksel-icons": "^6.11.0",
         "@navikt/ds-css": "^6.11.0",
-        "@navikt/fnrvalidator": "^1.1.3",
+        "@navikt/fnrvalidator": "^2.1.0",
         "@navikt/navspa": "^6.1.0",
-        "@navikt/tag-input": "^2.0.1",
+        "@navikt/tag-input": "^2.0.2",
         "@navikt/textparser": "^2.4.0",
         "@tanstack/react-query": "^4.12.0",
         "@vitejs/plugin-react": "^4.2.1",
@@ -159,15 +159,9 @@
         "vitest": "^1.5.2"
     },
     "overrides": {
-        "nav-frontend-js-utils": {
-            "react": "$react"
-        },
-        "@navikt/tag-input": {
-            "react": "$react"
-        },
-        "connected-react-router": {
-            "react": "$react"
-        }
+        "react": "$react",
+        "react-dom": "$react-dom",
+        "@navikt/fnrvalidator": "$@navikt/fnrvalidator"
     },
     "browserslist": {
         "production": [
