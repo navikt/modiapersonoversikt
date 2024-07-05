@@ -27,7 +27,8 @@ export default defineConfig({
                 target: 'https://modiapersonoversikt.intern.dev.nav.no',
                 changeOrigin: true,
                 headers: {
-                    Authorization: `Bearer ${process.env.LOCAL_TOKEN}`
+                    Authorization: `Bearer ${process.env.LOCAL_TOKEN}`,
+                    origin: 'modiapersonoversikt.intern.dev.nav.no'
                 }
             },
             '/modiapersonoversikt-draft': {

@@ -32,6 +32,7 @@ import Revarsling from './img/revarsling.png';
 import Kunnskapsbasen from './img/kunnskapsbasen.png';
 import Journalforing from './img/journaloring.png';
 import Kontonummersok from './img/kontonummersok.png';
+import Samtalemaler from './img/samtalemaler.png';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
@@ -564,7 +565,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             src: Journalforing
         },
         {
-            id: 32,
+            id: 33,
             tittel: 'Søk etter person med kontonummer',
             dato: new Date('2024-05-27 12:00'),
             aktiv: true,
@@ -581,6 +582,22 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                 </>
             ),
             src: Kontonummersok
+        },
+        {
+            id: 34,
+            tittel: 'Oppdaterte samtalemaler',
+            dato: new Date('2024-07-03 12:00'),
+            aktiv: true,
+            ingress: null,
+            beskrivelse: (
+                <>
+                    <Normaltekst>
+                        Nå er alle lenker i samtalemaler oppdatert, og skal fungere. Meld gjerne fra om feil eller
+                        ønsker til maler i porten.
+                    </Normaltekst>
+                </>
+            ),
+            src: Samtalemaler
         }
     ];
 }
