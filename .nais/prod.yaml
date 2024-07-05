@@ -9,17 +9,20 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-buffer-size: "8k"
 spec:
   image: "{{image}}"
-  port: 8080
-  webproxy: true
+  port: 3000
   liveness:
-    path: /modiapersonoversikt/internal/isAlive
+    path: /internal/liveness
     initialDelay: 20
   readiness:
-    path: /modiapersonoversikt/internal/isReady
+    path: /internal/readiness
     initialDelay: 20
   prometheus:
     enabled: true
-    path: /modiapersonoversikt/internal/metrics
+    path: /internal/metrics
+  observability:
+    autoInstrumentation:
+      enabled: true
+      runtime: sdk
   secureLogs:
     enabled: true
   resources:
@@ -30,7 +33,8 @@ spec:
       cpu: 3000m
       memory: 2048Mi
   ingresses:
-    - https://app.adeo.no/modiapersonoversikt
+    - https://modiapersonoversikt.intern.nav.no
+    - https://modiaflate.intern.nav.no
   replicas:
     min: 2
     max: 4
@@ -43,16 +47,22 @@ spec:
       claims:
         groups:
           - id: "ea34edea-1e80-4759-a1d2-fbe696cf1709" # 0000-GA-BD06_ModiaGenerellTilgang
-  vault:
-    enabled: true
+    sidecar:
+      enabled: true
+      autoLogin: true
+      autoLoginIgnorePaths:
+        - /internal/*
+        - /proxy/**
   accessPolicy:
     outbound:
+      rules:
+        - application: modiapersonoversikt-innstillinger
+        - application: modiapersonoversikt-skrivestotte
+        - application: modiapersonoversikt-draft
+        - application: modiacontextholder
+        - application: modiapersonoversikt-api
       external:
         - host: personoversikt-unleash-api.nav.cloud.nais.io
-      rules:
-        - application: modiapersonoversikt-skrivestotte
-          namespace: personoversikt
-          cluster: prod-gcp
   envFrom:
     - secret: modiapersonoversikt-unleash-api-token
   env:
@@ -60,22 +70,15 @@ spec:
       value: "modiapersonoversikt"
     - name: APP_VERSION
       value: "{{ version }}"
-    - name: UNLEASH_API_URL
-      value: "https://unleash.nais.io/api/"
-    - name: CSP_DIRECTIVES
-      value: "default-src 'self';\
-      script-src 'self' 'unsafe-inline' jsagent.adeo.no https://cdn.nav.no;\
-      style-src 'self' 'unsafe-inline' https://cdn.nav.no;\
-      img-src 'self' data:;\
-      font-src 'self' data: https://cdn.nav.no;\
-        connect-src 'self' eumgw.adeo.no amplitude.nav.no wss://veilederflatehendelser.adeo.no wss://modiapersonoversikt-draft.intern.nav.no wss://modiaeventdistribution.intern.nav.no;\
-      object-src blob:;\
-      frame-src blob:;"
     - name: REFERRER_POLICY
       value: "no-referrer"
-    - name: DATABASE_JDBC_URL
-      value: "jdbc:postgresql://A01DBVL029.adeo.no:5432/modiapersonoversikt"
-    - name: VAULT_MOUNTPATH
-      value: "postgresql/prod-fss/"
+    - name: APP_ENVIRONMENT_NAME
+      value: prod
+    - name: ENVIRONMENT
+      value: ${APP_ENVIRONMENT_NAME}
     - name: UNLEASH_ENVIRONMENT
-      value: "production"
+      value: "development"
+    - name: PUBLIC_DRAFT_WS_URL
+      value: wss://modiapersonoversikt-draft.intern.nav.no
+    - name: CONFIG_PATH
+      value: "./proxy-config-prod.json"
