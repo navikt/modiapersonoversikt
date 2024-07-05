@@ -9,7 +9,10 @@ declare global {
 }
 
 const getApiKey = () => {
-    if (window.location.href.includes('app.adeo.no')) {
+    if (
+        window.location.href.includes('app.adeo.no') ||
+        window.location.href.includes('modiapersonoversikt.intern.nav.no')
+    ) {
         return import.meta.env.VITE_AMPLITUDE_API_KEY as string;
     }
     return import.meta.env.VITE_AMPLITUDE_API_KEY_DEV as string;
@@ -48,6 +51,13 @@ export const initAmplitude = () => {
         serverZone: 'EU',
         ingestionMetadata: {
             sourceName: window.location.origin
+        },
+        defaultTracking: {
+            attribution: false,
+            pageViews: true,
+            sessions: true,
+            formInteractions: false,
+            fileDownloads: false
         }
     });
 
