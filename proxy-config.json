@@ -26,7 +26,7 @@
     },
     {
         "prefix": "proxy/api",
-        "url": "http://modiapersonoversikt-api.personoversikt.intern.nav.no/modiapersonoversikt-api/rest",
+        "url": "https://modiapersonoversikt-api.personoversikt.intern.nav.no/modiapersonoversikt-api/rest",
         "rewriteDirectives": ["SET_ON_BEHALF_OF_TOKEN prod-gcp personoversikt modiapersonoversikt-api"]
     }
 ]
