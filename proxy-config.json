@@ -21,12 +21,12 @@
     },
     {
         "prefix": "proxy/azure-api",
-        "url": "http://modiapersonoversikt-api.personoversikt.svc.nais.local/modiapersonoversikt-api/rest",
-        "rewriteDirectives": ["SET_ON_BEHALF_OF_TOKEN prod-fss personoversikt modiapersonoversikt-api"]
+        "url": "https://modiapersonoversikt-api.intern.nav.no/modiapersonoversikt-api/rest",
+        "rewriteDirectives": ["SET_ON_BEHALF_OF_TOKEN prod-gcp personoversikt modiapersonoversikt-api"]
     },
     {
         "prefix": "proxy/api",
-        "url": "http://modiapersonoversikt-api.personoversikt.svc.nais.local/modiapersonoversikt-api/rest",
-        "rewriteDirectives": ["SET_ON_BEHALF_OF_TOKEN prod-fss personoversikt modiapersonoversikt-api"]
+        "url": "https://modiapersonoversikt-api.personoversikt.intern.nav.no/modiapersonoversikt-api/rest",
+        "rewriteDirectives": ["SET_ON_BEHALF_OF_TOKEN prod-gcp personoversikt modiapersonoversikt-api"]
     }
 ]
