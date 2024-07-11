@@ -17,7 +17,7 @@ spec:
     path: /internal/readiness
     initialDelay: 20
   prometheus:
-    enabled: false
+    enabled: true
     path: /internal/metrics
   observability:
     autoInstrumentation:
