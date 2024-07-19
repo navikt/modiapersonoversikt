@@ -106,7 +106,7 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
                     const message = JSON.parse(event.data as string) as WsConfirmation;
 
                     if (message.type === 'OK' && message) {
-                        setLastConfirm({ ok: true, time: new Date(message.time) });
+                        setLastConfirm({ ok: true, time: new Date(`${message.time}Z`) });
                     }
                 } catch (e) {
                     console.error(e);
@@ -158,7 +158,7 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
             .then((json: Array<Draft>) => {
                 if (json.length > 0) {
                     ifPresent(json[0]);
-                    setLastConfirm({ ok: true, time: new Date(json[0].created) });
+                    setLastConfirm({ ok: true, time: new Date(`${json[0].created}Z`) });
                 }
             })
             .catch((error: Error) => {

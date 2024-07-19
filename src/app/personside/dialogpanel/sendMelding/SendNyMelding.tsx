@@ -91,14 +91,14 @@ const ExclamationmarkTriangleIconRed = styled(ExclamationmarkTriangleIcon)`
 const DraftStatus = ({ state }: { state: DraftState }) => {
     return (
         <DraftStatusWrapper className="typo-etikett-liten">
-            {state.ok ? (
+            {state.loading ? (
+                <>
+                    <NavFrontendSpinner type="XXS" /> Lagrer utkast...
+                </>
+            ) : state.ok ? (
                 <>
                     <CheckmarkCircleIconGreen />
                     Utkast lagret {state.saveTime ? formatterDatoTid(state.saveTime.toDate()) : ''}
-                </>
-            ) : state.loading ? (
-                <>
-                    <NavFrontendSpinner type="XXS" /> Lagrer utkast...
                 </>
             ) : (
                 <>
