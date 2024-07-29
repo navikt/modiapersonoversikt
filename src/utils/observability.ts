@@ -48,6 +48,7 @@ export const initializeObservability = (history: ReactRouterHistory) => {
                     }
                 }
             })
-        ]
+        ],
+        ignoreUrls: [/\d{11}/]
     });
 };
