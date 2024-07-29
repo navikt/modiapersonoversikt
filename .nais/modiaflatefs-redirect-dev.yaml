@@ -1,0 +1,25 @@
+# Denne filen må applies manuelt!
+# Applies til dev-fss
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/permanent-redirect: "https://modiapersonoversikt.intern.dev.nav.no/landingpage"
+  name: modiaflatefs-redirect
+  namespace: personoversikt
+  labels:
+    app: modiaflatefs-q1
+    team: personoversikt
+spec:
+  ingressClassName: nais-ingress
+  rules:
+    - host: app-q1.adeo.no
+      http:
+        paths:
+          - path: /modiaflatefs(/.*)?
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: noop
+                port:
+                  number: 80
