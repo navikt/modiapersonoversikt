@@ -11,7 +11,7 @@ import { getEnvFromHost } from './environment';
 import { getWindowFeature } from './featureToggles';
 
 const customPageMeta: () => Pick<Meta, 'page'> = () => {
-    const maskedUrl = location.href.replaceAll(/\d{11}/, '***********');
+    const maskedUrl = location.href.replaceAll(/\d{11}/g, '***********');
 
     return {
         page: {
