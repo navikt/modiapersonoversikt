@@ -1,6 +1,7 @@
 import {
     getWebInstrumentations,
     initializeFaro,
+    Meta,
     ReactIntegration,
     ReactRouterHistory,
     ReactRouterVersion
@@ -8,6 +9,16 @@ import {
 import { Route } from 'react-router-dom';
 import { getEnvFromHost } from './environment';
 import { getWindowFeature } from './featureToggles';
+
+const customPageMeta: () => Pick<Meta, 'page'> = () => {
+    const maskedUrl = location.href.replaceAll(/\d{11}/, '***********');
+
+    return {
+        page: {
+            url: maskedUrl
+        }
+    };
+};
 
 export const initializeObservability = (history: ReactRouterHistory) => {
     if (!getWindowFeature('enableFaro') && !import.meta.env.VITE_GRAFANA_COLLECTOR) return;
@@ -24,6 +35,7 @@ export const initializeObservability = (history: ReactRouterHistory) => {
         app: {
             name: 'modiapersonoversikt'
         },
+        metas: [customPageMeta],
         paused: !import.meta.env.PROD,
         instrumentations: [
             ...getWebInstrumentations(),
