@@ -6,8 +6,8 @@ export const SentryRoute = ({
     children,
     ...props
 }: ComponentProps<typeof FaroRoute> & ComponentProps<typeof Route>) => {
-    if (window.faro) {
-        return <FaroRoute {...props}>{children}</FaroRoute>;
-    }
+    // if (window.faro) {
+    //     return <FaroRoute {...props}>{children}</FaroRoute>;
+    // }
     return <Route {...props}>{children}</Route>;
 };
