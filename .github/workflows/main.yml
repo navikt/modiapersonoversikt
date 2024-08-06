@@ -75,5 +75,5 @@ jobs:
               env:
                   PRINT_PAYLOAD: true
                   CLUSTER: prod-gcp
-                  RESOURCE: .nais/prod-gcp.yaml
+                  RESOURCE: .nais/prod.yaml
                   VAR: version=${{ github.sha }},image=${{ needs.build.outputs.image }}
