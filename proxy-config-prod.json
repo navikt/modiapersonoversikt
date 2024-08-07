@@ -31,7 +31,7 @@
             "amplitude.nav.no",
             "wss://modiaeventdistribution.intern.nav.no",
             "wss://veilederflatehendelser.adeo.no",
-            "wss://modiapersonoversikt-draft.nav.no",
+            "wss://modiapersonoversikt-draft.intern.nav.no",
             "https://telemetry.nav.no"
         ],
         "object-src": [" blob:"],
