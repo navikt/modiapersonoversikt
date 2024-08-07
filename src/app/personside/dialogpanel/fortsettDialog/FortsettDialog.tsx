@@ -18,6 +18,8 @@ import { Checkbox, SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import Panel from 'nav-frontend-paneler';
 import Oppgaveliste from '../sendMelding/Oppgaveliste';
 import DialogpanelVelgSak from '../sendMelding/DialogpanelVelgSak';
+import { DraftState } from '../use-draft';
+import DraftStatus from '../DraftStatus';
 
 const SubmitKnapp = styled(Hovedknapp)`
     white-space: normal;
@@ -44,6 +46,7 @@ interface Props {
     erTilknyttetOppgave: boolean;
     erSTOOppgave: boolean;
     fortsettDialogPanelState: FortsettDialogPanelState;
+    draftState?: DraftState;
 }
 
 function Feilmelding(props: { status: DialogPanelStatus; errors?: Error[] }) {
@@ -81,6 +84,7 @@ function FortsettDialog(props: Props) {
     const erSamtalereferat = props.traad.traadType === TraadType.SAMTALEREFERAT;
     const visFeilmelding = !FortsettDialogValidator.sak(state) && state.visFeilmeldinger;
     const visVelgSak = !erJournalfort(props.traad) && !erOksosTraad;
+    const draftState = props.draftState;
 
     return (
         <FormStyle onSubmit={handleSubmit}>
@@ -96,6 +100,7 @@ function FortsettDialog(props: Props) {
                         : undefined
                 }
             />
+            {draftState && state.tekst.length > 0 && <DraftStatus state={draftState} />}
 
             <div>
                 <UnmountClosed isOpened={!erSamtalereferat}>
