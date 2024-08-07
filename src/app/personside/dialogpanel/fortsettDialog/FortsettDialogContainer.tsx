@@ -86,7 +86,7 @@ function FortsettDialogContainer(props: Props) {
         [setState]
     );
     const draftContext = useMemo(() => ({ fnr }), [fnr]);
-    const { update: updateDraft, remove: removeDraft } = useDraft(draftContext, draftLoader);
+    const { update: updateDraft, remove: removeDraft, status: draftStatus } = useDraft(draftContext, draftLoader);
     const tildelteOppgaverResource = tildelteoppgaver.useFetch();
     const [dialogStatus, setDialogStatus] = useState<FortsettDialogPanelState>({
         type: DialogPanelStatus.UNDER_ARBEID
@@ -238,6 +238,7 @@ function FortsettDialogContainer(props: Props) {
                     fortsettDialogPanelState={dialogStatus}
                     erTilknyttetOppgave={!!oppgaveId}
                     erSTOOppgave={erSTOOppgave}
+                    draftState={draftStatus}
                 />
             </ReflowBoundry>
         </StyledArticle>

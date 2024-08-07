@@ -25,11 +25,9 @@ import persondataResource from '../../../../rest/resources/persondataResource';
 import VelgDialogType from './VelgDialogType';
 import Panel from 'nav-frontend-paneler';
 import { DraftState } from '../use-draft';
-import { formatterDatoTid } from '../../../../utils/date-utils';
-import NavFrontendSpinner from 'nav-frontend-spinner';
 import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureToggleOn';
 import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
-import { CheckmarkCircleIcon, ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
+import DraftStatus from '../DraftStatus';
 
 export enum OppgavelisteValg {
     MinListe = 'MinListe',
@@ -69,45 +67,6 @@ const StyledCheckbox = styled(Checkbox)`
 const StyledUndertittel = styled(Undertittel)`
     margin-bottom: 1rem !important;
 `;
-
-const DraftStatusWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    font-style: italic;
-`;
-
-const CheckmarkCircleIconGreen = styled(CheckmarkCircleIcon)`
-    color: var(--a-icon-success);
-`;
-
-const ErrorText = styled.span`
-    color: var(--a-text-danger);
-`;
-
-const ExclamationmarkTriangleIconRed = styled(ExclamationmarkTriangleIcon)`
-    color var(--a-text-danger);
-`;
-
-const DraftStatus = ({ state }: { state: DraftState }) => {
-    return (
-        <DraftStatusWrapper className="typo-etikett-liten">
-            {state.loading ? (
-                <>
-                    <NavFrontendSpinner type="XXS" /> Lagrer utkast...
-                </>
-            ) : state.ok ? (
-                <>
-                    <CheckmarkCircleIconGreen />
-                    Utkast lagret {state.saveTime ? formatterDatoTid(state.saveTime.toDate()) : ''}
-                </>
-            ) : (
-                <>
-                    <ExclamationmarkTriangleIconRed /> <ErrorText>Utkast ikke lagret!</ErrorText>
-                </>
-            )}
-        </DraftStatusWrapper>
-    );
-};
 
 interface Props {
     handleSubmit: (event: FormEvent) => void;
@@ -159,9 +118,7 @@ function SendNyMelding(props: Props) {
                                     : undefined
                             }
                         />
-                        <IfFeatureToggleOn toggleID={FeatureToggles.VisDraftStatus}>
-                            {draftState && state.tekst.length > 0 && <DraftStatus state={draftState} />}
-                        </IfFeatureToggleOn>
+                        {draftState && state.tekst.length > 0 && <DraftStatus state={draftState} />}
                     </div>
 
                     <VelgDialogType
