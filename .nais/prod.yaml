@@ -76,10 +76,12 @@ spec:
     - name: APP_ENVIRONMENT_NAME
       value: prod
     - name: ENVIRONMENT
-      value: ${APP_ENVIRONMENT_NAME}
+      value: $(APP_ENVIRONMENT_NAME)
     - name: UNLEASH_ENVIRONMENT
       value: "development"
     - name: PUBLIC_DRAFT_WS_URL
       value: wss://modiapersonoversikt-draft.intern.nav.no
+    - name: PUBLIC_ENVIRONMENT
+      value: $(ENVIRONMENT)
     - name: CONFIG_PATH
       value: "./proxy-config-prod.json"
