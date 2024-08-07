@@ -12,6 +12,7 @@ import { DecoratorPropsV3, Hotkey } from './decoratorprops';
 import { useGjeldendeBruker } from '../../redux/gjeldendeBruker/types';
 import { getEnvFromHost } from '../../utils/environment';
 import { useRouteMatch } from 'react-router';
+import config from '../../config';
 
 export function useDecoratorConfig() {
     const valgtEnhet = useValgtenhet();
@@ -135,8 +136,7 @@ function getHotkeys(): Hotkey[] {
      * hurtigtastene kan definere actions her om det er enkelt (litt avhengig av funksjon)
      * Evt kan bruken av `useHotkey` hooken føre til at dette blir registrert i en global context som kan brukes her
      */
-    const isProd = window.location.host === 'app.adeo.no';
-    const naisInternNavDomain = isProd ? '.intern.nav.no' : '.intern.dev.nav.no';
+    const naisInternNavDomain = config.isProd ? '.intern.nav.no' : '.intern.dev.nav.no';
     return [
         {
             key: { char: 'O', altKey: true },
