@@ -30,6 +30,7 @@
             "'self'",
             "amplitude.nav.no",
             "wss://modiaeventdistribution.intern.nav.no",
+            "wss://modiacontextholder.intern.nav.no",
             "wss://veilederflatehendelser.adeo.no",
             "wss://modiapersonoversikt-draft.intern.nav.no",
             "https://telemetry.nav.no"
