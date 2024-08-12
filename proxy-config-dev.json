@@ -36,5 +36,6 @@
         ],
         "object-src": [" blob:"],
         "frame-src": ["blob:"]
-    }
+    },
+    "disableCOOP": true
 }
