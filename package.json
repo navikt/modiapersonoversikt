@@ -52,7 +52,7 @@
         "@vitejs/plugin-react": "^4.2.1",
         "classnames": "^2.2.6",
         "connected-react-router": "^6.9.3",
-        "dayjs": "^1.10.4",
+        "dayjs": "^1.11.13",
         "detect-browser": "^3.0.1",
         "downshift": "^5.0.5",
         "history": "^4.7.2",
