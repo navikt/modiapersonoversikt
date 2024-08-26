@@ -1,0 +1,20 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: daily
+      time: "05:00"
+      timezone: Europe/Oslo
+  - package-ecosystem: docker
+    directory: "/"
+    schedule:
+      interval: daily
+      time: "05:00"
+      timezone: Europe/Oslo
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: daily
+      time: "05:00"
+      timezone: Europe/Oslo
