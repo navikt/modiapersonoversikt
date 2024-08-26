@@ -5,7 +5,6 @@ import react from '@vitejs/plugin-react';
 import vitePluginSvgr from 'vite-plugin-svgr';
 import { fileURLToPath } from 'node:url';
 import { viteRequire } from 'vite-require';
-import { resolve } from 'node:path';
 
 const fixNavFrontendStyle = (packages: string[]) =>
     packages.map((name) => ({
@@ -51,7 +50,7 @@ export default defineConfig({
         sourcemap: true,
         rollupOptions: {
             input: {
-                main: resolve(__dirname, process.env.BUILD_GCP ? 'index-gcp.html' : 'index.html')
+                main: 'index.html'
             }
         }
     },
