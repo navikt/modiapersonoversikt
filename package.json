@@ -18,8 +18,7 @@
     "scripts": {
         "start": "vite",
         "start:dev": "VITE_MOCK_ENABLED=false vite",
-        "build": "vite build --base=/modiapersonoversikt/",
-        "build:gcp": "BUILD_GCP=true vite build --base=/ --mode gcp && mv build/index-gcp.html build/index.html",
+        "build": "vite build",
         "upload-sourcemaps": "cross-env GIT_COMMIT_HASH=$(git rev-parse HEAD) node _scripts/upload-sourcemaps.js",
         "test": "vitest",
         "lint": "eslint .",
