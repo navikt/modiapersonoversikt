@@ -9,6 +9,8 @@ export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleRespon
             return true;
         case FeatureToggles.VisDraftStatus:
             return true;
+        case FeatureToggles.BrukNyTiltakspenger:
+            return true;
         default:
             return Math.random() > 0.5;
     }

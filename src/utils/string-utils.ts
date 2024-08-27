@@ -23,7 +23,7 @@ export function prosentEllerNull(value: number | null): string | null {
     return value + '%';
 }
 
-export function NOKellerNull(value: number | null): string | null {
+export function NOKellerNull(value: number | null | undefined): string | null {
     if (!value) {
         return null;
     }

@@ -51,7 +51,8 @@ function YtelseListe(props: Props) {
                 <TittelWrapper>
                     <Undertittel>Ytelser</Undertittel>
                     <Hjelpetekst id={guid()} type={PopoverOrientering.UnderVenstre}>
-                        Viser kun ytelser fra Infotrygd 2 år tilbake i tid (foreldrepenger, pleiepenger, sykepenger)
+                        Viser ytelser fra Infotrygd 2 år tilbake i tid (foreldrepenger, pleiepenger, sykepenger). I
+                        tillegg til tiltakspenger 10 år tilbake.
                     </Hjelpetekst>
                 </TittelWrapper>
                 <nav aria-label="Velg ytelser">

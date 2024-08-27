@@ -1,6 +1,28 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Viser oversikt med alt innhold 1`] = `
+.c24 {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: edHiKw 0.3s ease-out;
+}
+
+.c24 >* {
+  flex: 0 1 25rem;
+  display: flex;
+  justify-content: center;
+}
+
+.c25 {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  animation: edHiKw 0.3s ease-out;
+  padding: .5rem;
+}
+
 .c2 {
   padding: 0rem 0rem 0.3rem 0rem;
 }
@@ -35,7 +57,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   padding: 0 1rem;
 }
 
-.c31 {
+.c33 {
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -43,17 +65,17 @@ exports[`Viser oversikt med alt innhold 1`] = `
   border-radius: 0.5em;
 }
 
-.c31:focus {
+.c33:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c31:focus {
+.c33:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c31:focus::after {
+.c33:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -64,11 +86,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
   pointer-events: none;
 }
 
-.c25 {
+.c27 {
   padding: 0rem;
 }
 
-.c26 {
+.c28 {
   position: relative;
   display: -ms-grid;
   display: grid;
@@ -79,64 +101,64 @@ exports[`Viser oversikt med alt innhold 1`] = `
   cursor: pointer;
 }
 
-.c26 >*:nth-child(1) {
+.c28 >*:nth-child(1) {
   -ms-grid-column: 1;
 }
 
-.c26 >*:nth-child(2) {
+.c28 >*:nth-child(2) {
   -ms-grid-column: 2;
 }
 
-.c26 >*:nth-child(3) {
+.c28 >*:nth-child(3) {
   -ms-grid-column: 3;
 }
 
-.c26 >*:nth-child(4) {
+.c28 >*:nth-child(4) {
   -ms-grid-column: 4;
 }
 
-.c26:hover {
+.c28:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
 }
 
-.c26 >* {
+.c28 >* {
   padding: 0.7rem;
 }
 
-.c30 li {
+.c32 li {
   display: inline-block;
 }
 
-.c30 li:not(:last-child):after {
+.c32 li:not(:last-child):after {
   content: ',';
   margin-right: 0.5em;
 }
 
-.c27 {
+.c29 {
   display: flex;
 }
 
-.c29 {
+.c31 {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
 
-.c28 {
+.c30 {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.c32 {
+.c34 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
   box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
   padding: 1.25rem;
 }
 
-.c32 dt {
+.c34 dt {
   float: left;
   clear: left;
   font-weight: bold;
@@ -144,25 +166,25 @@ exports[`Viser oversikt med alt innhold 1`] = `
   width: 7rem;
 }
 
-.c32 dd {
+.c34 dd {
   margin-bottom: 0.5rem;
   margin-left: 7.125rem;
 }
 
-.c34 {
+.c36 {
   font-weight: bold;
 }
 
-.c35 {
+.c37 {
   margin-top: 0.5rem;
 }
 
-.c33 {
+.c35 {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
 
-.c24 >*:not(:first-child) {
+.c26 >*:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
@@ -1019,6 +1041,48 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 />
               </button>
             </div>
+            <div
+              className="c24"
+            >
+              <span
+                className="c25"
+                padding=".5rem"
+              >
+                <svg
+                  aria-label="Laster innhold"
+                  className="spinner spinner--l"
+                  focusable="false"
+                  height={32}
+                  kind="spinner-negativ"
+                  preserveAspectRatio="xMidYMid"
+                  viewBox="0 0 50 50"
+                  width={32}
+                >
+                  <title>
+                    Venter...
+                  </title>
+                  <circle
+                    cx="25"
+                    cy="25"
+                    fill="none"
+                    r="20"
+                    stroke="#eee"
+                    strokeWidth="5"
+                    xmlns="http://www.w3.org/2000/svg"
+                  />
+                  <circle
+                    cx="25"
+                    cy="25"
+                    fill="none"
+                    r="20"
+                    stroke="#888"
+                    strokeDasharray="50 155"
+                    strokeLinecap="round"
+                    strokeWidth="5"
+                  />
+                </svg>
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -1059,35 +1123,35 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="c6"
         >
           <ol
-            className="c24"
+            className="c26"
           >
             <li>
               <div
-                className="panel c25"
+                className="panel c27"
               >
                 <article
                   aria-labelledby="Helt tilfeldig ID"
                 >
                   <div
-                    className="c26"
+                    className="c28"
                     onClick={[Function]}
                   >
                     <p
                       className="typo-normal"
                     >
                       <span
-                        className="c27"
+                        className="c29"
                       >
                         11.01.2023
                       </span>
                       <span
-                        className="c27"
+                        className="c29"
                       >
                         01.08.2023
                       </span>
                     </p>
                     <div
-                      className="c28"
+                      className="c30"
                     >
                       <svg
                         focusable="false"
@@ -1106,14 +1170,14 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </svg>
                     </div>
                     <h4
-                      className="typo-element c29"
+                      className="typo-element c31"
                       id="Helt tilfeldig ID"
                     >
                       Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
                     </h4>
                     <ul
                       aria-label="Kommunikasjonskanaler"
-                      className="c30"
+                      className="c32"
                     >
                       <li
                         className="typo-normal"
@@ -1134,7 +1198,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     <button
                       aria-expanded={false}
                       aria-label="Vis mer informasjon om varsel/notifikasjon"
-                      className="c31"
+                      className="c33"
                       focusOnRelativeParent={true}
                       onClick={[Function]}
                       title="Vis mer informasjon om varsel/notifikasjon"
@@ -1145,7 +1209,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </button>
                   </div>
                   <dl
-                    className="c32"
+                    className="c34"
                   >
                     <div>
                       <dt>
@@ -1180,15 +1244,15 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </dd>
                       <hr />
                       <div
-                        className="c33"
+                        className="c35"
                       >
                         <span
-                          className="c34"
+                          className="c36"
                         >
                           Varslingsfeil
                         </span>
                         <div
-                          className="c35"
+                          className="c37"
                         >
                           <li>
                             01.01.2023
@@ -1201,15 +1265,15 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </div>
                       <hr />
                       <div
-                        className="c33"
+                        className="c35"
                       >
                         <span
-                          className="c34"
+                          className="c36"
                         >
                           Revarslingsfeil
                         </span>
                         <div
-                          className="c35"
+                          className="c37"
                         >
                           <li>
                             11.08.2023
@@ -1227,31 +1291,31 @@ exports[`Viser oversikt med alt innhold 1`] = `
             </li>
             <li>
               <div
-                className="panel c25"
+                className="panel c27"
               >
                 <article
                   aria-labelledby="Helt tilfeldig ID"
                 >
                   <div
-                    className="c26"
+                    className="c28"
                     onClick={[Function]}
                   >
                     <p
                       className="typo-normal"
                     >
                       <span
-                        className="c27"
+                        className="c29"
                       >
                         11.01.2023
                       </span>
                       <span
-                        className="c27"
+                        className="c29"
                       >
                         01.08.2023
                       </span>
                     </p>
                     <div
-                      className="c28"
+                      className="c30"
                     >
                       <svg
                         focusable="false"
@@ -1270,14 +1334,14 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </svg>
                     </div>
                     <h4
-                      className="typo-element c29"
+                      className="typo-element c31"
                       id="Helt tilfeldig ID"
                     >
                       Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
                     </h4>
                     <ul
                       aria-label="Kommunikasjonskanaler"
-                      className="c30"
+                      className="c32"
                     >
                       <li
                         className="typo-normal"
@@ -1298,7 +1362,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     <button
                       aria-expanded={false}
                       aria-label="Vis mer informasjon om varsel/notifikasjon"
-                      className="c31"
+                      className="c33"
                       focusOnRelativeParent={true}
                       onClick={[Function]}
                       title="Vis mer informasjon om varsel/notifikasjon"
@@ -1309,7 +1373,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </button>
                   </div>
                   <dl
-                    className="c32"
+                    className="c34"
                   >
                     <div>
                       <dt>
@@ -1344,15 +1408,15 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </dd>
                       <hr />
                       <div
-                        className="c33"
+                        className="c35"
                       >
                         <span
-                          className="c34"
+                          className="c36"
                         >
                           Varslingsfeil
                         </span>
                         <div
-                          className="c35"
+                          className="c37"
                         >
                           <li>
                             01.01.2023
@@ -1365,15 +1429,15 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </div>
                       <hr />
                       <div
-                        className="c33"
+                        className="c35"
                       >
                         <span
-                          className="c34"
+                          className="c36"
                         >
                           Revarslingsfeil
                         </span>
                         <div
-                          className="c35"
+                          className="c37"
                         >
                           <li>
                             11.08.2023
