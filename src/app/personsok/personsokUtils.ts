@@ -14,6 +14,7 @@ export type PersonSokFormStateV3 = {
     alderTil: string;
     kjonn: string;
     adresse: string;
+    telefonnummer: string;
     _minimumskrav: string;
 };
 
@@ -42,9 +43,9 @@ export function resolver(values: PersonSokFormStateV3) {
         errors.alderTil = buildFieldError('Alder må være tall');
     }
 
-    if (!values.utenlandskID && !values.adresse && !values.navn) {
+    if (!values.utenlandskID && !values.adresse && !values.navn && !values.telefonnummer) {
         errors._minimumskrav = buildFieldError(
-            'Du må minimum fylle inn navn, adresse eller utenlandsk ID for å gjøre søk'
+            'Du må minimum fylle inn navn, adresse, telefonnummer eller utenlandsk ID for å gjøre søk'
         );
     }
 
@@ -75,6 +76,7 @@ export function lagRequestV3(enhet: string, form: PersonSokFormStateV3): Persons
         alderFra: stringToNumber(form.alderFra),
         alderTil: stringToNumber(form.alderTil),
         kjonn: emptyString(form.kjonn),
-        adresse: emptyString(form.adresse)
+        adresse: emptyString(form.adresse),
+        telefonnummer: emptyString(form.telefonnummer.replace(/\s/g, ""))
     };
 }
