@@ -10,6 +10,7 @@ const initialValues: PersonSokFormStateV3 = {
     alderTil: '',
     kjonn: '',
     adresse: '',
+    telefonnummer: '',
     _minimumskrav: ''
 };
 
@@ -44,7 +45,7 @@ test('Validerer minimumskrav for personsøk', () => {
     const validator = resolver(initialValues);
     expect(validator.errors).toEqual({
         ...ingenFeil,
-        _minimumskrav: buildFieldError('Du må minimum fylle inn navn, adresse eller utenlandsk ID for å gjøre søk')
+        _minimumskrav: buildFieldError('Du må minimum fylle inn navn, adresse, telefonnummer eller utenlandsk ID for å gjøre søk')
     });
 });
 

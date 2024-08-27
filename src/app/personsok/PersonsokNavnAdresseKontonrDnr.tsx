@@ -39,7 +39,7 @@ function PersonsokNavnAdresseKontonrDnr({ form }: Props) {
     const telefonTittel = [
         'Telefonnummer ',
         <Hjelpetekst id={hjelpetekstID.current} key={hjelpetekstID.current}>
-            Husk å inkludere alle tegn. Eksempel: 0047000000
+            Telefonnummer uten landskode.
         </Hjelpetekst>
     ];
 
