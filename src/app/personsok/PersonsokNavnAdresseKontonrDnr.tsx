@@ -36,6 +36,13 @@ function PersonsokNavnAdresseKontonrDnr({ form }: Props) {
         </Hjelpetekst>
     ];
 
+    const telefonTittel = [
+        'Telefonnummer ',
+        <Hjelpetekst id={hjelpetekstID.current} key={hjelpetekstID.current}>
+            Telefonnummer uten landskode.
+        </Hjelpetekst>
+    ];
+
     const formFields: { id: keyof PersonSokFormStateV3; width: InputProps['bredde']; label: InputProps['label'] }[] = [
         {
             id: 'navn',
@@ -46,6 +53,11 @@ function PersonsokNavnAdresseKontonrDnr({ form }: Props) {
             id: 'adresse',
             width: 'XL',
             label: adresseTittel
+        },
+        {
+            id: 'telefonnummer',
+            width: 'XL',
+            label: telefonTittel
         },
         {
             id: 'utenlandskID',

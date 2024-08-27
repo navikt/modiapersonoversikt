@@ -45,4 +45,5 @@ export interface PersonsokRequestV3 {
     fodselsdatoTil?: string;
     kjonn?: string;
     adresse?: string;
+    telefonnummer?: string;
 }
