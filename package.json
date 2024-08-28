@@ -123,7 +123,7 @@
         "@types/eslint__js": "^8.42.3",
         "@types/faker": "^4.1.2",
         "@types/lodash.debounce": "^4.0.6",
-        "@types/md5": "^2.1.33",
+        "@types/md5": "^2.3.5",
         "@types/node": "^18.0.0",
         "@types/prop-types": "^15.7.12",
         "@types/react": "^18.3.3",
