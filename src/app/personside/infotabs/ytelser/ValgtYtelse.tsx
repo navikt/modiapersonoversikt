@@ -1,10 +1,17 @@
 import * as React from 'react';
 import { useRef } from 'react';
 import styled from 'styled-components';
-import { isForeldrepenger, isPleiepenger, isSykepenger, Ytelse } from '../../../../models/ytelse/ytelse-utils';
+import {
+    isForeldrepenger,
+    isPleiepenger,
+    isSykepenger,
+    isTiltakspenger,
+    Ytelse
+} from '../../../../models/ytelse/ytelse-utils';
 import Foreldrepenger from './foreldrepenger/ForeldrePenger';
 import Pleiepenger from './pleiepenger/Pleiepenger';
 import Sykepenger from './sykepenger/Sykepenger';
+import Tiltakspenger from './tiltakspenger/Tiltakspenger';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { guid } from 'nav-frontend-js-utils';
 import { usePrevious } from '../../../../utils/customHooks';
@@ -30,6 +37,9 @@ function YtelseMarkup(props: { ytelse: Ytelse }) {
     }
     if (isSykepenger(props.ytelse)) {
         return <Sykepenger sykepenger={props.ytelse} />;
+    }
+    if (isTiltakspenger(props.ytelse)) {
+        return <Tiltakspenger tiltakspenger={props.ytelse} />;
     }
     loggError(new Error('Ytelse ikke håndtert, kunne ikke finne markup'));
     return null;

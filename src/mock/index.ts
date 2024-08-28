@@ -34,6 +34,7 @@ import { FeatureToggles } from '../components/featureToggle/toggleIDs';
 
 import { DefaultBodyType, http, HttpHandler, HttpResponse, PathParams, StrictRequest } from 'msw';
 import { fodselsNummerErGyldigStatus, randomDelay, STATUS_OK } from './utils-mock';
+import { getMockTiltakspenger } from './ytelse/tiltakspenger-mock';
 
 const oppgaveBackendMock = new OppgaverBackendMock();
 const meldingerBackendMock = new MeldingerBackendMock(oppgaveBackendMock);
@@ -159,7 +160,7 @@ const sykepengerHandler = http.post(
     withDelayedResponse(
         randomDelay(),
         fodselsNummerErGyldigStatus,
-        mockGeneratorMedFodselsnummer((fodselsnummer) => getMockSykepengerRespons(fodselsnummer))
+        mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMockSykepengerRespons(fodselsnummer))
     )
 );
 
@@ -168,7 +169,7 @@ const foreldrepengerHandler = http.post(
     withDelayedResponse(
         randomDelay(),
         fodselsNummerErGyldigStatus,
-        mockGeneratorMedFodselsnummer((fodselsnummer) => getMockForeldrepenger(fodselsnummer))
+        mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMockForeldrepenger(fodselsnummer))
     )
 );
 
@@ -177,7 +178,16 @@ const pleiepengerHandler = http.post(
     withDelayedResponse(
         randomDelay(),
         fodselsNummerErGyldigStatus,
-        mockGeneratorMedFodselsnummer((fodselsnummer) => getMockPleiepenger(fodselsnummer))
+        mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMockPleiepenger(fodselsnummer))
+    )
+);
+
+const tiltakspengerMock = http.post(
+    apiBaseUri + '/v2/ytelse/tiltakspenger',
+    withDelayedResponse(
+        randomDelay(),
+        fodselsNummerErGyldigStatus,
+        mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMockTiltakspenger(fodselsnummer))
     )
 );
 
@@ -186,7 +196,7 @@ const oppfolgingHandler = http.post(
     withDelayedResponse(
         randomDelay(),
         fodselsNummerErGyldigStatus,
-        mockGeneratorMedFodselsnummer((fodselsnummer) => getMockOppfolging(fodselsnummer))
+        mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMockOppfolging(fodselsnummer))
     )
 );
 
@@ -195,7 +205,7 @@ const ytelserogkontrakterHandler = http.post(
     withDelayedResponse(
         randomDelay(),
         fodselsNummerErGyldigStatus,
-        mockGeneratorMedFodselsnummer((fodselsnummer) => getMockYtelserOgKontrakter(fodselsnummer))
+        mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMockYtelserOgKontrakter(fodselsnummer))
     )
 );
 
@@ -262,9 +272,9 @@ const featureToggleHandler = [
     ),
 
     http.get(apiBaseUri + '/featuretoggle', ({ request }) => {
-        const id = new URL(request.url).searchParams.get('id');
+        const id = new URL(request.url).searchParams.get('id')?.split(',');
         const ids = Array.isArray(id) ? id : [id];
-        return HttpResponse.json(Object.fromEntries(ids.map((it: FeatureToggles) => [it, mockFeatureToggle(it)])));
+        return HttpResponse.json(Object.fromEntries(ids.map((it) => [it, mockFeatureToggle(it as FeatureToggles)])));
     })
 ];
 
@@ -332,6 +342,7 @@ export const handlers: HttpHandler[] = [
     sykepengerHandler,
     foreldrepengerHandler,
     pleiepengerHandler,
+    tiltakspengerMock,
     tildelteOppgaverHandler,
     baseUrlsHandler,
     ...featureToggleHandler,

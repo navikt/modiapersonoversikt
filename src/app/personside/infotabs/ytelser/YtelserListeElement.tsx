@@ -4,6 +4,7 @@ import {
     isForeldrepenger,
     isPleiepenger,
     isSykepenger,
+    isTiltakspenger,
     Ytelse
 } from '../../../../models/ytelse/ytelse-utils';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
@@ -13,6 +14,7 @@ import { formaterDato } from '../../../../utils/string-utils';
 import { getUnikSykepengerKey } from '../../../../models/ytelse/sykepenger';
 import { getForeldepengerIdDato, getUnikForeldrepengerKey } from '../../../../models/ytelse/foreldrepenger';
 import { useInfotabsDyplenker } from '../dyplenker';
+import { getTiltakspengerIdDato, getUnikTiltakspengerKey } from '../../../../models/ytelse/tiltakspenger';
 
 interface Props {
     ytelse: Ytelse;
@@ -70,6 +72,23 @@ function YtelserListeElement(props: Props) {
                     <Undertittel tag={'h3'}>Foreldrepenger</Undertittel>
                     <Element>ID-dato</Element>
                     <Normaltekst>{formaterDato(getForeldepengerIdDato(props.ytelse))}</Normaltekst>
+                </VisMerKnapp>
+            </li>
+        );
+    }
+
+    if (isTiltakspenger(props.ytelse)) {
+        return (
+            <li key={getUnikTiltakspengerKey(props.ytelse)}>
+                <VisMerKnapp
+                    key={getUnikTiltakspengerKey(props.ytelse)}
+                    ariaDescription="Vis tiltakspenger"
+                    valgt={props.erValgt}
+                    linkTo={dypLenker.ytelser.link(props.ytelse)}
+                >
+                    <Undertittel tag={'h3'}>Tiltakspenger</Undertittel>
+                    <Element>ID-dato</Element>
+                    <Normaltekst>{formaterDato(getTiltakspengerIdDato(props.ytelse))}</Normaltekst>
                 </VisMerKnapp>
             </li>
         );
