@@ -323,7 +323,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             id: 17,
             tittel: 'Filtrering på sakstema',
             dato: new Date('2022-03-30 08:00'),
-            aktiv: true,
+            aktiv: false,
             ingress: <Normaltekst>Du kan nå filtrere på flere ulike sakstemaer.</Normaltekst>,
             beskrivelse: (
                 <>
@@ -339,7 +339,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             id: 18,
             tittel: 'Journalføring på flere saker',
             dato: new Date('2022-04-27 14:00'),
-            aktiv: true,
+            aktiv: false,
             ingress: null,
             beskrivelse: (
                 <>
@@ -358,7 +358,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             id: 19,
             tittel: 'Avslutt dialog ved svar',
             dato: new Date('2022-05-20 08:00'),
-            aktiv: true,
+            aktiv: false,
             ingress: null,
             beskrivelse: (
                 <>
