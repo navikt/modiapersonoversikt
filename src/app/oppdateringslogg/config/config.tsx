@@ -33,6 +33,7 @@ import Kunnskapsbasen from './img/kunnskapsbasen.png';
 import Journalforing from './img/journaloring.png';
 import Kontonummersok from './img/kontonummersok.png';
 import Samtalemaler from './img/samtalemaler.png';
+import AvansertsokTelefonnummer from './img/avansertsok-telefonnummer.png';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
@@ -598,6 +599,21 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                 </>
             ),
             src: Samtalemaler
+        },
+        {
+            id: 35,
+            tittel: 'Søk på telefonnummer',
+            dato: new Date('2024-08-29 12:00'),
+            aktiv: true,
+            ingress: null,
+            beskrivelse: (
+                <>
+                    <Normaltekst>
+                        Det er nå mulig å søke etter en bruker på telefonnummer. Søket støtter kun brukerens telefonnummer lagret i PDL.
+                    </Normaltekst>
+                </>
+            ),
+            src: AvansertsokTelefonnummer
         }
     ];
 }
