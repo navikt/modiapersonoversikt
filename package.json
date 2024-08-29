@@ -106,7 +106,7 @@
         "react-hook-form": "^7.39.0",
         "react-modal": "^3.16.1",
         "react-redux": "^7.2.0",
-        "react-router": "^5.2.0",
+        "react-router": "^6.26.1",
         "react-router-dom": "^5.2.0",
         "redux": "^4.0.5",
         "redux-thunk": "^2.3.0",
