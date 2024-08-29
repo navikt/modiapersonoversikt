@@ -13,12 +13,9 @@ const customPageMeta: () => Pick<Meta, 'page'> = () => {
 
 // eslint-disable-next-line
 export const initializeObservability = (history: ReactRouterHistory) => {
-    if (!getWindowFeature('enableFaro') && !import.meta.env.VITE_GRAFANA_COLLECTOR) return;
+    if (!getWindowFeature('enableFaro') && !import.meta.env.VITE_GRAFANA_COLLECTOR && !import.meta.env.DEV) return;
 
     const env = getEnvFromHost();
-    if (!['q2'].includes(env) && !import.meta.env.VITE_GRAFANA_COLLECTOR) {
-        console.info('Not running in GCP, web observability disabled');
-    }
 
     initializeFaro({
         url:

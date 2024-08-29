@@ -10,6 +10,8 @@ import { VisittkortStateProvider } from '../context/visittkort-state';
 import { DialogpanelStateProvider } from '../context/dialogpanel-state';
 import { ValgtEnhetProvider } from '../context/valgtenhet-state';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { initializeObservability } from '../utils/observability';
+import { createBrowserHistory } from 'history';
 
 interface Props {
     children: ReactNode;
@@ -27,6 +29,8 @@ const queryClient = new QueryClient({
 });
 
 function TestProvider({ children, customStore }: Props) {
+    const history = createBrowserHistory();
+    initializeObservability(history);
     return (
         <Provider store={customStore || getTestStore()}>
             <QueryClientProvider client={queryClient}>
