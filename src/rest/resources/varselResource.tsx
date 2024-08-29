@@ -15,7 +15,10 @@ const resource = {
     useFetch(): UseQueryResult<VarslerResult, FetchError> {
         const fnr = useFodselsnummer();
 
-        return useQuery(queryKey(fnr), () => post(urlV3(), { fnr }));
+        return useQuery({
+            queryKey: queryKey(fnr),
+            queryFn: () => post(urlV3(), { fnr })
+        });
     }
 };
 export default resource;

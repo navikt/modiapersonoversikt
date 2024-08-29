@@ -50,7 +50,10 @@ const resource = {
     useFetch(limit30Dager: boolean = false): UseQueryResult<UtbetalingerResponse, FetchError> {
         const [fnr, periode] = useReduxData(limit30Dager);
 
-        return useQuery(queryKey(fnr, limit30Dager), () => post(urlV2(periode), { fnr }));
+        return useQuery({
+            queryKey: queryKey(fnr, limit30Dager),
+            queryFn: () => post(urlV2(periode), { fnr })
+        });
     },
     useOversiktRenderer(renderer: RendererOrConfig<UtbetalingerResponse>) {
         const response = this.useFetch(true);

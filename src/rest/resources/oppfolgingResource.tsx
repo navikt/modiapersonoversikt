@@ -30,7 +30,10 @@ function useReduxData(): [string, VisOppfolgingFraTilDato] {
 const resource = {
     useFetch(): UseQueryResult<DetaljertOppfolging, FetchError> {
         const [fnr, periode] = useReduxData();
-        return useQuery(queryKey(fnr), () => post(urlUtenFnrIPath(periode), { fnr }));
+        return useQuery({
+            queryKey: queryKey(fnr),
+            queryFn: () => post(urlUtenFnrIPath(periode), { fnr })
+        });
     },
     useRenderer(renderer: RendererOrConfig<DetaljertOppfolging>) {
         const response = this.useFetch();

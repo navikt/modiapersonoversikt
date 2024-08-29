@@ -23,7 +23,10 @@ async function updateInnstillinger(innstillinger: Innstillinger): Promise<Saksbe
 
 const resource = {
     useFetch(): UseQueryResult<SaksbehandlerInnstillinger, FetchError> {
-        return useQuery(queryKey, fetchInnstillinger);
+        return useQuery({
+            queryKey: queryKey,
+            ...fetchInnstillinger
+        });
     },
     useInnstilling<T extends string>(key: string, defaultValue: T): T {
         const req = this.useFetch();
@@ -34,7 +37,8 @@ const resource = {
     },
     useMutation(): UseMutationResult<SaksbehandlerInnstillinger, FetchError, Innstillinger> {
         const queryClient = useQueryClient();
-        return useMutation(updateInnstillinger, {
+        return useMutation({
+            mutationFn: updateInnstillinger,
             onSuccess(data: SaksbehandlerInnstillinger) {
                 queryClient.setQueryData(queryKey, data);
             }

@@ -32,7 +32,10 @@ const resource = {
         queryClient.prefetchQuery(queryKey, () => get(url));
     },
     useFetch(): UseQueryResult<SaksbehandlersEnheter, FetchError> {
-        return useQuery(queryKey, () => get(url));
+        return useQuery({
+            queryKey: queryKey,
+            queryFn: () => get(url)
+        });
     },
     useRenderer(renderer: RendererOrConfig<SaksbehandlersEnheter>) {
         const response = this.useFetch();

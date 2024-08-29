@@ -20,7 +20,10 @@ const resource = {
         queryClient.prefetchQuery(queryKey, () => get(url));
     },
     useFetch(): UseQueryResult<GsakTema[], FetchError> {
-        return useQuery(queryKey, () => get(url));
+        return useQuery({
+            queryKey: queryKey,
+            queryFn: () => get(url)
+        });
     },
     useRenderer(renderer: RendererOrConfig<GsakTema[]>) {
         const response = this.useFetch();

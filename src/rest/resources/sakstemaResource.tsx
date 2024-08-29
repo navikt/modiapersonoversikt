@@ -34,7 +34,10 @@ const resource = {
     useFetch(): UseQueryResult<SakstemaSoknadsstatusResponse, FetchError> {
         const [fnr, enhet] = useFnrEnhet();
 
-        return useQuery(queryKeyV2(fnr, enhet), () => post(urlUtenFnrIPathV2(enhet), { fnr }));
+        return useQuery({
+            queryKey: queryKeyV2(fnr, enhet),
+            queryFn: () => post(urlUtenFnrIPathV2(enhet), { fnr })
+        });
     },
     useRenderer(renderer: RendererOrConfig<SakstemaSoknadsstatusResponse>) {
         const response = this.useFetch();

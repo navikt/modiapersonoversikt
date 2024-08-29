@@ -13,5 +13,5 @@ test('Om Ytelser matcher snapshot', () => {
     );
 
     expect(resultat.toJSON()).toMatchSnapshot();
-    resultat.unmount()
+    resultat.unmount();
 });

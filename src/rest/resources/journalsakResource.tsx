@@ -19,7 +19,10 @@ const resource = {
     },
     useFetch(): UseQueryResult<Result, FetchError> {
         const fnr = useFodselsnummer();
-        return useQuery(this.queryKey(fnr), () => post(urlV2(), { fnr }));
+        return useQuery({
+            queryKey: this.queryKey(fnr),
+            queryFn: () => post(urlV2(), { fnr })
+        });
     }
 };
 export default resource;

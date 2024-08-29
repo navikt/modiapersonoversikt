@@ -20,7 +20,10 @@ const resource = {
         queryClient.prefetchQuery(queryKey, () => get(url));
     },
     useFetch(): UseQueryResult<BaseUrls, FetchError> {
-        return useQuery(queryKey, () => get(url));
+        return useQuery({
+            queryKey: queryKey,
+            queryFn: () => get(url)
+        });
     },
     useRenderer(renderer: RendererOrConfig<BaseUrls>) {
         const response = this.useFetch();

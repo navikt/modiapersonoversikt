@@ -31,7 +31,10 @@ const resource = {
     useFetch(): UseQueryResult<Traad[], FetchError> {
         const [fnr, enhetId] = useReduxData();
 
-        return useQuery(this.queryKey(fnr, enhetId), () => post(urlUtenFnrIPath(enhetId), { fnr }));
+        return useQuery({
+            queryKey: this.queryKey(fnr, enhetId),
+            queryFn: () => post(urlUtenFnrIPath(enhetId), { fnr })
+        });
     },
     useRenderer(renderer: RendererOrConfig<Traad[]>) {
         const response = this.useFetch();

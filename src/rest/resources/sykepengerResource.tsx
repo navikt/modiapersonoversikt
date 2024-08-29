@@ -15,7 +15,10 @@ const resource = {
     useFetch(): UseQueryResult<SykepengerResponse, FetchError> {
         const fnr = useFodselsnummer();
 
-        return useQuery(queryKey(fnr), () => post(urlV2(), { fnr }));
+        return useQuery({
+            queryKey: queryKey(fnr),
+            queryFn: () => post(urlV2(), { fnr })
+        });
     }
 };
 export default resource;

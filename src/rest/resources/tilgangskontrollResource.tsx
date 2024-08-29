@@ -49,7 +49,10 @@ function urlV2(enhet: string | undefined) {
 const resource = {
     useFetch(fnr: string): UseQueryResult<TilgangDTO, FetchError> {
         const enhet = useValgtenhet().enhetId;
-        return useQuery(queryKey(fnr), () => post(urlV2(enhet), { fnr }));
+        return useQuery({
+            queryKey: queryKey(fnr),
+            queryFn: () => post(urlV2(enhet), { fnr })
+        });
     },
     useRenderer(fnr: string, renderer: RendererOrConfig<TilgangDTO>) {
         const response = this.useFetch(fnr);

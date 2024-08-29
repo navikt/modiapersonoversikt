@@ -15,7 +15,10 @@ function urlUtenFnrIPath() {
 const resource = {
     useFetch(): UseQueryResult<Persondata, FetchError> {
         const fnr = useFodselsnummer();
-        return useQuery(queryKey(fnr), () => post(urlUtenFnrIPath(), { fnr }));
+        return useQuery({
+            queryKey: queryKey(fnr),
+            queryFn: () => post(urlUtenFnrIPath(), { fnr })
+        });
     }
 };
 export default resource;
