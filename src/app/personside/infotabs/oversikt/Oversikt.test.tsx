@@ -14,4 +14,5 @@ test('Viser oversikt med alt innhold', () => {
 
     const json = container.toJSON();
     expect(json).toMatchSnapshot();
+    container.unmount()
 });
