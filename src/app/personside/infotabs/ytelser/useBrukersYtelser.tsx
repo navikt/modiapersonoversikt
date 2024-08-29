@@ -9,8 +9,6 @@ import tiltakspengerResource from '../../../../rest/resources/tiltakspengerResou
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { UseQueryResult } from '@tanstack/react-query';
 import { FetchError } from '../../../../api/api';
-import useFeatureToggle from '../../../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 
 interface Returns {
     ytelser: Ytelse[];
@@ -86,7 +84,7 @@ function useBrukersYtelser(): Returns {
             sykepengerResponse.isError ||
             tiltakspengerResponse.isError;
         return { ytelser: ytelserSortert, pending: pending, placeholders: placeholders, harFeil: harFeil };
-    }, [foreldrepengerResponse, pleiepengerResponse, sykepengerResponse]);
+    }, [foreldrepengerResponse, pleiepengerResponse, sykepengerResponse, tiltakspengerResponse]);
 }
 
 export default useBrukersYtelser;
