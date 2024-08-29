@@ -21,7 +21,10 @@ const resource = {
         queryClient.prefetchQuery(queryKey, () => get(url));
     },
     useFetch(): UseQueryResult<InnloggetSaksbehandler, FetchError> {
-        return useQuery(queryKey, () => get(url));
+        return useQuery({
+            queryKey: queryKey,
+            queryFn: () => get(url)
+        });
     }
 };
 

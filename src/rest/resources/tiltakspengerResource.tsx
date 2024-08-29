@@ -20,9 +20,9 @@ const resource = {
 
         const tiltakspengerFeatureToggle = useFeatureToggle(FeatureToggles.BrukNyTiltakspenger);
 
-        return useQuery(
-            queryKey(fnr),
-            () =>
+        return useQuery({
+            queryKey: queryKey(fnr),
+            queryFn: () =>
                 tiltakspengerFeatureToggle.isOn
                     ? post(urlV2(), {
                           fnr,
@@ -30,8 +30,8 @@ const resource = {
                           tom: dayjs().format('YYYY-MM-DD')
                       })
                     : Promise.resolve([]),
-            { enabled: !tiltakspengerFeatureToggle.pending }
-        );
+            enabled: !tiltakspengerFeatureToggle.pending
+        });
     }
 };
 export default resource;

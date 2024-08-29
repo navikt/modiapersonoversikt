@@ -10,7 +10,10 @@ function url(): string {
 
 const resource = {
     useFetch(): UseQueryResult<Tekster, FetchError> {
-        return useQuery(queryKey, () => get(url()));
+        return useQuery({
+            queryKey: queryKey,
+            queryFn: () => get(url())
+        });
     }
 };
 export default resource;

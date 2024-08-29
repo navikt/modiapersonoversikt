@@ -12,7 +12,10 @@ const resource = {
         queryClient.prefetchQuery(queryKey, () => get(url));
     },
     useFetch(): UseQueryResult<Array<Enhet>, FetchError> {
-        return useQuery(queryKey, () => get(url));
+        return useQuery({
+            queryKey: queryKey,
+            queryFn: () => get(url)
+        });
     }
 };
 export default resource;

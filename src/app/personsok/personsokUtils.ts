@@ -77,6 +77,6 @@ export function lagRequestV3(enhet: string, form: PersonSokFormStateV3): Persons
         alderTil: stringToNumber(form.alderTil),
         kjonn: emptyString(form.kjonn),
         adresse: emptyString(form.adresse),
-        telefonnummer: emptyString(form.telefonnummer.replace(/\s/g, ""))
+        telefonnummer: emptyString(form.telefonnummer.replace(/\s/g, ''))
     };
 }

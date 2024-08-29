@@ -132,7 +132,10 @@ function useErrorHandling(auth: UseQueryResult<AuthIntropectionDTO, FetchError>)
 }
 const authResource = {
     useFetch(): UseQueryResult<AuthIntropectionDTO, FetchError> {
-        return useQuery(['auth'], () => get(`${apiBaseUri}/tilgang/auth`));
+        return useQuery({
+            queryKey: ['auth'],
+            queryFn: () => get(`${apiBaseUri}/tilgang/auth`)
+        });
     }
 };
 

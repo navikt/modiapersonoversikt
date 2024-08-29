@@ -12,7 +12,10 @@ function urlUtenFnrIPath() {
 
 const resource = {
     useFetch(fnr: string): UseQueryResult<string | null, FetchError> {
-        return useQuery(queryKey(fnr), () => post(urlUtenFnrIPath(), { fnr }));
+        return useQuery({
+            queryKey: queryKey(fnr),
+            queryFn: () => post(urlUtenFnrIPath(), { fnr })
+        });
     }
 };
 export default resource;

@@ -48,7 +48,7 @@
         "@navikt/navspa": "^6.1.0",
         "@navikt/tag-input": "^2.0.1",
         "@navikt/textparser": "^2.4.0",
-        "@tanstack/react-query": "^4.12.0",
+        "@tanstack/react-query": "^5.52.2",
         "@vitejs/plugin-react": "^4.2.1",
         "classnames": "^2.5.1",
         "connected-react-router": "^6.9.3",

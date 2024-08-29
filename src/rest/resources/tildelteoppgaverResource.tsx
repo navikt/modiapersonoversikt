@@ -25,7 +25,10 @@ const resource = {
     useFetch(): UseQueryResult<Oppgave[], FetchError> {
         const fnr = useFodselsnummer();
 
-        return useQuery(queryKey(fnr), () => post(urlUtenFnrIPath(), { fnr }));
+        return useQuery({
+            queryKey: queryKey(fnr),
+            queryFn: () => post(urlUtenFnrIPath(), { fnr })
+        });
     },
     useRenderer(renderer: RendererOrConfig<Oppgave[]>) {
         const response = this.useFetch();

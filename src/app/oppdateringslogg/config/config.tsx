@@ -609,7 +609,8 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             beskrivelse: (
                 <>
                     <Normaltekst>
-                        Det er nå mulig å søke etter en bruker på telefonnummer. Søket støtter kun brukerens telefonnummer lagret i persondataløsningen(PDL).
+                        Det er nå mulig å søke etter en bruker på telefonnummer. Søket støtter kun brukerens
+                        telefonnummer lagret i persondataløsningen(PDL).
                     </Normaltekst>
                 </>
             ),

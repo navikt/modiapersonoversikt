@@ -13,7 +13,10 @@ function queryKey(kjedeId: string) {
 
 export function useSladdeArsak(kjedeId: string, handler: (data: string[]) => ReactElement) {
     const url = `${apiBaseUri}/dialogmerking/sladdearsaker/${kjedeId}`;
-    const response: UseQueryResult<string[], FetchError> = useQuery(queryKey(kjedeId), () => get(url));
+    const response: UseQueryResult<string[], FetchError> = useQuery({
+        queryKey: queryKey(kjedeId),
+        queryFn: () => get(url)
+    });
     return useRest(response, {
         ifPending: <CenteredLazySpinner />,
         ifError: <AlertStripe type="advarsel">Kunne ikke laste inn årsaker</AlertStripe>,

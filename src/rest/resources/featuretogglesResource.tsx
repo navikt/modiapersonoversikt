@@ -25,7 +25,10 @@ const defaults: DefaultConfig = {
 const resource = {
     queryKey: ['featuretoggles'],
     useFetch(): UseQueryResult<FeatureTogglesResponse, FetchError> {
-        return useQuery(this.queryKey, () => get(url()));
+        return useQuery({
+            queryKey: this.queryKey,
+            queryFn: () => get(url())
+        });
     },
     useRenderer(renderer: RendererOrConfig<FeatureTogglesResponse>) {
         const response = this.useFetch();
