@@ -23,7 +23,7 @@ function SetFnrIRedux(props: Props) {
                 predicate(query: Query) {
                     // Alle queryKeys er typisk på formatet ['endepunkt', 'fnr']
                     // De med lenge større enn 1 bør derfor slettes siden disse sannsynligvis har brukerdata
-                    return query.queryKey.length > 1 || query.queryKey === featuretogglesResource.queryKey;
+                    return query.queryKey?.length > 1 || query.queryKey === featuretogglesResource.queryKey;
                 }
             });
         }
