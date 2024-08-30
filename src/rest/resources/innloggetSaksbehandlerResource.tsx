@@ -18,7 +18,10 @@ export interface InnloggetSaksbehandler {
 const resource = {
     usePrefetch() {
         const queryClient = useQueryClient();
-        queryClient.prefetchQuery(queryKey, () => get(url));
+        return queryClient.prefetchQuery({
+            queryKey,
+            queryFn: () => get(url)
+        });
     },
     useFetch(): UseQueryResult<InnloggetSaksbehandler, FetchError> {
         return useQuery({
