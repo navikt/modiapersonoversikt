@@ -9,6 +9,7 @@ import { useFodselsnummer } from '../utils/customHooks';
 import { CenteredLazySpinner } from '../components/LazySpinner';
 import SakerFullscreenProxy from './personside/infotabs/saksoversikt/SakerFullscreenProxy';
 import SetFnrIRedux from './PersonOppslagHandler/SetFnrIRedux';
+import InnkrevingskravSide from './innkrevingskrav/InnkrevingskravSide';
 
 function Routing() {
     const fnr = useFodselsnummer();
@@ -34,6 +35,7 @@ function Routing() {
                     render={() => <SaksDokumentEgetVindu fnr={fnr} />}
                 />
                 <SentryRoute path={`${paths.personUri}/`} render={() => <Personoversikt fnr={fnr} />} />
+                <SentryRoute path={`${paths.innkrevingskrav}/`} render={() => <InnkrevingskravSide />} />
                 <SentryRoute component={Startbilde} />
             </Switch>
         </Suspense>
