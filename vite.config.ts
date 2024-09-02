@@ -1,5 +1,5 @@
 /// <reference types="vitest" />
-import { defineConfig } from 'vite';
+import { IndexHtmlTransform, Plugin, defineConfig } from 'vite';
 
 import react from '@vitejs/plugin-react';
 import vitePluginSvgr from 'vite-plugin-svgr';
@@ -17,6 +17,18 @@ const fixNavFrontendStyleNoCss = (packages: string[]) =>
         find: new RegExp(`${name}`),
         replacement: fileURLToPath(new URL(`src/nav-style/${name}.css`, import.meta.url))
     }));
+
+const modiaFrontendCompat = (): { transformIndexHtml: IndexHtmlTransform } & Plugin => {
+    return {
+        name: 'modia-frontend-html-transform',
+        transformIndexHtml(html, ctx) {
+            if (ctx.server) {
+                return html.replace(/<slot environment="prod">((.|\s)*?)<\/slot>/, '');
+            }
+            return html;
+        }
+    };
+};
 
 export default defineConfig({
     server: {
@@ -41,7 +53,8 @@ export default defineConfig({
         vitePluginSvgr({
             include: '**/*.svg'
         }),
-        viteRequire()
+        viteRequire(),
+        modiaFrontendCompat()
     ],
     build: {
         target: 'esnext',
