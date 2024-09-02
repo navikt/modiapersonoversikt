@@ -25,8 +25,6 @@ import persondataResource from '../../../../rest/resources/persondataResource';
 import VelgDialogType from './VelgDialogType';
 import Panel from 'nav-frontend-paneler';
 import { DraftState } from '../use-draft';
-import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureToggleOn';
-import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 import DraftStatus from '../DraftStatus';
 
 export enum OppgavelisteValg {

@@ -106,7 +106,7 @@ function lagConfigV3(
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         proxy: import.meta.env.PROD
             ? `https://${window.location.host}${import.meta.env.BASE_URL}proxy/modiacontextholder`
-            : import.meta.env.VITE_CONTEXTHOLDER_URL ?? `${import.meta.env.BASE_URL}proxy/modiacontextholder`,
+            : (import.meta.env.VITE_CONTEXTHOLDER_URL ?? `${import.meta.env.BASE_URL}proxy/modiacontextholder`),
         environment,
         urlFormat: import.meta.env.PROD ? (window.location.host.includes('adeo.no') ? 'ADEO' : 'NAV_NO') : 'LOCAL',
         showEnheter: true,

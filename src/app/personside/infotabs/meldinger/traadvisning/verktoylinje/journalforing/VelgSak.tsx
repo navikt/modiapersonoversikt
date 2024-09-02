@@ -96,7 +96,7 @@ function VelgSak(props: Props) {
     const valgtKategori = useFieldState(SakKategori.FAG);
     const result = journalsakResource.useFetch();
 
-    if (result.isLoading) {
+    if (result.isPending) {
         return <Spinner type="XL" />;
     } else if (result.isError) {
         return <AlertStripeFeil className="blokk-xxxs">Feilet ved uthenting av saker</AlertStripeFeil>;
