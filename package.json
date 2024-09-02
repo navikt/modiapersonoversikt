@@ -21,7 +21,7 @@
         "build": "vite build",
         "upload-sourcemaps": "cross-env GIT_COMMIT_HASH=$(git rev-parse HEAD) node _scripts/upload-sourcemaps.js",
         "test": "vitest",
-        "lint": "eslint .",
+        "lint": "eslint . && prettier --check src/**/*.{ts,js,tsx}",
         "lint-staged": "lint-staged",
         "format": "prettier --write src/**/*.{ts,js,tsx}",
         "tsc": "tsc"

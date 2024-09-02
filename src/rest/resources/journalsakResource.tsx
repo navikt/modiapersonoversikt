@@ -15,7 +15,7 @@ const resource = {
     usePrefetch() {
         const fnr = useFodselsnummer();
         const queryClient = useQueryClient();
-        queryClient.prefetchQuery(this.queryKey(fnr), () => post(urlV2(), { fnr }));
+        queryClient.prefetchQuery({ queryKey: this.queryKey(fnr), queryFn: () => post(urlV2(), { fnr }) });
     },
     useFetch(): UseQueryResult<Result, FetchError> {
         const fnr = useFodselsnummer();
