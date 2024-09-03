@@ -1,9 +1,8 @@
-import faker from 'faker/locale/nb_NO';
+import { fakerNB_NO as faker } from '@faker-js/faker';
 import { fyllRandomListe } from './utils/mock-utils';
 import { Innkrevingskrav } from '../app/innkrevingskrav/Innkrevingskrav';
 import dayjs from 'dayjs';
 import { backendDatoformat } from '../utils/date-utils';
-import navfaker from 'nav-faker';
 
 export const mockInnkrevingsKrav = (kravId: string): Innkrevingskrav => {
     const seedNr = kravId
@@ -11,11 +10,10 @@ export const mockInnkrevingsKrav = (kravId: string): Innkrevingskrav => {
         .map((c) => c.charCodeAt(0))
         .reduce((s, c) => s + c, 0);
     faker.seed(seedNr);
-    navfaker.seed(kravId);
 
     return {
         kravgrunnlag: {
-            datoNaarKravVarBesluttetHosOppdragsgiver: dayjs(faker.date.past(1)).format(backendDatoformat)
+            datoNaarKravVarBesluttetHosOppdragsgiver: dayjs(faker.date.past({ years: 1 })).format(backendDatoformat)
         },
         krav: fyllRandomListe<Innkrevingskrav['krav'][0]>(getMockKravLinje, 4)
     };
@@ -23,7 +21,7 @@ export const mockInnkrevingsKrav = (kravId: string): Innkrevingskrav => {
 
 const getMockKravLinje = () => {
     return {
-        kravType: navfaker.random.arrayElement(['kravLinje', 'renter']),
+        kravType: faker.helpers.arrayElement(['kravLinje', 'renter']),
         opprinneligBeløp: Number(faker.commerce.price()),
         gjenståendeBeløp: Number(faker.commerce.price())
     };
