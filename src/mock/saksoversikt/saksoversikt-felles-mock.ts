@@ -1,5 +1,6 @@
 import NavFaker from 'nav-faker/dist/navfaker';
 import { Baksystem } from '../../models/saksoversikt/fellesSak';
+import { Faker } from '@faker-js/faker';
 
 export function getSaksdato(navfaker: NavFaker): string {
     return new Date(
@@ -13,8 +14,8 @@ export function getSaksdato(navfaker: NavFaker): string {
     ).toISOString();
 }
 
-export function getBaksystem(navfaker: NavFaker): Baksystem {
-    return navfaker.random.arrayElement([
+export function getBaksystem(faker: Faker): Baksystem {
+    return faker.helpers.arrayElement([
         Baksystem.SakOgBehandling,
         Baksystem.Pesys,
         Baksystem.PdfKonvertering,

@@ -1,4 +1,4 @@
-import faker from 'faker/locale/nb_NO';
+import { fakerNB_NO as faker } from '@faker-js/faker';
 import navfaker from 'nav-faker';
 import { MOCKED_TRAADID_1, MOCKED_TRAADID_2, MOCKED_TRAADID_3 } from './meldinger/meldinger-mock';
 import { fyllRandomListe } from './utils/mock-utils';
@@ -29,8 +29,8 @@ export function getTilfeldigeOppgaver(): Oppgave[] {
 function lagOppgave(fodselsnummer: string): Oppgave {
     return {
         fødselsnummer: fodselsnummer,
-        traadId: faker.random.alphaNumeric(5),
-        oppgaveId: faker.random.alphaNumeric(5),
+        traadId: faker.string.alphanumeric(5),
+        oppgaveId: faker.string.alphanumeric(5),
         erSTOOppgave: true
     };
 }

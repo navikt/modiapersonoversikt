@@ -1,4 +1,4 @@
-import faker from 'faker/locale/nb_NO';
+import { fakerNB_NO as faker } from '@faker-js/faker';
 import dayjs from 'dayjs';
 
 import navfaker from 'nav-faker/dist/index';
@@ -27,8 +27,8 @@ export function getMockTiltakspengerYtelser(fødselsnummer: string): Tiltakspeng
     faker.seed(Number(fødselsnummer));
     navfaker.seed(fødselsnummer + 'pleiepenger');
 
-    const fom = dayjs(faker.date.past(2)).format(backendDatoformat);
-    const tom = dayjs(fom).add(faker.random.number(40), 'days').format(backendDatoformat);
+    const fom = dayjs(faker.date.past({ years: 2 })).format(backendDatoformat);
+    const tom = dayjs(fom).add(faker.number.int(40), 'days').format(backendDatoformat);
 
     const barneTillegg: Partial<Tiltakspenger> = { antallBarn: undefined };
     if (navfaker.random.vektetSjanse(0.8)) {
@@ -37,8 +37,8 @@ export function getMockTiltakspengerYtelser(fødselsnummer: string): Tiltakspeng
     }
 
     return {
-        vedtakId: faker.random.alphaNumeric(8),
-        relaterteTiltak: faker.random.alphaNumeric(8),
+        vedtakId: faker.string.alphanumeric(8),
+        relaterteTiltak: faker.string.alphanumeric(8),
         rettighet: 'TILTAKSPENGER',
         fom,
         tom,

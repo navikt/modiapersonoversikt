@@ -6,7 +6,7 @@ import {
     GsakTemaPrioritet,
     GsakTemaUnderkategori
 } from '../../models/meldinger/oppgave';
-import faker from 'faker/locale/nb_NO';
+import { fakerNB_NO as faker } from '@faker-js/faker';
 import navfaker from 'nav-faker';
 import { fyllRandomListe } from '../utils/mock-utils';
 
@@ -70,7 +70,7 @@ function mockAnsatt(): Ansatt {
     return {
         fornavn: navfaker.navn.fornavn(),
         etternavn: faker.name.lastName(),
-        ident: faker.random.alphaNumeric(7).toUpperCase()
+        ident: faker.string.alphanumeric(7).toUpperCase()
     };
 }
 

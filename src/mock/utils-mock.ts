@@ -1,6 +1,6 @@
 import navfaker from 'nav-faker';
-import faker from 'faker/locale/nb_NO';
-import { HttpResponseResolver, PathParams, StrictRequest } from 'msw';
+import { fakerNB_NO as faker } from '@faker-js/faker';
+import { HttpResponseResolver, StrictRequest } from 'msw';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 
 export const STATUS_BAD_REQUEST = () => 400;
@@ -22,7 +22,7 @@ export function nArrayElement<T>(list: Array<T>, n: number, allowDuplicates: boo
     }
     const holder: Array<T> = [];
     while (holder.length < n) {
-        const element: T = faker.random.arrayElement(list);
+        const element: T = faker.helpers.arrayElement(list);
         if (allowDuplicates || !holder.includes(element)) {
             holder.unshift(element);
         }
@@ -32,9 +32,9 @@ export function nArrayElement<T>(list: Array<T>, n: number, allowDuplicates: boo
 
 export function randomDelay() {
     if (navfaker.random.vektetSjanse(0.05)) {
-        return faker.random.number(5000);
+        return faker.number.int(5000);
     }
-    return faker.random.number(750);
+    return faker.number.int(750);
 }
 
 export const fodselsNummerErGyldigStatus = async (

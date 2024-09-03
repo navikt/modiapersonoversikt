@@ -1,4 +1,4 @@
-import faker from 'faker/locale/nb_NO';
+import { fakerNB_NO as faker } from '@faker-js/faker';
 
 import navfaker from 'nav-faker/dist/index';
 import { SakstemaSoknadsstatus, SakstemaSoknadsstatusResponse } from '../../models/saksoversikt/sakstema';
@@ -55,13 +55,13 @@ function getSakstemaListeV2(): SakstemaSoknadsstatus[] {
 }
 
 function getSakstemaV2(): SakstemaSoknadsstatus {
-    const tema = navfaker.random.arrayElement(temaarray);
+    const tema = faker.helpers.arrayElement(temaarray);
 
     return {
         harTilgang: navfaker.random.vektetSjanse(0.8),
         temakode: tema[0],
         temanavn: tema[1],
-        erGruppert: faker.random.boolean(),
+        erGruppert: faker.datatype.boolean(),
         soknadsstatus: getSoknadsstatus(faker, navfaker),
         dokumentMetadata: getJournalposter(faker, navfaker, tema),
         tilhorendeSaker: fyllRandomListe(() => getSak(tema[0]), 15),
@@ -72,10 +72,10 @@ function getSakstemaV2(): SakstemaSoknadsstatus {
 function getSak(temakode: string): Sak {
     return {
         temakode: temakode,
-        saksid: faker.random.alphaNumeric(8),
-        fagsaksnummer: faker.random.alphaNumeric(8),
+        saksid: faker.string.alphanumeric(8),
+        fagsaksnummer: faker.string.alphanumeric(8),
         avsluttet: getSaksdato(navfaker),
-        fagsystem: faker.random.alphaNumeric(5),
+        fagsystem: faker.string.alphanumeric(5),
         baksystem: getBaksystem(navfaker)
     };
 }

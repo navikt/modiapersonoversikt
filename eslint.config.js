@@ -21,7 +21,7 @@ export default tseslint.config(
         extends: [tseslint.configs.disableTypeChecked]
     },
     {
-        ignores: ['build/', 'src/mock']
+        ignores: ['build/', 'src/mock/mock-websocket.ts']
     },
     {
         rules: {

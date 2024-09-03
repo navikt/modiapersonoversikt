@@ -1,11 +1,11 @@
 import { delay, HttpResponse, HttpResponseResolver, StrictRequest, PathParams, DefaultBodyType } from 'msw';
 
-export function withDelayedResponse<T extends DefaultBodyType = { fnr: string }>(
+export function withDelayedResponse<R extends DefaultBodyType, T extends DefaultBodyType = { fnr: string }>(
     delayTime: number,
     statusCode: (request: StrictRequest<T>, parsedBody?: T) => Promise<number>,
     genererMockData:
-        | ((request: StrictRequest<T>, params: PathParams, parsedBody?: T) => any)
-        | ((request: StrictRequest<T>, params: PathParams, parsedBody?: T) => Promise<any>)
+        | ((request: StrictRequest<T>, params: PathParams, parsedBody?: T) => R)
+        | ((request: StrictRequest<T>, params: PathParams, parsedBody?: T) => Promise<R>)
 ): HttpResponseResolver<PathParams, T> {
     return async ({ request, params }) => {
         const parsedBody = request.method === 'POST' ? await request.json() : undefined;

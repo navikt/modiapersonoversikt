@@ -8,8 +8,10 @@ const defaultInnstillinger: SaksbehandlerInnstillinger = {
     innstillinger: {}
 };
 
-let innstillinger: SaksbehandlerInnstillinger =
-    finnesILocalStorage !== null ? JSON.parse(finnesILocalStorage) : defaultInnstillinger;
+let innstillinger =
+    finnesILocalStorage !== null
+        ? (JSON.parse(finnesILocalStorage) as SaksbehandlerInnstillinger)
+        : defaultInnstillinger;
 
 export const saksbehandlerInnstillingerHandlers = [
     http.get(`${import.meta.env.BASE_URL}proxy/modia-innstillinger/api/innstillinger`, () =>

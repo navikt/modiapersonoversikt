@@ -20,7 +20,7 @@ if (!storage.getItem(storageKey)) {
         ])
     );
 }
-let drafts: Array<Draft> = JSON.parse(storage.getItem('modiapersonoversikt-drafts-mock')!);
+let drafts = JSON.parse(storage.getItem('modiapersonoversikt-drafts-mock')!) as Draft[];
 
 function matchContext(context: DraftContext, other: DraftContext, exact: boolean = true): boolean {
     const keys = Object.keys(context);
@@ -48,7 +48,7 @@ const findDrafts: HttpResponseResolver = ({ request }) => {
     return HttpResponse.json(matchedDrafts);
 };
 
-const updateDraft: HttpResponseResolver<PathParams, DraftContext> = async ({ request }) => {
+const updateDraft: HttpResponseResolver<PathParams, DraftContext, Draft> = async ({ request }) => {
     const body = await request.json();
     const newDraft: Draft = {
         owner: innloggetSaksbehandler.ident,

@@ -1,4 +1,4 @@
-import faker from 'faker/locale/nb_NO';
+import { fakerNB_NO as faker } from '@faker-js/faker';
 import dayjs from 'dayjs';
 import navfaker from 'nav-faker/dist/index';
 
@@ -43,7 +43,7 @@ export function getMockSykepengerRespons(fødselsnummer: string): SykepengerResp
 function getMockSykmepenger(fødselsnummer: string): Sykepenger {
     return {
         fødselsnummer: fødselsnummer,
-        sykmeldtFom: dayjs(faker.date.past(1)).format(backendDatoformat),
+        sykmeldtFom: dayjs(faker.date.past({ years: 1 })).format(backendDatoformat),
         forbrukteDager: navfaker.random.integer(100),
         ferie1: navfaker.random.vektetSjanse(0.3) ? getPeriode() : null,
         ferie2: navfaker.random.vektetSjanse(0.3) ? getPeriode() : null,
@@ -56,9 +56,11 @@ function getMockSykmepenger(fødselsnummer: string): Sykepenger {
         utbetalingerPåVent: fyllRandomListe<UtbetalingPåVent>(() => getUtbetalingPåVent(faker), 2, true),
         bruker: fødselsnummer,
         midlertidigStanset: navfaker.random.vektetSjanse(0.3)
-            ? dayjs(faker.date.past(1)).format(backendDatoformat)
+            ? dayjs(faker.date.past({ years: 1 })).format(backendDatoformat)
             : null,
-        slutt: navfaker.random.vektetSjanse(0.7) ? null : dayjs(faker.date.past(1)).format(backendDatoformat),
+        slutt: navfaker.random.vektetSjanse(0.7)
+            ? null
+            : dayjs(faker.date.past({ years: 1 })).format(backendDatoformat),
         arbeidsforholdListe: fyllRandomListe(() => getArbeidsforhold(), 10, true),
         erArbeidsgiverperiode: navfaker.random.vektetSjanse(0.5),
         arbeidskategori: 'Ærlig arbeid'
@@ -69,7 +71,7 @@ function getForsikring(): Forsikring {
     return {
         forsikringsordning: faker.lorem.words(1),
         premiegrunnlag: Number(faker.commerce.price()),
-        erGyldig: faker.random.boolean(),
+        erGyldig: faker.datatype.boolean(),
         forsikret: navfaker.random.vektetSjanse(0.5) ? getPeriode() : null
     };
 }
@@ -77,7 +79,7 @@ function getForsikring(): Forsikring {
 export function getMockSykmelding(): Sykmelding {
     return {
         sykmelder: faker.name.firstName() + ' ' + faker.name.lastName(),
-        behandlet: dayjs(faker.date.past(1)).format(backendDatoformat),
+        behandlet: dayjs(faker.date.past({ years: 1 })).format(backendDatoformat),
         sykmeldt: getPeriode(),
         sykmeldingsgrad: navfaker.random.integer(100),
         gjelderYrkesskade: navfaker.random.vektetSjanse(0.0) ? getYrkesskade() : null,
@@ -88,8 +90,8 @@ export function getMockSykmelding(): Sykmelding {
 function getYrkesskade(): Yrkesskade {
     return {
         yrkesskadeart: faker.lorem.words(3),
-        skadet: dayjs(faker.date.past(1)).format(backendDatoformat),
-        vedtatt: dayjs(faker.date.past(1)).format(backendDatoformat)
+        skadet: dayjs(faker.date.past({ years: 1 })).format(backendDatoformat),
+        vedtatt: dayjs(faker.date.past({ years: 1 })).format(backendDatoformat)
     };
 }
 
@@ -102,12 +104,12 @@ function getGradering(): Gradering {
 
 function getArbeidsforhold(): Arbeidsforhold {
     return {
-        arbeidsgiverNavn: faker.company.companyName(),
-        arbeidsgiverKontonr: Number(faker.finance.account(11)).toString(),
+        arbeidsgiverNavn: faker.company.name(),
+        arbeidsgiverKontonr: Number(faker.finance.accountNumber(11)).toString(),
         inntektsperiode: 'Månedssats',
         inntektForPerioden: Math.round(Number(faker.finance.amount(5000, 50000))),
-        refusjonTom: dayjs(faker.date.past(2)).format(backendDatoformat),
+        refusjonTom: dayjs(faker.date.past({ years: 2 })).format(backendDatoformat),
         refusjonstype: 'Ikke refusjon',
-        sykepengerFom: dayjs(faker.date.past(2)).format(backendDatoformat)
+        sykepengerFom: dayjs(faker.date.past({ years: 2 })).format(backendDatoformat)
     };
 }

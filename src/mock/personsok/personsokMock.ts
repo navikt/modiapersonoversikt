@@ -6,7 +6,7 @@ import {
     PersonsokResponse,
     UtenlandskID
 } from '../../models/person/personsok';
-import faker from 'faker/locale/nb_NO';
+import { Faker, fakerNB_NO as faker } from '@faker-js/faker';
 
 import navfaker from 'nav-faker/dist/index';
 import { Kodeverk } from '../../models/kodeverk';
@@ -83,7 +83,7 @@ function getUtenlandskID(): UtenlandskID[] {
 }
 
 function getPostadresse(): string {
-    return `${faker.address.streetAddress(true)} ${faker.address.city()} ${faker.address.country()}`;
+    return `${faker.location.streetAddress(true)} ${faker.location.city()} ${faker.location.country()}`;
 }
 
 function getBostedsadresse(): string {
@@ -111,8 +111,8 @@ function getMockNavn(fodselsnummer: string): Navn {
     }
     faker.seed(Number(fodselsnummer));
     const fornavn = getFornavn(faker, fodselsnummer).toUpperCase();
-    const etternavn = faker.name.lastName().toUpperCase();
-    const mellomnavn = vektetSjanse(faker, 0.5) ? faker.name.lastName().toUpperCase() : '';
+    const etternavn = faker.person.lastName().toUpperCase();
+    const mellomnavn = vektetSjanse(faker, 0.5) ? faker.person.lastName().toUpperCase() : '';
     return {
         fornavn: fornavn,
         etternavn: etternavn,
@@ -121,11 +121,11 @@ function getMockNavn(fodselsnummer: string): Navn {
     };
 }
 
-function getFornavn(seededFaker: Faker.FakerStatic, fødselsnummer: string): string {
+function getFornavn(seededFaker: Faker, fødselsnummer: string): string {
     if (Number(fødselsnummer.charAt(8)) % 2 === 0) {
-        return seededFaker.name.firstName(1);
+        return seededFaker.person.firstName('male');
     } else {
-        return seededFaker.name.firstName(0);
+        return seededFaker.person.firstName('female');
     }
 }
 
@@ -179,44 +179,6 @@ function getBrukerinfoSokUtenlandsID(): Brukerinfo {
         gjeldendePostadresseType: null,
         midlertidigPostadresse: null
     };
-}
-
-function mockStaticPersonsokResponse(): PersonsokResponse[] {
-    return [
-        {
-            diskresjonskode: {
-                kodeRef: '6',
-                beskrivelse: 'Kode 6'
-            },
-            bostedsadresse: null,
-            postadresse: 'Gate 1 1234 Oslo Norge',
-            kjonn: {
-                kodeRef: 'M',
-                beskrivelse: 'Mann'
-            },
-            navn: parseAremarkNavn(aremark),
-            status: {
-                kodeRef: 'A',
-                beskrivelse: 'Aktiv'
-            },
-            ident: {
-                ident: aremark.personIdent,
-                type: {
-                    kodeRef: 'F',
-                    beskrivelse: 'Fødsesnummer'
-                }
-            },
-            brukerinfo: {
-                ansvarligEnhet: '1234',
-                gjeldendePostadresseType: {
-                    kodeRef: 'P',
-                    beskrivelse: 'Postadresse'
-                },
-                midlertidigPostadresse: 'Svingen 3 4321 Bergen'
-            },
-            utenlandskID: null
-        }
-    ];
 }
 
 export function mockStaticPersonsokRequest(): PersonsokRequestV3 {

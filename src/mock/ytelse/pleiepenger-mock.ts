@@ -1,4 +1,4 @@
-import faker from 'faker/locale/nb_NO';
+import { fakerNB_NO as faker } from '@faker-js/faker';
 import dayjs from 'dayjs';
 
 import navfaker from 'nav-faker/dist/index';
@@ -63,7 +63,7 @@ export function getMockPleiepengerettighet(fødselsnummer: string): Pleiepengere
 
 function getPleiepengeperiode(): Pleiepengeperiode {
     return {
-        fom: dayjs(faker.date.past(2)).format(backendDatoformat),
+        fom: dayjs(faker.date.past({ years: 2 })).format(backendDatoformat),
         antallPleiepengedager: navfaker.random.integer(20),
         arbeidsforhold: fyllRandomListe<Arbeidsforhold>(() => getArbeidsforhold(), 2),
         vedtak: fyllRandomListe<Vedtak>(() => getVedtak(), 3)
@@ -72,11 +72,11 @@ function getPleiepengeperiode(): Pleiepengeperiode {
 
 function getArbeidsforhold(): Arbeidsforhold {
     return {
-        arbeidsgiverNavn: faker.company.companyName(),
-        arbeidsgiverKontonr: Number(faker.finance.account(11)).toString(),
+        arbeidsgiverNavn: faker.company.name(),
+        arbeidsgiverKontonr: Number(faker.finance.accountNumber(11)).toString(),
         inntektsperiode: 'Månedssats',
         inntektForPerioden: Math.round(Number(faker.finance.amount(5000, 50000))),
-        refusjonTom: dayjs(faker.date.past(2)).format(backendDatoformat),
+        refusjonTom: dayjs(faker.date.past({ years: 2 })).format(backendDatoformat),
         refusjonstype: 'Ikke refusjon',
         arbeidsgiverOrgnr: '1234567890',
         arbeidskategori: 'Arbeidstaker'
@@ -88,7 +88,7 @@ function getVedtak(): Vedtak {
         periode: getPeriode(),
         kompensasjonsgrad: navfaker.random.vektetSjanse(0.5) ? 100 : navfaker.random.integer(100),
         utbetalingsgrad: navfaker.random.vektetSjanse(0.5) ? 100 : navfaker.random.integer(100),
-        anvistUtbetaling: dayjs(faker.date.past(2)).format(backendDatoformat),
+        anvistUtbetaling: dayjs(faker.date.past({ years: 2 })).format(backendDatoformat),
         bruttobeløp: Number(faker.commerce.price()),
         dagsats: navfaker.random.integer(70),
         pleiepengegrad: navfaker.random.integer(100)
@@ -96,8 +96,8 @@ function getVedtak(): Vedtak {
 }
 
 function getPeriode(): Periode {
-    const fom = dayjs(faker.date.past(2));
-    const tom = dayjs(fom).add(faker.random.number(40), 'days');
+    const fom = dayjs(faker.date.past({ years: 2 }));
+    const tom = dayjs(fom).add(faker.number.int(40), 'days');
     return {
         fom: fom.format(backendDatoformat),
         tom: tom.format(backendDatoformat)
