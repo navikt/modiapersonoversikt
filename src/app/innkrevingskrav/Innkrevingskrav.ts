@@ -1,6 +1,6 @@
 export interface Innkrevingskrav {
     kravgrunnlag: Kravgrunnlag;
-    krav: [Krav];
+    krav: Krav[];
 }
 
 export interface Kravgrunnlag {
@@ -8,7 +8,7 @@ export interface Kravgrunnlag {
 }
 
 export interface Krav {
-    kravtype: string;
-    opprinneligBelop: number;
-    gjenstaendeBelop: number;
+    kravType: string;
+    opprinneligBeløp: number;
+    gjenståendeBeløp: number;
 }
