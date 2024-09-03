@@ -8,7 +8,7 @@ export function getOppdateringsloggMock(): OppdateringsloggInnslag[] {
         {
             id: 1,
             tittel: 'Ny oppdatering',
-            dato: faker.date.recent(40),
+            dato: faker.date.recent({ days: 40 }),
             aktiv: true,
             ingress: 'Vi har laget en ny print-ut knapp',
             beskrivelse:
@@ -18,7 +18,7 @@ export function getOppdateringsloggMock(): OppdateringsloggInnslag[] {
         {
             id: 2,
             tittel: 'Ny beskjed',
-            dato: faker.date.recent(60),
+            dato: faker.date.recent({ days: 60 }),
             aktiv: true,
             ingress: 'Nå kan man gi foskudd på dagpenger',
             beskrivelse: 'Nå kan man skrive ',
@@ -27,7 +27,7 @@ export function getOppdateringsloggMock(): OppdateringsloggInnslag[] {
         {
             id: 3,
             tittel: 'Ny oppdatering',
-            dato: faker.date.recent(80),
+            dato: faker.date.recent({ days: 80 }),
             aktiv: true,
             ingress: 'Vi har laget en notifikasjonsknapp',
             beskrivelse:
@@ -38,7 +38,7 @@ export function getOppdateringsloggMock(): OppdateringsloggInnslag[] {
         {
             id: 4,
             tittel: 'Ny oppdatering',
-            dato: faker.date.recent(30),
+            dato: faker.date.recent({ days: 30 }),
             aktiv: true,
             ingress: 'Vi har laget en notifikasjonsknapp',
             beskrivelse: 'Lorem ipsum dolor sit amet.'

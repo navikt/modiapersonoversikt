@@ -1,6 +1,6 @@
 import { fakerNB_NO as faker } from '@faker-js/faker';
 import navfaker from 'nav-faker';
-import { DittNavEvent, Varsel, Varselmelding, Varseltype, VarslerResult } from '../../models/varsel';
+import { DittNavEvent, Kanal, Varsel, Varselmelding, Varseltype, VarslerResult } from '../../models/varsel';
 import { fyllRandomListe } from '../utils/mock-utils';
 import dayjs from 'dayjs';
 import { statiskDittnavEventVarselMock, statiskVarselMock } from './statiskVarselMock';
@@ -28,20 +28,20 @@ export function getMockVarsler(fnr: string): VarslerResult {
 }
 
 function genererDittNavEventVarsel(fnr: string): DittNavEvent {
-    const tidspunkt = faker.date.recent(90);
-    const eksternVarsel = faker.random.boolean();
-    const sendteKanaler = nArrayElement(['SMS', 'EPOST'], faker.random.number(2), false);
+    const tidspunkt = faker.date.recent({ days: 90 });
+    const eksternVarsel = faker.datatype.boolean();
+    const sendteKanaler = nArrayElement(['SMS', 'EPOST'], faker.number.int(2), false);
     return {
         fodselsnummer: fnr,
-        grupperingsId: faker.random.uuid(),
-        eventId: faker.random.uuid(),
+        grupperingsId: faker.string.uuid(),
+        eventId: faker.string.uuid(),
         forstBehandlet: dayjs(tidspunkt).format(backendDatoformat),
-        produsent: faker.random.alphaNumeric(10),
-        sikkerhetsnivaa: navfaker.random.arrayElement([3, 4]),
+        produsent: faker.string.alphanumeric(10),
+        sikkerhetsnivaa: faker.helpers.arrayElement([3, 4]),
         sistOppdatert: dayjs(tidspunkt).format(backendDatoformat),
-        tekst: faker.lorem.sentence(5 + faker.random.number(5)),
-        link: faker.lorem.sentence(5 + faker.random.number(5)),
-        aktiv: faker.random.boolean(),
+        tekst: faker.lorem.sentence(5 + faker.number.int(5)),
+        link: faker.lorem.sentence(5 + faker.number.int(5)),
+        aktiv: faker.datatype.boolean(),
         eksternVarslingSendt: eksternVarsel,
         eksternVarslingKanaler: eksternVarsel ? sendteKanaler : []
     };
@@ -49,24 +49,25 @@ function genererDittNavEventVarsel(fnr: string): DittNavEvent {
 
 function getVarsel(): Varsel {
     return {
-        varselType: navfaker.random.arrayElement(Object.keys(Varseltype)),
-        mottattTidspunkt: dayjs(faker.date.recent(90)).format(backendDatoformat),
-        erRevarsling: faker.random.boolean(),
+        varselType: faker.helpers.arrayElement(Object.keys(Varseltype)),
+        mottattTidspunkt: dayjs(faker.date.recent({ days: 90 })).format(backendDatoformat),
+        erRevarsling: faker.datatype.boolean(),
         meldingListe: fyllRandomListe(getVarselMelding, 5)
     };
 }
 
 function getVarselMelding(): Varselmelding {
-    const kanal = navfaker.random.arrayElement(['SMS', 'NAV.NO', 'EPOST']);
-    const motakerInfo = kanal === 'SMS' ? faker.phone.phoneNumber() : kanal === 'EPOST' ? 'fakemail@faker.no' : null;
+    const kanal = faker.helpers.arrayElement([Kanal.SMS, Kanal.EPOST, Kanal.NAVNO]);
+    const motakerInfo =
+        kanal === Kanal.SMS ? faker.phone.number() : kanal === Kanal.EPOST ? faker.internet.email() : null;
     return {
         kanal: kanal,
-        innhold: faker.lorem.sentence(faker.random.number(25)),
+        innhold: faker.lorem.sentence(faker.number.int(25)),
         mottakerInformasjon: motakerInfo,
-        utsendingsTidspunkt: dayjs(faker.date.recent(90)).format(backendDatoformat),
+        utsendingsTidspunkt: dayjs(faker.date.recent({ days: 90 })).format(backendDatoformat),
         feilbeskrivelse: 'Feil',
         epostemne: 'Epostemne',
         url: 'http://test.com',
-        erRevarsel: faker.random.boolean()
+        erRevarsel: faker.datatype.boolean()
     };
 }

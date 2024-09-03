@@ -1,3 +1,4 @@
+import { Faker } from '@faker-js/faker';
 import dayjs from 'dayjs';
 import navfaker from 'nav-faker';
 
@@ -5,18 +6,13 @@ export function getSistOppdatert() {
     return dayjs(navfaker.dato.forÅrSiden(5)).toISOString();
 }
 
-export function vektetSjanse(seededFaker: Faker.FakerStatic, vekt: Number) {
-    const tilfeldigTall = seededFaker.random.number({
-        max: 1,
-        min: 0,
-        precision: 1e-8
-    });
-    return tilfeldigTall <= vekt;
+export function vektetSjanse(seededFaker: Faker, vekt: number) {
+    return seededFaker.datatype.boolean(vekt);
 }
 
 export function fyllRandomListe<T>(dataGen: () => T, max: number, kanVæreTom?: boolean): Array<T> {
-    let liste = [];
-    let n = navfaker.random.integer(max) || (kanVæreTom === true ? 0 : 1);
+    const liste = [];
+    const n = navfaker.random.integer(max) || (kanVæreTom === true ? 0 : 1);
     for (let i = 0; i < n; i++) {
         liste.push(dataGen());
     }

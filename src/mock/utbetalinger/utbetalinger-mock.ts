@@ -1,4 +1,4 @@
-import { fakerNB_NO as faker } from '@faker-js/faker';
+import { Faker, fakerNB_NO as faker } from '@faker-js/faker';
 import dayjs from 'dayjs';
 import navfaker from 'nav-faker/dist/index';
 
@@ -34,7 +34,7 @@ const fjernDuplikatePosteringsdato = (utbetaling: Utbetaling, index: number, lis
 
 function getUtbetalinger(fodselsnummer: string) {
     if (fodselsnummer === aremark.personIdent) {
-        return [...new Array(5)].map(() => getMockUtbetaling());
+        return [...(new Array(5) as number[])].map(() => getMockUtbetaling());
     }
     if (navfaker.random.vektetSjanse(0.2)) {
         return [];
@@ -43,8 +43,10 @@ function getUtbetalinger(fodselsnummer: string) {
     return fyllRandomListe(() => getMockUtbetaling(), 50).filter(fjernDuplikatePosteringsdato);
 }
 
-function randomDato(seededFaker: Faker.FakerStatic) {
-    return dayjs(seededFaker.date.past(1.5)).startOf('day').format(backendDatoformat);
+function randomDato(seededFaker: Faker) {
+    return dayjs(seededFaker.date.past({ years: 1.5 }))
+        .startOf('day')
+        .format(backendDatoformat);
 }
 
 export function getMockUtbetaling(): Utbetaling {
@@ -68,7 +70,7 @@ export function getMockUtbetaling(): Utbetaling {
         melding: 'Utbetalingsmelding',
         metode: 'Bankkontooverføring',
         status: status,
-        konto: Number(faker.finance.account(11)).toString(),
+        konto: Number(faker.finance.accountNumber(11)).toString(),
         ytelser: ytelser
     };
 }
@@ -90,15 +92,15 @@ export function getMockYtelse(): Ytelse {
         skattsum: skattsum,
         nettobelop: brutto + trekksum + skattsum,
         periode: getPeriode(),
-        bilagsnummer: faker.finance.account(10),
+        bilagsnummer: faker.finance.accountNumber(10),
         arbeidsgiver: navfaker.random.vektetSjanse(0.7) ? getArbeidsgiver() : null
     };
 }
 
 function getArbeidsgiver(): Arbeidsgiver {
     return {
-        navn: faker.company.companyName(),
-        orgnr: faker.finance.account(11)
+        navn: faker.company.name(),
+        orgnr: faker.finance.accountNumber(11)
     };
 }
 
@@ -118,7 +120,7 @@ function getTrekk(): Trekk {
     return {
         trekktype: 'Prosenttrekk',
         trekkbelop: -Number(faker.commerce.price()) * 2,
-        kreditor: navfaker.random.vektetSjanse(0.7) ? faker.company.companyName() : null
+        kreditor: navfaker.random.vektetSjanse(0.7) ? faker.company.name() : null
     };
 }
 
@@ -136,5 +138,5 @@ function getPeriode(): YtelsePeriode {
 }
 
 function randomStatus() {
-    return navfaker.random.arrayElement(['Ligger hos banken', 'Utbetalt', 'Returnert til NAV for saksbehandling']);
+    return faker.helpers.arrayElement(['Ligger hos banken', 'Utbetalt', 'Returnert til NAV for saksbehandling']);
 }

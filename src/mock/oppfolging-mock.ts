@@ -16,7 +16,7 @@ import { backendDatoformat } from '../utils/date-utils';
 
 export function getMockOppfolging(fodselsnummer: string): Oppfolging {
     faker.seed(Number(fodselsnummer));
-    const erUnderOppfolging = faker.random.boolean();
+    const erUnderOppfolging = faker.datatype.boolean();
 
     return {
         erUnderOppfolging: erUnderOppfolging,
@@ -35,7 +35,7 @@ function getSaksbehandler(): Saksbehandler {
 function getAnsattEnhet(): AnsattEnhet {
     return {
         id: 'E0001',
-        navn: faker.company.companyName(),
+        navn: faker.company.name(),
         status: 'ESTAT'
     };
 }
@@ -46,21 +46,21 @@ export function getMockYtelserOgKontrakter(fodselsnummer: string): DetaljertOppf
 
     return {
         oppfolging: getMockOppfolging(fodselsnummer),
-        meldeplikt: faker.random.boolean(),
-        formidlingsgruppe: 'FMGRP' + faker.random.number(5),
-        innsatsgruppe: 'INGRP' + faker.random.number(10),
-        sykemeldtFra: dayjs(faker.date.recent(10)).format(backendDatoformat),
-        rettighetsgruppe: 'RGRP' + faker.random.number(10),
-        vedtaksdato: dayjs(faker.date.recent(10)).format(backendDatoformat),
+        meldeplikt: faker.datatype.boolean(),
+        formidlingsgruppe: 'FMGRP' + faker.number.int(5),
+        innsatsgruppe: 'INGRP' + faker.number.int(10),
+        sykemeldtFra: dayjs(faker.date.recent({ days: 10 })).format(backendDatoformat),
+        rettighetsgruppe: 'RGRP' + faker.number.int(10),
+        vedtaksdato: dayjs(faker.date.recent({ days: 10 })).format(backendDatoformat),
         sykefraværsoppfølging: fyllRandomListe(getSyfoPunkt, 5),
-        ytelser: fyllRandomListe(() => navfaker.random.arrayElement([getYtelse(), getDagpenger()]), 4)
+        ytelser: fyllRandomListe(() => faker.helpers.arrayElement([getYtelse(), getDagpenger()]), 4)
     };
 }
 
 function getSyfoPunkt(): SyfoPunkt {
     return {
-        dato: dayjs(faker.date.recent(100)).format(backendDatoformat),
-        fastOppfølgingspunkt: faker.random.boolean(),
+        dato: dayjs(faker.date.recent({ days: 100 })).format(backendDatoformat),
+        fastOppfølgingspunkt: faker.datatype.boolean(),
         status: 'Ferdig behandlet',
         syfoHendelse: faker.lorem.words(6)
     };
@@ -68,11 +68,11 @@ function getSyfoPunkt(): SyfoPunkt {
 
 function getYtelse(): OppfolgingsYtelse {
     return {
-        datoKravMottatt: dayjs(faker.date.recent(30)).format(backendDatoformat),
-        fom: dayjs(faker.date.recent(20)).format(backendDatoformat),
-        tom: dayjs(faker.date.recent(10)).format(backendDatoformat),
-        status: navfaker.random.arrayElement(['Aktiv', 'Avsluttet', 'Inaktiv', 'Lukket']),
-        type: navfaker.random.arrayElement(['Arbeidsavklaringspenger', 'Individstønad']),
+        datoKravMottatt: dayjs(faker.date.recent({ days: 30 })).format(backendDatoformat),
+        fom: dayjs(faker.date.recent({ days: 20 })).format(backendDatoformat),
+        tom: dayjs(faker.date.recent({ days: 10 })).format(backendDatoformat),
+        status: faker.helpers.arrayElement(['Aktiv', 'Avsluttet', 'Inaktiv', 'Lukket']),
+        type: faker.helpers.arrayElement(['Arbeidsavklaringspenger', 'Individstønad']),
         vedtak: Array(navfaker.random.integer(5, 1))
             .fill(null)
             .map(() => getVedtak()),
@@ -85,8 +85,8 @@ function getDagpenger(): Dagpenger {
     return {
         ...getYtelse(),
         type: 'Dagpenger',
-        dagerIgjen: faker.random.number(30),
-        ukerIgjen: faker.random.number(10),
+        dagerIgjen: faker.number.int(30),
+        ukerIgjen: faker.number.int(10),
         dagerIgjenPermittering: 0,
         ukerIgjenPermittering: 0
     };
@@ -94,10 +94,10 @@ function getDagpenger(): Dagpenger {
 
 function getVedtak(): OppfolgingsVedtak {
     return {
-        aktivFra: dayjs(faker.date.recent(40)).format(backendDatoformat),
-        aktivTil: dayjs(faker.date.recent(20)).format(backendDatoformat),
+        aktivFra: dayjs(faker.date.recent({ days: 40 })).format(backendDatoformat),
+        aktivTil: dayjs(faker.date.recent({ days: 20 })).format(backendDatoformat),
         aktivitetsfase: 'Ikke spesif. aktivitetsfase',
-        vedtakstatus: navfaker.random.arrayElement(['Iverksatt', 'Avsluttet']),
+        vedtakstatus: faker.helpers.arrayElement(['Iverksatt', 'Avsluttet']),
         vedtakstype: 'Ordinære dagpenger'
     };
 }

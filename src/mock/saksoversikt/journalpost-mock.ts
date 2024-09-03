@@ -10,8 +10,9 @@ import {
 import { fyllRandomListe } from '../utils/mock-utils';
 import NavFaker from 'nav-faker/dist/navfaker';
 import { getBaksystem, getSaksdato } from './saksoversikt-felles-mock';
+import { Faker } from '@faker-js/faker';
 
-export function getJournalposter(faker: Faker.FakerStatic, navfaker: NavFaker, tema: string[]): Journalpost[] {
+export function getJournalposter(faker: Faker, navfaker: NavFaker, tema: string[]): Journalpost[] {
     if (navfaker.random.vektetSjanse(0.3)) {
         return [];
     }
@@ -21,35 +22,35 @@ export function getJournalposter(faker: Faker.FakerStatic, navfaker: NavFaker, t
         .map(() => getJournalpost(faker, navfaker, tema));
 }
 
-function getJournalpost(faker: Faker.FakerStatic, navfaker: NavFaker, tema: string[]): Journalpost {
-    const retning = getKommunikasjonsretning(navfaker);
+function getJournalpost(faker: Faker, navfaker: NavFaker, tema: string[]): Journalpost {
+    const retning = getKommunikasjonsretning(faker);
 
     return {
-        id: faker.random.alphaNumeric(8),
-        retning: getKommunikasjonsretning(navfaker),
+        id: faker.string.alphanumeric(8),
+        retning: getKommunikasjonsretning(faker),
         dato: getSaksdato(navfaker),
         lestDato: getLestDato(navfaker, retning),
         navn: navfaker.navn.fornavn(),
-        journalpostId: faker.random.alphaNumeric(8),
+        journalpostId: faker.string.alphanumeric(8),
         hoveddokument: getDokument(faker, navfaker),
         vedlegg: navfaker.random.vektetSjanse(0.3) ? fyllRandomListe(() => getDokument(faker, navfaker), 3) : [],
-        avsender: getEntitet(navfaker),
-        mottaker: getEntitet(navfaker),
-        tilhorendeSaksid: faker.random.alphaNumeric(8),
-        tilhorendeFagsaksid: faker.random.alphaNumeric(8),
+        avsender: getEntitet(faker),
+        mottaker: getEntitet(faker),
+        tilhorendeSaksid: faker.string.alphanumeric(8),
+        tilhorendeFagsaksid: faker.string.alphanumeric(8),
         baksystem: fyllRandomListe(() => getBaksystem(navfaker), 3),
         temakode: tema[0],
         temakodeVisning: tema[1],
-        ettersending: faker.random.boolean(),
-        erJournalfort: faker.random.boolean(),
-        feil: getFeilWrapper(navfaker)
+        ettersending: faker.datatype.boolean(),
+        erJournalfort: faker.datatype.boolean(),
+        feil: getFeilWrapper(faker)
     };
 }
 
-function getFeilWrapper(navfaker: NavFaker): FeilWrapper {
-    const erFeil = navfaker.random.vektetSjanse(0.1);
+function getFeilWrapper(faker: Faker): FeilWrapper {
+    const erFeil = faker.datatype.boolean(0.1);
     return erFeil
-        ? { inneholderFeil: true, feilmelding: getFeilmelding(navfaker) }
+        ? { inneholderFeil: true, feilmelding: getFeilmelding(faker) }
         : { inneholderFeil: false, feilmelding: null };
 }
 
@@ -65,19 +66,19 @@ const fakeDokumentNavn = [
     'Søknad om innvilget en kjempe lang tittel for å kunne få utbetalinger fortest mulig i henhold til mange paragrafer'
 ];
 
-function getDokument(faker: Faker.FakerStatic, navFaker: NavFaker): Dokument {
+function getDokument(faker: Faker, navFaker: NavFaker): Dokument {
     return {
-        tittel: navFaker.random.arrayElement(fakeDokumentNavn),
-        dokumentreferanse: faker.random.alphaNumeric(8),
+        tittel: faker.helpers.arrayElement(fakeDokumentNavn),
+        dokumentreferanse: faker.string.alphanumeric(8),
         kanVises: navFaker.random.vektetSjanse(0.9),
-        logiskDokument: faker.random.boolean(),
+        logiskDokument: faker.datatype.boolean(),
         skjerming: navFaker.random.vektetSjanse(0.1) ? 'POL' : null,
         dokumentStatus: navFaker.random.vektetSjanse(0.1) ? DokumentStatus.KASSERT : null
     };
 }
 
-function getKommunikasjonsretning(navfaker: NavFaker): Kommunikasjonsretning {
-    return navfaker.random.arrayElement([
+function getKommunikasjonsretning(faker: Faker): Kommunikasjonsretning {
+    return faker.helpers.arrayElement([
         Kommunikasjonsretning.Intern,
         Kommunikasjonsretning.Ut,
         Kommunikasjonsretning.Inn
@@ -91,12 +92,12 @@ function getLestDato(navFaker: NavFaker, retning: Kommunikasjonsretning): Journa
     return navFaker.dato.mellom(new Date('2020-06-12'), new Date()).toISOString();
 }
 
-function getEntitet(navfaker: NavFaker): Entitet {
-    return navfaker.random.arrayElement([Entitet.Nav, Entitet.Sluttbruker, Entitet.Ukjent, Entitet.EksternPart]);
+function getEntitet(faker: Faker): Entitet {
+    return faker.helpers.arrayElement([Entitet.Nav, Entitet.Sluttbruker, Entitet.Ukjent, Entitet.EksternPart]);
 }
 
-function getFeilmelding(navfaker: NavFaker): Feilmelding {
-    return navfaker.random.arrayElement([
+function getFeilmelding(faker: Faker): Feilmelding {
+    return faker.helpers.arrayElement([
         Feilmelding.TekniskFeil,
         Feilmelding.Sikkerhetsbegrensning,
         Feilmelding.SaksbehandlerIkkeTilgang,

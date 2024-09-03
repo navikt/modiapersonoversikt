@@ -1,4 +1,4 @@
-import navfaker from 'nav-faker';
+import { fakerNB_NO as faker } from '@faker-js/faker';
 import { AuthIntropectionDTO } from '../utils/hooks/use-persistent-login';
 import { IkkeTilgangArsak, TilgangDTO } from '../rest/resources/tilgangskontrollResource';
 
@@ -10,7 +10,7 @@ export function tilgangskontrollMock(fnr: string | undefined) {
     const dto: TilgangDTO = ikkeTilgang
         ? {
               harTilgang: false,
-              ikkeTilgangArsak: navfaker.random.arrayElement(Object.values(IkkeTilgangArsak))
+              ikkeTilgangArsak: faker.helpers.arrayElement(Object.values(IkkeTilgangArsak))
           }
         : {
               harTilgang: true

@@ -5,7 +5,7 @@ import { vektetSjanse } from './utils/mock-utils';
 import { SaksbehandlerRoller } from '../app/personside/dialogpanel/RollerUtils';
 
 export function getMockVeilederRoller(): VeilederRoller {
-    let roller = [];
+    const roller = [];
 
     if (vektetSjanse(faker, 0.9)) {
         roller.push(SaksbehandlerRoller.HentOppgave);

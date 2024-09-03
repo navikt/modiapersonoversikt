@@ -70,7 +70,7 @@ function mockAnsatt(): Ansatt {
     return {
         fornavn: navfaker.navn.fornavn(),
         etternavn: faker.name.lastName(),
-        ident: faker.random.alphaNumeric(7).toUpperCase()
+        ident: faker.string.alphanumeric(7).toUpperCase()
     };
 }
 

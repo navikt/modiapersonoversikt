@@ -59,7 +59,7 @@ export default class MockWebsocket implements WebSocketIsh {
     static wsOriginal: WebSocket = (window as any).WebSocket;
     static setup() {
         (window as any).WebSocket = (url: string) => {
-            if (url.includes('/api/draft/ws')) {
+            if (url.includes('/modiapersonoversikt-draft/api/draft/ws')) {
                 return new MockWebsocket(url);
             } else if (url.includes('veilederflatehendelser')) {
                 return new VoidWebSocket();

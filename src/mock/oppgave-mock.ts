@@ -29,8 +29,8 @@ export function getTilfeldigeOppgaver(): Oppgave[] {
 function lagOppgave(fodselsnummer: string): Oppgave {
     return {
         fødselsnummer: fodselsnummer,
-        traadId: faker.random.alphaNumeric(5),
-        oppgaveId: faker.random.alphaNumeric(5),
+        traadId: faker.string.alphanumeric(5),
+        oppgaveId: faker.string.alphanumeric(5),
         erSTOOppgave: true
     };
 }

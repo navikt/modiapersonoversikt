@@ -19,9 +19,9 @@ import { backendDatoTidformat } from '../../utils/date-utils';
 import standardTraader from './standardTraader';
 
 // Legger inn to konstanter for å sørge for at vi får korrelasjon på tvers av mocking (tråd-oppgave feks)
-const MOCKED_TRAADID_1 = '123';
-const MOCKED_TRAADID_2 = '321';
-const MOCKED_TRAADID_3 = '987';
+export const MOCKED_TRAADID_1 = '123';
+export const MOCKED_TRAADID_2 = '321';
+export const MOCKED_TRAADID_3 = '987';
 
 export function getMockTraader(fodselsnummer: string): Traad[] {
     faker.seed(Number(fodselsnummer));
@@ -52,17 +52,17 @@ export function getMockTraader(fodselsnummer: string): Traad[] {
 }
 
 function getMockTraad(): Traad {
-    const traadType = navfaker.random.arrayElement(Object.entries(TraadType));
-    const temagruppe = navfaker.random.arrayElement([...TemaSamtalereferat, null, Temagruppe.InnholdSlettet]);
+    const traadType = faker.helpers.arrayElement(Object.entries(TraadType));
+    const temagruppe = faker.helpers.arrayElement([...TemaSamtalereferat, null, Temagruppe.InnholdSlettet]);
     const meldinger = Array(navfaker.random.integer(4, 1))
         .fill(null)
         .map(() => getMelding(temagruppe));
 
     return {
-        traadId: faker.random.alphaNumeric(8),
+        traadId: faker.string.alphanumeric(8),
         traadType: traadType[1] as TraadType,
         meldinger: meldinger,
-        temagruppe: temagruppe,
+        temagruppe: temagruppe ?? undefined,
         journalposter: fyllRandomListe(lagJournalpost, 3, false)
     };
 }
@@ -70,19 +70,17 @@ function getMockTraad(): Traad {
 function getHardKodetTraader(): Traad[] {
     return standardTraader.map((traad) => ({
         ...traad,
-        traadId: faker.random.alphaNumeric(8)
+        traadId: faker.string.alphanumeric(8)
     }));
 }
 
-function getMelding(temagruppe: Temagruppe): Melding {
+function getMelding(temagruppe: Temagruppe | null): Melding {
     const visKontorsperre = navfaker.random.vektetSjanse(0.1);
     const visMarkertSomFeilsendt = navfaker.random.vektetSjanse(0.1);
-    const meldingstype = navfaker.random.arrayElement(Object.entries(Meldingstype))[0];
-    const sladdingNiva = navfaker.random.arrayElement([0, 0, 0, 0, 1, 1, 1, 1, 2]);
+    const meldingstype = faker.helpers.arrayElement(Object.values(Meldingstype));
+    const sladdingNiva = faker.helpers.arrayElement([0, 0, 0, 0, 1, 1, 1, 1, 2]);
 
-    let tekstFraNav = navfaker.random.arrayElement(
-        Object.entries(standardTeksterMock).map((it) => it[1].innhold.nb_NO)
-    );
+    let tekstFraNav = faker.helpers.arrayElement(Object.entries(standardTeksterMock).map((it) => it[1].innhold.nb_NO));
 
     if (sladdingNiva === 2) {
         tekstFraNav = tekstFraNav.replace(/./g, '*');
@@ -98,28 +96,28 @@ function getMelding(temagruppe: Temagruppe): Melding {
 
     const fritekst = erMeldingFraNav(meldingstype)
         ? autofullfor(tekstFraNav, getMockAutoFullforMap())
-        : faker.lorem.sentences(faker.random.number(15));
+        : faker.lorem.sentences(faker.number.int(15));
 
     return {
-        id: faker.random.alphaNumeric(8),
-        meldingsId: faker.random.alphaNumeric(8),
+        id: faker.string.alphanumeric(8),
+        meldingsId: faker.string.alphanumeric(8),
         meldingstype: meldingstype,
         temagruppe: temagruppe,
         skrevetAvTekst: saksbehandlerTekst(getSaksbehandler()),
         fritekst: fritekst,
-        lestDato: dayjs(faker.date.recent(40)).format(backendDatoTidformat),
-        status: navfaker.random.arrayElement([LestStatus.IkkeLest, LestStatus.Lest]),
-        opprettetDato: dayjs(faker.date.recent(40)).format(backendDatoTidformat),
-        ferdigstiltDato: dayjs(faker.date.recent(40)).format(backendDatoTidformat),
+        lestDato: dayjs(faker.date.recent({ days: 40 })).format(backendDatoTidformat),
+        status: faker.helpers.arrayElement([LestStatus.IkkeLest, LestStatus.Lest]),
+        opprettetDato: dayjs(faker.date.recent({ days: 40 })).format(backendDatoTidformat),
+        ferdigstiltDato: dayjs(faker.date.recent({ days: 40 })).format(backendDatoTidformat),
         kontorsperretAv: visKontorsperre ? getSaksbehandler() : undefined,
-        kontorsperretEnhet: visKontorsperre ? faker.company.companyName() : undefined,
+        kontorsperretEnhet: visKontorsperre ? faker.company.name() : undefined,
         sendtTilSladding: sladdingNiva !== 0,
         markertSomFeilsendtAv: visMarkertSomFeilsendt ? getSaksbehandler() : undefined
     };
 }
 
 function getChatTraad(): Traad {
-    const temagruppe = navfaker.random.arrayElement([...TemaSamtalereferat, null, Temagruppe.InnholdSlettet]);
+    const temagruppe = faker.helpers.arrayElement([...TemaSamtalereferat, null, Temagruppe.InnholdSlettet]);
     const meldinger = Array(navfaker.random.integer(10, 3))
         .fill(null)
         .map(() => getChatMelding(temagruppe));
@@ -128,39 +126,39 @@ function getChatTraad(): Traad {
         traadId: meldinger[0].id,
         traadType: TraadType.CHAT,
         meldinger: meldinger,
-        temagruppe: temagruppe,
+        temagruppe: temagruppe ?? undefined,
         journalposter: fyllRandomListe(lagJournalpost, 3, true)
     };
 }
 
-function getChatMelding(temagruppe: Temagruppe): Melding {
-    const meldingstype = navfaker.random.arrayElement([
+function getChatMelding(temagruppe: Temagruppe | null): Melding {
+    const meldingstype = faker.helpers.arrayElement([
         Meldingstype.CHATMELDING_FRA_NAV,
         Meldingstype.CHATMELDING_FRA_BRUKER
     ]);
 
-    let tekstFraNav = navfaker.random.arrayElement(mockChatMeldinger);
+    const tekstFraNav = faker.helpers.arrayElement(mockChatMeldinger);
 
     const fritekst = erMeldingFraNav(meldingstype)
         ? autofullfor(tekstFraNav, getMockAutoFullforMap())
-        : faker.lorem.sentences(faker.random.number(2));
+        : faker.lorem.sentences(faker.number.int(2));
 
     return {
-        id: faker.random.alphaNumeric(8),
-        meldingsId: faker.random.alphaNumeric(8),
+        id: faker.string.alphanumeric(8),
+        meldingsId: faker.string.alphanumeric(8),
         meldingstype: meldingstype,
         temagruppe: temagruppe,
         skrevetAvTekst: saksbehandlerTekst(getSaksbehandler()),
         fritekst: fritekst,
-        lestDato: dayjs(faker.date.recent(40)).format(backendDatoTidformat),
-        status: navfaker.random.arrayElement([LestStatus.IkkeLest, LestStatus.Lest]),
-        opprettetDato: dayjs(faker.date.recent(1)).format(backendDatoTidformat),
-        ferdigstiltDato: dayjs(faker.date.recent(40)).format(backendDatoTidformat),
+        lestDato: dayjs(faker.date.recent({ days: 40 })).format(backendDatoTidformat),
+        status: faker.helpers.arrayElement([LestStatus.IkkeLest, LestStatus.Lest]),
+        opprettetDato: dayjs(faker.date.recent({ days: 1 })).format(backendDatoTidformat),
+        ferdigstiltDato: dayjs(faker.date.recent({ days: 40 })).format(backendDatoTidformat),
         kontorsperretAv: undefined,
         kontorsperretEnhet: undefined,
         sendtTilSladding: false,
         markertSomFeilsendtAv: undefined,
-        avsluttetDato: dayjs(faker.date.recent(10)).format(backendDatoTidformat)
+        avsluttetDato: dayjs(faker.date.recent({ days: 10 })).format(backendDatoTidformat)
     };
 }
 
@@ -182,11 +180,11 @@ const temaMap = {
     PEN: 'Pensjon'
 };
 function lagJournalpost(): MeldingJournalpost {
-    const tema = navfaker.random.arrayElement(['DAG', 'BID', 'AAP', 'PEN']);
+    const tema = faker.helpers.arrayElement(['DAG', 'BID', 'AAP', 'PEN'] as const);
     const saksbehandler = getSaksbehandler();
     return {
-        journalfortDato: faker.date.recent(40).toISOString(),
-        journalfortSaksid: faker.random.alphaNumeric(5),
+        journalfortDato: faker.date.recent({ days: 40 }).toISOString(),
+        journalfortSaksid: faker.string.alphanumeric(5),
         journalfortTema: tema,
         journalfortTemanavn: temaMap[tema],
         journalfortAv: {
@@ -201,16 +199,16 @@ function sensorerEnkeltOrd(tekst: string): string {
         return tekst;
     }
     const ord = tekst.split(' ');
-    const sensorOrd = navfaker.random.arrayElement(ord.filter((it) => it.length > 2));
+    const sensorOrd = faker.helpers.arrayElement(ord.filter((it) => it.length > 2));
     const sensorering = '*'.repeat(sensorOrd.length);
     return ord.map((it) => (it === sensorOrd ? sensorering : it)).join(' ');
 }
 
 function getSaksbehandler(): Saksbehandler {
     return {
-        ident: faker.random.alphaNumeric(6),
-        fornavn: faker.name.firstName(),
-        etternavn: faker.name.lastName()
+        ident: faker.string.alphanumeric(6),
+        fornavn: faker.person.firstName(),
+        etternavn: faker.person.lastName()
     };
 }
 

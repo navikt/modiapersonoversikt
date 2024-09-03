@@ -274,7 +274,12 @@ const featureToggleHandler = [
     http.get(apiBaseUri + '/featuretoggle', ({ request }) => {
         const id = new URL(request.url).searchParams.get('id')?.split(',');
         const ids = Array.isArray(id) ? id : [id];
-        return HttpResponse.json(Object.fromEntries(ids.map((it) => [it, mockFeatureToggle(it as FeatureToggles)])));
+        return HttpResponse.json(
+            ids.reduce(
+                (toggles, it) => ({ toggles, [it as FeatureToggles]: mockFeatureToggle(it as FeatureToggles) }),
+                {}
+            )
+        );
     })
 ];
 

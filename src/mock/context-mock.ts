@@ -98,7 +98,7 @@ export function getContextHandlers() {
         ),
 
         http.get(baseUrl + 'proxy/modiacontextholder/api/decorator/aktor/:fnr', ({ params }) =>
-            HttpResponse.json({ fnr: params.fnr, aktorId: `0000${params}0000` })
+            HttpResponse.json({ fnr: params.fnr, aktorId: `0000${params.fnr as string}0000` })
         ),
 
         http.get(baseUrl + 'proxy/modiacontextholder/api/decorator', () => HttpResponse.json(me))
