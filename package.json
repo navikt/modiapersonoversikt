@@ -115,7 +115,7 @@
         "vite-plugin-svgr": "^4.2.0"
     },
     "devDependencies": {
-        "@eslint/js": "^9.3.0",
+        "@eslint/js": "^9.9.1",
         "@navikt/aksel-stylelint": "^6.16.2",
         "@testing-library/jest-dom": "^6.5.0",
         "@testing-library/react": "^16.0.0",
