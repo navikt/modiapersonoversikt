@@ -6,7 +6,7 @@ import {
     PersonsokResponse,
     UtenlandskID
 } from '../../models/person/personsok';
-import faker from 'faker/locale/nb_NO';
+import { fakerNB_NO as faker } from '@faker-js/faker';
 
 import navfaker from 'nav-faker/dist/index';
 import { Kodeverk } from '../../models/kodeverk';

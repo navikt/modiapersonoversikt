@@ -1,4 +1,4 @@
-import faker from 'faker/locale/nb_NO';
+import { fakerNB_NO as faker } from '@faker-js/faker';
 
 export function mockTilgangTilSlett(): Boolean {
     return faker.random.boolean();

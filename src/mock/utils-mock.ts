@@ -1,5 +1,5 @@
 import navfaker from 'nav-faker';
-import faker from 'faker/locale/nb_NO';
+import { fakerNB_NO as faker } from '@faker-js/faker';
 import { HttpResponseResolver, PathParams, StrictRequest } from 'msw';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 

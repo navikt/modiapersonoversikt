@@ -1,5 +1,5 @@
 import { OppdateringsloggInnslag } from '../../app/oppdateringslogg/OppdateringsloggContainer';
-import faker from 'faker/locale/nb_NO';
+import { fakerNB_NO as faker } from '@faker-js/faker';
 import OppdateringsloggKnappBilde from '../../app/oppdateringslogg/config/img/oppdateringslogg-knapp.jpg';
 import CodeBilde from '../../app/oppdateringslogg/config/img/code.png';
 
