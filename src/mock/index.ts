@@ -35,6 +35,7 @@ import { FeatureToggles } from '../components/featureToggle/toggleIDs';
 import { DefaultBodyType, http, HttpHandler, HttpResponse, PathParams, StrictRequest } from 'msw';
 import { fodselsNummerErGyldigStatus, randomDelay, STATUS_OK } from './utils-mock';
 import { getMockTiltakspenger } from './ytelse/tiltakspenger-mock';
+import { mockInnkrevingsKrav } from './innkrevingskrav';
 
 const oppgaveBackendMock = new OppgaverBackendMock();
 const meldingerBackendMock = new MeldingerBackendMock(oppgaveBackendMock);
@@ -325,6 +326,13 @@ const standardteksterHandler = [
     )
 ];
 
+const innkrevingsKravHandlers = [
+    http.get(
+        apiBaseUri + '/innkrevingskrav/:id',
+        withDelayedResponse(0, STATUS_OK, (_, params) => mockInnkrevingsKrav(params.id as string))
+    )
+];
+
 if (import.meta.env.MODE !== 'test') {
     console.log('=========================='); // tslint:disable-line
     console.log('======== MED MOCK ========'); // tslint:disable-line
@@ -363,5 +371,6 @@ export const handlers: HttpHandler[] = [
     ...getContextHandlers(),
     ...saksbehandlerInnstillingerHandlers,
     ...getDraftHandlers(),
+    ...innkrevingsKravHandlers,
     http.options('*', () => new HttpResponse(null, { status: 200 }))
 ];
