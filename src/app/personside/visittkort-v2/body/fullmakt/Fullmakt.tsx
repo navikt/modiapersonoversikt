@@ -6,6 +6,7 @@ import Fullmaktlogo from '../../../../../svg/Utropstegn';
 import {
     DigitalKontaktinformasjonTredjepartsperson,
     Fullmakt as FullmaktInterface,
+    Handling,
     InformasjonElement,
     OmraadeMedHandling
 } from '../../PersondataDomain';
@@ -15,7 +16,8 @@ import { harFeilendeSystemer } from '../../harFeilendeSystemer';
 import { formaterMobiltelefonnummer } from '../../../../../utils/telefon-utils';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
-
+import { HelpText, ReadMore, Table } from '@navikt/ds-react';
+import { GlassesIcon, Chat2Icon, PencilIcon } from '@navikt/aksel-icons';
 interface Props {
     feilendeSystemer: Array<InformasjonElement>;
     fullmakter: FullmaktInterface[];
@@ -28,13 +30,6 @@ const GraTekst = styled.div`
         line-height: 1rem;
     }
 `;
-
-function getOmrade(omrader: OmraadeMedHandling<string>[]): string {
-    if (omrader.map((omrade) => omrade.omraade.kode).includes('*')) {
-        return 'alle statlige ytelser';
-    }
-    return omrader.map((omrade) => `${omrade.omraade.beskrivelse} (${omrade.handling.join(', ')})`).join(', ');
-}
 
 function KontaktinformasjonFullmakt(props: { kontaktinformasjon: DigitalKontaktinformasjonTredjepartsperson | null }) {
     if (!props.kontaktinformasjon) {
@@ -55,6 +50,53 @@ function KontaktinformasjonFullmakt(props: { kontaktinformasjon: DigitalKontakti
         </>
     );
 }
+const FullmaktTilgangerTabell = ({ omraader }: { omraader: OmraadeMedHandling<string>[] }) => {
+    if (omraader.map((omrade) => omrade.omraade.kode).includes('*')) {
+        return 'Gjelder alle statlige ytelser';
+    }
+
+    return (
+        <Table size="small">
+            <Table.Header>
+                <Table.Row>
+                    <Table.HeaderCell scope="col">Område</Table.HeaderCell>
+                    <Table.HeaderCell scope="col">
+                        <HelpText title="Hva betyr lese/innsyn?">
+                            Fullmektig kan lese dokumenter på de områdene det er gitt fullmakt til
+                        </HelpText>
+                    </Table.HeaderCell>
+                    <Table.HeaderCell scope="col">
+                        <HelpText title="Hva betyr snakke/kommunisere?">
+                            Fullmektig kan snakke med NAV og hjelpe til i kontakten med NAV, både på telefon, nav.no og
+                            NAV-kontor. Tilgangen innebærer at fullmektig også kan lese dokumenter i sakene
+                        </HelpText>
+                    </Table.HeaderCell>
+                    <Table.HeaderCell scope="col">
+                        <HelpText title="Hva betyr Søke/klage?">
+                            Fullmektig kan søke og klage. Tilgangen innebærer at fullmektig også kan lese dokumenter og
+                            snakke med NAV
+                        </HelpText>
+                    </Table.HeaderCell>
+                </Table.Row>
+            </Table.Header>
+            <Table.Body>
+                {omraader.map((o) => {
+                    const les = o.handling.find((h) => h === Handling.LES);
+                    const kommuniser = o.handling.find((h) => h === Handling.KOMMUNISER);
+                    const skriv = o.handling.find((h) => h === Handling.SKRIV);
+                    return (
+                        <Table.Row>
+                            <Table.DataCell>{o.omraade.beskrivelse}</Table.DataCell>
+                            <Table.DataCell>{les && <GlassesIcon title="Lese/innsyn" />}</Table.DataCell>
+                            <Table.DataCell>{kommuniser && <Chat2Icon title="Snakke/kommunisere" />}</Table.DataCell>
+                            <Table.DataCell>{skriv && <PencilIcon title="Søke/klage" />}</Table.DataCell>
+                        </Table.Row>
+                    );
+                })}
+            </Table.Body>
+        </Table>
+    );
+};
 
 function Fullmakt(props: { fullmakt: FullmaktInterface; harFeilendeSystem: boolean }) {
     const motpartsPersonNavn = hentNavn(props.fullmakt.motpartsPersonNavn);
@@ -68,11 +110,13 @@ function Fullmakt(props: { fullmakt: FullmaktInterface; harFeilendeSystem: boole
             <Normaltekst>
                 {motpartsPersonNavn} {`(${props.fullmakt.motpartsPersonident})`}
             </Normaltekst>
-            <Normaltekst>Gjelder {getOmrade(props.fullmakt.omrade)}</Normaltekst>
             <KontaktinformasjonFullmakt
                 kontaktinformasjon={props.fullmakt.digitalKontaktinformasjonTredjepartsperson}
             />
             <GyldighetsPeriode gyldighetsPeriode={props.fullmakt.gyldighetsPeriode} />
+            <ReadMore header="Detaljer">
+                <FullmaktTilgangerTabell omraader={props.fullmakt.omrade} />
+            </ReadMore>
         </VisittkortElement>
     );
 }
