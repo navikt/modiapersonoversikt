@@ -4,6 +4,7 @@ import { Element } from 'nav-frontend-typografi';
 import { UnifiedVarsel } from '../../../../models/varsel';
 import Panel from 'nav-frontend-paneler';
 import Varsel from './Varsel';
+import { Alert } from '@navikt/ds-react';
 
 interface Props {
     varsler: Array<UnifiedVarsel>;
@@ -37,6 +38,7 @@ const ListStyle = styled.ol`
     > * {
         margin-top: 0.5rem;
     }
+    margin-bottom: 1rem;
 `;
 
 function Varsler(props: Props) {
@@ -53,6 +55,11 @@ function Varsler(props: Props) {
                     <Varsel key={index} varsel={varsel} />
                 ))}
             </ListStyle>
+            <Alert variant="info">
+                Varsler vises kun ett år tilbake i tid.
+                <br />
+                Dersom man trenger å se informasjon om eldre varsler kan man lage en sak i porten for manuell uthenting.
+            </Alert>
         </>
     );
 }
