@@ -138,17 +138,15 @@ function FortsettDialog(props: Props) {
             <SubmitKnapp htmlType="submit" spinner={props.fortsettDialogPanelState.type === DialogPanelStatus.POSTING}>
                 {delMedBrukerTekst}
             </SubmitKnapp>
-            {!props.erTilknyttetOppgave && (
-                <StyledKnappMedBekreftPopup
-                    htmlType="reset"
-                    type="flat"
-                    onBekreft={handleAvbryt}
-                    bekreftKnappTekst={'Ja, avbryt'}
-                    popUpTekst="Er du sikker på at du vil avbryte? Du mister da meldinger du har påbegynt."
-                >
-                    Avbryt
-                </StyledKnappMedBekreftPopup>
-            )}
+            <StyledKnappMedBekreftPopup
+                htmlType="reset"
+                type="flat"
+                onBekreft={handleAvbryt}
+                bekreftKnappTekst={'Ja, avbryt'}
+                popUpTekst="Er du sikker på at du vil avbryte? Du mister da meldinger du har påbegynt."
+            >
+                Avbryt
+            </StyledKnappMedBekreftPopup>
         </FormStyle>
     );
 }
