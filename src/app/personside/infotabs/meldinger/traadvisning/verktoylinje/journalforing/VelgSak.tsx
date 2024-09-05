@@ -54,15 +54,12 @@ export function fordelSaker(saker: JournalforingsSak[]): Kategorier {
         {}
     );
 
-    const fagSaker = Object.entries(temaGruppertefagSaker).reduce(
-        (acc, [tema, saker]) => [...acc, { tema, saker }],
-        [] as Tema[]
-    );
-    const generelleSaker = Object.entries(temaGrupperteGenerelleSaker).reduce(
-        (acc, [tema, saker]) => [...acc, { tema, saker }],
-        [] as Tema[]
-    );
-
+    const fagSaker = Object.entries(temaGruppertefagSaker)
+        .reduce((acc, [tema, saker]) => [...acc, { tema, saker }], [] as Tema[])
+        .toSorted((a, b) => a.tema.localeCompare(b.tema));
+    const generelleSaker = Object.entries(temaGrupperteGenerelleSaker)
+        .reduce((acc, [tema, saker]) => [...acc, { tema, saker }], [] as Tema[])
+        .toSorted((a, b) => a.tema.localeCompare(b.tema));
     return {
         [SakKategori.FAG]: fagSaker,
         [SakKategori.GEN]: generelleSaker
