@@ -53,7 +53,7 @@
         "classnames": "^2.5.1",
         "connected-react-router": "^6.9.3",
         "dayjs": "^1.11.13",
-        "detect-browser": "^3.0.1",
+        "detect-browser": "^5.3.0",
         "downshift": "^5.0.5",
         "history": "^4.7.2",
         "lodash.debounce": "^4.0.8",
