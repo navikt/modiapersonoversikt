@@ -10,7 +10,7 @@ import { trackNavigation, updateUserEnhet } from '../../utils/amplitude';
 import { useCallback } from 'react';
 import { DecoratorPropsV3, Hotkey } from './decoratorprops';
 import { useGjeldendeBruker } from '../../redux/gjeldendeBruker/types';
-import { getEnvFromHost } from '../../utils/environment';
+import { getDomainFromHost, getEnvFromHost } from '../../utils/environment';
 import { useRouteMatch } from 'react-router';
 import config from '../../config';
 
@@ -77,6 +77,8 @@ function lagConfigV3(
     const onsketFnr = urlFnr ?? sokFnr ?? fnr;
     const environment = import.meta.env.PROD ? getEnvFromHost() : 'mock';
 
+    const urlFormat = getDomainFromHost();
+
     return {
         appName: 'Modia personoversikt',
         fnr: onsketFnr ?? undefined,
@@ -108,7 +110,7 @@ function lagConfigV3(
             ? `https://${window.location.host}${import.meta.env.BASE_URL}proxy/modiacontextholder`
             : (import.meta.env.VITE_CONTEXTHOLDER_URL ?? `${import.meta.env.BASE_URL}proxy/modiacontextholder`),
         environment,
-        urlFormat: import.meta.env.PROD ? (window.location.host.includes('adeo.no') ? 'ADEO' : 'NAV_NO') : 'LOCAL',
+        urlFormat: import.meta.env.PROD ? urlFormat : 'LOCAL',
         showEnheter: true,
         showSearchArea: true,
         fetchActiveUserOnMount: true,

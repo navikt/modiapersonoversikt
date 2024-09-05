@@ -22,3 +22,13 @@ export const getEnvFromHost = () => {
     }
     return 'mock';
 };
+
+export const getDomainFromHost = (): 'ANSATT' | 'NAV_NO' | 'LOCAL' => {
+    const matchAnsatt = window.location.host.match(/\.ansatt\.(dev)?\.nav\.no/);
+    if (matchAnsatt) return 'ANSATT';
+
+    const matchIntern = window.location.host.match(/\.intern\.(dev)?\.nav\.no/);
+    if (matchIntern) return 'NAV_NO';
+
+    return 'LOCAL';
+};
