@@ -109,7 +109,7 @@
         "react-router": "^5.2.0",
         "react-router-dom": "^5.2.0",
         "redux": "^4.0.5",
-        "redux-thunk": "^2.3.0",
+        "redux-thunk": "^2.4.2",
         "styled-components": "^6.1.12",
         "vite": "^5.2.10",
         "vite-plugin-svgr": "^4.2.0"
