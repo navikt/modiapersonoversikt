@@ -1,4 +1,13 @@
-import { getWebInstrumentations, initializeFaro, Meta, ReactRouterHistory } from '@grafana/faro-react';
+import {
+    getWebInstrumentations,
+    initializeFaro,
+    Instrumentation,
+    Meta,
+    ReactIntegration,
+    ReactRouterHistory,
+    ReactRouterVersion
+} from '@grafana/faro-react';
+import { Route } from 'react-router-dom';
 import { getEnvFromHost } from './environment';
 import { getWindowFeature } from './featureToggles';
 const customPageMeta: () => Pick<Meta, 'page'> = () => {
@@ -25,22 +34,23 @@ export const initializeObservability = (history: ReactRouterHistory) => {
             name: 'modiapersonoversikt'
         },
         metas: [customPageMeta],
-        paused: !import.meta.env.PROD,
+        paused: false, //!import.meta.env.PROD,
         instrumentations: [
-            ...getWebInstrumentations()
+            ...getWebInstrumentations(),
             // Disable react integration to nok leak fnr in URLs. This can be reenabled when we are
             // certain we never recieve any URLs with fnr.
             //
-            // new ReactIntegration({
-            //     router: {
-            //         version: ReactRouterVersion.V5,
-            //         dependencies: {
-            //             history,
-            //             Route
-            //         }
-            //     }
-            // })
-        ],
+            env !== 'prod' &&
+                new ReactIntegration({
+                    router: {
+                        version: ReactRouterVersion.V5,
+                        dependencies: {
+                            history,
+                            Route
+                        }
+                    }
+                })
+        ].filter((v): v is Instrumentation => !!v),
         ignoreUrls: [/\d{11}/]
     });
 };
