@@ -34,7 +34,7 @@ export const initializeObservability = (history: ReactRouterHistory) => {
             name: 'modiapersonoversikt'
         },
         metas: [customPageMeta],
-        paused: false, //!import.meta.env.PROD,
+        paused: !import.meta.env.PROD,
         instrumentations: [
             ...getWebInstrumentations(),
             // Disable react integration to nok leak fnr in URLs. This can be reenabled when we are
