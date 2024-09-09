@@ -37,6 +37,7 @@ test('bytter til riktig tab og åpner valgt ytelse ved bruk av dyplenke fra over
 
 async function clickOnYtelse(infoTabs: HTMLElement, user: UserEvent) {
     const tab = infoTabs.querySelectorAll('.' + ytelserTest.oversikt)[1] as HTMLElement;
+    console.log(infoTabs.querySelectorAll('.' + ytelserTest.oversikt));
     const button = within(tab).getByRole('button');
 
     await user.click(button);

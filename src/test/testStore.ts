@@ -20,6 +20,7 @@ import featuretogglesResource from '../rest/resources/featuretogglesResource';
 import foreldrepengerResource from '../rest/resources/foreldrepengerResource';
 import pleiepengerResource from '../rest/resources/pleiepengerResource';
 import sykepengerResource from '../rest/resources/sykepengerResource';
+import tiltakspengerResource from '../rest/resources/tiltakspengerResource';
 import gsaktemaResource from '../rest/resources/gsaktemaResource';
 import oppfolgingResource from '../rest/resources/oppfolgingResource';
 import sakstemaResource from '../rest/resources/sakstemaResource';
@@ -32,6 +33,7 @@ import { createBrowserHistory } from 'history';
 import { UseQueryResult } from '@tanstack/react-query';
 import { FeatureToggles } from '../components/featureToggle/toggleIDs';
 import { FetchError } from '../api/api';
+import { statiskTiltakspengerMock } from '../mock/ytelse/statiskTiltakspengerMock';
 
 const history = createBrowserHistory();
 
@@ -49,9 +51,9 @@ export function getTestStore(): Store<AppState> {
 export function mockReactQuery<A extends unknown[], R>(
     resource: (...args: A) => UseQueryResult<R>,
     data: R,
-    extra: Partial<Omit<UseQueryResult<R>, 'data'>>
+    extra?: Partial<Omit<UseQueryResult<R>, 'data'>>
 ) {
-    (resource as unknown as MockInstance<A, Partial<UseQueryResult<R, FetchError>>>).mockImplementation(
+    (resource as unknown as MockInstance<(...args: A) => Partial<UseQueryResult<R>>>).mockImplementation(
         () =>
             ({
                 data,
@@ -67,6 +69,7 @@ export function setupReactQueryMocks() {
     vi.spyOn(foreldrepengerResource, 'useFetch');
     vi.spyOn(pleiepengerResource, 'useFetch');
     vi.spyOn(sykepengerResource, 'useFetch');
+    vi.spyOn(tiltakspengerResource, 'useFetch');
     vi.spyOn(gsaktemaResource, 'useFetch');
     vi.spyOn(oppfolgingResource, 'useFetch');
     vi.spyOn(sakstemaResource, 'useFetch');
@@ -85,7 +88,9 @@ export function setupReactQueryMocks() {
         [FeatureToggles.BrukNyDecorator]: true,
         [FeatureToggles.JournalforUtenSvar]: true,
         [FeatureToggles.VisPromptMeldingSending]: true,
-        [FeatureToggles.BrukWebworkerPaaInnLogging]: true
+        [FeatureToggles.BrukWebworkerPaaInnLogging]: true,
+        [FeatureToggles.BrukNyTiltakspenger]: true,
+        [FeatureToggles.VisDraftStatus]: true
     });
     mockReactQuery(gsaktemaResource.useFetch, getMockGsakTema());
     mockReactQuery(foreldrepengerResource.useFetch, {
@@ -97,6 +102,7 @@ export function setupReactQueryMocks() {
     mockReactQuery(sykepengerResource.useFetch, {
         sykepenger: [statiskSykepengerMock]
     });
+    mockReactQuery(tiltakspengerResource.useFetch, [statiskTiltakspengerMock]);
     mockReactQuery(oppfolgingResource.useFetch, statiskOppfolgingMock);
     mockReactQuery(sakstemaResource.useFetch, getStaticMockSaksoversiktV2());
     mockReactQuery(utbetalingerResource.useFetch, statiskMockUtbetalingRespons);
