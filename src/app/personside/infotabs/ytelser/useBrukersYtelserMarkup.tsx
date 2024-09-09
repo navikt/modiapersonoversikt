@@ -2,14 +2,16 @@ import { ReactNode } from 'react';
 import { Pleiepengerettighet } from '../../../../models/ytelse/pleiepenger';
 import { Sykepenger } from '../../../../models/ytelse/sykepenger';
 import { Foreldrepengerettighet } from '../../../../models/ytelse/foreldrepenger';
-import { isForeldrepenger, isPleiepenger, isSykepenger } from '../../../../models/ytelse/ytelse-utils';
+import { isForeldrepenger, isPleiepenger, isSykepenger, isTiltakspenger } from '../../../../models/ytelse/ytelse-utils';
 import useBrukersYtelser from './useBrukersYtelser';
 import { loggError } from '../../../../utils/logger/frontendLogger';
+import { Tiltakspenger } from '../../../../models/ytelse/tiltakspenger';
 
 interface Props {
     renderPleiepenger: (pleiepenger: Pleiepengerettighet) => ReactNode;
     renderSykepenger: (sykepenger: Sykepenger) => ReactNode;
     renderForeldrepenger: (foreldrepenger: Foreldrepengerettighet) => ReactNode;
+    renderTiltakspenger: (tiltakspenger: Tiltakspenger) => ReactNode;
 }
 
 interface Returns {
@@ -31,6 +33,9 @@ function useBrukersYtelserMarkup(props: Props): Returns {
         }
         if (isPleiepenger(ytelse)) {
             return props.renderPleiepenger(ytelse);
+        }
+        if (isTiltakspenger(ytelse)) {
+            return props.renderTiltakspenger(ytelse);
         }
         loggError(new Error('Fant ikke rendermetode for ytelsen'));
         return null;

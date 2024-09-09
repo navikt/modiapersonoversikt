@@ -1,27 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Om Ytelser matcher snapshot 1`] = `
-.c9 {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: edHiKw 0.3s ease-out;
-}
-
-.c9 >* {
-  flex: 0 1 25rem;
-  display: flex;
-  justify-content: center;
-}
-
-.c10 {
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  animation: edHiKw 0.3s ease-out;
-}
-
 .c6 {
   position: relative;
   padding: .5rem;
@@ -122,127 +101,48 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   padding: .5rem;
 }
 
-.c16 {
+.c13 {
   display: flex;
   flex-wrap: wrap;
 }
 
-.c16 dt {
+.c13 dt {
   color: #645f5a;
 }
 
-.c16 >div {
+.c13 >div {
   margin: 0.5625rem 0;
   padding-right: 0.7rem;
   width: 13rem;
   overflow-wrap: break-word;
 }
 
-.c17 {
-  overflow: auto;
-  box-shadow: 0 0 0 0.07rem rgba(0, 0, 0, 0.25);
-  border-radius: .25rem;
-  background-color: white;
-}
-
-.c17 [role='table'] {
-  text-align: left;
-  width: 100%;
-}
-
-.c17 [role='table'] thead,
-.c17 [role='table'] .thead[role='rowgroup'] {
-  border-bottom: 0.2rem solid rgba(0, 0, 0, 0.15);
-  font-weight: 600;
-}
-
-.c17 [role='table'] [role='cell'],
-.c17 [role='table'] [role='columnheader'] {
-  padding: 0.7rem;
-  vertical-align: middle;
-}
-
-.c17 [role='table'] [role='columnheader'] {
-  padding-bottom: 0.7rem;
-}
-
-.c17 [role='table'] [role='row']:nth-child(even) {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-.c22 {
-  border-radius: 0.5rem;
-  background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
-  padding: 1.25rem;
-  white-space: nowrap;
-}
-
-.c22 >*:not(:last-child) {
-  margin-bottom: 1rem;
-}
-
-.c15 {
-  border-radius: 0.5rem;
-  background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
-  padding: 1.25rem;
-}
-
-.c15 >h3 {
-  margin-bottom: 1rem;
-}
-
-.c19 span:not(:last-child):after {
-  content: '.';
-}
-
-.c18 li:not(:first-child) {
-  padding-top: 1rem;
-  margin-top: 1rem;
-  border-top: solid 0.0625rem #b7b1a9;
-}
-
-.c20 {
-  margin-top: 1rem;
-}
-
-.c21 {
-  border-radius: 0.5rem;
-  background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
-  padding: 1.25rem;
-  white-space: nowrap;
-}
-
-.c21 >*:not(:last-child) {
-  margin-bottom: 1rem;
-}
-
 .c12 {
+  border-radius: 0.5rem;
+  background-color: #f1f0f0;
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
+  padding: 1.25rem;
+}
+
+.c12 >h3 {
+  margin-bottom: 1rem;
+}
+
+.c10 {
   padding: .5rem;
 }
 
-.c13 {
+.c11 {
   display: flex;
   flex-wrap: wrap;
 }
 
-.c13 >* {
+.c11 >* {
   flex-basis: 40%;
   flex-grow: 1;
 }
 
-.c14 {
-  display: flex;
-  flex-direction: column;
-}
-
-.c14 >* {
-  flex-grow: 1;
-}
-
-.c11 >* {
+.c9 >* {
   margin-bottom: 0.5rem;
 }
 
@@ -391,6 +291,40 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                     <h3
                       className="typo-undertittel"
                     >
+                      Tiltakspenger
+                    </h3>
+                    <p
+                      className="typo-element"
+                    >
+                      ID-dato
+                    </p>
+                    <p
+                      className="typo-normal"
+                    >
+                      10.01.2020
+                    </p>
+                  </div>
+                  <button
+                    aria-label="Vis tiltakspenger"
+                    aria-selected={true}
+                    className="c7"
+                  >
+                    <span
+                      className="nav-frontend-chevron chevronboks chevron--hoyre"
+                    />
+                  </button>
+                </div>
+              </li>
+              <li>
+                <div
+                  className="c8"
+                  onClick={[Function]}
+                  valgt={false}
+                >
+                  <div>
+                    <h3
+                      className="typo-undertittel"
+                    >
                       Sykepengerrettighet
                     </h3>
                     <p
@@ -406,7 +340,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   </div>
                   <button
                     aria-label="Vis sykepenger"
-                    aria-selected={true}
+                    aria-selected={false}
                     className="c7"
                   >
                     <span
@@ -494,47 +428,6 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                 </div>
               </li>
             </ol>
-            <div
-              className="c9"
-            >
-              <span
-                className="c10"
-              >
-                <svg
-                  aria-label="Laster innhold"
-                  className="spinner spinner--l"
-                  focusable="false"
-                  height={32}
-                  kind="spinner-negativ"
-                  preserveAspectRatio="xMidYMid"
-                  viewBox="0 0 50 50"
-                  width={32}
-                >
-                  <title>
-                    Venter...
-                  </title>
-                  <circle
-                    cx="25"
-                    cy="25"
-                    fill="none"
-                    r="20"
-                    stroke="#eee"
-                    strokeWidth="5"
-                    xmlns="http://www.w3.org/2000/svg"
-                  />
-                  <circle
-                    cx="25"
-                    cy="25"
-                    fill="none"
-                    r="20"
-                    stroke="#888"
-                    strokeDasharray="50 155"
-                    strokeLinecap="round"
-                    strokeWidth="5"
-                  />
-                </svg>
-              </span>
-            </div>
           </nav>
         </div>
       </section>
@@ -544,7 +437,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
       onScroll={[Function]}
     >
       <section
-        className="c11"
+        className="c9"
       >
         <h2
           className="sr-only"
@@ -556,682 +449,120 @@ exports[`Om Ytelser matcher snapshot 1`] = `
         <article>
           <div
             aria-labelledby="Helt tilfeldig ID"
-            className="panel c12"
+            className="panel c10"
           >
             <h2
               className="sr-only"
               id="Helt tilfeldig ID"
             >
-              Sykepengerrettighet
+              Tiltakspenger
             </h2>
             <div
-              className="c13"
+              className="c11"
             >
-              <div
-                className="c14"
-              >
-                <article
-                  aria-labelledby="Helt tilfeldig ID"
-                  className="c15"
-                >
-                  <h3
-                    className="typo-ingress"
-                    id="Helt tilfeldig ID"
-                  >
-                    Sykepengetilfellet
-                  </h3>
-                  <dl
-                    className="c16"
-                  >
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Sykemeldt fra og med
-                      </dt>
-                      <dd
-                        className="typo-element"
-                      >
-                        06.02.2019
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Forbrukte dager
-                      </dt>
-                      <dd
-                        className="typo-element"
-                      >
-                        23
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Untatt aktivitet
-                      </dt>
-                      <dd
-                        className="typo-element"
-                      >
-                        —
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Midlertidig stans
-                      </dt>
-                      <dd
-                        className="typo-element"
-                      >
-                        —
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Sanksjonperiode
-                      </dt>
-                      <dd
-                        className="typo-element"
-                      >
-                        19.01.2014 - 05.09.2014
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Ferieperioder
-                      </dt>
-                      <dd
-                        className="typo-element"
-                      >
-                        19.01.2014 - 14.01.2014
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Forsikring
-                      </dt>
-                      <dd
-                        className="typo-element"
-                      >
-                        837,00 NOK
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Gyldig forsikring
-                      </dt>
-                      <dd
-                        className="typo-element"
-                      >
-                        Nei
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Forsikringsperiode
-                      </dt>
-                      <dd
-                        className="typo-element"
-                      >
-                        —
-                      </dd>
-                    </div>
-                  </dl>
-                </article>
-                <article
-                  aria-labelledby="Helt tilfeldig ID"
-                  className="c15"
-                >
-                  <h3
-                    className="typo-ingress"
-                    id="Helt tilfeldig ID"
-                  >
-                    Sykmelding
-                  </h3>
-                  <dl
-                    className="c16"
-                  >
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Periode
-                      </dt>
-                      <dd
-                        className="typo-element"
-                      >
-                        09.02.2014 - 11.05.2014
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Behandlingsdato
-                      </dt>
-                      <dd
-                        className="typo-element"
-                      >
-                        01.04.2018
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Sykmelder
-                      </dt>
-                      <dd
-                        className="typo-element"
-                      >
-                        Lommelegen AS
-                      </dd>
-                    </div>
-                  </dl>
-                  <div
-                    className="c17 typo-normal"
-                  >
-                    <table
-                      role="table"
-                    >
-                      <thead
-                        role="rowgroup"
-                      >
-                        <tr
-                          role="row"
-                        >
-                          <th
-                            role="columnheader"
-                          >
-                            Periode
-                          </th>
-                          <th
-                            role="columnheader"
-                          >
-                            Gradering
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody
-                        data-testid="table-tbody"
-                        role="rowgroup"
-                      >
-                        <tr
-                          role="row"
-                        >
-                          <td
-                            role="cell"
-                          >
-                            28.07.2014 - 03.01.2014
-                          </td>
-                          <td
-                            role="cell"
-                          >
-                            89%
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </article>
-              </div>
               <article
                 aria-labelledby="Helt tilfeldig ID"
-                className="c15"
+                className="c12"
               >
                 <h3
                   className="typo-ingress"
                   id="Helt tilfeldig ID"
                 >
-                  Arbeidssituasjon
+                  Om tiltakspenger
                 </h3>
                 <dl
-                  className="c16"
+                  className="c13"
                 >
                   <div>
                     <dt
                       className="typo-normal"
                     >
-                      Arbeidsgiverperiode
+                      Fra og med
                     </dt>
                     <dd
                       className="typo-element"
                     >
-                      Ja
+                      10.01.2020
                     </dd>
                   </div>
                   <div>
                     <dt
                       className="typo-normal"
                     >
-                      Arbeidskategori
+                      Til og med
                     </dt>
                     <dd
                       className="typo-element"
                     >
-                      Ærlig arbeid
+                      21.02.2020
+                    </dd>
+                  </div>
+                  <div>
+                    <dt
+                      className="typo-normal"
+                    >
+                      Dagsats
+                    </dt>
+                    <dd
+                      className="typo-element"
+                    >
+                      430,00 NOK
+                    </dd>
+                  </div>
+                  <div>
+                    <dt
+                      className="typo-normal"
+                    >
+                      Antall dager
+                    </dt>
+                    <dd
+                      className="typo-element"
+                    >
+                      20
                     </dd>
                   </div>
                 </dl>
-                <ol
-                  aria-label="Arbeidsgivere"
-                  className="c18"
+              </article>
+              <article
+                aria-labelledby="Helt tilfeldig ID"
+                className="c12"
+              >
+                <h3
+                  className="typo-ingress"
+                  id="Helt tilfeldig ID"
                 >
-                  <li>
-                    <dl
-                      className="c16"
+                  Barnetillegg
+                </h3>
+                <dl
+                  className="c13"
+                >
+                  <div>
+                    <dt
+                      className="typo-normal"
                     >
-                      <div>
-                        <dt
-                          className="typo-normal"
-                        >
-                          Arbeidsgiver
-                        </dt>
-                        <dd
-                          className="typo-element"
-                        >
-                          Bærlevåg Burger og Bitcoin
-                        </dd>
-                      </div>
-                      <div>
-                        <dt
-                          className="typo-normal"
-                        >
-                          Kontonummer
-                        </dt>
-                        <dd
-                          className="typo-element"
-                        >
-                          <span
-                            className="c19"
-                          >
-                            <span>
-                              8786
-                            </span>
-                            <span>
-                              52
-                            </span>
-                            <span>
-                              75970
-                            </span>
-                          </span>
-                        </dd>
-                      </div>
-                      <div>
-                        <dt
-                          className="typo-normal"
-                        >
-                          Inntekstsperiode
-                        </dt>
-                        <dd
-                          className="typo-element"
-                        >
-                          Månedssats
-                        </dd>
-                      </div>
-                      <div>
-                        <dt
-                          className="typo-normal"
-                        >
-                          Inntekt for perioden
-                        </dt>
-                        <dd
-                          className="typo-element"
-                        >
-                          39 691,00 NOK
-                        </dd>
-                      </div>
-                      <div>
-                        <dt
-                          className="typo-normal"
-                        >
-                          Refusjonstype
-                        </dt>
-                        <dd
-                          className="typo-element"
-                        >
-                          Ikke refusjon
-                        </dd>
-                      </div>
-                      <div>
-                        <dt
-                          className="typo-normal"
-                        >
-                          Refusjon til dato
-                        </dt>
-                        <dd
-                          className="typo-element"
-                        >
-                          12.03.2018
-                        </dd>
-                      </div>
-                      <div>
-                        <dt
-                          className="typo-normal"
-                        >
-                          Sykepenger fra og med
-                        </dt>
-                        <dd
-                          className="typo-element"
-                        >
-                          18.02.2018
-                        </dd>
-                      </div>
-                    </dl>
-                  </li>
-                </ol>
-                <button
-                  className="knapp c20 knapp--hoved"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="submit"
-                >
-                  Vis alle arbeidsforhold
-                </button>
+                      Antall barn
+                    </dt>
+                    <dd
+                      className="typo-element"
+                    >
+                      1
+                    </dd>
+                  </div>
+                  <div>
+                    <dt
+                      className="typo-normal"
+                    >
+                      Dagsats barnetillegg
+                    </dt>
+                    <dd
+                      className="typo-element"
+                    >
+                      154,00 NOK
+                    </dd>
+                  </div>
+                </dl>
               </article>
             </div>
-            <section
-              className="c21"
-            >
-              <h4
-                className="typo-ingress"
-              >
-                Utbetalinger på vent
-              </h4>
-              <div
-                className="c17 typo-normal"
-              >
-                <table
-                  role="table"
-                >
-                  <thead
-                    role="rowgroup"
-                  >
-                    <tr
-                      role="row"
-                    >
-                      <th
-                        role="columnheader"
-                      >
-                        Årsak
-                      </th>
-                      <th
-                        role="columnheader"
-                      >
-                        Utbetalingsperiode
-                      </th>
-                      <th
-                        role="columnheader"
-                      >
-                        Utbetalingsgrad
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody
-                    data-testid="table-tbody"
-                    role="rowgroup"
-                  >
-                    <tr
-                      role="row"
-                    >
-                      <td
-                        role="cell"
-                      >
-                        Pga mistenkelig oppførsel
-                      </td>
-                      <td
-                        role="cell"
-                      >
-                        13.10.2017 - 10.10.2018
-                      </td>
-                      <td
-                        role="cell"
-                      >
-                        62%
-                      </td>
-                    </tr>
-                    <tr
-                      role="row"
-                    >
-                      <td
-                        role="cell"
-                      >
-                        Pga mistenkelig oppførsel
-                      </td>
-                      <td
-                        role="cell"
-                      >
-                        13.10.2017 - 10.10.2018
-                      </td>
-                      <td
-                        role="cell"
-                      >
-                        62%
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </section>
-            <section
-              className="c22"
-            >
-              <h4
-                className="typo-ingress"
-              >
-                Utbetalinger
-              </h4>
-              <div
-                className="c17 typo-normal"
-              >
-                <table
-                  role="table"
-                >
-                  <thead
-                    role="rowgroup"
-                  >
-                    <tr
-                      role="row"
-                    >
-                      <th
-                        role="columnheader"
-                      >
-                        Reg.dato
-                      </th>
-                      <th
-                        role="columnheader"
-                      >
-                        Type
-                      </th>
-                      <th
-                        role="columnheader"
-                      >
-                        Periode
-                      </th>
-                      <th
-                        role="columnheader"
-                      >
-                        Utb.grad
-                      </th>
-                      <th
-                        role="columnheader"
-                      >
-                        Dagsats
-                      </th>
-                      <th
-                        role="columnheader"
-                      >
-                        Bruttobeløp
-                      </th>
-                      <th
-                        role="columnheader"
-                      >
-                        Arb.giver
-                      </th>
-                      <th
-                        role="columnheader"
-                      >
-                        Org.nummer
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody
-                    data-testid="table-tbody"
-                    role="rowgroup"
-                  >
-                    <tr
-                      role="row"
-                    >
-                      <td
-                        role="cell"
-                      >
-                        25.06.2018
-                      </td>
-                      <td
-                        role="cell"
-                      >
-                        KONTOØVERFØRING
-                      </td>
-                      <td
-                        role="cell"
-                      >
-                        14.01.2018 - 15.07.2017
-                      </td>
-                      <td
-                        role="cell"
-                      >
-                        79%
-                      </td>
-                      <td
-                        role="cell"
-                      >
-                        705,00 NOK
-                      </td>
-                      <td
-                        role="cell"
-                      >
-                        466,00 NOK
-                      </td>
-                      <td
-                        role="cell"
-                      >
-                        Vedvik - Lunde
-                      </td>
-                      <td
-                        role="cell"
-                      >
-                        1234567890
-                      </td>
-                    </tr>
-                    <tr
-                      role="row"
-                    >
-                      <td
-                        role="cell"
-                      >
-                        25.06.2018
-                      </td>
-                      <td
-                        role="cell"
-                      >
-                        KONTOØVERFØRING
-                      </td>
-                      <td
-                        role="cell"
-                      >
-                        14.01.2018 - 15.07.2017
-                      </td>
-                      <td
-                        role="cell"
-                      >
-                        79%
-                      </td>
-                      <td
-                        role="cell"
-                      >
-                        705,00 NOK
-                      </td>
-                      <td
-                        role="cell"
-                      >
-                        466,00 NOK
-                      </td>
-                      <td
-                        role="cell"
-                      >
-                        Vedvik - Lunde
-                      </td>
-                      <td
-                        role="cell"
-                      >
-                        1234567890
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div
-                className="alertstripe alertstripe--info"
-              >
-                <span
-                  className="alertstripe__ikon"
-                >
-                  <span
-                    className="sr-only"
-                  >
-                    info
-                  </span>
-                  <svg
-                    aria-label="info-ikon"
-                    focusable="false"
-                    height="1.5em"
-                    kind="info-sirkel-fyll"
-                    role="img"
-                    viewBox="0 0 24 24"
-                    width="1.5em"
-                  >
-                    <g
-                      fill="none"
-                    >
-                      <path
-                        d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
-                        fill="#337C9B"
-                      />
-                      <path
-                        d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
-                        fill="#FFF"
-                      />
-                    </g>
-                  </svg>
-                </span>
-                <div
-                  className="typo-normal alertstripe__tekst"
-                >
-                  For detaljer om utførte utbetalinger 
-                  <a
-                    href="/person/utbetaling"
-                    onClick={[Function]}
-                  >
-                    se Utbetalingsoversikten.
-                  </a>
-                </div>
-              </div>
-            </section>
           </div>
         </article>
       </section>

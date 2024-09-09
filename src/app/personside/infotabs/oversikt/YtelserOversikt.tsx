@@ -12,9 +12,14 @@ import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { useInfotabsDyplenker } from '../dyplenker';
 import { ytelserTest } from '../dyplenkeTest/utils-dyplenker-test';
-import { formaterDato } from '../../../../utils/string-utils';
+import { NOKellerNull, formaterDato } from '../../../../utils/string-utils';
 import { usePrevious } from '../../../../utils/customHooks';
 import { getUnikYtelseKey } from '../../../../models/ytelse/ytelse-utils';
+import {
+    Tiltakspenger,
+    getTiltakspengerIdDato,
+    getUnikTiltakspengerKey
+} from '../../../../models/ytelse/tiltakspenger';
 
 const YtelserStyle = styled.div`
     > *:not(:first-child) {
@@ -36,6 +41,9 @@ function YtelserOversikt(props: Props) {
         ),
         renderSykepenger: (sykepenger) => (
             <SykepengerKomponent sykepenger={sykepenger} key={getUnikYtelseKey(sykepenger)} />
+        ),
+        renderTiltakspenger: (tiltakspenger) => (
+            <TiltakspengerKomponent tiltakspenger={tiltakspenger} key={getUnikTiltakspengerKey(tiltakspenger)} />
         )
     });
 
@@ -112,6 +120,29 @@ function ForeldrepengerKomponent(props: { foreldrepenger: Foreldrepengerettighet
             <Normaltekst>
                 {props.foreldrepenger.dekningsgrad}% dekningsgrad - Maksdato{' '}
                 {props.foreldrepenger.slutt ? formaterDato(props.foreldrepenger.slutt) : 'ikke tilgjengelig'}
+            </Normaltekst>
+        </VisMerKnapp>
+    );
+}
+
+function TiltakspengerKomponent(props: { tiltakspenger: Tiltakspenger }) {
+    const dyplenker = useInfotabsDyplenker();
+    return (
+        <VisMerKnapp
+            linkTo={dyplenker.ytelser.link(props.tiltakspenger)}
+            valgt={false}
+            ariaDescription="Vis tiltakspenger"
+            className={ytelserTest.oversikt}
+        >
+            <Normaltekst>ID dato: {formaterDato(getTiltakspengerIdDato(props.tiltakspenger))}</Normaltekst>
+            <Element>Tiltakspenger</Element>
+            <Normaltekst>
+                {formaterDato(props.tiltakspenger.fom)} - {formaterDato(props.tiltakspenger.tom)}
+                {': '}
+                Dagsats: {NOKellerNull(props.tiltakspenger.dagsatsTiltakspenger)}{' '}
+                {props.tiltakspenger.antallBarn &&
+                    props.tiltakspenger.antallBarn > 0 &&
+                    `(Antall Barn: ${props.tiltakspenger.antallBarn})`}
             </Normaltekst>
         </VisMerKnapp>
     );
