@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useCallback } from 'react';
-import { Radio } from 'nav-frontend-skjema';
 import { Element, Undertittel } from 'nav-frontend-typografi';
 import { UtbetalingerResponse } from '../../../../../models/utbetalinger';
 import UtbetaltTilValg from './UtbetaltTilValg';
@@ -11,15 +10,14 @@ import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { AppState } from '../../../../../redux/reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import { oppdaterFilter } from '../../../../../redux/utbetalinger/actions';
-import { PeriodeValg, UtbetalingFilterState } from '../../../../../redux/utbetalinger/types';
+import {PeriodeValg, UtbetalingFilterState} from '../../../../../redux/utbetalinger/types';
 import styled from 'styled-components';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
-import EgendefinertDatoInputs from './EgendefinertDatoInputs';
 import Panel from 'nav-frontend-paneler';
 import dayjs from 'dayjs';
-import { ISO_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
 import MediaQueryAwareRenderer from '../../../../../components/MediaQueryAwareRenderer';
 import utbetalingerResource from '../../../../../rest/resources/utbetalingerResource';
+import FiltreringPeriode from "./FilterPeriode";
 
 const FiltreringsPanel = styled(Panel)`
     padding: ${pxToRem(15)};
@@ -44,21 +42,6 @@ const KnappWrapper = styled.div`
     margin-top: 0.5rem;
 `;
 
-const RadioWrapper = styled.div`
-    margin-bottom: 0.5rem;
-`;
-const FieldSet = styled.fieldset`
-    border: none;
-    margin: 0;
-    padding: 0;
-    > *:first-child {
-        margin-bottom: 0.8rem;
-    }
-    > *:last-child {
-        margin-bottom: 0;
-    }
-`;
-
 const WrapOnSmallScreen = styled.div`
     @media (max-width: ${theme.media.utbetalinger.maxWidth}) {
         display: flex;
@@ -77,7 +60,7 @@ function visCheckbokser(utbetalingerResponse: UtbetalingerResponse): boolean {
     return utbetalingerResponse.utbetalinger && utbetalingerResponse.utbetalinger.length > 0;
 }
 
-function Filtrering() {
+function UtbetalingFiltrering() {
     const dispatch = useDispatch();
     const utbetalinger = utbetalingerResource.useFetch();
 
@@ -92,40 +75,14 @@ function Filtrering() {
     const reloadUtbetalinger = useCallback(() => {
         if (filter.periode.radioValg === PeriodeValg.EGENDEFINERT) {
             const periode = filter.periode.egendefinertPeriode;
-            const fraDato = dayjs(periode.fra, ISO_DATE_STRING_FORMAT);
-            const tilDato = dayjs(periode.til, ISO_DATE_STRING_FORMAT);
+            const fraDato = dayjs(periode.fra);
+            const tilDato = dayjs(periode.til);
             if (!fraDato.isValid() || !tilDato.isValid()) {
                 return;
             }
         }
         utbetalinger.refetch();
     }, [utbetalinger, filter.periode]);
-
-    const radios = Object.keys(PeriodeValg).map((key) => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        const label = PeriodeValg[key];
-        const checked = filter.periode.radioValg === label;
-        return (
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-            <RadioWrapper key={label}>
-                <Radio
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                    label={label}
-                    checked={checked}
-                    onChange={() =>
-                        updateFilter({
-                            periode: {
-                                ...filter.periode,
-                                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                                radioValg: PeriodeValg[key]
-                            }
-                        })
-                    }
-                    name="FiltreringsvalgGruppe"
-                />
-            </RadioWrapper>
-        );
-    });
 
     const visSpinner = utbetalinger.isLoading;
     const checkBokser = utbetalinger.data && visCheckbokser(utbetalinger.data) && (
@@ -150,13 +107,11 @@ function Filtrering() {
     );
     const hentUtbetalingerPanel = (
         <InputPanel>
-            <FieldSet>
-                <Element tag="legend">Velg periode</Element>
-                {radios}
-            </FieldSet>
-            {filter.periode.radioValg === PeriodeValg.EGENDEFINERT && (
-                <EgendefinertDatoInputs filter={filter} updateFilter={updateFilter} />
-            )}
+            <FiltreringPeriode periode={filter.periode} updatePeriod={(change) => {
+                updateFilter({
+                ...filter,
+                periode: change
+            })}}/>
             <KnappWrapper>
                 <Knapp onClick={reloadUtbetalinger} spinner={visSpinner} htmlType="button">
                     Hent utbetalinger
@@ -199,4 +154,4 @@ function Filtrering() {
     );
 }
 
-export default Filtrering;
+export default UtbetalingFiltrering;

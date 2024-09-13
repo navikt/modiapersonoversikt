@@ -3,6 +3,8 @@ import { useFodselsnummer } from '../../utils/customHooks';
 import { PleiepengerResponse } from '../../models/ytelse/pleiepenger';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { FetchError, post } from '../../api/api';
+import {useReduxData} from "./tiltakspengerResource";
+import {SykepengerResponse} from "../../models/ytelse/sykepenger";
 
 function queryKey(fnr: string): [string, string] {
     return ['pleiepenger', fnr];
@@ -13,12 +15,16 @@ function urlV2(): string {
 }
 
 const resource = {
-    useFetch(): UseQueryResult<PleiepengerResponse, FetchError> {
-        const fnr = useFodselsnummer();
+    useFetch(limit30Dager: boolean = false): UseQueryResult<SykepengerResponse, FetchError> {
+        const [fnr, periode] = useReduxData(limit30Dager);
 
         return useQuery({
             queryKey: queryKey(fnr),
-            queryFn: () => post(urlV2(), { fnr })
+            queryFn: () => post(urlV2(), {
+                fnr,
+                fom: periode.fra,
+                tom: periode.til
+            })
         });
     }
 };

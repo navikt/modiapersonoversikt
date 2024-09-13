@@ -245,11 +245,11 @@ test('henter riktig fra og til-date fra filter ved valg av "siste 30 dager"', ()
         }
     };
 
-    const fraDate: Date = getFraDateFromFilter(filter);
-    const tilDate: Date = getTilDateFromFilter(filter);
+    const fraDate: Date = getFraDateFromFilter(filter.periode);
+    const tilDate: Date = getTilDateFromFilter(filter.periode);
 
     expect(dayjs(fraDate).toString()).toEqual(dayjs().subtract(30, 'day').startOf('day').toString());
-    expect(dayjs(tilDate).toString()).toEqual(dayjs().add(100, 'day').endOf('day').toString());
+    expect(dayjs(tilDate).toString()).toEqual(dayjs().endOf('day').toString());
 });
 
 test('henter riktig fra og til-date fra filter ved valg av "inneværende år', () => {
@@ -261,11 +261,11 @@ test('henter riktig fra og til-date fra filter ved valg av "inneværende år', (
         }
     };
 
-    const fraDate: Date = getFraDateFromFilter(filter);
-    const tilDate: Date = getTilDateFromFilter(filter);
+    const fraDate: Date = getFraDateFromFilter(filter.periode);
+    const tilDate: Date = getTilDateFromFilter(filter.periode);
 
     expect(dayjs(fraDate).toString()).toEqual(dayjs().startOf('year').toString());
-    expect(dayjs(tilDate).toString()).toEqual(dayjs().add(100, 'day').endOf('day').toString());
+    expect(dayjs(tilDate).toString()).toEqual(dayjs().endOf('year').toString());
 });
 
 test('henter riktig fra og til-date fra filter ved valg av "i fjor', () => {
@@ -277,8 +277,8 @@ test('henter riktig fra og til-date fra filter ved valg av "i fjor', () => {
         }
     };
 
-    const fraDate: Date = getFraDateFromFilter(filter);
-    const tilDate: Date = getTilDateFromFilter(filter);
+    const fraDate: Date = getFraDateFromFilter(filter.periode);
+    const tilDate: Date = getTilDateFromFilter(filter.periode);
 
     expect(dayjs(fraDate).toString()).toEqual(dayjs().subtract(1, 'year').startOf('year').toString());
     expect(dayjs(tilDate).toString()).toEqual(dayjs().subtract(1, 'year').endOf('year').toString());
@@ -297,8 +297,8 @@ test('henter riktig fra og til-date fra filter ved valg av "egendefinert periode
         }
     };
 
-    const fraDate: Date = getFraDateFromFilter(filter);
-    const tilDate: Date = getTilDateFromFilter(filter);
+    const fraDate: Date = getFraDateFromFilter(filter.periode);
+    const tilDate: Date = getTilDateFromFilter(filter.periode);
     expect(dayjs(fraDate).isSame(dato, 'day')).toBeTruthy();
     expect(dayjs(tilDate).isSame(dato, 'day')).toBeTruthy();
 });

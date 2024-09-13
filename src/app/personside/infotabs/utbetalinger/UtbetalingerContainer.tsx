@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Utbetalinger from './Utbetalinger';
-import Filter from './filter/Filter';
+import UtbetalingFiltrering from './filter/UtbetalingFilter';
 import theme from '../../../../styles/personOversiktTheme';
 import styled, { css } from 'styled-components';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
@@ -52,7 +52,7 @@ function UtbetalingerContainer() {
                 <ScrollBar keepScrollId="utbetalinger-filter">
                     <Arenalenke />
                     <FiltreringSection>
-                        <Filter />
+                        <UtbetalingFiltrering />
                     </FiltreringSection>
                 </ScrollBar>
                 <ScrollBar keepScrollId="utbetalinger-liste">

@@ -6,6 +6,12 @@ import ValgtYtelse from './ValgtYtelse';
 import useBrukersYtelser from './useBrukersYtelser';
 import { useInfotabsDyplenker } from '../dyplenker';
 import { useKeepQueryParams } from '../../../../utils/hooks/useKeepQueryParams';
+import YtelserFiltrering from "./YtelserFilter";
+import {useDispatch, useSelector} from "react-redux";
+import {AppState} from "../../../../redux/reducers";
+import {useCallback} from "react";
+import {YtelserState} from "../../../../redux/ytelser/ytelserReducer";
+import {oppdaterFilter} from "../../../../redux/utbetalinger/actions";
 
 const ytelserMediaTreshold = '45rem';
 
@@ -16,8 +22,8 @@ const Layout = styled.div`
         flex-grow: 1; /* IE11 */
         display: flex;
         > *:first-child {
-            min-width: 19rem;
-            flex-basis: 19rem;
+            min-width: 24rem;
+            flex-basis: 24rem;
             flex-grow: 0.5;
         }
         > *:last-child {
@@ -43,6 +49,7 @@ function Ytelser() {
         <Styling>
             <Layout>
                 <ScrollBar keepScrollId="ytelser-liste">
+                    <YtelserFiltrering />
                     <YtelseListe
                         placeHolders={ytelser.placeholders}
                         pending={ytelser.pending}

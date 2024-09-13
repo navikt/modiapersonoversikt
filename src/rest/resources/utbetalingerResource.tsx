@@ -36,8 +36,8 @@ function useReduxData(limit30Dager: boolean): [string, Periode<string>] {
     const periode = limit30Dager
         ? getUtbetalingerForSiste30DagerDatoer()
         : {
-              fra: getFraDateFromFilter(filterPeriode),
-              til: getTilDateFromFilter(filterPeriode)
+              fra: getFraDateFromFilter(filterPeriode.periode),
+              til: getTilDateFromFilter(filterPeriode.periode)
           };
     const datoer: Periode<string> = {
         fra: dayjs(periode.fra).format('YYYY-MM-DD'),

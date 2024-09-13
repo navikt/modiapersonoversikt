@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Om Ytelser matcher snapshot 1`] = `
-.c6 {
+.c12 {
   position: relative;
   padding: .5rem;
   display: flex;
@@ -10,19 +10,19 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   background-color: #cce1f3;
 }
 
-.c6:hover {
+.c12:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
 }
 
-.c6:hover >button:last-child {
+.c12:hover >button:last-child {
   padding-left: 0.5rem;
 }
 
-.c6 >*:first-child {
+.c12 >*:first-child {
   flex-grow: 1;
 }
 
-.c8 {
+.c14 {
   position: relative;
   padding: .5rem;
   display: flex;
@@ -30,19 +30,19 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   cursor: pointer;
 }
 
-.c8:hover {
+.c14:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
 }
 
-.c8:hover >button:last-child {
+.c14:hover >button:last-child {
   padding-left: 0.5rem;
 }
 
-.c8 >*:first-child {
+.c14 >*:first-child {
   flex-grow: 1;
 }
 
-.c7 {
+.c13 {
   border: none;
   padding: 0;
   height: 2rem;
@@ -53,16 +53,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   transition: padding-left 0.3s;
 }
 
-.c7 .nav-frontend-chevron {
+.c13 .nav-frontend-chevron {
   width: 1.5625rem;
 }
 
-.c7:focus {
+.c13:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c7:focus::after {
+.c13:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -73,25 +73,25 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   pointer-events: none;
 }
 
-.c3 {
+.c9 {
   padding: 0rem;
 }
 
-.c5 >*:not(:first-child) {
+.c11 >*:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
-.c4 {
+.c10 {
   padding: 0.9375rem;
   border-bottom: solid 0.0625rem #78706a;
   display: flex;
 }
 
-.c4 .hjelpetekst {
+.c10 .hjelpetekst {
   margin-left: 0.5rem;
 }
 
-.c4 .popover {
+.c10 .popover {
   max-width: 30rem;
 }
 
@@ -101,48 +101,111 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   padding: .5rem;
 }
 
-.c13 {
+.c19 {
   display: flex;
   flex-wrap: wrap;
 }
 
-.c13 dt {
+.c19 dt {
   color: #645f5a;
 }
 
-.c13 >div {
+.c19 >div {
   margin: 0.5625rem 0;
   padding-right: 0.7rem;
   width: 13rem;
   overflow-wrap: break-word;
 }
 
-.c12 {
+.c18 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
   box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
   padding: 1.25rem;
 }
 
-.c12 >h3 {
+.c18 >h3 {
   margin-bottom: 1rem;
 }
 
-.c10 {
+.c16 {
   padding: .5rem;
 }
 
-.c11 {
+.c17 {
   display: flex;
   flex-wrap: wrap;
 }
 
-.c11 >* {
+.c17 >* {
   flex-basis: 40%;
   flex-grow: 1;
 }
 
-.c9 >* {
+.c15 >* {
+  margin-bottom: 0.5rem;
+}
+
+.c5 {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+}
+
+.c5 >*:first-child {
+  margin-bottom: 0.5rem;
+}
+
+.c5 >* {
+  margin-top: 0.5rem;
+}
+
+.c5 .skjemaelement--horisontal {
+  margin-bottom: 0.4rem;
+}
+
+.c7 {
+  margin-bottom: 0.5rem;
+}
+
+.c6 {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.c6 >*:first-child {
+  margin-bottom: 0.8rem;
+}
+
+.c6 >*:last-child {
+  margin-bottom: 0;
+}
+
+.c4 {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+}
+
+.c4 >*:first-child {
+  margin-bottom: 0.5rem;
+}
+
+.c4 >* {
+  margin-top: 0.5rem;
+}
+
+.c4 .skjemaelement--horisontal {
+  margin-bottom: 0.4rem;
+}
+
+.c8 {
+  margin-top: 0.5rem;
+}
+
+.c3 {
+  padding: 0.9375rem;
   margin-bottom: 0.5rem;
 }
 
@@ -172,8 +235,8 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   }
 
   .c1 >*:first-child {
-    min-width: 19rem;
-    flex-basis: 19rem;
+    min-width: 24rem;
+    flex-basis: 24rem;
     flex-grow: 0.5;
   }
 
@@ -192,12 +255,137 @@ exports[`Om Ytelser matcher snapshot 1`] = `
       className="c2"
       onScroll={[Function]}
     >
+      <div
+        className="panel c3"
+      >
+        <form
+          className="c4"
+        >
+          <form
+            className="c5"
+          >
+            <fieldset
+              className="c6"
+            >
+              <legend
+                className="typo-element"
+              >
+                Velg periode
+              </legend>
+              <div
+                className="c7"
+              >
+                <div
+                  className="skjemaelement"
+                >
+                  <input
+                    aria-invalid={false}
+                    checked={true}
+                    className="skjemaelement__input radioknapp"
+                    id="Helt tilfeldig ID"
+                    name="FiltreringsvalgGruppe"
+                    onChange={[Function]}
+                    type="radio"
+                  />
+                  <label
+                    className="skjemaelement__label"
+                    htmlFor="Helt tilfeldig ID"
+                  >
+                    Siste 30 dager
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c7"
+              >
+                <div
+                  className="skjemaelement"
+                >
+                  <input
+                    aria-invalid={false}
+                    checked={false}
+                    className="skjemaelement__input radioknapp"
+                    id="Helt tilfeldig ID"
+                    name="FiltreringsvalgGruppe"
+                    onChange={[Function]}
+                    type="radio"
+                  />
+                  <label
+                    className="skjemaelement__label"
+                    htmlFor="Helt tilfeldig ID"
+                  >
+                    Inneværende år
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c7"
+              >
+                <div
+                  className="skjemaelement"
+                >
+                  <input
+                    aria-invalid={false}
+                    checked={false}
+                    className="skjemaelement__input radioknapp"
+                    id="Helt tilfeldig ID"
+                    name="FiltreringsvalgGruppe"
+                    onChange={[Function]}
+                    type="radio"
+                  />
+                  <label
+                    className="skjemaelement__label"
+                    htmlFor="Helt tilfeldig ID"
+                  >
+                    I fjor
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c7"
+              >
+                <div
+                  className="skjemaelement"
+                >
+                  <input
+                    aria-invalid={false}
+                    checked={false}
+                    className="skjemaelement__input radioknapp"
+                    id="Helt tilfeldig ID"
+                    name="FiltreringsvalgGruppe"
+                    onChange={[Function]}
+                    type="radio"
+                  />
+                  <label
+                    className="skjemaelement__label"
+                    htmlFor="Helt tilfeldig ID"
+                  >
+                    Egendefinert
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+          <div
+            className="c8"
+          >
+            <button
+              className="knapp knapp--standard"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Hent ytelser
+            </button>
+          </div>
+        </form>
+      </div>
       <section>
         <div
-          className="panel c3"
+          className="panel c9"
         >
           <div
-            className="c4"
+            className="c10"
           >
             <h2
               className="typo-undertittel"
@@ -279,11 +467,11 @@ exports[`Om Ytelser matcher snapshot 1`] = `
             aria-label="Velg ytelser"
           >
             <ol
-              className="c5"
+              className="c11"
             >
               <li>
                 <div
-                  className="c6"
+                  className="c12"
                   onClick={[Function]}
                   valgt={true}
                 >
@@ -307,7 +495,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   <button
                     aria-label="Vis tiltakspenger"
                     aria-selected={true}
-                    className="c7"
+                    className="c13"
                   >
                     <span
                       className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -317,7 +505,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               </li>
               <li>
                 <div
-                  className="c8"
+                  className="c14"
                   onClick={[Function]}
                   valgt={false}
                 >
@@ -341,7 +529,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   <button
                     aria-label="Vis sykepenger"
                     aria-selected={false}
-                    className="c7"
+                    className="c13"
                   >
                     <span
                       className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -351,7 +539,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               </li>
               <li>
                 <div
-                  className="c8"
+                  className="c14"
                   onClick={[Function]}
                   valgt={false}
                 >
@@ -385,7 +573,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   <button
                     aria-label="Vis pleiepenger"
                     aria-selected={false}
-                    className="c7"
+                    className="c13"
                   >
                     <span
                       className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -395,7 +583,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               </li>
               <li>
                 <div
-                  className="c8"
+                  className="c14"
                   onClick={[Function]}
                   valgt={false}
                 >
@@ -419,7 +607,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   <button
                     aria-label="Vis foreldrepenger"
                     aria-selected={false}
-                    className="c7"
+                    className="c13"
                   >
                     <span
                       className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -437,7 +625,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
       onScroll={[Function]}
     >
       <section
-        className="c9"
+        className="c15"
       >
         <h2
           className="sr-only"
@@ -449,7 +637,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
         <article>
           <div
             aria-labelledby="Helt tilfeldig ID"
-            className="panel c10"
+            className="panel c16"
           >
             <h2
               className="sr-only"
@@ -458,11 +646,11 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               Tiltakspenger
             </h2>
             <div
-              className="c11"
+              className="c17"
             >
               <article
                 aria-labelledby="Helt tilfeldig ID"
-                className="c12"
+                className="c18"
               >
                 <h3
                   className="typo-ingress"
@@ -471,7 +659,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   Om tiltakspenger
                 </h3>
                 <dl
-                  className="c13"
+                  className="c19"
                 >
                   <div>
                     <dt
@@ -525,7 +713,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               </article>
               <article
                 aria-labelledby="Helt tilfeldig ID"
-                className="c12"
+                className="c18"
               >
                 <h3
                   className="typo-ingress"
@@ -534,7 +722,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   Barnetillegg
                 </h3>
                 <dl
-                  className="c13"
+                  className="c19"
                 >
                   <div>
                     <dt

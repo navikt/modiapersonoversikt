@@ -2,17 +2,28 @@ import { Action } from 'redux';
 import { Pleiepengerettighet } from '../../models/ytelse/pleiepenger';
 import { Foreldrepengerettighet } from '../../models/ytelse/foreldrepenger';
 import { Sykepenger } from '../../models/ytelse/sykepenger';
+import {PeriodeOptions, PeriodeValg} from "../utbetalinger/types";
+import dayjs from "dayjs";
+import {ISO_DATE_STRING_FORMAT} from "nav-datovelger/lib/utils/dateFormatUtils";
 
 type Ytelse = Pleiepengerettighet | Foreldrepengerettighet | Sykepenger;
 
 export interface YtelserState {
     visAlleArbeidsforhold: Ytelse[];
     aapnedeYtesler: Ytelse[];
+    periode: PeriodeOptions;
 }
 
 const initialState: YtelserState = {
     visAlleArbeidsforhold: [],
-    aapnedeYtesler: []
+    aapnedeYtesler: [],
+    periode: {
+        radioValg: PeriodeValg.SISTE_30_DAGER,
+        egendefinertPeriode: {
+            fra: dayjs().subtract(1, 'month').format(ISO_DATE_STRING_FORMAT),
+            til: dayjs().format(ISO_DATE_STRING_FORMAT)
+        }
+    }
 };
 
 enum actionKeys {
