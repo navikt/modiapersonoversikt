@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { Radio } from 'nav-frontend-skjema';
 import { Element } from 'nav-frontend-typografi';
-import {FraTilDato, PeriodeOptions, PeriodeValg} from '../../../../../redux/utbetalinger/types';
+import { FraTilDato, PeriodeOptions, PeriodeValg } from '../../../../../redux/utbetalinger/types';
 import styled from 'styled-components';
 import EgendefinertDatoInputs from './EgendefinertDatoInputs';
-import {useState} from "react";
-import dayjs, {Dayjs} from "dayjs";
-import {ISO_DATE_STRING_FORMAT} from "nav-datovelger/lib/utils/dateFormatUtils";
-
+import { useState } from 'react';
+import dayjs, { Dayjs } from 'dayjs';
+import { ISO_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
 
 const InputPanel = styled.form`
     display: flex;
@@ -49,31 +48,37 @@ function FiltreringPeriode(props: FiltreringPeriodeProps) {
     const [periode, setPeriode] = useState<FraTilDato>();
 
     const onPeriodChange = (periodeValg: PeriodeValg) => {
-        setRadioValg(periodeValg)
-        const fraTilDato = getFraDateFromPeriod(periodeValg)
-        setPeriode(fraTilDato)
-        props.updatePeriod({...props.periode, radioValg: periodeValg})
-    }
+        setRadioValg(periodeValg);
+        const fraTilDato = getFraDateFromPeriod(periodeValg);
+        setPeriode(fraTilDato);
+        props.updatePeriod({ ...props.periode, radioValg: periodeValg });
+    };
 
     const onFraTilDatoChange = (val: FraTilDato) => {
-        setPeriode(val)
-        props.updatePeriod({...props.periode, egendefinertPeriode: val})
-    }
+        setPeriode(val);
+        props.updatePeriod({ ...props.periode, egendefinertPeriode: val });
+    };
 
-   const getFraDateFromPeriod = (periodeValg: PeriodeValg): FraTilDato => {
+    const getFraDateFromPeriod = (periodeValg: PeriodeValg): FraTilDato => {
         switch (periodeValg) {
             case PeriodeValg.INNEVERENDE_AR:
-                return { fra: toIsoDateString(dayjs().startOf('year')), til: toIsoDateString(dayjs().endOf('year'))};
+                return { fra: toIsoDateString(dayjs().startOf('year')), til: toIsoDateString(dayjs().endOf('year')) };
             case PeriodeValg.I_FJOR:
-                return { fra: toIsoDateString(dayjs().subtract(1, 'year').startOf('year')), til: toIsoDateString(dayjs().subtract(1, 'year').endOf('year'))};
+                return {
+                    fra: toIsoDateString(dayjs().subtract(1, 'year').startOf('year')),
+                    til: toIsoDateString(dayjs().subtract(1, 'year').endOf('year'))
+                };
             case PeriodeValg.EGENDEFINERT:
             case PeriodeValg.SISTE_30_DAGER:
             default:
-                return { fra: toIsoDateString(dayjs().subtract(30, 'day').startOf('day')), til: toIsoDateString(dayjs().endOf('day'))};
+                return {
+                    fra: toIsoDateString(dayjs().subtract(30, 'day').startOf('day')),
+                    til: toIsoDateString(dayjs().endOf('day'))
+                };
         }
-    }
+    };
 
-    const toIsoDateString = (date: Dayjs) => date.format(ISO_DATE_STRING_FORMAT)
+    const toIsoDateString = (date: Dayjs) => date.format(ISO_DATE_STRING_FORMAT);
 
     const radios = Object.keys(PeriodeValg).map((key) => {
         const label = PeriodeValg[key];
@@ -83,8 +88,7 @@ function FiltreringPeriode(props: FiltreringPeriodeProps) {
                 <Radio
                     label={label}
                     checked={checked}
-                    onChange={() =>
-                        onPeriodChange(PeriodeValg[key])}
+                    onChange={() => onPeriodChange(PeriodeValg[key])}
                     name="FiltreringsvalgGruppe"
                 />
             </RadioWrapper>

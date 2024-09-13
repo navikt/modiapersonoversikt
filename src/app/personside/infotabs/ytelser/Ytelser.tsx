@@ -6,12 +6,7 @@ import ValgtYtelse from './ValgtYtelse';
 import useBrukersYtelser from './useBrukersYtelser';
 import { useInfotabsDyplenker } from '../dyplenker';
 import { useKeepQueryParams } from '../../../../utils/hooks/useKeepQueryParams';
-import YtelserFiltrering from "./YtelserFilter";
-import {useDispatch, useSelector} from "react-redux";
-import {AppState} from "../../../../redux/reducers";
-import {useCallback} from "react";
-import {YtelserState} from "../../../../redux/ytelser/ytelserReducer";
-import {oppdaterFilter} from "../../../../redux/utbetalinger/actions";
+import YtelserFiltrering from './YtelserFilter';
 
 const ytelserMediaTreshold = '45rem';
 

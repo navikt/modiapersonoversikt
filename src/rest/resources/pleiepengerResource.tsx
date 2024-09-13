@@ -1,10 +1,8 @@
 import { apiBaseUri } from '../../api/config';
-import { useFodselsnummer } from '../../utils/customHooks';
-import { PleiepengerResponse } from '../../models/ytelse/pleiepenger';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { FetchError, post } from '../../api/api';
-import {useReduxData} from "./tiltakspengerResource";
-import {SykepengerResponse} from "../../models/ytelse/sykepenger";
+import { useReduxData } from './tiltakspengerResource';
+import { SykepengerResponse } from '../../models/ytelse/sykepenger';
 
 function queryKey(fnr: string): [string, string] {
     return ['pleiepenger', fnr];
@@ -20,11 +18,12 @@ const resource = {
 
         return useQuery({
             queryKey: queryKey(fnr),
-            queryFn: () => post(urlV2(), {
-                fnr,
-                fom: periode.fra,
-                tom: periode.til
-            })
+            queryFn: () =>
+                post(urlV2(), {
+                    fnr,
+                    fom: periode.fra,
+                    tom: periode.til
+                })
         });
     }
 };

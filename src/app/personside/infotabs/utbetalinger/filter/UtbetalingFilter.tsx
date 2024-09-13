@@ -10,14 +10,14 @@ import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { AppState } from '../../../../../redux/reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import { oppdaterFilter } from '../../../../../redux/utbetalinger/actions';
-import {PeriodeValg, UtbetalingFilterState} from '../../../../../redux/utbetalinger/types';
+import { PeriodeValg, UtbetalingFilterState } from '../../../../../redux/utbetalinger/types';
 import styled from 'styled-components';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import Panel from 'nav-frontend-paneler';
 import dayjs from 'dayjs';
 import MediaQueryAwareRenderer from '../../../../../components/MediaQueryAwareRenderer';
 import utbetalingerResource from '../../../../../rest/resources/utbetalingerResource';
-import FiltreringPeriode from "./FilterPeriode";
+import FiltreringPeriode from './FilterPeriode';
 
 const FiltreringsPanel = styled(Panel)`
     padding: ${pxToRem(15)};
@@ -107,11 +107,15 @@ function UtbetalingFiltrering() {
     );
     const hentUtbetalingerPanel = (
         <InputPanel>
-            <FiltreringPeriode periode={filter.periode} updatePeriod={(change) => {
-                updateFilter({
-                ...filter,
-                periode: change
-            })}}/>
+            <FiltreringPeriode
+                periode={filter.periode}
+                updatePeriod={(change) => {
+                    updateFilter({
+                        ...filter,
+                        periode: change
+                    });
+                }}
+            />
             <KnappWrapper>
                 <Knapp onClick={reloadUtbetalinger} spinner={visSpinner} htmlType="button">
                     Hent utbetalinger

@@ -3,7 +3,7 @@ import { formaterDato } from '../../../../../utils/string-utils';
 import { Periode } from '../../../../../models/tid';
 import dayjs from 'dayjs';
 import { loggError } from '../../../../../utils/logger/frontendLogger';
-import {UtbetalingFilterState, PeriodeValg, PeriodeOptions} from '../../../../../redux/utbetalinger/types';
+import { PeriodeValg, PeriodeOptions } from '../../../../../redux/utbetalinger/types';
 import { datoVerbose } from '../../../../../utils/date-utils';
 import { ISO_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
 

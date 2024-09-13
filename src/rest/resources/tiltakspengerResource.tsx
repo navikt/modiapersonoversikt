@@ -1,15 +1,16 @@
 import { TiltakspengerResource } from '../../models/ytelse/tiltakspenger';
 import { apiBaseUri } from '../../api/config';
-import {useAppState, useFodselsnummer} from '../../utils/customHooks';
+import { useAppState } from '../../utils/customHooks';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { FetchError, post } from '../../api/api';
 import dayjs from 'dayjs';
 import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 import {
-    getFraDateFromFilter, getTilDateFromFilter,
+    getFraDateFromFilter,
+    getTilDateFromFilter,
     getUtbetalingerForSiste30DagerDatoer
-} from "../../app/personside/infotabs/utbetalinger/utils/utbetalinger-utils";
+} from '../../app/personside/infotabs/utbetalinger/utils/utbetalinger-utils';
 
 interface Periode<T> {
     fra: T;
@@ -28,9 +29,9 @@ export function useReduxData(limit30Dager: boolean): [string, Periode<string>] {
     const periode = limit30Dager
         ? getUtbetalingerForSiste30DagerDatoer()
         : {
-            fra: getFraDateFromFilter(filterPeriode),
-            til: getTilDateFromFilter(filterPeriode)
-        };
+              fra: getFraDateFromFilter(filterPeriode),
+              til: getTilDateFromFilter(filterPeriode)
+          };
     const datoer: Periode<string> = {
         fra: dayjs(periode.fra).format('YYYY-MM-DD'),
         til: dayjs(periode.til).format('YYYY-MM-DD')

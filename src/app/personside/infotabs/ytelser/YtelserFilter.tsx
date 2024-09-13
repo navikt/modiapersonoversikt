@@ -4,18 +4,17 @@ import { Knapp } from 'nav-frontend-knapper';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
-import utbetalingerResource from "../../../../rest/resources/utbetalingerResource";
-import {AppState} from "../../../../redux/reducers";
-import {PeriodeValg, UtbetalingFilterState} from "../../../../redux/utbetalinger/types";
-import {oppdaterFilter} from "../../../../redux/utbetalinger/actions";
-import FiltreringPeriode from "../utbetalinger/filter/FilterPeriode";
-import Panel from "nav-frontend-paneler";
-import {pxToRem} from "../../../../styles/personOversiktTheme";
-import {YtelserState} from "../../../../redux/ytelser/ytelserReducer";
-import foreldrepengerResource from "../../../../rest/resources/foreldrepengerResource";
-import pleiepengerResource from "../../../../rest/resources/pleiepengerResource";
-import sykepengerResource from "../../../../rest/resources/sykepengerResource";
-import tiltakspengerResource from "../../../../rest/resources/tiltakspengerResource";
+import { AppState } from '../../../../redux/reducers';
+import { PeriodeValg } from '../../../../redux/utbetalinger/types';
+import { oppdaterFilter } from '../../../../redux/utbetalinger/actions';
+import FiltreringPeriode from '../utbetalinger/filter/FilterPeriode';
+import Panel from 'nav-frontend-paneler';
+import { pxToRem } from '../../../../styles/personOversiktTheme';
+import { YtelserState } from '../../../../redux/ytelser/ytelserReducer';
+import foreldrepengerResource from '../../../../rest/resources/foreldrepengerResource';
+import pleiepengerResource from '../../../../rest/resources/pleiepengerResource';
+import sykepengerResource from '../../../../rest/resources/sykepengerResource';
+import tiltakspengerResource from '../../../../rest/resources/tiltakspengerResource';
 
 const InputPanel = styled.form`
     display: flex;
@@ -71,16 +70,21 @@ function YtelserFiltrering() {
         tiltakspenger.refetch();
     }, [foreldrepenger, pleiepenger, sykepenger, tiltakspenger, filter]);
 
-    const visSpinner = foreldrepenger.isLoading || pleiepenger.isLoading || sykepenger.isLoading || tiltakspenger.isLoading;
+    const visSpinner =
+        foreldrepenger.isLoading || pleiepenger.isLoading || sykepenger.isLoading || tiltakspenger.isLoading;
 
     return (
         <FiltreringsPanel>
             <InputPanel>
-                <FiltreringPeriode periode={filter.periode} updatePeriod={(change) => {
-                    updateFilter({
-                        ...filter,
-                        periode: change
-                    })}}/>
+                <FiltreringPeriode
+                    periode={filter.periode}
+                    updatePeriod={(change) => {
+                        updateFilter({
+                            ...filter,
+                            periode: change
+                        });
+                    }}
+                />
                 <KnappWrapper>
                     <Knapp onClick={reloadUtbetalinger} spinner={visSpinner} htmlType="button">
                         Hent ytelser

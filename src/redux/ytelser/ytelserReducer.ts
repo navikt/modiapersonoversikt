@@ -2,9 +2,9 @@ import { Action } from 'redux';
 import { Pleiepengerettighet } from '../../models/ytelse/pleiepenger';
 import { Foreldrepengerettighet } from '../../models/ytelse/foreldrepenger';
 import { Sykepenger } from '../../models/ytelse/sykepenger';
-import {PeriodeOptions, PeriodeValg} from "../utbetalinger/types";
-import dayjs from "dayjs";
-import {ISO_DATE_STRING_FORMAT} from "nav-datovelger/lib/utils/dateFormatUtils";
+import { PeriodeOptions, PeriodeValg } from '../utbetalinger/types';
+import dayjs from 'dayjs';
+import { ISO_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
 
 type Ytelse = Pleiepengerettighet | Foreldrepengerettighet | Sykepenger;
 
