@@ -2,10 +2,10 @@ import { apiBaseUri } from '../../api/config';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { FetchError, post } from '../../api/api';
 import { useReduxData } from './tiltakspengerResource';
-import { SykepengerResponse } from '../../models/ytelse/sykepenger';
+import { PleiepengerResponse } from '../../models/ytelse/pleiepenger';
 
-function queryKey(fnr: string): [string, string] {
-    return ['pleiepenger', fnr];
+function queryKey(fnr: string, fom?: string, tom?: string) {
+    return ['pleiepenger', fnr, fom, tom];
 }
 
 function urlV2(): string {
@@ -13,12 +13,12 @@ function urlV2(): string {
 }
 
 const resource = {
-    useFetch(limit30Dager: boolean = false): UseQueryResult<SykepengerResponse, FetchError> {
-        const [fnr, periode] = useReduxData(limit30Dager);
+    useFetch(): UseQueryResult<PleiepengerResponse, FetchError> {
+        const [fnr, periode] = useReduxData();
 
         return useQuery({
             queryKey: queryKey(fnr),
-            queryFn: () =>
+            queryFn: (): Promise<PleiepengerResponse> =>
                 post(urlV2(), {
                     fnr,
                     fom: periode.fra,

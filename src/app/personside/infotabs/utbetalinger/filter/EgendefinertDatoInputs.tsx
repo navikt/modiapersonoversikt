@@ -5,12 +5,11 @@ import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import dayjs, { Dayjs } from 'dayjs';
 import { DatePicker, HStack, useRangeDatepicker } from '@navikt/ds-react';
 import styled from 'styled-components';
-import { DateRange } from 'react-day-picker';
 import { ISO_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
 
 interface EgendefinertDatoInputsProps {
-    periode?: FraTilDato;
     updateFraTilDato: (change: FraTilDato) => void;
+    periode?: FraTilDato;
 }
 
 const DatePickerWrapper = styled.div`
@@ -18,19 +17,18 @@ const DatePickerWrapper = styled.div`
     margin-bottom: 0.5rem;
 `;
 
+type DateRange = {
+    from: Date;
+    to: Date;
+};
+
 function EgendefinertDatoInputs(props: EgendefinertDatoInputsProps) {
     const periodeValidering = [
         {
             erUgyldig(fra: Dayjs, til: Dayjs) {
-                return !fra.isValid();
+                return !fra.isValid() || !til.isValid();
             },
-            feilmelding: 'Du må velge gyldig fra-dato. Gyldig datoformat er dd.mm.åååå'
-        },
-        {
-            erUgyldig(fra: Dayjs, til: Dayjs) {
-                return !til.isValid();
-            },
-            feilmelding: 'Du må velge gyldig til-dato. Gyldig datoformat er dd.mm.åååå'
+            feilmelding: 'Du må velge gyldig fra og til dato. Gyldig datoformat er dd.mm.åååå'
         },
         {
             erUgyldig(fra: Dayjs, til: Dayjs) {
@@ -61,7 +59,12 @@ function EgendefinertDatoInputs(props: EgendefinertDatoInputsProps) {
         }
     };
 
-    const { datepickerProps, toInputProps, fromInputProps } = useRangeDatepicker({ onRangeChange: onRangeDatoChange });
+    const defaultSelected = { from: new Date(fra), to: new Date(til) };
+
+    const { datepickerProps, toInputProps, fromInputProps } = useRangeDatepicker({
+        onRangeChange: onRangeDatoChange,
+        defaultSelected: defaultSelected
+    });
 
     const getDatoFeilmelding = (fra: string, til: string) => {
         const fraDato = dayjs(fra);

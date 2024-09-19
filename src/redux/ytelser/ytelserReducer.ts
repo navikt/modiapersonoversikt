@@ -18,9 +18,9 @@ const initialState: YtelserState = {
     visAlleArbeidsforhold: [],
     aapnedeYtesler: [],
     periode: {
-        radioValg: PeriodeValg.SISTE_30_DAGER,
+        radioValg: PeriodeValg.EGENDEFINERT,
         egendefinertPeriode: {
-            fra: dayjs().subtract(1, 'month').format(ISO_DATE_STRING_FORMAT),
+            fra: dayjs().subtract(1, 'year').format(ISO_DATE_STRING_FORMAT),
             til: dayjs().format(ISO_DATE_STRING_FORMAT)
         }
     }
@@ -28,7 +28,8 @@ const initialState: YtelserState = {
 
 enum actionKeys {
     TOGGLE_VIS_ALLE_ARBEIDSFORHOLD = 'TOGGLE / VIS ALLE ARBEIDSFORHOLD',
-    TOGGLE_APNEYTELSE = 'TOGGLE_APNEYTELSE'
+    TOGGLE_APNEYTELSE = 'TOGGLE_APNEYTELSE',
+    FILTER_YTELSE = 'FILTER_YTELSE'
 }
 
 interface ToggleVisAlleArbeidsforhold extends Action {
@@ -43,13 +44,25 @@ interface ToggleVisYtelse extends Action {
     vis: boolean;
 }
 
-type Actions = ToggleVisAlleArbeidsforhold | ToggleVisYtelse;
+interface FilterYtelse {
+    type: actionKeys.FILTER_YTELSE;
+    change: PeriodeOptions;
+}
+
+type Actions = ToggleVisAlleArbeidsforhold | ToggleVisYtelse | FilterYtelse;
 
 export function toggleVisAlleArbeidsforhold(ytelse: Ytelse, vis: boolean): ToggleVisAlleArbeidsforhold {
     return {
         type: actionKeys.TOGGLE_VIS_ALLE_ARBEIDSFORHOLD,
         ytelse: ytelse,
         vis: vis
+    };
+}
+
+export function oppdaterYtelseFilter(change: PeriodeOptions): FilterYtelse {
+    return {
+        type: actionKeys.FILTER_YTELSE,
+        change: change
     };
 }
 
@@ -73,6 +86,8 @@ function ytelserReducer(state: YtelserState = initialState, action: Actions): Yt
                 ...state,
                 aapnedeYtesler: aapnedeYtelser
             };
+        case actionKeys.FILTER_YTELSE:
+            return { ...state, periode: action.change };
         default:
             return state;
     }

@@ -18,6 +18,7 @@ const Layout = styled.div`
         display: flex;
         > *:first-child {
             min-width: 24rem;
+            max-width: 24rem;
             flex-basis: 24rem;
             flex-grow: 0.5;
         }

@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { useCallback } from 'react';
-import { Knapp } from 'nav-frontend-knapper';
+import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Knapp } from 'nav-frontend-knapper';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
 import { AppState } from '../../../../redux/reducers';
-import { PeriodeValg } from '../../../../redux/utbetalinger/types';
-import { oppdaterFilter } from '../../../../redux/utbetalinger/actions';
+import { PeriodeOptions, PeriodeValg } from '../../../../redux/utbetalinger/types';
 import FiltreringPeriode from '../utbetalinger/filter/FilterPeriode';
 import Panel from 'nav-frontend-paneler';
 import { pxToRem } from '../../../../styles/personOversiktTheme';
-import { YtelserState } from '../../../../redux/ytelser/ytelserReducer';
+import { oppdaterYtelseFilter } from '../../../../redux/ytelser/ytelserReducer';
+import { getFraDateFromPeriod } from '../utbetalinger/utils/utbetalinger-utils';
 import foreldrepengerResource from '../../../../rest/resources/foreldrepengerResource';
 import pleiepengerResource from '../../../../rest/resources/pleiepengerResource';
 import sykepengerResource from '../../../../rest/resources/sykepengerResource';
@@ -47,19 +47,30 @@ function YtelserFiltrering() {
     const sykepenger = sykepengerResource.useFetch();
     const tiltakspenger = tiltakspengerResource.useFetch();
 
-    const filter = useSelector((state: AppState) => state.ytelser);
+    const periode = useSelector((state: AppState) => state.ytelser.periode);
     const updateFilter = useCallback(
-        (change: Partial<YtelserState>) => {
-            dispatch(oppdaterFilter(change));
+        (change: PeriodeOptions) => {
+            dispatch(oppdaterYtelseFilter(change));
         },
         [dispatch]
     );
 
+    useEffect(() => {
+        return () => {
+            dispatch(
+                oppdaterYtelseFilter({
+                    radioValg: PeriodeValg.EGENDEFINERT,
+                    egendefinertPeriode: getFraDateFromPeriod(PeriodeValg.EGENDEFINERT)
+                })
+            );
+        };
+    }, []);
+
     const reloadUtbetalinger = useCallback(() => {
-        if (filter.periode.radioValg === PeriodeValg.EGENDEFINERT) {
-            const periode = filter.periode.egendefinertPeriode;
-            const fraDato = dayjs(periode.fra);
-            const tilDato = dayjs(periode.til);
+        if (periode.radioValg === PeriodeValg.EGENDEFINERT) {
+            const egendefinertPeriode = periode.egendefinertPeriode;
+            const fraDato = dayjs(egendefinertPeriode.fra);
+            const tilDato = dayjs(egendefinertPeriode.til);
             if (!fraDato.isValid() || !tilDato.isValid()) {
                 return;
             }
@@ -68,7 +79,7 @@ function YtelserFiltrering() {
         pleiepenger.refetch();
         sykepenger.refetch();
         tiltakspenger.refetch();
-    }, [foreldrepenger, pleiepenger, sykepenger, tiltakspenger, filter]);
+    }, [foreldrepenger, pleiepenger, sykepenger, tiltakspenger, periode]);
 
     const visSpinner =
         foreldrepenger.isLoading || pleiepenger.isLoading || sykepenger.isLoading || tiltakspenger.isLoading;
@@ -77,12 +88,9 @@ function YtelserFiltrering() {
         <FiltreringsPanel>
             <InputPanel>
                 <FiltreringPeriode
-                    periode={filter.periode}
+                    periode={periode}
                     updatePeriod={(change) => {
-                        updateFilter({
-                            ...filter,
-                            periode: change
-                        });
+                        updateFilter(change);
                     }}
                 />
                 <KnappWrapper>

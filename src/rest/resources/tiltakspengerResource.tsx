@@ -8,30 +8,31 @@ import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 import {
     getFraDateFromFilter,
-    getTilDateFromFilter,
-    getUtbetalingerForSiste30DagerDatoer
+    getFraDateFromPeriod,
+    getTilDateFromFilter
 } from '../../app/personside/infotabs/utbetalinger/utils/utbetalinger-utils';
+import { PeriodeValg } from '../../redux/utbetalinger/types';
 
 interface Periode<T> {
     fra: T;
     til: T;
 }
 
-function queryKey(fnr: string): [string, string] {
-    return ['tiltakspenger', fnr];
+function queryKey(fnr: string, fom?: string, tom?: string) {
+    return ['tiltakspenger', fnr, fom, tom];
 }
 
 function urlV2(): string {
     return `${apiBaseUri}/v2/ytelse/tiltakspenger`;
 }
-export function useReduxData(limit30Dager: boolean): [string, Periode<string>] {
+export function useReduxData(): [string, Periode<string>] {
     const filterPeriode = useAppState((appState) => appState.ytelser.periode);
-    const periode = limit30Dager
-        ? getUtbetalingerForSiste30DagerDatoer()
-        : {
+    const periode = filterPeriode
+        ? {
               fra: getFraDateFromFilter(filterPeriode),
               til: getTilDateFromFilter(filterPeriode)
-          };
+          }
+        : getFraDateFromPeriod(PeriodeValg.EGENDEFINERT);
     const datoer: Periode<string> = {
         fra: dayjs(periode.fra).format('YYYY-MM-DD'),
         til: dayjs(periode.til).format('YYYY-MM-DD')
@@ -40,13 +41,13 @@ export function useReduxData(limit30Dager: boolean): [string, Periode<string>] {
 }
 
 const resource = {
-    useFetch(limit30Dager: boolean = false): UseQueryResult<TiltakspengerResource, FetchError> {
-        const [fnr, periode] = useReduxData(limit30Dager);
+    useFetch(): UseQueryResult<TiltakspengerResource, FetchError> {
+        const [fnr, periode] = useReduxData();
         const tiltakspengerFeatureToggle = useFeatureToggle(FeatureToggles.BrukNyTiltakspenger);
 
         return useQuery({
             queryKey: queryKey(fnr),
-            queryFn: () =>
+            queryFn: (): Promise<TiltakspengerResource> =>
                 tiltakspengerFeatureToggle.isOn
                     ? post(urlV2(), {
                           fnr,

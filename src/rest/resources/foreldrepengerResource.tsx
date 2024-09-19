@@ -1,10 +1,10 @@
 import { apiBaseUri } from '../../api/config';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { FetchError, post } from '../../api/api';
-import { SykepengerResponse } from '../../models/ytelse/sykepenger';
 import { useReduxData } from './tiltakspengerResource';
+import { ForeldrepengerResponse } from '../../models/ytelse/foreldrepenger';
 
-function queryKey(fnr: string): [string, string] {
+export function foreldrepengerKey(fnr: string): [string, string] {
     return ['foreldrepenger', fnr];
 }
 
@@ -12,11 +12,11 @@ function urlV2(): string {
     return `${apiBaseUri}/v2/ytelse/foreldrepenger`;
 }
 const resource = {
-    useFetch(limit30Dager: boolean = false): UseQueryResult<SykepengerResponse, FetchError> {
-        const [fnr, periode] = useReduxData(limit30Dager);
+    useFetch(): UseQueryResult<ForeldrepengerResponse, FetchError> {
+        const [fnr, periode] = useReduxData();
 
         return useQuery({
-            queryKey: queryKey(fnr),
+            queryKey: foreldrepengerKey(fnr),
             queryFn: () =>
                 post(urlV2(), {
                     fnr,
