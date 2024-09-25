@@ -62,4 +62,5 @@ export interface DecoratorPropsV3 {
     onEnhetChanged: (enhet?: string | null, enhetValue?: Enhet) => void;
     onLinkClick?: (link: { text: string; url: string }) => void;
     onFnrChanged: (fnr?: string | null) => void;
+    websocketUrl?: string | undefined;
 }

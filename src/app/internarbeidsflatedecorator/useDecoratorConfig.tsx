@@ -13,6 +13,7 @@ import { useGjeldendeBruker } from '../../redux/gjeldendeBruker/types';
 import { getDomainFromHost, getEnvFromHost } from '../../utils/environment';
 import { useRouteMatch } from 'react-router';
 import config from '../../config';
+import { getWindowFeature } from '../../utils/featureToggles';
 
 export function useDecoratorConfig() {
     const valgtEnhet = useValgtenhet();
@@ -79,6 +80,8 @@ function lagConfigV3(
 
     const urlFormat = getDomainFromHost();
 
+    const brukNyContext = getWindowFeature('contextholderNext');
+
     return {
         appName: 'Modia personoversikt',
         fnr: onsketFnr ?? undefined,
@@ -103,14 +106,13 @@ function lagConfigV3(
         },
         hotkeys: getHotkeys(),
         enableHotkeys: true,
-        // modiacontextholder kjører på samme domene som modiapersonoversikt.
-        // Som default brukes app.adeo.no, så her tvinger vi dekoratøren over på nytt domene
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         proxy: import.meta.env.PROD
             ? `https://${window.location.host}${import.meta.env.BASE_URL}proxy/modiacontextholder`
-            : (import.meta.env.VITE_CONTEXTHOLDER_URL ?? `${import.meta.env.BASE_URL}proxy/modiacontextholder`),
+            : ((import.meta.env.VITE_CONTEXTHOLDER_URL as string) ??
+              `${import.meta.env.BASE_URL}proxy/modiacontextholder`),
         environment,
         urlFormat: import.meta.env.PROD ? urlFormat : 'LOCAL',
+        websocketUrl: brukNyContext ? 'wss://modiacontextholder-next.intern.dev.nav.no/ws/' : undefined,
         showEnheter: true,
         showSearchArea: true,
         fetchActiveUserOnMount: true,
@@ -126,7 +128,7 @@ function getFnrFraUrl(): { sokFnr: string | null; userKey: string | null; urlFnr
     const queryParams = parseQueryString<{ sokFnr?: string; userKey?: string }>(location.search);
 
     return {
-        urlFnr,
+        urlFnr: urlFnr ?? null,
         sokFnr: queryParams.sokFnr ?? null,
         userKey: queryParams.userKey ?? null
     };
