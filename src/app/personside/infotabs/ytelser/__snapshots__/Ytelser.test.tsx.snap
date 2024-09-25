@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Om Ytelser matcher snapshot 1`] = `
-.c6 {
+.c12 {
   position: relative;
   padding: .5rem;
   display: flex;
@@ -10,19 +10,19 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   background-color: #cce1f3;
 }
 
-.c6:hover {
+.c12:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
 }
 
-.c6:hover >button:last-child {
+.c12:hover >button:last-child {
   padding-left: 0.5rem;
 }
 
-.c6 >*:first-child {
+.c12 >*:first-child {
   flex-grow: 1;
 }
 
-.c8 {
+.c14 {
   position: relative;
   padding: .5rem;
   display: flex;
@@ -30,19 +30,19 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   cursor: pointer;
 }
 
-.c8:hover {
+.c14:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
 }
 
-.c8:hover >button:last-child {
+.c14:hover >button:last-child {
   padding-left: 0.5rem;
 }
 
-.c8 >*:first-child {
+.c14 >*:first-child {
   flex-grow: 1;
 }
 
-.c7 {
+.c13 {
   border: none;
   padding: 0;
   height: 2rem;
@@ -53,16 +53,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   transition: padding-left 0.3s;
 }
 
-.c7 .nav-frontend-chevron {
+.c13 .nav-frontend-chevron {
   width: 1.5625rem;
 }
 
-.c7:focus {
+.c13:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c7:focus::after {
+.c13:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -73,25 +73,25 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   pointer-events: none;
 }
 
-.c3 {
+.c9 {
   padding: 0rem;
 }
 
-.c5 >*:not(:first-child) {
+.c11 >*:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
-.c4 {
+.c10 {
   padding: 0.9375rem;
   border-bottom: solid 0.0625rem #78706a;
   display: flex;
 }
 
-.c4 .hjelpetekst {
+.c10 .hjelpetekst {
   margin-left: 0.5rem;
 }
 
-.c4 .popover {
+.c10 .popover {
   max-width: 30rem;
 }
 
@@ -101,49 +101,90 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   padding: .5rem;
 }
 
-.c13 {
+.c19 {
   display: flex;
   flex-wrap: wrap;
 }
 
-.c13 dt {
+.c19 dt {
   color: #645f5a;
 }
 
-.c13 >div {
+.c19 >div {
   margin: 0.5625rem 0;
   padding-right: 0.7rem;
   width: 13rem;
   overflow-wrap: break-word;
 }
 
-.c12 {
+.c18 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
   box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
   padding: 1.25rem;
 }
 
-.c12 >h3 {
+.c18 >h3 {
   margin-bottom: 1rem;
 }
 
-.c10 {
+.c16 {
   padding: .5rem;
 }
 
-.c11 {
+.c17 {
   display: flex;
   flex-wrap: wrap;
 }
 
-.c11 >* {
+.c17 >* {
   flex-basis: 40%;
   flex-grow: 1;
 }
 
-.c9 >* {
+.c15 >* {
   margin-bottom: 0.5rem;
+}
+
+.c8 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.c5 {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+}
+
+.c5 >*:first-child {
+  margin-bottom: 0.5rem;
+}
+
+.c5 >* {
+  margin-top: 0.5rem;
+}
+
+.c5 .skjemaelement--horisontal {
+  margin-bottom: 0.4rem;
+}
+
+.c7 {
+  margin-bottom: 0.5rem;
+}
+
+.c6 {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.c6 >*:first-child {
+  margin-bottom: 0.8rem;
+}
+
+.c6 >*:last-child {
+  margin-bottom: 0;
 }
 
 .c1 {
@@ -154,6 +195,29 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   flex-grow: 1;
   flex-direction: column;
   display: flex;
+}
+
+.c3 {
+  padding: 0.9375rem;
+  margin-bottom: 0.5rem;
+}
+
+.c4 {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+}
+
+.c4 >*:first-child {
+  margin-bottom: 0.5rem;
+}
+
+.c4 >* {
+  margin-top: 0.5rem;
+}
+
+.c4 .skjemaelement--horisontal {
+  margin-bottom: 0.4rem;
 }
 
 @media (min-width: 45rem) {
@@ -172,8 +236,9 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   }
 
   .c1 >*:first-child {
-    min-width: 19rem;
-    flex-basis: 19rem;
+    min-width: 24rem;
+    max-width: 24rem;
+    flex-basis: 24rem;
     flex-grow: 0.5;
   }
 
@@ -192,12 +257,1664 @@ exports[`Om Ytelser matcher snapshot 1`] = `
       className="c2"
       onScroll={[Function]}
     >
+      <div
+        className="panel c3"
+      >
+        <form
+          className="c4"
+        >
+          <form
+            className="c5"
+          >
+            <fieldset
+              className="c6"
+            >
+              <legend
+                className="typo-element"
+              >
+                Velg periode
+              </legend>
+              <div
+                className="c7"
+              >
+                <div
+                  className="skjemaelement"
+                >
+                  <input
+                    aria-invalid={false}
+                    checked={false}
+                    className="skjemaelement__input radioknapp"
+                    id="Helt tilfeldig ID"
+                    name="FiltreringsvalgGruppe"
+                    onChange={[Function]}
+                    type="radio"
+                  />
+                  <label
+                    className="skjemaelement__label"
+                    htmlFor="Helt tilfeldig ID"
+                  >
+                    Siste 30 dager
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c7"
+              >
+                <div
+                  className="skjemaelement"
+                >
+                  <input
+                    aria-invalid={false}
+                    checked={false}
+                    className="skjemaelement__input radioknapp"
+                    id="Helt tilfeldig ID"
+                    name="FiltreringsvalgGruppe"
+                    onChange={[Function]}
+                    type="radio"
+                  />
+                  <label
+                    className="skjemaelement__label"
+                    htmlFor="Helt tilfeldig ID"
+                  >
+                    Inneværende år
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c7"
+              >
+                <div
+                  className="skjemaelement"
+                >
+                  <input
+                    aria-invalid={false}
+                    checked={false}
+                    className="skjemaelement__input radioknapp"
+                    id="Helt tilfeldig ID"
+                    name="FiltreringsvalgGruppe"
+                    onChange={[Function]}
+                    type="radio"
+                  />
+                  <label
+                    className="skjemaelement__label"
+                    htmlFor="Helt tilfeldig ID"
+                  >
+                    I fjor
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c7"
+              >
+                <div
+                  className="skjemaelement"
+                >
+                  <input
+                    aria-invalid={false}
+                    checked={true}
+                    className="skjemaelement__input radioknapp"
+                    id="Helt tilfeldig ID"
+                    name="FiltreringsvalgGruppe"
+                    onChange={[Function]}
+                    type="radio"
+                  />
+                  <label
+                    className="skjemaelement__label"
+                    htmlFor="Helt tilfeldig ID"
+                  >
+                    Egendefinert
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+            <div
+              className="c8"
+            >
+              <div
+                className="navds-date__wrapper"
+              >
+                <div
+                  className="navds-stack navds-hstack navds-stack-gap navds-stack-justify navds-stack-direction navds-stack-wrap"
+                  style={
+                    {
+                      "--__ac-stack-direction-xs": "row",
+                      "--__ac-stack-gap-xs": "var(--a-spacing-4)",
+                      "--__ac-stack-justify-xs": "center",
+                    }
+                  }
+                >
+                  <div
+                    className="navds-form-field navds-form-field--medium navds-date__field"
+                  >
+                    <label
+                      className="navds-form-field__label navds-label"
+                      htmlFor="datepicker-input-r1"
+                    >
+                      Fra
+                    </label>
+                    <div
+                      className="navds-date__field-wrapper"
+                    >
+                      <input
+                        autoComplete="off"
+                        className="navds-date__field-input navds-text-field__input navds-body-short navds-body-short--medium"
+                        id="datepicker-input-r1"
+                        locale="nb"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onFocus={[Function]}
+                        size={11}
+                        type="small"
+                        value="01.01.1968"
+                      />
+                      <button
+                        className="navds-date__field-button"
+                        onClick={[Function]}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        <svg
+                          aria-labelledby="title-r2"
+                          fill="none"
+                          focusable={false}
+                          height="1em"
+                          pointerEvents="none"
+                          role="img"
+                          viewBox="0 0 24 24"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <title
+                            id="title-r2"
+                          >
+                            Åpne datovelger
+                          </title>
+                          <path
+                            clipRule="evenodd"
+                            d="M9 2.25a.75.75 0 0 1 .75.75v1.25h4.5V3a.75.75 0 0 1 1.5 0v1.25h3.75c.69 0 1.25.56 1.25 1.25v13c0 .69-.56 1.25-1.25 1.25h-15c-.69 0-1.25-.56-1.25-1.25v-13c0-.69.56-1.25 1.25-1.25h3.75V3A.75.75 0 0 1 9 2.25M15.75 7a.75.75 0 0 1-1.5 0V5.75h-4.5V7a.75.75 0 0 1-1.5 0V5.75h-3.5v3.5h14.5v-3.5h-3.5zm-11 11.25v-7.5h14.5v7.5zm2-5.25a.75.75 0 0 1 .75-.75h1a.75.75 0 0 1 0 1.5h-1a.75.75 0 0 1-.75-.75m4 0a.75.75 0 0 1 .75-.75h1a.75.75 0 0 1 0 1.5h-1a.75.75 0 0 1-.75-.75m4.75-.75a.75.75 0 0 0 0 1.5h1a.75.75 0 0 0 0-1.5zM10.75 16a.75.75 0 0 1 .75-.75h1a.75.75 0 0 1 0 1.5h-1a.75.75 0 0 1-.75-.75m4.75-.75a.75.75 0 0 0 0 1.5h1a.75.75 0 0 0 0-1.5zM6.75 16a.75.75 0 0 1 .75-.75h1a.75.75 0 0 1 0 1.5h-1a.75.75 0 0 1-.75-.75"
+                            fill="currentColor"
+                            fillRule="evenodd"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                    <div
+                      aria-live="polite"
+                      aria-relevant="additions removals"
+                      className="navds-form-field__error"
+                      id="datepicker-input-error-r1"
+                    />
+                  </div>
+                  <div
+                    className="navds-form-field navds-form-field--medium navds-date__field"
+                  >
+                    <label
+                      className="navds-form-field__label navds-label"
+                      htmlFor="datepicker-input-r3"
+                    >
+                      Til
+                    </label>
+                    <div
+                      className="navds-date__field-wrapper"
+                    >
+                      <input
+                        autoComplete="off"
+                        className="navds-date__field-input navds-text-field__input navds-body-short navds-body-short--medium"
+                        id="datepicker-input-r3"
+                        locale="nb"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onFocus={[Function]}
+                        size={11}
+                        type="small"
+                        value="01.01.1970"
+                      />
+                      <button
+                        className="navds-date__field-button"
+                        onClick={[Function]}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        <svg
+                          aria-labelledby="title-r4"
+                          fill="none"
+                          focusable={false}
+                          height="1em"
+                          pointerEvents="none"
+                          role="img"
+                          viewBox="0 0 24 24"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <title
+                            id="title-r4"
+                          >
+                            Åpne datovelger
+                          </title>
+                          <path
+                            clipRule="evenodd"
+                            d="M9 2.25a.75.75 0 0 1 .75.75v1.25h4.5V3a.75.75 0 0 1 1.5 0v1.25h3.75c.69 0 1.25.56 1.25 1.25v13c0 .69-.56 1.25-1.25 1.25h-15c-.69 0-1.25-.56-1.25-1.25v-13c0-.69.56-1.25 1.25-1.25h3.75V3A.75.75 0 0 1 9 2.25M15.75 7a.75.75 0 0 1-1.5 0V5.75h-4.5V7a.75.75 0 0 1-1.5 0V5.75h-3.5v3.5h14.5v-3.5h-3.5zm-11 11.25v-7.5h14.5v7.5zm2-5.25a.75.75 0 0 1 .75-.75h1a.75.75 0 0 1 0 1.5h-1a.75.75 0 0 1-.75-.75m4 0a.75.75 0 0 1 .75-.75h1a.75.75 0 0 1 0 1.5h-1a.75.75 0 0 1-.75-.75m4.75-.75a.75.75 0 0 0 0 1.5h1a.75.75 0 0 0 0-1.5zM10.75 16a.75.75 0 0 1 .75-.75h1a.75.75 0 0 1 0 1.5h-1a.75.75 0 0 1-.75-.75m4.75-.75a.75.75 0 0 0 0 1.5h1a.75.75 0 0 0 0-1.5zM6.75 16a.75.75 0 0 1 .75-.75h1a.75.75 0 0 1 0 1.5h-1a.75.75 0 0 1-.75-.75"
+                            fill="currentColor"
+                            fillRule="evenodd"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                    <div
+                      aria-live="polite"
+                      aria-relevant="additions removals"
+                      className="navds-form-field__error"
+                      id="datepicker-input-error-r3"
+                    />
+                  </div>
+                </div>
+                <div
+                  aria-hidden={true}
+                  className="navds-popover navds-date__popover navds-popover--hidden"
+                  data-placement="bottom-start"
+                  id="r0"
+                  onBlurCapture={[Function]}
+                  onFocusCapture={[Function]}
+                  onPointerDownCapture={[Function]}
+                  role="dialog"
+                  style={
+                    {
+                      "left": 0,
+                      "pointerEvents": undefined,
+                      "position": "fixed",
+                      "top": 0,
+                    }
+                  }
+                >
+                  <div
+                    className="rdp navds-date"
+                    style={{}}
+                  >
+                    <div
+                      className="rdp-months"
+                    >
+                      <div
+                        className="rdp-month rdp-caption_start rdp-caption_end"
+                        style={{}}
+                      >
+                        <div
+                          className="navds-date__caption"
+                        >
+                          <button
+                            className="navds-date__caption-button navds-button navds-button--tertiary navds-button--medium navds-button--icon-only"
+                            onClick={[Function]}
+                            onKeyUp={[Function]}
+                            style={
+                              {
+                                "width": undefined,
+                              }
+                            }
+                            type="button"
+                          >
+                            <span
+                              className="navds-button__icon"
+                            >
+                              <svg
+                                aria-labelledby="title-r6"
+                                fill="none"
+                                focusable={false}
+                                height="1em"
+                                role="img"
+                                viewBox="0 0 24 24"
+                                width="1em"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <title
+                                  id="title-r6"
+                                >
+                                  Gå til forrige måned
+                                </title>
+                                <path
+                                  d="M4.47 11.47a.75.75 0 0 0 0 1.06l4.5 4.5a.75.75 0 0 0 1.06-1.06l-3.22-3.22H19a.75.75 0 0 0 0-1.5H6.81l3.22-3.22a.75.75 0 1 0-1.06-1.06z"
+                                  fill="currentColor"
+                                />
+                              </svg>
+                            </span>
+                          </button>
+                          <span
+                            aria-atomic="true"
+                            aria-live="polite"
+                            className="navds-date__caption-label navds-label"
+                            id="react-day-picker-1"
+                          >
+                            januar 1968
+                          </span>
+                          <button
+                            className="navds-date__caption-button navds-button navds-button--tertiary navds-button--medium navds-button--icon-only"
+                            onClick={[Function]}
+                            onKeyUp={[Function]}
+                            style={
+                              {
+                                "width": undefined,
+                              }
+                            }
+                            type="button"
+                          >
+                            <span
+                              className="navds-button__icon"
+                            >
+                              <svg
+                                aria-labelledby="title-r7"
+                                fill="none"
+                                focusable={false}
+                                height="1em"
+                                role="img"
+                                viewBox="0 0 24 24"
+                                width="1em"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <title
+                                  id="title-r7"
+                                >
+                                  Gå til neste måned
+                                </title>
+                                <path
+                                  d="M14.087 6.874a.752.752 0 0 0-.117 1.156l3.22 3.22H5a.75.75 0 0 0 0 1.5h12.19l-3.22 3.22a.75.75 0 0 0 1.06 1.06l4.5-4.5a.75.75 0 0 0 0-1.06l-4.5-4.5a.75.75 0 0 0-.943-.096"
+                                  fill="currentColor"
+                                />
+                              </svg>
+                            </span>
+                          </button>
+                        </div>
+                        <table
+                          aria-labelledby="react-day-picker-1"
+                          className="rdp-table"
+                          role="grid"
+                        >
+                          <thead
+                            aria-hidden={true}
+                            className="rdp-head"
+                          >
+                            <tr
+                              className="rdp-head_row"
+                            >
+                              <th
+                                aria-label="mandag"
+                                className="rdp-head_cell"
+                                scope="col"
+                              >
+                                ma
+                              </th>
+                              <th
+                                aria-label="tirsdag"
+                                className="rdp-head_cell"
+                                scope="col"
+                              >
+                                ti
+                              </th>
+                              <th
+                                aria-label="onsdag"
+                                className="rdp-head_cell"
+                                scope="col"
+                              >
+                                on
+                              </th>
+                              <th
+                                aria-label="torsdag"
+                                className="rdp-head_cell"
+                                scope="col"
+                              >
+                                to
+                              </th>
+                              <th
+                                aria-label="fredag"
+                                className="rdp-head_cell"
+                                scope="col"
+                              >
+                                fr
+                              </th>
+                              <th
+                                aria-label="lørdag"
+                                className="rdp-head_cell"
+                                scope="col"
+                              >
+                                lø
+                              </th>
+                              <th
+                                aria-label="søndag"
+                                className="rdp-head_cell"
+                                scope="col"
+                              >
+                                sø
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody
+                            className="rdp-tbody"
+                          >
+                            <tr
+                              className="rdp-row"
+                            >
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="mandag 1"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_start"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={0}
+                                  type="button"
+                                >
+                                  1
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="tirsdag 2"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  2
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="onsdag 3"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  3
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="torsdag 4"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  4
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="fredag 5"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  5
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="lørdag 6"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  6
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="søndag 7"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  7
+                                </button>
+                              </td>
+                            </tr>
+                            <tr
+                              className="rdp-row"
+                            >
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="mandag 8"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  8
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="tirsdag 9"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  9
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="onsdag 10"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  10
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="torsdag 11"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  11
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="fredag 12"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  12
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="lørdag 13"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  13
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="søndag 14"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  14
+                                </button>
+                              </td>
+                            </tr>
+                            <tr
+                              className="rdp-row"
+                            >
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="mandag 15"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  15
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="tirsdag 16"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  16
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="onsdag 17"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  17
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="torsdag 18"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  18
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="fredag 19"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  19
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="lørdag 20"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  20
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="søndag 21"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  21
+                                </button>
+                              </td>
+                            </tr>
+                            <tr
+                              className="rdp-row"
+                            >
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="mandag 22"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  22
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="tirsdag 23"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  23
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="onsdag 24"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  24
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="torsdag 25"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  25
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="fredag 26"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  26
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="lørdag 27"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  27
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="søndag 28"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  28
+                                </button>
+                              </td>
+                            </tr>
+                            <tr
+                              className="rdp-row"
+                            >
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="mandag 29"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  29
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="tirsdag 30"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  30
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="onsdag 31"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  31
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-hidden={true}
+                                  aria-label="torsdag 1"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle rdp-day_outside"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  1
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-hidden={true}
+                                  aria-label="fredag 2"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle rdp-day_outside"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  2
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-hidden={true}
+                                  aria-label="lørdag 3"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle rdp-day_outside"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  3
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-hidden={true}
+                                  aria-label="søndag 4"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle rdp-day_outside"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  4
+                                </button>
+                              </td>
+                            </tr>
+                            <tr
+                              className="rdp-row"
+                            >
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-hidden={true}
+                                  aria-label="mandag 5"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle rdp-day_outside"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  5
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-hidden={true}
+                                  aria-label="tirsdag 6"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle rdp-day_outside"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  6
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-hidden={true}
+                                  aria-label="onsdag 7"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle rdp-day_outside"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  7
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-hidden={true}
+                                  aria-label="torsdag 8"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle rdp-day_outside"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  8
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-hidden={true}
+                                  aria-label="fredag 9"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle rdp-day_outside"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  9
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-hidden={true}
+                                  aria-label="lørdag 10"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle rdp-day_outside"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  10
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-hidden={true}
+                                  aria-label="søndag 11"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle rdp-day_outside"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  11
+                                </button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </form>
+      </div>
       <section>
         <div
-          className="panel c3"
+          className="panel c9"
         >
           <div
-            className="c4"
+            className="c10"
           >
             <h2
               className="typo-undertittel"
@@ -279,11 +1996,11 @@ exports[`Om Ytelser matcher snapshot 1`] = `
             aria-label="Velg ytelser"
           >
             <ol
-              className="c5"
+              className="c11"
             >
               <li>
                 <div
-                  className="c6"
+                  className="c12"
                   onClick={[Function]}
                   valgt={true}
                 >
@@ -307,7 +2024,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   <button
                     aria-label="Vis tiltakspenger"
                     aria-selected={true}
-                    className="c7"
+                    className="c13"
                   >
                     <span
                       className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -317,7 +2034,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               </li>
               <li>
                 <div
-                  className="c8"
+                  className="c14"
                   onClick={[Function]}
                   valgt={false}
                 >
@@ -341,7 +2058,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   <button
                     aria-label="Vis sykepenger"
                     aria-selected={false}
-                    className="c7"
+                    className="c13"
                   >
                     <span
                       className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -351,7 +2068,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               </li>
               <li>
                 <div
-                  className="c8"
+                  className="c14"
                   onClick={[Function]}
                   valgt={false}
                 >
@@ -385,7 +2102,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   <button
                     aria-label="Vis pleiepenger"
                     aria-selected={false}
-                    className="c7"
+                    className="c13"
                   >
                     <span
                       className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -395,7 +2112,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               </li>
               <li>
                 <div
-                  className="c8"
+                  className="c14"
                   onClick={[Function]}
                   valgt={false}
                 >
@@ -419,7 +2136,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   <button
                     aria-label="Vis foreldrepenger"
                     aria-selected={false}
-                    className="c7"
+                    className="c13"
                   >
                     <span
                       className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -437,7 +2154,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
       onScroll={[Function]}
     >
       <section
-        className="c9"
+        className="c15"
       >
         <h2
           className="sr-only"
@@ -449,7 +2166,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
         <article>
           <div
             aria-labelledby="Helt tilfeldig ID"
-            className="panel c10"
+            className="panel c16"
           >
             <h2
               className="sr-only"
@@ -458,11 +2175,11 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               Tiltakspenger
             </h2>
             <div
-              className="c11"
+              className="c17"
             >
               <article
                 aria-labelledby="Helt tilfeldig ID"
-                className="c12"
+                className="c18"
               >
                 <h3
                   className="typo-ingress"
@@ -471,7 +2188,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   Om tiltakspenger
                 </h3>
                 <dl
-                  className="c13"
+                  className="c19"
                 >
                   <div>
                     <dt
@@ -525,7 +2242,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               </article>
               <article
                 aria-labelledby="Helt tilfeldig ID"
-                className="c12"
+                className="c18"
               >
                 <h3
                   className="typo-ingress"
@@ -534,7 +2251,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   Barnetillegg
                 </h3>
                 <dl
-                  className="c13"
+                  className="c19"
                 >
                   <div>
                     <dt

@@ -332,6 +332,42 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   margin-left: 1rem;
 }
 
+.c8 {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+}
+
+.c8 >*:first-child {
+  margin-bottom: 0.5rem;
+}
+
+.c8 >* {
+  margin-top: 0.5rem;
+}
+
+.c8 .skjemaelement--horisontal {
+  margin-bottom: 0.4rem;
+}
+
+.c10 {
+  margin-bottom: 0.5rem;
+}
+
+.c9 {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.c9 >*:first-child {
+  margin-bottom: 0.8rem;
+}
+
+.c9 >*:last-child {
+  margin-bottom: 0;
+}
+
 .c5 {
   padding: 0.9375rem;
 }
@@ -352,28 +388,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 
 .c7 .skjemaelement--horisontal {
   margin-bottom: 0.4rem;
-}
-
-.c10 {
-  margin-top: 0.5rem;
-}
-
-.c9 {
-  margin-bottom: 0.5rem;
-}
-
-.c8 {
-  border: none;
-  margin: 0;
-  padding: 0;
-}
-
-.c8 >*:first-child {
-  margin-bottom: 0.8rem;
-}
-
-.c8 >*:last-child {
-  margin-bottom: 0;
 }
 
 .c2 {
@@ -528,119 +542,111 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
             <form
               className="c7"
             >
-              <fieldset
+              <form
                 className="c8"
               >
-                <legend
-                  className="typo-element"
-                >
-                  Velg periode
-                </legend>
-                <div
+                <fieldset
                   className="c9"
                 >
-                  <div
-                    className="skjemaelement"
+                  <legend
+                    className="typo-element"
                   >
-                    <input
-                      aria-invalid={false}
-                      checked={true}
-                      className="skjemaelement__input radioknapp"
-                      id="Helt tilfeldig ID"
-                      name="FiltreringsvalgGruppe"
-                      onChange={[Function]}
-                      type="radio"
-                    />
-                    <label
-                      className="skjemaelement__label"
-                      htmlFor="Helt tilfeldig ID"
-                    >
-                      Siste 30 dager
-                    </label>
-                  </div>
-                </div>
-                <div
-                  className="c9"
-                >
+                    Velg periode
+                  </legend>
                   <div
-                    className="skjemaelement"
+                    className="c10"
                   >
-                    <input
-                      aria-invalid={false}
-                      checked={false}
-                      className="skjemaelement__input radioknapp"
-                      id="Helt tilfeldig ID"
-                      name="FiltreringsvalgGruppe"
-                      onChange={[Function]}
-                      type="radio"
-                    />
-                    <label
-                      className="skjemaelement__label"
-                      htmlFor="Helt tilfeldig ID"
+                    <div
+                      className="skjemaelement"
                     >
-                      Inneværende år
-                    </label>
+                      <input
+                        aria-invalid={false}
+                        checked={true}
+                        className="skjemaelement__input radioknapp"
+                        id="Helt tilfeldig ID"
+                        name="FiltreringsvalgGruppe"
+                        onChange={[Function]}
+                        type="radio"
+                      />
+                      <label
+                        className="skjemaelement__label"
+                        htmlFor="Helt tilfeldig ID"
+                      >
+                        Siste 30 dager
+                      </label>
+                    </div>
                   </div>
-                </div>
-                <div
-                  className="c9"
-                >
                   <div
-                    className="skjemaelement"
+                    className="c10"
                   >
-                    <input
-                      aria-invalid={false}
-                      checked={false}
-                      className="skjemaelement__input radioknapp"
-                      id="Helt tilfeldig ID"
-                      name="FiltreringsvalgGruppe"
-                      onChange={[Function]}
-                      type="radio"
-                    />
-                    <label
-                      className="skjemaelement__label"
-                      htmlFor="Helt tilfeldig ID"
+                    <div
+                      className="skjemaelement"
                     >
-                      I fjor
-                    </label>
+                      <input
+                        aria-invalid={false}
+                        checked={false}
+                        className="skjemaelement__input radioknapp"
+                        id="Helt tilfeldig ID"
+                        name="FiltreringsvalgGruppe"
+                        onChange={[Function]}
+                        type="radio"
+                      />
+                      <label
+                        className="skjemaelement__label"
+                        htmlFor="Helt tilfeldig ID"
+                      >
+                        Inneværende år
+                      </label>
+                    </div>
                   </div>
-                </div>
-                <div
-                  className="c9"
-                >
                   <div
-                    className="skjemaelement"
+                    className="c10"
                   >
-                    <input
-                      aria-invalid={false}
-                      checked={false}
-                      className="skjemaelement__input radioknapp"
-                      id="Helt tilfeldig ID"
-                      name="FiltreringsvalgGruppe"
-                      onChange={[Function]}
-                      type="radio"
-                    />
-                    <label
-                      className="skjemaelement__label"
-                      htmlFor="Helt tilfeldig ID"
+                    <div
+                      className="skjemaelement"
                     >
-                      Egendefinert
-                    </label>
+                      <input
+                        aria-invalid={false}
+                        checked={false}
+                        className="skjemaelement__input radioknapp"
+                        id="Helt tilfeldig ID"
+                        name="FiltreringsvalgGruppe"
+                        onChange={[Function]}
+                        type="radio"
+                      />
+                      <label
+                        className="skjemaelement__label"
+                        htmlFor="Helt tilfeldig ID"
+                      >
+                        I fjor
+                      </label>
+                    </div>
                   </div>
-                </div>
-              </fieldset>
-              <div
-                className="c10"
-              >
-                <button
-                  className="knapp knapp--standard"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  Hent utbetalinger
-                </button>
-              </div>
+                  <div
+                    className="c10"
+                  >
+                    <div
+                      className="skjemaelement"
+                    >
+                      <input
+                        aria-invalid={false}
+                        checked={false}
+                        className="skjemaelement__input radioknapp"
+                        id="Helt tilfeldig ID"
+                        name="FiltreringsvalgGruppe"
+                        onChange={[Function]}
+                        type="radio"
+                      />
+                      <label
+                        className="skjemaelement__label"
+                        htmlFor="Helt tilfeldig ID"
+                      >
+                        Egendefinert
+                      </label>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
             </form>
             <form
               className="c7"
@@ -981,10 +987,10 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                             >
                               <dl>
                                 <dt>
-                                  Mouse
+                                  Bacon
                                 </dt>
                                 <dd>
-                                  3 860,00
+                                  5 580,00
                                 </dd>
                                 <dt>
                                   Computer
@@ -993,10 +999,10 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                                   3 930,00
                                 </dd>
                                 <dt>
-                                  Bacon
+                                  Mouse
                                 </dt>
                                 <dd>
-                                  5 580,00
+                                  3 860,00
                                 </dd>
                               </dl>
                             </td>

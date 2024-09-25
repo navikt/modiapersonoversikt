@@ -1,9 +1,9 @@
 import { Skatt, Trekk, Utbetaling, Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
 import { formaterDato } from '../../../../../utils/string-utils';
 import { Periode } from '../../../../../models/tid';
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import { loggError } from '../../../../../utils/logger/frontendLogger';
-import { UtbetalingFilterState, PeriodeValg } from '../../../../../redux/utbetalinger/types';
+import { PeriodeValg, PeriodeOptions, FraTilDato } from '../../../../../redux/utbetalinger/types';
 import { datoVerbose } from '../../../../../utils/date-utils';
 import { ISO_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
 
@@ -30,34 +30,60 @@ export function trekkBelopAscComparator(a: Trekk, b: Trekk) {
     return a.trekkbelop - b.trekkbelop;
 }
 
+export const toIsoDateString = (date: Dayjs) => date.format(ISO_DATE_STRING_FORMAT);
+
+export const getFraDateFromPeriod = (periodeValg: PeriodeValg): FraTilDato => {
+    switch (periodeValg) {
+        case PeriodeValg.INNEVERENDE_AR:
+            return { fra: toIsoDateString(dayjs().startOf('year')), til: toIsoDateString(dayjs().endOf('year')) };
+        case PeriodeValg.I_FJOR:
+            return {
+                fra: toIsoDateString(dayjs().subtract(1, 'year').startOf('year')),
+                til: toIsoDateString(dayjs().subtract(1, 'year').endOf('year'))
+            };
+        case PeriodeValg.EGENDEFINERT:
+            return {
+                fra: toIsoDateString(dayjs().subtract(2, 'year').startOf('day')),
+                til: toIsoDateString(dayjs().endOf('day'))
+            };
+        case PeriodeValg.SISTE_30_DAGER:
+        default:
+            return {
+                fra: toIsoDateString(dayjs().subtract(30, 'day').startOf('day')),
+                til: toIsoDateString(dayjs().endOf('day'))
+            };
+    }
+};
+
 export function getUtbetalingerForSiste30DagerDatoer() {
     return {
         fra: dayjs().subtract(30, 'day').startOf('day').toDate(),
-        til: dayjs().add(100, 'day').endOf('day').toDate()
+        til: dayjs().endOf('day').toDate()
     };
 }
 
-export function getFraDateFromFilter(filter: UtbetalingFilterState): Date {
-    switch (filter.periode.radioValg) {
+export function getFraDateFromFilter(periode: PeriodeOptions): Date {
+    switch (periode.radioValg) {
         case PeriodeValg.INNEVERENDE_AR:
             return dayjs().startOf('year').toDate();
         case PeriodeValg.I_FJOR:
             return dayjs().subtract(1, 'year').startOf('year').toDate();
         case PeriodeValg.EGENDEFINERT:
-            return dayjs(filter.periode.egendefinertPeriode.fra, ISO_DATE_STRING_FORMAT).toDate();
+            return dayjs(periode.egendefinertPeriode.fra, ISO_DATE_STRING_FORMAT).toDate();
         case PeriodeValg.SISTE_30_DAGER:
         default:
             return getUtbetalingerForSiste30DagerDatoer().fra;
     }
 }
 
-export function getTilDateFromFilter(filter: UtbetalingFilterState): Date {
-    switch (filter.periode.radioValg) {
+export function getTilDateFromFilter(periode: PeriodeOptions): Date {
+    switch (periode.radioValg) {
         case PeriodeValg.I_FJOR:
             return dayjs().subtract(1, 'year').endOf('year').toDate();
         case PeriodeValg.EGENDEFINERT:
-            return dayjs(filter.periode.egendefinertPeriode.til, ISO_DATE_STRING_FORMAT).toDate();
+            return dayjs(periode.egendefinertPeriode.til, ISO_DATE_STRING_FORMAT).toDate();
         case PeriodeValg.INNEVERENDE_AR:
+            return dayjs().endOf('year').toDate();
         case PeriodeValg.SISTE_30_DAGER:
         default:
             return getUtbetalingerForSiste30DagerDatoer().til;

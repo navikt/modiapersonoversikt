@@ -1,24 +1,20 @@
 import { SykepengerResponse } from '../../models/ytelse/sykepenger';
 import { apiBaseUri } from '../../api/config';
-import { useFodselsnummer } from '../../utils/customHooks';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { FetchError, post } from '../../api/api';
 
-function queryKey(fnr: string): [string, string] {
-    return ['sykepenger', fnr];
-}
-
-function urlV2(): string {
-    return `${apiBaseUri}/v2/ytelse/sykepenger`;
-}
-const resource = {
-    useFetch(): UseQueryResult<SykepengerResponse, FetchError> {
-        const fnr = useFodselsnummer();
-
-        return useQuery({
-            queryKey: queryKey(fnr),
-            queryFn: () => post(urlV2(), { fnr })
-        });
-    }
+export const useSykepenger = (
+    fnr: string,
+    fom: string,
+    tom: string
+): UseQueryResult<SykepengerResponse, FetchError> => {
+    return useQuery({
+        queryKey: ['sykepenger', fnr, fom, tom],
+        queryFn: () =>
+            post(`${apiBaseUri}/v2/ytelse/sykepenger`, {
+                fnr,
+                fom: fom,
+                tom: tom
+            })
+    });
 };
-export default resource;

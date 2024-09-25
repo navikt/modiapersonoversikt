@@ -1,25 +1,21 @@
 import * as React from 'react';
 import { useCallback } from 'react';
-import { Radio } from 'nav-frontend-skjema';
 import { Element, Undertittel } from 'nav-frontend-typografi';
 import { UtbetalingerResponse } from '../../../../../models/utbetalinger';
 import UtbetaltTilValg from './UtbetaltTilValg';
 import YtelseValg from './YtelseValg';
 import { restoreScroll } from '../../../../../utils/restoreScroll';
-import { Knapp } from 'nav-frontend-knapper';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { AppState } from '../../../../../redux/reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import { oppdaterFilter } from '../../../../../redux/utbetalinger/actions';
-import { PeriodeValg, UtbetalingFilterState } from '../../../../../redux/utbetalinger/types';
+import { UtbetalingFilterState } from '../../../../../redux/utbetalinger/types';
 import styled from 'styled-components';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
-import EgendefinertDatoInputs from './EgendefinertDatoInputs';
 import Panel from 'nav-frontend-paneler';
-import dayjs from 'dayjs';
-import { ISO_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
 import MediaQueryAwareRenderer from '../../../../../components/MediaQueryAwareRenderer';
 import utbetalingerResource from '../../../../../rest/resources/utbetalingerResource';
+import FiltreringPeriode from './FilterPeriode';
 
 const FiltreringsPanel = styled(Panel)`
     padding: ${pxToRem(15)};
@@ -37,25 +33,6 @@ const InputPanel = styled.form`
     }
     .skjemaelement--horisontal {
         margin-bottom: 0.4rem;
-    }
-`;
-
-const KnappWrapper = styled.div`
-    margin-top: 0.5rem;
-`;
-
-const RadioWrapper = styled.div`
-    margin-bottom: 0.5rem;
-`;
-const FieldSet = styled.fieldset`
-    border: none;
-    margin: 0;
-    padding: 0;
-    > *:first-child {
-        margin-bottom: 0.8rem;
-    }
-    > *:last-child {
-        margin-bottom: 0;
     }
 `;
 
@@ -77,11 +54,12 @@ function visCheckbokser(utbetalingerResponse: UtbetalingerResponse): boolean {
     return utbetalingerResponse.utbetalinger && utbetalingerResponse.utbetalinger.length > 0;
 }
 
-function Filtrering() {
+function UtbetalingFiltrering() {
     const dispatch = useDispatch();
-    const utbetalinger = utbetalingerResource.useFetch();
-
     const filter = useSelector((state: AppState) => state.utbetalinger.filter);
+    const periode = filter.periode.egendefinertPeriode;
+    const utbetalinger = utbetalingerResource.useFetch(periode.fra, periode.til);
+
     const updateFilter = useCallback(
         (change: Partial<UtbetalingFilterState>) => {
             dispatch(oppdaterFilter(change));
@@ -89,45 +67,6 @@ function Filtrering() {
         [dispatch]
     );
 
-    const reloadUtbetalinger = useCallback(() => {
-        if (filter.periode.radioValg === PeriodeValg.EGENDEFINERT) {
-            const periode = filter.periode.egendefinertPeriode;
-            const fraDato = dayjs(periode.fra, ISO_DATE_STRING_FORMAT);
-            const tilDato = dayjs(periode.til, ISO_DATE_STRING_FORMAT);
-            if (!fraDato.isValid() || !tilDato.isValid()) {
-                return;
-            }
-        }
-        utbetalinger.refetch();
-    }, [utbetalinger, filter.periode]);
-
-    const radios = Object.keys(PeriodeValg).map((key) => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        const label = PeriodeValg[key];
-        const checked = filter.periode.radioValg === label;
-        return (
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-            <RadioWrapper key={label}>
-                <Radio
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                    label={label}
-                    checked={checked}
-                    onChange={() =>
-                        updateFilter({
-                            periode: {
-                                ...filter.periode,
-                                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                                radioValg: PeriodeValg[key]
-                            }
-                        })
-                    }
-                    name="FiltreringsvalgGruppe"
-                />
-            </RadioWrapper>
-        );
-    });
-
-    const visSpinner = utbetalinger.isLoading;
     const checkBokser = utbetalinger.data && visCheckbokser(utbetalinger.data) && (
         <>
             <InputPanel>
@@ -150,18 +89,15 @@ function Filtrering() {
     );
     const hentUtbetalingerPanel = (
         <InputPanel>
-            <FieldSet>
-                <Element tag="legend">Velg periode</Element>
-                {radios}
-            </FieldSet>
-            {filter.periode.radioValg === PeriodeValg.EGENDEFINERT && (
-                <EgendefinertDatoInputs filter={filter} updateFilter={updateFilter} />
-            )}
-            <KnappWrapper>
-                <Knapp onClick={reloadUtbetalinger} spinner={visSpinner} htmlType="button">
-                    Hent utbetalinger
-                </Knapp>
-            </KnappWrapper>
+            <FiltreringPeriode
+                periode={filter.periode}
+                updatePeriod={(change) => {
+                    updateFilter({
+                        ...filter,
+                        periode: change
+                    });
+                }}
+            />
         </InputPanel>
     );
 
@@ -199,4 +135,4 @@ function Filtrering() {
     );
 }
 
-export default Filtrering;
+export default UtbetalingFiltrering;

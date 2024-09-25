@@ -12,7 +12,7 @@ export interface UtbetalingFilterState {
     ytelser: Array<string>;
 }
 
-interface PeriodeOptions {
+export interface PeriodeOptions {
     radioValg: PeriodeValg;
     egendefinertPeriode: FraTilDato;
 }

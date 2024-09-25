@@ -1,25 +1,20 @@
 import { apiBaseUri } from '../../api/config';
-import { useFodselsnummer } from '../../utils/customHooks';
-import { PleiepengerResponse } from '../../models/ytelse/pleiepenger';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { FetchError, post } from '../../api/api';
+import { PleiepengerResponse } from '../../models/ytelse/pleiepenger';
 
-function queryKey(fnr: string): [string, string] {
-    return ['pleiepenger', fnr];
-}
-
-function urlV2(): string {
-    return `${apiBaseUri}/v2/ytelse/pleiepenger`;
-}
-
-const resource = {
-    useFetch(): UseQueryResult<PleiepengerResponse, FetchError> {
-        const fnr = useFodselsnummer();
-
-        return useQuery({
-            queryKey: queryKey(fnr),
-            queryFn: () => post(urlV2(), { fnr })
-        });
-    }
+export const usePleiepenger = (
+    fnr: string,
+    fom: string,
+    tom: string
+): UseQueryResult<PleiepengerResponse, FetchError> => {
+    return useQuery({
+        queryKey: ['pleiepenger', fnr, fom, tom],
+        queryFn: () =>
+            post(`${apiBaseUri}/v2/ytelse/pleiepenger`, {
+                fnr,
+                fom: fom,
+                tom: tom
+            })
+    });
 };
-export default resource;
