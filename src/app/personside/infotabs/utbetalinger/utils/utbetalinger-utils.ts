@@ -3,7 +3,7 @@ import { formaterDato } from '../../../../../utils/string-utils';
 import { Periode } from '../../../../../models/tid';
 import dayjs, { Dayjs } from 'dayjs';
 import { loggError } from '../../../../../utils/logger/frontendLogger';
-import { PeriodeValg, PeriodeOptions } from '../../../../../redux/utbetalinger/types';
+import { PeriodeValg, PeriodeOptions, FraTilDato } from '../../../../../redux/utbetalinger/types';
 import { datoVerbose } from '../../../../../utils/date-utils';
 import { ISO_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
 
@@ -32,7 +32,7 @@ export function trekkBelopAscComparator(a: Trekk, b: Trekk) {
 
 export const toIsoDateString = (date: Dayjs) => date.format(ISO_DATE_STRING_FORMAT);
 
-export const getFraDateFromPeriod = (periodeValg: PeriodeValg) => {
+export const getFraDateFromPeriod = (periodeValg: PeriodeValg): FraTilDato => {
     switch (periodeValg) {
         case PeriodeValg.INNEVERENDE_AR:
             return { fra: toIsoDateString(dayjs().startOf('year')), til: toIsoDateString(dayjs().endOf('year')) };

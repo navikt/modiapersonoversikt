@@ -20,7 +20,7 @@ const initialState: YtelserState = {
     periode: {
         radioValg: PeriodeValg.EGENDEFINERT,
         egendefinertPeriode: {
-            fra: dayjs().subtract(1, 'year').format(ISO_DATE_STRING_FORMAT),
+            fra: dayjs().subtract(2, 'year').format(ISO_DATE_STRING_FORMAT),
             til: dayjs().format(ISO_DATE_STRING_FORMAT)
         }
     }

@@ -17,10 +17,6 @@ import innstillingerResource from '../rest/resources/innstillingerResource';
 import dialogResource from '../rest/resources/dialogResource';
 import baseurlsResource from '../rest/resources/baseurlsResource';
 import featuretogglesResource from '../rest/resources/featuretogglesResource';
-import foreldrepengerResource from '../rest/resources/foreldrepengerResource';
-import pleiepengerResource from '../rest/resources/pleiepengerResource';
-import sykepengerResource from '../rest/resources/sykepengerResource';
-import tiltakspengerResource from '../rest/resources/tiltakspengerResource';
 import gsaktemaResource from '../rest/resources/gsaktemaResource';
 import oppfolgingResource from '../rest/resources/oppfolgingResource';
 import sakstemaResource from '../rest/resources/sakstemaResource';
@@ -34,6 +30,10 @@ import { UseQueryResult } from '@tanstack/react-query';
 import { FeatureToggles } from '../components/featureToggle/toggleIDs';
 import { FetchError } from '../api/api';
 import { statiskTiltakspengerMock } from '../mock/ytelse/statiskTiltakspengerMock';
+import * as foreldrepengerResource from '../rest/resources/foreldrepengerResource';
+import * as pleiepengerResource from '../rest/resources/pleiepengerResource';
+import * as sykepengerResource from '../rest/resources/sykepengerResource';
+import * as tiltakspengerResource from '../rest/resources/tiltakspengerResource';
 
 const history = createBrowserHistory();
 
@@ -66,10 +66,10 @@ export function setupReactQueryMocks() {
     vi.spyOn(dialogResource, 'useFetch');
     vi.spyOn(baseurlsResource, 'useFetch');
     vi.spyOn(featuretogglesResource, 'useFetch');
-    vi.spyOn(foreldrepengerResource, 'useFetch');
-    vi.spyOn(pleiepengerResource, 'useFetch');
-    vi.spyOn(sykepengerResource, 'useFetch');
-    vi.spyOn(tiltakspengerResource, 'useFetch');
+    vi.spyOn(foreldrepengerResource, 'useForeldrepenger');
+    vi.spyOn(pleiepengerResource, 'usePleiepenger');
+    vi.spyOn(sykepengerResource, 'useSykepenger');
+    vi.spyOn(tiltakspengerResource, 'useTiltakspenger');
     vi.spyOn(gsaktemaResource, 'useFetch');
     vi.spyOn(oppfolgingResource, 'useFetch');
     vi.spyOn(sakstemaResource, 'useFetch');
@@ -93,16 +93,16 @@ export function setupReactQueryMocks() {
         [FeatureToggles.VisDraftStatus]: true
     });
     mockReactQuery(gsaktemaResource.useFetch, getMockGsakTema());
-    mockReactQuery(foreldrepengerResource.useFetch, {
+    mockReactQuery(foreldrepengerResource.useForeldrepenger, {
         foreldrepenger: [statiskForeldrepengeMock]
     });
-    mockReactQuery(pleiepengerResource.useFetch, {
+    mockReactQuery(pleiepengerResource.usePleiepenger, {
         pleiepenger: [pleiepengerTestData]
     });
-    mockReactQuery(sykepengerResource.useFetch, {
+    mockReactQuery(sykepengerResource.useSykepenger, {
         sykepenger: [statiskSykepengerMock]
     });
-    mockReactQuery(tiltakspengerResource.useFetch, [statiskTiltakspengerMock]);
+    mockReactQuery(tiltakspengerResource.useTiltakspenger, [statiskTiltakspengerMock]);
     mockReactQuery(oppfolgingResource.useFetch, statiskOppfolgingMock);
     mockReactQuery(sakstemaResource.useFetch, getStaticMockSaksoversiktV2());
     mockReactQuery(utbetalingerResource.useFetch, statiskMockUtbetalingRespons);

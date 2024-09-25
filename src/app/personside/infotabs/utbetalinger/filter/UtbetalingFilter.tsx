@@ -5,16 +5,14 @@ import { UtbetalingerResponse } from '../../../../../models/utbetalinger';
 import UtbetaltTilValg from './UtbetaltTilValg';
 import YtelseValg from './YtelseValg';
 import { restoreScroll } from '../../../../../utils/restoreScroll';
-import { Knapp } from 'nav-frontend-knapper';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { AppState } from '../../../../../redux/reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import { oppdaterFilter } from '../../../../../redux/utbetalinger/actions';
-import { PeriodeValg, UtbetalingFilterState } from '../../../../../redux/utbetalinger/types';
+import { UtbetalingFilterState } from '../../../../../redux/utbetalinger/types';
 import styled from 'styled-components';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import Panel from 'nav-frontend-paneler';
-import dayjs from 'dayjs';
 import MediaQueryAwareRenderer from '../../../../../components/MediaQueryAwareRenderer';
 import utbetalingerResource from '../../../../../rest/resources/utbetalingerResource';
 import FiltreringPeriode from './FilterPeriode';
@@ -38,10 +36,6 @@ const InputPanel = styled.form`
     }
 `;
 
-const KnappWrapper = styled.div`
-    margin-top: 0.5rem;
-`;
-
 const WrapOnSmallScreen = styled.div`
     @media (max-width: ${theme.media.utbetalinger.maxWidth}) {
         display: flex;
@@ -62,9 +56,10 @@ function visCheckbokser(utbetalingerResponse: UtbetalingerResponse): boolean {
 
 function UtbetalingFiltrering() {
     const dispatch = useDispatch();
-    const utbetalinger = utbetalingerResource.useFetch();
-
     const filter = useSelector((state: AppState) => state.utbetalinger.filter);
+    const periode = filter.periode.egendefinertPeriode;
+    const utbetalinger = utbetalingerResource.useFetch(periode.fra, periode.til);
+
     const updateFilter = useCallback(
         (change: Partial<UtbetalingFilterState>) => {
             dispatch(oppdaterFilter(change));
@@ -72,19 +67,6 @@ function UtbetalingFiltrering() {
         [dispatch]
     );
 
-    const reloadUtbetalinger = useCallback(() => {
-        if (filter.periode.radioValg === PeriodeValg.EGENDEFINERT) {
-            const periode = filter.periode.egendefinertPeriode;
-            const fraDato = dayjs(periode.fra);
-            const tilDato = dayjs(periode.til);
-            if (!fraDato.isValid() || !tilDato.isValid()) {
-                return;
-            }
-        }
-        utbetalinger.refetch();
-    }, [utbetalinger, filter.periode]);
-
-    const visSpinner = utbetalinger.isLoading;
     const checkBokser = utbetalinger.data && visCheckbokser(utbetalinger.data) && (
         <>
             <InputPanel>
@@ -116,11 +98,6 @@ function UtbetalingFiltrering() {
                     });
                 }}
             />
-            <KnappWrapper>
-                <Knapp onClick={reloadUtbetalinger} spinner={visSpinner} htmlType="button">
-                    Hent utbetalinger
-                </Knapp>
-            </KnappWrapper>
         </InputPanel>
     );
 

@@ -8,7 +8,9 @@ import Arenalenke from './Arenalenke/Arenalenke';
 import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
 import { erIE11 } from '../../../../utils/erIE11';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
-import utbetalinger from '../../../../rest/resources/utbetalingerResource';
+import utbetalingerResource from '../../../../rest/resources/utbetalingerResource';
+import { useSelector } from 'react-redux';
+import { AppState } from '../../../../redux/reducers';
 
 const UtbetalingerStyle = styled.div`
     ${scrollBarContainerStyle(theme.media.utbetalinger.minWidth)};
@@ -41,10 +43,12 @@ const UtbetalingerSection = styled.section`
 `;
 
 function UtbetalingerContainer() {
-    const utbetalingerResource = utbetalinger.useFetch();
+    const filter = useSelector((state: AppState) => state.utbetalinger.filter);
+    const periode = filter.periode.egendefinertPeriode;
+    const utbetalinger = utbetalingerResource.useFetch(periode.fra, periode.til);
     let content = BigCenteredLazySpinner;
-    if (utbetalingerResource.data) {
-        content = <Utbetalinger utbetalingerData={utbetalingerResource.data} />;
+    if (utbetalinger.data) {
+        content = <Utbetalinger utbetalingerData={utbetalinger.data} />;
     }
     return (
         <ErrorBoundary boundaryName={'UtbetalingerContainer'}>

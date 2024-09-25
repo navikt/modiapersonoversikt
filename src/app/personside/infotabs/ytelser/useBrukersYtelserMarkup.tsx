@@ -6,6 +6,8 @@ import { isForeldrepenger, isPleiepenger, isSykepenger, isTiltakspenger } from '
 import useBrukersYtelser from './useBrukersYtelser';
 import { loggError } from '../../../../utils/logger/frontendLogger';
 import { Tiltakspenger } from '../../../../models/ytelse/tiltakspenger';
+import { getFraDateFromPeriod } from '../utbetalinger/utils/utbetalinger-utils';
+import { PeriodeValg } from '../../../../redux/utbetalinger/types';
 
 interface Props {
     renderPleiepenger: (pleiepenger: Pleiepengerettighet) => ReactNode;
@@ -22,7 +24,7 @@ interface Returns {
 }
 
 function useBrukersYtelserMarkup(props: Props): Returns {
-    const brukersYtelser = useBrukersYtelser();
+    const brukersYtelser = useBrukersYtelser(getFraDateFromPeriod(PeriodeValg.EGENDEFINERT));
 
     const ytelserMarkup: ReactNode[] = brukersYtelser.ytelser.map((ytelse) => {
         if (isForeldrepenger(ytelse)) {

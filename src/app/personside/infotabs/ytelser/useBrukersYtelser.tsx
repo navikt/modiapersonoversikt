@@ -2,13 +2,15 @@ import * as React from 'react';
 import { ReactNode, useMemo } from 'react';
 import { datoSynkende } from '../../../../utils/date-utils';
 import { getYtelseIdDato, Ytelse } from '../../../../models/ytelse/ytelse-utils';
-import sykepengerResource from '../../../../rest/resources/sykepengerResource';
-import pleiepengerResource from '../../../../rest/resources/pleiepengerResource';
-import foreldrepengerResource from '../../../../rest/resources/foreldrepengerResource';
-import tiltakspengerResource from '../../../../rest/resources/tiltakspengerResource';
+import { useSykepenger } from '../../../../rest/resources/sykepengerResource';
+import { usePleiepenger } from '../../../../rest/resources/pleiepengerResource';
+import { useForeldrepenger } from '../../../../rest/resources/foreldrepengerResource';
+import { useTiltakspenger } from '../../../../rest/resources/tiltakspengerResource';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { UseQueryResult } from '@tanstack/react-query';
 import { FetchError } from '../../../../api/api';
+import { useFodselsnummer } from '../../../../utils/customHooks';
+import { FraTilDato } from '../../../../redux/utbetalinger/types';
 
 interface Returns {
     ytelser: Ytelse[];
@@ -51,11 +53,12 @@ function placeholder(resource: UseQueryResult<any, FetchError>, tekster: Placeho
     }
 }
 
-function useBrukersYtelser(): Returns {
-    const foreldrepengerResponse = foreldrepengerResource.useFetch();
-    const pleiepengerResponse = pleiepengerResource.useFetch();
-    const sykepengerResponse = sykepengerResource.useFetch();
-    const tiltakspengerResponse = tiltakspengerResource.useFetch();
+function useBrukersYtelser(periode: FraTilDato): Returns {
+    const fnr = useFodselsnummer();
+    const foreldrepengerResponse = useForeldrepenger(fnr, periode.fra, periode.til);
+    const pleiepengerResponse = usePleiepenger(fnr, periode.fra, periode.til);
+    const sykepengerResponse = useSykepenger(fnr, periode.fra, periode.til);
+    const tiltakspengerResponse = useTiltakspenger(fnr, periode.fra, periode.til);
 
     return useMemo(() => {
         const pending =

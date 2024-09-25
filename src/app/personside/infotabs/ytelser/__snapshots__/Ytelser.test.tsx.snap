@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Om Ytelser matcher snapshot 1`] = `
-.c13 {
+.c12 {
   position: relative;
   padding: .5rem;
   display: flex;
@@ -10,19 +10,19 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   background-color: #cce1f3;
 }
 
-.c13:hover {
+.c12:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
 }
 
-.c13:hover >button:last-child {
+.c12:hover >button:last-child {
   padding-left: 0.5rem;
 }
 
-.c13 >*:first-child {
+.c12 >*:first-child {
   flex-grow: 1;
 }
 
-.c15 {
+.c14 {
   position: relative;
   padding: .5rem;
   display: flex;
@@ -30,19 +30,19 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   cursor: pointer;
 }
 
-.c15:hover {
+.c14:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
 }
 
-.c15:hover >button:last-child {
+.c14:hover >button:last-child {
   padding-left: 0.5rem;
 }
 
-.c15 >*:first-child {
+.c14 >*:first-child {
   flex-grow: 1;
 }
 
-.c14 {
+.c13 {
   border: none;
   padding: 0;
   height: 2rem;
@@ -53,16 +53,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   transition: padding-left 0.3s;
 }
 
-.c14 .nav-frontend-chevron {
+.c13 .nav-frontend-chevron {
   width: 1.5625rem;
 }
 
-.c14:focus {
+.c13:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c14:focus::after {
+.c13:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -73,25 +73,25 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   pointer-events: none;
 }
 
-.c10 {
+.c9 {
   padding: 0rem;
 }
 
-.c12 >*:not(:first-child) {
+.c11 >*:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
-.c11 {
+.c10 {
   padding: 0.9375rem;
   border-bottom: solid 0.0625rem #78706a;
   display: flex;
 }
 
-.c11 .hjelpetekst {
+.c10 .hjelpetekst {
   margin-left: 0.5rem;
 }
 
-.c11 .popover {
+.c10 .popover {
   max-width: 30rem;
 }
 
@@ -101,48 +101,48 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   padding: .5rem;
 }
 
-.c20 {
+.c19 {
   display: flex;
   flex-wrap: wrap;
 }
 
-.c20 dt {
+.c19 dt {
   color: #645f5a;
 }
 
-.c20 >div {
+.c19 >div {
   margin: 0.5625rem 0;
   padding-right: 0.7rem;
   width: 13rem;
   overflow-wrap: break-word;
 }
 
-.c19 {
+.c18 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
   box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
   padding: 1.25rem;
 }
 
-.c19 >h3 {
+.c18 >h3 {
   margin-bottom: 1rem;
 }
 
-.c17 {
+.c16 {
   padding: .5rem;
 }
 
-.c18 {
+.c17 {
   display: flex;
   flex-wrap: wrap;
 }
 
-.c18 >* {
+.c17 >* {
   flex-basis: 40%;
   flex-grow: 1;
 }
 
-.c16 >* {
+.c15 >* {
   margin-bottom: 0.5rem;
 }
 
@@ -187,6 +187,21 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   margin-bottom: 0;
 }
 
+.c1 {
+  overflow: hidden;
+}
+
+.c0 {
+  flex-grow: 1;
+  flex-direction: column;
+  display: flex;
+}
+
+.c3 {
+  padding: 0.9375rem;
+  margin-bottom: 0.5rem;
+}
+
 .c4 {
   display: flex;
   flex-direction: column;
@@ -203,25 +218,6 @@ exports[`Om Ytelser matcher snapshot 1`] = `
 
 .c4 .skjemaelement--horisontal {
   margin-bottom: 0.4rem;
-}
-
-.c9 {
-  margin-top: 0.5rem;
-}
-
-.c3 {
-  padding: 0.9375rem;
-  margin-bottom: 0.5rem;
-}
-
-.c1 {
-  overflow: hidden;
-}
-
-.c0 {
-  flex-grow: 1;
-  flex-direction: column;
-  display: flex;
 }
 
 @media (min-width: 45rem) {
@@ -409,7 +405,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                         onFocus={[Function]}
                         size={11}
                         type="small"
-                        value="01.01.1969"
+                        value="01.01.1968"
                       />
                       <button
                         className="navds-date__field-button"
@@ -586,7 +582,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                             className="navds-date__caption-label navds-label"
                             id="react-day-picker-1"
                           >
-                            januar 1969
+                            januar 1968
                           </span>
                           <button
                             className="navds-date__caption-button navds-button navds-button--tertiary navds-button--medium navds-button--icon-only"
@@ -698,65 +694,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-hidden={true}
-                                  aria-label="mandag 30"
-                                  aria-pressed={false}
-                                  className="rdp-button_reset rdp-button rdp-day rdp-day_outside"
-                                  name="day"
-                                  onBlur={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  onKeyUp={[Function]}
-                                  onMouseEnter={[Function]}
-                                  onMouseLeave={[Function]}
-                                  onPointerEnter={[Function]}
-                                  onPointerLeave={[Function]}
-                                  onTouchCancel={[Function]}
-                                  onTouchEnd={[Function]}
-                                  onTouchMove={[Function]}
-                                  onTouchStart={[Function]}
-                                  style={{}}
-                                  tabIndex={-1}
-                                  type="button"
-                                >
-                                  30
-                                </button>
-                              </td>
-                              <td
-                                className="rdp-cell"
-                              >
-                                <button
-                                  aria-hidden={true}
-                                  aria-label="tirsdag 31"
-                                  aria-pressed={false}
-                                  className="rdp-button_reset rdp-button rdp-day rdp-day_outside"
-                                  name="day"
-                                  onBlur={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  onKeyUp={[Function]}
-                                  onMouseEnter={[Function]}
-                                  onMouseLeave={[Function]}
-                                  onPointerEnter={[Function]}
-                                  onPointerLeave={[Function]}
-                                  onTouchCancel={[Function]}
-                                  onTouchEnd={[Function]}
-                                  onTouchMove={[Function]}
-                                  onTouchStart={[Function]}
-                                  style={{}}
-                                  tabIndex={-1}
-                                  type="button"
-                                >
-                                  31
-                                </button>
-                              </td>
-                              <td
-                                className="rdp-cell"
-                              >
-                                <button
-                                  aria-label="onsdag 1"
+                                  aria-label="mandag 1"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_start"
                                   name="day"
@@ -784,7 +722,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="torsdag 2"
+                                  aria-label="tirsdag 2"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -812,7 +750,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="fredag 3"
+                                  aria-label="onsdag 3"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -840,7 +778,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="lørdag 4"
+                                  aria-label="torsdag 4"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -868,7 +806,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="søndag 5"
+                                  aria-label="fredag 5"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -892,15 +830,11 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                   5
                                 </button>
                               </td>
-                            </tr>
-                            <tr
-                              className="rdp-row"
-                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="mandag 6"
+                                  aria-label="lørdag 6"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -928,7 +862,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="tirsdag 7"
+                                  aria-label="søndag 7"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -952,11 +886,15 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                   7
                                 </button>
                               </td>
+                            </tr>
+                            <tr
+                              className="rdp-row"
+                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="onsdag 8"
+                                  aria-label="mandag 8"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -984,7 +922,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="torsdag 9"
+                                  aria-label="tirsdag 9"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -1012,7 +950,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="fredag 10"
+                                  aria-label="onsdag 10"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -1040,7 +978,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="lørdag 11"
+                                  aria-label="torsdag 11"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -1068,7 +1006,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="søndag 12"
+                                  aria-label="fredag 12"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -1092,15 +1030,11 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                   12
                                 </button>
                               </td>
-                            </tr>
-                            <tr
-                              className="rdp-row"
-                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="mandag 13"
+                                  aria-label="lørdag 13"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -1128,7 +1062,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="tirsdag 14"
+                                  aria-label="søndag 14"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -1152,11 +1086,15 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                   14
                                 </button>
                               </td>
+                            </tr>
+                            <tr
+                              className="rdp-row"
+                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="onsdag 15"
+                                  aria-label="mandag 15"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -1184,7 +1122,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="torsdag 16"
+                                  aria-label="tirsdag 16"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -1212,7 +1150,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="fredag 17"
+                                  aria-label="onsdag 17"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -1240,7 +1178,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="lørdag 18"
+                                  aria-label="torsdag 18"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -1268,7 +1206,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="søndag 19"
+                                  aria-label="fredag 19"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -1292,15 +1230,11 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                   19
                                 </button>
                               </td>
-                            </tr>
-                            <tr
-                              className="rdp-row"
-                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="mandag 20"
+                                  aria-label="lørdag 20"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -1328,7 +1262,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="tirsdag 21"
+                                  aria-label="søndag 21"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -1352,11 +1286,15 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                   21
                                 </button>
                               </td>
+                            </tr>
+                            <tr
+                              className="rdp-row"
+                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="onsdag 22"
+                                  aria-label="mandag 22"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -1384,7 +1322,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="torsdag 23"
+                                  aria-label="tirsdag 23"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -1412,7 +1350,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="fredag 24"
+                                  aria-label="onsdag 24"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -1440,7 +1378,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="lørdag 25"
+                                  aria-label="torsdag 25"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -1468,7 +1406,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="søndag 26"
+                                  aria-label="fredag 26"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -1492,15 +1430,11 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                   26
                                 </button>
                               </td>
-                            </tr>
-                            <tr
-                              className="rdp-row"
-                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="mandag 27"
+                                  aria-label="lørdag 27"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -1528,7 +1462,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="tirsdag 28"
+                                  aria-label="søndag 28"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -1552,11 +1486,15 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                   28
                                 </button>
                               </td>
+                            </tr>
+                            <tr
+                              className="rdp-row"
+                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="onsdag 29"
+                                  aria-label="mandag 29"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -1584,7 +1522,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="torsdag 30"
+                                  aria-label="tirsdag 30"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -1612,7 +1550,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="fredag 31"
+                                  aria-label="onsdag 31"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle"
                                   name="day"
@@ -1641,7 +1579,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                               >
                                 <button
                                   aria-hidden={true}
-                                  aria-label="lørdag 1"
+                                  aria-label="torsdag 1"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle rdp-day_outside"
                                   name="day"
@@ -1670,7 +1608,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                               >
                                 <button
                                   aria-hidden={true}
-                                  aria-label="søndag 2"
+                                  aria-label="fredag 2"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle rdp-day_outside"
                                   name="day"
@@ -1694,16 +1632,12 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                   2
                                 </button>
                               </td>
-                            </tr>
-                            <tr
-                              className="rdp-row"
-                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
                                   aria-hidden={true}
-                                  aria-label="mandag 3"
+                                  aria-label="lørdag 3"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle rdp-day_outside"
                                   name="day"
@@ -1732,7 +1666,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                               >
                                 <button
                                   aria-hidden={true}
-                                  aria-label="tirsdag 4"
+                                  aria-label="søndag 4"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle rdp-day_outside"
                                   name="day"
@@ -1756,12 +1690,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                   4
                                 </button>
                               </td>
+                            </tr>
+                            <tr
+                              className="rdp-row"
+                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
                                   aria-hidden={true}
-                                  aria-label="onsdag 5"
+                                  aria-label="mandag 5"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle rdp-day_outside"
                                   name="day"
@@ -1790,7 +1728,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                               >
                                 <button
                                   aria-hidden={true}
-                                  aria-label="torsdag 6"
+                                  aria-label="tirsdag 6"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle rdp-day_outside"
                                   name="day"
@@ -1819,7 +1757,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                               >
                                 <button
                                   aria-hidden={true}
-                                  aria-label="fredag 7"
+                                  aria-label="onsdag 7"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle rdp-day_outside"
                                   name="day"
@@ -1848,7 +1786,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                               >
                                 <button
                                   aria-hidden={true}
-                                  aria-label="lørdag 8"
+                                  aria-label="torsdag 8"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle rdp-day_outside"
                                   name="day"
@@ -1877,7 +1815,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                               >
                                 <button
                                   aria-hidden={true}
-                                  aria-label="søndag 9"
+                                  aria-label="fredag 9"
                                   aria-pressed={true}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle rdp-day_outside"
                                   name="day"
@@ -1901,6 +1839,64 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                   9
                                 </button>
                               </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-hidden={true}
+                                  aria-label="lørdag 10"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle rdp-day_outside"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  10
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-hidden={true}
+                                  aria-label="søndag 11"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_range_middle rdp-day_outside"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  11
+                                </button>
+                              </td>
                             </tr>
                           </tbody>
                         </table>
@@ -1911,26 +1907,14 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               </div>
             </div>
           </form>
-          <div
-            className="c9"
-          >
-            <button
-              className="knapp knapp--standard"
-              disabled={false}
-              onClick={[Function]}
-              type="button"
-            >
-              Hent ytelser
-            </button>
-          </div>
         </form>
       </div>
       <section>
         <div
-          className="panel c10"
+          className="panel c9"
         >
           <div
-            className="c11"
+            className="c10"
           >
             <h2
               className="typo-undertittel"
@@ -2012,11 +1996,11 @@ exports[`Om Ytelser matcher snapshot 1`] = `
             aria-label="Velg ytelser"
           >
             <ol
-              className="c12"
+              className="c11"
             >
               <li>
                 <div
-                  className="c13"
+                  className="c12"
                   onClick={[Function]}
                   valgt={true}
                 >
@@ -2040,7 +2024,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   <button
                     aria-label="Vis tiltakspenger"
                     aria-selected={true}
-                    className="c14"
+                    className="c13"
                   >
                     <span
                       className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -2050,7 +2034,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               </li>
               <li>
                 <div
-                  className="c15"
+                  className="c14"
                   onClick={[Function]}
                   valgt={false}
                 >
@@ -2074,7 +2058,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   <button
                     aria-label="Vis sykepenger"
                     aria-selected={false}
-                    className="c14"
+                    className="c13"
                   >
                     <span
                       className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -2084,7 +2068,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               </li>
               <li>
                 <div
-                  className="c15"
+                  className="c14"
                   onClick={[Function]}
                   valgt={false}
                 >
@@ -2118,7 +2102,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   <button
                     aria-label="Vis pleiepenger"
                     aria-selected={false}
-                    className="c14"
+                    className="c13"
                   >
                     <span
                       className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -2128,7 +2112,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               </li>
               <li>
                 <div
-                  className="c15"
+                  className="c14"
                   onClick={[Function]}
                   valgt={false}
                 >
@@ -2152,7 +2136,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   <button
                     aria-label="Vis foreldrepenger"
                     aria-selected={false}
-                    className="c14"
+                    className="c13"
                   >
                     <span
                       className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -2170,7 +2154,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
       onScroll={[Function]}
     >
       <section
-        className="c16"
+        className="c15"
       >
         <h2
           className="sr-only"
@@ -2182,7 +2166,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
         <article>
           <div
             aria-labelledby="Helt tilfeldig ID"
-            className="panel c17"
+            className="panel c16"
           >
             <h2
               className="sr-only"
@@ -2191,11 +2175,11 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               Tiltakspenger
             </h2>
             <div
-              className="c18"
+              className="c17"
             >
               <article
                 aria-labelledby="Helt tilfeldig ID"
-                className="c19"
+                className="c18"
               >
                 <h3
                   className="typo-ingress"
@@ -2204,7 +2188,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   Om tiltakspenger
                 </h3>
                 <dl
-                  className="c20"
+                  className="c19"
                 >
                   <div>
                     <dt
@@ -2258,7 +2242,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               </article>
               <article
                 aria-labelledby="Helt tilfeldig ID"
-                className="c19"
+                className="c18"
               >
                 <h3
                   className="typo-ingress"
@@ -2267,7 +2251,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   Barnetillegg
                 </h3>
                 <dl
-                  className="c20"
+                  className="c19"
                 >
                   <div>
                     <dt
