@@ -25,9 +25,11 @@
     <script env-vars prefix="PUBLIC_">
     </script>
 
-    <script unleash toggles="modiapersonoversikt.enable-faro">
+    <script unleash
+        toggles="modiapersonoversikt.enable-faro,modiapersonoversikt.bruk-contextholder-next">
       const applicationFeatureToggles = {
-          enableFaro: unleash && unleash["modiapersonoversikt_enable-faro"]
+          enableFaro: unleash && unleash["modiapersonoversikt_enable-faro"],
+          contextholderNext: unleash && unleash["modiapersonoversikt_bruk_contextholder_next"],
       };
       window.applicationFeatureToggles = applicationFeatureToggles;
     </script>
