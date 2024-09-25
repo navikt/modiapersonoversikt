@@ -81,6 +81,7 @@ function lagConfigV3(
     const urlFormat = getDomainFromHost();
 
     const brukNyContext = getWindowFeature('contextholderNext');
+    const contextProxy = brukNyContext ? 'modiacontextholder-next' : 'modiacontextholder';
 
     return {
         appName: 'Modia personoversikt',
@@ -106,10 +107,7 @@ function lagConfigV3(
         },
         hotkeys: getHotkeys(),
         enableHotkeys: true,
-        proxy: import.meta.env.PROD
-            ? `https://${window.location.host}${import.meta.env.BASE_URL}proxy/modiacontextholder`
-            : ((import.meta.env.VITE_CONTEXTHOLDER_URL as string) ??
-              `${import.meta.env.BASE_URL}proxy/modiacontextholder`),
+        proxy: (import.meta.env.VITE_CONTEXTHOLDER_URL as string) ?? `${import.meta.env.BASE_URL}proxy/${contextProxy}`,
         environment,
         urlFormat: import.meta.env.PROD ? urlFormat : 'LOCAL',
         websocketUrl: brukNyContext ? 'wss://modiacontextholder-next.intern.dev.nav.no/ws/' : undefined,
