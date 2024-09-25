@@ -72,10 +72,20 @@ function EgendefinertDatoInputs(props: EgendefinertDatoInputsProps) {
         return periodeValidering.find((validering) => validering.erUgyldig(fraDato, tilDato))?.feilmelding;
     };
 
+    const fromDate = dayjs().subtract(50, 'year').startOf('year').toDate();
+    const toDate = dayjs().toDate();
+
     return (
         <>
             <DatePickerWrapper>
-                <DatePicker {...datepickerProps} strategy={'fixed'} locale={'nb'}>
+                <DatePicker
+                    {...datepickerProps}
+                    strategy={'fixed'}
+                    locale={'nb'}
+                    dropdownCaption={true}
+                    fromDate={fromDate}
+                    toDate={toDate}
+                >
                     <HStack wrap gap="4" justify="center">
                         <DatePicker.Input {...fromInputProps} locale={'nb'} type={'small'} label="Fra" />
                         <DatePicker.Input {...toInputProps} locale={'nb'} type={'small'} label="Til" />
