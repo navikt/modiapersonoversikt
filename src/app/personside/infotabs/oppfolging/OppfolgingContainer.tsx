@@ -1,6 +1,5 @@
 import * as React from 'react';
 import oppfolgingResource from '../../../../rest/resources/oppfolgingResource';
-import AlertStripe from 'nav-frontend-alertstriper';
 import { useAppState } from '../../../../utils/customHooks';
 import OppfolgingFilter from './OppfolgingFilter';
 import VisOppfolgingDetaljer from './OppfolgingDetaljerKomponent';
@@ -31,16 +30,12 @@ function OppfolgingContainer() {
     const fraTilDato = periode.egendefinertPeriode;
     const oppfolgingResponse = oppfolgingResource.useFetch(fraTilDato.fra, fraTilDato.til);
     const oppfolging = oppfolgingResponse.data as DetaljertOppfolging;
-    const isError = oppfolgingResponse.isError;
 
     return (
         <OppfolgingStyle>
             <DetaljertInfoWrapper>
                 <OppfolgingFilter />
-                {isError && (
-                    <AlertStripe type="advarsel">Kunne ikke laste inn informasjon om brukers oppfølging</AlertStripe>
-                )}
-                <VisOppfolgingDetaljer detaljertOppfolging={oppfolging ?? {}} />
+                <VisOppfolgingDetaljer detaljertOppfolging={oppfolging ?? {}} isError={oppfolgingResponse.isError} />
             </DetaljertInfoWrapper>
             <SykefraversoppfolgingEkspanderbartPanel syfoPunkter={oppfolging?.sykefraværsoppfølging ?? []} />
             <OppfolgingYtelserEkspanderbartPanel ytelser={oppfolging?.ytelser ?? []} />

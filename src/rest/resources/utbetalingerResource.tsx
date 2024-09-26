@@ -16,7 +16,7 @@ function urlV2(fom: string, tom: string): string {
 
 const defaults: DefaultConfig = {
     ifPending: <CenteredLazySpinner />,
-    ifError: <AlertStripe type="advarsel">Kunne ikke laste inn informasjon om brukers oppfølging</AlertStripe>
+    ifError: <AlertStripe type="advarsel">Kunne ikke laste inn informasjon om brukers utbetalinger</AlertStripe>
 };
 
 const resource = {
