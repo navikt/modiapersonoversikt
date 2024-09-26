@@ -1,20 +1,20 @@
 import dayjs from 'dayjs';
-
-export interface VisOppfolgingFraTilDato {
-    fra: string;
-    til: string;
-}
+import { PeriodeOptions, PeriodeValg } from '../utbetalinger/types';
+import { ISO_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
 
 export interface OppfolgingState {
-    valgtPeriode: VisOppfolgingFraTilDato;
+    periode: PeriodeOptions;
     sykefraverEkspandert: boolean;
     ytelserEkspandert: boolean;
 }
 
 export const initialState: OppfolgingState = {
-    valgtPeriode: {
-        fra: dayjs().subtract(2, 'month').format('YYYY-MM-DD'),
-        til: dayjs().add(1, 'month').format('YYYY-MM-DD')
+    periode: {
+        radioValg: PeriodeValg.EGENDEFINERT,
+        egendefinertPeriode: {
+            fra: dayjs().subtract(2, 'year').format(ISO_DATE_STRING_FORMAT),
+            til: dayjs().format(ISO_DATE_STRING_FORMAT)
+        }
     },
     sykefraverEkspandert: false,
     ytelserEkspandert: false
@@ -28,7 +28,7 @@ export enum OppfolgingActionTypes {
 
 export interface SetValgtPeriode {
     type: OppfolgingActionTypes.SetValgtPeriode;
-    periodeEndring: Partial<VisOppfolgingFraTilDato>;
+    periodeEndring: PeriodeOptions;
 }
 
 export interface SetSykefraverEkspandertAction {

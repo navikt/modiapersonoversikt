@@ -72,7 +72,7 @@ function EgendefinertDatoInputs(props: EgendefinertDatoInputsProps) {
         return periodeValidering.find((validering) => validering.erUgyldig(fraDato, tilDato))?.feilmelding;
     };
 
-    const fromDate = dayjs().subtract(50, 'year').startOf('year').toDate();
+    const fromDate = dayjs().subtract(10, 'year').startOf('year').toDate();
     const toDate = dayjs().toDate();
 
     return (

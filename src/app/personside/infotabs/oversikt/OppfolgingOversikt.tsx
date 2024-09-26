@@ -15,7 +15,7 @@ interface Props {
 }
 
 function OppfolgingOversikt() {
-    return oppfolgingResource.useRenderer({
+    return oppfolgingResource.useOversiktRenderer({
         ifPending: <CenteredLazySpinner padding={theme.margin.layout} />,
         ifData: (data: DetaljertOppfolging) => <OppfolgingPanel detaljertOppfolging={data} />
     });

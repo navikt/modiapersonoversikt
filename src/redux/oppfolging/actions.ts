@@ -2,11 +2,11 @@ import {
     OppfolgingActionTypes,
     SetSykefraverEkspandertAction,
     SetValgtPeriode,
-    SetYtelserEkspandertAction,
-    VisOppfolgingFraTilDato
+    SetYtelserEkspandertAction
 } from './types';
+import { PeriodeOptions } from '../utbetalinger/types';
 
-export function settValgtPeriode(change: Partial<VisOppfolgingFraTilDato>): SetValgtPeriode {
+export function settValgtPeriode(change: PeriodeOptions): SetValgtPeriode {
     return {
         type: OppfolgingActionTypes.SetValgtPeriode,
         periodeEndring: change
