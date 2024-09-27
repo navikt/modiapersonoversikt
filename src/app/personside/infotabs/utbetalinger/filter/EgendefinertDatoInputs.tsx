@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { FraTilDato } from '../../../../../redux/utbetalinger/types';
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import dayjs, { Dayjs } from 'dayjs';
-import { DatePicker, HStack, useRangeDatepicker } from '@navikt/ds-react';
+import { DatePicker, useDatepicker } from '@navikt/ds-react';
 import styled from 'styled-components';
 import { ISO_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
 
@@ -13,14 +13,9 @@ interface EgendefinertDatoInputsProps {
 }
 
 const DatePickerWrapper = styled.div`
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    display: flex;
+    gap: 20px;
 `;
-
-type DateRange = {
-    from: Date;
-    to: Date;
-};
 
 function EgendefinertDatoInputs(props: EgendefinertDatoInputsProps) {
     const periodeValidering = [
@@ -38,35 +33,44 @@ function EgendefinertDatoInputs(props: EgendefinertDatoInputsProps) {
         }
     ];
 
-    const fra = props.periode?.fra ?? '';
-    const til = props.periode?.til ?? '';
+    const [fraDato, setFraDato] = useState(props.periode?.fra);
+    const [tilDato, setTilDato] = useState(props.periode?.til);
     const [periodeFeilmelding, setPeriodeFeilmelding] = useState<string | undefined>();
 
-    const onRangeDatoChange = (val?: DateRange) => {
-        const fraDato = val?.from ? dayjs(val.from).format(ISO_DATE_STRING_FORMAT) : fra;
-        const tilDato = val?.to ? dayjs(val.to).format(ISO_DATE_STRING_FORMAT) : til;
-        const newPeriode: FraTilDato = {
-            fra: fraDato,
-            til: tilDato
-        };
+    const onFraDatoChange = (val: Date) => {
+        const value = dayjs(val).format(ISO_DATE_STRING_FORMAT);
+        setFraDato(dayjs(val).format(ISO_DATE_STRING_FORMAT));
+        onRangeDatoChange(value, tilDato);
+    };
 
-        const error = getDatoFeilmelding(fraDato, tilDato);
-        if (error) {
-            setPeriodeFeilmelding(error);
-        } else {
+    const onTilDatoChange = (val: Date) => {
+        const value = dayjs(val).format(ISO_DATE_STRING_FORMAT);
+        setTilDato(dayjs(val).format(ISO_DATE_STRING_FORMAT));
+        onRangeDatoChange(fraDato, value);
+    };
+
+    const onRangeDatoChange = (fra?: string, til?: string) => {
+        const error = getDatoFeilmelding(fra, til);
+        if (!error && fra && til) {
             setPeriodeFeilmelding(undefined);
+            const newPeriode: FraTilDato = { fra, til };
             props.updateFraTilDato(newPeriode);
+        } else {
+            setPeriodeFeilmelding(error);
         }
     };
 
-    const defaultSelected = { from: new Date(fra), to: new Date(til) };
-
-    const { datepickerProps, toInputProps, fromInputProps } = useRangeDatepicker({
-        onRangeChange: onRangeDatoChange,
-        defaultSelected: defaultSelected
+    const { datepickerProps: fromDatepickerProps, inputProps: fromInputProps } = useDatepicker({
+        defaultSelected: new Date(fraDato ?? ''),
+        onDateChange: onFraDatoChange
     });
 
-    const getDatoFeilmelding = (fra: string, til: string) => {
+    const { datepickerProps: toDatepickerProps, inputProps: toInputProps } = useDatepicker({
+        defaultSelected: new Date(tilDato ?? ''),
+        onDateChange: onTilDatoChange
+    });
+
+    const getDatoFeilmelding = (fra?: string, til?: string) => {
         const fraDato = dayjs(fra);
         const tilDato = dayjs(til);
         return periodeValidering.find((validering) => validering.erUgyldig(fraDato, tilDato))?.feilmelding;
@@ -75,21 +79,31 @@ function EgendefinertDatoInputs(props: EgendefinertDatoInputsProps) {
     const fromDate = dayjs().subtract(10, 'year').startOf('year').toDate();
     const toDate = dayjs().toDate();
 
+    const maxFraDato = tilDato ? dayjs(tilDato).subtract(1, 'day').toDate() : toDate;
+    const minTilDato = fraDato ? dayjs(fraDato).add(1, 'day').toDate() : fromDate;
+
     return (
         <>
             <DatePickerWrapper>
                 <DatePicker
-                    {...datepickerProps}
+                    {...fromDatepickerProps}
                     strategy={'fixed'}
                     locale={'nb'}
                     dropdownCaption={true}
                     fromDate={fromDate}
+                    toDate={maxFraDato}
+                >
+                    <DatePicker.Input {...fromInputProps} locale={'nb'} size={'small'} label="Fra" />
+                </DatePicker>
+                <DatePicker
+                    {...toDatepickerProps}
+                    strategy={'fixed'}
+                    locale={'nb'}
+                    dropdownCaption={true}
+                    fromDate={minTilDato}
                     toDate={toDate}
                 >
-                    <HStack wrap gap="4" justify="center">
-                        <DatePicker.Input {...fromInputProps} locale={'nb'} type={'small'} label="Fra" />
-                        <DatePicker.Input {...toInputProps} locale={'nb'} type={'small'} label="Til" />
-                    </HStack>
+                    <DatePicker.Input {...toInputProps} locale={'nb'} size={'small'} label="Til" />
                 </DatePicker>
             </DatePickerWrapper>
             {periodeFeilmelding && <SkjemaelementFeilmelding>{periodeFeilmelding}</SkjemaelementFeilmelding>}
