@@ -5,10 +5,7 @@ export function oppfolgingReducer(state: OppfolgingState = initialState, action:
         case OppfolgingActionTypes.SetValgtPeriode:
             return {
                 ...state,
-                valgtPeriode: {
-                    ...state.valgtPeriode,
-                    ...action.periodeEndring
-                }
+                periode: action.periodeEndring
             };
         case OppfolgingActionTypes.SetSykefraverEkspandert:
             return {

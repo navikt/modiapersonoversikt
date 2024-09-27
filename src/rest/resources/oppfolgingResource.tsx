@@ -4,39 +4,31 @@ import { CenteredLazySpinner } from '../../components/LazySpinner';
 import AlertStripe from 'nav-frontend-alertstriper';
 import * as React from 'react';
 import { apiBaseUri } from '../../api/config';
-import { VisOppfolgingFraTilDato } from '../../redux/oppfolging/types';
-import { useAppState } from '../../utils/customHooks';
+import { useFodselsnummer } from '../../utils/customHooks';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { FetchError, post } from '../../api/api';
-
-function queryKey(fnr: string): [string, string] {
-    return ['oppfolging', fnr];
-}
-
-function urlUtenFnrIPath(periode: VisOppfolgingFraTilDato): string {
-    const queryParams = `?startDato=${periode.fra}&sluttDato=${periode.til}`;
-    return `${apiBaseUri}/v2/oppfolging/ytelserogkontrakter${queryParams}`;
-}
+import { getUtbetalingerForSiste30DagerDatoer } from '../../app/personside/infotabs/utbetalinger/utils/utbetalinger-utils';
+import dayjs from 'dayjs';
 
 const defaults: DefaultConfig = {
     ifPending: <CenteredLazySpinner />,
     ifError: <AlertStripe type="advarsel">Kunne ikke laste inn informasjon om brukers oppfølging</AlertStripe>
 };
 
-function useReduxData(): [string, VisOppfolgingFraTilDato] {
-    return useAppState((appState) => [appState.gjeldendeBruker.fødselsnummer, appState.oppfolging.valgtPeriode]);
-}
-
 const resource = {
-    useFetch(): UseQueryResult<DetaljertOppfolging, FetchError> {
-        const [fnr, periode] = useReduxData();
+    useFetch(fom: string, tom: string): UseQueryResult<DetaljertOppfolging, FetchError> {
+        const fnr = useFodselsnummer();
+        const queryParams = `?startDato=${fom}&sluttDato=${tom}`;
         return useQuery({
-            queryKey: queryKey(fnr),
-            queryFn: () => post(urlUtenFnrIPath(periode), { fnr })
+            queryKey: ['oppfolging', fnr, fom, tom],
+            queryFn: () => post(`${apiBaseUri}/v2/oppfolging/ytelserogkontrakter${queryParams}`, { fnr })
         });
     },
-    useRenderer(renderer: RendererOrConfig<DetaljertOppfolging>) {
-        const response = this.useFetch();
+    useOversiktRenderer(renderer: RendererOrConfig<DetaljertOppfolging>) {
+        const periode = getUtbetalingerForSiste30DagerDatoer();
+        const fom = dayjs(periode.fra).format('YYYY-MM-DD');
+        const tom = dayjs(periode.til).format('YYYY-MM-DD');
+        const response = this.useFetch(fom, tom);
         return useRest(response, applyDefaults(defaults, renderer));
     }
 };

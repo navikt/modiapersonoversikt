@@ -9,7 +9,7 @@ import { useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
 import Panel from 'nav-frontend-paneler';
 import { getErUnderOppfolging, getOppfolgingEnhet, getVeileder } from './oppfolging-utils';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import AlertStripe, { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 const StyledPanel = styled(Panel)`
     padding: ${pxToRem(15)};
@@ -20,6 +20,7 @@ const StyledPanel = styled(Panel)`
 
 interface Props {
     detaljertOppfolging: DetaljertOppfolging;
+    isError?: boolean;
 }
 
 function VisOppfolgingDetaljer(props: Props) {
@@ -30,7 +31,9 @@ function VisOppfolgingDetaljer(props: Props) {
         detaljer.oppfolging === null ? (
             <AlertStripeAdvarsel>Kunne ikke hente ut all oppfølgings-informasjon</AlertStripeAdvarsel>
         ) : null;
-
+    const errorLoadingData = props.isError ? (
+        <AlertStripe type="advarsel">Kunne ikke laste inn informasjon om brukers oppfølging</AlertStripe>
+    ) : null;
     const descriptionListProps = {
         'Er under oppfølging': getErUnderOppfolging(detaljer.oppfolging),
         Oppfølgingsenhet: getOppfolgingEnhet(detaljer.oppfolging),
@@ -46,6 +49,7 @@ function VisOppfolgingDetaljer(props: Props) {
         <StyledPanel aria-labelledby={headerId.current}>
             <article>
                 <Undertittel id={headerId.current}>Arbeidsoppfølging</Undertittel>
+                {errorLoadingData}
                 {ikkeFullstendigData}
                 <DescriptionList entries={descriptionListProps} />
             </article>
