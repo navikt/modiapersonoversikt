@@ -28,9 +28,9 @@ spec:
   resources:
     requests:
       cpu: 100m
-      memory: 4096Mi
+      memory: 400Mi
     limits:
-      memory: 6144Mi
+      memory: 2048Mi
   ingresses:
     - https://modiapersonoversikt.intern.nav.no
     - https://modiaflate.intern.nav.no
@@ -39,7 +39,7 @@ spec:
     max: 6
     scalingStrategy:
       cpu:
-        thresholdPercentage: 50
+        thresholdPercentage: 100
   azure:
     application:
       enabled: true
