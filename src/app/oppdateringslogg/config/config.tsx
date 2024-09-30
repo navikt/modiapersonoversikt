@@ -601,7 +601,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             src: Samtalemaler
         },
         {
-            id: 35,
+            id: 36,
             tittel: 'Søk på telefonnummer',
             dato: new Date('2024-08-29 12:00'),
             aktiv: true,

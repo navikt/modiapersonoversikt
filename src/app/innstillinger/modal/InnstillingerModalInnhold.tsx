@@ -25,9 +25,15 @@ function InnstillingerModalInnhold() {
         return (
             <AlertStripeFeil>
                 <Normaltekst>
-                    Uthenting av dine innstillinger feilet (<b>{innstillinger.error}</b>).
+                    Uthenting av dine innstillinger feilet (<b>{innstillinger.error.message}</b>).
                 </Normaltekst>
-                <Undertekst>{innstillinger.error}</Undertekst>
+                <Undertekst>{innstillinger.error.message}</Undertekst>
+            </AlertStripeFeil>
+        );
+    } else if (!innstillinger.data) {
+        return (
+            <AlertStripeFeil>
+                <Normaltekst>Klarte ikke å hente innstillinger</Normaltekst>
             </AlertStripeFeil>
         );
     }
