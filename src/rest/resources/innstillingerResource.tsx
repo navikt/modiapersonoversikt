@@ -25,7 +25,7 @@ const resource = {
     useFetch(): UseQueryResult<SaksbehandlerInnstillinger, FetchError> {
         return useQuery({
             queryKey: queryKey,
-            ...fetchInnstillinger
+            queryFn: fetchInnstillinger
         });
     },
     useInnstilling<T extends string>(key: string, defaultValue: T): T {
