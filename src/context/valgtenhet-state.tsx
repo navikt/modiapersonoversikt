@@ -7,16 +7,14 @@ interface ValgtEnhetState {
 }
 
 const ValgtEnhetContext = React.createContext<ValgtEnhetState | undefined>(undefined);
-const valgtEnhetKey = 'modia-valgt-enhet';
 
 export function ValgtEnhetProvider(props: { children: React.ReactNode }) {
     const isMounted = useIsMounted();
-    const [enhetId, setEnhetId] = React.useState(window.localStorage.getItem(valgtEnhetKey) ?? '');
+    const [enhetId, setEnhetId] = React.useState('');
     const updateEnhet = React.useCallback(
         (enhetId: string) => {
             if (isMounted.current) {
                 setEnhetId(enhetId);
-                window.localStorage.setItem(valgtEnhetKey, enhetId);
             }
         },
         [setEnhetId, isMounted]
