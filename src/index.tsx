@@ -1,8 +1,8 @@
 import './extra-polyfills';
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
+import './index.css';
 import './index.less';
-import '@navikt/ds-css';
 import AppContainer from './app/AppContainer';
 import { setupTimeSpentMetrics } from './utils/timeSpentMetrics';
 
