@@ -97,7 +97,7 @@
         "nav-frontend-stegindikator-style": "^1.0.31",
         "nav-frontend-tabs": "^1.1.1",
         "nav-frontend-tabs-style": "^1.1.1",
-        "nav-frontend-tekstomrade": "^2.1.1",
+        "nav-frontend-tekstomrade": "^3.0.2",
         "nav-frontend-typografi": "^3.1.1",
         "nav-frontend-typografi-style": "^1.0.22",
         "react": "^18.3.1",
