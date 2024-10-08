@@ -15,15 +15,11 @@
 
     <slot not-environment="prod">
         <script src="%VITE_HODE_URL_V2%/dev/latest/dist/bundle.js"></script>
-        <style>
-            @import url("%VITE_HODE_URL_V2%/dev/latest/dist/index.css") layer(dekorator);
-        </style>
+        <link rel="stylesheet" href="%VITE_HODE_URL_V2%/dev/latest/dist/index.css" />
     </slot>
     <slot environment="prod">
         <script src="%VITE_HODE_URL_V2%/prod/latest/dist/bundle.js"></script>
-        <style>
-            @import url("%VITE_HODE_URL_V2%/prod/latest/dist/index.css") layer(dekorator);
-        </style>
+        <link rel="stylesheet" href="%VITE_HODE_URL_V2%/prod/latest/dist/index.css" />
     </slot>
 
     <script env-vars prefix="PUBLIC_">

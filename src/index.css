@@ -1,4 +1,2 @@
-@layer po-base, dekorator;
-
 @import 'reset' layer(po-base);
 @import '@navikt/ds-css';
