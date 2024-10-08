@@ -16,10 +16,6 @@
             "url": "http://modiacontextholder.personoversikt.svc.cluster.local",
             "scope": "api://dev-gcp.personoversikt.modiacontextholder/.default"
         },
-        "modiacontextholder-next": {
-            "url": "http://modiacontextholder-next.personoversikt.svc.cluster.local",
-            "scope": "api://dev-gcp.personoversikt.modiacontextholder-next/.default"
-        },
         "azure-api": {
             "url": "http://modiapersonoversikt-api.personoversikt.svc.cluster.local/modiapersonoversikt-api/rest",
             "scope": "api://dev-gcp.personoversikt.modiapersonoversikt-api/.default"
@@ -35,7 +31,6 @@
             "amplitude.nav.no",
             "wss://modiaeventdistribution.intern.dev.nav.no",
             "wss://modiacontextholder.intern.dev.nav.no",
-            "wss://modiacontextholder-next.intern.dev.nav.no",
             "wss://modiapersonoversikt-draft.intern.dev.nav.no",
             "https://telemetry.ekstern.dev.nav.no"
         ],
