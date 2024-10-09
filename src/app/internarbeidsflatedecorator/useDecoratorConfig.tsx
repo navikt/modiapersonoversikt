@@ -13,7 +13,6 @@ import { useGjeldendeBruker } from '../../redux/gjeldendeBruker/types';
 import { getDomainFromHost, getEnvFromHost } from '../../utils/environment';
 import { useRouteMatch } from 'react-router';
 import config from '../../config';
-import { getWindowFeature } from '../../utils/featureToggles';
 
 export function useDecoratorConfig() {
     const valgtEnhet = useValgtenhet();
@@ -80,8 +79,7 @@ function lagConfigV3(
 
     const urlFormat = getDomainFromHost();
 
-    const brukNyContext = getWindowFeature('contextholderNext');
-    const contextProxy = brukNyContext ? 'modiacontextholder-next' : 'modiacontextholder';
+    const contextProxy = 'modiacontextholder';
 
     return {
         appName: 'Modia personoversikt',
@@ -110,7 +108,6 @@ function lagConfigV3(
         proxy: (import.meta.env.VITE_CONTEXTHOLDER_URL as string) ?? `${import.meta.env.BASE_URL}proxy/${contextProxy}`,
         environment,
         urlFormat: import.meta.env.PROD ? urlFormat : 'LOCAL',
-        websocketUrl: brukNyContext ? 'wss://modiacontextholder-next.intern.dev.nav.no/ws/' : undefined,
         showEnheter: true,
         showSearchArea: true,
         fetchActiveUserOnMount: true,
