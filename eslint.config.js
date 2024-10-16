@@ -26,6 +26,7 @@ export default tseslint.config(
     {
         rules: {
             '@typescript-eslint/unbound-method': ['off'],
+            '@typescript-eslint/no-unused-expressions': ['warn'],
             '@typescript-eslint/no-floating-promises': ['off'],
             '@typescript-eslint/no-misused-promises': ['off'],
             '@typescript-eslint/no-explicit-any': ['warn']
