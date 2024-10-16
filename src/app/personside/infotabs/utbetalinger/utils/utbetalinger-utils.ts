@@ -141,7 +141,7 @@ export function summertBeløpStringFraUtbetalinger(
             }, 0);
 
         return formaterNOK(sum);
-    } catch (e: unknown) {
+    } catch {
         return 'Manglende data';
     }
 }
@@ -158,10 +158,11 @@ export function flatMapYtelser(utbetalinger?: Utbetaling[]): Ytelse[] {
             return [...acc, ...utbetaling.ytelser];
         }, []);
         return ytelser;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (e: any) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        console.error('Feil med data i utbetalinger, kunne ikke finne ytelser for alle utbetalinger', e.message);
+    } catch (e) {
+        console.error(
+            'Feil med data i utbetalinger, kunne ikke finne ytelser for alle utbetalinger',
+            (e as Error).message
+        );
         return [];
     }
 }
@@ -194,8 +195,3 @@ export function reduceUtbetlingerTilYtelser(utbetalinger: Utbetaling[]): Ytelse[
 }
 
 export const getTypeFromYtelse = (ytelse: Ytelse) => ytelse.type || 'Mangler beskrivelse';
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function fjernTommeUtbetalinger(utbetaling: Utbetaling) {
-    return utbetaling.ytelser && utbetaling.ytelser.length > 0;
-}

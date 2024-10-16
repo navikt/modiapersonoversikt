@@ -1,4 +1,3 @@
-/* eslint-disable no-extend-native */
 export {};
 declare global {
     interface Array<T> {

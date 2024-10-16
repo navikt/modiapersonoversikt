@@ -3,7 +3,7 @@ export interface ArrayGroup<T> {
     array: T[];
 }
 
-export interface GroupedArray<T> extends Array<ArrayGroup<T>> {}
+export type GroupedArray<T> = Array<ArrayGroup<T>>;
 
 export function groupArray<T>(array: T[], getGroupCategoryForElement: (element: T) => string): GroupedArray<T> {
     return array.reduce((acc: GroupedArray<T>, arrayEntry) => {

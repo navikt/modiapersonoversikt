@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-globals */
 import { LoginStateManager } from './login/LoginStateManager';
 import { IncommingMessageType, OutgoingMessageType } from './login/types';
 
