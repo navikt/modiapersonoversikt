@@ -20,7 +20,6 @@ const customPageMeta: () => Pick<Meta, 'page'> = () => {
     };
 };
 
-// eslint-disable-next-line
 export const initializeObservability = (history: ReactRouterHistory) => {
     if (!getWindowFeature('enableFaro') && !import.meta.env.VITE_GRAFANA_COLLECTOR && !import.meta.env.DEV) return;
 

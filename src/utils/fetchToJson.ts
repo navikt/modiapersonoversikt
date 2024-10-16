@@ -22,7 +22,7 @@ async function getErrorMessage(response: Response): Promise<string> {
             return content.message;
         }
         return response.statusText;
-    } catch (e: unknown) {
+    } catch {
         return response.statusText;
     }
 }

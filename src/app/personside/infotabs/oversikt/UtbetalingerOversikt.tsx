@@ -88,7 +88,6 @@ function YtelseNavn({ utbetaling }: { utbetaling: Utbetaling }) {
     if (unikeYtelser.size > 1) {
         ytelseNavn = 'Diverse ytelser';
     } else if (unikeYtelser.size === 1) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         ytelseNavn = unikeYtelser.values().next().value || '';
     }
 

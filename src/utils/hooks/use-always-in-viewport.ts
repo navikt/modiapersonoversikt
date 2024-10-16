@@ -17,5 +17,5 @@ export default function useAlwaysInViewport(selector: string, deps: DependencyLi
                 element.scrollIntoView({ block: 'start' });
             }
         }
-    }, [...deps, query]); // eslint-disable-line
+    }, [...deps, query]);
 }

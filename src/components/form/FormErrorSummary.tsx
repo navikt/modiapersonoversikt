@@ -10,7 +10,6 @@ function buildErrorFields<TFieldValues extends FieldValues>(errors: FieldErrors<
     const res: FeiloppsummeringFeil[] = [];
     for (const [skjemaelementId, feil] of Object.entries(errors)) {
         if (feil) {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
             res.push({ skjemaelementId, feilmelding: feil.message });
         }
     }

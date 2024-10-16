@@ -18,7 +18,7 @@ export function restoreScroll() {
         } else {
             window.scrollTo(0, 0);
         }
-    } catch (error) {
+    } catch {
         // Ignore any session storage error
     }
 }

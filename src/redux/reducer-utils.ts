@@ -2,8 +2,7 @@ import { Action, AnyAction, CombinedState, combineReducers, Reducer, ReducersMap
 
 type Keyof<S> = string & keyof S;
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-function entries<SHAPE extends {}>(value: SHAPE): Array<[Keyof<SHAPE>, SHAPE[Keyof<SHAPE>]]> {
+function entries<SHAPE extends object>(value: SHAPE): Array<[Keyof<SHAPE>, SHAPE[Keyof<SHAPE>]]> {
     return Object.entries(value) as Array<[Keyof<SHAPE>, SHAPE[Keyof<SHAPE>]]>;
 }
 
