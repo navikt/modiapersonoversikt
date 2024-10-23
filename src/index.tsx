@@ -23,12 +23,14 @@ if (import.meta.env.DEV) {
     };
 }
 
-if (import.meta.env.VITE_MOCK_ENABLED === 'true') {
-    const { worker } = await import('./mock/browser');
-    await worker.start();
-}
+(async () => {
+    if (import.meta.env.VITE_MOCK_ENABLED === 'true') {
+        const { worker } = await import('./mock/browser');
+        await worker.start();
+    }
 
-const container = document.getElementById('root');
-const root = createRoot(container!);
+    const container = document.getElementById('root');
+    const root = createRoot(container!);
 
-root.render(<AppContainer />);
+    root.render(<AppContainer />);
+})();
