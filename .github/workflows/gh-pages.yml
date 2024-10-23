@@ -32,7 +32,7 @@ jobs:
                   mv .env.development .env.production.local
             - name: Build
               env:
-                VITE_APP_BASE_PATH: '/modiapersonoversikt/'
+                VITE_APP_BASE_PATH: '/modiapersonoversikt'
               run: npm run build
             - name: Deploy
               if: success()
