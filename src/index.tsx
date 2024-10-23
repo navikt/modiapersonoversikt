@@ -28,7 +28,7 @@ if (import.meta.env.DEV) {
         const { worker } = await import('./mock/browser');
         await worker.start({
             serviceWorker: {
-                url: `${import.meta.env.VITE_APP_BASE_PATH} + '/mockServiceWorker.js'`
+                url: import.meta.env.VITE_APP_BASE_PATH + '/mockServiceWorker.js'
             }
         });
     }
