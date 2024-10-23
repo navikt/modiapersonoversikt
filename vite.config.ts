@@ -31,6 +31,7 @@ const modiaFrontendCompat = (): { transformIndexHtml: IndexHtmlTransform } & Plu
 };
 
 export default defineConfig({
+    base: process.env.VITE_APP_BASE_PATH || '/',
     server: {
         port: 3000,
         proxy: {
