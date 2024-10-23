@@ -37,7 +37,7 @@
         ]
     },
     "dependencies": {
-        "@amplitude/analytics-browser": "^2.11.7",
+        "@amplitude/analytics-browser": "^2.11.8",
         "@grafana/faro-react": "^1.11.0",
         "@grafana/faro-web-sdk": "^1.11.0",
         "@grafana/faro-web-tracing": "^1.11.0",
