@@ -26,7 +26,11 @@ if (import.meta.env.DEV) {
 (async () => {
     if (import.meta.env.VITE_MOCK_ENABLED === 'true') {
         const { worker } = await import('./mock/browser');
-        await worker.start();
+        await worker.start({
+            serviceWorker: {
+                url: `${import.meta.env.VITE_APP_BASE_PATH} + 'mockServiceWorker.js'`
+            }
+        });
     }
 
     const container = document.getElementById('root');
