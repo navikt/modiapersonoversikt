@@ -117,7 +117,7 @@
     "devDependencies": {
         "@eslint/js": "^9.12.0",
         "@navikt/aksel-stylelint": "^6.16.2",
-        "@testing-library/jest-dom": "^6.6.1",
+        "@testing-library/jest-dom": "^6.6.2",
         "@testing-library/react": "^16.0.1",
         "@testing-library/user-event": "^14.5.2",
         "@types/detect-browser": "^4.0.3",
