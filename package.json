@@ -138,7 +138,7 @@
         "eslint": "^9.13.0",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-prettier": "^5.2.1",
-        "@faker-js/faker": "^9.0.3",
+        "@faker-js/faker": "^9.1.0",
         "jest-styled-components": "^7.2.0",
         "jsdom": "^25.0.1",
         "less": "^4.2.0",
