@@ -57,7 +57,7 @@
         "downshift": "^5.0.5",
         "history": "^4.7.2",
         "lodash.debounce": "^4.0.8",
-        "md5": "^2.2.1",
+        "md5": "^2.3.0",
         "nav-datovelger": "^11.1.2",
         "nav-frontend-alertstriper": "^3.1.1",
         "nav-frontend-alertstriper-style": "^2.1.1",
@@ -115,7 +115,7 @@
         "vite-plugin-svgr": "^4.3.0"
     },
     "devDependencies": {
-        "@eslint/js": "^9.12.0",
+        "@eslint/js": "^9.14.0",
         "@navikt/aksel-stylelint": "^6.16.2",
         "@testing-library/jest-dom": "^6.6.3",
         "@testing-library/react": "^16.0.1",
