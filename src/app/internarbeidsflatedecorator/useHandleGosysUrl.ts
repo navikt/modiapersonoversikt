@@ -23,10 +23,16 @@ function useHandleGosysUrl() {
     useOnMount(() => {
         if (queryParams.sokFnrCode) {
             post<{
-                fnr: string;
-                code: string;
-            }>(`${contextHolderBaseUri}/fnr-code/retrieve`, { code: queryParams.sokFnrCode }).then((res) => {
-                handleLegacyUrls(res.fnr);
+                aktivBruker: string;
+                aktivEnhet: string;
+            }>(`${contextHolderBaseUri}/context`, {
+                eventType: 'NY_AKTIV_BRUKER',
+                verdiType: 'FNR_KODE',
+                verdi: queryParams.sokFnrCode
+            }).then((res) => {
+                const url = removeParamFromURL('sokFnrCode');
+                window.history.replaceState(null, '', url.toString());
+                handleLegacyUrls(res.aktivBruker);
             });
         } else {
             handleLegacyUrls(queryParams.sokFnr);
@@ -51,6 +57,12 @@ function useHandleGosysUrl() {
         } else if (fnr) {
             settGjeldendeBruker(fnr);
         }
+    };
+
+    const removeParamFromURL = (param: string) => {
+        const urlObj = new URL(window.location.href);
+        urlObj.searchParams.delete(param);
+        return urlObj.toString();
     };
 }
 
