@@ -541,7 +541,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <p
                     className="typo-normal"
                   >
-                    Utbetaling metode: 
+                    Utbetalingsmetode: 
                     Bankkontooverføring
                   </p>
                 </div>
@@ -597,7 +597,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <p
                     className="typo-normal"
                   >
-                    Utbetaling metode: 
+                    Utbetalingsmetode: 
                     Bankkontooverføring
                   </p>
                 </div>

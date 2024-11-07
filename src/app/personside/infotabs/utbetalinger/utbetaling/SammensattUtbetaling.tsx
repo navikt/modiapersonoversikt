@@ -103,7 +103,7 @@ function SammensattUtbetaling(props: Props) {
                     </FlexEnd>
                     <Normaltekst>Utbetaling til: {utbetaling.utbetaltTil}</Normaltekst>
                     <SpaceBetween>
-                        <Normaltekst>Utbetaling metode: {utbetaling.metode}</Normaltekst>
+                        <Normaltekst>Utbetalingsmetode: {utbetaling.metode}</Normaltekst>
                         <PrintKnapp onClick={visDetaljerAndPrint} />
                     </SpaceBetween>
                     <YtelsesListe aria-label={`Diverse ytelser`}>{ytelsesListe}</YtelsesListe>

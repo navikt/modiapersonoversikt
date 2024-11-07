@@ -130,7 +130,7 @@ function EnkelUtbetaling(props: Props) {
                             </SpaceBetween>
                             <Normaltekst>Utbetaling til: {props.utbetaling.utbetaltTil}</Normaltekst>
                             <SpaceBetween>
-                                <Normaltekst>Utbetaling metode: {props.utbetaling.metode}</Normaltekst>
+                                <Normaltekst>Utbetalingsmetode: {props.utbetaling.metode}</Normaltekst>
                                 <span ref={printerButtonRef}>
                                     <PrintKnapp onClick={handlePrint} />
                                 </span>

@@ -262,7 +262,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
       <p
         className="typo-normal"
       >
-        Utbetaling metode: 
+        Utbetalingsmetode: 
         Bankkontooverføring
       </p>
       <button
