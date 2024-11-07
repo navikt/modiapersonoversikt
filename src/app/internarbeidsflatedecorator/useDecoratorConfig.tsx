@@ -20,7 +20,7 @@ export function useDecoratorConfig() {
     const setEnhetId = valgtEnhet.setEnhetId;
     const settAktivBruker = useSettAktivBruker();
 
-    const queryParams = useQueryParams<{ sokFnr?: string }>();
+    const queryParams = useQueryParams<{ sokFnr?: string; sokFnrCode?: string }>();
 
     useHandleGosysUrl();
 
