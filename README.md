@@ -4,7 +4,7 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 Modiapersonoversikt er en intern arbeidsflate som gir veiledere og
-saksbehandlere oversikt over brukeres forhold til NAV.
+saksbehandlere oversikt over brukeres forhold til Nav.
 
 ## Komme i gang
 

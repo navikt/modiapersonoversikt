@@ -360,10 +360,10 @@ exports[`viser dialogpanel 1`] = `
                                 sbt + mellomrom: saksbehandlingstid
                               </li>
                               <li>
-                                nay + mellomrom: NAV Arbeid og ytelser
+                                nay + mellomrom: Nav Arbeid og ytelser
                               </li>
                               <li>
-                                nfp + mellomrom: NAV Familie- og pensjonsytelser
+                                nfp + mellomrom: Nav Familie- og pensjonsytelser
                               </li>
                               <li>
                                 hi, + mellomrom: Hi, bruker (engelsk)
