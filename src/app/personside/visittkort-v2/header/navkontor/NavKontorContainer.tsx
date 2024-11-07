@@ -17,11 +17,11 @@ const NavKontorSection = styled.section`
 function NavKontorContainer({ person }: Props) {
     let navKontorInfo: string;
     if (person.geografiskTilknytning === null) {
-        navKontorInfo = 'NAV-kontor / Ingen enhet';
+        navKontorInfo = 'Nav-kontor / Ingen enhet';
     } else if (person.navEnhet === null) {
         navKontorInfo = `Nav-kontor / ${mapUgyldigGT(person.geografiskTilknytning)}`;
     } else {
-        navKontorInfo = `NAV-kontor / ${person.navEnhet.id} ${person.navEnhet.navn}`;
+        navKontorInfo = `Nav-kontor / ${person.navEnhet.id} ${person.navEnhet.navn}`;
     }
 
     return (

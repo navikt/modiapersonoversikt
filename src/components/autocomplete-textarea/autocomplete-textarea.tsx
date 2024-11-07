@@ -71,12 +71,12 @@ function useRules(): Regler {
         {
             type: 'internal',
             regex: /^nay$/i,
-            replacement: () => 'NAV Arbeid og ytelser '
+            replacement: () => 'Nav Arbeid og ytelser '
         },
         {
             type: 'internal',
             regex: /^nfp$/i,
-            replacement: () => 'NAV Familie- og pensjonsytelser '
+            replacement: () => 'Nav Familie- og pensjonsytelser '
         },
         {
             type: 'internal',
@@ -180,8 +180,8 @@ function AutoTekstTips() {
                     <li>hei + mellomrom: Hei bruker</li>
                     <li>AAP + mellomrom: arbeidsavklaringspenger</li>
                     <li>sbt + mellomrom: saksbehandlingstid</li>
-                    <li>nay + mellomrom: NAV Arbeid og ytelser</li>
-                    <li>nfp + mellomrom: NAV Familie- og pensjonsytelser</li>
+                    <li>nay + mellomrom: Nav Arbeid og ytelser</li>
+                    <li>nfp + mellomrom: Nav Familie- og pensjonsytelser</li>
                     <li>hi, + mellomrom: Hi, bruker (engelsk)</li>
                     <li>mvh/aap + nn eller en + mellomrom: autofullfør på nynorsk eller engelsk</li>
                     <li>fp + mellomrom: foreldrepenger</li>

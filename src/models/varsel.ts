@@ -69,7 +69,7 @@ export enum Kanal {
 
 export enum Varseltype {
     'tilbakemelding.EPOST' = 'Epost = ',
-    'tilbakemelding.NAV.NO' = 'Sendt til Ditt NAV',
+    'tilbakemelding.NAV.NO' = 'Sendt til Ditt Nav',
     'tilbakemelding.SMS' = 'Tlf. = ',
     '1.GangVarselBrevPensj' = 'Brev fra pensjon',
     // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
@@ -85,7 +85,7 @@ export enum Varseltype {
     'DittNAV_000008' = 'Aktivitetsplan - Oppgave',
     'DittNAV_000010' = 'Dokument - Årsoppgave',
     'DittNAV_000011' = 'Dokument - Endringsoppgave',
-    'DittNAV_000001_temp' = 'Innkalling til møte med NAV',
+    'DittNAV_000001_temp' = 'Innkalling til møte med Nav',
     'EessiPenVarsleBrukerUfore' = 'EØS- Opplysninger',
     'ForeldrepengerSoknadsvarsel' = 'Foreldrepengesøknad',
     'GodkjentAMO' = 'Aktivitetsplan - Godkjent AMO',
@@ -127,7 +127,7 @@ export enum Varseltype {
     'SyfoplanRevideringSyk' = 'Venter på revidering fra bruker',
     'SyfoMerVeiledning' = 'Snart slutt på sykepenger',
     'PAM_KONV01' = 'Ny og forbedret CV-løsning',
-    'PAM_SYNLIGHET_01' = 'Informasjon om CV på Ditt NAV',
+    'PAM_SYNLIGHET_01' = 'Informasjon om CV på Ditt Nav',
     'SyfomoteNyetidspunkt' = 'Forespørsel om nye tidspunkt for møte',
     'NaermesteLederMoteAvbrutt' = 'Møteforespørsel avbrutt',
     // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
