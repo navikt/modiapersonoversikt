@@ -538,6 +538,12 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     Utbetaling til: 
                     AREMARK TESTFAMILIEN
                   </p>
+                  <p
+                    className="typo-normal"
+                  >
+                    Utbetalingsmetode: 
+                    Bankkontooverføring
+                  </p>
                 </div>
                 <button
                   aria-label="Vis utbetaling"
@@ -587,6 +593,12 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   >
                     Utbetaling til: 
                     AREMARK TESTFAMILIEN
+                  </p>
+                  <p
+                    className="typo-normal"
+                  >
+                    Utbetalingsmetode: 
+                    Bankkontooverføring
                   </p>
                 </div>
                 <button
