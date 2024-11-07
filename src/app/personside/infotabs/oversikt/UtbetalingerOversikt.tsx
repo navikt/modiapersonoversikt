@@ -71,6 +71,7 @@ function EnkelUtbetaling({ utbetaling }: { utbetaling: Utbetaling }) {
                 <YtelseNavn utbetaling={utbetaling} />
                 <YtelsePeriode utbetaling={utbetaling} />
                 <Normaltekst>Utbetaling til: {utbetaling.utbetaltTil}</Normaltekst>
+                <Normaltekst>Utbetaling metode: {utbetaling.metode}</Normaltekst>
             </VisMerKnapp>
         </li>
     );

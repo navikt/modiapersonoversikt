@@ -101,8 +101,9 @@ function SammensattUtbetaling(props: Props) {
                     <FlexEnd>
                         <Normaltekst>{forfallsInfo}</Normaltekst>
                     </FlexEnd>
+                    <Normaltekst>Utbetaling til: {utbetaling.utbetaltTil}</Normaltekst>
                     <SpaceBetween>
-                        <Normaltekst>Utbetaling til: {utbetaling.utbetaltTil}</Normaltekst>
+                        <Normaltekst>Utbetaling metode: {utbetaling.metode}</Normaltekst>
                         <PrintKnapp onClick={visDetaljerAndPrint} />
                     </SpaceBetween>
                     <YtelsesListe aria-label={`Diverse ytelser`}>{ytelsesListe}</YtelsesListe>

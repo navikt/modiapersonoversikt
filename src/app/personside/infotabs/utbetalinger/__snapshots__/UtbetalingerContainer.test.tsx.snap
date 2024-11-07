@@ -1118,14 +1118,20 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                                 className="typo-normal"
                               />
                             </div>
+                            <p
+                              className="typo-normal"
+                            >
+                              Utbetaling til: 
+                              AREMARK TESTFAMILIEN
+                            </p>
                             <div
                               className="c35"
                             >
                               <p
                                 className="typo-normal"
                               >
-                                Utbetaling til: 
-                                AREMARK TESTFAMILIEN
+                                Utbetaling metode: 
+                                Bankkontooverføring
                               </p>
                               <span>
                                 <button

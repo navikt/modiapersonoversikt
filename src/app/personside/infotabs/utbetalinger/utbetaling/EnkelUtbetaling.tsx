@@ -128,8 +128,9 @@ function EnkelUtbetaling(props: Props) {
                                 <Normaltekst>{periode}</Normaltekst>
                                 <Normaltekst>{forfallsInfo}</Normaltekst>
                             </SpaceBetween>
+                            <Normaltekst>Utbetaling til: {props.utbetaling.utbetaltTil}</Normaltekst>
                             <SpaceBetween>
-                                <Normaltekst>Utbetaling til: {props.utbetaling.utbetaltTil}</Normaltekst>
+                                <Normaltekst>Utbetaling metode: {props.utbetaling.metode}</Normaltekst>
                                 <span ref={printerButtonRef}>
                                     <PrintKnapp onClick={handlePrint} />
                                 </span>
