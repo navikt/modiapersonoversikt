@@ -7,6 +7,8 @@ export interface Traad {
     temagruppe?: Temagruppe;
     meldinger: Melding[];
     journalposter: Array<MeldingJournalpost>;
+    avsluttetDato?: string;
+    sistEndretAv?: string;
 }
 
 export interface Melding {
@@ -75,33 +77,6 @@ export interface SendReferatRequest {
     fritekst: string;
     temagruppe: Temagruppe;
     meldingstype: Meldingstype.SAMTALEREFERAT_TELEFON | Meldingstype.SAMTALEREFERAT_OPPMOTE;
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-interface SendSporsmalRequest {
-    enhet: string;
-    fritekst: string;
-    sak: JournalforingsSak;
-    erOppgaveTilknyttetAnsatt: boolean;
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-interface SendInfomeldingRequest {
-    enhet: string;
-    fritekst: string;
-    sak: JournalforingsSak;
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-interface ForsettDialogRequest {
-    enhet: string;
-    traadId: string;
-    behandlingsId: string;
-    fritekst: string;
-    sak?: JournalforingsSak;
-    erOppgaveTilknyttetAnsatt: boolean;
-    meldingstype: Meldingstype;
-    oppgaveId?: string;
 }
 
 export interface OpprettHenvendelseRequestV2 {
