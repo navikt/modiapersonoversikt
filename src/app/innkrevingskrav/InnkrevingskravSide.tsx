@@ -3,7 +3,42 @@ import { Alert, Box, HGrid, Heading, Loader, Page, Search, Table } from '@navikt
 import { formaterNOK } from '../personside/infotabs/utbetalinger/utils/utbetalinger-utils';
 import { useQueryParams } from '../../utils/url-utils';
 import { useHistory } from 'react-router';
-import innkrevingsKravResource from '../../rest/resources/innkrevingsKravResource';
+import { $api } from 'src/lib/clients/modiapersonoversikt-api';
+import { FetchError } from 'src/api/api';
+
+const InnkrevingsKravDetaljer = ({ kravId }: { kravId: string }) => {
+    const { data, isLoading, error } = $api.useQuery('get', '/rest/innkrevingskrav/{innkrevingskravId}', {
+        params: { path: { innkrevingskravId: kravId } }
+    });
+
+    return (
+        <>
+            {isLoading && <Loader />}
+            {error && <Alert variant={'error'}>{(error as FetchError).message}</Alert>}
+            {data && (
+                <Table>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell scope="col">Kravtype</Table.HeaderCell>
+                            <Table.HeaderCell scope="col">Opprinnelig beløp</Table.HeaderCell>
+                            <Table.HeaderCell scope="col">Gjenstående beløp</Table.HeaderCell>
+                        </Table.Row>
+
+                        {data.krav.map((krav) => (
+                            <Table.Row>
+                                <Table.DataCell>{krav.kravType}</Table.DataCell>
+                                <Table.DataCell>{formaterNOK(krav.opprinneligBeløp)}</Table.DataCell>
+                                <Table.DataCell>
+                                    {krav.gjenståendeBeløp ? formaterNOK(krav.gjenståendeBeløp) : '-'}
+                                </Table.DataCell>
+                            </Table.Row>
+                        ))}
+                    </Table.Header>
+                </Table>
+            )}
+        </>
+    );
+};
 
 const InnkrevingskravSide = () => {
     const { kravId } = useQueryParams<{ kravId?: string }>();
@@ -11,8 +46,6 @@ const InnkrevingskravSide = () => {
 
     const history = useHistory();
     const setKravId = (clear?: boolean) => history.replace({ search: `?kravId=${clear ? '' : nyKravId}` });
-
-    const { data, isLoading, error } = innkrevingsKravResource.useFetch(kravId);
 
     return (
         <Page style={{ width: '100%', height: '100%' }}>
@@ -43,27 +76,10 @@ const InnkrevingskravSide = () => {
                         </form>
                     </Box>
                     <Box background="surface-subtle" padding="4" borderWidth="1" borderRadius="medium">
-                        {isLoading && <Loader />}
-                        {error && <Alert variant={'error'}>{error.message}</Alert>}
-                        {!kravId && <Alert variant="info">Skriv inn en krav ID</Alert>}
-                        {data && (
-                            <Table>
-                                <Table.Header>
-                                    <Table.Row>
-                                        <Table.HeaderCell scope="col">Kravtype</Table.HeaderCell>
-                                        <Table.HeaderCell scope="col">Opprinnelig beløp</Table.HeaderCell>
-                                        <Table.HeaderCell scope="col">Gjenstående beløp</Table.HeaderCell>
-                                    </Table.Row>
-
-                                    {data.krav.map((krav) => (
-                                        <Table.Row>
-                                            <Table.DataCell>{krav.kravType}</Table.DataCell>
-                                            <Table.DataCell>{formaterNOK(krav.opprinneligBeløp)}</Table.DataCell>
-                                            <Table.DataCell>{formaterNOK(krav.gjenståendeBeløp)}</Table.DataCell>
-                                        </Table.Row>
-                                    ))}
-                                </Table.Header>
-                            </Table>
+                        {!kravId ? (
+                            <Alert variant="info">Skriv inn en krav ID</Alert>
+                        ) : (
+                            <InnkrevingsKravDetaljer kravId={kravId} />
                         )}
                     </Box>
                 </HGrid>

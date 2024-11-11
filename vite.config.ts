@@ -1,5 +1,6 @@
 /// <reference types="vitest" />
 import { IndexHtmlTransform, Plugin, defineConfig } from 'vite';
+import path from 'node:path';
 
 import react from '@vitejs/plugin-react';
 import vitePluginSvgr from 'vite-plugin-svgr';
@@ -73,6 +74,10 @@ export default defineConfig({
     },
     resolve: {
         alias: [
+            {
+                find: 'src',
+                replacement: path.resolve(__dirname, 'src')
+            },
             ...fixNavFrontendStyleNoCss(['nav-frontend-etiketter-style']),
             ...fixNavFrontendStyle([
                 'nav-frontend-lenker-style',

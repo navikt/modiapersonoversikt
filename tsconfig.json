@@ -1,4 +1,5 @@
 {
+    "$schema": "https://json.schemastore.org/tsconfig",
     "compilerOptions": {
         "target": "es2017",
         "lib": ["dom", "dom.iterable", "esnext"],
@@ -21,7 +22,10 @@
         "noEmit": true,
         "jsx": "react",
         "noFallthroughCasesInSwitch": true,
-        "types": ["vitest/globals"]
+        "types": ["vitest/globals"],
+        "paths": {
+            "src/*": ["./src/*"]
+        }
     },
     "include": ["src", "vite.config.ts"]
 }
