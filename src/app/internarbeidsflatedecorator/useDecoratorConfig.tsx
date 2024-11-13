@@ -13,6 +13,7 @@ import { useGjeldendeBruker } from '../../redux/gjeldendeBruker/types';
 import { getDomainFromHost, getEnvFromHost } from '../../utils/environment';
 import { useRouteMatch } from 'react-router';
 import config from '../../config';
+import { paths } from '../routes/routing';
 
 export function useDecoratorConfig() {
     const valgtEnhet = useValgtenhet();
@@ -80,6 +81,7 @@ function lagConfigV3(
     const urlFormat = getDomainFromHost();
 
     const contextProxy = 'modiacontextholder';
+    const showSearchArea = ![paths.innkrevingskrav].some((path) => location.pathname.startsWith(path));
 
     return {
         appName: 'Modia personoversikt',
@@ -105,11 +107,12 @@ function lagConfigV3(
         },
         hotkeys: getHotkeys(),
         enableHotkeys: true,
+        websocketUrl: 'wss://modiacontextholder.intern.dev.nav.no/ws/',
         proxy: (import.meta.env.VITE_CONTEXTHOLDER_URL as string) ?? `${import.meta.env.BASE_URL}proxy/${contextProxy}`,
         environment,
         urlFormat: import.meta.env.PROD ? urlFormat : 'LOCAL',
         showEnheter: true,
-        showSearchArea: true,
+        showSearchArea,
         fetchActiveUserOnMount: true,
         fetchActiveEnhetOnMount: true
     };

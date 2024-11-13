@@ -6,7 +6,8 @@ const CONFLICT = 409;
 export class FetchError extends Error {
     constructor(
         public response: Response,
-        message?: string
+        message?: string,
+        public traceId?: string
     ) {
         super(message);
     }

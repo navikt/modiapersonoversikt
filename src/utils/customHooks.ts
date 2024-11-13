@@ -91,7 +91,8 @@ export function useSettAktivBruker() {
                 paths.sakerFullscreen,
                 paths.saksdokumentEgetVindu,
                 paths.standaloneKomponenter,
-                paths.landingPage
+                paths.landingPage,
+                paths.innkrevingskrav
             ].some((path) => location.pathname.startsWith(path))
         ) {
             dispatch(push(paths.personUri));

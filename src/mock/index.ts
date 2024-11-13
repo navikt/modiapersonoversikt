@@ -149,10 +149,11 @@ const saksoversiktV3Handler = http.post(
 
 const utbetalingerHandler = http.post(
     apiBaseUri + '/v2/utbetaling',
-    withDelayedResponse(randomDelay(), fodselsNummerErGyldigStatus, (req, pathParams) => {
+    withDelayedResponse(randomDelay(), fodselsNummerErGyldigStatus, async (req) => {
+        const body = await req.json();
         const url = new URL(req.url);
         const query = url.searchParams;
-        return getMockUtbetalinger(pathParams.fodselsnummer, query.get('startDato'), query.get('sluttDato'));
+        return getMockUtbetalinger(body.fnr, query.get('startDato') ?? '', query.get('sluttDato') ?? '');
     })
 );
 

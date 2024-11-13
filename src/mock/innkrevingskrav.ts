@@ -1,8 +1,8 @@
 import { fakerNB_NO as faker } from '@faker-js/faker';
 import { fyllRandomListe } from './utils/mock-utils';
-import { Innkrevingskrav } from '../app/innkrevingskrav/Innkrevingskrav';
-import dayjs from 'dayjs';
-import { backendDatoformat } from '../utils/date-utils';
+import { paths } from 'src/generated/modiapersonoversikt-api';
+
+type Innkrevingskrav = paths['/rest/innkrevingskrav/{innkrevingskravId}']['get']['responses']['200']['content']['*/*'];
 
 export const mockInnkrevingsKrav = (kravId: string): Innkrevingskrav => {
     const seedNr = kravId
@@ -12,17 +12,33 @@ export const mockInnkrevingsKrav = (kravId: string): Innkrevingskrav => {
     faker.seed(seedNr);
 
     return {
-        kravgrunnlag: {
-            datoNaarKravVarBesluttetHosOppdragsgiver: dayjs(faker.date.past({ years: 1 })).format(backendDatoformat)
+        kravId,
+        kravType: 'kravtype',
+        kid: 'KID123455132',
+        opprettetDato: faker.date.past().toUTCString(),
+        posteringer: fyllRandomListe<Innkrevingskrav['posteringer'][0]>(getMockKravLinje, 4),
+        kreditor: {
+            kreditorId: '12342341234',
+            name: 'Kreditor Kretitorsen',
+            ident: '1234234234',
+            identType: 'FNR'
         },
-        krav: fyllRandomListe<Innkrevingskrav['krav'][0]>(getMockKravLinje, 4)
+        debitor: {
+            debitorId: '2341234',
+            name: 'Debitor Debitorsen',
+            ident: '1234234234',
+            identType: 'ORG_NR'
+        }
     };
 };
 
-const getMockKravLinje = () => {
+const getMockKravLinje = (): Innkrevingskrav['posteringer'][0] => {
     return {
-        kravType: faker.helpers.arrayElement(['kravLinje', 'renter']),
-        opprinneligBeløp: Number(faker.commerce.price()),
-        gjenståendeBeløp: Number(faker.commerce.price())
+        kode: 'KODE1',
+        beskrivelse: faker.helpers.arrayElement(['kravLinje', 'renter']),
+        opprinneligBelop: Number(faker.commerce.price()),
+        gjenstaendeBelop: Number(faker.commerce.price()),
+        betaltBelop: Number(faker.commerce.price()),
+        opprettetDato: faker.date.past().toUTCString()
     };
 };
