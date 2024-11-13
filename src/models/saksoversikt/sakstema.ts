@@ -21,11 +21,6 @@ export enum Behandlingsstatus {
     Avbrutt = 'AVBRUTT'
 }
 
-export interface Behandlingskjede {
-    status: Behandlingsstatus;
-    sistOppdatert: string;
-}
-
 export interface SakstemaSoknadsstatus extends Sakstema {
     soknadsstatus: Soknadsstatus;
 }

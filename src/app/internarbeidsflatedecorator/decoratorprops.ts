@@ -1,18 +1,7 @@
 import { Enhet } from '../../rest/resources/saksbehandlersEnheterResource';
 
-export const RESET_VALUE = '\u0000';
-
 interface Markup {
     etterSokefelt?: string;
-}
-
-export enum EnhetDisplay {
-    ENHET = 'ENHET',
-    ENHET_VALG = 'ENHET_VALG'
-}
-
-export enum FnrDisplay {
-    SOKEFELT = 'SOKEFELT'
 }
 
 type KeyDescriptionObject = {

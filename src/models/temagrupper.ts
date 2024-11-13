@@ -25,35 +25,6 @@ export const TemaSamtalereferat = [
     Temagruppe.Øvrig
 ];
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const TemaPlukkbare = [
-    Temagruppe.Arbeid,
-    Temagruppe.Helse,
-    Temagruppe.Familie,
-    Temagruppe.ForskuddDagpenger,
-    Temagruppe.Hjelpemiddel,
-    Temagruppe.Bil,
-    Temagruppe.Pensjon,
-    Temagruppe.PleiepengerSyktBarn,
-    Temagruppe.Uføretrygd,
-    Temagruppe.Utland,
-    Temagruppe.Øvrig
-];
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const TemaLeggTilbake = [
-    Temagruppe.Arbeid,
-    Temagruppe.Helse,
-    Temagruppe.Familie,
-    Temagruppe.ForskuddDagpenger,
-    Temagruppe.Hjelpemiddel,
-    Temagruppe.Bil,
-    Temagruppe.Pensjon,
-    Temagruppe.PleiepengerSyktBarn,
-    Temagruppe.Uføretrygd,
-    Temagruppe.Utland
-];
-
 export function temagruppeTekst(temagruppe: Temagruppe | null) {
     switch (temagruppe) {
         case Temagruppe.Uføretrygd:

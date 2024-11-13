@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { pxToRem, theme } from '../../../styles/personOversiktTheme';
+import { theme } from '../../../styles/personOversiktTheme';
 import { AlertStripeFeil, AlertStripeInfo, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import * as React from 'react';
 import KnappBase from 'nav-frontend-knapper';
@@ -108,22 +108,3 @@ export function DialogpanelKvittering(props: {
         </ErrorBoundary>
     );
 }
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const VelgDialogtypeStyle = styled.div`
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    > * {
-        margin-top: 0.3rem;
-    }
-    > *:not(:last-child) {
-        margin-right: 1rem;
-    }
-`;
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const KategoriSkille = styled.div`
-    background-color: ${theme.color.kategori};
-    padding: 0.2rem ${pxToRem(15)};
-`;
