@@ -20,7 +20,7 @@
         "start:dev": "VITE_MOCK_ENABLED=false vite",
         "build": "vite build",
         "test": "vitest",
-        "lint": "eslint . --fix && prettier --check src/**/*.{ts,js,tsx}",
+        "lint": "eslint . && prettier --check src/**/*.{ts,js,tsx}",
         "lint-staged": "lint-staged",
         "format": "prettier --write src/**/*.{ts,js,tsx}",
         "generate": "openapi-typescript https://modiapersonoversikt-api.intern.dev.nav.no/modiapersonoversikt-api/v3/api-docs -o src/generated/modiapersonoversikt-api.d.ts",

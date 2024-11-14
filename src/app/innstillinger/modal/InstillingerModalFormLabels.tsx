@@ -9,6 +9,9 @@ const Label = styled.span`
     .popover {
       max-width: 30rem;
     }
+    .hjelpetekst__apneknapp {
+        margin-left: 0.5rem;
+    }
 `;
 
 export const OppgaveDestinasjonLabel = (
