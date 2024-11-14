@@ -157,7 +157,7 @@
         "stylelint": "^16.10.0",
         "typescript": "^5.6.3",
         "typescript-eslint": "^8.14.0",
-        "undici": "^6.20.1",
+        "undici": "^6.21.0",
         "vite-require": "^0.2.3",
         "vitest": "^2.1.5"
     },
