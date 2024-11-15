@@ -40,7 +40,7 @@
         "@amplitude/analytics-browser": "^2.11.9",
         "@grafana/faro-react": "^1.11.0",
         "@grafana/faro-web-sdk": "^1.11.0",
-        "@grafana/faro-web-tracing": "^1.11.0",
+        "@grafana/faro-web-tracing": "^1.12.0",
         "@navikt/aksel-icons": "^7.4.3",
         "@navikt/ds-css": "^7.4.3",
         "@navikt/ds-react": "^7.4.3",
