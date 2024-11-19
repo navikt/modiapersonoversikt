@@ -103,7 +103,7 @@
         "openapi-fetch": "^0.13.0",
         "openapi-react-query": "^0.2.5",
         "react": "^18.3.1",
-        "react-day-picker": "^7.3.2",
+        "react-day-picker": "^9.3.2",
         "react-dom": "^18.3.1",
         "react-hook-form": "^7.53.2",
         "react-modal": "^3.16.1",
