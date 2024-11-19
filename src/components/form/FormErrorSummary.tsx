@@ -1,9 +1,8 @@
-import { FieldValues } from 'react-hook-form/dist/types/fields';
-import { UseFormReturn } from 'react-hook-form/dist/types';
+import { FieldValues } from 'react-hook-form';
+import { UseFormReturn } from 'react-hook-form';
 import { useEffect, useRef } from 'react';
 import { Feiloppsummering, FeiloppsummeringFeil } from 'nav-frontend-skjema';
-import * as React from 'react';
-import { FieldErrors } from 'react-hook-form/dist/types/errors';
+import { FieldErrors } from 'react-hook-form';
 import { FeiloppsummeringProps } from 'nav-frontend-skjema';
 
 function buildErrorFields<TFieldValues extends FieldValues>(errors: FieldErrors<TFieldValues>) {

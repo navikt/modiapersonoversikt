@@ -3,6 +3,7 @@ import { IndexHtmlTransform, Plugin, defineConfig } from 'vite';
 import path from 'node:path';
 
 import react from '@vitejs/plugin-react';
+import { TanStackRouterVite } from '@tanstack/router-plugin/vite';
 import vitePluginSvgr from 'vite-plugin-svgr';
 import { fileURLToPath } from 'node:url';
 import { viteRequire } from 'vite-require';
@@ -52,6 +53,7 @@ export default defineConfig({
         }
     },
     plugins: [
+        TanStackRouterVite(),
         react(),
         vitePluginSvgr({
             include: '**/*.svg'

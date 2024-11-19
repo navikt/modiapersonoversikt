@@ -1,8 +1,7 @@
-import * as React from 'react';
 import { BigCenteredLazySpinner } from '../../../components/BigCenteredLazySpinner';
 import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
 import AlertStripe from 'nav-frontend-alertstriper';
-import ErrorBoundary from '../../../components/ErrorBoundary';
+import ErrorBoundary from 'src/components/ErrorBoundary';
 import VisittkortVisning from './VisittkortVisning';
 import persondataResource from '../../../rest/resources/persondataResource';
 

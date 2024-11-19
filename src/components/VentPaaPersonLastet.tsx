@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect, useState } from 'react';
+import { PropsWithChildren, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { useGjeldendeBrukerLastet } from '../redux/gjeldendeBruker/types';
 import useTimeout from '../utils/hooks/use-timeout';

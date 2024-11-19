@@ -1,4 +1,3 @@
-import * as React from 'react';
 import NavFrontendModal from 'nav-frontend-modal';
 import { Traad } from '../../../../../../../../models/meldinger/meldinger';
 import { PopupComponentProps, renderPopup } from '../../../../../../../../components/popup-boxes/popup-boxes';
@@ -11,7 +10,7 @@ import { useSladdeArsak } from './use-sladde-arsak';
 import { QueryClient } from '@tanstack/react-query';
 import { useForm, FieldError } from 'react-hook-form';
 import { buildFieldError } from '../../../../../../../../components/form/formUtils';
-import { UseFormReturn } from 'react-hook-form/dist/types';
+import { UseFormReturn } from 'react-hook-form';
 
 interface Props {
     traad: Traad;

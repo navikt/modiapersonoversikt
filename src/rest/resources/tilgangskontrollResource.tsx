@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { applyDefaults, DefaultConfig, RendererOrConfig, useRest } from '../useRest';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { apiBaseUri } from '../../api/config';

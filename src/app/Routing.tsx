@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import { Switch } from 'react-router';
 import { SentryRoute } from '../sentry-route';
 import { paths } from './routes/routing';

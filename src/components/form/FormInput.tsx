@@ -1,6 +1,5 @@
-import React from 'react';
-import { FieldValues } from 'react-hook-form/dist/types/fields';
-import { FieldPath } from 'react-hook-form/dist/types/path';
+import { FieldValues } from 'react-hook-form';
+import { FieldPath } from 'react-hook-form';
 import { Input, InputProps } from 'nav-frontend-skjema';
 import { FormElementProps } from './formTypes';
 import { useFieldState } from './useFieldState';

@@ -1,7 +1,6 @@
 import { DecoratorButtonId as OppdateringsloggButtonId } from '../oppdateringslogg/OppdateringsloggContainer';
 import bjelleIkon from '../../svg/bjelle.svg?raw';
 import { parseQueryString, useQueryParams } from '../../utils/url-utils';
-import { useValgtenhet } from '../../context/valgtenhet-state';
 import useHandleGosysUrl from './useHandleGosysUrl';
 import { useSettAktivBruker, useOnMount } from '../../utils/customHooks';
 import { loggEvent } from '../../utils/logger/frontendLogger';
@@ -9,16 +8,15 @@ import { Enhet } from '../../rest/resources/saksbehandlersEnheterResource';
 import { trackNavigation, updateUserEnhet } from '../../utils/amplitude';
 import { useCallback } from 'react';
 import { DecoratorPropsV3, Hotkey } from './decoratorprops';
-import { useGjeldendeBruker } from '../../redux/gjeldendeBruker/types';
 import { getDomainFromHost, getEnvFromHost } from '../../utils/environment';
-import { useRouteMatch } from 'react-router';
 import config from '../../config';
 import { paths } from '../routes/routing';
+import { useAtom, useAtomValue } from 'jotai';
+import { aktivBrukerAtom, aktivEnhetAtom } from 'src/lib/state/context';
 
 export function useDecoratorConfig() {
-    const valgtEnhet = useValgtenhet();
-    const valgtEnhetId = valgtEnhet.enhetId;
-    const setEnhetId = valgtEnhet.setEnhetId;
+    const [aktivEnhet, setAktivEnhet] = useAtom(aktivEnhetAtom);
+
     const settAktivBruker = useSettAktivBruker();
 
     const queryParams = useQueryParams<{ sokFnr?: string; sokFnrCode?: string }>();
@@ -35,15 +33,15 @@ export function useDecoratorConfig() {
         if (enhetValue) {
             updateUserEnhet(enhetValue.navn);
         }
-        setEnhetId(enhet);
+        setAktivEnhet(enhet);
     };
 
     const handleLinkClick = (link: { text: string; url: string }) => {
         trackNavigation(link.text, link.url);
     };
 
-    const configV3 = useCallback(lagConfigV3, [valgtEnhetId, settAktivBruker, handleSetEnhet, handleLinkClick])(
-        valgtEnhetId,
+    const configV3 = useCallback(lagConfigV3, [aktivEnhet, settAktivBruker, handleSetEnhet, handleLinkClick])(
+        aktivEnhet,
         settAktivBruker,
         handleSetEnhet,
         handleLinkClick
@@ -73,9 +71,9 @@ function lagConfigV3(
     settEnhet: (enhet: string, enhetValue?: Enhet) => void,
     onLinkClick?: (link: { text: string; url: string }) => void
 ): DecoratorPropsV3 {
-    const { urlFnr, sokFnr, userKey } = getFnrFraUrl();
-    const fnr = useGjeldendeBruker();
-    const onsketFnr = urlFnr ?? sokFnr ?? fnr;
+    const { sokFnr, userKey } = getFnrFraUrl();
+    const fnr = useAtomValue(aktivBrukerAtom);
+    const onsketFnr = sokFnr ?? fnr;
     const environment = import.meta.env.PROD ? getEnvFromHost() : 'mock';
 
     const urlFormat = getDomainFromHost();
@@ -118,15 +116,11 @@ function lagConfigV3(
     };
 }
 
-function getFnrFraUrl(): { sokFnr: string | null; userKey: string | null; urlFnr: string | null } {
+function getFnrFraUrl() {
     const location = window.location;
-    const match = useRouteMatch<{ fnr: string }>('/person/:fnr(\\d+)');
-    const urlFnr = match?.params.fnr;
-
     const queryParams = parseQueryString<{ sokFnr?: string; userKey?: string }>(location.search);
 
     return {
-        urlFnr: urlFnr ?? null,
         sokFnr: queryParams.sokFnr ?? null,
         userKey: queryParams.userKey ?? null
     };

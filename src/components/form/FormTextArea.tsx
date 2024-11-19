@@ -1,5 +1,4 @@
 import { Textarea, TextareaProps } from 'nav-frontend-skjema';
-import React from 'react';
 import { FieldValues, FieldPath } from 'react-hook-form';
 import { FormElementProps } from './formTypes';
 import { useFieldState } from './useFieldState';
