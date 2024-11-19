@@ -156,7 +156,7 @@
         "redux-devtools-extension": "^2.13.8",
         "stylelint": "^16.10.0",
         "typescript": "^5.6.3",
-        "typescript-eslint": "^8.14.0",
+        "typescript-eslint": "^8.15.0",
         "undici": "^6.21.0",
         "vite-require": "^0.2.3",
         "vitest": "^2.1.5"
