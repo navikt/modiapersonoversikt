@@ -15,19 +15,13 @@ export const personoversiktApiClient = createFetchClient<paths>({
 });
 
 personoversiktApiClient.use({
-    onRequest: ({ request }) => {
-        return new Request(request.url.replace('/rest', ''), request.clone());
-    }
-});
-
-personoversiktApiClient.use({
     onResponse: async ({ response, request }) => {
         if (!response.ok) {
-            if (request.method === 'GET') {
-                throw new FetchError(response, `${response.status}: ${request.url}`);
-            } else {
-                throw new FetchError(response, await response.text());
-            }
+            throw new FetchError(
+                response,
+                (await response.text()) ?? `${response.status}: ${request.url}`,
+                response.headers.get('traceid') ?? undefined
+            );
         }
     }
 });

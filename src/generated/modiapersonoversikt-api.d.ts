@@ -2093,19 +2093,41 @@ export interface components {
             /** Format: int32 */
             column: number;
         };
-        InnkrevingskravJsonResponse: {
-            kravgrunnlag: components['schemas']['KravgrunnlagJson'];
-            krav: components['schemas']['KravJson'][];
+        Debitor: {
+            debitorId: string;
+            name: string;
+            /** @enum {string} */
+            identType: 'FNR' | 'ORG_NR';
+            ident: string;
         };
-        KravJson: {
+        Krav: {
+            kravId: string;
+            kid: string;
             kravType: string;
-            /** Format: double */
-            'opprinneligBel\u00F8p': number;
-            /** Format: double */
-            'gjenst\u00E5endeBel\u00F8p'?: number;
+            debitor: components['schemas']['Debitor'];
+            kreditor: components['schemas']['Kreditor'];
+            posteringer: components['schemas']['KravPostering'][];
+            /** Format: date-time */
+            opprettetDato: string;
         };
-        KravgrunnlagJson: {
-            datoNaarKravVarBesluttetHosOppdragsgiver?: components['schemas']['LocalDate'];
+        KravPostering: {
+            kode: string;
+            beskrivelse: string;
+            /** Format: double */
+            opprinneligBelop: number;
+            /** Format: double */
+            betaltBelop: number;
+            /** Format: double */
+            gjenstaendeBelop: number;
+            /** Format: date-time */
+            opprettetDato: string;
+        };
+        Kreditor: {
+            kreditorId: string;
+            name: string;
+            /** @enum {string} */
+            identType: 'FNR' | 'ORG_NR';
+            ident: string;
         };
         OpprettSkjermetOppgaveDTO: {
             opprettetavenhetsnummer: string;
@@ -2970,7 +2992,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    '*/*': components['schemas']['InnkrevingskravJsonResponse'][];
+                    '*/*': components['schemas']['Krav'][];
                 };
             };
         };
@@ -3722,7 +3744,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    '*/*': components['schemas']['InnkrevingskravJsonResponse'];
+                    '*/*': components['schemas']['Krav'];
                 };
             };
         };
