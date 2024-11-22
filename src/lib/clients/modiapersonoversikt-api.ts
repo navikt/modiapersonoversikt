@@ -1,11 +1,11 @@
 import createFetchClient from 'openapi-fetch';
 import createClient from 'openapi-react-query';
 import { FetchError } from 'src/api/api';
-import { apiBaseUri } from 'src/api/config';
+import { apiBaseUriWithoutRest } from 'src/api/config';
 import type { paths } from 'src/generated/modiapersonoversikt-api';
 
 export const personoversiktApiClient = createFetchClient<paths>({
-    baseUrl: apiBaseUri,
+    baseUrl: apiBaseUriWithoutRest,
     credentials: 'include',
     mode: 'cors',
     redirect: 'follow',
