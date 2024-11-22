@@ -1,23 +1,23 @@
 {
     "proxy": {
         "modia-skrivestotte": {
-            "url": "http://modiapersonoversikt-skrivestotte.personoversikt.svc.cluster.local",
+            "url": "http://modiapersonoversikt-skrivestotte",
             "scope": "api://dev-gcp.personoversikt.modiapersonoversikt-skrivestotte/.default"
         },
         "modia-draft": {
-            "url": "http://modiapersonoversikt-draft.personoversikt.svc.cluster.local",
+            "url": "http://modiapersonoversikt-draft",
             "scope": "api://dev-gcp.personoversikt.modiapersonoversikt-draft/.default"
         },
         "modia-innstillinger": {
-            "url": "http://modiapersonoversikt-innstillinger.personoversikt.svc.cluster.local",
+            "url": "http://modiapersonoversikt-innstillinger",
             "scope": "api://dev-gcp.personoversikt.modiapersonoversikt-innstillinger/.default"
         },
         "modiacontextholder": {
-            "url": "http://modiacontextholder.personoversikt.svc.cluster.local",
+            "url": "http://modiacontextholder",
             "scope": "api://dev-gcp.personoversikt.modiacontextholder/.default"
         },
         "azure-api": {
-            "url": "http://modiapersonoversikt-api.personoversikt.svc.cluster.local/modiapersonoversikt-api/rest",
+            "url": "http://modiapersonoversikt-api/modiapersonoversikt-api",
             "scope": "api://dev-gcp.personoversikt.modiapersonoversikt-api/.default"
         }
     },
