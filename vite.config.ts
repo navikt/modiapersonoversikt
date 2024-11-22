@@ -38,7 +38,6 @@ export default defineConfig({
         port: 3000,
         proxy: {
             '/proxy': {
-                rewrite: (path) => path.replace('/azure-api/rest', '/azure-api'),
                 target: 'https://modiapersonoversikt.intern.dev.nav.no',
                 changeOrigin: true,
                 headers: {
