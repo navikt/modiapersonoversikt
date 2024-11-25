@@ -105,7 +105,6 @@ function lagConfigV3(
         },
         hotkeys: getHotkeys(),
         enableHotkeys: true,
-        websocketUrl: 'wss://modiacontextholder.intern.dev.nav.no/ws/',
         proxy: (import.meta.env.VITE_CONTEXTHOLDER_URL as string) ?? `${import.meta.env.BASE_URL}proxy/${contextProxy}`,
         environment,
         urlFormat: import.meta.env.PROD ? urlFormat : 'LOCAL',
