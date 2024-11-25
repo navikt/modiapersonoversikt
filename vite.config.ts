@@ -3,6 +3,7 @@ import { IndexHtmlTransform, Plugin, defineConfig } from 'vite';
 import path from 'node:path';
 
 import react from '@vitejs/plugin-react';
+import { TanStackRouterVite } from '@tanstack/router-plugin/vite';
 import vitePluginSvgr from 'vite-plugin-svgr';
 import { fileURLToPath } from 'node:url';
 import { viteRequire } from 'vite-require';
@@ -37,7 +38,6 @@ export default defineConfig({
         port: 3000,
         proxy: {
             '/proxy': {
-                rewrite: (path) => path.replace('/azure-api/rest', '/azure-api'),
                 target: 'https://modiapersonoversikt.intern.dev.nav.no',
                 changeOrigin: true,
                 headers: {
@@ -52,6 +52,7 @@ export default defineConfig({
         }
     },
     plugins: [
+        TanStackRouterVite(),
         react(),
         vitePluginSvgr({
             include: '**/*.svg'

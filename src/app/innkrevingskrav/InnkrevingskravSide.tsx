@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
     Alert,
     Box,
@@ -18,13 +18,12 @@ import {
     VStack
 } from '@navikt/ds-react';
 import { formaterNOK } from '../personside/infotabs/utbetalinger/utils/utbetalinger-utils';
-import { useQueryParams } from '../../utils/url-utils';
-import { useHistory } from 'react-router';
 import { $api } from 'src/lib/clients/modiapersonoversikt-api';
 import { ArrowLeftIcon, GavelIcon, MagnifyingGlassIcon } from '@navikt/aksel-icons';
 import QueryErrorBoundary from 'src/components/QueryErrorBoundary';
 import { formaterDato } from 'src/utils/string-utils';
 import { paths } from 'src/generated/modiapersonoversikt-api';
+import { getRouteApi } from '@tanstack/react-router';
 
 const InfoPoint = ({ label, text }: { label: string; text: string }) => {
     return (
@@ -168,9 +167,11 @@ const KravSearchResults = ({ kravId }: { kravId: string }) => {
     );
 };
 
+const routeApi = getRouteApi('/innkrevingskrav');
+
 const InnkrevingskravSide = () => {
-    const { kravId } = useQueryParams<{ kravId?: string }>();
-    const [nyKravId, setNyKravId] = useState<string | undefined>(kravId);
+    const { kravId } = routeApi.useSearch();
+    const [nyKravId, setNyKravId] = useState(kravId);
     const [ident, setIdent] = useState<string | undefined>();
     const [nyIdent, setNyIdent] = useState<string | undefined>();
     const [searchType, setSearchType] = useState<'kravId' | 'fnr' | 'orgnr'>('kravId');
@@ -182,8 +183,8 @@ const InnkrevingskravSide = () => {
         }
     }, [searchType]);
 
-    const history = useHistory();
-    const setKravId = (clear?: boolean) => history.replace({ search: `?kravId=${clear ? '' : nyKravId}` });
+    const navigate = routeApi.useNavigate();
+    const setKravId = (clear?: boolean) => navigate({ search: { kravId: clear ? undefined : nyKravId } });
 
     return (
         <Page style={{ width: '100%', height: '100%' }}>

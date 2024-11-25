@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { FetchError, get, post } from '../../api/api';
-import { UseMutationResult, UseQueryResult } from '@tanstack/react-query/src/types';
+import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
 
 export interface SaksbehandlerInnstillinger {
     sistLagret: string;

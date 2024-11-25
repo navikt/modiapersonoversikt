@@ -25,6 +25,8 @@ export default tseslint.config(
     },
     {
         rules: {
+            'react/jsx-uses-react': 'off',
+            'react/react-in-jsx-scope': 'off',
             '@typescript-eslint/unbound-method': ['off'],
             '@typescript-eslint/no-unused-expressions': ['warn'],
             '@typescript-eslint/no-floating-promises': ['off'],

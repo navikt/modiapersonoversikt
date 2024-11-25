@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { DependencyList, EffectCallback, RefObject, useCallback, useEffect, useMemo, useRef } from 'react';
 import { EventListener, runIfEventIsNotInsideRef } from './reactRef-utils';
-import { useDispatch, useSelector } from 'react-redux';
-import setGjeldendeBrukerIRedux from '../redux/gjeldendeBruker/actions';
+import { useSelector } from 'react-redux';
 import { AppState } from '../redux/reducers';
-import { useLocation } from 'react-router';
 import { paths } from '../app/routes/routing';
-import { push } from 'connected-react-router';
+import { useNavigate } from '@tanstack/react-router';
+import { useSetAtom } from 'jotai';
+import { aktivBrukerAtom } from 'src/lib/state/context';
 
 export function useFocusOnMount(ref: React.RefObject<HTMLElement>) {
     useOnMount(() => {
@@ -74,17 +74,17 @@ export function useFodselsnummer() {
 }
 
 export function useSettAktivBruker() {
-    const dispatch = useDispatch();
-    const location = useLocation();
+    const setBruker = useSetAtom(aktivBrukerAtom);
+    const navigate = useNavigate();
 
     return (fnr: string | null) => {
         if (!fnr) {
-            dispatch(push(paths.basePath));
-            dispatch(setGjeldendeBrukerIRedux(''));
+            navigate({ to: paths.basePath });
+            setBruker('');
             return;
         }
 
-        dispatch(setGjeldendeBrukerIRedux(fnr ?? ''));
+        setBruker(fnr ?? '');
         if (
             ![
                 paths.personUri,
@@ -95,7 +95,7 @@ export function useSettAktivBruker() {
                 paths.innkrevingskrav
             ].some((path) => location.pathname.startsWith(path))
         ) {
-            dispatch(push(paths.personUri));
+            navigate({ to: paths.personUri });
         }
     };
 }

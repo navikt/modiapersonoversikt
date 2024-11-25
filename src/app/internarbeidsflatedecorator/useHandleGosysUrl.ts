@@ -6,9 +6,8 @@ import { paths } from '../routes/routing';
 import { Oppgave } from '../../models/meldinger/oppgave';
 import { apiBaseUri, contextHolderBaseUri } from '../../api/config';
 import { fetchToJson, hasData } from '../../utils/fetchToJson';
-import { useDispatch } from 'react-redux';
-import { replace } from 'connected-react-router';
 import { post } from '../../api/api';
+import { useNavigate } from '@tanstack/react-router';
 
 function useHandleGosysUrl() {
     const queryParams = useQueryParams<{
@@ -17,8 +16,8 @@ function useHandleGosysUrl() {
         oppgaveid?: string;
         behandlingsid?: string;
     }>();
-    const dispatch = useDispatch();
     const settGjeldendeBruker = useSettAktivBruker();
+    const navigate = useNavigate();
 
     useOnMount(() => {
         if (queryParams.sokFnrCode) {
@@ -45,15 +44,15 @@ function useHandleGosysUrl() {
             fetchToJson<Oppgave>(`${apiBaseUri}/v2/oppgaver/oppgavedata/${queryParams.oppgaveid}`).then((response) => {
                 loggEvent('Oppgave', 'FraGosys', { success: hasData(response) });
                 settGjeldendeBruker(fnr);
-                dispatch(replace(linkTilValgtHenvendelse));
+                navigate({ to: linkTilValgtHenvendelse, replace: true });
             });
         } else if (fnr && queryParams.behandlingsid) {
             loggEvent('Henvendelse', 'FraGosys');
             settGjeldendeBruker(fnr);
-            dispatch(replace(linkTilValgtHenvendelse));
+            navigate({ to: linkTilValgtHenvendelse, replace: true });
         } else if (queryParams.behandlingsid) {
             loggEvent('Henvendelse', 'FraGosys');
-            dispatch(replace(linkTilValgtHenvendelse));
+            navigate({ to: linkTilValgtHenvendelse, replace: true });
         } else if (fnr) {
             settGjeldendeBruker(fnr);
         }

@@ -27,6 +27,8 @@ jobs:
               run: npm ci
               env:
                 NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+            - name: Generate source files
+              run: npm run gen:routes
             - name: Lint
               run: npm run lint
             - name: Test

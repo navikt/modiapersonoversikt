@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { ReactNode } from 'react';
 import { getTestStore } from './testStore';
 import { Provider } from 'react-redux';
@@ -10,8 +9,7 @@ import { VisittkortStateProvider } from '../context/visittkort-state';
 import { DialogpanelStateProvider } from '../context/dialogpanel-state';
 import { ValgtEnhetProvider } from '../context/valgtenhet-state';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { initializeObservability } from '../utils/observability';
-import { createBrowserHistory } from 'history';
+import { createRootRoute, createRoute, createRouter, Outlet, RouterProvider } from '@tanstack/react-router';
 
 interface Props {
     children: ReactNode;
@@ -22,32 +20,40 @@ const queryClient = new QueryClient({
         queries: {
             retry: false,
             staleTime: Infinity,
-            cacheTime: Infinity,
             _optimisticResults: 'isRestoring'
         }
     }
 });
 
 function TestProvider({ children, customStore }: Props) {
-    const history = createBrowserHistory();
-    initializeObservability(history);
-    return (
-        <Provider store={customStore || getTestStore()}>
-            <QueryClientProvider client={queryClient}>
-                <DialogpanelStateProvider>
-                    <VisittkortStateProvider>
-                        <MeldingsokProvider>
-                            <ValgtEnhetProvider>
-                                <StaticRouter context={{}}>
-                                    <>{children}</>
-                                </StaticRouter>
-                            </ValgtEnhetProvider>
-                        </MeldingsokProvider>
-                    </VisittkortStateProvider>
-                </DialogpanelStateProvider>
-            </QueryClientProvider>
-        </Provider>
-    );
+    const rootRoute = createRootRoute({ component: Outlet });
+    const router = createRouter({
+        routeTree: rootRoute.addChildren([
+            createRoute({
+                getParentRoute: () => rootRoute,
+                path: '$',
+                component: () => (
+                    <Provider store={customStore || getTestStore()}>
+                        <QueryClientProvider client={queryClient}>
+                            <DialogpanelStateProvider>
+                                <VisittkortStateProvider>
+                                    <MeldingsokProvider>
+                                        <ValgtEnhetProvider>
+                                            <StaticRouter context={{}}>
+                                                <>{children}</>
+                                            </StaticRouter>
+                                        </ValgtEnhetProvider>
+                                    </MeldingsokProvider>
+                                </VisittkortStateProvider>
+                            </DialogpanelStateProvider>
+                        </QueryClientProvider>
+                    </Provider>
+                )
+            })
+        ])
+    });
+
+    return <RouterProvider router={router}></RouterProvider>;
 }
 
 export default TestProvider;

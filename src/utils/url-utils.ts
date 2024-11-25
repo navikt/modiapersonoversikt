@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useLocation } from 'react-router';
+import { useLocation } from '@tanstack/react-router';
 
 export function parseQueryString<TYPE>(queryParams: string): TYPE {
     const entries = queryParams
@@ -10,7 +10,7 @@ export function parseQueryString<TYPE>(queryParams: string): TYPE {
 }
 
 export function useQueryParams<TYPE>(): TYPE {
-    const search = useLocation().search;
+    const search = useLocation().searchStr;
 
     return useMemo(() => {
         return parseQueryString<TYPE>(search);
