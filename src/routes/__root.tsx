@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createRootRoute, Outlet, useMatchRoute } from '@tanstack/react-router';
-import { TanStackRouterDevtools } from '@tanstack/router-devtools';
+import React from 'react';
 import Decorator from 'src/app/internarbeidsflatedecorator/Decorator';
 import { LandingPage } from 'src/app/internarbeidsflatedecorator/LandingPage';
 import DemoBanner from 'src/components/DemoBanner';
@@ -26,6 +26,10 @@ const queryClient = new QueryClient({
         }
     }
 });
+
+const TanStackRouterDevtools = import.meta.env.DEV
+    ? React.lazy(() => import('@tanstack/router-devtools').then((res) => ({ default: res.TanStackRouterDevtools })))
+    : () => null;
 
 initAmplitude();
 initializeObservability();
