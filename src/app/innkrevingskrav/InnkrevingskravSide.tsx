@@ -125,8 +125,10 @@ const SearchResultTable = ({
     );
 };
 
-const SearchResults = ({ id }: { id: string }) => {
-    const { isLoading, data, error } = $api.useQuery('post', '/rest/innkrevingskrav', { body: { fnr: id } });
+const SearchResults = ({ id, identType }: { id: string; identType: 'FNR' | 'ORG_NR' }) => {
+    const { isLoading, data, error } = $api.useQuery('post', '/rest/innkrevingskrav', {
+        body: { ident: id, identType }
+    });
 
     return (
         <QueryErrorBoundary
@@ -188,8 +190,8 @@ const InnkrevingskravSide = () => {
 
     return (
         <Page style={{ width: '100%', height: '100%' }}>
-            <HGrid gap="6" columns="1fr 3fr">
-                <Box padding="4" borderWidth="0 1 0 0" borderColor="border-subtle" minHeight="100vh">
+            <HGrid gap="6" columns="1fr 3fr" minHeight="90vh">
+                <Box padding="4" borderWidth="0 1 0 0" borderColor="border-subtle">
                     <HStack gap="2" marginBlock="2" align="center">
                         <ArrowLeftIcon fontSize="1.2rem" />
                         <BodyShort size="small">Skjul</BodyShort>
@@ -249,7 +251,9 @@ const InnkrevingskravSide = () => {
                             </form>
                         </Box>
 
-                        {searchType !== 'kravId' && nyIdent && <SearchResults id={nyIdent} />}
+                        {searchType !== 'kravId' && nyIdent && (
+                            <SearchResults id={nyIdent} identType={searchType === 'fnr' ? 'FNR' : 'ORG_NR'} />
+                        )}
                         {searchType === 'kravId' && kravId && <KravSearchResults kravId={kravId} />}
                     </Box>
                 </Box>

@@ -16,14 +16,23 @@ export const personoversiktApiClient = createFetchClient<paths>({
     }
 });
 
+type APIError = {
+    message?: string;
+};
+
 personoversiktApiClient.use({
-    onResponse: async ({ response, request }) => {
+    onResponse: async ({ response }) => {
         if (!response.ok) {
-            throw new FetchError(
-                response,
-                (await response.text()) ?? `${response.status}: ${request.url}`,
-                response.headers.get('traceid') ?? undefined
-            );
+            let errText = undefined;
+            try {
+                const apiErr = (await response.json()) as APIError;
+                if (apiErr.message) {
+                    errText = apiErr.message;
+                }
+            } catch {
+                // Use default error text
+            }
+            throw new FetchError(response, errText, response.headers.get('traceid') ?? undefined);
         }
     }
 });

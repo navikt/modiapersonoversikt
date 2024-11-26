@@ -155,9 +155,9 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations['harTilgang_1'];
+        get: operations['harTilgang'];
         put?: never;
-        post: operations['harTilgang'];
+        post: operations['harTilgang_1'];
         delete?: never;
         options?: never;
         head?: never;
@@ -220,9 +220,9 @@ export interface paths {
             cookie?: never;
         };
         /** @deprecated */
-        get: operations['finnTildelte_1'];
+        get: operations['finnTildelte'];
         put?: never;
-        post: operations['finnTildelte'];
+        post: operations['finnTildelte_1'];
         delete?: never;
         options?: never;
         head?: never;
@@ -2089,9 +2089,14 @@ export interface components {
         };
         GraphQLClientSourceLocation: {
             /** Format: int32 */
-            line: number;
-            /** Format: int32 */
             column: number;
+            /** Format: int32 */
+            line: number;
+        };
+        KravRequest: {
+            ident: string;
+            /** @enum {string} */
+            identType: 'FNR' | 'ORG_NR';
         };
         Debitor: {
             debitorId: string;
@@ -2502,7 +2507,7 @@ export interface operations {
             };
         };
     };
-    harTilgang_1: {
+    harTilgang: {
         parameters: {
             query?: never;
             header?: never;
@@ -2522,7 +2527,7 @@ export interface operations {
             };
         };
     };
-    harTilgang: {
+    harTilgang_1: {
         parameters: {
             query?: {
                 enhet?: string;
@@ -2625,7 +2630,7 @@ export interface operations {
             };
         };
     };
-    finnTildelte_1: {
+    finnTildelte: {
         parameters: {
             query?: never;
             header?: never;
@@ -2645,7 +2650,7 @@ export interface operations {
             };
         };
     };
-    finnTildelte: {
+    finnTildelte_1: {
         parameters: {
             query?: never;
             header?: never;
@@ -2982,7 +2987,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                'application/json': components['schemas']['FnrRequest'];
+                'application/json': components['schemas']['KravRequest'];
             };
         };
         responses: {
