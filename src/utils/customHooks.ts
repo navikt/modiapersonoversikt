@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { AppState } from '../redux/reducers';
 import { paths } from '../app/routes/routing';
 import { useNavigate } from '@tanstack/react-router';
-import { useSetAtom } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { aktivBrukerAtom } from 'src/lib/state/context';
 
 export function useFocusOnMount(ref: React.RefObject<HTMLElement>) {
@@ -70,7 +70,7 @@ export function useAppState<T>(selector: (state: AppState) => T) {
 }
 
 export function useFodselsnummer() {
-    return useAppState((state) => state.gjeldendeBruker.fødselsnummer);
+    return useAtomValue(aktivBrukerAtom);
 }
 
 export function useSettAktivBruker() {
@@ -79,7 +79,7 @@ export function useSettAktivBruker() {
 
     return (fnr: string | null) => {
         if (!fnr) {
-            navigate({ to: paths.basePath });
+            navigate({ to: '/' });
             setBruker('');
             return;
         }

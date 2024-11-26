@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, useLocation } from '@tanstack/react-router';
 
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
@@ -15,7 +15,6 @@ import styled from 'styled-components';
 import { useOnMount } from 'src/utils/customHooks';
 import VelgEnhet from 'src/app/VelgEnhet';
 import LoggetUtModal from 'src/app/LoggetUtModal';
-import { useValgtenhet } from 'src/context/valgtenhet-state';
 import { usePersistentWWLogin } from 'src/login/use-persistent-ww-login';
 import usePersistentLogin from 'src/utils/hooks/use-persistent-login';
 import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
@@ -39,7 +38,6 @@ import 'nav-frontend-tabs-style';
 import 'nav-frontend-skjema-style';
 import 'nav-frontend-ekspanderbartpanel-style';
 import 'nav-frontend-etiketter-style';
-import { paths } from 'src/app/routes/routing';
 import { createBrowserHistory } from 'history';
 import { ConnectedRouter, push, routerMiddleware } from 'connected-react-router';
 import { useAtom } from 'jotai';
@@ -47,15 +45,6 @@ import { aktivBrukerAtom, aktivEnhetAtom } from 'src/lib/state/context';
 import { useEffect } from 'react';
 import setGjeldendeBrukerIRedux from 'src/redux/gjeldendeBruker/actions';
 import { useAtomValue } from 'jotai';
-
-const AppStyle = styled.div`
-    height: 100vh;
-    @media print {
-        height: auto;
-    }
-    display: flex;
-    flex-flow: column nowrap;
-`;
 
 const ContentStyle = styled.div`
     height: 0px;
@@ -66,9 +55,7 @@ const ContentStyle = styled.div`
     flex: 1 1 auto;
 `;
 
-const history = createBrowserHistory({
-    basename: import.meta.env.BASE_URL
-});
+const history = createBrowserHistory();
 
 const store = createStore(
     reducers(history),
@@ -111,19 +98,17 @@ function App() {
 
 const ReduxJotaiCompat = () => {
     const [aktivBruker] = useAtom(aktivBrukerAtom);
-    const [aktivEnhet] = useAtom(aktivEnhetAtom);
-    const setAktivEnhetContext = useValgtenhet();
+    const location = useLocation();
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(setGjeldendeBrukerIRedux(aktivBruker ?? ''));
-        dispatch(push(paths.personUri));
     }, [aktivBruker]);
 
     useEffect(() => {
-        setAktivEnhetContext.setEnhetId(aktivEnhet ?? '');
-    }, [aktivEnhet]);
+        dispatch(push(location.pathname + location.searchStr));
+    }, [location.pathname, location.searchStr]);
 
     return <></>;
 };
@@ -139,9 +124,7 @@ function AppContainer() {
             <Provider store={store}>
                 <ConnectedRouter history={history}>
                     <ReduxJotaiCompat />
-                    <AppStyle>
-                        <App />
-                    </AppStyle>
+                    <App />
                 </ConnectedRouter>
             </Provider>
         </>

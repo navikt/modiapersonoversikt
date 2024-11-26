@@ -8,6 +8,7 @@ import NotFound from 'src/components/NotFound';
 import { ValgtEnhetProvider } from 'src/context/valgtenhet-state';
 import { initAmplitude } from 'src/utils/amplitude';
 import { initializeObservability } from 'src/utils/observability';
+import styled from 'styled-components';
 
 export const Route = createRootRoute({
     component: RootLayout,
@@ -34,6 +35,15 @@ const TanStackRouterDevtools = import.meta.env.DEV
 initAmplitude();
 initializeObservability();
 
+const AppStyle = styled.div`
+    height: 100vh;
+    @media print {
+        height: auto;
+    }
+    display: flex;
+    flex-flow: column nowrap;
+`;
+
 function RootLayout() {
     const matchRoute = useMatchRoute();
     const isLanding = matchRoute({ to: '/landingpage' });
@@ -44,11 +54,11 @@ function RootLayout() {
                 {isLanding ? (
                     <LandingPage />
                 ) : (
-                    <>
+                    <AppStyle>
                         <DemoBanner />
                         <Decorator />
                         <Outlet />
-                    </>
+                    </AppStyle>
                 )}
                 <TanStackRouterDevtools />
             </ValgtEnhetProvider>

@@ -1,10 +1,10 @@
-import setGjeldendeBrukerIRedux from '../../redux/gjeldendeBruker/actions';
-import { useDispatch } from 'react-redux';
 import { Query, useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import featuretogglesResource from '../../rest/resources/featuretogglesResource';
-import { replace } from 'connected-react-router';
 import { useQueryParams } from '../../utils/url-utils';
+import { useNavigate } from '@tanstack/react-router';
+import { useSetAtom } from 'jotai';
+import { aktivBrukerAtom } from 'src/lib/state/context';
 
 interface Props {
     fnr: string;
@@ -14,15 +14,16 @@ interface Props {
 function SetFnrIRedux(props: Props) {
     const queryClient = useQueryClient();
     const queryParams = useQueryParams<Record<string, string>>();
-    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const setAktivBruker = useSetAtom(aktivBrukerAtom);
+
     useEffect(() => {
         if (queryParams.henvendelseid) {
             queryParams.behandlingsid = queryParams.henvendelseid;
         }
         const newQueryParams = new URLSearchParams(queryParams).toString();
-        dispatch(setGjeldendeBrukerIRedux(props.fnr));
+        setAktivBruker(props.fnr);
         const redirectUri = `${props.redirect}?${newQueryParams}`;
-        props.redirect && dispatch(replace(redirectUri));
         queryClient.removeQueries({
             predicate(query: Query) {
                 // Alle queryKeys er typisk på formatet ['endepunkt', 'fnr']
@@ -30,7 +31,8 @@ function SetFnrIRedux(props: Props) {
                 return query.queryKey?.length > 1 || query.queryKey === featuretogglesResource.queryKey;
             }
         });
-    }, [dispatch, queryClient, props.fnr]);
+        if (props.redirect) navigate({ to: redirectUri, replace: true });
+    }, [setAktivBruker, queryClient, props.fnr]);
 
     return null;
 }

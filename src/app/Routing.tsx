@@ -5,13 +5,14 @@ import { paths } from './routes/routing';
 import SaksDokumentEgetVindu from './personside/infotabs/saksoversikt/SaksDokumentIEgetVindu';
 import Personoversikt from './personside/Personoversikt';
 import Startbilde from './startbilde/Startbilde';
-import { useFodselsnummer } from '../utils/customHooks';
 import { CenteredLazySpinner } from '../components/LazySpinner';
 import SakerFullscreenProxy from './personside/infotabs/saksoversikt/SakerFullscreenProxy';
 import SetFnrIRedux from './PersonOppslagHandler/SetFnrIRedux';
+import { useAtomValue } from 'jotai';
+import { aktivBrukerAtom } from 'src/lib/state/context';
 
 function Routing() {
-    const fnr = useFodselsnummer();
+    const fnr = useAtomValue(aktivBrukerAtom);
 
     return (
         <Suspense fallback={<CenteredLazySpinner />}>

@@ -76,7 +76,11 @@ function lagConfigV3(
     const onsketFnr = sokFnr ?? fnr;
     const environment = import.meta.env.PROD ? getEnvFromHost() : 'mock';
 
-    const urlFormat = getDomainFromHost();
+    const urlFormat = import.meta.env.PROD
+        ? getDomainFromHost()
+        : import.meta.env.VITE_MOCK_ENABLED
+          ? 'LOCAL'
+          : 'NAV_NO';
 
     const contextProxy = 'modiacontextholder';
     const showSearchArea = ![paths.innkrevingskrav].some((path) => location.pathname.startsWith(path));
@@ -107,7 +111,7 @@ function lagConfigV3(
         enableHotkeys: true,
         proxy: (import.meta.env.VITE_CONTEXTHOLDER_URL as string) ?? `${import.meta.env.BASE_URL}proxy/${contextProxy}`,
         environment,
-        urlFormat: import.meta.env.PROD ? urlFormat : 'LOCAL',
+        urlFormat: import.meta.env.PROD ? urlFormat : 'NAV_NO',
         showEnheter: true,
         showSearchArea,
         fetchActiveUserOnMount: true,
