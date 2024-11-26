@@ -1,4 +1,3 @@
-import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import TraadVisningWrapper from './TraadVisningWrapper';
 import TestProvider from '../../../../../test/Testprovider';

@@ -39,20 +39,21 @@ function useHandleGosysUrl() {
     });
 
     const handleLegacyUrls = (fnr?: string) => {
-        const linkTilValgtHenvendelse = `${paths.personUri}/${INFOTABS.MELDINGER.path}?traadId=${queryParams.behandlingsid}`;
+        const linkTilValgtHenvendelse = `${paths.personUri}/${INFOTABS.MELDINGER.path}`;
+        const newQuery = { traadId: queryParams.behandlingsid };
         if (queryParams.oppgaveid && queryParams.behandlingsid && fnr) {
             fetchToJson<Oppgave>(`${apiBaseUri}/v2/oppgaver/oppgavedata/${queryParams.oppgaveid}`).then((response) => {
                 loggEvent('Oppgave', 'FraGosys', { success: hasData(response) });
                 settGjeldendeBruker(fnr);
-                navigate({ to: linkTilValgtHenvendelse, replace: true });
+                navigate({ to: linkTilValgtHenvendelse, search: newQuery, replace: true });
             });
         } else if (fnr && queryParams.behandlingsid) {
             loggEvent('Henvendelse', 'FraGosys');
             settGjeldendeBruker(fnr);
-            navigate({ to: linkTilValgtHenvendelse, replace: true });
+            navigate({ to: linkTilValgtHenvendelse, search: newQuery, replace: true });
         } else if (queryParams.behandlingsid) {
             loggEvent('Henvendelse', 'FraGosys');
-            navigate({ to: linkTilValgtHenvendelse, replace: true });
+            navigate({ to: linkTilValgtHenvendelse, search: newQuery, replace: true });
         } else if (fnr) {
             settGjeldendeBruker(fnr);
         }

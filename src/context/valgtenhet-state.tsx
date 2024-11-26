@@ -1,5 +1,6 @@
 import * as React from 'react';
-import useIsMounted from '../utils/hooks/use-is-mounted';
+import { useAtom } from 'jotai';
+import { aktivEnhetAtom } from 'src/lib/state/context';
 
 interface ValgtEnhetState {
     enhetId: string;
@@ -9,18 +10,16 @@ interface ValgtEnhetState {
 const ValgtEnhetContext = React.createContext<ValgtEnhetState | undefined>(undefined);
 
 export function ValgtEnhetProvider(props: { children: React.ReactNode }) {
-    const isMounted = useIsMounted();
-    const [enhetId, setEnhetId] = React.useState('');
+    const [aktivEnhet, setAktivEnhet] = useAtom(aktivEnhetAtom);
+
     const updateEnhet = React.useCallback(
         (enhetId: string) => {
-            if (isMounted.current) {
-                setEnhetId(enhetId);
-            }
+            setAktivEnhet(enhetId);
         },
-        [setEnhetId, isMounted]
+        [aktivEnhet]
     );
 
-    const value = { enhetId, setEnhetId: updateEnhet };
+    const value = { enhetId: aktivEnhet ?? '', setEnhetId: updateEnhet };
     return <ValgtEnhetContext.Provider value={value}>{props.children}</ValgtEnhetContext.Provider>;
 }
 
