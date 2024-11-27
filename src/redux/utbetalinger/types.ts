@@ -1,4 +1,4 @@
-import { Ytelse } from '../../models/utbetalinger';
+import { Ytelse } from 'src/models/utbetalinger';
 
 export interface UtbetalingerState {
     ytelseIFokus: Ytelse | null;
@@ -27,9 +27,4 @@ export enum PeriodeValg {
 export interface FraTilDato {
     fra: string;
     til: string;
-}
-
-interface PeriodeOptions {
-    radioValg: PeriodeValg;
-    egendefinertPeriode: FraTilDato;
 }

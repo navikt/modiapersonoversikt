@@ -1,8 +1,7 @@
-import * as React from 'react';
 import DescriptionList, { DescriptionListEntries } from '../../../../../components/DescriptionList';
-import { convertBoolTilJaNei } from '../../../../../utils/string-utils';
+import { convertBoolTilJaNei } from 'src/utils/string-utils';
 import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
-import { Sykepenger } from '../../../../../models/ytelse/sykepenger';
+import { Sykepenger } from 'src/models/ytelse/sykepenger';
 import ArbeidsForholdListe from './ArbeidsforholdListe';
 
 interface Props {
@@ -18,7 +17,7 @@ function Arbeidssituasjon(props: Props) {
     return (
         <YtelserInfoGruppe tittel="Arbeidssituasjon">
             <DescriptionList entries={sykemeldingEntries} />
-            <ArbeidsForholdListe ytelse={props.sykepenger} arbeidsForhold={props.sykepenger.arbeidsforholdListe} />
+            <ArbeidsForholdListe arbeidsForhold={props.sykepenger.arbeidsforholdListe} />
         </YtelserInfoGruppe>
     );
 }

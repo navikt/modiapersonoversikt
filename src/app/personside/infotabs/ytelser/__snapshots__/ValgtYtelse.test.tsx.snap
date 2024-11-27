@@ -365,6 +365,30 @@ exports[`Om foreldrepenger matcher snapshot 1`] = `
                   <dt
                     className="typo-normal"
                   >
+                    Arbeidskategori
+                  </dt>
+                  <dd
+                    className="typo-element"
+                  >
+                    —
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    className="typo-normal"
+                  >
+                    Inntekstsperiode
+                  </dt>
+                  <dd
+                    className="typo-element"
+                  >
+                    Månedlig
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    className="typo-normal"
+                  >
                     Kontonummer
                   </dt>
                   <dd
@@ -389,12 +413,12 @@ exports[`Om foreldrepenger matcher snapshot 1`] = `
                   <dt
                     className="typo-normal"
                   >
-                    Inntekstsperiode
+                    Refusjonstype
                   </dt>
                   <dd
                     className="typo-element"
                   >
-                    Månedlig
+                    Ikke refusjon
                   </dd>
                 </div>
                 <div>
@@ -407,18 +431,6 @@ exports[`Om foreldrepenger matcher snapshot 1`] = `
                     className="typo-element"
                   >
                     40 062,00 NOK
-                  </dd>
-                </div>
-                <div>
-                  <dt
-                    className="typo-normal"
-                  >
-                    Refusjonstype
-                  </dt>
-                  <dd
-                    className="typo-element"
-                  >
-                    Ikke refusjon
                   </dd>
                 </div>
                 <div>
@@ -899,6 +911,16 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
   content: '.';
 }
 
+.c5 li:not(:first-child) {
+  padding-top: 1rem;
+  margin-top: 1rem;
+  border-top: solid 0.0625rem #b7b1a9;
+}
+
+.c7 {
+  margin-top: 1rem;
+}
+
 .c10 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
@@ -909,16 +931,6 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
 
 .c10 >*:not(:last-child) {
   margin-bottom: 1rem;
-}
-
-.c5 li:not(:first-child) {
-  padding-top: 1rem;
-  margin-top: 1rem;
-  border-top: solid 0.0625rem #b7b1a9;
-}
-
-.c7 {
-  margin-top: 1rem;
 }
 
 .c2 {
@@ -1151,6 +1163,18 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
                     className="typo-element"
                   >
                     11.10.2018
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    className="typo-normal"
+                  >
+                    Sykepenger fra og med
+                  </dt>
+                  <dd
+                    className="typo-element"
+                  >
+                    —
                   </dd>
                 </div>
               </dl>
@@ -1855,6 +1879,30 @@ exports[`Om sykepenger matcher snapshot 1`] = `
                   <dt
                     className="typo-normal"
                   >
+                    Arbeidskategori
+                  </dt>
+                  <dd
+                    className="typo-element"
+                  >
+                    —
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    className="typo-normal"
+                  >
+                    Inntekstsperiode
+                  </dt>
+                  <dd
+                    className="typo-element"
+                  >
+                    Månedssats
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    className="typo-normal"
+                  >
                     Kontonummer
                   </dt>
                   <dd
@@ -1879,12 +1927,12 @@ exports[`Om sykepenger matcher snapshot 1`] = `
                   <dt
                     className="typo-normal"
                   >
-                    Inntekstsperiode
+                    Refusjonstype
                   </dt>
                   <dd
                     className="typo-element"
                   >
-                    Månedssats
+                    Ikke refusjon
                   </dd>
                 </div>
                 <div>
@@ -1897,18 +1945,6 @@ exports[`Om sykepenger matcher snapshot 1`] = `
                     className="typo-element"
                   >
                     39 691,00 NOK
-                  </dd>
-                </div>
-                <div>
-                  <dt
-                    className="typo-normal"
-                  >
-                    Refusjonstype
-                  </dt>
-                  <dd
-                    className="typo-element"
-                  >
-                    Ikke refusjon
                   </dd>
                 </div>
                 <div>

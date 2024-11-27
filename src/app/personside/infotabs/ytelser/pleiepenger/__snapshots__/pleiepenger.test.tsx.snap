@@ -245,6 +245,18 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
               11.10.2018
             </dd>
           </div>
+          <div>
+            <dt
+              className="typo-normal"
+            >
+              Sykepenger fra og med
+            </dt>
+            <dd
+              className="typo-element"
+            >
+              —
+            </dd>
+          </div>
         </dl>
       </li>
     </ol>

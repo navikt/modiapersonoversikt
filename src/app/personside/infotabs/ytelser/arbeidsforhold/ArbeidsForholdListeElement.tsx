@@ -1,8 +1,7 @@
-import * as React from 'react';
-import { datoEllerNull, NOKellerNull } from '../../../../../utils/string-utils';
-import { FormatertKontonummer } from '../../../../../utils/FormatertKontonummer';
+import { datoEllerNull, NOKellerNull } from 'src/utils/string-utils';
+import { FormatertKontonummer } from 'src/utils/FormatertKontonummer';
 import DescriptionList from '../../../../../components/DescriptionList';
-import { Arbeidsforhold } from '../../../../../models/ytelse/arbeidsforhold';
+import { Arbeidsforhold } from 'src/models/ytelse/arbeidsforhold';
 
 interface Props {
     arbeidsforhold: Arbeidsforhold;
@@ -11,14 +10,15 @@ interface Props {
 function ArbeidsForholdListeElement({ arbeidsforhold }: Props) {
     const arbeidsForholdEntries = {
         Arbeidsgiver: arbeidsforhold.arbeidsgiverNavn,
+        Arbeidskategori: arbeidsforhold.arbeidskategori,
+        Inntekstsperiode: arbeidsforhold.inntektsperiode,
         Kontonummer: arbeidsforhold.arbeidsgiverKontonr && (
             <FormatertKontonummer kontonummer={arbeidsforhold.arbeidsgiverKontonr} />
         ),
-        Inntekstsperiode: arbeidsforhold.inntektsperiode,
-        'Inntekt for perioden': NOKellerNull(arbeidsforhold.inntektForPerioden),
         Refusjonstype: arbeidsforhold.refusjonstype,
+        'Inntekt for perioden': NOKellerNull(arbeidsforhold.inntektForPerioden),
         'Refusjon til dato': datoEllerNull(arbeidsforhold.refusjonTom),
-        'Sykepenger fra og med': datoEllerNull(arbeidsforhold.sykepengerFom)
+        'Sykepenger fra og med': datoEllerNull(arbeidsforhold.sykepengerFom),
     };
 
     return (

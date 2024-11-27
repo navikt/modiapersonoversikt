@@ -216,10 +216,6 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   margin-top: 0.5rem;
 }
 
-.c4 .skjemaelement--horisontal {
-  margin-bottom: 0.4rem;
-}
-
 @media (min-width: 45rem) {
   .c1 {
     max-height: 100%;

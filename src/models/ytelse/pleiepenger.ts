@@ -1,6 +1,7 @@
-import { getSistePeriodeForPleiepengerettighet } from '../../app/personside/infotabs/ytelser/pleiepenger/pleiepengerUtils';
+import { getSistePeriodeForPleiepengerettighet } from 'src/app/personside/infotabs/ytelser/pleiepenger/pleiepengerUtils';
 import dayjs from 'dayjs';
-import { backendDatoformat } from '../../utils/date-utils';
+import { backendDatoformat } from 'src/utils/date-utils';
+import {Arbeidsforhold} from "src/models/ytelse/arbeidsforhold";
 
 export interface PleiepengerResponse {
     pleiepenger: Pleiepengerettighet[] | null;
@@ -22,17 +23,6 @@ export interface Pleiepengeperiode {
     antallPleiepengedager: number;
     arbeidsforhold: Arbeidsforhold[];
     vedtak: Vedtak[];
-}
-
-export interface Arbeidsforhold {
-    arbeidsgiverNavn: string;
-    arbeidsgiverKontonr: string | null;
-    inntektsperiode: string | null;
-    inntektForPerioden: number | null;
-    refusjonTom: string | null;
-    refusjonstype: string | null;
-    arbeidsgiverOrgnr: string;
-    arbeidskategori: string;
 }
 
 export interface Vedtak {

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import YtelseListe from './YtelserListe';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 import styled from 'styled-components';
@@ -6,14 +5,13 @@ import ValgtYtelse from './ValgtYtelse';
 import useBrukersYtelser from './useBrukersYtelser';
 import { useInfotabsDyplenker } from '../dyplenker';
 import { useKeepQueryParams } from '../../../../utils/hooks/useKeepQueryParams';
-import { useAppState } from '../../../../utils/customHooks';
-import { PeriodeOptions } from '../../../../redux/utbetalinger/types';
-import { useCallback } from 'react';
-import { oppdaterYtelseFilter } from '../../../../redux/ytelser/ytelserReducer';
-import { useDispatch } from 'react-redux';
+import {PeriodeValg} from '../../../../redux/utbetalinger/types';
+import {useState} from 'react';
 import FiltreringPeriode from '../utbetalinger/filter/FilterPeriode';
 import Panel from 'nav-frontend-paneler';
 import { pxToRem } from '../../../../styles/personOversiktTheme';
+import dayjs from "dayjs";
+import {ISO_DATE_STRING_FORMAT} from "nav-datovelger/lib/utils/dateFormatUtils";
 
 const ytelserMediaTreshold = '45rem';
 
@@ -57,26 +55,21 @@ const InputPanel = styled.form`
     > * {
         margin-top: 0.5rem;
     }
-    .skjemaelement--horisontal {
-        margin-bottom: 0.4rem;
-    }
 `;
 
 function Ytelser() {
     useKeepQueryParams();
-    const dispatch = useDispatch();
-    const periode = useAppState((appState) => appState.ytelser.periode);
-    const fraTilDato = periode.egendefinertPeriode;
-    const ytelser = useBrukersYtelser(fraTilDato);
+    const [periode, setPeriode] = useState({
+        radioValg: PeriodeValg.EGENDEFINERT,
+        egendefinertPeriode: {
+            fra: dayjs().subtract(2, 'year').format(ISO_DATE_STRING_FORMAT),
+            til: dayjs().format(ISO_DATE_STRING_FORMAT)
+        }
+    });
+
+    const ytelser = useBrukersYtelser(periode.egendefinertPeriode);
     const dypLenker = useInfotabsDyplenker();
     const valgtYtelse = ytelser.ytelser.find((ytelse) => dypLenker.ytelser.erValgt(ytelse)) || ytelser.ytelser[0];
-
-    const updateFilter = useCallback(
-        (change: PeriodeOptions) => {
-            dispatch(oppdaterYtelseFilter(change));
-        },
-        [dispatch]
-    );
 
     return (
         <Styling>
@@ -87,7 +80,7 @@ function Ytelser() {
                             <FiltreringPeriode
                                 periode={periode}
                                 updatePeriod={(change) => {
-                                    updateFilter(change);
+                                    setPeriode(change);
                                 }}
                             />
                         </InputPanel>
