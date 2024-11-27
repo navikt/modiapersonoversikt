@@ -18,10 +18,10 @@ import {
     utbetalingDatoComparator
 } from './utbetalinger-utils';
 import dayjs from 'dayjs';
-import { statiskMockUtbetaling, statiskMockYtelse } from '../../../../../mock/utbetalinger/statiskMockUtbetaling';
-import { Periode } from '../../../../../models/tid';
-import { PeriodeValg, UtbetalingFilterState } from '../../../../../redux/utbetalinger/types';
-import { ISO_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
+import { statiskMockUtbetaling, statiskMockYtelse } from 'src/mock/utbetalinger/statiskMockUtbetaling';
+import { Periode } from 'src/models/tid';
+import { PeriodeValg, UtbetalingFilterState } from 'src/redux/utbetalinger/types';
+import { ISO_DATE_FORMAT } from 'src/utils/date-utils';
 
 Date.now = () => new Date().getTime(); // for å motvirke Date.now() mock i setupTests.ts
 
@@ -228,8 +228,8 @@ const mockFilter: UtbetalingFilterState = {
     periode: {
         radioValg: PeriodeValg.SISTE_30_DAGER,
         egendefinertPeriode: {
-            fra: dayjs().format(ISO_DATE_STRING_FORMAT),
-            til: dayjs().format(ISO_DATE_STRING_FORMAT)
+            fra: dayjs().format(ISO_DATE_FORMAT),
+            til: dayjs().format(ISO_DATE_FORMAT)
         }
     },
     ytelser: [],
@@ -290,8 +290,8 @@ test('henter riktig fra og til-date fra filter ved valg av "egendefinert periode
         ...mockFilter,
         periode: {
             egendefinertPeriode: {
-                fra: dato.format(ISO_DATE_STRING_FORMAT),
-                til: dato.format(ISO_DATE_STRING_FORMAT)
+                fra: dato.format(ISO_DATE_FORMAT),
+                til: dato.format(ISO_DATE_FORMAT)
             },
             radioValg: PeriodeValg.EGENDEFINERT
         }

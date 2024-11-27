@@ -3,18 +3,18 @@ import dayjs from 'dayjs';
 
 import navfaker from 'nav-faker/dist/index';
 import {
-    Arbeidsforhold,
     Periode,
     Pleiepengeperiode,
     Pleiepengerettighet,
     PleiepengerResponse,
     Vedtak
-} from '../../models/ytelse/pleiepenger';
+} from 'src/models/ytelse/pleiepenger';
 import { fyllRandomListe } from '../utils/mock-utils';
-import { pleiepengerTestData } from '../../app/personside/infotabs/ytelser/pleiepenger/pleiepengerTestData';
-import { backendDatoformat } from '../../utils/date-utils';
+import { pleiepengerTestData } from 'src/app/personside/infotabs/ytelser/pleiepenger/pleiepengerTestData';
+import { backendDatoformat } from 'src/utils/date-utils';
 import { aremark } from '../persondata/aremark';
 import { lagPerson } from '../persondata/persondata';
+import { Arbeidsforhold } from 'src/models/ytelse/arbeidsforhold';
 
 export function getMockPleiepenger(fødselsnummer: string): PleiepengerResponse {
     if (fødselsnummer === aremark.personIdent) {
@@ -79,7 +79,8 @@ function getArbeidsforhold(): Arbeidsforhold {
         refusjonTom: dayjs(faker.date.past({ years: 2 })).format(backendDatoformat),
         refusjonstype: 'Ikke refusjon',
         arbeidsgiverOrgnr: '1234567890',
-        arbeidskategori: 'Arbeidstaker'
+        arbeidskategori: 'Arbeidstaker',
+        sykepengerFom: undefined
     };
 }
 

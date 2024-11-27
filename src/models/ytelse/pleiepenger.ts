@@ -1,7 +1,7 @@
 import { getSistePeriodeForPleiepengerettighet } from 'src/app/personside/infotabs/ytelser/pleiepenger/pleiepengerUtils';
 import dayjs from 'dayjs';
 import { backendDatoformat } from 'src/utils/date-utils';
-import {Arbeidsforhold} from "src/models/ytelse/arbeidsforhold";
+import { Arbeidsforhold } from 'src/models/ytelse/arbeidsforhold';
 
 export interface PleiepengerResponse {
     pleiepenger: Pleiepengerettighet[] | null;

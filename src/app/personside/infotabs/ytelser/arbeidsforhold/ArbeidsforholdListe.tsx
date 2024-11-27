@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import KnappBase from 'nav-frontend-knapper';
 import { Arbeidsforhold } from 'src/models/ytelse/arbeidsforhold';
-import {useState} from "react";
+import { useState } from 'react';
 
 interface Props {
     arbeidsForhold: Arbeidsforhold[];
@@ -23,7 +23,7 @@ const StyledKnappBase = styled(KnappBase)`
 `;
 
 function ArbeidsForholdListe(props: Props) {
-    const [visArbeidsforhold, setVisArbeidsforhold] = useState(false)
+    const [visArbeidsforhold, setVisArbeidsforhold] = useState(false);
     const arbeidsforhold = props.arbeidsForhold;
     if (!arbeidsforhold || arbeidsforhold.length === 0) {
         return <AlertStripeInfo>Ingen arbeidsgiver er registrert</AlertStripeInfo>;
@@ -32,9 +32,7 @@ function ArbeidsForholdListe(props: Props) {
     const [førsteArbForhold, ...resten] = arbeidsforhold;
     const visAlleArbeidsforholdKnapp = (
         <StyledKnappBase type={'hoved'} onClick={() => setVisArbeidsforhold(!visArbeidsforhold)}>
-            {arbeidsforhold.length > 1 && visArbeidsforhold
-                ? 'Vis færre arbeidsforhold'
-                : 'Vis alle arbeidsforhold'}
+            {arbeidsforhold.length > 1 && visArbeidsforhold ? 'Vis færre arbeidsforhold' : 'Vis alle arbeidsforhold'}
         </StyledKnappBase>
     );
     return (

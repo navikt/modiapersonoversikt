@@ -1,7 +1,7 @@
 import { Pleiepengerettighet } from 'src/models/ytelse/pleiepenger';
 import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
 import DescriptionList from '../../../../../components/DescriptionList';
-import {getAlleArbiedsforholdSortert, getSisteVedtakForPleiepengerettighet} from './pleiepengerUtils';
+import { getAlleArbiedsforholdSortert, getSisteVedtakForPleiepengerettighet } from './pleiepengerUtils';
 import { formaterDato } from 'src/utils/string-utils';
 import { Data as Persondata, Kjonn } from '../../../visittkort-v2/PersondataDomain';
 import styled from 'styled-components';
@@ -9,7 +9,7 @@ import theme from '../../../../../styles/personOversiktTheme';
 import persondataResource from '../../../../../rest/resources/persondataResource';
 import { UseQueryResult } from '@tanstack/react-query';
 import { FetchError } from 'src/api/api';
-import ArbeidsForholdListe from "src/app/personside/infotabs/ytelser/arbeidsforhold/ArbeidsforholdListe";
+import ArbeidsForholdListe from 'src/app/personside/infotabs/ytelser/arbeidsforhold/ArbeidsforholdListe';
 
 interface Props {
     pleiepenger: Pleiepengerettighet;

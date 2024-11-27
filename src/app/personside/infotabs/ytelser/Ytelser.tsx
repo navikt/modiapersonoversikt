@@ -4,14 +4,14 @@ import styled from 'styled-components';
 import ValgtYtelse from './ValgtYtelse';
 import useBrukersYtelser from './useBrukersYtelser';
 import { useInfotabsDyplenker } from '../dyplenker';
-import { useKeepQueryParams } from '../../../../utils/hooks/useKeepQueryParams';
-import {PeriodeValg} from '../../../../redux/utbetalinger/types';
-import {useState} from 'react';
+import { useKeepQueryParams } from 'src/utils/hooks/useKeepQueryParams';
+import { PeriodeValg } from 'src/redux/utbetalinger/types';
+import { useState } from 'react';
 import FiltreringPeriode from '../utbetalinger/filter/FilterPeriode';
 import Panel from 'nav-frontend-paneler';
-import { pxToRem } from '../../../../styles/personOversiktTheme';
-import dayjs from "dayjs";
-import {ISO_DATE_STRING_FORMAT} from "nav-datovelger/lib/utils/dateFormatUtils";
+import { pxToRem } from 'src/styles/personOversiktTheme';
+import dayjs from 'dayjs';
+import { ISO_DATE_FORMAT } from 'src/utils/date-utils';
 
 const ytelserMediaTreshold = '45rem';
 
@@ -62,8 +62,8 @@ function Ytelser() {
     const [periode, setPeriode] = useState({
         radioValg: PeriodeValg.EGENDEFINERT,
         egendefinertPeriode: {
-            fra: dayjs().subtract(2, 'year').format(ISO_DATE_STRING_FORMAT),
-            til: dayjs().format(ISO_DATE_STRING_FORMAT)
+            fra: dayjs().subtract(2, 'year').format(ISO_DATE_FORMAT),
+            til: dayjs().format(ISO_DATE_FORMAT)
         }
     });
 

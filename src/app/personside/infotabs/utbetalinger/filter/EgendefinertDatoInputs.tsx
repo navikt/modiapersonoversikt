@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { FraTilDato } from '../../../../../redux/utbetalinger/types';
+import { FraTilDato } from 'src/redux/utbetalinger/types';
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import dayjs, { Dayjs } from 'dayjs';
 import { DatePicker, useDatepicker } from '@navikt/ds-react';
 import styled from 'styled-components';
-import { ISO_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
+import { ISO_DATE_FORMAT } from 'src/utils/date-utils';
 
 interface EgendefinertDatoInputsProps {
     updateFraTilDato: (change: FraTilDato) => void;
@@ -38,14 +38,14 @@ function EgendefinertDatoInputs(props: EgendefinertDatoInputsProps) {
     const [periodeFeilmelding, setPeriodeFeilmelding] = useState<string | undefined>();
 
     const onFraDatoChange = (val: Date) => {
-        const value = dayjs(val).format(ISO_DATE_STRING_FORMAT);
-        setFraDato(dayjs(val).format(ISO_DATE_STRING_FORMAT));
+        const value = dayjs(val).format(ISO_DATE_FORMAT);
+        setFraDato(dayjs(val).format(ISO_DATE_FORMAT));
         onRangeDatoChange(value, tilDato);
     };
 
     const onTilDatoChange = (val: Date) => {
-        const value = dayjs(val).format(ISO_DATE_STRING_FORMAT);
-        setTilDato(dayjs(val).format(ISO_DATE_STRING_FORMAT));
+        const value = dayjs(val).format(ISO_DATE_FORMAT);
+        setTilDato(dayjs(val).format(ISO_DATE_FORMAT));
         onRangeDatoChange(fraDato, value);
     };
 

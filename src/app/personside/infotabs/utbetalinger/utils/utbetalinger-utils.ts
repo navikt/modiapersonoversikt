@@ -5,7 +5,7 @@ import dayjs, { Dayjs } from 'dayjs';
 import { loggError } from '../../../../../utils/logger/frontendLogger';
 import { PeriodeValg, PeriodeOptions, FraTilDato } from '../../../../../redux/utbetalinger/types';
 import { datoVerbose } from '../../../../../utils/date-utils';
-import { ISO_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
+import { ISO_DATE_FORMAT } from 'src/utils/date-utils';
 
 export const utbetaltTilBruker = 'Bruker';
 
@@ -30,7 +30,7 @@ export function trekkBelopAscComparator(a: Trekk, b: Trekk) {
     return a.trekkbelop - b.trekkbelop;
 }
 
-export const toIsoDateString = (date: Dayjs) => date.format(ISO_DATE_STRING_FORMAT);
+export const toIsoDateString = (date: Dayjs) => date.format(ISO_DATE_FORMAT);
 
 export const getFraDateFromPeriod = (periodeValg: PeriodeValg): FraTilDato => {
     switch (periodeValg) {
@@ -69,7 +69,7 @@ export function getFraDateFromFilter(periode: PeriodeOptions): Date {
         case PeriodeValg.I_FJOR:
             return dayjs().subtract(1, 'year').startOf('year').toDate();
         case PeriodeValg.EGENDEFINERT:
-            return dayjs(periode.egendefinertPeriode.fra, ISO_DATE_STRING_FORMAT).toDate();
+            return dayjs(periode.egendefinertPeriode.fra, ISO_DATE_FORMAT).toDate();
         case PeriodeValg.SISTE_30_DAGER:
         default:
             return getUtbetalingerForSiste30DagerDatoer().fra;
@@ -81,7 +81,7 @@ export function getTilDateFromFilter(periode: PeriodeOptions): Date {
         case PeriodeValg.I_FJOR:
             return dayjs().subtract(1, 'year').endOf('year').toDate();
         case PeriodeValg.EGENDEFINERT:
-            return dayjs(periode.egendefinertPeriode.til, ISO_DATE_STRING_FORMAT).toDate();
+            return dayjs(periode.egendefinertPeriode.til, ISO_DATE_FORMAT).toDate();
         case PeriodeValg.INNEVERENDE_AR:
             return dayjs().endOf('year').toDate();
         case PeriodeValg.SISTE_30_DAGER:

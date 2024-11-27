@@ -18,7 +18,7 @@ function ArbeidsForholdListeElement({ arbeidsforhold }: Props) {
         Refusjonstype: arbeidsforhold.refusjonstype,
         'Inntekt for perioden': NOKellerNull(arbeidsforhold.inntektForPerioden),
         'Refusjon til dato': datoEllerNull(arbeidsforhold.refusjonTom),
-        'Sykepenger fra og med': datoEllerNull(arbeidsforhold.sykepengerFom),
+        'Sykepenger fra og med': datoEllerNull(arbeidsforhold.sykepengerFom)
     };
 
     return (
