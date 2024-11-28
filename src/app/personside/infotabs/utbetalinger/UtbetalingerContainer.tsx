@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Utbetalinger from './Utbetalinger';
 import UtbetalingFiltrering from './filter/UtbetalingFilter';
 import theme from '../../../../styles/personOversiktTheme';

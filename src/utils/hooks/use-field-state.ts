@@ -1,4 +1,5 @@
-import React, { Dispatch, SetStateAction, useCallback, useMemo, useState } from 'react';
+import { Dispatch, SetStateAction, useCallback, useMemo, useState } from 'react';
+import * as React from 'react';
 
 export interface FieldState {
     input: {

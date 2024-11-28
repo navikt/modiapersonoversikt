@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
 import Tekstomrade, { defaultRules } from 'nav-frontend-tekstomrade';

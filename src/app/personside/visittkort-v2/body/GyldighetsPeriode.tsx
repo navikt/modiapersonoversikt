@@ -1,4 +1,3 @@
-import * as React from 'react';
 import EtikettGraa from '../../../../components/EtikettGraa';
 import { GyldighetsPeriode as GyldighetsPeriodeInterface } from '../PersondataDomain';
 import { hentPeriodeTekst } from '../visittkort-utils';

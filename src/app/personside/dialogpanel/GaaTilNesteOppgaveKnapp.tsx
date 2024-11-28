@@ -1,4 +1,3 @@
-import * as React from 'react';
 import KnappBase from 'nav-frontend-knapper';
 import { setValgtTraadDialogpanel } from '../../../redux/oppgave/actions';
 import { useDispatch } from 'react-redux';

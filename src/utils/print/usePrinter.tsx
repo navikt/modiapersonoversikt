@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { ReactNode, useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { PrinterMedHeader } from './PrinterMedHeader';

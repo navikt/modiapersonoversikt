@@ -1,4 +1,3 @@
-import * as React from 'react';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import Sokeresultat from './Sokeresultat';

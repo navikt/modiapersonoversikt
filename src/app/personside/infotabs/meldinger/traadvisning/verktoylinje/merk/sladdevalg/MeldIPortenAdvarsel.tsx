@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 interface Props {

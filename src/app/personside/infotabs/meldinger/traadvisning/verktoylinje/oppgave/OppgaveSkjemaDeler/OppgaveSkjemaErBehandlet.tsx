@@ -1,6 +1,5 @@
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import React from 'react';
 import { AlertStyling } from '../OppgaveSkjema';
 
 interface Props {

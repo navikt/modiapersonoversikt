@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Radio } from 'nav-frontend-skjema';
 import { Element } from 'nav-frontend-typografi';
 import { FraTilDato, PeriodeOptions, PeriodeValg } from '../../../../../redux/utbetalinger/types';

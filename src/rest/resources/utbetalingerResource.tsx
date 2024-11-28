@@ -1,7 +1,6 @@
 import { applyDefaults, DefaultConfig, RendererOrConfig, useRest } from '../useRest';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import AlertStripe from 'nav-frontend-alertstriper';
-import * as React from 'react';
 import { apiBaseUri } from '../../api/config';
 import { useFodselsnummer } from '../../utils/customHooks';
 import { getUtbetalingerForSiste30DagerDatoer } from '../../app/personside/infotabs/utbetalinger/utils/utbetalinger-utils';

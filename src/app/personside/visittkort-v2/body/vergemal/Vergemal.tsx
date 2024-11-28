@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { Fragment } from 'react';
 import styled from 'styled-components';
 import { Element, Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import VisittkortElement from '../VisittkortElement';
@@ -36,7 +36,7 @@ function Verge(props: { feilendeSystemer: Array<InformasjonElement>; verge: Verg
                 <Normaltekst>{verge.ident}</Normaltekst>
             </Vergeinformasjon>
             {verge.tjenesteOppgaver?.length > 0 ? (
-                <React.Fragment>
+                <Fragment>
                     <Element>
                         Område{' '}
                         <Hjelpetekst>
@@ -46,12 +46,12 @@ function Verge(props: { feilendeSystemer: Array<InformasjonElement>; verge: Verg
                         </Hjelpetekst>
                     </Element>
                     <Normaltekst>{verge.tjenesteOppgaver.join(', ')}</Normaltekst>
-                </React.Fragment>
+                </Fragment>
             ) : (
-                <React.Fragment>
+                <Fragment>
                     <Element>Omfang</Element>
                     <Normaltekst>{verge.omfang}</Normaltekst>
-                </React.Fragment>
+                </Fragment>
             )}
             <EtikettGraa>{verge.embete}</EtikettGraa>
             <GyldighetsPeriode gyldighetsPeriode={verge.gyldighetsPeriode} />

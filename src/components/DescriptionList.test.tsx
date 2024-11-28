@@ -1,4 +1,3 @@
-import React from 'react';
 import DescriptionList, { DescriptionListEntries, fjernEntriesUtenVerdi } from './DescriptionList';
 import { render, screen } from '@testing-library/react';
 

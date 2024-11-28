@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { createRef, useState } from 'react';
 import { useClickOutside } from '../../../utils/customHooks';
 import styled from 'styled-components';

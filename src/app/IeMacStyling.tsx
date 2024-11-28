@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useState } from 'react';
 import { useOnMount } from '../utils/customHooks';
 import { detect } from 'detect-browser';

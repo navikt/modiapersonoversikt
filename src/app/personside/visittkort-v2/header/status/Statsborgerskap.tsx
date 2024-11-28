@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { capitalizeName } from '../../../../../utils/string-utils';
 import { Person } from '../../PersondataDomain';
 

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useOnMount } from '../../../../utils/customHooks';
 import { loggEvent } from '../../../../utils/logger/frontendLogger';
 import DokumentVisning from './dokumentvisning/SaksDokumentVisning';

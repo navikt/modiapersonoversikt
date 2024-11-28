@@ -1,4 +1,3 @@
-import React from 'react';
 import SaksoversiktContainerV2 from './SaksoversiktContainerV2';
 
 function SaksoversiktFactory() {

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import VisittkortElement from '../../VisittkortElement';
 import CoinsIkon from '../../../../../../svg/Coins';
 import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import VisittkortElement from '../VisittkortElement';
 import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';

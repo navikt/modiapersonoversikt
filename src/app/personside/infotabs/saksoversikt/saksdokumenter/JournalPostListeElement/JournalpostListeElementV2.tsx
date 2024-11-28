@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { useRef } from 'react';
+import { createRef, useRef } from 'react';
 import {
     Dokument as Enkeltdokument,
     Entitet,
@@ -114,8 +113,8 @@ function getDokumentIkon(harTilgang: boolean) {
 function JournalpostListeElementV2(props: Props) {
     const { alleSakstema } = useHentAlleSakstemaFraResourceV2();
     const { valgtJournalpost } = useSakstemaURLStateV2(alleSakstema);
-    const vedleggLinkRef = React.createRef<HTMLUListElement>();
-    const hoveddokumentLinkRef = React.createRef<HTMLDivElement>();
+    const vedleggLinkRef = createRef<HTMLUListElement>();
+    const hoveddokumentLinkRef = createRef<HTMLDivElement>();
     const brukerResponse = persondataResource.useFetch();
     const tittelId = useRef(guid());
 

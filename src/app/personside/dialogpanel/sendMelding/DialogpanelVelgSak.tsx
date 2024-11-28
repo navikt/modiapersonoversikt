@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { createRef, useState } from 'react';
 import {
     JournalforingsSak,

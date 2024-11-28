@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Kanal, Varselmelding } from '../../../../../models/varsel';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';

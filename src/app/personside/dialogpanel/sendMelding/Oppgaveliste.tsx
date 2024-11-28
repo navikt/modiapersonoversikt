@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Select from 'nav-frontend-skjema/lib/select';
 import { OppgavelisteValg } from './SendNyMelding';
 import styled from 'styled-components';

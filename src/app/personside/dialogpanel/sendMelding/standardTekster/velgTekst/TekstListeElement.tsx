@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
 import Tekstomrade, { LinebreakRule, ParagraphRule, Rule } from 'nav-frontend-tekstomrade';
 import * as StandardTekster from '../domain';

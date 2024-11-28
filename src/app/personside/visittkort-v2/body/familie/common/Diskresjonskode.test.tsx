@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Diskresjonskode from './Diskresjonskode';
 import { render } from '@testing-library/react';
 import { AdresseBeskyttelse, KodeBeskrivelse } from '../../../PersondataDomain';

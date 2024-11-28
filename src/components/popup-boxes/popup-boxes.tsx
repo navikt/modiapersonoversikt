@@ -1,4 +1,5 @@
-import React, { createElement } from 'react';
+import { createElement } from 'react';
+import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import RawModal from 'nav-frontend-modal';
 import KnappBase from 'nav-frontend-knapper';

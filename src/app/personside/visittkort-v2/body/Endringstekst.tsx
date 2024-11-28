@@ -1,4 +1,3 @@
-import * as React from 'react';
 import EtikettGraa from '../../../../components/EtikettGraa';
 import { formaterDato } from '../../../../utils/string-utils';
 import { SistEndret } from '../PersondataDomain';

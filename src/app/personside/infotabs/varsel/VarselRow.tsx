@@ -1,5 +1,6 @@
 import { guid } from 'nav-frontend-js-utils';
-import React, { useRef } from 'react';
+import { useRef } from 'react';
+import * as React from 'react';
 import { UnmountClosed } from 'react-collapse';
 import { useDispatch } from 'react-redux';
 import VisMerChevron from '../../../../components/VisMerChevron';

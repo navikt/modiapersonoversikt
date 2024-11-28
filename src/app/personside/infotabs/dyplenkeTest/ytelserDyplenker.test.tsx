@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { render, within } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
 import TestProvider from '../../../../test/Testprovider';

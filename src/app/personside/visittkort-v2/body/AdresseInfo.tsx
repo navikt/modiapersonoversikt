@@ -1,5 +1,4 @@
 import { Normaltekst } from 'nav-frontend-typografi';
-import React from 'react';
 import { Adresse } from '../PersondataDomain';
 
 function Adresseinfo({ adresse }: { adresse: Adresse }) {

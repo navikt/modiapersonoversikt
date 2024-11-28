@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { ChangeEvent, useEffect } from 'react';
 import styled from 'styled-components';
 import { Select } from 'nav-frontend-skjema';

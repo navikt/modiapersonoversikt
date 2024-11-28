@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { memo } from 'react';
 import styled from 'styled-components';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 import { useAppState } from '../../../utils/customHooks';
@@ -46,4 +46,4 @@ function DialogPanel() {
     );
 }
 
-export default React.memo(DialogPanel);
+export default memo(DialogPanel);

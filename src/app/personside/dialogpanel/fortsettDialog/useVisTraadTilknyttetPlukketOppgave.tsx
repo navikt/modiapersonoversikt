@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Traad } from '../../../../models/meldinger/meldinger';
 import useTildelteOppgaver from '../../../../utils/hooks/useTildelteOppgaver';
 import { useDispatch } from 'react-redux';

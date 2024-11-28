@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { createRef, useEffect, useRef } from 'react';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
@@ -14,7 +14,6 @@ import ToggleViktigAaViteKnapp from '../viktigavite/ToggleViktigAaViteKnapp';
 import { datoSynkende } from '../../../../../utils/date-utils';
 import { sakerTest } from '../../dyplenkeTest/utils-dyplenker-test';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { useEffect, useRef } from 'react';
 import usePaginering from '../../../../../utils/hooks/usePaginering';
 import { useAppState, usePrevious } from '../../../../../utils/customHooks';
 import { KategoriSkille } from '../../../dialogpanel/fellesStyling';
@@ -188,7 +187,7 @@ const fieldCompareJournalposter = (journalpost: Journalpost) => journalpost.id;
 function JournalPoster(props: Props) {
     const { alleSakstema } = useHentAlleSakstemaFraResourceV2();
     const { valgteSakstemaer } = useSakstemaURLStateV2(alleSakstema);
-    const tittelRef = React.createRef<HTMLDivElement>();
+    const tittelRef = createRef<HTMLDivElement>();
     const avsenderFilter = useAppState((state) => state.saksoversikt.avsenderFilter);
     const aggregertSak: Sakstema = aggregertSakstemaV2(alleSakstema, valgteSakstemaer);
     const filtrerteJournalposter = aggregertSak.dokumentMetadata

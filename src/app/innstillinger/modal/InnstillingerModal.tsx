@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Modal from 'nav-frontend-modal';
 import styled from 'styled-components';
 import { Systemtittel } from 'nav-frontend-typografi';

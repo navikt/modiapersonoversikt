@@ -1,4 +1,3 @@
-import * as React from 'react';
 import VisittkortElement from '../../VisittkortElement';
 import LocationPin from '../../../../../../svg/LocationPin';
 import { Normaltekst } from 'nav-frontend-typografi';

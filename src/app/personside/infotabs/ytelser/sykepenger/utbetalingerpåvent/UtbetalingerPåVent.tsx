@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
 import { Ingress } from 'nav-frontend-typografi';

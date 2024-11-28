@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { createDynamicHighlightingRule } from 'nav-frontend-tekstomrade';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';

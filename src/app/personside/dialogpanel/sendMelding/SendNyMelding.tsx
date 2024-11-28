@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { FormEvent, useRef } from 'react';
 import { TraadType } from '../../../../models/meldinger/meldinger';
 import { UnmountClosed } from 'react-collapse';

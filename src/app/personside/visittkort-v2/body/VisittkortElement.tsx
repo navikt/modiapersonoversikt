@@ -1,4 +1,3 @@
-import * as React from 'react';
 import styled from 'styled-components';
 import TittelOgIkon from './IkonOgTittel';
 import { ReactNode } from 'react';

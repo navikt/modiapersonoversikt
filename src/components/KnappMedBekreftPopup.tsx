@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { Component } from 'react';
 import ModalWrapper from 'nav-frontend-modal';
 import { Normaltekst } from 'nav-frontend-typografi';
 import KnappBase, { KnappBaseProps } from 'nav-frontend-knapper';
@@ -31,7 +31,7 @@ const ModalStyling = styled.div`
     }
 `;
 
-class KnappMedBekreftPopup extends React.Component<Props, State> {
+class KnappMedBekreftPopup extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = {

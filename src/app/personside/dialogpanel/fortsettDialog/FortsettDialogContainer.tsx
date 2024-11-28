@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { FormEvent, useRef, useState, useCallback, useMemo } from 'react';
 import { FortsettDialogValidator } from './validatorer';
 import { SendMeldingRequestV2, Traad, TraadType } from '../../../../models/meldinger/meldinger';

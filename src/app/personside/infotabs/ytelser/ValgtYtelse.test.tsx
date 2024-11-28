@@ -1,6 +1,5 @@
 import * as renderer from 'react-test-renderer';
 import TestProvider from '../../../../test/Testprovider';
-import * as React from 'react';
 import ValgtYtelse from './ValgtYtelse';
 import { statiskForeldrepengeMock } from '../../../../mock/ytelse/statiskForeldrepengeMock';
 import { pleiepengerTestData } from './pleiepenger/pleiepengerTestData';

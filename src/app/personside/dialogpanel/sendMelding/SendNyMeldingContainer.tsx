@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { FormEvent, useCallback, useMemo, useState } from 'react';
 import { MeldingValidator } from './validatorer';
 import { Meldingstype, SendMeldingRequestV2, Traad, TraadType } from '../../../../models/meldinger/meldinger';

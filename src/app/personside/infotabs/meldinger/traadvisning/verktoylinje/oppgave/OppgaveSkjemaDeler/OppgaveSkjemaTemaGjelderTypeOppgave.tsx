@@ -1,4 +1,3 @@
-import React from 'react';
 import { Path, UseFormReturn } from 'react-hook-form';
 import FormSelect from '../../../../../../../../components/form/FormSelect';
 import { GsakTema } from '../../../../../../../../models/meldinger/oppgave';

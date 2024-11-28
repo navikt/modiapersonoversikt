@@ -1,4 +1,3 @@
-import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
 import { statiskMockYtelse } from '../../../../../mock/utbetalinger/statiskMockUtbetaling';

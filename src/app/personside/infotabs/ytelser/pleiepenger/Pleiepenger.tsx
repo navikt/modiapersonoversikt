@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Pleiepengerettighet } from '../../../../../models/ytelse/pleiepenger';
 import Pleiepengerperiode from './Pleiepengerperiode';
 import Oversikt from './Oversikt';

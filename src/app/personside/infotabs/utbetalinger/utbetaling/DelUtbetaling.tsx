@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { createRef, PureComponent } from 'react';
 import { formaterNOK, periodeStringFromYtelse } from '../utils/utbetalinger-utils';
 import { BulletPoint, SpaceBetween } from '../../../../../components/common-styled-components';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
@@ -39,8 +39,8 @@ const DelUtbetalingStyle = styled.li`
     }
 `;
 
-class DelUtbetaling extends React.PureComponent<Props> {
-    private ytelseRef = React.createRef<HTMLLIElement>();
+class DelUtbetaling extends PureComponent<Props> {
+    private ytelseRef = createRef<HTMLLIElement>();
 
     constructor(props: Props) {
         super(props);

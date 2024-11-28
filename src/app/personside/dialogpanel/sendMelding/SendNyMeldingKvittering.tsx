@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { DialogpanelKvittering } from '../fellesStyling';
 import { KvitteringNyMelding, SendNyMeldingStatus } from './SendNyMeldingTypes';
 

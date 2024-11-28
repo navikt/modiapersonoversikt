@@ -1,4 +1,3 @@
-import React from 'react';
 import SakerFullscreenV2 from './SakerFullscreenV2';
 
 interface Props {

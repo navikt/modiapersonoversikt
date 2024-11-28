@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Data as Persondata, Kjonn, KodeBeskrivelse } from '../PersondataDomain';
 import { Undertittel } from 'nav-frontend-typografi';
 import styled from 'styled-components';

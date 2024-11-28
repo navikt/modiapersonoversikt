@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { ReactNode, useEffect } from 'react';
 import { getSykepengerIdDato, Sykepenger } from '../../../../models/ytelse/sykepenger';
 import { Pleiepengerettighet } from '../../../../models/ytelse/pleiepenger';

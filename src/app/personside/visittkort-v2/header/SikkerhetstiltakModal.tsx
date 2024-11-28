@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useState } from 'react';
 import RawModal from 'nav-frontend-modal';
 import KnappBase from 'nav-frontend-knapper';

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import EnkeltOppdateringslogg from './EnkeltOppdateringslogg';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';

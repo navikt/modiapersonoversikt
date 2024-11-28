@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { FormEvent, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Hovedknapp } from 'nav-frontend-knapper';

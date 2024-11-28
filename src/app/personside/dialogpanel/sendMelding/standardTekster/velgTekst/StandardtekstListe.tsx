@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Element } from 'nav-frontend-typografi';

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Brukerinfo, Navn, NorskIdent, PersonsokResponse, UtenlandskID } from '../../models/person/personsok';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { Kodeverk } from '../../models/kodeverk';

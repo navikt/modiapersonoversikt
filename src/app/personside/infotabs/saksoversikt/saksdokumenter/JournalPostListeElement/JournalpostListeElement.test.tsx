@@ -1,4 +1,3 @@
-import * as React from 'react';
 import TestProvider from '../../../../../../test/Testprovider';
 import { getStaticMockSaksoversiktV2 } from '../../../../../../mock/saksoversikt/saksoversikt-mock';
 import { getTestStore } from '../../../../../../test/testStore';

@@ -1,7 +1,6 @@
 import { Switch } from 'react-router';
 import { SentryRoute } from '../../sentry-route';
 import { paths } from '../routes/routing';
-import * as React from 'react';
 import SetFnrIRedux from './SetFnrIRedux';
 
 function LyttPaaFnrIURLOgSettIRedux() {

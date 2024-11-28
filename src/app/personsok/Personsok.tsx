@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useCallback, useState } from 'react';
 import PersonsokSkjema from './PersonsokSkjema';
 import PersonsokResultat from './PersonsokResultat';

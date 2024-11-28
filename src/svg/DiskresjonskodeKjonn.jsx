@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 export default function DiskresjonskodeKjonn(props) {
     return (
         <svg

@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 function DokumentIkon(props) {
     return (
         <svg data-testid="dokument-ikon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>

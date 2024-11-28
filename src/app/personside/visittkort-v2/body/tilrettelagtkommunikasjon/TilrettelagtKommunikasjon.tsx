@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { Normaltekst } from 'nav-frontend-typografi';
 
 import UtropstegnIkon from '../../../../../svg/Utropstegn';

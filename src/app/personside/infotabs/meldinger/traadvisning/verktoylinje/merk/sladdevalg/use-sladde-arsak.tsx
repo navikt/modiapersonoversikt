@@ -1,7 +1,6 @@
 import { apiBaseUri } from '../../../../../../../../api/config';
 import { useRest } from '../../../../../../../../rest/useRest';
 import { CenteredLazySpinner } from '../../../../../../../../components/LazySpinner';
-import * as React from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { ReactElement } from 'react';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { OppdateringsloggInnslag } from './OppdateringsloggContainer';
 import { Normaltekst, Undertekst, Undertittel } from 'nav-frontend-typografi';
 import styled from 'styled-components';

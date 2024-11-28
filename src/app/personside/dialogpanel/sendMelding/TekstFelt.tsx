@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { SkjemaGruppe } from 'nav-frontend-skjema';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';

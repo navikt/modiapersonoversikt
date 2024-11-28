@@ -1,5 +1,4 @@
 import { Normaltekst } from 'nav-frontend-typografi';
-import * as React from 'react';
 import EtikettGraa from '../../../../../components/EtikettGraa';
 
 interface Props {

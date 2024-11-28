@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { createRef } from 'react';
 import { TabsPure } from 'nav-frontend-tabs';
 import { TabProps } from 'nav-frontend-tabs/lib/tab';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
@@ -58,7 +58,7 @@ interface Props {
 }
 
 function DokumentOgVedlegg(props: Props) {
-    const ref = React.createRef<HTMLDivElement>();
+    const ref = createRef<HTMLDivElement>();
     const location = useLocation();
     const fullscreen = erSakerFullscreen(location.pathname);
     const dyplenker = useInfotabsDyplenker();

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { DetaljertOppfolging } from '../../../../models/oppfolging';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import VisMerKnapp from '../../../../components/VisMerKnapp';

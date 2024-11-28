@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { ForelderBarnRelasjon } from '../../PersondataDomain';
 import { capitalizeName } from '../../../../../utils/string-utils';
 import ForelderBarnRelasjonVisning from './ForelderBarnRelasjon';

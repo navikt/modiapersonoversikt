@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useRef } from 'react';
 import { Foreldrepengerettighet } from '../../../../../models/ytelse/foreldrepenger';
 import ForeldrepengePeriode from './ForeldrepengePeriode';

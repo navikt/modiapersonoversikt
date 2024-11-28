@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { ReactNode, useRef } from 'react';
 import { Ingress } from 'nav-frontend-typografi';
 import theme from '../../../../../styles/personOversiktTheme';

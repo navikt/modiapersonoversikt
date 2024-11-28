@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { ReactNode } from 'react';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import styled from 'styled-components';

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { TraadType } from '../../../../models/meldinger/meldinger';
 import { Radio } from 'nav-frontend-skjema';
 import { VelgDialogtypeStyle } from '../fellesStyling';

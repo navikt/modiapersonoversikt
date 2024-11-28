@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { ChangeEvent, useEffect } from 'react';
 import { Temagruppe, temagruppeTekst } from '../../../../models/temagrupper';
 import { Select, SkjemaGruppe } from 'nav-frontend-skjema';

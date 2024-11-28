@@ -1,4 +1,3 @@
-import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import TestProvider from '../../../../../test/Testprovider';
 import { setupReactQueryMocks } from '../../../../../test/testStore';

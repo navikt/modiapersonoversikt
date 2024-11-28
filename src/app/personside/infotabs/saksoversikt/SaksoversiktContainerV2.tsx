@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { AdresseBeskyttelse, KodeBeskrivelse } from '../../../PersondataDomain';
 import { harDiskresjonskode } from '../../../visittkort-utils';

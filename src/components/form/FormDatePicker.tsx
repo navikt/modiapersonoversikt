@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import { ChangeEvent } from 'react';
 import Datepicker, { DatepickerProps } from 'nav-datovelger/lib/Datepicker';
 import { FieldPath, FieldValues } from 'react-hook-form';
 import { FormElementProps } from './formTypes';

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useEffect, useState } from 'react';
 import nisselue from './nisselue.svg';
 import styled, { css, keyframes } from 'styled-components';

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import VisittkortElement from '../VisittkortElement';
 import { formaterMobiltelefonnummer } from '../../../../../utils/telefon-utils';
 import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';

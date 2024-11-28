@@ -1,7 +1,6 @@
 import NavLogo from '../../svg/NavLogo';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { datoVerbose } from '../date-utils';
-import * as React from 'react';
 import styled from 'styled-components';
 import { ReactNode } from 'react';
 import { useFodselsnummer } from '../customHooks';

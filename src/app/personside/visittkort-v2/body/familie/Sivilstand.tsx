@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import VisittkortElement from '../VisittkortElement';
 import HeartIkon from '../../../../../svg/Heart';

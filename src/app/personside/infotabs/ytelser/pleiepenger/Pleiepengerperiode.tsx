@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Pleiepengeperiode } from '../../../../../models/ytelse/pleiepenger';
 import styled from 'styled-components';
 import YtelserPeriode from '../felles-styling/YtelserPeriode';

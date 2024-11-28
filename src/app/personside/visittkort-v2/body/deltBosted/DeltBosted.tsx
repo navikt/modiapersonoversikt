@@ -1,6 +1,5 @@
 import VisittkortElement from '../VisittkortElement';
 import { VisittkortGruppe } from '../VisittkortStyles';
-import * as React from 'react';
 import Infotegn from '../../../../../svg/Info';
 import { DeltBosted } from '../../PersondataDomain';
 import Adresseinfo from '../AdresseInfo';

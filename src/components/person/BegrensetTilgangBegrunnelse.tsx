@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { assertUnreachable } from '../../utils/assertUnreachable';
 import { IkkeTilgangArsak } from '../../rest/resources/tilgangskontrollResource';
 

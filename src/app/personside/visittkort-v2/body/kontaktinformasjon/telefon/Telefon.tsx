@@ -1,4 +1,3 @@
-import * as React from 'react';
 import PhoneIkon from '../../../../../../svg/Phone';
 import VisittkortElement from '../../VisittkortElement';
 import { KontaktInformasjon } from '../../../PersondataDomain';

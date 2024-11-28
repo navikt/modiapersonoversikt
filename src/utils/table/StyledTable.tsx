@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import classNames from 'classnames';
 import theme from '../../styles/personOversiktTheme';
-import * as React from 'react';
 import { Table, TableProps } from './Table';
 
 export const TableStyle = styled.div`

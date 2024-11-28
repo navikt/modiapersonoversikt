@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useRef } from 'react';
 import DialogPanel from './dialogpanel/DialogPanel';
 import Visittkort from './visittkort-v2/Visittkort';

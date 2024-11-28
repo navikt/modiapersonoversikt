@@ -1,4 +1,3 @@
-import * as React from 'react';
 import OppgaveSkjema from './OppgaveSkjema';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import ErrorBoundary from '../../../../../../../components/ErrorBoundary';

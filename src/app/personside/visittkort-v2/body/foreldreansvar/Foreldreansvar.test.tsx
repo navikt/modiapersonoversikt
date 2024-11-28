@@ -1,4 +1,3 @@
-import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import { aremark } from '../../../../../mock/persondata/aremark';
 import TestProvider from '../../../../../test/Testprovider';

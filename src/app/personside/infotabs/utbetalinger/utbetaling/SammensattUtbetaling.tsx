@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { createRef } from 'react';
 import { formaterNOK, getGjeldendeDatoForUtbetaling, getNettoSumYtelser } from '../utils/utbetalinger-utils';
 import styled from 'styled-components';
 import { Bold, FlexEnd, SpaceBetween } from '../../../../../components/common-styled-components';
@@ -52,7 +52,7 @@ const YtelsesListe = styled.ul`
 `;
 
 function SammensattUtbetaling(props: Props) {
-    const utbetalingRef = React.createRef<HTMLLIElement>();
+    const utbetalingRef = createRef<HTMLLIElement>();
     const printer = usePrinter();
     const print = printer.triggerPrint;
     const PrinterWrapper = printer.printerWrapper;

@@ -3,7 +3,6 @@ import { apiBaseUri } from '../../api/config';
 import { useAppState } from '../../utils/customHooks';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import AlertStripe from 'nav-frontend-alertstriper';
-import * as React from 'react';
 import { Traad } from '../../models/meldinger/meldinger';
 import { useValgtenhet } from '../../context/valgtenhet-state';
 import { FetchError, post } from '../../api/api';

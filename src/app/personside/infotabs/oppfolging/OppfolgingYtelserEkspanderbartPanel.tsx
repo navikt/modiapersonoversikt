@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { isDagpenger, OppfolgingsYtelse } from '../../../../models/oppfolging';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import EkspanderbartYtelserPanel from '../ytelser/felles-styling/EkspanderbartYtelserPanel';

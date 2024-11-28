@@ -1,4 +1,3 @@
-import * as React from 'react';
 import styled from 'styled-components';
 import { datoSynkende, formatterDato, formatterDatoTid } from '../../../../../utils/date-utils';
 import EnkeltMelding from './Enkeltmelding';

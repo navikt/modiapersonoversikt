@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { FieldPath, FieldValues } from 'react-hook-form';
 
 export const feilmeldingReactHookForm = <
