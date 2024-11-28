@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { Switch } from 'react-router';
+import { Redirect, Switch } from 'react-router';
 import { SentryRoute } from '../sentry-route';
 import { paths } from './routes/routing';
 import SaksDokumentEgetVindu from './personside/infotabs/saksoversikt/SaksDokumentIEgetVindu';
@@ -29,15 +29,20 @@ function Routing() {
                         );
                     }}
                 />
-                <SentryRoute path={`${paths.sakerFullscreen}/`} render={() => <SakerFullscreenProxy fnr={fnr} />} />
-                <SentryRoute
-                    path={`${paths.saksdokumentEgetVindu}/`}
-                    render={() => <SaksDokumentEgetVindu fnr={fnr} />}
-                />
-                <SentryRoute path={`${paths.personUri}/`} render={() => <Personoversikt fnr={fnr} />} />
-                <SentryRoute component={Startbilde} />
+                {fnr ? <PersonRoutes fnr={fnr} /> : <Redirect to={paths.basePath} />}
             </Switch>
         </Suspense>
+    );
+}
+
+function PersonRoutes({ fnr }: { fnr: string }) {
+    return (
+        <Switch>
+            <SentryRoute path={`${paths.sakerFullscreen}/`} render={() => <SakerFullscreenProxy fnr={fnr} />} />
+            <SentryRoute path={`${paths.saksdokumentEgetVindu}/`} render={() => <SaksDokumentEgetVindu fnr={fnr} />} />
+            <SentryRoute path={`${paths.personUri}/`} render={() => <Personoversikt fnr={fnr} />} />
+            <SentryRoute component={Startbilde} />
+        </Switch>
     );
 }
 
