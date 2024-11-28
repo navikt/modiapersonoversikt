@@ -1,16 +1,15 @@
-import * as React from 'react';
-import { Pleiepengerettighet } from '../../../../../models/ytelse/pleiepenger';
+import { Pleiepengerettighet } from 'src/models/ytelse/pleiepenger';
 import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
 import DescriptionList from '../../../../../components/DescriptionList';
-import { getSisteVedtakForPleiepengerettighet } from './pleiepengerUtils';
-import { formaterDato } from '../../../../../utils/string-utils';
+import { getAlleArbiedsforholdSortert, getSisteVedtakForPleiepengerettighet } from './pleiepengerUtils';
+import { formaterDato } from 'src/utils/string-utils';
 import { Data as Persondata, Kjonn } from '../../../visittkort-v2/PersondataDomain';
 import styled from 'styled-components';
-import ArbeidsForholdListe from './arbeidsforhold/ArbeidsforholdListe';
 import theme from '../../../../../styles/personOversiktTheme';
 import persondataResource from '../../../../../rest/resources/persondataResource';
 import { UseQueryResult } from '@tanstack/react-query';
-import { FetchError } from '../../../../../api/api';
+import { FetchError } from 'src/api/api';
+import ArbeidsForholdListe from 'src/app/personside/infotabs/ytelser/arbeidsforhold/ArbeidsforholdListe';
 
 interface Props {
     pleiepenger: Pleiepengerettighet;
@@ -68,7 +67,7 @@ function Oversikt({ pleiepenger }: Props) {
                 <DescriptionList entries={omPleiepengerettenEntries} />
             </YtelserInfoGruppe>
             <YtelserInfoGruppe tittel="Arbeidssituasjon">
-                <ArbeidsForholdListe pleiepengerettighet={pleiepenger} />
+                <ArbeidsForholdListe arbeidsForhold={getAlleArbiedsforholdSortert(pleiepenger)} />
             </YtelserInfoGruppe>
         </OversiktStyling>
     );

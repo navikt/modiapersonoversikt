@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import { PeriodeOptions, PeriodeValg } from '../utbetalinger/types';
-import { ISO_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
+import { ISO_DATE_FORMAT } from 'src/utils/date-utils';
 
 export interface OppfolgingState {
     periode: PeriodeOptions;
@@ -12,8 +12,8 @@ export const initialState: OppfolgingState = {
     periode: {
         radioValg: PeriodeValg.EGENDEFINERT,
         egendefinertPeriode: {
-            fra: dayjs().subtract(2, 'year').format(ISO_DATE_STRING_FORMAT),
-            til: dayjs().format(ISO_DATE_STRING_FORMAT)
+            fra: dayjs().subtract(2, 'year').format(ISO_DATE_FORMAT),
+            til: dayjs().format(ISO_DATE_FORMAT)
         }
     },
     sykefraverEkspandert: false,

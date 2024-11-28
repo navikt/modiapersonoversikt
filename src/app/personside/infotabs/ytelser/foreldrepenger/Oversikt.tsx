@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { Foreldrepengerettighet, isAdopsjon, isFødsel } from '../../../../../models/ytelse/foreldrepenger';
+import { Foreldrepengerettighet, isAdopsjon, isFødsel } from 'src/models/ytelse/foreldrepenger';
 import { utledFraDatoForRettighet } from './foreldrePengerUtils';
 import DescriptionList, {
     DescriptionListEntries,
@@ -8,7 +7,7 @@ import DescriptionList, {
 import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
-import { datoEllerNull, formaterDato, prosentEllerNull } from '../../../../../utils/string-utils';
+import { datoEllerNull, formaterDato, prosentEllerNull } from 'src/utils/string-utils';
 import ArbeidsForholdListe from '../arbeidsforhold/ArbeidsforholdListe';
 
 interface Props {
@@ -84,7 +83,7 @@ function Oversikt({ foreldrePenger }: Props) {
                 </YtelserInfoGruppe>
             </Flex>
             <YtelserInfoGruppe tittel="Arbeidssituasjon">
-                <ArbeidsForholdListe ytelse={foreldrePenger} arbeidsForhold={foreldrePenger.arbeidsforhold} />
+                <ArbeidsForholdListe arbeidsForhold={foreldrePenger.arbeidsforhold} />
             </YtelserInfoGruppe>
         </OversiktStyling>
     );

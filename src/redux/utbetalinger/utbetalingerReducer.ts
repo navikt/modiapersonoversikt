@@ -1,7 +1,7 @@
 import { PeriodeValg, UtbetalingerState } from './types';
 import { actionKeys, Actions } from './actions';
 import dayjs from 'dayjs';
-import { ISO_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
+import { ISO_DATE_FORMAT } from 'src/utils/date-utils';
 
 const initialState: UtbetalingerState = {
     ytelseIFokus: null,
@@ -10,8 +10,8 @@ const initialState: UtbetalingerState = {
         periode: {
             radioValg: PeriodeValg.SISTE_30_DAGER,
             egendefinertPeriode: {
-                fra: dayjs().subtract(1, 'month').format(ISO_DATE_STRING_FORMAT),
-                til: dayjs().format(ISO_DATE_STRING_FORMAT)
+                fra: dayjs().subtract(1, 'month').format(ISO_DATE_FORMAT),
+                til: dayjs().format(ISO_DATE_FORMAT)
             }
         },
         utbetaltTil: [],

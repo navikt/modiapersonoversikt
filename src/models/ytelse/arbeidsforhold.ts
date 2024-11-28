@@ -6,4 +6,6 @@ export interface Arbeidsforhold {
     sykepengerFom: string | null;
     refusjonTom: string | null;
     refusjonstype: string | null;
+    arbeidsgiverOrgnr: string | null | undefined;
+    arbeidskategori: string | null | undefined;
 }

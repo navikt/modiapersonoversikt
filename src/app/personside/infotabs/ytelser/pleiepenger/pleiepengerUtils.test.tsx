@@ -1,5 +1,5 @@
-import { Arbeidsforhold, Pleiepengerettighet } from '../../../../../models/ytelse/pleiepenger';
-import { getMockPleiepengerettighet } from '../../../../../mock/ytelse/pleiepenger-mock';
+import { Pleiepengerettighet } from 'src/models/ytelse/pleiepenger';
+import { getMockPleiepengerettighet } from 'src/mock/ytelse/pleiepenger-mock';
 import {
     getAlleArbiedsforholdSortert,
     getSistePeriodeForPleiepengerettighet,
@@ -8,8 +8,8 @@ import {
 } from './pleiepengerUtils';
 import Pleiepenger from './Pleiepenger';
 import { render } from '@testing-library/react';
-import * as React from 'react';
 import TestProvider from '../../../../../test/Testprovider';
+import { Arbeidsforhold } from 'src/models/ytelse/arbeidsforhold';
 
 const mockpleiepengeRettighet = getMockPleiepengerettighet('10108000398');
 const mockPeriode = mockpleiepengeRettighet.perioder[0];

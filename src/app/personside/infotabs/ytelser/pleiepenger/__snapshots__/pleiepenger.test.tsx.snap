@@ -165,30 +165,6 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
             <dt
               className="typo-normal"
             >
-              Arbeidskategori
-            </dt>
-            <dd
-              className="typo-element"
-            >
-              Arbeidstaker
-            </dd>
-          </div>
-          <div>
-            <dt
-              className="typo-normal"
-            >
-              Inntekstsperiode
-            </dt>
-            <dd
-              className="typo-element"
-            >
-              Månedssats
-            </dd>
-          </div>
-          <div>
-            <dt
-              className="typo-normal"
-            >
               Kontonummer
             </dt>
             <dd
@@ -213,12 +189,12 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
             <dt
               className="typo-normal"
             >
-              Refusjonstype
+              Inntekstsperiode
             </dt>
             <dd
               className="typo-element"
             >
-              Ikke refusjon
+              Månedssats
             </dd>
           </div>
           <div>
@@ -237,12 +213,36 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
             <dt
               className="typo-normal"
             >
+              Refusjonstype
+            </dt>
+            <dd
+              className="typo-element"
+            >
+              Ikke refusjon
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-normal"
+            >
               Refusjon til dato
             </dt>
             <dd
               className="typo-element"
             >
               11.10.2018
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-normal"
+            >
+              Sykepenger fra og med
+            </dt>
+            <dd
+              className="typo-element"
+            >
+              —
             </dd>
           </div>
         </dl>

@@ -1,11 +1,10 @@
-import * as React from 'react';
 import { useState } from 'react';
-import { FraTilDato } from '../../../../../redux/utbetalinger/types';
+import { FraTilDato } from 'src/redux/utbetalinger/types';
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import dayjs, { Dayjs } from 'dayjs';
 import { DatePicker, useDatepicker } from '@navikt/ds-react';
 import styled from 'styled-components';
-import { ISO_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
+import { ISO_DATE_FORMAT } from 'src/utils/date-utils';
 
 interface EgendefinertDatoInputsProps {
     updateFraTilDato: (change: FraTilDato) => void;
@@ -33,20 +32,20 @@ function EgendefinertDatoInputs(props: EgendefinertDatoInputsProps) {
         }
     ];
 
-    const [fraDato, setFraDato] = useState(props.periode?.fra);
-    const [tilDato, setTilDato] = useState(props.periode?.til);
+    const [fraDato, setFraDato] = useState(dayjs(props.periode?.fra));
+    const [tilDato, setTilDato] = useState(dayjs(props.periode?.til));
     const [periodeFeilmelding, setPeriodeFeilmelding] = useState<string | undefined>();
 
     const onFraDatoChange = (val: Date) => {
-        const value = dayjs(val).format(ISO_DATE_STRING_FORMAT);
-        setFraDato(dayjs(val).format(ISO_DATE_STRING_FORMAT));
-        onRangeDatoChange(value, tilDato);
+        const value = dayjs(val);
+        setFraDato(dayjs(val));
+        onRangeDatoChange(value.format(ISO_DATE_FORMAT), tilDato.format(ISO_DATE_FORMAT));
     };
 
     const onTilDatoChange = (val: Date) => {
-        const value = dayjs(val).format(ISO_DATE_STRING_FORMAT);
-        setTilDato(dayjs(val).format(ISO_DATE_STRING_FORMAT));
-        onRangeDatoChange(fraDato, value);
+        const value = dayjs(val).format(ISO_DATE_FORMAT);
+        setTilDato(dayjs(val));
+        onRangeDatoChange(fraDato.format(ISO_DATE_FORMAT), value);
     };
 
     const onRangeDatoChange = (fra?: string, til?: string) => {
@@ -61,12 +60,12 @@ function EgendefinertDatoInputs(props: EgendefinertDatoInputsProps) {
     };
 
     const { datepickerProps: fromDatepickerProps, inputProps: fromInputProps } = useDatepicker({
-        defaultSelected: new Date(fraDato ?? ''),
+        defaultSelected: fraDato.toDate(),
         onDateChange: onFraDatoChange
     });
 
     const { datepickerProps: toDatepickerProps, inputProps: toInputProps } = useDatepicker({
-        defaultSelected: new Date(tilDato ?? ''),
+        defaultSelected: tilDato.toDate(),
         onDateChange: onTilDatoChange
     });
 

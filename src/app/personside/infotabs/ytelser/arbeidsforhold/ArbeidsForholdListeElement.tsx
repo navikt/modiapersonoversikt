@@ -1,14 +1,14 @@
-import * as React from 'react';
-import { datoEllerNull, NOKellerNull } from '../../../../../utils/string-utils';
-import { FormatertKontonummer } from '../../../../../utils/FormatertKontonummer';
+import { datoEllerNull, NOKellerNull } from 'src/utils/string-utils';
+import { FormatertKontonummer } from 'src/utils/FormatertKontonummer';
 import DescriptionList from '../../../../../components/DescriptionList';
-import { Arbeidsforhold } from '../../../../../models/ytelse/arbeidsforhold';
+import { Arbeidsforhold } from 'src/models/ytelse/arbeidsforhold';
 
 interface Props {
     arbeidsforhold: Arbeidsforhold;
+    erPleiepenger: boolean;
 }
 
-function ArbeidsForholdListeElement({ arbeidsforhold }: Props) {
+function ArbeidsForholdListeElement({ arbeidsforhold, erPleiepenger }: Props) {
     const arbeidsForholdEntries = {
         Arbeidsgiver: arbeidsforhold.arbeidsgiverNavn,
         Kontonummer: arbeidsforhold.arbeidsgiverKontonr && (
@@ -21,9 +21,21 @@ function ArbeidsForholdListeElement({ arbeidsforhold }: Props) {
         'Sykepenger fra og med': datoEllerNull(arbeidsforhold.sykepengerFom)
     };
 
+    const arbeidsSituasjonEntriesPleiepenger = {
+        Arbeidsgiver: arbeidsforhold.arbeidsgiverNavn,
+        Arbeidskategori: arbeidsforhold.arbeidskategori,
+        Inntekstsperiode: arbeidsforhold.inntektsperiode,
+        Kontonummer: arbeidsforhold.arbeidsgiverKontonr && (
+            <FormatertKontonummer kontonummer={arbeidsforhold.arbeidsgiverKontonr} />
+        ),
+        Refusjonstype: arbeidsforhold.refusjonstype,
+        'Inntekt for perioden': NOKellerNull(arbeidsforhold.inntektForPerioden),
+        'Refusjon til dato': datoEllerNull(arbeidsforhold.refusjonTom)
+    };
+
     return (
         <li>
-            <DescriptionList entries={arbeidsForholdEntries} />
+            <DescriptionList entries={erPleiepenger ? arbeidsSituasjonEntriesPleiepenger : arbeidsForholdEntries} />
         </li>
     );
 }

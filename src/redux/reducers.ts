@@ -1,7 +1,6 @@
 import { utbetalingerReducer } from './utbetalinger/utbetalingerReducer';
 import { saksoversiktReducer } from './saksoversikt/reducer';
 import { SaksoversikState } from './saksoversikt/types';
-import ytelserReducer, { YtelserState } from './ytelser/ytelserReducer';
 import { OppfolgingState } from './oppfolging/types';
 import { oppfolgingReducer } from './oppfolging/reducer';
 import { GjeldendeBrukerState } from './gjeldendeBruker/types';
@@ -18,7 +17,6 @@ export interface AppState {
     utbetalinger: UtbetalingerState;
     saksoversikt: SaksoversikState;
     oppgaver: OppgaveState;
-    ytelser: YtelserState;
     varsler: VarslerState;
     oppfolging: OppfolgingState;
     gjeldendeBruker: GjeldendeBrukerState;
@@ -31,7 +29,6 @@ const createRootReducer = (history: History) =>
             utbetalinger: utbetalingerReducer,
             saksoversikt: saksoversiktReducer,
             oppgaver: oppgaverReducer,
-            ytelser: ytelserReducer,
             varsler: varslerReducer,
             oppfolging: oppfolgingReducer,
             gjeldendeBruker: gjeldendeBrukerReducer,

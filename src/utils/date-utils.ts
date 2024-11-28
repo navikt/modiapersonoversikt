@@ -6,6 +6,7 @@ import { loggError } from './logger/frontendLogger';
 dayjs.locale('nb');
 dayjs.extend(isSameOrBeforePlugin);
 
+export const ISO_DATE_FORMAT = 'YYYY-MM-DD';
 export const backendDatoformat: string = 'YYYY-MM-DD';
 export const backendDatoTidformat: string = 'YYYY-MM-DD HH:mm';
 
