@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
+import { PropsWithChildren, useEffect, useState } from 'react';
 import {
     Alert,
     Box,
     Detail,
     BodyShort,
     Heading,
-    HGrid,
     HStack,
     Label,
     Page,
@@ -19,7 +18,7 @@ import {
 } from '@navikt/ds-react';
 import { formaterNOK } from '../personside/infotabs/utbetalinger/utils/utbetalinger-utils';
 import { $api } from 'src/lib/clients/modiapersonoversikt-api';
-import { ArrowLeftIcon, GavelIcon, MagnifyingGlassIcon } from '@navikt/aksel-icons';
+import { ArrowLeftIcon, ArrowRightIcon, GavelIcon, MagnifyingGlassIcon } from '@navikt/aksel-icons';
 import QueryErrorBoundary from 'src/components/QueryErrorBoundary';
 import { formaterDato } from 'src/utils/string-utils';
 import { paths } from 'src/generated/modiapersonoversikt-api';
@@ -113,7 +112,7 @@ const SearchResultTable = ({
                 </Table.Header>
                 <Table.Body>
                     {data?.map((k) => (
-                        <Table.Row>
+                        <Table.Row key={k.kravId}>
                             <Table.DataCell>{k.kravId}</Table.DataCell>
                             <Table.DataCell>{k.debitor.name}</Table.DataCell>
                             <Table.DataCell>{formaterDato(k.opprettetDato)}</Table.DataCell>
@@ -171,6 +170,46 @@ const KravSearchResults = ({ kravId }: { kravId: string }) => {
 
 const routeApi = getRouteApi('/innkrevingskrav');
 
+const Sidebar = ({ children }: PropsWithChildren) => {
+    const [isExpanded, setIsExpanded] = useState(true);
+
+    return (
+        <Box
+            width={isExpanded ? '25%' : '3em'}
+            padding="1"
+            borderWidth="0 1 0 0"
+            borderColor="border-subtle"
+            onClick={isExpanded ? undefined : () => setIsExpanded(true)}
+        >
+            <HStack
+                gap="2"
+                marginBlock="2"
+                padding="2"
+                align="center"
+                className="hover:bg-blue-50 cursor-pointer rounded group"
+                onClick={() => setIsExpanded((v) => !v)}
+                aria-hidden
+            >
+                {isExpanded ? (
+                    <ArrowLeftIcon className="group-hover:-translate-x-1" fontSize="1.2rem" />
+                ) : (
+                    <ArrowRightIcon className="group-hover:translate-x-1" fontSize="1.2rem" />
+                )}
+                <BodyShort size="small" hidden={!isExpanded}>
+                    Skjul
+                </BodyShort>
+            </HStack>
+            <HStack gap="2" align="center" marginBlock="4" padding="2">
+                <MagnifyingGlassIcon />
+                <Heading size="xsmall" hidden={!isExpanded}>
+                    Søk innkrevingskrav
+                </Heading>
+            </HStack>
+            {isExpanded && children}
+        </Box>
+    );
+};
+
 const InnkrevingskravSide = () => {
     const { kravId } = routeApi.useSearch();
     const [nyKravId, setNyKravId] = useState(kravId);
@@ -190,16 +229,8 @@ const InnkrevingskravSide = () => {
 
     return (
         <Page style={{ width: '100%', height: '100%' }}>
-            <HGrid gap="6" columns="1fr 3fr" minHeight="90vh">
-                <Box padding="4" borderWidth="0 1 0 0" borderColor="border-subtle">
-                    <HStack gap="2" marginBlock="2" align="center">
-                        <ArrowLeftIcon fontSize="1.2rem" />
-                        <BodyShort size="small">Skjul</BodyShort>
-                    </HStack>
-                    <HStack gap="2" align="center" marginBlock="4">
-                        <MagnifyingGlassIcon />
-                        <Heading size="xsmall">Søk innkrevingskrav</Heading>
-                    </HStack>
+            <HStack gap="6" minHeight="90vh">
+                <Sidebar>
                     <Box marginInline="4">
                         <RadioGroup legend="Søk med" value={searchType} onChange={setSearchType}>
                             <Stack gap="0 8" direction={{ xs: 'column', sm: 'row' }} wrap={false}>
@@ -256,8 +287,8 @@ const InnkrevingskravSide = () => {
                         )}
                         {searchType === 'kravId' && kravId && <KravSearchResults kravId={kravId} />}
                     </Box>
-                </Box>
-                <Box padding="4">
+                </Sidebar>
+                <Box padding="4" flexGrow="1">
                     <HStack align="center" gap="2">
                         <GavelIcon fontSize="1.8rem" />
                         <Heading size="medium">Innkrevingskrav</Heading>
@@ -270,7 +301,7 @@ const InnkrevingskravSide = () => {
                         <InnkrevingsKravDetaljer kravId={kravId} />
                     )}
                 </Box>
-            </HGrid>
+            </HStack>
         </Page>
     );
 };
