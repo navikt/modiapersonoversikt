@@ -351,30 +351,6 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
                 <dt
                   className="typo-normal"
                 >
-                  Arbeidskategori
-                </dt>
-                <dd
-                  className="typo-element"
-                >
-                  —
-                </dd>
-              </div>
-              <div>
-                <dt
-                  className="typo-normal"
-                >
-                  Inntekstsperiode
-                </dt>
-                <dd
-                  className="typo-element"
-                >
-                  Månedlig
-                </dd>
-              </div>
-              <div>
-                <dt
-                  className="typo-normal"
-                >
                   Kontonummer
                 </dt>
                 <dd
@@ -399,12 +375,12 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
                 <dt
                   className="typo-normal"
                 >
-                  Refusjonstype
+                  Inntekstsperiode
                 </dt>
                 <dd
                   className="typo-element"
                 >
-                  Ikke refusjon
+                  Månedlig
                 </dd>
               </div>
               <div>
@@ -417,6 +393,18 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
                   className="typo-element"
                 >
                   40 062,00 NOK
+                </dd>
+              </div>
+              <div>
+                <dt
+                  className="typo-normal"
+                >
+                  Refusjonstype
+                </dt>
+                <dd
+                  className="typo-element"
+                >
+                  Ikke refusjon
                 </dd>
               </div>
               <div>

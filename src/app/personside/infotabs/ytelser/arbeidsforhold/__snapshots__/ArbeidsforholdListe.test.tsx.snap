@@ -51,30 +51,6 @@ exports[`ArbeidsforholdListe matcher snapshot 1`] = `
         <dt
           className="typo-normal"
         >
-          Arbeidskategori
-        </dt>
-        <dd
-          className="typo-element"
-        >
-          —
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-normal"
-        >
-          Inntekstsperiode
-        </dt>
-        <dd
-          className="typo-element"
-        >
-          Månedssats
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-normal"
-        >
           Kontonummer
         </dt>
         <dd
@@ -99,12 +75,12 @@ exports[`ArbeidsforholdListe matcher snapshot 1`] = `
         <dt
           className="typo-normal"
         >
-          Refusjonstype
+          Inntekstsperiode
         </dt>
         <dd
           className="typo-element"
         >
-          Ikke refusjon
+          Månedssats
         </dd>
       </div>
       <div>
@@ -117,6 +93,18 @@ exports[`ArbeidsforholdListe matcher snapshot 1`] = `
           className="typo-element"
         >
           39 691,00 NOK
+        </dd>
+      </div>
+      <div>
+        <dt
+          className="typo-normal"
+        >
+          Refusjonstype
+        </dt>
+        <dd
+          className="typo-element"
+        >
+          Ikke refusjon
         </dd>
       </div>
       <div>

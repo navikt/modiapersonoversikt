@@ -3,7 +3,7 @@ export interface Arbeidsforhold {
     arbeidsgiverKontonr: string | null;
     inntektsperiode: string | null;
     inntektForPerioden: number | null;
-    sykepengerFom: string | null | undefined;
+    sykepengerFom: string | null;
     refusjonTom: string | null;
     refusjonstype: string | null;
     arbeidsgiverOrgnr: string | null | undefined;
