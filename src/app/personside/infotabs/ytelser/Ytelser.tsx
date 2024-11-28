@@ -4,14 +4,11 @@ import styled from 'styled-components';
 import ValgtYtelse from './ValgtYtelse';
 import useBrukersYtelser from './useBrukersYtelser';
 import { useInfotabsDyplenker } from '../dyplenker';
-import { useKeepQueryParams } from 'src/utils/hooks/useKeepQueryParams';
-import { PeriodeValg } from 'src/redux/utbetalinger/types';
-import { useState } from 'react';
 import FiltreringPeriode from '../utbetalinger/filter/FilterPeriode';
 import Panel from 'nav-frontend-paneler';
 import { pxToRem } from 'src/styles/personOversiktTheme';
-import dayjs from 'dayjs';
-import { ISO_DATE_FORMAT } from 'src/utils/date-utils';
+import { ytelsePeriodeAtom } from 'src/lib/state/context';
+import { useAtom } from 'jotai';
 
 const ytelserMediaTreshold = '45rem';
 
@@ -58,16 +55,8 @@ const InputPanel = styled.form`
 `;
 
 function Ytelser() {
-    useKeepQueryParams();
-    const [periode, setPeriode] = useState({
-        radioValg: PeriodeValg.EGENDEFINERT,
-        egendefinertPeriode: {
-            fra: dayjs().subtract(2, 'year').format(ISO_DATE_FORMAT),
-            til: dayjs().format(ISO_DATE_FORMAT)
-        }
-    });
-
-    const ytelser = useBrukersYtelser(periode.egendefinertPeriode);
+    const [period, setPeriod] = useAtom(ytelsePeriodeAtom);
+    const ytelser = useBrukersYtelser(period.egendefinertPeriode);
     const dypLenker = useInfotabsDyplenker();
     const valgtYtelse = ytelser.ytelser.find((ytelse) => dypLenker.ytelser.erValgt(ytelse)) || ytelser.ytelser[0];
 
@@ -78,9 +67,9 @@ function Ytelser() {
                     <FiltreringsPanel>
                         <InputPanel>
                             <FiltreringPeriode
-                                periode={periode}
+                                periode={period}
                                 updatePeriod={(change) => {
-                                    setPeriode(change);
+                                    setPeriod(change);
                                 }}
                             />
                         </InputPanel>
