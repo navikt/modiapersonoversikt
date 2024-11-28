@@ -7,8 +7,8 @@ import { useInfotabsDyplenker } from '../dyplenker';
 import FiltreringPeriode from '../utbetalinger/filter/FilterPeriode';
 import Panel from 'nav-frontend-paneler';
 import { pxToRem } from 'src/styles/personOversiktTheme';
-import { ytelsePeriodeAtom } from 'src/lib/state/context';
 import { useAtom } from 'jotai';
+import { ytelsePeriodeAtom } from 'src/app/personside/infotabs/ytelser/YtelserState';
 
 const ytelserMediaTreshold = '45rem';
 

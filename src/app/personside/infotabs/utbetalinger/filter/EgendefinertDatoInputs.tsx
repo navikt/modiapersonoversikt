@@ -32,20 +32,20 @@ function EgendefinertDatoInputs(props: EgendefinertDatoInputsProps) {
         }
     ];
 
-    const [fraDato, setFraDato] = useState(props.periode?.fra);
-    const [tilDato, setTilDato] = useState(props.periode?.til);
+    const [fraDato, setFraDato] = useState(dayjs(props.periode?.fra));
+    const [tilDato, setTilDato] = useState(dayjs(props.periode?.til));
     const [periodeFeilmelding, setPeriodeFeilmelding] = useState<string | undefined>();
 
     const onFraDatoChange = (val: Date) => {
-        const value = dayjs(val).format(ISO_DATE_FORMAT);
-        setFraDato(dayjs(val).format(ISO_DATE_FORMAT));
-        onRangeDatoChange(value, tilDato);
+        const value = dayjs(val);
+        setFraDato(dayjs(val));
+        onRangeDatoChange(value.format(ISO_DATE_FORMAT), tilDato.format(ISO_DATE_FORMAT));
     };
 
     const onTilDatoChange = (val: Date) => {
         const value = dayjs(val).format(ISO_DATE_FORMAT);
-        setTilDato(dayjs(val).format(ISO_DATE_FORMAT));
-        onRangeDatoChange(fraDato, value);
+        setTilDato(dayjs(val));
+        onRangeDatoChange(fraDato.format(ISO_DATE_FORMAT), value);
     };
 
     const onRangeDatoChange = (fra?: string, til?: string) => {
@@ -60,12 +60,12 @@ function EgendefinertDatoInputs(props: EgendefinertDatoInputsProps) {
     };
 
     const { datepickerProps: fromDatepickerProps, inputProps: fromInputProps } = useDatepicker({
-        defaultSelected: new Date(fraDato ?? ''),
+        defaultSelected: fraDato.toDate(),
         onDateChange: onFraDatoChange
     });
 
     const { datepickerProps: toDatepickerProps, inputProps: toInputProps } = useDatepicker({
-        defaultSelected: new Date(tilDato ?? ''),
+        defaultSelected: tilDato.toDate(),
         onDateChange: onTilDatoChange
     });
 
