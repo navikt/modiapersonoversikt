@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useState } from 'react';
 import { FraTilDato } from 'src/redux/utbetalinger/types';
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';

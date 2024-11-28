@@ -1,10 +1,10 @@
-import { Skatt, Trekk, Utbetaling, Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
-import { formaterDato } from '../../../../../utils/string-utils';
-import { Periode } from '../../../../../models/tid';
+import { Skatt, Trekk, Utbetaling, Ytelse, Ytelseskomponent } from 'src/models/utbetalinger';
+import { formaterDato } from 'src/utils/string-utils';
+import { Periode } from 'src/models/tid';
 import dayjs, { Dayjs } from 'dayjs';
-import { loggError } from '../../../../../utils/logger/frontendLogger';
-import { PeriodeValg, PeriodeOptions, FraTilDato } from '../../../../../redux/utbetalinger/types';
-import { datoVerbose } from '../../../../../utils/date-utils';
+import { loggError } from 'src/utils/logger/frontendLogger';
+import { PeriodeValg, PeriodeOptions, FraTilDato } from 'src/redux/utbetalinger/types';
+import { datoVerbose } from 'src/utils/date-utils';
 import { ISO_DATE_FORMAT } from 'src/utils/date-utils';
 
 export const utbetaltTilBruker = 'Bruker';

@@ -2,12 +2,11 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/nb';
 import isSameOrBeforePlugin from 'dayjs/plugin/isSameOrBefore';
 import { loggError } from './logger/frontendLogger';
-import { ISO_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
 
 dayjs.locale('nb');
 dayjs.extend(isSameOrBeforePlugin);
 
-export const ISO_DATE_FORMAT = ISO_DATE_STRING_FORMAT;
+export const ISO_DATE_FORMAT = 'YYYY-MM-DD';
 export const backendDatoformat: string = 'YYYY-MM-DD';
 export const backendDatoTidformat: string = 'YYYY-MM-DD HH:mm';
 
