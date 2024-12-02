@@ -1,4 +1,3 @@
-import * as React from 'react';
 import styled from 'styled-components';
 import { Element, Undertekst } from 'nav-frontend-typografi';
 import { Link, useLocation } from 'react-router-dom';

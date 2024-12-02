@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
 import OppmoteIkon from '../../../../../svg/OppmoteIkon';
 import TelefonIkon from '../../../../../svg/TelefonIkon';

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Verge } from '../../PersondataDomain';
 import EtikettBase from 'nav-frontend-etiketter';
 

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { PureComponent } from 'react';
 import { AppState } from '../../../../../redux/reducers';
 import { connect } from 'react-redux';
 import { ViktigÅViteDAGInnhold } from './DAGInnhold';
@@ -27,7 +27,7 @@ const GråttPanel = styled.div`
     ${theme.graattPanel};
 `;
 
-class ViktigÅVite extends React.PureComponent<Props> {
+class ViktigÅVite extends PureComponent<Props> {
     render() {
         if (!this.props.valgtSakstema) {
             return <Luft />;

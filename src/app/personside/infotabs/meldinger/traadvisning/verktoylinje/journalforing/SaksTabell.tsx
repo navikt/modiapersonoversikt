@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react';
+import { MouseEventHandler } from 'react';
 import { JournalforingsSak } from './JournalforingPanel';
 import { ClickableTable } from '../../../../../../../utils/table/ClickableTable';
 import { formatterDatoMedMaanedsnavnOrNull } from '../../../../../../../utils/date-utils';

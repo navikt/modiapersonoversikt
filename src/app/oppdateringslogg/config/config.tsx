@@ -1,4 +1,3 @@
-import React from 'react';
 import { OppdateringsloggInnslag } from '../OppdateringsloggContainer';
 import OppdateringsloggKnappBilde from './img/oppdateringslogg-knapp.jpg';
 import BjelleikonVarselBilde from './img/bjelleikon-varsel.jpg';

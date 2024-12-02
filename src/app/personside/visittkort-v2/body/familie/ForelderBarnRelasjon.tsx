@@ -1,5 +1,4 @@
 import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
-import * as React from 'react';
 import { ForelderBarnRelasjon } from '../../PersondataDomain';
 import { hentAlderEllerDod, hentNavn } from '../../visittkort-utils';
 import VisittkortElement from '../VisittkortElement';

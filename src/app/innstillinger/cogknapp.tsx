@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import SvgCog from './../../svg/cog.svg';
 import { KnappWrapper } from '../../components/pilknapp';
@@ -25,7 +25,7 @@ interface Props {
 }
 
 function CogKnapp(props: Props) {
-    const [isOpen, setOpen] = React.useState(false);
+    const [isOpen, setOpen] = useState(false);
 
     return (
         <>

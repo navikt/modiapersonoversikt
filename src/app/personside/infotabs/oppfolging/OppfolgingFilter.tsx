@@ -1,4 +1,3 @@
-import * as React from 'react';
 import styled from 'styled-components';
 import { Undertittel } from 'nav-frontend-typografi';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { MouseEventHandler, ReactNode } from 'react';
 import { loggError } from '../logger/frontendLogger';
 

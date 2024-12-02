@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 export default function NavLogo(props) {
     return (
         <svg className="prefix__navLogo" width={90} viewBox="0 0 269 169" {...props}>

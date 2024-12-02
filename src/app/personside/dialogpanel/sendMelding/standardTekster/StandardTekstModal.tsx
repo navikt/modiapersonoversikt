@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import NavFrontendModal from 'nav-frontend-modal';
 import styled from 'styled-components';
 import StandardTekster from './StandardTekster';
@@ -54,7 +54,7 @@ const Ikon = styled(SvgIkon)`
 `;
 
 function StandardTekstModal(props: Props) {
-    const [isOpen, setOpen] = React.useState(false);
+    const [isOpen, setOpen] = useState(false);
     const sokefelt = useFieldState('');
 
     useHotkey({ char: 'c', altKey: true }, () => setOpen(true), [setOpen], 'Standardtekster');

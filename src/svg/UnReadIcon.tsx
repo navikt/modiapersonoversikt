@@ -1,5 +1,3 @@
-import React from 'react';
-
 function UnReadIcon() {
     return (
         <svg

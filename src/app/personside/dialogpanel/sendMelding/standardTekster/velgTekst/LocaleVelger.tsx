@@ -1,4 +1,3 @@
-import React from 'react';
 import { Select as NavFrontendSelect } from 'nav-frontend-skjema';
 import styled from 'styled-components';
 import * as Domain from '../domain';

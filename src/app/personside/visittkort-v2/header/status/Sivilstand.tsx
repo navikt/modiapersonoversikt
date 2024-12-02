@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Kjonn, Person, Sivilstand as SivilstandInterface, SivilstandType } from '../../PersondataDomain';
 
 interface Props {

@@ -1,5 +1,5 @@
 import { JournalforingsSak, Tema } from './JournalforingPanel';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import SaksTabell from './SaksTabell';
 import styled from 'styled-components';

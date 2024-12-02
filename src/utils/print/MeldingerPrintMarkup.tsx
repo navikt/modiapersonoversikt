@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Melding, MeldingJournalpost, Traad } from '../../models/meldinger/meldinger';
 import { useFodselsnummer } from '../customHooks';
 import { meldingstittel } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';

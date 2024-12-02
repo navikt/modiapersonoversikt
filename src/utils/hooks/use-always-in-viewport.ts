@@ -1,4 +1,4 @@
-import React, { DependencyList, useEffect } from 'react';
+import { useCallback, DependencyList, useEffect } from 'react';
 
 declare global {
     interface Element {
@@ -7,7 +7,7 @@ declare global {
 }
 
 export default function useAlwaysInViewport(selector: string, deps: DependencyList = []) {
-    const query = React.useCallback(() => document.querySelector(selector) as HTMLElement, [selector]);
+    const query = useCallback(() => document.querySelector(selector) as HTMLElement, [selector]);
     useEffect(() => {
         const element = query();
         if (element) {

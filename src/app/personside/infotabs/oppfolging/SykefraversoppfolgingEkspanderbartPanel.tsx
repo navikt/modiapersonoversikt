@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { SyfoPunkt } from '../../../../models/oppfolging';
 import EkspanderbartYtelserPanel from '../ytelser/felles-styling/EkspanderbartYtelserPanel';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';

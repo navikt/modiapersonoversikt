@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import * as React from 'react';
 import ModalWrapper from 'nav-frontend-modal';
 import useListener from '../../utils/hooks/use-listener';
 import Oppdateringslogg from './Oppdateringslogg';

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Foreldrepengerperiode } from '../../../../../models/ytelse/foreldrepenger';
 import DescriptionList, {
     DescriptionListEntries,

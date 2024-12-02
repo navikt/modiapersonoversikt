@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Varselmelding } from '../../../../../models/varsel';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import { statiskForeldrepengeMock } from '../../../../../mock/ytelse/statiskForeldrepengeMock';
 import ForeldrepengePeriode from './ForeldrepengePeriode';

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import oppfolgingResource from '../../../../rest/resources/oppfolgingResource';
 import { useAppState } from '../../../../utils/customHooks';
 import OppfolgingFilter from './OppfolgingFilter';

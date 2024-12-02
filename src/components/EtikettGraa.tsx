@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Undertekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import { ReactNode } from 'react';

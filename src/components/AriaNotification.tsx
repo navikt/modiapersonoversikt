@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { Component } from 'react';
 
 interface Props {
     beskjed: string;
@@ -11,7 +11,7 @@ interface State {
     render: boolean;
 }
 
-class AriaNotification extends React.Component<Props, State> {
+class AriaNotification extends Component<Props, State> {
     private timeOut?: number;
 
     constructor(props: Props) {

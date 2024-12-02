@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { memo } from 'react';
 import { Utbetaling as UtbetalingInterface } from '../../../../../models/utbetalinger';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import SammensattUtbetaling from './SammensattUtbetaling';
@@ -29,4 +29,4 @@ function Utbetaling(props: Props) {
     }
 }
 
-export default React.memo(Utbetaling);
+export default memo(Utbetaling);

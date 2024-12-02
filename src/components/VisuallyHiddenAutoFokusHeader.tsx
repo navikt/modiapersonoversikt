@@ -1,8 +1,8 @@
-import * as React from 'react';
+import { createRef } from 'react';
 import { useFocusOnMount } from '../utils/customHooks';
 
 function VisuallyHiddenAutoFokusHeader(props: { tittel: string }) {
-    const ref = React.createRef<HTMLHeadingElement>();
+    const ref = createRef<HTMLHeadingElement>();
     useFocusOnMount(ref);
     return (
         <h2 className="visually-hidden" tabIndex={-1} ref={ref}>

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Traad } from '../../../../../models/meldinger/meldinger';
 import styled from 'styled-components';
 import EnkeltMelding from './EnkeltMelding';

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import styled from 'styled-components';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';

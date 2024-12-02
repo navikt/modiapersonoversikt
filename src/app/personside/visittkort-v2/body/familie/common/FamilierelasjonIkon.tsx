@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Mann from '../../../../../../svg/Mann';
 import Kvinne from '../../../../../../svg/Kvinne';
 import DiskresjonskodeIkon from '../../../../../../svg/DiskresjonskodeKjonn';

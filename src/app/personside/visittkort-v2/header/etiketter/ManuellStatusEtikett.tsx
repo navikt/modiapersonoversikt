@@ -1,4 +1,3 @@
-import * as React from 'react';
 import EtikettBase from 'nav-frontend-etiketter';
 import { KontaktInformasjon } from '../../PersondataDomain';
 

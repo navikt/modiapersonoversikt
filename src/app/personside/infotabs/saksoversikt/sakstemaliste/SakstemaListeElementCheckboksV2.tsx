@@ -1,5 +1,5 @@
 import { Behandlingsstatus, SakstemaSoknadsstatus } from '../../../../../models/saksoversikt/sakstema';
-import * as React from 'react';
+import { memo } from 'react';
 import { saksikon, SVGStyling, visAntallSakerSomHarbehandlingsstatusV2 } from './SakstemaListeUtils';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';
@@ -47,4 +47,4 @@ function SakstemaListeElementCheckboks(props: CheckboksProps) {
     );
 }
 
-export default React.memo(SakstemaListeElementCheckboks);
+export default memo(SakstemaListeElementCheckboks);

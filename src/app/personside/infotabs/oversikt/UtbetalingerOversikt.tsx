@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Utbetaling, UtbetalingerResponse } from '../../../../models/utbetalinger';
 import { Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';

@@ -1,6 +1,6 @@
 import { Utbetaling } from '../../../../../models/utbetalinger';
 import { sorterAlfabetisk } from '../../../../../utils/string-utils';
-import * as React from 'react';
+import { Component } from 'react';
 import { Checkbox } from 'nav-frontend-skjema';
 import { getTypeFromYtelse, reduceUtbetlingerTilYtelser } from '../utils/utbetalinger-utils';
 import { UtbetalingFilterState } from '../../../../../redux/utbetalinger/types';
@@ -11,7 +11,7 @@ interface Props {
     utbetalinger: Utbetaling[];
 }
 
-class YtelseValg extends React.Component<Props> {
+class YtelseValg extends Component<Props> {
     constructor(props: Props) {
         super(props);
         if (props.filterState.ytelser.length === 0) {

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { memo } from 'react';
 import { Behandlingsstatus, SakstemaSoknadsstatus } from '../../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
@@ -72,4 +72,4 @@ function SakstemaListeElementKnapp(props: Props) {
     );
 }
 
-export default React.memo(SakstemaListeElementKnapp);
+export default memo(SakstemaListeElementKnapp);

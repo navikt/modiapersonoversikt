@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import * as React from 'react';
 import FillCenterAndFadeIn from './FillCenterAndFadeIn';
 import LazySpinner from './LazySpinner';
 

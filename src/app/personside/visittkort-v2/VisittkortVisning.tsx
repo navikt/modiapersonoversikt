@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useRef, useEffect } from 'react';
 import { Data as Persondata, InformasjonElement } from './PersondataDomain';
 import AriaNotification from '../../../components/AriaNotification';
 import { UnmountClosed } from 'react-collapse';
@@ -22,9 +22,9 @@ function VisittkortVisning(props: Props) {
     const toggleApen = visittkortState.toggle;
     const lenkeNyBrukerprofil = useUrlNyPersonforvalter();
 
-    const isMount = React.useRef(true);
+    const isMount = useRef(true);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (isMount.current) {
             isMount.current = false;
             return;

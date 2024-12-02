@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState, createRef, useCallback, useEffect, useRef } from 'react';
 import { Traad } from '../../../../../../models/meldinger/meldinger';
 import styled from 'styled-components';
 import theme from '../../../../../../styles/personOversiktTheme';
@@ -6,7 +6,6 @@ import { UnmountClosed } from 'react-collapse';
 import JournalforingPanel from './journalforing/JournalforingPanel';
 import MerkPanel from './merk/MerkPanel';
 import OpprettOppgaveContainer from './oppgave/OpprettOppgaveContainer';
-import { createRef, useCallback, useEffect, useRef } from 'react';
 import EkspanderKnapp from '../../../../../../components/EkspanderKnapp';
 import { usePrevious } from '../../../../../../utils/customHooks';
 import usePrinter from '../../../../../../utils/print/usePrinter';
@@ -74,7 +73,7 @@ function Print(props: Props) {
 
 function Verktoylinje(props: Props) {
     const ref = createRef<HTMLElement>();
-    const [aktivtPanel, settAktivtPanel] = React.useState<VerktøyPanel | null>(null);
+    const [aktivtPanel, settAktivtPanel] = useState<VerktøyPanel | null>(null);
     const lukk = useCallback(() => {
         settAktivtPanel(null);
         ref.current && ref.current.focus();

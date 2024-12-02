@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { SakstemaSoknadsstatus } from '../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';

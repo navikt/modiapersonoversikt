@@ -1,4 +1,4 @@
-import React, { ComponentProps } from 'react';
+import { ComponentProps } from 'react';
 import { FaroRoute } from '@grafana/faro-react';
 import { Route } from 'react-router-dom';
 

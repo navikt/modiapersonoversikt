@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { erUbesvartHenvendelseFraBruker } from '../infotabs/meldinger/utils/meldingerUtils';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';

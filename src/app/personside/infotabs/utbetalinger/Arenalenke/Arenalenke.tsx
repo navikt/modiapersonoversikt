@@ -1,4 +1,3 @@
-import * as React from 'react';
 import LenkepanelPersonoversikt from '../../../../../utils/LenkepanelPersonoversikt';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../redux/reducers';

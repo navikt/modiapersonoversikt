@@ -1,4 +1,3 @@
-import * as React from 'react';
 import DescriptionList, { DescriptionListEntries } from '../../../../../../components/DescriptionList';
 import { datoEllerNull, periodeEllerNull, prosentEllerNull } from '../../../../../../utils/string-utils';
 import YtelserInfoGruppe from '../../felles-styling/YtelserInfoGruppe';

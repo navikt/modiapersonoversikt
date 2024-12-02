@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { Systemtittel } from 'nav-frontend-typografi';
 import Tekstomrade, { defaultRules, Rule } from 'nav-frontend-tekstomrade';
 import styled from 'styled-components';

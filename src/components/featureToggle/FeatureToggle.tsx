@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { ReactNode } from 'react';
 import LazySpinner from '../LazySpinner';
 import { FeatureToggles } from './toggleIDs';

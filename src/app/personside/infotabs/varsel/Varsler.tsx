@@ -1,4 +1,3 @@
-import * as React from 'react';
 import styled from 'styled-components';
 import { Element } from 'nav-frontend-typografi';
 import { UnifiedVarsel } from '../../../../models/varsel';

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import PilKnapp from '../../components/pilknapp';
 import CogKnapp from '../innstillinger/cogknapp';
 import styled from 'styled-components';

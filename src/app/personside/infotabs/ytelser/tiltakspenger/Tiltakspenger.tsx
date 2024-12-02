@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useRef } from 'react';
 import styled from 'styled-components';
 import { Tiltakspenger as ITiltakspenger } from '../../../../../models/ytelse/tiltakspenger';

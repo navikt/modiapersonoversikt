@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router';
 import { useOnMount } from '../../../../../utils/customHooks';
-import { default as React, useCallback, useEffect, useState } from 'react';
+import { memo, default as React, useCallback, useEffect, useState } from 'react';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { erIE11 } from '../../../../../utils/erIE11';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
@@ -69,4 +69,4 @@ function feilmelding(statusKode: number) {
     }
 }
 
-export default React.memo(DokumentVisning);
+export default memo(DokumentVisning);

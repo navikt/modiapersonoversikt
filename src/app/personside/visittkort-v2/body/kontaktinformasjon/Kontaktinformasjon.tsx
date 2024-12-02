@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Data as PersonData, InformasjonElement } from '../../PersondataDomain';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import Bankkonto from './bankkonto/Bankkonto';

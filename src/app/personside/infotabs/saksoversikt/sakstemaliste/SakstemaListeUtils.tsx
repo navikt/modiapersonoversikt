@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Behandlingsstatus, SakstemaSoknadsstatus } from '../../../../../models/saksoversikt/sakstema';
 import { Normaltekst } from 'nav-frontend-typografi';
 import SakIkkeTilgangIkon from '../../../../../svg/SakIkkeTilgangIkon';

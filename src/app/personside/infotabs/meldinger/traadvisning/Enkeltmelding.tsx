@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useRef } from 'react';
 import { LestStatus, Melding } from '../../../../../models/meldinger/meldinger';
 import Snakkeboble from 'nav-frontend-snakkeboble';

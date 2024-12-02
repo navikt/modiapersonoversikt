@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Flatknapp, Hovedknapp } from 'nav-frontend-knapper';
 import styled from 'styled-components';
 import { SkjermetOppgaveProps, OppgaveSkjemaBegrensetTilgangForm } from '../oppgaveInterfaces';

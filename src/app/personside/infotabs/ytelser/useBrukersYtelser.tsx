@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { ReactNode, useMemo } from 'react';
 import { datoSynkende } from '../../../../utils/date-utils';
 import { getYtelseIdDato, Ytelse } from '../../../../models/ytelse/ytelse-utils';

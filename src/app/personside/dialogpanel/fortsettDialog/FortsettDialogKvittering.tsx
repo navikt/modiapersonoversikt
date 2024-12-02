@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { DialogpanelKvittering } from '../nyFellesStyling';
 import { useDispatch } from 'react-redux';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { DetaljertOppfolging } from '../../../../models/oppfolging';
 import styled from 'styled-components';
 import { pxToRem } from '../../../../styles/personOversiktTheme';

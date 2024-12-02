@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { apiBaseUri } from '../../api/config';
 import { GsakTema } from '../../models/meldinger/oppgave';
 import { applyDefaults, DefaultConfig, RendererOrConfig, useRest } from '../useRest';

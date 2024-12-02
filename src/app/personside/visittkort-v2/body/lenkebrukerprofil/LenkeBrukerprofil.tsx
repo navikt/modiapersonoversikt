@@ -1,5 +1,4 @@
 import { Normaltekst } from 'nav-frontend-typografi';
-import * as React from 'react';
 import styled from 'styled-components';
 import useUrlNyPersonforvalter from '../../../../brukerprofil/useUrlNyPersonforvalter';
 

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import EtikettBase from 'nav-frontend-etiketter';
 import { Sikkerhetstiltak } from '../../PersondataDomain';
 

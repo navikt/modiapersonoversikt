@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { FormEvent } from 'react';
 import { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Traad, TraadType } from '../../../../models/meldinger/meldinger';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { JournalforingsSak, JournalforingsSakIdentifikator, Kategorier, SakKategori, Tema } from './JournalforingPanel';
 import useFieldState, { FieldState } from '../../../../../../../utils/hooks/use-field-state';
 import { Radio, RadioProps } from 'nav-frontend-skjema';

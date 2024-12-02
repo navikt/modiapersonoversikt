@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useFodselsnummer, useOnMount } from '../../../../utils/customHooks';
 import { loggError } from '../../../../utils/logger/frontendLogger';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useEffect, useRef } from 'react';
 import { INFOTABS, InfotabsType } from './InfoTabEnum';
 import TabKnapper from './TabKnapper';

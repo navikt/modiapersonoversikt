@@ -1,4 +1,3 @@
-import * as React from 'react';
 import styled from 'styled-components';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { pxToRem } from '../../styles/personOversiktTheme';

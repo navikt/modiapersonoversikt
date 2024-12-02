@@ -1,4 +1,3 @@
-import * as React from 'react';
 import FeatureToggle, { DisplayWhenToggleIs } from './FeatureToggle';
 import { FeatureToggles } from './toggleIDs';
 import { ReactNode } from 'react';

@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import { CheckmarkCircleIcon, ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';

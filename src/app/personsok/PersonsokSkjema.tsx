@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { PersonsokRequestV3 as PersonsokRequest, PersonsokResponse } from '../../models/person/personsok';
 import { apiBaseUri, postConfig } from '../../api/config';
 import { FetchResponse, fetchToJson } from '../../utils/fetchToJson';

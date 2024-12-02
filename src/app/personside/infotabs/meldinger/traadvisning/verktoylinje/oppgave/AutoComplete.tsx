@@ -1,4 +1,5 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
+import * as React from 'react';
 import Downshift, { ControllerStateAndHelpers, StateChangeOptions } from 'downshift';
 import styled from 'styled-components';
 import { Normaltekst } from 'nav-frontend-typografi';

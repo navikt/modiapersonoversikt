@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { memo } from 'react';
 import {
     Varsel as VarselModell,
     UnifiedVarsel as UnifiedVarselModell,
@@ -33,4 +33,4 @@ function UnifiedVarsel({ varsel }: { varsel: UnifiedVarselModell }) {
     return <Varsel varsel={varsel} />;
 }
 
-export default React.memo(UnifiedVarsel);
+export default memo(UnifiedVarsel);

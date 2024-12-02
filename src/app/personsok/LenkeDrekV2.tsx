@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { formaterDato } from '../../utils/string-utils';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { fjernAnforselstegn, splitNavn } from './navn/navnUtils';

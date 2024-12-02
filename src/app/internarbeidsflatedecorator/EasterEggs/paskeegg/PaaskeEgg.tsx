@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useEffect, useState } from 'react';
 import easterEgg from './paaskeegg.svg';
 import styled, { css, keyframes } from 'styled-components';

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useErKontaktsenter } from '../../../utils/enheter-utils';
 import Nisselue from './nisselue/Nisselue';
 import Partyhatt from './partyhatt/Partyhatt';

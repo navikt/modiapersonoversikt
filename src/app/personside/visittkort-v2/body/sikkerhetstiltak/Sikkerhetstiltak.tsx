@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import SikkerhetsTiltakIkon from '../../../../../svg/Sikkerhetstiltak';
 import { VisittkortGruppe } from '../VisittkortStyles';

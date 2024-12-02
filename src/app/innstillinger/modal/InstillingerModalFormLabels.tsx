@@ -1,6 +1,5 @@
 import Hjelpetekst from 'nav-frontend-hjelpetekst';
 import { PopoverOrientering } from 'nav-frontend-popover';
-import React from 'react';
 import styled from 'styled-components';
 
 const Label = styled.span`

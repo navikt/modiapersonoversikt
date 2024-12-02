@@ -1,4 +1,3 @@
-import * as React from 'react';
 import styled, { keyframes } from 'styled-components';
 import chickIcon from './chickIcon.svg';
 import { useOnMount } from '../../../../utils/customHooks';
