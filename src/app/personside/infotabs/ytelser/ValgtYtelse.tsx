@@ -53,8 +53,8 @@ function ValgtYtelse(props: Props) {
             if (!props.valgtYtelse || !prevYtelse) {
                 return;
             }
-            if (prevYtelse !== props.valgtYtelse) {
-                tittelRef.current && tittelRef.current.focus();
+            if (prevYtelse !== props.valgtYtelse && tittelRef.current) {
+                tittelRef.current.focus();
             }
         },
         [props.valgtYtelse, prevYtelse, tittelRef]

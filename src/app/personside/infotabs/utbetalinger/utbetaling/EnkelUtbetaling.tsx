@@ -63,7 +63,7 @@ function EnkelUtbetaling(props: Props) {
 
     useOnMount(() => {
         if (props.erValgtIUrl) {
-            utbetalingRef.current && utbetalingRef.current.focus();
+            if (utbetalingRef.current) utbetalingRef.current.focus();
             ekspanderYtelse(true);
             setYtelseIFokus();
         }

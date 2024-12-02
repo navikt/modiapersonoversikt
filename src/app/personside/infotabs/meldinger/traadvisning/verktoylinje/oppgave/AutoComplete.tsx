@@ -100,10 +100,10 @@ function AutoComplete(props: Props) {
             setHightlightedItem(undefined);
         } else if (typeof changes.highlightedIndex === 'number') {
             const highlightedItem = [...filteredTopSuggestions, ...filteredSuggestions][changes.highlightedIndex];
-            highlightedItem && setHightlightedItem(highlightedItem);
+            if (highlightedItem) setHightlightedItem(highlightedItem);
         } else if (changes.isOpen === false) {
             // isOpen er kun false idet autocomplete blir lukket
-            hightlightedItem && changes.selectedItem && setValue(hightlightedItem);
+            if (hightlightedItem && changes.selectedItem) setValue(hightlightedItem);
         }
     }
 

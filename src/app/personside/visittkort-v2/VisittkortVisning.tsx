@@ -29,7 +29,7 @@ function VisittkortVisning(props: Props) {
             isMount.current = false;
             return;
         }
-        erApen ? trackAccordionOpened('Visittkort') : trackAccordionClosed('Visittkort');
+        return erApen ? trackAccordionOpened('Visittkort') : trackAccordionClosed('Visittkort');
     }, [erApen, isMount]);
 
     useHotkey({ char: 'n', altKey: true }, () => toggleApen(), [toggleApen], 'Visittkort');

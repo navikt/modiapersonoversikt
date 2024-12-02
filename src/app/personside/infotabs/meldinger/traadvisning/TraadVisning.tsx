@@ -88,7 +88,7 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     }
 
     const handleNyMelding = () => {
-        valgtTraad && dispatch(setValgtTraadDialogpanel(valgtTraad));
+        if (valgtTraad) dispatch(setValgtTraadDialogpanel(valgtTraad));
         dialogpanel.setApent(true);
         loggEvent('Ny melding knapp', 'Meldinger');
     };

@@ -32,8 +32,8 @@ function SykefraversoppfolgingEkspanderbartPanel(props: Props) {
     const dispatch = useDispatch();
     const setOpen = (open: boolean) => {
         dispatch(setSykefraverEkspandert(open));
-        !open && loggEvent('VisSykefraværsPanel', 'Oppfølging');
-        open ? trackAccordionOpened('Sykefraværsoppfølging') : trackAccordionClosed('Sykefraværsoppfølging');
+        if (!open) loggEvent('VisSykefraværsPanel', 'Oppfølging');
+        return open ? trackAccordionOpened('Sykefraværsoppfølging') : trackAccordionClosed('Sykefraværsoppfølging');
     };
 
     if (props.syfoPunkter.length === 0) {

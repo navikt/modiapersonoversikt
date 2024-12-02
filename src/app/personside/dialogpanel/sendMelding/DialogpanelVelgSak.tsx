@@ -59,7 +59,7 @@ function DialogpanelVelgSak(props: Props) {
     const handleVelgSak = (sak: JournalforingsSak) => {
         settApen(false);
         props.setValgtSak(sak);
-        knappRef.current && knappRef.current.focus();
+        if (knappRef.current) knappRef.current.focus();
     };
 
     const tittelDialogpanel = props.valgtSak ? getTittel(props.valgtSak) : 'Ingen valgt sak';
