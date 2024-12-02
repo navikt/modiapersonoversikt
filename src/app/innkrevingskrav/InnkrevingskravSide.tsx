@@ -93,12 +93,11 @@ const SearchResultTable = ({
 
     return (
         <Box>
-            <Heading level="3" size="xsmall">
-                Søkeresultat:
-            </Heading>
             {debitor && (
                 <VStack marginBlock="2">
-                    <InfoPoint label="Navn" text={debitor.name} />
+                    <BodyShort>
+                        Viser krav knyttet til <b>{debitor.name}</b>
+                    </BodyShort>
                     <InfoPoint label={debitorType === 'FNR' ? 'Fnr' : 'Org. nr'} text={debitor.ident} />
                 </VStack>
             )}
