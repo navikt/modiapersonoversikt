@@ -125,7 +125,7 @@
         "@eslint/js": "^9.15.0",
         "@faker-js/faker": "^9.2.0",
         "@navikt/aksel-stylelint": "^7.4.3",
-        "@tanstack/router-cli": "^1.83.1",
+        "@tanstack/router-cli": "^1.84.4",
         "@tanstack/router-devtools": "^1.85.0",
         "@tanstack/router-plugin": "^1.83.1",
         "@testing-library/jest-dom": "^6.6.3",
