@@ -28,12 +28,12 @@ const storeScroll = (name: string, position: ScrollPosition) => {
 };
 
 function useKeepScroll(ref: React.RefObject<HTMLElement>, keepScrollId: string) {
-    const timer = useRef<number | undefined>();
+    const timer = useRef<NodeJS.Timeout | undefined>();
     useEffect(
         function restoreScroll() {
             const timeout = setTimeout(() => {
                 const scroll = getStoredScroll(keepScrollId);
-                !isTest() && ref.current && ref.current.scrollTo(scroll.x, scroll.y);
+                if (!isTest() && ref.current) ref.current.scrollTo(scroll.x, scroll.y);
             }, 0); // Uten timeout prøver den å restore scroll før komponenten er ferdig rendret. Da får den ofte ikke til å restore scrollen kanskje fordi komponenten ikke har fått sin fulle høyde enda
             return () => clearTimeout(timeout);
         },

@@ -85,7 +85,7 @@ function OppfolgingYtelserEkspanderbartPanel(props: Props) {
     const open = useAppState((state) => state.oppfolging.ytelserEkspandert);
     const dispatch = useDispatch();
     const setOpen = (open: boolean) => {
-        !open && loggEvent('VisYtelserPanel', 'Oppfølging');
+        if (!open) loggEvent('VisYtelserPanel', 'Oppfølging');
         dispatch(setYtelserEkspandert(open));
     };
 

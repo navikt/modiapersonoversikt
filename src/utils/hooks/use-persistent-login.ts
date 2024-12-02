@@ -76,9 +76,9 @@ function useTokenRefresher(auth: UseQueryResult<AuthIntropectionDTO, FetchError>
             const timeToRefresh = timeToExpiration(auth.data);
 
             if (timeToRefresh > 0) {
-                debug && console.debug('Setting up activity-check in', timeToRefresh - PREEMPTIVE_REFRESH_TIME_IN_MS);
+                if (debug) console.debug('Setting up activity-check in', timeToRefresh - PREEMPTIVE_REFRESH_TIME_IN_MS);
                 timerRef.current = window.setTimeout(() => {
-                    debug &&
+                    if (debug)
                         console.debug(
                             'refreshing token if not inactive. Activity: ',
                             activityMonitor.timeSinceLastActivity() < INACTIVITY_LIMIT_IN_MS
@@ -103,7 +103,7 @@ function useLoginState(auth: UseQueryResult<AuthIntropectionDTO, FetchError>) {
         if (auth.data) {
             intervalId = window.setInterval(() => {
                 const timeLeft = timeToExpiration(auth.data);
-                debug && console.debug('recalculating loginstatus', timeLeft);
+                if (debug) console.debug('recalculating loginstatus', timeLeft);
                 setIsLoggedIn(timeLeft > 0);
             }, RECALC_LOGIN_STATUS_INTERVAL_IN_MS);
         }
@@ -141,7 +141,7 @@ const authResource = {
 
 export type PersistentLoginState = { isLoggedIn: boolean; errorStatus?: ErrorReason };
 export default function usePersistentLogin(): PersistentLoginState {
-    debug && console.debug('Using debugging of persistent-loging');
+    if (debug) console.debug('Using debugging of persistent-loging');
 
     const auth = authResource.useFetch();
     const isLoggedIn = useLoginState(auth);

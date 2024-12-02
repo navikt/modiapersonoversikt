@@ -96,8 +96,8 @@ function velgTekst(
         event.stopPropagation();
         if (erGyldigValg(tekst, locale)) {
             rapporterBruk(tekst);
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-            const localeTekst: string = tekst.innhold[locale]?.trim();
+            const localeTekst = tekst.innhold[locale as StandardTeksterModels.Locale]?.trim();
+            if (!localeTekst) return;
             if (autofullforData) {
                 const nokler = byggAutofullforMap(
                     locale,
@@ -149,8 +149,8 @@ function StandardTekster(props: Props) {
     useEffect(() => {
         if (sokRef.current?.contains(document.activeElement)) {
             const index = filtrerteTekster.findIndex((tekst) => tekst.id === valgt.input.value);
-            const ariaTekst = `${index + 1} ${valgtTekst?.overskrift}: ${valgtTekst?.innhold[valgtLocale.input.value]}`;
-            valgtTekst && setAriaNotification(ariaTekst);
+            const ariaTekst = `${index + 1} ${valgtTekst?.overskrift}: ${valgtTekst?.innhold[valgtLocale.input.value as StandardTeksterModels.Locale]}`;
+            if (valgtTekst) setAriaNotification(ariaTekst);
         }
     }, [valgtLocale, valgtTekst, filtrerteTekster, valgt]);
 

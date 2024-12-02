@@ -206,7 +206,7 @@ function JournalPoster(props: Props) {
                 return;
             }
             if (prevSakstema !== aggregertSak) {
-                tittelRef.current && tittelRef.current.focus();
+                if (tittelRef.current) tittelRef.current.focus();
             }
         },
         [aggregertSak, tittelRef, prevSakstema]

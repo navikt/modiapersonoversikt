@@ -23,7 +23,7 @@ function Temavelger(props: Props) {
 
     useEffect(() => {
         if (props.visFeilmelding) {
-            selectRef && selectRef.focus();
+            if (selectRef) selectRef.focus();
         }
     }, [selectRef, props.visFeilmelding]);
 

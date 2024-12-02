@@ -76,7 +76,7 @@ function Verktoylinje(props: Props) {
     const [aktivtPanel, settAktivtPanel] = useState<VerktøyPanel | null>(null);
     const lukk = useCallback(() => {
         settAktivtPanel(null);
-        ref.current && ref.current.focus();
+        if (ref.current) ref.current.focus();
     }, [settAktivtPanel, ref]);
     const tittelId = useRef(guid());
 

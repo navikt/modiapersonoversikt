@@ -79,7 +79,7 @@ function usePaginering<T>(
     useEffect(() => {
         // Dersom man har byttet side med prevNextButton flyttes fokus til pageSelect for å komme til toppen av listen
         if (prevPage !== undefined && prevPage !== currentPage) {
-            selectRef.current && selectRef.current.focus();
+            if (selectRef.current) selectRef.current.focus();
         }
     }, [currentPage, selectRef, prevPage]);
 

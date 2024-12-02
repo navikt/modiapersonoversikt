@@ -79,7 +79,7 @@ function OppgaveSkjema(props: OppgaveProps) {
             post(`${apiBaseUri}/dialogoppgave/v2/opprett`, request, 'OpprettOppgave')
                 .then(() => {
                     settResultat(Resultat.VELLYKKET);
-                    props.onSuccessCallback && props.onSuccessCallback();
+                    if (props.onSuccessCallback) props.onSuccessCallback();
                 })
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 .catch((error: Error) => {
