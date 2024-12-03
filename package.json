@@ -122,7 +122,7 @@
         "zod": "^3.23.8"
     },
     "devDependencies": {
-        "@eslint/js": "^9.15.0",
+        "@eslint/js": "^9.16.0",
         "@faker-js/faker": "^9.2.0",
         "@navikt/aksel-stylelint": "^7.4.3",
         "@tanstack/router-cli": "^1.84.4",
