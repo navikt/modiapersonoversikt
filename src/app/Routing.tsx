@@ -13,7 +13,6 @@ import { aktivBrukerAtom } from 'src/lib/state/context';
 
 function Routing() {
     const fnr = useAtomValue(aktivBrukerAtom);
-
     return (
         <Suspense fallback={<CenteredLazySpinner />}>
             <Switch key={fnr}>

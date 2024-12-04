@@ -39,7 +39,7 @@ function useHandleGosysUrl() {
     });
 
     const handleLegacyUrls = (fnr?: string) => {
-        const linkTilValgtHenvendelse = `${paths.personUri}/${INFOTABS.MELDINGER.path}`;
+        const linkTilValgtHenvendelse = `${paths.personUri}/${INFOTABS.MELDINGER.path}` as const;
         const newQuery = { traadId: queryParams.behandlingsid };
         if (queryParams.oppgaveid && queryParams.behandlingsid && fnr) {
             fetchToJson<Oppgave>(`${apiBaseUri}/v2/oppgaver/oppgavedata/${queryParams.oppgaveid}`).then((response) => {

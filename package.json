@@ -54,7 +54,6 @@
         "@tanstack/react-router": "^1.85.0",
         "@vitejs/plugin-react": "^4.3.3",
         "classnames": "^2.5.1",
-        "connected-react-router": "^6.9.3",
         "dayjs": "^1.11.13",
         "detect-browser": "^5.3.0",
         "downshift": "^5.0.5",
@@ -112,8 +111,6 @@
         "react-hook-form": "^7.53.2",
         "react-modal": "^3.16.1",
         "react-redux": "^7.2.0",
-        "react-router": "^5.2.0",
-        "react-router-dom": "^5.3.4",
         "redux": "^4.2.1",
         "redux-thunk": "^2.4.2",
         "styled-components": "^6.1.13",
@@ -142,8 +139,6 @@
         "@types/react-dom": "^18.3.1",
         "@types/react-modal": "^3.16.3",
         "@types/react-redux": "^7.1.9",
-        "@types/react-router": "5.1.2",
-        "@types/react-router-dom": "^5.3.3",
         "@types/react-test-renderer": "^18.3.0",
         "autoprefixer": "^10.4.20",
         "cross-env": "^7.0.3",
@@ -179,9 +174,6 @@
         "@navikt/tag-input": {
             "react": "$react",
             "@navikt/fnrvalidator": "$@navikt/fnrvalidator"
-        },
-        "connected-react-router": {
-            "react": "$react"
         }
     },
     "browserslist": {

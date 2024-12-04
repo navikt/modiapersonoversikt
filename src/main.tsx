@@ -19,6 +19,18 @@ if (import.meta.env.DEV) {
     };
 }
 
+if (!window.faro) {
+    window.faro = {
+        // @ts-expect-error Vi overskriver faro siden error boundarien ikke tar
+        // hensyn til at faro ikke er tilgjengelig
+        api: {
+            pushError: () => {
+                console.warn('Not pushing error to grafana. Faro is not initialized.');
+            }
+        }
+    };
+}
+
 const router = createRouter();
 
 if (import.meta.env.VITE_MOCK_ENABLED === 'true') {

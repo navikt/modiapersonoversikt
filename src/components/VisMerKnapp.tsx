@@ -2,8 +2,8 @@ import * as React from 'react';
 import { pxToRem, theme } from '../styles/personOversiktTheme';
 import styled, { css } from 'styled-components';
 import { HoyreChevron } from 'nav-frontend-chevron';
-import { RouteComponentProps, withRouter } from 'react-router';
 import { isSelectingText } from '../utils/function-utils';
+import { useNavigate } from '@tanstack/react-router';
 
 const Wrapper = styled.div<{ valgt: boolean }>`
     position: relative;
@@ -44,7 +44,7 @@ const Knapp = styled.button`
     }
 `;
 
-interface Props extends RouteComponentProps {
+interface Props {
     onClick?: (event: React.MouseEvent) => void;
     linkTo?: string;
     valgt: boolean;
@@ -54,6 +54,8 @@ interface Props extends RouteComponentProps {
 }
 
 function VisMerKnapp(props: Props) {
+    const navigate = useNavigate();
+
     const handleClick = (event: React.MouseEvent) => {
         if (isSelectingText()) {
             return;
@@ -61,7 +63,7 @@ function VisMerKnapp(props: Props) {
         if (props.onClick) {
             props.onClick(event);
         } else if (props.linkTo) {
-            props.history.push(props.linkTo);
+            navigate({ to: props.linkTo });
         } else {
             console.error('VisMerKnapp mangler onclick-funksjon eller router-path');
         }
@@ -77,4 +79,4 @@ function VisMerKnapp(props: Props) {
     );
 }
 
-export default withRouter(VisMerKnapp);
+export default VisMerKnapp;

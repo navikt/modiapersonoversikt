@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Element, Undertekst } from 'nav-frontend-typografi';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from '@tanstack/react-router';
 import { Dokument, DokumentStatus, Journalpost } from '../../../../../models/saksoversikt/journalpost';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { paths } from '../../../../routes/routing';

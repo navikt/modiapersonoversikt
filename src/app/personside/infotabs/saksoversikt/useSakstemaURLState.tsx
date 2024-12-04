@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useHistory } from 'react-router';
+import { useNavigate } from '@tanstack/react-router';
 import { SakstemaSoknadsstatus } from '../../../../models/saksoversikt/sakstema';
 import { datoSynkende } from '../../../../utils/date-utils';
 import { sakstemakodeAlle, sakstemakodeIngen } from './utils/saksoversiktUtilsV2';
@@ -30,7 +30,7 @@ interface SakstemaResourceV2 {
 
 export function useSakstemaURLStateV2(alleSakstemaer: SakstemaSoknadsstatus[]): SakstemaURLStateV2 {
     const filtrertAlleSakstemaer = filtrerSakstemaerUtenDataV2(alleSakstemaer);
-    const history = useHistory();
+    const navigate = useNavigate({ from: '/person/saker' });
     const queryParams = useQueryParams<QueryParamsForSak>(); //SYK-BAR-AAP
     return useMemo(() => {
         const sakstemaerFraUrl: string[] = queryParams.sakstema?.split('-') ?? [sakstemakodeAlle];
@@ -47,14 +47,14 @@ export function useSakstemaURLStateV2(alleSakstemaer: SakstemaSoknadsstatus[]): 
         );
 
         const setIngenValgte = () => {
-            history.push({
-                search: `?sakstema=${sakstemakodeIngen}`
+            navigate({
+                search: { sakstema: sakstemakodeIngen }
             });
         };
 
         const setAlleValgte = () => {
-            history.push({
-                search: `?sakstema=${sakstemakodeAlle}`
+            navigate({
+                search: { sakstema: sakstemakodeAlle }
             });
         };
 
@@ -72,8 +72,8 @@ export function useSakstemaURLStateV2(alleSakstemaer: SakstemaSoknadsstatus[]): 
                     .sort(datoSynkende((sakstema) => hentDatoForSisteHendelseV2(sakstema) ?? Date()))
                     .map((sakstema) => sakstema.temakode)
                     .join('-');
-                history.push({
-                    search: `?sakstema=${nyURL}`
+                navigate({
+                    search: { sakstema: nyURL }
                 });
             }
         };

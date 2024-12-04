@@ -11,7 +11,6 @@ import { useSokEtterMeldinger } from './utils/meldingerUtils';
 import { useValgtTraadIUrl } from './utils/useValgtTraadIUrl';
 import TraadVisningWrapper from './traadvisning/TraadVisningWrapper';
 import DelayRender from '../../../../components/DelayRender';
-import { useKeepQueryParams } from '../../../../utils/hooks/useKeepQueryParams';
 import dialogResource from '../../../../rest/resources/dialogResource';
 import LazySpinner from '../../../../components/LazySpinner';
 import { useMeldingsok } from '../../../../context/meldingsok';
@@ -56,7 +55,6 @@ function MeldingerContainer() {
     const traaderForSok = traaderResource.data ?? [];
     const traaderEtterSokOgFiltrering = useSokEtterMeldinger(traaderForSok, meldingsok.query);
     const valgtTraad = useValgtTraadIUrl() || traaderEtterSokOgFiltrering[0];
-    useKeepQueryParams();
     useSyncSøkMedVisning(traaderForSok, traaderEtterSokOgFiltrering, valgtTraad);
 
     if (traaderResource.isLoading) {

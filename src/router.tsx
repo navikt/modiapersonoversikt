@@ -1,6 +1,8 @@
-import { createRouter as createReactRouter } from '@tanstack/react-router';
+import { createBrowserHistory, createRouter as createReactRouter } from '@tanstack/react-router';
 
 import { routeTree } from './routeTree.gen';
+
+export const history = createBrowserHistory();
 
 export function createRouter() {
     return createReactRouter({
@@ -8,7 +10,8 @@ export function createRouter() {
         context: {
             head: ''
         },
-        defaultPreload: 'intent'
+        defaultPreload: 'intent',
+        history
     });
 }
 
