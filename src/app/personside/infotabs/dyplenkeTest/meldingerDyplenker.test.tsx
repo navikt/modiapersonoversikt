@@ -2,7 +2,6 @@ import { render, within } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
 import TestProvider from '../../../../test/Testprovider';
 import InfoTabs from '../InfoTabs';
-import { BrowserRouter } from 'react-router-dom';
 import { INFOTABS } from '../InfoTabEnum';
 import { getAktivTab, meldingerTest } from './utils-dyplenker-test';
 import { getTestStore, setupReactQueryMocks } from '../../../../test/testStore';
@@ -19,9 +18,7 @@ test('bytter til riktig tab og setter fokus på riktig melding ved bruk av dyple
     const store = getTestStore();
     const { container: infoTabs } = render(
         <TestProvider customStore={store}>
-            <BrowserRouter>
-                <InfoTabs />
-            </BrowserRouter>
+            <InfoTabs />
         </TestProvider>
     );
 

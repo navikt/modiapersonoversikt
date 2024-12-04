@@ -4,11 +4,11 @@ import { useDispatch } from 'react-redux';
 import { useInfotabsDyplenker } from '../../infotabs/dyplenker';
 import { setValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
 import { loggError } from '../../../../utils/logger/frontendLogger';
-import { useHistory } from 'react-router';
 import { eldsteMelding, kanBesvares } from '../../infotabs/meldinger/utils/meldingerUtils';
 import { useJustOnceEffect } from '../../../../utils/customHooks';
 import dialogResource from '../../../../rest/resources/dialogResource';
 import LazySpinner from '../../../../components/LazySpinner';
+import { useNavigate } from '@tanstack/react-router';
 
 interface Pending {
     pending: true;
@@ -26,7 +26,7 @@ function useVisTraadTilknyttetPlukketOppgave(dialogpanelTraad?: Traad): Response
     const tildelteOppgaver = useTildelteOppgaver();
     const dispatch = useDispatch();
     const dyplenker = useInfotabsDyplenker();
-    const history = useHistory();
+    const navigate = useNavigate();
 
     useJustOnceEffect(
         function visTraadTilknyttetOppgaveIDialogpanel(done: () => void) {
@@ -43,7 +43,7 @@ function useVisTraadTilknyttetPlukketOppgave(dialogpanelTraad?: Traad): Response
             }
 
             if (traadTilknyttetOppgave) {
-                history.push(dyplenker.meldinger.link(traadTilknyttetOppgave));
+                navigate({ to: '/person/meldinger', search: { traadId: traadTilknyttetOppgave.traadId } });
                 done();
             } else {
                 const debugKanBesvares = traadTilknyttetOppgave

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { FaroErrorBoundary } from '@grafana/faro-react';
+import { Alert } from '@navikt/ds-react';
+import { ErrorBoundary as ReactErrorBoundary } from 'react-error-boundary';
 
 /*
  * Error håndtering for enkelt-widgets.
@@ -11,25 +13,16 @@ import { FaroErrorBoundary } from '@grafana/faro-react';
  *
  */
 const ErrorBoundary = ({ children, boundaryName }: React.PropsWithChildren<{ boundaryName: string }>) => {
-    return (
+    return window.faro && import.meta.env.PROD ? (
         <FaroErrorBoundary
-            beforeCapture={() => {
-                if (!window.faro) {
-                    window.faro = {
-                        // @ts-expect-error Vi overskriver faro siden error boundarien ikke tar
-                        // hensyn til at faro ikke er tilgjengelig
-                        api: {
-                            pushError: () => {
-                                console.warn('Not pushing error to grafana. Faro is not initialized.');
-                            }
-                        }
-                    };
-                }
-            }}
             fallback={<AlertStripe type={'advarsel'}>Beklager, det skjedde en feil. ({boundaryName})</AlertStripe>}
         >
             {children}
         </FaroErrorBoundary>
+    ) : (
+        <ReactErrorBoundary fallback={<Alert variant="error">Beklager, det skedde en feil</Alert>}>
+            {children}
+        </ReactErrorBoundary>
     );
 };
 export default ErrorBoundary;

@@ -1,6 +1,5 @@
-import { useLocation } from 'react-router';
 import { useOnMount } from '../../../../../utils/customHooks';
-import { memo, default as React, useCallback, useEffect, useState } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { erIE11 } from '../../../../../utils/erIE11';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
@@ -10,6 +9,7 @@ import styled from 'styled-components';
 import { getMockableUrl } from './mockable-dokument-url';
 import { parseQueryString } from '../../../../../utils/url-utils';
 import { apiBaseUri } from '../../../../../api/config';
+import { useLocation } from '@tanstack/react-router';
 
 interface Props {
     fnr: string;

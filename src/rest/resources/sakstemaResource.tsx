@@ -3,18 +3,17 @@ import { CenteredLazySpinner } from '../../components/LazySpinner';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { apiBaseUri } from '../../api/config';
 import { SakstemaSoknadsstatusResponse } from '../../models/saksoversikt/sakstema';
-import { useSelector } from 'react-redux';
-import { AppState } from '../../redux/reducers';
-import { useValgtenhet } from '../../context/valgtenhet-state';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { FetchError, post } from '../../api/api';
+import { useAtomValue } from 'jotai';
+import { aktivBrukerAtom, aktivEnhetAtom } from 'src/lib/state/context';
 
 const defaults: DefaultConfig = {
     ifPending: <CenteredLazySpinner />,
     ifError: <AlertStripe type="advarsel">Kunne ikke laste inn tema</AlertStripe>
 };
 
-function queryKeyV2(fnr: string, enhet: string | undefined): [string, string, string | undefined] {
+function queryKeyV2(fnr: string | undefined, enhet: string | undefined) {
     return ['sakstemaV2', fnr, enhet];
 }
 
@@ -23,15 +22,10 @@ function urlUtenFnrIPathV2(enhet?: string) {
     return `${apiBaseUri}/v2/saker/v2/sakstema${header}`;
 }
 
-function useFnrEnhet(): [string, string | undefined] {
-    const fnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
-    const enhet = useValgtenhet().enhetId;
-    return [fnr, enhet];
-}
-
 const resource = {
     useFetch(): UseQueryResult<SakstemaSoknadsstatusResponse, FetchError> {
-        const [fnr, enhet] = useFnrEnhet();
+        const fnr = useAtomValue(aktivBrukerAtom);
+        const enhet = useAtomValue(aktivEnhetAtom);
 
         return useQuery({
             queryKey: queryKeyV2(fnr, enhet),
