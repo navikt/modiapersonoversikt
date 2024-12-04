@@ -105,7 +105,7 @@
         "nav-frontend-typografi": "^3.1.1",
         "nav-frontend-typografi-style": "^1.0.22",
         "openapi-fetch": "^0.13.0",
-        "openapi-react-query": "^0.2.5",
+        "openapi-react-query": "^0.2.7",
         "react": "^18.3.1",
         "react-day-picker": "^7.3.2",
         "react-dom": "^18.3.1",
