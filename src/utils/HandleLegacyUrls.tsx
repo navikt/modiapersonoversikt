@@ -1,23 +1,30 @@
-import { useQueryParams } from '../../utils/url-utils';
-import { useOnMount, useSettAktivBruker } from '../../utils/customHooks';
-import { loggEvent } from '../../utils/logger/frontendLogger';
-import { INFOTABS } from '../personside/infotabs/InfoTabEnum';
-import { paths } from '../routes/routing';
-import { Oppgave } from '../../models/meldinger/oppgave';
-import { apiBaseUri, contextHolderBaseUri } from '../../api/config';
-import { fetchToJson, hasData } from '../../utils/fetchToJson';
-import { post } from '../../api/api';
-import { useNavigate } from '@tanstack/react-router';
+import { useQueryParams } from 'src/utils/url-utils';
+import { useOnMount, useSettAktivBruker } from 'src/utils/customHooks';
+import { loggEvent } from 'src/utils/logger/frontendLogger';
+import { INFOTABS } from 'src/app/personside/infotabs/InfoTabEnum';
+import { paths } from 'src/app/routes/routing';
+import { Oppgave } from 'src/models/meldinger/oppgave';
+import { apiBaseUri, contextHolderBaseUri } from 'src/api/config';
+import { fetchToJson, hasData } from 'src/utils/fetchToJson';
+import { post } from 'src/api/api';
+import { useMatchRoute, useNavigate } from '@tanstack/react-router';
+import { erGyldigishFnr } from 'src/utils/fnr-utils';
+import { PropsWithChildren, useState } from 'react';
+import { Loader } from '@navikt/ds-react';
 
-function useHandleGosysUrl() {
+function HandleLegacyUrls({ children }: PropsWithChildren) {
     const queryParams = useQueryParams<{
         sokFnr?: string;
         sokFnrCode?: string;
         oppgaveid?: string;
         behandlingsid?: string;
     }>();
+    const match = useMatchRoute();
+    const fnrMatch = match({ to: '/person/$fnr' });
+    const validFnr = fnrMatch && erGyldigishFnr(fnrMatch.fnr ?? '') ? fnrMatch.fnr : undefined;
     const settGjeldendeBruker = useSettAktivBruker();
     const navigate = useNavigate();
+    const [delayRender, setDelayRender] = useState(!!validFnr);
 
     useOnMount(() => {
         if (queryParams.sokFnrCode) {
@@ -34,13 +41,15 @@ function useHandleGosysUrl() {
                 handleLegacyUrls(res.aktivBruker);
             });
         } else {
-            handleLegacyUrls(queryParams.sokFnr);
+            handleLegacyUrls(queryParams.sokFnr ?? validFnr);
+            setDelayRender(false);
         }
     });
 
     const handleLegacyUrls = (fnr?: string) => {
-        const linkTilValgtHenvendelse = `${paths.personUri}/${INFOTABS.MELDINGER.path}`;
+        const linkTilValgtHenvendelse = `${paths.personUri}/${INFOTABS.MELDINGER.path}` as const;
         const newQuery = { traadId: queryParams.behandlingsid };
+
         if (queryParams.oppgaveid && queryParams.behandlingsid && fnr) {
             fetchToJson<Oppgave>(`${apiBaseUri}/v2/oppgaver/oppgavedata/${queryParams.oppgaveid}`).then((response) => {
                 loggEvent('Oppgave', 'FraGosys', { success: hasData(response) });
@@ -64,6 +73,8 @@ function useHandleGosysUrl() {
         urlObj.searchParams.delete(param);
         return urlObj.toString();
     };
+
+    return delayRender ? <Loader /> : children;
 }
 
-export default useHandleGosysUrl;
+export default HandleLegacyUrls;

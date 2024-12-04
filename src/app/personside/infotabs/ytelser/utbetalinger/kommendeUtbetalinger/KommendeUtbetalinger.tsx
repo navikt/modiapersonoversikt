@@ -5,7 +5,7 @@ import { Ingress } from 'nav-frontend-typografi';
 import { datoEllerNull, NOKellerNull, periodeEllerNull, prosentEllerNull } from '../../../../../../utils/string-utils';
 import theme from '../../../../../../styles/personOversiktTheme';
 import { StyledTable } from '../../../../../../utils/table/StyledTable';
-import { Link } from 'react-router-dom';
+import { Link } from '@tanstack/react-router';
 import { usePaths } from '../../../../../routes/routing';
 
 interface Props {

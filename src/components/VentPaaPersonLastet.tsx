@@ -1,11 +1,10 @@
 import { PropsWithChildren, useEffect, useState } from 'react';
-import { useHistory } from 'react-router';
 import { useGjeldendeBrukerLastet } from '../redux/gjeldendeBruker/types';
 import useTimeout from '../utils/hooks/use-timeout';
 import { erGyldigishFnr } from '../utils/fnr-utils';
 import { loggInfo } from '../utils/logger/frontendLogger';
-import { paths } from '../app/routes/routing';
 import { CenteredLazySpinner } from './LazySpinner';
+import { useNavigate } from '@tanstack/react-router';
 
 type Props = {
     fnr: string;
@@ -16,14 +15,14 @@ const TIMEOUT_MILLIS = 1000;
 
 const VentPaaPersonLastet = ({ fnr, children }: PropsWithChildren<Props>) => {
     const [loadTimeout, setLoadTimeout] = useState(false);
-    const history = useHistory();
+    const navigate = useNavigate();
     const gjeldendeBrukerHasLoaded = useGjeldendeBrukerLastet();
     useTimeout(() => setLoadTimeout(true), TIMEOUT_MILLIS);
 
     useEffect(() => {
         if (!erGyldigishFnr(fnr) && (gjeldendeBrukerHasLoaded || loadTimeout)) {
             loggInfo('Ugyldig fnr, redirecter til startside');
-            history.push(`${paths.basePath}`);
+            navigate({ to: '/' });
         }
     }, [fnr, gjeldendeBrukerHasLoaded, loadTimeout]);
 

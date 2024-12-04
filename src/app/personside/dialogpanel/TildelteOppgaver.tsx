@@ -10,13 +10,12 @@ import { meldingstypeTekst } from '../infotabs/meldinger/utils/meldingstekster';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { LenkeKnapp } from '../../../components/common-styled-components';
 import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
-import { useInfotabsDyplenker } from '../infotabs/dyplenker';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 import { temagruppeTekst } from '../../../models/temagrupper';
-import { useHistory } from 'react-router';
 import Panel from 'nav-frontend-paneler';
 import dialogResource from '../../../rest/resources/dialogResource';
 import LazySpinner from '../../../components/LazySpinner';
+import { useNavigate } from '@tanstack/react-router';
 
 const Wrapper = styled.div`
     position: relative;
@@ -58,10 +57,9 @@ const JustifyRight = styled.div`
 
 function OppgaverDropdown(props: { lukk: () => void }) {
     const traaderResource = dialogResource.useFetch();
-    const dyplenker = useInfotabsDyplenker();
     const tildelteOppgaver = useTildelteOppgaver();
     const oppgaverPaaBruker = tildelteOppgaver.paaBruker;
-    const history = useHistory();
+    const navigate = useNavigate();
 
     if (traaderResource.isLoading) {
         return <LazySpinner type="M" />;
@@ -77,7 +75,7 @@ function OppgaverDropdown(props: { lukk: () => void }) {
             return <AlertStripeFeil>{error.message}</AlertStripeFeil>;
         }
         const handleClick = () => {
-            history.push(dyplenker.meldinger.link(traad));
+            navigate({ to: '/person/meldinger', search: { traadId: traad.traadId } });
             props.lukk();
         };
         const sisteMelding = nyesteMelding(traad);

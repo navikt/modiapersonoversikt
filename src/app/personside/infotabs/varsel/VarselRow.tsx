@@ -2,12 +2,9 @@ import { guid } from 'nav-frontend-js-utils';
 import { useRef } from 'react';
 import * as React from 'react';
 import { UnmountClosed } from 'react-collapse';
-import { useDispatch } from 'react-redux';
 import VisMerChevron from '../../../../components/VisMerChevron';
-import { toggleVisVarsel } from '../../../../redux/varsler/varslerReducer';
 import CompletedIcon from '../../../../svg/CompletedIcon';
 import WarningIcon from '../../../../svg/WarningIcon';
-import { useAppState } from '../../../../utils/customHooks';
 import styled from 'styled-components';
 import Panel from 'nav-frontend-paneler';
 import theme from '../../../../styles/personOversiktTheme';
@@ -85,9 +82,7 @@ interface VarselRowProps {
 }
 export function VarselRow(props: VarselRowProps) {
     const tittelId = useRef(guid());
-    const open = useAppState((state) => state.varsler.aapneVarsler).includes(props.varsel);
-    const dispatch = useDispatch();
-    const setOpen = (open: boolean) => dispatch(toggleVisVarsel(props.varsel, open));
+    const [open, setOpen] = React.useState(false);
     const toggleOpen = () => setOpen(!open);
 
     const datoer = props.datoer.map((dato) => <DatoSpan key={dato}>{dato}</DatoSpan>);
