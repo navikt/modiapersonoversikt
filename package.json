@@ -123,7 +123,7 @@
     },
     "devDependencies": {
         "@eslint/js": "^9.16.0",
-        "@faker-js/faker": "^9.2.0",
+        "@faker-js/faker": "^9.3.0",
         "@navikt/aksel-stylelint": "^7.4.3",
         "@tanstack/router-cli": "^1.85.3",
         "@tanstack/router-devtools": "^1.85.0",
