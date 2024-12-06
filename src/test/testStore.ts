@@ -25,7 +25,6 @@ import persondataResource from '../rest/resources/persondataResource';
 import aktoridResource from '../rest/resources/aktoridResource';
 import varselResource from '../rest/resources/varselResource';
 import { MockInstance, vi } from 'vitest';
-import { createBrowserHistory } from 'history';
 import { UseQueryResult } from '@tanstack/react-query';
 import { FeatureToggles } from '../components/featureToggle/toggleIDs';
 import { FetchError } from '../api/api';
@@ -35,10 +34,8 @@ import * as pleiepengerResource from '../rest/resources/pleiepengerResource';
 import * as sykepengerResource from '../rest/resources/sykepengerResource';
 import * as tiltakspengerResource from '../rest/resources/tiltakspengerResource';
 
-const history = createBrowserHistory();
-
 export function getTestStore(): Store<AppState> {
-    const testStore = createStore(reducers(history), applyMiddleware(thunkMiddleware));
+    const testStore = createStore(reducers(), applyMiddleware(thunkMiddleware));
     const aremarkFnr = aremark.personIdent;
 
     // eslint-disable-next-line

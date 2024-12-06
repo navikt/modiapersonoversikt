@@ -8,10 +8,7 @@ import { Undertittel } from 'nav-frontend-typografi';
 import DescriptionList, { DescriptionListEntries, fjernEntriesUtenVerdi } from '../../../../components/DescriptionList';
 import OppfolgingsVedtakTabell from './OppfolgingVedtakKomponent';
 import { datoEllerNull } from '../../../../utils/string-utils';
-import { useAppState } from '../../../../utils/customHooks';
-import { useDispatch } from 'react-redux';
-import { setYtelserEkspandert } from '../../../../redux/oppfolging/actions';
-import { loggEvent } from '../../../../utils/logger/frontendLogger';
+import { useState } from 'react';
 
 interface Props {
     ytelser: OppfolgingsYtelse[];
@@ -82,12 +79,7 @@ function dersomDagpengerLeggTilFelter(ytelse: OppfolgingsYtelse): DescriptionLis
 }
 
 function OppfolgingYtelserEkspanderbartPanel(props: Props) {
-    const open = useAppState((state) => state.oppfolging.ytelserEkspandert);
-    const dispatch = useDispatch();
-    const setOpen = (open: boolean) => {
-        if (!open) loggEvent('VisYtelserPanel', 'Oppfølging');
-        dispatch(setYtelserEkspandert(open));
-    };
+    const [open, setOpen] = useState(false);
 
     if (props.ytelser.length === 0) {
         return <AlertStripeInfo>Det finnes ikke informasjon om ytelser for valgt periode i Arena</AlertStripeInfo>;

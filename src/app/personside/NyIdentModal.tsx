@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom';
-import { paths } from '../routes/routing';
 import RawModal from 'nav-frontend-modal';
 import styled from 'styled-components';
 import { Systemtittel } from 'nav-frontend-typografi';
 import ErrorIkon from '../../svg/alvorlig-advarsel.svg';
+import { Button } from '@navikt/ds-react';
+import { useSetAtom } from 'jotai';
+import { aktivBrukerAtom } from 'src/lib/state/context';
 
 const Modal = styled(RawModal)`
     text-align: center;
@@ -15,6 +16,7 @@ interface NyIdentTilgangProps {
 }
 
 function NyIdentModal(props: NyIdentTilgangProps) {
+    const setAktivBruker = useSetAtom(aktivBrukerAtom);
     return (
         <Modal
             isOpen={true}
@@ -31,9 +33,7 @@ function NyIdentModal(props: NyIdentTilgangProps) {
             <div className="noncenter typo-normal blokk-m">
                 Personidenten du slo opp er ikke lenger aktiv. Ny ident for bruker er {props.aktivIdent}.
             </div>
-            <Link className="knapp blokk-xxxs knapp--hoved" to={`${paths.personUri}/${props.aktivIdent}`}>
-                Gå til ny ident
-            </Link>
+            <Button onClick={() => setAktivBruker(props.aktivIdent)}>Gå til ny ident</Button>
         </Modal>
     );
 }

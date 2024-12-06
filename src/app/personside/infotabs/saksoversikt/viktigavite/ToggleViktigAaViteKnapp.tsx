@@ -1,25 +1,21 @@
-import { connect } from 'react-redux';
-import { setViktigÅViteÅpen } from '../../../../../redux/saksoversikt/actions';
-import { AppState } from '../../../../../redux/reducers';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import EkspanderKnapp from '../../../../../components/EkspanderKnapp';
-import { AsyncDispatch } from '../../../../../redux/ThunkTypes';
 
 interface OwnProps {
     valgtSakstema?: Sakstema;
 }
 
 interface StateProps {
-    åpen: boolean;
+    open: boolean;
 }
 
 interface DispatchProps {
-    setÅpen: (åpen: boolean) => void;
+    setOpen: (åpen: boolean) => void;
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
 
-function ToggleViktigAaViteKnapp(props: Props) {
+export default function ToggleViktigAaViteKnapp(props: Props) {
     const temakoderMedTekst = ['AAP', 'DAG', 'IND'];
 
     if (!props.valgtSakstema || !temakoderMedTekst.includes(props.valgtSakstema.temakode)) {
@@ -30,23 +26,9 @@ function ToggleViktigAaViteKnapp(props: Props) {
 
     return (
         <EkspanderKnapp
-            open={props.åpen}
-            onClick={() => props.setÅpen(!props.åpen)}
+            open={props.open}
+            onClick={() => props.setOpen(!props.open)}
             tittel={'Viktig å vite om ' + sakstemanavn}
         />
     );
 }
-
-function mapStateToProps(state: AppState): StateProps {
-    return {
-        åpen: state.saksoversikt.viktigÅViteÅpen
-    };
-}
-
-function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
-    return {
-        setÅpen: (åpen: boolean) => dispatch(setViktigÅViteÅpen(åpen))
-    };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ToggleViktigAaViteKnapp);

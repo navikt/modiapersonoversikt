@@ -3,13 +3,12 @@ import { ChangeEvent, ReactNode, useRef } from 'react';
 import { Traad } from '../../../../../models/meldinger/meldinger';
 import styled, { css } from 'styled-components';
 import { pxToRem, theme } from '../../../../../styles/personOversiktTheme';
-import { useInfotabsDyplenker } from '../../dyplenker';
 import { meldingerTest } from '../../dyplenkeTest/utils-dyplenker-test';
-import { useHistory } from 'react-router';
 import { HoyreChevron } from 'nav-frontend-chevron';
 import TraadSammendrag from './TraadSammendrag';
 import { guid } from 'nav-frontend-js-utils';
 import { valgtMeldingKlasse } from './TraadListe';
+import { useNavigate } from '@tanstack/react-router';
 
 interface Props {
     traad: Traad;
@@ -57,16 +56,15 @@ const ChevronStyling = styled.div`
 `;
 
 function TraadListeElement(props: Props) {
-    const dyplenker = useInfotabsDyplenker();
     const id = useRef(guid());
-    const history = useHistory();
+    const navigate = useNavigate({ from: '/person/meldinger' });
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         if (props.onClick) {
             props.onClick(e);
             return;
         }
-        history.push(dyplenker.meldinger.link(props.traad));
+        navigate({ search: { traadId: props.traad.traadId } });
     };
 
     return (

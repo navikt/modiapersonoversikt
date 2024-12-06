@@ -1,5 +1,5 @@
 import { InfotabConfig, INFOTABS } from '../InfoTabEnum';
-import { useLocation } from 'react-router';
+import { useLocation } from '@tanstack/react-router';
 
 export function getOpenTabFromRouterPath(currentPath: string): InfotabConfig {
     const pathfragments = currentPath.toLowerCase().split('/');

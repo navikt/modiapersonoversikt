@@ -13,9 +13,9 @@ import { useQueryClient } from '@tanstack/react-query';
 import journalsakResource from '../../../../rest/resources/journalsakResource';
 import SendNyMelding, { OppgavelisteValg, SendNyMeldingState } from './SendNyMelding';
 import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
-import { Prompt } from 'react-router';
 import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureToggleOn';
 import { useAlertOnNavigation } from '../useAlertOnNavigation';
+import { Block } from '@tanstack/react-router';
 
 interface Props {
     defaultOppgaveDestinasjon: OppgavelisteValg;
@@ -97,10 +97,12 @@ function SendNyMeldingContainer(props: Props) {
         return (
             <>
                 <IfFeatureToggleOn toggleID={FeatureToggles.VisPromptMeldingSending}>
-                    <Prompt
-                        when={sendNyMeldingStatus.type === SendNyMeldingStatus.ERROR}
-                        message={
-                            'Det skjedde en feil ved sending av meldingen. Hvis du trykker avbryt kan du prøve å sende den igjen.'
+                    <Block
+                        condition={() => sendNyMeldingStatus.type === SendNyMeldingStatus.ERROR}
+                        blockerFn={() =>
+                            window.confirm(
+                                'Det skjedde en feil ved sending av meldingen. Hvis du trykker avbryt kan du prøve å sende den igjen.'
+                            )
                         }
                     />
                 </IfFeatureToggleOn>
@@ -205,10 +207,12 @@ function SendNyMeldingContainer(props: Props) {
     return (
         <>
             <IfFeatureToggleOn toggleID={FeatureToggles.VisPromptMeldingSending}>
-                <Prompt
-                    when={sendNyMeldingStatus.type === SendNyMeldingStatus.POSTING}
-                    message={
-                        'Meldingen sendes. Hvis du navigerer bort er det ikke sikkert den blir sendt. Er du sikker på at du vil fortsette?'
+                <Block
+                    condition={sendNyMeldingStatus.type === SendNyMeldingStatus.POSTING}
+                    blockerFn={() =>
+                        window.confirm(
+                            'Meldingen sendes. Hvis du navigerer bort er det ikke sikkert den blir sendt. Er du sikker på at du vil fortsette?'
+                        )
                     }
                 />
             </IfFeatureToggleOn>

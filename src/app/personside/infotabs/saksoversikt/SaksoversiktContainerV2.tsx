@@ -4,7 +4,6 @@ import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySp
 import { ScrollBar } from '../utils/InfoTabsScrollBar';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { useKeepQueryParams } from '../../../../utils/hooks/useKeepQueryParams';
 import { useHentAlleSakstemaFraResourceV2, useSakstemaURLStateV2 } from './useSakstemaURLState';
 import resource from '../../../../rest/resources/sakstemaResource';
 import DokumentOgVedleggV2 from './dokumentvisning/DokumentOgVedleggV2';
@@ -39,8 +38,6 @@ const SaksoversiktStyle = styled.div`
 `;
 
 function SaksoversiktContainer() {
-    useKeepQueryParams();
-
     const { alleSakstema } = useHentAlleSakstemaFraResourceV2();
     const { valgtDokument, valgtJournalpost, valgteSakstemaer } = useSakstemaURLStateV2(alleSakstema);
 

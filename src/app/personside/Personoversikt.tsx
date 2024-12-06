@@ -1,36 +1,12 @@
-import { useEffect, useState } from 'react';
 import LyttPåNyttFnrIReduxOgHentAllPersoninfo from '../PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentAllPersoninfo';
 import MainLayout from './MainLayout';
-import { erGyldigishFnr } from '../../utils/fnr-utils';
-import { useHistory } from 'react-router';
-import { paths } from '../routes/routing';
-import { loggInfo } from '../../utils/logger/frontendLogger';
 import BegrensetTilgangSide from './BegrensetTilgangSide';
 import tilgangskontroll from '../../rest/resources/tilgangskontrollResource';
 import { DialogpanelStateProvider } from '../../context/dialogpanel-state';
 import NyIdentModal from './NyIdentModal';
-import { useGjeldendeBrukerLastet } from '../../redux/gjeldendeBruker/types';
-import { CenteredLazySpinner } from '../../components/LazySpinner';
-import useTimeout from '../../utils/hooks/use-timeout';
-import VentPaaPersonLastet from '../../components/VentPaaPersonLastet';
+import WaitForUserLoaded from 'src/components/WaitForUserLoaded';
 
 function Personoversikt({ fnr }: { fnr: string }) {
-    const [loadTimeout, setLoadTimeout] = useState(false);
-    const history = useHistory();
-    const gjeldendeBrukerHasLoaded = useGjeldendeBrukerLastet();
-    useTimeout(() => setLoadTimeout(true), 500);
-
-    useEffect(() => {
-        if (!erGyldigishFnr(fnr) && (gjeldendeBrukerHasLoaded || loadTimeout)) {
-            loggInfo('Ugyldig fnr, redirecter til startside');
-            history.push(`${paths.basePath}`);
-        }
-    }, [fnr, gjeldendeBrukerHasLoaded, loadTimeout]);
-
-    if (!gjeldendeBrukerHasLoaded) {
-        return <CenteredLazySpinner />;
-    }
-
     return tilgangskontroll.useRenderer(fnr, (data) => {
         if (!data.harTilgang) {
             return <BegrensetTilgangSide tilgangsData={data} />;
@@ -49,10 +25,8 @@ function Personoversikt({ fnr }: { fnr: string }) {
     });
 }
 
-const PersonoversiktWrapper = ({ fnr }: { fnr: string }) => (
-    <VentPaaPersonLastet fnr={fnr}>
-        <Personoversikt fnr={fnr} />
-    </VentPaaPersonLastet>
-);
+function PersonoversiktWrapper() {
+    return <WaitForUserLoaded>{({ fnr }) => <Personoversikt fnr={fnr} />}</WaitForUserLoaded>;
+}
 
 export default PersonoversiktWrapper;

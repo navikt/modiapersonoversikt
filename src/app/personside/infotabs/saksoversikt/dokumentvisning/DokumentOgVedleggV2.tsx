@@ -7,18 +7,16 @@ import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useFocusOnMount, useFodselsnummer } from '../../../../../utils/customHooks';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
-import { useInfotabsDyplenker } from '../../dyplenker';
-import { useHistory, useLocation } from 'react-router';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { TilbakePil } from '../../../../../components/common-styled-components';
 import DokumentVisning from './SaksDokumentVisning';
 import { getSaksdokumentUrl } from './getSaksdokumentUrl';
-import { erSakerFullscreen } from '../utils/erSakerFullscreen';
 import Panel from 'nav-frontend-paneler';
 import { Dokument, Journalpost } from '../../../../../models/saksoversikt/journalpost';
 import { SakstemaSoknadsstatus } from '../../../../../models/saksoversikt/sakstema';
 import { useHentAlleSakstemaFraResourceV2 } from '../useSakstemaURLState';
 import { aggregertSakstemaV2 } from '../utils/saksoversiktUtilsV2';
+import { useMatchRoute, useNavigate } from '@tanstack/react-router';
 
 const Content = styled(Panel)`
     flex-grow: 1;
@@ -59,10 +57,9 @@ interface Props {
 
 function DokumentOgVedlegg(props: Props) {
     const ref = createRef<HTMLDivElement>();
-    const location = useLocation();
-    const fullscreen = erSakerFullscreen(location.pathname);
-    const dyplenker = useInfotabsDyplenker();
-    const history = useHistory();
+    const match = useMatchRoute();
+    const fullscreen = match({ to: '/saker' });
+    const navigate = useNavigate();
     const fodselsnummer = useFodselsnummer();
     const { alleSakstema } = useHentAlleSakstemaFraResourceV2();
 
@@ -90,13 +87,17 @@ function DokumentOgVedlegg(props: Props) {
     const aggregertSak = aggregertSakstemaV2(alleSakstema, props.valgteSakstemaer);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const handleTabChange = (_: any, index: number) => history.push(dyplenker.saker.link(aggregertSak, tabs[index]));
+    const handleTabChange = (_: any, index: number) =>
+        navigate({
+            to: fullscreen ? '/saker' : '/person/saker',
+            search: { sakstema: aggregertSak.temakode, dokument: tabs[index].dokumentreferanse }
+        });
 
     const tabsHeader = !fullscreen && (
         <Header>
             <TabsPure tabs={tabProps} onChange={handleTabChange} />
             <KnappWrapper>
-                <Hovedknapp onClick={() => history.push(dyplenker.saker.link(aggregertSak))}>
+                <Hovedknapp onClick={() => navigate({ to: '/saker', search: { sakstema: aggregertSak.temakode } })}>
                     <TilbakePil>Tilbake til saker</TilbakePil>
                 </Hovedknapp>
             </KnappWrapper>
@@ -104,7 +105,6 @@ function DokumentOgVedlegg(props: Props) {
     );
 
     const saksdokumentUrl = getSaksdokumentUrl(
-        fodselsnummer,
         props.valgtJournalpost.journalpostId,
         props.valgtDokument.dokumentreferanse
     );

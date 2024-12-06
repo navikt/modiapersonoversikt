@@ -1,11 +1,10 @@
 import { useOnMount } from '../../../../utils/customHooks';
 import { loggEvent } from '../../../../utils/logger/frontendLogger';
 import DokumentVisning from './dokumentvisning/SaksDokumentVisning';
-import { useQueryParams } from '../../../../utils/url-utils';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
 import { getSaksdokumentUrl } from './dokumentvisning/getSaksdokumentUrl';
-import VentPaaPersonLastet from '../../../../components/VentPaaPersonLastet';
+import { getRouteApi } from '@tanstack/react-router';
 
 interface Props {
     fnr: string;
@@ -19,15 +18,17 @@ const Sentring = styled.div`
     margin: 0 auto;
 `;
 
+const routeApi = getRouteApi('/dokument');
+
 function SaksDokumentEgetVindu(props: Props) {
-    const queryParams = useQueryParams<{ dokument?: string; journalpost?: string }>();
+    const { dokument, journalpost } = routeApi.useSearch();
 
     useOnMount(() => {
         loggEvent('Sidevisning', 'SaksDokumentEgetVindu');
         document.title = 'Dokument';
     });
 
-    if (!queryParams.dokument) {
+    if (!dokument) {
         return (
             <Sentring>
                 <AlertStripeFeil>Mangler dokumentURL</AlertStripeFeil>
@@ -36,12 +37,7 @@ function SaksDokumentEgetVindu(props: Props) {
     }
     return (
         <>
-            <VentPaaPersonLastet fnr={props.fnr}>
-                <DokumentVisning
-                    fnr={props.fnr}
-                    url={getSaksdokumentUrl(props.fnr, queryParams.journalpost ?? null, queryParams.dokument)}
-                />
-            </VentPaaPersonLastet>
+            <DokumentVisning fnr={props.fnr} url={getSaksdokumentUrl(journalpost ?? null, dokument)} />
         </>
     );
 }

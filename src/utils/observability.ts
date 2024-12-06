@@ -1,6 +1,5 @@
 import { getWebInstrumentations, initializeFaro, Instrumentation, Meta } from '@grafana/faro-react';
 import { getEnvFromHost } from './environment';
-import { getWindowFeature } from './featureToggles';
 
 const customPageMeta: () => Pick<Meta, 'page'> = () => {
     const maskedUrl = location.href.replaceAll(/\d{11}/g, '***********');
@@ -13,8 +12,6 @@ const customPageMeta: () => Pick<Meta, 'page'> = () => {
 };
 
 export const initializeObservability = () => {
-    if (!getWindowFeature('enableFaro') && !import.meta.env.VITE_GRAFANA_COLLECTOR && !import.meta.env.DEV) return;
-
     const env = getEnvFromHost();
 
     initializeFaro({

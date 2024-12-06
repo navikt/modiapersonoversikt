@@ -6,7 +6,7 @@ import { AppState } from '../redux/reducers';
 import { paths } from '../app/routes/routing';
 import { useNavigate } from '@tanstack/react-router';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { aktivBrukerAtom } from 'src/lib/state/context';
+import { aktivBrukerAtom, aktivBrukerLastetAtom } from 'src/lib/state/context';
 
 export function useFocusOnMount(ref: React.RefObject<HTMLElement>) {
     useOnMount(() => {
@@ -75,16 +75,19 @@ export function useFodselsnummer() {
 
 export function useSettAktivBruker() {
     const setBruker = useSetAtom(aktivBrukerAtom);
+    const setBrukerLastet = useSetAtom(aktivBrukerLastetAtom);
     const navigate = useNavigate();
 
     return (fnr: string | null) => {
         if (!fnr) {
             navigate({ to: '/' });
             setBruker('');
+            setBrukerLastet(false);
             return;
         }
 
-        setBruker(fnr ?? '');
+        setBruker(fnr);
+        setBrukerLastet(true);
         if (
             ![
                 paths.personUri,

@@ -13,8 +13,7 @@ export interface InfotabConfig {
     path: string;
 }
 
-type Infotabs = Record<InfotabsType, InfotabConfig>;
-export const INFOTABS: Infotabs = {
+export const INFOTABS = {
     OVERSIKT: { tittel: 'Oversikt', path: 'oversikt' },
     OPPFOLGING: { tittel: 'Oppfølging', path: 'oppfolging' },
     MELDINGER: { tittel: 'Kommunikasjon', path: 'meldinger' },
@@ -22,4 +21,4 @@ export const INFOTABS: Infotabs = {
     SAKER: { tittel: 'Saker', path: 'saker' },
     YTELSER: { tittel: 'Ytelser', path: 'ytelser' },
     VARSLER: { tittel: 'Varsler', path: 'varsler' }
-};
+} as const;

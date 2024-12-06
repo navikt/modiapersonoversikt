@@ -1,14 +1,19 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createRootRoute, Outlet, useMatchRoute } from '@tanstack/react-router';
-import { lazy } from 'react';
+import { useAtomValue } from 'jotai';
+import { lazy, PropsWithChildren } from 'react';
 import Decorator from 'src/app/internarbeidsflatedecorator/Decorator';
-import { LandingPage } from 'src/app/internarbeidsflatedecorator/LandingPage';
+import LoggetUtModal from 'src/app/LoggetUtModal';
+import VelgEnhet from 'src/app/VelgEnhet';
 import DemoBanner from 'src/components/DemoBanner';
+import ErrorBoundary from 'src/components/ErrorBoundary';
 import NotFound from 'src/components/NotFound';
 import { ValgtEnhetProvider } from 'src/context/valgtenhet-state';
-import { initAmplitude } from 'src/utils/amplitude';
-import { initializeObservability } from 'src/utils/observability';
+import { aktivEnhetAtom } from 'src/lib/state/context';
+import { usePersistentWWLogin } from 'src/login/use-persistent-ww-login';
+import HandleLegacyUrls from 'src/utils/HandleLegacyUrls';
 import styled from 'styled-components';
+import HentGlobaleVerdier from 'src/app/FetchSessionInfoOgLeggIRedux';
 
 export const Route = createRootRoute({
     component: RootLayout,
@@ -28,12 +33,33 @@ const queryClient = new QueryClient({
     }
 });
 
+function App({ children }: PropsWithChildren) {
+    const loginState = usePersistentWWLogin();
+    const valgtEnhet = useAtomValue(aktivEnhetAtom);
+
+    if (!valgtEnhet) {
+        /**
+         * valgt enhet hentes fra modiacontextholder, og mellomlagres i localStorage
+         */
+        return (
+            <>
+                <LoggetUtModal loginState={loginState} />
+                <VelgEnhet />
+            </>
+        );
+    }
+    return (
+        <>
+            <LoggetUtModal loginState={loginState} />
+            <HentGlobaleVerdier />
+            <div className="flex flex-auto h-0">{children}</div>
+        </>
+    );
+}
+
 const TanStackRouterDevtools = import.meta.env.DEV
     ? lazy(() => import('@tanstack/router-devtools').then((res) => ({ default: res.TanStackRouterDevtools })))
     : () => null;
-
-initAmplitude();
-initializeObservability();
 
 const AppStyle = styled.div`
     height: 100vh;
@@ -52,12 +78,18 @@ function RootLayout() {
         <QueryClientProvider client={queryClient}>
             <ValgtEnhetProvider>
                 {isLanding ? (
-                    <LandingPage />
+                    <Outlet />
                 ) : (
                     <AppStyle>
-                        <DemoBanner />
-                        <Decorator />
-                        <Outlet />
+                        <HandleLegacyUrls>
+                            <DemoBanner />
+                            <Decorator />
+                            <ErrorBoundary boundaryName="app-content">
+                                <App>
+                                    <Outlet />
+                                </App>
+                            </ErrorBoundary>
+                        </HandleLegacyUrls>
                     </AppStyle>
                 )}
                 <TanStackRouterDevtools />

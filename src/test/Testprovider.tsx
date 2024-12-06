@@ -2,7 +2,6 @@ import { ReactNode } from 'react';
 import { getTestStore } from './testStore';
 import { Provider } from 'react-redux';
 import { createStore, Provider as JProvider } from 'jotai';
-import { StaticRouter } from 'react-router';
 import { Store } from 'redux';
 import { AppState } from '../redux/reducers';
 import { MeldingsokProvider } from '../context/meldingsok';
@@ -47,9 +46,7 @@ function TestProvider({ children, customStore }: Props) {
                                     <VisittkortStateProvider>
                                         <MeldingsokProvider>
                                             <ValgtEnhetProvider>
-                                                <StaticRouter context={{}}>
-                                                    <>{children}</>
-                                                </StaticRouter>
+                                                <>{children}</>
                                             </ValgtEnhetProvider>
                                         </MeldingsokProvider>
                                     </VisittkortStateProvider>

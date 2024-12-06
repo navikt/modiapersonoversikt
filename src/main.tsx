@@ -5,6 +5,8 @@ import './index.less';
 import { createRouter } from './router';
 import { StrictMode } from 'react';
 import { RouterProvider } from '@tanstack/react-router';
+import { initAmplitude } from './utils/amplitude';
+import { initializeObservability } from './utils/observability';
 
 declare global {
     interface Window {
@@ -18,6 +20,9 @@ if (import.meta.env.DEV) {
         enableFaro: true
     };
 }
+
+initAmplitude();
+initializeObservability();
 
 const router = createRouter();
 

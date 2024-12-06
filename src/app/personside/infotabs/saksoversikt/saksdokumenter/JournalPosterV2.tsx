@@ -1,4 +1,4 @@
-import { createRef, useEffect, useRef } from 'react';
+import { createRef, useEffect, useRef, useState } from 'react';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
@@ -15,15 +15,14 @@ import { datoSynkende } from '../../../../../utils/date-utils';
 import { sakerTest } from '../../dyplenkeTest/utils-dyplenker-test';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import usePaginering from '../../../../../utils/hooks/usePaginering';
-import { useAppState, usePrevious } from '../../../../../utils/customHooks';
+import { usePrevious } from '../../../../../utils/customHooks';
 import { KategoriSkille } from '../../../dialogpanel/fellesStyling';
-import { useDispatch } from 'react-redux';
-import { oppdaterAvsenderfilter } from '../../../../../redux/saksoversikt/actions';
 import { guid } from 'nav-frontend-js-utils';
 import Panel from 'nav-frontend-paneler';
 import { useHentAlleSakstemaFraResourceV2, useSakstemaURLStateV2 } from '../useSakstemaURLState';
 import { aggregertSakstemaV2, forkortetTemanavnV2 } from '../utils/saksoversiktUtilsV2';
 import JournalpostListeElementV2 from './JournalPostListeElement/JournalpostListeElementV2';
+import { useMatchRoute, useNavigate, useSearch } from '@tanstack/react-router';
 
 const StyledPanel = styled(Panel)`
     padding: 0rem;
@@ -185,18 +184,28 @@ interface Props {
 const fieldCompareJournalposter = (journalpost: Journalpost) => journalpost.id;
 
 function JournalPoster(props: Props) {
+    const navigate = useNavigate();
+    const avsenderFilterQuery = useSearch({ strict: false }).avsender;
+    const isFullscreen = useMatchRoute()({ to: '/saker' });
+
     const { alleSakstema } = useHentAlleSakstemaFraResourceV2();
     const { valgteSakstemaer } = useSakstemaURLStateV2(alleSakstema);
     const tittelRef = createRef<HTMLDivElement>();
-    const avsenderFilter = useAppState((state) => state.saksoversikt.avsenderFilter);
     const aggregertSak: Sakstema = aggregertSakstemaV2(alleSakstema, valgteSakstemaer);
+
+    const avsenderFilter: DokumentAvsenderFilter = {
+        fraNav: !!avsenderFilterQuery?.includes('nav'),
+        fraAndre: !!avsenderFilterQuery?.includes('andre'),
+        fraBruker: !!avsenderFilterQuery?.includes('bruker')
+    };
     const filtrerteJournalposter = aggregertSak.dokumentMetadata
         .filter((journalpost) => hentRiktigAvsenderfilter(journalpost.avsender, avsenderFilter))
         .sort(datoSynkende((journalpost) => saksdatoSomDate(journalpost.dato)));
     const paginering = usePaginering(filtrerteJournalposter, 50, 'journalpost', undefined, fieldCompareJournalposter);
-    const dispatch = useDispatch();
-    const handleOppdaterAvsenderFilter = (filter: Partial<DokumentAvsenderFilter>) => {
-        dispatch(oppdaterAvsenderfilter(filter));
+    const handleOppdaterAvsenderFilter = (filter: 'nav' | 'andre' | 'bruker') => {
+        const query = avsenderFilterQuery ?? [];
+        const avsender = query.includes(filter) ? query.filter((f) => f !== filter) : [...query, filter];
+        navigate({ from: isFullscreen ? '/saker' : '/person/saker', search: { avsender } });
     };
 
     const prevSakstema = usePrevious(aggregertSak);
@@ -217,17 +226,17 @@ function JournalPoster(props: Props) {
             <Checkbox
                 label={'Bruker'}
                 checked={avsenderFilter.fraBruker}
-                onChange={() => handleOppdaterAvsenderFilter({ fraBruker: !avsenderFilter.fraBruker })}
+                onChange={() => handleOppdaterAvsenderFilter('bruker')}
             />
             <Checkbox
                 label={'NAV'}
                 checked={avsenderFilter.fraNav}
-                onChange={() => handleOppdaterAvsenderFilter({ fraNav: !avsenderFilter.fraNav })}
+                onChange={() => handleOppdaterAvsenderFilter('nav')}
             />
             <Checkbox
                 label={'Andre'}
                 checked={avsenderFilter.fraAndre}
-                onChange={() => handleOppdaterAvsenderFilter({ fraAndre: !avsenderFilter.fraAndre })}
+                onChange={() => handleOppdaterAvsenderFilter('andre')}
             />
         </Form>
     );
@@ -238,6 +247,8 @@ function JournalPoster(props: Props) {
         ) : (
             <Undertittel className={sakerTest.dokument}>{forkortetTemanavnV2(aggregertSak.temanavn)}</Undertittel>
         );
+
+    const [viktigaviteOpen, setViktigaviteOpen] = useState(false);
 
     return (
         <div>
@@ -253,11 +264,15 @@ function JournalPoster(props: Props) {
                         </div>
                         <div>
                             <LenkeNorg valgtSakstema={aggregertSak} />
-                            <ToggleViktigAaViteKnapp valgtSakstema={aggregertSak} />
+                            <ToggleViktigAaViteKnapp
+                                open={viktigaviteOpen}
+                                setOpen={setViktigaviteOpen}
+                                valgtSakstema={aggregertSak}
+                            />
                         </div>
                     </InfoOgFilterPanel>
                     {paginering.pageSelect && <PaginatorStyling>{paginering.pageSelect}</PaginatorStyling>}
-                    <ViktigÅVite valgtSakstema={aggregertSak} />
+                    <ViktigÅVite valgtSakstema={aggregertSak} open={viktigaviteOpen} />
                     <JournalpostListe sakstema={aggregertSak} filtrerteJournalposter={paginering.currentPage} />
                     {paginering.prevNextButtons && (
                         <PrevNextButtonsStyling>{paginering.prevNextButtons}</PrevNextButtonsStyling>

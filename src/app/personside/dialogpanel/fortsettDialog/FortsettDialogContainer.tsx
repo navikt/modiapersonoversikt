@@ -32,9 +32,9 @@ import { useQueryClient, UseQueryResult } from '@tanstack/react-query';
 import journalsakResource from '../../../../rest/resources/journalsakResource';
 import FortsettDialog from './FortsettDialog';
 import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
-import { Prompt } from 'react-router';
 import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureToggleOn';
 import { useAlertOnNavigation } from '../useAlertOnNavigation';
+import { Block } from '@tanstack/react-router';
 
 interface Props {
     traad: Traad;
@@ -220,10 +220,12 @@ function FortsettDialogContainer(props: Props) {
             <ReflowBoundry>
                 <Undertittel id={tittelId.current}>{traadTittel(props.traad.traadType)}</Undertittel>
                 <IfFeatureToggleOn toggleID={FeatureToggles.VisPromptMeldingSending}>
-                    <Prompt
-                        when={!!state.errors?.length}
-                        message={
-                            'Det skjedde en feil ved sending av meldingen. Hvis du trykker avbryt kan du prøve å sende den igjen.'
+                    <Block
+                        condition={!!state.errors?.length}
+                        blockerFn={() =>
+                            window.confirm(
+                                'Det skjedde en feil ved sending av meldingen. Hvis du trykker avbryt kan du prøve å sende den igjen.'
+                            )
                         }
                     />
                 </IfFeatureToggleOn>

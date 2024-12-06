@@ -7,7 +7,7 @@ export const Route = createLazyFileRoute('/')({
 
 function Index() {
     return (
-        <div>
+        <div className="flex-1">
             <Alert variant="info">Ingen aktiv bruker. Bruk menyen over for å søke etter person.</Alert>
         </div>
     );

@@ -3,11 +3,8 @@ import EkspanderbartYtelserPanel from '../ytelser/felles-styling/EkspanderbartYt
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { datoSynkende, formatterDato } from '../../../../utils/date-utils';
 import { StyledTable } from '../../../../utils/table/StyledTable';
-import { useAppState } from '../../../../utils/customHooks';
-import { useDispatch } from 'react-redux';
-import { setSykefraverEkspandert } from '../../../../redux/oppfolging/actions';
-import { loggEvent } from '../../../../utils/logger/frontendLogger';
 import { trackAccordionClosed, trackAccordionOpened } from '../../../../utils/amplitude';
+import { useState } from 'react';
 
 interface Props {
     syfoPunkter: SyfoPunkt[];
@@ -28,11 +25,9 @@ function SykefraversoppfolgingTabell(props: { syfoPunkter: SyfoPunkt[] }) {
 }
 
 function SykefraversoppfolgingEkspanderbartPanel(props: Props) {
-    const open = useAppState((state) => state.oppfolging.sykefraverEkspandert);
-    const dispatch = useDispatch();
-    const setOpen = (open: boolean) => {
-        dispatch(setSykefraverEkspandert(open));
-        if (!open) loggEvent('VisSykefraværsPanel', 'Oppfølging');
+    const [open, setOpen] = useState(false);
+    const handleSetOpen = (open: boolean) => {
+        setOpen(open);
         return open ? trackAccordionOpened('Sykefraværsoppfølging') : trackAccordionClosed('Sykefraværsoppfølging');
     };
 
@@ -45,7 +40,7 @@ function SykefraversoppfolgingEkspanderbartPanel(props: Props) {
     }
 
     return (
-        <EkspanderbartYtelserPanel open={open} setOpen={setOpen} tittel="Sykefraværsoppfølging">
+        <EkspanderbartYtelserPanel open={open} setOpen={handleSetOpen} tittel="Sykefraværsoppfølging">
             <SykefraversoppfolgingTabell syfoPunkter={props.syfoPunkter} />
         </EkspanderbartYtelserPanel>
     );

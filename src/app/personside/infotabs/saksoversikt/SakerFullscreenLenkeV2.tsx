@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 import { useInfotabsDyplenker } from '../dyplenker';
 import styled from 'styled-components';
 import LenkepanelPersonoversikt from '../../../../utils/LenkepanelPersonoversikt';
@@ -13,7 +12,7 @@ const StyledLenkepanelPersonoversikt = styled(LenkepanelPersonoversikt)`
 
 function reactrouterLink(props: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
     const { href, ...rest } = props;
-    return <Link to={href!} {...rest} target="_blank" />;
+    return <a href={href} {...rest} target="_blank" />;
 }
 
 function SakerFullscreenLenkeV2() {

@@ -1,6 +1,6 @@
 import { paths } from '../../../../routes/routing';
-import { matchPath } from 'react-router';
+import { matchPathname } from '@tanstack/react-router';
 
 export function erSakerFullscreen(pathname: string): boolean {
-    return !!matchPath(pathname, paths.sakerFullscreen);
+    return !!matchPathname(paths.sakerFullscreen, pathname, { to: pathname });
 }

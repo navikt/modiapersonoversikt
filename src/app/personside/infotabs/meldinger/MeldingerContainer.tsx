@@ -4,17 +4,16 @@ import styled from 'styled-components';
 import { pxToRem } from '../../../../styles/personOversiktTheme';
 import TraadListe from './traadliste/TraadListe';
 import { useInfotabsDyplenker } from '../dyplenker';
-import { useHistory } from 'react-router';
 import AlertStripe, { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 import { useSokEtterMeldinger } from './utils/meldingerUtils';
 import { useValgtTraadIUrl } from './utils/useValgtTraadIUrl';
 import TraadVisningWrapper from './traadvisning/TraadVisningWrapper';
 import DelayRender from '../../../../components/DelayRender';
-import { useKeepQueryParams } from '../../../../utils/hooks/useKeepQueryParams';
 import dialogResource from '../../../../rest/resources/dialogResource';
 import LazySpinner from '../../../../components/LazySpinner';
 import { useMeldingsok } from '../../../../context/meldingsok';
+import { useNavigate } from '@tanstack/react-router';
 
 const meldingerMediaTreshold = pxToRem(800);
 
@@ -36,7 +35,7 @@ const MeldingerStyle = styled.div`
 
 function useSyncSøkMedVisning(traaderFørSøk: Traad[], traaderEtterSok: Traad[], valgtTraad: Traad) {
     const dyplenker = useInfotabsDyplenker();
-    const history = useHistory();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const valgtTaadErISøkeresultat = valgtTraad && traaderEtterSok.find((it) => it.traadId === valgtTraad.traadId);
@@ -44,7 +43,7 @@ function useSyncSøkMedVisning(traaderFørSøk: Traad[], traaderEtterSok: Traad[
             return;
         }
         if (traaderEtterSok.length > 0) {
-            history.push(dyplenker.meldinger.link(traaderEtterSok[0]));
+            navigate({ to: '/person/meldinger', search: { traadId: traaderEtterSok[0].traadId } });
         }
     }, [valgtTraad, traaderFørSøk, traaderEtterSok, history, dyplenker.meldinger]);
 }
@@ -56,7 +55,6 @@ function MeldingerContainer() {
     const traaderForSok = traaderResource.data ?? [];
     const traaderEtterSokOgFiltrering = useSokEtterMeldinger(traaderForSok, meldingsok.query);
     const valgtTraad = useValgtTraadIUrl() || traaderEtterSokOgFiltrering[0];
-    useKeepQueryParams();
     useSyncSøkMedVisning(traaderForSok, traaderEtterSokOgFiltrering, valgtTraad);
 
     if (traaderResource.isLoading) {
