@@ -4,7 +4,7 @@ const initialState: GjeldendeBrukerState = {
     fødselsnummer: ''
 };
 
-function gjeldendeBrukerReducer(state: GjeldendeBrukerState = initialState, action: GjeldendeBrukerActions) {
+function gjeldendeBrukerReducer(state: GjeldendeBrukerState, action: GjeldendeBrukerActions) {
     switch (action.type) {
         case SetNyGjeldendeBrukerActionTypes.SetNyPerson:
             return {

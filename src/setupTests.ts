@@ -20,7 +20,7 @@ import type { PropsWithChildren } from 'react';
 JSutils.guid = () => 'Helt tilfeldig ID';
 JSutils.getScrollParents = () => [];
 
-window['frontendlogger'] = { info: () => null, warn: () => null, error: () => null, event: () => null };
+window.frontendlogger = { info: () => null, warn: () => null, error: () => null, event: () => null };
 
 window.matchMedia = () => {
     const querylist = {
@@ -32,7 +32,7 @@ window.matchMedia = () => {
 };
 
 // @ts-expect-error dårlig typer
-global['Worker'] = undefined;
+global.Worker = undefined;
 
 // Mock react collapse sin UnmountClosed
 vi.mock('react-collapse', () => {

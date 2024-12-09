@@ -1,6 +1,6 @@
 import { OppgaveActionTypes, type OppgaveActions, type OppgaveState, initialState } from './types';
 
-export function oppgaverReducer(state: OppgaveState = initialState, action: OppgaveActions): OppgaveState {
+export function oppgaverReducer(state: OppgaveState, action: OppgaveActions): OppgaveState {
     switch (action.type) {
         case OppgaveActionTypes.SetDialogpanelTraad:
             return {

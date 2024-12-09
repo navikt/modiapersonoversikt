@@ -22,7 +22,8 @@ const authResource = {
 const errorHandling = (auth: UseQueryResult<AuthIntropectionDTO, FetchError>): ErrorReason | undefined => {
     if (auth.isError) {
         return ErrorReason.FETCH_ERROR;
-    } else if (auth.data && auth.data.expirationDate === INVALID_EXPIRATION_DATE) {
+    }
+    if (auth.data && auth.data.expirationDate === INVALID_EXPIRATION_DATE) {
         return ErrorReason.INVALID_EXPIRATION_DATE;
     }
     return undefined;
@@ -53,7 +54,8 @@ const useAuthStateLogin = (auth: UseQueryResult<AuthIntropectionDTO, FetchError>
         if (auth.status === 'success') {
             webWorkerCom.onAuthChange(auth.data);
             return;
-        } else if (auth.status === 'error') {
+        }
+        if (auth.status === 'error') {
             setIsLoggedIn(false);
             webWorkerCom.stop();
         }

@@ -29,9 +29,9 @@ export function toggleVisVarsel(varsel: UnifiedVarsel, vis: boolean): ToggleVisA
 
 type Actions = ToggleVisAction;
 
-function varslerReducer(state: VarslerState = initialState, action: Actions): VarslerState {
+function varslerReducer(state: VarslerState, action: Actions): VarslerState {
     switch (action.type) {
-        case actionKeys.TOGGLE_VIS_VARSEL:
+        case actionKeys.TOGGLE_VIS_VARSEL: {
             // eslint-disable-next-line no-case-declarations
             const aapneVarsler = action.vis
                 ? [...state.aapneVarsler, action.varsel]
@@ -40,6 +40,7 @@ function varslerReducer(state: VarslerState = initialState, action: Actions): Va
                 ...state,
                 aapneVarsler: aapneVarsler
             };
+        }
         default:
             return state;
     }

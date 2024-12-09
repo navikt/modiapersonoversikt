@@ -4,7 +4,11 @@ import type { FortsettDialogState } from './FortsettDialogTypes';
 
 export class FortsettDialogValidator {
     public static tekst(state: FortsettDialogState) {
-        return state.tekst.length <= tekstMaksLengde && state.tekst.length > 0 && this.inneholderTekst(state);
+        return (
+            state.tekst.length <= tekstMaksLengde &&
+            state.tekst.length > 0 &&
+            FortsettDialogValidator.inneholderTekst(state)
+        );
     }
     public static sak(state: FortsettDialogState) {
         return state.sak !== undefined;
@@ -13,10 +17,10 @@ export class FortsettDialogValidator {
         return state.temagruppe !== undefined;
     }
     public static erGyldigSamtale(state: FortsettDialogState) {
-        return state.traadType !== TraadType.SAMTALEREFERAT && this.tekst(state);
+        return state.traadType !== TraadType.SAMTALEREFERAT && FortsettDialogValidator.tekst(state);
     }
     public static erGyldigSamtalereferat(state: FortsettDialogState) {
-        return state.traadType === TraadType.SAMTALEREFERAT && this.tekst(state);
+        return state.traadType === TraadType.SAMTALEREFERAT && FortsettDialogValidator.tekst(state);
     }
     private static inneholderTekst(state: FortsettDialogState) {
         const ikkeTekst = /\S/g;

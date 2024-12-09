@@ -78,7 +78,7 @@ class DelUtbetaling extends PureComponent<Props> {
                 tabIndex={0}
                 onFocus={this.props.settYtelseIFokus}
             >
-                <article aria-expanded={this.props.erEkspandert} aria-label={'Delutbetaling ' + ytelse.type}>
+                <article aria-expanded={this.props.erEkspandert} aria-label={`Delutbetaling ${ytelse.type}`}>
                     <DetaljerCollapse open={this.props.erEkspandert} toggle={this.toggleVisDetaljer} header={header}>
                         <UtbetalingsDetaljer {...this.props} />
                     </DetaljerCollapse>

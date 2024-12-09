@@ -62,9 +62,8 @@ function Ikon({ props }: { props: MeldingsikonProps }) {
             }
             if (erMonolog(props.traad)) {
                 return <MonologIkon />;
-            } else {
-                return <DialogIkon />;
             }
+            return <DialogIkon />;
         }
     }
 }

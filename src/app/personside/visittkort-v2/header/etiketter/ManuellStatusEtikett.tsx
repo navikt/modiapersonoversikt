@@ -11,9 +11,8 @@ function ManuellStatusEtikett(props: Props) {
 
     if (erManuell) {
         return <EtikettBase type="fokus">Manuell oppfølging</EtikettBase>;
-    } else {
-        return null;
     }
+    return null;
 }
 
 export default ManuellStatusEtikett;

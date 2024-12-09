@@ -71,13 +71,12 @@ function Traadpanel(props: { traad: Traad; tittel: string; defaultApen: boolean 
                 </StyledPanel>
             </Ekspanderbartpanel>
         );
-    } else {
-        return (
-            <StyledPanel aria-label={props.tittel}>
-                <ol>{meldinger}</ol>
-            </StyledPanel>
-        );
     }
+    return (
+        <StyledPanel aria-label={props.tittel}>
+            <ol>{meldinger}</ol>
+        </StyledPanel>
+    );
 }
 
 function TidligereMeldinger(props: Props) {

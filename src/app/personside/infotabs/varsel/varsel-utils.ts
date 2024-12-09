@@ -6,7 +6,7 @@ export function getVarselTekst(varsel: Varsel) {
     const varselTekst = Varseltype[varsel.varselType];
 
     if (!varselTekst) {
-        const ukjentNøkkelTekst = 'Ukjent nøkkel: ' + varsel.varselType;
+        const ukjentNøkkelTekst = `Ukjent nøkkel: ${varsel.varselType}`;
         loggError(Error(ukjentNøkkelTekst));
         return ukjentNøkkelTekst;
     }

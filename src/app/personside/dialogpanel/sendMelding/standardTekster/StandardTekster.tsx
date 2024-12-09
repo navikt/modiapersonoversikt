@@ -186,7 +186,8 @@ function StandardTekster(props: Props) {
 
     if (persondata.isLoading || enheterResource.isLoading) {
         return <LazySpinner type={'M'} />;
-    } else if (persondata.isError || enheterResource.isError) {
+    }
+    if (persondata.isError || enheterResource.isError) {
         return <AlertStripeAdvarsel>Feil ved lasting av data</AlertStripeAdvarsel>;
     }
 

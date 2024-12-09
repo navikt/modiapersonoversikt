@@ -29,9 +29,8 @@ function FeatureToggle(props: Props) {
         ifData: (toggles) => {
             if (shouldDisplay(props.mode, toggles[props.toggleID])) {
                 return <>{props.children}</>;
-            } else {
-                return null;
             }
+            return null;
         }
     });
 }

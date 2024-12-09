@@ -10,7 +10,8 @@ function Visittkort() {
 
     if (persondataResponse.isLoading) {
         return BigCenteredLazySpinner;
-    } else if (persondataResponse.isError) {
+    }
+    if (persondataResponse.isError) {
         return (
             <FillCenterAndFadeIn>
                 <AlertStripe type="advarsel">Beklager. Det skjedde en feil ved lasting av persondata.</AlertStripe>

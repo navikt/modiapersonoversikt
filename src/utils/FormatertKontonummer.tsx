@@ -9,9 +9,8 @@ const Kontonummer = styled.span`
 function kontoNummerTilArray(kontonummer: string): Array<string> {
     if (kontonummer.length === 11) {
         return [kontonummer.substr(0, 4), kontonummer.substr(4, 2), kontonummer.substr(6, 5)];
-    } else {
-        return [kontonummer];
     }
+    return [kontonummer];
 }
 
 export function FormatertKontonummer(props: { kontonummer: string }): JSX.Element {
@@ -25,5 +24,5 @@ export function FormatertKontonummer(props: { kontonummer: string }): JSX.Elemen
 }
 
 export function formatertKontonummerString(kontonummer: string): string {
-    return kontoNummerTilArray(kontonummer).reduce((acc, current) => acc + '.' + current);
+    return kontoNummerTilArray(kontonummer).reduce((acc, current) => `${acc}.${current}`);
 }

@@ -19,11 +19,11 @@ function FamilierelasjonIkon({ relasjon, erBarn }: Props) {
     const kjonn = relasjon.kjonn.firstOrNull();
     if (kjonn?.kode === Kjonn.M) {
         return erBarn ? <Guttebarn /> : <Mann />;
-    } else if (kjonn?.kode === Kjonn.K) {
-        return erBarn ? <Jentebarn /> : <Kvinne />;
-    } else {
-        return <UkjentKjonn />;
     }
+    if (kjonn?.kode === Kjonn.K) {
+        return erBarn ? <Jentebarn /> : <Kvinne />;
+    }
+    return <UkjentKjonn />;
 }
 
 export default FamilierelasjonIkon;

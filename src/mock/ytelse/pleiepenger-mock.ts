@@ -29,7 +29,7 @@ export function getMockPleiepenger(fødselsnummer: string): PleiepengerResponse 
     }
 
     faker.seed(Number(fødselsnummer));
-    navfaker.seed(fødselsnummer + 'pleiepenger');
+    navfaker.seed(`${fødselsnummer}pleiepenger`);
 
     if (navfaker.random.vektetSjanse(0.3)) {
         return {
@@ -44,7 +44,7 @@ export function getMockPleiepenger(fødselsnummer: string): PleiepengerResponse 
 
 export function getMockPleiepengerettighet(fødselsnummer: string): Pleiepengerettighet {
     faker.seed(Number(fødselsnummer));
-    navfaker.seed(fødselsnummer + 'pleiepenger');
+    navfaker.seed(`${fødselsnummer}pleiepenger`);
 
     const pleiepengeDager = 1300;
     const forbrukteDager = navfaker.random.integer(pleiepengeDager);

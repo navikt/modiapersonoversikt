@@ -31,7 +31,7 @@ function createRetrytime(tryCount: number): number {
         return Number.MAX_SAFE_INTEGER;
     }
 
-    const basedelay = Math.min(Math.pow(2, tryCount), 180) * SECONDS;
+    const basedelay = Math.min(2 ** tryCount, 180) * SECONDS;
     return basedelay + fuzzy(5 * SECONDS, 15 * SECONDS);
 }
 

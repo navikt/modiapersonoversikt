@@ -44,7 +44,8 @@ export function ObjectHttpFeilHandtering({ url, fnr, onError, children, ...rest 
 
     if (blobUrl === '') {
         return <CenteredLazySpinner />;
-    } else if (isError) {
+    }
+    if (isError) {
         return <>{children}</>;
     }
 

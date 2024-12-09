@@ -59,7 +59,8 @@ function MeldingerContainer() {
 
     if (traaderResource.isLoading) {
         return <LazySpinner type="M" />;
-    } else if (traaderResource.isError) {
+    }
+    if (traaderResource.isError) {
         return <AlertStripe type="advarsel">Kunne ikke laste inn brukers meldinger</AlertStripe>;
     }
 

@@ -51,14 +51,11 @@ export function finnPlukketOppgaveForTraad(
 ): { oppgave: Oppgave | undefined; erSTOOppgave: boolean } {
     if (!resource.data) {
         return { oppgave: undefined, erSTOOppgave: false };
-    } else {
-        const oppgave: Oppgave | undefined = resource.data.find(
-            (oppgave: Oppgave) => oppgave.traadId === traad.traadId
-        );
-        const erSTOOppgave = oppgave !== undefined && oppgave.erSTOOppgave;
-
-        return { oppgave, erSTOOppgave };
     }
+    const oppgave: Oppgave | undefined = resource.data.find((oppgave: Oppgave) => oppgave.traadId === traad.traadId);
+    const erSTOOppgave = oppgave?.erSTOOppgave;
+
+    return { oppgave, erSTOOppgave };
 }
 
 function FortsettDialogContainer(props: Props) {

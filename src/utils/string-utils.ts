@@ -9,7 +9,7 @@ export function removeWhitespace(input: string) {
 }
 
 export function erTall(input: string) {
-    return !isNaN(Number(input));
+    return !Number.isNaN(Number(input));
 }
 
 export function sorterAlfabetisk(a: string, b: string) {
@@ -20,14 +20,14 @@ export function prosentEllerNull(value: number | null): string | null {
     if (!value) {
         return null;
     }
-    return value + '%';
+    return `${value}%`;
 }
 
 export function NOKellerNull(value: number | null | undefined): string | null {
     if (!value) {
         return null;
     }
-    return formaterNOK(value) + ' NOK';
+    return `${formaterNOK(value)} NOK`;
 }
 
 export function convertBoolTilJaNei(verdi: boolean | null): string | null {

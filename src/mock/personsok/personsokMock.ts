@@ -124,9 +124,8 @@ function getMockNavn(fodselsnummer: string): Navn {
 function getFornavn(seededFaker: Faker, fødselsnummer: string): string {
     if (Number(fødselsnummer.charAt(8)) % 2 === 0) {
         return seededFaker.person.firstName('male');
-    } else {
-        return seededFaker.person.firstName('female');
     }
+    return seededFaker.person.firstName('female');
 }
 
 function getKjonn(): Kodeverk {
@@ -135,12 +134,11 @@ function getKjonn(): Kodeverk {
             kodeRef: 'M',
             beskrivelse: 'Mann'
         };
-    } else {
-        return {
-            kodeRef: 'K',
-            beskrivelse: 'Kvinne'
-        };
     }
+    return {
+        kodeRef: 'K',
+        beskrivelse: 'Kvinne'
+    };
 }
 
 function getStatus(): Kodeverk {

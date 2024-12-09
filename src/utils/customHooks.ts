@@ -21,7 +21,7 @@ export function useFocusOnMount(ref: React.RefObject<HTMLElement>) {
         if (ref.current) {
             ref.current.focus();
             if (document.activeElement !== ref.current) {
-                console.error('Kunne ikke sette fokus på: ' + ref.current.innerText);
+                console.error(`Kunne ikke sette fokus på: ${ref.current.innerText}`);
             }
         }
     });
@@ -31,7 +31,7 @@ export function useOnMount(effect: EffectCallback) {
     useEffect(effect, []);
 }
 
-type JustOnceEffectCallback = (done: () => void) => void | (() => void | undefined);
+type JustOnceEffectCallback = (done: () => void) => undefined | (() => undefined | undefined);
 export function useJustOnceEffect(effect: JustOnceEffectCallback, deps?: DependencyList) {
     const done = useRef(false);
     const setDone = useCallback(() => {

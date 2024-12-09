@@ -14,7 +14,7 @@ export function getKommendeUtbetaling(faker: Faker): KommendeUtbetaling {
         arbeidsgiverOrgNr: '1234567890',
         arbeidsgiverKontonr: Number(faker.finance.accountNumber(9)).toString(),
         dagsats: Number(faker.commerce.price()),
-        saksbehandler: faker.person.firstName() + ' ' + faker.person.lastName(),
+        saksbehandler: `${faker.person.firstName()} ${faker.person.lastName()}`,
         type: 'KONTOØVERFØRING'
     };
 }

@@ -115,7 +115,8 @@ function VisittkortBody({ persondata }: Props) {
     function getColumnLayout(antallKolonner: number) {
         if (antallKolonner <= 1) {
             return SingleColumnLayout(persondata);
-        } else if (antallKolonner === 2) {
+        }
+        if (antallKolonner === 2) {
             return DoubleColumnLayout(persondata);
         }
         return TripleColumnLayout(persondata);

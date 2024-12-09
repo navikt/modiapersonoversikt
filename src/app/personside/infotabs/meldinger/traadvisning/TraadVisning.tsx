@@ -103,9 +103,8 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
                 <Hovedknapp onClick={handleNyMelding}>Ny melding</Hovedknapp>
             </KnappWrapper>
         );
-    } else {
-        return null;
     }
+    return null;
 }
 
 const StyledJournalforingPanel = styled(Ekspanderbartpanel)`

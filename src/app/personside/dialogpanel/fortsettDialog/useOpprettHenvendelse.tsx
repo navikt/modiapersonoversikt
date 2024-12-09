@@ -57,7 +57,7 @@ function useOpprettHenvendelse(traad: Traad): OpprettHenvendelseReturns {
                 } else {
                     setError(true);
                     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-                    loggError(e, 'Kunne ikke opprette henvendelse for traadId: ' + traad.traadId, {});
+                    loggError(e, `Kunne ikke opprette henvendelse for traadId: ${traad.traadId}`, {});
                 }
             });
     });

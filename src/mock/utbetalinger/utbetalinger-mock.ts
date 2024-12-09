@@ -22,7 +22,7 @@ export function getMockUtbetalinger(fodselsnummer: string, startDato: string, sl
         return statiskMockUtbetalingRespons;
     }
     faker.seed(Number(fodselsnummer));
-    navfaker.seed(fodselsnummer + 'utbetaling');
+    navfaker.seed(`${fodselsnummer}utbetaling`);
 
     return {
         utbetalinger: getUtbetalinger(fodselsnummer),

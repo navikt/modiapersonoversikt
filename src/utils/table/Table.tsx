@@ -19,9 +19,9 @@ export function Table({ tittelRekke, rows, rowsOnClickHandlers }: TableProps) {
         loggError(new Error('Ulik lengde på liste med onClickHandlers og antall rows'));
     }
     return (
-        <table role="table">
-            <thead role="rowgroup">
-                <tr role="row">
+        <table>
+            <thead>
+                <tr>
                     {tittelRekke.map((tittel: TitleCell, index: number) => (
                         <th role="columnheader" key={index}>
                             {tittel}
@@ -29,13 +29,11 @@ export function Table({ tittelRekke, rows, rowsOnClickHandlers }: TableProps) {
                     ))}
                 </tr>
             </thead>
-            <tbody role="rowgroup" data-testid="table-tbody">
+            <tbody data-testid="table-tbody">
                 {rows.map((row: TableRow, index: number) => (
-                    <tr role="row" key={index} onClick={rowsOnClickHandlers && rowsOnClickHandlers[index]}>
+                    <tr key={index} onClick={rowsOnClickHandlers?.[index]}>
                         {row.map((entry, i) => (
-                            <td role="cell" key={i}>
-                                {entry || (entry === 0 && '0') || '\u2014'}
-                            </td>
+                            <td key={i}>{entry || (entry === 0 && '0') || '\u2014'}</td>
                         ))}
                     </tr>
                 ))}

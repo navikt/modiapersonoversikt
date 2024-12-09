@@ -24,7 +24,8 @@ function VarslerLoader<P>(props: VarselLoaderProps<P>) {
 
     if (varslerResponse.isLoading) {
         return <LazySpinner type="M" />;
-    } else if (varslerResponse.isError) {
+    }
+    if (varslerResponse.isError) {
         return <AlertStripeFeil>Feil ved uthenting av brukers varsler og notifikasjoner.</AlertStripeFeil>;
     }
     const varsler: VarslerResult = varslerResponse.data;

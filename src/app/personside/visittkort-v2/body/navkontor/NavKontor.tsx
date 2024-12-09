@@ -125,7 +125,8 @@ function NavKontor({ feilendeSystemer, navEnhet, geografiskTilknytning }: Props)
 
     if (geografiskTilknytning === null) {
         return null;
-    } else if (navEnhet === null) {
+    }
+    if (navEnhet === null) {
         return (
             <VisittkortGruppe tittel={'NAV-kontor'}>
                 <VisittkortElement beskrivelse={mapUgyldigGT(geografiskTilknytning)} ikon={<NavLogo />}>

@@ -49,17 +49,15 @@ function Dodsdato({ person }: Props) {
     if (dodsdato) {
         const formatertDodsdato = formaterDato(dodsdato);
         return <span>Død {formatertDodsdato}</span>;
-    } else {
-        return null;
     }
+    return null;
 }
 
 function Utvandret({ person }: Props) {
     if (person.personstatus.firstOrNull()?.kode === Status.UTFLYTTET) {
         return <span>Utvandret</span>;
-    } else {
-        return null;
     }
+    return null;
 }
 
 function PersonStatus({ person }: Props) {

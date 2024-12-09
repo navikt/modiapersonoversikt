@@ -7,7 +7,7 @@ const fadeIn = keyframes`
 const oneRemInPx = 16;
 
 export function pxToRem(px: number): string {
-    return px / oneRemInPx + 'rem';
+    return `${px / oneRemInPx}rem`;
 }
 
 const hover = css`

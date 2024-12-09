@@ -105,9 +105,8 @@ function formaterDatoOgAvsender(brukernavn: string, dokument: Journalpost) {
 function getDokumentIkon(harTilgang: boolean) {
     if (harTilgang) {
         return <DokumentIkon />;
-    } else {
-        return <DokumentIkkeTilgangIkon aria-label="Du har ikke tilgang til dette dokumentet" />;
     }
+    return <DokumentIkkeTilgangIkon aria-label="Du har ikke tilgang til dette dokumentet" />;
 }
 
 function JournalpostListeElementV2(props: Props) {

@@ -16,8 +16,8 @@ function getMockSoketraad(
             {
                 ...mockMelding,
                 fritekst: fritekst,
-                meldingstype: (tittel && tittel.meldingtype) || mockMelding.meldingstype,
-                temagruppe: (tittel && tittel.temagruppe) || mockMelding.temagruppe,
+                meldingstype: tittel?.meldingtype || mockMelding.meldingstype,
+                temagruppe: tittel?.temagruppe || mockMelding.temagruppe,
                 skrevetAvTekst: saksbehandler ? saksbehandlerTekst(saksbehandler) : mockMelding.skrevetAvTekst
             }
         ]

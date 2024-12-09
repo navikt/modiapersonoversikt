@@ -125,7 +125,8 @@ export enum ErrorReason {
 function useErrorHandling(auth: UseQueryResult<AuthIntropectionDTO, FetchError>): ErrorReason | undefined {
     if (auth.isError) {
         return ErrorReason.FETCH_ERROR;
-    } else if (auth.data && auth.data.expirationDate === INVALID_EXPIRATION_DATE) {
+    }
+    if (auth.data && auth.data.expirationDate === INVALID_EXPIRATION_DATE) {
         return ErrorReason.INVALID_EXPIRATION_DATE;
     }
     return undefined;

@@ -73,5 +73,5 @@ export function getForeldepengerIdDato(foreldrepenger: Foreldrepengerettighet) {
 }
 
 export function getUnikForeldrepengerKey(foreldrepenger: Foreldrepengerettighet): string {
-    return 'foreldrepenger' + getForeldepengerIdDato(foreldrepenger);
+    return `foreldrepenger${getForeldepengerIdDato(foreldrepenger)}`;
 }

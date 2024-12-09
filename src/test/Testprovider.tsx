@@ -45,9 +45,7 @@ function TestProvider({ children, customStore }: Props) {
                                 <DialogpanelStateProvider>
                                     <VisittkortStateProvider>
                                         <MeldingsokProvider>
-                                            <ValgtEnhetProvider>
-                                                <>{children}</>
-                                            </ValgtEnhetProvider>
+                                            <ValgtEnhetProvider>{children}</ValgtEnhetProvider>
                                         </MeldingsokProvider>
                                     </VisittkortStateProvider>
                                 </DialogpanelStateProvider>
@@ -59,7 +57,7 @@ function TestProvider({ children, customStore }: Props) {
         ])
     });
 
-    return <RouterProvider router={router}></RouterProvider>;
+    return <RouterProvider router={router} />;
 }
 
 export default TestProvider;

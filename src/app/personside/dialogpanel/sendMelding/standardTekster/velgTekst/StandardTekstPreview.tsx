@@ -96,10 +96,10 @@ function StandardTekstPreview({ tekst, locale, sokefelt, highlightRule }: Props)
                     Forhåndsvisning
                 </h3>
                 <Systemtittel tag="h4" className="blokk-xs">
-                    {tekst && tekst.overskrift}
+                    {tekst?.overskrift}
                 </Systemtittel>
                 <Tekstomrade rules={[highlightRule, ...defaultRules]} className="typo-normal blokk-m">
-                    {tekst && tekst.innhold[locale]}
+                    {tekst?.innhold[locale]}
                 </Tekstomrade>
             </article>
             <Tags valgtTekst={tekst} sokefelt={sokefelt} />

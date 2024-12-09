@@ -4,22 +4,22 @@ import { formatNumber } from './string-utils';
 export function formaterMobiltelefonnummer(telefonnummer: string) {
     if (telefonnummer.startsWith('+') && telefonnummer.length === 11) {
         return formatNumber('### ## ## ## ##', telefonnummer);
-    } else if (telefonnummer.length === 8) {
-        return formatNumber('## ## ## ##', telefonnummer);
-    } else {
-        return telefonnummer;
     }
+    if (telefonnummer.length === 8) {
+        return formatNumber('## ## ## ##', telefonnummer);
+    }
+    return telefonnummer;
 }
 
 export function formaterTelefonnummer(telefonnummer: string) {
     const utenSpace = removeWhitespace(telefonnummer);
     if (utenSpace.length !== 8) {
         return telefonnummer;
-    } else if (utenSpace.startsWith('800')) {
-        return formatNumber('### ## ###', utenSpace);
-    } else {
-        return formatNumber('## ## ## ##', utenSpace);
     }
+    if (utenSpace.startsWith('800')) {
+        return formatNumber('### ## ###', utenSpace);
+    }
+    return formatNumber('## ## ## ##', utenSpace);
 }
 
 export function gyldigTelefonnummer(telefonnummer: string): boolean {

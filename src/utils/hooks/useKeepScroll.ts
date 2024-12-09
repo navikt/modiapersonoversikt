@@ -43,8 +43,8 @@ function useKeepScroll(ref: React.RefObject<HTMLElement>, keepScrollId: string) 
     return () => {
         clearTimeout(timer.current);
         const timeout = setTimeout(() => {
-            const scrollLeft = (ref.current && ref.current.scrollLeft) || 0;
-            const scrollTop = (ref.current && ref.current.scrollTop) || 0;
+            const scrollLeft = ref.current?.scrollLeft || 0;
+            const scrollTop = ref.current?.scrollTop || 0;
             storeScroll(keepScrollId, { x: scrollLeft, y: scrollTop });
         }, 150);
         timer.current = timeout;

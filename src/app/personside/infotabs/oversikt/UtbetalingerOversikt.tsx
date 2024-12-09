@@ -61,7 +61,7 @@ function EnkelUtbetaling({ utbetaling }: { utbetaling: Utbetaling }) {
         <li className={utbetalingerTest.oversikt}>
             <VisMerKnapp
                 valgt={false}
-                ariaDescription={`Vis utbetaling`}
+                ariaDescription={'Vis utbetaling'}
                 linkTo={dyplenkerInfotabs.utbetaling.link(utbetaling)}
             >
                 <Normaltekst>

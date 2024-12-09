@@ -37,13 +37,12 @@ export function kanBesvares(traad?: Traad): boolean {
 
     if (erMeldingstypeSamtalereferat(melding.meldingstype)) {
         return true;
-    } else {
-        /**
-         * For meldingskjeder i salesforce er det kun mulig å sende oppfølgingsmeldinger
-         * før tråden blir avsluttet. På dette tidspunktet vil tråden bli journalført og låst.
-         */
-        return !melding.avsluttetDato;
     }
+    /**
+     * For meldingskjeder i salesforce er det kun mulig å sende oppfølgingsmeldinger
+     * før tråden blir avsluttet. På dette tidspunktet vil tråden bli journalført og låst.
+     */
+    return !melding.avsluttetDato;
 }
 
 export function traadKanBesvares(traad?: Traad): boolean {
@@ -57,10 +56,9 @@ export function traadKanBesvares(traad?: Traad): boolean {
 
     if (traad.traadType === TraadType.SAMTALEREFERAT) {
         return true;
-    } else {
-        const melding = eldsteMelding(traad);
-        return !traad.avsluttetDato || !melding.avsluttetDato;
     }
+    const melding = eldsteMelding(traad);
+    return !traad.avsluttetDato || !melding.avsluttetDato;
 }
 
 function traadErInfoMelding(traad: Traad): boolean {

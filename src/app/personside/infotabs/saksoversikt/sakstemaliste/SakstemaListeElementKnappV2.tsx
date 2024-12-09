@@ -50,12 +50,12 @@ function SakstemaListeElementKnapp(props: Props) {
             <VisMerKnapp
                 valgt={props.erValgt}
                 linkTo={dyplenker.saker.link(props.sakstema)}
-                ariaDescription={'Vis ' + props.sakstema.temanavn}
+                ariaDescription={`Vis ${props.sakstema.temanavn}`}
             >
                 <Flex>
                     <div>
                         <UUcustomOrder>
-                            <Element className={'order-second ' + sakerTest.oversikt}>
+                            <Element className={`order-second ${sakerTest.oversikt}`}>
                                 {props.sakstema.temanavn}
                             </Element>
                             <Normaltekst className="order-first">

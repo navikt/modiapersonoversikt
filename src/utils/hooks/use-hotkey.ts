@@ -36,7 +36,7 @@ export default function useHotkey(
             if (matches(keyDescription, event)) {
                 event.preventDefault();
                 event.stopPropagation();
-                loggEvent(loggAction, 'Hurtigtast', { type: 'Alt + ' + keyDescription.char });
+                loggEvent(loggAction, 'Hurtigtast', { type: `Alt + ${keyDescription.char}` });
                 stableAction();
             }
         },

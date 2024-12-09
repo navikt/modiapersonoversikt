@@ -30,7 +30,7 @@ const harEnhetIdSomQueryParam = (request: StrictRequest<DefaultBodyType>) => {
 };
 
 const meldingerHandler = http.post(
-    apiBaseUri + '/v2/dialog/meldinger',
+    `${apiBaseUri}/v2/dialog/meldinger`,
     verify(
         harEnhetIdSomQueryParam,
         withDelayedResponse(
@@ -46,20 +46,21 @@ const meldingerHandler = http.post(
 function simulateSf(trader: Traad[]): Traad[] {
     trader.forEach((trad: Traad) => {
         trad.meldinger.forEach((melding: Melding, index: number) => {
-            melding.id = 'trad-' + guid(); // Denne informasjonen får vi ikke, og autogenereres derfor på backend
+            melding.id = `trad-${guid()}`; // Denne informasjonen får vi ikke, og autogenereres derfor på backend
             melding.meldingsId = guid(); // Denne informasjonen får vi ikke, og autogenereres derfor på backend
 
             // SF har bare samtalereferat og meldingskjede, så vi utleder de gamle typene etter beste evne.
             melding.meldingstype = (() => {
                 if (erMeldingstypeSamtalereferat(melding.meldingstype)) {
                     return Meldingstype.SAMTALEREFERAT_TELEFON;
-                } else if (erChatMelding(melding.meldingstype)) {
-                    return melding.meldingstype;
-                } else if (erMeldingFraBruker(melding.meldingstype)) {
-                    return index === 0 ? Meldingstype.SPORSMAL_SKRIFTLIG : Meldingstype.SVAR_SBL_INNGAAENDE;
-                } else {
-                    return index === 0 ? Meldingstype.SPORSMAL_MODIA_UTGAAENDE : Meldingstype.SVAR_SKRIFTLIG;
                 }
+                if (erChatMelding(melding.meldingstype)) {
+                    return melding.meldingstype;
+                }
+                if (erMeldingFraBruker(melding.meldingstype)) {
+                    return index === 0 ? Meldingstype.SPORSMAL_SKRIFTLIG : Meldingstype.SVAR_SBL_INNGAAENDE;
+                }
+                return index === 0 ? Meldingstype.SPORSMAL_MODIA_UTGAAENDE : Meldingstype.SVAR_SKRIFTLIG;
             })();
         });
     });
@@ -67,31 +68,31 @@ function simulateSf(trader: Traad[]): Traad[] {
 }
 
 const opprettHenvendelseHandler = http.post(
-    apiBaseUri + '/v2/dialog/fortsett/opprett',
+    `${apiBaseUri}/v2/dialog/fortsett/opprett`,
     withDelayedResponse<OpprettHenvendelseRequest>(randomDelay(), STATUS_OK, async (request) =>
         meldingerBackendMock.opprettHenvendelse(await request.json())
     )
 );
 
 const sendMeldinghandler = http.post(
-    apiBaseUri + '/v2/dialog/sendmelding',
+    `${apiBaseUri}/v2/dialog/sendmelding`,
     withDelayedResponse<SendMeldingRequest>(randomDelay() * 2, STATUS_OK, async (request) => {
         return meldingerBackendMock.sendMelding(await request.json());
     })
 );
 
 const merkFeilsendtHandler = http.post(
-    apiBaseUri + '/v2/dialogmerking/feilsendt',
+    `${apiBaseUri}/v2/dialogmerking/feilsendt`,
     withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
 );
 
 const sladdingHandlers = [
     http.post(
-        apiBaseUri + '/v2/dialogmerking/sladding',
+        `${apiBaseUri}/v2/dialogmerking/sladding`,
         withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
     ),
     http.get(
-        apiBaseUri + '/v2/dialogmerking/sladdearsaker/:kjedeId',
+        `${apiBaseUri}/v2/dialogmerking/sladdearsaker/:kjedeId`,
         withDelayedResponse(randomDelay(), STATUS_OK, () => [
             'Sendt til feil bruker',
             'Innholder sensitiv informasjon',
@@ -101,12 +102,12 @@ const sladdingHandlers = [
 ];
 
 const avsluttOppgaveGosysHandler = http.post(
-    apiBaseUri + '/dialogmerking/avsluttgosysoppgave',
+    `${apiBaseUri}/dialogmerking/avsluttgosysoppgave`,
     withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
 );
 
 const lukkTraadHandler = http.post(
-    apiBaseUri + '/dialogmerking/lukk-traad',
+    `${apiBaseUri}/dialogmerking/lukk-traad`,
     withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
 );
 

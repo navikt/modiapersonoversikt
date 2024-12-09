@@ -70,9 +70,8 @@ function utbetalingsDetaljerTable(ytelse: Ytelse) {
         }
 
         return <Table tittelRekke={tittelrekke} rows={tabellElementer} />;
-    } else {
-        return <AlertStripeAdvarsel>Manglende data. Kunne ikke finne detaljer om utbetaling.</AlertStripeAdvarsel>;
     }
+    return <AlertStripeAdvarsel>Manglende data. Kunne ikke finne detaljer om utbetaling.</AlertStripeAdvarsel>;
 }
 
 function UtbetalingsDetaljer(props: Props) {

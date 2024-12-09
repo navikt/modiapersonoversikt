@@ -72,7 +72,7 @@ function TotaltUtbetalt(props: TotaltUtbetaltProps) {
 
     const PrinterWrapper = printer.printerWrapper;
     const sluttDato = new Date(props.periode.sluttDato) > new Date() ? new Date() : props.periode.sluttDato;
-    const periode: string = formaterDato(props.periode.startDato) + ' - ' + formaterDato(sluttDato);
+    const periode: string = `${formaterDato(props.periode.startDato)} - ${formaterDato(sluttDato)}`;
     const brutto: string = summertBeløpStringFraUtbetalinger(props.utbetalinger, getBruttoSumYtelser);
     const trekk: string = summertBeløpStringFraUtbetalinger(props.utbetalinger, getTrekkSumYtelser);
     const utbetalt: string = summertBeløpStringFraUtbetalinger(props.utbetalinger, getNettoSumYtelser);

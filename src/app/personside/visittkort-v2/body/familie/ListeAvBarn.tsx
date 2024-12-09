@@ -17,11 +17,11 @@ function hentKjonnBeskrivelseForBarn(barn: ForelderBarnRelasjon) {
 
     if (kjonn?.kode === Kjonn.M) {
         return 'Gutt';
-    } else if (kjonn?.kode === Kjonn.K) {
-        return 'Jente';
-    } else {
-        return 'Ukjent';
     }
+    if (kjonn?.kode === Kjonn.K) {
+        return 'Jente';
+    }
+    return 'Ukjent';
 }
 
 function ListeAvBarn({ harFeilendeSystem, relasjoner }: Props) {

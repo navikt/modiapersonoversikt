@@ -2,7 +2,7 @@ import { INFOTABS, type InfotabConfig } from './InfoTabEnum';
 import { getOpenTabFromRouterPath } from './utils/useOpenTab';
 
 test('henter riktig tab fra routerpath', () => {
-    const path = `http://localhost:7777${import.meta.env.BASE_URL}/person/1000000000/` + INFOTABS.UTBETALING.path + '/';
+    const path = `http://localhost:7777${import.meta.env.BASE_URL}/person/1000000000/${INFOTABS.UTBETALING.path}/`;
 
     const apenLamell: InfotabConfig = getOpenTabFromRouterPath(path);
 
@@ -10,7 +10,7 @@ test('henter riktig tab fra routerpath', () => {
 });
 
 test('åpner oversikt som default hvis url ikke matcher en infotab', () => {
-    const path = `http://localhost:7777${import.meta.env.BASE_URL}/person/1000000000/` + 'tull&tøys' + '/';
+    const path = `http://localhost:7777${import.meta.env.BASE_URL}/person/1000000000/tull&tøys/`;
 
     const apenLamell: InfotabConfig = getOpenTabFromRouterPath(path);
 

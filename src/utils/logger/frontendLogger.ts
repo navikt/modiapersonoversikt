@@ -61,11 +61,11 @@ export function loggWarning(error: Error, message?: string, ekstraFelter?: Value
         return;
     }
     const browser = detect();
-    const msg = `${message ? message + ': ' : ''} ${error.name} ${error.message}`;
+    const msg = `${message ? `${message}: ` : ''} ${error.name} ${error.message}`;
     const info = {
         url: document.URL,
         error: error.stack,
-        browser: (browser && browser.name) || undefined,
+        browser: browser?.name || undefined,
         saksbehandler: ident,
         enhet: enhet,
         ...ekstraFelter
@@ -78,11 +78,11 @@ export function loggError(error: Error, message?: string, ekstraFelter?: ValuePa
         return;
     }
     const browser = detect();
-    const logLine = `${message ? message + ': ' : ''} ${error.name} ${error.message}`;
+    const logLine = `${message ? `${message}: ` : ''} ${error.name} ${error.message}`;
     const info = {
         url: document.URL,
         error: error.stack,
-        browser: (browser && browser.name) || undefined,
+        browser: browser?.name || undefined,
         saksbehandler: ident,
         enhet: enhet,
         ...ekstraFelter

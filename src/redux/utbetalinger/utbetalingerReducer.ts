@@ -21,7 +21,7 @@ const initialState: UtbetalingerState = {
     }
 };
 
-export function utbetalingerReducer(state: UtbetalingerState = initialState, action: Actions): UtbetalingerState {
+export function utbetalingerReducer(state: UtbetalingerState, action: Actions): UtbetalingerState {
     switch (action.type) {
         case actionKeys.SettYtelseIFokus:
             return {
@@ -34,12 +34,11 @@ export function utbetalingerReducer(state: UtbetalingerState = initialState, act
                     ...state,
                     ekspanderteYtelser: [...state.ekspanderteYtelser, action.ytelse]
                 };
-            } else {
-                return {
-                    ...state,
-                    ekspanderteYtelser: state.ekspanderteYtelser.filter((y) => y !== action.ytelse)
-                };
             }
+            return {
+                ...state,
+                ekspanderteYtelser: state.ekspanderteYtelser.filter((y) => y !== action.ytelse)
+            };
         case actionKeys.OppdaterFilter:
             return {
                 ...state,

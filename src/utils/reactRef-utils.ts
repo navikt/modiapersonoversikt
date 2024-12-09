@@ -7,15 +7,14 @@ export type EventListener = (event: EventWithTarget) => void;
 type Ref = RefObject<HTMLElement> | RefObject<HTMLElement>[];
 
 export function eventTagetIsInsideRef(event: EventWithTarget, ref: Ref): boolean {
-    if (ref instanceof Array) {
+    if (Array.isArray(ref)) {
         return ref.some((r) => eventTagetIsInsideRef(event, r));
     }
 
     if (event.target instanceof Node && ref.current) {
         return ref.current.contains(event.target);
-    } else {
-        return false;
     }
+    return false;
 }
 
 export function runIfEventIsNotInsideRef(ref: Ref, fn: EventListener) {

@@ -51,7 +51,7 @@ function TekstListeElement(props: Props) {
                     {props.tekst.overskrift}
                 </Tekstomrade>
                 <Tekstomrade className="sr-only" rules={[LinebreakRule, ParagraphRule]}>
-                    {(props.tekst && props.tekst.innhold[props.locale]) || ''}
+                    {props.tekst?.innhold[props.locale] || ''}
                 </Tekstomrade>
             </label>
         </StyledLi>

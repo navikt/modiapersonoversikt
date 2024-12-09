@@ -62,9 +62,8 @@ function MeldingSendtVerktoyLinje(props: { traad: Traad | undefined }) {
 function VarselTilBrukerOmStatus(props: { meldingstatus: SendNyMeldingStatus; tittle: string }) {
     if (props.meldingstatus === SendNyMeldingStatus.ERROR) {
         return <DialogpanelFeilmelding />;
-    } else {
-        return <AlertStripeSuksess>{props.tittle}</AlertStripeSuksess>;
     }
+    return <AlertStripeSuksess>{props.tittle}</AlertStripeSuksess>;
 }
 
 export function DialogpanelKvittering(props: {

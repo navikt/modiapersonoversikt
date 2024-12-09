@@ -64,7 +64,7 @@ function Traadelement(props: { traad: Traad }) {
             <VisMerKnapp
                 linkTo={dyplenker.meldinger.link(props.traad)}
                 valgt={false}
-                ariaDescription={'Vis meldinger for ' + tittel}
+                ariaDescription={`Vis meldinger for ${tittel}`}
                 className={meldingerTest.oversikt}
             >
                 <TraadSammendrag traad={props.traad} />

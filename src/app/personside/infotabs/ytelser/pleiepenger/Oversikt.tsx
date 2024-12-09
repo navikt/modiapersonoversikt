@@ -56,8 +56,8 @@ function Oversikt({ pleiepenger }: Props) {
     const omPleiepengerettenEntries = {
         'Fra og med': gjeldeneVedtak ? formaterDato(gjeldeneVedtak.periode.fom) : '',
         'Til og med': gjeldeneVedtak ? formaterDato(gjeldeneVedtak.periode.tom) : '',
-        Pleiepengegrad: gjeldeneVedtak ? gjeldeneVedtak.pleiepengegrad + '%' : '',
-        ['Barnet (' + kjonn + ')']: pleiepenger.barnet,
+        Pleiepengegrad: gjeldeneVedtak ? `${gjeldeneVedtak.pleiepengegrad}%` : '',
+        [`Barnet (${kjonn})`]: pleiepenger.barnet,
         'Annen forelder': pleiepenger.andreOmsorgsperson
     };
 

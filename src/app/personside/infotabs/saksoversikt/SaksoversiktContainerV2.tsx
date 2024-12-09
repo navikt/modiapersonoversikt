@@ -49,33 +49,32 @@ function SaksoversiktContainer() {
                 valgteSakstemaer={valgteSakstemaer}
             />
         );
-    } else {
-        return resource.useRenderer({
-            ifPending: BigCenteredLazySpinner,
-            ifData: (data) => {
-                if (data.resultat.length === 0) {
-                    return <AlertStripeInfo>Brukeren har ingen saker</AlertStripeInfo>;
-                }
-                return (
-                    <ErrorBoundary boundaryName="Saksoversikt">
-                        <SaksoversiktStyle>
-                            <ScrollBar keepScrollId="saker-sakstema">
-                                <ErrorBoundary boundaryName="Sakstemaliste">
-                                    <SakerFullscreenLenkeV2 />
-                                    <SakstemaListeV2 />
-                                </ErrorBoundary>
-                            </ScrollBar>
-                            <ScrollBar keepScrollId="saker-saksdokumenter">
-                                <ErrorBoundary boundaryName="Journalposter">
-                                    <JournalPosterV2 />
-                                </ErrorBoundary>
-                            </ScrollBar>
-                        </SaksoversiktStyle>
-                    </ErrorBoundary>
-                );
-            }
-        });
     }
+    return resource.useRenderer({
+        ifPending: BigCenteredLazySpinner,
+        ifData: (data) => {
+            if (data.resultat.length === 0) {
+                return <AlertStripeInfo>Brukeren har ingen saker</AlertStripeInfo>;
+            }
+            return (
+                <ErrorBoundary boundaryName="Saksoversikt">
+                    <SaksoversiktStyle>
+                        <ScrollBar keepScrollId="saker-sakstema">
+                            <ErrorBoundary boundaryName="Sakstemaliste">
+                                <SakerFullscreenLenkeV2 />
+                                <SakstemaListeV2 />
+                            </ErrorBoundary>
+                        </ScrollBar>
+                        <ScrollBar keepScrollId="saker-saksdokumenter">
+                            <ErrorBoundary boundaryName="Journalposter">
+                                <JournalPosterV2 />
+                            </ErrorBoundary>
+                        </ScrollBar>
+                    </SaksoversiktStyle>
+                </ErrorBoundary>
+            );
+        }
+    });
 }
 
 export default SaksoversiktContainer;

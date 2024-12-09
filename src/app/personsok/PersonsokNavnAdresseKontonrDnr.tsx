@@ -76,7 +76,7 @@ function PersonsokNavnAdresseKontonrDnr({ form }: Props) {
                     id={formField.id}
                     label={formField.label}
                     bredde={formField.width}
-                    feil={!!form.formState.errors['_minimumskrav']}
+                    feil={!!form.formState.errors._minimumskrav}
                 />
             ))}
         </>
