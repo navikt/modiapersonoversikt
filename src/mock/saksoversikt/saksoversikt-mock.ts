@@ -76,7 +76,7 @@ function getSak(temakode: string): Sak {
         fagsaksnummer: faker.string.alphanumeric(8),
         avsluttet: getSaksdato(navfaker),
         fagsystem: faker.string.alphanumeric(5),
-        baksystem: getBaksystem(navfaker)
+        baksystem: getBaksystem(faker)
     };
 }
 

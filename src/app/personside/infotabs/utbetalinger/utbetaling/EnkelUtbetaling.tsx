@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Utbetaling as UtbetalingInterface, Ytelse } from '../../../../../models/utbetalinger';
 import { formaterNOK, getGjeldendeDatoForUtbetaling, periodeStringFromYtelse } from '../utils/utbetalinger-utils';
 import { cancelIfHighlighting } from '../../../../../utils/function-utils';
@@ -150,4 +149,4 @@ function EnkelUtbetaling(props: Props) {
     );
 }
 
-export default React.memo(EnkelUtbetaling);
+export default EnkelUtbetaling;

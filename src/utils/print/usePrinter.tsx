@@ -41,7 +41,7 @@ function usePrinter(): Printer {
         (props: { children: ReactNode }) => {
             return (
                 <>
-                    {print && props.children}
+                    {props.children}
                     {print && <SkulAppVedPrint />}
                     {print && createPortal(<PrinterMedHeader children={props.children} />, document.body)}
                 </>

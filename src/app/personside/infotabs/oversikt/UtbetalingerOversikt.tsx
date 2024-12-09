@@ -2,7 +2,7 @@ import { Utbetaling, UtbetalingerResponse } from '../../../../models/utbetalinge
 import { Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { datoStigende, datoSynkende } from '../../../../utils/date-utils';
+import { datoStigende, datoSynkende, datoVerbose } from '../../../../utils/date-utils';
 import { formaterDato } from '../../../../utils/string-utils';
 import { Bold } from '../../../../components/common-styled-components';
 import { getGjeldendeDatoForUtbetaling, utbetalingDatoComparator } from '../utbetalinger/utils/utbetalinger-utils';
@@ -65,7 +65,7 @@ function EnkelUtbetaling({ utbetaling }: { utbetaling: Utbetaling }) {
                 linkTo={dyplenkerInfotabs.utbetaling.link(utbetaling)}
             >
                 <Normaltekst>
-                    {formaterDato(getGjeldendeDatoForUtbetaling(utbetaling))} / {utbetaling.status}
+                    {datoVerbose(getGjeldendeDatoForUtbetaling(utbetaling)).sammensatt} / {utbetaling.status}
                 </Normaltekst>
                 <YtelseNavn utbetaling={utbetaling} />
                 <YtelsePeriode utbetaling={utbetaling} />

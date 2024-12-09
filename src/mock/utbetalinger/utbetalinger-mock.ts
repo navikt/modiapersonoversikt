@@ -15,8 +15,12 @@ import {
 import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
 import { backendDatoformat } from '../../utils/date-utils';
 import { aremark } from '../persondata/aremark';
+import { statiskMockUtbetalingRespons } from './statiskMockUtbetalingRespons';
 
 export function getMockUtbetalinger(fodselsnummer: string, startDato: string, sluttDato: string): UtbetalingerResponse {
+    if (import.meta.env.VITE_E2E) {
+        return statiskMockUtbetalingRespons;
+    }
     faker.seed(Number(fodselsnummer));
     navfaker.seed(fodselsnummer + 'utbetaling');
 

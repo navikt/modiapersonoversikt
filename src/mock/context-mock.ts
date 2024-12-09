@@ -1,17 +1,19 @@
 import { HttpResponse, PathParams, http } from 'msw';
 
+const AREMARK = '10108000398';
+
 class ContextStorage {
     public set aktivBruker(verdi: string | null) {
         localStorage.setItem('context-bruker', verdi ?? '');
     }
     public get aktivBruker() {
-        return localStorage.getItem('context-bruker') ?? '';
+        return localStorage.getItem('context-bruker') ?? AREMARK;
     }
     public set aktivEnhet(verdi: string | null) {
         localStorage.setItem('context-enhet', verdi ?? '');
     }
     public get aktivEnhet() {
-        return localStorage.getItem('context-enhet') ?? '';
+        return localStorage.getItem('context-enhet') ?? enheter[0].enhetId;
     }
 }
 
