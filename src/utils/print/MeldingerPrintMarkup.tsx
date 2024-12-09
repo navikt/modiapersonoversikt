@@ -1,13 +1,13 @@
-import { Melding, MeldingJournalpost, Traad } from '../../models/meldinger/meldinger';
-import { useFodselsnummer } from '../customHooks';
-import { meldingstittel } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
-import { Element, Ingress, Normaltekst } from 'nav-frontend-typografi';
-import { datoStigende, formatterDato, formatterDatoTid } from '../date-utils';
-import styled from 'styled-components';
-import theme from '../../styles/personOversiktTheme';
-import { formaterDato } from '../string-utils';
 import Tekstomrade, { defaultRules } from 'nav-frontend-tekstomrade';
+import { Element, Ingress, Normaltekst } from 'nav-frontend-typografi';
+import styled from 'styled-components';
+import { meldingstittel } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
+import type { Melding, MeldingJournalpost, Traad } from '../../models/meldinger/meldinger';
+import theme from '../../styles/personOversiktTheme';
+import { useFodselsnummer } from '../customHooks';
+import { datoStigende, formatterDato, formatterDatoTid } from '../date-utils';
 import { rule as sladdRule } from '../sladdrule';
+import { formaterDato } from '../string-utils';
 
 interface Props {
     valgtTraad: Traad;

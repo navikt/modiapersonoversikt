@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
-import styled from 'styled-components';
 import { Element } from 'nav-frontend-typografi';
+import type { ReactNode } from 'react';
+import styled from 'styled-components';
 import { KategoriSkille } from '../../../dialogpanel/fellesStyling';
 
 interface Props {

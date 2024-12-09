@@ -1,8 +1,8 @@
-import { UtbetalingPåVent } from '../../../../../../models/ytelse/ytelse-utbetalinger';
-import { Periode } from '../../../../../../models/tid';
 import dayjs from 'dayjs';
-import isSameOrBeforePlugin from 'dayjs/plugin/isSameOrBefore';
 import isSameOrAfterPlugin from 'dayjs/plugin/isSameOrAfter';
+import isSameOrBeforePlugin from 'dayjs/plugin/isSameOrBefore';
+import type { Periode } from '../../../../../../models/tid';
+import type { UtbetalingPåVent } from '../../../../../../models/ytelse/ytelse-utbetalinger';
 dayjs.extend(isSameOrBeforePlugin);
 dayjs.extend(isSameOrAfterPlugin);
 

@@ -1,14 +1,14 @@
 import DescriptionList, {
-    DescriptionListEntries,
+    type DescriptionListEntries,
     fjernEntriesUtenVerdi
 } from '../../../../../../components/DescriptionList';
+import type { Forsikring, Sykepenger, Sykmelding } from '../../../../../../models/ytelse/sykepenger';
 import {
+    NOKellerNull,
     convertBoolTilJaNei,
     datoEllerNull,
-    NOKellerNull,
     periodeEllerNull
 } from '../../../../../../utils/string-utils';
-import { Forsikring, Sykepenger, Sykmelding } from '../../../../../../models/ytelse/sykepenger';
 import YtelserInfoGruppe from '../../felles-styling/YtelserInfoGruppe';
 
 interface Props {

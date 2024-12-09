@@ -1,6 +1,6 @@
-import { formaterNOK } from '../app/personside/infotabs/utbetalinger/utils/utbetalinger-utils';
 import dayjs from 'dayjs';
-import { Periode } from '../models/tid';
+import { formaterNOK } from '../app/personside/infotabs/utbetalinger/utils/utbetalinger-utils';
+import type { Periode } from '../models/tid';
 
 export const ENDASH = '\u2013';
 

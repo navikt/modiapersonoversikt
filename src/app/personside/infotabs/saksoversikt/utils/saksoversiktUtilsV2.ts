@@ -1,6 +1,6 @@
-import { Journalpost } from '../../../../../models/saksoversikt/journalpost';
-import { SakstemaSoknadsstatus, Soknadsstatus } from '../../../../../models/saksoversikt/sakstema';
 import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
+import type { Journalpost } from '../../../../../models/saksoversikt/journalpost';
+import type { SakstemaSoknadsstatus, Soknadsstatus } from '../../../../../models/saksoversikt/sakstema';
 import { formatterDato } from '../../../../../utils/date-utils';
 import { filtrerSakstemaerUtenDataV2 } from '../sakstemaliste/SakstemaListeUtils';
 

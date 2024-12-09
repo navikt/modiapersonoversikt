@@ -1,8 +1,8 @@
-import styled from 'styled-components';
-import NavFrontendSpinner from 'nav-frontend-spinner';
 import { CheckmarkCircleIcon, ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
-import { DraftState } from './use-draft';
+import NavFrontendSpinner from 'nav-frontend-spinner';
+import styled from 'styled-components';
 import { formatterDatoTid } from '../../../utils/date-utils';
+import type { DraftState } from './use-draft';
 
 const DraftStatusWrapper = styled.div`
     display: flex;

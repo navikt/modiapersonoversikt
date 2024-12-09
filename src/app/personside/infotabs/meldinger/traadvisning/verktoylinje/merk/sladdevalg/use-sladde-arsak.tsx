@@ -1,10 +1,10 @@
-import { apiBaseUri } from '../../../../../../../../api/config';
-import { useRest } from '../../../../../../../../rest/useRest';
-import { CenteredLazySpinner } from '../../../../../../../../components/LazySpinner';
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { ReactElement } from 'react';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { FetchError, get } from '../../../../../../../../api/api';
+import type { ReactElement } from 'react';
+import { type FetchError, get } from '../../../../../../../../api/api';
+import { apiBaseUri } from '../../../../../../../../api/config';
+import { CenteredLazySpinner } from '../../../../../../../../components/LazySpinner';
+import { useRest } from '../../../../../../../../rest/useRest';
 
 function queryKey(kjedeId: string) {
     return ['sladdeårsak', kjedeId];

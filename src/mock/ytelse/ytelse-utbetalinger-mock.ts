@@ -1,8 +1,8 @@
+import type { Faker } from '@faker-js/faker';
 import dayjs from 'dayjs';
-import { KommendeUtbetaling, UtbetalingPåVent } from '../../models/ytelse/ytelse-utbetalinger';
+import type { KommendeUtbetaling, UtbetalingPåVent } from '../../models/ytelse/ytelse-utbetalinger';
 import { backendDatoformat } from '../../utils/date-utils';
 import { getPeriodeRange } from '../periodeMock';
-import { Faker } from '@faker-js/faker';
 
 export function getKommendeUtbetaling(faker: Faker): KommendeUtbetaling {
     return {

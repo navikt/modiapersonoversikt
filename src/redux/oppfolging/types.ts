@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
-import { PeriodeOptions, PeriodeValg } from '../utbetalinger/types';
 import { ISO_DATE_FORMAT } from 'src/utils/date-utils';
+import { type PeriodeOptions, PeriodeValg } from '../utbetalinger/types';
 
 export interface OppfolgingState {
     periode: PeriodeOptions;

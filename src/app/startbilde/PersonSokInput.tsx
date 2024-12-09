@@ -1,10 +1,10 @@
+import { type FieldError, useForm } from 'react-hook-form';
 import styled from 'styled-components';
-import theme from '../../styles/personOversiktTheme';
-import { FnrValidationError, validerIdent } from '../../utils/fnr-utils';
-import { FieldError, useForm } from 'react-hook-form';
-import { buildFieldError } from '../../components/form/formUtils';
 import FormInput from '../../components/form/FormInput';
+import { buildFieldError } from '../../components/form/formUtils';
+import theme from '../../styles/personOversiktTheme';
 import { useSettAktivBruker } from '../../utils/customHooks';
+import { FnrValidationError, validerIdent } from '../../utils/fnr-utils';
 
 const Form = styled.form`
     margin-top: 2rem;

@@ -1,19 +1,19 @@
-import { useEffect } from 'react';
-import { Traad } from '../../../../models/meldinger/meldinger';
-import styled from 'styled-components';
-import { pxToRem } from '../../../../styles/personOversiktTheme';
-import TraadListe from './traadliste/TraadListe';
-import { useInfotabsDyplenker } from '../dyplenker';
+import { useNavigate } from '@tanstack/react-router';
 import AlertStripe, { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
-import { useSokEtterMeldinger } from './utils/meldingerUtils';
-import { useValgtTraadIUrl } from './utils/useValgtTraadIUrl';
-import TraadVisningWrapper from './traadvisning/TraadVisningWrapper';
+import { useEffect } from 'react';
+import styled from 'styled-components';
 import DelayRender from '../../../../components/DelayRender';
-import dialogResource from '../../../../rest/resources/dialogResource';
 import LazySpinner from '../../../../components/LazySpinner';
 import { useMeldingsok } from '../../../../context/meldingsok';
-import { useNavigate } from '@tanstack/react-router';
+import type { Traad } from '../../../../models/meldinger/meldinger';
+import dialogResource from '../../../../rest/resources/dialogResource';
+import { pxToRem } from '../../../../styles/personOversiktTheme';
+import { useInfotabsDyplenker } from '../dyplenker';
+import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
+import TraadListe from './traadliste/TraadListe';
+import TraadVisningWrapper from './traadvisning/TraadVisningWrapper';
+import { useSokEtterMeldinger } from './utils/meldingerUtils';
+import { useValgtTraadIUrl } from './utils/useValgtTraadIUrl';
 
 const meldingerMediaTreshold = pxToRem(800);
 

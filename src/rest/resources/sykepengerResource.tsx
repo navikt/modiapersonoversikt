@@ -1,7 +1,7 @@
-import { SykepengerResponse } from '../../models/ytelse/sykepenger';
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+import { type FetchError, post } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { FetchError, post } from '../../api/api';
+import type { SykepengerResponse } from '../../models/ytelse/sykepenger';
 
 export const useSykepenger = (
     fnr: string,

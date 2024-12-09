@@ -1,13 +1,13 @@
 import { ENDASH, formaterDato } from '../../../utils/string-utils';
 import {
     AdresseBeskyttelse,
-    ForelderBarnRelasjon,
+    type ForelderBarnRelasjon,
     ForelderBarnRelasjonRolle,
-    KodeBeskrivelse,
-    LocalDate,
-    Navn,
-    PersonMedAlderOgDodsdato,
-    Sivilstand,
+    type KodeBeskrivelse,
+    type LocalDate,
+    type Navn,
+    type PersonMedAlderOgDodsdato,
+    type Sivilstand,
     SivilstandType
 } from './PersondataDomain';
 
@@ -50,7 +50,7 @@ export function erPartner(sivilstand: Sivilstand): boolean {
     return sivilstand?.type && aktuelleRelasjoner.includes(sivilstand?.type.kode);
 }
 
-export function hentNavn(navn?: Navn | null, feilmelding: string = 'Ukjent navn'): string {
+export function hentNavn(navn?: Navn | null, feilmelding = 'Ukjent navn'): string {
     if (!navn) {
         return feilmelding;
     }

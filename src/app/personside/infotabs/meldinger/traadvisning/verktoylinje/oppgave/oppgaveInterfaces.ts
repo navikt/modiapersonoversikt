@@ -1,5 +1,5 @@
-import { GsakTema } from '../../../../../../../models/meldinger/oppgave';
-import { Traad } from '../../../../../../../models/meldinger/meldinger';
+import type { Traad } from '../../../../../../../models/meldinger/meldinger';
+import type { GsakTema } from '../../../../../../../models/meldinger/oppgave';
 
 export interface OppgaveProps extends SkjermetOppgaveProps {
     valgtTraad: Traad;

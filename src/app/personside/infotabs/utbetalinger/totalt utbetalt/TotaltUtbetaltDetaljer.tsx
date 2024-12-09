@@ -1,10 +1,14 @@
+import dayjs from 'dayjs';
+import { Normaltekst } from 'nav-frontend-typografi';
 import { Fragment } from 'react';
 import styled from 'styled-components';
-import { TotaltUtbetaltProps } from './TotaltUtbetalt';
-import { Normaltekst } from 'nav-frontend-typografi';
-import { Utbetaling, Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
-import { groupArray } from '../../../../../utils/groupArray';
+import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
+import ErrorBoundary from '../../../../../components/ErrorBoundary';
+import type { Utbetaling, Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
 import theme from '../../../../../styles/personOversiktTheme';
+import { groupArray } from '../../../../../utils/groupArray';
+import { formaterDato } from '../../../../../utils/string-utils';
+import { sorterAlfabetisk } from '../../../../../utils/string-utils';
 import {
     filtrerBortUtbetalingerSomIkkeErUtbetalt,
     formaterNOK,
@@ -15,11 +19,7 @@ import {
     getTypeFromYtelse,
     reduceUtbetlingerTilYtelser
 } from '../utils/utbetalinger-utils';
-import { formaterDato } from '../../../../../utils/string-utils';
-import ErrorBoundary from '../../../../../components/ErrorBoundary';
-import dayjs from 'dayjs';
-import { sorterAlfabetisk } from '../../../../../utils/string-utils';
-import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
+import type { TotaltUtbetaltProps } from './TotaltUtbetalt';
 
 interface OwnProps {
     visDetaljer: boolean;

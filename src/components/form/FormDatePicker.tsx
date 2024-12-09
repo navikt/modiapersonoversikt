@@ -1,7 +1,7 @@
-import { ChangeEvent } from 'react';
-import Datepicker, { DatepickerProps } from 'nav-datovelger/lib/Datepicker';
-import { FieldPath, FieldValues } from 'react-hook-form';
-import { FormElementProps } from './formTypes';
+import Datepicker, { type DatepickerProps } from 'nav-datovelger/lib/Datepicker';
+import type { ChangeEvent } from 'react';
+import type { FieldPath, FieldValues } from 'react-hook-form';
+import type { FormElementProps } from './formTypes';
 import { useFieldState } from './useFieldState';
 
 interface Props<TFieldValues extends FieldValues, TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>

@@ -1,4 +1,4 @@
-import { FieldError, FieldValues, Path, SetValueConfig, UseFormReturn } from 'react-hook-form';
+import type { FieldError, FieldValues, Path, SetValueConfig, UseFormReturn } from 'react-hook-form';
 
 export function buildFieldError(errorMessage: string): FieldError {
     return { message: errorMessage, type: 'validate' };

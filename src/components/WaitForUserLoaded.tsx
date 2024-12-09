@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { erGyldigishFnr } from 'src/utils/fnr-utils';
-import useTimeout from 'src/utils/hooks/use-timeout';
 import { Navigate } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
-import { aktivBrukerAtom, aktivBrukerLastetAtom } from 'src/lib/state/context';
+import { useState } from 'react';
 import { CenteredLazySpinner } from 'src/components/LazySpinner';
+import { aktivBrukerAtom, aktivBrukerLastetAtom } from 'src/lib/state/context';
+import { erGyldigishFnr } from 'src/utils/fnr-utils';
+import useTimeout from 'src/utils/hooks/use-timeout';
 
 const WaitForUserLoaded = ({ children }: { children: ({ fnr }: { fnr: string }) => JSX.Element }) => {
     const aktivBruker = useAtomValue(aktivBrukerAtom);

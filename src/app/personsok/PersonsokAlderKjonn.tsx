@@ -1,9 +1,9 @@
-import { FieldValues, UseFormReturn } from 'react-hook-form';
+import type { FieldValues, UseFormReturn } from 'react-hook-form';
 import FormInput from '../../components/form/FormInput';
 import FormSelect from '../../components/form/FormSelect';
 import { Kjonn } from '../personside/visittkort-v2/PersondataDomain';
 import { InputLinje } from './PersonsokSkjema';
-import { PersonSokFormStateV3 } from './personsokUtils';
+import type { PersonSokFormStateV3 } from './personsokUtils';
 
 interface Props<F extends FieldValues = PersonSokFormStateV3> {
     form: UseFormReturn<F>;

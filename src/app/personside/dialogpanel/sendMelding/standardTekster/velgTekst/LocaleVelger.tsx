@@ -1,9 +1,9 @@
 import { Select as NavFrontendSelect } from 'nav-frontend-skjema';
 import styled from 'styled-components';
-import * as Domain from '../domain';
-import { FieldState } from '../../../../../../utils/hooks/use-field-state';
-import { localeString } from '../domain';
 import theme from '../../../../../../styles/personOversiktTheme';
+import type { FieldState } from '../../../../../../utils/hooks/use-field-state';
+import type * as Domain from '../domain';
+import { localeString } from '../domain';
 
 interface Props {
     tekst?: Domain.Tekst;

@@ -1,16 +1,16 @@
+import type { QueryClient } from '@tanstack/react-query';
 import NavFrontendModal from 'nav-frontend-modal';
-import { Traad } from '../../../../../../../../models/meldinger/meldinger';
-import { PopupComponentProps, renderPopup } from '../../../../../../../../components/popup-boxes/popup-boxes';
-import { useCallback } from 'react';
-import styled from 'styled-components';
 import { Systemtittel } from 'nav-frontend-typografi';
+import { useCallback } from 'react';
+import { type FieldError, useForm } from 'react-hook-form';
+import type { UseFormReturn } from 'react-hook-form';
+import styled from 'styled-components';
+import { buildFieldError } from '../../../../../../../../components/form/formUtils';
+import { type PopupComponentProps, renderPopup } from '../../../../../../../../components/popup-boxes/popup-boxes';
+import type { Traad } from '../../../../../../../../models/meldinger/meldinger';
 import SladdMeldingerMedArsak from './SladdMeldingerMedArsak';
 import css from './Sladdvalg.module.css';
 import { useSladdeArsak } from './use-sladde-arsak';
-import { QueryClient } from '@tanstack/react-query';
-import { useForm, FieldError } from 'react-hook-form';
-import { buildFieldError } from '../../../../../../../../components/form/formUtils';
-import { UseFormReturn } from 'react-hook-form';
 
 interface Props {
     traad: Traad;

@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { useAtom } from 'jotai';
+import * as React from 'react';
 import { aktivEnhetAtom } from 'src/lib/state/context';
 
 interface ValgtEnhetState {

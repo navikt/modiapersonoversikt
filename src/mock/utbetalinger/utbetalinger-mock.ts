@@ -1,8 +1,8 @@
-import { Faker, fakerNB_NO as faker } from '@faker-js/faker';
+import { type Faker, fakerNB_NO as faker } from '@faker-js/faker';
 import dayjs from 'dayjs';
 import navfaker from 'nav-faker/dist/index';
 
-import {
+import type {
     Arbeidsgiver,
     Skatt,
     Trekk,
@@ -12,9 +12,9 @@ import {
     YtelsePeriode,
     Ytelseskomponent
 } from '../../models/utbetalinger';
-import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
 import { backendDatoformat } from '../../utils/date-utils';
 import { aremark } from '../persondata/aremark';
+import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
 import { statiskMockUtbetalingRespons } from './statiskMockUtbetalingRespons';
 
 export function getMockUtbetalinger(fodselsnummer: string, startDato: string, sluttDato: string): UtbetalingerResponse {

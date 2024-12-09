@@ -1,5 +1,25 @@
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { apiBaseUri } from '../api/config';
+import type { FeatureToggles } from '../components/featureToggle/toggleIDs';
+import { getAktorId } from './aktorid-mock';
+import { mockBaseUrls } from './baseUrls-mock';
+import { getContextHandlers } from './context-mock';
+import { getSFDialogHandlers } from './dialoger/sf-dialoger-mock';
+import { getDraftHandlers } from './draft-mock';
+import { mockFeatureToggle } from './featureToggle-mock';
+import { getSaksBehandlersEnheterMock } from './getSaksBehandlersEnheterMock';
+import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
+import { saker } from './journalforing/journalforing-mock';
+import { getForeslattEnhet, getMockAnsatte, getMockEnheter, getMockGsakTema } from './meldinger/oppgave-mock';
+import { MeldingerBackendMock } from './mockBackend/meldingerBackendMock';
+import { OppgaverBackendMock } from './mockBackend/oppgaverBackendMock';
+import { getMockOppfolging, getMockYtelserOgKontrakter } from './oppfolging-mock';
+import { hentPersondata } from './persondata/persondata';
+import { mockPersonsokResponse, mockStaticPersonsokRequest } from './personsok/personsokMock';
+import { saksbehandlerInnstillingerHandlers } from './saksbehandlerinnstillinger-mock';
+import { getMockSaksoversiktV2 } from './saksoversikt/saksoversikt-mock';
+import { authMock, tilgangskontrollMock } from './tilgangskontroll-mock';
+import { getMockUtbetalinger } from './utbetalinger/utbetalinger-mock';
 import {
     mockGeneratorMedEnhetId,
     mockGeneratorMedFodselsnummer,
@@ -7,37 +27,17 @@ import {
     verify,
     withDelayedResponse
 } from './utils/fetch-utils';
-import { mockBaseUrls } from './baseUrls-mock';
-import { getMockUtbetalinger } from './utbetalinger/utbetalinger-mock';
-import { getMockSykepengerRespons } from './ytelse/sykepenger-mock';
+import { getMockVarsler } from './varsler/varsel-mock';
 import { getMockForeldrepenger } from './ytelse/foreldrepenger-mock';
 import { getMockPleiepenger } from './ytelse/pleiepenger-mock';
-import { mockFeatureToggle } from './featureToggle-mock';
-import { getMockSaksoversiktV2 } from './saksoversikt/saksoversikt-mock';
-import { getMockOppfolging, getMockYtelserOgKontrakter } from './oppfolging-mock';
-import { getMockVarsler } from './varsler/varsel-mock';
-import { getForeslattEnhet, getMockAnsatte, getMockEnheter, getMockGsakTema } from './meldinger/oppgave-mock';
-import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
-import { saker } from './journalforing/journalforing-mock';
-import { mockPersonsokResponse, mockStaticPersonsokRequest } from './personsok/personsokMock';
-import { getContextHandlers } from './context-mock';
-import { getSaksBehandlersEnheterMock } from './getSaksBehandlersEnheterMock';
-import { OppgaverBackendMock } from './mockBackend/oppgaverBackendMock';
-import { saksbehandlerInnstillingerHandlers } from './saksbehandlerinnstillinger-mock';
-import { getDraftHandlers } from './draft-mock';
-import { authMock, tilgangskontrollMock } from './tilgangskontroll-mock';
-import { MeldingerBackendMock } from './mockBackend/meldingerBackendMock';
-import { getSFDialogHandlers } from './dialoger/sf-dialoger-mock';
-import { getAktorId } from './aktorid-mock';
-import { hentPersondata } from './persondata/persondata';
-import { FeatureToggles } from '../components/featureToggle/toggleIDs';
+import { getMockSykepengerRespons } from './ytelse/sykepenger-mock';
 
-import { DefaultBodyType, http, HttpHandler, HttpResponse, PathParams, StrictRequest } from 'msw';
-import { fodselsNummerErGyldigStatus, randomDelay, STATUS_OK } from './utils-mock';
-import { getMockTiltakspenger } from './ytelse/tiltakspenger-mock';
-import { mockInnkrevingsKrav } from './innkrevingskrav';
-import { FeatureTogglesResponse } from 'src/rest/resources/featuretogglesResource';
 import MockDate from 'mockdate';
+import { http, type DefaultBodyType, type HttpHandler, HttpResponse, type PathParams, type StrictRequest } from 'msw';
+import type { FeatureTogglesResponse } from 'src/rest/resources/featuretogglesResource';
+import { mockInnkrevingsKrav } from './innkrevingskrav';
+import { STATUS_OK, fodselsNummerErGyldigStatus, randomDelay } from './utils-mock';
+import { getMockTiltakspenger } from './ytelse/tiltakspenger-mock';
 
 if (import.meta.env.VITE_E2E) {
     MockDate.set(0);

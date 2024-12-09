@@ -1,9 +1,9 @@
-import styled from 'styled-components';
-import { Element } from 'nav-frontend-typografi';
-import { UnifiedVarsel } from '../../../../models/varsel';
-import Panel from 'nav-frontend-paneler';
-import Varsel from './Varsel';
 import { Alert } from '@navikt/ds-react';
+import Panel from 'nav-frontend-paneler';
+import { Element } from 'nav-frontend-typografi';
+import styled from 'styled-components';
+import type { UnifiedVarsel } from '../../../../models/varsel';
+import Varsel from './Varsel';
 
 interface Props {
     varsler: Array<UnifiedVarsel>;

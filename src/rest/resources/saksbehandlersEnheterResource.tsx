@@ -1,9 +1,9 @@
-import { apiBaseUri } from '../../api/config';
-import { applyDefaults, DefaultConfig, RendererOrConfig, useRest } from '../useRest';
-import { CenteredLazySpinner } from '../../components/LazySpinner';
+import { type UseQueryResult, useQuery, useQueryClient } from '@tanstack/react-query';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { useQuery, useQueryClient, UseQueryResult } from '@tanstack/react-query';
-import { FetchError, get } from '../../api/api';
+import { type FetchError, get } from '../../api/api';
+import { apiBaseUri } from '../../api/config';
+import { CenteredLazySpinner } from '../../components/LazySpinner';
+import { type DefaultConfig, type RendererOrConfig, applyDefaults, useRest } from '../useRest';
 
 /**
  * Kan denne kanskje erstattes av kall til modiacontextholder, og bør den evt gjøre det?

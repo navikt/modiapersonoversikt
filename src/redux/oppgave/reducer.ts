@@ -1,4 +1,4 @@
-import { initialState, OppgaveActionTypes, OppgaveActions, OppgaveState } from './types';
+import { OppgaveActionTypes, type OppgaveActions, type OppgaveState, initialState } from './types';
 
 export function oppgaverReducer(state: OppgaveState = initialState, action: OppgaveActions): OppgaveState {
     switch (action.type) {

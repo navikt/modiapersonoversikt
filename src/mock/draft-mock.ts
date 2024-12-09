@@ -1,8 +1,8 @@
+import { http, HttpResponse, type HttpResponseResolver, type PathParams } from 'msw';
+import type { Draft, DraftContext } from '../app/personside/dialogpanel/use-draft';
 import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
-import { Draft, DraftContext } from '../app/personside/dialogpanel/use-draft';
-import { delayed, randomDelay } from './utils-mock';
 import MockWebsocket from './mock-websocket';
-import { HttpResponse, HttpResponseResolver, PathParams, http } from 'msw';
+import { delayed, randomDelay } from './utils-mock';
 
 const innloggetSaksbehandler = getMockInnloggetSaksbehandler();
 const storage = window.localStorage;
@@ -22,7 +22,7 @@ if (!storage.getItem(storageKey)) {
 }
 let drafts = JSON.parse(storage.getItem('modiapersonoversikt-drafts-mock')!) as Draft[];
 
-function matchContext(context: DraftContext, other: DraftContext, exact: boolean = true): boolean {
+function matchContext(context: DraftContext, other: DraftContext, exact = true): boolean {
     const keys = Object.keys(context);
     const otherKeys = Object.keys(other);
     if (exact && keys.length !== otherKeys.length) {

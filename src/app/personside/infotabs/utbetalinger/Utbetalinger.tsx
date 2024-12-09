@@ -1,9 +1,16 @@
-import { Utbetaling, UtbetalingerResponse } from '../../../../models/utbetalinger';
-import styled from 'styled-components';
-import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import Panel from 'nav-frontend-paneler';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import { useUtbetalingerFilter } from 'src/redux/utbetalinger/utbetalingerReducer';
+import styled from 'styled-components';
+import AriaNotification from '../../../../components/AriaNotification';
+import type { Utbetaling, UtbetalingerResponse } from '../../../../models/utbetalinger';
+import type { UtbetalingFilterState } from '../../../../redux/utbetalinger/types';
+import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
+import { type ArrayGroup, type GroupedArray, groupArray } from '../../../../utils/groupArray';
+import HandleUtbetalingerArrowKeys from './HandleUtbetalingerHotKeys';
+import Månedsgruppe from './MånedsGruppe';
 import TotaltUtbetalt from './totalt utbetalt/TotaltUtbetalt';
-import { ArrayGroup, groupArray, GroupedArray } from '../../../../utils/groupArray';
 import {
     getTypeFromYtelse,
     maanedOgAarForUtbetaling,
@@ -11,13 +18,6 @@ import {
     utbetalingDatoComparator,
     utbetaltTilBruker
 } from './utils/utbetalinger-utils';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import Månedsgruppe from './MånedsGruppe';
-import HandleUtbetalingerArrowKeys from './HandleUtbetalingerHotKeys';
-import AriaNotification from '../../../../components/AriaNotification';
-import { UtbetalingFilterState } from '../../../../redux/utbetalinger/types';
-import Panel from 'nav-frontend-paneler';
-import { useUtbetalingerFilter } from 'src/redux/utbetalinger/utbetalingerReducer';
 
 const UtbetalingerPanel = styled(Panel)`
     padding: 0rem;

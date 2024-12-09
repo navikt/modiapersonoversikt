@@ -1,7 +1,7 @@
-import { ReactNode } from 'react';
 import { Alert, BodyShort, Detail, Heading, Loader } from '@navikt/ds-react';
-import { PropsWithChildren } from 'react';
-import { FetchError } from 'src/api/api';
+import type { ReactNode } from 'react';
+import type { PropsWithChildren } from 'react';
+import type { FetchError } from 'src/api/api';
 
 const getErrorText = (error: FetchError) => {
     if (error.message) return error.message;

@@ -1,18 +1,18 @@
-import { useRef } from 'react';
-import styled from 'styled-components';
-import { Sykepenger as ISykepenger } from '../../../../../models/ytelse/sykepenger';
-import Sykepengertilfellet from './sykepengertilfellet/Sykepengertilfellet';
-import Sykemelding from './sykemelding/Sykemelding';
-import Arbeidssituasjon from '../arbeidsforhold/Arbeidssituasjon';
-import KommendeUtbetalinger from '../utbetalinger/kommendeUtbetalinger/KommendeUtbetalinger';
-import UtbetalingerPVentListe from './utbetalingerpåvent/UtbetalingerPåVent';
-import ErrorBoundary from '../../../../../components/ErrorBoundary';
-import { datoSynkende } from '../../../../../utils/date-utils';
-import { useOnMount } from '../../../../../utils/customHooks';
-import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { guid } from 'nav-frontend-js-utils';
 import Panel from 'nav-frontend-paneler';
+import { useRef } from 'react';
+import styled from 'styled-components';
+import ErrorBoundary from '../../../../../components/ErrorBoundary';
+import type { Sykepenger as ISykepenger } from '../../../../../models/ytelse/sykepenger';
 import theme from '../../../../../styles/personOversiktTheme';
+import { useOnMount } from '../../../../../utils/customHooks';
+import { datoSynkende } from '../../../../../utils/date-utils';
+import { loggEvent } from '../../../../../utils/logger/frontendLogger';
+import Arbeidssituasjon from '../arbeidsforhold/Arbeidssituasjon';
+import KommendeUtbetalinger from '../utbetalinger/kommendeUtbetalinger/KommendeUtbetalinger';
+import Sykemelding from './sykemelding/Sykemelding';
+import Sykepengertilfellet from './sykepengertilfellet/Sykepengertilfellet';
+import UtbetalingerPVentListe from './utbetalingerpåvent/UtbetalingerPåVent';
 
 interface Props {
     sykepenger: ISykepenger;

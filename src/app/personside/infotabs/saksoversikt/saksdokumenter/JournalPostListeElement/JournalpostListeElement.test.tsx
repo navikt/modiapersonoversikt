@@ -1,8 +1,8 @@
-import TestProvider from '../../../../../../test/Testprovider';
-import { getStaticMockSaksoversiktV2 } from '../../../../../../mock/saksoversikt/saksoversikt-mock';
-import { getTestStore } from '../../../../../../test/testStore';
-import { Journalpost, Feilmelding } from '../../../../../../models/saksoversikt/journalpost';
 import { render, screen } from '@testing-library/react';
+import { getStaticMockSaksoversiktV2 } from '../../../../../../mock/saksoversikt/saksoversikt-mock';
+import { Feilmelding, type Journalpost } from '../../../../../../models/saksoversikt/journalpost';
+import TestProvider from '../../../../../../test/Testprovider';
+import { getTestStore } from '../../../../../../test/testStore';
 import { aggregertSakstemaV2 } from '../../utils/saksoversiktUtilsV2';
 import JournalpostListeElementV2 from './JournalpostListeElementV2';
 

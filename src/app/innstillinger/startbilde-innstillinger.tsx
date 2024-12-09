@@ -1,6 +1,6 @@
-import { useState } from 'react';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Flatknapp } from 'nav-frontend-knapper';
+import { useState } from 'react';
 import SvgCog from './../../svg/cog.svg';
 import InnstillingerModal from './modal/InnstillingerModal';
 

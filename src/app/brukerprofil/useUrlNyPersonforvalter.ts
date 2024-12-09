@@ -1,6 +1,6 @@
-import { useFodselsnummer } from '../../utils/customHooks';
-import baseurls from '../../rest/resources/baseurlsResource';
 import aktoridResource from '../../rest/resources/aktoridResource';
+import baseurls from '../../rest/resources/baseurlsResource';
+import { useFodselsnummer } from '../../utils/customHooks';
 
 function useUrlNyPersonforvalter() {
     const baseUrlResource = baseurls.useFetch();

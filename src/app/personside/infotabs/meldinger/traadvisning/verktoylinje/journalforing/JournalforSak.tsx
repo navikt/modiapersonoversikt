@@ -1,22 +1,22 @@
-import { useState } from 'react';
-import { Flatknapp, Hovedknapp } from 'nav-frontend-knapper';
+import { useQueryClient } from '@tanstack/react-query';
 import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
-import styled from 'styled-components';
-import { StyledTable } from '../../../../../../../utils/table/StyledTable';
-import { JournalforingsSak } from './JournalforingPanel';
-import { sakKategori } from './VelgSak';
+import { Flatknapp, Hovedknapp } from 'nav-frontend-knapper';
 import { Ingress, Normaltekst, Undertittel } from 'nav-frontend-typografi';
-import { apiBaseUri } from '../../../../../../../api/config';
-import { Traad } from '../../../../../../../models/meldinger/meldinger';
+import { useState } from 'react';
+import styled from 'styled-components';
 import { post } from '../../../../../../../api/api';
-import { loggError } from '../../../../../../../utils/logger/frontendLogger';
+import { apiBaseUri } from '../../../../../../../api/config';
+import { useValgtenhet } from '../../../../../../../context/valgtenhet-state';
+import type { Traad } from '../../../../../../../models/meldinger/meldinger';
+import dialogResource from '../../../../../../../rest/resources/dialogResource';
+import journalsakResource from '../../../../../../../rest/resources/journalsakResource';
 import { useFodselsnummer } from '../../../../../../../utils/customHooks';
 import { formatterDatoMedMaanedsnavnOrNull } from '../../../../../../../utils/date-utils';
+import { loggError } from '../../../../../../../utils/logger/frontendLogger';
 import { ENDASH } from '../../../../../../../utils/string-utils';
-import dialogResource from '../../../../../../../rest/resources/dialogResource';
-import { useValgtenhet } from '../../../../../../../context/valgtenhet-state';
-import { useQueryClient } from '@tanstack/react-query';
-import journalsakResource from '../../../../../../../rest/resources/journalsakResource';
+import { StyledTable } from '../../../../../../../utils/table/StyledTable';
+import type { JournalforingsSak } from './JournalforingPanel';
+import { sakKategori } from './VelgSak';
 
 interface Props {
     sak: JournalforingsSak;

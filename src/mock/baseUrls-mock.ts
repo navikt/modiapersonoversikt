@@ -1,4 +1,4 @@
-import { BaseUrls } from '../models/baseurls';
+import type { BaseUrls } from '../models/baseurls';
 
 export function mockBaseUrls(): BaseUrls {
     return {

@@ -1,10 +1,10 @@
-import * as renderer from 'react-test-renderer';
-import TestProvider from '../../../../test/Testprovider';
-import UtbetalingerContainer from './UtbetalingerContainer';
-import { getTestStore, mockReactQuery, setupReactQueryMocks } from '../../../../test/testStore';
-import { statiskMockUtbetaling } from '../../../../mock/utbetalinger/statiskMockUtbetaling';
 import MockDate from 'mockdate';
+import * as renderer from 'react-test-renderer';
+import { statiskMockUtbetaling } from '../../../../mock/utbetalinger/statiskMockUtbetaling';
 import utbetalingerResource from '../../../../rest/resources/utbetalingerResource';
+import TestProvider from '../../../../test/Testprovider';
+import { getTestStore, mockReactQuery, setupReactQueryMocks } from '../../../../test/testStore';
+import UtbetalingerContainer from './UtbetalingerContainer';
 
 test('Viser utbetalingercontainer med alt innhold', () => {
     MockDate.reset();

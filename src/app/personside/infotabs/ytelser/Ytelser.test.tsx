@@ -1,7 +1,7 @@
 import * as renderer from 'react-test-renderer';
 import TestProvider from '../../../../test/Testprovider';
-import Ytelser from './Ytelser';
 import { setupReactQueryMocks } from '../../../../test/testStore';
+import Ytelser from './Ytelser';
 
 test('Om Ytelser matcher snapshot', () => {
     setupReactQueryMocks();

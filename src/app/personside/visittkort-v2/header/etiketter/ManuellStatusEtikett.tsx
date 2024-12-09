@@ -1,5 +1,5 @@
 import EtikettBase from 'nav-frontend-etiketter';
-import { KontaktInformasjon } from '../../PersondataDomain';
+import type { KontaktInformasjon } from '../../PersondataDomain';
 
 interface Props {
     kontaktInformasjon: KontaktInformasjon | null;

@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
-import { useFodselsnummer } from '../customHooks';
-import { Oppgave } from '../../models/meldinger/oppgave';
+import type { Oppgave } from '../../models/meldinger/oppgave';
 import tildelteoppgaver from '../../rest/resources/tildelteoppgaverResource';
+import { useFodselsnummer } from '../customHooks';
 
 const emptyList: Oppgave[] = [];
 function useTildelteOppgaver(): { paaBruker: Oppgave[] } {

@@ -1,9 +1,9 @@
 import NAVSPA from '@navikt/navspa';
 import styled from 'styled-components';
-import { DecoratorPropsV3 } from './decoratorprops';
+import OppdateringsloggContainer from '../oppdateringslogg/OppdateringsloggContainer';
 import PersonsokContainer from '../personsok/Personsok';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
-import OppdateringsloggContainer from '../oppdateringslogg/OppdateringsloggContainer';
+import type { DecoratorPropsV3 } from './decoratorprops';
 import './personsokKnapp.less';
 import './decorator.less';
 import { useDecoratorConfig } from './useDecoratorConfig';

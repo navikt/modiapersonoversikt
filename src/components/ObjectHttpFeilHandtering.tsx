@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { ReactNode, useEffect, useState } from 'react';
-import { CenteredLazySpinner } from './LazySpinner';
+import type * as React from 'react';
+import { type ReactNode, useEffect, useState } from 'react';
 import { postConfig } from '../api/config';
+import { CenteredLazySpinner } from './LazySpinner';
 
 type Omit<T, U> = Pick<T, Exclude<keyof T, U>>;
 

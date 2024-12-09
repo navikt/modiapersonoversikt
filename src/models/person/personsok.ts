@@ -1,4 +1,4 @@
-import { Kodeverk } from '../kodeverk';
+import type { Kodeverk } from '../kodeverk';
 
 export interface PersonsokResponse {
     diskresjonskode?: Kodeverk | null;

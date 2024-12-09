@@ -1,5 +1,5 @@
 import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
-import { ForelderBarnRelasjon } from '../../PersondataDomain';
+import type { ForelderBarnRelasjon } from '../../PersondataDomain';
 import { hentAlderEllerDod, hentNavn } from '../../visittkort-utils';
 import VisittkortElement from '../VisittkortElement';
 import BostedForRelasjon from './common/BostedForRelasjon';

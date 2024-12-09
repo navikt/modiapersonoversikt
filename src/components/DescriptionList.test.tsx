@@ -1,5 +1,5 @@
-import DescriptionList, { DescriptionListEntries, fjernEntriesUtenVerdi } from './DescriptionList';
 import { render, screen } from '@testing-library/react';
+import DescriptionList, { type DescriptionListEntries, fjernEntriesUtenVerdi } from './DescriptionList';
 
 test('fjerner tomme properties fra objekt med DescriptionListEntries', () => {
     const test: DescriptionListEntries = {

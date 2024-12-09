@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { FraTilDato } from 'src/redux/utbetalinger/types';
-import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
-import dayjs, { Dayjs } from 'dayjs';
 import { DatePicker, useDatepicker } from '@navikt/ds-react';
-import styled from 'styled-components';
+import dayjs, { type Dayjs } from 'dayjs';
+import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
+import { useState } from 'react';
+import type { FraTilDato } from 'src/redux/utbetalinger/types';
 import { ISO_DATE_FORMAT } from 'src/utils/date-utils';
+import styled from 'styled-components';
 
 interface EgendefinertDatoInputsProps {
     updateFraTilDato: (change: FraTilDato) => void;

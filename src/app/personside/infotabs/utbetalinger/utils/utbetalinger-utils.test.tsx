@@ -1,6 +1,11 @@
+import dayjs from 'dayjs';
 import MockDate from 'mockdate';
-import { Utbetaling, Ytelse } from '../../../../../models/utbetalinger';
+import { statiskMockUtbetaling, statiskMockYtelse } from 'src/mock/utbetalinger/statiskMockUtbetaling';
+import type { Periode } from 'src/models/tid';
+import { PeriodeValg, type UtbetalingFilterState } from 'src/redux/utbetalinger/types';
+import { ISO_DATE_FORMAT } from 'src/utils/date-utils';
 import { getMockUtbetaling, getMockYtelse } from '../../../../../mock/utbetalinger/utbetalinger-mock';
+import type { Utbetaling, Ytelse } from '../../../../../models/utbetalinger';
 import {
     filtrerBortUtbetalingerSomIkkeErUtbetalt,
     getBruttoSumYtelser,
@@ -17,11 +22,6 @@ import {
     summertBeløpStringFraUtbetalinger,
     utbetalingDatoComparator
 } from './utbetalinger-utils';
-import dayjs from 'dayjs';
-import { statiskMockUtbetaling, statiskMockYtelse } from 'src/mock/utbetalinger/statiskMockUtbetaling';
-import { Periode } from 'src/models/tid';
-import { PeriodeValg, UtbetalingFilterState } from 'src/redux/utbetalinger/types';
-import { ISO_DATE_FORMAT } from 'src/utils/date-utils';
 
 Date.now = () => new Date().getTime(); // for å motvirke Date.now() mock i setupTests.ts
 

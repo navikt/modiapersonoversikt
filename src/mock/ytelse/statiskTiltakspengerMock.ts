@@ -1,4 +1,4 @@
-import { Tiltakspenger } from '../../models/ytelse/tiltakspenger';
+import type { Tiltakspenger } from '../../models/ytelse/tiltakspenger';
 
 export const statiskTiltakspengerMock: Tiltakspenger = {
     fom: '2020-01-10',

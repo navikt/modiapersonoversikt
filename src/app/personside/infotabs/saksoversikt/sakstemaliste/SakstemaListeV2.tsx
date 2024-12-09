@@ -1,17 +1,17 @@
-import styled from 'styled-components';
-import { pxToRem } from '../../../../../styles/personOversiktTheme';
+import { guid } from 'nav-frontend-js-utils';
+import { Knapp } from 'nav-frontend-knapper';
+import Panel from 'nav-frontend-paneler';
+import { CheckboksPanelGruppe, type CheckboksPanelProps } from 'nav-frontend-skjema';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { useRef } from 'react';
-import { guid } from 'nav-frontend-js-utils';
-import Panel from 'nav-frontend-paneler';
-import { Knapp } from 'nav-frontend-knapper';
+import styled from 'styled-components';
+import type { Sakstema } from '../../../../../models/saksoversikt/sakstema';
+import { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { useHentAlleSakstemaFraResourceV2, useSakstemaURLStateV2 } from '../useSakstemaURLState';
-import { CheckboksPanelGruppe, CheckboksPanelProps } from 'nav-frontend-skjema';
 import { sakstemakodeAlle } from '../utils/saksoversiktUtilsV2';
-import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
-import { filtrerSakstemaerUtenDataV2 } from './SakstemaListeUtils';
-import SakstemaListeElementCheckboksV2 from './SakstemaListeElementCheckboksV2';
 import { aggregertSakstemaV2 } from '../utils/saksoversiktUtilsV2';
+import SakstemaListeElementCheckboksV2 from './SakstemaListeElementCheckboksV2';
+import { filtrerSakstemaerUtenDataV2 } from './SakstemaListeUtils';
 
 const StyledPanel = styled(Panel)`
     padding: 0rem;

@@ -1,8 +1,8 @@
+import type { Faker } from '@faker-js/faker';
 import dayjs from 'dayjs';
-import { Periode } from '../models/tid';
+import type { Periode } from '../models/tid';
 import { backendDatoformat } from '../utils/date-utils';
 import { getSistOppdatert } from './utils/mock-utils';
-import { Faker } from '@faker-js/faker';
 
 export function getPeriode(): Periode {
     return {

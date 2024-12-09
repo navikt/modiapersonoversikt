@@ -1,17 +1,17 @@
-import { createElement } from 'react';
-import * as React from 'react';
-import { createRoot } from 'react-dom/client';
-import RawModal from 'nav-frontend-modal';
-import KnappBase from 'nav-frontend-knapper';
-import OkIkon from 'nav-frontend-ikoner-assets/assets/ok-sirkel-fyll.svg';
+import { type QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AdvarselIkon from 'nav-frontend-ikoner-assets/assets/advarsel-sirkel-fyll.svg';
 import ErrorIkon from 'nav-frontend-ikoner-assets/assets/feil-sirkel-fyll.svg';
 import HelpIkon from 'nav-frontend-ikoner-assets/assets/help-circle_hover.svg';
 import InfoIkon from 'nav-frontend-ikoner-assets/assets/info-sirkel-fyll.svg';
+import OkIkon from 'nav-frontend-ikoner-assets/assets/ok-sirkel-fyll.svg';
+import KnappBase from 'nav-frontend-knapper';
+import RawModal from 'nav-frontend-modal';
+import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import { createElement } from 'react';
+import type * as React from 'react';
+import { createRoot } from 'react-dom/client';
 import styled from 'styled-components';
 import { focusOnFirstFocusable } from '../../utils/hooks/use-focus-on-first-focusable';
-import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 type IconChoice = 'none' | 'ok' | 'warning' | 'error' | 'help' | 'info';
 type CommonPopupComponentProps = {

@@ -1,13 +1,13 @@
-import { DetaljertOppfolging } from '../../../../models/oppfolging';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import VisMerKnapp from '../../../../components/VisMerKnapp';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
+import VisMerKnapp from '../../../../components/VisMerKnapp';
+import type { DetaljertOppfolging } from '../../../../models/oppfolging';
+import oppfolgingResource from '../../../../rest/resources/oppfolgingResource';
 import theme from '../../../../styles/personOversiktTheme';
 import { usePaths } from '../../../routes/routing';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { getOppfolgingEnhet, getVeileder } from '../oppfolging/oppfolging-utils';
 import CopyToClipboard from '../../visittkort-v2/header/status/CopyToClipboard';
-import oppfolgingResource from '../../../../rest/resources/oppfolgingResource';
+import { getOppfolgingEnhet, getVeileder } from '../oppfolging/oppfolging-utils';
 
 interface Props {
     detaljertOppfolging: DetaljertOppfolging;

@@ -2,19 +2,19 @@ import { fakerNB_NO as faker } from '@faker-js/faker';
 import dayjs from 'dayjs';
 
 import navfaker from 'nav-faker/dist/index';
-import {
+import { pleiepengerTestData } from 'src/app/personside/infotabs/ytelser/pleiepenger/pleiepengerTestData';
+import type { Arbeidsforhold } from 'src/models/ytelse/arbeidsforhold';
+import type {
     Periode,
     Pleiepengeperiode,
-    Pleiepengerettighet,
     PleiepengerResponse,
+    Pleiepengerettighet,
     Vedtak
 } from 'src/models/ytelse/pleiepenger';
-import { fyllRandomListe } from '../utils/mock-utils';
-import { pleiepengerTestData } from 'src/app/personside/infotabs/ytelser/pleiepenger/pleiepengerTestData';
 import { backendDatoformat } from 'src/utils/date-utils';
 import { aremark } from '../persondata/aremark';
 import { lagPerson } from '../persondata/persondata';
-import { Arbeidsforhold } from 'src/models/ytelse/arbeidsforhold';
+import { fyllRandomListe } from '../utils/mock-utils';
 
 export function getMockPleiepenger(fødselsnummer: string): PleiepengerResponse {
     if (fødselsnummer === aremark.personIdent) {

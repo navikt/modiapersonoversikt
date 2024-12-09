@@ -1,7 +1,7 @@
-import { Component } from 'react';
+import KnappBase, { type KnappBaseProps } from 'nav-frontend-knapper';
 import ModalWrapper from 'nav-frontend-modal';
 import { Normaltekst } from 'nav-frontend-typografi';
-import KnappBase, { KnappBaseProps } from 'nav-frontend-knapper';
+import { Component } from 'react';
 import styled from 'styled-components';
 
 interface Props extends Partial<Pick<KnappBaseProps, 'type' | 'htmlType'>> {

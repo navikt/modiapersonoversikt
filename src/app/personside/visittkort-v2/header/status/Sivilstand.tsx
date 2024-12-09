@@ -1,4 +1,4 @@
-import { Kjonn, Person, Sivilstand as SivilstandInterface, SivilstandType } from '../../PersondataDomain';
+import { Kjonn, type Person, type Sivilstand as SivilstandInterface, SivilstandType } from '../../PersondataDomain';
 
 interface Props {
     person: Person;

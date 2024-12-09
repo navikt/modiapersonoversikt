@@ -1,14 +1,14 @@
 import {
     AdresseBeskyttelse,
     EgenAnsatt,
-    ForelderBarnRelasjon,
+    type ForelderBarnRelasjon,
     ForelderBarnRelasjonRolle,
     FullmaktsRolle,
     Handling,
     Kjonn,
-    LocalDate,
-    LocalDateTime,
-    Person,
+    type LocalDate,
+    type LocalDateTime,
+    type Person,
     PersonStatus,
     SivilstandType,
     Skifteform

@@ -1,7 +1,7 @@
-import { OppdateringsloggInnslag } from './OppdateringsloggContainer';
 import { Normaltekst, Undertekst, Undertittel } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import { formatterDatoTidMedMaanedsnavn } from '../../utils/date-utils';
+import type { OppdateringsloggInnslag } from './OppdateringsloggContainer';
 
 interface Props {
     enOppdateringslogg: OppdateringsloggInnslag;

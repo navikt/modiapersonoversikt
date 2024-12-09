@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
-import { Data as PersonData } from '../PersondataDomain';
-import Familie from './familie/Familie';
-import Fullmakter from './fullmakt/Fullmakt';
-import Kontaktinformasjon from './kontaktinformasjon/Kontaktinformasjon';
+import type { Data as PersonData } from '../PersondataDomain';
 import { Kolonne, VisittkortBodyWrapper } from './VisittkortStyles';
 import DeltBosted from './deltBosted/DeltBosted';
+import Familie from './familie/Familie';
 import Foreldreansvar from './foreldreansvar/Foreldreansvar';
-import TilrettelagtKommunikasjon from './tilrettelagtkommunikasjon/TilrettelagtKommunikasjon';
-import Vergemal from './vergemal/Vergemal';
-import Sikkerhetstiltak from './sikkerhetstiltak/Sikkerhetstiltak';
+import Fullmakter from './fullmakt/Fullmakt';
+import Kontaktinformasjon from './kontaktinformasjon/Kontaktinformasjon';
 import LenkeBrukerprofil from './lenkebrukerprofil/LenkeBrukerprofil';
 import NavKontor from './navkontor/NavKontor';
+import Sikkerhetstiltak from './sikkerhetstiltak/Sikkerhetstiltak';
+import TilrettelagtKommunikasjon from './tilrettelagtkommunikasjon/TilrettelagtKommunikasjon';
+import Vergemal from './vergemal/Vergemal';
 
 interface Props {
     persondata: PersonData;

@@ -1,10 +1,10 @@
-import RawModal from 'nav-frontend-modal';
-import styled from 'styled-components';
-import { Systemtittel } from 'nav-frontend-typografi';
-import ErrorIkon from '../../svg/alvorlig-advarsel.svg';
 import { Button } from '@navikt/ds-react';
 import { useSetAtom } from 'jotai';
+import RawModal from 'nav-frontend-modal';
+import { Systemtittel } from 'nav-frontend-typografi';
 import { aktivBrukerAtom } from 'src/lib/state/context';
+import styled from 'styled-components';
+import ErrorIkon from '../../svg/alvorlig-advarsel.svg';
 
 const Modal = styled(RawModal)`
     text-align: center;

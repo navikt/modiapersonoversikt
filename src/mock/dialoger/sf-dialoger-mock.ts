@@ -1,21 +1,21 @@
-import { DefaultBodyType, http, StrictRequest } from 'msw';
-import { apiBaseUri } from '../../api/config';
-import { mockGeneratorMedFodselsnummerV2, verify, withDelayedResponse } from '../utils/fetch-utils';
-import { fodselsNummerErGyldigStatus, randomDelay } from '../utils-mock';
-import { MeldingerBackendMock } from '../mockBackend/meldingerBackendMock';
-import {
-    Melding,
-    Meldingstype,
-    OpprettHenvendelseRequest,
-    SendMeldingRequest,
-    Traad
-} from '../../models/meldinger/meldinger';
+import { http, type DefaultBodyType, type StrictRequest } from 'msw';
 import { guid } from 'nav-frontend-js-utils';
+import { apiBaseUri } from '../../api/config';
 import {
     erChatMelding,
     erMeldingFraBruker,
     erMeldingstypeSamtalereferat
 } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
+import {
+    type Melding,
+    Meldingstype,
+    type OpprettHenvendelseRequest,
+    type SendMeldingRequest,
+    type Traad
+} from '../../models/meldinger/meldinger';
+import type { MeldingerBackendMock } from '../mockBackend/meldingerBackendMock';
+import { fodselsNummerErGyldigStatus, randomDelay } from '../utils-mock';
+import { mockGeneratorMedFodselsnummerV2, verify, withDelayedResponse } from '../utils/fetch-utils';
 
 const STATUS_OK = () => Promise.resolve(200);
 let meldingerBackendMock: MeldingerBackendMock = null as unknown as MeldingerBackendMock;

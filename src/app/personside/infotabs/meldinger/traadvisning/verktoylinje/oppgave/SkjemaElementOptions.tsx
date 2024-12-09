@@ -1,4 +1,4 @@
-import { GsakTema } from '../../../../../../../models/meldinger/oppgave';
+import type { GsakTema } from '../../../../../../../models/meldinger/oppgave';
 
 export function TemaOptions({ gsakTema }: { gsakTema: GsakTema[] }) {
     const options: JSX.Element[] = [

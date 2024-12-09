@@ -1,20 +1,20 @@
-import { createRef } from 'react';
-import { formaterNOK, getGjeldendeDatoForUtbetaling, getNettoSumYtelser } from '../utils/utbetalinger-utils';
-import styled from 'styled-components';
-import { Bold, FlexEnd, SpaceBetween } from '../../../../../components/common-styled-components';
-import PrintKnapp from '../../../../../components/PrintKnapp';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import { Utbetaling, Ytelse } from '../../../../../models/utbetalinger';
-import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
-import DelUtbetaling from './DelUtbetaling';
-import { loggEvent } from '../../../../../utils/logger/frontendLogger';
+import { createRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { UtbetalingTabellStyling } from '../utils/CommonStyling';
+import styled from 'styled-components';
+import PrintKnapp from '../../../../../components/PrintKnapp';
+import { Bold, FlexEnd, SpaceBetween } from '../../../../../components/common-styled-components';
+import type { Utbetaling, Ytelse } from '../../../../../models/utbetalinger';
 import { setEkspanderYtelse } from '../../../../../redux/utbetalinger/actions';
-import { datoVerbose } from '../../../../../utils/date-utils';
-import { utbetalingerTest } from '../../dyplenkeTest/utils-dyplenker-test';
-import usePrinter from '../../../../../utils/print/usePrinter';
+import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { useOnMount } from '../../../../../utils/customHooks';
+import { datoVerbose } from '../../../../../utils/date-utils';
+import { loggEvent } from '../../../../../utils/logger/frontendLogger';
+import usePrinter from '../../../../../utils/print/usePrinter';
+import { utbetalingerTest } from '../../dyplenkeTest/utils-dyplenker-test';
+import { UtbetalingTabellStyling } from '../utils/CommonStyling';
+import { formaterNOK, getGjeldendeDatoForUtbetaling, getNettoSumYtelser } from '../utils/utbetalinger-utils';
+import DelUtbetaling from './DelUtbetaling';
 
 interface Props {
     utbetaling: Utbetaling;

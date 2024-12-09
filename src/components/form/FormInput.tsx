@@ -1,7 +1,7 @@
-import { FieldValues } from 'react-hook-form';
-import { FieldPath } from 'react-hook-form';
-import { Input, InputProps } from 'nav-frontend-skjema';
-import { FormElementProps } from './formTypes';
+import { Input, type InputProps } from 'nav-frontend-skjema';
+import type { FieldValues } from 'react-hook-form';
+import type { FieldPath } from 'react-hook-form';
+import type { FormElementProps } from './formTypes';
 import { useFieldState } from './useFieldState';
 
 interface Props<TFieldValues extends FieldValues, TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>

@@ -1,16 +1,16 @@
+import { guid } from 'nav-frontend-js-utils';
 import { useRef } from 'react';
-import DialogPanel from './dialogpanel/DialogPanel';
-import Visittkort from './visittkort-v2/Visittkort';
+import styled from 'styled-components';
+import { useDialogpanelState } from '../../context/dialogpanel-state';
+import { VisittkortStateProvider } from '../../context/visittkort-state';
+import EkspanderDilaogpanelKnapp from './EkspanderDilaogpanelKnapp';
 import { LayoutWrapper } from './MainLayoutStyles';
 import { HoyreKolonne, SmallScreenToggleButton, VenstreKolonne } from './ResponsiveMainLayoutStyles';
-import InfoTabs from './infotabs/InfoTabs';
-import EkspanderDilaogpanelKnapp from './EkspanderDilaogpanelKnapp';
-import styled from 'styled-components';
 import BrukerHarUbesvarteMeldinger from './dialogpanel/BrukerHarUbesvarteMeldinger';
-import { guid } from 'nav-frontend-js-utils';
+import DialogPanel from './dialogpanel/DialogPanel';
 import TildelteOppgaver from './dialogpanel/TildelteOppgaver';
-import { VisittkortStateProvider } from '../../context/visittkort-state';
-import { useDialogpanelState } from '../../context/dialogpanel-state';
+import InfoTabs from './infotabs/InfoTabs';
+import Visittkort from './visittkort-v2/Visittkort';
 
 const Scrollbar = styled.div`
     overflow-y: auto;

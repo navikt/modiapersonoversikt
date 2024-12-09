@@ -1,27 +1,27 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-import { useSelector } from 'react-redux';
 import { Hovedknapp } from 'nav-frontend-knapper';
+import { Element } from 'nav-frontend-typografi';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
+import styled from 'styled-components';
+import { post } from '../../../../../../../api/api';
 import { apiBaseUri } from '../../../../../../../api/config';
 import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
+import FormErrorSummary from '../../../../../../../components/form/FormErrorSummary';
 import { useValgtenhet } from '../../../../../../../context/valgtenhet-state';
-import { AppState } from '../../../../../../../redux/reducers';
+import type { AppState } from '../../../../../../../redux/reducers';
 import { erBehandlet } from '../../../utils/meldingerUtils';
 import { Resultat } from '../utils/VisPostResultat';
 import AvsluttGosysOppgaveSkjema from './AvsluttGosysOppgaveSkjema';
-import { lagOppgaveRequest } from './byggRequest';
-import { useNormalPrioritet } from './useNormalPrioritet';
-import { OppgaveProps, OppgaveSkjemaForm } from './oppgaveInterfaces';
-import OppgaveSkjemaErBehandlet from './OppgaveSkjemaDeler/OppgaveSkjemaErBehandlet';
-import OppgaveSkjemaResultat from './OppgaveSkjemaDeler/OppgaveSkjemaResultat';
-import { resolverOppgaveSkjema } from './oppgaveSkjemaUtils';
-import { post } from '../../../../../../../api/api';
-import { Element } from 'nav-frontend-typografi';
-import OppgaveSkjemaTemaGjelderTypeOppgave from './OppgaveSkjemaDeler/OppgaveSkjemaTemaGjelderTypeOppgave';
-import OppgaveSkjemaPrioritetBeskrivelse from './OppgaveSkjemaDeler/OppgaveSkjemaPrioritetBeskrivelse';
 import OppgaveSkjemaEnhetAnsatt from './OppgaveSkjemaDeler/OppgaveSkjemaEnhetAnsatt';
-import FormErrorSummary from '../../../../../../../components/form/FormErrorSummary';
+import OppgaveSkjemaErBehandlet from './OppgaveSkjemaDeler/OppgaveSkjemaErBehandlet';
+import OppgaveSkjemaPrioritetBeskrivelse from './OppgaveSkjemaDeler/OppgaveSkjemaPrioritetBeskrivelse';
+import OppgaveSkjemaResultat from './OppgaveSkjemaDeler/OppgaveSkjemaResultat';
+import OppgaveSkjemaTemaGjelderTypeOppgave from './OppgaveSkjemaDeler/OppgaveSkjemaTemaGjelderTypeOppgave';
+import { lagOppgaveRequest } from './byggRequest';
+import type { OppgaveProps, OppgaveSkjemaForm } from './oppgaveInterfaces';
+import { resolverOppgaveSkjema } from './oppgaveSkjemaUtils';
+import { useNormalPrioritet } from './useNormalPrioritet';
 
 export const AlertStyling = styled.div`
     > * {

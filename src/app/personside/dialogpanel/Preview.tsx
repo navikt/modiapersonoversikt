@@ -1,13 +1,13 @@
-import styled from 'styled-components';
-import { Normaltekst } from 'nav-frontend-typografi';
-import theme from '../../../styles/personOversiktTheme';
-import EtikettGraa from '../../../components/EtikettGraa';
-import { formatterDatoTid } from '../../../utils/date-utils';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import Tekstomrade from 'nav-frontend-tekstomrade';
-import { useSendtMelding } from './useSendtMelding';
+import { Normaltekst } from 'nav-frontend-typografi';
+import styled from 'styled-components';
+import EtikettGraa from '../../../components/EtikettGraa';
+import type { Traad } from '../../../models/meldinger/meldinger';
+import theme from '../../../styles/personOversiktTheme';
+import { formatterDatoTid } from '../../../utils/date-utils';
 import { SendNyMeldingStatus } from './sendMelding/SendNyMeldingTypes';
-import { Traad } from '../../../models/meldinger/meldinger';
+import { useSendtMelding } from './useSendtMelding';
 
 const PreviewStyle = styled.article`
     padding: 1rem;

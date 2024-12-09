@@ -1,7 +1,7 @@
-import * as React from 'react';
-import AlertStripe from 'nav-frontend-alertstriper';
 import { FaroErrorBoundary } from '@grafana/faro-react';
 import { Alert } from '@navikt/ds-react';
+import AlertStripe from 'nav-frontend-alertstriper';
+import type * as React from 'react';
 import { ErrorBoundary as ReactErrorBoundary } from 'react-error-boundary';
 
 /*

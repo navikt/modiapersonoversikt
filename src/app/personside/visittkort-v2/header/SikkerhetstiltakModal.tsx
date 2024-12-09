@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import RawModal from 'nav-frontend-modal';
 import KnappBase from 'nav-frontend-knapper';
-import styled from 'styled-components';
+import RawModal from 'nav-frontend-modal';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import { useState } from 'react';
+import styled from 'styled-components';
 import ErrorIkon from '../../../../svg/alvorlig-advarsel.svg';
-import { Sikkerhetstiltak } from '../PersondataDomain';
+import type { Sikkerhetstiltak } from '../PersondataDomain';
 import GyldighetsPeriode from '../body/GyldighetsPeriode';
 
 const Modal = styled(RawModal)`

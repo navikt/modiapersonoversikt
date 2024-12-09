@@ -1,5 +1,5 @@
-import { SendNyMeldingState, tekstMaksLengde } from './SendNyMelding';
 import { TraadType } from '../../../../models/meldinger/meldinger';
+import { type SendNyMeldingState, tekstMaksLengde } from './SendNyMelding';
 
 export class MeldingValidator {
     public static tekst(state: SendNyMeldingState) {

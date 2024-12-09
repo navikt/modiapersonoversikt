@@ -1,13 +1,13 @@
-import { Pleiepengerettighet } from '../../../../../models/ytelse/pleiepenger';
-import Pleiepengerperiode from './Pleiepengerperiode';
-import Oversikt from './Oversikt';
-import { datoStigende } from '../../../../../utils/date-utils';
-import { useOnMount } from '../../../../../utils/customHooks';
-import { loggEvent } from '../../../../../utils/logger/frontendLogger';
-import styled from 'styled-components';
-import { useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
 import Panel from 'nav-frontend-paneler';
+import { useRef } from 'react';
+import styled from 'styled-components';
+import type { Pleiepengerettighet } from '../../../../../models/ytelse/pleiepenger';
+import { useOnMount } from '../../../../../utils/customHooks';
+import { datoStigende } from '../../../../../utils/date-utils';
+import { loggEvent } from '../../../../../utils/logger/frontendLogger';
+import Oversikt from './Oversikt';
+import Pleiepengerperiode from './Pleiepengerperiode';
 
 interface Props {
     pleiepenger: Pleiepengerettighet;

@@ -1,15 +1,15 @@
-import { ReactNode, useMemo } from 'react';
-import { datoSynkende } from '../../../../utils/date-utils';
-import { getYtelseIdDato, Ytelse } from '../../../../models/ytelse/ytelse-utils';
-import { useSykepenger } from '../../../../rest/resources/sykepengerResource';
-import { usePleiepenger } from '../../../../rest/resources/pleiepengerResource';
-import { useForeldrepenger } from '../../../../rest/resources/foreldrepengerResource';
-import { useTiltakspenger } from '../../../../rest/resources/tiltakspengerResource';
+import type { UseQueryResult } from '@tanstack/react-query';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
-import { UseQueryResult } from '@tanstack/react-query';
-import { FetchError } from '../../../../api/api';
+import { type ReactNode, useMemo } from 'react';
+import type { FetchError } from '../../../../api/api';
+import { type Ytelse, getYtelseIdDato } from '../../../../models/ytelse/ytelse-utils';
+import type { FraTilDato } from '../../../../redux/utbetalinger/types';
+import { useForeldrepenger } from '../../../../rest/resources/foreldrepengerResource';
+import { usePleiepenger } from '../../../../rest/resources/pleiepengerResource';
+import { useSykepenger } from '../../../../rest/resources/sykepengerResource';
+import { useTiltakspenger } from '../../../../rest/resources/tiltakspengerResource';
 import { useFodselsnummer } from '../../../../utils/customHooks';
-import { FraTilDato } from '../../../../redux/utbetalinger/types';
+import { datoSynkende } from '../../../../utils/date-utils';
 
 interface Returns {
     ytelser: Ytelse[];

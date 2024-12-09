@@ -1,21 +1,21 @@
+import { fakerNB_NO as faker } from '@faker-js/faker';
+import dayjs from 'dayjs';
+import navfaker from 'nav-faker';
+import { type AutofullforMap, autofullfor } from '../../app/personside/dialogpanel/sendMelding/autofullforUtils';
+import { erMeldingFraNav, saksbehandlerTekst } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
 import {
     LestStatus,
-    Melding,
-    MeldingJournalpost,
+    type Melding,
+    type MeldingJournalpost,
     Meldingstype,
-    Saksbehandler,
-    Traad,
+    type Saksbehandler,
+    type Traad,
     TraadType
 } from '../../models/meldinger/meldinger';
-import { fakerNB_NO as faker } from '@faker-js/faker';
-import navfaker from 'nav-faker';
-import dayjs from 'dayjs';
-import { fyllRandomListe } from '../utils/mock-utils';
-import { erMeldingFraNav, saksbehandlerTekst } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
-import { Temagruppe, TemaSamtalereferat } from '../../models/temagrupper';
-import standardTeksterMock from '../standardTeksterMock';
-import { autofullfor, AutofullforMap } from '../../app/personside/dialogpanel/sendMelding/autofullforUtils';
+import { TemaSamtalereferat, Temagruppe } from '../../models/temagrupper';
 import { backendDatoTidformat } from '../../utils/date-utils';
+import standardTeksterMock from '../standardTeksterMock';
+import { fyllRandomListe } from '../utils/mock-utils';
 import standardTraader from './standardTraader';
 
 // Legger inn to konstanter for å sørge for at vi får korrelasjon på tvers av mocking (tråd-oppgave feks)

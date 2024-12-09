@@ -1,4 +1,4 @@
-import { initialState, SaksoversikState, SaksoversiktActions, SaksoversiktActionTypes } from './types';
+import { type SaksoversikState, SaksoversiktActionTypes, type SaksoversiktActions, initialState } from './types';
 
 export function saksoversiktReducer(
     state: SaksoversikState = initialState,

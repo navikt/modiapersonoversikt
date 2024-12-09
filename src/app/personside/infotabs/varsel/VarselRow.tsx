@@ -1,15 +1,15 @@
 import { guid } from 'nav-frontend-js-utils';
+import Panel from 'nav-frontend-paneler';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { useRef } from 'react';
 import * as React from 'react';
 import { UnmountClosed } from 'react-collapse';
+import styled from 'styled-components';
 import VisMerChevron from '../../../../components/VisMerChevron';
+import type { UnifiedVarsel } from '../../../../models/varsel';
+import theme from '../../../../styles/personOversiktTheme';
 import CompletedIcon from '../../../../svg/CompletedIcon';
 import WarningIcon from '../../../../svg/WarningIcon';
-import styled from 'styled-components';
-import Panel from 'nav-frontend-paneler';
-import theme from '../../../../styles/personOversiktTheme';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
-import { UnifiedVarsel } from '../../../../models/varsel';
 
 const StyledPanel = styled(Panel)`
     padding: 0rem;

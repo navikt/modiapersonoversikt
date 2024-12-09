@@ -1,9 +1,15 @@
-import { Melding, Meldingstype, Saksbehandler, Traad, TraadType } from '../../../../../models/meldinger/meldinger';
-import { meldingstypeTekst, traadTypeTekst } from './meldingstekster';
-import { datoStigende, datoSynkende, formatterDatoTid } from '../../../../../utils/date-utils';
 import { useMemo } from 'react';
-import useDebounce from '../../../../../utils/hooks/use-debounce';
+import {
+    type Melding,
+    Meldingstype,
+    type Saksbehandler,
+    type Traad,
+    TraadType
+} from '../../../../../models/meldinger/meldinger';
 import { Temagruppe, temagruppeTekst } from '../../../../../models/temagrupper';
+import { datoStigende, datoSynkende, formatterDatoTid } from '../../../../../utils/date-utils';
+import useDebounce from '../../../../../utils/hooks/use-debounce';
+import { meldingstypeTekst, traadTypeTekst } from './meldingstekster';
 
 /*
    Teknisk sett kan `nyesteMelding` og `eldsteMelding` returnerer undefined.

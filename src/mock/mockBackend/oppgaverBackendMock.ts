@@ -1,4 +1,4 @@
-import { Oppgave } from '../../models/meldinger/oppgave';
+import type { Oppgave } from '../../models/meldinger/oppgave';
 
 export class OppgaverBackendMock {
     private tildelteOppgaver: Oppgave[] = [];

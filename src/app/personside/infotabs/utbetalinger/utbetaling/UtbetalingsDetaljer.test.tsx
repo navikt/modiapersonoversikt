@@ -1,6 +1,6 @@
 import * as renderer from 'react-test-renderer';
-import UtbetalingsDetaljer from './UtbetalingsDetaljer';
 import { statiskMockYtelse } from '../../../../../mock/utbetalinger/statiskMockUtbetaling';
+import UtbetalingsDetaljer from './UtbetalingsDetaljer';
 
 test('Viser utbetalingsdetaljer riktig med liste med ytelser og trekk', () => {
     const visittkortheader = renderer.create(

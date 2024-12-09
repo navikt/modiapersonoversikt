@@ -1,7 +1,7 @@
-import * as React from 'react';
-import styled from 'styled-components';
 import AdvarselIkonSvg from 'nav-frontend-ikoner-assets/assets/advarsel-sirkel-fyll.svg';
-import { ForelderBarnRelasjon } from '../../PersondataDomain';
+import type * as React from 'react';
+import styled from 'styled-components';
+import type { ForelderBarnRelasjon } from '../../PersondataDomain';
 import { erDod, hentBarn, hentBarnUnder22 } from '../../visittkort-utils';
 
 interface Props {

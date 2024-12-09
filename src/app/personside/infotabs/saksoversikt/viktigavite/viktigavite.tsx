@@ -1,10 +1,10 @@
-import { ViktigÅViteDAGInnhold } from './DAGInnhold';
-import { ViktigÅViteAAPInnhold } from './AAPInnhold';
-import { ViktigAaViteINDInnhold } from './INDInnhold';
-import styled from 'styled-components';
-import theme from '../../../../../styles/personOversiktTheme';
-import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { UnmountClosed } from 'react-collapse';
+import styled from 'styled-components';
+import type { Sakstema } from '../../../../../models/saksoversikt/sakstema';
+import theme from '../../../../../styles/personOversiktTheme';
+import { ViktigÅViteAAPInnhold } from './AAPInnhold';
+import { ViktigÅViteDAGInnhold } from './DAGInnhold';
+import { ViktigAaViteINDInnhold } from './INDInnhold';
 
 type Props = {
     valgtSakstema?: Sakstema;

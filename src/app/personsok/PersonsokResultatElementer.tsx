@@ -1,6 +1,6 @@
-import { Brukerinfo, Navn, NorskIdent, PersonsokResponse, UtenlandskID } from '../../models/person/personsok';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { Kodeverk } from '../../models/kodeverk';
+import type { Kodeverk } from '../../models/kodeverk';
+import type { Brukerinfo, Navn, NorskIdent, PersonsokResponse, UtenlandskID } from '../../models/person/personsok';
 
 export function IdentCelle(props: { ident: NorskIdent }) {
     return <Normaltekst>{props.ident.ident}</Normaltekst>;

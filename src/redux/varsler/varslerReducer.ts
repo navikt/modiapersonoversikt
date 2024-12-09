@@ -1,5 +1,5 @@
-import { Action } from 'redux';
-import { UnifiedVarsel } from '../../models/varsel';
+import type { Action } from 'redux';
+import type { UnifiedVarsel } from '../../models/varsel';
 
 export interface VarslerState {
     aapneVarsler: UnifiedVarsel[];

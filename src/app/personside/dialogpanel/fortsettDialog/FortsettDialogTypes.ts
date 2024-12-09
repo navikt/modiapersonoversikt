@@ -1,13 +1,13 @@
-import { Traad, TraadType } from '../../../../models/meldinger/meldinger';
-import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
-import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
-import { Temagruppe } from '../../../../models/temagrupper';
+import type { Traad, TraadType } from '../../../../models/meldinger/meldinger';
+import type { Temagruppe } from '../../../../models/temagrupper';
+import type { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
+import type { OppgavelisteValg } from '../sendMelding/SendNyMelding';
 
 export enum DialogPanelStatus {
-    UNDER_ARBEID,
-    POSTING,
-    ERROR,
-    SVAR_SENDT
+    UNDER_ARBEID = 0,
+    POSTING = 1,
+    ERROR = 2,
+    SVAR_SENDT = 3
 }
 
 export type KvitteringsData = {

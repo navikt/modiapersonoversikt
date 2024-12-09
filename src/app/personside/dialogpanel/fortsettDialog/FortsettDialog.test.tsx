@@ -1,10 +1,10 @@
 import * as renderer from 'react-test-renderer';
+import { statiskTraadMock } from '../../../../mock/meldinger/statiskTraadMock';
+import { setValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
 import TestProvider from '../../../../test/Testprovider';
 import { getTestStore } from '../../../../test/testStore';
-import { setValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
-import { statiskTraadMock } from '../../../../mock/meldinger/statiskTraadMock';
-import FortsettDialogContainer from './FortsettDialogContainer';
 import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
+import FortsettDialogContainer from './FortsettDialogContainer';
 
 test('viser fortsett dialog', () => {
     const testStore = getTestStore();

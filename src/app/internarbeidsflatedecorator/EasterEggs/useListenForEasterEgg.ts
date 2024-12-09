@@ -1,5 +1,5 @@
-import { useOnMount } from '../../../utils/customHooks';
 import { useState } from 'react';
+import { useOnMount } from '../../../utils/customHooks';
 
 export enum easterEggs {
     party = 'party',

@@ -1,9 +1,9 @@
-import PilKnapp from '../../components/pilknapp';
-import CogKnapp from '../innstillinger/cogknapp';
 import styled from 'styled-components';
+import PilKnapp from '../../components/pilknapp';
+import { useDialogpanelState } from '../../context/dialogpanel-state';
 import theme, { pxToRem } from '../../styles/personOversiktTheme';
 import { loggEvent } from '../../utils/logger/frontendLogger';
-import { useDialogpanelState } from '../../context/dialogpanel-state';
+import CogKnapp from '../innstillinger/cogknapp';
 
 const Style = styled.div`
     display: flex;

@@ -1,11 +1,11 @@
+import { default as React } from 'react';
 // Ved å bytte ut `tr`/`td` etc med html-elementer mister man tabell-semantikken og styling
 // Div-Table gjennopprettet denne vha role=XXX og display-attributtet, samtidig som man har mer fleksibilitet i tabellen
 import styled from 'styled-components';
-import { TableStyle } from './StyledTable';
 import theme, { pxToRem } from '../../styles/personOversiktTheme';
-import { TableProps, TableRow, TitleCell } from './Table';
 import { loggError } from '../logger/frontendLogger';
-import { default as React } from 'react';
+import { TableStyle } from './StyledTable';
+import type { TableProps, TableRow, TitleCell } from './Table';
 
 const Style = styled(TableStyle)`
     [role='table'] {

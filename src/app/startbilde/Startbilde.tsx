@@ -1,6 +1,6 @@
-import StartBildeLayout from './StartBildeLayout';
-import PersonSokInput from './PersonSokInput';
 import StartbildeInnstillinger from '../innstillinger/startbilde-innstillinger';
+import PersonSokInput from './PersonSokInput';
+import StartBildeLayout from './StartBildeLayout';
 
 function Startbilde() {
     return (

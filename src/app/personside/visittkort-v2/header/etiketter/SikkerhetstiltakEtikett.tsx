@@ -1,5 +1,5 @@
 import EtikettBase from 'nav-frontend-etiketter';
-import { Sikkerhetstiltak } from '../../PersondataDomain';
+import type { Sikkerhetstiltak } from '../../PersondataDomain';
 
 interface Props {
     sikkerhetstiltak: Sikkerhetstiltak[];

@@ -1,6 +1,6 @@
-import { AuthIntropectionDTO } from '../utils/hooks/use-persistent-login';
+import type { AuthIntropectionDTO } from '../utils/hooks/use-persistent-login';
 import { LoginStateManager } from './LoginStateManager';
-import { WWMessage, OutgoingMessageType, IncommingMessageType } from './types';
+import type { IncommingMessageType, OutgoingMessageType, WWMessage } from './types';
 
 export interface IWebWorkerCom {
     initialize: (refreshToken: () => void, onLoginStateUpdate: (props: { isLoggedIn: boolean }) => void) => void;

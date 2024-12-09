@@ -1,24 +1,24 @@
-import * as React from 'react';
-import { useCallback, useState } from 'react';
-import { Textarea, TextareaProps } from 'nav-frontend-skjema';
-import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import classNames from 'classnames';
+import { AlertStripeFeil } from 'nav-frontend-alertstriper';
+import Hjelpetekst from 'nav-frontend-hjelpetekst';
+import { guid } from 'nav-frontend-js-utils';
+import { PopoverOrientering } from 'nav-frontend-popover';
+import { Textarea, type TextareaProps } from 'nav-frontend-skjema';
+import { Undertittel } from 'nav-frontend-typografi';
+import type * as React from 'react';
+import { useCallback, useState } from 'react';
+import styled from 'styled-components';
 import {
+    type AutofullforData,
     autofullfor,
-    AutofullforData,
     byggAutofullforMap,
     useAutoFullforData
 } from '../../app/personside/dialogpanel/sendMelding/autofullforUtils';
 import { Locale } from '../../app/personside/dialogpanel/sendMelding/standardTekster/domain';
-import * as StandardTeksterModels from '../../app/personside/dialogpanel/sendMelding/standardTekster/domain';
-import styled from 'styled-components';
-import Hjelpetekst from 'nav-frontend-hjelpetekst';
-import { PopoverOrientering } from 'nav-frontend-popover';
-import { guid } from 'nav-frontend-js-utils';
-import { Undertittel } from 'nav-frontend-typografi';
-import { loggEvent } from '../../utils/logger/frontendLogger';
+import type * as StandardTeksterModels from '../../app/personside/dialogpanel/sendMelding/standardTekster/domain';
 import { rapporterBruk } from '../../app/personside/dialogpanel/sendMelding/standardTekster/sokUtils';
 import skrivestotteResource from '../../rest/resources/skrivestotteResource';
+import { loggEvent } from '../../utils/logger/frontendLogger';
 
 interface InlineRegel {
     type: 'internal';

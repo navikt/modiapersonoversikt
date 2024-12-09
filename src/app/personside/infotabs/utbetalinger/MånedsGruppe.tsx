@@ -1,12 +1,12 @@
-import styled from 'styled-components';
-import theme from '../../../../styles/personOversiktTheme';
-import { ArrayGroup } from '../../../../utils/groupArray';
 import { Element } from 'nav-frontend-typografi';
+import styled from 'styled-components';
 import { Uppercase } from '../../../../components/common-styled-components';
-import { getGjeldendeDatoForUtbetaling } from './utils/utbetalinger-utils';
-import UtbetalingsKomponent from './utbetaling/Utbetaling';
-import { Utbetaling } from '../../../../models/utbetalinger';
+import type { Utbetaling } from '../../../../models/utbetalinger';
+import theme from '../../../../styles/personOversiktTheme';
+import type { ArrayGroup } from '../../../../utils/groupArray';
 import { KategoriSkille } from '../../dialogpanel/fellesStyling';
+import UtbetalingsKomponent from './utbetaling/Utbetaling';
+import { getGjeldendeDatoForUtbetaling } from './utils/utbetalinger-utils';
 
 interface Props {
     gruppe: ArrayGroup<Utbetaling>;

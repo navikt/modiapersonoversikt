@@ -1,16 +1,16 @@
+import { Hovedknapp } from 'nav-frontend-knapper';
+import ModalWrapper from 'nav-frontend-modal';
+import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { createRef, useState } from 'react';
-import {
+import styled from 'styled-components';
+import journalsakResource from '../../../../rest/resources/journalsakResource';
+import theme from '../../../../styles/personOversiktTheme';
+import { formatterDatoMedMaanedsnavn } from '../../../../utils/date-utils';
+import type {
     JournalforingsSak,
     JournalforingsSakIdentifikator
 } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import VelgSak from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/VelgSak';
-import { formatterDatoMedMaanedsnavn } from '../../../../utils/date-utils';
-import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
-import styled from 'styled-components';
-import theme from '../../../../styles/personOversiktTheme';
-import ModalWrapper from 'nav-frontend-modal';
-import { Hovedknapp } from 'nav-frontend-knapper';
-import journalsakResource from '../../../../rest/resources/journalsakResource';
 
 interface Props {
     valgtSak?: JournalforingsSak;

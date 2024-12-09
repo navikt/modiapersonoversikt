@@ -1,4 +1,6 @@
-import {
+import { fakerNB_NO as faker } from '@faker-js/faker';
+import navfaker from 'nav-faker';
+import type {
     Ansatt,
     Enhet,
     GsakTema,
@@ -6,8 +8,6 @@ import {
     GsakTemaPrioritet,
     GsakTemaUnderkategori
 } from '../../models/meldinger/oppgave';
-import { fakerNB_NO as faker } from '@faker-js/faker';
-import navfaker from 'nav-faker';
 import { fyllRandomListe } from '../utils/mock-utils';
 
 export function getMockGsakTema(): GsakTema[] {

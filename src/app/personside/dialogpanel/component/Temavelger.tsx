@@ -1,9 +1,9 @@
-import { ChangeEvent, useEffect } from 'react';
-import { Temagruppe, temagruppeTekst } from '../../../../models/temagrupper';
 import { Select, SkjemaGruppe } from 'nav-frontend-skjema';
-import styled from 'styled-components';
-import theme from '../../../../styles/personOversiktTheme';
 import SkjemaelementFeilmelding from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
+import { type ChangeEvent, useEffect } from 'react';
+import styled from 'styled-components';
+import { type Temagruppe, temagruppeTekst } from '../../../../models/temagrupper';
+import theme from '../../../../styles/personOversiktTheme';
 
 interface Props {
     setTema: (tema?: Temagruppe) => void;

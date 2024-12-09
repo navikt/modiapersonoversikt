@@ -1,8 +1,8 @@
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+import { type FetchError, post } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
+import type { Data as Persondata } from '../../app/personside/visittkort-v2/PersondataDomain';
 import { useFodselsnummer } from '../../utils/customHooks';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { FetchError, post } from '../../api/api';
-import { Data as Persondata } from '../../app/personside/visittkort-v2/PersondataDomain';
 
 function queryKey(fnr: string) {
     return ['persondata', fnr];

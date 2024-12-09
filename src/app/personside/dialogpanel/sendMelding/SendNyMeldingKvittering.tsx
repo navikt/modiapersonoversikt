@@ -1,5 +1,5 @@
 import { DialogpanelKvittering } from '../fellesStyling';
-import { KvitteringNyMelding, SendNyMeldingStatus } from './SendNyMeldingTypes';
+import { type KvitteringNyMelding, SendNyMeldingStatus } from './SendNyMeldingTypes';
 
 export function ReferatSendtKvittering(props: { kvitteringNyMelding: KvitteringNyMelding; lukk: () => void }) {
     return (

@@ -1,5 +1,5 @@
-import { useMemo } from 'react';
 import { useLocation } from '@tanstack/react-router';
+import { useMemo } from 'react';
 
 export function parseQueryString<TYPE>(queryParams: string): TYPE {
     const entries = queryParams

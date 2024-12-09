@@ -1,12 +1,12 @@
-import oppfolgingResource from '../../../../rest/resources/oppfolgingResource';
-import OppfolgingFilter from './OppfolgingFilter';
-import VisOppfolgingDetaljer from './OppfolgingDetaljerKomponent';
-import SykefraversoppfolgingEkspanderbartPanel from './SykefraversoppfolgingEkspanderbartPanel';
-import OppfolgingYtelserEkspanderbartPanel from './OppfolgingYtelserEkspanderbartPanel';
-import styled from 'styled-components';
-import theme from '../../../../styles/personOversiktTheme';
-import { DetaljertOppfolging } from 'src/models/oppfolging';
+import type { DetaljertOppfolging } from 'src/models/oppfolging';
 import { useOppfolgingFilter } from 'src/redux/oppfolging/reducer';
+import styled from 'styled-components';
+import oppfolgingResource from '../../../../rest/resources/oppfolgingResource';
+import theme from '../../../../styles/personOversiktTheme';
+import VisOppfolgingDetaljer from './OppfolgingDetaljerKomponent';
+import OppfolgingFilter from './OppfolgingFilter';
+import OppfolgingYtelserEkspanderbartPanel from './OppfolgingYtelserEkspanderbartPanel';
+import SykefraversoppfolgingEkspanderbartPanel from './SykefraversoppfolgingEkspanderbartPanel';
 
 const OppfolgingStyle = styled.div`
     > *:not(:last-child) {

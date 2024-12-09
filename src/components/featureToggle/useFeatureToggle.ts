@@ -1,5 +1,5 @@
-import { FeatureToggles } from './toggleIDs';
 import featuretoggles from '../../rest/resources/featuretogglesResource';
+import type { FeatureToggles } from './toggleIDs';
 
 function useFeatureToggle(toggleId: FeatureToggles) {
     const toggles = featuretoggles.useFetch();

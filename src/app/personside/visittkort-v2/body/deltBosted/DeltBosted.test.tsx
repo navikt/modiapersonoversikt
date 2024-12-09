@@ -1,7 +1,7 @@
 import * as renderer from 'react-test-renderer';
+import { aremark } from '../../../../../mock/persondata/aremark';
 import TestProvider from '../../../../../test/Testprovider';
 import DeltBosted from './DeltBosted';
-import { aremark } from '../../../../../mock/persondata/aremark';
 
 test('viser deltbosted', () => {
     const visittkortbody = renderer.create(

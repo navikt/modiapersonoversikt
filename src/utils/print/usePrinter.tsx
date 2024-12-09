@@ -1,8 +1,8 @@
-import { ReactNode, useCallback, useEffect, useState } from 'react';
+import { type ReactNode, useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { PrinterMedHeader } from './PrinterMedHeader';
 import { createGlobalStyle } from 'styled-components';
 import { loggEvent } from '../logger/frontendLogger';
+import { PrinterMedHeader } from './PrinterMedHeader';
 
 const SkulAppVedPrint = createGlobalStyle`
     @media print {

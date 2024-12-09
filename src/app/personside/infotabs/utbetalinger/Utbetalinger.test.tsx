@@ -1,7 +1,7 @@
-import { Utbetaling } from '../../../../models/utbetalinger';
 import { statiskMockUtbetaling, statiskMockYtelse } from '../../../../mock/utbetalinger/statiskMockUtbetaling';
+import type { Utbetaling } from '../../../../models/utbetalinger';
+import { PeriodeValg, type UtbetalingFilterState } from '../../../../redux/utbetalinger/types';
 import { getFiltrerteUtbetalinger } from './Utbetalinger';
-import { PeriodeValg, UtbetalingFilterState } from '../../../../redux/utbetalinger/types';
 
 const filterState: UtbetalingFilterState = {
     periode: {

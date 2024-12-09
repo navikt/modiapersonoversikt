@@ -1,12 +1,12 @@
-import { ChangeEvent, useEffect, useState } from 'react';
-import * as React from 'react';
-import Downshift, { ControllerStateAndHelpers, StateChangeOptions } from 'downshift';
-import styled from 'styled-components';
-import { Normaltekst } from 'nav-frontend-typografi';
-import theme from '../../../../../../../styles/personOversiktTheme';
-import { Input, InputProps } from 'nav-frontend-skjema';
+import Downshift, { type ControllerStateAndHelpers, type StateChangeOptions } from 'downshift';
+import { Input, type InputProps } from 'nav-frontend-skjema';
 import NavFrontendSpinner from 'nav-frontend-spinner';
+import { Normaltekst } from 'nav-frontend-typografi';
+import { type ChangeEvent, useEffect, useState } from 'react';
+import type * as React from 'react';
+import styled from 'styled-components';
 import EtikettGraa from '../../../../../../../components/EtikettGraa';
+import theme from '../../../../../../../styles/personOversiktTheme';
 import { useAutoCompleteSuggestions } from './useAutoCompleteSuggestions';
 
 const DropDownWrapper = styled.div`

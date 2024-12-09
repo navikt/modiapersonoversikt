@@ -1,15 +1,15 @@
-import styled from 'styled-components';
-import theme from '../../../../styles/personOversiktTheme';
-import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
-import { ScrollBar } from '../utils/InfoTabsScrollBar';
-import ErrorBoundary from '../../../../components/ErrorBoundary';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { useHentAlleSakstemaFraResourceV2, useSakstemaURLStateV2 } from './useSakstemaURLState';
+import styled from 'styled-components';
+import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
+import ErrorBoundary from '../../../../components/ErrorBoundary';
 import resource from '../../../../rest/resources/sakstemaResource';
+import theme from '../../../../styles/personOversiktTheme';
+import { ScrollBar } from '../utils/InfoTabsScrollBar';
+import SakerFullscreenLenkeV2 from './SakerFullscreenLenkeV2';
 import DokumentOgVedleggV2 from './dokumentvisning/DokumentOgVedleggV2';
 import JournalPosterV2 from './saksdokumenter/JournalPosterV2';
-import SakerFullscreenLenkeV2 from './SakerFullscreenLenkeV2';
 import SakstemaListeV2 from './sakstemaliste/SakstemaListeV2';
+import { useHentAlleSakstemaFraResourceV2, useSakstemaURLStateV2 } from './useSakstemaURLState';
 
 const saksoversiktMediaTreshold = '70rem';
 

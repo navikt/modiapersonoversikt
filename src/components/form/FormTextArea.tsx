@@ -1,6 +1,6 @@
-import { Textarea, TextareaProps } from 'nav-frontend-skjema';
-import { FieldValues, FieldPath } from 'react-hook-form';
-import { FormElementProps } from './formTypes';
+import { Textarea, type TextareaProps } from 'nav-frontend-skjema';
+import type { FieldPath, FieldValues } from 'react-hook-form';
+import type { FormElementProps } from './formTypes';
 import { useFieldState } from './useFieldState';
 
 interface Props<TFieldValues extends FieldValues, TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>

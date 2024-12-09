@@ -1,8 +1,8 @@
-import * as React from 'react';
-import styled from 'styled-components';
-import PrinterSVG from '../svg/PrinterSVG';
-import theme from '../styles/personOversiktTheme';
 import { Normaltekst } from 'nav-frontend-typografi';
+import type * as React from 'react';
+import styled from 'styled-components';
+import theme from '../styles/personOversiktTheme';
+import PrinterSVG from '../svg/PrinterSVG';
 
 interface Props {
     onClick: (event: React.MouseEvent) => void;

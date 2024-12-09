@@ -1,24 +1,24 @@
+import dayjs from 'dayjs';
+import { guid } from 'nav-frontend-js-utils';
+import { nyesteMelding } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
 import {
     LestStatus,
-    Melding,
+    type Melding,
     Meldingstype,
-    OpprettHenvendelseRequest,
-    OpprettHenvendelseResponse,
-    SendMeldingRequest,
-    Traad
+    type OpprettHenvendelseRequest,
+    type OpprettHenvendelseResponse,
+    type SendMeldingRequest,
+    type Traad
 } from '../../models/meldinger/meldinger';
-import { guid } from 'nav-frontend-js-utils';
-import dayjs from 'dayjs';
-import { getMockTraader } from '../meldinger/meldinger-mock';
 import { Temagruppe } from '../../models/temagrupper';
-import { OppgaverBackendMock } from './oppgaverBackendMock';
 import { backendDatoTidformat } from '../../utils/date-utils';
-import { nyesteMelding } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
+import { getMockTraader } from '../meldinger/meldinger-mock';
+import type { OppgaverBackendMock } from './oppgaverBackendMock';
 
 export class MeldingerBackendMock {
     private sendteNyeMeldinger: Traad[] = [];
     private sendteSvar: Traad[] = [];
-    private fnr: string = '';
+    private fnr = '';
     private oppgaveBackendMock: OppgaverBackendMock;
 
     constructor(oppgaveBackendMock: OppgaverBackendMock) {

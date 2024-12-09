@@ -1,4 +1,4 @@
-import { Varsel, Varseltype } from '../../../../models/varsel';
+import { type Varsel, Varseltype } from '../../../../models/varsel';
 import { loggError } from '../../../../utils/logger/frontendLogger';
 
 export function getVarselTekst(varsel: Varsel) {

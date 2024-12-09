@@ -13,7 +13,7 @@ export function restoreScroll() {
         if (scrollTop && scrollTop !== null) {
             sessionStorage.removeItem('scrollTop');
             setTimeout(() => {
-                window.scrollTo(0, parseInt(scrollTop, 10));
+                window.scrollTo(0, Number.parseInt(scrollTop, 10));
             }, 10);
         } else {
             window.scrollTo(0, 0);

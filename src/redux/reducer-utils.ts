@@ -1,4 +1,11 @@
-import { Action, AnyAction, CombinedState, combineReducers, Reducer, ReducersMapObject } from 'redux';
+import {
+    type Action,
+    type AnyAction,
+    type CombinedState,
+    type Reducer,
+    type ReducersMapObject,
+    combineReducers
+} from 'redux';
 
 type Keyof<S> = string & keyof S;
 

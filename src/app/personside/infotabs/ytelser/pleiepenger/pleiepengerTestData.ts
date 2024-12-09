@@ -1,4 +1,4 @@
-import { Pleiepengerettighet } from '../../../../../models/ytelse/pleiepenger';
+import type { Pleiepengerettighet } from '../../../../../models/ytelse/pleiepenger';
 
 export const pleiepengerTestData: Pleiepengerettighet = {
     barnet: '12345678910',

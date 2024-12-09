@@ -1,11 +1,11 @@
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { Normaltekst } from 'nav-frontend-typografi';
+import type { ReactNode } from 'react';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { ReactNode } from 'react';
 import { useOnMount } from '../../../../utils/customHooks';
-import { Normaltekst } from 'nav-frontend-typografi';
-import VarslerLoader, { VarslerRendererProps } from '../varsel/varsel-loader';
 import Varsel from '../varsel/Varsel';
+import VarslerLoader, { type VarslerRendererProps } from '../varsel/varsel-loader';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {

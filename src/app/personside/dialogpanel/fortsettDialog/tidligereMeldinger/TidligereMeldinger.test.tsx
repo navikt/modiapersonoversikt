@@ -1,6 +1,6 @@
 import * as renderer from 'react-test-renderer';
-import TidligereMeldinger from './TidligereMeldinger';
 import { statiskTraadMock } from '../../../../../mock/meldinger/statiskTraadMock';
+import TidligereMeldinger from './TidligereMeldinger';
 
 test('viser fortsett dialog', () => {
     const dialogPanelBody = renderer.create(<TidligereMeldinger traad={statiskTraadMock} />);

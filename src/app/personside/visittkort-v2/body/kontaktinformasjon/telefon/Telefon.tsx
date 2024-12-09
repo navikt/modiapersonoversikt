@@ -1,10 +1,10 @@
-import PhoneIkon from '../../../../../../svg/Phone';
-import VisittkortElement from '../../VisittkortElement';
-import { KontaktInformasjon } from '../../../PersondataDomain';
-import DigitalKontaktinformasjon from '../DigitalKontaktinformasjon';
-import { formaterMobiltelefonnummer } from '../../../../../../utils/telefon-utils';
-import { formaterDato } from '../../../../../../utils/string-utils';
 import { Feilmelding } from 'nav-frontend-typografi';
+import PhoneIkon from '../../../../../../svg/Phone';
+import { formaterDato } from '../../../../../../utils/string-utils';
+import { formaterMobiltelefonnummer } from '../../../../../../utils/telefon-utils';
+import type { KontaktInformasjon } from '../../../PersondataDomain';
+import VisittkortElement from '../../VisittkortElement';
+import DigitalKontaktinformasjon from '../DigitalKontaktinformasjon';
 
 interface Props {
     harFeilendeSystem: boolean;

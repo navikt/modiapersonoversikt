@@ -1,8 +1,8 @@
-import { MouseEventHandler } from 'react';
-import { JournalforingsSak } from './JournalforingPanel';
-import { ClickableTable } from '../../../../../../../utils/table/ClickableTable';
+import type { MouseEventHandler } from 'react';
 import { formatterDatoMedMaanedsnavnOrNull } from '../../../../../../../utils/date-utils';
 import { ENDASH } from '../../../../../../../utils/string-utils';
+import { ClickableTable } from '../../../../../../../utils/table/ClickableTable';
+import type { JournalforingsSak } from './JournalforingPanel';
 
 interface Props {
     saker: Array<JournalforingsSak>;

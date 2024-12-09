@@ -1,16 +1,16 @@
-import { useEffect, useRef } from 'react';
-import { INFOTABS, InfotabsType } from './InfoTabEnum';
-import TabKnapper from './TabKnapper';
-import styled from 'styled-components';
-import { personPaths } from '../../routes/routing';
-import ErrorBoundary from '../../../components/ErrorBoundary';
-import HandleInfotabsHotkeys from './HandleInfotabsHotkeys';
-import useKeepScroll from '../../../utils/hooks/useKeepScroll';
+import { Outlet, useLocation, useNavigate } from '@tanstack/react-router';
 import { guid } from 'nav-frontend-js-utils';
-import { useOpenTab } from './utils/useOpenTab';
+import { useEffect, useRef } from 'react';
+import styled from 'styled-components';
+import ErrorBoundary from '../../../components/ErrorBoundary';
 import { MeldingsokProvider } from '../../../context/meldingsok';
 import { useVisittkortState } from '../../../context/visittkort-state';
-import { Outlet, useLocation, useNavigate } from '@tanstack/react-router';
+import useKeepScroll from '../../../utils/hooks/useKeepScroll';
+import { personPaths } from '../../routes/routing';
+import HandleInfotabsHotkeys from './HandleInfotabsHotkeys';
+import { INFOTABS, type InfotabsType } from './InfoTabEnum';
+import TabKnapper from './TabKnapper';
+import { useOpenTab } from './utils/useOpenTab';
 
 const StyledArticle = styled.article`
     display: flex;

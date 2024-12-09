@@ -1,12 +1,12 @@
-import { memo } from 'react';
-import { Behandlingsstatus, SakstemaSoknadsstatus } from '../../../../../models/saksoversikt/sakstema';
-import styled from 'styled-components';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
+import { memo } from 'react';
+import styled from 'styled-components';
 import VisMerKnapp from '../../../../../components/VisMerKnapp';
+import { Behandlingsstatus, type SakstemaSoknadsstatus } from '../../../../../models/saksoversikt/sakstema';
 import { sakerTest } from '../../dyplenkeTest/utils-dyplenker-test';
 import { useInfotabsDyplenker } from '../../dyplenker';
-import { saksikon, SVGStyling, visAntallSakerSomHarbehandlingsstatusV2 } from './SakstemaListeUtils';
 import { hentFormattertDatoForSisteHendelseV2 } from '../utils/saksoversiktUtilsV2';
+import { SVGStyling, saksikon, visAntallSakerSomHarbehandlingsstatusV2 } from './SakstemaListeUtils';
 
 interface Props {
     sakstema: SakstemaSoknadsstatus;

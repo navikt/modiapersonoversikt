@@ -1,17 +1,17 @@
+import { AlertStripeAdvarsel, AlertStripeSuksess } from 'nav-frontend-alertstriper';
+import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
+import { Hovedknapp } from 'nav-frontend-knapper';
+import { Textarea } from 'nav-frontend-skjema';
 import { useRef, useState } from 'react';
 import styled from 'styled-components';
-import { apiBaseUri } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
-import { AlertStripeAdvarsel, AlertStripeSuksess } from 'nav-frontend-alertstriper';
-import { Hovedknapp } from 'nav-frontend-knapper';
-import { useFocusOnMount } from '../../../../../../../utils/customHooks';
-import { Textarea } from 'nav-frontend-skjema';
-import theme from '../../../../../../../styles/personOversiktTheme';
-import { AvsluttGosysOppgaveRequest } from '../../../../../../../models/meldinger/merk';
-import { Traad } from '../../../../../../../models/meldinger/meldinger';
-import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
-import tildelteoppgaver from '../../../../../../../rest/resources/tildelteoppgaverResource';
+import { apiBaseUri } from '../../../../../../../api/config';
 import { useValgtenhet } from '../../../../../../../context/valgtenhet-state';
+import type { Traad } from '../../../../../../../models/meldinger/meldinger';
+import type { AvsluttGosysOppgaveRequest } from '../../../../../../../models/meldinger/merk';
+import tildelteoppgaver from '../../../../../../../rest/resources/tildelteoppgaverResource';
+import theme from '../../../../../../../styles/personOversiktTheme';
+import { useFocusOnMount } from '../../../../../../../utils/customHooks';
 
 const StyledAlert = styled.div`
     margin: 1rem 0rem;

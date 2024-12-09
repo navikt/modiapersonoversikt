@@ -1,7 +1,7 @@
 import { createBrowserHistory, createRouter as createReactRouter } from '@tanstack/react-router';
 
+import type { PropsWithChildren } from 'react';
 import { routeTree } from './routeTree.gen';
-import { PropsWithChildren } from 'react';
 
 export const history = createBrowserHistory();
 

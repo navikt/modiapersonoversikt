@@ -1,6 +1,6 @@
+import type { ReactNode } from 'react';
 import FeatureToggle, { DisplayWhenToggleIs } from './FeatureToggle';
-import { FeatureToggles } from './toggleIDs';
-import { ReactNode } from 'react';
+import type { FeatureToggles } from './toggleIDs';
 
 interface Props {
     children: ReactNode;

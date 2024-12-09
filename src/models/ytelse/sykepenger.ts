@@ -1,6 +1,6 @@
-import { Periode } from '../tid';
-import { KommendeUtbetaling, UtbetalingPåVent } from './ytelse-utbetalinger';
-import { Arbeidsforhold } from './arbeidsforhold';
+import type { Periode } from '../tid';
+import type { Arbeidsforhold } from './arbeidsforhold';
+import type { KommendeUtbetaling, UtbetalingPåVent } from './ytelse-utbetalinger';
 
 export interface SykepengerResponse {
     sykepenger: Sykepenger[] | null;

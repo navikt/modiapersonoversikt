@@ -1,13 +1,13 @@
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
 import { useEffect, useMemo, useState } from 'react';
+import { type FetchError, get } from '../api/api';
+import { apiBaseUri } from '../api/config';
 import {
-    AuthIntropectionDTO,
+    type AuthIntropectionDTO,
     ErrorReason,
     INVALID_EXPIRATION_DATE,
-    PersistentLoginState
+    type PersistentLoginState
 } from '../utils/hooks/use-persistent-login';
-import { UseQueryResult, useQuery } from '@tanstack/react-query';
-import { FetchError, get } from '../api/api';
-import { apiBaseUri } from '../api/config';
 import { persistentLoginWebworkerFactory } from './persistentLoginWebWorkerFactory';
 
 const authResource = {

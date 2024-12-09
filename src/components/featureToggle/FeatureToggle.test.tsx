@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
-import IfFeatureToggleOff from './IfFeatureToggleOff';
-import IfFeatureToggleOn from './IfFeatureToggleOn';
+import featuretogglesResource from '../../rest/resources/featuretogglesResource';
 import TestProvider from '../../test/Testprovider';
 import { getTestStore, mockReactQuery, setupReactQueryMocks } from '../../test/testStore';
-import { FeatureToggles } from './toggleIDs';
-import featuretogglesResource from '../../rest/resources/featuretogglesResource';
+import IfFeatureToggleOff from './IfFeatureToggleOff';
+import IfFeatureToggleOn from './IfFeatureToggleOn';
+import type { FeatureToggles } from './toggleIDs';
 
 const toggleId = 'toggleId' as FeatureToggles;
 const testStore = getTestStore();
