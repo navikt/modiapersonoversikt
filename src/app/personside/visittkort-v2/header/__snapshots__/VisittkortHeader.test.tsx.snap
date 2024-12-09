@@ -233,6 +233,7 @@ exports[`Tester visittkort-header sin funksjonalitet > viser info om bruker i vi
           className="typo-undertittel"
         >
           <span
+            data-testId="visittkort:person"
             tabIndex={-1}
           >
             AREMARK TESTFAMILIEN
