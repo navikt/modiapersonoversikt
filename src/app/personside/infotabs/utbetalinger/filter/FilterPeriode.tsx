@@ -1,6 +1,6 @@
 import { Radio } from 'nav-frontend-skjema';
 import { Element } from 'nav-frontend-typografi';
-import { FraTilDato, PeriodeOptions, PeriodeValg } from '../../../../../redux/utbetalinger/types';
+import { FraTilDato, PeriodeOptions, PeriodeValg } from 'src/redux/utbetalinger/types';
 import styled from 'styled-components';
 import EgendefinertDatoInputs from './EgendefinertDatoInputs';
 import { useState } from 'react';
@@ -54,7 +54,7 @@ function FiltreringPeriode(props: FiltreringPeriodeProps) {
 
     const onFraTilDatoChange = (val: FraTilDato) => {
         setPeriode(val);
-        props.updatePeriod({ ...props.periode, egendefinertPeriode: val });
+        props.updatePeriod({ ...props.periode, radioValg, egendefinertPeriode: val });
     };
 
     const radios = Object.keys(PeriodeValg).map((key) => {

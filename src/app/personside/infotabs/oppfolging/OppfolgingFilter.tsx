@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 import { Undertittel } from 'nav-frontend-typografi';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
-import { settValgtPeriode } from '../../../../redux/oppfolging/actions';
+import { settValgtPeriode } from 'src/redux/oppfolging/actions';
 import { useDispatch } from 'react-redux';
 import { useCallback, useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
 import Panel from 'nav-frontend-paneler';
-import { useAppState } from '../../../../utils/customHooks';
 import FiltreringPeriode from '../utbetalinger/filter/FilterPeriode';
-import { PeriodeOptions } from '../../../../redux/utbetalinger/types';
+import { PeriodeOptions } from 'src/redux/utbetalinger/types';
+import { useOppfolgingFilter } from 'src/redux/oppfolging/reducer';
 
 const StyledPanel = styled(Panel)`
     padding: ${pxToRem(15)};
@@ -39,7 +39,7 @@ const InputPanel = styled.form`
 function OppfolgingFilter() {
     const headerId = useRef(guid());
     const dispatch = useDispatch();
-    const periode = useAppState((appState) => appState.oppfolging.periode);
+    const periode = useOppfolgingFilter();
     const updateFilter = useCallback(
         (change: PeriodeOptions) => {
             dispatch(settValgtPeriode(change));
