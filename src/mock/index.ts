@@ -36,6 +36,7 @@ import { DefaultBodyType, http, HttpHandler, HttpResponse, PathParams, StrictReq
 import { fodselsNummerErGyldigStatus, randomDelay, STATUS_OK } from './utils-mock';
 import { getMockTiltakspenger } from './ytelse/tiltakspenger-mock';
 import { mockInnkrevingsKrav } from './innkrevingskrav';
+import { FeatureTogglesResponse } from 'src/rest/resources/featuretogglesResource';
 
 const oppgaveBackendMock = new OppgaverBackendMock();
 const meldingerBackendMock = new MeldingerBackendMock(oppgaveBackendMock);
@@ -275,12 +276,12 @@ const featureToggleHandler = [
 
     http.get(apiBaseUri + '/featuretoggle', ({ request }) => {
         const id = new URL(request.url).searchParams.get('id')?.split(',');
-        const ids = Array.isArray(id) ? id : [id];
+        const ids = Array.isArray(id) ? id : [];
         return HttpResponse.json(
-            ids.reduce(
-                (toggles, it) => ({ toggles, [it as FeatureToggles]: mockFeatureToggle(it as FeatureToggles) }),
-                {}
-            )
+            ids.reduce((acc, it) => {
+                acc[it as FeatureToggles] = mockFeatureToggle(it as FeatureToggles);
+                return acc;
+            }, {} as FeatureTogglesResponse)
         );
     })
 ];
