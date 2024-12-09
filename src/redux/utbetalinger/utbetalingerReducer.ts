@@ -2,6 +2,8 @@ import { PeriodeValg, UtbetalingerState } from './types';
 import { actionKeys, Actions } from './actions';
 import dayjs from 'dayjs';
 import { ISO_DATE_FORMAT } from 'src/utils/date-utils';
+import { useSelector } from 'react-redux';
+import { AppState } from 'src/redux/reducers';
 
 const initialState: UtbetalingerState = {
     ytelseIFokus: null,
@@ -49,4 +51,8 @@ export function utbetalingerReducer(state: UtbetalingerState = initialState, act
         default:
             return state;
     }
+}
+
+export function useUtbetalingerFilter() {
+    return useSelector((state: AppState) => Object.assign(state.utbetalinger.filter));
 }

@@ -1,20 +1,20 @@
 import { useCallback } from 'react';
 import { Element, Undertittel } from 'nav-frontend-typografi';
-import { UtbetalingerResponse } from '../../../../../models/utbetalinger';
+import { UtbetalingerResponse } from 'src/models/utbetalinger';
 import UtbetaltTilValg from './UtbetaltTilValg';
 import YtelseValg from './YtelseValg';
-import { restoreScroll } from '../../../../../utils/restoreScroll';
+import { restoreScroll } from 'src/utils/restoreScroll';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
-import { AppState } from '../../../../../redux/reducers';
-import { useDispatch, useSelector } from 'react-redux';
-import { oppdaterFilter } from '../../../../../redux/utbetalinger/actions';
-import { UtbetalingFilterState } from '../../../../../redux/utbetalinger/types';
+import { useDispatch } from 'react-redux';
+import { oppdaterFilter } from 'src/redux/utbetalinger/actions';
+import { UtbetalingFilterState } from 'src/redux/utbetalinger/types';
 import styled from 'styled-components';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import Panel from 'nav-frontend-paneler';
 import MediaQueryAwareRenderer from '../../../../../components/MediaQueryAwareRenderer';
 import utbetalingerResource from '../../../../../rest/resources/utbetalingerResource';
 import FiltreringPeriode from './FilterPeriode';
+import { useUtbetalingerFilter } from 'src/redux/utbetalinger/utbetalingerReducer';
 
 const FiltreringsPanel = styled(Panel)`
     padding: ${pxToRem(15)};
@@ -55,7 +55,7 @@ function visCheckbokser(utbetalingerResponse: UtbetalingerResponse): boolean {
 
 function UtbetalingFiltrering() {
     const dispatch = useDispatch();
-    const filter = useSelector((state: AppState) => state.utbetalinger.filter);
+    const filter = useUtbetalingerFilter();
     const periode = filter.periode.egendefinertPeriode;
     const utbetalinger = utbetalingerResource.useFetch(periode.fra, periode.til);
 
