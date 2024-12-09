@@ -18,25 +18,30 @@ jobs:
             image: ${{ steps.docker-build-push.outputs.image }}
         steps:
             - uses: actions/checkout@v4
-            - uses: actions/setup-node@v4
+            - uses: oven-sh/setup-bun@v2
               with:
-                  node-version: '20'
-                  cache: 'npm'
-                  registry-url: https://npm.pkg.github.com
+                registry-url: https://npm.pkg.github.com
+
             - name: Install dependencies
-              run: npm ci
+              run: bun i --frozen-lockfile
               env:
-                NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+                BUN_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+
             - name: Generate source files
-              run: npm run gen:routes
+              run: bun run gen:routes
+
             - name: Lint
-              run: npm run lint
+              run: bun run lint
+
             - name: Test
-              run: npm run test
+              run: bun run test
+
             - name: Build
-              run: npm run build
+              run: bun run build
+
             - name: Publish Docker image
               if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/master'
+
               uses: nais/docker-build-push@v0
               id: docker-build-push
               with:

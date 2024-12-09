@@ -12,24 +12,24 @@ saksbehandlere oversikt over brukeres forhold til Nav.
 
 Endring av miljøvariabler for lokal utvikling skal gjøres i `.env.development`.
 
--   `PORT` kommer fra vite og styrer hvilken port devserveren starter på. Default: 3000
--   `VITE_MOCK_ENABLED` styrer hvorvidt fetch-mock skal være aktivert
--   `VITE_HODE_URL` styrer hvor dekoratøren hentes fra
+- `PORT` kommer fra vite og styrer hvilken port devserveren starter på. Default: 3000
+- `VITE_MOCK_ENABLED` styrer hvorvidt fetch-mock skal være aktivert
+- `VITE_HODE_URL` styrer hvor dekoratøren hentes fra
 
 **NB** Det skal ikke være nødvendig med endringer i disse filene for å få startet appen.
 
 ### Starte appen lokalt
 
 ```console
-npm i
-npm run start
+bun i
+bun run dev
 ```
 
 ### Bygge og kjøre via docker
 
 ```console
 docker build -t personoversikt .
-docker run --env-file .env.development --name personoversikt -d -p 8080:80 personoversikt
+docker run --env-file .env.development --name personoversikt -d -p 8080:3000 personoversikt
 ```
 
 ## Dokumentasjon

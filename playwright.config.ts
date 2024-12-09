@@ -46,7 +46,7 @@ export default defineConfig({
             VITE_E2E: 'true'
         },
         timeout: 3 * 60 * 1000,
-        command: 'npm run start',
+        command: 'bun run dev',
         url: 'http://localhost:3000',
         reuseExistingServer: !process.env.CI
     }
