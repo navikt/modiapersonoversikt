@@ -70,7 +70,9 @@ const InnkrevingsKravDetaljer = ({ kravId }: { kravId: string }) => {
                                     {data.posteringer.map((p) => (
                                         <Table.Row key={p.kode}>
                                             <Table.DataCell>{p.kode}</Table.DataCell>
-                                            <Table.DataCell>{formaterDato(p.opprettetDato)}</Table.DataCell>
+                                            <Table.DataCell>
+                                                {p.opprettetDato ? formaterDato(p.opprettetDato) : '-'}
+                                            </Table.DataCell>
                                             <Table.DataCell>{formaterNOK(p.opprinneligBelop)}</Table.DataCell>
                                             <Table.DataCell>{formaterNOK(p.gjenstaendeBelop)}</Table.DataCell>
                                         </Table.Row>
