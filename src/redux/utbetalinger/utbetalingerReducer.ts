@@ -1,4 +1,4 @@
-import {PeriodeValg, UtbetalingerState, UtbetalingFilterState} from './types';
+import { PeriodeValg, UtbetalingerState, UtbetalingFilterState } from './types';
 import { actionKeys, Actions } from './actions';
 import dayjs from 'dayjs';
 import { ISO_DATE_FORMAT } from 'src/utils/date-utils';
@@ -54,5 +54,5 @@ export function utbetalingerReducer(state: UtbetalingerState = initialState, act
 }
 
 export function useUtbetalingerFilter(): UtbetalingFilterState {
-    return useSelector((state: AppState) => Object.assign(state.utbetalinger.filter));
+    return useSelector((state: AppState) => Object.assign(state.utbetalinger.filter) as UtbetalingFilterState);
 }
