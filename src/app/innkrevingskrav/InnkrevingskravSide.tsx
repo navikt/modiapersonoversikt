@@ -1,9 +1,9 @@
 import { PropsWithChildren, useEffect, useState } from 'react';
 import {
     Alert,
+    BodyShort,
     Box,
     Detail,
-    BodyShort,
     Heading,
     HStack,
     Label,
@@ -23,6 +23,8 @@ import QueryErrorBoundary from 'src/components/QueryErrorBoundary';
 import { formaterDato } from 'src/utils/string-utils';
 import { paths } from 'src/generated/modiapersonoversikt-api';
 import { getRouteApi } from '@tanstack/react-router';
+import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
+import IfFeatureToggleOn from 'src/components/featureToggle/IfFeatureToggleOn';
 
 const InfoPoint = ({ label, text }: { label: string; text: string }) => {
     return (
@@ -236,12 +238,16 @@ const InnkrevingskravSide = () => {
                                 <Radio size="small" value="kravId">
                                     Krav-ID
                                 </Radio>
-                                <Radio size="small" value="fnr">
-                                    Fnr/Dnr
-                                </Radio>
-                                <Radio size="small" value="orgnr">
-                                    Org. nr
-                                </Radio>
+                                <IfFeatureToggleOn toggleID={FeatureToggles.FnrSokForInnkreving}>
+                                    <Radio size="small" value="fnr">
+                                        Fnr/Dnr
+                                    </Radio>
+                                </IfFeatureToggleOn>
+                                <IfFeatureToggleOn toggleID={FeatureToggles.OrgnrSokForInnkreving}>
+                                    <Radio size="small" value="orgnr">
+                                        Org. nr
+                                    </Radio>
+                                </IfFeatureToggleOn>
                             </Stack>
                         </RadioGroup>
                         <Box marginBlock="4">

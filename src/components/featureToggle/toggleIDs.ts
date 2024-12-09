@@ -4,5 +4,7 @@ export enum FeatureToggles {
     BrukNyDecorator = 'modiapersonoversikt.decorator-v3',
     JournalforUtenSvar = 'modiapersonoversikt.meldinger-uten-svar-kan-journalfores',
     VisDraftStatus = 'modiapersonoversikt.vis-draft-status',
-    BrukNyTiltakspenger = 'modiapersonoversikt.bruk-ny-tiltakspenger'
+    BrukNyTiltakspenger = 'modiapersonoversikt.bruk-ny-tiltakspenger',
+    FnrSokForInnkreving = 'modiapersonoversikt.fnr-sok-for-innkreving',
+    OrgnrSokForInnkreving = 'modiapersonoversikt.orgnr-sok-for-innkreving'
 }
