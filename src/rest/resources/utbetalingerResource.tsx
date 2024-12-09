@@ -1,13 +1,13 @@
-import { applyDefaults, DefaultConfig, RendererOrConfig, useRest } from '../useRest';
-import { CenteredLazySpinner } from '../../components/LazySpinner';
-import AlertStripe from 'nav-frontend-alertstriper';
-import { apiBaseUri } from '../../api/config';
-import { useFodselsnummer } from '../../utils/customHooks';
-import { getUtbetalingerForSiste30DagerDatoer } from '../../app/personside/infotabs/utbetalinger/utils/utbetalinger-utils';
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
 import dayjs from 'dayjs';
-import { UtbetalingerResponse } from '../../models/utbetalinger';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { FetchError, post } from '../../api/api';
+import AlertStripe from 'nav-frontend-alertstriper';
+import { type FetchError, post } from '../../api/api';
+import { apiBaseUri } from '../../api/config';
+import { getUtbetalingerForSiste30DagerDatoer } from '../../app/personside/infotabs/utbetalinger/utils/utbetalinger-utils';
+import { CenteredLazySpinner } from '../../components/LazySpinner';
+import type { UtbetalingerResponse } from '../../models/utbetalinger';
+import { useFodselsnummer } from '../../utils/customHooks';
+import { type DefaultConfig, type RendererOrConfig, applyDefaults, useRest } from '../useRest';
 
 function urlV2(fom: string, tom: string): string {
     return `${apiBaseUri}/v2/utbetaling?startDato=${fom}&sluttDato=${tom}`;

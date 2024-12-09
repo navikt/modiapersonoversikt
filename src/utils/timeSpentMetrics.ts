@@ -1,5 +1,5 @@
-import { Timer } from './timer';
 import { loggEvent } from './logger/frontendLogger';
+import { Timer } from './timer';
 
 const timer = new Timer();
 

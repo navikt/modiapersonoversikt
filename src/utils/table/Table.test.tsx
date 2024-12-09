@@ -1,7 +1,7 @@
 import { render, screen, within } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
-import { Table, TableRows, TitleRow } from './Table';
 import { vi } from 'vitest';
+import { Table, type TableRows, type TitleRow } from './Table';
 
 test('lager tabell basert på input', () => {
     const header: TitleRow = ['kolonne 1', 'kolonne 2'];

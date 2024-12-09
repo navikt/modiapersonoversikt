@@ -1,10 +1,10 @@
-import { PropsWithChildren, useEffect, useState } from 'react';
+import { useNavigate } from '@tanstack/react-router';
+import { type PropsWithChildren, useEffect, useState } from 'react';
 import { useGjeldendeBrukerLastet } from '../redux/gjeldendeBruker/types';
-import useTimeout from '../utils/hooks/use-timeout';
 import { erGyldigishFnr } from '../utils/fnr-utils';
+import useTimeout from '../utils/hooks/use-timeout';
 import { loggInfo } from '../utils/logger/frontendLogger';
 import { CenteredLazySpinner } from './LazySpinner';
-import { useNavigate } from '@tanstack/react-router';
 
 type Props = {
     fnr: string;

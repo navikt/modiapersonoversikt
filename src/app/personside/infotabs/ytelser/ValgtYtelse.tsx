@@ -1,21 +1,21 @@
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { guid } from 'nav-frontend-js-utils';
 import { useRef } from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import {
+    type Ytelse,
     isForeldrepenger,
     isPleiepenger,
     isSykepenger,
-    isTiltakspenger,
-    Ytelse
+    isTiltakspenger
 } from '../../../../models/ytelse/ytelse-utils';
+import { usePrevious } from '../../../../utils/customHooks';
+import { loggError } from '../../../../utils/logger/frontendLogger';
 import Foreldrepenger from './foreldrepenger/ForeldrePenger';
 import Pleiepenger from './pleiepenger/Pleiepenger';
 import Sykepenger from './sykepenger/Sykepenger';
 import Tiltakspenger from './tiltakspenger/Tiltakspenger';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { guid } from 'nav-frontend-js-utils';
-import { usePrevious } from '../../../../utils/customHooks';
-import { useEffect } from 'react';
-import { loggError } from '../../../../utils/logger/frontendLogger';
 
 interface Props {
     valgtYtelse?: Ytelse;

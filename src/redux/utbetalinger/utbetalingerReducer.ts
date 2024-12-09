@@ -1,9 +1,9 @@
-import { PeriodeValg, UtbetalingerState, UtbetalingFilterState } from './types';
-import { actionKeys, Actions } from './actions';
 import dayjs from 'dayjs';
-import { ISO_DATE_FORMAT } from 'src/utils/date-utils';
 import { useSelector } from 'react-redux';
-import { AppState } from 'src/redux/reducers';
+import type { AppState } from 'src/redux/reducers';
+import { ISO_DATE_FORMAT } from 'src/utils/date-utils';
+import { type Actions, actionKeys } from './actions';
+import { PeriodeValg, type UtbetalingFilterState, type UtbetalingerState } from './types';
 
 const initialState: UtbetalingerState = {
     ytelseIFokus: null,

@@ -1,4 +1,4 @@
-import { createLazyFileRoute, Navigate, useNavigate } from '@tanstack/react-router';
+import { Navigate, createLazyFileRoute, useNavigate } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import PersonoversiktWrapper from 'src/app/personside/Personoversikt';
 import { aktivBrukerAtom } from 'src/lib/state/context';

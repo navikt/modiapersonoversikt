@@ -1,8 +1,8 @@
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+import { type FetchError, post } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
+import type { VarslerResult } from '../../models/varsel';
 import { useFodselsnummer } from '../../utils/customHooks';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { FetchError, post } from '../../api/api';
-import { VarslerResult } from '../../models/varsel';
 
 function queryKey(fnr: string): [string, string] {
     return ['varsel', fnr];

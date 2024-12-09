@@ -1,5 +1,5 @@
 import { statiskForeldrepengeMock } from '../../mock/ytelse/statiskForeldrepengeMock';
-import { Adopsjon, Foreldrepengerettighet, Fødsel, isAdopsjon, isFødsel } from './foreldrepenger';
+import { type Adopsjon, type Foreldrepengerettighet, type Fødsel, isAdopsjon, isFødsel } from './foreldrepenger';
 
 test('typeguard isFødsel funker', () => {
     const foreldrepengeRettighet: Fødsel = {

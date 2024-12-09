@@ -1,5 +1,5 @@
+import type { UtbetalingPåVent } from '../../../../../../models/ytelse/ytelse-utbetalinger';
 import { utledUtbetalingPåVentÅrsak } from './utledUtbetalingerPåVentÅrsak';
-import { UtbetalingPåVent } from '../../../../../../models/ytelse/ytelse-utbetalinger';
 
 const utbetalingUtenPåventÅrsak: UtbetalingPåVent = {
     vedtak: null,

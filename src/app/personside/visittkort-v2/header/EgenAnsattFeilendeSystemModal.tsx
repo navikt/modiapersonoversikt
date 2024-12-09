@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import RawModal from 'nav-frontend-modal';
 import KnappBase from 'nav-frontend-knapper';
-import styled from 'styled-components';
+import RawModal from 'nav-frontend-modal';
 import { Systemtittel } from 'nav-frontend-typografi';
+import { useState } from 'react';
+import styled from 'styled-components';
 import ErrorIkon from '../../../../svg/alvorlig-advarsel.svg';
 
 const Modal = styled(RawModal)`

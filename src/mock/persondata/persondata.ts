@@ -1,16 +1,16 @@
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import {
     AdresseBeskyttelse,
-    Data as PersonData,
     EgenAnsatt,
-    ForelderBarnRelasjon,
+    type ForelderBarnRelasjon,
     ForelderBarnRelasjonRolle,
     FullmaktsRolle,
     InformasjonElement,
     Kjonn,
-    LocalDate,
-    LocalDateTime,
-    Person,
+    type LocalDate,
+    type LocalDateTime,
+    type Person,
+    type Data as PersonData,
     PersonStatus,
     SivilstandType,
     Skifteform

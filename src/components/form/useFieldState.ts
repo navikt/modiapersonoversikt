@@ -1,7 +1,7 @@
-import { FieldValues } from 'react-hook-form';
-import { FieldPath } from 'react-hook-form/';
-import { UseFormReturn } from 'react-hook-form';
-import { UseFieldStateReturn } from './formTypes';
+import type { FieldValues } from 'react-hook-form';
+import type { UseFormReturn } from 'react-hook-form';
+import type { FieldPath } from 'react-hook-form/';
+import type { UseFieldStateReturn } from './formTypes';
 
 function forceValidationOfAllFields<TFieldValues extends FieldValues>(form: UseFormReturn<TFieldValues>) {
     form.trigger();

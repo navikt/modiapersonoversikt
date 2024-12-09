@@ -1,9 +1,9 @@
-import { BigCenteredLazySpinner } from '../../../components/BigCenteredLazySpinner';
-import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
 import AlertStripe from 'nav-frontend-alertstriper';
 import ErrorBoundary from 'src/components/ErrorBoundary';
-import VisittkortVisning from './VisittkortVisning';
+import { BigCenteredLazySpinner } from '../../../components/BigCenteredLazySpinner';
+import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
 import persondataResource from '../../../rest/resources/persondataResource';
+import VisittkortVisning from './VisittkortVisning';
 
 function Visittkort() {
     const persondataResponse = persondataResource.useFetch();

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import nisselue from './nisselue.svg';
 import styled, { css, keyframes } from 'styled-components';
 import Sno from './Sno';
+import nisselue from './nisselue.svg';
 
 const dropDown = keyframes`
   from {

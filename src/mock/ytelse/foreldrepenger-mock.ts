@@ -1,19 +1,19 @@
 import { fakerNB_NO as faker } from '@faker-js/faker';
 import dayjs from 'dayjs';
 import navfaker from 'nav-faker/dist/index';
-import {
-    Foreldrepengerperiode,
+import type { Arbeidsforhold } from '../../models/ytelse/arbeidsforhold';
+import type {
     ForeldrepengerResponse,
-    Foreldrepengerettighet
+    Foreldrepengerettighet,
+    Foreldrepengerperiode
 } from '../../models/ytelse/foreldrepenger';
-import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
-import { getKommendeUtbetaling } from './ytelse-utbetalinger-mock';
-import { KommendeUtbetaling } from '../../models/ytelse/ytelse-utbetalinger';
-import { Arbeidsforhold } from '../../models/ytelse/arbeidsforhold';
-import { statiskForeldrepengeMock } from './statiskForeldrepengeMock';
+import type { KommendeUtbetaling } from '../../models/ytelse/ytelse-utbetalinger';
 import { backendDatoformat } from '../../utils/date-utils';
-import { aremark } from '../persondata/aremark';
 import { getPeriode } from '../periodeMock';
+import { aremark } from '../persondata/aremark';
+import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
+import { statiskForeldrepengeMock } from './statiskForeldrepengeMock';
+import { getKommendeUtbetaling } from './ytelse-utbetalinger-mock';
 
 export function getMockForeldrepenger(fødselsnummer: string): ForeldrepengerResponse {
     if (fødselsnummer == aremark.personIdent) {

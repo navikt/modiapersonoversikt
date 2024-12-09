@@ -1,7 +1,7 @@
-import styled from 'styled-components';
 import classNames from 'classnames';
+import styled from 'styled-components';
 import theme from '../../styles/personOversiktTheme';
-import { Table, TableProps } from './Table';
+import { Table, type TableProps } from './Table';
 
 export const TableStyle = styled.div`
     overflow: auto;

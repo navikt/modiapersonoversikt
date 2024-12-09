@@ -1,5 +1,5 @@
+import type { ReactNode } from 'react';
 import styled from 'styled-components';
-import { ReactNode } from 'react';
 import theme from '../../../../styles/personOversiktTheme';
 
 const TittelOgIkonDiv = styled.div`

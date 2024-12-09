@@ -1,4 +1,4 @@
-import { MouseEventHandler, ReactNode } from 'react';
+import type { MouseEventHandler, ReactNode } from 'react';
 import { loggError } from '../logger/frontendLogger';
 
 export type TitleCell = string | ReactNode;

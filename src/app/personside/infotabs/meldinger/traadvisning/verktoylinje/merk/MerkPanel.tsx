@@ -1,9 +1,26 @@
-import { FormEvent, useRef, useState } from 'react';
-import styled from 'styled-components';
+import { type UseQueryResult, useQueryClient } from '@tanstack/react-query';
+import { AlertStripeFeil, AlertStripeInfo, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
+import { RadioPanelGruppe, type RadioPanelProps } from 'nav-frontend-skjema';
+import { type FormEvent, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppState } from '../../../../../../../redux/reducers';
+import styled from 'styled-components';
+import { type FetchError, post } from '../../../../../../../api/api';
+import { apiBaseUri } from '../../../../../../../api/config';
+import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
+import { useValgtenhet } from '../../../../../../../context/valgtenhet-state';
+import type { Traad } from '../../../../../../../models/meldinger/meldinger';
+import type {
+    MerkLukkTraadRequest,
+    MerkRequestMedBehandlingskjede,
+    SendTilSladdingRequest
+} from '../../../../../../../models/meldinger/merk';
+import type { Oppgave } from '../../../../../../../models/meldinger/oppgave';
+import { setIngenValgtTraadDialogpanel } from '../../../../../../../redux/oppgave/actions';
+import type { AppState } from '../../../../../../../redux/reducers';
+import dialogResource from '../../../../../../../rest/resources/dialogResource';
+import tildelteoppgaver from '../../../../../../../rest/resources/tildelteoppgaverResource';
+import { useFocusOnFirstFocusable } from '../../../../../../../utils/hooks/use-focus-on-first-focusable';
 import {
     eldsteMelding,
     erBehandlet,
@@ -15,25 +32,8 @@ import {
     erMeldingstypeSamtalereferat,
     kanBesvares
 } from '../../../utils/meldingerUtils';
-import { Traad } from '../../../../../../../models/meldinger/meldinger';
-import { RadioPanelGruppe, RadioPanelProps } from 'nav-frontend-skjema';
-import { apiBaseUri } from '../../../../../../../api/config';
-import { FetchError, post } from '../../../../../../../api/api';
-import {
-    MerkLukkTraadRequest,
-    MerkRequestMedBehandlingskjede,
-    SendTilSladdingRequest
-} from '../../../../../../../models/meldinger/merk';
-import { AlertStripeFeil, AlertStripeInfo, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { Resultat } from '../utils/VisPostResultat';
-import { useFocusOnFirstFocusable } from '../../../../../../../utils/hooks/use-focus-on-first-focusable';
-import { setIngenValgtTraadDialogpanel } from '../../../../../../../redux/oppgave/actions';
-import { Oppgave } from '../../../../../../../models/meldinger/oppgave';
-import tildelteoppgaver from '../../../../../../../rest/resources/tildelteoppgaverResource';
-import { SladdeObjekt, velgMeldingerTilSladding } from './sladdevalg/Sladdevalg';
-import dialogResource from '../../../../../../../rest/resources/dialogResource';
-import { useValgtenhet } from '../../../../../../../context/valgtenhet-state';
-import { useQueryClient, UseQueryResult } from '@tanstack/react-query';
+import { type SladdeObjekt, velgMeldingerTilSladding } from './sladdevalg/Sladdevalg';
 
 interface Props {
     lukkPanel: () => void;

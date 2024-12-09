@@ -1,17 +1,17 @@
-import { DecoratorButtonId as OppdateringsloggButtonId } from '../oppdateringslogg/OppdateringsloggContainer';
-import bjelleIkon from '../../svg/bjelle.svg?raw';
-import { parseQueryString, useQueryParams } from '../../utils/url-utils';
-import { useSettAktivBruker, useOnMount } from '../../utils/customHooks';
-import { loggEvent } from '../../utils/logger/frontendLogger';
-import { Enhet } from '../../rest/resources/saksbehandlersEnheterResource';
-import { trackNavigation, updateUserEnhet } from '../../utils/amplitude';
-import { useCallback } from 'react';
-import { DecoratorPropsV3, Hotkey } from './decoratorprops';
-import { getDomainFromHost, getEnvFromHost } from '../../utils/environment';
-import config from '../../config';
-import { paths } from '../routes/routing';
 import { useAtom, useAtomValue } from 'jotai';
+import { useCallback } from 'react';
 import { aktivBrukerAtom, aktivEnhetAtom } from 'src/lib/state/context';
+import config from '../../config';
+import type { Enhet } from '../../rest/resources/saksbehandlersEnheterResource';
+import bjelleIkon from '../../svg/bjelle.svg?raw';
+import { trackNavigation, updateUserEnhet } from '../../utils/amplitude';
+import { useOnMount, useSettAktivBruker } from '../../utils/customHooks';
+import { getDomainFromHost, getEnvFromHost } from '../../utils/environment';
+import { loggEvent } from '../../utils/logger/frontendLogger';
+import { parseQueryString, useQueryParams } from '../../utils/url-utils';
+import { DecoratorButtonId as OppdateringsloggButtonId } from '../oppdateringslogg/OppdateringsloggContainer';
+import { paths } from '../routes/routing';
+import type { DecoratorPropsV3, Hotkey } from './decoratorprops';
 
 export function useDecoratorConfig() {
     const [aktivEnhet, setAktivEnhet] = useAtom(aktivEnhetAtom);

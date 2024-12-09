@@ -1,4 +1,4 @@
-import { Enhet } from '../../rest/resources/saksbehandlersEnheterResource';
+import type { Enhet } from '../../rest/resources/saksbehandlersEnheterResource';
 
 interface Markup {
     etterSokefelt?: string;

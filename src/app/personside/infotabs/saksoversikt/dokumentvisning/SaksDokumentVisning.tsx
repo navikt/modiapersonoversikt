@@ -1,15 +1,15 @@
-import { useOnMount } from '../../../../../utils/customHooks';
-import { memo, useCallback, useEffect, useState } from 'react';
-import { loggEvent } from '../../../../../utils/logger/frontendLogger';
-import { erIE11 } from '../../../../../utils/erIE11';
-import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { ObjectHttpFeilHandtering } from '../../../../../components/ObjectHttpFeilHandtering';
-import { erSakerFullscreen } from '../utils/erSakerFullscreen';
-import styled from 'styled-components';
-import { getMockableUrl } from './mockable-dokument-url';
-import { parseQueryString } from '../../../../../utils/url-utils';
-import { apiBaseUri } from '../../../../../api/config';
 import { useLocation } from '@tanstack/react-router';
+import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { memo, useCallback, useEffect, useState } from 'react';
+import styled from 'styled-components';
+import { apiBaseUri } from '../../../../../api/config';
+import { ObjectHttpFeilHandtering } from '../../../../../components/ObjectHttpFeilHandtering';
+import { useOnMount } from '../../../../../utils/customHooks';
+import { erIE11 } from '../../../../../utils/erIE11';
+import { loggEvent } from '../../../../../utils/logger/frontendLogger';
+import { parseQueryString } from '../../../../../utils/url-utils';
+import { erSakerFullscreen } from '../utils/erSakerFullscreen';
+import { getMockableUrl } from './mockable-dokument-url';
 
 interface Props {
     fnr: string;

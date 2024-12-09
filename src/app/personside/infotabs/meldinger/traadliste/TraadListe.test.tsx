@@ -1,8 +1,8 @@
 import * as renderer from 'react-test-renderer';
+import { statiskTraadMock } from '../../../../../mock/meldinger/statiskTraadMock';
 import TestProvider from '../../../../../test/Testprovider';
 import { setupReactQueryMocks } from '../../../../../test/testStore';
 import TraadListe from './TraadListe';
-import { statiskTraadMock } from '../../../../../mock/meldinger/statiskTraadMock';
 
 test('Viser Traadliste', () => {
     setupReactQueryMocks();

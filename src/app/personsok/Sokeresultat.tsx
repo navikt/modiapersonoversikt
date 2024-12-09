@@ -1,8 +1,8 @@
 import { default as React, useRef } from 'react';
-import { AdresseCelle, BostedCelle, IdentCelle, NavnCelle, UtenlandskIDCelle } from './PersonsokResultatElementer';
-import { ClickableTable } from '../../utils/table/ClickableTable';
-import { PersonsokResponse } from '../../models/person/personsok';
+import type { PersonsokResponse } from '../../models/person/personsok';
 import { useFocusOnMount, useSettAktivBruker } from '../../utils/customHooks';
+import { ClickableTable } from '../../utils/table/ClickableTable';
+import { AdresseCelle, BostedCelle, IdentCelle, NavnCelle, UtenlandskIDCelle } from './PersonsokResultatElementer';
 
 interface Props {
     response: PersonsokResponse[];

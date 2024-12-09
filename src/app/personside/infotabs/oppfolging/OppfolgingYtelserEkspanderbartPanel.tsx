@@ -1,14 +1,17 @@
-import { isDagpenger, OppfolgingsYtelse } from '../../../../models/oppfolging';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import EkspanderbartYtelserPanel from '../ytelser/felles-styling/EkspanderbartYtelserPanel';
-import { datoSynkende } from '../../../../utils/date-utils';
-import styled from 'styled-components';
-import theme from '../../../../styles/personOversiktTheme';
 import { Undertittel } from 'nav-frontend-typografi';
-import DescriptionList, { DescriptionListEntries, fjernEntriesUtenVerdi } from '../../../../components/DescriptionList';
-import OppfolgingsVedtakTabell from './OppfolgingVedtakKomponent';
-import { datoEllerNull } from '../../../../utils/string-utils';
 import { useState } from 'react';
+import styled from 'styled-components';
+import DescriptionList, {
+    type DescriptionListEntries,
+    fjernEntriesUtenVerdi
+} from '../../../../components/DescriptionList';
+import { type OppfolgingsYtelse, isDagpenger } from '../../../../models/oppfolging';
+import theme from '../../../../styles/personOversiktTheme';
+import { datoSynkende } from '../../../../utils/date-utils';
+import { datoEllerNull } from '../../../../utils/string-utils';
+import EkspanderbartYtelserPanel from '../ytelser/felles-styling/EkspanderbartYtelserPanel';
+import OppfolgingsVedtakTabell from './OppfolgingVedtakKomponent';
 
 interface Props {
     ytelser: OppfolgingsYtelse[];

@@ -1,10 +1,10 @@
-import { apiBaseUri } from '../../api/config';
-import { GsakTema } from '../../models/meldinger/oppgave';
-import { applyDefaults, DefaultConfig, RendererOrConfig, useRest } from '../useRest';
-import { CenteredLazySpinner } from '../../components/LazySpinner';
+import { type UseQueryResult, useQuery, useQueryClient } from '@tanstack/react-query';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { useQuery, useQueryClient, UseQueryResult } from '@tanstack/react-query';
-import { FetchError, get } from '../../api/api';
+import { type FetchError, get } from '../../api/api';
+import { apiBaseUri } from '../../api/config';
+import { CenteredLazySpinner } from '../../components/LazySpinner';
+import type { GsakTema } from '../../models/meldinger/oppgave';
+import { type DefaultConfig, type RendererOrConfig, applyDefaults, useRest } from '../useRest';
 
 const queryKey = ['gsaktema'];
 const url = `${apiBaseUri}/dialogoppgave/v2/tema`;

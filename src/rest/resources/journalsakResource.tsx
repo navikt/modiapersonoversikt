@@ -1,8 +1,8 @@
+import { type UseQueryResult, useQuery, useQueryClient } from '@tanstack/react-query';
+import { type FetchError, post } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
+import type { Result } from '../../app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import { useFodselsnummer } from '../../utils/customHooks';
-import { useQuery, useQueryClient, UseQueryResult } from '@tanstack/react-query';
-import { FetchError, post } from '../../api/api';
-import { Result } from '../../app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 
 function urlV2(): string {
     return `${apiBaseUri}/v2/journalforing/saker/`;

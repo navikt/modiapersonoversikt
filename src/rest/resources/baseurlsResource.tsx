@@ -1,10 +1,10 @@
-import { apiBaseUri } from '../../api/config';
-import { applyDefaults, DefaultConfig, RendererOrConfig, useRest } from '../useRest';
-import { CenteredLazySpinner } from '../../components/LazySpinner';
+import { type UseQueryResult, useQuery, useQueryClient } from '@tanstack/react-query';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { BaseUrls } from '../../models/baseurls';
-import { useQuery, useQueryClient, UseQueryResult } from '@tanstack/react-query';
-import { FetchError, get } from '../../api/api';
+import { type FetchError, get } from '../../api/api';
+import { apiBaseUri } from '../../api/config';
+import { CenteredLazySpinner } from '../../components/LazySpinner';
+import type { BaseUrls } from '../../models/baseurls';
+import { type DefaultConfig, type RendererOrConfig, applyDefaults, useRest } from '../useRest';
 
 const queryKey = ['baseurls'];
 const url = `${apiBaseUri}/baseurls/v2`;

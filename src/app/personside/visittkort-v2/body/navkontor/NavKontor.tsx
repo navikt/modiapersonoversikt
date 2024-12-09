@@ -1,17 +1,21 @@
+import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
+import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import { Fragment } from 'react';
 import styled from 'styled-components';
-import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import EtikettGraa from '../../../../../components/EtikettGraa';
-import VisittkortElement from '../VisittkortElement';
+import baseurls from '../../../../../rest/resources/baseurlsResource';
 import NavLogo from '../../../../../svg/NavLogo';
-import { VisittkortGruppe } from '../VisittkortStyles';
-import { Enhet, InformasjonElement, Publikumsmottak as PublikumsmottakInterface } from '../../PersondataDomain';
-import AdresseInfo from '../AdresseInfo';
 import { capitalizeName } from '../../../../../utils/string-utils';
+import {
+    type Enhet,
+    InformasjonElement,
+    type Publikumsmottak as PublikumsmottakInterface
+} from '../../PersondataDomain';
 import { harFeilendeSystemer } from '../../harFeilendeSystemer';
 import { mapUgyldigGT } from '../../visittkort-utils';
-import baseurls from '../../../../../rest/resources/baseurlsResource';
-import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
+import AdresseInfo from '../AdresseInfo';
+import VisittkortElement from '../VisittkortElement';
+import { VisittkortGruppe } from '../VisittkortStyles';
 
 const ApningstiderListe = styled.dl`
     margin: initial;

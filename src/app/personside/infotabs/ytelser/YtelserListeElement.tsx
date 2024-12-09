@@ -1,19 +1,19 @@
+import { Element, Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import VisMerKnapp from '../../../../components/VisMerKnapp';
+import { getForeldepengerIdDato, getUnikForeldrepengerKey } from '../../../../models/ytelse/foreldrepenger';
+import { getUnikPleiepengerKey } from '../../../../models/ytelse/pleiepenger';
+import { getUnikSykepengerKey } from '../../../../models/ytelse/sykepenger';
+import { getTiltakspengerIdDato, getUnikTiltakspengerKey } from '../../../../models/ytelse/tiltakspenger';
 import {
+    type Ytelse,
     getYtelseIdDato,
     isForeldrepenger,
     isPleiepenger,
     isSykepenger,
-    isTiltakspenger,
-    Ytelse
+    isTiltakspenger
 } from '../../../../models/ytelse/ytelse-utils';
-import VisMerKnapp from '../../../../components/VisMerKnapp';
-import { getUnikPleiepengerKey } from '../../../../models/ytelse/pleiepenger';
-import { Element, Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { formaterDato } from '../../../../utils/string-utils';
-import { getUnikSykepengerKey } from '../../../../models/ytelse/sykepenger';
-import { getForeldepengerIdDato, getUnikForeldrepengerKey } from '../../../../models/ytelse/foreldrepenger';
 import { useInfotabsDyplenker } from '../dyplenker';
-import { getTiltakspengerIdDato, getUnikTiltakspengerKey } from '../../../../models/ytelse/tiltakspenger';
 
 interface Props {
     ytelse: Ytelse;

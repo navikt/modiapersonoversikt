@@ -1,15 +1,15 @@
+import Hjelpetekst from 'nav-frontend-hjelpetekst';
+import { Element, Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import { Fragment } from 'react';
 import styled from 'styled-components';
-import { Element, Feilmelding, Normaltekst } from 'nav-frontend-typografi';
-import VisittkortElement from '../VisittkortElement';
-import { InformasjonElement, Verge as VergeInterface } from '../../PersondataDomain';
-import VergemalLogo from '../../../../../svg/Utropstegn';
 import EtikettGraa from '../../../../../components/EtikettGraa';
-import { VisittkortGruppe } from '../VisittkortStyles';
+import VergemalLogo from '../../../../../svg/Utropstegn';
+import { InformasjonElement, type Verge as VergeInterface } from '../../PersondataDomain';
+import { harFeilendeSystemer } from '../../harFeilendeSystemer';
 import { hentNavn } from '../../visittkort-utils';
 import GyldighetsPeriode from '../GyldighetsPeriode';
-import { harFeilendeSystemer } from '../../harFeilendeSystemer';
-import Hjelpetekst from 'nav-frontend-hjelpetekst';
+import VisittkortElement from '../VisittkortElement';
+import { VisittkortGruppe } from '../VisittkortStyles';
 
 const Vergeinformasjon = styled.div`
     margin-bottom: 5px;

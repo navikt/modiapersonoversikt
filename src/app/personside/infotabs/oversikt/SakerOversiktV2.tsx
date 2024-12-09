@@ -1,14 +1,14 @@
-import { SakstemaSoknadsstatus } from '../../../../models/saksoversikt/sakstema';
-import styled from 'styled-components';
-import theme from '../../../../styles/personOversiktTheme';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { CenteredLazySpinner } from '../../../../components/LazySpinner';
-import { ReactNode } from 'react';
-import { useOnMount } from '../../../../utils/customHooks';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { filtrerSakstemaerUtenDataV2 } from '../saksoversikt/sakstemaliste/SakstemaListeUtils';
+import type { ReactNode } from 'react';
+import styled from 'styled-components';
+import { CenteredLazySpinner } from '../../../../components/LazySpinner';
+import type { SakstemaSoknadsstatus } from '../../../../models/saksoversikt/sakstema';
 import resource from '../../../../rest/resources/sakstemaResource';
+import theme from '../../../../styles/personOversiktTheme';
+import { useOnMount } from '../../../../utils/customHooks';
 import SakstemaListeElementKnappV2 from '../saksoversikt/sakstemaliste/SakstemaListeElementKnappV2';
+import { filtrerSakstemaerUtenDataV2 } from '../saksoversikt/sakstemaliste/SakstemaListeUtils';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {

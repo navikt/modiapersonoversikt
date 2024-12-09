@@ -1,9 +1,9 @@
-import { Behandlingsstatus, SakstemaSoknadsstatus } from '../../../../../models/saksoversikt/sakstema';
-import { memo } from 'react';
-import { saksikon, SVGStyling, visAntallSakerSomHarbehandlingsstatusV2 } from './SakstemaListeUtils';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
+import { memo } from 'react';
 import styled from 'styled-components';
+import { Behandlingsstatus, type SakstemaSoknadsstatus } from '../../../../../models/saksoversikt/sakstema';
 import { hentFormattertDatoForSisteHendelseV2 } from '../utils/saksoversiktUtilsV2';
+import { SVGStyling, saksikon, visAntallSakerSomHarbehandlingsstatusV2 } from './SakstemaListeUtils';
 
 const CheckboksElement = styled.div`
     display: flex;

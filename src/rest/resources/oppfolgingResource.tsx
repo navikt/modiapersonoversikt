@@ -1,13 +1,13 @@
-import { applyDefaults, DefaultConfig, RendererOrConfig, useRest } from '../useRest';
-import { DetaljertOppfolging } from '../../models/oppfolging';
-import { CenteredLazySpinner } from '../../components/LazySpinner';
-import AlertStripe from 'nav-frontend-alertstriper';
-import { apiBaseUri } from '../../api/config';
-import { useFodselsnummer } from '../../utils/customHooks';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { FetchError, post } from '../../api/api';
-import { getUtbetalingerForSiste30DagerDatoer } from '../../app/personside/infotabs/utbetalinger/utils/utbetalinger-utils';
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
 import dayjs from 'dayjs';
+import AlertStripe from 'nav-frontend-alertstriper';
+import { type FetchError, post } from '../../api/api';
+import { apiBaseUri } from '../../api/config';
+import { getUtbetalingerForSiste30DagerDatoer } from '../../app/personside/infotabs/utbetalinger/utils/utbetalinger-utils';
+import { CenteredLazySpinner } from '../../components/LazySpinner';
+import type { DetaljertOppfolging } from '../../models/oppfolging';
+import { useFodselsnummer } from '../../utils/customHooks';
+import { type DefaultConfig, type RendererOrConfig, applyDefaults, useRest } from '../useRest';
 
 const defaults: DefaultConfig = {
     ifPending: <CenteredLazySpinner />,

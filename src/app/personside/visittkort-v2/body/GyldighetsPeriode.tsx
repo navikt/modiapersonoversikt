@@ -1,5 +1,5 @@
 import EtikettGraa from '../../../../components/EtikettGraa';
-import { GyldighetsPeriode as GyldighetsPeriodeInterface } from '../PersondataDomain';
+import type { GyldighetsPeriode as GyldighetsPeriodeInterface } from '../PersondataDomain';
 import { hentPeriodeTekst } from '../visittkort-utils';
 
 interface Props {

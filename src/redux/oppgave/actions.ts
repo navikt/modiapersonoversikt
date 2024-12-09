@@ -1,5 +1,5 @@
-import { Traad } from '../../models/meldinger/meldinger';
-import { NullstillValgtTraad, OppgaveActionTypes, SetValgtTraad } from './types';
+import type { Traad } from '../../models/meldinger/meldinger';
+import { type NullstillValgtTraad, OppgaveActionTypes, type SetValgtTraad } from './types';
 
 export function setValgtTraadDialogpanel(traad: Traad): SetValgtTraad {
     return {

@@ -1,7 +1,7 @@
 import * as renderer from 'react-test-renderer';
 import TestProvider from '../../../../test/Testprovider';
-import Oversikt from './Oversikt';
 import { setupReactQueryMocks } from '../../../../test/testStore';
+import Oversikt from './Oversikt';
 
 test('Viser oversikt med alt innhold', () => {
     setupReactQueryMocks();

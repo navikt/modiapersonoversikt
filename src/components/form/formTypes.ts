@@ -1,8 +1,8 @@
-import { FieldValues, InternalFieldName } from 'react-hook-form';
-import { UseFormRegisterReturn } from 'react-hook-form';
-import { RefCallBack } from 'react-hook-form';
-import { FieldPath } from 'react-hook-form';
-import { UseFormReturn } from 'react-hook-form';
+import type { FieldValues, InternalFieldName } from 'react-hook-form';
+import type { UseFormRegisterReturn } from 'react-hook-form';
+import type { RefCallBack } from 'react-hook-form';
+import type { FieldPath } from 'react-hook-form';
+import type { UseFormReturn } from 'react-hook-form';
 
 export type UseFieldStateReturn<TFieldName extends InternalFieldName = InternalFieldName> = {
     input: Omit<UseFormRegisterReturn<TFieldName>, 'ref'> & { id: string };

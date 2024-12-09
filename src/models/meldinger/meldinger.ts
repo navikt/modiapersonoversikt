@@ -1,5 +1,5 @@
-import { JournalforingsSak } from '../../app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
-import { Temagruppe } from '../temagrupper';
+import type { JournalforingsSak } from '../../app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
+import type { Temagruppe } from '../temagrupper';
 
 export interface Traad {
     traadId: string;

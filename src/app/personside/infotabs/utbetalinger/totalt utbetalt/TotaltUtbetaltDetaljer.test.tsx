@@ -1,8 +1,8 @@
+import MockDate from 'mockdate';
 import * as renderer from 'react-test-renderer';
 import { statiskMockUtbetaling } from '../../../../../mock/utbetalinger/statiskMockUtbetaling';
+import type { Utbetaling, UtbetalingerPeriode } from '../../../../../models/utbetalinger';
 import TotaltUtbetaltDetaljer from './TotaltUtbetaltDetaljer';
-import { Utbetaling, UtbetalingerPeriode } from '../../../../../models/utbetalinger';
-import MockDate from 'mockdate';
 
 Date.now = () => new Date().getTime(); // for å motvirke Date.now() mock i setupTests.ts
 

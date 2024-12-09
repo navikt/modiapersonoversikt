@@ -1,4 +1,4 @@
-import { MutableRefObject } from 'react';
+import type { MutableRefObject } from 'react';
 import { useJustOnceEffect } from '../customHooks';
 
 export function focusOnFirstFocusable(element: HTMLElement | null) {

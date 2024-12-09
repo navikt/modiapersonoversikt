@@ -1,9 +1,9 @@
-import * as React from 'react';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
-import { isDittNavEvent, UnifiedVarsel, VarslerResult } from '../../../../models/varsel';
+import * as React from 'react';
 import LazySpinner from '../../../../components/LazySpinner';
-import { datoSynkende } from '../../../../utils/date-utils';
+import { type UnifiedVarsel, type VarslerResult, isDittNavEvent } from '../../../../models/varsel';
 import varselResource from '../../../../rest/resources/varselResource';
+import { datoSynkende } from '../../../../utils/date-utils';
 
 function datoExtractor(varsel: UnifiedVarsel) {
     if (isDittNavEvent(varsel)) {

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import useFeatureToggle from '../../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../../components/featureToggle/toggleIDs';
+import useFeatureToggle from '../../../components/featureToggle/useFeatureToggle';
 
 export const useAlertOnNavigation = (shouldShowAlert: boolean) => {
     const { isOn } = useFeatureToggle(FeatureToggles.VisPromptMeldingSending);

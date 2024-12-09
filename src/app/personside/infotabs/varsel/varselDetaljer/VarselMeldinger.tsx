@@ -1,9 +1,9 @@
-import { Varselmelding } from '../../../../../models/varsel';
 import styled from 'styled-components';
+import type { Varselmelding } from '../../../../../models/varsel';
 import theme from '../../../../../styles/personOversiktTheme';
-import VarselMelding from './VarselMelding';
 import { useOnMount } from '../../../../../utils/customHooks';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
+import VarselMelding from './VarselMelding';
 
 interface Props {
     sortertMeldingsliste: Varselmelding[];

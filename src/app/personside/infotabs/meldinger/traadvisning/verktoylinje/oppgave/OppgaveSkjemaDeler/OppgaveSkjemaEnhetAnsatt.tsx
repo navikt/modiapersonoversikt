@@ -1,14 +1,14 @@
-import { UseFormReturn } from 'react-hook-form';
+import type { UseFormReturn } from 'react-hook-form';
 import styled from 'styled-components';
 import { LenkeKnapp } from '../../../../../../../../components/common-styled-components';
-import oppgaveBehandlerResource from '../../../../../../../../rest/resources/oppgaveBehandlerResource';
 import innloggetSaksbehandler from '../../../../../../../../rest/resources/innloggetSaksbehandlerResource';
+import oppgaveBehandlerResource from '../../../../../../../../rest/resources/oppgaveBehandlerResource';
 import AutoComplete from '../AutoComplete';
-import { OppgaveSkjemaForm } from '../oppgaveInterfaces';
+import { feilmeldingReactHookForm } from '../feilmeldingReactHookForm';
+import type { OppgaveSkjemaForm } from '../oppgaveInterfaces';
 import useAnsattePaaEnhet from '../useAnsattePaaEnhet';
 import useForeslatteEnheter from '../useForeslåtteEnheter';
 import { useMatchendeEnhet } from '../useMatchendeEnhet';
-import { feilmeldingReactHookForm } from '../feilmeldingReactHookForm';
 
 const SettTilEgenOppgaveListeKnapp = styled(LenkeKnapp)`
     display: inline-block;

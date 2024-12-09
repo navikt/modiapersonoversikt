@@ -1,5 +1,5 @@
 import EtikettBase from 'nav-frontend-etiketter';
-import { Fullmakt } from './../../PersondataDomain';
+import type { Fullmakt } from './../../PersondataDomain';
 
 interface Props {
     fullmakt: Fullmakt[];

@@ -1,9 +1,9 @@
+import { Undertittel } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import PilKnapp from '../../components/pilknapp';
-import { HoyreKolonne as HoyreKolonneBase, VenstreKolonne as VenstreKolonneBase } from './MainLayoutStyles';
-import { Undertittel } from 'nav-frontend-typografi';
-import theme from '../../styles/personOversiktTheme';
 import { useDialogpanelState } from '../../context/dialogpanel-state';
+import theme from '../../styles/personOversiktTheme';
+import { HoyreKolonne as HoyreKolonneBase, VenstreKolonne as VenstreKolonneBase } from './MainLayoutStyles';
 
 export const VenstreKolonne = styled(VenstreKolonneBase)`
     @media (${theme.media.smallScreen}) {

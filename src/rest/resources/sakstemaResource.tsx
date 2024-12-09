@@ -1,12 +1,12 @@
-import { applyDefaults, DefaultConfig, RendererOrConfig, useRest } from '../useRest';
-import { CenteredLazySpinner } from '../../components/LazySpinner';
-import AlertStripe from 'nav-frontend-alertstriper';
-import { apiBaseUri } from '../../api/config';
-import { SakstemaSoknadsstatusResponse } from '../../models/saksoversikt/sakstema';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { FetchError, post } from '../../api/api';
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
 import { useAtomValue } from 'jotai';
+import AlertStripe from 'nav-frontend-alertstriper';
 import { aktivBrukerAtom, aktivEnhetAtom } from 'src/lib/state/context';
+import { type FetchError, post } from '../../api/api';
+import { apiBaseUri } from '../../api/config';
+import { CenteredLazySpinner } from '../../components/LazySpinner';
+import type { SakstemaSoknadsstatusResponse } from '../../models/saksoversikt/sakstema';
+import { type DefaultConfig, type RendererOrConfig, applyDefaults, useRest } from '../useRest';
 
 const defaults: DefaultConfig = {
     ifPending: <CenteredLazySpinner />,

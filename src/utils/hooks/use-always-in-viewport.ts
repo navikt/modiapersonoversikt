@@ -1,4 +1,4 @@
-import { useCallback, DependencyList, useEffect } from 'react';
+import { type DependencyList, useCallback, useEffect } from 'react';
 
 declare global {
     interface Element {

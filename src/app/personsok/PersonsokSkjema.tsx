@@ -1,20 +1,20 @@
-import { PersonsokRequestV3 as PersonsokRequest, PersonsokResponse } from '../../models/person/personsok';
-import { apiBaseUri, postConfig } from '../../api/config';
-import { FetchResponse, fetchToJson } from '../../utils/fetchToJson';
-import { lagRequestV3, PersonSokFormStateV3 as PersonSokFormState, resolver } from './personsokUtils';
-import { loggError, loggEvent } from '../../utils/logger/frontendLogger';
-import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
-import LenkeDrekV2 from './LenkeDrekV2';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { LenkeKnapp } from '../../components/common-styled-components';
-import styled from 'styled-components';
-import theme from '../../styles/personOversiktTheme';
+import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { useForm } from 'react-hook-form';
-import PersonsokNavnAdresseKontonrDnr from './PersonsokNavnAdresseKontonrDnr';
-import PersonsokAlderKjonn from './PersonsokAlderKjonn';
-import PersonsokDatovelger from './PersonsokDatovelger';
+import styled from 'styled-components';
+import { apiBaseUri, postConfig } from '../../api/config';
+import { LenkeKnapp } from '../../components/common-styled-components';
 import FormErrorSummary from '../../components/form/FormErrorSummary';
 import { useValgtenhet } from '../../context/valgtenhet-state';
+import type { PersonsokRequestV3 as PersonsokRequest, PersonsokResponse } from '../../models/person/personsok';
+import theme from '../../styles/personOversiktTheme';
+import { type FetchResponse, fetchToJson } from '../../utils/fetchToJson';
+import { loggError, loggEvent } from '../../utils/logger/frontendLogger';
+import LenkeDrekV2 from './LenkeDrekV2';
+import PersonsokAlderKjonn from './PersonsokAlderKjonn';
+import PersonsokDatovelger from './PersonsokDatovelger';
+import PersonsokNavnAdresseKontonrDnr from './PersonsokNavnAdresseKontonrDnr';
+import { type PersonSokFormStateV3 as PersonSokFormState, lagRequestV3, resolver } from './personsokUtils';
 
 interface Props {
     setResponse: (response: FetchResponse<PersonsokResponse[]>) => void;

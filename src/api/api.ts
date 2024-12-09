@@ -1,6 +1,6 @@
-import { includeCredentials, postConfig } from './config';
-import { loggError, loggEvent, loggWarning } from '../utils/logger/frontendLogger';
 import { confirm } from '../components/popup-boxes/popup-boxes';
+import { loggError, loggEvent, loggWarning } from '../utils/logger/frontendLogger';
+import { includeCredentials, postConfig } from './config';
 
 const CONFLICT = 409;
 export class FetchError extends Error {
@@ -35,7 +35,7 @@ export async function postWithConflictVerification<TYPE extends object = object>
     uri: string,
     body: object | string,
     loggLocation: string,
-    conflictMessage: string = 'Det oppstod en konflikt. Vil du overstyre?'
+    conflictMessage = 'Det oppstod en konflikt. Vil du overstyre?'
 ): Promise<TYPE> {
     loggEvent('Post', loggLocation);
     const config = postConfig(body);

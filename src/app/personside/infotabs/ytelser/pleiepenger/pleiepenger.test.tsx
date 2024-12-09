@@ -1,9 +1,9 @@
 import * as renderer from 'react-test-renderer';
-import Oversikt from './Oversikt';
 import TestProvider from '../../../../../test/Testprovider';
+import { setupReactQueryMocks } from '../../../../../test/testStore';
+import Oversikt from './Oversikt';
 import Pleiepengerperiode from './Pleiepengerperiode';
 import { pleiepengerTestData } from './pleiepengerTestData';
-import { setupReactQueryMocks } from '../../../../../test/testStore';
 
 test('Om Oversikten i pleiepengeretten matcher snapshot', () => {
     setupReactQueryMocks();

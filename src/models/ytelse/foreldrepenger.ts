@@ -1,8 +1,8 @@
-import { Periode } from '../tid';
-import { KommendeUtbetaling } from './ytelse-utbetalinger';
-import { Arbeidsforhold } from './arbeidsforhold';
 import dayjs from 'dayjs';
 import { backendDatoformat } from '../../utils/date-utils';
+import type { Periode } from '../tid';
+import type { Arbeidsforhold } from './arbeidsforhold';
+import type { KommendeUtbetaling } from './ytelse-utbetalinger';
 
 export interface ForeldrepengerResponse {
     foreldrepenger: Foreldrepengerettighet[] | null;

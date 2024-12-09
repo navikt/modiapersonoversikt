@@ -1,6 +1,6 @@
 import { fakerNB_NO as faker } from '@faker-js/faker';
+import type { paths } from 'src/generated/modiapersonoversikt-api';
 import { fyllRandomListe } from './utils/mock-utils';
-import { paths } from 'src/generated/modiapersonoversikt-api';
 
 type Innkrevingskrav = paths['/rest/innkrevingskrav/{innkrevingskravId}']['get']['responses']['200']['content']['*/*'];
 

@@ -1,14 +1,14 @@
+import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
+import Tekstomrade, { defaultRules } from 'nav-frontend-tekstomrade';
+import { Element, Undertekst } from 'nav-frontend-typografi';
 import { useState } from 'react';
 import styled from 'styled-components';
-import Tekstomrade, { defaultRules } from 'nav-frontend-tekstomrade';
-import { rule as sladdRule } from '../../../../../utils/sladdrule';
-import { Element, Undertekst } from 'nav-frontend-typografi';
-import { Melding, Traad } from '../../../../../models/meldinger/meldinger';
-import { formatterDatoTidMedMaanedsnavn } from '../../../../../utils/date-utils';
-import { traadstittel } from '../../../infotabs/meldinger/utils/meldingerUtils';
+import type { Melding, Traad } from '../../../../../models/meldinger/meldinger';
 import theme from '../../../../../styles/personOversiktTheme';
+import { formatterDatoTidMedMaanedsnavn } from '../../../../../utils/date-utils';
+import { rule as sladdRule } from '../../../../../utils/sladdrule';
 import { Avsender } from '../../../infotabs/meldinger/traadvisning/Enkeltmelding';
-import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
+import { traadstittel } from '../../../infotabs/meldinger/utils/meldingerUtils';
 
 const HeaderStyle = styled.div`
     width: 100%;

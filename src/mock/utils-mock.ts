@@ -1,6 +1,6 @@
-import navfaker from 'nav-faker';
 import { fakerNB_NO as faker } from '@faker-js/faker';
-import { HttpResponseResolver, StrictRequest } from 'msw';
+import type { HttpResponseResolver, StrictRequest } from 'msw';
+import navfaker from 'nav-faker';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 
 export const STATUS_BAD_REQUEST = () => 400;
@@ -13,7 +13,7 @@ export function delayed(ms: number, handler: HttpResponseResolver): HttpResponse
     };
 }
 
-export function nArrayElement<T>(list: Array<T>, n: number, allowDuplicates: boolean = true): Array<T> {
+export function nArrayElement<T>(list: Array<T>, n: number, allowDuplicates = true): Array<T> {
     if (n > list.length && !allowDuplicates) {
         throw new Error(`Cannot generate list of size ${n} without duplicates. Max size is: ${list.length}`);
     }

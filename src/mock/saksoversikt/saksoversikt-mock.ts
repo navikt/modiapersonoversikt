@@ -1,13 +1,13 @@
 import { fakerNB_NO as faker } from '@faker-js/faker';
 
 import navfaker from 'nav-faker/dist/index';
-import { SakstemaSoknadsstatus, SakstemaSoknadsstatusResponse } from '../../models/saksoversikt/sakstema';
-import { Sak } from '../../models/saksoversikt/sak';
-import { getBaksystem, getSaksdato } from './saksoversikt-felles-mock';
-import { getJournalposter } from './journalpost-mock';
+import type { Sak } from '../../models/saksoversikt/sak';
+import type { SakstemaSoknadsstatus, SakstemaSoknadsstatusResponse } from '../../models/saksoversikt/sakstema';
+import { aremark } from '../persondata/aremark';
 import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
 import { getAremarkSakstemaListeV2 } from './aremark-saksoversikt-mockV2';
-import { aremark } from '../persondata/aremark';
+import { getJournalposter } from './journalpost-mock';
+import { getBaksystem, getSaksdato } from './saksoversikt-felles-mock';
 import { getSoknadsstatus } from './soknadsstatus-mock';
 
 const temaarray = [

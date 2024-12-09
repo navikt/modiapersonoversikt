@@ -1,5 +1,5 @@
-import { Ytelse } from '../../models/utbetalinger';
-import { UtbetalingFilterState } from './types';
+import type { Ytelse } from '../../models/utbetalinger';
+import type { UtbetalingFilterState } from './types';
 
 export enum actionKeys {
     SettYtelseIFokus = 'SettYtelseIFokus',

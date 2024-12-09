@@ -1,5 +1,5 @@
 import EtikettGraa from '../../../../../../components/EtikettGraa';
-import { Journalpost } from '../../../../../../models/saksoversikt/journalpost';
+import type { Journalpost } from '../../../../../../models/saksoversikt/journalpost';
 import { formatterDatoTid } from '../../../../../../utils/date-utils';
 
 interface Props {

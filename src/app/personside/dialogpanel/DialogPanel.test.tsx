@@ -1,8 +1,8 @@
 import * as renderer from 'react-test-renderer';
-import TestProvider from '../../../test/Testprovider';
-import DialogPanel from './DialogPanel';
-import { setupReactQueryMocks } from '../../../test/testStore';
 import { vi } from 'vitest';
+import TestProvider from '../../../test/Testprovider';
+import { setupReactQueryMocks } from '../../../test/testStore';
+import DialogPanel from './DialogPanel';
 
 beforeEach(() => {
     Date.prototype.getTime = vi.fn(() => 0);

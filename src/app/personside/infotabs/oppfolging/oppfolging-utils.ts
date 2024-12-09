@@ -1,4 +1,4 @@
-import { Oppfolging, Saksbehandler } from '../../../../models/oppfolging';
+import type { Oppfolging, Saksbehandler } from '../../../../models/oppfolging';
 
 export function getErUnderOppfolging(oppfolging: Oppfolging | null): string {
     if (oppfolging == null) {

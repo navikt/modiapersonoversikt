@@ -1,11 +1,11 @@
-import { applyDefaults, DefaultConfig, RendererOrConfig, useRest } from '../useRest';
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
 import AlertStripe from 'nav-frontend-alertstriper';
+import { type FetchError, post } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
 import { BigCenteredLazySpinner } from '../../components/BigCenteredLazySpinner';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { FetchError, post } from '../../api/api';
 import { useValgtenhet } from '../../context/valgtenhet-state';
+import { type DefaultConfig, type RendererOrConfig, applyDefaults, useRest } from '../useRest';
 
 const defaults: DefaultConfig = {
     ifPending: BigCenteredLazySpinner,

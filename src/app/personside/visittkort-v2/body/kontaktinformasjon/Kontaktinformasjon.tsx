@@ -1,12 +1,12 @@
-import { Data as PersonData, InformasjonElement } from '../../PersondataDomain';
+import { InformasjonElement, type Data as PersonData } from '../../PersondataDomain';
+import { harFeilendeSystemer } from '../../harFeilendeSystemer';
 import { VisittkortGruppe } from '../VisittkortStyles';
+import NavKontaktinformasjon from './NavKontaktinformasjon';
+import Adresse from './adresse/Adresse';
 import Bankkonto from './bankkonto/Bankkonto';
 import KontaktinformasjonDodsbo from './dodsbo/Dodsbo';
-import Adresse from './adresse/Adresse';
 import Epost from './epost/Epost';
 import Telefon from './telefon/Telefon';
-import NavKontaktinformasjon from './NavKontaktinformasjon';
-import { harFeilendeSystemer } from '../../harFeilendeSystemer';
 
 interface Props {
     persondata: PersonData;

@@ -1,10 +1,10 @@
 import * as renderer from 'react-test-renderer';
-import TestProvider from '../../../../test/Testprovider';
-import ValgtYtelse from './ValgtYtelse';
 import { statiskForeldrepengeMock } from '../../../../mock/ytelse/statiskForeldrepengeMock';
-import { pleiepengerTestData } from './pleiepenger/pleiepengerTestData';
 import { statiskSykepengerMock } from '../../../../mock/ytelse/statiskSykepengerMock';
+import TestProvider from '../../../../test/Testprovider';
 import { setupReactQueryMocks } from '../../../../test/testStore';
+import ValgtYtelse from './ValgtYtelse';
+import { pleiepengerTestData } from './pleiepenger/pleiepengerTestData';
 
 test('Om foreldrepenger matcher snapshot', () => {
     setupReactQueryMocks();

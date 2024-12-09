@@ -1,5 +1,5 @@
 import { LoginStateManager } from './login/LoginStateManager';
-import { IncommingMessageType, OutgoingMessageType } from './login/types';
+import type { IncommingMessageType, OutgoingMessageType } from './login/types';
 
 const loginStateManager = new LoginStateManager();
 

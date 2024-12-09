@@ -1,5 +1,5 @@
-import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import EkspanderKnapp from '../../../../../components/EkspanderKnapp';
+import type { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 
 interface OwnProps {
     valgtSakstema?: Sakstema;

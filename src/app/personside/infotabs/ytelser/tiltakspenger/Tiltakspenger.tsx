@@ -1,15 +1,15 @@
-import { useRef } from 'react';
-import styled from 'styled-components';
-import { Tiltakspenger as ITiltakspenger } from '../../../../../models/ytelse/tiltakspenger';
-import ErrorBoundary from '../../../../../components/ErrorBoundary';
-import { useOnMount } from '../../../../../utils/customHooks';
-import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { guid } from 'nav-frontend-js-utils';
 import Panel from 'nav-frontend-paneler';
-import theme from '../../../../../styles/personOversiktTheme';
-import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
+import { useRef } from 'react';
+import styled from 'styled-components';
 import DescriptionList from '../../../../../components/DescriptionList';
+import ErrorBoundary from '../../../../../components/ErrorBoundary';
+import type { Tiltakspenger as ITiltakspenger } from '../../../../../models/ytelse/tiltakspenger';
+import theme from '../../../../../styles/personOversiktTheme';
+import { useOnMount } from '../../../../../utils/customHooks';
+import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { NOKellerNull, formaterDato } from '../../../../../utils/string-utils';
+import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
 
 interface Props {
     tiltakspenger: ITiltakspenger;

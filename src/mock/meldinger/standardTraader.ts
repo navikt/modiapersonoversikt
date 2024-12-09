@@ -1,5 +1,5 @@
 import { saksbehandlerTekst } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
-import { LestStatus, Meldingstype, Traad, TraadType } from '../../models/meldinger/meldinger';
+import { LestStatus, Meldingstype, type Traad, TraadType } from '../../models/meldinger/meldinger';
 import { Temagruppe } from '../../models/temagrupper';
 const standardTraader: Traad[] = [
     {

@@ -1,13 +1,13 @@
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import { guid } from 'nav-frontend-js-utils';
+import Panel from 'nav-frontend-paneler';
 import { useRef } from 'react';
-import { Foreldrepengerettighet } from '../../../../../models/ytelse/foreldrepenger';
+import styled from 'styled-components';
+import type { Foreldrepengerettighet } from '../../../../../models/ytelse/foreldrepenger';
+import { useOnMount } from '../../../../../utils/customHooks';
+import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import ForeldrepengePeriode from './ForeldrepengePeriode';
 import Oversikt from './Oversikt';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
-import { useOnMount } from '../../../../../utils/customHooks';
-import { guid } from 'nav-frontend-js-utils';
-import { loggEvent } from '../../../../../utils/logger/frontendLogger';
-import Panel from 'nav-frontend-paneler';
-import styled from 'styled-components';
 
 interface Props {
     foreldrepenger: Foreldrepengerettighet | null;

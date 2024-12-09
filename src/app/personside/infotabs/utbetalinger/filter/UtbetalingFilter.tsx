@@ -1,20 +1,20 @@
-import { useCallback } from 'react';
-import { Element, Undertittel } from 'nav-frontend-typografi';
-import { UtbetalingerResponse } from 'src/models/utbetalinger';
-import UtbetaltTilValg from './UtbetaltTilValg';
-import YtelseValg from './YtelseValg';
-import { restoreScroll } from 'src/utils/restoreScroll';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
-import { useDispatch } from 'react-redux';
-import { oppdaterFilter } from 'src/redux/utbetalinger/actions';
-import { UtbetalingFilterState } from 'src/redux/utbetalinger/types';
-import styled from 'styled-components';
-import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import Panel from 'nav-frontend-paneler';
+import { Element, Undertittel } from 'nav-frontend-typografi';
+import { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import type { UtbetalingerResponse } from 'src/models/utbetalinger';
+import { oppdaterFilter } from 'src/redux/utbetalinger/actions';
+import type { UtbetalingFilterState } from 'src/redux/utbetalinger/types';
+import { useUtbetalingerFilter } from 'src/redux/utbetalinger/utbetalingerReducer';
+import { restoreScroll } from 'src/utils/restoreScroll';
+import styled from 'styled-components';
 import MediaQueryAwareRenderer from '../../../../../components/MediaQueryAwareRenderer';
 import utbetalingerResource from '../../../../../rest/resources/utbetalingerResource';
+import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import FiltreringPeriode from './FilterPeriode';
-import { useUtbetalingerFilter } from 'src/redux/utbetalinger/utbetalingerReducer';
+import UtbetaltTilValg from './UtbetaltTilValg';
+import YtelseValg from './YtelseValg';
 
 const FiltreringsPanel = styled(Panel)`
     padding: ${pxToRem(15)};

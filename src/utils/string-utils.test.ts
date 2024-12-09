@@ -1,13 +1,13 @@
 import {
+    NOKellerNull,
     capitalizeAfterPunctuation,
     capitalizeName,
     convertBoolTilJaNei,
     datoEllerNull,
-    formaterDato,
+    erTall,
     formatNumber,
-    NOKellerNull,
-    prosentEllerNull,
-    erTall
+    formaterDato,
+    prosentEllerNull
 } from './string-utils';
 
 it('Formaterer telefonnummer', () => {

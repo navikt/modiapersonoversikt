@@ -1,16 +1,16 @@
-import { useQueryParams } from 'src/utils/url-utils';
-import { useOnMount, useSettAktivBruker } from 'src/utils/customHooks';
-import { loggEvent } from 'src/utils/logger/frontendLogger';
+import { Loader } from '@navikt/ds-react';
+import { useMatchRoute, useNavigate } from '@tanstack/react-router';
+import { type PropsWithChildren, useState } from 'react';
+import { post } from 'src/api/api';
+import { apiBaseUri, contextHolderBaseUri } from 'src/api/config';
 import { INFOTABS } from 'src/app/personside/infotabs/InfoTabEnum';
 import { paths } from 'src/app/routes/routing';
-import { Oppgave } from 'src/models/meldinger/oppgave';
-import { apiBaseUri, contextHolderBaseUri } from 'src/api/config';
+import type { Oppgave } from 'src/models/meldinger/oppgave';
+import { useOnMount, useSettAktivBruker } from 'src/utils/customHooks';
 import { fetchToJson, hasData } from 'src/utils/fetchToJson';
-import { post } from 'src/api/api';
-import { useMatchRoute, useNavigate } from '@tanstack/react-router';
 import { erGyldigishFnr } from 'src/utils/fnr-utils';
-import { PropsWithChildren, useState } from 'react';
-import { Loader } from '@navikt/ds-react';
+import { loggEvent } from 'src/utils/logger/frontendLogger';
+import { useQueryParams } from 'src/utils/url-utils';
 
 function HandleLegacyUrls({ children }: PropsWithChildren) {
     const queryParams = useQueryParams<{

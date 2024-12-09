@@ -1,10 +1,10 @@
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import ArbeidsForholdListeElement from './ArbeidsForholdListeElement';
+import KnappBase from 'nav-frontend-knapper';
+import { useState } from 'react';
+import type { Arbeidsforhold } from 'src/models/ytelse/arbeidsforhold';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
-import KnappBase from 'nav-frontend-knapper';
-import { Arbeidsforhold } from 'src/models/ytelse/arbeidsforhold';
-import { useState } from 'react';
+import ArbeidsForholdListeElement from './ArbeidsForholdListeElement';
 
 interface Props {
     arbeidsForhold: Arbeidsforhold[];

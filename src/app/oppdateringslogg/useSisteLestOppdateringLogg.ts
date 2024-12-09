@@ -1,5 +1,5 @@
-import { Dispatch, useCallback, useMemo } from 'react';
-import innstillingerResource, { Innstillinger } from '../../rest/resources/innstillingerResource';
+import { type Dispatch, useCallback, useMemo } from 'react';
+import innstillingerResource, { type Innstillinger } from '../../rest/resources/innstillingerResource';
 
 const INGEN_INNSTILLINGER = {};
 const INNSTILLINGER_KEY = 'lest-oppdateringslogg';
@@ -15,7 +15,7 @@ function useSisteLestOppdateringLogg(): [number, Dispatch<number>] {
         : INGEN_INNSTILLINGER;
 
     const value: number = innstillingerRequest.isSuccess
-        ? parseInt(innstillinger[INNSTILLINGER_KEY] ?? INGEN_VERDI)
+        ? Number.parseInt(innstillinger[INNSTILLINGER_KEY] ?? INGEN_VERDI)
         : IKKE_LASTET_VERDI;
 
     const updater: Dispatch<number> = useCallback(

@@ -1,6 +1,6 @@
-import { renderHook, render, screen } from '@testing-library/react';
-import usePaginering from './usePaginering';
+import { render, renderHook, screen } from '@testing-library/react';
 import navfaker from 'nav-faker';
+import usePaginering from './usePaginering';
 
 navfaker.seed('pagineringtest');
 

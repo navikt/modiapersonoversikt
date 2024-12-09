@@ -1,4 +1,4 @@
-import { createFileRoute, Navigate } from '@tanstack/react-router';
+import { Navigate, createFileRoute } from '@tanstack/react-router';
 import LegacyAppContainer from 'src/app/LegacyAppContainer';
 import PersonoversiktWrapper from 'src/app/personside/Personoversikt';
 

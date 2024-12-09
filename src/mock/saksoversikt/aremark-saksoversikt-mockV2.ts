@@ -1,6 +1,6 @@
-import { SakstemaSoknadsstatus } from '../../models/saksoversikt/sakstema';
-import { DokumentStatus, Entitet, Feilmelding, Kommunikasjonsretning } from '../../models/saksoversikt/journalpost';
 import { Baksystem } from '../../models/saksoversikt/fellesSak';
+import { DokumentStatus, Entitet, Feilmelding, Kommunikasjonsretning } from '../../models/saksoversikt/journalpost';
+import type { SakstemaSoknadsstatus } from '../../models/saksoversikt/sakstema';
 
 export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
     return [

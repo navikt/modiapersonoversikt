@@ -1,14 +1,14 @@
+import { useNavigate } from '@tanstack/react-router';
+import { HoyreChevron } from 'nav-frontend-chevron';
+import { guid } from 'nav-frontend-js-utils';
 import * as React from 'react';
-import { ChangeEvent, ReactNode, useRef } from 'react';
-import { Traad } from '../../../../../models/meldinger/meldinger';
+import { type ChangeEvent, type ReactNode, useRef } from 'react';
 import styled, { css } from 'styled-components';
+import type { Traad } from '../../../../../models/meldinger/meldinger';
 import { pxToRem, theme } from '../../../../../styles/personOversiktTheme';
 import { meldingerTest } from '../../dyplenkeTest/utils-dyplenker-test';
-import { HoyreChevron } from 'nav-frontend-chevron';
-import TraadSammendrag from './TraadSammendrag';
-import { guid } from 'nav-frontend-js-utils';
 import { valgtMeldingKlasse } from './TraadListe';
-import { useNavigate } from '@tanstack/react-router';
+import TraadSammendrag from './TraadSammendrag';
 
 interface Props {
     traad: Traad;

@@ -1,11 +1,11 @@
-import { applyMiddleware, createStore } from 'redux';
-import thunk from 'redux-thunk';
-import reducers from 'src/redux/reducers';
 import ModalWrapper from 'nav-frontend-modal';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import IeMacStyling from 'src/app/IeMacStyling';
 import { Provider, useDispatch } from 'react-redux';
+import { applyMiddleware, createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
 import GlobalStyling from 'src/app/GlobalStyling';
+import IeMacStyling from 'src/app/IeMacStyling';
+import reducers from 'src/redux/reducers';
 import { useOnMount } from 'src/utils/customHooks';
 
 import 'nav-frontend-lukknapp-style';
@@ -27,8 +27,8 @@ import 'nav-frontend-skjema-style';
 import 'nav-frontend-ekspanderbartpanel-style';
 import 'nav-frontend-etiketter-style';
 import { useAtom } from 'jotai';
+import { type PropsWithChildren, useEffect } from 'react';
 import { aktivBrukerAtom } from 'src/lib/state/context';
-import { PropsWithChildren, useEffect } from 'react';
 import setGjeldendeBrukerIRedux from 'src/redux/gjeldendeBruker/actions';
 
 const store = createStore(reducers(), composeWithDevTools({ trace: true })(applyMiddleware(thunk)));

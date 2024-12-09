@@ -1,7 +1,7 @@
-import { TraadType } from '../../../../models/meldinger/meldinger';
 import { Radio } from 'nav-frontend-skjema';
+import { TraadType } from '../../../../models/meldinger/meldinger';
 import { VelgDialogtypeStyle } from '../fellesStyling';
-import { SendNyMeldingState } from './SendNyMelding';
+import type { SendNyMeldingState } from './SendNyMelding';
 
 interface Props {
     formState: SendNyMeldingState;

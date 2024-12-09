@@ -1,20 +1,20 @@
-import * as React from 'react';
-import { SladdeComponentProps } from './Sladdevalg';
-import css from './SladdMeldingerMedArsak.module.css';
+import { guid } from 'nav-frontend-js-utils';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Checkbox, SkjemaelementFeilmelding } from 'nav-frontend-skjema';
-import { Innholdstittel, Element, Normaltekst } from 'nav-frontend-typografi';
-import { getFormattertMeldingsDato, meldingstittel } from '../../../../utils/meldingerUtils';
-import styled from 'styled-components';
+import { Element, Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
+import type * as React from 'react';
 import { useCallback, useEffect, useRef } from 'react';
-import useList from '../../../../../../../../utils/hooks/use-list';
-import { Traad } from '../../../../../../../../models/meldinger/meldinger';
+import styled from 'styled-components';
+import FormSelect from '../../../../../../../../components/form/FormSelect';
+import type { Traad } from '../../../../../../../../models/meldinger/meldinger';
 import { datoSynkende } from '../../../../../../../../utils/date-utils';
+import useList from '../../../../../../../../utils/hooks/use-list';
+import { getFormattertMeldingsDato, meldingstittel } from '../../../../utils/meldingerUtils';
 import EnkeltMelding from '../../../Enkeltmelding';
 import { feilmeldingReactHookForm } from '../../oppgave/feilmeldingReactHookForm';
-import { guid } from 'nav-frontend-js-utils';
 import MeldIPortenAdvarsel from './MeldIPortenAdvarsel';
-import FormSelect from '../../../../../../../../components/form/FormSelect';
+import css from './SladdMeldingerMedArsak.module.css';
+import type { SladdeComponentProps } from './Sladdevalg';
 
 const PreviewStyle = styled(Normaltekst)`
     width: 100%;

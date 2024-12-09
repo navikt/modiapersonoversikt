@@ -1,10 +1,10 @@
-import { VisittkortGruppe } from '../VisittkortStyles';
-import VisittkortElement from '../VisittkortElement';
 import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import Infotegn from '../../../../../svg/Info';
-import { Foreldreansvar, InformasjonElement, NavnOgIdent } from '../../PersondataDomain';
-import { hentNavn } from '../../visittkort-utils';
+import { type Foreldreansvar, InformasjonElement, type NavnOgIdent } from '../../PersondataDomain';
 import { harFeilendeSystemer } from '../../harFeilendeSystemer';
+import { hentNavn } from '../../visittkort-utils';
+import VisittkortElement from '../VisittkortElement';
+import { VisittkortGruppe } from '../VisittkortStyles';
 
 interface Props {
     feilendeSystemer: Array<InformasjonElement>;

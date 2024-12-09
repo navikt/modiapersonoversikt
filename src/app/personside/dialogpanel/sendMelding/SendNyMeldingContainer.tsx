@@ -1,21 +1,21 @@
-import { FormEvent, useCallback, useMemo, useState } from 'react';
-import { MeldingValidator } from './validatorer';
-import { Meldingstype, SendMeldingRequestV2, Traad, TraadType } from '../../../../models/meldinger/meldinger';
-import { useFodselsnummer } from '../../../../utils/customHooks';
-import { MeldingSendtFeilet, ReferatSendtKvittering, SamtaleSendtKvittering } from './SendNyMeldingKvittering';
-import { apiBaseUri } from '../../../../api/config';
-import { post } from '../../../../api/api';
-import { KvitteringNyMelding, SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
-import useDraft, { Draft } from '../use-draft';
-import dialogResource from '../../../../rest/resources/dialogResource';
-import { useValgtenhet } from '../../../../context/valgtenhet-state';
 import { useQueryClient } from '@tanstack/react-query';
-import journalsakResource from '../../../../rest/resources/journalsakResource';
-import SendNyMelding, { OppgavelisteValg, SendNyMeldingState } from './SendNyMelding';
-import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
-import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureToggleOn';
-import { useAlertOnNavigation } from '../useAlertOnNavigation';
 import { Block } from '@tanstack/react-router';
+import { type FormEvent, useCallback, useMemo, useState } from 'react';
+import { post } from '../../../../api/api';
+import { apiBaseUri } from '../../../../api/config';
+import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureToggleOn';
+import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
+import { useValgtenhet } from '../../../../context/valgtenhet-state';
+import { Meldingstype, type SendMeldingRequestV2, type Traad, TraadType } from '../../../../models/meldinger/meldinger';
+import dialogResource from '../../../../rest/resources/dialogResource';
+import journalsakResource from '../../../../rest/resources/journalsakResource';
+import { useFodselsnummer } from '../../../../utils/customHooks';
+import useDraft, { type Draft } from '../use-draft';
+import { useAlertOnNavigation } from '../useAlertOnNavigation';
+import SendNyMelding, { OppgavelisteValg, type SendNyMeldingState } from './SendNyMelding';
+import { MeldingSendtFeilet, ReferatSendtKvittering, SamtaleSendtKvittering } from './SendNyMeldingKvittering';
+import { type KvitteringNyMelding, type SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
+import { MeldingValidator } from './validatorer';
 
 interface Props {
     defaultOppgaveDestinasjon: OppgavelisteValg;

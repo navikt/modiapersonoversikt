@@ -1,5 +1,5 @@
 import { buildFieldError } from '../../components/form/formUtils';
-import { PersonSokFormStateV3, resolver } from './personsokUtils';
+import { type PersonSokFormStateV3, resolver } from './personsokUtils';
 
 const initialValues: PersonSokFormStateV3 = {
     navn: '',

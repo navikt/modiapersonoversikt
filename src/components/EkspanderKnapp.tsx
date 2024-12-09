@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { LenkeKnapp } from './common-styled-components';
-import { Normaltekst } from 'nav-frontend-typografi';
-import styled from 'styled-components';
 import NavFrontendChevron from 'nav-frontend-chevron';
+import { Normaltekst } from 'nav-frontend-typografi';
+import type * as React from 'react';
+import styled from 'styled-components';
+import { LenkeKnapp } from './common-styled-components';
 
 const Luft = styled.span`
     margin-right: 0.5rem;

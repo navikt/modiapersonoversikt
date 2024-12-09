@@ -1,4 +1,4 @@
-import { IWebWorkerCom, NoWorkerCommunicator, WebWorkerCommunicator } from './WebWorkerCommunicator';
+import { type IWebWorkerCom, NoWorkerCommunicator, WebWorkerCommunicator } from './WebWorkerCommunicator';
 
 export const persistentLoginWebworkerFactory = (): IWebWorkerCom => {
     if (!Worker) {

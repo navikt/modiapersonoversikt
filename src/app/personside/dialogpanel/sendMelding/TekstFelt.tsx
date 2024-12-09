@@ -1,10 +1,10 @@
 import { SkjemaGruppe } from 'nav-frontend-skjema';
+import SkjemaelementFeilmelding from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
+import { useRef } from 'react';
 import styled from 'styled-components';
+import AutocompleteTextarea from '../../../../components/autocomplete-textarea/autocomplete-textarea';
 import theme from '../../../../styles/personOversiktTheme';
 import StandardTekstModal from './standardTekster/StandardTekstModal';
-import AutocompleteTextarea from '../../../../components/autocomplete-textarea/autocomplete-textarea';
-import { useRef } from 'react';
-import SkjemaelementFeilmelding from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 
 const StyledSkjemagruppe = styled(SkjemaGruppe)`
     position: relative;

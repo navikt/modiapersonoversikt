@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { UseQueryResult } from '@tanstack/react-query';
+import type { UseQueryResult } from '@tanstack/react-query';
+import type * as React from 'react';
 
 type ReactElement = React.ReactElement | null;
 

@@ -1,8 +1,8 @@
-import VisittkortElement from '../VisittkortElement';
-import { formaterMobiltelefonnummer } from '../../../../../utils/telefon-utils';
 import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
-import { Telefon as TelefonInterface } from '../../PersondataDomain';
+import { formaterMobiltelefonnummer } from '../../../../../utils/telefon-utils';
+import type { Telefon as TelefonInterface } from '../../PersondataDomain';
 import Endringstekst from '../Endringstekst';
+import VisittkortElement from '../VisittkortElement';
 
 interface Props {
     harFeilendeSystem: boolean;

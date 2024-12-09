@@ -1,4 +1,4 @@
-import { Fødsel } from '../../models/ytelse/foreldrepenger';
+import type { Fødsel } from '../../models/ytelse/foreldrepenger';
 
 export const statiskKommendeUtbetaling = {
     vedtak: { fra: '2018-01-14', til: '2017-07-15' },

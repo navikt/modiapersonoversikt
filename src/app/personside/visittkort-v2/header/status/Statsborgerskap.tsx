@@ -1,5 +1,5 @@
 import { capitalizeName } from '../../../../../utils/string-utils';
-import { Person } from '../../PersondataDomain';
+import type { Person } from '../../PersondataDomain';
 
 interface Props {
     person: Person;

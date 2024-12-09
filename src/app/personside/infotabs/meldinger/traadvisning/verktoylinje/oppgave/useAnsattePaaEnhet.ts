@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Ansatt } from '../../../../../../../models/meldinger/oppgave';
-import { loggError, loggEvent } from '../../../../../../../utils/logger/frontendLogger';
 import { apiBaseUri, includeCredentials } from '../../../../../../../api/config';
+import type { Ansatt } from '../../../../../../../models/meldinger/oppgave';
+import { loggError, loggEvent } from '../../../../../../../utils/logger/frontendLogger';
 
 interface Returns {
     ansatte: Ansatt[];

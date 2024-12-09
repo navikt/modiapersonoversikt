@@ -1,9 +1,9 @@
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import Verktoylinje from './verktoylinje/Verktoylinje';
-import TraadVisning from './TraadVisning';
-import { Traad } from '../../../../../models/meldinger/meldinger';
 import styled from 'styled-components';
+import type { Traad } from '../../../../../models/meldinger/meldinger';
 import usePrinter from '../../../../../utils/print/usePrinter';
+import TraadVisning from './TraadVisning';
+import Verktoylinje from './verktoylinje/Verktoylinje';
 
 interface TraadVisningWrapperProps {
     valgtTraad?: Traad;

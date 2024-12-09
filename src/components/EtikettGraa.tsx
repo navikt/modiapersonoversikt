@@ -1,7 +1,7 @@
 import { Undertekst } from 'nav-frontend-typografi';
+import type { TypografiProps } from 'nav-frontend-typografi';
+import type { ReactNode } from 'react';
 import styled from 'styled-components';
-import { ReactNode } from 'react';
-import { TypografiProps } from 'nav-frontend-typografi';
 import theme from '../styles/personOversiktTheme';
 
 interface Props extends TypografiProps {

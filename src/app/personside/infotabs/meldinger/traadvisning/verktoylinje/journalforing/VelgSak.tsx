@@ -1,12 +1,18 @@
-import { JournalforingsSak, JournalforingsSakIdentifikator, Kategorier, SakKategori, Tema } from './JournalforingPanel';
-import useFieldState, { FieldState } from '../../../../../../../utils/hooks/use-field-state';
-import { Radio, RadioProps } from 'nav-frontend-skjema';
 import { AlertStripeAdvarsel, AlertStripeFeil } from 'nav-frontend-alertstriper';
-import TemaTable from './TemaTabell';
-import styled from 'styled-components';
-import { Group, groupBy } from '../../../../../../../utils/groupArray';
+import { Radio, type RadioProps } from 'nav-frontend-skjema';
 import Spinner from 'nav-frontend-spinner';
+import styled from 'styled-components';
 import journalsakResource from '../../../../../../../rest/resources/journalsakResource';
+import { type Group, groupBy } from '../../../../../../../utils/groupArray';
+import useFieldState, { type FieldState } from '../../../../../../../utils/hooks/use-field-state';
+import {
+    type JournalforingsSak,
+    type JournalforingsSakIdentifikator,
+    type Kategorier,
+    SakKategori,
+    type Tema
+} from './JournalforingPanel';
+import TemaTable from './TemaTabell';
 
 const Form = styled.form`
     display: flex;

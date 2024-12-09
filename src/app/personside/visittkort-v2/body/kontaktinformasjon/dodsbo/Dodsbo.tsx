@@ -1,19 +1,19 @@
-import styled from 'styled-components';
-import VisittkortElement from '../../VisittkortElement';
-import LocationPin from '../../../../../../svg/LocationPin';
-import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
-import { hentNavn } from '../../../visittkort-utils';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
+import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
+import styled from 'styled-components';
+import LocationPin from '../../../../../../svg/LocationPin';
 import { formaterDato } from '../../../../../../utils/string-utils';
-import {
+import type {
     Adressat,
     AdvokatSomAdressat,
     Dodsbo,
     OrganisasjonSomAdressat,
     PersonSomAdressat
 } from '../../../PersondataDomain';
+import { hentNavn } from '../../../visittkort-utils';
 import Adresseinfo from '../../AdresseInfo';
 import Endringstekst from '../../Endringstekst';
+import VisittkortElement from '../../VisittkortElement';
 
 interface Props {
     harFeilendeSystem: boolean;

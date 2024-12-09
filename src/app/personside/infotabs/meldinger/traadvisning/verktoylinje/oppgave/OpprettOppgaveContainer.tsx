@@ -1,8 +1,8 @@
-import OppgaveSkjema from './OppgaveSkjema';
-import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import ErrorBoundary from '../../../../../../../components/ErrorBoundary';
-import gsaktemaResource from '../../../../../../../rest/resources/gsaktemaResource';
 import { CenteredLazySpinner } from '../../../../../../../components/LazySpinner';
+import type { Traad } from '../../../../../../../models/meldinger/meldinger';
+import gsaktemaResource from '../../../../../../../rest/resources/gsaktemaResource';
+import OppgaveSkjema from './OppgaveSkjema';
 
 interface Props {
     lukkPanel: () => void;

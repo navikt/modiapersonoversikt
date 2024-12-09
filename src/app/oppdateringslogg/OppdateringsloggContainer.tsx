@@ -1,13 +1,13 @@
-import { useCallback, useEffect, useState } from 'react';
-import * as React from 'react';
 import ModalWrapper from 'nav-frontend-modal';
-import useListener from '../../utils/hooks/use-listener';
-import Oppdateringslogg from './Oppdateringslogg';
 import { Systemtittel } from 'nav-frontend-typografi';
+import { useCallback, useEffect, useState } from 'react';
+import type * as React from 'react';
 import styled from 'styled-components';
-import useSisteLestOppdateringLogg from './useSisteLestOppdateringLogg';
+import useListener from '../../utils/hooks/use-listener';
 import useWaitForElement from '../../utils/hooks/use-wait-for-element';
+import Oppdateringslogg from './Oppdateringslogg';
 import { lagOppdateringsloggConfig } from './config/config';
+import useSisteLestOppdateringLogg from './useSisteLestOppdateringLogg';
 import './oppdateringsloggKnapp.less';
 
 export const DecoratorButtonId = 'oppdateringslogg';

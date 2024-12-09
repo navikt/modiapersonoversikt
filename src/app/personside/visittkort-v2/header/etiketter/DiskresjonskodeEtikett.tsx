@@ -1,5 +1,5 @@
 import EtikettBase from 'nav-frontend-etiketter';
-import { AdresseBeskyttelse, KodeBeskrivelse } from '../../PersondataDomain';
+import { AdresseBeskyttelse, type KodeBeskrivelse } from '../../PersondataDomain';
 
 interface Props {
     adressebeskyttelser: KodeBeskrivelse<AdresseBeskyttelse>[];

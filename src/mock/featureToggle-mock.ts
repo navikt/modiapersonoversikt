@@ -1,5 +1,5 @@
-import { FeatureToggleResponse } from '../models/featureToggle';
 import { FeatureToggles } from '../components/featureToggle/toggleIDs';
+import type { FeatureToggleResponse } from '../models/featureToggle';
 
 export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleResponse {
     switch (toggleId) {

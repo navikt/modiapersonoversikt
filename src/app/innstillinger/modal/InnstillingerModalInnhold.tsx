@@ -1,9 +1,9 @@
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
-import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import Spinner from 'nav-frontend-spinner';
+import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';
-import InnstillingerModalForm from './InnstillingerModalForm';
 import innstillingerResource from '../../../rest/resources/innstillingerResource';
+import InnstillingerModalForm from './InnstillingerModalForm';
 
 const CenteringDiv = styled.div`
     flex-grow: 1;

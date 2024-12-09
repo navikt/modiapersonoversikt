@@ -1,19 +1,19 @@
-import { Foreldrepengerperiode } from '../../../../../models/ytelse/foreldrepenger';
+import styled from 'styled-components';
 import DescriptionList, {
-    DescriptionListEntries,
+    type DescriptionListEntries,
     fjernEntriesUtenVerdi
 } from '../../../../../components/DescriptionList';
-import YtelserPeriode from '../felles-styling/YtelserPeriode';
+import type { Foreldrepengerperiode } from '../../../../../models/ytelse/foreldrepenger';
+import theme from '../../../../../styles/personOversiktTheme';
 import {
     convertBoolTilJaNei,
     formaterDato,
     periodeEllerNull,
     prosentEllerNull
 } from '../../../../../utils/string-utils';
-import KommendeUtbetalinger from '../utbetalinger/kommendeUtbetalinger/KommendeUtbetalinger';
 import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
-import styled from 'styled-components';
-import theme from '../../../../../styles/personOversiktTheme';
+import YtelserPeriode from '../felles-styling/YtelserPeriode';
+import KommendeUtbetalinger from '../utbetalinger/kommendeUtbetalinger/KommendeUtbetalinger';
 
 interface Props {
     periode: Foreldrepengerperiode;

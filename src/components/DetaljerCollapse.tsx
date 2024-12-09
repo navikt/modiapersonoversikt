@@ -1,9 +1,9 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
+import { UnmountClosed } from 'react-collapse';
 import styled from 'styled-components';
 import theme from '../styles/personOversiktTheme';
-import { UnmountClosed } from 'react-collapse';
-import { FlexEnd } from './common-styled-components';
 import EkspanderKnapp from './EkspanderKnapp';
+import { FlexEnd } from './common-styled-components';
 
 interface Props {
     open: boolean;

@@ -1,12 +1,12 @@
+import dayjs from 'dayjs';
+import DelayRender from '../../../components/DelayRender';
+import ErrorBoundary from '../../../components/ErrorBoundary';
 import { useErKontaktsenter } from '../../../utils/enheter-utils';
 import Nisselue from './nisselue/Nisselue';
 import Partyhatt from './partyhatt/Partyhatt';
-import { easterEggs, useListenForEasterEgg } from './useListenForEasterEgg';
-import ErrorBoundary from '../../../components/ErrorBoundary';
-import dayjs from 'dayjs';
 import PaaskeEgg from './paskeegg/PaaskeEgg';
 import { erPaaske } from './paskeegg/erPaaske';
-import DelayRender from '../../../components/DelayRender';
+import { easterEggs, useListenForEasterEgg } from './useListenForEasterEgg';
 
 function useDefaultEasterEgg() {
     const erKontaktsenter = useErKontaktsenter();

@@ -1,11 +1,11 @@
-import { useMemo } from 'react';
 import { useNavigate, useSearch } from '@tanstack/react-router';
-import { SakstemaSoknadsstatus } from '../../../../models/saksoversikt/sakstema';
-import { datoSynkende } from '../../../../utils/date-utils';
-import { sakstemakodeAlle, sakstemakodeIngen } from './utils/saksoversiktUtilsV2';
-import { Dokument, Journalpost } from '../../../../models/saksoversikt/journalpost';
+import { useMemo } from 'react';
+import type { Dokument, Journalpost } from '../../../../models/saksoversikt/journalpost';
+import type { SakstemaSoknadsstatus } from '../../../../models/saksoversikt/sakstema';
 import sakstemaResource from '../../../../rest/resources/sakstemaResource';
+import { datoSynkende } from '../../../../utils/date-utils';
 import { filtrerSakstemaerUtenDataV2 } from './sakstemaliste/SakstemaListeUtils';
+import { sakstemakodeAlle, sakstemakodeIngen } from './utils/saksoversiktUtilsV2';
 import { hentDatoForSisteHendelseV2 } from './utils/saksoversiktUtilsV2';
 
 interface SakstemaURLStateV2 {

@@ -1,4 +1,4 @@
-import { Sykepenger } from '../../models/ytelse/sykepenger';
+import type { Sykepenger } from '../../models/ytelse/sykepenger';
 import { statiskKommendeUtbetaling } from './statiskForeldrepengeMock';
 
 const arbeidsforhold = {

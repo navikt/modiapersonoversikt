@@ -1,7 +1,7 @@
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+import { type FetchError, post } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { FetchError, post } from '../../api/api';
-import { ForeldrepengerResponse } from '../../models/ytelse/foreldrepenger';
+import type { ForeldrepengerResponse } from '../../models/ytelse/foreldrepenger';
 
 export const useForeldrepenger = (
     fnr: string,

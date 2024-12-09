@@ -1,14 +1,14 @@
-import { Traad } from '../../../../models/meldinger/meldinger';
-import useTildelteOppgaver from '../../../../utils/hooks/useTildelteOppgaver';
-import { useDispatch } from 'react-redux';
-import { useInfotabsDyplenker } from '../../infotabs/dyplenker';
-import { setValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
-import { loggError } from '../../../../utils/logger/frontendLogger';
-import { eldsteMelding, kanBesvares } from '../../infotabs/meldinger/utils/meldingerUtils';
-import { useJustOnceEffect } from '../../../../utils/customHooks';
-import dialogResource from '../../../../rest/resources/dialogResource';
-import LazySpinner from '../../../../components/LazySpinner';
 import { useNavigate } from '@tanstack/react-router';
+import { useDispatch } from 'react-redux';
+import LazySpinner from '../../../../components/LazySpinner';
+import type { Traad } from '../../../../models/meldinger/meldinger';
+import { setValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
+import dialogResource from '../../../../rest/resources/dialogResource';
+import { useJustOnceEffect } from '../../../../utils/customHooks';
+import useTildelteOppgaver from '../../../../utils/hooks/useTildelteOppgaver';
+import { loggError } from '../../../../utils/logger/frontendLogger';
+import { useInfotabsDyplenker } from '../../infotabs/dyplenker';
+import { eldsteMelding, kanBesvares } from '../../infotabs/meldinger/utils/meldingerUtils';
 
 interface Pending {
     pending: true;

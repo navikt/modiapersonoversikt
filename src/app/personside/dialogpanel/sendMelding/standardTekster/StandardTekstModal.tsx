@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import NavFrontendModal from 'nav-frontend-modal';
-import styled from 'styled-components';
-import StandardTekster from './StandardTekster';
-import SvgIkon from './StandardTekstIkon';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import useHotkey from '../../../../../utils/hooks/use-hotkey';
+import NavFrontendModal from 'nav-frontend-modal';
+import { useState } from 'react';
+import styled from 'styled-components';
 import useFieldState from '../../../../../utils/hooks/use-field-state';
+import useHotkey from '../../../../../utils/hooks/use-hotkey';
+import SvgIkon from './StandardTekstIkon';
+import StandardTekster from './StandardTekster';
 
 interface Props {
     appendTekst(tekst: string): void;

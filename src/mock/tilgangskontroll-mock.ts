@@ -1,6 +1,6 @@
 import { fakerNB_NO as faker } from '@faker-js/faker';
-import { AuthIntropectionDTO } from '../utils/hooks/use-persistent-login';
-import { IkkeTilgangArsak, TilgangDTO } from '../rest/resources/tilgangskontrollResource';
+import { IkkeTilgangArsak, type TilgangDTO } from '../rest/resources/tilgangskontrollResource';
+import type { AuthIntropectionDTO } from '../utils/hooks/use-persistent-login';
 
 export function authMock(): AuthIntropectionDTO {
     return { expirationDate: new Date().getTime() + 2.5 * 60 * 1000 };

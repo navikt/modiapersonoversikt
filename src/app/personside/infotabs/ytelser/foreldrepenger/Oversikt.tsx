@@ -1,14 +1,14 @@
-import { Foreldrepengerettighet, isAdopsjon, isFødsel } from 'src/models/ytelse/foreldrepenger';
-import { utledFraDatoForRettighet } from './foreldrePengerUtils';
+import { type Foreldrepengerettighet, isAdopsjon, isFødsel } from 'src/models/ytelse/foreldrepenger';
+import { datoEllerNull, formaterDato, prosentEllerNull } from 'src/utils/string-utils';
+import styled from 'styled-components';
 import DescriptionList, {
-    DescriptionListEntries,
+    type DescriptionListEntries,
     fjernEntriesUtenVerdi
 } from '../../../../../components/DescriptionList';
-import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
-import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
-import { datoEllerNull, formaterDato, prosentEllerNull } from 'src/utils/string-utils';
 import ArbeidsForholdListe from '../arbeidsforhold/ArbeidsforholdListe';
+import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
+import { utledFraDatoForRettighet } from './foreldrePengerUtils';
 
 interface Props {
     foreldrePenger: Foreldrepengerettighet;

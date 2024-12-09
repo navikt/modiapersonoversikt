@@ -1,12 +1,12 @@
-import { applyDefaults, DefaultConfig, RendererOrConfig, useRest } from '../useRest';
-import { apiBaseUri } from '../../api/config';
-import { useAppState } from '../../utils/customHooks';
-import { CenteredLazySpinner } from '../../components/LazySpinner';
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { Traad } from '../../models/meldinger/meldinger';
+import { type FetchError, post } from '../../api/api';
+import { apiBaseUri } from '../../api/config';
+import { CenteredLazySpinner } from '../../components/LazySpinner';
 import { useValgtenhet } from '../../context/valgtenhet-state';
-import { FetchError, post } from '../../api/api';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import type { Traad } from '../../models/meldinger/meldinger';
+import { useAppState } from '../../utils/customHooks';
+import { type DefaultConfig, type RendererOrConfig, applyDefaults, useRest } from '../useRest';
 
 function urlUtenFnrIPath(enhet?: string) {
     const header = enhet ? `?enhet=${enhet}` : '';

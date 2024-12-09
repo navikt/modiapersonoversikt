@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import partyhatt from './partyhatt.svg';
 import styled, { createGlobalStyle, css, keyframes } from 'styled-components';
 import { pxToRem } from '../../../../styles/personOversiktTheme';
 import Fireworks from './Fireworks';
+import partyhatt from './partyhatt.svg';
 
 const GlobalStyles = createGlobalStyle<{ dropNavLogo: boolean }>`
   .dekorator__hode__logo svg {

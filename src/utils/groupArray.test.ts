@@ -1,4 +1,4 @@
-import { groupArray, GroupedArray } from './groupArray';
+import { type GroupedArray, groupArray } from './groupArray';
 
 interface Bil {
     merke: string;

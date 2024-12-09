@@ -1,8 +1,8 @@
-import { Path, UseFormReturn } from 'react-hook-form';
+import type { Path, UseFormReturn } from 'react-hook-form';
 import FormSelect from '../../../../../../../../components/form/FormSelect';
-import { GsakTema } from '../../../../../../../../models/meldinger/oppgave';
-import { OppgaveSkjemaDelteFelter } from './../oppgaveInterfaces';
+import type { GsakTema } from '../../../../../../../../models/meldinger/oppgave';
 import { OppgavetypeOptions, TemaOptions, UnderkategoriOptions } from './../SkjemaElementOptions';
+import type { OppgaveSkjemaDelteFelter } from './../oppgaveInterfaces';
 
 interface Props<F extends OppgaveSkjemaDelteFelter> {
     form: UseFormReturn<F>;

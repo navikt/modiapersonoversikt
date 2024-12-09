@@ -1,19 +1,19 @@
-import { useState, createRef, useCallback, useEffect, useRef } from 'react';
-import { Traad } from '../../../../../../models/meldinger/meldinger';
-import styled from 'styled-components';
-import theme from '../../../../../../styles/personOversiktTheme';
+import { guid } from 'nav-frontend-js-utils';
+import Panel from 'nav-frontend-paneler';
+import { createRef, useCallback, useEffect, useRef, useState } from 'react';
 import { UnmountClosed } from 'react-collapse';
+import styled from 'styled-components';
+import EkspanderKnapp from '../../../../../../components/EkspanderKnapp';
+import ErrorBoundary from '../../../../../../components/ErrorBoundary';
+import PrintKnapp from '../../../../../../components/PrintKnapp';
+import type { Traad } from '../../../../../../models/meldinger/meldinger';
+import theme from '../../../../../../styles/personOversiktTheme';
+import { usePrevious } from '../../../../../../utils/customHooks';
+import MeldingerPrintMarkup from '../../../../../../utils/print/MeldingerPrintMarkup';
+import usePrinter from '../../../../../../utils/print/usePrinter';
 import JournalforingPanel from './journalforing/JournalforingPanel';
 import MerkPanel from './merk/MerkPanel';
 import OpprettOppgaveContainer from './oppgave/OpprettOppgaveContainer';
-import EkspanderKnapp from '../../../../../../components/EkspanderKnapp';
-import { usePrevious } from '../../../../../../utils/customHooks';
-import usePrinter from '../../../../../../utils/print/usePrinter';
-import PrintKnapp from '../../../../../../components/PrintKnapp';
-import MeldingerPrintMarkup from '../../../../../../utils/print/MeldingerPrintMarkup';
-import { guid } from 'nav-frontend-js-utils';
-import ErrorBoundary from '../../../../../../components/ErrorBoundary';
-import Panel from 'nav-frontend-paneler';
 
 interface Props {
     valgtTraad: Traad;
@@ -49,9 +49,9 @@ const SvartLenkeKnapp = styled(EkspanderKnapp)`
 `;
 
 enum VerktøyPanel {
-    JOURNALFORING,
-    OPPGAVE,
-    MERK
+    JOURNALFORING = 0,
+    OPPGAVE = 1,
+    MERK = 2
 }
 
 function Print(props: Props) {

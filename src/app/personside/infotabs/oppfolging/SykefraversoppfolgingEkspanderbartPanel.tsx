@@ -1,10 +1,10 @@
-import { SyfoPunkt } from '../../../../models/oppfolging';
-import EkspanderbartYtelserPanel from '../ytelser/felles-styling/EkspanderbartYtelserPanel';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { useState } from 'react';
+import type { SyfoPunkt } from '../../../../models/oppfolging';
+import { trackAccordionClosed, trackAccordionOpened } from '../../../../utils/amplitude';
 import { datoSynkende, formatterDato } from '../../../../utils/date-utils';
 import { StyledTable } from '../../../../utils/table/StyledTable';
-import { trackAccordionClosed, trackAccordionOpened } from '../../../../utils/amplitude';
-import { useState } from 'react';
+import EkspanderbartYtelserPanel from '../ytelser/felles-styling/EkspanderbartYtelserPanel';
 
 interface Props {
     syfoPunkter: SyfoPunkt[];

@@ -1,7 +1,7 @@
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+import { type FetchError, post } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { FetchError, post } from '../../api/api';
-import { PleiepengerResponse } from '../../models/ytelse/pleiepenger';
+import type { PleiepengerResponse } from '../../models/ytelse/pleiepenger';
 
 export const usePleiepenger = (
     fnr: string,

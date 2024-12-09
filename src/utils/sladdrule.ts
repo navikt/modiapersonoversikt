@@ -1,4 +1,4 @@
-import { Rule, RuleScope, ASTNode, RegexMatch, ReactElementDescription } from '@navikt/textparser';
+import { type ASTNode, type ReactElementDescription, type RegexMatch, type Rule, RuleScope } from '@navikt/textparser';
 import styled from 'styled-components';
 
 const Span = styled.span`

@@ -1,8 +1,8 @@
-import { SetNyGjeldendeBrukerAction, SetNyGjeldendeBrukerActionTypes } from './types';
-import { AsyncAction, AsyncDispatch } from '../ThunkTypes';
-import { reset } from '../reducer-utils';
 import { resetKeepScroll } from '../../utils/hooks/useKeepScroll';
-import { AppState } from '../reducers';
+import type { AsyncAction, AsyncDispatch } from '../ThunkTypes';
+import { reset } from '../reducer-utils';
+import type { AppState } from '../reducers';
+import { type SetNyGjeldendeBrukerAction, SetNyGjeldendeBrukerActionTypes } from './types';
 
 // Det er neppe denne du har lyst til å bruke
 // Denne vil ikke oppdatere url med nytt fnr

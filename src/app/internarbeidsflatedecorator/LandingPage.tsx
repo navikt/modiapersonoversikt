@@ -1,5 +1,5 @@
 import NAVSPA from '@navikt/navspa';
-import { DecoratorPropsV3 } from './decoratorprops';
+import type { DecoratorPropsV3 } from './decoratorprops';
 
 import { useDecoratorConfig } from './useDecoratorConfig';
 

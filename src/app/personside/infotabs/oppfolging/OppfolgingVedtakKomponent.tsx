@@ -1,9 +1,9 @@
-import { OppfolgingsVedtak } from '../../../../models/oppfolging';
-import { datoSynkende } from '../../../../utils/date-utils';
-import styled from 'styled-components';
 import { Element, Undertittel } from 'nav-frontend-typografi';
-import { datoEllerTomString } from '../../../../utils/string-utils';
+import styled from 'styled-components';
 import EtikettGraa from '../../../../components/EtikettGraa';
+import type { OppfolgingsVedtak } from '../../../../models/oppfolging';
+import { datoSynkende } from '../../../../utils/date-utils';
+import { datoEllerTomString } from '../../../../utils/string-utils';
 import { StyledTable } from '../../../../utils/table/StyledTable';
 
 interface Props {

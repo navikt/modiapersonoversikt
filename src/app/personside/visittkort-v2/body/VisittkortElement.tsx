@@ -1,7 +1,7 @@
+import { Element } from 'nav-frontend-typografi';
+import type { ReactNode } from 'react';
 import styled from 'styled-components';
 import TittelOgIkon from './IkonOgTittel';
-import { ReactNode } from 'react';
-import { Element } from 'nav-frontend-typografi';
 
 interface ElementProps {
     children: ReactNode;

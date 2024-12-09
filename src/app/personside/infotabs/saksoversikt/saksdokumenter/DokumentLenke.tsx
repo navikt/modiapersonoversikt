@@ -1,12 +1,12 @@
-import styled from 'styled-components';
-import { Element, Undertekst } from 'nav-frontend-typografi';
 import { Link, useLocation } from '@tanstack/react-router';
-import { Dokument, DokumentStatus, Journalpost } from '../../../../../models/saksoversikt/journalpost';
-import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
+import { Element, Undertekst } from 'nav-frontend-typografi';
+import styled from 'styled-components';
+import { type Dokument, DokumentStatus, type Journalpost } from '../../../../../models/saksoversikt/journalpost';
+import type { Sakstema } from '../../../../../models/saksoversikt/sakstema';
+import theme from '../../../../../styles/personOversiktTheme';
 import { getSaksdokumentUrl } from '../dokumentvisning/getSaksdokumentUrl';
 import { erSakerFullscreen } from '../utils/erSakerFullscreen';
 import SvgDownload from './../../../../../svg/download.svg';
-import theme from '../../../../../styles/personOversiktTheme';
 
 interface Props {
     dokument: Dokument;

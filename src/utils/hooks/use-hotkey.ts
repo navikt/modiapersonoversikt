@@ -1,4 +1,4 @@
-import { DependencyList, useCallback, useEffect, useMemo } from 'react';
+import { type DependencyList, useCallback, useEffect, useMemo } from 'react';
 import { loggEvent } from '../logger/frontendLogger';
 
 type KeyDescription = { char: string; altKey?: boolean; ctrlKey?: boolean; metaKey?: boolean; shiftKey?: boolean };

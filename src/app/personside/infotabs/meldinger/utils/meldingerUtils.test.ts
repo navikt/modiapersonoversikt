@@ -1,16 +1,16 @@
-import { LestStatus, Melding, Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
-import { erMeldingFraBruker, erMeldingFraNav, erUbesvartHenvendelseFraBruker } from './meldingerUtils';
+import { LestStatus, type Melding, Meldingstype, type Traad } from '../../../../../models/meldinger/meldinger';
 import { Temagruppe, temagruppeTekst } from '../../../../../models/temagrupper';
+import { erMeldingFraBruker, erMeldingFraNav, erUbesvartHenvendelseFraBruker } from './meldingerUtils';
 
 describe('Meldingstyper', () => {
     const sporsmalSkriflig = Meldingstype.SPORSMAL_SKRIFTLIG;
     const svarSkriftlig = Meldingstype.SVAR_SKRIFTLIG;
 
-    it('gir at spørsmål skriftlig er fra bruker', function () {
+    it('gir at spørsmål skriftlig er fra bruker', () => {
         expect(erMeldingFraBruker(sporsmalSkriflig)).toBe(true);
     });
 
-    it('gir at svar skriftlig er fra NAV', function () {
+    it('gir at svar skriftlig er fra NAV', () => {
         expect(erMeldingFraNav(svarSkriftlig)).toBe(true);
     });
 });
@@ -19,16 +19,16 @@ describe('Dokumentvarsler', () => {
     const tomTemaGruppeEmpty = '';
     const tomTemagruppeSlettet = Temagruppe.InnholdSlettet;
 
-    it('Gir temagruppe Arbeid ved temagruppe ARB', function () {
+    it('Gir temagruppe Arbeid ved temagruppe ARB', () => {
         expect(temagruppeTekst(Temagruppe.Arbeid)).toBe('Arbeid');
     });
-    it('Gir Ingen temagruppe for temagruppe null', function () {
+    it('Gir Ingen temagruppe for temagruppe null', () => {
         expect(temagruppeTekst(<Temagruppe>(<unknown>tomTemaGruppeNull))).toBe('Ingen temagruppe');
     });
-    it('Gir riktig temagruppe på dokumentvarsler med emtpy (da dette tolkes som slettet melding)', function () {
+    it('Gir riktig temagruppe på dokumentvarsler med emtpy (da dette tolkes som slettet melding)', () => {
         expect(temagruppeTekst(<Temagruppe>tomTemaGruppeEmpty)).toBe('Innhold slettet');
     });
-    it('Gir riktig temagruppe på dokumentvarsler temagruppe.Slettet', function () {
+    it('Gir riktig temagruppe på dokumentvarsler temagruppe.Slettet', () => {
         expect(temagruppeTekst(<Temagruppe>tomTemagruppeSlettet)).toBe('Innhold slettet');
     });
 });

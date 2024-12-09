@@ -1,6 +1,6 @@
-import { Action } from 'redux';
-import { AppState } from '../reducers';
 import { useSelector } from 'react-redux';
+import type { Action } from 'redux';
+import type { AppState } from '../reducers';
 
 export interface GjeldendeBrukerState {
     fødselsnummer: string;

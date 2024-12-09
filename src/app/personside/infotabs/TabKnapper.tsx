@@ -1,6 +1,6 @@
-import { InfotabConfig, INFOTABS } from './InfoTabEnum';
 import styled, { css } from 'styled-components';
 import theme, { pxToRem } from '../../../styles/personOversiktTheme';
+import { INFOTABS, type InfotabConfig } from './InfoTabEnum';
 
 interface TabPanelProps {
     onTabChange: (key: string) => void;

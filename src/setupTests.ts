@@ -1,12 +1,12 @@
-import MockDate from 'mockdate';
 import dayjs from 'dayjs';
+import MockDate from 'mockdate';
 import 'dayjs/locale/nb';
 import './extra-polyfills';
 import 'jest-styled-components';
 import '@testing-library/jest-dom/vitest';
+import { setGlobalOrigin } from 'undici';
 import { vi } from 'vitest';
 import { server } from './mock/node';
-import { setGlobalOrigin } from 'undici';
 dayjs.locale('nb');
 
 const globalAny = global;
@@ -16,7 +16,7 @@ globalAny._mockEnabled = 'true';
 // Mocker funksjoner som returnerer dynamisk data
 MockDate.set(0);
 import JSutils from 'nav-frontend-js-utils';
-import { PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
 JSutils.guid = () => 'Helt tilfeldig ID';
 JSutils.getScrollParents = () => [];
 

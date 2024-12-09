@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import SakerOversiktV2 from './SakerOversiktV2';
 
 interface Props {

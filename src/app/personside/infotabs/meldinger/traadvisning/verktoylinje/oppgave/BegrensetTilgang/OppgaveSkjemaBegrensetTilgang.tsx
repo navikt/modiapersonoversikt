@@ -1,20 +1,20 @@
-import { useState } from 'react';
+import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { Flatknapp, Hovedknapp } from 'nav-frontend-knapper';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { SkjermetOppgaveProps, OppgaveSkjemaBegrensetTilgangForm } from '../oppgaveInterfaces';
 import { post } from '../../../../../../../../api/api';
 import { apiBaseUri } from '../../../../../../../../api/config';
-import { Resultat } from '../../utils/VisPostResultat';
-import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
-import { lagSkjermetOppgaveRequest } from '../byggRequest';
-import { useSelector } from 'react-redux';
-import { AppState } from '../../../../../../../../redux/reducers';
 import { useValgtenhet } from '../../../../../../../../context/valgtenhet-state';
-import { useForm } from 'react-hook-form';
+import type { AppState } from '../../../../../../../../redux/reducers';
+import { Resultat } from '../../utils/VisPostResultat';
+import OppgaveSkjemaPrioritetBeskrivelse from '../OppgaveSkjemaDeler/OppgaveSkjemaPrioritetBeskrivelse';
+import OppgaveSkjemaTemaGjelderTypeOppgave from '../OppgaveSkjemaDeler/OppgaveSkjemaTemaGjelderTypeOppgave';
+import { lagSkjermetOppgaveRequest } from '../byggRequest';
+import type { OppgaveSkjemaBegrensetTilgangForm, SkjermetOppgaveProps } from '../oppgaveInterfaces';
 import { resolverOppgaveSkjemaBegrensetTilgang } from '../oppgaveSkjemaUtils';
 import { useNormalPrioritet } from '../useNormalPrioritet';
-import OppgaveSkjemaTemaGjelderTypeOppgave from '../OppgaveSkjemaDeler/OppgaveSkjemaTemaGjelderTypeOppgave';
-import OppgaveSkjemaPrioritetBeskrivelse from '../OppgaveSkjemaDeler/OppgaveSkjemaPrioritetBeskrivelse';
 
 const SkjemaStyle = styled.div`
     padding-top: 1rem;

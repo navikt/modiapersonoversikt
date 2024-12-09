@@ -1,9 +1,9 @@
 import * as renderer from 'react-test-renderer';
-import TestProvider from '../../../../test/Testprovider';
-import SendNyMeldingContainer from './SendNyMeldingContainer';
-import { OppgavelisteValg } from './SendNyMelding';
-import { setupReactQueryMocks } from '../../../../test/testStore';
 import { vi } from 'vitest';
+import TestProvider from '../../../../test/Testprovider';
+import { setupReactQueryMocks } from '../../../../test/testStore';
+import { OppgavelisteValg } from './SendNyMelding';
+import SendNyMeldingContainer from './SendNyMeldingContainer';
 
 beforeEach(() => {
     Date.prototype.getTime = vi.fn(() => 0);

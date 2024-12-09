@@ -1,4 +1,4 @@
-import { RefObject } from 'react';
+import type { RefObject } from 'react';
 
 // Litt egne typer slik at funksjonene nedenfor kan brukes med både react-events og DOM-events
 type EventWithTarget = Event | React.SyntheticEvent;

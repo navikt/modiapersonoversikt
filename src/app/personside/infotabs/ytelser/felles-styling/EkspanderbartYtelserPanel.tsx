@@ -1,10 +1,10 @@
-import { ReactNode } from 'react';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
+import Panel from 'nav-frontend-paneler';
+import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import type { ReactNode } from 'react';
 import styled from 'styled-components';
-import { Undertittel, Normaltekst } from 'nav-frontend-typografi';
 import theme from '../../../../../styles/personOversiktTheme';
 import { ytelserTest } from '../../dyplenkeTest/utils-dyplenker-test';
-import Panel from 'nav-frontend-paneler';
 
 interface Props {
     children: ReactNode;

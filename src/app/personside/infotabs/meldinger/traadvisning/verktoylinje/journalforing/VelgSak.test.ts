@@ -1,5 +1,5 @@
+import { type JournalforingsSak, type JournalforingsSakIdentifikator, SakKategori } from './JournalforingPanel';
 import { fjernSakerSomAlleredeErTilknyttet, fordelSaker } from './VelgSak';
-import { JournalforingsSak, JournalforingsSakIdentifikator, SakKategori } from './JournalforingPanel';
 
 function sak(sakstype: 'GEN' | 'FAG', temaKode: string, fagsystemSaksId?: string): JournalforingsSak {
     return { sakstype, temaKode, temaNavn: temaKode, fagsystemSaksId } as JournalforingsSak;

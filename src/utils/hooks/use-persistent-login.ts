@@ -1,7 +1,7 @@
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { type FetchError, get } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { FetchError, get } from '../../api/api';
 
 const debug = window.location.search.includes('utloggings-info');
 const SECOND_IN_MS = 1000;

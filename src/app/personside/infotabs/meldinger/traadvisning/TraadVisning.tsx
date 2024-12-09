@@ -1,21 +1,21 @@
-import styled from 'styled-components';
-import { datoSynkende, formatterDato, formatterDatoTid } from '../../../../../utils/date-utils';
-import EnkeltMelding from './Enkeltmelding';
-import theme from '../../../../../styles/personOversiktTheme';
-import { useDispatch } from 'react-redux';
-import { Hovedknapp } from 'nav-frontend-knapper';
-import { setValgtTraadDialogpanel } from '../../../../../redux/oppgave/actions';
-import { useAppState } from '../../../../../utils/customHooks';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { Traad } from '../../../../../models/meldinger/meldinger';
-import { nyesteMelding, saksbehandlerTekst, traadKanBesvares, traadstittel } from '../utils/meldingerUtils';
-import { formaterDato } from '../../../../../utils/string-utils';
-import { loggEvent } from '../../../../../utils/logger/frontendLogger';
-import { Printer } from '../../../../../utils/print/usePrinter';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
-import { Normaltekst, UndertekstBold, Undertittel } from 'nav-frontend-typografi';
-import { useDialogpanelState } from '../../../../../context/dialogpanel-state';
+import { Hovedknapp } from 'nav-frontend-knapper';
 import Panel from 'nav-frontend-paneler';
+import { Normaltekst, UndertekstBold, Undertittel } from 'nav-frontend-typografi';
+import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
+import { useDialogpanelState } from '../../../../../context/dialogpanel-state';
+import type { Traad } from '../../../../../models/meldinger/meldinger';
+import { setValgtTraadDialogpanel } from '../../../../../redux/oppgave/actions';
+import theme from '../../../../../styles/personOversiktTheme';
+import { useAppState } from '../../../../../utils/customHooks';
+import { datoSynkende, formatterDato, formatterDatoTid } from '../../../../../utils/date-utils';
+import { loggEvent } from '../../../../../utils/logger/frontendLogger';
+import type { Printer } from '../../../../../utils/print/usePrinter';
+import { formaterDato } from '../../../../../utils/string-utils';
+import { nyesteMelding, saksbehandlerTekst, traadKanBesvares, traadstittel } from '../utils/meldingerUtils';
+import EnkeltMelding from './Enkeltmelding';
 
 interface Props {
     valgtTraad: Traad;

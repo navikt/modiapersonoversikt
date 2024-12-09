@@ -1,12 +1,12 @@
-import styled from 'styled-components';
-import { Normaltekst } from 'nav-frontend-typografi';
-import { pxToRem } from '../../styles/personOversiktTheme';
-import { PersonSokFormStateV3 } from './personsokUtils';
-import { FieldValues, UseFormReturn } from 'react-hook-form';
-import { InputLinje } from './PersonsokSkjema';
-import { feilmeldingReactHookForm } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/feilmeldingReactHookForm';
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
+import { Normaltekst } from 'nav-frontend-typografi';
+import type { FieldValues, UseFormReturn } from 'react-hook-form';
+import styled from 'styled-components';
 import FormDatePicker from '../../components/form/FormDatePicker';
+import { pxToRem } from '../../styles/personOversiktTheme';
+import { feilmeldingReactHookForm } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/feilmeldingReactHookForm';
+import { InputLinje } from './PersonsokSkjema';
+import type { PersonSokFormStateV3 } from './personsokUtils';
 
 const DatovelgerStyle = styled.div`
     margin-right: 0.5em;

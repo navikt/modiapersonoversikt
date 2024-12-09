@@ -1,9 +1,9 @@
-import { formaterDato } from '../../utils/string-utils';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { fjernAnforselstegn, splitNavn } from './navn/navnUtils';
+import type { UseFormWatch } from 'react-hook-form';
 import baseurls from '../../rest/resources/baseurlsResource';
-import { UseFormWatch } from 'react-hook-form';
-import { PersonSokFormStateV3 } from './personsokUtils';
+import { formaterDato } from '../../utils/string-utils';
+import { fjernAnforselstegn, splitNavn } from './navn/navnUtils';
+import type { PersonSokFormStateV3 } from './personsokUtils';
 interface DrekPropsV2 {
     watch: UseFormWatch<PersonSokFormStateV3>;
 }

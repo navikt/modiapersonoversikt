@@ -1,14 +1,14 @@
-import { useRef } from 'react';
-import { Systemtittel } from 'nav-frontend-typografi';
-import Tekstomrade, { defaultRules, Rule } from 'nav-frontend-tekstomrade';
-import styled from 'styled-components';
-import { Knapp } from 'nav-frontend-knapper';
 import { parseTekst } from '@navikt/tag-input';
 import { guid } from 'nav-frontend-js-utils';
-import { erGyldigValg } from '../sokUtils';
-import * as StandardTekster from '../domain';
-import { FieldState } from '../../../../../../utils/hooks/use-field-state';
+import { Knapp } from 'nav-frontend-knapper';
+import Tekstomrade, { defaultRules, type Rule } from 'nav-frontend-tekstomrade';
+import { Systemtittel } from 'nav-frontend-typografi';
+import { useRef } from 'react';
+import styled from 'styled-components';
 import theme from '../../../../../../styles/personOversiktTheme';
+import type { FieldState } from '../../../../../../utils/hooks/use-field-state';
+import type * as StandardTekster from '../domain';
+import { erGyldigValg } from '../sokUtils';
 
 interface Props {
     tekst: StandardTekster.Tekst | undefined;

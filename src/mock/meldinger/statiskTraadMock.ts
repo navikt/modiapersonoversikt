@@ -1,5 +1,5 @@
-import { LestStatus, Meldingstype, Traad } from '../../models/meldinger/meldinger';
 import { saksbehandlerTekst } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
+import { LestStatus, Meldingstype, type Traad } from '../../models/meldinger/meldinger';
 import { Temagruppe } from '../../models/temagrupper';
 
 export const statiskTraadMock: Traad = {

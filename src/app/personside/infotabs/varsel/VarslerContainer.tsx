@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import Varsler from './Varsler';
 import theme from '../../../../styles/personOversiktTheme';
-import VarslerLoader, { VarslerRendererProps } from './varsel-loader';
+import Varsler from './Varsler';
+import VarslerLoader, { type VarslerRendererProps } from './varsel-loader';
 
 const Style = styled.div`
     padding: ${theme.margin.layout};

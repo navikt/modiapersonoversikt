@@ -1,24 +1,24 @@
-import { ReactNode, useEffect } from 'react';
-import { getSykepengerIdDato, Sykepenger } from '../../../../models/ytelse/sykepenger';
-import { Pleiepengerettighet } from '../../../../models/ytelse/pleiepenger';
-import { Foreldrepengerettighet, getForeldepengerIdDato } from '../../../../models/ytelse/foreldrepenger';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
-import styled from 'styled-components';
-import theme from '../../../../styles/personOversiktTheme';
-import VisMerKnapp from '../../../../components/VisMerKnapp';
-import useBrukersYtelserMarkup from '../ytelser/useBrukersYtelserMarkup';
-import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { useInfotabsDyplenker } from '../dyplenker';
-import { ytelserTest } from '../dyplenkeTest/utils-dyplenker-test';
-import { NOKellerNull, formaterDato } from '../../../../utils/string-utils';
-import { usePrevious } from '../../../../utils/customHooks';
-import { getUnikYtelseKey } from '../../../../models/ytelse/ytelse-utils';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
+import { type ReactNode, useEffect } from 'react';
+import styled from 'styled-components';
+import { CenteredLazySpinner } from '../../../../components/LazySpinner';
+import VisMerKnapp from '../../../../components/VisMerKnapp';
+import { type Foreldrepengerettighet, getForeldepengerIdDato } from '../../../../models/ytelse/foreldrepenger';
+import type { Pleiepengerettighet } from '../../../../models/ytelse/pleiepenger';
+import { type Sykepenger, getSykepengerIdDato } from '../../../../models/ytelse/sykepenger';
 import {
-    Tiltakspenger,
+    type Tiltakspenger,
     getTiltakspengerIdDato,
     getUnikTiltakspengerKey
 } from '../../../../models/ytelse/tiltakspenger';
+import { getUnikYtelseKey } from '../../../../models/ytelse/ytelse-utils';
+import theme from '../../../../styles/personOversiktTheme';
+import { usePrevious } from '../../../../utils/customHooks';
+import { NOKellerNull, formaterDato } from '../../../../utils/string-utils';
+import { ytelserTest } from '../dyplenkeTest/utils-dyplenker-test';
+import { useInfotabsDyplenker } from '../dyplenker';
+import useBrukersYtelserMarkup from '../ytelser/useBrukersYtelserMarkup';
 
 const YtelserStyle = styled.div`
     > *:not(:first-child) {

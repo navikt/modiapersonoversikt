@@ -1,7 +1,7 @@
-import DescriptionList, { DescriptionListEntries } from '../../../../../components/DescriptionList';
+import type { Sykepenger } from 'src/models/ytelse/sykepenger';
 import { convertBoolTilJaNei } from 'src/utils/string-utils';
+import DescriptionList, { type DescriptionListEntries } from '../../../../../components/DescriptionList';
 import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
-import { Sykepenger } from 'src/models/ytelse/sykepenger';
 import ArbeidsForholdListe from './ArbeidsforholdListe';
 
 interface Props {

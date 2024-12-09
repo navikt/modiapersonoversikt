@@ -1,5 +1,5 @@
-import { assertUnreachable } from '../../utils/assertUnreachable';
 import { IkkeTilgangArsak } from '../../rest/resources/tilgangskontrollResource';
+import { assertUnreachable } from '../../utils/assertUnreachable';
 
 interface Props {
     begrunnelseType: IkkeTilgangArsak;

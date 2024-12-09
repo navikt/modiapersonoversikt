@@ -2,10 +2,10 @@ import { fakerNB_NO as faker } from '@faker-js/faker';
 import dayjs from 'dayjs';
 
 import navfaker from 'nav-faker/dist/index';
-import { Tiltakspenger, TiltakspengerResource } from '../../models/ytelse/tiltakspenger';
-import { fyllRandomListe } from '../utils/mock-utils';
+import type { Tiltakspenger, TiltakspengerResource } from '../../models/ytelse/tiltakspenger';
 import { backendDatoformat } from '../../utils/date-utils';
 import { aremark } from '../persondata/aremark';
+import { fyllRandomListe } from '../utils/mock-utils';
 import { statiskTiltakspengerMock } from './statiskTiltakspengerMock';
 
 export function getMockTiltakspenger(fødselsnummer: string): TiltakspengerResource {

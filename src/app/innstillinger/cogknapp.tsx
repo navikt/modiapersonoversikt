@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import SvgCog from './../../svg/cog.svg';
 import { KnappWrapper } from '../../components/pilknapp';
+import SvgCog from './../../svg/cog.svg';
 import InnstillingerModal from './modal/InnstillingerModal';
 
 const CogWrapper = styled(KnappWrapper)`

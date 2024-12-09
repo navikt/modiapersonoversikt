@@ -1,4 +1,4 @@
-import { InfotabConfig, INFOTABS } from './InfoTabEnum';
+import { INFOTABS, type InfotabConfig } from './InfoTabEnum';
 import { getOpenTabFromRouterPath } from './utils/useOpenTab';
 
 test('henter riktig tab fra routerpath', () => {

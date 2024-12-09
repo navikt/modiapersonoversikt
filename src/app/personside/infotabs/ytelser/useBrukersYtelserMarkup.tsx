@@ -1,13 +1,13 @@
-import { ReactNode } from 'react';
-import { Pleiepengerettighet } from '../../../../models/ytelse/pleiepenger';
-import { Sykepenger } from '../../../../models/ytelse/sykepenger';
-import { Foreldrepengerettighet } from '../../../../models/ytelse/foreldrepenger';
+import type { ReactNode } from 'react';
+import type { Foreldrepengerettighet } from '../../../../models/ytelse/foreldrepenger';
+import type { Pleiepengerettighet } from '../../../../models/ytelse/pleiepenger';
+import type { Sykepenger } from '../../../../models/ytelse/sykepenger';
+import type { Tiltakspenger } from '../../../../models/ytelse/tiltakspenger';
 import { isForeldrepenger, isPleiepenger, isSykepenger, isTiltakspenger } from '../../../../models/ytelse/ytelse-utils';
-import useBrukersYtelser from './useBrukersYtelser';
-import { loggError } from '../../../../utils/logger/frontendLogger';
-import { Tiltakspenger } from '../../../../models/ytelse/tiltakspenger';
-import { getFraDateFromPeriod } from '../utbetalinger/utils/utbetalinger-utils';
 import { PeriodeValg } from '../../../../redux/utbetalinger/types';
+import { loggError } from '../../../../utils/logger/frontendLogger';
+import { getFraDateFromPeriod } from '../utbetalinger/utils/utbetalinger-utils';
+import useBrukersYtelser from './useBrukersYtelser';
 
 interface Props {
     renderPleiepenger: (pleiepenger: Pleiepengerettighet) => ReactNode;

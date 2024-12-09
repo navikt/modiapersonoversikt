@@ -1,10 +1,10 @@
-import VisittkortElement from '../../VisittkortElement';
-import LocationPin from '../../../../../../svg/LocationPin';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { Adresse as PersonAdresse, Person } from '../../../PersondataDomain';
+import LocationPin from '../../../../../../svg/LocationPin';
+import type { Person, Adresse as PersonAdresse } from '../../../PersondataDomain';
 import Adresseinfo from '../../AdresseInfo';
 import Endringstekst from '../../Endringstekst';
 import GyldighetsPeriode from '../../GyldighetsPeriode';
+import VisittkortElement from '../../VisittkortElement';
 
 interface Props {
     person: Person;

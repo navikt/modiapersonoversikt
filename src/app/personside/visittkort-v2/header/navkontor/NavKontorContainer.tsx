@@ -1,6 +1,6 @@
-import styled from 'styled-components';
 import { Element } from 'nav-frontend-typografi';
-import { Person } from '../../PersondataDomain';
+import styled from 'styled-components';
+import type { Person } from '../../PersondataDomain';
 import { mapUgyldigGT } from '../../visittkort-utils';
 
 interface Props {

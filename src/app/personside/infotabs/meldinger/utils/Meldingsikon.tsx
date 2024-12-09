@@ -1,13 +1,13 @@
-import { Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
+import { Undertekst } from 'nav-frontend-typografi';
+import styled from 'styled-components';
+import { Meldingstype, type Traad } from '../../../../../models/meldinger/meldinger';
+import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
+import BrevIkon from '../../../../../svg/BrevIkon';
+import DialogIkon from '../../../../../svg/DialogIkon';
+import MonologIkon from '../../../../../svg/MonologIkon';
 import OppmoteIkon from '../../../../../svg/OppmoteIkon';
 import TelefonIkon from '../../../../../svg/TelefonIkon';
-import MonologIkon from '../../../../../svg/MonologIkon';
-import DialogIkon from '../../../../../svg/DialogIkon';
-import styled from 'styled-components';
-import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { erMonolog, erUbesvartHenvendelseFraBruker, nyesteMelding } from './meldingerUtils';
-import BrevIkon from '../../../../../svg/BrevIkon';
-import { Undertekst } from 'nav-frontend-typografi';
 
 interface MeldingsikonProps {
     traad: Traad;

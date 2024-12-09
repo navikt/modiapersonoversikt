@@ -1,15 +1,15 @@
-import { utbetalingerReducer } from './utbetalinger/utbetalingerReducer';
-import { saksoversiktReducer } from './saksoversikt/reducer';
-import { SaksoversikState } from './saksoversikt/types';
-import { OppfolgingState } from './oppfolging/types';
-import { oppfolgingReducer } from './oppfolging/reducer';
-import { GjeldendeBrukerState } from './gjeldendeBruker/types';
 import gjeldendeBrukerReducer from './gjeldendeBruker/reducer';
-import { UtbetalingerState } from './utbetalinger/types';
-import { OppgaveState } from './oppgave/types';
+import type { GjeldendeBrukerState } from './gjeldendeBruker/types';
+import { oppfolgingReducer } from './oppfolging/reducer';
+import type { OppfolgingState } from './oppfolging/types';
 import { oppgaverReducer } from './oppgave/reducer';
+import type { OppgaveState } from './oppgave/types';
 import { combineResettableReducers } from './reducer-utils';
-import varslerReducer, { VarslerState } from './varsler/varslerReducer';
+import { saksoversiktReducer } from './saksoversikt/reducer';
+import type { SaksoversikState } from './saksoversikt/types';
+import type { UtbetalingerState } from './utbetalinger/types';
+import { utbetalingerReducer } from './utbetalinger/utbetalingerReducer';
+import varslerReducer, { type VarslerState } from './varsler/varslerReducer';
 
 export interface AppState {
     utbetalinger: UtbetalingerState;

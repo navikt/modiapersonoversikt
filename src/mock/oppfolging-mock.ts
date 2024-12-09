@@ -1,5 +1,7 @@
 import { fakerNB_NO as faker } from '@faker-js/faker';
-import {
+import dayjs from 'dayjs';
+import navfaker from 'nav-faker';
+import type {
     AnsattEnhet,
     Dagpenger,
     DetaljertOppfolging,
@@ -9,10 +11,8 @@ import {
     Saksbehandler,
     SyfoPunkt
 } from '../models/oppfolging';
-import { fyllRandomListe } from './utils/mock-utils';
-import navfaker from 'nav-faker';
-import dayjs from 'dayjs';
 import { backendDatoformat } from '../utils/date-utils';
+import { fyllRandomListe } from './utils/mock-utils';
 
 export function getMockOppfolging(fodselsnummer: string): Oppfolging {
     faker.seed(Number(fodselsnummer));

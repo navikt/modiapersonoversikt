@@ -1,7 +1,7 @@
+import { type UseQueryResult, useQuery, useQueryClient } from '@tanstack/react-query';
+import { type FetchError, get } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
-import { useQuery, useQueryClient, UseQueryResult } from '@tanstack/react-query';
-import { FetchError, get } from '../../api/api';
-import { Enhet } from '../../models/meldinger/oppgave';
+import type { Enhet } from '../../models/meldinger/oppgave';
 
 const queryKey = ['oppgavebehandlere'];
 const url = `${apiBaseUri}/enheter/oppgavebehandlere/alle`;

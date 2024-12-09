@@ -1,8 +1,8 @@
-import { erUbesvartHenvendelseFraBruker } from '../infotabs/meldinger/utils/meldingerUtils';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
-import theme from '../../../styles/personOversiktTheme';
 import dialogResource from '../../../rest/resources/dialogResource';
+import theme from '../../../styles/personOversiktTheme';
+import { erUbesvartHenvendelseFraBruker } from '../infotabs/meldinger/utils/meldingerUtils';
 
 const Styling = styled.div`
     padding: ${theme.margin.layout};

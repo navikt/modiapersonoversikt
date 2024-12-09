@@ -1,5 +1,5 @@
 import EtikettBase from 'nav-frontend-etiketter';
-import { TilrettelagtKommunikasjon } from './../../PersondataDomain';
+import type { TilrettelagtKommunikasjon } from './../../PersondataDomain';
 
 interface Props {
     tilrettelagtKommunikasjon: TilrettelagtKommunikasjon;

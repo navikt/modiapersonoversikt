@@ -1,4 +1,4 @@
-import { UtbetalingerResponse } from '../../models/utbetalinger';
+import type { UtbetalingerResponse } from '../../models/utbetalinger';
 
 export const statiskMockUtbetalingRespons: UtbetalingerResponse = {
     utbetalinger: [

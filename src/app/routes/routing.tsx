@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { InfotabConfig, INFOTABS } from '../personside/infotabs/InfoTabEnum';
+import { INFOTABS, type InfotabConfig } from '../personside/infotabs/InfoTabEnum';
 
 export const paths = {
     personUri: '/person',

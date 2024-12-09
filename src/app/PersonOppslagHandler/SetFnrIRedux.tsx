@@ -1,10 +1,10 @@
-import { Query, useQueryClient } from '@tanstack/react-query';
-import { useEffect } from 'react';
-import featuretogglesResource from '../../rest/resources/featuretogglesResource';
-import { useQueryParams } from '../../utils/url-utils';
+import { type Query, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
 import { useSetAtom } from 'jotai';
+import { useEffect } from 'react';
 import { aktivBrukerAtom } from 'src/lib/state/context';
+import featuretogglesResource from '../../rest/resources/featuretogglesResource';
+import { useQueryParams } from '../../utils/url-utils';
 
 interface Props {
     fnr: string;

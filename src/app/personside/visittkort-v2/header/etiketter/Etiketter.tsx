@@ -1,15 +1,15 @@
 import styled from 'styled-components';
-import { Person } from '../../PersondataDomain';
-import DiskresjonskodeEtikett from './DiskresjonskodeEtikett';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
-import EgenAnsattEtikett from './EgenAnsattEtikett';
-import SikkerhetstiltakEtikett from './SikkerhetstiltakEtikett';
-import ReservertIKRREtikett from './ReservertIKRREtikett';
-import VergemalsEtikett from './VergemalsEtikett';
-import TilrettelagtKommunikasjonsEtiketter from './TilrettelagtKommunikasjonsEtiketter';
+import type { Person } from '../../PersondataDomain';
+import DiskresjonskodeEtikett from './DiskresjonskodeEtikett';
 import DodsboEtikett from './DodsboEtikett';
+import EgenAnsattEtikett from './EgenAnsattEtikett';
 import FullmaktEtikett from './FullmaktEtikett';
 import ManuellStatusEtikett from './ManuellStatusEtikett';
+import ReservertIKRREtikett from './ReservertIKRREtikett';
+import SikkerhetstiltakEtikett from './SikkerhetstiltakEtikett';
+import TilrettelagtKommunikasjonsEtiketter from './TilrettelagtKommunikasjonsEtiketter';
+import VergemalsEtikett from './VergemalsEtikett';
 
 interface Props {
     person: Person;

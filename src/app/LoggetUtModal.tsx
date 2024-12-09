@@ -1,11 +1,11 @@
-import * as React from 'react';
-import styled from 'styled-components';
-import RawModal from 'nav-frontend-modal';
-import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
 import AdvarselIkon from 'nav-frontend-ikoner-assets/assets/advarsel-sirkel-fyll.svg';
 import ErrorIkon from 'nav-frontend-ikoner-assets/assets/feil-sirkel-fyll.svg';
 import KnappBase from 'nav-frontend-knapper';
-import { PersistentLoginState } from '../utils/hooks/use-persistent-login';
+import RawModal from 'nav-frontend-modal';
+import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import * as React from 'react';
+import styled from 'styled-components';
+import type { PersistentLoginState } from '../utils/hooks/use-persistent-login';
 
 const Modal = styled(RawModal)`
     text-align: center;

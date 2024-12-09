@@ -1,14 +1,14 @@
-import YtelseListe from './YtelserListe';
-import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
+import { useAtom } from 'jotai';
+import Panel from 'nav-frontend-paneler';
+import { ytelsePeriodeAtom } from 'src/app/personside/infotabs/ytelser/YtelserState';
+import { pxToRem } from 'src/styles/personOversiktTheme';
 import styled from 'styled-components';
-import ValgtYtelse from './ValgtYtelse';
-import useBrukersYtelser from './useBrukersYtelser';
 import { useInfotabsDyplenker } from '../dyplenker';
 import FiltreringPeriode from '../utbetalinger/filter/FilterPeriode';
-import Panel from 'nav-frontend-paneler';
-import { pxToRem } from 'src/styles/personOversiktTheme';
-import { useAtom } from 'jotai';
-import { ytelsePeriodeAtom } from 'src/app/personside/infotabs/ytelser/YtelserState';
+import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
+import ValgtYtelse from './ValgtYtelse';
+import YtelseListe from './YtelserListe';
+import useBrukersYtelser from './useBrukersYtelser';
 
 const ytelserMediaTreshold = '45rem';
 

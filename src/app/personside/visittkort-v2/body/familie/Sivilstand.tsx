@@ -1,10 +1,10 @@
 import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
-import VisittkortElement from '../VisittkortElement';
 import HeartIkon from '../../../../../svg/Heart';
-import { Sivilstand as SivilstandInterface, SivilstandType } from '../../PersondataDomain';
-import { erPartner, hentAlderEllerDod, hentNavn } from '../../visittkort-utils';
-import Diskresjonskode from './common/Diskresjonskode';
 import { formaterDato } from '../../../../../utils/string-utils';
+import { type Sivilstand as SivilstandInterface, SivilstandType } from '../../PersondataDomain';
+import { erPartner, hentAlderEllerDod, hentNavn } from '../../visittkort-utils';
+import VisittkortElement from '../VisittkortElement';
+import Diskresjonskode from './common/Diskresjonskode';
 
 interface Props {
     harFeilendeSystem: boolean;

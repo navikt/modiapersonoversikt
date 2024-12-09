@@ -1,9 +1,9 @@
-import { isDevelopment, isTest } from '../environment';
 import { detect } from 'detect-browser';
 import { useEffect } from 'react';
-import { erKontaktsenter } from '../enheter-utils';
-import innloggetSaksbehandler from '../../rest/resources/innloggetSaksbehandlerResource';
 import { useValgtenhet } from '../../context/valgtenhet-state';
+import innloggetSaksbehandler from '../../rest/resources/innloggetSaksbehandlerResource';
+import { erKontaktsenter } from '../enheter-utils';
+import { isDevelopment, isTest } from '../environment';
 
 let ident = 'ikke satt';
 let enhet = 'ikke valgt';

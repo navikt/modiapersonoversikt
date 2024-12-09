@@ -1,7 +1,7 @@
-import { ForelderBarnRelasjon } from '../../PersondataDomain';
 import { capitalizeName } from '../../../../../utils/string-utils';
-import ForelderBarnRelasjonVisning from './ForelderBarnRelasjon';
+import type { ForelderBarnRelasjon } from '../../PersondataDomain';
 import { hentForeldre } from '../../visittkort-utils';
+import ForelderBarnRelasjonVisning from './ForelderBarnRelasjon';
 
 interface Props {
     harFeilendeSystem: boolean;

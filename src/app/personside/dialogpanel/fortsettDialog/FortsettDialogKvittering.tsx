@@ -1,8 +1,8 @@
-import { DialogpanelKvittering } from '../nyFellesStyling';
 import { useDispatch } from 'react-redux';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
-import { KvitteringsData } from './FortsettDialogTypes';
+import { DialogpanelKvittering } from '../nyFellesStyling';
 import { SendNyMeldingStatus } from '../sendMelding/SendNyMeldingTypes';
+import type { KvitteringsData } from './FortsettDialogTypes';
 
 export function SvarSendtKvittering(props: { kvitteringsData: KvitteringsData }) {
     const dispatch = useDispatch();

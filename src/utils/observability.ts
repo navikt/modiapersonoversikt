@@ -1,4 +1,4 @@
-import { getWebInstrumentations, initializeFaro, Instrumentation, Meta } from '@grafana/faro-react';
+import { type Instrumentation, type Meta, getWebInstrumentations, initializeFaro } from '@grafana/faro-react';
 import { getEnvFromHost } from './environment';
 
 const customPageMeta: () => Pick<Meta, 'page'> = () => {

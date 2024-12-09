@@ -1,8 +1,8 @@
 import KnappBase from 'nav-frontend-knapper';
-import { setValgtTraadDialogpanel } from '../../../redux/oppgave/actions';
 import { useDispatch } from 'react-redux';
-import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
+import { setValgtTraadDialogpanel } from '../../../redux/oppgave/actions';
 import dialogResource from '../../../rest/resources/dialogResource';
+import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
 
 function GaaTilNesteOppgaveKnapp(props: { lukk: () => void }) {
     const tildelteOppgaver = useTildelteOppgaver();

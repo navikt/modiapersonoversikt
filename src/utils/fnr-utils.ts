@@ -15,7 +15,7 @@ function kontrollSiffer(ident: number[], kontrollrekke: number[]): number {
 }
 
 function validerIdentModulo(ident: string): boolean {
-    const identNummer: number[] = ident.split('').map((it) => parseInt(it));
+    const identNummer: number[] = ident.split('').map((it) => Number.parseInt(it));
     const kontroll1 = kontrollSiffer(identNummer, kontrollRekke1);
     const kontroll2 = kontrollSiffer(identNummer, kontrollRekke2);
     return identNummer[9] === kontroll1 && identNummer[10] === kontroll2;

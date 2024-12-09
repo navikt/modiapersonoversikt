@@ -1,8 +1,8 @@
+import type { UseQueryResult } from '@tanstack/react-query';
+import type { FetchError } from '../../../../api/api';
+import type { Traad } from '../../../../models/meldinger/meldinger';
+import type { Oppgave } from '../../../../models/meldinger/oppgave';
 import { finnPlukketOppgaveForTraad } from './FortsettDialogContainer';
-import { Oppgave } from '../../../../models/meldinger/oppgave';
-import { Traad } from '../../../../models/meldinger/meldinger';
-import { UseQueryResult } from '@tanstack/react-query';
-import { FetchError } from '../../../../api/api';
 
 function restResource<Response>(status: 'loading' | 'success', data?: Response): UseQueryResult<Response, FetchError> {
     const resource = {

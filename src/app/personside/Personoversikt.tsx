@@ -1,10 +1,10 @@
-import LyttPåNyttFnrIReduxOgHentAllPersoninfo from '../PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentAllPersoninfo';
-import MainLayout from './MainLayout';
-import BegrensetTilgangSide from './BegrensetTilgangSide';
-import tilgangskontroll from '../../rest/resources/tilgangskontrollResource';
-import { DialogpanelStateProvider } from '../../context/dialogpanel-state';
-import NyIdentModal from './NyIdentModal';
 import WaitForUserLoaded from 'src/components/WaitForUserLoaded';
+import { DialogpanelStateProvider } from '../../context/dialogpanel-state';
+import tilgangskontroll from '../../rest/resources/tilgangskontrollResource';
+import LyttPåNyttFnrIReduxOgHentAllPersoninfo from '../PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentAllPersoninfo';
+import BegrensetTilgangSide from './BegrensetTilgangSide';
+import MainLayout from './MainLayout';
+import NyIdentModal from './NyIdentModal';
 
 function Personoversikt({ fnr }: { fnr: string }) {
     return tilgangskontroll.useRenderer(fnr, (data) => {

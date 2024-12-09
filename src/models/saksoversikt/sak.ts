@@ -1,4 +1,4 @@
-import { Baksystem } from './fellesSak';
+import type { Baksystem } from './fellesSak';
 
 export interface Sak {
     temakode: string;

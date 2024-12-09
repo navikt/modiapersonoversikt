@@ -1,4 +1,4 @@
-import { DetaljertOppfolging } from '../models/oppfolging';
+import type { DetaljertOppfolging } from '../models/oppfolging';
 
 export const statiskOppfolgingMock: DetaljertOppfolging = {
     oppfolging: {

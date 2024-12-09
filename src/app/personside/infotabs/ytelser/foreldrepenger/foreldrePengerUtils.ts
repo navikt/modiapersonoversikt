@@ -1,6 +1,6 @@
-import { Foreldrepengerettighet } from '../../../../../models/ytelse/foreldrepenger';
+import type { Arbeidsforhold } from '../../../../../models/ytelse/arbeidsforhold';
+import type { Foreldrepengerettighet } from '../../../../../models/ytelse/foreldrepenger';
 import { ascendingDateComparator, datoStigende } from '../../../../../utils/date-utils';
-import { Arbeidsforhold } from '../../../../../models/ytelse/arbeidsforhold';
 
 export function utledFraDatoForRettighet(foreldrepenger: Foreldrepengerettighet): Date {
     return foreldrepenger.periode

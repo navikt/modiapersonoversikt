@@ -1,4 +1,4 @@
-import { Traad } from '../../models/meldinger/meldinger';
+import type { Traad } from '../../models/meldinger/meldinger';
 
 export interface OppgaveState {
     dialogpanelTraad?: Traad;

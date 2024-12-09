@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
-import { loggEvent } from '../../../utils/logger/frontendLogger';
-import { useSelector } from 'react-redux';
-import { AppState } from '../../../redux/reducers';
-import { personPaths } from '../../routes/routing';
 import { useNavigate } from '@tanstack/react-router';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import type { AppState } from '../../../redux/reducers';
+import { loggEvent } from '../../../utils/logger/frontendLogger';
+import { personPaths } from '../../routes/routing';
 
 function HandleInfotabsHotkeys() {
     const fnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);

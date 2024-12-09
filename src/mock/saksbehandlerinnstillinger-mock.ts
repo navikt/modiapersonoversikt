@@ -1,5 +1,5 @@
-import { HttpResponse, PathParams, http } from 'msw';
-import { Innstillinger, SaksbehandlerInnstillinger } from '../rest/resources/innstillingerResource';
+import { http, HttpResponse, type PathParams } from 'msw';
+import type { Innstillinger, SaksbehandlerInnstillinger } from '../rest/resources/innstillingerResource';
 
 const localstoreageKey = 'modia-innstillinger-mock';
 const finnesILocalStorage = localStorage.getItem(localstoreageKey);

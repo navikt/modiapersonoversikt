@@ -1,14 +1,14 @@
-import { CenteredLazySpinner } from '../../../../components/LazySpinner';
-import styled from 'styled-components';
-import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
-import { Ytelse } from '../../../../models/ytelse/ytelse-utils';
-import YtelserListeElement from './YtelserListeElement';
-import { Undertittel } from 'nav-frontend-typografi';
-import { guid } from 'nav-frontend-js-utils';
 import Hjelpetekst from 'nav-frontend-hjelpetekst';
-import { PopoverOrientering } from 'nav-frontend-popover';
-import { ReactNode } from 'react';
+import { guid } from 'nav-frontend-js-utils';
 import Panel from 'nav-frontend-paneler';
+import { PopoverOrientering } from 'nav-frontend-popover';
+import { Undertittel } from 'nav-frontend-typografi';
+import type { ReactNode } from 'react';
+import styled from 'styled-components';
+import { CenteredLazySpinner } from '../../../../components/LazySpinner';
+import type { Ytelse } from '../../../../models/ytelse/ytelse-utils';
+import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
+import YtelserListeElement from './YtelserListeElement';
 
 const StyledPanel = styled(Panel)`
     padding: 0rem;

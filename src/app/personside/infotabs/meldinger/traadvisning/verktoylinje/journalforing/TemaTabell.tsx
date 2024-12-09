@@ -1,9 +1,9 @@
-import { JournalforingsSak, Tema } from './JournalforingPanel';
-import { useState } from 'react';
-import { Element } from 'nav-frontend-typografi';
-import SaksTabell from './SaksTabell';
-import styled from 'styled-components';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
+import { Element } from 'nav-frontend-typografi';
+import { useState } from 'react';
+import styled from 'styled-components';
+import type { JournalforingsSak, Tema } from './JournalforingPanel';
+import SaksTabell from './SaksTabell';
 
 const MiniEkspanderbartpanelBase = styled(EkspanderbartpanelBase)`
     .ekspanderbartPanel {

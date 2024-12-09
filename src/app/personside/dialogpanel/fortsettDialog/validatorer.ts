@@ -1,6 +1,6 @@
-import { tekstMaksLengde } from '../sendMelding/SendNyMelding';
 import { TraadType } from '../../../../models/meldinger/meldinger';
-import { FortsettDialogState } from './FortsettDialogTypes';
+import { tekstMaksLengde } from '../sendMelding/SendNyMelding';
+import type { FortsettDialogState } from './FortsettDialogTypes';
 
 export class FortsettDialogValidator {
     public static tekst(state: FortsettDialogState) {

@@ -1,4 +1,4 @@
-import { Faker } from '@faker-js/faker';
+import type { Faker } from '@faker-js/faker';
 import dayjs from 'dayjs';
 import navfaker from 'nav-faker';
 

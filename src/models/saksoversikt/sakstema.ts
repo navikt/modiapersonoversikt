@@ -1,5 +1,5 @@
-import { Journalpost } from './journalpost';
-import { Sak } from './sak';
+import type { Journalpost } from './journalpost';
+import type { Sak } from './sak';
 
 export interface SakstemaSoknadsstatusResponse {
     resultat: SakstemaSoknadsstatus[];

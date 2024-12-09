@@ -1,4 +1,4 @@
-import { GjeldendeBrukerActions, GjeldendeBrukerState, SetNyGjeldendeBrukerActionTypes } from './types';
+import { type GjeldendeBrukerActions, type GjeldendeBrukerState, SetNyGjeldendeBrukerActionTypes } from './types';
 
 const initialState: GjeldendeBrukerState = {
     fødselsnummer: ''
