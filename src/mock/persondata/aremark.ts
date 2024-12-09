@@ -227,16 +227,18 @@ export const aremark: Person = {
             beskrivelse: 'Sperret adresse, strengt fortrolig'
         }
     ],
-    sikkerhetstiltak: [
-        {
-            type: 'TFUS',
-            beskrivelse: 'Telefonisk utestengelse',
-            gyldighetsPeriode: {
-                gyldigFraOgMed: '2021-02-01' as LocalDate,
-                gyldigTilOgMed: '2022-05-01' as LocalDate
-            }
-        }
-    ],
+    sikkerhetstiltak: !import.meta.env.VITE_E2E
+        ? [
+              {
+                  type: 'TFUS',
+                  beskrivelse: 'Telefonisk utestengelse',
+                  gyldighetsPeriode: {
+                      gyldigFraOgMed: '2021-02-01' as LocalDate,
+                      gyldigTilOgMed: '2022-05-01' as LocalDate
+                  }
+              }
+          ]
+        : [],
     erEgenAnsatt: EgenAnsatt.JA,
     personstatus: [
         {

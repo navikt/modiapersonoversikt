@@ -1,5 +1,6 @@
 /// <reference types="vitest" />
 import { IndexHtmlTransform, Plugin, defineConfig } from 'vite';
+import { configDefaults } from 'vitest/config';
 import path from 'node:path';
 
 import react from '@vitejs/plugin-react';
@@ -115,6 +116,7 @@ export default defineConfig({
         ]
     },
     test: {
+        exclude: [...configDefaults.exclude, 'e2e/*'],
         globals: true,
         environment: 'jsdom',
         environmentOptions: {
