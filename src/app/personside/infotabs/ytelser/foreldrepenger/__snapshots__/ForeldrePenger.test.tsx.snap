@@ -797,6 +797,10 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
                 <a
                   href="/person/utbetaling"
                   onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseEnter={[Function]}
+                  onMouseLeave={[Function]}
+                  onTouchStart={[Function]}
                 >
                   se Utbetalingsoversikten.
                 </a>
