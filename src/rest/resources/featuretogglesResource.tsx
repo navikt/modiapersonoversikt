@@ -6,7 +6,7 @@ import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { FetchError, get } from '../../api/api';
 
-type FeatureTogglesResponse = {
+export type FeatureTogglesResponse = {
     [key in FeatureToggles]: boolean;
 };
 

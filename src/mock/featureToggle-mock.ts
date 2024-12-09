@@ -11,6 +11,10 @@ export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleRespon
             return true;
         case FeatureToggles.BrukNyTiltakspenger:
             return true;
+        case FeatureToggles.FnrSokForInnkreving:
+            return true;
+        case FeatureToggles.OrgnrSokForInnkreving:
+            return true;
         default:
             return Math.random() > 0.5;
     }
