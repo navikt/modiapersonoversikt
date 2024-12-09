@@ -16,9 +16,8 @@ export async function get<TYPE extends object>(uri: string): Promise<TYPE> {
     const response = await fetch(uri, includeCredentials);
     if (!response.ok || response.redirected) {
         throw new FetchError(response, `${response.status} ${response.statusText}: ${uri}`);
-    } else {
-        return handleResponse(response);
     }
+    return handleResponse(response);
 }
 export async function post<TYPE extends object = object>(
     uri: string,
@@ -66,12 +65,12 @@ function parseResponse<TYPE>(response: Response): Promise<TYPE> {
     const contentType = response.headers.get('content-type');
     if (contentType && contentType.indexOf('application/json') !== -1) {
         return response.json() as Promise<TYPE>;
-    } else if (contentType && contentType.indexOf('text/plain') !== -1) {
-        return response.text() as Promise<TYPE>;
-    } else {
-        loggWarning(new Error(`Unknown Content-Type: ${contentType}. Not sure what to do with response.`));
-        return Promise.resolve({} as TYPE);
     }
+    if (contentType && contentType.indexOf('text/plain') !== -1) {
+        return response.text() as Promise<TYPE>;
+    }
+    loggWarning(new Error(`Unknown Content-Type: ${contentType}. Not sure what to do with response.`));
+    return Promise.resolve({} as TYPE);
 }
 
 async function parseError<TYPE extends object = object>(

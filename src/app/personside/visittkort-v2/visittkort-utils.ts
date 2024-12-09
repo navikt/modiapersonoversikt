@@ -54,7 +54,7 @@ export function hentNavn(navn?: Navn | null, feilmelding = 'Ukjent navn'): strin
     if (!navn) {
         return feilmelding;
     }
-    return navn.fornavn + (navn.mellomnavn ? ' ' + navn.mellomnavn + ' ' : ' ') + navn.etternavn;
+    return navn.fornavn + (navn.mellomnavn ? ` ${navn.mellomnavn} ` : ' ') + navn.etternavn;
 }
 
 export function hentAlderEllerDod(person: PersonMedAlderOgDodsdato): string | undefined {

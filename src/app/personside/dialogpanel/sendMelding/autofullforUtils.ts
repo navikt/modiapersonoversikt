@@ -58,12 +58,12 @@ const objektPronomenMap = {
 
 function objektPronomen(kjonn: Kjonn, locale: string) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
-    return (objektPronomenMap[kjonn] || {})[locale] || null;
+    return objektPronomenMap[kjonn]?.[locale] || null;
 }
 
 function subjectPronomen(kjonn: Kjonn, locale: string) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
-    return (subjectPronomenMap[kjonn] || {})[locale] || null;
+    return subjectPronomenMap[kjonn]?.[locale] || null;
 }
 
 export function byggAutofullforMap(

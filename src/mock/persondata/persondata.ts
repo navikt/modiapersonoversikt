@@ -27,7 +27,8 @@ const ikkeRegistrert = false;
 export function hentPersondata(fodselsnummer: string): PersonData | null {
     if (fodselsnummer === aremark.personIdent) {
         return { feilendeSystemer: [], person: aremark };
-    } else if (fodselsnummer === '05117608222') {
+    }
+    if (fodselsnummer === '05117608222') {
         return {
             feilendeSystemer: [
                 InformasjonElement.DKIF,
@@ -40,16 +41,17 @@ export function hentPersondata(fodselsnummer: string): PersonData | null {
             ],
             person: lagPerson(fodselsnummer)
         };
-    } else if (fodselsnummer === '15068215851') {
+    }
+    if (fodselsnummer === '15068215851') {
         return {
             feilendeSystemer: [InformasjonElement.EGEN_ANSATT, InformasjonElement.BANKKONTO],
             person: lagPerson(fodselsnummer)
         };
-    } else if (!erGyldigFødselsnummer(fodselsnummer)) {
-        return null;
-    } else {
-        return { feilendeSystemer: [], person: lagPerson(fodselsnummer) };
     }
+    if (!erGyldigFødselsnummer(fodselsnummer)) {
+        return null;
+    }
+    return { feilendeSystemer: [], person: lagPerson(fodselsnummer) };
 }
 
 export function lagPerson(fnr: string): Person {
@@ -261,7 +263,7 @@ export function lagPerson(fnr: string): Person {
                 },
                 adresse: {
                     coAdresse: null,
-                    linje1: `Adresseveien 1`,
+                    linje1: 'Adresseveien 1',
                     linje2: '0000 Aremark',
                     linje3: null,
                     sistEndret: null,

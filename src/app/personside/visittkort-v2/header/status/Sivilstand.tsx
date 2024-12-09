@@ -7,9 +7,8 @@ interface Props {
 function hentBeskrivelseForSivilstand(sivilstand: SivilstandInterface, kjonn: Kjonn | undefined) {
     if (kjonn && sivilstand.type.kode === SivilstandType.ENKE_ELLER_ENKEMANN) {
         return kjonn === Kjonn.M ? 'Enkemann' : 'Enke';
-    } else {
-        return sivilstand.type.beskrivelse;
     }
+    return sivilstand.type.beskrivelse;
 }
 
 export function Sivilstand({ person }: Props) {

@@ -42,7 +42,7 @@ interface Props {
 }
 
 const StyledArticle = styled.article`
-    padding: 1rem ${theme.margin.layout};
+  padding: 1rem ${theme.margin.layout};
 `;
 
 export function finnPlukketOppgaveForTraad(
@@ -51,14 +51,11 @@ export function finnPlukketOppgaveForTraad(
 ): { oppgave: Oppgave | undefined; erSTOOppgave: boolean } {
     if (!resource.data) {
         return { oppgave: undefined, erSTOOppgave: false };
-    } else {
-        const oppgave: Oppgave | undefined = resource.data.find(
-            (oppgave: Oppgave) => oppgave.traadId === traad.traadId
-        );
-        const erSTOOppgave = oppgave !== undefined && oppgave.erSTOOppgave;
-
-        return { oppgave, erSTOOppgave };
     }
+    const oppgave: Oppgave | undefined = resource.data.find((oppgave: Oppgave) => oppgave.traadId === traad.traadId);
+    const erSTOOppgave = !!oppgave?.erSTOOppgave;
+
+    return { oppgave, erSTOOppgave };
 }
 
 function FortsettDialogContainer(props: Props) {
@@ -160,7 +157,10 @@ function FortsettDialogContainer(props: Props) {
             post(url, requestV2, 'Send-Svar')
                 .then(() => {
                     callback();
-                    setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
+                    setDialogStatus({
+                        type: DialogPanelStatus.SVAR_SENDT,
+                        kvitteringsData: kvitteringsData
+                    });
                 })
                 .catch(() => {
                     setDialogStatus({ type: DialogPanelStatus.ERROR });
@@ -191,7 +191,10 @@ function FortsettDialogContainer(props: Props) {
                 .then(() => {
                     callback();
                     queryClient.invalidateQueries(journalsakResource.queryKey(fnr));
-                    setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
+                    setDialogStatus({
+                        type: DialogPanelStatus.SVAR_SENDT,
+                        kvitteringsData: kvitteringsData
+                    });
                 })
                 .catch(() => {
                     setDialogStatus({ type: DialogPanelStatus.ERROR });

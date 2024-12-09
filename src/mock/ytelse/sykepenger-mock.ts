@@ -21,7 +21,7 @@ import { getKommendeUtbetaling, getUtbetalingPåVent } from './ytelse-utbetaling
 
 export function getMockSykepengerRespons(fødselsnummer: string): SykepengerResponse {
     faker.seed(Number(fødselsnummer));
-    navfaker.seed(fødselsnummer + 'sykepenger');
+    navfaker.seed(`${fødselsnummer}sykepenger`);
 
     if (fødselsnummer === aremark.personIdent) {
         return {
@@ -78,7 +78,7 @@ function getForsikring(): Forsikring {
 
 export function getMockSykmelding(): Sykmelding {
     return {
-        sykmelder: faker.name.firstName() + ' ' + faker.name.lastName(),
+        sykmelder: `${faker.name.firstName()} ${faker.name.lastName()}`,
         behandlet: dayjs(faker.date.past({ years: 1 })).format(backendDatoformat),
         sykmeldt: getPeriode(),
         sykmeldingsgrad: navfaker.random.integer(100),

@@ -17,7 +17,7 @@ import { statiskDittnavEventVarselMock, statiskVarselMock } from './statiskVarse
 
 export function getMockVarsler(fnr: string): VarslerResult {
     faker.seed(Number(fnr));
-    navfaker.seed(fnr + 'varsel');
+    navfaker.seed(`${fnr}varsel`);
     if (fnr === aremark.personIdent) {
         return {
             feil: ['Feil ved uthenting av varsler', 'Annen feilmelding fra backend'],

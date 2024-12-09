@@ -45,17 +45,17 @@ function InfoTabs() {
     }, [openTab, headerRef]);
 
     useEffect(() => {
-        document.title = 'Modia personoversikt - ' + openTab.tittel;
+        document.title = `Modia personoversikt - ${openTab.tittel}`;
     }, [openTab]);
 
     const openTabRef = useRef<HTMLDivElement>(null);
-    const storeCroll = useKeepScroll(openTabRef, 'Opentab-' + openTab.path);
+    const storeCroll = useKeepScroll(openTabRef, `Opentab-${openTab.path}`);
 
     return (
         <ErrorBoundary boundaryName="InfoTabs">
             <HandleInfotabsHotkeys />
             <TabKnapper openTab={openTab} onTabChange={updateRouterPath} />
-            <ErrorBoundary boundaryName={'Open tab: ' + openTab.tittel}>
+            <ErrorBoundary boundaryName={`Open tab: ${openTab.tittel}`}>
                 <StyledArticle ref={openTabRef} onScroll={storeCroll} aria-labelledby={articleId.current}>
                     <h2
                         id={articleId.current}

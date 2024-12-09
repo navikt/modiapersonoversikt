@@ -48,5 +48,5 @@ export function getPleiepengerIdDato(pleiepengerettighet: Pleiepengerettighet) {
 }
 
 export function getUnikPleiepengerKey(pleiepengerettighet: Pleiepengerettighet): string {
-    return 'pleiepenger' + getPleiepengerIdDato(pleiepengerettighet);
+    return `pleiepenger${getPleiepengerIdDato(pleiepengerettighet)}`;
 }

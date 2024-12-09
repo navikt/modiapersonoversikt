@@ -100,7 +100,8 @@ function VelgSak(props: Props) {
 
     if (result.isPending) {
         return <Spinner type="XL" />;
-    } else if (result.isError) {
+    }
+    if (result.isError) {
         return <AlertStripeFeil className="blokk-xxxs">Feilet ved uthenting av saker</AlertStripeFeil>;
     }
 

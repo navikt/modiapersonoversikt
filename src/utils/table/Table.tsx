@@ -19,8 +19,11 @@ export function Table({ tittelRekke, rows, rowsOnClickHandlers }: TableProps) {
         loggError(new Error('Ulik lengde på liste med onClickHandlers og antall rows'));
     }
     return (
+        /*biome-ignore lint/a11y: biome migration*/
         <table role="table">
+            {/*biome-ignore lint/a11y: biome migration*/}
             <thead role="rowgroup">
+                {/*biome-ignore lint/a11y: biome migration*/}
                 <tr role="row">
                     {tittelRekke.map((tittel: TitleCell, index: number) => (
                         <th role="columnheader" key={index}>
@@ -29,10 +32,13 @@ export function Table({ tittelRekke, rows, rowsOnClickHandlers }: TableProps) {
                     ))}
                 </tr>
             </thead>
+            {/*biome-ignore lint/a11y: biome migration*/}
             <tbody role="rowgroup" data-testid="table-tbody">
                 {rows.map((row: TableRow, index: number) => (
-                    <tr role="row" key={index} onClick={rowsOnClickHandlers && rowsOnClickHandlers[index]}>
+                    //biome-ignore lint/a11y lint/suspicious/noArrayIndexKey: biome migration
+                    <tr role="row" key={index} onClick={rowsOnClickHandlers?.[index]}>
                         {row.map((entry, i) => (
+                            /*biome-ignore lint/a11y lint/suspicious/noArrayIndexKey: biome migration*/
                             <td role="cell" key={i}>
                                 {entry || (entry === 0 && '0') || '\u2014'}
                             </td>

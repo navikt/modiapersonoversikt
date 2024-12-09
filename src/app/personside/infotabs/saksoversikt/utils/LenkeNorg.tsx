@@ -23,9 +23,8 @@ function byggSokestrengTilNorgTemaOppslag(sakstema: Sakstema) {
         const tema = dok.temakode;
         if (acc.includes(tema)) {
             return acc;
-        } else {
-            return [...acc, tema];
         }
+        return [...acc, tema];
     }, []);
     return temaArray.join();
 }

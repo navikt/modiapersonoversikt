@@ -290,7 +290,7 @@ export const aremark: Person = {
             },
             adresse: {
                 coAdresse: null,
-                linje1: `Adresseveien 1`,
+                linje1: 'Adresseveien 1',
                 linje2: '0000 Aremark',
                 linje3: null,
                 sistEndret: null,

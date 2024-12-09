@@ -27,7 +27,8 @@ function matchContext(context: DraftContext, other: DraftContext, exact = true):
     const otherKeys = Object.keys(other);
     if (exact && keys.length !== otherKeys.length) {
         return false;
-    } else if (exact && !keys.every((key) => otherKeys.includes(key))) {
+    }
+    if (exact && !keys.every((key) => otherKeys.includes(key))) {
         return false;
     }
 
@@ -42,7 +43,7 @@ const findDrafts: HttpResponseResolver = ({ request }) => {
     const queryParams = new URL(request.url).searchParams;
     const exact = !(queryParams.get('exact') === 'false');
     const context: DraftContext = { ...queryParams.entries };
-    delete context['exact'];
+    context.exact = undefined;
     const matchedDrafts: Array<Draft> = drafts.filter((draft: Draft) => matchContext(draft.context, context, exact));
 
     return HttpResponse.json(matchedDrafts);

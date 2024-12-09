@@ -3,6 +3,7 @@ import type { AppState } from 'src/redux/reducers';
 import type { PeriodeOptions } from 'src/redux/utbetalinger/types';
 import { OppfolgingActionTypes, type OppfolgingActions, type OppfolgingState, initialState } from './types';
 
+// biome-ignore lint/style/useDefaultParameterLast: biome migration
 export function oppfolgingReducer(state: OppfolgingState = initialState, action: OppfolgingActions): OppfolgingState {
     switch (action.type) {
         case OppfolgingActionTypes.SetValgtPeriode:

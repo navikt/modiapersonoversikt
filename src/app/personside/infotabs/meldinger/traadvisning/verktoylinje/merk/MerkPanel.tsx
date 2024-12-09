@@ -127,7 +127,7 @@ function MerkPanel(props: Props) {
     const merkPost = (url: string, object: any, name: string) => {
         setSubmitting(true);
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        post(url, object, 'MerkPanel-' + name)
+        post(url, object, `MerkPanel-${name}`)
             .then(() => {
                 settResultat(Resultat.VELLYKKET);
                 setSubmitting(false);
@@ -151,7 +151,7 @@ function MerkPanel(props: Props) {
             case MerkOperasjon.FEILSENDT:
                 merkPost(MERK_FEILSENDT_URL, getMerkBehandlingskjedeRequest(valgtBrukersFnr, valgtTraad), 'Feilsendt');
                 break;
-            case MerkOperasjon.SLADDING:
+            case MerkOperasjon.SLADDING: {
                 // eslint-disable-next-line no-case-declarations
                 const sladdeObjekt: SladdeObjekt | null = await velgMeldingerTilSladding(valgtTraad, queryClient);
                 // If null, then modal was closed without "submitting form"
@@ -159,6 +159,7 @@ function MerkPanel(props: Props) {
                     merkPost(MERK_SLADDING_URL, getSendTilSladdingRequest(valgtBrukersFnr, sladdeObjekt), 'Sladding');
                 }
                 break;
+            }
             case MerkOperasjon.LUKK:
                 merkPost(
                     LUKK_TRAAD_URL,

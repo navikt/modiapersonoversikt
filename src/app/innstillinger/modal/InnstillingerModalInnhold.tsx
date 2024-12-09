@@ -20,7 +20,8 @@ function InnstillingerModalInnhold() {
                 <Spinner type="XXL" />
             </CenteringDiv>
         );
-    } else if (innstillinger.isError) {
+    }
+    if (innstillinger.isError) {
         return (
             <AlertStripeFeil>
                 <Normaltekst>
@@ -29,7 +30,8 @@ function InnstillingerModalInnhold() {
                 <Undertekst>{innstillinger.error.message}</Undertekst>
             </AlertStripeFeil>
         );
-    } else if (!innstillinger.data) {
+    }
+    if (!innstillinger.data) {
         return (
             <AlertStripeFeil>
                 <Normaltekst>Klarte ikke å hente innstillinger</Normaltekst>

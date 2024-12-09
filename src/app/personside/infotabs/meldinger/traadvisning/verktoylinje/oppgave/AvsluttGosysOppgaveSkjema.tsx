@@ -35,9 +35,9 @@ function AvsluttGosysOppgaveSkjema(props: Props) {
     const [submitting, setSubmitting] = useState(false);
     const [avsluttOppgaveSuksess, setAvsluttOppgaveSuksess] = useState(false);
     const [error, setError] = useState(false);
-    const harOppgaveTilknyttetTrad =
-        tildelteOppgaverResource.data &&
-        tildelteOppgaverResource.data.find((it) => it.traadId === props.valgtTraad.traadId);
+    const harOppgaveTilknyttetTrad = tildelteOppgaverResource.data?.find(
+        (it) => it.traadId === props.valgtTraad.traadId
+    );
 
     useFocusOnMount(ref);
 

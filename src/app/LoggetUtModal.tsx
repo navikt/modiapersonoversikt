@@ -32,21 +32,21 @@ function finnConfig(state: PersistentLoginState): Config {
             tekst: `Det skjedde en feil ved verifisering av login (${state.errorStatus}). Prøv å laste inn siden på nytt.`,
             visModal: true
         };
-    } else if (!state.isLoggedIn) {
+    }
+    if (!state.isLoggedIn) {
         return {
             ikon: AdvarselIkon,
             header: 'Du har blitt logget ut',
             tekst: 'Velg last siden på nytt så blir du automatisk logget inn igjen.',
             visModal: true
         };
-    } else {
-        return {
-            ikon: '',
-            header: '',
-            tekst: '',
-            visModal: false
-        };
     }
+    return {
+        ikon: '',
+        header: '',
+        tekst: '',
+        visModal: false
+    };
 }
 
 function LoggetUtModal(props: Props) {

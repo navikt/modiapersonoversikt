@@ -89,7 +89,7 @@ export class MeldingerBackendMock {
 
 function getMockMelding(): Melding {
     return {
-        id: 'TRAD-' + guid(),
+        id: `TRAD-${guid()}`,
         meldingsId: guid(),
         meldingstype: Meldingstype.SPORSMAL_SKRIFTLIG,
         temagruppe: Temagruppe.Arbeid,
@@ -112,7 +112,6 @@ function maskerMeldingVedManglendeTilgang(traad: Traad): Traad {
         };
         const nyeMeldinger = [nyMelding, ...traad.meldinger.filter((melding) => melding !== sisteMelding)];
         return { ...traad, meldinger: nyeMeldinger };
-    } else {
-        return traad;
     }
+    return traad;
 }

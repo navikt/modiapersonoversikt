@@ -59,5 +59,5 @@ export function getSykepengerIdDato(sykepenger: Sykepenger) {
 }
 
 export function getUnikSykepengerKey(sykepenger: Sykepenger): string {
-    return 'sykepenger' + getSykepengerIdDato(sykepenger);
+    return `sykepenger${getSykepengerIdDato(sykepenger)}`;
 }

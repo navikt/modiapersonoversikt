@@ -12,7 +12,7 @@ interface Props {
 
 function Bankkonto({ harFeilendeSystem, bankkonto }: Props) {
     let beskrivelse = 'Kontonummer';
-    if (bankkonto && bankkonto.landkode && bankkonto.landkode.kode !== 'NOR') {
+    if (bankkonto?.landkode && bankkonto.landkode.kode !== 'NOR') {
         beskrivelse += 'utland';
     }
 

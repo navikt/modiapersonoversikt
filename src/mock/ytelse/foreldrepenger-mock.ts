@@ -16,14 +16,14 @@ import { statiskForeldrepengeMock } from './statiskForeldrepengeMock';
 import { getKommendeUtbetaling } from './ytelse-utbetalinger-mock';
 
 export function getMockForeldrepenger(fødselsnummer: string): ForeldrepengerResponse {
-    if (fødselsnummer == aremark.personIdent) {
+    if (fødselsnummer === aremark.personIdent) {
         return {
             foreldrepenger: [statiskForeldrepengeMock]
         };
     }
 
     faker.seed(Number(fødselsnummer));
-    navfaker.seed(fødselsnummer + 'foreldrepenger');
+    navfaker.seed(`${fødselsnummer}foreldrepenger`);
 
     if (navfaker.random.vektetSjanse(0.3)) {
         return {
@@ -41,7 +41,7 @@ export function getForeldrepengerettighetMock(fødselsnummer: string, seed?: num
         faker.seed(Number(seed));
         navfaker.seed(seed.toString());
     }
-    const erFødsel = vektetSjanse(faker, 0.5) ? true : false;
+    const erFødsel = !!vektetSjanse(faker, 0.5);
     return {
         forelder: fødselsnummer,
         andreForeldersFnr: navfaker.personIdentifikator.fødselsnummer(),

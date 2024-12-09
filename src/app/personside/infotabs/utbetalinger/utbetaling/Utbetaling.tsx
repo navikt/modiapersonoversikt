@@ -24,9 +24,8 @@ function Utbetaling(props: Props) {
     if (enkeltYtelse) {
         const ytelse = utbetaling.ytelser[0];
         return <EnkelUtbetaling utbetaling={utbetaling} ytelse={ytelse} erValgtIUrl={erValgtIUrl} />;
-    } else {
-        return <SammensattUtbetaling utbetaling={utbetaling} erValgtIUrl={erValgtIUrl} />;
     }
+    return <SammensattUtbetaling utbetaling={utbetaling} erValgtIUrl={erValgtIUrl} />;
 }
 
 export default memo(Utbetaling);

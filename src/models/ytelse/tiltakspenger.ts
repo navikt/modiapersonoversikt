@@ -17,5 +17,5 @@ export function getTiltakspengerIdDato(ytelse: Tiltakspenger) {
 }
 
 export function getUnikTiltakspengerKey(ytelse: Tiltakspenger) {
-    return 'tiltakspenger' + ytelse.vedtakId;
+    return `tiltakspenger${ytelse.vedtakId}`;
 }

@@ -41,7 +41,7 @@ function YtelserForBruker({ detaljertOppfolging }: { detaljertOppfolging: Detalj
     const ytelser = detaljertOppfolging.ytelser
         .filter((ytelse) => ytelse.status !== 'Avsluttet')
         .filter((ytelse) => ytelse.status !== 'Lukket')
-        .map((ytelse) => ytelse.type + ' : ' + ytelse.status);
+        .map((ytelse) => `${ytelse.type} : ${ytelse.status}`);
     const filtrerteYtelser = ytelser.filter((item, index) => ytelser.indexOf(item) === index).join(', ');
     return (
         <>
@@ -52,13 +52,12 @@ function YtelserForBruker({ detaljertOppfolging }: { detaljertOppfolging: Detalj
 }
 
 function Veileder({ detaljertOppfolging }: { detaljertOppfolging: DetaljertOppfolging }) {
-    const clipboard =
-        detaljertOppfolging.oppfolging?.veileder && detaljertOppfolging.oppfolging.veileder.ident ? (
-            <CopyToClipboard
-                ariaLabel="Kopier veileder"
-                stringToCopy={`${detaljertOppfolging.oppfolging.veileder.navn} (${detaljertOppfolging.oppfolging.veileder.ident})`}
-            />
-        ) : null;
+    const clipboard = detaljertOppfolging.oppfolging?.veileder?.ident ? (
+        <CopyToClipboard
+            ariaLabel="Kopier veileder"
+            stringToCopy={`${detaljertOppfolging.oppfolging.veileder.navn} (${detaljertOppfolging.oppfolging.veileder.ident})`}
+        />
+    ) : null;
 
     return (
         <>

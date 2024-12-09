@@ -1,6 +1,15 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`viser vergemål 1`] = `
+.c5 {
+  color: #645f5a;
+  margin-top: 3px;
+}
+
+.c5 .typo-etikett-liten {
+  line-height: 1rem;
+}
+
 .c0 {
   position: relative;
   display: flex;
@@ -26,15 +35,6 @@ exports[`viser vergemål 1`] = `
 
 .c3:last-child {
   margin: 10px 0 0 0;
-}
-
-.c5 {
-  color: #645f5a;
-  margin-top: 3px;
-}
-
-.c5 .typo-etikett-liten {
-  line-height: 1rem;
 }
 
 .c2 {

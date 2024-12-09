@@ -14,7 +14,7 @@ export function getMockTiltakspenger(fødselsnummer: string): TiltakspengerResou
     }
 
     faker.seed(Number(fødselsnummer));
-    navfaker.seed(fødselsnummer + 'tiltakspenger');
+    navfaker.seed(`${fødselsnummer}tiltakspenger`);
 
     if (navfaker.random.vektetSjanse(0.3)) {
         return null;
@@ -25,7 +25,7 @@ export function getMockTiltakspenger(fødselsnummer: string): TiltakspengerResou
 
 export function getMockTiltakspengerYtelser(fødselsnummer: string): Tiltakspenger {
     faker.seed(Number(fødselsnummer));
-    navfaker.seed(fødselsnummer + 'pleiepenger');
+    navfaker.seed(`${fødselsnummer}pleiepenger`);
 
     const fom = dayjs(faker.date.past({ years: 2 })).format(backendDatoformat);
     const tom = dayjs(fom).add(faker.number.int(40), 'days').format(backendDatoformat);

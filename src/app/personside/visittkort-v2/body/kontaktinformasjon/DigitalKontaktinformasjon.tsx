@@ -15,16 +15,16 @@ function DigitalKontaktinformasjon({ erReservert, kontaktinformasjonVerdi, sistO
                 <EtikettGraa>I Kontakt- og reservasjonsregisteret</EtikettGraa>
             </>
         );
-    } else if (!kontaktinformasjonVerdi) {
-        return <Normaltekst>Ikke registrert</Normaltekst>;
-    } else {
-        return (
-            <>
-                <Normaltekst>{kontaktinformasjonVerdi}</Normaltekst>
-                <EtikettGraa>Endret {sistOppdatert} i Kontakt- og reservasjonsregisteret</EtikettGraa>
-            </>
-        );
     }
+    if (!kontaktinformasjonVerdi) {
+        return <Normaltekst>Ikke registrert</Normaltekst>;
+    }
+    return (
+        <>
+            <Normaltekst>{kontaktinformasjonVerdi}</Normaltekst>
+            <EtikettGraa>Endret {sistOppdatert} i Kontakt- og reservasjonsregisteret</EtikettGraa>
+        </>
+    );
 }
 
 export default DigitalKontaktinformasjon;

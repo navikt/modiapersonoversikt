@@ -1,30 +1,35 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Viser utbetalingercontainer med alt innhold 1`] = `
-.c18 {
-  border: none;
-  background-color: transparent;
-  padding: 0.1rem 0.2rem;
-  border-radius: .35rem;
-  cursor: pointer;
-  display: flex;
-  color: #0067c5;
+.c1 {
+  overflow: auto;
+  max-height: 100%;
+  padding: .5rem;
 }
 
-.c18 svg {
-  margin-left: 0.5rem;
-  height: 1.2rem;
-  width: 1.2rem;
+.c2 {
+  padding: 0rem;
+  font-weight: 600;
 }
 
-.c18:focus {
+.c2 a {
+  padding: 0.9375rem;
+}
+
+.c2 a:visited {
+  color: currentColor!important;
+}
+
+.c2 .lenkepanel {
+  margin-bottom: 0;
+}
+
+.c3 {
+  margin-bottom: .5rem;
+}
+
+.c26:focus {
   outline: none;
-  box-shadow: 0 0 0 0.1875rem #254b6d;
-}
-
-.c18:hover {
-  opacity: 0.8;
-  text-decoration: underline;
 }
 
 .c35 {
@@ -84,6 +89,61 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   margin-right: 0.5rem;
 }
 
+.c18 {
+  border: none;
+  background-color: transparent;
+  padding: 0.1rem 0.2rem;
+  border-radius: .35rem;
+  cursor: pointer;
+  display: flex;
+  color: #0067c5;
+}
+
+.c18 svg {
+  margin-left: 0.5rem;
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+.c18:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c18:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.c31 {
+  background-color: #cce1f3;
+  padding: 0.2rem 0.9375rem;
+}
+
+.c14 table {
+  width: 100%;
+  text-align: right;
+  border-spacing: 0;
+}
+
+.c14 table * {
+  padding: 0;
+  margin: 0;
+}
+
+.c14 table tr >* {
+  padding: 0.1rem;
+  text-align: right;
+}
+
+.c14 table tr >*:first-child {
+  text-align: left;
+}
+
+.c14 table tr >*:not(:first-child) {
+  width: 6rem;
+}
+
 .c23 {
   transition: 0.5s;
   padding: 0 1.25rem 1.25rem;
@@ -96,6 +156,67 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 
 .c19 {
   margin-right: 1.25rem;
+}
+
+.c37 th:not(:first-child) {
+  font-weight: normal;
+  font-style: italic;
+}
+
+.c38 td:not(:first-child) {
+  font-weight: 600;
+}
+
+.c39 {
+  border-top: solid 0.0625rem #b7b1a9;
+  margin: 0.5rem 0;
+}
+
+.c33 {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.c33:focus {
+  position: relative;
+  outline: none;
+  box-shadow: none;
+}
+
+.c33:focus::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  box-shadow: inset 0 0 0 0.1875rem #254b6d;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+}
+
+.c34 {
+  display: flex;
+  flex-direction: column;
+  padding: 0.625rem 0.9375rem 0;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.c34 >*:nth-child(3) {
+  margin-bottom: 0.8rem;
+}
+
+.c34 .order-first {
+  order: -1;
+}
+
+.c30 ol {
+  padding: 0;
+  margin: 0;
+}
+
+.c30 ol>*:not(:first-child) {
+  border-top: solid 0.0625rem #78706a;
 }
 
 .c25 h2 {
@@ -186,30 +307,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   border-top: solid 0.0625rem #b7b1a9;
 }
 
-.c14 table {
-  width: 100%;
-  text-align: right;
-  border-spacing: 0;
-}
-
-.c14 table * {
-  padding: 0;
-  margin: 0;
-}
-
-.c14 table tr >* {
-  padding: 0.1rem;
-  text-align: right;
-}
-
-.c14 table tr >*:first-child {
-  text-align: left;
-}
-
-.c14 table tr >*:not(:first-child) {
-  width: 6rem;
-}
-
 .c13 {
   cursor: pointer;
 }
@@ -232,76 +329,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 
 .c16 td {
   font-weight: 600;
-}
-
-.c37 th:not(:first-child) {
-  font-weight: normal;
-  font-style: italic;
-}
-
-.c38 td:not(:first-child) {
-  font-weight: 600;
-}
-
-.c39 {
-  border-top: solid 0.0625rem #b7b1a9;
-  margin: 0.5rem 0;
-}
-
-.c33 {
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.c33:focus {
-  position: relative;
-  outline: none;
-  box-shadow: none;
-}
-
-.c33:focus::after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: '';
-  box-shadow: inset 0 0 0 0.1875rem #254b6d;
-  height: 100%;
-  width: 100%;
-  pointer-events: none;
-}
-
-.c34 {
-  display: flex;
-  flex-direction: column;
-  padding: 0.625rem 0.9375rem 0;
-  transition: 0.3s;
-  cursor: pointer;
-}
-
-.c34 >*:nth-child(3) {
-  margin-bottom: 0.8rem;
-}
-
-.c34 .order-first {
-  order: -1;
-}
-
-.c31 {
-  background-color: #cce1f3;
-  padding: 0.2rem 0.9375rem;
-}
-
-.c30 ol {
-  padding: 0;
-  margin: 0;
-}
-
-.c30 ol>*:not(:first-child) {
-  border-top: solid 0.0625rem #78706a;
-}
-
-.c26:focus {
-  outline: none;
 }
 
 .c27 {
@@ -390,33 +417,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   margin-bottom: 0.4rem;
 }
 
-.c2 {
-  padding: 0rem;
-  font-weight: 600;
-}
-
-.c2 a {
-  padding: 0.9375rem;
-}
-
-.c2 a:visited {
-  color: currentColor!important;
-}
-
-.c2 .lenkepanel {
-  margin-bottom: 0;
-}
-
-.c3 {
-  margin-bottom: .5rem;
-}
-
-.c1 {
-  overflow: auto;
-  max-height: 100%;
-  padding: .5rem;
-}
-
 .c0 {
   overflow: hidden;
   position: relative;
@@ -445,18 +445,18 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 @media print {
+  .c33 {
+    list-style-type: none;
+  }
+}
+
+@media print {
   .c25 table {
     page-break-inside: auto;
   }
 
   .c25 tbody {
     page-break-inside: auto;
-  }
-}
-
-@media print {
-  .c33 {
-    list-style-type: none;
   }
 }
 
@@ -891,15 +891,9 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                     <div
                       className="typo-normal"
                     >
-                      <table
-                        role="table"
-                      >
-                        <thead
-                          role="rowgroup"
-                        >
-                          <tr
-                            role="row"
-                          >
+                      <table>
+                        <thead>
+                          <tr>
                             <th
                               role="columnheader"
                               scope="col"
@@ -943,39 +937,30 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                             </th>
                           </tr>
                         </thead>
-                        <tbody
-                          role="rowgroup"
-                        >
-                          <tr
-                            role="row"
-                          >
+                        <tbody>
+                          <tr>
                             <th
-                              role="rowheader"
                               scope="row"
                             >
                               Sykepenger 2017
                             </th>
                             <td
                               className="sumBrutto"
-                              role="cell"
                             >
                               13 370,00
                             </td>
                             <td
                               className="sumTrekk"
-                              role="cell"
                             >
                               −1 984,00
                             </td>
                             <td
                               className="sumNetto"
-                              role="cell"
                             >
                               11 386,00
                             </td>
                             <td
                               className="periodeForYtelse"
-                              role="cell"
                             >
                               09.11.2016
                                - 
@@ -983,7 +968,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                             </td>
                             <td
                               className="ytelseDetaljer"
-                              role="cell"
                             >
                               <dl>
                                 <dt>

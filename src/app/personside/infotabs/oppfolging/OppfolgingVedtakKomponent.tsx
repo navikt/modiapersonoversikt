@@ -22,7 +22,7 @@ const UUOrder = styled.div`
 `;
 
 function formaterPeriode(vedtak: OppfolgingsVedtak) {
-    return datoEllerTomString(vedtak.aktivFra) + ' - ' + datoEllerTomString(vedtak.aktivTil);
+    return `${datoEllerTomString(vedtak.aktivFra)} - ${datoEllerTomString(vedtak.aktivTil)}`;
 }
 
 function OppfolgingsVedtakTabell(props: Props) {

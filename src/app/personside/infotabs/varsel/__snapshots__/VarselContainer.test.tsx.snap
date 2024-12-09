@@ -1,30 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Viser varselcontainer med alt innhold 1`] = `
-.c15 {
-  padding: 0.7rem;
-  display: flex;
-}
-
-.c15 >*:first-child {
-  flex: 0 0 20%;
-}
-
-.c15 >*:last-child {
-  max-width: 30rem;
-}
-
-.c14 {
-  border-radius: 0.5rem;
-  background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
-  padding: 1.25rem;
-}
-
-.c14 >*:not(:first-child) {
-  border-top: solid 0.0625rem #78706a;
-}
-
 .c9 {
   border: none;
   cursor: pointer;
@@ -150,6 +126,30 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
 .c11 {
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+.c15 {
+  padding: 0.7rem;
+  display: flex;
+}
+
+.c15 >*:first-child {
+  flex: 0 0 20%;
+}
+
+.c15 >*:last-child {
+  max-width: 30rem;
+}
+
+.c14 {
+  border-radius: 0.5rem;
+  background-color: #f1f0f0;
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
+  padding: 1.25rem;
+}
+
+.c14 >*:not(:first-child) {
+  border-top: solid 0.0625rem #78706a;
 }
 
 .c1 {

@@ -98,7 +98,7 @@ function Oppdateringslogg(props: { oppdateringslogg: OppdateringsloggInnslag[] }
     const currentOppdateringslogg = sortertOppdateringslogg[indeks];
 
     const stegListe = sortertOppdateringslogg.map((enOppdateringslogg, i) => {
-        const erAktiv = indeks === i ? true : false;
+        const erAktiv = indeks === i;
         return { label: enOppdateringslogg.tittel, index: i, aktiv: erAktiv, key: enOppdateringslogg.id };
     });
 

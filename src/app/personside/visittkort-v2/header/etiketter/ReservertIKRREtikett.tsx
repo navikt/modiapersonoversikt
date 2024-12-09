@@ -9,7 +9,8 @@ function ReservertIKRREtikett(props: Props) {
     const { kontaktInformasjon } = props;
     if (kontaktInformasjon?.erReservert) {
         return <EtikettBase type="fokus">Reservert i KRR</EtikettBase>;
-    } else if (kontaktInformasjon && !kontaktInformasjon.epost?.value && !kontaktInformasjon.mobil?.value) {
+    }
+    if (kontaktInformasjon && !kontaktInformasjon.epost?.value && !kontaktInformasjon.mobil?.value) {
         return <EtikettBase type="fokus">Ikke registrert i KRR</EtikettBase>;
     }
     return null;

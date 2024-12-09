@@ -37,7 +37,8 @@ function omsorgsovertakelseEllerTermin(foreldrePenger: Foreldrepengerettighet) {
         return {
             Termindato: datoEllerNull(foreldrePenger.termin)
         };
-    } else if (isAdopsjon(foreldrePenger)) {
+    }
+    if (isAdopsjon(foreldrePenger)) {
         return {
             Omsorgsovertakelse: datoEllerNull(foreldrePenger.omsorgsovertakelse)
         };

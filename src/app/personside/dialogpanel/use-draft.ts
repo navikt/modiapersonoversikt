@@ -87,11 +87,10 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
             if (!response.ok) {
                 ws.close();
                 return '\u0000';
-            } else {
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                const uuid: string = await response.json();
-                return `${getWsUrl()}/api/draft/ws/${uuid}`;
             }
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+            const uuid: string = await response.json();
+            return `${getWsUrl()}/api/draft/ws/${uuid}`;
         };
         wsRef.current = new WebSocketImpl(urlProvider, {
             onClose(event: CloseEvent, connection: WebSocketImpl) {
@@ -151,9 +150,8 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
             .then((resp) => {
                 if (resp.ok) {
                     return resp.json();
-                } else {
-                    throw new FetchError(resp, 'Feil ved uthenting av draft');
                 }
+                throw new FetchError(resp, 'Feil ved uthenting av draft');
             })
             .then((json: Array<Draft>) => {
                 if (json.length > 0) {

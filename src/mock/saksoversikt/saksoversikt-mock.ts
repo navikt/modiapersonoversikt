@@ -33,7 +33,7 @@ export function getMockSaksoversiktV2(fødselsnummer: string): SakstemaSoknadsst
     }
 
     faker.seed(Number(fødselsnummer));
-    navfaker.seed(fødselsnummer + 'utbetaling');
+    navfaker.seed(`${fødselsnummer}utbetaling`);
 
     return {
         resultat: getSakstemaListeV2()
@@ -83,7 +83,6 @@ function getSak(temakode: string): Sak {
 function getFeilkoder(): number[] {
     if (vektetSjanse(faker, 0.5)) {
         return [];
-    } else {
-        return [12345];
     }
+    return [12345];
 }

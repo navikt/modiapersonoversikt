@@ -1,6 +1,30 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
+.c10 {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.c10 dt {
+  color: #645f5a;
+}
+
+.c10 >div {
+  margin: 0.5625rem 0;
+  padding-right: 0.7rem;
+  width: 13rem;
+  overflow-wrap: break-word;
+}
+
+.c9 {
+  padding: 0.9375rem;
+}
+
+.c9 >*:first-child {
+  margin-bottom: 1rem;
+}
+
 .c8 {
   display: flex;
   gap: 20px;
@@ -70,30 +94,6 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
 
 .c4 .skjemaelement--horisontal {
   margin-bottom: 0.4rem;
-}
-
-.c10 {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.c10 dt {
-  color: #645f5a;
-}
-
-.c10 >div {
-  margin: 0.5625rem 0;
-  padding-right: 0.7rem;
-  width: 13rem;
-  overflow-wrap: break-word;
-}
-
-.c9 {
-  padding: 0.9375rem;
-}
-
-.c9 >*:first-child {
-  margin-bottom: 1rem;
 }
 
 .c12 {

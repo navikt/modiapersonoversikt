@@ -122,7 +122,7 @@ function VisittkortHeader(props: Props) {
                         props.toggleApen();
                     }}
                     open={props.erApen}
-                    title={(props.erApen ? 'Lukk' : 'Åpne') + ' visittkort (Alt + N)'}
+                    title={`${props.erApen ? 'Lukk' : 'Åpne'} visittkort (Alt + N)`}
                     focusOnRelativeParent={true}
                 >
                     <span className="visually-hidden">{props.erApen ? 'Lukk visittkort' : 'Ekspander visittkort'}</span>

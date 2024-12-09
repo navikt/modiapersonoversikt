@@ -108,7 +108,7 @@ export function VarselRow(props: VarselRowProps) {
                             focusOnRelativeParent={true}
                             onClick={toggleOpen}
                             open={open}
-                            title={(open ? 'Skjul' : 'Vis') + ' mer informasjon om varsel/notifikasjon'}
+                            title={`${open ? 'Skjul' : 'Vis'} mer informasjon om varsel/notifikasjon`}
                         />
                     </HeaderStyle>
                     <UnmountClosed isOpened={open}>{props.children}</UnmountClosed>

@@ -76,7 +76,7 @@ export function ClickableTable({ tittelRekke, rows, rowsOnClickHandlers }: Table
                 </div>
                 <div role="rowgroup" className="tbody">
                     {rows.map((row: TableRow, index: number) => (
-                        <Row key={index} onClick={rowsOnClickHandlers && rowsOnClickHandlers[index]}>
+                        <Row key={index} onClick={rowsOnClickHandlers?.[index]}>
                             {row.map((entry, i) => (
                                 <Cell key={i}>{entry || (entry === 0 && '0') || '\u2014'}</Cell>
                             ))}

@@ -30,24 +30,18 @@ function ValgteMeldingerPreview(props: { traad: Traad; valgte: string[] }) {
                 Du må velge minst en melding for sending til sladding
             </Innholdstittel>
         );
-    } else {
-        const meldingskomponenter = props.traad.meldinger
-            .filter((melding) => props.valgte.includes(melding.meldingsId))
-            .sort(datoSynkende((melding) => melding.opprettetDato))
-            .map((melding, index) => {
-                const meldingnummer = props.traad.meldinger.length - index;
-                return (
-                    <EnkeltMelding
-                        sokeord=""
-                        melding={melding}
-                        key={melding.meldingsId}
-                        meldingsNummer={meldingnummer}
-                    />
-                );
-            });
-
-        return <ol aria-label="Dialog">{meldingskomponenter}</ol>;
     }
+    const meldingskomponenter = props.traad.meldinger
+        .filter((melding) => props.valgte.includes(melding.meldingsId))
+        .sort(datoSynkende((melding) => melding.opprettetDato))
+        .map((melding, index) => {
+            const meldingnummer = props.traad.meldinger.length - index;
+            return (
+                <EnkeltMelding sokeord="" melding={melding} key={melding.meldingsId} meldingsNummer={meldingnummer} />
+            );
+        });
+
+    return <ol aria-label="Dialog">{meldingskomponenter}</ol>;
 }
 
 function SladdMeldingerMedArsak({ arsaker, traad, form }: SladdeComponentProps) {

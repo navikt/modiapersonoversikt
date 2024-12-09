@@ -20,16 +20,16 @@ exports[`viser foreldreansvar 1`] = `
   width: auto;
 }
 
-.c2 {
-  margin-bottom: 1rem;
-}
-
 .c3 {
   margin: 10px 0 20px 0;
 }
 
 .c3:last-child {
   margin: 10px 0 0 0;
+}
+
+.c2 {
+  margin-bottom: 1rem;
 }
 
 <section>

@@ -55,14 +55,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   margin-bottom: 1rem;
 }
 
-.c4 {
-  margin: 10px 0 20px 0;
-}
-
-.c4:last-child {
-  margin: 10px 0 0 0;
-}
-
 .c7 {
   color: #645f5a;
   margin-top: 3px;
@@ -70,6 +62,14 @@ exports[`viser info om bruker i visittkortbody 1`] = `
 
 .c7 .typo-etikett-liten {
   line-height: 1rem;
+}
+
+.c4 {
+  margin: 10px 0 20px 0;
+}
+
+.c4:last-child {
+  margin: 10px 0 0 0;
 }
 
 .c8 {
@@ -85,15 +85,15 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   margin-top: 0.5rem;
 }
 
-.c9 {
-  margin-bottom: 5px;
-}
-
 .c10 {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
   flex-grow: 1;
+}
+
+.c9 {
+  margin-bottom: 5px;
 }
 
 <section

@@ -43,13 +43,14 @@ type Placeholder = { returnOnForbidden: string; returnOnError: string; returnOnN
 function placeholder(resource: UseQueryResult<any, FetchError>, tekster: Placeholder) {
     if (!resource.isError) {
         return null;
-    } else if (resource.error.response.status === 404) {
-        return <AlertStripeAdvarsel>{tekster.returnOnNotFound}</AlertStripeAdvarsel>;
-    } else if (resource.error.response.status === 403) {
-        return <AlertStripeAdvarsel>{tekster.returnOnForbidden}</AlertStripeAdvarsel>;
-    } else {
-        return <AlertStripeAdvarsel>{tekster.returnOnError}</AlertStripeAdvarsel>;
     }
+    if (resource.error.response.status === 404) {
+        return <AlertStripeAdvarsel>{tekster.returnOnNotFound}</AlertStripeAdvarsel>;
+    }
+    if (resource.error.response.status === 403) {
+        return <AlertStripeAdvarsel>{tekster.returnOnForbidden}</AlertStripeAdvarsel>;
+    }
+    return <AlertStripeAdvarsel>{tekster.returnOnError}</AlertStripeAdvarsel>;
 }
 
 function useBrukersYtelser(periode: FraTilDato): Returns {

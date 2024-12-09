@@ -42,9 +42,8 @@ export function visAntallSakerSomHarbehandlingsstatusV2(
 export function saksikon(harTilgang: boolean) {
     if (harTilgang) {
         return null;
-    } else {
-        return <SakIkkeTilgangIkon />;
     }
+    return <SakIkkeTilgangIkon />;
 }
 
 export function filtrerSakstemaerUtenDataV2(sakstemaer: SakstemaSoknadsstatus[]): SakstemaSoknadsstatus[] {

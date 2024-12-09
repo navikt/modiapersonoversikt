@@ -1,6 +1,75 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Tester visittkort-header sin funksjonalitet > viser info om bruker i visittkort-header 1`] = `
+.c15 {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  padding: 0.1rem;
+  border-radius: 0.5em;
+}
+
+.c15:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c15:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.c15:focus::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  box-shadow: inset 0 0 0 0.1875rem #254b6d;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+}
+
+.c3 {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  margin-right: 0.5rem;
+}
+
+.c3 svg {
+  height: 2.5rem;
+  width: auto;
+}
+
+.c12 {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.c12 >* {
+  margin: 6px 0 0 6px;
+  white-space: nowrap;
+}
+
+.c13 {
+  margin: 0.5rem 0 0 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.c9 {
+  display: inline-flex;
+}
+
+.c10 {
+  width: 1rem;
+  margin-top: -0.125rem;
+  margin-left: 0.125rem;
+  margin-right: 0.125rem;
+}
+
 .c7 {
   position: absolute;
   position: absolute!important;
@@ -44,17 +113,6 @@ exports[`Tester visittkort-header sin funksjonalitet > viser info om bruker i vi
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c9 {
-  display: inline-flex;
-}
-
-.c10 {
-  width: 1rem;
-  margin-top: -0.125rem;
-  margin-left: 0.125rem;
-  margin-right: 0.125rem;
-}
-
 .c8 {
   margin: 0;
   padding: 0;
@@ -78,64 +136,6 @@ exports[`Tester visittkort-header sin funksjonalitet > viser info om bruker i vi
 .c5 >*:not(:first-child)::before {
   content: '–';
   margin: 0 0.5rem;
-}
-
-.c12 {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.c12 >* {
-  margin: 6px 0 0 6px;
-  white-space: nowrap;
-}
-
-.c15 {
-  border: none;
-  cursor: pointer;
-  background-color: transparent;
-  padding: 0.1rem;
-  border-radius: 0.5em;
-}
-
-.c15:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.1875rem #254b6d;
-}
-
-.c15:focus {
-  outline: none;
-  box-shadow: none;
-}
-
-.c15:focus::after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: '';
-  box-shadow: inset 0 0 0 0.1875rem #254b6d;
-  height: 100%;
-  width: 100%;
-  pointer-events: none;
-}
-
-.c13 {
-  margin: 0.5rem 0 0 0;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.c3 {
-  display: flex;
-  justify-content: center;
-  align-items: start;
-  margin-right: 0.5rem;
-}
-
-.c3 svg {
-  height: 2.5rem;
-  width: auto;
 }
 
 .c0 {

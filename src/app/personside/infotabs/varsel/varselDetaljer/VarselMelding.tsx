@@ -38,7 +38,6 @@ function Mottakerinformasjon(props: Props) {
             return <Element>Epost: {props.melding.mottakerInformasjon}</Element>;
         case Kanal.SMS:
             return <Element>Tlf: {props.melding.mottakerInformasjon}</Element>;
-        case Kanal.NAVNO:
         default:
             return null;
     }

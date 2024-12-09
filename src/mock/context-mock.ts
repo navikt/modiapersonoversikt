@@ -43,66 +43,66 @@ export function getContextHandlers() {
     };
 
     return [
-        http.post<PathParams, ContextRequest>(baseUrl + 'proxy/modiacontextholder/api/context', async ({ request }) => {
+        http.post<PathParams, ContextRequest>(`${baseUrl}proxy/modiacontextholder/api/context`, async ({ request }) => {
             const body = await request.json();
             if (body.eventType === 'NY_AKTIV_ENHET') {
                 context.aktivEnhet = body.verdi;
                 return HttpResponse.json(null);
-            } else if (body.eventType === 'NY_AKTIV_BRUKER') {
+            }
+            if (body.eventType === 'NY_AKTIV_BRUKER') {
                 context.aktivBruker = body.verdi;
                 return HttpResponse.json(null);
-            } else {
-                return HttpResponse.json(null, { status: 500 });
             }
+            return HttpResponse.json(null, { status: 500 });
         }),
 
-        http.delete(baseUrl + 'proxy/modiacontextholder/api/context', () => {
+        http.delete(`${baseUrl}proxy/modiacontextholder/api/context`, () => {
             context.aktivBruker = null;
             context.aktivEnhet = null;
             return HttpResponse.json(null);
         }),
 
-        http.get(baseUrl + 'proxy/modiacontextholder/api/context/aktivenhet', () =>
+        http.get(`${baseUrl}proxy/modiacontextholder/api/context/aktivenhet`, () =>
             HttpResponse.json({
                 aktivEnhet: context.aktivEnhet,
                 aktivBruker: null
             })
         ),
 
-        http.get(baseUrl + 'proxy/modiacontextholder/api/context/v2/aktivenhet', () =>
+        http.get(`${baseUrl}proxy/modiacontextholder/api/context/v2/aktivenhet`, () =>
             HttpResponse.json({
                 aktivEnhet: context.aktivEnhet
             })
         ),
-        http.delete(baseUrl + 'proxy/modiacontextholder/api/context/aktivbruker', () => {
+        http.delete(`${baseUrl}proxy/modiacontextholder/api/context/aktivbruker`, () => {
             context.aktivBruker = null;
             return HttpResponse.json(null);
         }),
 
-        http.get(baseUrl + 'proxy/modiacontextholder/api/context/aktivbruker', () =>
+        http.get(`${baseUrl}proxy/modiacontextholder/api/context/aktivbruker`, () =>
             HttpResponse.json({
                 aktivEnhet: null,
                 aktivBruker: context.aktivBruker
             })
         ),
 
-        http.get(baseUrl + 'proxy/modiacontextholder/api/context/v2/aktivbruker', () =>
+        http.get(`${baseUrl}proxy/modiacontextholder/api/context/v2/aktivbruker`, () =>
             HttpResponse.json({
                 aktivBruker: context.aktivBruker
             })
         ),
 
-        http.get(baseUrl + 'proxy/modiacontextholder/api/context', () =>
+        http.get(`${baseUrl}proxy/modiacontextholder/api/context`, () =>
             HttpResponse.json({
                 aktivEnhet: context.aktivEnhet,
                 aktivBruker: context.aktivBruker
             })
         ),
 
-        http.get(baseUrl + 'proxy/modiacontextholder/api/decorator/aktor/:fnr', ({ params }) =>
+        http.get(`${baseUrl}proxy/modiacontextholder/api/decorator/aktor/:fnr`, ({ params }) =>
             HttpResponse.json({ fnr: params.fnr, aktorId: `0000${params.fnr as string}0000` })
         ),
 
-        http.get(baseUrl + 'proxy/modiacontextholder/api/decorator', () => HttpResponse.json(me))
+        http.get(`${baseUrl}proxy/modiacontextholder/api/decorator`, () => HttpResponse.json(me))
     ];
 }

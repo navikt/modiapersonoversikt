@@ -42,11 +42,9 @@ const CustomStyling = styled(Panel)`
 `;
 
 function EkspanderbartYtelserPanel(props: Props) {
-    const tillegsinfo =
-        props.tittelTillegsInfo &&
-        props.tittelTillegsInfo
-            .filter((info) => info) // filtrerer bort tomme entries
-            .map((info, index) => <Normaltekst key={index}>{info}</Normaltekst>);
+    const tillegsinfo = props.tittelTillegsInfo
+        ?.filter((info) => info) // filtrerer bort tomme entries
+        .map((info, index) => <Normaltekst key={index}>{info}</Normaltekst>);
 
     const tittel = (
         <TittelStyle>

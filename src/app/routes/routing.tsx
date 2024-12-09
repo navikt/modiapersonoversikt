@@ -3,8 +3,8 @@ import { INFOTABS, type InfotabConfig } from '../personside/infotabs/InfoTabEnum
 
 export const paths = {
     personUri: '/person',
-    sakerFullscreen: `/saker`,
-    saksdokumentEgetVindu: `/dokument`,
+    sakerFullscreen: '/saker',
+    saksdokumentEgetVindu: '/dokument',
     brukerprofil: '/brukerprofil',
     basePath: '',
     standaloneKomponenter: '/components',

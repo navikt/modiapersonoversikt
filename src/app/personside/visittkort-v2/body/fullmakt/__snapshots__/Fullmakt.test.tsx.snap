@@ -1,6 +1,15 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`viser fullmakt 1`] = `
+.c5 {
+  color: #645f5a;
+  margin-top: 3px;
+}
+
+.c5 .typo-etikett-liten {
+  line-height: 1rem;
+}
+
 .c0 {
   position: relative;
   display: flex;
@@ -30,15 +39,6 @@ exports[`viser fullmakt 1`] = `
 
 .c2 {
   margin-bottom: 1rem;
-}
-
-.c5 {
-  color: #645f5a;
-  margin-top: 3px;
-}
-
-.c5 .typo-etikett-liten {
-  line-height: 1rem;
 }
 
 .c4 {

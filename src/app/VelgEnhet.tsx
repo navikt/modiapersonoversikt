@@ -29,7 +29,8 @@ function VelgEnhet() {
 
     if (enheter.isLoading) {
         return <LazySpinner type="M" />;
-    } else if (enheter.isError) {
+    }
+    if (enheter.isError) {
         return <AlertStripeAdvarsel>Kunne ikke hente enhetsliste</AlertStripeAdvarsel>;
     }
 

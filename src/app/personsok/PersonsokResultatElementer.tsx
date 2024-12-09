@@ -11,11 +11,7 @@ export function NavnCelle(props: { navn: Navn; status?: Kodeverk | null }) {
 }
 
 export function AdresseCelle({ response }: { response: PersonsokResponse }) {
-    if (
-        !(response.brukerinfo && response.brukerinfo.midlertidigPostadresse) &&
-        !response.postadresse &&
-        !response.bostedsadresse
-    ) {
+    if (!response.brukerinfo?.midlertidigPostadresse && !response.postadresse && !response.bostedsadresse) {
         return <Normaltekst>Ingen registrert adresse</Normaltekst>;
     }
 
@@ -29,38 +25,34 @@ export function AdresseCelle({ response }: { response: PersonsokResponse }) {
 }
 
 function MidlertidigAdresseCelle(props: { brukerinfo: Brukerinfo | null }) {
-    if (props.brukerinfo && props.brukerinfo.midlertidigPostadresse) {
+    if (props.brukerinfo?.midlertidigPostadresse) {
         const celletekst = `(M) ${props.brukerinfo.midlertidigPostadresse}`;
         return <Normaltekst>{celletekst}</Normaltekst>;
-    } else {
-        return null;
     }
+    return null;
 }
 
 function PostadresseCelle(props: { postadresse: string | null }) {
     if (props.postadresse) {
         const celletekst = `(P) ${props.postadresse}`;
         return <Normaltekst>{celletekst}</Normaltekst>;
-    } else {
-        return null;
     }
+    return null;
 }
 
 function BostedsadresseCelle(props: { bostedsadresse: string | null }) {
     if (props.bostedsadresse) {
         const celletekst = `(B) ${props.bostedsadresse}`;
         return <Normaltekst>{celletekst}</Normaltekst>;
-    } else {
-        return null;
     }
+    return null;
 }
 
 export function BostedCelle(props: { brukerinfo: Brukerinfo | null }) {
     if (props.brukerinfo?.ansvarligEnhet) {
         return <Normaltekst>{props.brukerinfo.ansvarligEnhet}</Normaltekst>;
-    } else {
-        return null;
     }
+    return null;
 }
 
 export function UtenlandskIDCelle(props: { utenlandskID: UtenlandskID[] | null }) {
@@ -73,13 +65,12 @@ export function UtenlandskIDCelle(props: { utenlandskID: UtenlandskID[] | null }
             return <Normaltekst key={utenlandskID.identifikasjonsnummer}>{celletekst}</Normaltekst>;
         });
         return <div>{celletekst}</div>;
-    } else {
-        return null;
     }
+    return null;
 }
 
 function formatterNavn(navn: Navn, status?: Kodeverk | null) {
-    let personNavn = navn.etternavn + ', ' + navn.fornavn + formatNullableString(navn.mellomnavn, true);
+    let personNavn = `${navn.etternavn}, ${navn.fornavn}${formatNullableString(navn.mellomnavn, true)}`;
     if (status?.beskrivelse === 'DØD') {
         personNavn += ' (død)';
     }
@@ -87,5 +78,5 @@ function formatterNavn(navn: Navn, status?: Kodeverk | null) {
 }
 
 function formatNullableString(str: string | null, prefixWithSpace?: boolean) {
-    return str ? (prefixWithSpace ? ' ' : '' + str) : '';
+    return str ? (prefixWithSpace ? ' ' : `${str}`) : '';
 }

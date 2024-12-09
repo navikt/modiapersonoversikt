@@ -46,7 +46,6 @@ export const getFraDateFromPeriod = (periodeValg: PeriodeValg): FraTilDato => {
                 fra: toIsoDateString(dayjs().subtract(2, 'year').startOf('day')),
                 til: toIsoDateString(dayjs().endOf('day'))
             };
-        case PeriodeValg.SISTE_30_DAGER:
         default:
             return {
                 fra: toIsoDateString(dayjs().subtract(30, 'day').startOf('day')),
@@ -70,7 +69,6 @@ export function getFraDateFromFilter(periode: PeriodeOptions): Date {
             return dayjs().subtract(1, 'year').startOf('year').toDate();
         case PeriodeValg.EGENDEFINERT:
             return dayjs(periode.egendefinertPeriode.fra, ISO_DATE_FORMAT).toDate();
-        case PeriodeValg.SISTE_30_DAGER:
         default:
             return getUtbetalingerForSiste30DagerDatoer().fra;
     }
@@ -84,7 +82,6 @@ export function getTilDateFromFilter(periode: PeriodeOptions): Date {
             return dayjs(periode.egendefinertPeriode.til, ISO_DATE_FORMAT).toDate();
         case PeriodeValg.INNEVERENDE_AR:
             return dayjs().endOf('year').toDate();
-        case PeriodeValg.SISTE_30_DAGER:
         default:
             return getUtbetalingerForSiste30DagerDatoer().til;
     }

@@ -25,7 +25,7 @@ export const MOCKED_TRAADID_3 = '987';
 
 export function getMockTraader(fodselsnummer: string): Traad[] {
     faker.seed(Number(fodselsnummer));
-    navfaker.seed(fodselsnummer + 'meldinger');
+    navfaker.seed(`${fodselsnummer}meldinger`);
 
     const randomTraader = navfaker.random.vektetSjanse(0.2)
         ? fyllRandomListe(getMockTraad, 300, true)

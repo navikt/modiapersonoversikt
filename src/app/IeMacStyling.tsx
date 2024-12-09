@@ -30,7 +30,7 @@ function IeMacStyling() {
 
     useOnMount(() => {
         const browser = detect();
-        const os = browser && browser.os;
+        const os = browser?.os;
         setIsMac(os ? os.toLowerCase().includes('mac') : undefined);
         setIsIE(erIE11());
     });

@@ -253,7 +253,7 @@ function JournalPoster(props: Props) {
     return (
         <div>
             <article>
-                <StyledPanel aria-label={'Saksdokumenter for ' + aggregertSak.temanavn}>
+                <StyledPanel aria-label={`Saksdokumenter for ${aggregertSak.temanavn}`}>
                     <InfoOgFilterPanel>
                         <div>
                             <TittelWrapperStyling ref={tittelRef} tabIndex={-1}>
