@@ -37,6 +37,11 @@ import { fodselsNummerErGyldigStatus, randomDelay, STATUS_OK } from './utils-moc
 import { getMockTiltakspenger } from './ytelse/tiltakspenger-mock';
 import { mockInnkrevingsKrav } from './innkrevingskrav';
 import { FeatureTogglesResponse } from 'src/rest/resources/featuretogglesResource';
+import MockDate from 'mockdate';
+
+if (import.meta.env.VITE_E2E) {
+    MockDate.set(0);
+}
 
 const oppgaveBackendMock = new OppgaverBackendMock();
 const meldingerBackendMock = new MeldingerBackendMock(oppgaveBackendMock);
@@ -121,18 +126,6 @@ const saksoversiktV2Handler = [
                 mockGeneratorMedFodselsnummer(getMockSaksoversiktV2)
             )
         )
-    ),
-
-    http.post(
-        apiBaseUri + '/v2/saker/v2/sakstema',
-        verify(
-            harEnhetIdSomQueryParam,
-            withDelayedResponse(
-                randomDelay(),
-                fodselsNummerErGyldigStatus,
-                mockGeneratorMedFodselsnummer(getMockSaksoversiktV2)
-            )
-        )
     )
 ];
 
@@ -150,11 +143,11 @@ const saksoversiktV3Handler = http.post(
 
 const utbetalingerHandler = http.post(
     apiBaseUri + '/v2/utbetaling',
-    withDelayedResponse(randomDelay(), fodselsNummerErGyldigStatus, async (req) => {
-        const body = await req.json();
+    withDelayedResponse(randomDelay(), fodselsNummerErGyldigStatus, async (req, _params, body) => {
+        const reqBody = body ?? (await req.json());
         const url = new URL(req.url);
         const query = url.searchParams;
-        return getMockUtbetalinger(body.fnr, query.get('startDato') ?? '', query.get('sluttDato') ?? '');
+        return getMockUtbetalinger(reqBody.fnr, query.get('startDato') ?? '', query.get('sluttDato') ?? '');
     })
 );
 

@@ -38,7 +38,7 @@ function getJournalpost(faker: Faker, navfaker: NavFaker, tema: string[]): Journ
         mottaker: getEntitet(faker),
         tilhorendeSaksid: faker.string.alphanumeric(8),
         tilhorendeFagsaksid: faker.string.alphanumeric(8),
-        baksystem: fyllRandomListe(() => getBaksystem(navfaker), 3),
+        baksystem: fyllRandomListe(() => getBaksystem(faker), 3),
         temakode: tema[0],
         temakodeVisning: tema[1],
         ettersending: faker.datatype.boolean(),
