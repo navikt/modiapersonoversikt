@@ -12,7 +12,7 @@ export function withDelayedResponse<R extends DefaultBodyType, T extends Default
         const status = await statusCode(request, parsedBody);
 
         // Don't delay in test
-        if (import.meta.env.MODE !== 'test') await delay(delayTime);
+        if (import.meta.env.MODE !== 'test' && !import.meta.env.VITE_E2E) await delay(delayTime);
 
         const data = await Promise.resolve(genererMockData(request, params, parsedBody));
         return HttpResponse.json(data, { status });
@@ -26,7 +26,7 @@ export function verify<T extends DefaultBodyType = { fnr: string }>(
     return ({ request, params, ...args }) => {
         const invalid = isInvalid(request, params);
         if (invalid) {
-            return HttpResponse.text(invalid, { status: 500 });
+            return HttpResponse.text(invalid, { status: 400 });
         } else {
             return handler({ request, params, ...args });
         }

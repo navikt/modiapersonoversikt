@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import SetFnrIRedux from '../../../PersonOppslagHandler/SetFnrIRedux';
 import { useOnMount } from '../../../../utils/customHooks';
 import { loggEvent } from '../../../../utils/logger/frontendLogger';
 import DropDownMenu from '../../../../components/DropDownMenu';
@@ -14,10 +13,6 @@ import { aggregertTemanavnV2, forkortetTemanavnV2 } from './utils/saksoversiktUt
 import DokumentOgVedleggV2 from './dokumentvisning/DokumentOgVedleggV2';
 import JournalPosterV2 from './saksdokumenter/JournalPosterV2';
 import SakstemaListeV2 from './sakstemaliste/SakstemaListeV2';
-
-interface Props {
-    fnr: string;
-}
 
 const SaksoversiktArticle = styled.article`
     display: flex;
@@ -82,17 +77,16 @@ function Innhold() {
     );
 }
 
-function SakerFullscreen(props: Props) {
+function SakerFullscreen() {
     useOnMount(() => {
         loggEvent('Sidevisning', 'SakerFullscreen');
         document.title = 'Saksoversikt - Modia personoversikt';
     });
 
     return (
-        <>
-            <SetFnrIRedux fnr={props.fnr} />
+        <div className="flex-auto bg-gray-200">
             <Innhold />
-        </>
+        </div>
     );
 }
 

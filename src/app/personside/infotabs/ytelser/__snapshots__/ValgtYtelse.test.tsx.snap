@@ -811,6 +811,10 @@ exports[`Om foreldrepenger matcher snapshot 1`] = `
                   <a
                     href="/person/utbetaling"
                     onClick={[Function]}
+                    onFocus={[Function]}
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                    onTouchStart={[Function]}
                   >
                     se Utbetalingsoversikten.
                   </a>
@@ -2229,6 +2233,10 @@ exports[`Om sykepenger matcher snapshot 1`] = `
             <a
               href="/person/utbetaling"
               onClick={[Function]}
+              onFocus={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onTouchStart={[Function]}
             >
               se Utbetalingsoversikten.
             </a>

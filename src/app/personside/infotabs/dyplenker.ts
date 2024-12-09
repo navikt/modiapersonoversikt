@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
-import { usePaths } from '../../routes/routing';
+import { personPaths } from '../../routes/routing';
 import { Utbetaling } from '../../../models/utbetalinger';
-import { useLocation, useParams } from 'react-router';
+import { useLocation, useParams } from '@tanstack/react-router';
 import { Traad } from '../../../models/meldinger/meldinger';
 import { useMemo } from 'react';
 import { useQueryParams } from '../../../utils/url-utils';
@@ -32,21 +32,16 @@ interface Dyplenker {
     };
 }
 
-type DyplenkeParams = {
-    posteringsdato?: string;
-};
-
 type DyplenkerQueryParams = {
     traadId?: string;
     ytelse?: string;
 };
 
 export function useInfotabsDyplenker(): Dyplenker {
-    const params = useParams<DyplenkeParams>();
-    const posteringsdato: string | undefined = params.posteringsdato;
+    const posteringsdato = useParams({ strict: false }).postering;
 
     const queryParams = useQueryParams<DyplenkerQueryParams>();
-    const paths = usePaths();
+    const paths = personPaths;
     const pathname = useLocation().pathname;
 
     return useMemo(

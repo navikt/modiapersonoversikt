@@ -3,7 +3,7 @@ import { ReactNode, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Navigate } from '@tanstack/react-router';
 import { paths } from '../../../routes/routing';
 import { InfotabConfig } from '../InfoTabEnum';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
@@ -59,7 +59,7 @@ function Oversiktskomponent(props: Props) {
     const headerId = useRef(guid());
 
     if (redirect) {
-        return <Redirect to={path} />;
+        return <Navigate to={path} replace />;
     }
 
     const handleClick = () => {

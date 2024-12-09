@@ -16,9 +16,8 @@ import Månedsgruppe from './MånedsGruppe';
 import HandleUtbetalingerArrowKeys from './HandleUtbetalingerHotKeys';
 import AriaNotification from '../../../../components/AriaNotification';
 import { UtbetalingFilterState } from '../../../../redux/utbetalinger/types';
-import { useSelector } from 'react-redux';
-import { AppState } from '../../../../redux/reducers';
 import Panel from 'nav-frontend-paneler';
+import { useUtbetalingerFilter } from 'src/redux/utbetalinger/utbetalingerReducer';
 
 const UtbetalingerPanel = styled(Panel)`
     padding: 0rem;
@@ -75,7 +74,7 @@ interface UtbetalingerProps {
 }
 
 function Utbetalinger(props: UtbetalingerProps) {
-    const filter = useSelector((state: AppState) => state.utbetalinger.filter);
+    const filter = useUtbetalingerFilter();
     const filtrerteUtbetalinger = getFiltrerteUtbetalinger(props.utbetalingerData.utbetalinger, filter);
     if (filtrerteUtbetalinger.length === 0) {
         return (

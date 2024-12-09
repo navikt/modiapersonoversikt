@@ -1,7 +1,6 @@
 import { DecoratorButtonId as OppdateringsloggButtonId } from '../oppdateringslogg/OppdateringsloggContainer';
 import bjelleIkon from '../../svg/bjelle.svg?raw';
 import { parseQueryString, useQueryParams } from '../../utils/url-utils';
-import useHandleGosysUrl from './useHandleGosysUrl';
 import { useSettAktivBruker, useOnMount } from '../../utils/customHooks';
 import { loggEvent } from '../../utils/logger/frontendLogger';
 import { Enhet } from '../../rest/resources/saksbehandlersEnheterResource';
@@ -20,8 +19,6 @@ export function useDecoratorConfig() {
     const settAktivBruker = useSettAktivBruker();
 
     const queryParams = useQueryParams<{ sokFnr?: string; sokFnrCode?: string }>();
-
-    useHandleGosysUrl();
 
     useOnMount(() => {
         if (queryParams.sokFnr) {

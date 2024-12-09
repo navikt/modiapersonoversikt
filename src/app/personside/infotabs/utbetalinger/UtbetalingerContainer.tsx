@@ -4,12 +4,11 @@ import theme from '../../../../styles/personOversiktTheme';
 import styled, { css } from 'styled-components';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import Arenalenke from './Arenalenke/Arenalenke';
-import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
-import { erIE11 } from '../../../../utils/erIE11';
+import { BigCenteredLazySpinner } from 'src/components/BigCenteredLazySpinner';
+import { erIE11 } from 'src/utils/erIE11';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 import utbetalingerResource from '../../../../rest/resources/utbetalingerResource';
-import { useSelector } from 'react-redux';
-import { AppState } from '../../../../redux/reducers';
+import { useUtbetalingerFilter } from 'src/redux/utbetalinger/utbetalingerReducer';
 
 const UtbetalingerStyle = styled.div`
     ${scrollBarContainerStyle(theme.media.utbetalinger.minWidth)};
@@ -42,7 +41,7 @@ const UtbetalingerSection = styled.section`
 `;
 
 function UtbetalingerContainer() {
-    const filter = useSelector((state: AppState) => state.utbetalinger.filter);
+    const filter = useUtbetalingerFilter();
     const periode = filter.periode.egendefinertPeriode;
     const utbetalinger = utbetalingerResource.useFetch(periode.fra, periode.til);
     let content = BigCenteredLazySpinner;

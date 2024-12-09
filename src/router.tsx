@@ -1,14 +1,19 @@
-import { createRouter as createReactRouter } from '@tanstack/react-router';
+import { createBrowserHistory, createRouter as createReactRouter } from '@tanstack/react-router';
 
 import { routeTree } from './routeTree.gen';
+import { PropsWithChildren } from 'react';
 
-export function createRouter() {
+export const history = createBrowserHistory();
+
+export function createRouter({ Wrap }: { Wrap?: ({ children }: PropsWithChildren) => React.JSX.Element } = {}) {
     return createReactRouter({
         routeTree,
         context: {
             head: ''
         },
-        defaultPreload: 'intent'
+        defaultPreload: 'intent',
+        history,
+        Wrap
     });
 }
 

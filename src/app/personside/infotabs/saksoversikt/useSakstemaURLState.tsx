@@ -1,9 +1,8 @@
 import { useMemo } from 'react';
-import { useHistory } from 'react-router';
+import { useNavigate, useSearch } from '@tanstack/react-router';
 import { SakstemaSoknadsstatus } from '../../../../models/saksoversikt/sakstema';
 import { datoSynkende } from '../../../../utils/date-utils';
 import { sakstemakodeAlle, sakstemakodeIngen } from './utils/saksoversiktUtilsV2';
-import { useQueryParams } from '../../../../utils/url-utils';
 import { Dokument, Journalpost } from '../../../../models/saksoversikt/journalpost';
 import sakstemaResource from '../../../../rest/resources/sakstemaResource';
 import { filtrerSakstemaerUtenDataV2 } from './sakstemaliste/SakstemaListeUtils';
@@ -18,11 +17,6 @@ interface SakstemaURLStateV2 {
     toggleValgtSakstema(sakstema: SakstemaSoknadsstatus): void;
 }
 
-interface QueryParamsForSak {
-    sakstema?: string;
-    dokument?: string;
-}
-
 interface SakstemaResourceV2 {
     alleSakstema: SakstemaSoknadsstatus[];
     isLoading: boolean;
@@ -30,8 +24,9 @@ interface SakstemaResourceV2 {
 
 export function useSakstemaURLStateV2(alleSakstemaer: SakstemaSoknadsstatus[]): SakstemaURLStateV2 {
     const filtrertAlleSakstemaer = filtrerSakstemaerUtenDataV2(alleSakstemaer);
-    const history = useHistory();
-    const queryParams = useQueryParams<QueryParamsForSak>(); //SYK-BAR-AAP
+    const navigate = useNavigate({ from: '/person/saker' });
+    const query = useSearch({ strict: false });
+    const queryParams = useSearch({ strict: false }); //SYK-BAR-AAP
     return useMemo(() => {
         const sakstemaerFraUrl: string[] = queryParams.sakstema?.split('-') ?? [sakstemakodeAlle];
         const valgteSakstemaer: SakstemaSoknadsstatus[] = sakstemaerFraUrl.includes(sakstemakodeAlle)
@@ -47,14 +42,14 @@ export function useSakstemaURLStateV2(alleSakstemaer: SakstemaSoknadsstatus[]): 
         );
 
         const setIngenValgte = () => {
-            history.push({
-                search: `?sakstema=${sakstemakodeIngen}`
+            navigate({
+                search: { ...query, sakstema: sakstemakodeIngen }
             });
         };
 
         const setAlleValgte = () => {
-            history.push({
-                search: `?sakstema=${sakstemakodeAlle}`
+            navigate({
+                search: { ...query, sakstema: sakstemakodeAlle }
             });
         };
 
@@ -72,8 +67,8 @@ export function useSakstemaURLStateV2(alleSakstemaer: SakstemaSoknadsstatus[]): 
                     .sort(datoSynkende((sakstema) => hentDatoForSisteHendelseV2(sakstema) ?? Date()))
                     .map((sakstema) => sakstema.temakode)
                     .join('-');
-                history.push({
-                    search: `?sakstema=${nyURL}`
+                navigate({
+                    search: { ...query, sakstema: nyURL }
                 });
             }
         };

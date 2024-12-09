@@ -98,7 +98,11 @@ function VisittkortHeader(props: Props) {
                     <KjonnIkon kjonn={kjonn.kode} />
                     <GrunninfoDiv>
                         <Undertittel tag="h1">
-                            <span ref={navneLinjeRef} tabIndex={-1} /* for at focus skal funke */>
+                            <span
+                                data-testId="visittkort:person"
+                                ref={navneLinjeRef}
+                                tabIndex={-1} /* for at focus skal funke */
+                            >
                                 {hentNavn(navn)} ({hentAlderEllerDod(person)})
                             </span>
                         </Undertittel>

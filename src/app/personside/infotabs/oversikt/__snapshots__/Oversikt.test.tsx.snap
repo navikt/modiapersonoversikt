@@ -404,8 +404,12 @@ exports[`Viser oversikt med alt innhold 1`] = `
           />
           <a
             className="c5 lenke"
-            href="/person/oppfolging/"
+            href="/person/oppfolging"
             onClick={[Function]}
+            onFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onTouchStart={[Function]}
           >
             <p
               className="typo-normal"
@@ -482,8 +486,12 @@ exports[`Viser oversikt med alt innhold 1`] = `
           />
           <a
             className="c5 lenke"
-            href="/person/utbetaling/"
+            href="/person/utbetaling"
             onClick={[Function]}
+            onFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onTouchStart={[Function]}
           >
             <p
               className="typo-normal"
@@ -512,7 +520,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <p
                     className="typo-normal"
                   >
-                    05.05.2019
+                    5. Mai 2019
                      / 
                     Ligger hos banken
                   </p>
@@ -568,7 +576,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <p
                     className="typo-normal"
                   >
-                    17.12.2018
+                    17. Desember 2018
                      / 
                     Ligger hos banken
                   </p>
@@ -637,8 +645,12 @@ exports[`Viser oversikt med alt innhold 1`] = `
           />
           <a
             className="c5 lenke"
-            href="/person/saker/"
+            href="/person/saker"
             onClick={[Function]}
+            onFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onTouchStart={[Function]}
           >
             <p
               className="typo-normal"
@@ -818,8 +830,12 @@ exports[`Viser oversikt med alt innhold 1`] = `
           />
           <a
             className="c5 lenke"
-            href="/person/meldinger/"
+            href="/person/meldinger"
             onClick={[Function]}
+            onFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onTouchStart={[Function]}
           >
             <p
               className="typo-normal"
@@ -953,8 +969,12 @@ exports[`Viser oversikt med alt innhold 1`] = `
           />
           <a
             className="c5 lenke"
-            href="/person/ytelser/"
+            href="/person/ytelser"
             onClick={[Function]}
+            onFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onTouchStart={[Function]}
           >
             <p
               className="typo-normal"
@@ -1068,8 +1088,12 @@ exports[`Viser oversikt med alt innhold 1`] = `
           />
           <a
             className="c5 lenke"
-            href="/person/varsler/"
+            href="/person/varsler"
             onClick={[Function]}
+            onFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onTouchStart={[Function]}
           >
             <p
               className="typo-normal"

@@ -1,3 +1,3 @@
-export function getSaksdokumentUrl(fnr: string, journalpostId: string | null, dokumentreferanse: string | null) {
+export function getSaksdokumentUrl(journalpostId: string | null, dokumentreferanse: string | null) {
     return `journalpost=${journalpostId}&dokument=${dokumentreferanse}`;
 }
