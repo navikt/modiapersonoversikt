@@ -2,12 +2,10 @@ import { Loader } from '@navikt/ds-react';
 import { useMatchRoute, useNavigate } from '@tanstack/react-router';
 import { type PropsWithChildren, useState } from 'react';
 import { post } from 'src/api/api';
-import { apiBaseUri, contextHolderBaseUri } from 'src/api/config';
+import { contextHolderBaseUri } from 'src/api/config';
 import { INFOTABS } from 'src/app/personside/infotabs/InfoTabEnum';
 import { paths } from 'src/app/routes/routing';
-import type { Oppgave } from 'src/models/meldinger/oppgave';
 import { useOnMount, useSettAktivBruker } from 'src/utils/customHooks';
-import { fetchToJson, hasData } from 'src/utils/fetchToJson';
 import { erGyldigishFnr } from 'src/utils/fnr-utils';
 import { loggEvent } from 'src/utils/logger/frontendLogger';
 import { useQueryParams } from 'src/utils/url-utils';
@@ -55,14 +53,12 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
         const newQuery = { traadId: queryParams.behandlingsid };
 
         if (queryParams.oppgaveid && queryParams.behandlingsid && fnr) {
-            fetchToJson<Oppgave>(`${apiBaseUri}/v2/oppgaver/oppgavedata/${queryParams.oppgaveid}`).then((response) => {
-                loggEvent('Oppgave', 'FraGosys', { success: hasData(response) });
-                settGjeldendeBruker(fnr, false);
-                navigate({
-                    to: linkTilValgtHenvendelse,
-                    search: newQuery,
-                    replace: true
-                });
+            settGjeldendeBruker(fnr, false);
+            loggEvent('Oppgave', 'FraGosys');
+            navigate({
+                to: linkTilValgtHenvendelse,
+                search: newQuery,
+                replace: true
             });
         } else if (fnr && queryParams.behandlingsid) {
             loggEvent('Henvendelse', 'FraGosys');
