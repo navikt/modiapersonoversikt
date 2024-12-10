@@ -94,3 +94,9 @@ export function capitalizeAfterPunctuation(name: string): string {
         (txt, group1: string, group2: string) => group1 + group2.toUpperCase()
     );
 }
+
+export function camelCaseTilSpaced(input: string): string {
+    const spaced = input.replace(/([a-z])([A-Z])/g, '$1 $2');
+
+    return spaced.charAt(0).toUpperCase() + spaced.slice(1);
+}
