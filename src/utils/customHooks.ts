@@ -1,12 +1,20 @@
-import * as React from 'react';
-import { DependencyList, EffectCallback, RefObject, useCallback, useEffect, useMemo, useRef } from 'react';
-import { EventListener, runIfEventIsNotInsideRef } from './reactRef-utils';
-import { useSelector } from 'react-redux';
-import { AppState } from '../redux/reducers';
-import { paths } from '../app/routes/routing';
 import { useNavigate } from '@tanstack/react-router';
 import { useAtomValue, useSetAtom } from 'jotai';
+import type * as React from 'react';
+import {
+    type DependencyList,
+    type EffectCallback,
+    type RefObject,
+    useCallback,
+    useEffect,
+    useMemo,
+    useRef
+} from 'react';
+import { useSelector } from 'react-redux';
 import { aktivBrukerAtom, aktivBrukerLastetAtom } from 'src/lib/state/context';
+import { paths } from '../app/routes/routing';
+import type { AppState } from '../redux/reducers';
+import { type EventListener, runIfEventIsNotInsideRef } from './reactRef-utils';
 
 export function useFocusOnMount(ref: React.RefObject<HTMLElement>) {
     useOnMount(() => {
@@ -78,7 +86,7 @@ export function useSettAktivBruker() {
     const setBrukerLastet = useSetAtom(aktivBrukerLastetAtom);
     const navigate = useNavigate();
 
-    return (fnr: string | null) => {
+    return (fnr: string | null, redirect = true) => {
         if (!fnr) {
             navigate({ to: '/' });
             setBruker('');
@@ -89,6 +97,7 @@ export function useSettAktivBruker() {
         setBruker(fnr);
         setBrukerLastet(true);
         if (
+            redirect &&
             ![
                 paths.personUri,
                 paths.sakerFullscreen,

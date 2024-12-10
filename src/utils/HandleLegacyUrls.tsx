@@ -1,16 +1,16 @@
-import { useQueryParams } from 'src/utils/url-utils';
-import { useOnMount, useSettAktivBruker } from 'src/utils/customHooks';
-import { loggEvent } from 'src/utils/logger/frontendLogger';
+import { Loader } from '@navikt/ds-react';
+import { useMatchRoute, useNavigate } from '@tanstack/react-router';
+import { type PropsWithChildren, useState } from 'react';
+import { post } from 'src/api/api';
+import { apiBaseUri, contextHolderBaseUri } from 'src/api/config';
 import { INFOTABS } from 'src/app/personside/infotabs/InfoTabEnum';
 import { paths } from 'src/app/routes/routing';
-import { Oppgave } from 'src/models/meldinger/oppgave';
-import { apiBaseUri, contextHolderBaseUri } from 'src/api/config';
+import type { Oppgave } from 'src/models/meldinger/oppgave';
+import { useOnMount, useSettAktivBruker } from 'src/utils/customHooks';
 import { fetchToJson, hasData } from 'src/utils/fetchToJson';
-import { post } from 'src/api/api';
-import { useMatchRoute, useNavigate } from '@tanstack/react-router';
 import { erGyldigishFnr } from 'src/utils/fnr-utils';
-import { PropsWithChildren, useState } from 'react';
-import { Loader } from '@navikt/ds-react';
+import { loggEvent } from 'src/utils/logger/frontendLogger';
+import { useQueryParams } from 'src/utils/url-utils';
 
 function HandleLegacyUrls({ children }: PropsWithChildren) {
     const queryParams = useQueryParams<{
@@ -18,6 +18,7 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
         sokFnrCode?: string;
         oppgaveid?: string;
         behandlingsid?: string;
+        henvendelseid?: string;
     }>();
     const match = useMatchRoute();
     const fnrMatch = match({ to: '/person/$fnr' });
@@ -27,6 +28,9 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
     const [delayRender, setDelayRender] = useState(!!validFnr);
 
     useOnMount(() => {
+        if (queryParams.henvendelseid) {
+            queryParams.behandlingsid = queryParams.henvendelseid;
+        }
         if (queryParams.sokFnrCode) {
             post<{
                 aktivBruker: string;
@@ -53,16 +57,28 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
         if (queryParams.oppgaveid && queryParams.behandlingsid && fnr) {
             fetchToJson<Oppgave>(`${apiBaseUri}/v2/oppgaver/oppgavedata/${queryParams.oppgaveid}`).then((response) => {
                 loggEvent('Oppgave', 'FraGosys', { success: hasData(response) });
-                settGjeldendeBruker(fnr);
-                navigate({ to: linkTilValgtHenvendelse, search: newQuery, replace: true });
+                settGjeldendeBruker(fnr, false);
+                navigate({
+                    to: linkTilValgtHenvendelse,
+                    search: newQuery,
+                    replace: true
+                });
             });
         } else if (fnr && queryParams.behandlingsid) {
             loggEvent('Henvendelse', 'FraGosys');
-            settGjeldendeBruker(fnr);
-            navigate({ to: linkTilValgtHenvendelse, search: newQuery, replace: true });
+            settGjeldendeBruker(fnr, false);
+            navigate({
+                to: linkTilValgtHenvendelse,
+                search: newQuery,
+                replace: true
+            });
         } else if (queryParams.behandlingsid) {
             loggEvent('Henvendelse', 'FraGosys');
-            navigate({ to: linkTilValgtHenvendelse, search: newQuery, replace: true });
+            navigate({
+                to: linkTilValgtHenvendelse,
+                search: newQuery,
+                replace: true
+            });
         } else if (fnr) {
             settGjeldendeBruker(fnr);
         }
