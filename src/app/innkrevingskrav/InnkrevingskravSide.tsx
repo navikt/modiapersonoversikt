@@ -20,11 +20,12 @@ import { formaterNOK } from '../personside/infotabs/utbetalinger/utils/utbetalin
 import { $api } from 'src/lib/clients/modiapersonoversikt-api';
 import { ArrowLeftIcon, ArrowRightIcon, GavelIcon, MagnifyingGlassIcon } from '@navikt/aksel-icons';
 import QueryErrorBoundary from 'src/components/QueryErrorBoundary';
-import { camelCaseTilSpaced, formaterDato } from 'src/utils/string-utils';
+import { formaterDato } from 'src/utils/string-utils';
 import { paths } from 'src/generated/modiapersonoversikt-api';
 import { getRouteApi } from '@tanstack/react-router';
 import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
 import IfFeatureToggleOn from 'src/components/featureToggle/IfFeatureToggleOn';
+import { startCase } from 'lodash';
 
 const InfoPoint = ({ label, text }: { label: string; text: string }) => {
     return (
@@ -69,7 +70,7 @@ const InnkrevingsKravDetaljer = ({ kravId }: { kravId: string }) => {
                                 <Table.Body>
                                     {data.posteringer.map((p) => (
                                         <Table.Row key={p.kode}>
-                                            <Table.DataCell>{camelCaseTilSpaced(p.kode)}</Table.DataCell>
+                                            <Table.DataCell>{startCase(p.kode)}</Table.DataCell>
                                             <Table.DataCell>
                                                 {p.opprettetDato ? formaterDato(p.opprettetDato) : '-'}
                                             </Table.DataCell>

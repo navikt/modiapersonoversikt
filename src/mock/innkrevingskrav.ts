@@ -33,9 +33,9 @@ export const mockInnkrevingsKrav = (kravId: string): Innkrevingskrav => {
 };
 
 const getMockKravLinje = (): Innkrevingskrav['posteringer'][0] => {
-    const koder = ['hovedstol', 'rentetilleggVedTilbakekrevingAvFeilutbetalingerFraNAV'];
+    faker.seed();
     return {
-        kode: koder[Math.floor(Math.random() * koder.length)],
+        kode: faker.lorem.words({ min: 1, max: 5 }),
         beskrivelse: faker.helpers.arrayElement(['kravLinje', 'renter']),
         opprinneligBelop: Number(faker.commerce.price()),
         gjenstaendeBelop: Number(faker.commerce.price()),
