@@ -25,6 +25,7 @@ import { paths } from 'src/generated/modiapersonoversikt-api';
 import { getRouteApi } from '@tanstack/react-router';
 import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
 import IfFeatureToggleOn from 'src/components/featureToggle/IfFeatureToggleOn';
+import { startCase } from 'lodash';
 
 const InfoPoint = ({ label, text }: { label: string; text: string }) => {
     return (
@@ -69,7 +70,7 @@ const InnkrevingsKravDetaljer = ({ kravId }: { kravId: string }) => {
                                 <Table.Body>
                                     {data.posteringer.map((p) => (
                                         <Table.Row key={p.kode}>
-                                            <Table.DataCell>{p.kode}</Table.DataCell>
+                                            <Table.DataCell>{startCase(p.kode)}</Table.DataCell>
                                             <Table.DataCell>
                                                 {p.opprettetDato ? formaterDato(p.opprettetDato) : '-'}
                                             </Table.DataCell>
