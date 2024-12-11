@@ -55,6 +55,7 @@ function Feilmelding(props: { status: DialogPanelStatus; errors?: Error[] }) {
 
     if (props.errors) {
         props.errors.map((error) => {
+            //biome-ignore lint/correctness/useJsxKeyInIterable: biome migration
             return <AlertStripeFeil>{error.message}</AlertStripeFeil>;
         });
     }

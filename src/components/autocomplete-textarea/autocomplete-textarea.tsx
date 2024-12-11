@@ -257,6 +257,7 @@ function noAriaTellerTekst(antallTegn: number, maxLength: number) {
 function asChangeEvent<T>(event: React.KeyboardEvent<T>): React.ChangeEvent<T> {
     if (event.target && event.target === event.currentTarget) {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-explicit-any
+        //biome-ignore lint/suspicious/noExplicitAny: biome migration
         return event as any;
     }
     throw new Error('Not equals at all');

@@ -46,6 +46,7 @@ function VisittkortVisning(props: Props) {
                 beskjed={`Visittkortet ble ${erApen ? 'åpnet' : 'lukket'}`}
                 dontShowOnFirstRender={true}
             />
+            {/*biome-ignore lint/a11y/useSemanticElements: biome migration*/}
             <article role="region" aria-label="Visittkort" aria-expanded={erApen}>
                 <VisittkortHeader persondata={props.persondata} erApen={erApen} toggleApen={toggleApen} />
                 <SikkerhetstiltakModal sikkerhetstiltak={props.persondata.person.sikkerhetstiltak} />

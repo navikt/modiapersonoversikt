@@ -37,6 +37,7 @@ export function useSendtMelding(opprettetTraad: Traad | undefined): SendtMelding
                     }
                 }
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                //biome-ignore lint/suspicious/noExplicitAny: biome migration
             } catch (e: any) {
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
                 loggError(e, 'Kunne ikke finne sendt melding', { traader: JSON.stringify(traaderResource.data) });

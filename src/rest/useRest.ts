@@ -5,13 +5,13 @@ type ReactElement = React.ReactElement | null;
 
 interface Config<T> {
     ifPending: ReactElement | (() => ReactElement);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    //biome-ignore lint/suspicious/noExplicitAny: biome migration
     ifError: ReactElement | ((error: any) => ReactElement);
     ifData: (data: T) => ReactElement;
 }
 
 export type RendererOrConfig<T> = ((data: T) => ReactElement) | (Partial<Config<T>> & Pick<Config<T>, 'ifData'>);
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+//biome-ignore lint/suspicious/noExplicitAny: biome migration
 export type DefaultConfig = Omit<Config<any>, 'ifData'>;
 
 export function applyDefaults<T>(defaults: DefaultConfig, renderer: RendererOrConfig<T>): Config<T> {

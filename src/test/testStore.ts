@@ -39,6 +39,7 @@ export function getTestStore(): Store<AppState> {
     const aremarkFnr = aremark.personIdent;
 
     // eslint-disable-next-line
+    //biome-ignore lint/suspicious/noExplicitAny: biome migration
     const dispatch = testStore.dispatch as Dispatch<any>;
     dispatch(setGjeldendeBrukerIRedux(aremarkFnr));
 

@@ -20,6 +20,7 @@ if (!storage.getItem(storageKey)) {
         ])
     );
 }
+//biome-ignore lint/style/noNonNullAssertion: biome migration
 let drafts = JSON.parse(storage.getItem('modiapersonoversikt-drafts-mock')!) as Draft[];
 
 function matchContext(context: DraftContext, other: DraftContext, exact = true): boolean {

@@ -32,6 +32,7 @@ if (import.meta.env.VITE_MOCK_ENABLED === 'true') {
 }
 
 const container = document.getElementById('root');
+//biome-ignore lint/style/noNonNullAssertion: biome migration
 const root = createRoot(container!);
 
 root.render(

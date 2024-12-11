@@ -44,6 +44,7 @@ function Temavelger(props: Props) {
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-assignment
+                //biome-ignore lint/suspicious/noAssignInExpressions: biome migration
                 selectRef={(ref) => (selectRef = ref)}
                 label="Tema"
                 onChange={velgTemaHandler}

@@ -128,6 +128,7 @@ function VisittkortBody({ persondata }: Props) {
 
     return (
         <ErrorBoundary>
+            {/*biome-ignore lint/a11y/useSemanticElements: biome migration*/}
             <VisittkortBodyWrapper role="region" aria-label="Visittkortdetaljer">
                 <VisuallyHiddenAutoFokusHeader tittel="Visittkortdetaljer" />
                 {columnLayOut}

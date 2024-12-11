@@ -1,5 +1,6 @@
 export default function Mann(props) {
     return (
+        //biome-ignore lint/a11y/noSvgWithoutTitle: biome migration
         <svg
             alt="Mann"
             aria-label="Mann"

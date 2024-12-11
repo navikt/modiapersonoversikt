@@ -43,7 +43,7 @@ function usePrinter(): Printer {
                 <>
                     {props.children}
                     {print && <SkulAppVedPrint />}
-                    {print && createPortal(<PrinterMedHeader children={props.children} />, document.body)}
+                    {print && createPortal(<PrinterMedHeader>{props.children}</PrinterMedHeader>, document.body)}
                 </>
             );
         },

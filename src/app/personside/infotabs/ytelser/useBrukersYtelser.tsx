@@ -40,6 +40,7 @@ const tiltakspengerPlaceholder = {
 
 type Placeholder = { returnOnForbidden: string; returnOnError: string; returnOnNotFound: string };
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
+//biome-ignore lint/suspicious/noExplicitAny: biome migration
 function placeholder(resource: UseQueryResult<any, FetchError>, tekster: Placeholder) {
     if (!resource.isError) {
         return null;

@@ -16,18 +16,19 @@ interface Props {
 }
 
 const StyledEtikketter = styled.section`
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    > * {
-        margin: 6px 0 0 6px;
-        white-space: nowrap;
-    }
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  > * {
+    margin: 6px 0 0 6px;
+    white-space: nowrap;
+  }
 `;
 
 function Etiketter({ person }: Props) {
     return (
         <ErrorBoundary boundaryName="Etiketter">
+            {/*biome-ignore lint/a11y/useSemanticElements: biome migration*/}
             <StyledEtikketter role="region" aria-label="etiketter">
                 <DiskresjonskodeEtikett adressebeskyttelser={person.adressebeskyttelse} />
                 <EgenAnsattEtikett erEgenansatt={person.erEgenAnsatt} />

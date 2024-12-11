@@ -24,6 +24,7 @@ function byggSokestrengTilNorgTemaOppslag(sakstema: Sakstema) {
         if (acc.includes(tema)) {
             return acc;
         }
+        //biome-ignore lint/performance/noAccumulatingSpread: biome migration
         return [...acc, tema];
     }, []);
     return temaArray.join();

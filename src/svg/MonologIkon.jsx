@@ -1,5 +1,6 @@
 export default function MonologIkon(props) {
     return (
+        //biome-ignore lint/a11y/noSvgWithoutTitle: biome migration
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
             <path
                 fill="#3e3832"

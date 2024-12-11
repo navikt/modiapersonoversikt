@@ -24,6 +24,7 @@ const ViktigÅVite = ({ valgtSakstema, open }: Props) => {
         return <Luft />;
     }
 
+    //biome-ignore lint/suspicious/noImplicitAnyLet: biome migration
     let innhold;
     switch (valgtSakstema.temakode) {
         case 'AAP':

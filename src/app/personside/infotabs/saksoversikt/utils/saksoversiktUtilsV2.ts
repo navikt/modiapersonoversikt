@@ -86,6 +86,7 @@ function aggregerSakstemaGenerisk<T>(
     getGeneriskElement: (saksTema: SakstemaSoknadsstatus) => T[]
 ): T[] {
     return alleSakstema.reduce((acc: T[], sakstema) => {
+        //biome-ignore lint/performance/noAccumulatingSpread: biome migration
         return [...acc, ...getGeneriskElement(sakstema)];
     }, []);
 }
@@ -110,6 +111,7 @@ export function hentDatoForSisteHendelseV2(sakstema: SakstemaSoknadsstatus): Dat
         return hentSenesteDatoForDokumenter(sakstema.dokumentMetadata);
     }
 
+    //biome-ignore lint/style/noNonNullAssertion: biome migration
     const dateSoknadsstatus = saksdatoSomDate(sakstema.soknadsstatus.sistOppdatert!);
     const dateDokumenter = hentSenesteDatoForDokumenter(sakstema.dokumentMetadata);
     return dateSoknadsstatus > dateDokumenter ? dateSoknadsstatus : dateDokumenter;

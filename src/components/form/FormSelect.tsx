@@ -18,6 +18,7 @@ function FormSelect<
 
     return (
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
+        //biome-ignore lint/suspicious/noExplicitAny: biome migration
         <Select selectRef={ref as any} {...input} {...selectProps} feil={error}>
             {children}
         </Select>

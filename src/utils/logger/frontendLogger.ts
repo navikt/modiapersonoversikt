@@ -97,6 +97,7 @@ export function emptyStringToUndefined(valuePairs: ValuePairs) {
 
             return value
                 ? {
+                      //biome-ignore lint/performance/noAccumulatingSpread: biome migration
                       ...acc,
                       [key]: value
                   }

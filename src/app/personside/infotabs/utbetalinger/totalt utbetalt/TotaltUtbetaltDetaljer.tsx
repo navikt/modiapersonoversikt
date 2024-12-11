@@ -29,84 +29,84 @@ interface OwnProps {
 type Props = TotaltUtbetaltProps & OwnProps;
 
 const DetaljerStyle = styled.aside`
-    h2 {
-        margin: 0;
-        padding: ${theme.margin.px20} 0;
+  h2 {
+    margin: 0;
+    padding: ${theme.margin.px20} 0;
+  }
+  th:not(:first-child) {
+    font-weight: normal;
+  }
+  th {
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  tr {
+    display: flex;
+    flex-flow: row wrap;
+    position: relative; /* IE11 */
+    > *:first-child {
+      flex-grow: 1;
+      display: block; /* IE11 */
     }
-    th:not(:first-child) {
-        font-weight: normal;
+    .sumBrutto,
+    .sumNetto,
+    .sumTrekk {
+      position: absolute; /* IE11 */
     }
-    th {
-        text-transform: uppercase;
-        font-weight: 600;
+    .sumBrutto {
+      right: 12rem; /* IE11 */
     }
-    tr {
+    .sumTrekk {
+      right: 6rem; /* IE11 */
+    }
+    .sumNetto {
+      right: 0; /* IE11 */
+    }
+    td.sumNetto {
+      font-weight: 600;
+    }
+    .periodeForYtelse,
+    .ytelseDetaljer {
+      flex-basis: 100%;
+    }
+    .periodeForYtelse {
+      display: block; /* IE11 */
+      text-align: left;
+    }
+    .ytelseDetaljer {
+      display: block; /* IE11 */
+      flex-grow: 1;
+      text-align: right;
+      margin-right: 12rem;
+      dl {
         display: flex;
         flex-flow: row wrap;
-        position: relative; /* IE11 */
-        > *:first-child {
-            flex-grow: 1;
-            display: block; /* IE11 */
+        dt {
+          flex-basis: 50%;
+          flex-grow: 1;
         }
-        .sumBrutto,
-        .sumNetto,
-        .sumTrekk {
-            position: absolute; /* IE11 */
+        dd {
+          padding-left: 1rem;
+          flex-basis: 7rem;
         }
-        .sumBrutto {
-            right: 12rem; /* IE11 */
-        }
-        .sumTrekk {
-            right: 6rem; /* IE11 */
-        }
-        .sumNetto {
-            right: 0; /* IE11 */
-        }
-        td.sumNetto {
-            font-weight: 600;
-        }
-        .periodeForYtelse,
-        .ytelseDetaljer {
-            flex-basis: 100%;
-        }
-        .periodeForYtelse {
-            display: block; /* IE11 */
-            text-align: left;
-        }
-        .ytelseDetaljer {
-            display: block; /* IE11 */
-            flex-grow: 1;
-            text-align: right;
-            margin-right: 12rem;
-            dl {
-                display: flex;
-                flex-flow: row wrap;
-                dt {
-                    flex-basis: 50%;
-                    flex-grow: 1;
-                }
-                dd {
-                    padding-left: 1rem;
-                    flex-basis: 7rem;
-                }
-            }
-        }
+      }
     }
-    tbody tr {
-        margin-top: 0.5rem;
-        > *:nth-last-child(n + 3) {
-            padding-top: 0.5rem;
-            border-top: ${theme.border.skilleSvak};
-        }
+  }
+  tbody tr {
+    margin-top: 0.5rem;
+    > *:nth-last-child(n + 3) {
+      padding-top: 0.5rem;
+      border-top: ${theme.border.skilleSvak};
     }
-    @media print {
-        table {
-            page-break-inside: auto;
-        }
-        tbody {
-            page-break-inside: auto;
-        }
+  }
+  @media print {
+    table {
+      page-break-inside: auto;
     }
+    tbody {
+      page-break-inside: auto;
+    }
+  }
 `;
 
 function getAlleYtelsesKomponenterFraYtelser(ytelser: Ytelse[]) {
@@ -114,6 +114,7 @@ function getAlleYtelsesKomponenterFraYtelser(ytelser: Ytelse[]) {
         if (!ytelse.ytelseskomponentListe) {
             throw new Error('Ytelse mangler ytelseskomponenter');
         }
+        // biome-ignore lint/performance/noAccumulatingSpread: biome migration
         return [...acc, ...ytelse.ytelseskomponentListe];
     }, []);
 }
@@ -187,21 +188,27 @@ function TotaltUtbetaltDetaljer(props: Props) {
                         <table>
                             <thead>
                                 <tr>
+                                    {/*biome-ignore lint/a11y/useSemanticElements: biome migration*/}
                                     <th role="columnheader" scope="col">
                                         Ytelse
                                     </th>
+                                    {/*biome-ignore lint/a11y/useSemanticElements: biome migration*/}
                                     <th role="columnheader" scope="col" className="sumBrutto">
                                         Brutto
                                     </th>
+                                    {/*biome-ignore lint/a11y/useSemanticElements: biome migration*/}
                                     <th role="columnheader" scope="col" className="sumTrekk">
                                         Trekk
                                     </th>
+                                    {/*biome-ignore lint/a11y/useSemanticElements: biome migration*/}
                                     <th role="columnheader" scope="col" className="sumNetto">
                                         Utbetalt
                                     </th>
+                                    {/*biome-ignore lint/a11y/useSemanticElements: biome migration*/}
                                     <th role="columnheader" scope="col" className="visually-hidden">
                                         Periode
                                     </th>
+                                    {/*biome-ignore lint/a11y/useSemanticElements: biome migration*/}
                                     <th role="columnheader" scope="col" className="visually-hidden">
                                         Detaljer
                                     </th>

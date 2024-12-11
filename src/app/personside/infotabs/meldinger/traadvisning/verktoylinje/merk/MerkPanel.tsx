@@ -47,8 +47,8 @@ enum MerkOperasjon {
 }
 
 const KnappStyle = styled.div`
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const MERK_FEILSENDT_URL = `${apiBaseUri}/dialogmerking/feilsendt`;
@@ -123,7 +123,7 @@ function MerkPanel(props: Props) {
     useFocusOnFirstFocusable(formRef);
 
     const melding = eldsteMelding(valgtTraad);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // biome-ignore lint/suspicious/noExplicitAny: old types
     const merkPost = (url: string, object: any, name: string) => {
         setSubmitting(true);
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument

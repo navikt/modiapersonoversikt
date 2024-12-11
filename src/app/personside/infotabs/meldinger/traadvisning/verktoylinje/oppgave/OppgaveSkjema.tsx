@@ -24,34 +24,34 @@ import { resolverOppgaveSkjema } from './oppgaveSkjemaUtils';
 import { useNormalPrioritet } from './useNormalPrioritet';
 
 export const AlertStyling = styled.div`
-    > * {
-        margin-top: 1rem;
-    }
+  > * {
+    margin-top: 1rem;
+  }
 `;
 
 const SkjemaStyle = styled.div`
-    padding-top: 1rem;
-    .inputPanelGruppe__inner {
-        display: flex;
-        > * {
-            flex-grow: 1;
-        }
+  padding-top: 1rem;
+  .inputPanelGruppe__inner {
+    display: flex;
+    > * {
+      flex-grow: 1;
     }
-    label {
-        font-weight: 600;
-        margin-bottom: 0.1rem;
-    }
-    .skjemaelement {
-        margin-bottom: 0.7rem;
-    }
+  }
+  label {
+    font-weight: 600;
+    margin-bottom: 0.1rem;
+  }
+  .skjemaelement {
+    margin-bottom: 0.7rem;
+  }
 `;
 
 const KnappStyle = styled.div`
-    display: flex;
-    justify-content: space-between;
-    button {
-        margin: 0;
-    }
+  display: flex;
+  justify-content: space-between;
+  button {
+    margin: 0;
+  }
 `;
 
 function OppgaveSkjema(props: OppgaveProps) {
@@ -66,7 +66,7 @@ function OppgaveSkjema(props: OppgaveProps) {
 
     const valgtTema = useNormalPrioritet(props.gsakTema, form);
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    //biome-ignore lint/suspicious/noExplicitAny: init biome
     function submitHandler(values: OppgaveSkjemaForm): Promise<any> {
         const request = lagOppgaveRequest(
             values,

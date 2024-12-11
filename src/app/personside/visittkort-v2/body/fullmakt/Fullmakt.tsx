@@ -84,6 +84,7 @@ const FullmaktTilgangerTabell = ({ omraader }: { omraader: OmraadeMedHandling<st
                     const kommuniser = o.handling.find((h) => h === Handling.KOMMUNISER);
                     const skriv = o.handling.find((h) => h === Handling.SKRIV);
                     return (
+                        //biome-ignore lint/correctness/useJsxKeyInIterable: biome migration
                         <Table.Row>
                             <Table.DataCell>{o.omraade.beskrivelse}</Table.DataCell>
                             <Table.DataCell>{les && <GlassesIcon title="Lese/innsyn" />}</Table.DataCell>

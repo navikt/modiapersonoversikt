@@ -60,6 +60,7 @@ function PersonSokInput() {
     });
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    //biome-ignore lint/suspicious/noExplicitAny: biome migration
     function submit(values: PersonSokForm): Promise<any> {
         settAktivBruker(values.fødselsnummer);
         return Promise.resolve();

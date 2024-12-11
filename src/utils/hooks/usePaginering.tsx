@@ -97,6 +97,7 @@ function usePaginering<T>(
             <Select
                 value={currentPage}
                 // @ts-expect-error dårlig typing
+                //biome-ignore lint/suspicious/noAssignInExpressions: biome migration
                 selectRef={(ref) => (selectRef.current = ref)} //eslint-disable-line
                 label="Velg paginering"
                 onChange={(e) => setCurrentPage(Number.parseInt(e.target.value))}

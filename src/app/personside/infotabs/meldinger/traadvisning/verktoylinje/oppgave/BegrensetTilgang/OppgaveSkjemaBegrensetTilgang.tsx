@@ -17,27 +17,27 @@ import { resolverOppgaveSkjemaBegrensetTilgang } from '../oppgaveSkjemaUtils';
 import { useNormalPrioritet } from '../useNormalPrioritet';
 
 const SkjemaStyle = styled.div`
-    padding-top: 1rem;
-    label {
-        margin-bottom: 0.1rem;
-    }
-    .skjemaelement {
-        margin-bottom: 0.7rem;
-    }
+  padding-top: 1rem;
+  label {
+    margin-bottom: 0.1rem;
+  }
+  .skjemaelement {
+    margin-bottom: 0.7rem;
+  }
 `;
 
 const KnappStyle = styled.div`
-    display: flex;
-    justify-content: space-between;
-    button {
-        margin: 0;
-    }
+  display: flex;
+  justify-content: space-between;
+  button {
+    margin: 0;
+  }
 `;
 
 const AlertStyling = styled.div`
-    > * {
-        margin-top: 1rem;
-    }
+  > * {
+    margin-top: 1rem;
+  }
 `;
 
 function OppgaveSkjemaBegrensetTilgang(props: SkjermetOppgaveProps) {
@@ -52,7 +52,7 @@ function OppgaveSkjemaBegrensetTilgang(props: SkjermetOppgaveProps) {
 
     const valgtTema = useNormalPrioritet(props.gsakTema, form);
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // biome-ignore lint/suspicious/noExplicitAny: Old types
     function submitHandler(values: OppgaveSkjemaBegrensetTilgangForm): Promise<any> {
         const request = lagSkjermetOppgaveRequest(values, valgtBrukersFnr, saksbehandlersEnhet || '');
         return post(`${apiBaseUri}/dialogoppgave/v2/opprettskjermetoppgave`, request, 'OpprettOppgaveSkjermetPerson')

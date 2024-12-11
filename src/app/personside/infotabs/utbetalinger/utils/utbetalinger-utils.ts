@@ -35,7 +35,10 @@ export const toIsoDateString = (date: Dayjs) => date.format(ISO_DATE_FORMAT);
 export const getFraDateFromPeriod = (periodeValg: PeriodeValg): FraTilDato => {
     switch (periodeValg) {
         case PeriodeValg.INNEVERENDE_AR:
-            return { fra: toIsoDateString(dayjs().startOf('year')), til: toIsoDateString(dayjs().endOf('year')) };
+            return {
+                fra: toIsoDateString(dayjs().startOf('year')),
+                til: toIsoDateString(dayjs().endOf('year'))
+            };
         case PeriodeValg.I_FJOR:
             return {
                 fra: toIsoDateString(dayjs().subtract(1, 'year').startOf('year')),
@@ -152,6 +155,7 @@ export function flatMapYtelser(utbetalinger?: Utbetaling[]): Ytelse[] {
             if (!utbetaling.ytelser) {
                 throw new Error('"ytelser" er ikke definert på utbetaling');
             }
+            //biome-ignore lint/performance/noAccumulatingSpread: biome migration
             return [...acc, ...utbetaling.ytelser];
         }, []);
         return ytelser;
@@ -187,6 +191,7 @@ export function reduceUtbetlingerTilYtelser(utbetalinger: Utbetaling[]): Ytelse[
         if (!utbetaling.ytelser) {
             throw new Error('Utbetaling mangler ytelser');
         }
+        //biome-ignore lint/performance/noAccumulatingSpread: biome migration
         return [...acc, ...utbetaling.ytelser];
     }, []);
 }

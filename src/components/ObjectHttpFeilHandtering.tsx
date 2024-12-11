@@ -49,5 +49,7 @@ export function ObjectHttpFeilHandtering({ url, fnr, onError, children, ...rest 
         return <>{children}</>;
     }
 
+    //biome-ignore lint/correctness/noChildrenProp: biome migration
+    //biome-ignore lint/a11y/useAltText: biome migration
     return <object data={blobUrl} children={children} {...rest} type={contentType} />;
 }

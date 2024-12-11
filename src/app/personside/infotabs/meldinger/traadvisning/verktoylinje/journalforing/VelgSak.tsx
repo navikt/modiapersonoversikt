@@ -15,29 +15,27 @@ import {
 import TemaTable from './TemaTabell';
 
 const Form = styled.form`
-    display: flex;
-    > * {
-        margin: 0;
-    }
-    > *:not(:last-child) {
-        margin-right: 1rem;
-    }
+  display: flex;
+  > * {
+    margin: 0;
+  }
+  > *:not(:last-child) {
+    margin-right: 1rem;
+  }
 `;
 
 const MiniRadio = styled(Radio)`
-    .radioknapp + label {
-        cline-height: 1.25rem;
-        &:before {
-            height: 1.25rem;
-            width: 1.25rem;
-        }
+  .radioknapp + label {
+    cline-height: 1.25rem;
+    &:before {
+      height: 1.25rem;
+      width: 1.25rem;
     }
+  }
 `;
 
 function SakgruppeRadio(props: FieldState & RadioProps & { label: SakKategori }) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { input, setValue, isPristine, ...rest } = props;
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
     return <MiniRadio onChange={input.onChange} checked={input.value === props.label} {...rest} />;
 }
 
@@ -48,7 +46,10 @@ interface Props {
 }
 
 export function fordelSaker(saker: JournalforingsSak[]): Kategorier {
-    const kategoriGruppert = saker.reduce(groupBy(sakKategori), { [SakKategori.FAG]: [], [SakKategori.GEN]: [] });
+    const kategoriGruppert = saker.reduce(groupBy(sakKategori), {
+        [SakKategori.FAG]: [],
+        [SakKategori.GEN]: []
+    });
 
     const temaGruppertefagSaker: Group<JournalforingsSak> = kategoriGruppert[SakKategori.FAG].reduce(
         groupBy((sak) => sak.temaNavn),
@@ -60,9 +61,11 @@ export function fordelSaker(saker: JournalforingsSak[]): Kategorier {
     );
 
     const fagSaker = Object.entries(temaGruppertefagSaker)
+        //biome-ignore lint/performance/noAccumulatingSpread: biome migration
         .reduce((acc, [tema, saker]) => [...acc, { tema, saker }], [] as Tema[])
         .toSorted((a, b) => a.tema.localeCompare(b.tema));
     const generelleSaker = Object.entries(temaGrupperteGenerelleSaker)
+        //biome-ignore lint/performance/noAccumulatingSpread: biome migration
         .reduce((acc, [tema, saker]) => [...acc, { tema, saker }], [] as Tema[])
         .toSorted((a, b) => a.tema.localeCompare(b.tema));
     return {

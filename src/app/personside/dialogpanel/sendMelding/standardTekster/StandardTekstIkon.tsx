@@ -3,6 +3,7 @@ import type * as React from 'react';
 type Props = React.SVGProps<SVGSVGElement>;
 function StandTekstIkon(props: Props) {
     return (
+        //biome-ignore lint/a11y/noSvgWithoutTitle: biome migration
         <svg
             xmlns="http://www.w3.org/2000/svg"
             preserveAspectRatio="xMidYMid meet"

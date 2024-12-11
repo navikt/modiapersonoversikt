@@ -60,6 +60,7 @@ function TekstFelt(props: Props) {
                     value={props.tekst}
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-ignore
+                    //biome-ignore lint/suspicious/noAssignInExpressions: biome migration
                     textareaRef={(ref) => (textareaRef.current = ref)}
                     onChange={(e) => props.updateTekst(e.currentTarget.value)}
                     label={'Melding'}

@@ -8,35 +8,35 @@ interface StyleProps {
 }
 
 export const KnappWrapper = styled.button<StyleProps>`
-    width: ${(props) => props.width || '10%'};
-    height: ${(props) => props.width || '10%'};
-    border: none;
-    padding: 0;
-    border-radius: 0.5em;
-    cursor: pointer;
-    background-color: transparent;
-    &:hover {
-        background-color: #3e3832;
-        svg,
-        g {
-            stroke: white;
-        }
-    }
-    &:active {
-        opacity: 0.8;
-    }
-    &:focus {
-        ${theme.focus}
-    }
+  width: ${(props) => props.width || '10%'};
+  height: ${(props) => props.width || '10%'};
+  border: none;
+  padding: 0;
+  border-radius: 0.5em;
+  cursor: pointer;
+  background-color: transparent;
+  &:hover {
+    background-color: #3e3832;
     svg,
     g {
-        stroke: #3e3832;
-        stroke-width: 0.4;
-        fill: none;
-        stroke-linecap: round;
+      stroke: white;
     }
-    transition: transform 0.5s;
-    transform: rotate(${(props) => getDirection(props.direction)});
+  }
+  &:active {
+    opacity: 0.8;
+  }
+  &:focus {
+    ${theme.focus}
+  }
+  svg,
+  g {
+    stroke: #3e3832;
+    stroke-width: 0.4;
+    fill: none;
+    stroke-linecap: round;
+  }
+  transition: transform 0.5s;
+  transform: rotate(${(props) => getDirection(props.direction)});
 `;
 
 function getDirection(direction: string | undefined) {
@@ -69,6 +69,7 @@ function PilKnapp(props: Props) {
             width={props.width}
             direction={props.direction}
         >
+            {/*biome-ignore lint/a11y/noSvgWithoutTitle: biome migration*/}
             <svg viewBox="-1 -1 5 5">
                 <path d="M0,0 L1,1.5 L0,3" />
                 <path d="M2,0 L3,1.5 L2,3" />

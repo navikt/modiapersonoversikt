@@ -2,6 +2,7 @@ import type * as React from 'react';
 
 const CompletedIcon: React.FC = () => {
     return (
+        //biome-ignore lint/a11y/noSvgWithoutTitle: biome migration
         <svg
             width="1.5em"
             height="1.5em"

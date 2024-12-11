@@ -7,9 +7,14 @@ type TableCell = string | number | undefined | ReactNode;
 export type TableRow = Array<TableCell>;
 export type TableRows = TableRow[];
 
-export type TableProps = { tittelRekke: TitleRow; rows: TableRows; rowsOnClickHandlers?: Array<MouseEventHandler> };
+export type TableProps = {
+    tittelRekke: TitleRow;
+    rows: TableRows;
+    rowsOnClickHandlers?: Array<MouseEventHandler>;
+};
 
 export function Table({ tittelRekke, rows, rowsOnClickHandlers }: TableProps) {
+    //biome-ignore lint/complexity/noForEach: biome migration
     rows.forEach((row: TableRow) => {
         if (row.length !== tittelRekke.length) {
             loggError(new Error('Ulik lengde på tittelRekke og innholdsrekke, dette bør du nok se på'));
@@ -26,6 +31,7 @@ export function Table({ tittelRekke, rows, rowsOnClickHandlers }: TableProps) {
                 {/*biome-ignore lint/a11y: biome migration*/}
                 <tr role="row">
                     {tittelRekke.map((tittel: TitleCell, index: number) => (
+                        /*biome-ignore lint/a11y/useSemanticElements lint/suspicious/noArrayIndexKey: biome migration*/
                         <th role="columnheader" key={index}>
                             {tittel}
                         </th>

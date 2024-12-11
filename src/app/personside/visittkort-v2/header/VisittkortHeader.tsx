@@ -92,6 +92,7 @@ function VisittkortHeader(props: Props) {
     const navn = person.navn.firstOrNull();
 
     return (
+        //biome-ignore lint/a11y/useSemanticElements: biome migration
         <VisittkortHeaderDiv role="region" aria-label="Visittkort-hode" onClick={props.toggleApen}>
             <StyledContent>
                 <VenstreFelt>

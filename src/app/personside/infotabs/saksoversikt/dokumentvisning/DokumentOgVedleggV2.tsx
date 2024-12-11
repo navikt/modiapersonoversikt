@@ -87,6 +87,7 @@ function DokumentOgVedlegg(props: Props) {
     const aggregertSak = aggregertSakstemaV2(alleSakstema, props.valgteSakstemaer);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    //biome-ignore lint/suspicious/noExplicitAny: biome migration
     const handleTabChange = (_: any, index: number) =>
         navigate({
             to: fullscreen ? '/saker' : '/person/saker',

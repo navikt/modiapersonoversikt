@@ -16,6 +16,7 @@ export function getSisteVedtakForPleiepengerettighet(pleiepenger: Pleiepengerett
 
 export function getAlleArbiedsforholdSortert(pleiepenger: Pleiepengerettighet): Arbeidsforhold[] {
     const arbeidsforhold = pleiepenger.perioder.reduce(
+        //biome-ignore lint/performance/noAccumulatingSpread: biome migration
         (acc: Arbeidsforhold[], periode) => [...acc, ...periode.arbeidsforhold],
         []
     );

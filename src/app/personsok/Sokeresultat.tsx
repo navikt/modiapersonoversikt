@@ -1,4 +1,4 @@
-import { default as React, useRef } from 'react';
+import { useRef } from 'react';
 import type { PersonsokResponse } from '../../models/person/personsok';
 import { useFocusOnMount, useSettAktivBruker } from '../../utils/customHooks';
 import { ClickableTable } from '../../utils/table/ClickableTable';
@@ -25,10 +25,10 @@ function Sokeresultat(props: Props) {
 
     const tableEntries = props.response.map((linje) => {
         const entries = [
-            <IdentCelle ident={linje.ident} />,
-            <NavnCelle navn={linje.navn} status={linje.status} />,
-            <AdresseCelle response={linje} />,
-            <BostedCelle brukerinfo={linje.brukerinfo} />
+            <IdentCelle ident={linje.ident} key={linje.ident.ident} />,
+            <NavnCelle navn={linje.navn} status={linje.status} key={linje.ident.ident} />,
+            <AdresseCelle response={linje} key={linje.ident.ident} />,
+            <BostedCelle brukerinfo={linje.brukerinfo} key={linje.ident.ident} />
         ];
         if (trengerUtenlandskIDKolonne) {
             entries.push(<UtenlandskIDCelle utenlandskID={linje.utenlandskID} />);

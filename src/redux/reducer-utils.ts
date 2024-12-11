@@ -31,11 +31,11 @@ function resettable<S>(reducer: Reducer<S>): Reducer<S> {
     };
 }
 export function combineResettableReducers<S>(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    //biome-ignore lint/suspicious/noExplicitAny: biome migration
     reducers: ReducersMapObject<S, any>,
     useCache: Array<Keyof<S>> = []
 ): Reducer<CombinedState<S>> {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    //biome-ignore lint/suspicious/noExplicitAny: biome migration
     const mappedReducers = entries<ReducersMapObject<S, any>>(reducers)
         .map(([reducerName, reducerFn]) => {
             if (useCache.includes(reducerName as Keyof<S>)) {
@@ -43,9 +43,15 @@ export function combineResettableReducers<S>(
             }
             return [reducerName, resettable(reducerFn)];
         })
-        // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-        .reduce((acc, [reducerName, reducerFn]) => ({ ...acc, [`${reducerName}`]: reducerFn }), {});
+        .reduce(
+            (acc, [reducerName, reducerFn]) => ({
+                //biome-ignore lint/performance/noAccumulatingSpread: biome migration
+                ...acc,
+                [`${reducerName}`]: reducerFn
+            }),
+            {}
+        );
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    //biome-ignore lint/suspicious/noExplicitAny: biome migration
     return combineReducers<S>(mappedReducers as ReducersMapObject<S, any>);
 }

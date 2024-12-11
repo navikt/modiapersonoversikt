@@ -160,6 +160,7 @@ function TraadListe(props: Props) {
                                 ((ref: HTMLInputElement) => {
                                     inputRef.current = ref;
                                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                    //biome-ignore lint/suspicious/noExplicitAny: biome migration
                                 }) as any
                             }
                             value={meldingsok.query}

@@ -55,6 +55,7 @@ export function lagOppgaveRequest(
         underkategoriKode: form.valgtUnderkategori && form.valgtUnderkategori,
         oppgaveTypeKode: valgtOppgaveType ? valgtOppgaveType.kode : 'UKJENT',
         prioritetKode: form.valgtPrioritet,
+        //biome-ignore lint/style/noNonNullAssertion: biome migration
         ansvarligEnhetId: valgtEnhet!
     };
 }

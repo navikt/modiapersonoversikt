@@ -44,6 +44,7 @@ const meldingerHandler = http.post(
 );
 
 function simulateSf(trader: Traad[]): Traad[] {
+    //biome-ignore lint/complexity/noForEach: biome migration
     trader.forEach((trad: Traad) => {
         trad.meldinger.forEach((melding: Melding, index: number) => {
             melding.id = `trad-${guid()}`; // Denne informasjonen får vi ikke, og autogenereres derfor på backend

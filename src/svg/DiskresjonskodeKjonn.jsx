@@ -1,5 +1,6 @@
 export default function DiskresjonskodeKjonn(props) {
     return (
+        //biome-ignore lint/a11y/noSvgWithoutTitle: biome migration
         <svg
             alt="Kjønn skjult av diskresjonskode"
             aria-label="Kjønn skjult av diskresjonskode"

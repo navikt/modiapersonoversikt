@@ -1,6 +1,7 @@
 import { TraadType } from '../../../../models/meldinger/meldinger';
 import { type SendNyMeldingState, tekstMaksLengde } from './SendNyMelding';
 
+//biome-ignore lint/complexity/noStaticOnlyClass: biome migration
 export class MeldingValidator {
     public static tekst(state: SendNyMeldingState) {
         return (

@@ -188,6 +188,7 @@ function lagJournalpost(): MeldingJournalpost {
         journalfortTema: tema,
         journalfortTemanavn: temaMap[tema],
         journalfortAv: {
+            //biome-ignore lint/style/noNonNullAssertion: biome migration
             ident: saksbehandler.ident!,
             navn: `${saksbehandler.fornavn} ${saksbehandler.etternavn}`
         }

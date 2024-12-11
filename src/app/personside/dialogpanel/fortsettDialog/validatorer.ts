@@ -2,6 +2,7 @@ import { TraadType } from '../../../../models/meldinger/meldinger';
 import { tekstMaksLengde } from '../sendMelding/SendNyMelding';
 import type { FortsettDialogState } from './FortsettDialogTypes';
 
+//biome-ignore lint/complexity/noStaticOnlyClass: biome migration
 export class FortsettDialogValidator {
     public static tekst(state: FortsettDialogState) {
         return (

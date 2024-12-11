@@ -34,6 +34,7 @@ export function fjernEntriesUtenVerdi(entries: DescriptionListEntries): Descript
             return acc;
         }
         return {
+            //biome-ignore lint/performance/noAccumulatingSpread: biome migration
             ...acc,
             [key]: entries[key]
         };
