@@ -1,27 +1,27 @@
-import { FormEvent, ReactNode, useEffect, useRef, useState } from 'react';
+import TagInput from '@navikt/tag-input';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import Hjelpetekst from 'nav-frontend-hjelpetekst';
+import { guid } from 'nav-frontend-js-utils';
+import { PopoverOrientering } from 'nav-frontend-popover';
+import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
+import { type FormEvent, type ReactNode, useEffect, useRef, useState } from 'react';
 import * as React from 'react';
 import styled from 'styled-components';
-import TagInput from '@navikt/tag-input';
-import { guid } from 'nav-frontend-js-utils';
-import Hjelpetekst from 'nav-frontend-hjelpetekst';
-import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
-import { PopoverOrientering } from 'nav-frontend-popover';
-import useFieldState, { FieldState } from '../../../../../utils/hooks/use-field-state';
-import { erGyldigValg, sokEtterTekster, rapporterBruk } from './sokUtils';
-import useDebounce from '../../../../../utils/hooks/use-debounce';
-import StandardTekstValg from './velgTekst/StandardTekstValg';
-import * as StandardTeksterModels from './domain';
+import AriaNotification from '../../../../../components/AriaNotification';
+import LazySpinner from '../../../../../components/LazySpinner';
+import persondataResource from '../../../../../rest/resources/persondataResource';
+import saksbehandlersEnheter from '../../../../../rest/resources/saksbehandlersEnheterResource';
+import skrivestotteResource from '../../../../../rest/resources/skrivestotteResource';
 import theme from '../../../../../styles/personOversiktTheme';
+import { usePrevious } from '../../../../../utils/customHooks';
+import useDebounce from '../../../../../utils/hooks/use-debounce';
+import useFieldState, { type FieldState } from '../../../../../utils/hooks/use-field-state';
 import useHotkey from '../../../../../utils/hooks/use-hotkey';
 import { cyclicClamp } from '../../../../../utils/math';
-import { autofullfor, AutofullforData, byggAutofullforMap, useAutoFullforData } from '../autofullforUtils';
-import LazySpinner from '../../../../../components/LazySpinner';
-import AriaNotification from '../../../../../components/AriaNotification';
-import { usePrevious } from '../../../../../utils/customHooks';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
-import saksbehandlersEnheter from '../../../../../rest/resources/saksbehandlersEnheterResource';
-import persondataResource from '../../../../../rest/resources/persondataResource';
-import skrivestotteResource from '../../../../../rest/resources/skrivestotteResource';
+import { type AutofullforData, autofullfor, byggAutofullforMap, useAutoFullforData } from '../autofullforUtils';
+import type * as StandardTeksterModels from './domain';
+import { erGyldigValg, rapporterBruk, sokEtterTekster } from './sokUtils';
+import StandardTekstValg from './velgTekst/StandardTekstValg';
 
 interface Props {
     sokefelt: FieldState;
@@ -186,7 +186,8 @@ function StandardTekster(props: Props) {
 
     if (persondata.isLoading || enheterResource.isLoading) {
         return <LazySpinner type={'M'} />;
-    } else if (persondata.isError || enheterResource.isError) {
+    }
+    if (persondata.isError || enheterResource.isError) {
         return <AlertStripeAdvarsel>Feil ved lasting av data</AlertStripeAdvarsel>;
     }
 

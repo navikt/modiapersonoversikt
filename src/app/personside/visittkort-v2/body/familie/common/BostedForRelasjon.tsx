@@ -1,4 +1,4 @@
-import { ForelderBarnRelasjon } from '../../../PersondataDomain';
+import type { ForelderBarnRelasjon } from '../../../PersondataDomain';
 import { erDod } from '../../../visittkort-utils';
 
 interface Props {
@@ -8,11 +8,11 @@ interface Props {
 function BostedForRelasjon({ relasjon }: Props) {
     if (erDod(relasjon.dodsdato)) {
         return null;
-    } else if (relasjon.harSammeAdresse) {
-        return <>Bor med bruker</>;
-    } else {
-        return <>Bor ikke med bruker</>;
     }
+    if (relasjon.harSammeAdresse) {
+        return <>Bor med bruker</>;
+    }
+    return <>Bor ikke med bruker</>;
 }
 
 export default BostedForRelasjon;

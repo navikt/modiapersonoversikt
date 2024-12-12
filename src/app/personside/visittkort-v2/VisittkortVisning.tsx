@@ -1,16 +1,16 @@
-import { useRef, useEffect } from 'react';
-import { Data as Persondata, InformasjonElement } from './PersondataDomain';
-import AriaNotification from '../../../components/AriaNotification';
+import { useEffect, useRef } from 'react';
 import { UnmountClosed } from 'react-collapse';
-import VisittkortBody from './body/VisittkortBody';
-import VisittkortHeader from './header/VisittkortHeader';
-import useHotkey from '../../../utils/hooks/use-hotkey';
-import useUrlNyPersonforvalter from '../../brukerprofil/useUrlNyPersonforvalter';
-import SikkerhetstiltakModal from './header/SikkerhetstiltakModal';
-import EgenAnsattFeilendeSystemModal from './header/EgenAnsattFeilendeSystemModal';
-import { harFeilendeSystemer } from './harFeilendeSystemer';
+import AriaNotification from '../../../components/AriaNotification';
 import { useVisittkortState } from '../../../context/visittkort-state';
 import { trackAccordionClosed, trackAccordionOpened } from '../../../utils/amplitude';
+import useHotkey from '../../../utils/hooks/use-hotkey';
+import useUrlNyPersonforvalter from '../../brukerprofil/useUrlNyPersonforvalter';
+import { InformasjonElement, type Data as Persondata } from './PersondataDomain';
+import VisittkortBody from './body/VisittkortBody';
+import { harFeilendeSystemer } from './harFeilendeSystemer';
+import EgenAnsattFeilendeSystemModal from './header/EgenAnsattFeilendeSystemModal';
+import SikkerhetstiltakModal from './header/SikkerhetstiltakModal';
+import VisittkortHeader from './header/VisittkortHeader';
 
 interface Props {
     persondata: Persondata;
@@ -46,6 +46,7 @@ function VisittkortVisning(props: Props) {
                 beskjed={`Visittkortet ble ${erApen ? 'åpnet' : 'lukket'}`}
                 dontShowOnFirstRender={true}
             />
+            {/*biome-ignore lint/a11y/useSemanticElements: biome migration*/}
             <article role="region" aria-label="Visittkort" aria-expanded={erApen}>
                 <VisittkortHeader persondata={props.persondata} erApen={erApen} toggleApen={toggleApen} />
                 <SikkerhetstiltakModal sikkerhetstiltak={props.persondata.person.sikkerhetstiltak} />

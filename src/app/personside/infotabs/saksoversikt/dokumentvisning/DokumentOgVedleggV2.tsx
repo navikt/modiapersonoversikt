@@ -1,22 +1,22 @@
-import { createRef } from 'react';
-import { TabsPure } from 'nav-frontend-tabs';
-import { TabProps } from 'nav-frontend-tabs/lib/tab';
+import { useMatchRoute, useNavigate } from '@tanstack/react-router';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import styled from 'styled-components';
-import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
-import { Undertittel } from 'nav-frontend-typografi';
-import { useFocusOnMount, useFodselsnummer } from '../../../../../utils/customHooks';
-import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { TilbakePil } from '../../../../../components/common-styled-components';
-import DokumentVisning from './SaksDokumentVisning';
-import { getSaksdokumentUrl } from './getSaksdokumentUrl';
 import Panel from 'nav-frontend-paneler';
-import { Dokument, Journalpost } from '../../../../../models/saksoversikt/journalpost';
-import { SakstemaSoknadsstatus } from '../../../../../models/saksoversikt/sakstema';
+import { TabsPure } from 'nav-frontend-tabs';
+import type { TabProps } from 'nav-frontend-tabs/lib/tab';
+import { Undertittel } from 'nav-frontend-typografi';
+import { createRef } from 'react';
+import styled from 'styled-components';
+import ErrorBoundary from '../../../../../components/ErrorBoundary';
+import { TilbakePil } from '../../../../../components/common-styled-components';
+import type { Dokument, Journalpost } from '../../../../../models/saksoversikt/journalpost';
+import type { SakstemaSoknadsstatus } from '../../../../../models/saksoversikt/sakstema';
+import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
+import { useFocusOnMount, useFodselsnummer } from '../../../../../utils/customHooks';
 import { useHentAlleSakstemaFraResourceV2 } from '../useSakstemaURLState';
 import { aggregertSakstemaV2 } from '../utils/saksoversiktUtilsV2';
-import { useMatchRoute, useNavigate } from '@tanstack/react-router';
+import DokumentVisning from './SaksDokumentVisning';
+import { getSaksdokumentUrl } from './getSaksdokumentUrl';
 
 const Content = styled(Panel)`
     flex-grow: 1;
@@ -87,6 +87,7 @@ function DokumentOgVedlegg(props: Props) {
     const aggregertSak = aggregertSakstemaV2(alleSakstema, props.valgteSakstemaer);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    //biome-ignore lint/suspicious/noExplicitAny: biome migration
     const handleTabChange = (_: any, index: number) =>
         navigate({
             to: fullscreen ? '/saker' : '/person/saker',

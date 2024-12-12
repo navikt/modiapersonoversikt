@@ -1,18 +1,18 @@
+import { Undertittel } from 'nav-frontend-typografi';
 import { useEffect } from 'react';
 import styled from 'styled-components';
+import DropDownMenu from '../../../../components/DropDownMenu';
+import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import theme from '../../../../styles/personOversiktTheme';
 import { useOnMount } from '../../../../utils/customHooks';
 import { loggEvent } from '../../../../utils/logger/frontendLogger';
-import DropDownMenu from '../../../../components/DropDownMenu';
-import { Undertittel } from 'nav-frontend-typografi';
 import { sakerTest } from '../dyplenkeTest/utils-dyplenker-test';
-import { useHentAlleSakstemaFraResourceV2, useSakstemaURLStateV2 } from './useSakstemaURLState';
-import { filtrerSakstemaerUtenDataV2 } from './sakstemaliste/SakstemaListeUtils';
-import { CenteredLazySpinner } from '../../../../components/LazySpinner';
-import { aggregertTemanavnV2, forkortetTemanavnV2 } from './utils/saksoversiktUtilsV2';
 import DokumentOgVedleggV2 from './dokumentvisning/DokumentOgVedleggV2';
 import JournalPosterV2 from './saksdokumenter/JournalPosterV2';
+import { filtrerSakstemaerUtenDataV2 } from './sakstemaliste/SakstemaListeUtils';
 import SakstemaListeV2 from './sakstemaliste/SakstemaListeV2';
+import { useHentAlleSakstemaFraResourceV2, useSakstemaURLStateV2 } from './useSakstemaURLState';
+import { aggregertTemanavnV2, forkortetTemanavnV2 } from './utils/saksoversiktUtilsV2';
 
 const SaksoversiktArticle = styled.article`
     display: flex;

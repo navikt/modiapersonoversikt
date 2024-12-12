@@ -1,11 +1,11 @@
-import { PropsWithChildren, useEffect, useState } from 'react';
+import { ArrowLeftIcon, ArrowRightIcon, GavelIcon, MagnifyingGlassIcon } from '@navikt/aksel-icons';
 import {
     Alert,
     BodyShort,
     Box,
     Detail,
-    Heading,
     HStack,
+    Heading,
     Label,
     Page,
     Radio,
@@ -16,16 +16,16 @@ import {
     Table,
     VStack
 } from '@navikt/ds-react';
-import { formaterNOK } from '../personside/infotabs/utbetalinger/utils/utbetalinger-utils';
-import { $api } from 'src/lib/clients/modiapersonoversikt-api';
-import { ArrowLeftIcon, ArrowRightIcon, GavelIcon, MagnifyingGlassIcon } from '@navikt/aksel-icons';
-import QueryErrorBoundary from 'src/components/QueryErrorBoundary';
-import { formaterDato } from 'src/utils/string-utils';
-import { paths } from 'src/generated/modiapersonoversikt-api';
 import { getRouteApi } from '@tanstack/react-router';
-import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
-import IfFeatureToggleOn from 'src/components/featureToggle/IfFeatureToggleOn';
 import { startCase } from 'lodash';
+import { type PropsWithChildren, useEffect, useState } from 'react';
+import QueryErrorBoundary from 'src/components/QueryErrorBoundary';
+import IfFeatureToggleOn from 'src/components/featureToggle/IfFeatureToggleOn';
+import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
+import type { paths } from 'src/generated/modiapersonoversikt-api';
+import { $api } from 'src/lib/clients/modiapersonoversikt-api';
+import { formaterDato } from 'src/utils/string-utils';
+import { formaterNOK } from '../personside/infotabs/utbetalinger/utils/utbetalinger-utils';
 
 const InfoPoint = ({ label, text }: { label: string; text: string }) => {
     return (
@@ -128,7 +128,13 @@ const SearchResultTable = ({
     );
 };
 
-const SearchResults = ({ id, identType }: { id: string; identType: 'FNR' | 'ORG_NR' }) => {
+const SearchResults = ({
+    id,
+    identType
+}: {
+    id: string;
+    identType: 'FNR' | 'ORG_NR';
+}) => {
     const { isLoading, data, error } = $api.useQuery('post', '/rest/innkrevingskrav', {
         body: { ident: id, identType }
     });
@@ -254,6 +260,7 @@ const InnkrevingskravSide = () => {
                             </Stack>
                         </RadioGroup>
                         <Box marginBlock="4">
+                            {/*biome-ignore lint/a11y/useSemanticElements: biome migration*/}
                             <form
                                 role="search"
                                 onSubmit={(event) => {

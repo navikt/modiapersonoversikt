@@ -1,12 +1,12 @@
 import { Normaltekst } from 'nav-frontend-typografi';
 
 import UtropstegnIkon from '../../../../../svg/Utropstegn';
-import { VisittkortGruppe } from '../VisittkortStyles';
-import VisittkortElement from '../VisittkortElement';
-import {
+import type {
     KodeBeskrivelse,
     TilrettelagtKommunikasjon as TilrettelagtKommunikasjonInterface
 } from '../../PersondataDomain';
+import VisittkortElement from '../VisittkortElement';
+import { VisittkortGruppe } from '../VisittkortStyles';
 
 interface Props {
     tilrettelagtKommunikasjon: TilrettelagtKommunikasjonInterface;

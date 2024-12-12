@@ -1,9 +1,9 @@
-import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
-import { Journalpost } from '../../../../../models/saksoversikt/journalpost';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { sakstemakodeAlle } from './saksoversiktUtilsV2';
+import type { Journalpost } from '../../../../../models/saksoversikt/journalpost';
+import type { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import baseurls from '../../../../../rest/resources/baseurlsResource';
 import persondataResource from '../../../../../rest/resources/persondataResource';
+import { sakstemakodeAlle } from './saksoversiktUtilsV2';
 
 interface Props {
     valgtSakstema?: Sakstema;
@@ -23,9 +23,9 @@ function byggSokestrengTilNorgTemaOppslag(sakstema: Sakstema) {
         const tema = dok.temakode;
         if (acc.includes(tema)) {
             return acc;
-        } else {
-            return [...acc, tema];
         }
+        //biome-ignore lint/performance/noAccumulatingSpread: biome migration
+        return [...acc, tema];
     }, []);
     return temaArray.join();
 }

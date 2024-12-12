@@ -1,8 +1,8 @@
-import NavFrontendSpinner from 'nav-frontend-spinner';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
+import NavFrontendSpinner from 'nav-frontend-spinner';
+import type { PersonsokResponse } from '../../models/person/personsok';
+import { type FetchResponse, hasError } from '../../utils/fetchToJson';
 import Sokeresultat from './Sokeresultat';
-import { PersonsokResponse } from '../../models/person/personsok';
-import { FetchResponse, hasError } from '../../utils/fetchToJson';
 
 interface Props {
     onClose: () => void;

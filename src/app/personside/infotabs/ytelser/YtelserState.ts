@@ -1,6 +1,6 @@
-import { atom } from 'jotai';
-import { PeriodeOptions, PeriodeValg } from 'src/redux/utbetalinger/types';
 import dayjs from 'dayjs';
+import { atom } from 'jotai';
+import { type PeriodeOptions, PeriodeValg } from 'src/redux/utbetalinger/types';
 import { ISO_DATE_FORMAT } from 'src/utils/date-utils';
 
 export const ytelsePeriodeAtom = atom<PeriodeOptions>({

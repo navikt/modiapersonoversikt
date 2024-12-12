@@ -1,6 +1,6 @@
-import { includeCredentials, postConfig } from './config';
-import { loggError, loggEvent, loggWarning } from '../utils/logger/frontendLogger';
 import { confirm } from '../components/popup-boxes/popup-boxes';
+import { loggError, loggEvent, loggWarning } from '../utils/logger/frontendLogger';
+import { includeCredentials, postConfig } from './config';
 
 const CONFLICT = 409;
 export class FetchError extends Error {
@@ -16,9 +16,8 @@ export async function get<TYPE extends object>(uri: string): Promise<TYPE> {
     const response = await fetch(uri, includeCredentials);
     if (!response.ok || response.redirected) {
         throw new FetchError(response, `${response.status} ${response.statusText}: ${uri}`);
-    } else {
-        return handleResponse(response);
     }
+    return handleResponse(response);
 }
 export async function post<TYPE extends object = object>(
     uri: string,
@@ -35,7 +34,7 @@ export async function postWithConflictVerification<TYPE extends object = object>
     uri: string,
     body: object | string,
     loggLocation: string,
-    conflictMessage: string = 'Det oppstod en konflikt. Vil du overstyre?'
+    conflictMessage = 'Det oppstod en konflikt. Vil du overstyre?'
 ): Promise<TYPE> {
     loggEvent('Post', loggLocation);
     const config = postConfig(body);
@@ -66,12 +65,12 @@ function parseResponse<TYPE>(response: Response): Promise<TYPE> {
     const contentType = response.headers.get('content-type');
     if (contentType && contentType.indexOf('application/json') !== -1) {
         return response.json() as Promise<TYPE>;
-    } else if (contentType && contentType.indexOf('text/plain') !== -1) {
-        return response.text() as Promise<TYPE>;
-    } else {
-        loggWarning(new Error(`Unknown Content-Type: ${contentType}. Not sure what to do with response.`));
-        return Promise.resolve({} as TYPE);
     }
+    if (contentType && contentType.indexOf('text/plain') !== -1) {
+        return response.text() as Promise<TYPE>;
+    }
+    loggWarning(new Error(`Unknown Content-Type: ${contentType}. Not sure what to do with response.`));
+    return Promise.resolve({} as TYPE);
 }
 
 async function parseError<TYPE extends object = object>(

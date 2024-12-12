@@ -1,15 +1,15 @@
-import { Pleiepengerettighet } from 'src/models/ytelse/pleiepenger';
+import { render } from '@testing-library/react';
 import { getMockPleiepengerettighet } from 'src/mock/ytelse/pleiepenger-mock';
+import type { Arbeidsforhold } from 'src/models/ytelse/arbeidsforhold';
+import type { Pleiepengerettighet } from 'src/models/ytelse/pleiepenger';
+import TestProvider from '../../../../../test/Testprovider';
+import Pleiepenger from './Pleiepenger';
 import {
     getAlleArbiedsforholdSortert,
     getSistePeriodeForPleiepengerettighet,
     getSisteVedtakForPleiepengerettighet,
     sorterArbeidsforholdEtterRefusjonTom
 } from './pleiepengerUtils';
-import Pleiepenger from './Pleiepenger';
-import { render } from '@testing-library/react';
-import TestProvider from '../../../../../test/Testprovider';
-import { Arbeidsforhold } from 'src/models/ytelse/arbeidsforhold';
 
 const mockpleiepengeRettighet = getMockPleiepengerettighet('10108000398');
 const mockPeriode = mockpleiepengeRettighet.perioder[0];

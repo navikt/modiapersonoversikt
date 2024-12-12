@@ -1,8 +1,8 @@
-import DescriptionList, { DescriptionListEntries } from '../../../../../../components/DescriptionList';
+import DescriptionList, { type DescriptionListEntries } from '../../../../../../components/DescriptionList';
+import type { Sykmelding as ISykemelding } from '../../../../../../models/ytelse/sykepenger';
 import { datoEllerNull, periodeEllerNull, prosentEllerNull } from '../../../../../../utils/string-utils';
-import YtelserInfoGruppe from '../../felles-styling/YtelserInfoGruppe';
-import { Sykmelding as ISykemelding } from '../../../../../../models/ytelse/sykepenger';
 import { StyledTable } from '../../../../../../utils/table/StyledTable';
+import YtelserInfoGruppe from '../../felles-styling/YtelserInfoGruppe';
 
 interface Props {
     sykmelding: ISykemelding;

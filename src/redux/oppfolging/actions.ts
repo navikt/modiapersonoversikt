@@ -1,10 +1,10 @@
+import type { PeriodeOptions } from '../utbetalinger/types';
 import {
     OppfolgingActionTypes,
-    SetSykefraverEkspandertAction,
-    SetValgtPeriode,
-    SetYtelserEkspandertAction
+    type SetSykefraverEkspandertAction,
+    type SetValgtPeriode,
+    type SetYtelserEkspandertAction
 } from './types';
-import { PeriodeOptions } from '../utbetalinger/types';
 
 export function settValgtPeriode(change: PeriodeOptions): SetValgtPeriode {
     return {

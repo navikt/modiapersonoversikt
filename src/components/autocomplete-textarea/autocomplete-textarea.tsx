@@ -1,24 +1,24 @@
-import * as React from 'react';
-import { useCallback, useState } from 'react';
-import { Textarea, TextareaProps } from 'nav-frontend-skjema';
-import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import classNames from 'classnames';
+import { AlertStripeFeil } from 'nav-frontend-alertstriper';
+import Hjelpetekst from 'nav-frontend-hjelpetekst';
+import { guid } from 'nav-frontend-js-utils';
+import { PopoverOrientering } from 'nav-frontend-popover';
+import { Textarea, type TextareaProps } from 'nav-frontend-skjema';
+import { Undertittel } from 'nav-frontend-typografi';
+import type * as React from 'react';
+import { useCallback, useState } from 'react';
+import styled from 'styled-components';
 import {
+    type AutofullforData,
     autofullfor,
-    AutofullforData,
     byggAutofullforMap,
     useAutoFullforData
 } from '../../app/personside/dialogpanel/sendMelding/autofullforUtils';
 import { Locale } from '../../app/personside/dialogpanel/sendMelding/standardTekster/domain';
-import * as StandardTeksterModels from '../../app/personside/dialogpanel/sendMelding/standardTekster/domain';
-import styled from 'styled-components';
-import Hjelpetekst from 'nav-frontend-hjelpetekst';
-import { PopoverOrientering } from 'nav-frontend-popover';
-import { guid } from 'nav-frontend-js-utils';
-import { Undertittel } from 'nav-frontend-typografi';
-import { loggEvent } from '../../utils/logger/frontendLogger';
+import type * as StandardTeksterModels from '../../app/personside/dialogpanel/sendMelding/standardTekster/domain';
 import { rapporterBruk } from '../../app/personside/dialogpanel/sendMelding/standardTekster/sokUtils';
 import skrivestotteResource from '../../rest/resources/skrivestotteResource';
+import { loggEvent } from '../../utils/logger/frontendLogger';
 
 interface InlineRegel {
     type: 'internal';
@@ -257,10 +257,10 @@ function noAriaTellerTekst(antallTegn: number, maxLength: number) {
 function asChangeEvent<T>(event: React.KeyboardEvent<T>): React.ChangeEvent<T> {
     if (event.target && event.target === event.currentTarget) {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-explicit-any
+        //biome-ignore lint/suspicious/noExplicitAny: biome migration
         return event as any;
-    } else {
-        throw new Error('Not equals at all');
     }
+    throw new Error('Not equals at all');
 }
 
 function AutocompleteTextarea(props: TextareaProps) {
@@ -289,29 +289,25 @@ function AutocompleteTextarea(props: TextareaProps) {
                             if (rule.type === 'internal') {
                                 settFeilmelding(undefined);
                                 return rule.replacement();
-                            } else {
-                                if (standardtekster.data) {
-                                    const tekst: StandardTeksterModels.Tekst = standardtekster.data[rule.externalId];
-                                    if (tekst === undefined) {
-                                        settFeilmelding(`Ukjent tekst. Kontakt IT: ${rule.externalId}`);
-                                        return acc + ' ';
-                                    }
-                                    const locale = rule.locale || Locale.nb_NO;
-                                    const innhold = tekst.innhold[locale];
-                                    if (innhold === undefined) {
-                                        settFeilmelding(
-                                            `Fant ikke tekst. Kontakt IT: ${rule.externalId}@${rule.locale}`
-                                        );
-                                        return acc + ' ';
-                                    }
-
-                                    rapporterBruk(tekst);
-                                    return innhold;
-                                } else {
-                                    settFeilmelding(`Tekster ikke lastet enda. Kontakt IT om problemet vedvarer. `);
-                                    return acc + ' ';
-                                }
                             }
+                            if (standardtekster.data) {
+                                const tekst: StandardTeksterModels.Tekst = standardtekster.data[rule.externalId];
+                                if (tekst === undefined) {
+                                    settFeilmelding(`Ukjent tekst. Kontakt IT: ${rule.externalId}`);
+                                    return `${acc} `;
+                                }
+                                const locale = rule.locale || Locale.nb_NO;
+                                const innhold = tekst.innhold[locale];
+                                if (innhold === undefined) {
+                                    settFeilmelding(`Fant ikke tekst. Kontakt IT: ${rule.externalId}@${rule.locale}`);
+                                    return `${acc} `;
+                                }
+
+                                rapporterBruk(tekst);
+                                return innhold;
+                            }
+                            settFeilmelding('Tekster ikke lastet enda. Kontakt IT om problemet vedvarer. ');
+                            return `${acc} `;
                         }
                         return acc;
                     }, word);

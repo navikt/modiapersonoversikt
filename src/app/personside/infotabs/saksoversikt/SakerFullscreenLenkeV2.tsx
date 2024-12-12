@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { useInfotabsDyplenker } from '../dyplenker';
+import type * as React from 'react';
 import styled from 'styled-components';
-import LenkepanelPersonoversikt from '../../../../utils/LenkepanelPersonoversikt';
 import theme from '../../../../styles/personOversiktTheme';
+import LenkepanelPersonoversikt from '../../../../utils/LenkepanelPersonoversikt';
+import { useInfotabsDyplenker } from '../dyplenker';
 import { useHentAlleSakstemaFraResourceV2, useSakstemaURLStateV2 } from './useSakstemaURLState';
 import { aggregertSakstemaV2 } from './utils/saksoversiktUtilsV2';
 
@@ -12,7 +12,7 @@ const StyledLenkepanelPersonoversikt = styled(LenkepanelPersonoversikt)`
 
 function reactrouterLink(props: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
     const { href, ...rest } = props;
-    return <a href={href} {...rest} target="_blank" />;
+    return <a href={href} {...rest} target="_blank" rel="noreferrer" />;
 }
 
 function SakerFullscreenLenkeV2() {

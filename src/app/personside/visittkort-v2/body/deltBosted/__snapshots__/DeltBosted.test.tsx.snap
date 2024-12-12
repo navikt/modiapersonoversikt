@@ -1,6 +1,15 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`viser deltbosted 1`] = `
+.c4 {
+  color: #645f5a;
+  margin-top: 3px;
+}
+
+.c4 .typo-etikett-liten {
+  line-height: 1rem;
+}
+
 .c0 {
   position: relative;
   display: flex;
@@ -30,15 +39,6 @@ exports[`viser deltbosted 1`] = `
 
 .c2 {
   margin-bottom: 1rem;
-}
-
-.c4 {
-  color: #645f5a;
-  margin-top: 3px;
-}
-
-.c4 .typo-etikett-liten {
-  line-height: 1rem;
 }
 
 <section>

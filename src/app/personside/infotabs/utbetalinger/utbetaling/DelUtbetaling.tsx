@@ -1,17 +1,17 @@
-import { createRef, PureComponent } from 'react';
-import { formaterNOK, periodeStringFromYtelse } from '../utils/utbetalinger-utils';
-import { BulletPoint, SpaceBetween } from '../../../../../components/common-styled-components';
-import UtbetalingsDetaljer from './UtbetalingsDetaljer';
-import { Ytelse } from '../../../../../models/utbetalinger';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
+import { PureComponent, createRef } from 'react';
+import { connect } from 'react-redux';
+import type { AnyAction, Dispatch } from 'redux';
 import styled from 'styled-components';
+import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
+import { BulletPoint, SpaceBetween } from '../../../../../components/common-styled-components';
+import type { Ytelse } from '../../../../../models/utbetalinger';
+import type { AppState } from '../../../../../redux/reducers';
+import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../../redux/utbetalinger/actions';
 import theme from '../../../../../styles/personOversiktTheme';
 import { cancelIfHighlighting } from '../../../../../utils/function-utils';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
-import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
-import { AnyAction, Dispatch } from 'redux';
-import { connect } from 'react-redux';
-import { AppState } from '../../../../../redux/reducers';
-import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../../redux/utbetalinger/actions';
+import { formaterNOK, periodeStringFromYtelse } from '../utils/utbetalinger-utils';
+import UtbetalingsDetaljer from './UtbetalingsDetaljer';
 
 interface OwnProps {
     ytelse: Ytelse;
@@ -78,7 +78,7 @@ class DelUtbetaling extends PureComponent<Props> {
                 tabIndex={0}
                 onFocus={this.props.settYtelseIFokus}
             >
-                <article aria-expanded={this.props.erEkspandert} aria-label={'Delutbetaling ' + ytelse.type}>
+                <article aria-expanded={this.props.erEkspandert} aria-label={`Delutbetaling ${ytelse.type}`}>
                     <DetaljerCollapse open={this.props.erEkspandert} toggle={this.toggleVisDetaljer} header={header}>
                         <UtbetalingsDetaljer {...this.props} />
                     </DetaljerCollapse>

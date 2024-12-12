@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
-import chickIcon from './chickIcon.svg';
 import { useOnMount } from '../../../../utils/customHooks';
 import { loggEvent } from '../../../../utils/logger/frontendLogger';
+import chickIcon from './chickIcon.svg';
 
 const run = keyframes`
   70% {

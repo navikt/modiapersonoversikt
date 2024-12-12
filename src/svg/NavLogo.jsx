@@ -1,5 +1,6 @@
 export default function NavLogo(props) {
     return (
+        //biome-ignore lint/a11y/noSvgWithoutTitle: biome migration
         <svg className="prefix__navLogo" width={90} viewBox="0 0 269 169" {...props}>
             <g fill="none" fillRule="evenodd">
                 <path

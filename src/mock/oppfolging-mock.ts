@@ -1,5 +1,7 @@
 import { fakerNB_NO as faker } from '@faker-js/faker';
-import {
+import dayjs from 'dayjs';
+import navfaker from 'nav-faker';
+import type {
     AnsattEnhet,
     Dagpenger,
     DetaljertOppfolging,
@@ -9,10 +11,8 @@ import {
     Saksbehandler,
     SyfoPunkt
 } from '../models/oppfolging';
-import { fyllRandomListe } from './utils/mock-utils';
-import navfaker from 'nav-faker';
-import dayjs from 'dayjs';
 import { backendDatoformat } from '../utils/date-utils';
+import { fyllRandomListe } from './utils/mock-utils';
 
 export function getMockOppfolging(fodselsnummer: string): Oppfolging {
     faker.seed(Number(fodselsnummer));
@@ -42,15 +42,15 @@ function getAnsattEnhet(): AnsattEnhet {
 
 export function getMockYtelserOgKontrakter(fodselsnummer: string): DetaljertOppfolging {
     faker.seed(Number(fodselsnummer));
-    navfaker.seed(fodselsnummer + 'oppf');
+    navfaker.seed(`${fodselsnummer}oppf`);
 
     return {
         oppfolging: getMockOppfolging(fodselsnummer),
         meldeplikt: faker.datatype.boolean(),
-        formidlingsgruppe: 'FMGRP' + faker.number.int(5),
-        innsatsgruppe: 'INGRP' + faker.number.int(10),
+        formidlingsgruppe: `FMGRP${faker.number.int(5)}`,
+        innsatsgruppe: `INGRP${faker.number.int(10)}`,
         sykemeldtFra: dayjs(faker.date.recent({ days: 10 })).format(backendDatoformat),
-        rettighetsgruppe: 'RGRP' + faker.number.int(10),
+        rettighetsgruppe: `RGRP${faker.number.int(10)}`,
         vedtaksdato: dayjs(faker.date.recent({ days: 10 })).format(backendDatoformat),
         sykefraværsoppfølging: fyllRandomListe(getSyfoPunkt, 5),
         ytelser: fyllRandomListe(() => faker.helpers.arrayElement([getYtelse(), getDagpenger()]), 4)

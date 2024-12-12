@@ -1,6 +1,15 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`viser dodsbo 1`] = `
+.c4 {
+  color: #645f5a;
+  margin-top: 3px;
+}
+
+.c4 .typo-etikett-liten {
+  line-height: 1rem;
+}
+
 .c1 {
   position: relative;
   display: flex;
@@ -26,15 +35,6 @@ exports[`viser dodsbo 1`] = `
 
 .c0:last-child {
   margin: 10px 0 0 0;
-}
-
-.c4 {
-  color: #645f5a;
-  margin-top: 3px;
-}
-
-.c4 .typo-etikett-liten {
-  line-height: 1rem;
 }
 
 .c3 {

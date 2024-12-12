@@ -1,57 +1,57 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-import { useSelector } from 'react-redux';
 import { Hovedknapp } from 'nav-frontend-knapper';
+import { Element } from 'nav-frontend-typografi';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
+import styled from 'styled-components';
+import { post } from '../../../../../../../api/api';
 import { apiBaseUri } from '../../../../../../../api/config';
 import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
+import FormErrorSummary from '../../../../../../../components/form/FormErrorSummary';
 import { useValgtenhet } from '../../../../../../../context/valgtenhet-state';
-import { AppState } from '../../../../../../../redux/reducers';
+import type { AppState } from '../../../../../../../redux/reducers';
 import { erBehandlet } from '../../../utils/meldingerUtils';
 import { Resultat } from '../utils/VisPostResultat';
 import AvsluttGosysOppgaveSkjema from './AvsluttGosysOppgaveSkjema';
-import { lagOppgaveRequest } from './byggRequest';
-import { useNormalPrioritet } from './useNormalPrioritet';
-import { OppgaveProps, OppgaveSkjemaForm } from './oppgaveInterfaces';
-import OppgaveSkjemaErBehandlet from './OppgaveSkjemaDeler/OppgaveSkjemaErBehandlet';
-import OppgaveSkjemaResultat from './OppgaveSkjemaDeler/OppgaveSkjemaResultat';
-import { resolverOppgaveSkjema } from './oppgaveSkjemaUtils';
-import { post } from '../../../../../../../api/api';
-import { Element } from 'nav-frontend-typografi';
-import OppgaveSkjemaTemaGjelderTypeOppgave from './OppgaveSkjemaDeler/OppgaveSkjemaTemaGjelderTypeOppgave';
-import OppgaveSkjemaPrioritetBeskrivelse from './OppgaveSkjemaDeler/OppgaveSkjemaPrioritetBeskrivelse';
 import OppgaveSkjemaEnhetAnsatt from './OppgaveSkjemaDeler/OppgaveSkjemaEnhetAnsatt';
-import FormErrorSummary from '../../../../../../../components/form/FormErrorSummary';
+import OppgaveSkjemaErBehandlet from './OppgaveSkjemaDeler/OppgaveSkjemaErBehandlet';
+import OppgaveSkjemaPrioritetBeskrivelse from './OppgaveSkjemaDeler/OppgaveSkjemaPrioritetBeskrivelse';
+import OppgaveSkjemaResultat from './OppgaveSkjemaDeler/OppgaveSkjemaResultat';
+import OppgaveSkjemaTemaGjelderTypeOppgave from './OppgaveSkjemaDeler/OppgaveSkjemaTemaGjelderTypeOppgave';
+import { lagOppgaveRequest } from './byggRequest';
+import type { OppgaveProps, OppgaveSkjemaForm } from './oppgaveInterfaces';
+import { resolverOppgaveSkjema } from './oppgaveSkjemaUtils';
+import { useNormalPrioritet } from './useNormalPrioritet';
 
 export const AlertStyling = styled.div`
-    > * {
-        margin-top: 1rem;
-    }
+  > * {
+    margin-top: 1rem;
+  }
 `;
 
 const SkjemaStyle = styled.div`
-    padding-top: 1rem;
-    .inputPanelGruppe__inner {
-        display: flex;
-        > * {
-            flex-grow: 1;
-        }
+  padding-top: 1rem;
+  .inputPanelGruppe__inner {
+    display: flex;
+    > * {
+      flex-grow: 1;
     }
-    label {
-        font-weight: 600;
-        margin-bottom: 0.1rem;
-    }
-    .skjemaelement {
-        margin-bottom: 0.7rem;
-    }
+  }
+  label {
+    font-weight: 600;
+    margin-bottom: 0.1rem;
+  }
+  .skjemaelement {
+    margin-bottom: 0.7rem;
+  }
 `;
 
 const KnappStyle = styled.div`
-    display: flex;
-    justify-content: space-between;
-    button {
-        margin: 0;
-    }
+  display: flex;
+  justify-content: space-between;
+  button {
+    margin: 0;
+  }
 `;
 
 function OppgaveSkjema(props: OppgaveProps) {
@@ -66,7 +66,7 @@ function OppgaveSkjema(props: OppgaveProps) {
 
     const valgtTema = useNormalPrioritet(props.gsakTema, form);
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    //biome-ignore lint/suspicious/noExplicitAny: init biome
     function submitHandler(values: OppgaveSkjemaForm): Promise<any> {
         const request = lagOppgaveRequest(
             values,

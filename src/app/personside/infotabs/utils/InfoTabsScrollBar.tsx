@@ -1,6 +1,6 @@
+import { type ReactNode, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { ReactNode, useRef } from 'react';
 import useKeepScroll from '../../../../utils/hooks/useKeepScroll';
 
 export const scrollBarContainerStyle = (minWidth: string) => css`

@@ -1,15 +1,15 @@
-import styled from 'styled-components';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
+import styled from 'styled-components';
+import type { Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
 import theme from '../../../../../styles/personOversiktTheme';
+import { Table } from '../../../../../utils/table/Table';
 import {
     formaterNOK,
     skattBelopAscComparator,
     trekkBelopAscComparator,
     ytelseBelopDescComparator
 } from '../utils/utbetalinger-utils';
-import { Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
-import { Table } from '../../../../../utils/table/Table';
 
 type Props = {
     ytelse: Ytelse;
@@ -70,9 +70,8 @@ function utbetalingsDetaljerTable(ytelse: Ytelse) {
         }
 
         return <Table tittelRekke={tittelrekke} rows={tabellElementer} />;
-    } else {
-        return <AlertStripeAdvarsel>Manglende data. Kunne ikke finne detaljer om utbetaling.</AlertStripeAdvarsel>;
     }
+    return <AlertStripeAdvarsel>Manglende data. Kunne ikke finne detaljer om utbetaling.</AlertStripeAdvarsel>;
 }
 
 function UtbetalingsDetaljer(props: Props) {

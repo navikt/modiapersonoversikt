@@ -1,19 +1,19 @@
-import { Utbetaling, UtbetalingerResponse } from '../../../../models/utbetalinger';
+import dayjs from 'dayjs';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
+import type { ReactNode } from 'react';
 import styled from 'styled-components';
+import { CenteredLazySpinner } from '../../../../components/LazySpinner';
+import VisMerKnapp from '../../../../components/VisMerKnapp';
+import { Bold } from '../../../../components/common-styled-components';
+import type { Utbetaling, UtbetalingerResponse } from '../../../../models/utbetalinger';
+import utbetalinger from '../../../../rest/resources/utbetalingerResource';
 import theme from '../../../../styles/personOversiktTheme';
 import { datoStigende, datoSynkende, datoVerbose } from '../../../../utils/date-utils';
 import { formaterDato } from '../../../../utils/string-utils';
-import { Bold } from '../../../../components/common-styled-components';
-import { getGjeldendeDatoForUtbetaling, utbetalingDatoComparator } from '../utbetalinger/utils/utbetalinger-utils';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import VisMerKnapp from '../../../../components/VisMerKnapp';
-import { CenteredLazySpinner } from '../../../../components/LazySpinner';
-import { useInfotabsDyplenker } from '../dyplenker';
 import { utbetalingerTest } from '../dyplenkeTest/utils-dyplenker-test';
-import dayjs from 'dayjs';
-import { ReactNode } from 'react';
-import utbetalinger from '../../../../rest/resources/utbetalingerResource';
+import { useInfotabsDyplenker } from '../dyplenker';
+import { getGjeldendeDatoForUtbetaling, utbetalingDatoComparator } from '../utbetalinger/utils/utbetalinger-utils';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
@@ -61,7 +61,7 @@ function EnkelUtbetaling({ utbetaling }: { utbetaling: Utbetaling }) {
         <li className={utbetalingerTest.oversikt}>
             <VisMerKnapp
                 valgt={false}
-                ariaDescription={`Vis utbetaling`}
+                ariaDescription={'Vis utbetaling'}
                 linkTo={dyplenkerInfotabs.utbetaling.link(utbetaling)}
             >
                 <Normaltekst>

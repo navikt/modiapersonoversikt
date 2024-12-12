@@ -1,7 +1,7 @@
-import { ReactNode } from 'react';
+import NavFrontendChevron from 'nav-frontend-chevron';
+import type { ReactNode } from 'react';
 import styled from 'styled-components';
 import theme from '../styles/personOversiktTheme';
-import NavFrontendChevron from 'nav-frontend-chevron';
 
 const DropDownContainerStyle = styled.div`
     position: relative;

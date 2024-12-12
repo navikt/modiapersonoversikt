@@ -1,8 +1,8 @@
-import { getPleiepengerIdDato, getUnikPleiepengerKey, Pleiepengerettighet } from './pleiepenger';
-import { Foreldrepengerettighet, getForeldepengerIdDato, getUnikForeldrepengerKey } from './foreldrepenger';
-import { getSykepengerIdDato, getUnikSykepengerKey, Sykepenger } from './sykepenger';
 import { loggError } from '../../utils/logger/frontendLogger';
-import { getTiltakspengerIdDato, getUnikTiltakspengerKey, Tiltakspenger } from './tiltakspenger';
+import { type Foreldrepengerettighet, getForeldepengerIdDato, getUnikForeldrepengerKey } from './foreldrepenger';
+import { type Pleiepengerettighet, getPleiepengerIdDato, getUnikPleiepengerKey } from './pleiepenger';
+import { type Sykepenger, getSykepengerIdDato, getUnikSykepengerKey } from './sykepenger';
+import { type Tiltakspenger, getTiltakspengerIdDato, getUnikTiltakspengerKey } from './tiltakspenger';
 
 export type Ytelse = Pleiepengerettighet | Foreldrepengerettighet | Sykepenger | Tiltakspenger;
 

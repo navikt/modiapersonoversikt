@@ -1,11 +1,12 @@
-import { useMemo } from 'react';
 import { useLocation } from '@tanstack/react-router';
+import { useMemo } from 'react';
 
 export function parseQueryString<TYPE>(queryParams: string): TYPE {
     const entries = queryParams
         .replace('?', '')
         .split('&')
         .map((it) => it.split('='));
+    //biome-ignore lint/performance/noAccumulatingSpread: biome migration
     return entries.reduce((acc, entry) => ({ ...acc, [entry[0]]: entry[1] }), {} as TYPE);
 }
 

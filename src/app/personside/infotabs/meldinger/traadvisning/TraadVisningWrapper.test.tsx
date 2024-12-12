@@ -1,8 +1,8 @@
 import * as renderer from 'react-test-renderer';
-import TraadVisningWrapper from './TraadVisningWrapper';
+import { statiskTraadMock } from '../../../../../mock/meldinger/statiskTraadMock';
 import TestProvider from '../../../../../test/Testprovider';
 import { getTestStore, setupReactQueryMocks } from '../../../../../test/testStore';
-import { statiskTraadMock } from '../../../../../mock/meldinger/statiskTraadMock';
+import TraadVisningWrapper from './TraadVisningWrapper';
 
 test('Viser traad med verktøylinje', () => {
     setupReactQueryMocks();

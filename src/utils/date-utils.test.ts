@@ -1,16 +1,16 @@
+import dayjs from 'dayjs';
 import {
     ascendingDateComparator,
-    datoVerbose,
-    erImorgenEllerSenere,
-    erMaksEttÅrFramITid,
-    getNewestDate,
-    getOldestDate,
+    backendDatoformat,
     datoStigende,
     datoSynkende,
+    datoVerbose,
+    erImorgenEllerSenere,
     erMaks10MinSiden,
-    backendDatoformat
+    erMaksEttÅrFramITid,
+    getNewestDate,
+    getOldestDate
 } from './date-utils';
-import dayjs from 'dayjs';
 
 Date.now = () => new Date().getTime(); // for å motvirke Date.now() mock i setupTests.ts
 

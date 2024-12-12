@@ -1,5 +1,6 @@
 export default function Kvinne(props) {
     return (
+        //biome-ignore lint/a11y/noSvgWithoutTitle: biome migration
         <svg
             alt="Kvinne"
             aria-label="Kvinne"

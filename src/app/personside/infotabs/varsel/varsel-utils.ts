@@ -1,4 +1,4 @@
-import { Varsel, Varseltype } from '../../../../models/varsel';
+import { type Varsel, Varseltype } from '../../../../models/varsel';
 import { loggError } from '../../../../utils/logger/frontendLogger';
 
 export function getVarselTekst(varsel: Varsel) {
@@ -6,7 +6,7 @@ export function getVarselTekst(varsel: Varsel) {
     const varselTekst = Varseltype[varsel.varselType];
 
     if (!varselTekst) {
-        const ukjentNøkkelTekst = 'Ukjent nøkkel: ' + varsel.varselType;
+        const ukjentNøkkelTekst = `Ukjent nøkkel: ${varsel.varselType}`;
         loggError(Error(ukjentNøkkelTekst));
         return ukjentNøkkelTekst;
     }

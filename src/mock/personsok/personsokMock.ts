@@ -1,4 +1,5 @@
-import {
+import { type Faker, fakerNB_NO as faker } from '@faker-js/faker';
+import type {
     Brukerinfo,
     Navn,
     NorskIdent,
@@ -6,14 +7,13 @@ import {
     PersonsokResponse,
     UtenlandskID
 } from '../../models/person/personsok';
-import { Faker, fakerNB_NO as faker } from '@faker-js/faker';
 
-import navfaker from 'nav-faker/dist/index';
-import { Kodeverk } from '../../models/kodeverk';
-import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
 import md5 from 'md5';
+import navfaker from 'nav-faker/dist/index';
+import type { Person } from '../../app/personside/visittkort-v2/PersondataDomain';
+import type { Kodeverk } from '../../models/kodeverk';
 import { aremark } from '../persondata/aremark';
-import { Person } from '../../app/personside/visittkort-v2/PersondataDomain';
+import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
 
 export function mockPersonsokResponse(request: PersonsokRequestV3): PersonsokResponse[] {
     navfaker.seed(md5(JSON.stringify(request)));
@@ -124,9 +124,8 @@ function getMockNavn(fodselsnummer: string): Navn {
 function getFornavn(seededFaker: Faker, fødselsnummer: string): string {
     if (Number(fødselsnummer.charAt(8)) % 2 === 0) {
         return seededFaker.person.firstName('male');
-    } else {
-        return seededFaker.person.firstName('female');
     }
+    return seededFaker.person.firstName('female');
 }
 
 function getKjonn(): Kodeverk {
@@ -135,12 +134,11 @@ function getKjonn(): Kodeverk {
             kodeRef: 'M',
             beskrivelse: 'Mann'
         };
-    } else {
-        return {
-            kodeRef: 'K',
-            beskrivelse: 'Kvinne'
-        };
     }
+    return {
+        kodeRef: 'K',
+        beskrivelse: 'Kvinne'
+    };
 }
 
 function getStatus(): Kodeverk {

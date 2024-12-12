@@ -1,6 +1,7 @@
-import { initialState, SaksoversikState, SaksoversiktActions, SaksoversiktActionTypes } from './types';
+import { type SaksoversikState, SaksoversiktActionTypes, type SaksoversiktActions, initialState } from './types';
 
 export function saksoversiktReducer(
+    // biome-ignore lint/style/useDefaultParameterLast: biome migration
     state: SaksoversikState = initialState,
     action: SaksoversiktActions
 ): SaksoversikState {

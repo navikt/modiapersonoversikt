@@ -1,7 +1,7 @@
 import * as renderer from 'react-test-renderer';
-import Foreldrepenger from './ForeldrePenger';
 import { statiskForeldrepengeMock } from '../../../../../mock/ytelse/statiskForeldrepengeMock';
 import TestProvider from '../../../../../test/Testprovider';
+import Foreldrepenger from './ForeldrePenger';
 
 test('Foreldrepengeperiode matcher snapshot', () => {
     const testRettighet = statiskForeldrepengeMock;

@@ -1,24 +1,24 @@
-import { FormEvent } from 'react';
 import { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { Traad, TraadType } from '../../../../models/meldinger/meldinger';
-import TidligereMeldinger from './tidligereMeldinger/TidligereMeldinger';
-import TekstFelt from '../sendMelding/TekstFelt';
-import { UnmountClosed } from 'react-collapse';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { DialogpanelFeilmelding, FormStyle } from '../fellesStyling';
-import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
-import styled from 'styled-components';
-import { FortsettDialogValidator } from './validatorer';
-import { DialogPanelStatus, FortsettDialogPanelState, FortsettDialogState } from './FortsettDialogTypes';
-import { erJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
-import { capitalizeName } from '../../../../utils/string-utils';
-import persondataResource from '../../../../rest/resources/persondataResource';
-import { Checkbox, SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import Panel from 'nav-frontend-paneler';
-import Oppgaveliste from '../sendMelding/Oppgaveliste';
-import DialogpanelVelgSak from '../sendMelding/DialogpanelVelgSak';
-import { DraftState } from '../use-draft';
+import { Checkbox, SkjemaelementFeilmelding } from 'nav-frontend-skjema';
+import type { FormEvent } from 'react';
+import { UnmountClosed } from 'react-collapse';
+import styled from 'styled-components';
+import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
+import { type Traad, TraadType } from '../../../../models/meldinger/meldinger';
+import persondataResource from '../../../../rest/resources/persondataResource';
+import { capitalizeName } from '../../../../utils/string-utils';
+import { erJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
 import DraftStatus from '../DraftStatus';
+import { DialogpanelFeilmelding, FormStyle } from '../fellesStyling';
+import DialogpanelVelgSak from '../sendMelding/DialogpanelVelgSak';
+import Oppgaveliste from '../sendMelding/Oppgaveliste';
+import TekstFelt from '../sendMelding/TekstFelt';
+import type { DraftState } from '../use-draft';
+import { DialogPanelStatus, type FortsettDialogPanelState, type FortsettDialogState } from './FortsettDialogTypes';
+import TidligereMeldinger from './tidligereMeldinger/TidligereMeldinger';
+import { FortsettDialogValidator } from './validatorer';
 
 const SubmitKnapp = styled(Hovedknapp)`
     white-space: normal;
@@ -55,6 +55,7 @@ function Feilmelding(props: { status: DialogPanelStatus; errors?: Error[] }) {
 
     if (props.errors) {
         props.errors.map((error) => {
+            //biome-ignore lint/correctness/useJsxKeyInIterable: biome migration
             return <AlertStripeFeil>{error.message}</AlertStripeFeil>;
         });
     }

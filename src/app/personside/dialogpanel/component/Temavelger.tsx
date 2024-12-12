@@ -1,9 +1,9 @@
-import { ChangeEvent, useEffect } from 'react';
-import { Temagruppe, temagruppeTekst } from '../../../../models/temagrupper';
 import { Select, SkjemaGruppe } from 'nav-frontend-skjema';
-import styled from 'styled-components';
-import theme from '../../../../styles/personOversiktTheme';
 import SkjemaelementFeilmelding from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
+import { type ChangeEvent, useEffect } from 'react';
+import styled from 'styled-components';
+import { type Temagruppe, temagruppeTekst } from '../../../../models/temagrupper';
+import theme from '../../../../styles/personOversiktTheme';
 
 interface Props {
     setTema: (tema?: Temagruppe) => void;
@@ -44,6 +44,7 @@ function Temavelger(props: Props) {
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-assignment
+                //biome-ignore lint/suspicious/noAssignInExpressions: biome migration
                 selectRef={(ref) => (selectRef = ref)}
                 label="Tema"
                 onChange={velgTemaHandler}

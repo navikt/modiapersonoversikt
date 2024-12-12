@@ -1,6 +1,32 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
+.c5 {
+  border: none;
+  background-color: transparent;
+  padding: 0.1rem 0.2rem;
+  border-radius: .35rem;
+  cursor: pointer;
+  display: flex;
+  color: #0067c5;
+}
+
+.c5 svg {
+  margin-left: 0.5rem;
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+.c5:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c5:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
 .c3 {
   display: flex;
   justify-content: space-between;
@@ -66,74 +92,6 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
   border-color: #0067c5;
 }
 
-.c5 {
-  border: none;
-  background-color: transparent;
-  padding: 0.1rem 0.2rem;
-  border-radius: .35rem;
-  cursor: pointer;
-  display: flex;
-  color: #0067c5;
-}
-
-.c5 svg {
-  margin-left: 0.5rem;
-  height: 1.2rem;
-  width: 1.2rem;
-}
-
-.c5:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.1875rem #254b6d;
-}
-
-.c5:hover {
-  opacity: 0.8;
-  text-decoration: underline;
-}
-
-.c15 th:not(:first-child) {
-  font-weight: normal;
-  font-style: italic;
-}
-
-.c16 td:not(:first-child) {
-  font-weight: 600;
-}
-
-.c17 {
-  border-top: solid 0.0625rem #b7b1a9;
-  margin: 0.5rem 0;
-}
-
-.c13 {
-  margin-right: 0.5rem;
-}
-
-.c8 {
-  transition: 0.5s;
-  padding: 1.25rem;
-}
-
-.c14 {
-  transition: 0.5s;
-  padding: 0 1.25rem;
-}
-
-.c10 {
-  margin-bottom: 1.25rem;
-}
-
-.c7 {
-  transition: 0.3s;
-  cursor: pointer;
-}
-
-.c7:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.1875rem #254b6d;
-}
-
 .c1 table {
   width: 100%;
   text-align: right;
@@ -156,6 +114,48 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
 
 .c1 table tr >*:not(:first-child) {
   width: 6rem;
+}
+
+.c13 {
+  margin-right: 0.5rem;
+}
+
+.c8 {
+  transition: 0.5s;
+  padding: 1.25rem;
+}
+
+.c14 {
+  transition: 0.5s;
+  padding: 0 1.25rem;
+}
+
+.c10 {
+  margin-bottom: 1.25rem;
+}
+
+.c15 th:not(:first-child) {
+  font-weight: normal;
+  font-style: italic;
+}
+
+.c16 td:not(:first-child) {
+  font-weight: 600;
+}
+
+.c17 {
+  border-top: solid 0.0625rem #b7b1a9;
+  margin: 0.5rem 0;
+}
+
+.c7 {
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.c7:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
 .c0 {

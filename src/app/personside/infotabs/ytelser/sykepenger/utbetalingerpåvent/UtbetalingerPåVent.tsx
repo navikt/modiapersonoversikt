@@ -1,11 +1,11 @@
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import styled from 'styled-components';
 import { Ingress } from 'nav-frontend-typografi';
-import { UtbetalingPåVent } from '../../../../../../models/ytelse/ytelse-utbetalinger';
-import { utledUtbetalingPåVentÅrsak } from './utledUtbetalingerPåVentÅrsak';
-import { periodeEllerNull, prosentEllerNull } from '../../../../../../utils/string-utils';
+import styled from 'styled-components';
+import type { UtbetalingPåVent } from '../../../../../../models/ytelse/ytelse-utbetalinger';
 import theme from '../../../../../../styles/personOversiktTheme';
+import { periodeEllerNull, prosentEllerNull } from '../../../../../../utils/string-utils';
 import { StyledTable } from '../../../../../../utils/table/StyledTable';
+import { utledUtbetalingPåVentÅrsak } from './utledUtbetalingerPåVentÅrsak';
 
 interface Props {
     utbetalingerPåVent: UtbetalingPåVent[];

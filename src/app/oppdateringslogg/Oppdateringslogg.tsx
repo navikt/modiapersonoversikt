@@ -1,12 +1,12 @@
-import { useState } from 'react';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import EnkeltOppdateringslogg from './EnkeltOppdateringslogg';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
-import styled from 'styled-components';
 import Stegindikator from 'nav-frontend-stegindikator';
-import { StegindikatorStegProps } from 'nav-frontend-stegindikator/lib/stegindikator-steg';
+import type { StegindikatorStegProps } from 'nav-frontend-stegindikator/lib/stegindikator-steg';
+import { useState } from 'react';
+import styled from 'styled-components';
 import { datoSynkende } from '../../utils/date-utils';
-import { OppdateringsloggInnslag } from './OppdateringsloggContainer';
+import EnkeltOppdateringslogg from './EnkeltOppdateringslogg';
+import type { OppdateringsloggInnslag } from './OppdateringsloggContainer';
 
 const StyledSection = styled.section`
     display: flex;
@@ -98,7 +98,7 @@ function Oppdateringslogg(props: { oppdateringslogg: OppdateringsloggInnslag[] }
     const currentOppdateringslogg = sortertOppdateringslogg[indeks];
 
     const stegListe = sortertOppdateringslogg.map((enOppdateringslogg, i) => {
-        const erAktiv = indeks === i ? true : false;
+        const erAktiv = indeks === i;
         return { label: enOppdateringslogg.tittel, index: i, aktiv: erAktiv, key: enOppdateringslogg.id };
     });
 

@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-import VelgSak from './VelgSak';
-import { JournalforSak } from './JournalforSak';
-import { Traad } from '../../../../../../../models/meldinger/meldinger';
-import { kanTraadJournalfores, kanTraadJournalforesV2 } from '../../../utils/meldingerUtils';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import useFeatureToggle from '../../../../../../../components/featureToggle/useFeatureToggle';
+import { useState } from 'react';
+import styled from 'styled-components';
 import { FeatureToggles } from '../../../../../../../components/featureToggle/toggleIDs';
+import useFeatureToggle from '../../../../../../../components/featureToggle/useFeatureToggle';
+import type { Traad } from '../../../../../../../models/meldinger/meldinger';
+import { kanTraadJournalfores, kanTraadJournalforesV2 } from '../../../utils/meldingerUtils';
+import { JournalforSak } from './JournalforSak';
+import VelgSak from './VelgSak';
 
 export enum SakKategori {
     FAG = 'Fagsaker',
@@ -15,8 +15,8 @@ export enum SakKategori {
 }
 
 enum AktivtVindu {
-    SAKLISTE,
-    SAKVISNING
+    SAKLISTE = 0,
+    SAKVISNING = 1
 }
 
 export interface JournalforingsSak {
@@ -94,9 +94,8 @@ function JournalforingPanel(props: Props) {
 
     if (aktivtVindu === AktivtVindu.SAKVISNING && valgtSak !== undefined) {
         return <JournalforSak traad={props.traad} sak={valgtSak} tilbake={tilbake} lukkPanel={props.lukkPanel} />;
-    } else {
-        return <VelgSak velgSak={velgSak} valgtSak={valgtSak} eksisterendeSaker={eksisterendeJournalposter} />;
     }
+    return <VelgSak velgSak={velgSak} valgtSak={valgtSak} eksisterendeSaker={eksisterendeJournalposter} />;
 }
 
 function JournalforingPanelContainer(props: Props) {

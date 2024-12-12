@@ -1,10 +1,10 @@
-import { Pleiepengeperiode } from '../../../../../models/ytelse/pleiepenger';
-import styled from 'styled-components';
-import YtelserPeriode from '../felles-styling/YtelserPeriode';
 import { Ingress } from 'nav-frontend-typografi';
-import { formaterDato, NOKellerNull, prosentEllerNull } from '../../../../../utils/string-utils';
+import styled from 'styled-components';
+import type { Pleiepengeperiode } from '../../../../../models/ytelse/pleiepenger';
 import theme from '../../../../../styles/personOversiktTheme';
+import { NOKellerNull, formaterDato, prosentEllerNull } from '../../../../../utils/string-utils';
 import { StyledTable } from '../../../../../utils/table/StyledTable';
+import YtelserPeriode from '../felles-styling/YtelserPeriode';
 
 interface Props {
     periode: Pleiepengeperiode;

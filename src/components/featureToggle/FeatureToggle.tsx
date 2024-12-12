@@ -1,11 +1,11 @@
-import { ReactNode } from 'react';
-import LazySpinner from '../LazySpinner';
-import { FeatureToggles } from './toggleIDs';
+import type { ReactNode } from 'react';
 import featuretoggles from '../../rest/resources/featuretogglesResource';
+import LazySpinner from '../LazySpinner';
+import type { FeatureToggles } from './toggleIDs';
 
 export enum DisplayWhenToggleIs {
-    ON,
-    OFF
+    ON = 0,
+    OFF = 1
 }
 
 interface Props {
@@ -29,9 +29,8 @@ function FeatureToggle(props: Props) {
         ifData: (toggles) => {
             if (shouldDisplay(props.mode, toggles[props.toggleID])) {
                 return <>{props.children}</>;
-            } else {
-                return null;
             }
+            return null;
         }
     });
 }

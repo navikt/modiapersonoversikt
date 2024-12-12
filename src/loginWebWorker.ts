@@ -1,5 +1,5 @@
 import { LoginStateManager } from './login/LoginStateManager';
-import { IncommingMessageType, OutgoingMessageType } from './login/types';
+import type { IncommingMessageType, OutgoingMessageType } from './login/types';
 
 const loginStateManager = new LoginStateManager();
 
@@ -9,6 +9,7 @@ const register = () => {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
+//biome-ignore lint/suspicious/noExplicitAny: biome migration
 const handleEventMessage = (event: MessageEvent<{ type: IncommingMessageType; payload: any }>) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const { type, payload } = event.data;

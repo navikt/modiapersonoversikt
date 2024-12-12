@@ -1,7 +1,7 @@
-import { ReactNode } from 'react';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
+import type { ReactNode } from 'react';
 import styled from 'styled-components';
 import theme, { pxToRem } from '../styles/personOversiktTheme';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
 
 const ListStyling = styled.dl`
     display: flex;
@@ -34,6 +34,7 @@ export function fjernEntriesUtenVerdi(entries: DescriptionListEntries): Descript
             return acc;
         }
         return {
+            //biome-ignore lint/performance/noAccumulatingSpread: biome migration
             ...acc,
             [key]: entries[key]
         };

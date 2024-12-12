@@ -1,6 +1,6 @@
-import { Traad } from '../../../../../models/meldinger/meldinger';
-import { useInfotabsDyplenker } from '../../dyplenker';
+import type { Traad } from '../../../../../models/meldinger/meldinger';
 import dialogResource from '../../../../../rest/resources/dialogResource';
+import { useInfotabsDyplenker } from '../../dyplenker';
 
 export function useValgtTraadIUrl(): Traad | undefined {
     const dyplenker = useInfotabsDyplenker();

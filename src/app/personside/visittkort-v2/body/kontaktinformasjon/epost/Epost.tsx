@@ -1,9 +1,9 @@
-import EmailIkon from '../../../../../../svg/Email';
-import VisittkortElement from '../../VisittkortElement';
-import { KontaktInformasjon } from '../../../PersondataDomain';
-import DigitalKontaktinformasjon from '../DigitalKontaktinformasjon';
-import { formaterDato } from '../../../../../../utils/string-utils';
 import { Feilmelding } from 'nav-frontend-typografi';
+import EmailIkon from '../../../../../../svg/Email';
+import { formaterDato } from '../../../../../../utils/string-utils';
+import type { KontaktInformasjon } from '../../../PersondataDomain';
+import VisittkortElement from '../../VisittkortElement';
+import DigitalKontaktinformasjon from '../DigitalKontaktinformasjon';
 
 interface Props {
     harFeilendeSystem: boolean;

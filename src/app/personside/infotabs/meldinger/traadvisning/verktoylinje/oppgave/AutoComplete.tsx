@@ -1,52 +1,52 @@
-import { ChangeEvent, useEffect, useState } from 'react';
-import * as React from 'react';
-import Downshift, { ControllerStateAndHelpers, StateChangeOptions } from 'downshift';
-import styled from 'styled-components';
-import { Normaltekst } from 'nav-frontend-typografi';
-import theme from '../../../../../../../styles/personOversiktTheme';
-import { Input, InputProps } from 'nav-frontend-skjema';
+import Downshift, { type ControllerStateAndHelpers, type StateChangeOptions } from 'downshift';
+import { Input, type InputProps } from 'nav-frontend-skjema';
 import NavFrontendSpinner from 'nav-frontend-spinner';
+import { Normaltekst } from 'nav-frontend-typografi';
+import { type ChangeEvent, useEffect, useState } from 'react';
+import type * as React from 'react';
+import styled from 'styled-components';
 import EtikettGraa from '../../../../../../../components/EtikettGraa';
+import theme from '../../../../../../../styles/personOversiktTheme';
 import { useAutoCompleteSuggestions } from './useAutoCompleteSuggestions';
 
 const DropDownWrapper = styled.div`
-    ul {
-        z-index: 1000;
-        position: absolute;
-        top: 100%;
-        box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
-        max-height: 20rem;
-        overflow: auto;
+  ul {
+    z-index: 1000;
+    position: absolute;
+    top: 100%;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+    max-height: 20rem;
+    overflow: auto;
+  }
+  li {
+    min-width: 20rem;
+    padding: 0.5rem 1rem;
+    border: solid 0.05rem rgba(0, 0, 0, 0.2);
+    background-color: white;
+    color: black;
+    display: flex;
+    &[aria-selected="true"] {
+      background-color: ${theme.color.navLysGra};
+      border: ${theme.border.skille};
     }
-    li {
-        min-width: 20rem;
-        padding: 0.5rem 1rem;
-        border: solid 0.05rem rgba(0, 0, 0, 0.2);
-        background-color: white;
-        color: black;
-        display: flex;
-        &[aria-selected='true'] {
-            background-color: ${theme.color.navLysGra};
-            border: ${theme.border.skille};
-        }
-    }
+  }
 `;
 
 const Style = styled.div`
-    position: relative;
+  position: relative;
 `;
 
 const StyledSpinner = styled(NavFrontendSpinner)`
-    position: absolute !important;
-    bottom: 0.4rem;
-    right: 0.4rem;
+  position: absolute !important;
+  bottom: 0.4rem;
+  right: 0.4rem;
 `;
 
 const InputfeltWrapper = styled.div`
-    position: relative;
-    .skjemaelement {
-        margin-bottom: 0;
-    }
+  position: relative;
+  .skjemaelement {
+    margin-bottom: 0;
+  }
 `;
 
 interface Props {
@@ -62,7 +62,10 @@ interface Props {
     feil?: React.ReactNode;
 }
 
-function SuggestionMarkup<Item>(props: { item: Item; helpers: ControllerStateAndHelpers<Item> }) {
+function SuggestionMarkup<Item>(props: {
+    item: Item;
+    helpers: ControllerStateAndHelpers<Item>;
+}) {
     return (
         <li
             {...props.helpers.getItemProps({
@@ -94,8 +97,7 @@ function AutoComplete(props: Props) {
     });
 
     function handleStateChange(changes: StateChangeOptions<string>) {
-        // eslint-disable-next-line no-prototype-builtins
-        if (changes.hasOwnProperty('selectedItem')) {
+        if (Object.hasOwn(changes, 'selectedItem')) {
             setValue(changes.selectedItem);
             setHightlightedItem(undefined);
         } else if (typeof changes.highlightedIndex === 'number') {

@@ -1,37 +1,41 @@
-import { JournalforingsSak, JournalforingsSakIdentifikator, Kategorier, SakKategori, Tema } from './JournalforingPanel';
-import useFieldState, { FieldState } from '../../../../../../../utils/hooks/use-field-state';
-import { Radio, RadioProps } from 'nav-frontend-skjema';
 import { AlertStripeAdvarsel, AlertStripeFeil } from 'nav-frontend-alertstriper';
-import TemaTable from './TemaTabell';
-import styled from 'styled-components';
-import { Group, groupBy } from '../../../../../../../utils/groupArray';
+import { Radio, type RadioProps } from 'nav-frontend-skjema';
 import Spinner from 'nav-frontend-spinner';
+import styled from 'styled-components';
 import journalsakResource from '../../../../../../../rest/resources/journalsakResource';
+import { type Group, groupBy } from '../../../../../../../utils/groupArray';
+import useFieldState, { type FieldState } from '../../../../../../../utils/hooks/use-field-state';
+import {
+    type JournalforingsSak,
+    type JournalforingsSakIdentifikator,
+    type Kategorier,
+    SakKategori,
+    type Tema
+} from './JournalforingPanel';
+import TemaTable from './TemaTabell';
 
 const Form = styled.form`
-    display: flex;
-    > * {
-        margin: 0;
-    }
-    > *:not(:last-child) {
-        margin-right: 1rem;
-    }
+  display: flex;
+  > * {
+    margin: 0;
+  }
+  > *:not(:last-child) {
+    margin-right: 1rem;
+  }
 `;
 
 const MiniRadio = styled(Radio)`
-    .radioknapp + label {
-        cline-height: 1.25rem;
-        &:before {
-            height: 1.25rem;
-            width: 1.25rem;
-        }
+  .radioknapp + label {
+    cline-height: 1.25rem;
+    &:before {
+      height: 1.25rem;
+      width: 1.25rem;
     }
+  }
 `;
 
 function SakgruppeRadio(props: FieldState & RadioProps & { label: SakKategori }) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { input, setValue, isPristine, ...rest } = props;
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
     return <MiniRadio onChange={input.onChange} checked={input.value === props.label} {...rest} />;
 }
 
@@ -42,7 +46,10 @@ interface Props {
 }
 
 export function fordelSaker(saker: JournalforingsSak[]): Kategorier {
-    const kategoriGruppert = saker.reduce(groupBy(sakKategori), { [SakKategori.FAG]: [], [SakKategori.GEN]: [] });
+    const kategoriGruppert = saker.reduce(groupBy(sakKategori), {
+        [SakKategori.FAG]: [],
+        [SakKategori.GEN]: []
+    });
 
     const temaGruppertefagSaker: Group<JournalforingsSak> = kategoriGruppert[SakKategori.FAG].reduce(
         groupBy((sak) => sak.temaNavn),
@@ -54,9 +61,11 @@ export function fordelSaker(saker: JournalforingsSak[]): Kategorier {
     );
 
     const fagSaker = Object.entries(temaGruppertefagSaker)
+        //biome-ignore lint/performance/noAccumulatingSpread: biome migration
         .reduce((acc, [tema, saker]) => [...acc, { tema, saker }], [] as Tema[])
         .toSorted((a, b) => a.tema.localeCompare(b.tema));
     const generelleSaker = Object.entries(temaGrupperteGenerelleSaker)
+        //biome-ignore lint/performance/noAccumulatingSpread: biome migration
         .reduce((acc, [tema, saker]) => [...acc, { tema, saker }], [] as Tema[])
         .toSorted((a, b) => a.tema.localeCompare(b.tema));
     return {
@@ -94,7 +103,8 @@ function VelgSak(props: Props) {
 
     if (result.isPending) {
         return <Spinner type="XL" />;
-    } else if (result.isError) {
+    }
+    if (result.isError) {
         return <AlertStripeFeil className="blokk-xxxs">Feilet ved uthenting av saker</AlertStripeFeil>;
     }
 

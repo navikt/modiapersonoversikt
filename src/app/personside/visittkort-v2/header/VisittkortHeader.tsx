@@ -1,15 +1,15 @@
-import { Data as Persondata, Kjonn, KodeBeskrivelse } from '../PersondataDomain';
 import { Undertittel } from 'nav-frontend-typografi';
-import styled from 'styled-components';
-import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
-import { hentAlderEllerDod, hentNavn } from '../visittkort-utils';
 import { useRef } from 'react';
-import PersonStatus from './status/PersonStatus';
-import Etiketter from './etiketter/Etiketter';
+import styled from 'styled-components';
 import VisMerChevron from '../../../../components/VisMerChevron';
-import NavKontorContainer from './navkontor/NavKontorContainer';
+import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import { useOnMount } from '../../../../utils/customHooks';
+import { Kjonn, type KodeBeskrivelse, type Data as Persondata } from '../PersondataDomain';
+import { hentAlderEllerDod, hentNavn } from '../visittkort-utils';
 import KjonnIkon from './KjonnIkon';
+import Etiketter from './etiketter/Etiketter';
+import NavKontorContainer from './navkontor/NavKontorContainer';
+import PersonStatus from './status/PersonStatus';
 
 interface Props {
     persondata: Persondata;
@@ -92,6 +92,7 @@ function VisittkortHeader(props: Props) {
     const navn = person.navn.firstOrNull();
 
     return (
+        //biome-ignore lint/a11y/useSemanticElements: biome migration
         <VisittkortHeaderDiv role="region" aria-label="Visittkort-hode" onClick={props.toggleApen}>
             <StyledContent>
                 <VenstreFelt>
@@ -122,7 +123,7 @@ function VisittkortHeader(props: Props) {
                         props.toggleApen();
                     }}
                     open={props.erApen}
-                    title={(props.erApen ? 'Lukk' : 'Åpne') + ' visittkort (Alt + N)'}
+                    title={`${props.erApen ? 'Lukk' : 'Åpne'} visittkort (Alt + N)`}
                     focusOnRelativeParent={true}
                 >
                     <span className="visually-hidden">{props.erApen ? 'Lukk visittkort' : 'Ekspander visittkort'}</span>

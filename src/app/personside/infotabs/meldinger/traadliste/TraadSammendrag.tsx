@@ -1,13 +1,13 @@
-import { Melding, Traad } from '../../../../../models/meldinger/meldinger';
-import { erFeilsendt, getFormattertMeldingsDato, nyesteMelding, traadstittel } from '../utils/meldingerUtils';
-import { useAppState } from '../../../../../utils/customHooks';
-import Meldingsikon from '../utils/Meldingsikon';
+import { EtikettAdvarsel, EtikettFokus, EtikettSuksess } from 'nav-frontend-etiketter';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { UnmountClosed } from 'react-collapse';
-import { EtikettAdvarsel, EtikettFokus, EtikettSuksess } from 'nav-frontend-etiketter';
-import useTildelteOppgaver from '../../../../../utils/hooks/useTildelteOppgaver';
-import { Temagruppe } from '../../../../../models/temagrupper';
 import styled from 'styled-components';
+import type { Melding, Traad } from '../../../../../models/meldinger/meldinger';
+import { Temagruppe } from '../../../../../models/temagrupper';
+import { useAppState } from '../../../../../utils/customHooks';
+import useTildelteOppgaver from '../../../../../utils/hooks/useTildelteOppgaver';
+import Meldingsikon from '../utils/Meldingsikon';
+import { erFeilsendt, getFormattertMeldingsDato, nyesteMelding, traadstittel } from '../utils/meldingerUtils';
 
 const ContentStyle = styled.div`
     display: flex;

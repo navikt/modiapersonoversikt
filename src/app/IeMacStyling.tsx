@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { useOnMount } from '../utils/customHooks';
 import { detect } from 'detect-browser';
-import { erIE11 } from '../utils/erIE11';
+import { useState } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { pxToRem } from '../styles/personOversiktTheme';
+import { useOnMount } from '../utils/customHooks';
+import { erIE11 } from '../utils/erIE11';
 
 const MacStyling = createGlobalStyle`
         *::-webkit-scrollbar {
@@ -30,7 +30,7 @@ function IeMacStyling() {
 
     useOnMount(() => {
         const browser = detect();
-        const os = browser && browser.os;
+        const os = browser?.os;
         setIsMac(os ? os.toLowerCase().includes('mac') : undefined);
         setIsIE(erIE11());
     });

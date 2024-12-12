@@ -1,9 +1,9 @@
-import { erMaks10MinSiden } from '../../../utils/date-utils';
-import { nyesteMelding, nyesteTraad } from '../infotabs/meldinger/utils/meldingerUtils';
 import { useEffect, useMemo, useState } from 'react';
-import { Melding, Traad } from '../../../models/meldinger/meldinger';
-import { loggError } from '../../../utils/logger/frontendLogger';
+import type { Melding, Traad } from '../../../models/meldinger/meldinger';
 import dialogResource from '../../../rest/resources/dialogResource';
+import { erMaks10MinSiden } from '../../../utils/date-utils';
+import { loggError } from '../../../utils/logger/frontendLogger';
+import { nyesteMelding, nyesteTraad } from '../infotabs/meldinger/utils/meldingerUtils';
 
 interface SendtMelding {
     pending: boolean;
@@ -37,6 +37,7 @@ export function useSendtMelding(opprettetTraad: Traad | undefined): SendtMelding
                     }
                 }
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                //biome-ignore lint/suspicious/noExplicitAny: biome migration
             } catch (e: any) {
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
                 loggError(e, 'Kunne ikke finne sendt melding', { traader: JSON.stringify(traaderResource.data) });

@@ -1,4 +1,4 @@
-import { Ytelse } from 'src/models/utbetalinger';
+import type { Ytelse } from 'src/models/utbetalinger';
 
 export interface UtbetalingerState {
     ytelseIFokus: Ytelse | null;

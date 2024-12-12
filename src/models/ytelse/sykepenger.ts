@@ -1,6 +1,6 @@
-import { Periode } from '../tid';
-import { KommendeUtbetaling, UtbetalingPåVent } from './ytelse-utbetalinger';
-import { Arbeidsforhold } from './arbeidsforhold';
+import type { Periode } from '../tid';
+import type { Arbeidsforhold } from './arbeidsforhold';
+import type { KommendeUtbetaling, UtbetalingPåVent } from './ytelse-utbetalinger';
 
 export interface SykepengerResponse {
     sykepenger: Sykepenger[] | null;
@@ -59,5 +59,5 @@ export function getSykepengerIdDato(sykepenger: Sykepenger) {
 }
 
 export function getUnikSykepengerKey(sykepenger: Sykepenger): string {
-    return 'sykepenger' + getSykepengerIdDato(sykepenger);
+    return `sykepenger${getSykepengerIdDato(sykepenger)}`;
 }

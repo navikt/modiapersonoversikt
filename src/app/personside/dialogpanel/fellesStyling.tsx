@@ -1,20 +1,20 @@
-import styled from 'styled-components';
-import { pxToRem, theme } from '../../../styles/personOversiktTheme';
 import { AlertStripeFeil, AlertStripeInfo, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import KnappBase from 'nav-frontend-knapper';
-import VisuallyHiddenAutoFokusHeader from '../../../components/VisuallyHiddenAutoFokusHeader';
-import Preview from './Preview';
-import { Traad } from '../../../models/meldinger/meldinger';
-import Verktoylinje from '../infotabs/meldinger/traadvisning/verktoylinje/Verktoylinje';
-import NavFrontendSpinner from 'nav-frontend-spinner';
-import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
-import { useSendtMelding } from './useSendtMelding';
-import GaaTilNesteOppgaveKnapp from './GaaTilNesteOppgaveKnapp';
-import TidligereMeldinger from './fortsettDialog/tidligereMeldinger/TidligereMeldinger';
-import ErrorBoundary from '../../../components/ErrorBoundary';
-import { SendNyMeldingStatus } from './sendMelding/SendNyMeldingTypes';
 import Panel from 'nav-frontend-paneler';
+import NavFrontendSpinner from 'nav-frontend-spinner';
+import styled from 'styled-components';
+import ErrorBoundary from '../../../components/ErrorBoundary';
+import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
+import VisuallyHiddenAutoFokusHeader from '../../../components/VisuallyHiddenAutoFokusHeader';
+import type { Traad } from '../../../models/meldinger/meldinger';
+import { pxToRem, theme } from '../../../styles/personOversiktTheme';
+import Verktoylinje from '../infotabs/meldinger/traadvisning/verktoylinje/Verktoylinje';
 import { traadstittel } from '../infotabs/meldinger/utils/meldingerUtils';
+import GaaTilNesteOppgaveKnapp from './GaaTilNesteOppgaveKnapp';
+import Preview from './Preview';
+import TidligereMeldinger from './fortsettDialog/tidligereMeldinger/TidligereMeldinger';
+import { SendNyMeldingStatus } from './sendMelding/SendNyMeldingTypes';
+import { useSendtMelding } from './useSendtMelding';
 
 export const FormStyle = styled.form`
     display: flex;
@@ -75,9 +75,8 @@ function MeldingSendtVerktoyLinje(props: { traad: Traad | undefined }) {
 function VarselTilBrukerOmStatus(props: { meldingstatus: SendNyMeldingStatus; tittle: string }) {
     if (props.meldingstatus === SendNyMeldingStatus.ERROR) {
         return <DialogpanelFeilmelding />;
-    } else {
-        return <AlertStripeSuksess>{props.tittle}</AlertStripeSuksess>;
     }
+    return <AlertStripeSuksess>{props.tittle}</AlertStripeSuksess>;
 }
 
 export function DialogpanelKvittering(props: {

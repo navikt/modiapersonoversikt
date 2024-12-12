@@ -1,9 +1,9 @@
-import { isDevelopment, isTest } from '../environment';
 import { detect } from 'detect-browser';
 import { useEffect } from 'react';
-import { erKontaktsenter } from '../enheter-utils';
-import innloggetSaksbehandler from '../../rest/resources/innloggetSaksbehandlerResource';
 import { useValgtenhet } from '../../context/valgtenhet-state';
+import innloggetSaksbehandler from '../../rest/resources/innloggetSaksbehandlerResource';
+import { erKontaktsenter } from '../enheter-utils';
+import { isDevelopment, isTest } from '../environment';
 
 let ident = 'ikke satt';
 let enhet = 'ikke valgt';
@@ -61,11 +61,11 @@ export function loggWarning(error: Error, message?: string, ekstraFelter?: Value
         return;
     }
     const browser = detect();
-    const msg = `${message ? message + ': ' : ''} ${error.name} ${error.message}`;
+    const msg = `${message ? `${message}: ` : ''} ${error.name} ${error.message}`;
     const info = {
         url: document.URL,
         error: error.stack,
-        browser: (browser && browser.name) || undefined,
+        browser: browser?.name || undefined,
         saksbehandler: ident,
         enhet: enhet,
         ...ekstraFelter
@@ -78,11 +78,11 @@ export function loggError(error: Error, message?: string, ekstraFelter?: ValuePa
         return;
     }
     const browser = detect();
-    const logLine = `${message ? message + ': ' : ''} ${error.name} ${error.message}`;
+    const logLine = `${message ? `${message}: ` : ''} ${error.name} ${error.message}`;
     const info = {
         url: document.URL,
         error: error.stack,
-        browser: (browser && browser.name) || undefined,
+        browser: browser?.name || undefined,
         saksbehandler: ident,
         enhet: enhet,
         ...ekstraFelter
@@ -97,6 +97,7 @@ export function emptyStringToUndefined(valuePairs: ValuePairs) {
 
             return value
                 ? {
+                      //biome-ignore lint/performance/noAccumulatingSpread: biome migration
                       ...acc,
                       [key]: value
                   }

@@ -1,5 +1,6 @@
 export default function Sikkerhetstiltak(props) {
     return (
+        //biome-ignore lint/a11y/noSvgWithoutTitle: biome migration
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" height={100} width={100} {...props}>
             <defs>
                 <mask id="sikkerhetstiltakmask">

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import easterEgg from './paaskeegg.svg';
 import styled, { css, keyframes } from 'styled-components';
 import Chick from './Chick';
+import easterEgg from './paaskeegg.svg';
 
 const rollIn = keyframes`
   from {

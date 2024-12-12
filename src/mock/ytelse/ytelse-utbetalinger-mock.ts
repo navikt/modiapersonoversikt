@@ -1,8 +1,8 @@
+import type { Faker } from '@faker-js/faker';
 import dayjs from 'dayjs';
-import { KommendeUtbetaling, UtbetalingPåVent } from '../../models/ytelse/ytelse-utbetalinger';
+import type { KommendeUtbetaling, UtbetalingPåVent } from '../../models/ytelse/ytelse-utbetalinger';
 import { backendDatoformat } from '../../utils/date-utils';
 import { getPeriodeRange } from '../periodeMock';
-import { Faker } from '@faker-js/faker';
 
 export function getKommendeUtbetaling(faker: Faker): KommendeUtbetaling {
     return {
@@ -14,7 +14,7 @@ export function getKommendeUtbetaling(faker: Faker): KommendeUtbetaling {
         arbeidsgiverOrgNr: '1234567890',
         arbeidsgiverKontonr: Number(faker.finance.accountNumber(9)).toString(),
         dagsats: Number(faker.commerce.price()),
-        saksbehandler: faker.person.firstName() + ' ' + faker.person.lastName(),
+        saksbehandler: `${faker.person.firstName()} ${faker.person.lastName()}`,
         type: 'KONTOØVERFØRING'
     };
 }

@@ -1,10 +1,10 @@
 import Hjelpetekst from 'nav-frontend-hjelpetekst';
 import { guid } from 'nav-frontend-js-utils';
-import { InputProps } from 'nav-frontend-skjema';
+import type { InputProps } from 'nav-frontend-skjema';
 import { useRef } from 'react';
-import { FieldValues, UseFormReturn } from 'react-hook-form';
+import type { FieldValues, UseFormReturn } from 'react-hook-form';
 import FormInput from '../../components/form/FormInput';
-import { PersonSokFormStateV3 } from './personsokUtils';
+import type { PersonSokFormStateV3 } from './personsokUtils';
 
 interface Props<F extends FieldValues = PersonSokFormStateV3> {
     form: UseFormReturn<F>;
@@ -76,7 +76,7 @@ function PersonsokNavnAdresseKontonrDnr({ form }: Props) {
                     id={formField.id}
                     label={formField.label}
                     bredde={formField.width}
-                    feil={!!form.formState.errors['_minimumskrav']}
+                    feil={!!form.formState.errors._minimumskrav}
                 />
             ))}
         </>

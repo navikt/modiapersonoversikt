@@ -1,7 +1,7 @@
-import { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { Select } from 'nav-frontend-skjema';
-import { LenkeKnapp } from '../../components/common-styled-components';
+import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
+import { LenkeKnapp } from '../../components/common-styled-components';
 import { usePrevious } from '../customHooks';
 
 interface PagineringsData<T> {
@@ -97,9 +97,10 @@ function usePaginering<T>(
             <Select
                 value={currentPage}
                 // @ts-expect-error dårlig typing
+                //biome-ignore lint/suspicious/noAssignInExpressions: biome migration
                 selectRef={(ref) => (selectRef.current = ref)} //eslint-disable-line
                 label="Velg paginering"
-                onChange={(e) => setCurrentPage(parseInt(e.target.value))}
+                onChange={(e) => setCurrentPage(Number.parseInt(e.target.value))}
             >
                 {options}
             </Select>

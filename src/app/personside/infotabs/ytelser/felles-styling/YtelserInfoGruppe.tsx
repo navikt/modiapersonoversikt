@@ -1,8 +1,8 @@
-import { ReactNode, useRef } from 'react';
-import { Ingress } from 'nav-frontend-typografi';
-import theme from '../../../../../styles/personOversiktTheme';
-import styled from 'styled-components';
 import { guid } from 'nav-frontend-js-utils';
+import { Ingress } from 'nav-frontend-typografi';
+import { type ReactNode, useRef } from 'react';
+import styled from 'styled-components';
+import theme from '../../../../../styles/personOversiktTheme';
 
 interface Props {
     children: ReactNode;

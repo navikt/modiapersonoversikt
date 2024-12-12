@@ -1,15 +1,19 @@
-import { useFodselsnummer, useOnMount } from '../../../../utils/customHooks';
-import { loggError } from '../../../../utils/logger/frontendLogger';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
-import { CenteredLazySpinner } from '../../../../components/LazySpinner';
-import { OpprettHenvendelseRequestV2, OpprettHenvendelseResponse, Traad } from '../../../../models/meldinger/meldinger';
-import { useDispatch } from 'react-redux';
-import { apiBaseUri } from '../../../../api/config';
-import { postWithConflictVerification, RespectConflictError } from '../../../../api/api';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { RespectConflictError, postWithConflictVerification } from '../../../../api/api';
+import { apiBaseUri } from '../../../../api/config';
+import { CenteredLazySpinner } from '../../../../components/LazySpinner';
+import { useValgtenhet } from '../../../../context/valgtenhet-state';
+import type {
+    OpprettHenvendelseRequestV2,
+    OpprettHenvendelseResponse,
+    Traad
+} from '../../../../models/meldinger/meldinger';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
 import tildelteoppgaverResource from '../../../../rest/resources/tildelteoppgaverResource';
-import { useValgtenhet } from '../../../../context/valgtenhet-state';
+import { useFodselsnummer, useOnMount } from '../../../../utils/customHooks';
+import { loggError } from '../../../../utils/logger/frontendLogger';
 
 interface NotFinishedOpprettHenvendelse {
     success: false;
@@ -53,7 +57,7 @@ function useOpprettHenvendelse(traad: Traad): OpprettHenvendelseReturns {
                 } else {
                     setError(true);
                     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-                    loggError(e, 'Kunne ikke opprette henvendelse for traadId: ' + traad.traadId, {});
+                    loggError(e, `Kunne ikke opprette henvendelse for traadId: ${traad.traadId}`, {});
                 }
             });
     });

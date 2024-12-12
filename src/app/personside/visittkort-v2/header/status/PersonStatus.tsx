@@ -1,11 +1,11 @@
-import styled from 'styled-components';
-import { Person, PersonStatus as Status } from '../../PersondataDomain';
 import { Normaltekst } from 'nav-frontend-typografi';
-import CopyToClipboard from './CopyToClipboard';
+import styled from 'styled-components';
 import { formaterDato } from '../../../../../utils/string-utils';
-import Statsborgerskap from './Statsborgerskap';
-import { Sivilstand } from './Sivilstand';
+import { type Person, PersonStatus as Status } from '../../PersondataDomain';
 import { AntallBarn } from './AntallBarn';
+import CopyToClipboard from './CopyToClipboard';
+import { Sivilstand } from './Sivilstand';
+import Statsborgerskap from './Statsborgerskap';
 
 const PersonStatusListe = styled.ul`
     margin: 0;
@@ -49,17 +49,15 @@ function Dodsdato({ person }: Props) {
     if (dodsdato) {
         const formatertDodsdato = formaterDato(dodsdato);
         return <span>Død {formatertDodsdato}</span>;
-    } else {
-        return null;
     }
+    return null;
 }
 
 function Utvandret({ person }: Props) {
     if (person.personstatus.firstOrNull()?.kode === Status.UTFLYTTET) {
         return <span>Utvandret</span>;
-    } else {
-        return null;
     }
+    return null;
 }
 
 function PersonStatus({ person }: Props) {

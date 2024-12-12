@@ -1,7 +1,7 @@
-import { ForelderBarnRelasjon, Kjonn } from '../../PersondataDomain';
-import ForelderBarnRelasjonVisning from './ForelderBarnRelasjon';
 import { capitalizeName } from '../../../../../utils/string-utils';
+import { type ForelderBarnRelasjon, Kjonn } from '../../PersondataDomain';
 import { harDiskresjonskode, hentBarnUnder22 } from '../../visittkort-utils';
+import ForelderBarnRelasjonVisning from './ForelderBarnRelasjon';
 
 interface Props {
     harFeilendeSystem: boolean;
@@ -17,11 +17,11 @@ function hentKjonnBeskrivelseForBarn(barn: ForelderBarnRelasjon) {
 
     if (kjonn?.kode === Kjonn.M) {
         return 'Gutt';
-    } else if (kjonn?.kode === Kjonn.K) {
-        return 'Jente';
-    } else {
-        return 'Ukjent';
     }
+    if (kjonn?.kode === Kjonn.K) {
+        return 'Jente';
+    }
+    return 'Ukjent';
 }
 
 function ListeAvBarn({ harFeilendeSystem, relasjoner }: Props) {

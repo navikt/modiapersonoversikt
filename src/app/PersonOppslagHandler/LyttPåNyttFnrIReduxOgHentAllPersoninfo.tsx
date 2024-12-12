@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useGjeldendeBruker } from '../../redux/gjeldendeBruker/types';
-import { loggEvent } from '../../utils/logger/frontendLogger';
 import tildelteoppgaver from '../../rest/resources/tildelteoppgaverResource';
+import { loggEvent } from '../../utils/logger/frontendLogger';
 
 function LyttPåNyttFnrIReduxOgHentAllPersoninfo() {
     const fnr = useGjeldendeBruker();

@@ -1,4 +1,4 @@
-import { DependencyList, useCallback, useEffect, useMemo } from 'react';
+import { type DependencyList, useCallback, useEffect, useMemo } from 'react';
 import { loggEvent } from '../logger/frontendLogger';
 
 type KeyDescription = { char: string; altKey?: boolean; ctrlKey?: boolean; metaKey?: boolean; shiftKey?: boolean };
@@ -36,7 +36,7 @@ export default function useHotkey(
             if (matches(keyDescription, event)) {
                 event.preventDefault();
                 event.stopPropagation();
-                loggEvent(loggAction, 'Hurtigtast', { type: 'Alt + ' + keyDescription.char });
+                loggEvent(loggAction, 'Hurtigtast', { type: `Alt + ${keyDescription.char}` });
                 stableAction();
             }
         },

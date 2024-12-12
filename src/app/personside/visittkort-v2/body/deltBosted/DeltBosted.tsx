@@ -1,9 +1,9 @@
-import VisittkortElement from '../VisittkortElement';
-import { VisittkortGruppe } from '../VisittkortStyles';
 import Infotegn from '../../../../../svg/Info';
-import { DeltBosted } from '../../PersondataDomain';
+import type { DeltBosted } from '../../PersondataDomain';
 import Adresseinfo from '../AdresseInfo';
 import GyldighetsPeriode from '../GyldighetsPeriode';
+import VisittkortElement from '../VisittkortElement';
+import { VisittkortGruppe } from '../VisittkortStyles';
 
 interface Props {
     deltBosted: DeltBosted[];

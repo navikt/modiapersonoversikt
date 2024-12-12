@@ -1,6 +1,6 @@
 import Modal from 'nav-frontend-modal';
-import styled from 'styled-components';
 import { Systemtittel } from 'nav-frontend-typografi';
+import styled from 'styled-components';
 import InnstillingerModalInnhold from './InnstillingerModalInnhold';
 
 const MinWidthModal = styled(Modal)`

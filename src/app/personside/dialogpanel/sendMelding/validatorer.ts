@@ -1,9 +1,12 @@
-import { SendNyMeldingState, tekstMaksLengde } from './SendNyMelding';
 import { TraadType } from '../../../../models/meldinger/meldinger';
+import { type SendNyMeldingState, tekstMaksLengde } from './SendNyMelding';
 
+//biome-ignore lint/complexity/noStaticOnlyClass: biome migration
 export class MeldingValidator {
     public static tekst(state: SendNyMeldingState) {
-        return state.tekst.length <= tekstMaksLengde && state.tekst.length > 0 && this.inneholderTekst(state);
+        return (
+            state.tekst.length <= tekstMaksLengde && state.tekst.length > 0 && MeldingValidator.inneholderTekst(state)
+        );
     }
     public static tema(state: SendNyMeldingState) {
         return state.tema !== undefined;
@@ -18,10 +21,10 @@ export class MeldingValidator {
         return state.traadType !== TraadType.SAMTALEREFERAT;
     }
     public static erGyldigReferat(state: SendNyMeldingState) {
-        return this.erReferat(state) && this.tema(state) && this.tekst(state);
+        return MeldingValidator.erReferat(state) && MeldingValidator.tema(state) && MeldingValidator.tekst(state);
     }
     public static erGyldigSamtale(state: SendNyMeldingState) {
-        return this.erSamtale(state) && this.sak(state) && this.tekst(state);
+        return MeldingValidator.erSamtale(state) && MeldingValidator.sak(state) && MeldingValidator.tekst(state);
     }
 
     private static inneholderTekst(state: SendNyMeldingState) {

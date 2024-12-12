@@ -1,10 +1,10 @@
-import * as renderer from 'react-test-renderer';
-import TestProvider from '../../../../test/Testprovider';
-import VisittkortHeader from './VisittkortHeader';
-import { aremark } from '../../../../mock/persondata/aremark';
-import { Data as PersonData, LocalDate, Person } from '../PersondataDomain';
 import { render } from '@testing-library/react';
+import * as renderer from 'react-test-renderer';
+import { aremark } from '../../../../mock/persondata/aremark';
+import TestProvider from '../../../../test/Testprovider';
+import type { LocalDate, Person, Data as PersonData } from '../PersondataDomain';
 import { hentNavn } from '../visittkort-utils';
+import VisittkortHeader from './VisittkortHeader';
 
 function lagPersondataForAremark(): PersonData {
     const person = aremark;

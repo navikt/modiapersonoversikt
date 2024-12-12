@@ -2,10 +2,10 @@ import { fakerNB_NO as faker } from '@faker-js/faker';
 import dayjs from 'dayjs';
 
 import navfaker from 'nav-faker/dist/index';
-import { Tiltakspenger, TiltakspengerResource } from '../../models/ytelse/tiltakspenger';
-import { fyllRandomListe } from '../utils/mock-utils';
+import type { Tiltakspenger, TiltakspengerResource } from '../../models/ytelse/tiltakspenger';
 import { backendDatoformat } from '../../utils/date-utils';
 import { aremark } from '../persondata/aremark';
+import { fyllRandomListe } from '../utils/mock-utils';
 import { statiskTiltakspengerMock } from './statiskTiltakspengerMock';
 
 export function getMockTiltakspenger(fødselsnummer: string): TiltakspengerResource {
@@ -14,7 +14,7 @@ export function getMockTiltakspenger(fødselsnummer: string): TiltakspengerResou
     }
 
     faker.seed(Number(fødselsnummer));
-    navfaker.seed(fødselsnummer + 'tiltakspenger');
+    navfaker.seed(`${fødselsnummer}tiltakspenger`);
 
     if (navfaker.random.vektetSjanse(0.3)) {
         return null;
@@ -25,7 +25,7 @@ export function getMockTiltakspenger(fødselsnummer: string): TiltakspengerResou
 
 export function getMockTiltakspengerYtelser(fødselsnummer: string): Tiltakspenger {
     faker.seed(Number(fødselsnummer));
-    navfaker.seed(fødselsnummer + 'pleiepenger');
+    navfaker.seed(`${fødselsnummer}pleiepenger`);
 
     const fom = dayjs(faker.date.past({ years: 2 })).format(backendDatoformat);
     const tom = dayjs(fom).add(faker.number.int(40), 'days').format(backendDatoformat);

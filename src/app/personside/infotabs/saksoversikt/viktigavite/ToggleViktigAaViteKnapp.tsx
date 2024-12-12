@@ -1,5 +1,5 @@
-import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import EkspanderKnapp from '../../../../../components/EkspanderKnapp';
+import type { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 
 interface OwnProps {
     valgtSakstema?: Sakstema;
@@ -22,13 +22,13 @@ export default function ToggleViktigAaViteKnapp(props: Props) {
         return null;
     }
 
-    const sakstemanavn = props.valgtSakstema && props.valgtSakstema.temanavn;
+    const sakstemanavn = props.valgtSakstema?.temanavn;
 
     return (
         <EkspanderKnapp
             open={props.open}
             onClick={() => props.setOpen(!props.open)}
-            tittel={'Viktig å vite om ' + sakstemanavn}
+            tittel={`Viktig å vite om ${sakstemanavn}`}
         />
     );
 }

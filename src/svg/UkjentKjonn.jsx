@@ -1,5 +1,6 @@
 export default function UkjentKjonn(props) {
     return (
+        //biome-ignore lint/a11y/noSvgWithoutTitle: biome migration
         <svg
             alt="Ukjent kjønn"
             aria-label="Ukjent kjønn"

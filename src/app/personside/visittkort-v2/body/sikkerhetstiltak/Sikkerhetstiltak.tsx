@@ -1,9 +1,9 @@
 import { Normaltekst } from 'nav-frontend-typografi';
 import SikkerhetsTiltakIkon from '../../../../../svg/Sikkerhetstiltak';
-import { VisittkortGruppe } from '../VisittkortStyles';
-import VisittkortElement from '../VisittkortElement';
-import { Sikkerhetstiltak as SikkerhetstiltakInterface } from '../../PersondataDomain';
+import type { Sikkerhetstiltak as SikkerhetstiltakInterface } from '../../PersondataDomain';
 import GyldighetsPeriode from '../GyldighetsPeriode';
+import VisittkortElement from '../VisittkortElement';
+import { VisittkortGruppe } from '../VisittkortStyles';
 
 interface Props {
     sikkerhetstiltak: SikkerhetstiltakInterface[];

@@ -2,26 +2,26 @@ import { fakerNB_NO as faker } from '@faker-js/faker';
 import dayjs from 'dayjs';
 import navfaker from 'nav-faker/dist/index';
 
-import {
+import type { Arbeidsforhold } from '../../models/ytelse/arbeidsforhold';
+import type {
     Forsikring,
+    Gradering,
+    Sykepenger,
     SykepengerResponse,
     Sykmelding,
-    Sykepenger,
-    Yrkesskade,
-    Gradering
+    Yrkesskade
 } from '../../models/ytelse/sykepenger';
-import { fyllRandomListe } from '../utils/mock-utils';
-import { getKommendeUtbetaling, getUtbetalingPåVent } from './ytelse-utbetalinger-mock';
-import { KommendeUtbetaling, UtbetalingPåVent } from '../../models/ytelse/ytelse-utbetalinger';
-import { Arbeidsforhold } from '../../models/ytelse/arbeidsforhold';
-import { statiskSykepengerMock } from './statiskSykepengerMock';
+import type { KommendeUtbetaling, UtbetalingPåVent } from '../../models/ytelse/ytelse-utbetalinger';
 import { backendDatoformat } from '../../utils/date-utils';
-import { aremark } from '../persondata/aremark';
 import { getPeriode } from '../periodeMock';
+import { aremark } from '../persondata/aremark';
+import { fyllRandomListe } from '../utils/mock-utils';
+import { statiskSykepengerMock } from './statiskSykepengerMock';
+import { getKommendeUtbetaling, getUtbetalingPåVent } from './ytelse-utbetalinger-mock';
 
 export function getMockSykepengerRespons(fødselsnummer: string): SykepengerResponse {
     faker.seed(Number(fødselsnummer));
-    navfaker.seed(fødselsnummer + 'sykepenger');
+    navfaker.seed(`${fødselsnummer}sykepenger`);
 
     if (fødselsnummer === aremark.personIdent) {
         return {
@@ -78,7 +78,7 @@ function getForsikring(): Forsikring {
 
 export function getMockSykmelding(): Sykmelding {
     return {
-        sykmelder: faker.name.firstName() + ' ' + faker.name.lastName(),
+        sykmelder: `${faker.name.firstName()} ${faker.name.lastName()}`,
         behandlet: dayjs(faker.date.past({ years: 1 })).format(backendDatoformat),
         sykmeldt: getPeriode(),
         sykmeldingsgrad: navfaker.random.integer(100),

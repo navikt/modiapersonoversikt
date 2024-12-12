@@ -1,8 +1,8 @@
-import { Behandlingsstatus, SakstemaSoknadsstatus } from '../../../../../models/saksoversikt/sakstema';
 import { Normaltekst } from 'nav-frontend-typografi';
-import SakIkkeTilgangIkon from '../../../../../svg/SakIkkeTilgangIkon';
 import styled from 'styled-components';
+import { Behandlingsstatus, type SakstemaSoknadsstatus } from '../../../../../models/saksoversikt/sakstema';
 import theme from '../../../../../styles/personOversiktTheme';
+import SakIkkeTilgangIkon from '../../../../../svg/SakIkkeTilgangIkon';
 
 export const SVGStyling = styled.span`
     svg {
@@ -42,9 +42,8 @@ export function visAntallSakerSomHarbehandlingsstatusV2(
 export function saksikon(harTilgang: boolean) {
     if (harTilgang) {
         return null;
-    } else {
-        return <SakIkkeTilgangIkon />;
     }
+    return <SakIkkeTilgangIkon />;
 }
 
 export function filtrerSakstemaerUtenDataV2(sakstemaer: SakstemaSoknadsstatus[]): SakstemaSoknadsstatus[] {

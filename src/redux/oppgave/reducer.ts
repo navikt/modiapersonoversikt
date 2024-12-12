@@ -1,5 +1,6 @@
-import { initialState, OppgaveActionTypes, OppgaveActions, OppgaveState } from './types';
+import { OppgaveActionTypes, type OppgaveActions, type OppgaveState, initialState } from './types';
 
+// biome-ignore lint/style/useDefaultParameterLast: biome migration
 export function oppgaverReducer(state: OppgaveState = initialState, action: OppgaveActions): OppgaveState {
     switch (action.type) {
         case OppgaveActionTypes.SetDialogpanelTraad:

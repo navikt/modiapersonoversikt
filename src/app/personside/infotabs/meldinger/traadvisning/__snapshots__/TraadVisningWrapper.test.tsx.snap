@@ -1,46 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Viser traad med verktøylinje 1`] = `
-.c13 {
-  position: relative;
-  text-align: center;
-  padding-top: 1rem;
-}
-
-.c4 {
-  position: relative;
-  border: none;
-  padding: 0;
-  border-radius: .35rem;
-  cursor: pointer;
-  background-color: transparent;
-  display: flex;
-  align-items: center;
-  color: #0067c5;
-}
-
-.c4:after {
-  border-bottom: 1px #b7b1a9 solid;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
-
-.c4:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.1875rem #254b6d;
-}
-
-.c4:hover {
-  opacity: 0.8;
-}
-
-.c4:hover:after {
-  content: '';
-  border-color: #0067c5;
-}
-
 .c23 .snakkeboble-panel {
   flex-basis: 40rem;
   padding: 0.5rem 0.5rem 0.3rem;
@@ -84,51 +44,69 @@ exports[`Viser traad med verktøylinje 1`] = `
   margin-left: auto;
 }
 
-.c18 {
-  display: flex;
-  justify-content: space-between;
-}
-
-.c15 {
-  position: relative;
-}
-
-.c16 {
-  position: relative;
-}
-
-.c16 .skjemaelement {
-  margin-bottom: 0;
-}
-
-.c14 {
-  padding-top: 1rem;
-}
-
-.c14 .inputPanelGruppe__inner {
-  display: flex;
-}
-
-.c14 .inputPanelGruppe__inner >* {
+.c19 {
   flex-grow: 1;
 }
 
-.c14 label {
-  font-weight: 600;
-  margin-bottom: 0.1rem;
+.c19 >*:last-child {
+  margin-top: .5rem;
 }
 
-.c14 .skjemaelement {
-  margin-bottom: 0.7rem;
-}
-
-.c17 {
+.c21 {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
-.c17 button {
-  margin: 0;
+.c20 {
+  margin-bottom: 0.3rem;
+}
+
+.c22 {
+  margin-top: 0.8rem;
+}
+
+.c22 .ekspanderbartPanel__hode,
+.c22 .ekspanderbartPanel__innhold {
+  padding: 0.1rem 0.2rem;
+}
+
+.c22 .ekspanderbartPanel__tittel {
+  color: #0067c5;
+}
+
+.c4 {
+  position: relative;
+  border: none;
+  padding: 0;
+  border-radius: .35rem;
+  cursor: pointer;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  color: #0067c5;
+}
+
+.c4:after {
+  border-bottom: 1px #b7b1a9 solid;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.c4:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c4:hover {
+  opacity: 0.8;
+}
+
+.c4:hover:after {
+  content: '';
+  border-color: #0067c5;
 }
 
 .c6 {
@@ -181,6 +159,59 @@ exports[`Viser traad med verktøylinje 1`] = `
   page-break-inside: avoid;
 }
 
+.c13 {
+  position: relative;
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.c18 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.c15 {
+  position: relative;
+}
+
+.c16 {
+  position: relative;
+}
+
+.c16 .skjemaelement {
+  margin-bottom: 0;
+}
+
+.c14 {
+  padding-top: 1rem;
+}
+
+.c14 .inputPanelGruppe__inner {
+  display: flex;
+}
+
+.c14 .inputPanelGruppe__inner >* {
+  flex-grow: 1;
+}
+
+.c14 label {
+  font-weight: 600;
+  margin-bottom: 0.1rem;
+}
+
+.c14 .skjemaelement {
+  margin-bottom: 0.7rem;
+}
+
+.c17 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.c17 button {
+  margin: 0;
+}
+
 .c1 {
   padding: .5rem;
   display: flex;
@@ -211,37 +242,6 @@ exports[`Viser traad med verktøylinje 1`] = `
   white-space: nowrap;
 }
 
-.c19 {
-  flex-grow: 1;
-}
-
-.c19 >*:last-child {
-  margin-top: .5rem;
-}
-
-.c21 {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-
-.c20 {
-  margin-bottom: 0.3rem;
-}
-
-.c22 {
-  margin-top: 0.8rem;
-}
-
-.c22 .ekspanderbartPanel__hode,
-.c22 .ekspanderbartPanel__innhold {
-  padding: 0.1rem 0.2rem;
-}
-
-.c22 .ekspanderbartPanel__tittel {
-  color: #0067c5;
-}
-
 .c0 {
   display: flex;
   flex-direction: column;
@@ -266,6 +266,12 @@ exports[`Viser traad med verktøylinje 1`] = `
 }
 
 @media print {
+  .c22 {
+    display: none;
+  }
+}
+
+@media print {
   .c7 {
     display: none;
   }
@@ -273,12 +279,6 @@ exports[`Viser traad med verktøylinje 1`] = `
 
 @media not print {
   .c8 {
-    display: none;
-  }
-}
-
-@media print {
-  .c22 {
     display: none;
   }
 }

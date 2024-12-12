@@ -21,6 +21,7 @@ interface Props {
 }
 
 function KjonnIkon({ kjonn }: Props) {
+    //biome-ignore lint/suspicious/noImplicitAnyLet: biome migration
     let kjonnIkon;
     if (kjonn === Kjonn.M) {
         kjonnIkon = <Mann />;

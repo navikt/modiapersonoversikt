@@ -1,10 +1,11 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { createRootRoute, Outlet, useMatchRoute } from '@tanstack/react-router';
+import { Outlet, createRootRoute, useMatchRoute } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
-import { lazy, PropsWithChildren } from 'react';
-import Decorator from 'src/app/internarbeidsflatedecorator/Decorator';
+import { type PropsWithChildren, lazy } from 'react';
+import HentGlobaleVerdier from 'src/app/FetchSessionInfoOgLeggIRedux';
 import LoggetUtModal from 'src/app/LoggetUtModal';
 import VelgEnhet from 'src/app/VelgEnhet';
+import Decorator from 'src/app/internarbeidsflatedecorator/Decorator';
 import DemoBanner from 'src/components/DemoBanner';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import NotFound from 'src/components/NotFound';
@@ -13,7 +14,6 @@ import { aktivEnhetAtom } from 'src/lib/state/context';
 import { usePersistentWWLogin } from 'src/login/use-persistent-ww-login';
 import HandleLegacyUrls from 'src/utils/HandleLegacyUrls';
 import styled from 'styled-components';
-import HentGlobaleVerdier from 'src/app/FetchSessionInfoOgLeggIRedux';
 
 export const Route = createRootRoute({
     component: RootLayout,

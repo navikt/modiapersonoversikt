@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { Utbetaling, Ytelse } from '../../../../models/utbetalinger';
-import { flatMapYtelser } from './utils/utbetalinger-utils';
-import { AnyAction, Dispatch } from 'redux';
-import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../redux/utbetalinger/actions';
-import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
+import type { AnyAction, Dispatch } from 'redux';
 import styled from 'styled-components';
+import type { Utbetaling, Ytelse } from '../../../../models/utbetalinger';
+import type { AppState } from '../../../../redux/reducers';
+import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../redux/utbetalinger/actions';
 import { loggEvent } from '../../../../utils/logger/frontendLogger';
+import { flatMapYtelser } from './utils/utbetalinger-utils';
 
 interface OwnProps {
     children: React.ReactNode;

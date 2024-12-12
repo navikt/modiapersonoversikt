@@ -1,6 +1,6 @@
 import { parseTekst } from '@navikt/tag-input';
-import * as StandardTekster from './domain';
-import { Tekster } from './domain';
+import type * as StandardTekster from './domain';
+import type { Tekster } from './domain';
 
 export function rapporterBruk(tekst: StandardTekster.Tekst): void {
     fetch(`${import.meta.env.BASE_URL}/proxy/modia-skrivestotte/skrivestotte/statistikk/${tekst.id}`, {

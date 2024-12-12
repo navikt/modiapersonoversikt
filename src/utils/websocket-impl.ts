@@ -3,10 +3,10 @@ const MINUTES: number = 60 * SECONDS;
 const MAX_RETRIES: number = 30;
 
 export enum Status {
-    INIT,
-    OPEN,
-    CLOSE,
-    REFRESH
+    INIT = 0,
+    OPEN = 1,
+    CLOSE = 2,
+    REFRESH = 3
 }
 
 interface Listeners {
@@ -31,7 +31,7 @@ function createRetrytime(tryCount: number): number {
         return Number.MAX_SAFE_INTEGER;
     }
 
-    const basedelay = Math.min(Math.pow(2, tryCount), 180) * SECONDS;
+    const basedelay = Math.min(2 ** tryCount, 180) * SECONDS;
     return basedelay + fuzzy(5 * SECONDS, 15 * SECONDS);
 }
 
@@ -42,7 +42,7 @@ class WebSocketImpl {
     private connection?: WebSocket;
     private resettimer?: number | null;
     private retrytimer?: number | null;
-    private retryCounter: number = 0;
+    private retryCounter = 0;
 
     constructor(wsUrl: string | ((ws: WebSocketImpl) => Promise<string>), listeners: Listeners) {
         this.wsUrl = wsUrl;

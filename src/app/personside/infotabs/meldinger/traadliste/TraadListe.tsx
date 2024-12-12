@@ -1,21 +1,21 @@
-import * as React from 'react';
-import { useEffect, useRef } from 'react';
-import { Traad } from '../../../../../models/meldinger/meldinger';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import styled from 'styled-components';
-import theme from '../../../../../styles/personOversiktTheme';
+import { guid } from 'nav-frontend-js-utils';
+import Panel from 'nav-frontend-paneler';
 import { Input } from 'nav-frontend-skjema';
 import { Normaltekst } from 'nav-frontend-typografi';
-import TraadListeElement from './TraadListeElement';
+import * as React from 'react';
+import { useEffect, useRef } from 'react';
+import styled from 'styled-components';
+import PrintKnapp from '../../../../../components/PrintKnapp';
 import { LenkeKnapp } from '../../../../../components/common-styled-components';
+import { useMeldingsok } from '../../../../../context/meldingsok';
+import type { Traad } from '../../../../../models/meldinger/meldinger';
+import theme from '../../../../../styles/personOversiktTheme';
 import usePaginering from '../../../../../utils/hooks/usePaginering';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
-import { guid } from 'nav-frontend-js-utils';
-import usePrinter from '../../../../../utils/print/usePrinter';
-import PrintKnapp from '../../../../../components/PrintKnapp';
 import MeldingerPrintMarkup from '../../../../../utils/print/MeldingerPrintMarkup';
-import Panel from 'nav-frontend-paneler';
-import { useMeldingsok } from '../../../../../context/meldingsok';
+import usePrinter from '../../../../../utils/print/usePrinter';
+import TraadListeElement from './TraadListeElement';
 
 interface Props {
     traader: Traad[];
@@ -160,6 +160,7 @@ function TraadListe(props: Props) {
                                 ((ref: HTMLInputElement) => {
                                     inputRef.current = ref;
                                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                    //biome-ignore lint/suspicious/noExplicitAny: biome migration
                                 }) as any
                             }
                             value={meldingsok.query}

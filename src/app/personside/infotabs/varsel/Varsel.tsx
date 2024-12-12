@@ -1,15 +1,15 @@
 import { memo } from 'react';
 import {
-    Varsel as VarselModell,
-    UnifiedVarsel as UnifiedVarselModell,
+    type UnifiedVarsel as UnifiedVarselModell,
+    type Varsel as VarselModell,
     isDittNavEvent
 } from '../../../../models/varsel';
 import { datoSynkende } from '../../../../utils/date-utils';
-import VarselMeldinger from './varselDetaljer/VarselMeldinger';
 import { formaterDato } from '../../../../utils/string-utils';
 import { DittNavEventVarselV2 } from './DittNavVarsler';
-import { getVarselTekst } from './varsel-utils';
 import { VarselRow } from './VarselRow';
+import { getVarselTekst } from './varsel-utils';
+import VarselMeldinger from './varselDetaljer/VarselMeldinger';
 
 function Varsel({ varsel }: { varsel: VarselModell }) {
     const sortertMeldingsliste = varsel.meldingListe.sort(datoSynkende((melding) => melding.utsendingsTidspunkt));

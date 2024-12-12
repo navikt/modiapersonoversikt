@@ -1,9 +1,9 @@
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
-import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import Spinner from 'nav-frontend-spinner';
+import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';
-import InnstillingerModalForm from './InnstillingerModalForm';
 import innstillingerResource from '../../../rest/resources/innstillingerResource';
+import InnstillingerModalForm from './InnstillingerModalForm';
 
 const CenteringDiv = styled.div`
     flex-grow: 1;
@@ -20,7 +20,8 @@ function InnstillingerModalInnhold() {
                 <Spinner type="XXL" />
             </CenteringDiv>
         );
-    } else if (innstillinger.isError) {
+    }
+    if (innstillinger.isError) {
         return (
             <AlertStripeFeil>
                 <Normaltekst>
@@ -29,7 +30,8 @@ function InnstillingerModalInnhold() {
                 <Undertekst>{innstillinger.error.message}</Undertekst>
             </AlertStripeFeil>
         );
-    } else if (!innstillinger.data) {
+    }
+    if (!innstillinger.data) {
         return (
             <AlertStripeFeil>
                 <Normaltekst>Klarte ikke å hente innstillinger</Normaltekst>

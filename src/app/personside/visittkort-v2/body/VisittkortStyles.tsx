@@ -1,8 +1,8 @@
-import styled from 'styled-components';
-import { ReactNode } from 'react';
-import TittelOgIkon from './IkonOgTittel';
-import { theme } from '../../../../styles/personOversiktTheme';
 import { Undertittel } from 'nav-frontend-typografi';
+import type { ReactNode } from 'react';
+import styled from 'styled-components';
+import { theme } from '../../../../styles/personOversiktTheme';
+import TittelOgIkon from './IkonOgTittel';
 
 export const VisittkortBodyWrapper = styled.section`
     background-color: white;

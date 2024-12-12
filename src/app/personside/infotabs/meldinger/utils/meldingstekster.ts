@@ -22,7 +22,7 @@ export function meldingstypeTekst(meldingstype: Meldingstype) {
             return 'Chatmelding fra NAV';
         default:
             // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-            return 'Ukjent meldingstype: ' + meldingstype;
+            return `Ukjent meldingstype: ${meldingstype}`;
     }
 }
 
@@ -35,6 +35,6 @@ export function traadTypeTekst(infoMelding: boolean, traadType?: TraadType) {
         case TraadType.SAMTALEREFERAT:
             return 'Referat';
         default:
-            return 'Ukjent meldingstype: ' + traadType;
+            return `Ukjent meldingstype: ${traadType}`;
     }
 }

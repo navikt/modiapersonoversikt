@@ -1,8 +1,8 @@
-import { ReactNode, useCallback, useEffect, useState } from 'react';
+import { type ReactNode, useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { PrinterMedHeader } from './PrinterMedHeader';
 import { createGlobalStyle } from 'styled-components';
 import { loggEvent } from '../logger/frontendLogger';
+import { PrinterMedHeader } from './PrinterMedHeader';
 
 const SkulAppVedPrint = createGlobalStyle`
     @media print {
@@ -28,7 +28,7 @@ function usePrinter(): Printer {
     useEffect(() => {
         if (print) {
             const title = document.title;
-            document.title = `Utskrift`;
+            document.title = 'Utskrift';
             setTimeout(() => {
                 window.print();
                 document.title = title;
@@ -43,7 +43,7 @@ function usePrinter(): Printer {
                 <>
                     {props.children}
                     {print && <SkulAppVedPrint />}
-                    {print && createPortal(<PrinterMedHeader children={props.children} />, document.body)}
+                    {print && createPortal(<PrinterMedHeader>{props.children}</PrinterMedHeader>, document.body)}
                 </>
             );
         },

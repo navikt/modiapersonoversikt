@@ -1,9 +1,9 @@
 import styled from 'styled-components';
+import type { DittNavEvent, FeiletVarsling } from '../../../../models/varsel';
 import theme from '../../../../styles/personOversiktTheme';
-import { emptyReplacement } from './varsel-utils';
 import { ENDASH, formaterDato } from '../../../../utils/string-utils';
-import { DittNavEvent, FeiletVarsling } from '../../../../models/varsel';
 import { VarselRow } from './VarselRow';
+import { emptyReplacement } from './varsel-utils';
 
 const GraattDefinisjonsListe = styled.dl`
     ${theme.graattPanel}

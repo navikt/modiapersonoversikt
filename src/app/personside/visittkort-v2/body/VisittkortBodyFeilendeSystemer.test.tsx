@@ -1,9 +1,9 @@
 import * as renderer from 'react-test-renderer';
-import VisittkortBody from './VisittkortBody';
-import TestProvider from '../../../../test/Testprovider';
 import { aremark } from '../../../../mock/persondata/aremark';
-import { InformasjonElement } from '../PersondataDomain';
+import TestProvider from '../../../../test/Testprovider';
 import { setupReactQueryMocks } from '../../../../test/testStore';
+import { InformasjonElement } from '../PersondataDomain';
+import VisittkortBody from './VisittkortBody';
 
 test('viser info om bruker i visittkortbody', () => {
     setupReactQueryMocks();

@@ -1,33 +1,34 @@
 import styled from 'styled-components';
-import { Person } from '../../PersondataDomain';
-import DiskresjonskodeEtikett from './DiskresjonskodeEtikett';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
-import EgenAnsattEtikett from './EgenAnsattEtikett';
-import SikkerhetstiltakEtikett from './SikkerhetstiltakEtikett';
-import ReservertIKRREtikett from './ReservertIKRREtikett';
-import VergemalsEtikett from './VergemalsEtikett';
-import TilrettelagtKommunikasjonsEtiketter from './TilrettelagtKommunikasjonsEtiketter';
+import type { Person } from '../../PersondataDomain';
+import DiskresjonskodeEtikett from './DiskresjonskodeEtikett';
 import DodsboEtikett from './DodsboEtikett';
+import EgenAnsattEtikett from './EgenAnsattEtikett';
 import FullmaktEtikett from './FullmaktEtikett';
 import ManuellStatusEtikett from './ManuellStatusEtikett';
+import ReservertIKRREtikett from './ReservertIKRREtikett';
+import SikkerhetstiltakEtikett from './SikkerhetstiltakEtikett';
+import TilrettelagtKommunikasjonsEtiketter from './TilrettelagtKommunikasjonsEtiketter';
+import VergemalsEtikett from './VergemalsEtikett';
 
 interface Props {
     person: Person;
 }
 
 const StyledEtikketter = styled.section`
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    > * {
-        margin: 6px 0 0 6px;
-        white-space: nowrap;
-    }
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  > * {
+    margin: 6px 0 0 6px;
+    white-space: nowrap;
+  }
 `;
 
 function Etiketter({ person }: Props) {
     return (
         <ErrorBoundary boundaryName="Etiketter">
+            {/*biome-ignore lint/a11y/useSemanticElements: biome migration*/}
             <StyledEtikketter role="region" aria-label="etiketter">
                 <DiskresjonskodeEtikett adressebeskyttelser={person.adressebeskyttelse} />
                 <EgenAnsattEtikett erEgenansatt={person.erEgenAnsatt} />

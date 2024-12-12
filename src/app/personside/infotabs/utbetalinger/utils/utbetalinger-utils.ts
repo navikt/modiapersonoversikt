@@ -1,11 +1,11 @@
-import { Skatt, Trekk, Utbetaling, Ytelse, Ytelseskomponent } from 'src/models/utbetalinger';
-import { formaterDato } from 'src/utils/string-utils';
-import { Periode } from 'src/models/tid';
-import dayjs, { Dayjs } from 'dayjs';
-import { loggError } from 'src/utils/logger/frontendLogger';
-import { PeriodeValg, PeriodeOptions, FraTilDato } from 'src/redux/utbetalinger/types';
+import dayjs, { type Dayjs } from 'dayjs';
+import type { Periode } from 'src/models/tid';
+import type { Skatt, Trekk, Utbetaling, Ytelse, Ytelseskomponent } from 'src/models/utbetalinger';
+import { type FraTilDato, type PeriodeOptions, PeriodeValg } from 'src/redux/utbetalinger/types';
 import { datoVerbose } from 'src/utils/date-utils';
 import { ISO_DATE_FORMAT } from 'src/utils/date-utils';
+import { loggError } from 'src/utils/logger/frontendLogger';
+import { formaterDato } from 'src/utils/string-utils';
 
 export const utbetaltTilBruker = 'Bruker';
 
@@ -35,7 +35,10 @@ export const toIsoDateString = (date: Dayjs) => date.format(ISO_DATE_FORMAT);
 export const getFraDateFromPeriod = (periodeValg: PeriodeValg): FraTilDato => {
     switch (periodeValg) {
         case PeriodeValg.INNEVERENDE_AR:
-            return { fra: toIsoDateString(dayjs().startOf('year')), til: toIsoDateString(dayjs().endOf('year')) };
+            return {
+                fra: toIsoDateString(dayjs().startOf('year')),
+                til: toIsoDateString(dayjs().endOf('year'))
+            };
         case PeriodeValg.I_FJOR:
             return {
                 fra: toIsoDateString(dayjs().subtract(1, 'year').startOf('year')),
@@ -46,7 +49,6 @@ export const getFraDateFromPeriod = (periodeValg: PeriodeValg): FraTilDato => {
                 fra: toIsoDateString(dayjs().subtract(2, 'year').startOf('day')),
                 til: toIsoDateString(dayjs().endOf('day'))
             };
-        case PeriodeValg.SISTE_30_DAGER:
         default:
             return {
                 fra: toIsoDateString(dayjs().subtract(30, 'day').startOf('day')),
@@ -70,7 +72,6 @@ export function getFraDateFromFilter(periode: PeriodeOptions): Date {
             return dayjs().subtract(1, 'year').startOf('year').toDate();
         case PeriodeValg.EGENDEFINERT:
             return dayjs(periode.egendefinertPeriode.fra, ISO_DATE_FORMAT).toDate();
-        case PeriodeValg.SISTE_30_DAGER:
         default:
             return getUtbetalingerForSiste30DagerDatoer().fra;
     }
@@ -84,7 +85,6 @@ export function getTilDateFromFilter(periode: PeriodeOptions): Date {
             return dayjs(periode.egendefinertPeriode.til, ISO_DATE_FORMAT).toDate();
         case PeriodeValg.INNEVERENDE_AR:
             return dayjs().endOf('year').toDate();
-        case PeriodeValg.SISTE_30_DAGER:
         default:
             return getUtbetalingerForSiste30DagerDatoer().til;
     }
@@ -155,6 +155,7 @@ export function flatMapYtelser(utbetalinger?: Utbetaling[]): Ytelse[] {
             if (!utbetaling.ytelser) {
                 throw new Error('"ytelser" er ikke definert på utbetaling');
             }
+            //biome-ignore lint/performance/noAccumulatingSpread: biome migration
             return [...acc, ...utbetaling.ytelser];
         }, []);
         return ytelser;
@@ -190,6 +191,7 @@ export function reduceUtbetlingerTilYtelser(utbetalinger: Utbetaling[]): Ytelse[
         if (!utbetaling.ytelser) {
             throw new Error('Utbetaling mangler ytelser');
         }
+        //biome-ignore lint/performance/noAccumulatingSpread: biome migration
         return [...acc, ...utbetaling.ytelser];
     }, []);
 }

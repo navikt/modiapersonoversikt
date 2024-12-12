@@ -7,10 +7,31 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   padding: .5rem;
 }
 
+.c2 {
+  padding: 0rem;
+  font-weight: 600;
+}
+
+.c2 a {
+  padding: 0.9375rem;
+}
+
+.c2 a:visited {
+  color: currentColor!important;
+}
+
+.c2 .lenkepanel {
+  margin-bottom: 0;
+}
+
 .c9 svg {
   height: 1.875rem;
   width: 1.875rem;
   opacity: 0.5;
+}
+
+.c3 {
+  margin-bottom: .5rem;
 }
 
 .c10 {
@@ -68,27 +89,6 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 
 .c12:focus {
   outline: none;
-}
-
-.c2 {
-  padding: 0rem;
-  font-weight: 600;
-}
-
-.c2 a {
-  padding: 0.9375rem;
-}
-
-.c2 a:visited {
-  color: currentColor!important;
-}
-
-.c2 .lenkepanel {
-  margin-bottom: 0;
-}
-
-.c3 {
-  margin-bottom: .5rem;
 }
 
 .c8 {
@@ -198,6 +198,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
       <a
         className="lenkepanel"
         href="/saker/?sakstema=ALLE"
+        rel="noreferrer"
         target="_blank"
       >
         Åpne i fullscreen

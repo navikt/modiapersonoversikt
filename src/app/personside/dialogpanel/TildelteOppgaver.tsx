@@ -1,21 +1,21 @@
-import { createRef, useState } from 'react';
-import { useClickOutside } from '../../../utils/customHooks';
-import styled from 'styled-components';
-import { Knapp } from 'nav-frontend-knapper';
+import { useNavigate } from '@tanstack/react-router';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
-import { loggError } from '../../../utils/logger/frontendLogger';
+import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
+import { Knapp } from 'nav-frontend-knapper';
+import Panel from 'nav-frontend-paneler';
+import { Normaltekst } from 'nav-frontend-typografi';
+import { createRef, useState } from 'react';
+import styled from 'styled-components';
+import LazySpinner from '../../../components/LazySpinner';
+import { LenkeKnapp } from '../../../components/common-styled-components';
+import { temagruppeTekst } from '../../../models/temagrupper';
+import dialogResource from '../../../rest/resources/dialogResource';
 import theme from '../../../styles/personOversiktTheme';
+import { useClickOutside } from '../../../utils/customHooks';
+import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
+import { loggError } from '../../../utils/logger/frontendLogger';
 import { nyesteMelding } from '../infotabs/meldinger/utils/meldingerUtils';
 import { meldingstypeTekst } from '../infotabs/meldinger/utils/meldingstekster';
-import { Normaltekst } from 'nav-frontend-typografi';
-import { LenkeKnapp } from '../../../components/common-styled-components';
-import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
-import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
-import { temagruppeTekst } from '../../../models/temagrupper';
-import Panel from 'nav-frontend-paneler';
-import dialogResource from '../../../rest/resources/dialogResource';
-import LazySpinner from '../../../components/LazySpinner';
-import { useNavigate } from '@tanstack/react-router';
 
 const Wrapper = styled.div`
     position: relative;

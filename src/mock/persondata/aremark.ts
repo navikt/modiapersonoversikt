@@ -1,14 +1,14 @@
 import {
     AdresseBeskyttelse,
     EgenAnsatt,
-    ForelderBarnRelasjon,
+    type ForelderBarnRelasjon,
     ForelderBarnRelasjonRolle,
     FullmaktsRolle,
     Handling,
     Kjonn,
-    LocalDate,
-    LocalDateTime,
-    Person,
+    type LocalDate,
+    type LocalDateTime,
+    type Person,
     PersonStatus,
     SivilstandType,
     Skifteform
@@ -290,7 +290,7 @@ export const aremark: Person = {
             },
             adresse: {
                 coAdresse: null,
-                linje1: `Adresseveien 1`,
+                linje1: 'Adresseveien 1',
                 linje2: '0000 Aremark',
                 linje3: null,
                 sistEndret: null,

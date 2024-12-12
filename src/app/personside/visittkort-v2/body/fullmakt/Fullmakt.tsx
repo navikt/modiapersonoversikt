@@ -1,22 +1,22 @@
-import VisittkortElement from '../VisittkortElement';
+import { Chat2Icon, GlassesIcon, PencilIcon } from '@navikt/aksel-icons';
+import { HelpText, ReadMore, Table } from '@navikt/ds-react';
 import { Feilmelding, Normaltekst, Undertekst } from 'nav-frontend-typografi';
-import { VisittkortGruppe } from '../VisittkortStyles';
-import Fullmaktlogo from '../../../../../svg/Utropstegn';
-import {
-    DigitalKontaktinformasjonTredjepartsperson,
-    Fullmakt as FullmaktInterface,
-    Handling,
-    InformasjonElement,
-    OmraadeMedHandling
-} from '../../PersondataDomain';
-import { hentNavn } from '../../visittkort-utils';
-import GyldighetsPeriode from '../GyldighetsPeriode';
-import { harFeilendeSystemer } from '../../harFeilendeSystemer';
-import { formaterMobiltelefonnummer } from '../../../../../utils/telefon-utils';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
-import { HelpText, ReadMore, Table } from '@navikt/ds-react';
-import { GlassesIcon, Chat2Icon, PencilIcon } from '@navikt/aksel-icons';
+import Fullmaktlogo from '../../../../../svg/Utropstegn';
+import { formaterMobiltelefonnummer } from '../../../../../utils/telefon-utils';
+import {
+    type DigitalKontaktinformasjonTredjepartsperson,
+    type Fullmakt as FullmaktInterface,
+    Handling,
+    InformasjonElement,
+    type OmraadeMedHandling
+} from '../../PersondataDomain';
+import { harFeilendeSystemer } from '../../harFeilendeSystemer';
+import { hentNavn } from '../../visittkort-utils';
+import GyldighetsPeriode from '../GyldighetsPeriode';
+import VisittkortElement from '../VisittkortElement';
+import { VisittkortGruppe } from '../VisittkortStyles';
 interface Props {
     feilendeSystemer: Array<InformasjonElement>;
     fullmakter: FullmaktInterface[];
@@ -84,6 +84,7 @@ const FullmaktTilgangerTabell = ({ omraader }: { omraader: OmraadeMedHandling<st
                     const kommuniser = o.handling.find((h) => h === Handling.KOMMUNISER);
                     const skriv = o.handling.find((h) => h === Handling.SKRIV);
                     return (
+                        //biome-ignore lint/correctness/useJsxKeyInIterable: biome migration
                         <Table.Row>
                             <Table.DataCell>{o.omraade.beskrivelse}</Table.DataCell>
                             <Table.DataCell>{les && <GlassesIcon title="Lese/innsyn" />}</Table.DataCell>

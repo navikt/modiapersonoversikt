@@ -1,6 +1,6 @@
-import { FieldError } from 'react-hook-form';
+import type { FieldError } from 'react-hook-form';
 import { buildFieldError } from '../../../../../../../components/form/formUtils';
-import { OppgaveSkjemaBegrensetTilgangForm, OppgaveSkjemaForm } from './oppgaveInterfaces';
+import type { OppgaveSkjemaBegrensetTilgangForm, OppgaveSkjemaForm } from './oppgaveInterfaces';
 
 type ErrorObject = { [Property in keyof Partial<OppgaveSkjemaForm>]: FieldError | undefined };
 
@@ -41,6 +41,7 @@ export function resolverOppgaveSkjema(values: OppgaveSkjemaForm) {
         }
     ];
 
+    //biome-ignore lint/complexity/noForEach: biome migration
     fieldsToValidate.forEach((field) => validatePartialField(field.key, values[field.key], field.errorMessage, errors));
 
     return {
@@ -70,7 +71,7 @@ export function resolverOppgaveSkjemaBegrensetTilgang(values: OppgaveSkjemaBegre
             errorMessage: 'Du må skrive beskrivelse'
         }
     ];
-
+    //biome-ignore lint/complexity/noForEach: biome migration
     fieldsToValidate.forEach((field) => validatePartialField(field.key, values[field.key], field.errorMessage, errors));
 
     return {

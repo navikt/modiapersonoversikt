@@ -1,13 +1,13 @@
-import { DetaljertOppfolging } from '../../../../models/oppfolging';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import VisMerKnapp from '../../../../components/VisMerKnapp';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
+import VisMerKnapp from '../../../../components/VisMerKnapp';
+import type { DetaljertOppfolging } from '../../../../models/oppfolging';
+import oppfolgingResource from '../../../../rest/resources/oppfolgingResource';
 import theme from '../../../../styles/personOversiktTheme';
 import { usePaths } from '../../../routes/routing';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { getOppfolgingEnhet, getVeileder } from '../oppfolging/oppfolging-utils';
 import CopyToClipboard from '../../visittkort-v2/header/status/CopyToClipboard';
-import oppfolgingResource from '../../../../rest/resources/oppfolgingResource';
+import { getOppfolgingEnhet, getVeileder } from '../oppfolging/oppfolging-utils';
 
 interface Props {
     detaljertOppfolging: DetaljertOppfolging;
@@ -41,7 +41,7 @@ function YtelserForBruker({ detaljertOppfolging }: { detaljertOppfolging: Detalj
     const ytelser = detaljertOppfolging.ytelser
         .filter((ytelse) => ytelse.status !== 'Avsluttet')
         .filter((ytelse) => ytelse.status !== 'Lukket')
-        .map((ytelse) => ytelse.type + ' : ' + ytelse.status);
+        .map((ytelse) => `${ytelse.type} : ${ytelse.status}`);
     const filtrerteYtelser = ytelser.filter((item, index) => ytelser.indexOf(item) === index).join(', ');
     return (
         <>
@@ -52,13 +52,12 @@ function YtelserForBruker({ detaljertOppfolging }: { detaljertOppfolging: Detalj
 }
 
 function Veileder({ detaljertOppfolging }: { detaljertOppfolging: DetaljertOppfolging }) {
-    const clipboard =
-        detaljertOppfolging.oppfolging?.veileder && detaljertOppfolging.oppfolging.veileder.ident ? (
-            <CopyToClipboard
-                ariaLabel="Kopier veileder"
-                stringToCopy={`${detaljertOppfolging.oppfolging.veileder.navn} (${detaljertOppfolging.oppfolging.veileder.ident})`}
-            />
-        ) : null;
+    const clipboard = detaljertOppfolging.oppfolging?.veileder?.ident ? (
+        <CopyToClipboard
+            ariaLabel="Kopier veileder"
+            stringToCopy={`${detaljertOppfolging.oppfolging.veileder.navn} (${detaljertOppfolging.oppfolging.veileder.ident})`}
+        />
+    ) : null;
 
     return (
         <>

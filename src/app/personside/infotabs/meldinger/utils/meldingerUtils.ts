@@ -1,9 +1,15 @@
-import { Melding, Meldingstype, Saksbehandler, Traad, TraadType } from '../../../../../models/meldinger/meldinger';
-import { meldingstypeTekst, traadTypeTekst } from './meldingstekster';
-import { datoStigende, datoSynkende, formatterDatoTid } from '../../../../../utils/date-utils';
 import { useMemo } from 'react';
-import useDebounce from '../../../../../utils/hooks/use-debounce';
+import {
+    type Melding,
+    Meldingstype,
+    type Saksbehandler,
+    type Traad,
+    TraadType
+} from '../../../../../models/meldinger/meldinger';
 import { Temagruppe, temagruppeTekst } from '../../../../../models/temagrupper';
+import { datoStigende, datoSynkende, formatterDatoTid } from '../../../../../utils/date-utils';
+import useDebounce from '../../../../../utils/hooks/use-debounce';
+import { meldingstypeTekst, traadTypeTekst } from './meldingstekster';
 
 /*
    Teknisk sett kan `nyesteMelding` og `eldsteMelding` returnerer undefined.
@@ -31,13 +37,12 @@ export function kanBesvares(traad?: Traad): boolean {
 
     if (erMeldingstypeSamtalereferat(melding.meldingstype)) {
         return true;
-    } else {
-        /**
-         * For meldingskjeder i salesforce er det kun mulig å sende oppfølgingsmeldinger
-         * før tråden blir avsluttet. På dette tidspunktet vil tråden bli journalført og låst.
-         */
-        return !melding.avsluttetDato;
     }
+    /**
+     * For meldingskjeder i salesforce er det kun mulig å sende oppfølgingsmeldinger
+     * før tråden blir avsluttet. På dette tidspunktet vil tråden bli journalført og låst.
+     */
+    return !melding.avsluttetDato;
 }
 
 export function traadKanBesvares(traad?: Traad): boolean {
@@ -51,10 +56,9 @@ export function traadKanBesvares(traad?: Traad): boolean {
 
     if (traad.traadType === TraadType.SAMTALEREFERAT) {
         return true;
-    } else {
-        const melding = eldsteMelding(traad);
-        return !traad.avsluttetDato || !melding.avsluttetDato;
     }
+    const melding = eldsteMelding(traad);
+    return !traad.avsluttetDato || !melding.avsluttetDato;
 }
 
 function traadErInfoMelding(traad: Traad): boolean {

@@ -1,16 +1,16 @@
-import { ReactNode } from 'react';
-import { getTestStore } from './testStore';
-import { Provider } from 'react-redux';
-import { createStore, Provider as JProvider } from 'jotai';
-import { Store } from 'redux';
-import { AppState } from '../redux/reducers';
-import { MeldingsokProvider } from '../context/meldingsok';
-import { VisittkortStateProvider } from '../context/visittkort-state';
-import { DialogpanelStateProvider } from '../context/dialogpanel-state';
-import { ValgtEnhetProvider } from '../context/valgtenhet-state';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { createRootRoute, createRoute, createRouter, Outlet, RouterProvider } from '@tanstack/react-router';
+import { Outlet, RouterProvider, createRootRoute, createRoute, createRouter } from '@tanstack/react-router';
+import { Provider as JProvider, createStore } from 'jotai';
+import type { ReactNode } from 'react';
+import { Provider } from 'react-redux';
+import type { Store } from 'redux';
 import { aktivBrukerAtom } from 'src/lib/state/context';
+import { DialogpanelStateProvider } from '../context/dialogpanel-state';
+import { MeldingsokProvider } from '../context/meldingsok';
+import { ValgtEnhetProvider } from '../context/valgtenhet-state';
+import { VisittkortStateProvider } from '../context/visittkort-state';
+import type { AppState } from '../redux/reducers';
+import { getTestStore } from './testStore';
 
 interface Props {
     children: ReactNode;
@@ -20,7 +20,7 @@ const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
             retry: false,
-            staleTime: Infinity,
+            staleTime: Number.POSITIVE_INFINITY,
             _optimisticResults: 'isRestoring'
         }
     }
@@ -45,9 +45,7 @@ function TestProvider({ children, customStore }: Props) {
                                 <DialogpanelStateProvider>
                                     <VisittkortStateProvider>
                                         <MeldingsokProvider>
-                                            <ValgtEnhetProvider>
-                                                <>{children}</>
-                                            </ValgtEnhetProvider>
+                                            <ValgtEnhetProvider>{children}</ValgtEnhetProvider>
                                         </MeldingsokProvider>
                                     </VisittkortStateProvider>
                                 </DialogpanelStateProvider>
@@ -59,7 +57,7 @@ function TestProvider({ children, customStore }: Props) {
         ])
     });
 
-    return <RouterProvider router={router}></RouterProvider>;
+    return <RouterProvider router={router} />;
 }
 
 export default TestProvider;

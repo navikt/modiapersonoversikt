@@ -1,7 +1,7 @@
 import * as renderer from 'react-test-renderer';
-import ArbeidsForholdListe from './ArbeidsforholdListe';
 import { statiskSykepengerMock } from 'src/mock/ytelse/statiskSykepengerMock';
 import TestProvider from '../../../../../test/Testprovider';
+import ArbeidsForholdListe from './ArbeidsforholdListe';
 
 test('ArbeidsforholdListe matcher snapshot', () => {
     const arbeidsforhold = statiskSykepengerMock.arbeidsforholdListe[0];

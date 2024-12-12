@@ -1,14 +1,14 @@
-import { Locale } from './standardTekster/domain';
-import { capitalizeName } from '../../../../utils/string-utils';
-import { loggEvent, loggWarning } from '../../../../utils/logger/frontendLogger';
-import { Data as PersonData, Kjonn } from '../../visittkort-v2/PersondataDomain';
-import { hentNavn } from '../../visittkort-v2/visittkort-utils';
-import innloggetSaksbehandler, {
-    InnloggetSaksbehandler
-} from '../../../../rest/resources/innloggetSaksbehandlerResource';
-import saksbehandlersEnheter, { Enhet } from '../../../../rest/resources/saksbehandlersEnheterResource';
 import { useValgtenhet } from '../../../../context/valgtenhet-state';
+import innloggetSaksbehandler, {
+    type InnloggetSaksbehandler
+} from '../../../../rest/resources/innloggetSaksbehandlerResource';
 import persondataResource from '../../../../rest/resources/persondataResource';
+import saksbehandlersEnheter, { type Enhet } from '../../../../rest/resources/saksbehandlersEnheterResource';
+import { loggEvent, loggWarning } from '../../../../utils/logger/frontendLogger';
+import { capitalizeName } from '../../../../utils/string-utils';
+import { Kjonn, type Data as PersonData } from '../../visittkort-v2/PersondataDomain';
+import { hentNavn } from '../../visittkort-v2/visittkort-utils';
+import { Locale } from './standardTekster/domain';
 
 export type AutofullforData = {
     enhet?: Enhet;
@@ -58,12 +58,12 @@ const objektPronomenMap = {
 
 function objektPronomen(kjonn: Kjonn, locale: string) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
-    return (objektPronomenMap[kjonn] || {})[locale] || null;
+    return objektPronomenMap[kjonn]?.[locale] || null;
 }
 
 function subjectPronomen(kjonn: Kjonn, locale: string) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
-    return (subjectPronomenMap[kjonn] || {})[locale] || null;
+    return subjectPronomenMap[kjonn]?.[locale] || null;
 }
 
 export function byggAutofullforMap(

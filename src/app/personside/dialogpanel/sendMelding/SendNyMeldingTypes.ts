@@ -1,14 +1,14 @@
-import { SendReferatRequest, Traad } from '../../../../models/meldinger/meldinger';
+import type { SendReferatRequest, Traad } from '../../../../models/meldinger/meldinger';
 
 export enum SendNyMeldingStatus {
-    UNDER_ARBEID,
-    POSTING,
-    ERROR,
-    REFERAT_SENDT,
-    SPORSMAL_SENDT,
-    SVAR_SENDT,
-    INFORMELDING_SENDT,
-    SAMTALE_SENDT
+    UNDER_ARBEID = 0,
+    POSTING = 1,
+    ERROR = 2,
+    REFERAT_SENDT = 3,
+    SPORSMAL_SENDT = 4,
+    SVAR_SENDT = 5,
+    INFORMELDING_SENDT = 6,
+    SAMTALE_SENDT = 7
 }
 
 interface SendNyMeldingStatusInterface {

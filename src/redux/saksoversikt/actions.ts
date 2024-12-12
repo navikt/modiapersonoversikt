@@ -1,8 +1,8 @@
 import {
-    DokumentAvsenderFilter,
+    type DokumentAvsenderFilter,
     SaksoversiktActionTypes,
-    SetDokumentAvsenderFilter,
-    SetViktigÅViteÅpen
+    type SetDokumentAvsenderFilter,
+    type SetViktigÅViteÅpen
 } from './types';
 
 export function setViktigÅViteÅpen(åpen: boolean): SetViktigÅViteÅpen {

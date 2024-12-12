@@ -1,16 +1,16 @@
+import type { Faker } from '@faker-js/faker';
+import type NavFaker from 'nav-faker/dist/navfaker';
 import {
-    Dokument,
+    type Dokument,
     DokumentStatus,
     Entitet,
+    type FeilWrapper,
     Feilmelding,
-    FeilWrapper,
-    Journalpost,
+    type Journalpost,
     Kommunikasjonsretning
 } from '../../models/saksoversikt/journalpost';
 import { fyllRandomListe } from '../utils/mock-utils';
-import NavFaker from 'nav-faker/dist/navfaker';
 import { getBaksystem, getSaksdato } from './saksoversikt-felles-mock';
-import { Faker } from '@faker-js/faker';
 
 export function getJournalposter(faker: Faker, navfaker: NavFaker, tema: string[]): Journalpost[] {
     if (navfaker.random.vektetSjanse(0.3)) {

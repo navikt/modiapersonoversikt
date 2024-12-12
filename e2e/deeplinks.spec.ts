@@ -27,7 +27,7 @@ test('Saker', async ({ page }) => {
     let activeTab = page.getByRole('tab', { selected: true });
     await expect(activeTab).toHaveText(new RegExp(INFOTABS.OVERSIKT.path, 'i'), { timeout: 10000 });
 
-    const expectedSak = page.locator('.' + sakerTest.sakstema).first();
+    const expectedSak = page.locator(`.${sakerTest.sakstema}`).first();
     const expectedSakText = await expectedSak.getByRole('paragraph').first().textContent();
 
     await expectedSak.getByRole('button').click();
@@ -45,7 +45,7 @@ test('Meldinger', async ({ page }) => {
     let activeTab = page.getByRole('tab', { selected: true });
     await expect(activeTab).toHaveText(new RegExp(INFOTABS.OVERSIKT.path, 'i'), { timeout: 10000 });
 
-    const melding = page.locator('.' + meldingerTest.oversikt).nth(1);
+    const melding = page.locator(`.${meldingerTest.oversikt}`).nth(1);
     await melding.getByRole('button').click();
 
     activeTab = page.getByRole('tab', { selected: true });
@@ -62,7 +62,7 @@ test('Ytelser', async ({ page }) => {
     let activeTab = page.getByRole('tab', { selected: true });
     await expect(activeTab).toHaveText(new RegExp(INFOTABS.OVERSIKT.path, 'i'), { timeout: 10000 });
 
-    const ytelse = page.locator('.' + ytelserTest.oversikt).nth(1);
+    const ytelse = page.locator(`.${ytelserTest.oversikt}`).nth(1);
     await ytelse.getByRole('button').click();
 
     activeTab = page.getByRole('tab', { selected: true });

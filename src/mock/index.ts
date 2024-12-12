@@ -1,5 +1,25 @@
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { apiBaseUri } from '../api/config';
+import type { FeatureToggles } from '../components/featureToggle/toggleIDs';
+import { getAktorId } from './aktorid-mock';
+import { mockBaseUrls } from './baseUrls-mock';
+import { getContextHandlers } from './context-mock';
+import { getSFDialogHandlers } from './dialoger/sf-dialoger-mock';
+import { getDraftHandlers } from './draft-mock';
+import { mockFeatureToggle } from './featureToggle-mock';
+import { getSaksBehandlersEnheterMock } from './getSaksBehandlersEnheterMock';
+import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
+import { saker } from './journalforing/journalforing-mock';
+import { getForeslattEnhet, getMockAnsatte, getMockEnheter, getMockGsakTema } from './meldinger/oppgave-mock';
+import { MeldingerBackendMock } from './mockBackend/meldingerBackendMock';
+import { OppgaverBackendMock } from './mockBackend/oppgaverBackendMock';
+import { getMockOppfolging, getMockYtelserOgKontrakter } from './oppfolging-mock';
+import { hentPersondata } from './persondata/persondata';
+import { mockPersonsokResponse, mockStaticPersonsokRequest } from './personsok/personsokMock';
+import { saksbehandlerInnstillingerHandlers } from './saksbehandlerinnstillinger-mock';
+import { getMockSaksoversiktV2 } from './saksoversikt/saksoversikt-mock';
+import { authMock, tilgangskontrollMock } from './tilgangskontroll-mock';
+import { getMockUtbetalinger } from './utbetalinger/utbetalinger-mock';
 import {
     mockGeneratorMedEnhetId,
     mockGeneratorMedFodselsnummer,
@@ -7,37 +27,17 @@ import {
     verify,
     withDelayedResponse
 } from './utils/fetch-utils';
-import { mockBaseUrls } from './baseUrls-mock';
-import { getMockUtbetalinger } from './utbetalinger/utbetalinger-mock';
-import { getMockSykepengerRespons } from './ytelse/sykepenger-mock';
+import { getMockVarsler } from './varsler/varsel-mock';
 import { getMockForeldrepenger } from './ytelse/foreldrepenger-mock';
 import { getMockPleiepenger } from './ytelse/pleiepenger-mock';
-import { mockFeatureToggle } from './featureToggle-mock';
-import { getMockSaksoversiktV2 } from './saksoversikt/saksoversikt-mock';
-import { getMockOppfolging, getMockYtelserOgKontrakter } from './oppfolging-mock';
-import { getMockVarsler } from './varsler/varsel-mock';
-import { getForeslattEnhet, getMockAnsatte, getMockEnheter, getMockGsakTema } from './meldinger/oppgave-mock';
-import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
-import { saker } from './journalforing/journalforing-mock';
-import { mockPersonsokResponse, mockStaticPersonsokRequest } from './personsok/personsokMock';
-import { getContextHandlers } from './context-mock';
-import { getSaksBehandlersEnheterMock } from './getSaksBehandlersEnheterMock';
-import { OppgaverBackendMock } from './mockBackend/oppgaverBackendMock';
-import { saksbehandlerInnstillingerHandlers } from './saksbehandlerinnstillinger-mock';
-import { getDraftHandlers } from './draft-mock';
-import { authMock, tilgangskontrollMock } from './tilgangskontroll-mock';
-import { MeldingerBackendMock } from './mockBackend/meldingerBackendMock';
-import { getSFDialogHandlers } from './dialoger/sf-dialoger-mock';
-import { getAktorId } from './aktorid-mock';
-import { hentPersondata } from './persondata/persondata';
-import { FeatureToggles } from '../components/featureToggle/toggleIDs';
+import { getMockSykepengerRespons } from './ytelse/sykepenger-mock';
 
-import { DefaultBodyType, http, HttpHandler, HttpResponse, PathParams, StrictRequest } from 'msw';
-import { fodselsNummerErGyldigStatus, randomDelay, STATUS_OK } from './utils-mock';
-import { getMockTiltakspenger } from './ytelse/tiltakspenger-mock';
-import { mockInnkrevingsKrav } from './innkrevingskrav';
-import { FeatureTogglesResponse } from 'src/rest/resources/featuretogglesResource';
 import MockDate from 'mockdate';
+import { http, type DefaultBodyType, type HttpHandler, HttpResponse, type PathParams, type StrictRequest } from 'msw';
+import type { FeatureTogglesResponse } from 'src/rest/resources/featuretogglesResource';
+import { mockInnkrevingsKrav } from './innkrevingskrav';
+import { STATUS_OK, fodselsNummerErGyldigStatus, randomDelay } from './utils-mock';
+import { getMockTiltakspenger } from './ytelse/tiltakspenger-mock';
 
 if (import.meta.env.VITE_E2E) {
     MockDate.set(0);
@@ -55,20 +55,20 @@ const harEnhetIdSomQueryParam = (request: StrictRequest<DefaultBodyType>) => {
     return undefined;
 };
 
-const innloggetSaksbehandlerMock = http.get(apiBaseUri + '/hode/me', () =>
+const innloggetSaksbehandlerMock = http.get(`${apiBaseUri}/hode/me`, () =>
     HttpResponse.json(getMockInnloggetSaksbehandler())
 );
 
 const saksbehandlerEnheterHandler = http.get(
-    apiBaseUri + '/hode/enheter',
+    `${apiBaseUri}/hode/enheter`,
     withDelayedResponse(randomDelay(), STATUS_OK, getSaksBehandlersEnheterMock)
 );
 
 const tilgangsKontrollHandler = [
-    http.get(apiBaseUri + '/tilgang/auth', withDelayedResponse(randomDelay(), STATUS_OK, authMock)),
+    http.get(`${apiBaseUri}/tilgang/auth`, withDelayedResponse(randomDelay(), STATUS_OK, authMock)),
 
     http.get(
-        apiBaseUri + '/tilgang/:fodselsnummer?',
+        `${apiBaseUri}/tilgang/:fodselsnummer?`,
         withDelayedResponse(
             randomDelay(),
             () => Promise.resolve(Math.random() > 0.98 ? 400 : 200),
@@ -77,7 +77,7 @@ const tilgangsKontrollHandler = [
     ),
 
     http.post(
-        apiBaseUri + '/v2/tilgang',
+        `${apiBaseUri}/v2/tilgang`,
         withDelayedResponse(
             randomDelay(),
             () => Promise.resolve(Math.random() > 0.98 ? 400 : 200),
@@ -86,7 +86,7 @@ const tilgangsKontrollHandler = [
     ),
 
     http.post(
-        apiBaseUri + '/v2/tilgang',
+        `${apiBaseUri}/v2/tilgang`,
         withDelayedResponse(
             randomDelay(),
             () => Promise.resolve(Math.random() > 0.98 ? 400 : 200),
@@ -96,7 +96,7 @@ const tilgangsKontrollHandler = [
 ];
 
 const persondataMock = http.post(
-    apiBaseUri + '/v3/person',
+    `${apiBaseUri}/v3/person`,
     withDelayedResponse(
         randomDelay(),
         fodselsNummerErGyldigStatus,
@@ -106,7 +106,7 @@ const persondataMock = http.post(
 
 const aktorIdMock = [
     http.post(
-        apiBaseUri + '/v3/person/aktorid',
+        `${apiBaseUri}/v3/person/aktorid`,
         withDelayedResponse(
             randomDelay(),
             fodselsNummerErGyldigStatus,
@@ -117,7 +117,7 @@ const aktorIdMock = [
 
 const saksoversiktV2Handler = [
     http.get(
-        apiBaseUri + '/saker/:fodselsnummer/v2/sakstema',
+        `${apiBaseUri}/saker/:fodselsnummer/v2/sakstema`,
         verify(
             harEnhetIdSomQueryParam,
             withDelayedResponse(
@@ -130,7 +130,7 @@ const saksoversiktV2Handler = [
 ];
 
 const saksoversiktV3Handler = http.post(
-    apiBaseUri + '/v2/saker/v2/sakstema',
+    `${apiBaseUri}/v2/saker/v2/sakstema`,
     verify(
         harEnhetIdSomQueryParam,
         withDelayedResponse(
@@ -142,7 +142,7 @@ const saksoversiktV3Handler = http.post(
 );
 
 const utbetalingerHandler = http.post(
-    apiBaseUri + '/v2/utbetaling',
+    `${apiBaseUri}/v2/utbetaling`,
     withDelayedResponse(randomDelay(), fodselsNummerErGyldigStatus, async (req, _params, body) => {
         const reqBody = body ?? (await req.json());
         const url = new URL(req.url);
@@ -152,7 +152,7 @@ const utbetalingerHandler = http.post(
 );
 
 const sykepengerHandler = http.post(
-    apiBaseUri + '/v2/ytelse/sykepenger',
+    `${apiBaseUri}/v2/ytelse/sykepenger`,
     withDelayedResponse(
         randomDelay(),
         fodselsNummerErGyldigStatus,
@@ -161,7 +161,7 @@ const sykepengerHandler = http.post(
 );
 
 const foreldrepengerHandler = http.post(
-    apiBaseUri + '/v2/ytelse/foreldrepenger',
+    `${apiBaseUri}/v2/ytelse/foreldrepenger`,
     withDelayedResponse(
         randomDelay(),
         fodselsNummerErGyldigStatus,
@@ -170,7 +170,7 @@ const foreldrepengerHandler = http.post(
 );
 
 const pleiepengerHandler = http.post(
-    apiBaseUri + '/v2/ytelse/pleiepenger',
+    `${apiBaseUri}/v2/ytelse/pleiepenger`,
     withDelayedResponse(
         randomDelay(),
         fodselsNummerErGyldigStatus,
@@ -179,7 +179,7 @@ const pleiepengerHandler = http.post(
 );
 
 const tiltakspengerMock = http.post(
-    apiBaseUri + '/v2/ytelse/tiltakspenger',
+    `${apiBaseUri}/v2/ytelse/tiltakspenger`,
     withDelayedResponse(
         randomDelay(),
         fodselsNummerErGyldigStatus,
@@ -188,7 +188,7 @@ const tiltakspengerMock = http.post(
 );
 
 const oppfolgingHandler = http.post(
-    apiBaseUri + '/v2/oppfolging',
+    `${apiBaseUri}/v2/oppfolging`,
     withDelayedResponse(
         randomDelay(),
         fodselsNummerErGyldigStatus,
@@ -197,7 +197,7 @@ const oppfolgingHandler = http.post(
 );
 
 const ytelserogkontrakterHandler = http.post(
-    apiBaseUri + '/v2/oppfolging/ytelserogkontrakter',
+    `${apiBaseUri}/v2/oppfolging/ytelserogkontrakter`,
     withDelayedResponse(
         randomDelay(),
         fodselsNummerErGyldigStatus,
@@ -205,7 +205,7 @@ const ytelserogkontrakterHandler = http.post(
     )
 );
 
-const varslerHandler = http.post<PathParams, { fnr: string }>(apiBaseUri + '/v3/varsler', async ({ request }) => {
+const varslerHandler = http.post<PathParams, { fnr: string }>(`${apiBaseUri}/v3/varsler`, async ({ request }) => {
     const body = await request.json();
     const fnr = body.fnr;
     if (!erGyldigFødselsnummer(fnr)) {
@@ -215,22 +215,22 @@ const varslerHandler = http.post<PathParams, { fnr: string }>(apiBaseUri + '/v3/
 });
 
 const gsakHandler = http.get(
-    apiBaseUri + '/dialogoppgave/v2/tema',
+    `${apiBaseUri}/dialogoppgave/v2/tema`,
     withDelayedResponse(randomDelay(), STATUS_OK, () => getMockGsakTema())
 );
 
 const oppgaveEnhetHandler = http.get(
-    apiBaseUri + '/enheter/oppgavebehandlere/alle',
+    `${apiBaseUri}/enheter/oppgavebehandlere/alle`,
     withDelayedResponse(randomDelay(), STATUS_OK, () => getMockEnheter())
 );
 
 const foreslotteEnhetHandler = http.get(
-    apiBaseUri + '/enheter/oppgavebehandlere/v2/foreslatte',
+    `${apiBaseUri}/enheter/oppgavebehandlere/v2/foreslatte`,
     withDelayedResponse(randomDelay(), STATUS_OK, () => getForeslattEnhet())
 );
 
 const ansattePaaEnhetHandler = http.get(
-    apiBaseUri + '/enheter/:enhetId/ansatte',
+    `${apiBaseUri}/enheter/:enhetId/ansatte`,
     withDelayedResponse(
         randomDelay(),
         STATUS_OK,
@@ -240,34 +240,34 @@ const ansattePaaEnhetHandler = http.get(
 
 const personsokHandler = [
     http.post(
-        apiBaseUri + '/personsok',
+        `${apiBaseUri}/personsok`,
         withDelayedResponse(randomDelay(), STATUS_OK, () => mockPersonsokResponse(mockStaticPersonsokRequest()))
     ),
     http.post(
-        apiBaseUri + '/personsok/v3',
+        `${apiBaseUri}/personsok/v3`,
         withDelayedResponse(randomDelay(), STATUS_OK, () => mockPersonsokResponse(mockStaticPersonsokRequest()))
     )
 ];
 
 const tildelteOppgaverHandler = http.post(
-    apiBaseUri + '/v2/oppgaver/tildelt',
+    `${apiBaseUri}/v2/oppgaver/tildelt`,
     withDelayedResponse(randomDelay(), STATUS_OK, () => oppgaveBackendMock.getTildelteOppgaver())
 );
 
 const baseUrlsHandler = http.get(
-    apiBaseUri + '/baseurls/v2',
+    `${apiBaseUri}/baseurls/v2`,
     withDelayedResponse(randomDelay(), STATUS_OK, mockBaseUrls)
 );
 
 const featureToggleHandler = [
     http.get(
-        apiBaseUri + '/featuretoggle/:toggleId',
+        `${apiBaseUri}/featuretoggle/:toggleId`,
         withDelayedResponse(randomDelay(), STATUS_OK, (_req, params: PathParams<'toggleId'>) =>
             mockFeatureToggle(params.toggleId as FeatureToggles)
         )
     ),
 
-    http.get(apiBaseUri + '/featuretoggle', ({ request }) => {
+    http.get(`${apiBaseUri}/featuretoggle`, ({ request }) => {
         const id = new URL(request.url).searchParams.get('id')?.split(',');
         const ids = Array.isArray(id) ? id : [];
         return HttpResponse.json(
@@ -281,22 +281,22 @@ const featureToggleHandler = [
 
 const journalForingHandler = [
     http.get(
-        apiBaseUri + '/journalforing/:fnr/saker/',
+        `${apiBaseUri}/journalforing/:fnr/saker/`,
         withDelayedResponse(randomDelay(), STATUS_OK, () => saker)
     ),
     http.post(
-        apiBaseUri + '/v2/journalforing/saker/',
+        `${apiBaseUri}/v2/journalforing/saker/`,
         withDelayedResponse(randomDelay(), STATUS_OK, () => saker)
     ),
     http.post(
-        apiBaseUri + '/journalforing/:fnr/:traadId',
+        `${apiBaseUri}/journalforing/:fnr/:traadId`,
         verify(
             harEnhetIdSomQueryParam,
             withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
         )
     ),
     http.post(
-        apiBaseUri + '/v2/journalforing/:traadId',
+        `${apiBaseUri}/v2/journalforing/:traadId`,
         verify(
             harEnhetIdSomQueryParam,
             withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
@@ -305,12 +305,12 @@ const journalForingHandler = [
 ];
 
 const opprettOppgaveHandler = http.post(
-    apiBaseUri + '/dialogoppgave/v2/opprett',
+    `${apiBaseUri}/dialogoppgave/v2/opprett`,
     withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
 );
 
 const opprettSkjermetOppgaveHandler = http.post(
-    apiBaseUri + '/dialogoppgave/v2/opprettskjermetoppgave',
+    `${apiBaseUri}/dialogoppgave/v2/opprettskjermetoppgave`,
     withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
 );
 
@@ -328,7 +328,7 @@ const standardteksterHandler = [
 
 const innkrevingsKravHandlers = [
     http.get(
-        apiBaseUri + '/innkrevingskrav/:id',
+        `${apiBaseUri}/innkrevingskrav/:id`,
         withDelayedResponse(0, STATUS_OK, (_, params) => mockInnkrevingsKrav(params.id as string))
     )
 ];

@@ -1,12 +1,12 @@
-import { memo } from 'react';
-import { Behandlingsstatus, SakstemaSoknadsstatus } from '../../../../../models/saksoversikt/sakstema';
-import styled from 'styled-components';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
+import { memo } from 'react';
+import styled from 'styled-components';
 import VisMerKnapp from '../../../../../components/VisMerKnapp';
+import { Behandlingsstatus, type SakstemaSoknadsstatus } from '../../../../../models/saksoversikt/sakstema';
 import { sakerTest } from '../../dyplenkeTest/utils-dyplenker-test';
 import { useInfotabsDyplenker } from '../../dyplenker';
-import { saksikon, SVGStyling, visAntallSakerSomHarbehandlingsstatusV2 } from './SakstemaListeUtils';
 import { hentFormattertDatoForSisteHendelseV2 } from '../utils/saksoversiktUtilsV2';
+import { SVGStyling, saksikon, visAntallSakerSomHarbehandlingsstatusV2 } from './SakstemaListeUtils';
 
 interface Props {
     sakstema: SakstemaSoknadsstatus;
@@ -50,12 +50,12 @@ function SakstemaListeElementKnapp(props: Props) {
             <VisMerKnapp
                 valgt={props.erValgt}
                 linkTo={dyplenker.saker.link(props.sakstema)}
-                ariaDescription={'Vis ' + props.sakstema.temanavn}
+                ariaDescription={`Vis ${props.sakstema.temanavn}`}
             >
                 <Flex>
                     <div>
                         <UUcustomOrder>
-                            <Element className={'order-second ' + sakerTest.oversikt}>
+                            <Element className={`order-second ${sakerTest.oversikt}`}>
                                 {props.sakstema.temanavn}
                             </Element>
                             <Normaltekst className="order-first">

@@ -1,10 +1,10 @@
-import { memo } from 'react';
-import { Utbetaling as UtbetalingInterface } from '../../../../../models/utbetalinger';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { memo } from 'react';
+import type { Utbetaling as UtbetalingInterface } from '../../../../../models/utbetalinger';
 import SammensattUtbetaling from './SammensattUtbetaling';
 
-import EnkelUtbetaling from './EnkelUtbetaling';
 import { useInfotabsDyplenker } from '../../dyplenker';
+import EnkelUtbetaling from './EnkelUtbetaling';
 
 interface Props {
     utbetaling: UtbetalingInterface;
@@ -24,9 +24,8 @@ function Utbetaling(props: Props) {
     if (enkeltYtelse) {
         const ytelse = utbetaling.ytelser[0];
         return <EnkelUtbetaling utbetaling={utbetaling} ytelse={ytelse} erValgtIUrl={erValgtIUrl} />;
-    } else {
-        return <SammensattUtbetaling utbetaling={utbetaling} erValgtIUrl={erValgtIUrl} />;
     }
+    return <SammensattUtbetaling utbetaling={utbetaling} erValgtIUrl={erValgtIUrl} />;
 }
 
 export default memo(Utbetaling);

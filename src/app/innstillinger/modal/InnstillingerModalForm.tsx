@@ -1,15 +1,15 @@
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
-import { Undertekst } from 'nav-frontend-typografi';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import styled from 'styled-components';
-import innstillingerResource, {
-    Innstillinger,
-    SaksbehandlerInnstillinger
-} from '../../../rest/resources/innstillingerResource';
-import { OppgaveDestinasjonLabel } from './InstillingerModalFormLabels';
+import { Undertekst } from 'nav-frontend-typografi';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import styled from 'styled-components';
 import FormSelect from '../../../components/form/FormSelect';
+import innstillingerResource, {
+    type Innstillinger,
+    type SaksbehandlerInnstillinger
+} from '../../../rest/resources/innstillingerResource';
+import { OppgaveDestinasjonLabel } from './InstillingerModalFormLabels';
 
 const ModalContent = styled.div`
     min-height: 20rem;

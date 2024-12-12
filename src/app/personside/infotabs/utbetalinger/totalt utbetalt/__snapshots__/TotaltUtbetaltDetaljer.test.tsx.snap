@@ -269,15 +269,9 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
         <div
           className="typo-normal"
         >
-          <table
-            role="table"
-          >
-            <thead
-              role="rowgroup"
-            >
-              <tr
-                role="row"
-              >
+          <table>
+            <thead>
+              <tr>
                 <th
                   role="columnheader"
                   scope="col"
@@ -321,39 +315,30 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
                 </th>
               </tr>
             </thead>
-            <tbody
-              role="rowgroup"
-            >
-              <tr
-                role="row"
-              >
+            <tbody>
+              <tr>
                 <th
-                  role="rowheader"
                   scope="row"
                 >
                   Sykepenger 2017
                 </th>
                 <td
                   className="sumBrutto"
-                  role="cell"
                 >
                   40 110,00
                 </td>
                 <td
                   className="sumTrekk"
-                  role="cell"
                 >
                   −5 952,00
                 </td>
                 <td
                   className="sumNetto"
-                  role="cell"
                 >
                   34 158,00
                 </td>
                 <td
                   className="periodeForYtelse"
-                  role="cell"
                 >
                   09.11.2016
                    - 
@@ -361,7 +346,6 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
                 </td>
                 <td
                   className="ytelseDetaljer"
-                  role="cell"
                 >
                   <dl>
                     <dt>

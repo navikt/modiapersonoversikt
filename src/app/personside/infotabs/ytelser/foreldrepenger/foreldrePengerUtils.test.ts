@@ -1,10 +1,10 @@
 import { aremark } from '../../../../../mock/persondata/aremark';
 import {
-    getForeldrepengerperiodeMock,
-    getForeldrepengerettighetMock
+    getForeldrepengerettighetMock,
+    getForeldrepengerperiodeMock
 } from '../../../../../mock/ytelse/foreldrepenger-mock';
-import { Foreldrepengerettighet } from '../../../../../models/ytelse/foreldrepenger';
-import { utledFraDatoForRettighet, sorterArbeidsforholdEtterRefusjonTom } from './foreldrePengerUtils';
+import type { Foreldrepengerettighet } from '../../../../../models/ytelse/foreldrepenger';
+import { sorterArbeidsforholdEtterRefusjonTom, utledFraDatoForRettighet } from './foreldrePengerUtils';
 
 const randomForeldrepengerettighet = getForeldrepengerettighetMock(aremark.personIdent);
 const randomForeldrepengerettighetPeriode = getForeldrepengerperiodeMock(aremark.personIdent);

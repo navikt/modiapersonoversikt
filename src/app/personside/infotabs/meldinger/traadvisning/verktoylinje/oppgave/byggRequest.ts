@@ -1,11 +1,11 @@
-import {
+import type { Traad } from '../../../../../../../models/meldinger/meldinger';
+import type {
     GsakTema,
     OpprettOppgaveRequest,
     OpprettSkjermetOppgaveRequest
 } from '../../../../../../../models/meldinger/oppgave';
 import { eldsteMelding } from '../../../utils/meldingerUtils';
-import { OppgaveSkjemaForm, OppgaveSkjemaBegrensetTilgangForm } from './oppgaveInterfaces';
-import { Traad } from '../../../../../../../models/meldinger/meldinger';
+import type { OppgaveSkjemaBegrensetTilgangForm, OppgaveSkjemaForm } from './oppgaveInterfaces';
 
 function captureBuilder(regex: RegExp) {
     return (value: string, capture: number): string | undefined => {
@@ -55,6 +55,7 @@ export function lagOppgaveRequest(
         underkategoriKode: form.valgtUnderkategori && form.valgtUnderkategori,
         oppgaveTypeKode: valgtOppgaveType ? valgtOppgaveType.kode : 'UKJENT',
         prioritetKode: form.valgtPrioritet,
+        //biome-ignore lint/style/noNonNullAssertion: biome migration
         ansvarligEnhetId: valgtEnhet!
     };
 }

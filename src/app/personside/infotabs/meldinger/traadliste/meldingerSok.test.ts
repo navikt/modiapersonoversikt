@@ -1,8 +1,8 @@
-import { Meldingstype, Saksbehandler, Traad } from '../../../../../models/meldinger/meldinger';
-import { statiskTraadMock } from '../../../../../mock/meldinger/statiskTraadMock';
-import { saksbehandlerTekst, useSokEtterMeldinger } from '../utils/meldingerUtils';
 import { renderHook } from '@testing-library/react';
+import { statiskTraadMock } from '../../../../../mock/meldinger/statiskTraadMock';
+import { Meldingstype, type Saksbehandler, type Traad } from '../../../../../models/meldinger/meldinger';
 import { Temagruppe } from '../../../../../models/temagrupper';
+import { saksbehandlerTekst, useSokEtterMeldinger } from '../utils/meldingerUtils';
 
 function getMockSoketraad(
     fritekst: string,
@@ -16,8 +16,8 @@ function getMockSoketraad(
             {
                 ...mockMelding,
                 fritekst: fritekst,
-                meldingstype: (tittel && tittel.meldingtype) || mockMelding.meldingstype,
-                temagruppe: (tittel && tittel.temagruppe) || mockMelding.temagruppe,
+                meldingstype: tittel?.meldingtype || mockMelding.meldingstype,
+                temagruppe: tittel?.temagruppe || mockMelding.temagruppe,
                 skrevetAvTekst: saksbehandler ? saksbehandlerTekst(saksbehandler) : mockMelding.skrevetAvTekst
             }
         ]

@@ -1,6 +1,6 @@
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+import { type FetchError, post } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { FetchError, post } from '../../api/api';
 
 function queryKey(fnr: string) {
     return ['aktorid', fnr];

@@ -1,8 +1,8 @@
-import LenkepanelPersonoversikt from '../../../../../utils/LenkepanelPersonoversikt';
 import { useSelector } from 'react-redux';
-import { AppState } from '../../../../../redux/reducers';
 import styled from 'styled-components';
+import type { AppState } from '../../../../../redux/reducers';
 import theme from '../../../../../styles/personOversiktTheme';
+import LenkepanelPersonoversikt from '../../../../../utils/LenkepanelPersonoversikt';
 import { finnMiljoStreng } from '../../../../../utils/url-utils';
 
 const StyledLenkepanelPersonoversikt = styled(LenkepanelPersonoversikt)`

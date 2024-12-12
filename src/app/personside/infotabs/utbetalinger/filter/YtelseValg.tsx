@@ -1,9 +1,9 @@
-import { Utbetaling } from '../../../../../models/utbetalinger';
-import { sorterAlfabetisk } from '../../../../../utils/string-utils';
-import { Component } from 'react';
 import { Checkbox } from 'nav-frontend-skjema';
+import { Component } from 'react';
+import type { Utbetaling } from '../../../../../models/utbetalinger';
+import type { UtbetalingFilterState } from '../../../../../redux/utbetalinger/types';
+import { sorterAlfabetisk } from '../../../../../utils/string-utils';
 import { getTypeFromYtelse, reduceUtbetlingerTilYtelser } from '../utils/utbetalinger-utils';
-import { UtbetalingFilterState } from '../../../../../redux/utbetalinger/types';
 
 interface Props {
     onChange: (change: Partial<UtbetalingFilterState>) => void;

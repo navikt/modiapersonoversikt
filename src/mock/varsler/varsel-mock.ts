@@ -1,16 +1,23 @@
 import { fakerNB_NO as faker } from '@faker-js/faker';
-import navfaker from 'nav-faker';
-import { DittNavEvent, Kanal, Varsel, Varselmelding, Varseltype, VarslerResult } from '../../models/varsel';
-import { fyllRandomListe } from '../utils/mock-utils';
 import dayjs from 'dayjs';
-import { statiskDittnavEventVarselMock, statiskVarselMock } from './statiskVarselMock';
+import navfaker from 'nav-faker';
+import {
+    type DittNavEvent,
+    Kanal,
+    type Varsel,
+    type Varselmelding,
+    Varseltype,
+    type VarslerResult
+} from '../../models/varsel';
 import { backendDatoformat } from '../../utils/date-utils';
 import { aremark } from '../persondata/aremark';
 import { nArrayElement } from '../utils-mock';
+import { fyllRandomListe } from '../utils/mock-utils';
+import { statiskDittnavEventVarselMock, statiskVarselMock } from './statiskVarselMock';
 
 export function getMockVarsler(fnr: string): VarslerResult {
     faker.seed(Number(fnr));
-    navfaker.seed(fnr + 'varsel');
+    navfaker.seed(`${fnr}varsel`);
     if (fnr === aremark.personIdent) {
         return {
             feil: ['Feil ved uthenting av varsler', 'Annen feilmelding fra backend'],

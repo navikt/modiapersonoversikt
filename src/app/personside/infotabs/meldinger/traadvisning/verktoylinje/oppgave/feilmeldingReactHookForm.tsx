@@ -1,4 +1,4 @@
-import { FieldPath, FieldValues } from 'react-hook-form';
+import type { FieldPath, FieldValues } from 'react-hook-form';
 
 export const feilmeldingReactHookForm = <
     TFieldValues extends FieldValues,

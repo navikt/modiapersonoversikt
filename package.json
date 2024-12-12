@@ -5,9 +5,7 @@
     "license": "MIT",
     "main": "build/dist/index.js",
     "type": "module",
-    "files": [
-        "build/dist/"
-    ],
+    "files": ["build/dist/"],
     "engines": {
         "node": "^20.0 || ^22.0"
     },
@@ -20,9 +18,10 @@
         "start:dev": "VITE_MOCK_ENABLED=false vite",
         "build": "vite build",
         "test": "vitest",
-        "lint": "eslint . && prettier --check src/**/*.{ts,js,tsx}",
+        "lint": "biome check",
+        "fix": "biome check --write",
+        "lint:ci": "biome ci",
         "lint-staged": "lint-staged",
-        "format": "prettier --write src/**/*.{ts,js,tsx}",
         "gen:routes": "tsr generate",
         "generate": "openapi-typescript https://modiapersonoversikt-api.intern.dev.nav.no/modiapersonoversikt-api/v3/api-docs -o src/generated/modiapersonoversikt-api.d.ts",
         "tsc": "tsc"
@@ -33,9 +32,7 @@
         }
     },
     "lint-staged": {
-        "*.{js,ts,tsx,json,less,css,md}": [
-            "prettier --write"
-        ]
+        "*.{js,ts,tsx,json,less,css,md}": ["biome format --write"]
     },
     "dependencies": {
         "@amplitude/analytics-browser": "^2.11.9",
@@ -120,7 +117,7 @@
         "zod": "^3.24.1"
     },
     "devDependencies": {
-        "@eslint/js": "^9.16.0",
+        "@biomejs/biome": "1.9.4",
         "@faker-js/faker": "^9.3.0",
         "@navikt/aksel-stylelint": "^7.4.3",
         "@playwright/test": "^1.49.1",
@@ -131,7 +128,6 @@
         "@testing-library/react": "^16.1.0",
         "@testing-library/user-event": "^14.5.2",
         "@types/detect-browser": "^4.0.3",
-        "@types/eslint__js": "^8.42.3",
         "@types/lodash.debounce": "^4.0.9",
         "@types/md5": "^2.3.5",
         "@types/node": "^22.10.1",
@@ -144,9 +140,6 @@
         "@types/react-test-renderer": "^18.3.0",
         "autoprefixer": "^10.4.20",
         "cross-env": "^7.0.3",
-        "eslint": "^9.16.0",
-        "eslint-config-prettier": "^9.1.0",
-        "eslint-plugin-prettier": "^5.2.1",
         "jest-styled-components": "^7.2.0",
         "jsdom": "^25.0.1",
         "less": "^4.2.1",
@@ -156,7 +149,6 @@
         "nav-faker": "^3.2.4",
         "openapi-typescript": "^7.4.3",
         "postcss": "^8.4.49",
-        "prettier": "^3.4.1",
         "prop-types": "^15.8.1",
         "react-collapse": "^5.1.1",
         "react-test-renderer": "^18.3.1",
@@ -164,7 +156,6 @@
         "stylelint": "^16.11.0",
         "tailwindcss": "^3.4.16",
         "typescript": "^5.7.2",
-        "typescript-eslint": "^8.17.0",
         "undici": "^7.0.0",
         "vite-require": "^0.2.3",
         "vitest": "^2.1.8"
@@ -179,18 +170,8 @@
         }
     },
     "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all",
-            "IE 11"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version",
-            "IE 11"
-        ]
+        "production": [">0.2%", "not dead", "not op_mini all", "IE 11"],
+        "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version", "IE 11"]
     },
     "msw": {
         "workerDirectory": "./public"

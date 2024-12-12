@@ -1,9 +1,9 @@
-import { PeriodeValg, UtbetalingerState, UtbetalingFilterState } from './types';
-import { actionKeys, Actions } from './actions';
 import dayjs from 'dayjs';
-import { ISO_DATE_FORMAT } from 'src/utils/date-utils';
 import { useSelector } from 'react-redux';
-import { AppState } from 'src/redux/reducers';
+import type { AppState } from 'src/redux/reducers';
+import { ISO_DATE_FORMAT } from 'src/utils/date-utils';
+import { type Actions, actionKeys } from './actions';
+import { PeriodeValg, type UtbetalingFilterState, type UtbetalingerState } from './types';
 
 const initialState: UtbetalingerState = {
     ytelseIFokus: null,
@@ -21,6 +21,7 @@ const initialState: UtbetalingerState = {
     }
 };
 
+// biome-ignore lint/style/useDefaultParameterLast: biome migration
 export function utbetalingerReducer(state: UtbetalingerState = initialState, action: Actions): UtbetalingerState {
     switch (action.type) {
         case actionKeys.SettYtelseIFokus:
@@ -34,12 +35,11 @@ export function utbetalingerReducer(state: UtbetalingerState = initialState, act
                     ...state,
                     ekspanderteYtelser: [...state.ekspanderteYtelser, action.ytelse]
                 };
-            } else {
-                return {
-                    ...state,
-                    ekspanderteYtelser: state.ekspanderteYtelser.filter((y) => y !== action.ytelse)
-                };
             }
+            return {
+                ...state,
+                ekspanderteYtelser: state.ekspanderteYtelser.filter((y) => y !== action.ytelse)
+            };
         case actionKeys.OppdaterFilter:
             return {
                 ...state,

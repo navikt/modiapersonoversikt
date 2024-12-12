@@ -1,13 +1,13 @@
-import dayjs from 'dayjs';
-import { personPaths } from '../../routes/routing';
-import { Utbetaling } from '../../../models/utbetalinger';
 import { useLocation, useParams } from '@tanstack/react-router';
-import { Traad } from '../../../models/meldinger/meldinger';
+import dayjs from 'dayjs';
 import { useMemo } from 'react';
+import type { Traad } from '../../../models/meldinger/meldinger';
+import type { Dokument } from '../../../models/saksoversikt/journalpost';
+import type { Sakstema } from '../../../models/saksoversikt/sakstema';
+import type { Utbetaling } from '../../../models/utbetalinger';
+import { type Ytelse, getUnikYtelseKey } from '../../../models/ytelse/ytelse-utils';
 import { useQueryParams } from '../../../utils/url-utils';
-import { getUnikYtelseKey, Ytelse } from '../../../models/ytelse/ytelse-utils';
-import { Dokument } from '../../../models/saksoversikt/journalpost';
-import { Sakstema } from '../../../models/saksoversikt/sakstema';
+import { personPaths } from '../../routes/routing';
 import { erSakerFullscreen } from './saksoversikt/utils/erSakerFullscreen';
 
 interface Dyplenker {

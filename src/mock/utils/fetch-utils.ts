@@ -1,4 +1,11 @@
-import { delay, HttpResponse, HttpResponseResolver, StrictRequest, PathParams, DefaultBodyType } from 'msw';
+import {
+    type DefaultBodyType,
+    HttpResponse,
+    type HttpResponseResolver,
+    type PathParams,
+    type StrictRequest,
+    delay
+} from 'msw';
 
 export function withDelayedResponse<R extends DefaultBodyType, T extends DefaultBodyType = { fnr: string }>(
     delayTime: number,
@@ -27,9 +34,8 @@ export function verify<T extends DefaultBodyType = { fnr: string }>(
         const invalid = isInvalid(request, params);
         if (invalid) {
             return HttpResponse.text(invalid, { status: 400 });
-        } else {
-            return handler({ request, params, ...args });
         }
+        return handler({ request, params, ...args });
     };
 }
 

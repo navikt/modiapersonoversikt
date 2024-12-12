@@ -1,14 +1,14 @@
-import styled from 'styled-components';
-import { Undertittel } from 'nav-frontend-typografi';
-import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
-import { settValgtPeriode } from 'src/redux/oppfolging/actions';
-import { useDispatch } from 'react-redux';
-import { useCallback, useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
 import Panel from 'nav-frontend-paneler';
-import FiltreringPeriode from '../utbetalinger/filter/FilterPeriode';
-import { PeriodeOptions } from 'src/redux/utbetalinger/types';
+import { Undertittel } from 'nav-frontend-typografi';
+import { useCallback, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { settValgtPeriode } from 'src/redux/oppfolging/actions';
 import { useOppfolgingFilter } from 'src/redux/oppfolging/reducer';
+import type { PeriodeOptions } from 'src/redux/utbetalinger/types';
+import styled from 'styled-components';
+import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
+import FiltreringPeriode from '../utbetalinger/filter/FilterPeriode';
 
 const StyledPanel = styled(Panel)`
     padding: ${pxToRem(15)};

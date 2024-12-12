@@ -1,19 +1,19 @@
-import styled from 'styled-components';
-import VisittkortElement from '../../VisittkortElement';
-import LocationPin from '../../../../../../svg/LocationPin';
-import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
-import { hentNavn } from '../../../visittkort-utils';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
+import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
+import styled from 'styled-components';
+import LocationPin from '../../../../../../svg/LocationPin';
 import { formaterDato } from '../../../../../../utils/string-utils';
-import {
+import type {
     Adressat,
     AdvokatSomAdressat,
     Dodsbo,
     OrganisasjonSomAdressat,
     PersonSomAdressat
 } from '../../../PersondataDomain';
+import { hentNavn } from '../../../visittkort-utils';
 import Adresseinfo from '../../AdresseInfo';
 import Endringstekst from '../../Endringstekst';
+import VisittkortElement from '../../VisittkortElement';
 
 interface Props {
     harFeilendeSystem: boolean;
@@ -27,13 +27,14 @@ const AdresseStyle = styled.div`
 function Adressatinfo({ harFeilendeSystem, adressat }: { harFeilendeSystem: boolean; adressat: Adressat }) {
     if (adressat.advokatSomAdressat) {
         return <AdvokatSomAdressatInfo adressat={adressat.advokatSomAdressat} />;
-    } else if (adressat.organisasjonSomAdressat) {
-        return <OrganisasjonSomAdressatInfo adressat={adressat.organisasjonSomAdressat} />;
-    } else if (adressat.personSomAdressat) {
-        return <PersonSomAdressatInfo harFeilendeSystem={harFeilendeSystem} adressat={adressat.personSomAdressat} />;
-    } else {
-        return <AlertStripeFeil>Ingen adressat funnet</AlertStripeFeil>;
     }
+    if (adressat.organisasjonSomAdressat) {
+        return <OrganisasjonSomAdressatInfo adressat={adressat.organisasjonSomAdressat} />;
+    }
+    if (adressat.personSomAdressat) {
+        return <PersonSomAdressatInfo harFeilendeSystem={harFeilendeSystem} adressat={adressat.personSomAdressat} />;
+    }
+    return <AlertStripeFeil>Ingen adressat funnet</AlertStripeFeil>;
 }
 
 function AdvokatSomAdressatInfo({ adressat }: { adressat: AdvokatSomAdressat }) {

@@ -1,4 +1,11 @@
-import { Action, AnyAction, CombinedState, combineReducers, Reducer, ReducersMapObject } from 'redux';
+import {
+    type Action,
+    type AnyAction,
+    type CombinedState,
+    type Reducer,
+    type ReducersMapObject,
+    combineReducers
+} from 'redux';
 
 type Keyof<S> = string & keyof S;
 
@@ -19,28 +26,32 @@ function resettable<S>(reducer: Reducer<S>): Reducer<S> {
     return (state: S | undefined, action: AnyAction) => {
         if (action.type === Type.RESET) {
             return reducer(undefined, { type: Type.INIT });
-        } else {
-            return reducer(state, action);
         }
+        return reducer(state, action);
     };
 }
 export function combineResettableReducers<S>(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    //biome-ignore lint/suspicious/noExplicitAny: biome migration
     reducers: ReducersMapObject<S, any>,
     useCache: Array<Keyof<S>> = []
 ): Reducer<CombinedState<S>> {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    //biome-ignore lint/suspicious/noExplicitAny: biome migration
     const mappedReducers = entries<ReducersMapObject<S, any>>(reducers)
         .map(([reducerName, reducerFn]) => {
             if (useCache.includes(reducerName as Keyof<S>)) {
                 return [reducerName, reducerFn];
-            } else {
-                return [reducerName, resettable(reducerFn)];
             }
+            return [reducerName, resettable(reducerFn)];
         })
-        // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-        .reduce((acc, [reducerName, reducerFn]) => ({ ...acc, ['' + reducerName]: reducerFn }), {});
+        .reduce(
+            (acc, [reducerName, reducerFn]) => ({
+                //biome-ignore lint/performance/noAccumulatingSpread: biome migration
+                ...acc,
+                [`${reducerName}`]: reducerFn
+            }),
+            {}
+        );
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    //biome-ignore lint/suspicious/noExplicitAny: biome migration
     return combineReducers<S>(mappedReducers as ReducersMapObject<S, any>);
 }

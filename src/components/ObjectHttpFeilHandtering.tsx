@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { ReactNode, useEffect, useState } from 'react';
-import { CenteredLazySpinner } from './LazySpinner';
+import type * as React from 'react';
+import { type ReactNode, useEffect, useState } from 'react';
 import { postConfig } from '../api/config';
+import { CenteredLazySpinner } from './LazySpinner';
 
 type Omit<T, U> = Pick<T, Exclude<keyof T, U>>;
 
@@ -44,9 +44,12 @@ export function ObjectHttpFeilHandtering({ url, fnr, onError, children, ...rest 
 
     if (blobUrl === '') {
         return <CenteredLazySpinner />;
-    } else if (isError) {
+    }
+    if (isError) {
         return <>{children}</>;
     }
 
+    //biome-ignore lint/correctness/noChildrenProp: biome migration
+    //biome-ignore lint/a11y/useAltText: biome migration
     return <object data={blobUrl} children={children} {...rest} type={contentType} />;
 }

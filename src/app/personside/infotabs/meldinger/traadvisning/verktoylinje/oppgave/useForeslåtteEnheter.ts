@@ -1,10 +1,10 @@
-import { useFodselsnummer } from '../../../../../../../utils/customHooks';
 import { useEffect, useMemo, useState } from 'react';
-import { Enhet } from '../../../../../../../models/meldinger/oppgave';
-import { loggError, loggEvent } from '../../../../../../../utils/logger/frontendLogger';
+import type { UseFormReturn } from 'react-hook-form';
 import { apiBaseUri, postConfig } from '../../../../../../../api/config';
-import { OppgaveSkjemaForm } from './oppgaveInterfaces';
-import { UseFormReturn } from 'react-hook-form';
+import type { Enhet } from '../../../../../../../models/meldinger/oppgave';
+import { useFodselsnummer } from '../../../../../../../utils/customHooks';
+import { loggError, loggEvent } from '../../../../../../../utils/logger/frontendLogger';
+import type { OppgaveSkjemaForm } from './oppgaveInterfaces';
 
 function useForeslatteEnheter({ watch }: UseFormReturn<OppgaveSkjemaForm>) {
     const fnr = useFodselsnummer();

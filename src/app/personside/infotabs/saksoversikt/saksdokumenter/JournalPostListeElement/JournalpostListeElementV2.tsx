@@ -1,26 +1,26 @@
+import dayjs from 'dayjs';
+import { guid } from 'nav-frontend-js-utils';
+import { Normaltekst } from 'nav-frontend-typografi';
 import { createRef, useRef } from 'react';
+import styled, { css } from 'styled-components';
+import EtikettGraa from '../../../../../../components/EtikettGraa';
+import { saksdatoSomDate } from '../../../../../../models/saksoversikt/fellesSak';
 import {
-    Dokument as Enkeltdokument,
+    type Dokument as Enkeltdokument,
     Entitet,
     Feilmelding,
-    Journalpost,
+    type Journalpost,
     Kommunikasjonsretning
 } from '../../../../../../models/saksoversikt/journalpost';
-import styled, { css } from 'styled-components';
-import theme from '../../../../../../styles/personOversiktTheme';
-import dayjs from 'dayjs';
-import { saksdatoSomDate } from '../../../../../../models/saksoversikt/fellesSak';
-import { Normaltekst } from 'nav-frontend-typografi';
-import DokumentIkon from '../../../../../../svg/DokumentIkon';
-import DokumentIkkeTilgangIkon from '../../../../../../svg/DokumentIkkeTilgangIkon';
-import EtikettGraa from '../../../../../../components/EtikettGraa';
-import { Sakstema } from '../../../../../../models/saksoversikt/sakstema';
-import DokumentLenke from '../DokumentLenke';
-import { guid } from 'nav-frontend-js-utils';
-import { hentNavn } from '../../../../visittkort-v2/visittkort-utils';
-import { sakstemakodeAlle } from '../../utils/saksoversiktUtilsV2';
-import { useHentAlleSakstemaFraResourceV2, useSakstemaURLStateV2 } from '../../useSakstemaURLState';
+import type { Sakstema } from '../../../../../../models/saksoversikt/sakstema';
 import persondataResource from '../../../../../../rest/resources/persondataResource';
+import theme from '../../../../../../styles/personOversiktTheme';
+import DokumentIkkeTilgangIkon from '../../../../../../svg/DokumentIkkeTilgangIkon';
+import DokumentIkon from '../../../../../../svg/DokumentIkon';
+import { hentNavn } from '../../../../visittkort-v2/visittkort-utils';
+import { useHentAlleSakstemaFraResourceV2, useSakstemaURLStateV2 } from '../../useSakstemaURLState';
+import { sakstemakodeAlle } from '../../utils/saksoversiktUtilsV2';
+import DokumentLenke from '../DokumentLenke';
 import JournalpostLestAvBruker from './JournalpostLestAvBruker';
 
 interface Props {
@@ -105,9 +105,8 @@ function formaterDatoOgAvsender(brukernavn: string, dokument: Journalpost) {
 function getDokumentIkon(harTilgang: boolean) {
     if (harTilgang) {
         return <DokumentIkon />;
-    } else {
-        return <DokumentIkkeTilgangIkon aria-label="Du har ikke tilgang til dette dokumentet" />;
     }
+    return <DokumentIkkeTilgangIkon aria-label="Du har ikke tilgang til dette dokumentet" />;
 }
 
 function JournalpostListeElementV2(props: Props) {

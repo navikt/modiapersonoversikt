@@ -2,9 +2,9 @@ import './extra-polyfills';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import './index.less';
-import { createRouter } from './router';
-import { StrictMode } from 'react';
 import { RouterProvider } from '@tanstack/react-router';
+import { StrictMode } from 'react';
+import { createRouter } from './router';
 import { initAmplitude } from './utils/amplitude';
 import { initializeObservability } from './utils/observability';
 
@@ -32,6 +32,7 @@ if (import.meta.env.VITE_MOCK_ENABLED === 'true') {
 }
 
 const container = document.getElementById('root');
+//biome-ignore lint/style/noNonNullAssertion: biome migration
 const root = createRoot(container!);
 
 root.render(

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import { useEffect, useMemo, useState } from 'react';
 
 type Alternatives = {
@@ -36,9 +36,8 @@ function MediaQueryAwareRenderer(props: Props) {
 
     if (indexOfFirstMatching === -1) {
         return null;
-    } else {
-        return Object.values(props.alternatives)[indexOfFirstMatching]();
     }
+    return Object.values(props.alternatives)[indexOfFirstMatching]();
 }
 
 export default MediaQueryAwareRenderer;

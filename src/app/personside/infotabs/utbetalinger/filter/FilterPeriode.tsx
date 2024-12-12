@@ -1,10 +1,10 @@
 import { Radio } from 'nav-frontend-skjema';
 import { Element } from 'nav-frontend-typografi';
-import { FraTilDato, PeriodeOptions, PeriodeValg } from 'src/redux/utbetalinger/types';
-import styled from 'styled-components';
-import EgendefinertDatoInputs from './EgendefinertDatoInputs';
 import { useState } from 'react';
+import { type FraTilDato, type PeriodeOptions, PeriodeValg } from 'src/redux/utbetalinger/types';
+import styled from 'styled-components';
 import { getFraDateFromPeriod } from '../utils/utbetalinger-utils';
+import EgendefinertDatoInputs from './EgendefinertDatoInputs';
 
 const InputPanel = styled.form`
     display: flex;

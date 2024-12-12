@@ -1,4 +1,4 @@
-import { DittNavEvent, Kanal, Varsel } from '../../models/varsel';
+import { type DittNavEvent, Kanal, type Varsel } from '../../models/varsel';
 
 export const statiskVarselMock: Varsel[] = [
     {

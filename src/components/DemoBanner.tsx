@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import styled from 'styled-components';
 
 const DemoStyle = styled.div`
     position: fixed;

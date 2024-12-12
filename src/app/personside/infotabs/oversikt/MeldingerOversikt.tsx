@@ -1,20 +1,20 @@
-import { ReactNode } from 'react';
-import { Traad } from '../../../../models/meldinger/meldinger';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { Normaltekst } from 'nav-frontend-typografi';
+import type { ReactNode } from 'react';
 import styled from 'styled-components';
+import { CenteredLazySpinner } from '../../../../components/LazySpinner';
+import VisMerKnapp from '../../../../components/VisMerKnapp';
+import type { Traad } from '../../../../models/meldinger/meldinger';
+import { temagruppeTekst } from '../../../../models/temagrupper';
+import dialogResource from '../../../../rest/resources/dialogResource';
 import theme from '../../../../styles/personOversiktTheme';
+import { useOnMount } from '../../../../utils/customHooks';
+import { datoSynkende } from '../../../../utils/date-utils';
+import { meldingerTest } from '../dyplenkeTest/utils-dyplenker-test';
+import { useInfotabsDyplenker } from '../dyplenker';
+import TraadSammendrag from '../meldinger/traadliste/TraadSammendrag';
 import { nyesteMelding } from '../meldinger/utils/meldingerUtils';
 import { meldingstypeTekst } from '../meldinger/utils/meldingstekster';
-import VisMerKnapp from '../../../../components/VisMerKnapp';
-import { datoSynkende } from '../../../../utils/date-utils';
-import { Normaltekst } from 'nav-frontend-typografi';
-import { CenteredLazySpinner } from '../../../../components/LazySpinner';
-import { useInfotabsDyplenker } from '../dyplenker';
-import { meldingerTest } from '../dyplenkeTest/utils-dyplenker-test';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { useOnMount } from '../../../../utils/customHooks';
-import { temagruppeTekst } from '../../../../models/temagrupper';
-import TraadSammendrag from '../meldinger/traadliste/TraadSammendrag';
-import dialogResource from '../../../../rest/resources/dialogResource';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
@@ -64,7 +64,7 @@ function Traadelement(props: { traad: Traad }) {
             <VisMerKnapp
                 linkTo={dyplenker.meldinger.link(props.traad)}
                 valgt={false}
-                ariaDescription={'Vis meldinger for ' + tittel}
+                ariaDescription={`Vis meldinger for ${tittel}`}
                 className={meldingerTest.oversikt}
             >
                 <TraadSammendrag traad={props.traad} />

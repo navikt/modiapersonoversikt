@@ -1,43 +1,43 @@
-import { useState } from 'react';
+import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { Flatknapp, Hovedknapp } from 'nav-frontend-knapper';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { SkjermetOppgaveProps, OppgaveSkjemaBegrensetTilgangForm } from '../oppgaveInterfaces';
 import { post } from '../../../../../../../../api/api';
 import { apiBaseUri } from '../../../../../../../../api/config';
-import { Resultat } from '../../utils/VisPostResultat';
-import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
-import { lagSkjermetOppgaveRequest } from '../byggRequest';
-import { useSelector } from 'react-redux';
-import { AppState } from '../../../../../../../../redux/reducers';
 import { useValgtenhet } from '../../../../../../../../context/valgtenhet-state';
-import { useForm } from 'react-hook-form';
+import type { AppState } from '../../../../../../../../redux/reducers';
+import { Resultat } from '../../utils/VisPostResultat';
+import OppgaveSkjemaPrioritetBeskrivelse from '../OppgaveSkjemaDeler/OppgaveSkjemaPrioritetBeskrivelse';
+import OppgaveSkjemaTemaGjelderTypeOppgave from '../OppgaveSkjemaDeler/OppgaveSkjemaTemaGjelderTypeOppgave';
+import { lagSkjermetOppgaveRequest } from '../byggRequest';
+import type { OppgaveSkjemaBegrensetTilgangForm, SkjermetOppgaveProps } from '../oppgaveInterfaces';
 import { resolverOppgaveSkjemaBegrensetTilgang } from '../oppgaveSkjemaUtils';
 import { useNormalPrioritet } from '../useNormalPrioritet';
-import OppgaveSkjemaTemaGjelderTypeOppgave from '../OppgaveSkjemaDeler/OppgaveSkjemaTemaGjelderTypeOppgave';
-import OppgaveSkjemaPrioritetBeskrivelse from '../OppgaveSkjemaDeler/OppgaveSkjemaPrioritetBeskrivelse';
 
 const SkjemaStyle = styled.div`
-    padding-top: 1rem;
-    label {
-        margin-bottom: 0.1rem;
-    }
-    .skjemaelement {
-        margin-bottom: 0.7rem;
-    }
+  padding-top: 1rem;
+  label {
+    margin-bottom: 0.1rem;
+  }
+  .skjemaelement {
+    margin-bottom: 0.7rem;
+  }
 `;
 
 const KnappStyle = styled.div`
-    display: flex;
-    justify-content: space-between;
-    button {
-        margin: 0;
-    }
+  display: flex;
+  justify-content: space-between;
+  button {
+    margin: 0;
+  }
 `;
 
 const AlertStyling = styled.div`
-    > * {
-        margin-top: 1rem;
-    }
+  > * {
+    margin-top: 1rem;
+  }
 `;
 
 function OppgaveSkjemaBegrensetTilgang(props: SkjermetOppgaveProps) {
@@ -52,7 +52,7 @@ function OppgaveSkjemaBegrensetTilgang(props: SkjermetOppgaveProps) {
 
     const valgtTema = useNormalPrioritet(props.gsakTema, form);
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // biome-ignore lint/suspicious/noExplicitAny: Old types
     function submitHandler(values: OppgaveSkjemaBegrensetTilgangForm): Promise<any> {
         const request = lagSkjermetOppgaveRequest(values, valgtBrukersFnr, saksbehandlersEnhet || '');
         return post(`${apiBaseUri}/dialogoppgave/v2/opprettskjermetoppgave`, request, 'OpprettOppgaveSkjermetPerson')

@@ -1,12 +1,12 @@
-/// <reference types="vitest" />
-import { IndexHtmlTransform, Plugin, defineConfig } from 'vite';
-import { configDefaults } from 'vitest/config';
 import path from 'node:path';
+/// <reference types="vitest" />
+import { type IndexHtmlTransform, type Plugin, defineConfig } from 'vite';
+import { configDefaults } from 'vitest/config';
 
-import react from '@vitejs/plugin-react';
-import { TanStackRouterVite } from '@tanstack/router-plugin/vite';
-import vitePluginSvgr from 'vite-plugin-svgr';
 import { fileURLToPath } from 'node:url';
+import { TanStackRouterVite } from '@tanstack/router-plugin/vite';
+import react from '@vitejs/plugin-react';
+import vitePluginSvgr from 'vite-plugin-svgr';
 import { viteRequire } from 'vite-require';
 
 const fixNavFrontendStyle = (packages: string[]) =>

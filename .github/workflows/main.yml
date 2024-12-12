@@ -30,7 +30,7 @@ jobs:
             - name: Generate source files
               run: npm run gen:routes
             - name: Lint
-              run: npm run lint
+              run: npm run lint:ci
             - name: Test
               run: npm run test
             - name: Build

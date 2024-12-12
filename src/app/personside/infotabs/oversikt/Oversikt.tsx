@@ -1,14 +1,14 @@
 import styled from 'styled-components';
-import Oversiktskomponent from './Oversiktskomponent';
-import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
-import VarselOversikt from './VarselOversikt';
-import OppfolgingOversikt from './OppfolgingOversikt';
-import YtelserOversikt from './YtelserOversikt';
-import UtbetalingerOversikt from './UtbetalingerOversikt';
-import MeldingerOversikt from './MeldingerOversikt';
-import { INFOTABS } from '../InfoTabEnum';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
+import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
+import { INFOTABS } from '../InfoTabEnum';
+import MeldingerOversikt from './MeldingerOversikt';
+import OppfolgingOversikt from './OppfolgingOversikt';
+import Oversiktskomponent from './Oversiktskomponent';
 import SakerOversiktFactory from './SakerOversiktFactory';
+import UtbetalingerOversikt from './UtbetalingerOversikt';
+import VarselOversikt from './VarselOversikt';
+import YtelserOversikt from './YtelserOversikt';
 
 const oversiktMediaThreshold = pxToRem(750);
 

@@ -1,5 +1,6 @@
 function DokumentIkkeTilgangIkon(props) {
     return (
+        //biome-ignore lint/a11y/noSvgWithoutTitle: biome migration
         <svg data-testid="ikke-tilgang-ikon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
             <g fill="currentColor">
                 <path d="M17 10V5.5l-.1-.4-5-5-.4-.1H.5C.2 0 0 .2 0 .5v21c0 .3.2.5.5.5h11A7.5 7.5 0 0 1 17 10zM11.5.5l5 5h-5v-5z" />

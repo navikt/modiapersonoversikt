@@ -1,10 +1,10 @@
-import { ReactNode } from 'react';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
+import Panel from 'nav-frontend-paneler';
+import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import type { ReactNode } from 'react';
 import styled from 'styled-components';
-import { Undertittel, Normaltekst } from 'nav-frontend-typografi';
 import theme from '../../../../../styles/personOversiktTheme';
 import { ytelserTest } from '../../dyplenkeTest/utils-dyplenker-test';
-import Panel from 'nav-frontend-paneler';
 
 interface Props {
     children: ReactNode;
@@ -42,11 +42,9 @@ const CustomStyling = styled(Panel)`
 `;
 
 function EkspanderbartYtelserPanel(props: Props) {
-    const tillegsinfo =
-        props.tittelTillegsInfo &&
-        props.tittelTillegsInfo
-            .filter((info) => info) // filtrerer bort tomme entries
-            .map((info, index) => <Normaltekst key={index}>{info}</Normaltekst>);
+    const tillegsinfo = props.tittelTillegsInfo
+        ?.filter((info) => info) // filtrerer bort tomme entries
+        .map((info, index) => <Normaltekst key={index}>{info}</Normaltekst>);
 
     const tittel = (
         <TittelStyle>

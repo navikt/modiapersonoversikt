@@ -1,6 +1,6 @@
-import * as React from 'react';
-import styled, { css } from 'styled-components';
 import NavFrontendChevron from 'nav-frontend-chevron';
+import type * as React from 'react';
+import styled, { css } from 'styled-components';
 import theme from '../styles/personOversiktTheme';
 
 interface Props {

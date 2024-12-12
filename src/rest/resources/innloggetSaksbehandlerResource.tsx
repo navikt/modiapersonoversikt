@@ -1,6 +1,6 @@
+import { type UseQueryResult, useQuery, useQueryClient } from '@tanstack/react-query';
+import { type FetchError, get } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
-import { useQuery, useQueryClient, UseQueryResult } from '@tanstack/react-query';
-import { FetchError, get } from '../../api/api';
 
 /**
  * Kan denne kanskje erstattes av kall til modiacontextholder, og bør den evt gjøre det?

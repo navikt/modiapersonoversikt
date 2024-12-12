@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import dayjs, { type Dayjs } from 'dayjs';
 import debounce from 'lodash.debounce';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { FetchError } from '../../../api/api';
+import config from '../../../config';
+import { getEnvFromHost } from '../../../utils/environment';
 import { loggError, loggInfo } from '../../../utils/logger/frontendLogger';
 import WebSocketImpl, { Status } from '../../../utils/websocket-impl';
-import { FetchError } from '../../../api/api';
-import { getEnvFromHost } from '../../../utils/environment';
-import dayjs, { Dayjs } from 'dayjs';
-import config from '../../../config';
 
 export interface DraftContext {
     [key: string]: string;
@@ -87,11 +87,10 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
             if (!response.ok) {
                 ws.close();
                 return '\u0000';
-            } else {
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                const uuid: string = await response.json();
-                return `${getWsUrl()}/api/draft/ws/${uuid}`;
             }
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+            const uuid: string = await response.json();
+            return `${getWsUrl()}/api/draft/ws/${uuid}`;
         };
         wsRef.current = new WebSocketImpl(urlProvider, {
             onClose(event: CloseEvent, connection: WebSocketImpl) {
@@ -151,9 +150,8 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
             .then((resp) => {
                 if (resp.ok) {
                     return resp.json();
-                } else {
-                    throw new FetchError(resp, 'Feil ved uthenting av draft');
                 }
+                throw new FetchError(resp, 'Feil ved uthenting av draft');
             })
             .then((json: Array<Draft>) => {
                 if (json.length > 0) {

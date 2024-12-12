@@ -1,8 +1,8 @@
-import VisittkortElement from '../../VisittkortElement';
-import CoinsIkon from '../../../../../../svg/Coins';
 import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
+import CoinsIkon from '../../../../../../svg/Coins';
 import { FormatertKontonummer } from '../../../../../../utils/FormatertKontonummer';
-import { Bankkonto as BankkontoInterface } from '../../../PersondataDomain';
+import type { Bankkonto as BankkontoInterface } from '../../../PersondataDomain';
+import VisittkortElement from '../../VisittkortElement';
 import KontoEndringsTekst from './KontoEndringstekst';
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 
 function Bankkonto({ harFeilendeSystem, bankkonto }: Props) {
     let beskrivelse = 'Kontonummer';
-    if (bankkonto && bankkonto.landkode && bankkonto.landkode.kode !== 'NOR') {
+    if (bankkonto?.landkode && bankkonto.landkode.kode !== 'NOR') {
         beskrivelse += 'utland';
     }
 

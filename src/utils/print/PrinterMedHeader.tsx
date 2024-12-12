@@ -1,9 +1,9 @@
-import NavLogo from '../../svg/NavLogo';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { datoVerbose } from '../date-utils';
+import type { ReactNode } from 'react';
 import styled from 'styled-components';
-import { ReactNode } from 'react';
+import NavLogo from '../../svg/NavLogo';
 import { useFodselsnummer } from '../customHooks';
+import { datoVerbose } from '../date-utils';
 
 const Wrapper = styled.div`
     @page {

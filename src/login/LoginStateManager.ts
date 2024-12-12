@@ -1,4 +1,4 @@
-import { AuthIntropectionDTO } from '../utils/hooks/use-persistent-login';
+import type { AuthIntropectionDTO } from '../utils/hooks/use-persistent-login';
 import { ActivityMonitor } from './AcitivityMonitor';
 import { INACTIVITY_LIMIT_IN_MS, PREEMPTIVE_REFRESH_TIME_IN_MS, RECALC_LOGIN_STATUS_INTERVAL_IN_MS } from './constants';
 import { timeToExpiration } from './timeToExpiration';

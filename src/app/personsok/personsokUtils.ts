@@ -1,9 +1,9 @@
-import { PersonsokRequestV3 } from '../../models/person/personsok';
-import { erTall } from '../../utils/string-utils';
 import dayjs from 'dayjs';
 import { isISODateString } from 'nav-datovelger';
+import type { FieldError } from 'react-hook-form';
 import { buildFieldError } from '../../components/form/formUtils';
-import { FieldError } from 'react-hook-form';
+import type { PersonsokRequestV3 } from '../../models/person/personsok';
+import { erTall } from '../../utils/string-utils';
 
 export type PersonSokFormStateV3 = {
     navn: string;
@@ -56,7 +56,7 @@ function stringToNumber(input?: string): number | undefined {
     if (!input || input.length === 0) {
         return undefined;
     }
-    return parseInt(input);
+    return Number.parseInt(input);
 }
 
 function emptyString(input?: string): string | undefined {

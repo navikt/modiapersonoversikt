@@ -1,8 +1,8 @@
+import Tekstomrade, { LinebreakRule, ParagraphRule, type Rule } from 'nav-frontend-tekstomrade';
 import * as React from 'react';
 import styled from 'styled-components';
-import Tekstomrade, { LinebreakRule, ParagraphRule, Rule } from 'nav-frontend-tekstomrade';
-import * as StandardTekster from '../domain';
 import theme, { pxToRem } from '../../../../../../styles/personOversiktTheme';
+import type * as StandardTekster from '../domain';
 
 const StyledLi = styled.li`
     position: relative;
@@ -51,7 +51,7 @@ function TekstListeElement(props: Props) {
                     {props.tekst.overskrift}
                 </Tekstomrade>
                 <Tekstomrade className="sr-only" rules={[LinebreakRule, ParagraphRule]}>
-                    {(props.tekst && props.tekst.innhold[props.locale]) || ''}
+                    {props.tekst?.innhold[props.locale] || ''}
                 </Tekstomrade>
             </label>
         </StyledLi>

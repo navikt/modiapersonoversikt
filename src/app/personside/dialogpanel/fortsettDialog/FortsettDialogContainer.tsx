@@ -1,40 +1,40 @@
-import { FormEvent, useRef, useState, useCallback, useMemo } from 'react';
-import { FortsettDialogValidator } from './validatorer';
-import { SendMeldingRequestV2, Traad, TraadType } from '../../../../models/meldinger/meldinger';
-import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
-import { useFodselsnummer } from '../../../../utils/customHooks';
+import { type UseQueryResult, useQueryClient } from '@tanstack/react-query';
+import { Block } from '@tanstack/react-router';
+import { guid } from 'nav-frontend-js-utils';
+import { Undertittel } from 'nav-frontend-typografi';
+import { type FormEvent, useCallback, useMemo, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
-import { SvarSendtKvittering } from './FortsettDialogKvittering';
-import useOpprettHenvendelse from './useOpprettHenvendelse';
-import { erJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
-import { loggError } from '../../../../utils/logger/frontendLogger';
-import { FetchError, post } from '../../../../api/api';
+import styled from 'styled-components';
+import { type FetchError, post } from '../../../../api/api';
 import { apiBaseUri } from '../../../../api/config';
+import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureToggleOn';
+import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
+import { useValgtenhet } from '../../../../context/valgtenhet-state';
+import { type SendMeldingRequestV2, type Traad, TraadType } from '../../../../models/meldinger/meldinger';
+import type { Oppgave } from '../../../../models/meldinger/oppgave';
+import { Temagruppe } from '../../../../models/temagrupper';
+import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
+import dialogResource from '../../../../rest/resources/dialogResource';
+import journalsakResource from '../../../../rest/resources/journalsakResource';
+import tildelteoppgaver from '../../../../rest/resources/tildelteoppgaverResource';
+import theme from '../../../../styles/personOversiktTheme';
+import { useFodselsnummer } from '../../../../utils/customHooks';
+import { loggError } from '../../../../utils/logger/frontendLogger';
+import { erJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
+import ReflowBoundry from '../ReflowBoundry';
+import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
+import useDraft, { type Draft } from '../use-draft';
+import { useAlertOnNavigation } from '../useAlertOnNavigation';
+import FortsettDialog from './FortsettDialog';
+import { SvarSendtKvittering } from './FortsettDialogKvittering';
 import {
     DialogPanelStatus,
-    FortsettDialogPanelState,
-    FortsettDialogState,
-    KvitteringsData
+    type FortsettDialogPanelState,
+    type FortsettDialogState,
+    type KvitteringsData
 } from './FortsettDialogTypes';
-import { Undertittel } from 'nav-frontend-typografi';
-import { guid } from 'nav-frontend-js-utils';
-import styled from 'styled-components';
-import theme from '../../../../styles/personOversiktTheme';
-import ReflowBoundry from '../ReflowBoundry';
-import { Temagruppe } from '../../../../models/temagrupper';
-import useDraft, { Draft } from '../use-draft';
-import { Oppgave } from '../../../../models/meldinger/oppgave';
-import tildelteoppgaver from '../../../../rest/resources/tildelteoppgaverResource';
-import dialogResource from '../../../../rest/resources/dialogResource';
-import { useValgtenhet } from '../../../../context/valgtenhet-state';
-import { useQueryClient, UseQueryResult } from '@tanstack/react-query';
-import journalsakResource from '../../../../rest/resources/journalsakResource';
-import FortsettDialog from './FortsettDialog';
-import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
-import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureToggleOn';
-import { useAlertOnNavigation } from '../useAlertOnNavigation';
-import { Block } from '@tanstack/react-router';
+import useOpprettHenvendelse from './useOpprettHenvendelse';
+import { FortsettDialogValidator } from './validatorer';
 
 interface Props {
     traad: Traad;
@@ -42,7 +42,7 @@ interface Props {
 }
 
 const StyledArticle = styled.article`
-    padding: 1rem ${theme.margin.layout};
+  padding: 1rem ${theme.margin.layout};
 `;
 
 export function finnPlukketOppgaveForTraad(
@@ -51,14 +51,11 @@ export function finnPlukketOppgaveForTraad(
 ): { oppgave: Oppgave | undefined; erSTOOppgave: boolean } {
     if (!resource.data) {
         return { oppgave: undefined, erSTOOppgave: false };
-    } else {
-        const oppgave: Oppgave | undefined = resource.data.find(
-            (oppgave: Oppgave) => oppgave.traadId === traad.traadId
-        );
-        const erSTOOppgave = oppgave !== undefined && oppgave.erSTOOppgave;
-
-        return { oppgave, erSTOOppgave };
     }
+    const oppgave: Oppgave | undefined = resource.data.find((oppgave: Oppgave) => oppgave.traadId === traad.traadId);
+    const erSTOOppgave = !!oppgave?.erSTOOppgave;
+
+    return { oppgave, erSTOOppgave };
 }
 
 function FortsettDialogContainer(props: Props) {
@@ -160,7 +157,10 @@ function FortsettDialogContainer(props: Props) {
             post(url, requestV2, 'Send-Svar')
                 .then(() => {
                     callback();
-                    setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
+                    setDialogStatus({
+                        type: DialogPanelStatus.SVAR_SENDT,
+                        kvitteringsData: kvitteringsData
+                    });
                 })
                 .catch(() => {
                     setDialogStatus({ type: DialogPanelStatus.ERROR });
@@ -191,7 +191,10 @@ function FortsettDialogContainer(props: Props) {
                 .then(() => {
                     callback();
                     queryClient.invalidateQueries(journalsakResource.queryKey(fnr));
-                    setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
+                    setDialogStatus({
+                        type: DialogPanelStatus.SVAR_SENDT,
+                        kvitteringsData: kvitteringsData
+                    });
                 })
                 .catch(() => {
                     setDialogStatus({ type: DialogPanelStatus.ERROR });

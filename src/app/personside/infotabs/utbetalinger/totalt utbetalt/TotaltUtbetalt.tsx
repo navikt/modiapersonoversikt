@@ -1,9 +1,19 @@
-import * as React from 'react';
-import { Utbetaling, UtbetalingerPeriode } from '../../../../../models/utbetalinger';
+import Panel from 'nav-frontend-paneler';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import * as React from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import PrintKnapp from '../../../../../components/PrintKnapp';
+import { FlexEnd } from '../../../../../components/common-styled-components';
+import type { Utbetaling, UtbetalingerPeriode } from '../../../../../models/utbetalinger';
+import { pxToRem } from '../../../../../styles/personOversiktTheme';
+import { cancelIfHighlighting } from '../../../../../utils/function-utils';
+import { loggEvent } from '../../../../../utils/logger/frontendLogger';
+import usePrinter from '../../../../../utils/print/usePrinter';
+import { eventTagetIsInsideRef } from '../../../../../utils/reactRef-utils';
 import { formaterDato } from '../../../../../utils/string-utils';
+import { Table } from '../../../../../utils/table/Table';
+import { UtbetalingTabellStyling } from '../utils/CommonStyling';
 import {
     getBruttoSumYtelser,
     getNettoSumYtelser,
@@ -11,16 +21,6 @@ import {
     summertBeløpStringFraUtbetalinger
 } from '../utils/utbetalinger-utils';
 import TotaltUtbetaltDetaljer from './TotaltUtbetaltDetaljer';
-import { pxToRem } from '../../../../../styles/personOversiktTheme';
-import { cancelIfHighlighting } from '../../../../../utils/function-utils';
-import { FlexEnd } from '../../../../../components/common-styled-components';
-import { loggEvent } from '../../../../../utils/logger/frontendLogger';
-import { UtbetalingTabellStyling } from '../utils/CommonStyling';
-import { eventTagetIsInsideRef } from '../../../../../utils/reactRef-utils';
-import { Table } from '../../../../../utils/table/Table';
-import { useState } from 'react';
-import usePrinter from '../../../../../utils/print/usePrinter';
-import Panel from 'nav-frontend-paneler';
 
 export interface TotaltUtbetaltProps {
     utbetalinger: Utbetaling[];
@@ -72,7 +72,7 @@ function TotaltUtbetalt(props: TotaltUtbetaltProps) {
 
     const PrinterWrapper = printer.printerWrapper;
     const sluttDato = new Date(props.periode.sluttDato) > new Date() ? new Date() : props.periode.sluttDato;
-    const periode: string = formaterDato(props.periode.startDato) + ' - ' + formaterDato(sluttDato);
+    const periode: string = `${formaterDato(props.periode.startDato)} - ${formaterDato(sluttDato)}`;
     const brutto: string = summertBeløpStringFraUtbetalinger(props.utbetalinger, getBruttoSumYtelser);
     const trekk: string = summertBeløpStringFraUtbetalinger(props.utbetalinger, getTrekkSumYtelser);
     const utbetalt: string = summertBeløpStringFraUtbetalinger(props.utbetalinger, getNettoSumYtelser);

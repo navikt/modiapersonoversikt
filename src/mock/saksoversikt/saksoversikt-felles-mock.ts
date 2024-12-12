@@ -1,6 +1,6 @@
-import NavFaker from 'nav-faker/dist/navfaker';
+import type { Faker } from '@faker-js/faker';
+import type NavFaker from 'nav-faker/dist/navfaker';
 import { Baksystem } from '../../models/saksoversikt/fellesSak';
-import { Faker } from '@faker-js/faker';
 
 export function getSaksdato(navfaker: NavFaker): string {
     return new Date(

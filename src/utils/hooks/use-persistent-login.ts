@@ -1,7 +1,7 @@
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { type FetchError, get } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { FetchError, get } from '../../api/api';
 
 const debug = window.location.search.includes('utloggings-info');
 const SECOND_IN_MS = 1000;
@@ -125,7 +125,8 @@ export enum ErrorReason {
 function useErrorHandling(auth: UseQueryResult<AuthIntropectionDTO, FetchError>): ErrorReason | undefined {
     if (auth.isError) {
         return ErrorReason.FETCH_ERROR;
-    } else if (auth.data && auth.data.expirationDate === INVALID_EXPIRATION_DATE) {
+    }
+    if (auth.data && auth.data.expirationDate === INVALID_EXPIRATION_DATE) {
         return ErrorReason.INVALID_EXPIRATION_DATE;
     }
     return undefined;

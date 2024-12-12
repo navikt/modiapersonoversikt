@@ -1,23 +1,25 @@
-import Utbetalinger from './Utbetalinger';
-import UtbetalingFiltrering from './filter/UtbetalingFilter';
-import theme from '../../../../styles/personOversiktTheme';
+import { BigCenteredLazySpinner } from 'src/components/BigCenteredLazySpinner';
+import { useUtbetalingerFilter } from 'src/redux/utbetalinger/utbetalingerReducer';
+import { erIE11 } from 'src/utils/erIE11';
 import styled, { css } from 'styled-components';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
-import Arenalenke from './Arenalenke/Arenalenke';
-import { BigCenteredLazySpinner } from 'src/components/BigCenteredLazySpinner';
-import { erIE11 } from 'src/utils/erIE11';
-import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 import utbetalingerResource from '../../../../rest/resources/utbetalingerResource';
-import { useUtbetalingerFilter } from 'src/redux/utbetalinger/utbetalingerReducer';
+import theme from '../../../../styles/personOversiktTheme';
+import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
+import Arenalenke from './Arenalenke/Arenalenke';
+import Utbetalinger from './Utbetalinger';
+import UtbetalingFiltrering from './filter/UtbetalingFilter';
 
 const UtbetalingerStyle = styled.div`
     ${scrollBarContainerStyle(theme.media.utbetalinger.minWidth)};
     @media (min-width: ${theme.media.utbetalinger.minWidth}) {
-        ${erIE11() &&
-        css`
+        ${
+            erIE11() &&
+            css`
             height: 0; /* IE11 */
             flex-grow: 1; /* IE11 */
-        `};
+        `
+        };
         display: flex;
         align-items: flex-start;
         > *:last-child {

@@ -1,7 +1,7 @@
-import { datoEllerNull, NOKellerNull } from 'src/utils/string-utils';
+import type { Arbeidsforhold } from 'src/models/ytelse/arbeidsforhold';
 import { FormatertKontonummer } from 'src/utils/FormatertKontonummer';
+import { NOKellerNull, datoEllerNull } from 'src/utils/string-utils';
 import DescriptionList from '../../../../../components/DescriptionList';
-import { Arbeidsforhold } from 'src/models/ytelse/arbeidsforhold';
 
 interface Props {
     arbeidsforhold: Arbeidsforhold;

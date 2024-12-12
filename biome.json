@@ -1,0 +1,75 @@
+{
+    "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+    "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
+    "files": { "ignoreUnknown": false, "ignore": ["*.module.css", "reset.css"] },
+    "formatter": {
+        "enabled": true,
+        "formatWithErrors": false,
+        "indentStyle": "space",
+        "indentWidth": 4,
+        "lineEnding": "lf",
+        "lineWidth": 120,
+        "attributePosition": "auto",
+        "bracketSpacing": true,
+        "ignore": ["**/*.gen.ts"]
+    },
+    "organizeImports": { "enabled": true },
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "recommended": true,
+            "suspicious": {
+                "noArrayIndexKey": "warn"
+            },
+            "correctness": {
+                "useExhaustiveDependencies": "warn"
+            }
+        },
+        "ignore": ["build/", "src/mock/mock-websocket.ts"]
+    },
+    "javascript": {
+        "formatter": {
+            "jsxQuoteStyle": "double",
+            "quoteProperties": "asNeeded",
+            "trailingCommas": "none",
+            "quoteStyle": "single",
+            "bracketSpacing": true
+        }
+    },
+    "overrides": [
+        {
+            "include": ["**/*.ts", "**/*.tsx", "**/*.mts", "**/*.cts"],
+            "linter": {
+                "rules": {
+                    "correctness": {
+                        "noConstAssign": "off",
+                        "noGlobalObjectCalls": "off",
+                        "noInvalidBuiltinInstantiation": "off",
+                        "noInvalidConstructorSuper": "off",
+                        "noNewSymbol": "off",
+                        "noSetterReturn": "off",
+                        "noUndeclaredVariables": "off",
+                        "noUnreachable": "off",
+                        "noUnreachableSuper": "off"
+                    },
+                    "style": {
+                        "noArguments": "error",
+                        "noVar": "error",
+                        "useConst": "error"
+                    },
+                    "suspicious": {
+                        "noClassAssign": "off",
+                        "noDuplicateClassMembers": "off",
+                        "noDuplicateObjectKeys": "off",
+                        "noDuplicateParameters": "off",
+                        "noFunctionAssign": "off",
+                        "noImportAssign": "off",
+                        "noRedeclare": "off",
+                        "noUnsafeNegation": "off",
+                        "useGetterReturn": "off"
+                    }
+                }
+            }
+        }
+    ]
+}

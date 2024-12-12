@@ -1,13 +1,13 @@
 import { memo } from 'react';
 import styled from 'styled-components';
 import ErrorBoundary from '../../../components/ErrorBoundary';
+import LazySpinner from '../../../components/LazySpinner';
+import innstillingerResource from '../../../rest/resources/innstillingerResource';
 import { useAppState } from '../../../utils/customHooks';
-import SendNyMeldingContainer from './sendMelding/SendNyMeldingContainer';
 import FortsettDialogContainer from './fortsettDialog/FortsettDialogContainer';
 import useVisTraadTilknyttetPlukketOppgave from './fortsettDialog/useVisTraadTilknyttetPlukketOppgave';
 import { OppgavelisteValg } from './sendMelding/SendNyMelding';
-import LazySpinner from '../../../components/LazySpinner';
-import innstillingerResource from '../../../rest/resources/innstillingerResource';
+import SendNyMeldingContainer from './sendMelding/SendNyMeldingContainer';
 
 const DialogPanelWrapper = styled.div`
     flex-grow: 1;

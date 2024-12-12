@@ -1,14 +1,14 @@
-import * as React from 'react';
-import { ReactNode, useRef, useState } from 'react';
-import styled from 'styled-components';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
-import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import { Link, Navigate } from '@tanstack/react-router';
-import { paths } from '../../../routes/routing';
-import { InfotabConfig } from '../InfoTabEnum';
-import ErrorBoundary from '../../../../components/ErrorBoundary';
 import { guid } from 'nav-frontend-js-utils';
 import Panel from 'nav-frontend-paneler';
+import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import * as React from 'react';
+import { type ReactNode, useRef, useState } from 'react';
+import styled from 'styled-components';
+import ErrorBoundary from '../../../../components/ErrorBoundary';
+import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
+import { paths } from '../../../routes/routing';
+import type { InfotabConfig } from '../InfoTabEnum';
 
 interface Props {
     component: React.ComponentType<{ setHeaderContent: (content: ReactNode) => void }>;
@@ -69,10 +69,10 @@ function Oversiktskomponent(props: Props) {
     const Component = props.component;
 
     return (
-        <ErrorBoundary boundaryName={'Oversikt ' + props.tittel}>
+        <ErrorBoundary boundaryName={`Oversikt ${props.tittel}`}>
             <article>
                 <StyledPanel aria-labelledby={headerId.current}>
-                    <OverskriftStyle title={'Alt + ' + props.hurtigtast} onClick={handleClick}>
+                    <OverskriftStyle title={`Alt + ${props.hurtigtast}`} onClick={handleClick}>
                         <Undertittel tag="h3" id={headerId.current}>
                             {props.tittel}
                         </Undertittel>

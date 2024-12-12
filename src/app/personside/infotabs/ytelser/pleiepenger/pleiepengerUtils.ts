@@ -1,6 +1,6 @@
-import { Pleiepengeperiode, Pleiepengerettighet, Vedtak } from 'src/models/ytelse/pleiepenger';
+import type { Arbeidsforhold } from 'src/models/ytelse/arbeidsforhold';
+import type { Pleiepengeperiode, Pleiepengerettighet, Vedtak } from 'src/models/ytelse/pleiepenger';
 import { datoStigende } from 'src/utils/date-utils';
-import { Arbeidsforhold } from 'src/models/ytelse/arbeidsforhold';
 
 export function getSistePeriodeForPleiepengerettighet(pleiepenger: Pleiepengerettighet): Pleiepengeperiode | undefined {
     return pleiepenger.perioder.sort(datoStigende((p) => p.fom)).reverse()[0];
@@ -16,6 +16,7 @@ export function getSisteVedtakForPleiepengerettighet(pleiepenger: Pleiepengerett
 
 export function getAlleArbiedsforholdSortert(pleiepenger: Pleiepengerettighet): Arbeidsforhold[] {
     const arbeidsforhold = pleiepenger.perioder.reduce(
+        //biome-ignore lint/performance/noAccumulatingSpread: biome migration
         (acc: Arbeidsforhold[], periode) => [...acc, ...periode.arbeidsforhold],
         []
     );

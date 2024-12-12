@@ -1,5 +1,5 @@
-import { Sykmelding } from '../../../../../../models/ytelse/sykepenger';
-import { Periode } from '../../../../../../models/tid';
+import type { Periode } from '../../../../../../models/tid';
+import type { Sykmelding } from '../../../../../../models/ytelse/sykepenger';
 import { getNewestDate, getOldestDate } from '../../../../../../utils/date-utils';
 
 export function getSykemeldingPeriode(sykmeldinger: Sykmelding[]) {

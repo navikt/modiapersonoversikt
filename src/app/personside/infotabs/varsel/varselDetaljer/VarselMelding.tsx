@@ -1,6 +1,6 @@
-import { Kanal, Varselmelding } from '../../../../../models/varsel';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';
+import { Kanal, type Varselmelding } from '../../../../../models/varsel';
 import { formatterDatoMedMaanedsnavn } from '../../../../../utils/date-utils';
 
 interface Props {
@@ -38,7 +38,6 @@ function Mottakerinformasjon(props: Props) {
             return <Element>Epost: {props.melding.mottakerInformasjon}</Element>;
         case Kanal.SMS:
             return <Element>Tlf: {props.melding.mottakerInformasjon}</Element>;
-        case Kanal.NAVNO:
         default:
             return null;
     }

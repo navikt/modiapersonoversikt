@@ -1,9 +1,9 @@
+import { InformasjonElement, type Person } from '../../PersondataDomain';
+import { harFeilendeSystemer } from '../../harFeilendeSystemer';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import Foreldre from './Foreldre';
-import { InformasjonElement, Person } from '../../PersondataDomain';
-import Sivilstand from './Sivilstand';
 import ListeAvBarn from './ListeAvBarn';
-import { harFeilendeSystemer } from '../../harFeilendeSystemer';
+import Sivilstand from './Sivilstand';
 
 interface Props {
     feilendeSystemer: Array<InformasjonElement>;
