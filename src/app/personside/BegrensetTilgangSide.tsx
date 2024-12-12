@@ -30,7 +30,14 @@ function OpprettOppgaveAvvistTilgang() {
             <AlertStripe type="info">Kunne ikke vise opprett oppgave panel. Vennligst last siden på nytt</AlertStripe>
         ),
         ifData: (gsaktema) => (
-            <Ekspanderbartpanel tittel={'Opprett oppgave'} apen={apen} onClick={togglePanel}>
+            <Ekspanderbartpanel
+                tittel={'Opprett oppgave'}
+                apen={apen}
+                onClick={togglePanel}
+                collapseProps={{
+                    initialStyle: { overflow: 'initial', height: 'auto' }
+                }}
+            >
                 <OppgaveSkjemaBegrensetTilgang gsakTema={gsaktema} lukkPanel={togglePanel} />
             </Ekspanderbartpanel>
         )

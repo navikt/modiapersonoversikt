@@ -17,7 +17,6 @@ import { resolverOppgaveSkjemaBegrensetTilgang } from '../oppgaveSkjemaUtils';
 import { useNormalPrioritet } from '../useNormalPrioritet';
 
 const SkjemaStyle = styled.div`
-  overflow: scroll;
   padding-top: 1rem;
   label {
     margin-bottom: 0.1rem;
