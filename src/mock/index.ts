@@ -38,10 +38,6 @@ import { mockInnkrevingsKrav } from './innkrevingskrav';
 import { STATUS_OK, fodselsNummerErGyldigStatus, randomDelay } from './utils-mock';
 import { getMockTiltakspenger } from './ytelse/tiltakspenger-mock';
 
-if (import.meta.env.VITE_E2E) {
-    vi.setSystemTime(new Date(2024, 1, 1));
-}
-
 const oppgaveBackendMock = new OppgaverBackendMock();
 const meldingerBackendMock = new MeldingerBackendMock(oppgaveBackendMock);
 
