@@ -1,7 +1,7 @@
 # Modiapersonoversikt
 
 ![](https://github.com/navikt/modiapersonoversikt/workflows/Build%2C%20push%2C%20and%20deploy/badge.svg?branch=dev)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![Checked with Biome](https://img.shields.io/badge/Checked_with-Biome-60a5fa?style=flat&logo=biome)](https://biomejs.dev)
 
 Modiapersonoversikt er en intern arbeidsflate som gir veiledere og
 saksbehandlere oversikt over brukeres forhold til Nav.
@@ -12,9 +12,9 @@ saksbehandlere oversikt over brukeres forhold til Nav.
 
 Endring av miljøvariabler for lokal utvikling skal gjøres i `.env.development`.
 
--   `PORT` kommer fra vite og styrer hvilken port devserveren starter på. Default: 3000
--   `VITE_MOCK_ENABLED` styrer hvorvidt fetch-mock skal være aktivert
--   `VITE_HODE_URL` styrer hvor dekoratøren hentes fra
+- `PORT` kommer fra vite og styrer hvilken port devserveren starter på. Default: 3000
+- `VITE_MOCK_ENABLED` styrer hvorvidt fetch-mock skal være aktivert
+- `VITE_HODE_URL` styrer hvor dekoratøren hentes fra
 
 **NB** Det skal ikke være nødvendig med endringer i disse filene for å få startet appen.
 
