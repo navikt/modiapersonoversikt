@@ -1,4 +1,3 @@
-import MockDate from 'mockdate';
 import * as renderer from 'react-test-renderer';
 import { statiskMockUtbetaling } from '../../../../mock/utbetalinger/statiskMockUtbetaling';
 import utbetalingerResource from '../../../../rest/resources/utbetalingerResource';
@@ -7,7 +6,7 @@ import { getTestStore, mockReactQuery, setupReactQueryMocks } from '../../../../
 import UtbetalingerContainer from './UtbetalingerContainer';
 
 test('Viser utbetalingercontainer med alt innhold', () => {
-    MockDate.reset();
+    vi.useRealTimers();
     setupReactQueryMocks();
     mockReactQuery(utbetalingerResource.useFetch, {
         utbetalinger: [statiskMockUtbetaling],

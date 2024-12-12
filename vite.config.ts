@@ -1,5 +1,5 @@
+/// <reference types="vitest/config" />
 import path from 'node:path';
-/// <reference types="vitest" />
 import { type IndexHtmlTransform, type Plugin, defineConfig } from 'vite';
 import { configDefaults } from 'vitest/config';
 
@@ -21,7 +21,9 @@ const fixNavFrontendStyleNoCss = (packages: string[]) =>
         replacement: fileURLToPath(new URL(`src/nav-style/${name}.css`, import.meta.url))
     }));
 
-const modiaFrontendCompat = (): { transformIndexHtml: IndexHtmlTransform } & Plugin => {
+const modiaFrontendCompat = (): {
+    transformIndexHtml: IndexHtmlTransform;
+} & Plugin => {
     return {
         name: 'modia-frontend-html-transform',
         transformIndexHtml(html, ctx) {
@@ -117,6 +119,7 @@ export default defineConfig({
     },
     test: {
         exclude: [...configDefaults.exclude, 'e2e/*'],
+        pool: 'threads',
         globals: true,
         environment: 'jsdom',
         environmentOptions: {

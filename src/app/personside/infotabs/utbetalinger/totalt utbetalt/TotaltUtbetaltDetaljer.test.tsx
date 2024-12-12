@@ -1,4 +1,3 @@
-import MockDate from 'mockdate';
 import * as renderer from 'react-test-renderer';
 import { statiskMockUtbetaling } from '../../../../../mock/utbetalinger/statiskMockUtbetaling';
 import type { Utbetaling, UtbetalingerPeriode } from '../../../../../models/utbetalinger';
@@ -22,7 +21,7 @@ const mockUtbetalingReturnertForSaksbehandling: Utbetaling = {
 };
 
 test('Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utbetalt-detaljer riktig', () => {
-    MockDate.reset();
+    vi.useRealTimers();
     const visittkortheader = renderer.create(
         <TotaltUtbetaltDetaljer
             visDetaljer={true}
