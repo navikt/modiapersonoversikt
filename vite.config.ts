@@ -121,12 +121,7 @@ export default defineConfig({
         exclude: [...configDefaults.exclude, 'e2e/*'],
         pool: 'threads',
         globals: true,
-        environment: 'jsdom',
-        environmentOptions: {
-            jsdom: {
-                url: 'http://localhost:3000'
-            }
-        },
+        environment: 'happy-dom',
         setupFiles: './src/setupTests.ts',
         css: {
             modules: {
