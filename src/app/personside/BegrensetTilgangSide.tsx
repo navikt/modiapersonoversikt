@@ -13,13 +13,13 @@ interface BegrensetTilgangProps {
 }
 
 const Wrapper = styled.div`
-    display: flex;
-    flex: auto;
-    flex-direction: column;
-    flex-grow: 0;
-    > *:first-child {
-        margin-bottom: 1rem;
-    }
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+  flex-grow: 0;
+  > *:first-child {
+    margin-bottom: 1rem;
+  }
 `;
 
 function OpprettOppgaveAvvistTilgang() {
@@ -30,7 +30,12 @@ function OpprettOppgaveAvvistTilgang() {
             <AlertStripe type="info">Kunne ikke vise opprett oppgave panel. Vennligst last siden på nytt</AlertStripe>
         ),
         ifData: (gsaktema) => (
-            <Ekspanderbartpanel tittel={'Opprett oppgave'} apen={apen} onClick={togglePanel}>
+            <Ekspanderbartpanel
+                tittel={'Opprett oppgave'}
+                apen={apen}
+                onClick={togglePanel}
+                collapseProps={{ style: { overflow: 'initial', height: 'auto' } }}
+            >
                 <OppgaveSkjemaBegrensetTilgang gsakTema={gsaktema} lukkPanel={togglePanel} />
             </Ekspanderbartpanel>
         )
