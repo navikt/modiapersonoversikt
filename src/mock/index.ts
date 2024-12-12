@@ -32,16 +32,11 @@ import { getMockForeldrepenger } from './ytelse/foreldrepenger-mock';
 import { getMockPleiepenger } from './ytelse/pleiepenger-mock';
 import { getMockSykepengerRespons } from './ytelse/sykepenger-mock';
 
-import MockDate from 'mockdate';
 import { http, type DefaultBodyType, type HttpHandler, HttpResponse, type PathParams, type StrictRequest } from 'msw';
 import type { FeatureTogglesResponse } from 'src/rest/resources/featuretogglesResource';
 import { mockInnkrevingsKrav } from './innkrevingskrav';
 import { STATUS_OK, fodselsNummerErGyldigStatus, randomDelay } from './utils-mock';
 import { getMockTiltakspenger } from './ytelse/tiltakspenger-mock';
-
-if (import.meta.env.VITE_E2E) {
-    MockDate.set(0);
-}
 
 const oppgaveBackendMock = new OppgaverBackendMock();
 const meldingerBackendMock = new MeldingerBackendMock(oppgaveBackendMock);

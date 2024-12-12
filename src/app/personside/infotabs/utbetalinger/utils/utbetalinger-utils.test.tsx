@@ -1,5 +1,4 @@
 import dayjs from 'dayjs';
-import MockDate from 'mockdate';
 import { statiskMockUtbetaling, statiskMockYtelse } from 'src/mock/utbetalinger/statiskMockUtbetaling';
 import type { Periode } from 'src/models/tid';
 import { PeriodeValg, type UtbetalingFilterState } from 'src/redux/utbetalinger/types';
@@ -35,7 +34,7 @@ const randomUtbetalingUtenDato: Utbetaling = {
 const randomYtelse = getMockYtelse();
 
 beforeEach(() => {
-    MockDate.reset();
+    vi.useRealTimers();
 });
 
 test('lager riktig måned og år string for utbetaling', () => {

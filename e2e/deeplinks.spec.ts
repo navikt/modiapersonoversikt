@@ -3,10 +3,13 @@ import { INFOTABS } from 'src/app/personside/infotabs/InfoTabEnum';
 import { meldingerTest, sakerTest, ytelserTest } from 'src/app/personside/infotabs/dyplenkeTest/utils-dyplenker-test';
 
 test('Utbetalinger', async ({ page }) => {
+    await page.clock.setFixedTime(new Date(0));
     page.goto('/person/oversikt');
     let activeTab = page.getByRole('tab', { selected: true });
 
-    await expect(activeTab).toHaveText(new RegExp(INFOTABS.OVERSIKT.path, 'i'), { timeout: 10000 });
+    await expect(activeTab).toHaveText(new RegExp(INFOTABS.OVERSIKT.path, 'i'), {
+        timeout: 10000
+    });
 
     const expectedElement = page.getByLabel('Utbetalinger').getByRole('listitem').first();
     const expectedText = await expectedElement.getByRole('paragraph').first().textContent();
@@ -23,9 +26,12 @@ test('Utbetalinger', async ({ page }) => {
 });
 
 test('Saker', async ({ page }) => {
+    await page.clock.setFixedTime(new Date(0));
     page.goto('/person/oversikt');
     let activeTab = page.getByRole('tab', { selected: true });
-    await expect(activeTab).toHaveText(new RegExp(INFOTABS.OVERSIKT.path, 'i'), { timeout: 10000 });
+    await expect(activeTab).toHaveText(new RegExp(INFOTABS.OVERSIKT.path, 'i'), {
+        timeout: 10000
+    });
 
     const expectedSak = page.locator(`.${sakerTest.sakstema}`).first();
     const expectedSakText = await expectedSak.getByRole('paragraph').first().textContent();
@@ -41,9 +47,12 @@ test('Saker', async ({ page }) => {
 });
 
 test('Meldinger', async ({ page }) => {
+    await page.clock.setFixedTime(new Date(0));
     page.goto('/person/oversikt');
     let activeTab = page.getByRole('tab', { selected: true });
-    await expect(activeTab).toHaveText(new RegExp(INFOTABS.OVERSIKT.path, 'i'), { timeout: 10000 });
+    await expect(activeTab).toHaveText(new RegExp(INFOTABS.OVERSIKT.path, 'i'), {
+        timeout: 10000
+    });
 
     const melding = page.locator(`.${meldingerTest.oversikt}`).nth(1);
     await melding.getByRole('button').click();
@@ -58,9 +67,12 @@ test('Meldinger', async ({ page }) => {
 });
 
 test('Ytelser', async ({ page }) => {
+    await page.clock.setFixedTime(new Date(0));
     page.goto('/person/oversikt');
     let activeTab = page.getByRole('tab', { selected: true });
-    await expect(activeTab).toHaveText(new RegExp(INFOTABS.OVERSIKT.path, 'i'), { timeout: 10000 });
+    await expect(activeTab).toHaveText(new RegExp(INFOTABS.OVERSIKT.path, 'i'), {
+        timeout: 10000
+    });
 
     const ytelse = page.locator(`.${ytelserTest.oversikt}`).nth(1);
     await ytelse.getByRole('button').click();

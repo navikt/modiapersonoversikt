@@ -300,7 +300,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                       onChange={[Function]}
                       onFocus={[Function]}
                       size={11}
-                      value="01.01.1968"
+                      value="12.12.2022"
                     />
                     <button
                       className="navds-date__field-button"
@@ -378,7 +378,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                             className="navds-sr-only"
                             id="react-day-picker-1"
                           >
-                            januar 1968
+                            desember 2022
                           </span>
                           <button
                             className="navds-date__caption-button navds-button navds-button--tertiary navds-button--medium navds-button--icon-only"
@@ -437,7 +437,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   onChange={[Function]}
                                   onKeyDown={[Function]}
                                   onMouseDown={[Function]}
-                                  value={0}
+                                  value={11}
                                 >
                                   <option
                                     value={0}
@@ -544,57 +544,62 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   onChange={[Function]}
                                   onKeyDown={[Function]}
                                   onMouseDown={[Function]}
-                                  value={1968}
+                                  value={2022}
                                 >
                                   <option
-                                    value={1969}
+                                    value={2024}
                                   >
-                                    1969
+                                    2024
                                   </option>
                                   <option
-                                    value={1968}
+                                    value={2023}
                                   >
-                                    1968
+                                    2023
                                   </option>
                                   <option
-                                    value={1967}
+                                    value={2022}
                                   >
-                                    1967
+                                    2022
                                   </option>
                                   <option
-                                    value={1966}
+                                    value={2021}
                                   >
-                                    1966
+                                    2021
                                   </option>
                                   <option
-                                    value={1965}
+                                    value={2020}
                                   >
-                                    1965
+                                    2020
                                   </option>
                                   <option
-                                    value={1964}
+                                    value={2019}
                                   >
-                                    1964
+                                    2019
                                   </option>
                                   <option
-                                    value={1963}
+                                    value={2018}
                                   >
-                                    1963
+                                    2018
                                   </option>
                                   <option
-                                    value={1962}
+                                    value={2017}
                                   >
-                                    1962
+                                    2017
                                   </option>
                                   <option
-                                    value={1961}
+                                    value={2016}
                                   >
-                                    1961
+                                    2016
                                   </option>
                                   <option
-                                    value={1960}
+                                    value={2015}
                                   >
-                                    1960
+                                    2015
+                                  </option>
+                                  <option
+                                    value={2014}
+                                  >
+                                    2014
                                   </option>
                                 </select>
                                 <svg
@@ -734,9 +739,10 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="mandag 1"
-                                  aria-pressed={true}
-                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected"
+                                  aria-hidden={true}
+                                  aria-label="mandag 28"
+                                  aria-pressed={false}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_outside"
                                   name="day"
                                   onBlur={[Function]}
                                   onClick={[Function]}
@@ -752,7 +758,93 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   onTouchMove={[Function]}
                                   onTouchStart={[Function]}
                                   style={{}}
-                                  tabIndex={0}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  28
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-hidden={true}
+                                  aria-label="tirsdag 29"
+                                  aria-pressed={false}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_outside"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  29
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-hidden={true}
+                                  aria-label="onsdag 30"
+                                  aria-pressed={false}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_outside"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  30
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-label="torsdag 1"
+                                  aria-pressed={false}
+                                  className="rdp-button_reset rdp-button rdp-day"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
                                   type="button"
                                 >
                                   1
@@ -762,7 +854,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="tirsdag 2"
+                                  aria-label="fredag 2"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
@@ -790,7 +882,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="onsdag 3"
+                                  aria-label="lørdag 3"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
@@ -818,7 +910,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="torsdag 4"
+                                  aria-label="søndag 4"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
@@ -842,11 +934,15 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   4
                                 </button>
                               </td>
+                            </tr>
+                            <tr
+                              className="rdp-row"
+                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="fredag 5"
+                                  aria-label="mandag 5"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
@@ -874,7 +970,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="lørdag 6"
+                                  aria-label="tirsdag 6"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
@@ -902,7 +998,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="søndag 7"
+                                  aria-label="onsdag 7"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
@@ -926,15 +1022,11 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   7
                                 </button>
                               </td>
-                            </tr>
-                            <tr
-                              className="rdp-row"
-                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="mandag 8"
+                                  aria-label="torsdag 8"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
@@ -962,7 +1054,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="tirsdag 9"
+                                  aria-label="fredag 9"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
@@ -990,7 +1082,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="onsdag 10"
+                                  aria-label="lørdag 10"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
@@ -1018,7 +1110,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="torsdag 11"
+                                  aria-label="søndag 11"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
@@ -1042,13 +1134,17 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   11
                                 </button>
                               </td>
+                            </tr>
+                            <tr
+                              className="rdp-row"
+                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="fredag 12"
-                                  aria-pressed={false}
-                                  className="rdp-button_reset rdp-button rdp-day"
+                                  aria-label="mandag 12"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected"
                                   name="day"
                                   onBlur={[Function]}
                                   onClick={[Function]}
@@ -1064,7 +1160,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   onTouchMove={[Function]}
                                   onTouchStart={[Function]}
                                   style={{}}
-                                  tabIndex={-1}
+                                  tabIndex={0}
                                   type="button"
                                 >
                                   12
@@ -1074,7 +1170,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="lørdag 13"
+                                  aria-label="tirsdag 13"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
@@ -1102,7 +1198,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="søndag 14"
+                                  aria-label="onsdag 14"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
@@ -1126,15 +1222,11 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   14
                                 </button>
                               </td>
-                            </tr>
-                            <tr
-                              className="rdp-row"
-                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="mandag 15"
+                                  aria-label="torsdag 15"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
@@ -1162,7 +1254,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="tirsdag 16"
+                                  aria-label="fredag 16"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
@@ -1190,7 +1282,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="onsdag 17"
+                                  aria-label="lørdag 17"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
@@ -1218,7 +1310,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="torsdag 18"
+                                  aria-label="søndag 18"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
@@ -1242,11 +1334,15 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   18
                                 </button>
                               </td>
+                            </tr>
+                            <tr
+                              className="rdp-row"
+                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="fredag 19"
+                                  aria-label="mandag 19"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
@@ -1274,7 +1370,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="lørdag 20"
+                                  aria-label="tirsdag 20"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
@@ -1302,7 +1398,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="søndag 21"
+                                  aria-label="onsdag 21"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
@@ -1326,15 +1422,11 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   21
                                 </button>
                               </td>
-                            </tr>
-                            <tr
-                              className="rdp-row"
-                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="mandag 22"
+                                  aria-label="torsdag 22"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
@@ -1362,7 +1454,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="tirsdag 23"
+                                  aria-label="fredag 23"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
@@ -1390,7 +1482,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="onsdag 24"
+                                  aria-label="lørdag 24"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
@@ -1418,7 +1510,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="torsdag 25"
+                                  aria-label="søndag 25"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
@@ -1442,11 +1534,15 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   25
                                 </button>
                               </td>
+                            </tr>
+                            <tr
+                              className="rdp-row"
+                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="fredag 26"
+                                  aria-label="mandag 26"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
@@ -1474,7 +1570,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="lørdag 27"
+                                  aria-label="tirsdag 27"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
@@ -1502,7 +1598,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="søndag 28"
+                                  aria-label="onsdag 28"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
@@ -1526,15 +1622,11 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   28
                                 </button>
                               </td>
-                            </tr>
-                            <tr
-                              className="rdp-row"
-                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="mandag 29"
+                                  aria-label="torsdag 29"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
@@ -1562,7 +1654,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="tirsdag 30"
+                                  aria-label="fredag 30"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
@@ -1590,7 +1682,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="onsdag 31"
+                                  aria-label="lørdag 31"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
@@ -1619,7 +1711,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                               >
                                 <button
                                   aria-hidden={true}
-                                  aria-label="torsdag 1"
+                                  aria-label="søndag 1"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_outside"
                                   name="day"
@@ -1643,12 +1735,16 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   1
                                 </button>
                               </td>
+                            </tr>
+                            <tr
+                              className="rdp-row"
+                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
                                   aria-hidden={true}
-                                  aria-label="fredag 2"
+                                  aria-label="mandag 2"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_outside"
                                   name="day"
@@ -1677,7 +1773,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                               >
                                 <button
                                   aria-hidden={true}
-                                  aria-label="lørdag 3"
+                                  aria-label="tirsdag 3"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_outside"
                                   name="day"
@@ -1706,7 +1802,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                               >
                                 <button
                                   aria-hidden={true}
-                                  aria-label="søndag 4"
+                                  aria-label="onsdag 4"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_outside"
                                   name="day"
@@ -1730,16 +1826,12 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   4
                                 </button>
                               </td>
-                            </tr>
-                            <tr
-                              className="rdp-row"
-                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
                                   aria-hidden={true}
-                                  aria-label="mandag 5"
+                                  aria-label="torsdag 5"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_outside"
                                   name="day"
@@ -1768,7 +1860,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                               >
                                 <button
                                   aria-hidden={true}
-                                  aria-label="tirsdag 6"
+                                  aria-label="fredag 6"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_outside"
                                   name="day"
@@ -1797,7 +1889,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                               >
                                 <button
                                   aria-hidden={true}
-                                  aria-label="onsdag 7"
+                                  aria-label="lørdag 7"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_outside"
                                   name="day"
@@ -1826,7 +1918,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                               >
                                 <button
                                   aria-hidden={true}
-                                  aria-label="torsdag 8"
+                                  aria-label="søndag 8"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_outside"
                                   name="day"
@@ -1848,93 +1940,6 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   type="button"
                                 >
                                   8
-                                </button>
-                              </td>
-                              <td
-                                className="rdp-cell"
-                              >
-                                <button
-                                  aria-hidden={true}
-                                  aria-label="fredag 9"
-                                  aria-pressed={false}
-                                  className="rdp-button_reset rdp-button rdp-day rdp-day_outside"
-                                  name="day"
-                                  onBlur={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  onKeyUp={[Function]}
-                                  onMouseEnter={[Function]}
-                                  onMouseLeave={[Function]}
-                                  onPointerEnter={[Function]}
-                                  onPointerLeave={[Function]}
-                                  onTouchCancel={[Function]}
-                                  onTouchEnd={[Function]}
-                                  onTouchMove={[Function]}
-                                  onTouchStart={[Function]}
-                                  style={{}}
-                                  tabIndex={-1}
-                                  type="button"
-                                >
-                                  9
-                                </button>
-                              </td>
-                              <td
-                                className="rdp-cell"
-                              >
-                                <button
-                                  aria-hidden={true}
-                                  aria-label="lørdag 10"
-                                  aria-pressed={false}
-                                  className="rdp-button_reset rdp-button rdp-day rdp-day_outside"
-                                  name="day"
-                                  onBlur={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  onKeyUp={[Function]}
-                                  onMouseEnter={[Function]}
-                                  onMouseLeave={[Function]}
-                                  onPointerEnter={[Function]}
-                                  onPointerLeave={[Function]}
-                                  onTouchCancel={[Function]}
-                                  onTouchEnd={[Function]}
-                                  onTouchMove={[Function]}
-                                  onTouchStart={[Function]}
-                                  style={{}}
-                                  tabIndex={-1}
-                                  type="button"
-                                >
-                                  10
-                                </button>
-                              </td>
-                              <td
-                                className="rdp-cell"
-                              >
-                                <button
-                                  aria-hidden={true}
-                                  aria-label="søndag 11"
-                                  aria-pressed={false}
-                                  className="rdp-button_reset rdp-button rdp-day rdp-day_outside"
-                                  name="day"
-                                  onBlur={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  onKeyUp={[Function]}
-                                  onMouseEnter={[Function]}
-                                  onMouseLeave={[Function]}
-                                  onPointerEnter={[Function]}
-                                  onPointerLeave={[Function]}
-                                  onTouchCancel={[Function]}
-                                  onTouchEnd={[Function]}
-                                  onTouchMove={[Function]}
-                                  onTouchStart={[Function]}
-                                  style={{}}
-                                  tabIndex={-1}
-                                  type="button"
-                                >
-                                  11
                                 </button>
                               </td>
                             </tr>
@@ -1969,7 +1974,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                       onChange={[Function]}
                       onFocus={[Function]}
                       size={11}
-                      value="01.01.1970"
+                      value="12.12.2024"
                     />
                     <button
                       className="navds-date__field-button"
@@ -2047,7 +2052,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                             className="navds-sr-only"
                             id="react-day-picker-2"
                           >
-                            januar 1970
+                            desember 2024
                           </span>
                           <button
                             className="navds-date__caption-button navds-button navds-button--tertiary navds-button--medium navds-button--icon-only"
@@ -2106,12 +2111,67 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   onChange={[Function]}
                                   onKeyDown={[Function]}
                                   onMouseDown={[Function]}
-                                  value={0}
+                                  value={11}
                                 >
                                   <option
                                     value={0}
                                   >
                                     januar
+                                  </option>
+                                  <option
+                                    value={1}
+                                  >
+                                    februar
+                                  </option>
+                                  <option
+                                    value={2}
+                                  >
+                                    mars
+                                  </option>
+                                  <option
+                                    value={3}
+                                  >
+                                    april
+                                  </option>
+                                  <option
+                                    value={4}
+                                  >
+                                    mai
+                                  </option>
+                                  <option
+                                    value={5}
+                                  >
+                                    juni
+                                  </option>
+                                  <option
+                                    value={6}
+                                  >
+                                    juli
+                                  </option>
+                                  <option
+                                    value={7}
+                                  >
+                                    august
+                                  </option>
+                                  <option
+                                    value={8}
+                                  >
+                                    september
+                                  </option>
+                                  <option
+                                    value={9}
+                                  >
+                                    oktober
+                                  </option>
+                                  <option
+                                    value={10}
+                                  >
+                                    november
+                                  </option>
+                                  <option
+                                    value={11}
+                                  >
+                                    desember
                                   </option>
                                 </select>
                                 <svg
@@ -2158,22 +2218,22 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   onChange={[Function]}
                                   onKeyDown={[Function]}
                                   onMouseDown={[Function]}
-                                  value={1970}
+                                  value={2024}
                                 >
                                   <option
-                                    value={1970}
+                                    value={2024}
                                   >
-                                    1970
+                                    2024
                                   </option>
                                   <option
-                                    value={1969}
+                                    value={2023}
                                   >
-                                    1969
+                                    2023
                                   </option>
                                   <option
-                                    value={1968}
+                                    value={2022}
                                   >
-                                    1968
+                                    2022
                                   </option>
                                 </select>
                                 <svg
@@ -2315,7 +2375,123 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                               >
                                 <button
                                   aria-hidden={true}
-                                  aria-label="mandag 29"
+                                  aria-label="mandag 25"
+                                  aria-pressed={false}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_outside"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  25
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-hidden={true}
+                                  aria-label="tirsdag 26"
+                                  aria-pressed={false}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_outside"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  26
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-hidden={true}
+                                  aria-label="onsdag 27"
+                                  aria-pressed={false}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_outside"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  27
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-hidden={true}
+                                  aria-label="torsdag 28"
+                                  aria-pressed={false}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_outside"
+                                  name="day"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  onMouseEnter={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onPointerEnter={[Function]}
+                                  onPointerLeave={[Function]}
+                                  onTouchCancel={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchMove={[Function]}
+                                  onTouchStart={[Function]}
+                                  style={{}}
+                                  tabIndex={-1}
+                                  type="button"
+                                >
+                                  28
+                                </button>
+                              </td>
+                              <td
+                                className="rdp-cell"
+                              >
+                                <button
+                                  aria-hidden={true}
+                                  aria-label="fredag 29"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_outside"
                                   name="day"
@@ -2344,7 +2520,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                               >
                                 <button
                                   aria-hidden={true}
-                                  aria-label="tirsdag 30"
+                                  aria-label="lørdag 30"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_outside"
                                   name="day"
@@ -2372,10 +2548,9 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-hidden={true}
-                                  aria-label="onsdag 31"
+                                  aria-label="søndag 1"
                                   aria-pressed={false}
-                                  className="rdp-button_reset rdp-button rdp-day rdp-day_outside"
+                                  className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
                                   onBlur={[Function]}
                                   onClick={[Function]}
@@ -2394,45 +2569,20 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   tabIndex={-1}
                                   type="button"
                                 >
-                                  31
-                                </button>
-                              </td>
-                              <td
-                                className="rdp-cell"
-                              >
-                                <button
-                                  aria-label="torsdag 1"
-                                  aria-pressed={true}
-                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_today"
-                                  name="day"
-                                  onBlur={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  onKeyUp={[Function]}
-                                  onMouseEnter={[Function]}
-                                  onMouseLeave={[Function]}
-                                  onPointerEnter={[Function]}
-                                  onPointerLeave={[Function]}
-                                  onTouchCancel={[Function]}
-                                  onTouchEnd={[Function]}
-                                  onTouchMove={[Function]}
-                                  onTouchStart={[Function]}
-                                  style={{}}
-                                  tabIndex={0}
-                                  type="button"
-                                >
                                   1
                                 </button>
                               </td>
+                            </tr>
+                            <tr
+                              className="rdp-row"
+                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="fredag 2"
+                                  aria-label="mandag 2"
                                   aria-pressed={false}
-                                  className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
-                                  disabled={true}
+                                  className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
                                   onBlur={[Function]}
                                   onClick={[Function]}
@@ -2458,10 +2608,9 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="lørdag 3"
+                                  aria-label="tirsdag 3"
                                   aria-pressed={false}
-                                  className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
-                                  disabled={true}
+                                  className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
                                   onBlur={[Function]}
                                   onClick={[Function]}
@@ -2487,10 +2636,9 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="søndag 4"
+                                  aria-label="onsdag 4"
                                   aria-pressed={false}
-                                  className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
-                                  disabled={true}
+                                  className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
                                   onBlur={[Function]}
                                   onClick={[Function]}
@@ -2512,18 +2660,13 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   4
                                 </button>
                               </td>
-                            </tr>
-                            <tr
-                              className="rdp-row"
-                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="mandag 5"
+                                  aria-label="torsdag 5"
                                   aria-pressed={false}
-                                  className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
-                                  disabled={true}
+                                  className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
                                   onBlur={[Function]}
                                   onClick={[Function]}
@@ -2549,10 +2692,9 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="tirsdag 6"
+                                  aria-label="fredag 6"
                                   aria-pressed={false}
-                                  className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
-                                  disabled={true}
+                                  className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
                                   onBlur={[Function]}
                                   onClick={[Function]}
@@ -2578,10 +2720,9 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="onsdag 7"
+                                  aria-label="lørdag 7"
                                   aria-pressed={false}
-                                  className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
-                                  disabled={true}
+                                  className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
                                   onBlur={[Function]}
                                   onClick={[Function]}
@@ -2607,10 +2748,9 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="torsdag 8"
+                                  aria-label="søndag 8"
                                   aria-pressed={false}
-                                  className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
-                                  disabled={true}
+                                  className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
                                   onBlur={[Function]}
                                   onClick={[Function]}
@@ -2632,14 +2772,17 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   8
                                 </button>
                               </td>
+                            </tr>
+                            <tr
+                              className="rdp-row"
+                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="fredag 9"
+                                  aria-label="mandag 9"
                                   aria-pressed={false}
-                                  className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
-                                  disabled={true}
+                                  className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
                                   onBlur={[Function]}
                                   onClick={[Function]}
@@ -2665,10 +2808,9 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="lørdag 10"
+                                  aria-label="tirsdag 10"
                                   aria-pressed={false}
-                                  className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
-                                  disabled={true}
+                                  className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
                                   onBlur={[Function]}
                                   onClick={[Function]}
@@ -2694,10 +2836,9 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="søndag 11"
+                                  aria-label="onsdag 11"
                                   aria-pressed={false}
-                                  className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
-                                  disabled={true}
+                                  className="rdp-button_reset rdp-button rdp-day"
                                   name="day"
                                   onBlur={[Function]}
                                   onClick={[Function]}
@@ -2719,18 +2860,13 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   11
                                 </button>
                               </td>
-                            </tr>
-                            <tr
-                              className="rdp-row"
-                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="mandag 12"
-                                  aria-pressed={false}
-                                  className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
-                                  disabled={true}
+                                  aria-label="torsdag 12"
+                                  aria-pressed={true}
+                                  className="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_today"
                                   name="day"
                                   onBlur={[Function]}
                                   onClick={[Function]}
@@ -2746,7 +2882,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   onTouchMove={[Function]}
                                   onTouchStart={[Function]}
                                   style={{}}
-                                  tabIndex={-1}
+                                  tabIndex={0}
                                   type="button"
                                 >
                                   12
@@ -2756,7 +2892,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="tirsdag 13"
+                                  aria-label="fredag 13"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
                                   disabled={true}
@@ -2785,7 +2921,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="onsdag 14"
+                                  aria-label="lørdag 14"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
                                   disabled={true}
@@ -2814,7 +2950,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="torsdag 15"
+                                  aria-label="søndag 15"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
                                   disabled={true}
@@ -2839,11 +2975,15 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   15
                                 </button>
                               </td>
+                            </tr>
+                            <tr
+                              className="rdp-row"
+                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="fredag 16"
+                                  aria-label="mandag 16"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
                                   disabled={true}
@@ -2872,7 +3012,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="lørdag 17"
+                                  aria-label="tirsdag 17"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
                                   disabled={true}
@@ -2901,7 +3041,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="søndag 18"
+                                  aria-label="onsdag 18"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
                                   disabled={true}
@@ -2926,15 +3066,11 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   18
                                 </button>
                               </td>
-                            </tr>
-                            <tr
-                              className="rdp-row"
-                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="mandag 19"
+                                  aria-label="torsdag 19"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
                                   disabled={true}
@@ -2963,7 +3099,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="tirsdag 20"
+                                  aria-label="fredag 20"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
                                   disabled={true}
@@ -2992,7 +3128,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="onsdag 21"
+                                  aria-label="lørdag 21"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
                                   disabled={true}
@@ -3021,7 +3157,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="torsdag 22"
+                                  aria-label="søndag 22"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
                                   disabled={true}
@@ -3046,11 +3182,15 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   22
                                 </button>
                               </td>
+                            </tr>
+                            <tr
+                              className="rdp-row"
+                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="fredag 23"
+                                  aria-label="mandag 23"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
                                   disabled={true}
@@ -3079,7 +3219,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="lørdag 24"
+                                  aria-label="tirsdag 24"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
                                   disabled={true}
@@ -3108,7 +3248,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="søndag 25"
+                                  aria-label="onsdag 25"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
                                   disabled={true}
@@ -3133,15 +3273,11 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   25
                                 </button>
                               </td>
-                            </tr>
-                            <tr
-                              className="rdp-row"
-                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="mandag 26"
+                                  aria-label="torsdag 26"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
                                   disabled={true}
@@ -3170,7 +3306,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="tirsdag 27"
+                                  aria-label="fredag 27"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
                                   disabled={true}
@@ -3199,7 +3335,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="onsdag 28"
+                                  aria-label="lørdag 28"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
                                   disabled={true}
@@ -3228,7 +3364,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="torsdag 29"
+                                  aria-label="søndag 29"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
                                   disabled={true}
@@ -3253,11 +3389,15 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   29
                                 </button>
                               </td>
+                            </tr>
+                            <tr
+                              className="rdp-row"
+                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="fredag 30"
+                                  aria-label="mandag 30"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
                                   disabled={true}
@@ -3286,7 +3426,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="rdp-cell"
                               >
                                 <button
-                                  aria-label="lørdag 31"
+                                  aria-label="tirsdag 31"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
                                   disabled={true}
@@ -3316,7 +3456,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                               >
                                 <button
                                   aria-hidden={true}
-                                  aria-label="søndag 1"
+                                  aria-label="onsdag 1"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_disabled rdp-day_outside"
                                   disabled={true}
@@ -3341,16 +3481,12 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   1
                                 </button>
                               </td>
-                            </tr>
-                            <tr
-                              className="rdp-row"
-                            >
                               <td
                                 className="rdp-cell"
                               >
                                 <button
                                   aria-hidden={true}
-                                  aria-label="mandag 2"
+                                  aria-label="torsdag 2"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_disabled rdp-day_outside"
                                   disabled={true}
@@ -3380,7 +3516,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                               >
                                 <button
                                   aria-hidden={true}
-                                  aria-label="tirsdag 3"
+                                  aria-label="fredag 3"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_disabled rdp-day_outside"
                                   disabled={true}
@@ -3410,7 +3546,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                               >
                                 <button
                                   aria-hidden={true}
-                                  aria-label="onsdag 4"
+                                  aria-label="lørdag 4"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_disabled rdp-day_outside"
                                   disabled={true}
@@ -3440,7 +3576,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                               >
                                 <button
                                   aria-hidden={true}
-                                  aria-label="torsdag 5"
+                                  aria-label="søndag 5"
                                   aria-pressed={false}
                                   className="rdp-button_reset rdp-button rdp-day rdp-day_disabled rdp-day_outside"
                                   disabled={true}
@@ -3463,96 +3599,6 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   type="button"
                                 >
                                   5
-                                </button>
-                              </td>
-                              <td
-                                className="rdp-cell"
-                              >
-                                <button
-                                  aria-hidden={true}
-                                  aria-label="fredag 6"
-                                  aria-pressed={false}
-                                  className="rdp-button_reset rdp-button rdp-day rdp-day_disabled rdp-day_outside"
-                                  disabled={true}
-                                  name="day"
-                                  onBlur={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  onKeyUp={[Function]}
-                                  onMouseEnter={[Function]}
-                                  onMouseLeave={[Function]}
-                                  onPointerEnter={[Function]}
-                                  onPointerLeave={[Function]}
-                                  onTouchCancel={[Function]}
-                                  onTouchEnd={[Function]}
-                                  onTouchMove={[Function]}
-                                  onTouchStart={[Function]}
-                                  style={{}}
-                                  tabIndex={-1}
-                                  type="button"
-                                >
-                                  6
-                                </button>
-                              </td>
-                              <td
-                                className="rdp-cell"
-                              >
-                                <button
-                                  aria-hidden={true}
-                                  aria-label="lørdag 7"
-                                  aria-pressed={false}
-                                  className="rdp-button_reset rdp-button rdp-day rdp-day_disabled rdp-day_outside"
-                                  disabled={true}
-                                  name="day"
-                                  onBlur={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  onKeyUp={[Function]}
-                                  onMouseEnter={[Function]}
-                                  onMouseLeave={[Function]}
-                                  onPointerEnter={[Function]}
-                                  onPointerLeave={[Function]}
-                                  onTouchCancel={[Function]}
-                                  onTouchEnd={[Function]}
-                                  onTouchMove={[Function]}
-                                  onTouchStart={[Function]}
-                                  style={{}}
-                                  tabIndex={-1}
-                                  type="button"
-                                >
-                                  7
-                                </button>
-                              </td>
-                              <td
-                                className="rdp-cell"
-                              >
-                                <button
-                                  aria-hidden={true}
-                                  aria-label="søndag 8"
-                                  aria-pressed={false}
-                                  className="rdp-button_reset rdp-button rdp-day rdp-day_disabled rdp-day_outside"
-                                  disabled={true}
-                                  name="day"
-                                  onBlur={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  onKeyUp={[Function]}
-                                  onMouseEnter={[Function]}
-                                  onMouseLeave={[Function]}
-                                  onPointerEnter={[Function]}
-                                  onPointerLeave={[Function]}
-                                  onTouchCancel={[Function]}
-                                  onTouchEnd={[Function]}
-                                  onTouchMove={[Function]}
-                                  onTouchStart={[Function]}
-                                  style={{}}
-                                  tabIndex={-1}
-                                  type="button"
-                                >
-                                  8
                                 </button>
                               </td>
                             </tr>
