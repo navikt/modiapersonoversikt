@@ -34,7 +34,9 @@ function OpprettOppgaveAvvistTilgang() {
                 tittel={'Opprett oppgave'}
                 apen={apen}
                 onClick={togglePanel}
-                collapseProps={{ style: { overflow: 'initial', height: 'auto' } }}
+                collapseProps={{
+                    initialStyle: { overflow: 'initial', height: 'auto' }
+                }}
             >
                 <OppgaveSkjemaBegrensetTilgang gsakTema={gsaktema} lukkPanel={togglePanel} />
             </Ekspanderbartpanel>
