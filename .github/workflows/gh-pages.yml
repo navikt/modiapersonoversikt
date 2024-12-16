@@ -20,12 +20,14 @@ jobs:
               uses: actions/checkout@v4
             - uses: actions/setup-node@v4
               with:
-                  node-version: '20'
+                  node-version: '22'
                   registry-url: https://npm.pkg.github.com
+
             - name: Install dependencies
-              run: npm ci
+              run: pnpm install
               env:
                 NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+
             - name: Switch to gh-dev build
               run: |
                   echo 'VITE_USE_HASH_ROUTER=true' >> .env.development
@@ -33,7 +35,8 @@ jobs:
             - name: Build
               env:
                 VITE_APP_BASE_PATH: '/modiapersonoversikt'
-              run: npm run build
+              run: pnpm run build
+
             - name: Deploy
               if: success()
               uses: crazy-max/ghaction-github-pages@v4
