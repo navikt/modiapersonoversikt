@@ -279,12 +279,12 @@ importers:
       '@testing-library/user-event':
         specifier: ^14.5.2
         version: 14.5.2(@testing-library/dom@10.4.0)
-      '@types/detect-browser':
-        specifier: ^4.0.3
-        version: 4.0.3
       '@types/lodash.debounce':
         specifier: ^4.0.9
         version: 4.0.9
+      '@types/lodash.startcase':
+        specifier: ^4.0.9
+        version: 4.4.9
       '@types/md5':
         specifier: ^2.3.5
         version: 2.3.5
@@ -1654,10 +1654,6 @@ packages:
   '@types/cookie@0.6.0':
     resolution: {integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==}
 
-  '@types/detect-browser@4.0.3':
-    resolution: {integrity: sha512-uQeYXGIqIA9ie/Awh/MpX0le2m07AyBs9UXrXLRpevICR5T7hS8eXtrDqaSj4pYP5G0Th7Bnf8rIyiwCYBDmKQ==}
-    deprecated: This is a stub types definition. detect-browser provides its own type definitions, so you do not need this installed.
-
   '@types/estree@1.0.6':
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
 
@@ -1666,6 +1662,9 @@ packages:
 
   '@types/lodash.debounce@4.0.9':
     resolution: {integrity: sha512-Ma5JcgTREwpLRwMM+XwBR7DaWe96nC38uCBDFKZWbNKD+osjVzdpnUSwBcqCptrp16sSOLBAUb50Car5I0TCsQ==}
+
+  '@types/lodash.startcase@4.4.9':
+    resolution: {integrity: sha512-C0M4DlN1pnn2vEEhLHkTHxiRZ+3GlTegpoAEHHGXnuJkSOXyJMHGiSc+SLRzBlFZWHsBkixe6FqvEAEU04g14g==}
 
   '@types/lodash@4.17.13':
     resolution: {integrity: sha512-lfx+dftrEZcdBPczf9d0Qv0x+j/rfNCMuC6OcfXmO8gkfeNAY88PgKUbvG56whcN23gc27yenwF6oJZXGFpYxg==}
@@ -4981,10 +4980,6 @@ snapshots:
 
   '@types/cookie@0.6.0': {}
 
-  '@types/detect-browser@4.0.3':
-    dependencies:
-      detect-browser: 5.3.0
-
   '@types/estree@1.0.6': {}
 
   '@types/hoist-non-react-statics@3.3.6':
@@ -4993,6 +4988,10 @@ snapshots:
       hoist-non-react-statics: 3.3.2
 
   '@types/lodash.debounce@4.0.9':
+    dependencies:
+      '@types/lodash': 4.17.13
+
+  '@types/lodash.startcase@4.4.9':
     dependencies:
       '@types/lodash': 4.17.13
 
