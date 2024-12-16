@@ -144,7 +144,7 @@
         "jest-styled-components": "^7.2.0",
         "less": "^4.2.1",
         "lint-staged": "^15.2.10",
-        "msw": "^2.6.6",
+        "msw": "^2.6.9",
         "nav-faker": "^3.2.4",
         "openapi-typescript": "^7.4.3",
         "postcss": "^8.4.49",
