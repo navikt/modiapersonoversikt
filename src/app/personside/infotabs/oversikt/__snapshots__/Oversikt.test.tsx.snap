@@ -21,7 +21,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   flex-grow: 1;
 }
 
-.c12 {
+.c10 {
   border: none;
   padding: 0;
   height: 2rem;
@@ -32,16 +32,16 @@ exports[`Viser oversikt med alt innhold 1`] = `
   transition: padding-left 0.3s;
 }
 
-.c12 .nav-frontend-chevron {
+.c10 .nav-frontend-chevron {
   width: 1.5625rem;
 }
 
-.c12:focus {
+.c10:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c12:focus::after {
+.c10:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -52,17 +52,17 @@ exports[`Viser oversikt med alt innhold 1`] = `
   pointer-events: none;
 }
 
-.c15 {
+.c17 {
   position: relative;
 }
 
-.c15 svg {
+.c17 svg {
   height: 1.5625rem;
   width: 1.5625rem;
   opacity: 0.4;
 }
 
-.c16 {
+.c18 {
   position: absolute;
   top: -0.1875rem;
   right: -0.5rem;
@@ -76,7 +76,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   border-radius: 50%;
 }
 
-.c17 {
+.c19 {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -85,58 +85,58 @@ exports[`Viser oversikt med alt innhold 1`] = `
   overflow-wrap: break-word;
 }
 
-.c17 .order-first {
+.c19 .order-first {
   order: 0;
 }
 
-.c17 .order-second {
+.c19 .order-second {
   order: 1;
 }
 
-.c17 .order-third {
+.c19 .order-third {
   order: 3;
 }
 
-.c19 {
+.c21 {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   margin-top: 0.2rem;
 }
 
-.c19 >*:not(:last-child) {
+.c21 >*:not(:last-child) {
   margin-bottom: 0.2rem;
   margin-right: 0.2rem;
 }
 
-.c18 {
+.c20 {
   display: flex;
   flex-direction: column;
 }
 
-.c18 .order-first {
+.c20 .order-first {
   order: 0;
 }
 
-.c18 .order-second {
+.c20 .order-second {
   order: 1;
 }
 
-.c14 {
+.c16 {
   display: flex;
 }
 
-.c14 >*:last-child {
+.c16 >*:last-child {
   flex-grow: 1;
 }
 
-.c20 {
+.c22 {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
 
-.c13 >*:not(:first-child) {
+.c15 >*:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
@@ -174,36 +174,44 @@ exports[`Viser oversikt med alt innhold 1`] = `
   padding: 0 1rem;
 }
 
-.c11 svg {
+.c14 svg {
   height: 1.875rem;
   width: 1.875rem;
   opacity: 0.5;
 }
 
-.c10 {
+.c13 {
   display: flex;
   flex-direction: column;
 }
 
-.c10 .order-first {
+.c13 .order-first {
   order: 0;
 }
 
-.c10 .order-second {
+.c13 .order-second {
   order: 1;
 }
 
-.c9 {
+.c12 {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.c11 >*:not(:first-child) {
+  border-top: solid 0.0625rem #78706a;
+}
+
+.c9 {
+  font-weight: 600;
 }
 
 .c7 >*:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
-.c29 {
+.c31 {
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -211,17 +219,17 @@ exports[`Viser oversikt med alt innhold 1`] = `
   border-radius: 0.5em;
 }
 
-.c29:focus {
+.c31:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c29:focus {
+.c31:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c29:focus::after {
+.c31:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -232,11 +240,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
   pointer-events: none;
 }
 
-.c23 {
+.c25 {
   padding: 0rem;
 }
 
-.c24 {
+.c26 {
   position: relative;
   display: -ms-grid;
   display: grid;
@@ -247,64 +255,64 @@ exports[`Viser oversikt med alt innhold 1`] = `
   cursor: pointer;
 }
 
-.c24 >*:nth-child(1) {
+.c26 >*:nth-child(1) {
   -ms-grid-column: 1;
 }
 
-.c24 >*:nth-child(2) {
+.c26 >*:nth-child(2) {
   -ms-grid-column: 2;
 }
 
-.c24 >*:nth-child(3) {
+.c26 >*:nth-child(3) {
   -ms-grid-column: 3;
 }
 
-.c24 >*:nth-child(4) {
+.c26 >*:nth-child(4) {
   -ms-grid-column: 4;
 }
 
-.c24:hover {
+.c26:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
 }
 
-.c24 >* {
+.c26 >* {
   padding: 0.7rem;
 }
 
-.c28 li {
+.c30 li {
   display: inline-block;
 }
 
-.c28 li:not(:last-child):after {
+.c30 li:not(:last-child):after {
   content: ',';
   margin-right: 0.5em;
 }
 
-.c25 {
+.c27 {
   display: flex;
 }
 
-.c27 {
+.c29 {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
 
-.c26 {
+.c28 {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.c30 {
+.c32 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
   box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
   padding: 1.25rem;
 }
 
-.c30 dt {
+.c32 dt {
   float: left;
   clear: left;
   font-weight: bold;
@@ -312,29 +320,29 @@ exports[`Viser oversikt med alt innhold 1`] = `
   width: 7rem;
 }
 
-.c30 dd {
+.c32 dd {
   margin-bottom: 0.5rem;
   margin-left: 7.125rem;
 }
 
-.c32 {
+.c34 {
   font-weight: bold;
 }
 
-.c33 {
+.c35 {
   margin-top: 0.5rem;
 }
 
-.c31 {
+.c33 {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
 
-.c22 >*:not(:first-child) {
+.c24 >*:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
-.c21 >*:not(:first-child) {
+.c23 >*:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
@@ -496,46 +504,123 @@ exports[`Viser oversikt med alt innhold 1`] = `
         <div
           className="c6"
         >
-          <div
-            className="alertstripe alertstripe--info"
+          <ol
+            aria-label="Oversikt brukers utbetalinger"
+            className="c7"
           >
-            <span
-              className="alertstripe__ikon"
+            <li
+              className="test-utbetalinger-oversikt"
             >
-              <span
-                className="sr-only"
+              <div
+                className="c8"
+                onClick={[Function]}
+                valgt={false}
               >
-                info
-              </span>
-              <svg
-                aria-label="info-ikon"
-                focusable="false"
-                height="1.5em"
-                kind="info-sirkel-fyll"
-                role="img"
-                viewBox="0 0 24 24"
-                width="1.5em"
-              >
-                <g
-                  fill="none"
+                <div>
+                  <p
+                    className="typo-normal"
+                  >
+                    5. Mai 2019
+                     / 
+                    Ligger hos banken
+                  </p>
+                  <p
+                    className="typo-normal"
+                  >
+                    <span
+                      className="c9"
+                    >
+                      Barnetrygd
+                    </span>
+                  </p>
+                  <p
+                    className="typo-normal"
+                  >
+                    13.02.2018
+                     - 
+                    20.09.2018
+                  </p>
+                  <p
+                    className="typo-normal"
+                  >
+                    Utbetaling til: 
+                    AREMARK TESTFAMILIEN
+                  </p>
+                  <p
+                    className="typo-normal"
+                  >
+                    Utbetalingsmetode: 
+                    Bankkontooverføring
+                  </p>
+                </div>
+                <button
+                  aria-label="Vis utbetaling"
+                  aria-selected={false}
+                  className="c10"
                 >
-                  <path
-                    d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
-                    fill="#337C9B"
+                  <span
+                    className="nav-frontend-chevron chevronboks chevron--hoyre"
                   />
-                  <path
-                    d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
-                    fill="#FFF"
-                  />
-                </g>
-              </svg>
-            </span>
-            <div
-              className="typo-normal alertstripe__tekst"
+                </button>
+              </div>
+            </li>
+            <li
+              className="test-utbetalinger-oversikt"
             >
-              Det finnes ikke noen utbetalinger for de siste 30 dagene
-            </div>
-          </div>
+              <div
+                className="c8"
+                onClick={[Function]}
+                valgt={false}
+              >
+                <div>
+                  <p
+                    className="typo-normal"
+                  >
+                    17. Desember 2018
+                     / 
+                    Ligger hos banken
+                  </p>
+                  <p
+                    className="typo-normal"
+                  >
+                    <span
+                      className="c9"
+                    >
+                      Diverse ytelser
+                    </span>
+                  </p>
+                  <p
+                    className="typo-normal"
+                  >
+                    12.05.2018
+                     - 
+                    10.04.2019
+                  </p>
+                  <p
+                    className="typo-normal"
+                  >
+                    Utbetaling til: 
+                    AREMARK TESTFAMILIEN
+                  </p>
+                  <p
+                    className="typo-normal"
+                  >
+                    Utbetalingsmetode: 
+                    Bankkontooverføring
+                  </p>
+                </div>
+                <button
+                  aria-label="Vis utbetaling"
+                  aria-selected={false}
+                  className="c10"
+                >
+                  <span
+                    className="nav-frontend-chevron chevronboks chevron--hoyre"
+                  />
+                </button>
+              </div>
+            </li>
+          </ol>
         </div>
       </div>
     </article>
@@ -579,7 +664,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="c6"
         >
           <ol
-            className="c7"
+            className="c11"
           >
             <li
               className="test-sakstema-list"
@@ -591,11 +676,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
               >
                 <div>
                   <div
-                    className="c9"
+                    className="c12"
                   >
                     <div>
                       <div
-                        className="c10"
+                        className="c13"
                       >
                         <p
                           className="typo-element order-second test-saker-oversikt"
@@ -620,7 +705,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </p>
                     </div>
                     <span
-                      className="c11"
+                      className="c14"
                     >
                       <svg
                         contentScriptType="text/ecmascript"
@@ -644,7 +729,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <button
                   aria-label="Vis Sykepenger"
                   aria-selected={false}
-                  className="c12"
+                  className="c10"
                 >
                   <span
                     className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -662,11 +747,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
               >
                 <div>
                   <div
-                    className="c9"
+                    className="c12"
                   >
                     <div>
                       <div
-                        className="c10"
+                        className="c13"
                       >
                         <p
                           className="typo-element order-second test-saker-oversikt"
@@ -701,14 +786,14 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </p>
                     </div>
                     <span
-                      className="c11"
+                      className="c14"
                     />
                   </div>
                 </div>
                 <button
                   aria-label="Vis Arbeidsavklaringspenger"
                   aria-selected={false}
-                  className="c12"
+                  className="c10"
                 >
                   <span
                     className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -765,7 +850,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
         >
           <ol
             aria-label="Oversikt brukers meldinger"
-            className="c13"
+            className="c15"
           >
             <li>
               <div
@@ -775,7 +860,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
               >
                 <div>
                   <div
-                    className="c14"
+                    className="c16"
                   >
                     <span
                       className="sr-only"
@@ -785,7 +870,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       )
                     </span>
                     <span
-                      className="c15"
+                      className="c17"
                       visNumberBadge={true}
                     >
                       <svg
@@ -805,16 +890,16 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </svg>
                       <p
                         aria-hidden="true"
-                        className="typo-undertekst c16"
+                        className="typo-undertekst c18"
                       >
                         4
                       </p>
                     </span>
                     <div
-                      className="c17"
+                      className="c19"
                     >
                       <div
-                        className="c18 order-first"
+                        className="c20 order-first"
                       >
                         <p
                           className="typo-element order-second"
@@ -828,7 +913,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                         </p>
                       </div>
                       <div
-                        className="c19 order-third"
+                        className="c21 order-third"
                       >
                         <div
                           className="etikett etikett--fokus"
@@ -841,7 +926,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                         </div>
                       </div>
                       <p
-                        className="typo-normal c20 order-second"
+                        className="typo-normal c22 order-second"
                       >
                         Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
                       </p>
@@ -851,7 +936,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <button
                   aria-label="Vis meldinger for Spørsmål fra NAV - Arbeid"
                   aria-selected={false}
-                  className="c12"
+                  className="c10"
                 >
                   <span
                     className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -903,7 +988,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="c6"
         >
           <div
-            className="c21"
+            className="c23"
           >
             <div
               className="c8 test-ytelse-oversikt"
@@ -938,7 +1023,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
               <button
                 aria-label="Vis tiltakspenger"
                 aria-selected={false}
-                className="c12"
+                className="c10"
               >
                 <span
                   className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -971,7 +1056,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
               <button
                 aria-label="Vis sykepenger"
                 aria-selected={false}
-                className="c12"
+                className="c10"
               >
                 <span
                   className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -1022,35 +1107,35 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="c6"
         >
           <ol
-            className="c22"
+            className="c24"
           >
             <li>
               <div
-                className="panel c23"
+                className="panel c25"
               >
                 <article
                   aria-labelledby="Helt tilfeldig ID"
                 >
                   <div
-                    className="c24"
+                    className="c26"
                     onClick={[Function]}
                   >
                     <p
                       className="typo-normal"
                     >
                       <span
-                        className="c25"
+                        className="c27"
                       >
                         11.01.2023
                       </span>
                       <span
-                        className="c25"
+                        className="c27"
                       >
                         01.08.2023
                       </span>
                     </p>
                     <div
-                      className="c26"
+                      className="c28"
                     >
                       <svg
                         focusable="false"
@@ -1069,14 +1154,14 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </svg>
                     </div>
                     <h4
-                      className="typo-element c27"
+                      className="typo-element c29"
                       id="Helt tilfeldig ID"
                     >
                       Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
                     </h4>
                     <ul
                       aria-label="Kommunikasjonskanaler"
-                      className="c28"
+                      className="c30"
                     >
                       <li
                         className="typo-normal"
@@ -1097,7 +1182,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     <button
                       aria-expanded={false}
                       aria-label="Vis mer informasjon om varsel/notifikasjon"
-                      className="c29"
+                      className="c31"
                       focusOnRelativeParent={true}
                       onClick={[Function]}
                       title="Vis mer informasjon om varsel/notifikasjon"
@@ -1108,7 +1193,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </button>
                   </div>
                   <dl
-                    className="c30"
+                    className="c32"
                   >
                     <div>
                       <dt>
@@ -1143,15 +1228,15 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </dd>
                       <hr />
                       <div
-                        className="c31"
+                        className="c33"
                       >
                         <span
-                          className="c32"
+                          className="c34"
                         >
                           Varslingsfeil
                         </span>
                         <div
-                          className="c33"
+                          className="c35"
                         >
                           <li>
                             01.01.2023
@@ -1164,15 +1249,15 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </div>
                       <hr />
                       <div
-                        className="c31"
+                        className="c33"
                       >
                         <span
-                          className="c32"
+                          className="c34"
                         >
                           Revarslingsfeil
                         </span>
                         <div
-                          className="c33"
+                          className="c35"
                         >
                           <li>
                             11.08.2023
@@ -1190,31 +1275,31 @@ exports[`Viser oversikt med alt innhold 1`] = `
             </li>
             <li>
               <div
-                className="panel c23"
+                className="panel c25"
               >
                 <article
                   aria-labelledby="Helt tilfeldig ID"
                 >
                   <div
-                    className="c24"
+                    className="c26"
                     onClick={[Function]}
                   >
                     <p
                       className="typo-normal"
                     >
                       <span
-                        className="c25"
+                        className="c27"
                       >
                         11.01.2023
                       </span>
                       <span
-                        className="c25"
+                        className="c27"
                       >
                         01.08.2023
                       </span>
                     </p>
                     <div
-                      className="c26"
+                      className="c28"
                     >
                       <svg
                         focusable="false"
@@ -1233,14 +1318,14 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </svg>
                     </div>
                     <h4
-                      className="typo-element c27"
+                      className="typo-element c29"
                       id="Helt tilfeldig ID"
                     >
                       Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
                     </h4>
                     <ul
                       aria-label="Kommunikasjonskanaler"
-                      className="c28"
+                      className="c30"
                     >
                       <li
                         className="typo-normal"
@@ -1261,7 +1346,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     <button
                       aria-expanded={false}
                       aria-label="Vis mer informasjon om varsel/notifikasjon"
-                      className="c29"
+                      className="c31"
                       focusOnRelativeParent={true}
                       onClick={[Function]}
                       title="Vis mer informasjon om varsel/notifikasjon"
@@ -1272,7 +1357,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </button>
                   </div>
                   <dl
-                    className="c30"
+                    className="c32"
                   >
                     <div>
                       <dt>
@@ -1307,15 +1392,15 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </dd>
                       <hr />
                       <div
-                        className="c31"
+                        className="c33"
                       >
                         <span
-                          className="c32"
+                          className="c34"
                         >
                           Varslingsfeil
                         </span>
                         <div
-                          className="c33"
+                          className="c35"
                         >
                           <li>
                             01.01.2023
@@ -1328,15 +1413,15 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </div>
                       <hr />
                       <div
-                        className="c31"
+                        className="c33"
                       >
                         <span
-                          className="c32"
+                          className="c34"
                         >
                           Revarslingsfeil
                         </span>
                         <div
-                          className="c33"
+                          className="c35"
                         >
                           <li>
                             11.08.2023
