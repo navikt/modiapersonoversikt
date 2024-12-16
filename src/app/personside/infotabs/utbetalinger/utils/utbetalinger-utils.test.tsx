@@ -22,8 +22,6 @@ import {
     utbetalingDatoComparator
 } from './utbetalinger-utils';
 
-Date.now = () => new Date().getTime(); // for å motvirke Date.now() mock i setupTests.ts
-
 const randomUtbetaling = getMockUtbetaling();
 
 const randomUtbetalingUtenDato: Utbetaling = {

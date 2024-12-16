@@ -40,9 +40,9 @@ vi.mock('react-collapse', () => {
     };
 });
 
+vi.setSystemTime(0);
 beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
 afterEach(() => {
-    vi.setSystemTime(0);
     setGlobalOrigin(window.location.href);
     server.resetHandlers();
 });
