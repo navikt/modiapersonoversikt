@@ -56,6 +56,7 @@
         "downshift": "^5.0.5",
         "jotai": "^2.10.4",
         "lodash.debounce": "^4.0.8",
+        "lodash.startcase": "^4.0.8",
         "md5": "^2.3.0",
         "nav-datovelger": "^11.1.2",
         "nav-frontend-alertstriper": "^3.1.1",
