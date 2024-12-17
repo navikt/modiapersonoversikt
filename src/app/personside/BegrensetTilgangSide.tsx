@@ -1,11 +1,13 @@
 import AlertStripe from 'nav-frontend-alertstriper';
-import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
+import { Hovedknapp } from 'nav-frontend-knapper';
+import ModalWrapper from 'nav-frontend-modal';
+import { Systemtittel } from 'nav-frontend-typografi';
 import { useCallback, useState } from 'react';
+import type { HarIkkeTilgang } from 'src/rest/resources/tilgangskontrollResource';
 import styled from 'styled-components';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import BegrensetTilgangBegrunnelse from '../../components/person/BegrensetTilgangBegrunnelse';
 import gsaktemaResource from '../../rest/resources/gsaktemaResource';
-import type { HarIkkeTilgang } from '../../rest/resources/tilgangskontrollResource';
 import OppgaveSkjemaBegrensetTilgang from './infotabs/meldinger/traadvisning/verktoylinje/oppgave/BegrensetTilgang/OppgaveSkjemaBegrensetTilgang';
 
 interface BegrensetTilgangProps {
@@ -16,10 +18,28 @@ const Wrapper = styled.div`
   display: flex;
   flex: auto;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   flex-grow: 0;
   > *:first-child {
     margin-bottom: 1rem;
   }
+`;
+
+const StyledModalWrapper = styled(ModalWrapper)`
+    &.modal {
+        padding: 1rem;
+        min-width: 30rem;
+    }
+`;
+
+const Styledknapp = styled(Hovedknapp)`
+   max-width: 15rem;
+`;
+
+const StyledSystemtittel = styled(Systemtittel)`
+    text-align: center;
+    margin: 0.75rem 0rem 1rem 1rem;
 `;
 
 function OpprettOppgaveAvvistTilgang() {
@@ -30,16 +50,15 @@ function OpprettOppgaveAvvistTilgang() {
             <AlertStripe type="info">Kunne ikke vise opprett oppgave panel. Vennligst last siden på nytt</AlertStripe>
         ),
         ifData: (gsaktema) => (
-            <Ekspanderbartpanel
-                tittel={'Opprett oppgave'}
-                apen={apen}
-                onClick={togglePanel}
-                collapseProps={{
-                    initialStyle: { overflow: 'initial', height: 'auto' }
-                }}
-            >
-                <OppgaveSkjemaBegrensetTilgang gsakTema={gsaktema} lukkPanel={togglePanel} />
-            </Ekspanderbartpanel>
+            <>
+                <Styledknapp mini htmlType="button" onClick={togglePanel}>
+                    Opprett Oppgave
+                </Styledknapp>
+                <StyledModalWrapper contentLabel="Opprett oppgave" isOpen={apen} onRequestClose={togglePanel}>
+                    <StyledSystemtittel>Opprett oppgave</StyledSystemtittel>
+                    <OppgaveSkjemaBegrensetTilgang gsakTema={gsaktema} lukkPanel={togglePanel} />
+                </StyledModalWrapper>
+            </>
         )
     });
 }
