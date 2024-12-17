@@ -54,7 +54,7 @@
         "dayjs": "^1.11.13",
         "detect-browser": "^5.3.0",
         "downshift": "^5.0.5",
-        "jotai": "^2.10.3",
+        "jotai": "^2.10.4",
         "lodash.debounce": "^4.0.8",
         "md5": "^2.3.0",
         "nav-datovelger": "^11.1.2",
