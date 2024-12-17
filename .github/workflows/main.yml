@@ -54,6 +54,8 @@ jobs:
                 team: personoversikt
                 identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
                 project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+                build_secrets: |
+                  node_auth_token=${{ secrets.READER_TOKEN }}
 
     deploy-dev:
         name: Deploy to dev-gcp
