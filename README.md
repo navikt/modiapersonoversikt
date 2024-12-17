@@ -21,8 +21,8 @@ Endring av miljøvariabler for lokal utvikling skal gjøres i `.env.development`
 ### Starte appen lokalt
 
 ```console
-npm i
-npm run start
+pnpm i
+pnpm run start
 ```
 
 ### Bygge og kjøre via docker

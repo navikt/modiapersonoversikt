@@ -17,7 +17,7 @@ import {
     VStack
 } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
-import { startCase } from 'lodash';
+import startCase from 'lodash.startcase';
 import { type PropsWithChildren, useEffect, useState } from 'react';
 import QueryErrorBoundary from 'src/components/QueryErrorBoundary';
 import IfFeatureToggleOn from 'src/components/featureToggle/IfFeatureToggleOn';
