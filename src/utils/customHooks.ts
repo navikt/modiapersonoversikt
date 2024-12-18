@@ -99,6 +99,7 @@ export function useSettAktivBruker() {
         if (
             redirect &&
             ![
+                '/new/person',
                 paths.personUri,
                 paths.sakerFullscreen,
                 paths.saksdokumentEgetVindu,
