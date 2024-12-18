@@ -3,3 +3,15 @@
 @import "@navikt/ds-css";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+.person-sidebar {
+    --ac-button-tertiary-text: var(--a-text-default);
+
+    --ac-button-tertiary-hover-bg: var(--a-surface-alt-1-subtle);
+    --ac-button-tertiary-hover-text: var(--a-text-default);
+
+    --ac-button-tertiary-active-bg: var(--a-surface-alt-1);
+    --ac-button-tertiary-active-hover-bg: var(--a-surface-alt-1);
+    --ac-button-tertiary-active-hover-text: var(--a-text-on-alt-1);
+    --ac-button-tertiary-active-text: var(--a-text-on-alt-1);
+}
