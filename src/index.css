@@ -3,3 +3,19 @@
 @import "@navikt/ds-css";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+:root {
+    --m-bg-inverted: #030b16;
+}
+
+[data-theme="dark"] {
+    --a-text-default: var(--a-text-on-inverted);
+    --a-text-on-alt-1: var(--a-text-subtle);
+    --a-bg-default: var(--a-surface-inverted);
+    --a-surface-subtle: var(--m-bg-inverted);
+    --a-surface-neutral-hover: var(--a-surface-neutral-subtle-hover);
+}
+
+.new-modia {
+    color: var(--a-text-default);
+}
