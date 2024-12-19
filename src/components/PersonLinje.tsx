@@ -5,7 +5,7 @@ export const PersonLinje = () => {
     const { data } = usePersonData();
 
     return (
-        <Box borderWidth="1" borderColor="border-subtle" padding="2">
+        <Box borderWidth="1" background="bg-default" borderColor="border-subtle" borderRadius="large" padding="2">
             {data.person.navn[0].fornavn} {data.person.navn[0].etternavn}
         </Box>
     );

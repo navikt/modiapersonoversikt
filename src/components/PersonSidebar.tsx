@@ -15,6 +15,7 @@ import { Link } from '@tanstack/react-router';
 import { type ComponentProps, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import './PersonSidebar.css';
+import { ThemeToggle } from './theme/ThemeToggle';
 
 type MenuItem = {
     title: string;
@@ -69,52 +70,66 @@ export const PersonSidebarMenu = () => {
     const [expanded, setExpanded] = useState(true);
 
     return (
-        <Box background="surface-subtle" className="h-dvh" borderRadius="medium" margin="2">
-            <Box padding="2" className="flex">
-                <Button
-                    aria-hidden
-                    icon={
-                        expanded ? (
-                            <ArrowLeftIcon className="group-hover:-translate-x-1" />
-                        ) : (
-                            <ArrowRightIcon className="group-hover:translate-x-1" />
-                        )
-                    }
-                    variant="tertiary-neutral"
-                    size="small"
-                    onClick={() => setExpanded((v) => !v)}
-                    className="flex-1 justify-end group"
-                    iconPosition="right"
-                >
-                    {expanded && <span className="font-normal">Skjul</span>}
-                </Button>
-            </Box>
-            <VStack as="nav" aria-label="Person" padding="2" className="person-sidebar divide-y divide-border-divider">
-                {menuItems.map(({ title, href, Icon }) => (
-                    <Link key={title} to={href}>
-                        {({ isActive }) => (
-                            <Button
-                                aria-hidden
-                                icon={<Icon aria-hidden />}
-                                variant="tertiary"
-                                size="small"
-                                className={twMerge(
-                                    'my-1',
-                                    'font-normal',
-                                    expanded && ['justify-start', 'min-w-60'],
-                                    isActive && [
-                                        'bg-surface-alt-1',
-                                        'text-text-on-alt-1',
-                                        'hover:bg-surface-alt-1',
-                                        'hover:text-text-on-alt-1'
-                                    ]
+        <Box
+            className="person-sidebar "
+            background="bg-default"
+            borderRadius="large"
+            borderColor="border-subtle"
+            borderWidth="1"
+            flexGrow="1"
+        >
+            <VStack justify="space-between" height="100%">
+                <Box>
+                    <Box padding="2" className="flex">
+                        <Button
+                            aria-hidden
+                            icon={
+                                expanded ? (
+                                    <ArrowLeftIcon className="group-hover:-translate-x-1" />
+                                ) : (
+                                    <ArrowRightIcon className="group-hover:translate-x-1" />
+                                )
+                            }
+                            variant="tertiary-neutral"
+                            size="small"
+                            onClick={() => setExpanded((v) => !v)}
+                            className="flex-1 justify-end group"
+                            iconPosition="right"
+                        >
+                            {expanded && <span className="font-normal">Skjul</span>}
+                        </Button>
+                    </Box>
+                    <VStack as="nav" aria-label="Person" padding="2" className="divide-y divide-border-divider">
+                        {menuItems.map(({ title, href, Icon }) => (
+                            <Link key={title} to={href}>
+                                {({ isActive }) => (
+                                    <Button
+                                        aria-hidden
+                                        icon={<Icon aria-hidden />}
+                                        variant="tertiary"
+                                        size="small"
+                                        className={twMerge(
+                                            'my-1',
+                                            'font-normal',
+                                            expanded && ['justify-start', 'min-w-60'],
+                                            isActive && [
+                                                'bg-surface-alt-1',
+                                                'text-text-on-alt-1',
+                                                'hover:bg-surface-alt-1',
+                                                'hover:text-text-on-alt-1'
+                                            ]
+                                        )}
+                                    >
+                                        {expanded && <span className="font-normal">{title}</span>}
+                                    </Button>
                                 )}
-                            >
-                                {expanded && <span className="font-normal">{title}</span>}
-                            </Button>
-                        )}
-                    </Link>
-                ))}
+                            </Link>
+                        ))}
+                    </VStack>
+                </Box>
+                <Box padding="2" className={twMerge(!expanded && 'hidden')}>
+                    <ThemeToggle />
+                </Box>
             </VStack>
         </Box>
     );

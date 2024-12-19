@@ -21,12 +21,14 @@ function PersonRoute() {
 
 function PersonLayout() {
     return (
-        <VStack className="w-full">
-            <PersonLinje />
-            <HStack>
+        <HStack className="bg-surface-subtle new-modia" gap="2" padding="2" flexGrow="1">
+            <VStack>
                 <PersonSidebarMenu />
+            </VStack>
+            <VStack flexGrow="1">
+                <PersonLinje />
                 <Outlet />
-            </HStack>
-        </VStack>
+            </VStack>
+        </HStack>
     );
 }

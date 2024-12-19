@@ -11,6 +11,7 @@ import ErrorBoundary from 'src/components/ErrorBoundary';
 import NotFound from 'src/components/NotFound';
 import { ValgtEnhetProvider } from 'src/context/valgtenhet-state';
 import { aktivEnhetAtom } from 'src/lib/state/context';
+import { ThemeProvider } from 'src/lib/state/theme';
 import { usePersistentWWLogin } from 'src/login/use-persistent-ww-login';
 import HandleLegacyUrls from 'src/utils/HandleLegacyUrls';
 import styled from 'styled-components';
@@ -58,16 +59,20 @@ function App({ children }: PropsWithChildren) {
 }
 
 const TanStackRouterDevtools = import.meta.env.DEV
-    ? lazy(() => import('@tanstack/router-devtools').then((res) => ({ default: res.TanStackRouterDevtools })))
+    ? lazy(() =>
+          import('@tanstack/router-devtools').then((res) => ({
+              default: res.TanStackRouterDevtools
+          }))
+      )
     : () => null;
 
 const AppStyle = styled.div`
-    height: 100vh;
-    @media print {
-        height: auto;
-    }
-    display: flex;
-    flex-flow: column nowrap;
+  height: 100vh;
+  @media print {
+    height: auto;
+  }
+  display: flex;
+  flex-flow: column nowrap;
 `;
 
 function RootLayout() {
@@ -76,6 +81,7 @@ function RootLayout() {
 
     return (
         <QueryClientProvider client={queryClient}>
+            <ThemeProvider />
             <ValgtEnhetProvider>
                 {isLanding ? (
                     <Outlet />
@@ -92,7 +98,7 @@ function RootLayout() {
                         </HandleLegacyUrls>
                     </AppStyle>
                 )}
-                <TanStackRouterDevtools />
+                <TanStackRouterDevtools position="bottom-right" />
             </ValgtEnhetProvider>
         </QueryClientProvider>
     );
