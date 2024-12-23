@@ -12,8 +12,18 @@
     --a-text-default: var(--a-text-on-inverted);
     --a-text-on-alt-1: var(--a-text-subtle);
     --a-bg-default: var(--a-surface-inverted);
+    --a-bg-subtle: var(--a-gray-700);
     --a-surface-subtle: var(--m-bg-inverted);
     --a-surface-neutral-hover: var(--a-surface-neutral-subtle-hover);
+
+    --a-border-subtle: var(--a-grayalpha-600);
+    --a-border-default: var(--a-grayalpha-800);
+    --a-border-strong: var(--a-grayalpha-900);
+    --a-border-divider: var(--a-grayalpha-900);
+
+    --ac-tag-error-text: var(--a-gray-900);
+    --ac-tag-warning-text: var(--a-gray-900);
+    --ac-tag-info-text: var(--a-gray-900);
 }
 
 .new-modia {
