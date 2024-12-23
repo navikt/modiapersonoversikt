@@ -1,3 +1,4 @@
+import { HStack, Loader } from '@navikt/ds-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Outlet, createRootRoute, useMatchRoute } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
@@ -10,7 +11,7 @@ import DemoBanner from 'src/components/DemoBanner';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import NotFound from 'src/components/NotFound';
 import { ValgtEnhetProvider } from 'src/context/valgtenhet-state';
-import { aktivEnhetAtom } from 'src/lib/state/context';
+import { aktivBrukerLastetAtom, aktivEnhetAtom } from 'src/lib/state/context';
 import { ThemeProvider } from 'src/lib/state/theme';
 import { usePersistentWWLogin } from 'src/login/use-persistent-ww-login';
 import HandleLegacyUrls from 'src/utils/HandleLegacyUrls';
@@ -37,6 +38,15 @@ const queryClient = new QueryClient({
 function App({ children }: PropsWithChildren) {
     const loginState = usePersistentWWLogin();
     const valgtEnhet = useAtomValue(aktivEnhetAtom);
+    const contextLoaded = useAtomValue(aktivBrukerLastetAtom);
+
+    if (!contextLoaded) {
+        return (
+            <HStack justify="center" align="center" minHeight="80dvh">
+                <Loader size="3xlarge" title="Laster inn enhet..." />
+            </HStack>
+        );
+    }
 
     if (!valgtEnhet) {
         /**

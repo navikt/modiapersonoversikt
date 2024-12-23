@@ -5,6 +5,8 @@ import { apiBaseUriWithoutRest } from 'src/api/config';
 import type { paths } from 'src/generated/modiapersonoversikt-api';
 import { usePersonAtomValue } from 'src/lib/state/context';
 
+export type ModiapersonoversiktAPI = paths;
+
 export const personoversiktApiClient = createFetchClient<paths>({
     baseUrl: apiBaseUriWithoutRest,
     credentials: 'include',

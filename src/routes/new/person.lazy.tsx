@@ -21,7 +21,7 @@ function PersonRoute() {
 
 function PersonLayout() {
     return (
-        <HStack className="bg-surface-subtle new-modia" gap="2" padding="2" flexGrow="1">
+        <HStack className="bg-surface-subtle new-modia" gap="2" padding="2" flexGrow="1" wrap={false}>
             <VStack>
                 <PersonSidebarMenu />
             </VStack>

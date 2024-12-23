@@ -101,10 +101,11 @@ export const PersonSidebarMenu = () => {
                     </Box>
                     <VStack as="nav" aria-label="Person" padding="2" className="divide-y divide-border-divider">
                         {menuItems.map(({ title, href, Icon }) => (
-                            <Link key={title} to={href}>
+                            <Link key={title} to={href} aria-label={title}>
                                 {({ isActive }) => (
                                     <Button
                                         aria-hidden
+                                        tabIndex={-1}
                                         icon={<Icon aria-hidden />}
                                         variant="tertiary"
                                         size="small"
@@ -127,7 +128,7 @@ export const PersonSidebarMenu = () => {
                         ))}
                     </VStack>
                 </Box>
-                <Box padding="2" className={twMerge(!expanded && 'hidden')}>
+                <Box aria-hidden padding="2" className={twMerge(!expanded && 'hidden')}>
                     <ThemeToggle />
                 </Box>
             </VStack>
