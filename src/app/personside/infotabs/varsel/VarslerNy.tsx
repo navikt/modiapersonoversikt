@@ -1,23 +1,23 @@
-import { VStack, Alert } from '@navikt/ds-react';
-import { AlertStripeFeil } from 'nav-frontend-alertstriper';
-import varselResource from 'src/rest/resources/varselResource';
+import { Alert, VStack } from '@navikt/ds-react';
 import { Pagination, Table } from '@navikt/ds-react';
-import {
-    DittNavEvent,
-    FeiletVarsling,
-    isDittNavEvent,
-    UnifiedVarsel as UnifiedVarselModell,
-    UnifiedVarsel,
-    Varsel as VarselModell,
-    VarslerResult
-} from 'src/models/varsel';
+import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import * as React from 'react';
-import { datoSynkende } from 'src/utils/date-utils';
-import { ReactNode, useState } from 'react';
-import { ENDASH, formaterDato } from 'src/utils/string-utils';
+import { type ReactNode, useState } from 'react';
 import { emptyReplacement, getVarselTekst } from 'src/app/personside/infotabs/varsel/varsel-utils';
-import WarningIcon from '../../../../svg/WarningIcon';
+import {
+    type DittNavEvent,
+    type FeiletVarsling,
+    type UnifiedVarsel,
+    type UnifiedVarsel as UnifiedVarselModell,
+    type Varsel as VarselModell,
+    type VarslerResult,
+    isDittNavEvent
+} from 'src/models/varsel';
+import varselResource from 'src/rest/resources/varselResource';
+import { datoSynkende } from 'src/utils/date-utils';
+import { ENDASH, formaterDato } from 'src/utils/string-utils';
 import CompletedIcon from '../../../../svg/CompletedIcon';
+import WarningIcon from '../../../../svg/WarningIcon';
 import VarselMeldinger from './varselDetaljer/VarselMeldinger';
 
 function VarslerNy() {
@@ -149,14 +149,15 @@ function VarslerNy() {
             const detaljer = <DittNavInformasjonsLinjerV2 varsel={varsel} />;
 
             return { datoer, tittel, kanaler, detaljer, harFeilteVarsel };
-        } else {
-            const meldingsliste = item.meldingListe?.sort(datoSynkende((melding) => melding.utsendingsTidspunkt)) || [];
-            const datoer = meldingsliste.map((melding) => formaterDato(melding.utsendingsTidspunkt)).unique();
-            const tittel = getVarselTekst(item);
-            const kanaler = meldingsliste.map((melding) => melding.kanal).unique();
-            const detaljer = <VarselMeldinger sortertMeldingsliste={meldingsliste} />;
-            return { datoer, tittel, kanaler, detaljer };
         }
+
+        const meldingsliste = varsel.meldingListe?.sort(datoSynkende((melding) => melding.utsendingsTidspunkt)) || [];
+        const datoer = meldingsliste.map((melding) => formaterDato(melding.utsendingsTidspunkt)).unique();
+        const tittel = getVarselTekst(varsel);
+        const kanaler = meldingsliste.map((melding) => melding.kanal).unique();
+        const detaljer = <VarselMeldinger sortertMeldingsliste={meldingsliste} />;
+
+        return { datoer, tittel, kanaler, detaljer };
     };
 
     return (
