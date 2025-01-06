@@ -46,3 +46,10 @@ export const usePersonData = () => {
         body: { fnr: aktivBruker }
     });
 };
+
+export const useVarslerData = () => {
+    const aktivBruker = usePersonAtomValue();
+    return $api.useSuspenseQuery('post', '/rest/v3/varsler', {
+        body: { fnr: aktivBruker }
+    });
+};

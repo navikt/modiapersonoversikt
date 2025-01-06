@@ -1,9 +1,9 @@
-import { Alert, VStack } from '@navikt/ds-react';
-import { Pagination, Table } from '@navikt/ds-react';
-import { AlertStripeFeil } from 'nav-frontend-alertstriper';
-import * as React from 'react';
+import { CheckmarkCircleFillIcon, ExclamationmarkTriangleFillIcon } from '@navikt/aksel-icons';
+import { Alert, HStack, Pagination, Table, VStack } from '@navikt/ds-react';
 import { type ReactNode, useState } from 'react';
 import { emptyReplacement, getVarselTekst } from 'src/app/personside/infotabs/varsel/varsel-utils';
+import VarselMeldinger from 'src/app/personside/infotabs/varsel/varselDetaljer/VarselMeldinger';
+import { useVarslerData } from 'src/lib/clients/modiapersonoversikt-api';
 import {
     type DittNavEvent,
     type FeiletVarsling,
@@ -13,18 +13,14 @@ import {
     type VarslerResult,
     isDittNavEvent
 } from 'src/models/varsel';
-import varselResource from 'src/rest/resources/varselResource';
 import { datoSynkende } from 'src/utils/date-utils';
 import { ENDASH, formaterDato } from 'src/utils/string-utils';
-import CompletedIcon from '../../../../svg/CompletedIcon';
-import WarningIcon from '../../../../svg/WarningIcon';
-import VarselMeldinger from './varselDetaljer/VarselMeldinger';
 
 function VarslerNy() {
     const [page, setPage] = useState(1);
     const rowsPerPage = 22;
 
-    const varslerResponse = varselResource.useFetch();
+    const varslerResponse = useVarslerData();
     const varslerResult: VarslerResult = varslerResponse.data || { feil: [], varsler: [] };
     const datoExtractor = (varsel: UnifiedVarsel) => {
         if (isDittNavEvent(varsel)) {
@@ -38,20 +34,20 @@ function VarslerNy() {
 
     const DittNavInformasjonsLinje = ({ tittel, tekst }: { tittel: string; tekst: string }) => {
         return (
-            <div className={'flex space-x-4'}>
-                <dt className={'font-bold'}>{tittel}</dt>
-                <dd>{tekst}</dd>
-            </div>
+            <HStack gap="4">
+                <div className={'font-bold'}>{tittel}</div>
+                <div>{tekst}</div>
+            </HStack>
         );
     };
 
     const DittNavInformasjonsLinjer = (varsel: { produsent: string; tekst: string; link: string }) => {
         return (
-            <div className={'flex flex-col space-y-2 bg-gray-200 p-4'}>
+            <VStack gap="4" className={'space-y-2 bg-gray-200 p-4'}>
                 <DittNavInformasjonsLinje tittel="Produsert av:" tekst={emptyReplacement(varsel.produsent, ENDASH)} />
                 <DittNavInformasjonsLinje tittel="Tekst:" tekst={emptyReplacement(varsel.tekst, ENDASH)} />
                 <DittNavInformasjonsLinje tittel="Link:" tekst={emptyReplacement(varsel.link, ENDASH)} />
-            </div>
+            </VStack>
         );
     };
 
@@ -161,20 +157,22 @@ function VarslerNy() {
     };
 
     return (
-        <div className={'flex flex-col w-1/2 max-h-screen overflow-auto pb-6'}>
+        <div className={'flex flex-col w-2/3 max-h-screen overflow-auto pb-6'}>
             <Alert variant="info" className={'my-4'} fullWidth={true} contentMaxWidth={false}>
                 Varsler vises kun ett år tilbake i tid. Dersom man trenger å se informasjon om eldre varsler kan man
                 lage en sak i porten for manuell uthenting.
             </Alert>
             {varslerResult.feil.length > 0 && (
-                <AlertStripeFeil className="blokk-xs my-4">{varsler.feil.join('. ')}</AlertStripeFeil>
+                <Alert variant="error" className="blokk-xs my-4">
+                    {varsler.feil.join('. ')}
+                </Alert>
             )}
             <Table size={'small'} zebraStripes className={'border border-gray-400 mb-2'}>
                 <Table.Header textSize={'small'}>
                     <Table.Row>
                         <Table.HeaderCell />
-                        <Table.HeaderCell className={'w-24'}>Dato</Table.HeaderCell>
-                        <Table.HeaderCell className={'w-20'}>Status</Table.HeaderCell>
+                        <Table.HeaderCell className={'w-36'}>Dato</Table.HeaderCell>
+                        <Table.HeaderCell className={'w-24'}>Status</Table.HeaderCell>
                         <Table.HeaderCell>Type</Table.HeaderCell>
                         <Table.HeaderCell className={'w-48'}>Kanal</Table.HeaderCell>
                     </Table.Row>
@@ -189,7 +187,11 @@ function VarslerNy() {
                                         {data.datoer}
                                     </Table.DataCell>
                                     <Table.DataCell align="left" textSize={'small'}>
-                                        {data.harFeilteVarsel ? <WarningIcon /> : <CompletedIcon />}
+                                        {data.harFeilteVarsel ? (
+                                            <ExclamationmarkTriangleFillIcon fontSize="1.5rem" />
+                                        ) : (
+                                            <CheckmarkCircleFillIcon fontSize="1.5rem" />
+                                        )}
                                     </Table.DataCell>
                                     <Table.DataCell align="left" textSize={'small'}>
                                         {data.tittel}
