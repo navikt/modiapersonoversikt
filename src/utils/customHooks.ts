@@ -11,7 +11,7 @@ import {
     useRef
 } from 'react';
 import { useSelector } from 'react-redux';
-import { aktivBrukerAtom, aktivBrukerLastetAtom } from 'src/lib/state/context';
+import { aktivBrukerAtom } from 'src/lib/state/context';
 import { paths } from '../app/routes/routing';
 import type { AppState } from '../redux/reducers';
 import { type EventListener, runIfEventIsNotInsideRef } from './reactRef-utils';
@@ -83,19 +83,16 @@ export function useFodselsnummer() {
 
 export function useSettAktivBruker() {
     const setBruker = useSetAtom(aktivBrukerAtom);
-    const setBrukerLastet = useSetAtom(aktivBrukerLastetAtom);
     const navigate = useNavigate();
 
     return (fnr: string | null, redirect = true) => {
         if (!fnr) {
             navigate({ to: '/' });
             setBruker('');
-            setBrukerLastet(false);
             return;
         }
 
         setBruker(fnr);
-        setBrukerLastet(true);
         if (
             redirect &&
             ![
