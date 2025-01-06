@@ -1,6 +1,6 @@
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useCallback } from 'react';
-import { aktivBrukerAtom, aktivEnhetAtom } from 'src/lib/state/context';
+import { aktivBrukerAtom, aktivBrukerLastetAtom, aktivEnhetAtom } from 'src/lib/state/context';
 import config from '../../config';
 import type { Enhet } from '../../rest/resources/saksbehandlersEnheterResource';
 import bjelleIkon from '../../svg/bjelle.svg?raw';
@@ -18,7 +18,10 @@ export function useDecoratorConfig() {
 
     const settAktivBruker = useSettAktivBruker();
 
-    const queryParams = useQueryParams<{ sokFnr?: string; sokFnrCode?: string }>();
+    const queryParams = useQueryParams<{
+        sokFnr?: string;
+        sokFnrCode?: string;
+    }>();
 
     useOnMount(() => {
         if (queryParams.sokFnr) {
@@ -70,6 +73,7 @@ function lagConfigV3(
 ): DecoratorPropsV3 {
     const { sokFnr, userKey } = getFnrFraUrl();
     const fnr = useAtomValue(aktivBrukerAtom);
+    const setContextLoaded = useSetAtom(aktivBrukerLastetAtom);
     const onsketFnr = sokFnr ?? fnr;
     const environment = import.meta.env.PROD ? getEnvFromHost() : 'mock';
 
@@ -92,11 +96,14 @@ function lagConfigV3(
             } else {
                 settAktivBruker(null);
             }
+
+            setContextLoaded(true);
         },
         enhet: enhet ?? undefined,
         onEnhetChanged: (enhet, enhetValue) => {
             if (enhet) {
                 settEnhet(enhet, enhetValue);
+                setContextLoaded(true);
             }
         },
         onLinkClick: onLinkClick ?? undefined,
