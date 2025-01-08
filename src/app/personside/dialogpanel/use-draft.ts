@@ -1,5 +1,5 @@
 import dayjs, { type Dayjs } from 'dayjs';
-import debounce from 'lodash.debounce';
+import { debounce } from 'lodash';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FetchError } from '../../../api/api';
 import config from '../../../config';
@@ -18,7 +18,11 @@ export interface Draft {
     created: string;
 }
 
-export type DraftState = { ok: boolean; loading: boolean; saveTime: Dayjs | null };
+export type DraftState = {
+    ok: boolean;
+    loading: boolean;
+    saveTime: Dayjs | null;
+};
 
 interface DraftSystem {
     update(content: string): void;
@@ -56,7 +60,10 @@ const draftUrl = (import.meta.env.VITE_DRAFT_URL as string) ?? `${import.meta.en
 
 function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () => {}): DraftSystem {
     const wsRef = useRef<WebSocketImpl>();
-    const [lastConfirm, setLastConfirm] = useState<{ ok: boolean; time: Date | null }>({ ok: false, time: null });
+    const [lastConfirm, setLastConfirm] = useState<{
+        ok: boolean;
+        time: Date | null;
+    }>({ ok: false, time: null });
     const [lastSent, setLastSent] = useState<Date | null>(null);
     const [timeout, setTimeoutVal] = useState(false);
     const timer = useRef<NodeJS.Timeout>();
@@ -65,7 +72,11 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
 
     const status = useMemo(() => {
         if (!lastSent) {
-            return { loading: false, ok: lastConfirm.ok, saveTime: lastConfirm.time ? dayjs(lastConfirm.time) : null };
+            return {
+                loading: false,
+                ok: lastConfirm.ok,
+                saveTime: lastConfirm.time ? dayjs(lastConfirm.time) : null
+            };
         }
 
         const sendTime = dayjs(lastSent);
@@ -78,7 +89,11 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
         const loading = !lastConfirm.time || sendTime.isAfter(lastConfirm.time);
         const ok = lastConfirm.time && lastConfirm.ok && dayjs(lastConfirm.time).isAfter(lastSent);
 
-        return { loading: !!loading, ok: !!ok, saveTime: lastConfirm.time ? dayjs(lastConfirm.time) : null };
+        return {
+            loading: !!loading,
+            ok: !!ok,
+            saveTime: lastConfirm.time ? dayjs(lastConfirm.time) : null
+        };
     }, [lastConfirm, lastSent, timeout]);
 
     useEffect(() => {

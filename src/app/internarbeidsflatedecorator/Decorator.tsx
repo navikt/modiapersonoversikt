@@ -1,7 +1,7 @@
 import NAVSPA from '@navikt/navspa';
+import Personsok from 'src/components/personsok';
 import styled from 'styled-components';
 import OppdateringsloggContainer from '../oppdateringslogg/OppdateringsloggContainer';
-import PersonsokContainer from '../personsok/Personsok';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
 import type { DecoratorPropsV3 } from './decoratorprops';
 import './personsokKnapp.less';
@@ -16,7 +16,7 @@ function Decorator() {
     return (
         <StyledNav>
             <InternflateDecoratorV3 {...configV3} />
-            <PersonsokContainer />
+            <Personsok />
             <OppdateringsloggContainer />
             <DecoratorEasterEgg />
         </StyledNav>
@@ -24,9 +24,9 @@ function Decorator() {
 }
 
 const StyledNav = styled.nav`
-    .dekorator .dekorator__container {
-        max-width: initial;
-    }
+  .dekorator .dekorator__container {
+    max-width: initial;
+  }
 `;
 
 export default Decorator;
