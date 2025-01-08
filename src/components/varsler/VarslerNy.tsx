@@ -1,5 +1,5 @@
 import { CheckmarkCircleFillIcon, ExclamationmarkTriangleFillIcon } from '@navikt/aksel-icons';
-import { Alert, HStack, Pagination, Skeleton, Table, VStack } from '@navikt/ds-react';
+import { Alert, Box, HStack, Pagination, Skeleton, Table, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { type ReactNode, useEffect, useMemo } from 'react';
 import { emptyReplacement, getVarselTekst } from 'src/app/personside/infotabs/varsel/varsel-utils';
@@ -38,7 +38,7 @@ const DittNavInformasjonsLinje = ({ tittel, tekst }: { tittel: string; tekst: st
 
 const DittNavInformasjonsLinjer = (varsel: { produsent: string; tekst: string; link: string }) => {
     return (
-        <VStack gap="4" className={'space-y-2 bg-gray-200 p-4'}>
+        <VStack gap="4" className={' p-4'}>
             <DittNavInformasjonsLinje tittel="Produsert av:" tekst={emptyReplacement(varsel.produsent, ENDASH)} />
             <DittNavInformasjonsLinje tittel="Tekst:" tekst={emptyReplacement(varsel.tekst, ENDASH)} />
             <DittNavInformasjonsLinje tittel="Link:" tekst={emptyReplacement(varsel.link, ENDASH)} />
@@ -185,8 +185,8 @@ function VarslerNy() {
                 </>
             }
         >
-            <div className={'flex flex-col w-2/3 max-h-screen overflow-auto pb-6'}>
-                <Alert variant="info" className={'my-4'} fullWidth={true} contentMaxWidth={false}>
+            <div className={'flex flex-col w-full max-h-screen overflow-auto pb-6'}>
+                <Alert variant="info" className={'my-4 rounded-xl'} fullWidth={true} contentMaxWidth={false}>
                     Varsler vises kun ett år tilbake i tid. Dersom man trenger å se informasjon om eldre varsler kan man
                     lage en sak i porten for manuell uthenting.
                 </Alert>
@@ -195,49 +195,51 @@ function VarslerNy() {
                         {varsler.feil.join('. ')}
                     </Alert>
                 )}
-                <Table size={'small'} zebraStripes className={'border border-gray-300 mb-2'}>
-                    <Table.Header textSize={'small'}>
-                        <Table.Row>
-                            <Table.HeaderCell />
-                            <Table.HeaderCell className={'w-36'}>Dato</Table.HeaderCell>
-                            <Table.HeaderCell className={'w-24'}>Status</Table.HeaderCell>
-                            <Table.HeaderCell>Type</Table.HeaderCell>
-                            <Table.HeaderCell className={'w-48'}>Kanal</Table.HeaderCell>
-                        </Table.Row>
-                    </Table.Header>
-                    <Table.Body>
-                        {useMemo(
-                            () =>
-                                varselPagniated.map((item: VarselModell) => {
-                                    const data = dataExtractor(item);
-                                    return (
-                                        <>
-                                            <Table.ExpandableRow key={data.tittel} content={data.detaljer}>
-                                                <Table.DataCell align="left" textSize={'small'}>
-                                                    {data.datoer}
-                                                </Table.DataCell>
-                                                <Table.DataCell align="left" textSize={'small'}>
-                                                    {data.harFeilteVarsel ? (
-                                                        <ExclamationmarkTriangleFillIcon fontSize="1.5rem" />
-                                                    ) : (
-                                                        <CheckmarkCircleFillIcon fontSize="1.5rem" />
-                                                    )}
-                                                </Table.DataCell>
-                                                <Table.DataCell align="left" textSize={'small'}>
-                                                    {data.tittel}
-                                                </Table.DataCell>
-                                                <Table.DataCell align="left" textSize={'small'}>
-                                                    {data.kanaler.join(', ')}
-                                                </Table.DataCell>
-                                            </Table.ExpandableRow>
-                                        </>
-                                    );
-                                }),
-                            [varselPagniated]
-                        )}
-                    </Table.Body>
-                </Table>
-                <Pagination page={page} onPageChange={onPageClick} count={maxPage} size="small" />
+                <Box background={'bg-default'}>
+                    <Table size={'small'} className={'border border-gray-300 mb-2'}>
+                        <Table.Header textSize={'small'}>
+                            <Table.Row>
+                                <Table.HeaderCell />
+                                <Table.HeaderCell className={'w-36'}>Dato</Table.HeaderCell>
+                                <Table.HeaderCell className={'w-24'}>Status</Table.HeaderCell>
+                                <Table.HeaderCell>Type</Table.HeaderCell>
+                                <Table.HeaderCell className={'w-48'}>Kanal</Table.HeaderCell>
+                            </Table.Row>
+                        </Table.Header>
+                        <Table.Body>
+                            {useMemo(
+                                () =>
+                                    varselPagniated.map((item: VarselModell) => {
+                                        const data = dataExtractor(item);
+                                        return (
+                                            <>
+                                                <Table.ExpandableRow key={data.tittel} content={data.detaljer}>
+                                                    <Table.DataCell align="left" textSize={'small'}>
+                                                        {data.datoer}
+                                                    </Table.DataCell>
+                                                    <Table.DataCell align="left" textSize={'small'}>
+                                                        {data.harFeilteVarsel ? (
+                                                            <ExclamationmarkTriangleFillIcon fontSize="1.5rem" />
+                                                        ) : (
+                                                            <CheckmarkCircleFillIcon fontSize="1.5rem" />
+                                                        )}
+                                                    </Table.DataCell>
+                                                    <Table.DataCell align="left" textSize={'small'}>
+                                                        {data.tittel}
+                                                    </Table.DataCell>
+                                                    <Table.DataCell align="left" textSize={'small'}>
+                                                        {data.kanaler.join(', ')}
+                                                    </Table.DataCell>
+                                                </Table.ExpandableRow>
+                                            </>
+                                        );
+                                    }),
+                                [varselPagniated]
+                            )}
+                        </Table.Body>
+                    </Table>
+                    <Pagination page={page} onPageChange={onPageClick} count={maxPage} size="small" />
+                </Box>
             </div>
         </QueryErrorBoundary>
     );
