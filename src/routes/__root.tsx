@@ -1,8 +1,8 @@
-import { HStack, Loader } from '@navikt/ds-react';
+import { Alert, HStack, Loader } from '@navikt/ds-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Outlet, createRootRoute, useMatchRoute } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
-import { type PropsWithChildren, lazy } from 'react';
+import { type PropsWithChildren, lazy, useState } from 'react';
 import HentGlobaleVerdier from 'src/app/FetchSessionInfoOgLeggIRedux';
 import LoggetUtModal from 'src/app/LoggetUtModal';
 import VelgEnhet from 'src/app/VelgEnhet';
@@ -15,6 +15,7 @@ import { aktivBrukerLastetAtom, aktivEnhetAtom } from 'src/lib/state/context';
 import { ThemeProvider } from 'src/lib/state/theme';
 import { usePersistentWWLogin } from 'src/login/use-persistent-ww-login';
 import HandleLegacyUrls from 'src/utils/HandleLegacyUrls';
+import useTimeout from 'src/utils/hooks/use-timeout';
 import styled from 'styled-components';
 
 export const Route = createRootRoute({
@@ -39,6 +40,21 @@ function App({ children }: PropsWithChildren) {
     const loginState = usePersistentWWLogin();
     const valgtEnhet = useAtomValue(aktivEnhetAtom);
     const contextLoaded = useAtomValue(aktivBrukerLastetAtom);
+    const [contextTimeout, setContextTimeout] = useState(false);
+    useTimeout(() => {
+        setContextTimeout(true);
+    }, 1500);
+
+    if (!contextLoaded && contextTimeout) {
+        return (
+            <HStack justify="center" align="center" minHeight="80dvh">
+                <Alert variant="warning">
+                    Klarte ikke laste context (aktiv enhet, aktiv bruker). Du kan fortsatt søke opp person, men må
+                    manuelt sjekke at du har valgt riktig enhet i menyen.
+                </Alert>
+            </HStack>
+        );
+    }
 
     if (!contextLoaded) {
         return (
