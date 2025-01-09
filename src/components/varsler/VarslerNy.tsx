@@ -248,7 +248,7 @@ function VarslerNy() {
                         onPageChange={onPageClick}
                         count={maxPage}
                         size="small"
-                        srHeading={{ text: 'Vasler tabellpaginering' }}
+                        srHeading={{ text: 'Varsler tabellpaginering' }}
                     />
                 </Box>
             </div>
