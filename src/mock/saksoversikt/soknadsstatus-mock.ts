@@ -1,7 +1,7 @@
 import type NavFaker from 'nav-faker/dist/navfaker';
 import type { Soknadsstatus } from '../../models/saksoversikt/sakstema';
 
-export function getSoknadsstatus(faker: Faker.FakerStatic, navfaker: NavFaker): Soknadsstatus {
+export function getSoknadsstatus(navfaker: NavFaker): Soknadsstatus {
     if (navfaker.random.vektetSjanse(0.3)) {
         return {
             avbrutt: 0,

@@ -22,6 +22,7 @@
         "fix": "biome check --write",
         "lint:ci": "biome ci",
         "lint-staged": "lint-staged",
+        "types": "tsc --noEmit",
         "gen:routes": "tsr generate",
         "generate": "openapi-typescript https://modiapersonoversikt-api.intern.dev.nav.no/modiapersonoversikt-api/v3/api-docs -o src/generated/modiapersonoversikt-api.d.ts",
         "tsc": "tsc"

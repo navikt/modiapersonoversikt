@@ -34,7 +34,8 @@
             "trailingCommas": "none",
             "quoteStyle": "single",
             "bracketSpacing": true
-        }
+        },
+        "globals": ["JSX", "React"]
     },
     "overrides": [
         {
@@ -42,13 +43,13 @@
             "linter": {
                 "rules": {
                     "correctness": {
+                        "noUndeclaredVariables": "error",
                         "noConstAssign": "off",
                         "noGlobalObjectCalls": "off",
                         "noInvalidBuiltinInstantiation": "off",
                         "noInvalidConstructorSuper": "off",
                         "noNewSymbol": "off",
                         "noSetterReturn": "off",
-                        "noUndeclaredVariables": "off",
                         "noUnreachable": "off",
                         "noUnreachableSuper": "off"
                     },
@@ -69,6 +70,24 @@
                         "useGetterReturn": "off"
                     }
                 }
+            }
+        },
+        {
+            "include": ["**/*.test.ts", "**/*.test.tsx", "setupTests.ts"],
+            "javascript": {
+                "globals": [
+                    "expect",
+                    "test",
+                    "describe",
+                    "it",
+                    "beforeEach",
+                    "beforeAll",
+                    "vi",
+                    "fail",
+                    "assert",
+                    "afterAll",
+                    "afterEach"
+                ]
             }
         }
     ]

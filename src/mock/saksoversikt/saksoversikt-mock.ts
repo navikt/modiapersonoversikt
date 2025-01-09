@@ -62,7 +62,7 @@ function getSakstemaV2(): SakstemaSoknadsstatus {
         temakode: tema[0],
         temanavn: tema[1],
         erGruppert: faker.datatype.boolean(),
-        soknadsstatus: getSoknadsstatus(faker, navfaker),
+        soknadsstatus: getSoknadsstatus(navfaker),
         dokumentMetadata: getJournalposter(faker, navfaker, tema),
         tilhorendeSaker: fyllRandomListe(() => getSak(tema[0]), 15),
         feilkoder: getFeilkoder()

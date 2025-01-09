@@ -1,39 +1,45 @@
+import { emptyReplacement } from 'src/utils/string-utils';
 import styled from 'styled-components';
 import type { DittNavEvent, FeiletVarsling } from '../../../../models/varsel';
 import theme from '../../../../styles/personOversiktTheme';
 import { ENDASH, formaterDato } from '../../../../utils/string-utils';
 import { VarselRow } from './VarselRow';
-import { emptyReplacement } from './varsel-utils';
 
 const GraattDefinisjonsListe = styled.dl`
-    ${theme.graattPanel}
-    dt {
-        float: left;
-        clear: left;
-        font-weight: bold;
-        margin-bottom: 0.5rem;
-        width: 7rem;
-    }
-    dd {
-        margin-bottom: 0.5rem;
-        margin-left: 7.125rem;
-    }
+  ${theme.graattPanel}
+  dt {
+    float: left;
+    clear: left;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    width: 7rem;
+  }
+  dd {
+    margin-bottom: 0.5rem;
+    margin-left: 7.125rem;
+  }
 `;
 
 const BoldTekst = styled.span`
-    font-weight: bold;
+  font-weight: bold;
 `;
 
 const FeilteVarslinerListeStyling = styled.div`
-    margin-top: 0.5rem;
+  margin-top: 0.5rem;
 `;
 
 const FeilteVarslingerListeWrapper = styled.div`
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 `;
 
-function DittNavInformasjonsLinje({ tittel, tekst }: { tittel: string; tekst: string }) {
+function DittNavInformasjonsLinje({
+    tittel,
+    tekst
+}: {
+    tittel: string;
+    tekst: string;
+}) {
     return (
         <>
             <dt>{tittel}</dt>
@@ -42,7 +48,11 @@ function DittNavInformasjonsLinje({ tittel, tekst }: { tittel: string; tekst: st
     );
 }
 
-function DittNavInformasjonsLinjer(varsel: { produsent: string; tekst: string; link: string }) {
+function DittNavInformasjonsLinjer(varsel: {
+    produsent: string;
+    tekst: string;
+    link: string;
+}) {
     return (
         <>
             <DittNavInformasjonsLinje tittel="Produsert av:" tekst={emptyReplacement(varsel.produsent, ENDASH)} />
@@ -67,7 +77,13 @@ function DittNavEventVarsel({ varsel }: { varsel: DittNavEvent }) {
     );
 }
 
-function FeilteVarslingerListe({ tittel, feilteVarslinger }: { tittel: string; feilteVarslinger: FeiletVarsling[] }) {
+function FeilteVarslingerListe({
+    tittel,
+    feilteVarslinger
+}: {
+    tittel: string;
+    feilteVarslinger: FeiletVarsling[];
+}) {
     return (
         <FeilteVarslingerListeWrapper>
             <BoldTekst>{tittel}</BoldTekst>
