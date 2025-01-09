@@ -8,6 +8,13 @@ export function removeWhitespace(input: string) {
     return input.replace(/ /g, '');
 }
 
+export function emptyReplacement(text: string | null | undefined, replacement: string): string {
+    if (text === null || text === undefined || text === '') {
+        return replacement;
+    }
+    return text;
+}
+
 export function erTall(input: string) {
     return !Number.isNaN(Number(input));
 }

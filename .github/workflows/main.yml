@@ -38,6 +38,10 @@ jobs:
             - name: Lint
               run: pnpm run lint:ci
 
+            - name: Types
+              run: pnpm run types
+              continue-on-error: true
+
             - name: Test
               run: pnpm run test
 

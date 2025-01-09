@@ -12,7 +12,7 @@ import { aremark } from '../mock/persondata/aremark';
 import { getStaticMockSaksoversiktV2 } from '../mock/saksoversikt/saksoversikt-mock';
 import { statiskOppfolgingMock } from '../mock/statiskOppfolgingMock';
 import { statiskMockUtbetalingRespons } from '../mock/utbetalinger/statiskMockUtbetalingRespons';
-import { statiskDittnavEventVarselMock, statiskVarselMock } from '../mock/varsler/statiskVarselMock';
+import { statiskDittnavEventVarselMock } from '../mock/varsler/statiskVarselMock';
 import { statiskForeldrepengeMock } from '../mock/ytelse/statiskForeldrepengeMock';
 import { statiskSykepengerMock } from '../mock/ytelse/statiskSykepengerMock';
 import { statiskTiltakspengerMock } from '../mock/ytelse/statiskTiltakspengerMock';
@@ -88,7 +88,10 @@ export function setupReactQueryMocks() {
         [FeatureToggles.VisPromptMeldingSending]: true,
         [FeatureToggles.BrukWebworkerPaaInnLogging]: true,
         [FeatureToggles.BrukNyTiltakspenger]: true,
-        [FeatureToggles.VisDraftStatus]: true
+        [FeatureToggles.VisDraftStatus]: true,
+        [FeatureToggles.NyAvansertSok]: true,
+        [FeatureToggles.FnrSokForInnkreving]: true,
+        [FeatureToggles.OrgnrSokForInnkreving]: true
     });
     mockReactQuery(gsaktemaResource.useFetch, getMockGsakTema());
     mockReactQuery(foreldrepengerResource.useForeldrepenger, {
@@ -111,11 +114,6 @@ export function setupReactQueryMocks() {
     mockReactQuery(aktoridResource.useFetch, `000${aremark.personIdent}000`);
     mockReactQuery(varselResource.useFetch, {
         feil: [],
-        varsler: [
-            ...statiskVarselMock,
-            ...statiskDittnavEventVarselMock,
-            ...statiskDittnavEventVarselMock,
-            ...statiskDittnavEventVarselMock
-        ]
+        varsler: [...statiskDittnavEventVarselMock, ...statiskDittnavEventVarselMock, ...statiskDittnavEventVarselMock]
     });
 }
