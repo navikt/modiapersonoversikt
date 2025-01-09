@@ -194,7 +194,7 @@ function VarslerNy() {
             }
         >
             <div className="flex flex-col w-full max-h-screen overflow-auto pb-6">
-                <Alert variant="info" className="my-4 rounded-xl" fullWidth={true} contentMaxWidth={false}>
+                <Alert variant="info" className="my-4" fullWidth={true} contentMaxWidth={false}>
                     Varsler vises kun ett år tilbake i tid. Dersom man trenger å se informasjon om eldre varsler kan man
                     lage en sak i porten for manuell uthenting.
                 </Alert>
@@ -204,29 +204,32 @@ function VarslerNy() {
                     </Alert>
                 )}
                 <Box background="bg-default">
-                    <Table size="small" className="border border-gray-300 mb-2">
+                    <Table size="small" className="border border-gray-300 mb-2" aria-label="Varsler">
                         <Table.Header textSize="small">
                             <Table.Row>
                                 <Table.HeaderCell />
-                                <Table.HeaderCell className="w-36">Dato</Table.HeaderCell>
-                                <Table.HeaderCell className="w-24">Status</Table.HeaderCell>
+                                <Table.HeaderCell className="w-28">Dato</Table.HeaderCell>
+                                <Table.HeaderCell className="w-20">Status</Table.HeaderCell>
                                 <Table.HeaderCell>Type</Table.HeaderCell>
                                 <Table.HeaderCell className="w-48">Kanal</Table.HeaderCell>
                             </Table.Row>
                         </Table.Header>
                         <Table.Body>
-                            {varselPagniated.map((item: VarselModell) => {
+                            {varselPagniated.map((item: VarselModell, index: number) => {
                                 const data = dataExtractor(item);
                                 return (
-                                    <Table.ExpandableRow key={data.tittel} content={data.detaljer}>
+                                    <Table.ExpandableRow
+                                        key={`${data.datoer}_${data.tittel}_${index}`}
+                                        content={data.detaljer}
+                                    >
                                         <Table.DataCell align="left" textSize="small">
                                             {data.datoer}
                                         </Table.DataCell>
                                         <Table.DataCell align="left" textSize="small">
                                             {data.harFeilteVarsel ? (
-                                                <ExclamationmarkTriangleFillIcon fontSize="1.5rem" />
+                                                <ExclamationmarkTriangleFillIcon fontSize="1.5rem" title="Har feil" />
                                             ) : (
-                                                <CheckmarkCircleFillIcon fontSize="1.5rem" />
+                                                <CheckmarkCircleFillIcon fontSize="1.5rem" title="Ok" />
                                             )}
                                         </Table.DataCell>
                                         <Table.DataCell align="left" textSize="small">
@@ -240,7 +243,13 @@ function VarslerNy() {
                             })}
                         </Table.Body>
                     </Table>
-                    <Pagination page={page} onPageChange={onPageClick} count={maxPage} size="small" />
+                    <Pagination
+                        page={page}
+                        onPageChange={onPageClick}
+                        count={maxPage}
+                        size="small"
+                        srHeading={{ text: 'Vasler tabellpaginering' }}
+                    />
                 </Box>
             </div>
         </QueryErrorBoundary>
