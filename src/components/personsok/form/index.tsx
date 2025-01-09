@@ -83,8 +83,10 @@ export function PersonsokForm({ onSubmit, onReset }: Props) {
                 navn: emptyString(v.name),
                 adresse: emptyString(v.address),
                 utenlandskID: emptyString(v.dnr),
-                fodselsdatoFra: emptyString(dayjs(v.birthDateFrom).format(backendDatoformat)),
-                fodselsdatoTil: emptyString(dayjs(v.birthDateTo).format(backendDatoformat)),
+                fodselsdatoFra: emptyString(
+                    v.birthDateFrom ? dayjs(v.birthDateFrom).format(backendDatoformat) : undefined
+                ),
+                fodselsdatoTil: emptyString(v.birthDateTo ? dayjs(v.birthDateTo).format(backendDatoformat) : undefined),
                 alderFra: z.coerce.number().optional().catch(undefined).parse(v.ageFrom),
                 alderTil: z.coerce.number().optional().catch(undefined).parse(v.ageTo),
                 kjonn: emptyString(v.gender),
