@@ -27,21 +27,29 @@ const datoExtractor = (varsel: UnifiedVarsel) => {
     return varsel.mottattTidspunkt;
 };
 
-const DittNavInformasjonsLinje = ({ tittel, tekst }: { tittel: string; tekst: string }) => {
+const DittNavInformasjonsLinje = ({
+    tittel,
+    tekst,
+    className
+}: { tittel: string; tekst: string; className?: string }) => {
     return (
         <HStack gap="4">
-            <div className={'font-bold'}>{tittel}</div>
-            <div>{tekst}</div>
+            <div className="text-sm font-bold">{tittel}</div>
+            <div className={`${className} text-base`}>{tekst}</div>
         </HStack>
     );
 };
 
 const DittNavInformasjonsLinjer = (varsel: { produsent: string; tekst: string; link: string }) => {
     return (
-        <VStack gap="4" className={' p-4'}>
+        <VStack gap="1" className="p-2">
             <DittNavInformasjonsLinje tittel="Produsert av:" tekst={emptyReplacement(varsel.produsent, ENDASH)} />
             <DittNavInformasjonsLinje tittel="Tekst:" tekst={emptyReplacement(varsel.tekst, ENDASH)} />
-            <DittNavInformasjonsLinje tittel="Link:" tekst={emptyReplacement(varsel.link, ENDASH)} />
+            <DittNavInformasjonsLinje
+                tittel="Link:"
+                tekst={emptyReplacement(varsel.link, ENDASH)}
+                className="no-underline hover:underline hover:text-blue-600"
+            />
         </VStack>
     );
 };
@@ -51,8 +59,8 @@ const FeilteVarslingerListe = ({
     feilteVarslinger
 }: { tittel: string; feilteVarslinger: FeiletVarsling[] }) => {
     return (
-        <div className={'my-2'}>
-            <div className={'font-bold'}>{tittel}</div>
+        <div className="my-2">
+            <div className="font-bold">{tittel}</div>
             <div>
                 {feilteVarslinger.map((varsling) => (
                     <li key={`${varsling.tidspunkt} - ${varsling.kanal}`}>
@@ -185,8 +193,8 @@ function VarslerNy() {
                 </>
             }
         >
-            <div className={'flex flex-col w-full max-h-screen overflow-auto pb-6'}>
-                <Alert variant="info" className={'my-4 rounded-xl'} fullWidth={true} contentMaxWidth={false}>
+            <div className="flex flex-col w-full max-h-screen overflow-auto pb-6">
+                <Alert variant="info" className="my-4 rounded-xl" fullWidth={true} contentMaxWidth={false}>
                     Varsler vises kun ett år tilbake i tid. Dersom man trenger å se informasjon om eldre varsler kan man
                     lage en sak i porten for manuell uthenting.
                 </Alert>
@@ -195,15 +203,15 @@ function VarslerNy() {
                         {varsler.feil.join('. ')}
                     </Alert>
                 )}
-                <Box background={'bg-default'}>
-                    <Table size={'small'} className={'border border-gray-300 mb-2'}>
-                        <Table.Header textSize={'small'}>
+                <Box background="bg-default">
+                    <Table size="small" className="border border-gray-300 mb-2">
+                        <Table.Header textSize="small">
                             <Table.Row>
                                 <Table.HeaderCell />
-                                <Table.HeaderCell className={'w-36'}>Dato</Table.HeaderCell>
-                                <Table.HeaderCell className={'w-24'}>Status</Table.HeaderCell>
+                                <Table.HeaderCell className="w-36">Dato</Table.HeaderCell>
+                                <Table.HeaderCell className="w-24">Status</Table.HeaderCell>
                                 <Table.HeaderCell>Type</Table.HeaderCell>
-                                <Table.HeaderCell className={'w-48'}>Kanal</Table.HeaderCell>
+                                <Table.HeaderCell className="w-48">Kanal</Table.HeaderCell>
                             </Table.Row>
                         </Table.Header>
                         <Table.Body>
@@ -214,20 +222,20 @@ function VarslerNy() {
                                         return (
                                             <>
                                                 <Table.ExpandableRow key={data.tittel} content={data.detaljer}>
-                                                    <Table.DataCell align="left" textSize={'small'}>
+                                                    <Table.DataCell align="left" textSize="small">
                                                         {data.datoer}
                                                     </Table.DataCell>
-                                                    <Table.DataCell align="left" textSize={'small'}>
+                                                    <Table.DataCell align="left" textSize="small">
                                                         {data.harFeilteVarsel ? (
                                                             <ExclamationmarkTriangleFillIcon fontSize="1.5rem" />
                                                         ) : (
                                                             <CheckmarkCircleFillIcon fontSize="1.5rem" />
                                                         )}
                                                     </Table.DataCell>
-                                                    <Table.DataCell align="left" textSize={'small'}>
+                                                    <Table.DataCell align="left" textSize="small">
                                                         {data.tittel}
                                                     </Table.DataCell>
-                                                    <Table.DataCell align="left" textSize={'small'}>
+                                                    <Table.DataCell align="left" textSize="small">
                                                         {data.kanaler.join(', ')}
                                                     </Table.DataCell>
                                                 </Table.ExpandableRow>
