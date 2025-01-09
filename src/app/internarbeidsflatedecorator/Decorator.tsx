@@ -6,6 +6,10 @@ import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
 import type { DecoratorPropsV3 } from './decoratorprops';
 import './personsokKnapp.less';
 import './decorator.less';
+import IfFeatureToggleOff from 'src/components/featureToggle/IfFeatureToggleOff';
+import IfFeatureToggleOn from 'src/components/featureToggle/IfFeatureToggleOn';
+import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
+import PersonsokContainer from '../personsok/Personsok';
 import { useDecoratorConfig } from './useDecoratorConfig';
 
 const InternflateDecoratorV3 = NAVSPA.importer<DecoratorPropsV3>('internarbeidsflate-decorator-v3');
@@ -16,7 +20,12 @@ function Decorator() {
     return (
         <StyledNav>
             <InternflateDecoratorV3 {...configV3} />
-            <Personsok />
+            <IfFeatureToggleOn toggleID={FeatureToggles.NyAvansertSok}>
+                <Personsok />
+            </IfFeatureToggleOn>
+            <IfFeatureToggleOff toggleID={FeatureToggles.NyAvansertSok}>
+                <PersonsokContainer />
+            </IfFeatureToggleOff>
             <OppdateringsloggContainer />
             <DecoratorEasterEgg />
         </StyledNav>

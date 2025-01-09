@@ -6,5 +6,6 @@ export enum FeatureToggles {
     VisDraftStatus = 'modiapersonoversikt.vis-draft-status',
     BrukNyTiltakspenger = 'modiapersonoversikt.bruk-ny-tiltakspenger',
     FnrSokForInnkreving = 'modiapersonoversikt.fnr-sok-for-innkreving',
-    OrgnrSokForInnkreving = 'modiapersonoversikt.orgnr-sok-for-innkreving'
+    OrgnrSokForInnkreving = 'modiapersonoversikt.orgnr-sok-for-innkreving',
+    NyAvansertSok = 'modiapersonoversikt.ny-avansert-sok'
 }
