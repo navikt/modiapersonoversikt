@@ -215,35 +215,29 @@ function VarslerNy() {
                             </Table.Row>
                         </Table.Header>
                         <Table.Body>
-                            {useMemo(
-                                () =>
-                                    varselPagniated.map((item: VarselModell) => {
-                                        const data = dataExtractor(item);
-                                        return (
-                                            <>
-                                                <Table.ExpandableRow key={data.tittel} content={data.detaljer}>
-                                                    <Table.DataCell align="left" textSize="small">
-                                                        {data.datoer}
-                                                    </Table.DataCell>
-                                                    <Table.DataCell align="left" textSize="small">
-                                                        {data.harFeilteVarsel ? (
-                                                            <ExclamationmarkTriangleFillIcon fontSize="1.5rem" />
-                                                        ) : (
-                                                            <CheckmarkCircleFillIcon fontSize="1.5rem" />
-                                                        )}
-                                                    </Table.DataCell>
-                                                    <Table.DataCell align="left" textSize="small">
-                                                        {data.tittel}
-                                                    </Table.DataCell>
-                                                    <Table.DataCell align="left" textSize="small">
-                                                        {data.kanaler.join(', ')}
-                                                    </Table.DataCell>
-                                                </Table.ExpandableRow>
-                                            </>
-                                        );
-                                    }),
-                                [varselPagniated]
-                            )}
+                            {varselPagniated.map((item: VarselModell) => {
+                                const data = dataExtractor(item);
+                                return (
+                                    <Table.ExpandableRow key={data.tittel} content={data.detaljer}>
+                                        <Table.DataCell align="left" textSize="small">
+                                            {data.datoer}
+                                        </Table.DataCell>
+                                        <Table.DataCell align="left" textSize="small">
+                                            {data.harFeilteVarsel ? (
+                                                <ExclamationmarkTriangleFillIcon fontSize="1.5rem" />
+                                            ) : (
+                                                <CheckmarkCircleFillIcon fontSize="1.5rem" />
+                                            )}
+                                        </Table.DataCell>
+                                        <Table.DataCell align="left" textSize="small">
+                                            {data.tittel}
+                                        </Table.DataCell>
+                                        <Table.DataCell align="left" textSize="small">
+                                            {data.kanaler.join(', ')}
+                                        </Table.DataCell>
+                                    </Table.ExpandableRow>
+                                );
+                            })}
                         </Table.Body>
                     </Table>
                     <Pagination page={page} onPageChange={onPageClick} count={maxPage} size="small" />
