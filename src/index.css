@@ -24,6 +24,8 @@
     --ac-tag-error-text: var(--a-gray-900);
     --ac-tag-warning-text: var(--a-gray-900);
     --ac-tag-info-text: var(--a-gray-900);
+
+    --ac-modal-bg: var(--a-surface-inverted);
 }
 
 .new-modia {

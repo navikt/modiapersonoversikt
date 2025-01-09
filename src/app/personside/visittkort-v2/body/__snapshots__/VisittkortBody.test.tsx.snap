@@ -781,6 +781,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </div>
         <div
           className="navds-read-more navds-read-more--medium"
+          data-volume="low"
         >
           <button
             aria-expanded={false}
@@ -1362,6 +1363,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </div>
         <div
           className="navds-read-more navds-read-more--medium"
+          data-volume="low"
         >
           <button
             aria-expanded={false}

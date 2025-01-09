@@ -139,6 +139,7 @@ exports[`viser fullmakt 1`] = `
     </div>
     <div
       className="navds-read-more navds-read-more--medium"
+      data-volume="low"
     >
       <button
         aria-expanded={false}
@@ -720,6 +721,7 @@ exports[`viser fullmakt 1`] = `
     </div>
     <div
       className="navds-read-more navds-read-more--medium"
+      data-volume="low"
     >
       <button
         aria-expanded={false}

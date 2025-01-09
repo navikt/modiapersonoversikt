@@ -473,11 +473,6 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                             className="navds-date__caption-button navds-button navds-button--tertiary navds-button--medium navds-button--icon-only"
                             onClick={[Function]}
                             onKeyUp={[Function]}
-                            style={
-                              {
-                                "width": undefined,
-                              }
-                            }
                             type="button"
                           >
                             <span
@@ -717,11 +712,6 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                             className="navds-date__caption-button navds-button navds-button--tertiary navds-button--medium navds-button--icon-only"
                             onClick={[Function]}
                             onKeyUp={[Function]}
-                            style={
-                              {
-                                "width": undefined,
-                              }
-                            }
                             type="button"
                           >
                             <span
@@ -2141,11 +2131,6 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                             className="navds-date__caption-button navds-button navds-button--tertiary navds-button--medium navds-button--icon-only"
                             onClick={[Function]}
                             onKeyUp={[Function]}
-                            style={
-                              {
-                                "width": undefined,
-                              }
-                            }
                             type="button"
                           >
                             <span
@@ -2296,11 +2281,6 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                             disabled={true}
                             onClick={[Function]}
                             onKeyUp={[Function]}
-                            style={
-                              {
-                                "width": undefined,
-                              }
-                            }
                             type="button"
                           >
                             <span
