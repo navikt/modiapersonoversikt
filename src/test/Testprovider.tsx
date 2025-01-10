@@ -33,30 +33,33 @@ function TestProvider({ children, customStore }: Props) {
     const jstore = createStore();
     jstore.set(aktivBrukerAtom, store.getState().gjeldendeBruker.fødselsnummer);
 
+    rootRoute.addChildren([
+        createRoute({
+            getParentRoute: () => rootRoute,
+            path: '$',
+            component: () => (
+                <Provider store={store}>
+                    <JProvider store={jstore}>
+                        <QueryClientProvider client={queryClient}>
+                            <DialogpanelStateProvider>
+                                <VisittkortStateProvider>
+                                    <MeldingsokProvider>
+                                        <ValgtEnhetProvider>{children}</ValgtEnhetProvider>
+                                    </MeldingsokProvider>
+                                </VisittkortStateProvider>
+                            </DialogpanelStateProvider>
+                        </QueryClientProvider>
+                    </JProvider>
+                </Provider>
+            )
+        })
+    ]);
+
     const router = createRouter({
-        routeTree: rootRoute.addChildren([
-            createRoute({
-                getParentRoute: () => rootRoute,
-                path: '$',
-                component: () => (
-                    <Provider store={store}>
-                        <JProvider store={jstore}>
-                            <QueryClientProvider client={queryClient}>
-                                <DialogpanelStateProvider>
-                                    <VisittkortStateProvider>
-                                        <MeldingsokProvider>
-                                            <ValgtEnhetProvider>{children}</ValgtEnhetProvider>
-                                        </MeldingsokProvider>
-                                    </VisittkortStateProvider>
-                                </DialogpanelStateProvider>
-                            </QueryClientProvider>
-                        </JProvider>
-                    </Provider>
-                )
-            })
-        ])
+        routeTree: rootRoute
     });
 
+    //@ts-ignore: Weird behaviour when creating a dummy router like this
     return <RouterProvider router={router} />;
 }
 

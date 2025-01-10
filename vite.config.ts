@@ -1,7 +1,7 @@
-/// <reference types="vitest/config" />
 import path from 'node:path';
-import { type IndexHtmlTransform, type Plugin, defineConfig } from 'vite';
+import type { IndexHtmlTransform, Plugin } from 'vite';
 import { configDefaults } from 'vitest/config';
+import { defineConfig } from 'vitest/config';
 
 import { fileURLToPath } from 'node:url';
 import { TanStackRouterVite } from '@tanstack/router-plugin/vite';
@@ -29,8 +29,8 @@ const modiaFrontendCompat = (): {
         transformIndexHtml(html, ctx) {
             if (ctx.server) {
                 const removed = html.replace(/<slot environment="prod">((.|\s)*?)<\/slot>/, '');
-                const content = removed.match(/<slot not-environment="prod">((.|\s)*?)<\/slot>/)[1];
-                return removed.replace(/<slot not-environment="prod">((.|\s)*?)<\/slot>/, content);
+                const content = removed.match(/<slot not-environment="prod">((.|\s)*?)<\/slot>/)?.[1];
+                return removed.replace(/<slot not-environment="prod">((.|\s)*?)<\/slot>/, content ?? '');
             }
             return html;
         }

@@ -95,8 +95,10 @@ function getArbeidsforholdMock(): Arbeidsforhold {
     return {
         arbeidsgiverNavn: faker.company.name(),
         arbeidsgiverKontonr: Number(faker.finance.accountNumber(11)).toString(),
+        arbeidsgiverOrgnr: faker.string.numeric(11),
+        arbeidskategori: undefined,
         inntektsperiode: vektetSjanse(faker, 0.5) ? 'Månedlig' : 'Årlig',
-        inntektForPerioden: Math.round(Number(faker.finance.amount(5000, 50000))),
+        inntektForPerioden: Math.round(Number(faker.finance.amount({ min: 5000, max: 50000 }))),
         sykepengerFom: vektetSjanse(faker, 0.5) ? dayjs(faker.date.recent()).format(backendDatoformat) : null,
         refusjonTom: vektetSjanse(faker, 0.5) ? dayjs(faker.date.recent()).format(backendDatoformat) : null,
         refusjonstype: 'Ikke refusjon'

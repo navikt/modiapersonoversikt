@@ -10,6 +10,7 @@ import {
     type Melding,
     Meldingstype,
     type OpprettHenvendelseRequest,
+    type OpprettHenvendelseResponse,
     type SendMeldingRequest,
     type Traad
 } from '../../models/meldinger/meldinger';
@@ -70,14 +71,16 @@ function simulateSf(trader: Traad[]): Traad[] {
 
 const opprettHenvendelseHandler = http.post(
     `${apiBaseUri}/v2/dialog/fortsett/opprett`,
-    withDelayedResponse<OpprettHenvendelseRequest>(randomDelay(), STATUS_OK, async (request) =>
-        meldingerBackendMock.opprettHenvendelse(await request.json())
+    withDelayedResponse<OpprettHenvendelseResponse, OpprettHenvendelseRequest>(
+        randomDelay(),
+        STATUS_OK,
+        async (request) => meldingerBackendMock.opprettHenvendelse(await request.json())
     )
 );
 
 const sendMeldinghandler = http.post(
     `${apiBaseUri}/v2/dialog/sendmelding`,
-    withDelayedResponse<SendMeldingRequest>(randomDelay() * 2, STATUS_OK, async (request) => {
+    withDelayedResponse<Traad, SendMeldingRequest>(randomDelay() * 2, STATUS_OK, async (request) => {
         return meldingerBackendMock.sendMelding(await request.json());
     })
 );

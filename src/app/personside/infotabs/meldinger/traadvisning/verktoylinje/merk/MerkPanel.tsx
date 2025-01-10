@@ -131,7 +131,9 @@ function MerkPanel(props: Props) {
             .then(() => {
                 settResultat(Resultat.VELLYKKET);
                 setSubmitting(false);
-                queryClient.invalidateQueries(dialogResource.queryKey(valgtBrukersFnr, valgtEnhet));
+                queryClient.invalidateQueries({
+                    queryKey: dialogResource.queryKey(valgtBrukersFnr, valgtEnhet)
+                });
                 tildelteOppgaverResource.refetch();
                 dispatch(setIngenValgtTraadDialogpanel());
             })
@@ -210,8 +212,7 @@ function MerkPanel(props: Props) {
                 name={'merk'}
                 checked={valgtOperasjon}
                 legend={''}
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
-                onChange={(_, value) => settValgtOperasjon(MerkOperasjon[value])}
+                onChange={(_, value) => settValgtOperasjon(MerkOperasjon[value as MerkOperasjon])}
             />
             {valgtOperasjon === MerkOperasjon.SLADDING && (
                 <AlertStripeInfo className="blokk-xxs">

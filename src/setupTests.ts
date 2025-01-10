@@ -14,13 +14,6 @@ import JSutils from 'nav-frontend-js-utils';
 JSutils.guid = () => 'Helt tilfeldig ID';
 JSutils.getScrollParents = () => [];
 
-window.frontendlogger = {
-    info: () => null,
-    warn: () => null,
-    error: () => null,
-    event: () => null
-};
-
 window.matchMedia = () => {
     const querylist = {
         matches: true,

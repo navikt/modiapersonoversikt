@@ -34,7 +34,7 @@ function VelgEnhet() {
         return <AlertStripeAdvarsel>Kunne ikke hente enhetsliste</AlertStripeAdvarsel>;
     }
 
-    const options = enheter.data.enhetliste.map((enhet) => {
+    const options = enheter.data?.enhetliste.map((enhet) => {
         return (
             <option value={enhet.enhetId} key={enhet.enhetId}>
                 {enhet.enhetId} {enhet.navn}

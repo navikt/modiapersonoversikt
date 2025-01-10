@@ -26,25 +26,25 @@ interface Props {
 }
 
 const PanelLayout = styled.section`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
 `;
 
 const CustomStyledTable = styled(StyledTable)`
-    th {
-        font-weight: normal;
-    }
+  th {
+    font-weight: normal;
+  }
 
-    td {
-        font-weight: bold;
-    }
+  td {
+    font-weight: bold;
+  }
 `;
 const SuksessStyling = styled.div`
-    > * {
-        margin-top: 1rem;
-    }
+  > * {
+    margin-top: 1rem;
+  }
 `;
 export function JournalforSak(props: Props) {
     const queryClient = useQueryClient();
@@ -69,8 +69,12 @@ export function JournalforSak(props: Props) {
             .then(() => {
                 setSubmitting(false);
                 setJournalforingSuksess(true);
-                queryClient.invalidateQueries(journalsakResource.queryKey(fnr));
-                queryClient.invalidateQueries(dialogResource.queryKey(fnr, valgtEnhet));
+                queryClient.invalidateQueries({
+                    queryKey: journalsakResource.queryKey(fnr)
+                });
+                queryClient.invalidateQueries({
+                    queryKey: dialogResource.queryKey(fnr, valgtEnhet)
+                });
             })
             .catch((error) => {
                 setSubmitting(false);

@@ -43,7 +43,7 @@ export class LoginStateManager {
                     this.refreshToken();
                 }
             }
-        }, [timeToExpiration - PREEMPTIVE_REFRESH_TIME_IN_MS]);
+        }, timeToExpiration - PREEMPTIVE_REFRESH_TIME_IN_MS);
     };
 
     private getLoginStateInterval = (auth: AuthIntropectionDTO) => {

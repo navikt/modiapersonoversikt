@@ -9,7 +9,7 @@ function useFeatureToggle(toggleId: FeatureToggles) {
     if (toggles.isError) {
         return { pending: true };
     }
-    return { pending: false, isOn: toggles.data[toggleId] };
+    return { pending: false, isOn: toggles.data?.[toggleId] };
 }
 
 export default useFeatureToggle;

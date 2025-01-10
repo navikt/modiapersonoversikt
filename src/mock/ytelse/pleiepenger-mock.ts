@@ -75,12 +75,12 @@ function getArbeidsforhold(): Arbeidsforhold {
         arbeidsgiverNavn: faker.company.name(),
         arbeidsgiverKontonr: Number(faker.finance.accountNumber(11)).toString(),
         inntektsperiode: 'Månedssats',
-        inntektForPerioden: Math.round(Number(faker.finance.amount(5000, 50000))),
+        inntektForPerioden: Math.round(Number(faker.finance.amount({ min: 5000, max: 50000 }))),
         refusjonTom: dayjs(faker.date.past({ years: 2 })).format(backendDatoformat),
         refusjonstype: 'Ikke refusjon',
         arbeidsgiverOrgnr: '1234567890',
         arbeidskategori: 'Arbeidstaker',
-        sykepengerFom: undefined
+        sykepengerFom: null
     };
 }
 

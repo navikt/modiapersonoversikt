@@ -17,7 +17,6 @@ import { type ReactNode, useEffect } from 'react';
 import type { PersonsokRequest } from 'src/lib/types/modiapersonoversikt-api';
 import { usePrevious } from 'src/utils/customHooks';
 import { backendDatoformat } from 'src/utils/date-utils';
-import { formaterDato } from 'src/utils/string-utils';
 import { z } from 'zod';
 import LenkeDrekV2 from './LenkeDrekV2';
 

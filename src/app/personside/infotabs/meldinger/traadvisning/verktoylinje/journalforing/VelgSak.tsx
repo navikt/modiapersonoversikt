@@ -118,8 +118,7 @@ function VelgSak(props: Props) {
         </AlertStripeAdvarsel>
     ));
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-    const temaTable = fordelteSaker[valgtKategori.input.value].map((tema: Tema) => (
+    const temaTable = fordelteSaker[valgtKategori.input.value as SakKategori].map((tema: Tema) => (
         <TemaTable
             key={tema.tema}
             tema={tema.tema}

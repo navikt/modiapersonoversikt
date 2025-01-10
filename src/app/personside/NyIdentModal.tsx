@@ -3,12 +3,12 @@ import { useSetAtom } from 'jotai';
 import RawModal from 'nav-frontend-modal';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { aktivBrukerAtom } from 'src/lib/state/context';
+import ErrorIkon from 'src/svg/alvorlig-advarsel.svg';
 import styled from 'styled-components';
-import ErrorIkon from '../../svg/alvorlig-advarsel.svg';
 
 const Modal = styled(RawModal)`
-    text-align: center;
-    min-width: 20rem;
+  text-align: center;
+  min-width: 20rem;
 `;
 
 interface NyIdentTilgangProps {

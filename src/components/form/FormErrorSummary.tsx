@@ -9,7 +9,7 @@ function buildErrorFields<TFieldValues extends FieldValues>(errors: FieldErrors<
     const res: FeiloppsummeringFeil[] = [];
     for (const [skjemaelementId, feil] of Object.entries(errors)) {
         if (feil) {
-            res.push({ skjemaelementId, feilmelding: feil.message });
+            res.push({ skjemaelementId, feilmelding: feil.message as string });
         }
     }
 

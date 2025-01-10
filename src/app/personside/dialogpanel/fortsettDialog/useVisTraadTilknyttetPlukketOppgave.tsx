@@ -29,7 +29,7 @@ function useVisTraadTilknyttetPlukketOppgave(dialogpanelTraad?: Traad): Response
     const navigate = useNavigate();
 
     useJustOnceEffect(
-        function visTraadTilknyttetOppgaveIDialogpanel(done: () => void) {
+        function visTraadTilknyttetOppgaveIDialogpanel(done) {
             const oppgave = tildelteOppgaver.paaBruker[0];
             const åpneTrådIFortsettDialogpanel = !dialogpanelTraad && !!oppgave;
             if (!åpneTrådIFortsettDialogpanel || !traaderResource.data) {
@@ -43,7 +43,10 @@ function useVisTraadTilknyttetPlukketOppgave(dialogpanelTraad?: Traad): Response
             }
 
             if (traadTilknyttetOppgave) {
-                navigate({ to: '/person/meldinger', search: { traadId: traadTilknyttetOppgave.traadId } });
+                navigate({
+                    to: '/person/meldinger',
+                    search: { traadId: traadTilknyttetOppgave.traadId }
+                });
                 done();
             } else {
                 const debugKanBesvares = traadTilknyttetOppgave

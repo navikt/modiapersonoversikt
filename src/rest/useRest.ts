@@ -37,5 +37,6 @@ export function useRest<TData = unknown, TError = unknown>(
         }
         return config.ifError;
     }
+    if (!response.data) return null;
     return config.ifData(response.data);
 }

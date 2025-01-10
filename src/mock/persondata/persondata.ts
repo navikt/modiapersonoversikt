@@ -5,6 +5,7 @@ import {
     type ForelderBarnRelasjon,
     ForelderBarnRelasjonRolle,
     FullmaktsRolle,
+    Handling,
     InformasjonElement,
     Kjonn,
     type LocalDate,
@@ -320,8 +321,11 @@ export function lagPerson(fnr: string): Person {
                       motpartsRolle: FullmaktsRolle.FULLMEKTIG,
                       omrade: [
                           {
-                              kode: '*',
-                              beskrivelse: ''
+                              omraade: {
+                                  kode: '*',
+                                  beskrivelse: ''
+                              },
+                              handling: [Handling.LES]
                           }
                       ],
                       gyldighetsPeriode: {
@@ -428,7 +432,11 @@ export function lagPerson(fnr: string): Person {
                       sistOppdatert: '2013-01-01' as LocalDate,
                       sistVerifisert: '2013-01-01' as LocalDate
                   },
-                  mobil: { value: '90000000', sistOppdatert: '2015-02-01' as LocalDate, sistVerifisert: null }
+                  mobil: {
+                      value: '90000000',
+                      sistOppdatert: '2015-02-01' as LocalDate,
+                      sistVerifisert: null
+                  }
               },
         bankkonto: {
             kontonummer: '12345678910',

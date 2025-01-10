@@ -13,10 +13,10 @@ import TabKnapper from './TabKnapper';
 import { useOpenTab } from './utils/useOpenTab';
 
 const StyledArticle = styled.article`
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow-y: auto;
 `;
 
 function InfoTabs() {
@@ -42,7 +42,7 @@ function InfoTabs() {
         if (!focusWithinTab) {
             headerRef.current?.focus();
         }
-    }, [openTab, headerRef]);
+    }, []);
 
     useEffect(() => {
         document.title = `Modia personoversikt - ${openTab.tittel}`;

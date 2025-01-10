@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import Sno from './Sno';
-import nisselue from './nisselue.svg';
 
 const dropDown = keyframes`
   from {
@@ -54,7 +53,13 @@ function Nisselue() {
     return (
         <Position>
             {sno && <Sno />}
-            <StyledImg shake={sno} onClick={() => setSno(true)} clickable={!sno} src={nisselue} alt="nisselue" />
+            <StyledImg
+                shake={sno}
+                onClick={() => setSno(true)}
+                clickable={!sno}
+                src={'./nisselue.svg'}
+                alt="nisselue"
+            />
         </Position>
     );
 }

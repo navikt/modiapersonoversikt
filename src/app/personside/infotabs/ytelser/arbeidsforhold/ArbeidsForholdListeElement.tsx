@@ -5,7 +5,7 @@ import DescriptionList from '../../../../../components/DescriptionList';
 
 interface Props {
     arbeidsforhold: Arbeidsforhold;
-    erPleiepenger: boolean;
+    erPleiepenger?: boolean;
 }
 
 function ArbeidsForholdListeElement({ arbeidsforhold, erPleiepenger }: Props) {

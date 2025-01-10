@@ -40,7 +40,6 @@ jobs:
 
             - name: Types
               run: pnpm run types
-              continue-on-error: true
 
             - name: Test
               run: pnpm run test

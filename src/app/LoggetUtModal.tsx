@@ -8,11 +8,11 @@ import styled from 'styled-components';
 import type { PersistentLoginState } from '../utils/hooks/use-persistent-login';
 
 const Modal = styled(RawModal)`
-    text-align: center;
+  text-align: center;
 `;
 const Knapp = styled(KnappBase)`
-    display: block;
-    width: 100%;
+  display: block;
+  width: 100%;
 `;
 
 interface Props {
@@ -20,7 +20,7 @@ interface Props {
 }
 type Config = {
     visModal: boolean;
-    ikon: React.ComponentType<{ width?: string; className?: string }> | string;
+    ikon: React.ComponentType<{ width?: string | number; className?: string }> | string;
     header: string;
     tekst: string;
 };
@@ -61,7 +61,10 @@ function LoggetUtModal(props: Props) {
             shouldCloseOnOverlayClick={false}
             onRequestClose={() => {}}
         >
-            {React.createElement(config.ikon, { width: '2rem', className: 'blokk-xs' })}
+            {React.createElement(config.ikon, {
+                width: '2rem',
+                className: 'blokk-xs'
+            })}
             <Systemtittel tag="h1" className="blokk-xxxs">
                 {config.header}
             </Systemtittel>

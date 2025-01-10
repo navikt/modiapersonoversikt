@@ -74,7 +74,7 @@ describe('Tester visittkort-header sin funksjonalitet', () => {
             expect(focusedElement).toHaveTextContent('Sikkerhetstiltak');
         } else {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-            fail('Ingen activeElement på dokumentet');
+            assert.fail('Ingen activeElement på dokumentet');
         }
     });
 });

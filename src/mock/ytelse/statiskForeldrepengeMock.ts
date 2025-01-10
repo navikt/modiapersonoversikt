@@ -39,9 +39,15 @@ export const statiskForeldrepengeMock: Fødsel = {
             erFedrekvote: null,
             erMødrekvote: null,
             forskyvelsesårsak1: null,
-            forskyvelsesperiode1: { fra: '2014-10-08T14:22:55.629Z', til: '2014-08-22T10:50:40.296Z' },
+            forskyvelsesperiode1: {
+                fra: '2014-10-08T14:22:55.629Z',
+                til: '2014-08-22T10:50:40.296Z'
+            },
             forskyvelsesårsak2: null,
-            forskyvelsesperiode2: { fra: '2014-12-09T16:29:21.344Z', til: '2014-08-26T10:23:03.605Z' },
+            forskyvelsesperiode2: {
+                fra: '2014-12-09T16:29:21.344Z',
+                til: '2014-08-26T10:23:03.605Z'
+            },
             foreldrepengerFom: '2017-04-29',
             midlertidigStansDato: '2019-02-10',
             morSituasjon: 'nobis sit quo et quis',
@@ -60,7 +66,9 @@ export const statiskForeldrepengeMock: Fødsel = {
             inntektForPerioden: 40062,
             sykepengerFom: '2019-02-10',
             refusjonTom: '2019-02-11',
-            refusjonstype: 'Ikke refusjon'
+            refusjonstype: 'Ikke refusjon',
+            arbeidsgiverOrgnr: null,
+            arbeidskategori: null
         },
         {
             arbeidsgiverNavn: 'Bakke - Solheim',
@@ -69,7 +77,9 @@ export const statiskForeldrepengeMock: Fødsel = {
             inntektForPerioden: 40062,
             sykepengerFom: '2019-02-10',
             refusjonTom: '2019-02-11',
-            refusjonstype: 'Ikke refusjon'
+            refusjonstype: 'Ikke refusjon',
+            arbeidsgiverOrgnr: null,
+            arbeidskategori: null
         }
     ],
     erArbeidsgiverperiode: null,

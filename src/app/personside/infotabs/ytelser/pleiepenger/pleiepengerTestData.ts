@@ -21,7 +21,8 @@ export const pleiepengerTestData: Pleiepengerettighet = {
                     refusjonTom: '2018-09-09',
                     refusjonstype: 'Ikke refusjon',
                     arbeidsgiverOrgnr: '1234567890',
-                    arbeidskategori: 'Arbeidstaker'
+                    arbeidskategori: 'Arbeidstaker',
+                    sykepengerFom: null
                 }
             ],
             vedtak: [
@@ -57,7 +58,8 @@ export const pleiepengerTestData: Pleiepengerettighet = {
                     refusjonTom: '2018-10-11',
                     refusjonstype: 'Ikke refusjon',
                     arbeidsgiverOrgnr: '1234567890',
-                    arbeidskategori: 'Arbeidstaker'
+                    arbeidskategori: 'Arbeidstaker',
+                    sykepengerFom: null
                 }
             ],
             vedtak: [

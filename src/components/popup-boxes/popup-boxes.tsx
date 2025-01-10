@@ -68,7 +68,7 @@ export function renderPopup<RESULT, PROPS>(
         if (queryClient) {
             root.render(<QueryClientProvider client={queryClient}>{component}</QueryClientProvider>);
         } else {
-            root.render(component, tmp);
+            root.render(component);
         }
     });
 }

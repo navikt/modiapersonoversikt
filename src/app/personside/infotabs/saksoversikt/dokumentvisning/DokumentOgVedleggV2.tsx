@@ -19,34 +19,34 @@ import DokumentVisning from './SaksDokumentVisning';
 import { getSaksdokumentUrl } from './getSaksdokumentUrl';
 
 const Content = styled(Panel)`
+  flex-grow: 1;
+  min-height: 50vh;
+  display: flex;
+  height: 0; // IE11-hack for at flex skal funke
+  flex-direction: column;
+  object {
     flex-grow: 1;
-    min-height: 50vh;
-    display: flex;
-    height: 0; // IE11-hack for at flex skal funke
-    flex-direction: column;
-    object {
-        flex-grow: 1;
-    }
+  }
 `;
 
 const AlertWrapper = styled.div`
-    padding: ${theme.margin.px40} ${theme.margin.px10};
+  padding: ${theme.margin.px40} ${theme.margin.px10};
 `;
 
 const Header = styled.div`
-    position: relative;
-    padding-right: 10rem;
+  position: relative;
+  padding-right: 10rem;
 `;
 
 const KnappWrapper = styled.div`
-    position: absolute;
-    right: 0.2rem;
-    top: 0.4rem;
+  position: absolute;
+  right: 0.2rem;
+  top: 0.4rem;
 `;
 
 const HeaderStyle = styled(Panel)`
-    margin-bottom: ${theme.margin.layout};
-    padding: ${pxToRem(15)};
+  margin-bottom: ${theme.margin.layout};
+  padding: ${pxToRem(15)};
 `;
 
 interface Props {
@@ -91,14 +91,24 @@ function DokumentOgVedlegg(props: Props) {
     const handleTabChange = (_: any, index: number) =>
         navigate({
             to: fullscreen ? '/saker' : '/person/saker',
-            search: { sakstema: aggregertSak.temakode, dokument: tabs[index].dokumentreferanse }
+            search: {
+                sakstema: aggregertSak.temakode,
+                dokument: tabs[index].dokumentreferanse ?? undefined
+            }
         });
 
     const tabsHeader = !fullscreen && (
         <Header>
             <TabsPure tabs={tabProps} onChange={handleTabChange} />
             <KnappWrapper>
-                <Hovedknapp onClick={() => navigate({ to: '/saker', search: { sakstema: aggregertSak.temakode } })}>
+                <Hovedknapp
+                    onClick={() =>
+                        navigate({
+                            to: '/saker',
+                            search: { sakstema: aggregertSak.temakode }
+                        })
+                    }
+                >
                     <TilbakePil>Tilbake til saker</TilbakePil>
                 </Hovedknapp>
             </KnappWrapper>

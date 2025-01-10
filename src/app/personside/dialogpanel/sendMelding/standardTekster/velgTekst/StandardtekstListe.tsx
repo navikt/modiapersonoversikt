@@ -17,23 +17,23 @@ interface Props {
 }
 
 const TreffStyle = styled(Element)`
-    padding: ${pxToRem(7)} ${pxToRem(15)};
-    border-bottom: ${theme.border.skilleSvak};
+  padding: ${pxToRem(7)} ${pxToRem(15)};
+  border-bottom: ${theme.border.skilleSvak};
 `;
 
 const StyledNav = styled.nav`
-    flex: 0;
-    flex-basis: 35%;
-    height: 100%;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    border-right: 1px solid ${theme.color.navGra20};
-    background-color: #f5f5f5;
+  flex: 0;
+  flex-basis: 35%;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border-right: 1px solid ${theme.color.navGra20};
+  background-color: #f5f5f5;
 `;
 
 const StyledLenkeknapp = styled(LenkeKnapp)`
-    padding: ${pxToRem(7)};
-    float: right;
+  padding: ${pxToRem(7)};
+  float: right;
 `;
 
 function StandardtekstListe(props: Props) {
@@ -44,7 +44,7 @@ function StandardtekstListe(props: Props) {
         .slice(0, visAntall)
         .map((tekst, index) => (
             <TekstListeElement
-                locale={props.locale}
+                locale={props.locale as StandardTekster.Locale}
                 key={tekst.id}
                 tekst={tekst}
                 onChange={props.valgt.input.onChange}
