@@ -40,7 +40,13 @@ export async function postWithConflictVerification<TYPE extends object = object>
     const config = postConfig(body);
     let response = await fetch(uri, config);
     if (response.status === CONFLICT) {
-        if (await confirm({ icon: 'warning', header: 'Oppgave tilordning', message: conflictMessage })) {
+        if (
+            await confirm({
+                icon: 'warning',
+                header: 'Oppgave tilordning',
+                message: conflictMessage
+            })
+        ) {
             config.headers['Ignore-Conflict'] = 'true';
             response = await fetch(uri, config);
         } else {
@@ -78,14 +84,9 @@ async function parseError<TYPE extends object = object>(
     loggLocation: string | undefined
 ): Promise<TYPE> {
     const text = await response.text();
-    loggError(
-        new Error(`Post failed in ${loggLocation ?? 'unknown'} on: ${response.url}`),
-        undefined,
-        {},
-        {
-            action: 'Post-Failed',
-            location: loggLocation
-        }
-    );
+    loggError(new Error(`Post failed in ${loggLocation ?? 'unknown'} on: ${response.url}`), undefined, {
+        action: 'Post-Failed',
+        location: loggLocation
+    });
     throw new FetchError(response, text);
 }

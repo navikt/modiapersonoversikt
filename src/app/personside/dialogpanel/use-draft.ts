@@ -70,7 +70,7 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
 
     const DRAFT_TIMEOUT_SECONDS = 3;
 
-    const status = useMemo(() => {
+    const status: DraftState = useMemo(() => {
         if (!lastSent) {
             return {
                 loading: false,
@@ -83,7 +83,7 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
 
         // Timeout
         if ((!lastConfirm.time || dayjs(lastConfirm.time).isBefore(lastSent)) && timeout) {
-            return { loading: false, ok: false };
+            return { loading: false, ok: false, saveTime: null };
         }
 
         const loading = !lastConfirm.time || sendTime.isAfter(lastConfirm.time);

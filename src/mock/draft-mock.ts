@@ -1,4 +1,4 @@
-import { http, HttpResponse, type HttpResponseResolver, type PathParams } from 'msw';
+import { http, HttpResponse, type HttpResponseResolver } from 'msw';
 import type { Draft, DraftContext } from '../app/personside/dialogpanel/use-draft';
 import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
 import MockWebsocket from './mock-websocket';
@@ -21,7 +21,7 @@ if (!storage.getItem(storageKey)) {
     );
 }
 //biome-ignore lint/style/noNonNullAssertion: biome migration
-let drafts = JSON.parse(storage.getItem('modiapersonoversikt-drafts-mock')!) as Draft[];
+const drafts = JSON.parse(storage.getItem('modiapersonoversikt-drafts-mock')!) as Draft[];
 
 function matchContext(context: DraftContext, other: DraftContext, exact = true): boolean {
     const keys = Object.keys(context);
@@ -44,35 +44,10 @@ const findDrafts: HttpResponseResolver = ({ request }) => {
     const queryParams = new URL(request.url).searchParams;
     const exact = !(queryParams.get('exact') === 'false');
     const context: DraftContext = { ...queryParams.entries };
-    context.exact = undefined;
+    context.exact = 'false';
     const matchedDrafts: Array<Draft> = drafts.filter((draft: Draft) => matchContext(draft.context, context, exact));
 
     return HttpResponse.json(matchedDrafts);
-};
-
-const updateDraft: HttpResponseResolver<PathParams, DraftContext, Draft> = async ({ request }) => {
-    const body = await request.json();
-    const newDraft: Draft = {
-        owner: innloggetSaksbehandler.ident,
-        content: body.content,
-        context: body.context,
-        created: new Date().toISOString()
-    };
-
-    drafts = drafts.filter((draft: Draft) => !matchContext(draft.context, body.context, true));
-    drafts.push(newDraft);
-    storage.setItem(storageKey, JSON.stringify(drafts));
-
-    return HttpResponse.json(newDraft);
-};
-
-const deleteDraft: HttpResponseResolver<PathParams, DraftContext> = async ({ request }) => {
-    const body = await request.json();
-    const context: DraftContext = { ...body };
-    drafts = drafts.filter((draft: Draft) => !matchContext(draft.context, context, true));
-    storage.setItem(storageKey, JSON.stringify(drafts));
-
-    return HttpResponse.json(null);
 };
 
 const generateUid = () => {
@@ -83,7 +58,5 @@ MockWebsocket.setup();
 
 export const getDraftHandlers = () => [
     http.get(`${import.meta.env.BASE_URL}proxy/modia-draft/api/draft`, delayed(2 * randomDelay(), findDrafts)),
-    http.post(`${import.meta.env.BASE_URL}proxy/modia-draft/api/draft`, delayed(2 * randomDelay(), updateDraft)),
-    http.delete(`${import.meta.env.BASE_URL}proxy/modia-draft/api/draft`, delayed(2 * randomDelay(), deleteDraft)),
     http.get(`${import.meta.env.BASE_URL}proxy/modia-draft/api/generate-uid`, delayed(2 * randomDelay(), generateUid))
 ];

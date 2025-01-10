@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import Chick from './Chick';
-import easterEgg from './paaskeegg.svg';
 
 const rollIn = keyframes`
   from {
@@ -67,7 +66,7 @@ function PaaskeEgg() {
                     shake={chick}
                     onClick={() => setChick(true)}
                     clickable={!chick}
-                    src={easterEgg}
+                    src="./paaskeegg.svg"
                     alt="påskeegg"
                 />
             </RollIn>

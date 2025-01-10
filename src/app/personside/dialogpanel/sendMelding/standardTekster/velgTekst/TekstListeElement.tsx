@@ -5,24 +5,24 @@ import theme, { pxToRem } from '../../../../../../styles/personOversiktTheme';
 import type * as StandardTekster from '../domain';
 
 const StyledLi = styled.li`
-    position: relative;
-    border-bottom: 1px solid ${theme.color.navGra20};
+  position: relative;
+  border-bottom: 1px solid ${theme.color.navGra20};
 
-    input {
-        ${theme.visuallyHidden}
-    }
-    input + label {
-        display: flex;
-        padding: ${pxToRem(10)} ${pxToRem(15)};
-        border-radius: ${theme.borderRadius.layout};
-    }
-    input:checked + label {
-        background-color: ${theme.color.kategori};
-    }
-    input:focus + label {
-        outline: none;
-        box-shadow: inset 0 0 0 0.1875rem #254b6d;
-    }
+  input {
+    ${theme.visuallyHidden}
+  }
+  input + label {
+    display: flex;
+    padding: ${pxToRem(10)} ${pxToRem(15)};
+    border-radius: ${theme.borderRadius.layout};
+  }
+  input:checked + label {
+    background-color: ${theme.color.kategori};
+  }
+  input:focus + label {
+    outline: none;
+    box-shadow: inset 0 0 0 0.1875rem #254b6d;
+  }
 `;
 
 interface Props {
@@ -30,7 +30,7 @@ interface Props {
     valgt: boolean;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     highlightRule: Rule;
-    locale: string;
+    locale: StandardTekster.Locale;
     index: number;
 }
 

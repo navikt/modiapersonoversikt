@@ -5,7 +5,7 @@ export function postConfig(body?: object | string) {
         credentials: 'include' as RequestCredentials,
         headers: {
             'content-type': 'application/json'
-        },
+        } as Record<string, string>,
         method: 'POST',
         mode: 'cors' as RequestMode,
         redirect: 'follow' as RequestRedirect

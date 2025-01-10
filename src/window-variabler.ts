@@ -4,8 +4,9 @@ declare global {
     interface Window {
         erChatvisning: boolean;
         applicationFeatureToggles: {
-            enableFaro: string | boolean;
+            enableFaro: boolean;
         };
+        __ENV__: Record<string, string>;
         faro?: Faro;
     }
 }

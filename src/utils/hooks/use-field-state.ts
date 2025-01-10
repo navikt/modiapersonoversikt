@@ -18,7 +18,7 @@ export default function useFieldState(initialState: string): FieldState {
         [setValue]
     );
     const isPristine = useCallback(
-        (trim) => (trim ? value.trim() === initialState.trim() : value === initialState),
+        (trim: boolean) => (trim ? value.trim() === initialState.trim() : value === initialState),
         [value, initialState]
     );
 

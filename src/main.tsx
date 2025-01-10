@@ -8,13 +8,6 @@ import { createRouter } from './router';
 import { initAmplitude } from './utils/amplitude';
 import { initializeObservability } from './utils/observability';
 
-declare global {
-    interface Window {
-        applicationFeatureToggles: Record<string, boolean>;
-        __ENV__: Record<string, string>;
-    }
-}
-
 if (import.meta.env.DEV) {
     window.applicationFeatureToggles = {
         enableFaro: true

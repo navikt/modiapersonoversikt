@@ -28,17 +28,21 @@ function VarslerLoader<P>(props: VarselLoaderProps<P>) {
     if (varslerResponse.isError) {
         return <AlertStripeFeil>Feil ved uthenting av brukers varsler og notifikasjoner.</AlertStripeFeil>;
     }
-    const varsler: VarslerResult = varslerResponse.data;
+    const varsler: VarslerResult | undefined = varslerResponse.data;
     let feilmelding = null;
-    if (varsler.feil.length > 0) {
+    if (varsler && varsler.feil.length > 0) {
         feilmelding = <AlertStripeFeil className="blokk-xs">{varsler.feil.join('. ')}</AlertStripeFeil>;
     }
 
-    const varselElementer = varsler.varsler.sort(datoSynkende(datoExtractor));
+    const varselElementer = varsler?.varsler.sort(datoSynkende(datoExtractor));
     const { component, ...extraProps } = props;
     const pProps = extraProps as unknown as P;
 
-    return React.createElement(component, { ...pProps, varsler: varselElementer, feilmelding });
+    return React.createElement(component, {
+        ...pProps,
+        varsler: varselElementer ?? [],
+        feilmelding
+    });
 }
 
 export default VarslerLoader;

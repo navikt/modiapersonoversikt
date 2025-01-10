@@ -22,42 +22,42 @@ interface Props {
 }
 
 const Style = styled.div`
-    display: flex;
-    flex-grow: 1;
-    height: 0; // hack for å få flex til å funke som vi vil her, bør skrives om til grid
-    b {
-        font-weight: bolder !important;
-    }
-    em {
-        font-style: normal;
-        ${theme.highlight}
-    }
+  display: flex;
+  flex-grow: 1;
+  height: 0; // hack for å få flex til å funke som vi vil her, bør skrives om til grid
+  b {
+    font-weight: bolder !important;
+  }
+  em {
+    font-style: normal;
+    ${theme.highlight}
+  }
 `;
 
 const PreviewStyle = styled.div`
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    background-color: white;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: white;
 `;
 
 const VelgTekst = styled.div`
-    padding: 1rem;
+  padding: 1rem;
 `;
 
 const VelgKnapp = styled(Hovedknapp)`
-    float: right;
+  float: right;
 `;
 
 const LocaleVelgerStyle = styled.div`
-    float: left;
-    .skjemaelement {
-        margin: 0;
-    }
+  float: left;
+  .skjemaelement {
+    margin: 0;
+  }
 `;
 
 const StyledAlertstripeAdvarsel = styled(AlertStripeAdvarsel)`
-    margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 `;
 
 const manglerAutoCompleteDataWarning = (
@@ -83,7 +83,7 @@ function StandardTekstValg({ valgt, valgtLocale, valgtTekst, sokefelt, tekster, 
             <PreviewStyle>
                 <StandardTekstPreview
                     tekst={valgtTekst}
-                    locale={valgtLocale.input.value}
+                    locale={valgtLocale.input.value as StandardTekster.Locale}
                     sokefelt={sokefelt}
                     highlightRule={highlightRule}
                 />

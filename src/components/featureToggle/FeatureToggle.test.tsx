@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import featuretogglesResource from '../../rest/resources/featuretogglesResource';
+import featuretogglesResource, { type FeatureTogglesResponse } from '../../rest/resources/featuretogglesResource';
 import TestProvider from '../../test/Testprovider';
 import { getTestStore, mockReactQuery, setupReactQueryMocks } from '../../test/testStore';
 import IfFeatureToggleOff from './IfFeatureToggleOff';
@@ -11,7 +11,9 @@ const testStore = getTestStore();
 
 test('viser innhold i FeatureToggle dersom feature-toggle er på', () => {
     setupReactQueryMocks();
-    mockReactQuery(featuretogglesResource.useFetch, { [toggleId]: true });
+    mockReactQuery(featuretogglesResource.useFetch, {
+        [toggleId]: true
+    } as FeatureTogglesResponse);
 
     const { container } = render(
         <TestProvider customStore={testStore}>
@@ -25,7 +27,9 @@ test('viser innhold i FeatureToggle dersom feature-toggle er på', () => {
 
 test('viser innhold i IfFeatureToggleOff dersom feature-toggle er av', () => {
     setupReactQueryMocks();
-    mockReactQuery(featuretogglesResource.useFetch, { [toggleId]: false });
+    mockReactQuery(featuretogglesResource.useFetch, {
+        [toggleId]: false
+    } as FeatureTogglesResponse);
 
     const { container } = render(
         <TestProvider customStore={testStore}>
@@ -39,7 +43,9 @@ test('viser innhold i IfFeatureToggleOff dersom feature-toggle er av', () => {
 
 test('viser LazySpinner dersom feature-toggle ikke er satt', () => {
     setupReactQueryMocks();
-    mockReactQuery(featuretogglesResource.useFetch, { [toggleId]: false }, { isLoading: true });
+    mockReactQuery(featuretogglesResource.useFetch, { [toggleId]: false } as FeatureTogglesResponse, {
+        isLoading: true
+    });
 
     const { container, rerender } = render(
         <TestProvider customStore={testStore}>
@@ -48,7 +54,12 @@ test('viser LazySpinner dersom feature-toggle ikke er satt', () => {
         </TestProvider>
     );
 
-    rerender();
+    rerender(
+        <TestProvider customStore={testStore}>
+            <IfFeatureToggleOn toggleID={toggleId}>Jeg er på</IfFeatureToggleOn>
+            <IfFeatureToggleOff toggleID={toggleId}>Jeg er av</IfFeatureToggleOff>
+        </TestProvider>
+    );
 
     expect(container).toMatchSnapshot();
 });

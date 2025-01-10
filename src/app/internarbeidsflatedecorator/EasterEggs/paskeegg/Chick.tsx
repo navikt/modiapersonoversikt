@@ -1,7 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import { useOnMount } from '../../../../utils/customHooks';
 import { loggEvent } from '../../../../utils/logger/frontendLogger';
-import chickIcon from './chickIcon.svg';
 
 const run = keyframes`
   70% {
@@ -42,7 +41,7 @@ function Chick() {
 
     return (
         <Position>
-            <StyledImg src={chickIcon} alt="kylling pip pip pip" />
+            <StyledImg src="./chickIcon.svg" alt="kylling pip pip pip" />
         </Position>
     );
 }

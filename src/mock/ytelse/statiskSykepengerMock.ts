@@ -3,6 +3,8 @@ import { statiskKommendeUtbetaling } from './statiskForeldrepengeMock';
 
 const arbeidsforhold = {
     arbeidsgiverNavn: 'Bærlevåg Burger og Bitcoin',
+    arbeidsgiverOrgnr: null,
+    arbeidskategori: null,
     arbeidsgiverKontonr: '87865275970',
     inntektsperiode: 'Månedssats',
     inntektForPerioden: 39691,
@@ -26,12 +28,18 @@ const statiskUtbetalingPåVentMock = {
 const sykmelding = {
     sykmelder: 'Lommelegen AS',
     behandlet: '2018-04-01',
-    sykmeldt: { fra: '2014-02-09T19:24:27.357Z', til: '2014-05-11T02:18:25.709Z' },
+    sykmeldt: {
+        fra: '2014-02-09T19:24:27.357Z',
+        til: '2014-05-11T02:18:25.709Z'
+    },
     sykmeldingsgrad: 97,
     gjelderYrkesskade: null,
     gradAvSykmeldingListe: [
         {
-            gradert: { fra: '2014-07-28T10:47:27.559Z', til: '2014-01-03T06:49:39.367Z' },
+            gradert: {
+                fra: '2014-07-28T10:47:27.559Z',
+                til: '2014-01-03T06:49:39.367Z'
+            },
             sykmeldingsgrad: 89
         }
     ]
@@ -43,7 +51,10 @@ export const statiskSykepengerMock: Sykepenger = {
     forbrukteDager: 23,
     ferie1: { fra: '2014-01-19T06:56:39.720Z', til: '2014-01-14T00:16:11.870Z' },
     ferie2: null,
-    sanksjon: { fra: '2014-01-19T01:31:21.521Z', til: '2014-09-05T11:21:25.288Z' },
+    sanksjon: {
+        fra: '2014-01-19T01:31:21.521Z',
+        til: '2014-09-05T11:21:25.288Z'
+    },
     stansårsak: null,
     unntakAktivitet: null,
     forsikring: {

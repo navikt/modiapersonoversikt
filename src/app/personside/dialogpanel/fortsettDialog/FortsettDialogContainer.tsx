@@ -79,7 +79,7 @@ function FortsettDialogContainer(props: Props) {
     const valgtEnhet = useValgtenhet().enhetId;
     const draftLoader = useCallback(
         (draft: Draft) => setState((current) => ({ ...current, tekst: draft.content })),
-        [setState]
+        []
     );
     const draftContext = useMemo(() => ({ fnr }), [fnr]);
     const { update: updateDraft, remove: removeDraft, status: draftStatus } = useDraft(draftContext, draftLoader);
@@ -96,7 +96,7 @@ function FortsettDialogContainer(props: Props) {
                 }
                 return { ...currentState, visFeilmeldinger: false, ...change };
             }),
-        [setState, updateDraft]
+        [updateDraft]
     );
 
     const opprettHenvendelse = useOpprettHenvendelse(props.traad);
@@ -127,7 +127,9 @@ function FortsettDialogContainer(props: Props) {
         const callback = () => {
             removeDraft();
             tildelteOppgaverResource.refetch();
-            queryClient.invalidateQueries(dialogResource.queryKey(fnr, valgtEnhet));
+            queryClient.invalidateQueries({
+                queryKey: dialogResource.queryKey(fnr, valgtEnhet)
+            });
         };
 
         const erOppgaveTilknyttetAnsatt = state.oppgaveListe === OppgavelisteValg.MinListe;
@@ -190,7 +192,9 @@ function FortsettDialogContainer(props: Props) {
             post(url, requestV2, 'Svar-Med-Spørsmål')
                 .then(() => {
                     callback();
-                    queryClient.invalidateQueries(journalsakResource.queryKey(fnr));
+                    queryClient.invalidateQueries({
+                        queryKey: journalsakResource.queryKey(fnr)
+                    });
                     setDialogStatus({
                         type: DialogPanelStatus.SVAR_SENDT,
                         kvitteringsData: kvitteringsData

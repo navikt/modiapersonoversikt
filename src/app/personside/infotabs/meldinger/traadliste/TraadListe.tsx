@@ -24,54 +24,54 @@ interface Props {
 }
 
 const StyledPanel = styled(Panel)`
-    padding: 0rem;
-    ol {
-        list-style: none;
-    }
+  padding: 0rem;
+  ol {
+    list-style: none;
+  }
 `;
 
 const SokVerktøyStyle = styled.div`
-    padding: 0 ${theme.margin.layout} ${theme.margin.layout};
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  padding: 0 ${theme.margin.layout} ${theme.margin.layout};
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 const SpaceBetween = styled.div`
-    padding: 0.5rem;
-    button {
-        padding: 0;
-    }
+  padding: 0.5rem;
+  button {
+    padding: 0;
+  }
 `;
 const StyledOl = styled.ol`
-    > * {
-        border-top: ${theme.border.skille};
-    }
-    &:focus {
-        ${theme.focus};
-    }
+  > * {
+    border-top: ${theme.border.skille};
+  }
+  &:focus {
+    ${theme.focus};
+  }
 `;
 
 const InputStyle = styled.div`
-    padding: ${theme.margin.layout} ${theme.margin.layout} 0;
-    .skjemaelement {
-        margin-bottom: 0.2rem;
-    }
-    .skjemaelement__label {
-        ${theme.visuallyHidden};
-    }
+  padding: ${theme.margin.layout} ${theme.margin.layout} 0;
+  .skjemaelement {
+    margin-bottom: 0.2rem;
+  }
+  .skjemaelement__label {
+    ${theme.visuallyHidden};
+  }
 `;
 
 const PagineringStyling = styled.div`
-    padding: ${theme.margin.layout};
-    label {
-        ${theme.visuallyHidden};
-    }
+  padding: ${theme.margin.layout};
+  label {
+    ${theme.visuallyHidden};
+  }
 `;
 
 const PrevNextButtonsStyling = styled.div`
-    padding: ${theme.margin.layout};
-    border-top: ${theme.border.skilleSvak};
+  padding: ${theme.margin.layout};
+  border-top: ${theme.border.skilleSvak};
 `;
 
 export const valgtMeldingKlasse = 'valgt_melding';

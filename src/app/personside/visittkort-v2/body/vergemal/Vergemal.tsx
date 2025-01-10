@@ -12,7 +12,7 @@ import VisittkortElement from '../VisittkortElement';
 import { VisittkortGruppe } from '../VisittkortStyles';
 
 const Vergeinformasjon = styled.div`
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 `;
 
 interface Props {
@@ -20,7 +20,10 @@ interface Props {
     vergemal: VergeInterface[];
 }
 
-function Verge(props: { feilendeSystemer: Array<InformasjonElement>; verge: VergeInterface }) {
+function Verge(props: {
+    feilendeSystemer: Array<InformasjonElement>;
+    verge: VergeInterface;
+}) {
     const { verge } = props;
     const harFeilendeSystemOgIngenNavn =
         harFeilendeSystemer(props.feilendeSystemer, InformasjonElement.PDL_TREDJEPARTSPERSONER) && !verge.navn ? (
@@ -35,7 +38,7 @@ function Verge(props: { feilendeSystemer: Array<InformasjonElement>; verge: Verg
                 {harFeilendeSystemOgIngenNavn}
                 <Normaltekst>{verge.ident}</Normaltekst>
             </Vergeinformasjon>
-            {verge.tjenesteOppgaver?.length > 0 ? (
+            {verge.tjenesteOppgaver && verge.tjenesteOppgaver?.length > 0 ? (
                 <Fragment>
                     <Element>
                         Område{' '}

@@ -2,7 +2,6 @@ import { useState } from 'react';
 import styled, { createGlobalStyle, css, keyframes } from 'styled-components';
 import { pxToRem } from '../../../../styles/personOversiktTheme';
 import Fireworks from './Fireworks';
-import partyhatt from './partyhatt.svg';
 
 const GlobalStyles = createGlobalStyle<{ dropNavLogo: boolean }>`
   .dekorator__hode__logo svg {
@@ -76,7 +75,7 @@ function Partyhatt() {
                 jump={fireworks}
                 onClick={() => setFireworks(true)}
                 clickable={!fireworks}
-                src={partyhatt}
+                src="./partyhatt.svg"
                 alt="partyhatt"
             />
         </Position>

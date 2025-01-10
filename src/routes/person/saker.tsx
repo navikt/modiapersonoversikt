@@ -5,13 +5,14 @@ import { z } from 'zod';
 
 export const sakerSearchSchema = z.object({
     sakstema: z.string().optional(),
-    avsender: z.array(z.enum(['nav', 'bruker', 'andre'])).default(['nav', 'andre', 'bruker'])
+    avsender: z.array(z.enum(['nav', 'bruker', 'andre'])).default(['nav', 'andre', 'bruker']),
+    dokument: z.string().optional()
 });
 
 export const Route = createFileRoute('/person/saker')({
     component: SaksoversiktContainer,
     validateSearch: sakerSearchSchema,
     search: {
-        middlewares: [keepQueryParams(['sakstema', 'avsender'])]
+        middlewares: [keepQueryParams(['sakstema', 'avsender', 'dokument'])]
     }
 });

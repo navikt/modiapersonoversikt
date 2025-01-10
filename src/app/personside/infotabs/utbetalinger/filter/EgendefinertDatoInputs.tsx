@@ -12,8 +12,8 @@ interface EgendefinertDatoInputsProps {
 }
 
 const DatePickerWrapper = styled.div`
-    display: flex;
-    gap: 20px;
+  display: flex;
+  gap: 20px;
 `;
 
 function EgendefinertDatoInputs(props: EgendefinertDatoInputsProps) {
@@ -36,13 +36,13 @@ function EgendefinertDatoInputs(props: EgendefinertDatoInputsProps) {
     const [tilDato, setTilDato] = useState(dayjs(props.periode?.til));
     const [periodeFeilmelding, setPeriodeFeilmelding] = useState<string | undefined>();
 
-    const onFraDatoChange = (val: Date) => {
+    const onFraDatoChange = (val?: Date) => {
         const value = dayjs(val);
         setFraDato(dayjs(val));
         onRangeDatoChange(value.format(ISO_DATE_FORMAT), tilDato.format(ISO_DATE_FORMAT));
     };
 
-    const onTilDatoChange = (val: Date) => {
+    const onTilDatoChange = (val?: Date) => {
         const value = dayjs(val).format(ISO_DATE_FORMAT);
         setTilDato(dayjs(val));
         onRangeDatoChange(fraDato.format(ISO_DATE_FORMAT), value);
@@ -92,7 +92,7 @@ function EgendefinertDatoInputs(props: EgendefinertDatoInputsProps) {
                     fromDate={fromDate}
                     toDate={maxFraDato}
                 >
-                    <DatePicker.Input {...fromInputProps} locale={'nb'} size={'small'} label="Fra" />
+                    <DatePicker.Input {...fromInputProps} size={'small'} label="Fra" />
                 </DatePicker>
                 <DatePicker
                     {...toDatepickerProps}
@@ -102,7 +102,7 @@ function EgendefinertDatoInputs(props: EgendefinertDatoInputsProps) {
                     fromDate={minTilDato}
                     toDate={toDate}
                 >
-                    <DatePicker.Input {...toInputProps} locale={'nb'} size={'small'} label="Til" />
+                    <DatePicker.Input {...toInputProps} size={'small'} label="Til" />
                 </DatePicker>
             </DatePickerWrapper>
             {periodeFeilmelding && <SkjemaelementFeilmelding>{periodeFeilmelding}</SkjemaelementFeilmelding>}

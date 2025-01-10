@@ -41,7 +41,7 @@ const subjectPronomenMap = {
         [Locale.nn_NO]: 'ho',
         [Locale.en_US]: 'she'
     }
-};
+} as Partial<Record<Kjonn, Record<Locale, string>>>;
 
 const objektPronomenMap = {
     [Kjonn.M]: {
@@ -54,15 +54,13 @@ const objektPronomenMap = {
         [Locale.nn_NO]: 'ho',
         [Locale.en_US]: 'her'
     }
-};
+} as Partial<Record<Kjonn, Record<Locale, string>>>;
 
-function objektPronomen(kjonn: Kjonn, locale: string) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
+function objektPronomen(kjonn: Kjonn, locale: Locale) {
     return objektPronomenMap[kjonn]?.[locale] || null;
 }
 
-function subjectPronomen(kjonn: Kjonn, locale: string) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
+function subjectPronomen(kjonn: Kjonn, locale: Locale) {
     return subjectPronomenMap[kjonn]?.[locale] || null;
 }
 
@@ -91,10 +89,8 @@ export function byggAutofullforMap(
                 [person.navn.firstOrNull()?.mellomnavn, person.navn.firstOrNull()?.etternavn].filter((v) => v).join(' ')
             ),
             'bruker.navn': capitalizeName(hentNavn(person.navn.firstOrNull())),
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-            'bruker.subjekt': kjonn && subjectPronomen(kjonn, locale),
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-            'bruker.objekt': kjonn && objektPronomen(kjonn, locale)
+            'bruker.subjekt': (kjonn && subjectPronomen(kjonn, locale as Locale)) ?? personData['bruker.subjekt'],
+            'bruker.objekt': (kjonn && objektPronomen(kjonn, locale as Locale)) ?? personData['bruker.objekt']
         };
     }
 
@@ -108,17 +104,20 @@ export function byggAutofullforMap(
     };
 }
 
-export function autofullfor(tekst: string, autofullforMap: AutofullforMap): string {
+const isAutofullforKey = (key: string, autofullforMap: AutofullforMap): key is keyof AutofullforMap => {
     const keys = Object.keys(autofullforMap);
-    return tekst.replace(/\[(.*?)\]/g, (fullmatch, key) => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        if (!keys.includes(key)) {
+
+    return keys.includes(key);
+};
+
+export function autofullfor(tekst: string, autofullforMap: AutofullforMap): string {
+    return tekst.replace(/\[(.*?)\]/g, (_fullmatch, key: string) => {
+        if (!isAutofullforKey(key, autofullforMap)) {
             loggWarning(new Error(`Standardtekster::autofullfor Fant ikke nøkkel: ${key}`));
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             loggEvent('manglendeNokkel', 'autofullfør', { nøkkel: key });
             return '[ukjent nøkkel]';
         }
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
+
         return autofullforMap[key] || '[fant ingen verdi]';
     });
 }

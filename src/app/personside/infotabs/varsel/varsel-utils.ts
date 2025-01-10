@@ -2,8 +2,7 @@ import { type Varsel, Varseltype } from '../../../../models/varsel';
 import { loggError } from '../../../../utils/logger/frontendLogger';
 
 export function getVarselTekst(varsel: Varsel) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const varselTekst = Varseltype[varsel.varselType];
+    const varselTekst = Varseltype[varsel.varselType as keyof typeof Varseltype];
 
     if (!varselTekst) {
         const ukjentNøkkelTekst = `Ukjent nøkkel: ${varsel.varselType}`;
@@ -11,6 +10,5 @@ export function getVarselTekst(varsel: Varsel) {
         return ukjentNøkkelTekst;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return varselTekst;
 }

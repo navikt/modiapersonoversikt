@@ -11,8 +11,8 @@ interface PagineringsData<T> {
 }
 
 const KnappStyling = styled.div`
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 `;
 
 const getRange = <T,>(index: number, pageSize: number, list: T[]) => {
@@ -42,15 +42,15 @@ const PrevNextButton = <T,>(props: {
 };
 
 const HoyrejustertPrevNextButton = styled(PrevNextButton)`
-    margin-left: auto;
+  margin-left: auto;
 `;
 
-function usePaginering<T>(
+function usePaginering<T, K>(
     list: T[],
     pageSize: number,
     itemLabel: string,
     selectedItem?: T,
-    fieldCompare: (t: T) => T = (t) => t
+    fieldCompare?: (t: T) => K
 ): PagineringsData<T> {
     const selectRef = useRef<HTMLSelectElement | null>();
     const [currentPage, setCurrentPage] = useState(0);
@@ -68,8 +68,8 @@ function usePaginering<T>(
     useEffect(() => {
         // skifter til riktig side dersom selected-item settes programatisk, og viser riktig side ved mount
         if (selectedItem && prevSelectedItem !== selectedItem) {
-            const compareValue = fieldCompare(selectedItem);
-            const index = list.findIndex((item) => fieldCompare(item) === compareValue);
+            const compareValue = fieldCompare?.(selectedItem) ?? selectedItem;
+            const index = list.findIndex((item) => fieldCompare?.(item) ?? item === compareValue);
             const newPage = Math.floor(index / pageSize);
             setCurrentPage(newPage);
         }

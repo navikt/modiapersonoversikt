@@ -41,7 +41,7 @@ function SendNyMeldingContainer(props: Props) {
     const [state, setState] = useState<SendNyMeldingState>(initialState);
     const draftLoader = useCallback(
         (draft: Draft) => setState((current) => ({ ...current, tekst: draft.content })),
-        [setState]
+        []
     );
     const draftContext = useMemo(() => ({ fnr }), [fnr]);
     const { update: updateDraft, remove: removeDraft, status: draftStatus } = useDraft(draftContext, draftLoader);
@@ -53,7 +53,7 @@ function SendNyMeldingContainer(props: Props) {
                 }
                 return { ...currentState, visFeilmeldinger: false, ...change };
             }),
-        [setState, updateDraft]
+        [updateDraft]
     );
 
     const [sendNyMeldingStatus, setSendNyMeldingStatus] = useState<SendNyMeldingPanelState>({
@@ -128,7 +128,9 @@ function SendNyMeldingContainer(props: Props) {
         const callback = () => {
             removeDraft();
             updateState(initialState);
-            queryClient.invalidateQueries(dialogResource.queryKey(fnr, valgtEnhet));
+            queryClient.invalidateQueries({
+                queryKey: dialogResource.queryKey(fnr, valgtEnhet)
+            });
         };
 
         const commonPayload = {
@@ -167,7 +169,10 @@ function SendNyMeldingContainer(props: Props) {
                 })
                 .catch((error) => {
                     console.error('Send-Referat feilet', error);
-                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.ERROR, fritekst: requestV2.fritekst });
+                    setSendNyMeldingStatus({
+                        type: SendNyMeldingStatus.ERROR,
+                        fritekst: requestV2.fritekst
+                    });
                     updateState({ visFeilmeldinger: true });
                 });
         } else if (MeldingValidator.erGyldigSamtale(state) && state.sak) {
@@ -187,9 +192,14 @@ function SendNyMeldingContainer(props: Props) {
                         fritekst: requestV2.fritekst,
                         traad: traad
                     };
-                    queryClient.invalidateQueries(journalsakResource.queryKey(fnr));
+                    queryClient.invalidateQueries({
+                        queryKey: journalsakResource.queryKey(fnr)
+                    });
                     callback();
-                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.SAMTALE_SENDT, kvitteringNyMelding });
+                    setSendNyMeldingStatus({
+                        type: SendNyMeldingStatus.SAMTALE_SENDT,
+                        kvitteringNyMelding
+                    });
                 })
                 .catch((error) => {
                     console.error('Send-Sporsmal feilet', error);

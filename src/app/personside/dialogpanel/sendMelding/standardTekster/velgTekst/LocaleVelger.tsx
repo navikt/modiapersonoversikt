@@ -11,16 +11,16 @@ interface Props {
 }
 
 const Select = styled(NavFrontendSelect)`
-    .skjemaelement__label {
-        ${theme.visuallyHidden}
-    }
+  .skjemaelement__label {
+    ${theme.visuallyHidden}
+  }
 `;
 
 function LocaleVelger(props: Props) {
     if (props.tekst === undefined) {
         return null;
     }
-    const locales = Object.keys(props.tekst.innhold);
+    const locales = Object.keys(props.tekst.innhold) as (keyof typeof props.tekst.innhold)[];
 
     if (locales.length < 2) {
         return null;

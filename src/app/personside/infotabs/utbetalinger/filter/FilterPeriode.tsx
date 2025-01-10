@@ -7,33 +7,33 @@ import { getFraDateFromPeriod } from '../utils/utbetalinger-utils';
 import EgendefinertDatoInputs from './EgendefinertDatoInputs';
 
 const InputPanel = styled.form`
-    display: flex;
-    flex-direction: column;
-    margin-top: 1.5rem;
-    > *:first-child {
-        margin-bottom: 0.5rem;
-    }
-    > * {
-        margin-top: 0.5rem;
-    }
-    .skjemaelement--horisontal {
-        margin-bottom: 0.4rem;
-    }
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+  > *:first-child {
+    margin-bottom: 0.5rem;
+  }
+  > * {
+    margin-top: 0.5rem;
+  }
+  .skjemaelement--horisontal {
+    margin-bottom: 0.4rem;
+  }
 `;
 
 const RadioWrapper = styled.div`
-    margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 `;
 const FieldSet = styled.fieldset`
-    border: none;
-    margin: 0;
-    padding: 0;
-    > *:first-child {
-        margin-bottom: 0.8rem;
-    }
-    > *:last-child {
-        margin-bottom: 0;
-    }
+  border: none;
+  margin: 0;
+  padding: 0;
+  > *:first-child {
+    margin-bottom: 0.8rem;
+  }
+  > *:last-child {
+    margin-bottom: 0;
+  }
 `;
 
 interface FiltreringPeriodeProps {
@@ -49,16 +49,24 @@ function FiltreringPeriode(props: FiltreringPeriodeProps) {
         setRadioValg(periodeValg);
         const fraTilDato = getFraDateFromPeriod(periodeValg);
         setPeriode(fraTilDato);
-        props.updatePeriod({ ...props.periode, radioValg: periodeValg, egendefinertPeriode: fraTilDato });
+        props.updatePeriod({
+            ...props.periode,
+            radioValg: periodeValg,
+            egendefinertPeriode: fraTilDato
+        });
     };
 
     const onFraTilDatoChange = (val: FraTilDato) => {
         setPeriode(val);
-        props.updatePeriod({ ...props.periode, radioValg, egendefinertPeriode: val });
+        props.updatePeriod({
+            ...props.periode,
+            radioValg,
+            egendefinertPeriode: val
+        });
     };
 
-    const radios = Object.keys(PeriodeValg).map((key) => {
-        const value = PeriodeValg[key] as PeriodeValg;
+    const radios = (Object.keys(PeriodeValg) as (keyof typeof PeriodeValg)[]).map((key) => {
+        const value = PeriodeValg[key];
         const checked = radioValg === value;
         return (
             <RadioWrapper key={value}>

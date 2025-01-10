@@ -3,7 +3,7 @@ import { guid } from 'nav-frontend-js-utils';
 import { Knapp } from 'nav-frontend-knapper';
 import Tekstomrade, { defaultRules, type Rule } from 'nav-frontend-tekstomrade';
 import { Systemtittel } from 'nav-frontend-typografi';
-import { useRef } from 'react';
+import { type ComponentProps, useRef } from 'react';
 import styled from 'styled-components';
 import theme from '../../../../../../styles/personOversiktTheme';
 import type { FieldState } from '../../../../../../utils/hooks/use-field-state';
@@ -12,38 +12,35 @@ import { erGyldigValg } from '../sokUtils';
 
 interface Props {
     tekst: StandardTekster.Tekst | undefined;
-    locale: string;
+    locale: StandardTekster.Locale;
     sokefelt: FieldState;
     highlightRule: Rule;
 }
 
-const Tag = styled(({ ...rest }) => <Knapp {...rest} />)`
-    padding: 0.25rem 0.5rem;
-    margin-right: 0.25rem;
-    &:hover {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        color: ${(props: { highlight: boolean }) => (props.highlight ? theme.color.lenke : '#ffffff')};
-    }
+const Tag = styled(({ ...rest }: ComponentProps<typeof Knapp> & { highlight: boolean }) => <Knapp {...rest} />)`
+  padding: 0.25rem 0.5rem;
+  margin-right: 0.25rem;
+  &:hover {
+    color: $(props: {highlight: boolean}) =>
+      (props.highlight ? theme.color.lenke: "#ffffff");
+  }
 `;
 
 const PreviewStyle = styled.div`
-    padding: 1rem;
-    flex: 1;
-    word-break: break-word;
-    overflow-y: scroll;
-    border-bottom: 1px solid ${theme.color.navGra20};
+  padding: 1rem;
+  flex: 1;
+  word-break: break-word;
+  overflow-y: scroll;
+  border-bottom: 1px solid ${theme.color.navGra20};
 `;
 
-function Tags({ valgtTekst, sokefelt }: { valgtTekst?: StandardTekster.Tekst; sokefelt: FieldState }) {
+function Tags({
+    valgtTekst,
+    sokefelt
+}: {
+    valgtTekst?: StandardTekster.Tekst;
+    sokefelt: FieldState;
+}) {
     const tittelId = useRef(guid());
 
     if (!valgtTekst) {
@@ -99,7 +96,7 @@ function StandardTekstPreview({ tekst, locale, sokefelt, highlightRule }: Props)
                     {tekst?.overskrift}
                 </Systemtittel>
                 <Tekstomrade rules={[highlightRule, ...defaultRules]} className="typo-normal blokk-m">
-                    {tekst?.innhold[locale]}
+                    {tekst?.innhold[locale] as string}
                 </Tekstomrade>
             </article>
             <Tags valgtTekst={tekst} sokefelt={sokefelt} />
