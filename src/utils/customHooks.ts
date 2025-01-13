@@ -1,5 +1,5 @@
 import { useNavigate } from '@tanstack/react-router';
-import { useSetAtom } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import type * as React from 'react';
 import {
     type DependencyList,
@@ -11,6 +11,7 @@ import {
     useRef
 } from 'react';
 import { useSelector } from 'react-redux';
+import { nyModiaAtom } from 'src/components/NyModia';
 import { aktivBrukerAtom, usePersonAtomValue } from 'src/lib/state/context';
 import { paths } from '../app/routes/routing';
 import type { AppState } from '../redux/reducers';
@@ -83,6 +84,7 @@ export function useFodselsnummer() {
 
 export function useSettAktivBruker() {
     const setBruker = useSetAtom(aktivBrukerAtom);
+    const nyModia = useAtomValue(nyModiaAtom);
     const navigate = useNavigate();
 
     return (fnr: string | null, redirect = true) => {
@@ -105,7 +107,7 @@ export function useSettAktivBruker() {
                 paths.innkrevingskrav
             ].some((path) => location.pathname.startsWith(path))
         ) {
-            navigate({ to: paths.personUri });
+            navigate({ to: nyModia ? '/new/person' : paths.personUri });
         }
     };
 }

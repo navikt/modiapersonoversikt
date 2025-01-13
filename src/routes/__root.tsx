@@ -10,6 +10,7 @@ import Decorator from 'src/app/internarbeidsflatedecorator/Decorator';
 import DemoBanner from 'src/components/DemoBanner';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import NotFound from 'src/components/NotFound';
+import { NyModia } from 'src/components/NyModia';
 import { ValgtEnhetProvider } from 'src/context/valgtenhet-state';
 import { aktivBrukerLastetAtom, aktivEnhetAtom } from 'src/lib/state/context';
 import { ThemeProvider } from 'src/lib/state/theme';
@@ -115,6 +116,7 @@ function RootLayout() {
                     <AppStyle>
                         <HandleLegacyUrls>
                             <DemoBanner />
+                            <NyModia />
                             <Decorator />
                             <ErrorBoundary boundaryName="app-content">
                                 <App>
