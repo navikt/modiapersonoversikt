@@ -7,5 +7,6 @@ export enum FeatureToggles {
     BrukNyTiltakspenger = 'modiapersonoversikt.bruk-ny-tiltakspenger',
     FnrSokForInnkreving = 'modiapersonoversikt.fnr-sok-for-innkreving',
     OrgnrSokForInnkreving = 'modiapersonoversikt.orgnr-sok-for-innkreving',
-    NyAvansertSok = 'modiapersonoversikt.ny-avansert-sok'
+    NyAvansertSok = 'modiapersonoversikt.ny-avansert-sok',
+    NyModiaKnapp = 'modiapersonoversikt.ny-modia-knapp'
 }
