@@ -97,7 +97,7 @@ const fieldCompareTrad = (traad: Traad) => traad.traadId;
 
 function TraadListe(props: Props) {
     const meldingsok = useMeldingsok();
-    const inputRef = React.useRef<HTMLInputElement>();
+    const inputRef = React.useRef<HTMLInputElement>(undefined);
     const paginering = usePaginering(
         props.traaderEtterSokOgFiltrering,
         50,

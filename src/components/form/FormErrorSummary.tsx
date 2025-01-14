@@ -1,6 +1,6 @@
 import { Feiloppsummering, type FeiloppsummeringFeil } from 'nav-frontend-skjema';
 import type { FeiloppsummeringProps } from 'nav-frontend-skjema';
-import { useEffect, useRef } from 'react';
+import { type RefObject, useEffect, useRef } from 'react';
 import type { FieldValues } from 'react-hook-form';
 import type { UseFormReturn } from 'react-hook-form';
 import type { FieldErrors } from 'react-hook-form';
@@ -41,7 +41,9 @@ function FormErrorSummary<TFieldValues extends FieldValues>(props: Props<TFieldV
         return null;
     }
 
-    return <Feiloppsummering innerRef={ref} feil={feil} {...errorSummaryProps} />;
+    // Typecast for legacy grunner. nav-frontend pakkene bruker gamel typer & vil fjernes
+    // snart
+    return <Feiloppsummering innerRef={ref as RefObject<HTMLDivElement>} feil={feil} {...errorSummaryProps} />;
 }
 
 export default FormErrorSummary;

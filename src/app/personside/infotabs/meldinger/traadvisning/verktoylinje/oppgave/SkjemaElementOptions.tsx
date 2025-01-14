@@ -1,5 +1,7 @@
 import type { GsakTema } from '../../../../../../../models/meldinger/oppgave';
 
+import type { JSX } from 'react';
+
 export function TemaOptions({ gsakTema }: { gsakTema: GsakTema[] }) {
     const options: JSX.Element[] = [
         <option value={''} key={''} disabled>

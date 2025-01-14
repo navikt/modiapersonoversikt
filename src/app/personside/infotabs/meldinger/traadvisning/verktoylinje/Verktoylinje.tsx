@@ -98,7 +98,13 @@ function Verktoylinje(props: Props) {
     return (
         <ErrorBoundary boundaryName="Verktøylinje">
             <article aria-labelledby={tittelId.current} aria-label="Verktøylinje">
-                <StyledPanel className={props.className} ref={() => ref} tabIndex={-1}>
+                <StyledPanel
+                    className={props.className}
+                    ref={() => {
+                        ref;
+                    }}
+                    tabIndex={-1}
+                >
                     <KnapperPanelStyle>
                         <OppgaveknapperStyle>
                             <SvartLenkeKnapp

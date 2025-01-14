@@ -122,7 +122,13 @@ function DokumentOgVedlegg(props: Props) {
     return (
         <ErrorBoundary boundaryName="Dokumentvisning">
             <Content>
-                <HeaderStyle ref={() => ref} tabIndex={-1} className={!fullscreen ? 'sr-only' : undefined}>
+                <HeaderStyle
+                    ref={() => {
+                        ref;
+                    }}
+                    tabIndex={-1}
+                    className={!fullscreen ? 'sr-only' : undefined}
+                >
                     <Undertittel>{props.valgtDokument.tittel}</Undertittel>
                 </HeaderStyle>
                 {tabsHeader}

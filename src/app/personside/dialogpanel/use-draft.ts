@@ -59,14 +59,14 @@ const getWsUrl = () => {
 const draftUrl = (import.meta.env.VITE_DRAFT_URL as string) ?? `${import.meta.env.BASE_URL}proxy/modia-draft`;
 
 function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () => {}): DraftSystem {
-    const wsRef = useRef<WebSocketImpl>();
+    const wsRef = useRef<WebSocketImpl>(undefined);
     const [lastConfirm, setLastConfirm] = useState<{
         ok: boolean;
         time: Date | null;
     }>({ ok: false, time: null });
     const [lastSent, setLastSent] = useState<Date | null>(null);
     const [timeout, setTimeoutVal] = useState(false);
-    const timer = useRef<NodeJS.Timeout>();
+    const timer = useRef<NodeJS.Timeout>(undefined);
 
     const DRAFT_TIMEOUT_SECONDS = 3;
 

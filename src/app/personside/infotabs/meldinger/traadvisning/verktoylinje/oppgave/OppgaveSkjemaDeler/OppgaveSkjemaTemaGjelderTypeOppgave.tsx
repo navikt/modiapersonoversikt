@@ -4,6 +4,8 @@ import type { GsakTema } from '../../../../../../../../models/meldinger/oppgave'
 import { OppgavetypeOptions, TemaOptions, UnderkategoriOptions } from './../SkjemaElementOptions';
 import type { OppgaveSkjemaDelteFelter } from './../oppgaveInterfaces';
 
+import type { JSX } from 'react';
+
 interface Props<F extends OppgaveSkjemaDelteFelter> {
     form: UseFormReturn<F>;
     gsakTema: GsakTema[];

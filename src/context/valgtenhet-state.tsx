@@ -18,7 +18,6 @@ export function ValgtEnhetProvider(props: { children: React.ReactNode }) {
         },
         [aktivEnhet]
     );
-
     const value = { enhetId: aktivEnhet ?? '', setEnhetId: updateEnhet };
     return <ValgtEnhetContext.Provider value={value}>{props.children}</ValgtEnhetContext.Provider>;
 }

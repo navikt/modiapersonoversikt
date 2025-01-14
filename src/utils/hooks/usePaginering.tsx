@@ -52,7 +52,7 @@ function usePaginering<T, K>(
     selectedItem?: T,
     fieldCompare?: (t: T) => K
 ): PagineringsData<T> {
-    const selectRef = useRef<HTMLSelectElement | null>();
+    const selectRef = useRef<HTMLSelectElement | null>(undefined);
     const [currentPage, setCurrentPage] = useState(0);
 
     const numberOfPages = Math.ceil(list.length / pageSize);
