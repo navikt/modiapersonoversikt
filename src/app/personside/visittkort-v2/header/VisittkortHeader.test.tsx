@@ -1,5 +1,4 @@
 import { render } from '@testing-library/react';
-import * as renderer from 'react-test-renderer';
 import { aremark } from '../../../../mock/persondata/aremark';
 import TestProvider from '../../../../test/Testprovider';
 import type { LocalDate, Person, Data as PersonData } from '../PersondataDomain';
@@ -13,13 +12,13 @@ function lagPersondataForAremark(): PersonData {
 
 describe('Tester visittkort-header sin funksjonalitet', () => {
     test('viser info om bruker i visittkort-header', () => {
-        const visittkortHeader = renderer.create(
+        const visittkortHeader = render(
             <TestProvider>
                 <VisittkortHeader persondata={lagPersondataForAremark()} erApen={false} toggleApen={() => null} />
             </TestProvider>
         );
 
-        const json = visittkortHeader.toJSON();
+        const json = visittkortHeader.asFragment();
         expect(json).toMatchSnapshot();
     });
 

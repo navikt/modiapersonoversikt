@@ -1,7 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`viser vergemål 1`] = `
-.c5 {
+<DocumentFragment>
+  .c5 {
   color: #645f5a;
   margin-top: 3px;
 }
@@ -46,237 +47,223 @@ exports[`viser vergemål 1`] = `
 }
 
 <section>
-  <div
-    className="c0"
-  >
     <div
-      className="c1"
+      class="c0"
     >
-      <svg
-        viewBox="0 0 100 100"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <circle
-          cx="50"
-          cy="50"
-          fill="#FFB249"
-          r="50"
-        />
-        <line
-          stroke="#3E3832"
-          strokeLinecap="round"
-          strokeWidth="4"
-          x1="50"
-          x2="50"
-          y1="25"
-          y2="57"
-        />
-        <circle
-          cx="50"
-          cy="72"
-          fill="#3E3832"
-          r="4.5"
-        />
-      </svg>
-    </div>
-    <h3
-      className="typo-undertittel"
-    >
-      Bruker er under vergemål
-    </h3>
-  </div>
-  <div
-    className="c2"
-  />
-  <p
-    className="typo-normal"
-  >
-    Vergesakstyper: 
-    Voksen, Fremtidsfullmakt
-  </p>
-  <div
-    className="c3"
-  >
-    <div
-      className="c0"
-    >
-      <h4
-        className="typo-element"
-      >
-        Verge
-      </h4>
-    </div>
-    <div
-      className="c4"
-    >
-      <p
-        className="typo-normal"
-      >
-        Simen Solli
-      </p>
-      <p
-        className="typo-normal"
-      >
-        21042900076
-      </p>
-    </div>
-    <p
-      className="typo-element"
-    >
-      Omfang
-    </p>
-    <p
-      className="typo-normal"
-    >
-      Ivareta personens interesser innenfor det personlige og økonomiske området
-    </p>
-    <div
-      className="c5"
-    >
-      <p
-        className="typo-undertekst"
-      >
-        Fylkesmannen i Troms og Finnmark
-      </p>
-    </div>
-    <div
-      className="c5"
-    >
-      <p
-        className="typo-undertekst"
-      >
-        Gyldig: 
-        01.06.2021 – 10.05.2022
-      </p>
-    </div>
-  </div>
-  <div
-    className="c3"
-  >
-    <div
-      className="c0"
-    >
-      <h4
-        className="typo-element"
-      >
-        Verge
-      </h4>
-    </div>
-    <div
-      className="c4"
-    >
-      <p
-        className="typo-normal"
-      >
-        Truls Tøffel
-      </p>
-      <p
-        className="typo-normal"
-      >
-        123456799
-      </p>
-    </div>
-    <p
-      className="typo-element"
-    >
-      Område
-       
       <div
-        className="hjelpetekst"
+        class="c1"
       >
-        <button
-          aria-controls="Helt tilfeldig ID"
-          aria-expanded={false}
-          aria-haspopup="dialog"
-          className="hjelpetekst__apneknapp"
-          onClick={[Function]}
-          title="Hjelp"
-          type="button"
+        <svg
+          viewBox="0 0 100 100"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <svg
-            className="hjelpetekst__ikon"
-            focusable="false"
-            height={32}
-            kind="help-circle"
-            viewBox="0 0 18.2 18.2"
-            width={32}
-          >
-            <path
-              d="M9.1 0C4.1 0 0 4.1 0 9.1s4.1 9.1 9.1 9.1 9.1-4.1 9.1-9.1S14.1 0 9.1 0zm0 17.2C4.6 17.2 1 13.6 1 9.1S4.6 1 9.1 1s8.1 3.6 8.1 8.1-3.6 8.1-8.1 8.1z"
-            />
-            <circle
-              cx="9.1"
-              cy="13.8"
-              r=".9"
-            />
-            <path
-              d="M9.1 11.5c-.3 0-.5-.2-.5-.5V8.6c0-.3.2-.5.5-.5 1 0 1.9-.8 1.9-1.9s-.8-1.9-1.9-1.9c-1 0-1.9.8-1.9 1.9 0 .3-.2.5-.5.5s-.5-.2-.5-.4c0-1.6 1.3-2.9 2.9-2.9S12 4.7 12 6.3c0 1.4-1 2.6-2.4 2.8V11c0 .3-.2.5-.5.5z"
-            />
-          </svg>
-          <span
-            className="sr-only"
-          >
-            Hjelp
-          </span>
-        </button>
+          <circle
+            cx="50"
+            cy="50"
+            fill="#FFB249"
+            r="50"
+          />
+          <line
+            stroke="#3E3832"
+            stroke-linecap="round"
+            stroke-width="4"
+            x1="50"
+            x2="50"
+            y1="25"
+            y2="57"
+          />
+          <circle
+            cx="50"
+            cy="72"
+            fill="#3E3832"
+            r="4.5"
+          />
+        </svg>
+      </div>
+      <h3
+        class="typo-undertittel"
+      >
+        Bruker er under vergemål
+      </h3>
+    </div>
+    <div
+      class="c2"
+    />
+    <p
+      class="typo-normal"
+    >
+      Vergesakstyper: Voksen, Fremtidsfullmakt
+    </p>
+    <div
+      class="c3"
+    >
+      <div
+        class="c0"
+      >
+        <h4
+          class="typo-element"
+        >
+          Verge
+        </h4>
+      </div>
+      <div
+        class="c4"
+      >
+        <p
+          class="typo-normal"
+        >
+          Simen Solli
+        </p>
+        <p
+          class="typo-normal"
+        >
+          21042900076
+        </p>
+      </div>
+      <p
+        class="typo-element"
+      >
+        Omfang
+      </p>
+      <p
+        class="typo-normal"
+      >
+        Ivareta personens interesser innenfor det personlige og økonomiske området
+      </p>
+      <div
+        class="c5"
+      >
+        <p
+          class="typo-undertekst"
+        >
+          Fylkesmannen i Troms og Finnmark
+        </p>
+      </div>
+      <div
+        class="c5"
+      >
+        <p
+          class="typo-undertekst"
+        >
+          Gyldig: 01.06.2021 – 10.05.2022
+        </p>
+      </div>
+    </div>
+    <div
+      class="c3"
+    >
+      <div
+        class="c0"
+      >
+        <h4
+          class="typo-element"
+        >
+          Verge
+        </h4>
+      </div>
+      <div
+        class="c4"
+      >
+        <p
+          class="typo-normal"
+        >
+          Truls Tøffel
+        </p>
+        <p
+          class="typo-normal"
+        >
+          123456799
+        </p>
+      </div>
+      <p
+        class="typo-element"
+      >
+        Område 
         <div
-          className="popover popover--controlled popover--hidden popover--over"
-          id="Helt tilfeldig ID"
-          onClick={[Function]}
-          role="tooltip"
-          style={
-            {
-              "transform": "translate3d(0px, 0px, 0)",
-            }
-          }
-          tabIndex={0}
+          class="hjelpetekst"
         >
+          <button
+            aria-controls="Helt tilfeldig ID"
+            aria-expanded="false"
+            aria-haspopup="dialog"
+            class="hjelpetekst__apneknapp"
+            title="Hjelp"
+            type="button"
+          >
+            <svg
+              class="hjelpetekst__ikon"
+              focusable="false"
+              height="32"
+              kind="help-circle"
+              viewBox="0 0 18.2 18.2"
+              width="32"
+            >
+              <path
+                d="M9.1 0C4.1 0 0 4.1 0 9.1s4.1 9.1 9.1 9.1 9.1-4.1 9.1-9.1S14.1 0 9.1 0zm0 17.2C4.6 17.2 1 13.6 1 9.1S4.6 1 9.1 1s8.1 3.6 8.1 8.1-3.6 8.1-8.1 8.1z"
+              />
+              <circle
+                cx="9.1"
+                cy="13.8"
+                r=".9"
+              />
+              <path
+                d="M9.1 11.5c-.3 0-.5-.2-.5-.5V8.6c0-.3.2-.5.5-.5 1 0 1.9-.8 1.9-1.9s-.8-1.9-1.9-1.9c-1 0-1.9.8-1.9 1.9 0 .3-.2.5-.5.5s-.5-.2-.5-.4c0-1.6 1.3-2.9 2.9-2.9S12 4.7 12 6.3c0 1.4-1 2.6-2.4 2.8V11c0 .3-.2.5-.5.5z"
+              />
+            </svg>
+            <span
+              class="sr-only"
+            >
+              Hjelp
+            </span>
+          </button>
           <div
-            className="popover__content-inner"
+            class="popover popover--controlled popover--hidden popover--over"
+            id="Helt tilfeldig ID"
+            role="tooltip"
+            style="transform: translate3d(0px, 0px, 0);"
+            tabindex="0"
           >
             <div
-              className="hjelpetekst__innhold"
+              class="popover__content-inner"
             >
-              Viser områdene verge har innsynsrett i.
-              <br />
-              Viser kun tjenesteoppgaver knyttet til NAV.
+              <div
+                class="hjelpetekst__innhold"
+              >
+                Viser områdene verge har innsynsrett i.
+                <br />
+                Viser kun tjenesteoppgaver knyttet til NAV.
+              </div>
             </div>
+            <span
+              class="popover__pil"
+            />
           </div>
-          <span
-            className="popover__pil"
-            style={
-              {
-                "left": undefined,
-              }
-            }
-          />
         </div>
+      </p>
+      <p
+        class="typo-normal"
+      >
+        Arbeid, Familie, Hjelpemidler, Sosiale Tjenester
+      </p>
+      <div
+        class="c5"
+      >
+        <p
+          class="typo-undertekst"
+        >
+          Fylkesmannen i Troms og Finnmark
+        </p>
       </div>
-    </p>
-    <p
-      className="typo-normal"
-    >
-      Arbeid, Familie, Hjelpemidler, Sosiale Tjenester
-    </p>
-    <div
-      className="c5"
-    >
-      <p
-        className="typo-undertekst"
+      <div
+        class="c5"
       >
-        Fylkesmannen i Troms og Finnmark
-      </p>
+        <p
+          class="typo-undertekst"
+        >
+          Gyldig: 10.02.2021 – 01.05.2022
+        </p>
+      </div>
     </div>
-    <div
-      className="c5"
-    >
-      <p
-        className="typo-undertekst"
-      >
-        Gyldig: 
-        10.02.2021 – 01.05.2022
-      </p>
-    </div>
-  </div>
-</section>
+  </section>
+</DocumentFragment>
 `;

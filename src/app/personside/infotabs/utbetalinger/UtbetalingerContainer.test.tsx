@@ -1,4 +1,4 @@
-import * as renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import { statiskMockUtbetaling } from '../../../../mock/utbetalinger/statiskMockUtbetaling';
 import utbetalingerResource from '../../../../rest/resources/utbetalingerResource';
 import TestProvider from '../../../../test/Testprovider';
@@ -15,11 +15,11 @@ test('Viser utbetalingercontainer med alt innhold', () => {
 
     const testStore = getTestStore();
 
-    const visittkortheader = renderer.create(
+    const visittkortheader = render(
         <TestProvider customStore={testStore}>
             <UtbetalingerContainer />
         </TestProvider>
     );
-    const json = visittkortheader.toJSON();
+    const json = visittkortheader.asFragment();
     expect(json).toMatchSnapshot();
 });

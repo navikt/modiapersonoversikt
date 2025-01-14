@@ -1,4 +1,4 @@
-import * as renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import { statiskTraadMock } from '../../../../../mock/meldinger/statiskTraadMock';
 import TestProvider from '../../../../../test/Testprovider';
 import { getTestStore, setupReactQueryMocks } from '../../../../../test/testStore';
@@ -9,12 +9,12 @@ test('Viser traad med verktøylinje', () => {
     const store = getTestStore();
     const traader = [statiskTraadMock];
 
-    const container = renderer.create(
+    const container = render(
         <TestProvider customStore={store}>
             <TraadVisningWrapper valgtTraad={traader[0]} sokeord={''} />
         </TestProvider>
     );
 
-    const json = container.toJSON();
+    const json = container.asFragment();
     expect(json).toMatchSnapshot();
 });

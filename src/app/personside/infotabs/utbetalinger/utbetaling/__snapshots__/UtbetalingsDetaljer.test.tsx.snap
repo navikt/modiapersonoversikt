@@ -1,7 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
-.c0 th:not(:first-child) {
+<DocumentFragment>
+  .c0 th:not(:first-child) {
   font-weight: normal;
   font-style: italic;
 }
@@ -16,14 +17,83 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
 }
 
 <aside
-  aria-label="Utbetalingsdetaljer"
-  className="c0"
->
-  <span
-    className="typo-normal"
+    aria-label="Utbetalingsdetaljer"
+    class="c0"
   >
+    <span
+      class="typo-normal"
+    >
+      <div
+        class="c1"
+      >
+        <table
+          role="table"
+        >
+          <thead
+            role="rowgroup"
+          >
+            <tr
+              role="row"
+            >
+              <th
+                role="columnheader"
+              >
+                Konto
+              </th>
+              <th
+                role="columnheader"
+              >
+                Brutto
+              </th>
+              <th
+                role="columnheader"
+              >
+                Trekk
+              </th>
+              <th
+                role="columnheader"
+              >
+                Utbetalt
+              </th>
+            </tr>
+          </thead>
+          <tbody
+            data-testid="table-tbody"
+            role="rowgroup"
+          >
+            <tr
+              role="row"
+            >
+              <td
+                role="cell"
+              >
+                123
+              </td>
+              <td
+                role="cell"
+              >
+                13 370,00
+              </td>
+              <td
+                role="cell"
+              >
+                −1 984,00
+              </td>
+              <td
+                role="cell"
+              >
+                11 386,00
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </span>
     <div
-      className="c1"
+      class="c2"
+    />
+    <span
+      class="typo-normal"
     >
       <table
         role="table"
@@ -37,22 +107,22 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
             <th
               role="columnheader"
             >
-              Konto
+              Detaljer
             </th>
             <th
               role="columnheader"
             >
-              Brutto
+              Sats
             </th>
             <th
               role="columnheader"
             >
-              Trekk
+              Antall
             </th>
             <th
               role="columnheader"
             >
-              Utbetalt
+              Beløp
             </th>
           </tr>
         </thead>
@@ -66,228 +136,160 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
             <td
               role="cell"
             >
-              123
+              Bacon
             </td>
             <td
               role="cell"
             >
-              13 370,00
+              558,00
             </td>
             <td
               role="cell"
             >
-              −1 984,00
+              10
             </td>
             <td
               role="cell"
             >
-              11 386,00
+              5 580,00
+            </td>
+          </tr>
+          <tr
+            role="row"
+          >
+            <td
+              role="cell"
+            >
+              Computer
+            </td>
+            <td
+              role="cell"
+            >
+              1 310,00
+            </td>
+            <td
+              role="cell"
+            >
+              3
+            </td>
+            <td
+              role="cell"
+            >
+              3 930,00
+            </td>
+          </tr>
+          <tr
+            role="row"
+          >
+            <td
+              role="cell"
+            >
+              Mouse
+            </td>
+            <td
+              role="cell"
+            >
+              1 930,00
+            </td>
+            <td
+              role="cell"
+            >
+              2
+            </td>
+            <td
+              role="cell"
+            >
+              3 860,00
+            </td>
+          </tr>
+          <tr
+            role="row"
+          >
+            <td
+              role="cell"
+            >
+              Skattetrekk
+            </td>
+            <td
+              role="cell"
+            >
+              —
+            </td>
+            <td
+              role="cell"
+            >
+              —
+            </td>
+            <td
+              role="cell"
+            >
+              −730,00
+            </td>
+          </tr>
+          <tr
+            role="row"
+          >
+            <td
+              role="cell"
+            >
+              Prosenttrekk
+            </td>
+            <td
+              role="cell"
+            >
+              —
+            </td>
+            <td
+              role="cell"
+            >
+              —
+            </td>
+            <td
+              role="cell"
+            >
+              −1 042,00
+            </td>
+          </tr>
+          <tr
+            role="row"
+          >
+            <td
+              role="cell"
+            >
+              Prosenttrekk
+            </td>
+            <td
+              role="cell"
+            >
+              —
+            </td>
+            <td
+              role="cell"
+            >
+              —
+            </td>
+            <td
+              role="cell"
+            >
+              −212,00
             </td>
           </tr>
         </tbody>
       </table>
-    </div>
-  </span>
-  <div
-    className="c2"
-  />
-  <span
-    className="typo-normal"
-  >
-    <table
-      role="table"
+    </span>
+    <div
+      class="c2"
+    />
+    <h4
+      class="typo-element"
     >
-      <thead
-        role="rowgroup"
-      >
-        <tr
-          role="row"
-        >
-          <th
-            role="columnheader"
-          >
-            Detaljer
-          </th>
-          <th
-            role="columnheader"
-          >
-            Sats
-          </th>
-          <th
-            role="columnheader"
-          >
-            Antall
-          </th>
-          <th
-            role="columnheader"
-          >
-            Beløp
-          </th>
-        </tr>
-      </thead>
-      <tbody
-        data-testid="table-tbody"
-        role="rowgroup"
-      >
-        <tr
-          role="row"
-        >
-          <td
-            role="cell"
-          >
-            Bacon
-          </td>
-          <td
-            role="cell"
-          >
-            558,00
-          </td>
-          <td
-            role="cell"
-          >
-            10
-          </td>
-          <td
-            role="cell"
-          >
-            5 580,00
-          </td>
-        </tr>
-        <tr
-          role="row"
-        >
-          <td
-            role="cell"
-          >
-            Computer
-          </td>
-          <td
-            role="cell"
-          >
-            1 310,00
-          </td>
-          <td
-            role="cell"
-          >
-            3
-          </td>
-          <td
-            role="cell"
-          >
-            3 930,00
-          </td>
-        </tr>
-        <tr
-          role="row"
-        >
-          <td
-            role="cell"
-          >
-            Mouse
-          </td>
-          <td
-            role="cell"
-          >
-            1 930,00
-          </td>
-          <td
-            role="cell"
-          >
-            2
-          </td>
-          <td
-            role="cell"
-          >
-            3 860,00
-          </td>
-        </tr>
-        <tr
-          role="row"
-        >
-          <td
-            role="cell"
-          >
-            Skattetrekk
-          </td>
-          <td
-            role="cell"
-          >
-            —
-          </td>
-          <td
-            role="cell"
-          >
-            —
-          </td>
-          <td
-            role="cell"
-          >
-            −730,00
-          </td>
-        </tr>
-        <tr
-          role="row"
-        >
-          <td
-            role="cell"
-          >
-            Prosenttrekk
-          </td>
-          <td
-            role="cell"
-          >
-            —
-          </td>
-          <td
-            role="cell"
-          >
-            —
-          </td>
-          <td
-            role="cell"
-          >
-            −1 042,00
-          </td>
-        </tr>
-        <tr
-          role="row"
-        >
-          <td
-            role="cell"
-          >
-            Prosenttrekk
-          </td>
-          <td
-            role="cell"
-          >
-            —
-          </td>
-          <td
-            role="cell"
-          >
-            —
-          </td>
-          <td
-            role="cell"
-          >
-            −212,00
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </span>
-  <div
-    className="c2"
-  />
-  <h4
-    className="typo-element"
-  >
-    Melding
-  </h4>
-  <p
-    className="typo-normal"
-  >
-    Dette er en melding
-  </p>
-</aside>
+      Melding
+    </h4>
+    <p
+      class="typo-normal"
+    >
+      Dette er en melding
+    </p>
+  </aside>
+</DocumentFragment>
 `;

@@ -1,4 +1,4 @@
-import * as renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import { statiskMockUtbetaling, statiskMockYtelse } from '../../../../../mock/utbetalinger/statiskMockUtbetaling';
 import type { Utbetaling } from '../../../../../models/utbetalinger';
 import TestProvider from '../../../../../test/Testprovider';
@@ -10,12 +10,12 @@ const sammensattUtbetaling: Utbetaling = {
 };
 
 test('Viser utbetalingsdetaljer riktig med liste med ytelser og trekk', () => {
-    const visittkortheader = renderer.create(
+    const visittkortheader = render(
         <TestProvider>
             <SammensattUtbetaling utbetaling={sammensattUtbetaling} erValgtIUrl={false} />
         </TestProvider>
     );
 
-    const json = visittkortheader.toJSON();
+    const json = visittkortheader.asFragment();
     expect(json).toMatchSnapshot();
 });

@@ -1,7 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`UtbetalingerPVent matcher snapshot 1`] = `
-.c1 {
+<DocumentFragment>
+  .c1 {
   overflow: auto;
   box-shadow: 0 0 0 0.07rem rgba(0, 0, 0, 0.25);
   border-radius: .25rem;
@@ -46,67 +47,68 @@ exports[`UtbetalingerPVent matcher snapshot 1`] = `
 }
 
 <section
-  className="c0"
->
-  <h4
-    className="typo-ingress"
+    class="c0"
   >
-    Utbetalinger på vent
-  </h4>
-  <div
-    className="c1 typo-normal"
-  >
-    <table
-      role="table"
+    <h4
+      class="typo-ingress"
     >
-      <thead
-        role="rowgroup"
+      Utbetalinger på vent
+    </h4>
+    <div
+      class="c1 typo-normal"
+    >
+      <table
+        role="table"
       >
-        <tr
-          role="row"
+        <thead
+          role="rowgroup"
         >
-          <th
-            role="columnheader"
+          <tr
+            role="row"
           >
-            Årsak
-          </th>
-          <th
-            role="columnheader"
-          >
-            Utbetalingsperiode
-          </th>
-          <th
-            role="columnheader"
-          >
-            Utbetalingsgrad
-          </th>
-        </tr>
-      </thead>
-      <tbody
-        data-testid="table-tbody"
-        role="rowgroup"
-      >
-        <tr
-          role="row"
+            <th
+              role="columnheader"
+            >
+              Årsak
+            </th>
+            <th
+              role="columnheader"
+            >
+              Utbetalingsperiode
+            </th>
+            <th
+              role="columnheader"
+            >
+              Utbetalingsgrad
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          data-testid="table-tbody"
+          role="rowgroup"
         >
-          <td
-            role="cell"
+          <tr
+            role="row"
           >
-            Pga mistenkelig oppførsel
-          </td>
-          <td
-            role="cell"
-          >
-            13.10.2017 - 10.10.2018
-          </td>
-          <td
-            role="cell"
-          >
-            62%
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
+            <td
+              role="cell"
+            >
+              Pga mistenkelig oppførsel
+            </td>
+            <td
+              role="cell"
+            >
+              13.10.2017 - 10.10.2018
+            </td>
+            <td
+              role="cell"
+            >
+              62%
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</DocumentFragment>
 `;

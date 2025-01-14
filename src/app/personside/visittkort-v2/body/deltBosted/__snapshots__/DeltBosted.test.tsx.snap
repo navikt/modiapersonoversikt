@@ -1,7 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`viser deltbosted 1`] = `
-.c4 {
+<DocumentFragment>
+  .c4 {
   color: #645f5a;
   margin-top: 3px;
 }
@@ -42,62 +43,62 @@ exports[`viser deltbosted 1`] = `
 }
 
 <section>
-  <div
-    className="c0"
-  >
     <div
-      className="c1"
+      class="c0"
     >
-      <svg
-        fill="none"
-        height="1em"
-        viewBox="0 0 24 24"
-        width="1em"
-        xmlns="http://www.w3.org/2000/svg"
+      <div
+        class="c1"
       >
-        <path
-          clipRule="evenodd"
-          d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zM9 19v-2h2v-5H9v-2h4v7h2v2H9zm3-14a1.5 1.5 0 110 3 1.5 1.5 0 010-3z"
-          fill="#0067C5"
-          fillRule="evenodd"
-        />
-      </svg>
+        <svg
+          fill="none"
+          height="1em"
+          viewBox="0 0 24 24"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zM9 19v-2h2v-5H9v-2h4v7h2v2H9zm3-14a1.5 1.5 0 110 3 1.5 1.5 0 010-3z"
+            fill="#0067C5"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </div>
+      <h3
+        class="typo-undertittel"
+      >
+        Delt Bosted
+      </h3>
     </div>
-    <h3
-      className="typo-undertittel"
-    >
-      Delt Bosted
-    </h3>
-  </div>
-  <div
-    className="c2"
-  />
-  <div
-    className="c3"
-  >
     <div
-      className="c0"
+      class="c2"
     />
     <div
-      className="c4"
+      class="c3"
     >
-      <p
-        className="typo-undertekst"
+      <div
+        class="c0"
+      />
+      <div
+        class="c4"
       >
-        Gyldig: 
-        01.02.2021 – 01.05.2022
+        <p
+          class="typo-undertekst"
+        >
+          Gyldig: 01.02.2021 – 01.05.2022
+        </p>
+      </div>
+      <p
+        class="typo-normal"
+      >
+        Adresseveien 1
+      </p>
+      <p
+        class="typo-normal"
+      >
+        0000 Aremark
       </p>
     </div>
-    <p
-      className="typo-normal"
-    >
-      Adresseveien 1
-    </p>
-    <p
-      className="typo-normal"
-    >
-      0000 Aremark
-    </p>
-  </div>
-</section>
+  </section>
+</DocumentFragment>
 `;

@@ -1,7 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`viser foreldreansvar 1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   position: relative;
   display: flex;
   align-items: center;
@@ -33,73 +34,70 @@ exports[`viser foreldreansvar 1`] = `
 }
 
 <section>
-  <div
-    className="c0"
-  >
     <div
-      className="c1"
+      class="c0"
     >
-      <svg
-        fill="none"
-        height="1em"
-        viewBox="0 0 24 24"
-        width="1em"
-        xmlns="http://www.w3.org/2000/svg"
+      <div
+        class="c1"
       >
-        <path
-          clipRule="evenodd"
-          d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zM9 19v-2h2v-5H9v-2h4v7h2v2H9zm3-14a1.5 1.5 0 110 3 1.5 1.5 0 010-3z"
-          fill="#0067C5"
-          fillRule="evenodd"
-        />
-      </svg>
+        <svg
+          fill="none"
+          height="1em"
+          viewBox="0 0 24 24"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zM9 19v-2h2v-5H9v-2h4v7h2v2H9zm3-14a1.5 1.5 0 110 3 1.5 1.5 0 010-3z"
+            fill="#0067C5"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </div>
+      <h3
+        class="typo-undertittel"
+      >
+        Foreldreansvar
+      </h3>
     </div>
-    <h3
-      className="typo-undertittel"
-    >
-      Foreldreansvar
-    </h3>
-  </div>
-  <div
-    className="c2"
-  />
-  <div
-    className="c3"
-  >
     <div
-      className="c0"
+      class="c2"
     />
-    <p
-      className="typo-normal"
-    >
-      Ansvar: 
-      felles
-    </p>
-    <p
-      className="typo-normal"
-    >
-      Gjelder for: 
-      BARN1 BARNESEN (12345678910)
-    </p>
-  </div>
-  <div
-    className="c3"
-  >
     <div
-      className="c0"
-    />
-    <p
-      className="typo-normal"
+      class="c3"
     >
-      Ansvar: 
-      felles
-    </p>
-    <p
-      className="typo-normal"
+      <div
+        class="c0"
+      />
+      <p
+        class="typo-normal"
+      >
+        Ansvar: felles
+      </p>
+      <p
+        class="typo-normal"
+      >
+        Gjelder for: BARN1 BARNESEN (12345678910)
+      </p>
+    </div>
+    <div
+      class="c3"
     >
-      Gjelder for: 
-      BARN1 BARNESEN (12345678911)
-    </p>
-  </div>
-</section>
+      <div
+        class="c0"
+      />
+      <p
+        class="typo-normal"
+      >
+        Ansvar: felles
+      </p>
+      <p
+        class="typo-normal"
+      >
+        Gjelder for: BARN1 BARNESEN (12345678911)
+      </p>
+    </div>
+  </section>
+</DocumentFragment>
 `;

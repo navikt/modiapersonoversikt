@@ -1,7 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
-.c4 span:not(:last-child):after {
+<DocumentFragment>
+  .c4 span:not(:last-child):after {
   content: '.';
 }
 
@@ -54,214 +55,214 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
 }
 
 <div
-  className="c0"
->
-  <article
-    aria-labelledby="Helt tilfeldig ID"
-    className="c1"
+    class="c0"
   >
-    <h3
-      className="typo-ingress"
-      id="Helt tilfeldig ID"
+    <article
+      aria-labelledby="Helt tilfeldig ID"
+      class="c1"
     >
-      Om pleiepengeretten
-    </h3>
-    <dl
-      className="c2"
+      <h3
+        class="typo-ingress"
+        id="Helt tilfeldig ID"
+      >
+        Om pleiepengeretten
+      </h3>
+      <dl
+        class="c2"
+      >
+        <div>
+          <dt
+            class="typo-normal"
+          >
+            Fra og med
+          </dt>
+          <dd
+            class="typo-element"
+          >
+            29.09.2017
+          </dd>
+        </div>
+        <div>
+          <dt
+            class="typo-normal"
+          >
+            Til og med
+          </dt>
+          <dd
+            class="typo-element"
+          >
+            24.10.2017
+          </dd>
+        </div>
+        <div>
+          <dt
+            class="typo-normal"
+          >
+            Pleiepengegrad
+          </dt>
+          <dd
+            class="typo-element"
+          >
+            66%
+          </dd>
+        </div>
+        <div>
+          <dt
+            class="typo-normal"
+          >
+            Barnet (jente)
+          </dt>
+          <dd
+            class="typo-element"
+          >
+            12345678910
+          </dd>
+        </div>
+        <div>
+          <dt
+            class="typo-normal"
+          >
+            Annen forelder
+          </dt>
+          <dd
+            class="typo-element"
+          >
+            26087625779
+          </dd>
+        </div>
+      </dl>
+    </article>
+    <article
+      aria-labelledby="Helt tilfeldig ID"
+      class="c1"
     >
-      <div>
-        <dt
-          className="typo-normal"
-        >
-          Fra og med
-        </dt>
-        <dd
-          className="typo-element"
-        >
-          29.09.2017
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-normal"
-        >
-          Til og med
-        </dt>
-        <dd
-          className="typo-element"
-        >
-          24.10.2017
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-normal"
-        >
-          Pleiepengegrad
-        </dt>
-        <dd
-          className="typo-element"
-        >
-          66%
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-normal"
-        >
-          Barnet (jente)
-        </dt>
-        <dd
-          className="typo-element"
-        >
-          12345678910
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-normal"
-        >
-          Annen forelder
-        </dt>
-        <dd
-          className="typo-element"
-        >
-          26087625779
-        </dd>
-      </div>
-    </dl>
-  </article>
-  <article
-    aria-labelledby="Helt tilfeldig ID"
-    className="c1"
-  >
-    <h3
-      className="typo-ingress"
-      id="Helt tilfeldig ID"
-    >
-      Arbeidssituasjon
-    </h3>
-    <ol
-      aria-label="Arbeidsgivere"
-      className="c3"
-    >
-      <li>
-        <dl
-          className="c2"
-        >
-          <div>
-            <dt
-              className="typo-normal"
-            >
-              Arbeidsgiver
-            </dt>
-            <dd
-              className="typo-element"
-            >
-              Ryan og Sønner
-            </dd>
-          </div>
-          <div>
-            <dt
-              className="typo-normal"
-            >
-              Kontonummer
-            </dt>
-            <dd
-              className="typo-element"
-            >
-              <span
-                className="c4"
+      <h3
+        class="typo-ingress"
+        id="Helt tilfeldig ID"
+      >
+        Arbeidssituasjon
+      </h3>
+      <ol
+        aria-label="Arbeidsgivere"
+        class="c3"
+      >
+        <li>
+          <dl
+            class="c2"
+          >
+            <div>
+              <dt
+                class="typo-normal"
               >
-                <span>
-                  5493
+                Arbeidsgiver
+              </dt>
+              <dd
+                class="typo-element"
+              >
+                Ryan og Sønner
+              </dd>
+            </div>
+            <div>
+              <dt
+                class="typo-normal"
+              >
+                Kontonummer
+              </dt>
+              <dd
+                class="typo-element"
+              >
+                <span
+                  class="c4"
+                >
+                  <span>
+                    5493
+                  </span>
+                  <span>
+                    85
+                  </span>
+                  <span>
+                    21445
+                  </span>
                 </span>
-                <span>
-                  85
-                </span>
-                <span>
-                  21445
-                </span>
-              </span>
-            </dd>
-          </div>
-          <div>
-            <dt
-              className="typo-normal"
-            >
-              Inntekstsperiode
-            </dt>
-            <dd
-              className="typo-element"
-            >
-              Månedssats
-            </dd>
-          </div>
-          <div>
-            <dt
-              className="typo-normal"
-            >
-              Inntekt for perioden
-            </dt>
-            <dd
-              className="typo-element"
-            >
-              45 029,00 NOK
-            </dd>
-          </div>
-          <div>
-            <dt
-              className="typo-normal"
-            >
-              Refusjonstype
-            </dt>
-            <dd
-              className="typo-element"
-            >
-              Ikke refusjon
-            </dd>
-          </div>
-          <div>
-            <dt
-              className="typo-normal"
-            >
-              Refusjon til dato
-            </dt>
-            <dd
-              className="typo-element"
-            >
-              11.10.2018
-            </dd>
-          </div>
-          <div>
-            <dt
-              className="typo-normal"
-            >
-              Sykepenger fra og med
-            </dt>
-            <dd
-              className="typo-element"
-            >
-              —
-            </dd>
-          </div>
-        </dl>
-      </li>
-    </ol>
-    <button
-      className="knapp c5 knapp--hoved"
-      disabled={false}
-      onClick={[Function]}
-      type="submit"
-    >
-      Vis alle arbeidsforhold
-    </button>
-  </article>
-</div>
+              </dd>
+            </div>
+            <div>
+              <dt
+                class="typo-normal"
+              >
+                Inntekstsperiode
+              </dt>
+              <dd
+                class="typo-element"
+              >
+                Månedssats
+              </dd>
+            </div>
+            <div>
+              <dt
+                class="typo-normal"
+              >
+                Inntekt for perioden
+              </dt>
+              <dd
+                class="typo-element"
+              >
+                45 029,00 NOK
+              </dd>
+            </div>
+            <div>
+              <dt
+                class="typo-normal"
+              >
+                Refusjonstype
+              </dt>
+              <dd
+                class="typo-element"
+              >
+                Ikke refusjon
+              </dd>
+            </div>
+            <div>
+              <dt
+                class="typo-normal"
+              >
+                Refusjon til dato
+              </dt>
+              <dd
+                class="typo-element"
+              >
+                11.10.2018
+              </dd>
+            </div>
+            <div>
+              <dt
+                class="typo-normal"
+              >
+                Sykepenger fra og med
+              </dt>
+              <dd
+                class="typo-element"
+              >
+                —
+              </dd>
+            </div>
+          </dl>
+        </li>
+      </ol>
+      <button
+        class="knapp c5 knapp--hoved"
+        type="submit"
+      >
+        Vis alle arbeidsforhold
+      </button>
+    </article>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
-.c3 {
+<DocumentFragment>
+  .c3 {
   overflow: auto;
   box-shadow: 0 0 0 0.07rem rgba(0, 0, 0, 0.25);
   border-radius: .25rem;
@@ -316,144 +317,145 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
 }
 
 <li
-  className="c0"
->
-  <div
-    className="c1"
+    class="c0"
   >
-    <h3
-      className="typo-element"
-    >
-      Periode 1 - 14.11.2018
-    </h3>
-  </div>
-  <div
-    className="c2"
-  >
-    <p
-      className="typo-ingress"
-    >
-      Anviste utbetalinger
-    </p>
     <div
-      className="c3 typo-normal"
+      class="c1"
     >
-      <table
-        role="table"
+      <h3
+        class="typo-element"
       >
-        <thead
-          role="rowgroup"
-        >
-          <tr
-            role="row"
-          >
-            <th
-              role="columnheader"
-            >
-              Fra og med
-            </th>
-            <th
-              role="columnheader"
-            >
-              Til og med
-            </th>
-            <th
-              role="columnheader"
-            >
-              Bruttobeløp
-            </th>
-            <th
-              role="columnheader"
-            >
-              Anvist utbetaling
-            </th>
-            <th
-              role="columnheader"
-            >
-              Dagsats
-            </th>
-            <th
-              role="columnheader"
-            >
-              Pleiepengegrad
-            </th>
-          </tr>
-        </thead>
-        <tbody
-          data-testid="table-tbody"
-          role="rowgroup"
-        >
-          <tr
-            role="row"
-          >
-            <td
-              role="cell"
-            >
-              29.09.2017
-            </td>
-            <td
-              role="cell"
-            >
-              24.10.2017
-            </td>
-            <td
-              role="cell"
-            >
-              120,00 NOK
-            </td>
-            <td
-              role="cell"
-            >
-              28.05.2017
-            </td>
-            <td
-              role="cell"
-            >
-              5,00 NOK
-            </td>
-            <td
-              role="cell"
-            >
-              66%
-            </td>
-          </tr>
-          <tr
-            role="row"
-          >
-            <td
-              role="cell"
-            >
-              18.07.2017
-            </td>
-            <td
-              role="cell"
-            >
-              26.07.2017
-            </td>
-            <td
-              role="cell"
-            >
-              596,00 NOK
-            </td>
-            <td
-              role="cell"
-            >
-              21.06.2017
-            </td>
-            <td
-              role="cell"
-            >
-              27,00 NOK
-            </td>
-            <td
-              role="cell"
-            >
-              58%
-            </td>
-          </tr>
-        </tbody>
-      </table>
+        Periode 1 - 14.11.2018
+      </h3>
     </div>
-  </div>
-</li>
+    <div
+      class="c2"
+    >
+      <p
+        class="typo-ingress"
+      >
+        Anviste utbetalinger
+      </p>
+      <div
+        class="c3 typo-normal"
+      >
+        <table
+          role="table"
+        >
+          <thead
+            role="rowgroup"
+          >
+            <tr
+              role="row"
+            >
+              <th
+                role="columnheader"
+              >
+                Fra og med
+              </th>
+              <th
+                role="columnheader"
+              >
+                Til og med
+              </th>
+              <th
+                role="columnheader"
+              >
+                Bruttobeløp
+              </th>
+              <th
+                role="columnheader"
+              >
+                Anvist utbetaling
+              </th>
+              <th
+                role="columnheader"
+              >
+                Dagsats
+              </th>
+              <th
+                role="columnheader"
+              >
+                Pleiepengegrad
+              </th>
+            </tr>
+          </thead>
+          <tbody
+            data-testid="table-tbody"
+            role="rowgroup"
+          >
+            <tr
+              role="row"
+            >
+              <td
+                role="cell"
+              >
+                29.09.2017
+              </td>
+              <td
+                role="cell"
+              >
+                24.10.2017
+              </td>
+              <td
+                role="cell"
+              >
+                120,00 NOK
+              </td>
+              <td
+                role="cell"
+              >
+                28.05.2017
+              </td>
+              <td
+                role="cell"
+              >
+                5,00 NOK
+              </td>
+              <td
+                role="cell"
+              >
+                66%
+              </td>
+            </tr>
+            <tr
+              role="row"
+            >
+              <td
+                role="cell"
+              >
+                18.07.2017
+              </td>
+              <td
+                role="cell"
+              >
+                26.07.2017
+              </td>
+              <td
+                role="cell"
+              >
+                596,00 NOK
+              </td>
+              <td
+                role="cell"
+              >
+                21.06.2017
+              </td>
+              <td
+                role="cell"
+              >
+                27,00 NOK
+              </td>
+              <td
+                role="cell"
+              >
+                58%
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </li>
+</DocumentFragment>
 `;

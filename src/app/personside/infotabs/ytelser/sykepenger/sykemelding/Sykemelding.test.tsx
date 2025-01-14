@@ -1,9 +1,9 @@
-import * as renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import { statiskSykepengerMock } from '../../../../../../mock/ytelse/statiskSykepengerMock';
 import Sykemelding from './Sykemelding';
 
 test('Sykemelding matcher snapshot', () => {
-    const resultat = renderer.create(<Sykemelding sykmelding={statiskSykepengerMock.sykmeldinger[0]} />);
+    const { asFragment } = render(<Sykemelding sykmelding={statiskSykepengerMock.sykmeldinger[0]} />);
 
-    expect(resultat.toJSON()).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
 });

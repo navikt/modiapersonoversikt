@@ -1,4 +1,4 @@
-import * as renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import { vi } from 'vitest';
 import TestProvider from '../../../../test/Testprovider';
 import { setupReactQueryMocks } from '../../../../test/testStore';
@@ -13,12 +13,12 @@ beforeEach(() => {
 });
 
 test('viser send ny melding', () => {
-    const dialogPanelBody = renderer.create(
+    const dialogPanelBody = render(
         <TestProvider>
             <SendNyMeldingContainer defaultOppgaveDestinasjon={OppgavelisteValg.MinListe} />
         </TestProvider>
     );
 
-    expect(dialogPanelBody.toJSON()).toMatchSnapshot();
+    expect(dialogPanelBody.asFragment()).toMatchSnapshot();
     dialogPanelBody.unmount();
 });

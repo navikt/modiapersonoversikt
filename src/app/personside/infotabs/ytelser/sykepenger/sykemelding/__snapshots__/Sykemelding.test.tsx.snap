@@ -1,7 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Sykemelding matcher snapshot 1`] = `
-.c1 {
+<DocumentFragment>
+  .c1 {
   display: flex;
   flex-wrap: wrap;
 }
@@ -61,99 +62,100 @@ exports[`Sykemelding matcher snapshot 1`] = `
 }
 
 <article
-  aria-labelledby="Helt tilfeldig ID"
-  className="c0"
->
-  <h3
-    className="typo-ingress"
-    id="Helt tilfeldig ID"
+    aria-labelledby="Helt tilfeldig ID"
+    class="c0"
   >
-    Sykmelding
-  </h3>
-  <dl
-    className="c1"
-  >
-    <div>
-      <dt
-        className="typo-normal"
-      >
-        Periode
-      </dt>
-      <dd
-        className="typo-element"
-      >
-        09.02.2014 - 11.05.2014
-      </dd>
-    </div>
-    <div>
-      <dt
-        className="typo-normal"
-      >
-        Behandlingsdato
-      </dt>
-      <dd
-        className="typo-element"
-      >
-        01.04.2018
-      </dd>
-    </div>
-    <div>
-      <dt
-        className="typo-normal"
-      >
-        Sykmelder
-      </dt>
-      <dd
-        className="typo-element"
-      >
-        Lommelegen AS
-      </dd>
-    </div>
-  </dl>
-  <div
-    className="c2 typo-normal"
-  >
-    <table
-      role="table"
+    <h3
+      class="typo-ingress"
+      id="Helt tilfeldig ID"
     >
-      <thead
-        role="rowgroup"
-      >
-        <tr
-          role="row"
+      Sykmelding
+    </h3>
+    <dl
+      class="c1"
+    >
+      <div>
+        <dt
+          class="typo-normal"
         >
-          <th
-            role="columnheader"
-          >
-            Periode
-          </th>
-          <th
-            role="columnheader"
-          >
-            Gradering
-          </th>
-        </tr>
-      </thead>
-      <tbody
-        data-testid="table-tbody"
-        role="rowgroup"
-      >
-        <tr
-          role="row"
+          Periode
+        </dt>
+        <dd
+          class="typo-element"
         >
-          <td
-            role="cell"
+          09.02.2014 - 11.05.2014
+        </dd>
+      </div>
+      <div>
+        <dt
+          class="typo-normal"
+        >
+          Behandlingsdato
+        </dt>
+        <dd
+          class="typo-element"
+        >
+          01.04.2018
+        </dd>
+      </div>
+      <div>
+        <dt
+          class="typo-normal"
+        >
+          Sykmelder
+        </dt>
+        <dd
+          class="typo-element"
+        >
+          Lommelegen AS
+        </dd>
+      </div>
+    </dl>
+    <div
+      class="c2 typo-normal"
+    >
+      <table
+        role="table"
+      >
+        <thead
+          role="rowgroup"
+        >
+          <tr
+            role="row"
           >
-            28.07.2014 - 03.01.2014
-          </td>
-          <td
-            role="cell"
+            <th
+              role="columnheader"
+            >
+              Periode
+            </th>
+            <th
+              role="columnheader"
+            >
+              Gradering
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          data-testid="table-tbody"
+          role="rowgroup"
+        >
+          <tr
+            role="row"
           >
-            89%
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</article>
+            <td
+              role="cell"
+            >
+              28.07.2014 - 03.01.2014
+            </td>
+            <td
+              role="cell"
+            >
+              89%
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </article>
+</DocumentFragment>
 `;

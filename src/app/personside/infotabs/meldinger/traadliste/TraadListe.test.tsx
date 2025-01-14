@@ -1,4 +1,4 @@
-import * as renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import { statiskTraadMock } from '../../../../../mock/meldinger/statiskTraadMock';
 import TestProvider from '../../../../../test/Testprovider';
 import { setupReactQueryMocks } from '../../../../../test/testStore';
@@ -8,12 +8,12 @@ test('Viser Traadliste', () => {
     setupReactQueryMocks();
     const traader = [statiskTraadMock];
 
-    const container = renderer.create(
+    const container = render(
         <TestProvider>
             <TraadListe traader={traader} valgtTraad={traader[0]} traaderEtterSokOgFiltrering={traader} />
         </TestProvider>
     );
 
-    const json = container.toJSON();
+    const json = container.asFragment();
     expect(json).toMatchSnapshot();
 });

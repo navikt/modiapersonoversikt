@@ -1,7 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Kommende enkelutbetaling matcher snapshot 1`] = `
-.c1 {
+<DocumentFragment>
+  .c1 {
   overflow: auto;
   box-shadow: 0 0 0 0.07rem rgba(0, 0, 0, 0.25);
   border-radius: .25rem;
@@ -46,167 +47,163 @@ exports[`Kommende enkelutbetaling matcher snapshot 1`] = `
 }
 
 <section
-  className="c0"
->
-  <h4
-    className="typo-ingress"
+    class="c0"
   >
-    Utbetalinger
-  </h4>
-  <div
-    className="c1 typo-normal"
-  >
-    <table
-      role="table"
+    <h4
+      class="typo-ingress"
     >
-      <thead
-        role="rowgroup"
+      Utbetalinger
+    </h4>
+    <div
+      class="c1 typo-normal"
+    >
+      <table
+        role="table"
       >
-        <tr
-          role="row"
+        <thead
+          role="rowgroup"
         >
-          <th
-            role="columnheader"
+          <tr
+            role="row"
           >
-            Reg.dato
-          </th>
-          <th
-            role="columnheader"
-          >
-            Type
-          </th>
-          <th
-            role="columnheader"
-          >
-            Periode
-          </th>
-          <th
-            role="columnheader"
-          >
-            Utb.grad
-          </th>
-          <th
-            role="columnheader"
-          >
-            Dagsats
-          </th>
-          <th
-            role="columnheader"
-          >
-            Bruttobeløp
-          </th>
-          <th
-            role="columnheader"
-          >
-            Arb.giver
-          </th>
-          <th
-            role="columnheader"
-          >
-            Org.nummer
-          </th>
-        </tr>
-      </thead>
-      <tbody
-        data-testid="table-tbody"
-        role="rowgroup"
-      >
-        <tr
-          role="row"
+            <th
+              role="columnheader"
+            >
+              Reg.dato
+            </th>
+            <th
+              role="columnheader"
+            >
+              Type
+            </th>
+            <th
+              role="columnheader"
+            >
+              Periode
+            </th>
+            <th
+              role="columnheader"
+            >
+              Utb.grad
+            </th>
+            <th
+              role="columnheader"
+            >
+              Dagsats
+            </th>
+            <th
+              role="columnheader"
+            >
+              Bruttobeløp
+            </th>
+            <th
+              role="columnheader"
+            >
+              Arb.giver
+            </th>
+            <th
+              role="columnheader"
+            >
+              Org.nummer
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          data-testid="table-tbody"
+          role="rowgroup"
         >
-          <td
-            role="cell"
+          <tr
+            role="row"
           >
-            25.06.2018
-          </td>
-          <td
-            role="cell"
-          >
-            KONTOØVERFØRING
-          </td>
-          <td
-            role="cell"
-          >
-            14.01.2018 - 15.07.2017
-          </td>
-          <td
-            role="cell"
-          >
-            79%
-          </td>
-          <td
-            role="cell"
-          >
-            705,00 NOK
-          </td>
-          <td
-            role="cell"
-          >
-            466,00 NOK
-          </td>
-          <td
-            role="cell"
-          >
-            Vedvik - Lunde
-          </td>
-          <td
-            role="cell"
-          >
-            1234567890
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div
-    className="alertstripe alertstripe--info"
-  >
-    <span
-      className="alertstripe__ikon"
+            <td
+              role="cell"
+            >
+              25.06.2018
+            </td>
+            <td
+              role="cell"
+            >
+              KONTOØVERFØRING
+            </td>
+            <td
+              role="cell"
+            >
+              14.01.2018 - 15.07.2017
+            </td>
+            <td
+              role="cell"
+            >
+              79%
+            </td>
+            <td
+              role="cell"
+            >
+              705,00 NOK
+            </td>
+            <td
+              role="cell"
+            >
+              466,00 NOK
+            </td>
+            <td
+              role="cell"
+            >
+              Vedvik - Lunde
+            </td>
+            <td
+              role="cell"
+            >
+              1234567890
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div
+      class="alertstripe alertstripe--info"
     >
       <span
-        className="sr-only"
+        class="alertstripe__ikon"
       >
-        info
-      </span>
-      <svg
-        aria-label="info-ikon"
-        focusable="false"
-        height="1.5em"
-        kind="info-sirkel-fyll"
-        role="img"
-        viewBox="0 0 24 24"
-        width="1.5em"
-      >
-        <g
-          fill="none"
+        <span
+          class="sr-only"
         >
-          <path
-            d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
-            fill="#337C9B"
-          />
-          <path
-            d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
-            fill="#FFF"
-          />
-        </g>
-      </svg>
-    </span>
-    <div
-      className="typo-normal alertstripe__tekst"
-    >
-      For detaljer om utførte utbetalinger 
-      <a
-        href="/person/utbetaling"
-        onClick={[Function]}
-        onFocus={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-        onTouchStart={[Function]}
+          info
+        </span>
+        <svg
+          aria-label="info-ikon"
+          focusable="false"
+          height="1.5em"
+          kind="info-sirkel-fyll"
+          role="img"
+          viewBox="0 0 24 24"
+          width="1.5em"
+        >
+          <g
+            fill="none"
+          >
+            <path
+              d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
+              fill="#337C9B"
+            />
+            <path
+              d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
+              fill="#FFF"
+            />
+          </g>
+        </svg>
+      </span>
+      <div
+        class="typo-normal alertstripe__tekst"
       >
-        se Utbetalingsoversikten.
-      </a>
+        For detaljer om utførte utbetalinger 
+        <a
+          href="/person/utbetaling"
+        >
+          se Utbetalingsoversikten.
+        </a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</DocumentFragment>
 `;

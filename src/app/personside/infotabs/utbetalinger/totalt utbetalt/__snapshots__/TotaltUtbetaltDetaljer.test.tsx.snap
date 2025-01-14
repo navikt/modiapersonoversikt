@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utbetalt-detaljer riktig 1`] = `
-[
+<DocumentFragment>
   .c2 {
   display: flex;
   justify-content: flex-end;
@@ -60,35 +60,34 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
 }
 
 <div
-    className="c0"
+    class="c0"
   >
     <div
-      className="c1"
+      class="c1"
     >
       <div
-        className="c2"
+        class="c2"
       >
         <button
-          aria-expanded={true}
-          className="c3"
-          onClick={[Function]}
+          aria-expanded="true"
+          class="c3"
         >
           <span
-            className="c4"
+            class="c4"
           >
             <span
-              className="typo-normal"
+              class="typo-normal"
             >
               Skjul sammendrag
             </span>
           </span>
           <span
-            className="nav-frontend-chevron chevronboks chevron--opp"
+            class="nav-frontend-chevron chevronboks chevron--opp"
           />
         </button>
       </div>
     </div>
-  </div>,
+  </div>
   .c4 {
   display: flex;
   justify-content: flex-end;
@@ -253,21 +252,19 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
 }
 
 <div
-    alwaysGrayBackground={false}
-    className="c0"
-    hasHeader={false}
-    open={true}
+    class="c0"
+    open=""
   >
     <div
-      className="c1"
-      open={true}
+      class="c1"
+      open=""
     >
       <aside
         aria-label="Sammendrag utbetalinger"
-        className="c2"
+        class="c2"
       >
         <div
-          className="typo-normal"
+          class="typo-normal"
         >
           <table>
             <thead>
@@ -279,35 +276,35 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
                   Ytelse
                 </th>
                 <th
-                  className="sumBrutto"
+                  class="sumBrutto"
                   role="columnheader"
                   scope="col"
                 >
                   Brutto
                 </th>
                 <th
-                  className="sumTrekk"
+                  class="sumTrekk"
                   role="columnheader"
                   scope="col"
                 >
                   Trekk
                 </th>
                 <th
-                  className="sumNetto"
+                  class="sumNetto"
                   role="columnheader"
                   scope="col"
                 >
                   Utbetalt
                 </th>
                 <th
-                  className="visually-hidden"
+                  class="visually-hidden"
                   role="columnheader"
                   scope="col"
                 >
                   Periode
                 </th>
                 <th
-                  className="visually-hidden"
+                  class="visually-hidden"
                   role="columnheader"
                   scope="col"
                 >
@@ -323,29 +320,27 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
                   Sykepenger 2017
                 </th>
                 <td
-                  className="sumBrutto"
+                  class="sumBrutto"
                 >
                   40 110,00
                 </td>
                 <td
-                  className="sumTrekk"
+                  class="sumTrekk"
                 >
                   −5 952,00
                 </td>
                 <td
-                  className="sumNetto"
+                  class="sumNetto"
                 >
                   34 158,00
                 </td>
                 <td
-                  className="periodeForYtelse"
+                  class="periodeForYtelse"
                 >
-                  09.11.2016
-                   - 
-                  31.10.2017
+                  09.11.2016 - 31.10.2017
                 </td>
                 <td
-                  className="ytelseDetaljer"
+                  class="ytelseDetaljer"
                 >
                   <dl>
                     <dt>
@@ -375,35 +370,34 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
       </aside>
     </div>
     <div
-      aria-hidden={true}
+      aria-hidden="true"
     >
       <div
-        className="c3"
+        class="c3"
       >
         <div
-          className="c4"
+          class="c4"
         >
           <button
-            aria-expanded={true}
-            className="c5"
-            onClick={[Function]}
+            aria-expanded="true"
+            class="c5"
           >
             <span
-              className="c6"
+              class="c6"
             >
               <span
-                className="typo-normal"
+                class="typo-normal"
               >
                 Skjul sammendrag
               </span>
             </span>
             <span
-              className="nav-frontend-chevron chevronboks chevron--opp"
+              class="nav-frontend-chevron chevronboks chevron--opp"
             />
           </button>
         </div>
       </div>
     </div>
-  </div>,
-]
+  </div>
+</DocumentFragment>
 `;
