@@ -1,7 +1,7 @@
 import { CheckmarkCircleFillIcon, ExclamationmarkTriangleFillIcon } from '@navikt/aksel-icons';
 import { Alert, Box, HStack, Pagination, Skeleton, Table, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
-import { type ReactNode, useEffect, useMemo } from 'react';
+import { type ReactNode, Suspense, useEffect, useMemo } from 'react';
 import QueryErrorBoundary from 'src/components/QueryErrorBoundary';
 import { useVarslerData } from 'src/lib/clients/modiapersonoversikt-api';
 import type { FeiletVarsling, Varsel } from 'src/lib/types/modiapersonoversikt-api';
@@ -257,4 +257,23 @@ function VarslerNy() {
     );
 }
 
-export default VarslerNy;
+function VarslerWrapper() {
+    return (
+        <Suspense
+            fallback={
+                <Box padding="2">
+                    <Skeleton variant="rounded" height={40} />
+                    <Skeleton variant="text" />
+                    <Skeleton variant="text" />
+                    <Skeleton variant="text" />
+                    <Skeleton variant="text" />
+                    <Skeleton variant="text" />
+                </Box>
+            }
+        >
+            <VarslerNy />
+        </Suspense>
+    );
+}
+
+export default VarslerWrapper;
