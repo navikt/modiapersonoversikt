@@ -1,5 +1,5 @@
 import { ChevronDownIcon, ChevronUpIcon, PersonIcon } from '@navikt/aksel-icons';
-import { BodyShort, Box, Button, CopyButton, HStack, Label, Skeleton } from '@navikt/ds-react';
+import { BodyShort, Box, Button, CopyButton, HStack, Label, Skeleton, VStack } from '@navikt/ds-react';
 import { Suspense, useState } from 'react';
 import { Kjonn, type KodeBeskrivelse } from 'src/app/personside/visittkort-v2/PersondataDomain';
 import config from 'src/config';
@@ -47,8 +47,13 @@ const PersonLinjeContent = () => {
             className="border-border-subtle rounded-xl has-[:focus]:border-border-strong overflow-hidden"
         >
             <QueryErrorBoundary error={error}>
-                <HStack padding="2" justify="space-between" className="hover:bg-bg-subtle cursor-pointer" wrap={false}>
-                    <HStack gap="4">
+                <HStack
+                    paddingInline="4"
+                    justify="space-between"
+                    className="hover:bg-bg-subtle cursor-pointer"
+                    wrap={false}
+                >
+                    <HStack gap="4" paddingBlock="2">
                         <Personalia
                             navn={navn ? `${navn.fornavn} ${navn.mellomnavn ?? ''} ${navn.etternavn}` : 'UKJENT'}
                             kjonn={kjonn}
@@ -56,21 +61,25 @@ const PersonLinjeContent = () => {
                         />
                         <HStack align="center" className="cursor-[initial]" onClick={(e) => e.stopPropagation()}>
                             <BodyShort size="small">F.nr: {data.person.personIdent}</BodyShort>
-                            <CopyButton size="small" copyText={data.person.personIdent} />
+                            <CopyButton size="xsmall" copyText={data.person.personIdent} />
                         </HStack>
                         {data.person.kontaktInformasjon.mobil?.value && (
                             <HStack align="center" className="cursor-[initial]" onClick={(e) => e.stopPropagation()}>
                                 <BodyShort size="small">Tlf.nr: {data.person.kontaktInformasjon.mobil.value}</BodyShort>
-                                <CopyButton size="small" copyText={data.person.kontaktInformasjon.mobil.value} />
+                                <CopyButton size="xsmall" copyText={data.person.kontaktInformasjon.mobil.value} />
                             </HStack>
                         )}
+                        <PersonBadges />
                     </HStack>
-                    <PersonBadges />
-                    <Button
-                        title="Åpne personlinje"
-                        icon={isExpanded ? <ChevronUpIcon aria-hidden /> : <ChevronDownIcon aria-hidden />}
-                        variant="tertiary-neutral"
-                    />
+                    <VStack justify="center">
+                        <Button
+                            className="grow-0"
+                            size="small"
+                            title="Åpne personlinje"
+                            icon={isExpanded ? <ChevronUpIcon aria-hidden /> : <ChevronDownIcon aria-hidden />}
+                            variant="tertiary-neutral"
+                        />
+                    </VStack>
                 </HStack>
                 <Box
                     marginInline="4"
@@ -95,7 +104,7 @@ type PersonaliaProps = {
 const Personalia = ({ navn, alder, kjonn }: PersonaliaProps) => {
     return (
         <HStack align="center" gap="1">
-            <PersonIcon fontSize="1.5rem" aria-hidden />
+            <PersonIcon fontSize="1.2rem" aria-hidden />
             <Label className="capitalize">{navn.toLowerCase()}</Label>
             <BodyShort>
                 ({kjonn.beskrivelse}, {alder ?? 'Unkjent alder'})
