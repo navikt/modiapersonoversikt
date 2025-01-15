@@ -1,4 +1,4 @@
-import * as renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import { statiskMockUtbetaling } from '../../../../../mock/utbetalinger/statiskMockUtbetaling';
 import type { Utbetaling, UtbetalingerPeriode } from '../../../../../models/utbetalinger';
 import TotaltUtbetaltDetaljer from './TotaltUtbetaltDetaljer';
@@ -22,7 +22,7 @@ const mockUtbetalingReturnertForSaksbehandling: Utbetaling = {
 
 test('Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utbetalt-detaljer riktig', () => {
     vi.useRealTimers();
-    const visittkortheader = renderer.create(
+    const visittkortheader = render(
         <TotaltUtbetaltDetaljer
             visDetaljer={true}
             toggleVisDetaljer={() => null}
@@ -36,6 +36,6 @@ test('Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utbeta
         />
     );
 
-    const json = visittkortheader.toJSON();
+    const json = visittkortheader.asFragment();
     expect(json).toMatchSnapshot();
 });

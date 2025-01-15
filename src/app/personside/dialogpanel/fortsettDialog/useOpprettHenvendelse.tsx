@@ -1,5 +1,5 @@
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
-import { useState } from 'react';
+import { type JSX, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { RespectConflictError, postWithConflictVerification } from '../../../../api/api';
 import { apiBaseUri } from '../../../../api/config';

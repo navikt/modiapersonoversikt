@@ -1,7 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Tester visittkort-header sin funksjonalitet > viser info om bruker i visittkort-header 1`] = `
-.c15 {
+<DocumentFragment>
+  .c15 {
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -198,295 +199,289 @@ exports[`Tester visittkort-header sin funksjonalitet > viser info om bruker i vi
 }
 
 <section
-  aria-label="Visittkort-hode"
-  className="c0"
-  onClick={[Function]}
-  role="region"
->
-  <div
-    className="c1"
+    aria-label="Visittkort-hode"
+    class="c0"
+    role="region"
   >
-    <section
-      className="c2"
+    <div
+      class="c1"
     >
-      <div
-        className="c3"
-      >
-        <svg
-          alt="Mann"
-          aria-label="Mann"
-          height={64}
-          viewBox="0 0 64 64"
-          width={64}
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M32 0a32 32 0 1 0 0 64 32 32 0 0 0 0-64zm0 8a3.9 3.9 0 1 1 0 7.7 3.9 3.9 0 0 1 0-7.8zm10 15.5v10.8c0 .9-.7 1.6-1.6 1.6-1 0-1.8-.7-1.8-1.6v-8.9c0-.4-.3-.8-.7-.8-.4 0-.7.3-.7.7v28.5a2.2 2.2 0 1 1-4.5 0v-18a.7.7 0 0 0-1.4 0v18a2.2 2.2 0 0 1-4.4 0V25.4a.7.7 0 0 0-1.5 0V34.3c0 .9-.8 1.6-1.8 1.6s-1.7-.7-1.7-1.6V23.5v-.7c0-3.4 3.6-5.8 7-6H35c3.4.2 7 2.6 7 6v.7z"
-            fill="#3385D1"
-          />
-        </svg>
-      </div>
       <section
-        className="c4"
+        class="c2"
       >
-        <h1
-          className="typo-undertittel"
+        <div
+          class="c3"
         >
-          <span
-            data-testId="visittkort:person"
-            tabIndex={-1}
+          <svg
+            alt="Mann"
+            aria-label="Mann"
+            height="64"
+            viewBox="0 0 64 64"
+            width="64"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            AREMARK TESTFAMILIEN
-             (
-            41
-            )
-          </span>
-        </h1>
-        <span
-          className="visually-hidden"
+            <path
+              d="M32 0a32 32 0 1 0 0 64 32 32 0 0 0 0-64zm0 8a3.9 3.9 0 1 1 0 7.7 3.9 3.9 0 0 1 0-7.8zm10 15.5v10.8c0 .9-.7 1.6-1.6 1.6-1 0-1.8-.7-1.8-1.6v-8.9c0-.4-.3-.8-.7-.8-.4 0-.7.3-.7.7v28.5a2.2 2.2 0 1 1-4.5 0v-18a.7.7 0 0 0-1.4 0v18a2.2 2.2 0 0 1-4.4 0V25.4a.7.7 0 0 0-1.5 0V34.3c0 .9-.8 1.6-1.8 1.6s-1.7-.7-1.7-1.6V23.5v-.7c0-3.4 3.6-5.8 7-6H35c3.4.2 7 2.6 7 6v.7z"
+              fill="#3385D1"
+            />
+          </svg>
+        </div>
+        <section
+          class="c4"
         >
-          Mann
-        </span>
-        <span
-          className="typo-normal"
-        >
-          <span
-            className="c5"
+          <h1
+            class="typo-undertittel"
           >
             <span
-              title="Fødselsnummer"
+              data-testid="visittkort:person"
+              tabindex="-1"
+            >
+              AREMARK TESTFAMILIEN (41)
+            </span>
+          </h1>
+          <span
+            class="visually-hidden"
+          >
+            Mann
+          </span>
+          <span
+            class="typo-normal"
+          >
+            <span
+              class="c5"
             >
               <span
-                data-test-id="person-fnr"
+                title="Fødselsnummer"
               >
-                10108000398
-              </span>
-              <span>
-                <button
-                  className="c6"
-                  onClick={[Function]}
+                <span
+                  data-test-id="person-fnr"
                 >
-                  <svg
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
+                  10108000398
+                </span>
+                <span>
+                  <button
+                    class="c6"
                   >
-                    <path
-                      d="M15.5 23.5h-14v-20h9l5 5zm-5-20v5h5m-8-5v-3h9l5 5v15h-6m1-20v5h5"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeMiterlimit="10"
-                    />
-                  </svg>
-                  <span
-                    className="sr-only"
-                  >
-                    Kopier fødselsnummer
-                  </span>
-                </button>
-                <textarea
-                  aria-hidden={true}
-                  className="c7"
-                  readOnly={true}
-                  tabIndex={-1}
-                  value="10108000398"
-                />
-              </span>
-            </span>
-          </span>
-          <ul
-            className="c8"
-          >
-            <li
-              title="Statsborgerskap"
-            >
-              Norge
-            </li>
-            <li
-              title="Sivilstand"
-            >
-              Gift
-            </li>
-            <span
-              className="c9"
-              title="Barn under 22 år"
-            >
-              <svg
-                className="c10"
-                title="Ett eller flere av barna har status som død"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g
-                  fill="none"
-                  fillRule="evenodd"
-                  stroke="none"
-                  strokeWidth={1}
-                >
-                  <g
-                    transform="translate(-16.000000, -20.000000)"
-                  >
-                    <g
-                      transform="translate(16.000000, 20.000000)"
+                    <svg
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        d="M12.2047909,-0.004 L11.990873,-0.00191299528 C8.77688569,0.054436132 5.75177235,1.35359657 3.47380671,3.65660627 C1.17914502,5.97631201 -0.0532312621,9.01290387 0.00207436285,12.2081081 C0.116859622,18.8207825 5.29784883,24.0007282 11.7967815,24.0007282 L12.0086125,23.9986412 C18.7350287,23.8828125 24.1142833,18.4044251 23.9984546,11.7896636 C23.8836693,5.17698921 18.7026801,-0.004 12.2047909,-0.004 Z"
-                        fill="#FFA733"
-                        fillRule="nonzero"
+                        d="M15.5 23.5h-14v-20h9l5 5zm-5-20v5h5m-8-5v-3h9l5 5v15h-6m1-20v5h5"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-miterlimit="10"
                       />
-                      <path
-                        d="M12.0271658,18.9998332 C12.0181663,18.9998332 12.0091668,18.9998332 12.0001673,18.9998332 C11.1827127,18.9998332 10.5137499,18.3458695 10.5002507,17.5269151 C10.4852515,16.6989611 11.1452148,16.0149992 11.9731688,16.0014999 C11.9821683,16.0014999 11.9911678,16 12.0001673,16 C12.8176218,16 13.4850847,16.6554636 13.5000839,17.474418 C13.515083,18.302372 12.8536198,18.984834 12.0271658,18.9998332 Z"
-                        fill="#3E3832"
-                        fillRule="evenodd"
-                      />
-                      <path
-                        d="M12,5 C12.5522847,5 13,5.44771525 13,6 L13,13 C13,13.5522847 12.5522847,14 12,14 C11.4477153,14 11,13.5522847 11,13 L11,6 C11,5.44771525 11.4477153,5 12,5 Z"
-                        fill="#3E3832"
-                        fillRule="nonzero"
-                      />
+                    </svg>
+                    <span
+                      class="sr-only"
+                    >
+                      Kopier fødselsnummer
+                    </span>
+                  </button>
+                  <textarea
+                    aria-hidden="true"
+                    class="c7"
+                    readonly=""
+                    tabindex="-1"
+                  >
+                    10108000398
+                  </textarea>
+                </span>
+              </span>
+            </span>
+            <ul
+              class="c8"
+            >
+              <li
+                title="Statsborgerskap"
+              >
+                Norge
+              </li>
+              <li
+                title="Sivilstand"
+              >
+                Gift
+              </li>
+              <span
+                class="c9"
+                title="Barn under 22 år"
+              >
+                <svg
+                  class="c10"
+                  title="Ett eller flere av barna har status som død"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g
+                    fill="none"
+                    fill-rule="evenodd"
+                    stroke="none"
+                    stroke-width="1"
+                  >
+                    <g
+                      transform="translate(-16.000000, -20.000000)"
+                    >
+                      <g
+                        transform="translate(16.000000, 20.000000)"
+                      >
+                        <path
+                          d="M12.2047909,-0.004 L11.990873,-0.00191299528 C8.77688569,0.054436132 5.75177235,1.35359657 3.47380671,3.65660627 C1.17914502,5.97631201 -0.0532312621,9.01290387 0.00207436285,12.2081081 C0.116859622,18.8207825 5.29784883,24.0007282 11.7967815,24.0007282 L12.0086125,23.9986412 C18.7350287,23.8828125 24.1142833,18.4044251 23.9984546,11.7896636 C23.8836693,5.17698921 18.7026801,-0.004 12.2047909,-0.004 Z"
+                          fill="#FFA733"
+                          fill-rule="nonzero"
+                        />
+                        <path
+                          d="M12.0271658,18.9998332 C12.0181663,18.9998332 12.0091668,18.9998332 12.0001673,18.9998332 C11.1827127,18.9998332 10.5137499,18.3458695 10.5002507,17.5269151 C10.4852515,16.6989611 11.1452148,16.0149992 11.9731688,16.0014999 C11.9821683,16.0014999 11.9911678,16 12.0001673,16 C12.8176218,16 13.4850847,16.6554636 13.5000839,17.474418 C13.515083,18.302372 12.8536198,18.984834 12.0271658,18.9998332 Z"
+                          fill="#3E3832"
+                          fill-rule="evenodd"
+                        />
+                        <path
+                          d="M12,5 C12.5522847,5 13,5.44771525 13,6 L13,13 C13,13.5522847 12.5522847,14 12,14 C11.4477153,14 11,13.5522847 11,13 L11,6 C11,5.44771525 11.4477153,5 12,5 Z"
+                          fill="#3E3832"
+                          fill-rule="nonzero"
+                        />
+                      </g>
                     </g>
                   </g>
-                </g>
-              </svg>
-              2
-               barn under 22 år
+                </svg>
+                2 barn under 22 år
+              </span>
+            </ul>
+          </span>
+        </section>
+      </section>
+      <div
+        class="c11"
+      >
+        <section
+          aria-label="etiketter"
+          class="c12"
+          role="region"
+        >
+          <div
+            class="etikett etikett--advarsel"
+          >
+            <span
+              class="typo-normal"
+            >
+              Sperret adresse, strengt fortrolig
             </span>
-          </ul>
-        </span>
-      </section>
-    </section>
-    <div
-      className="c11"
-    >
-      <section
-        aria-label="etiketter"
-        className="c12"
-        role="region"
-      >
-        <div
-          className="etikett etikett--advarsel"
-        >
-          <span
-            className="typo-normal"
+          </div>
+          <div
+            class="etikett etikett--advarsel"
           >
-            Sperret adresse, strengt fortrolig
-          </span>
-        </div>
-        <div
-          className="etikett etikett--advarsel"
-        >
-          <span
-            className="typo-normal"
+            <span
+              class="typo-normal"
+            >
+              Egen ansatt
+            </span>
+          </div>
+          <div
+            class="etikett etikett--advarsel"
           >
-            Egen ansatt
-          </span>
-        </div>
-        <div
-          className="etikett etikett--advarsel"
-        >
-          <span
-            className="typo-normal"
+            <span
+              class="typo-normal"
+            >
+              Sikkerhetstiltak
+            </span>
+          </div>
+          <div
+            class="etikett etikett--fokus"
           >
-            Sikkerhetstiltak
-          </span>
-        </div>
-        <div
-          className="etikett etikett--fokus"
-        >
-          <span
-            className="typo-normal"
+            <span
+              class="typo-normal"
+            >
+              Reservert i KRR
+            </span>
+          </div>
+          <div
+            class="etikett etikett--fokus"
           >
-            Reservert i KRR
-          </span>
-        </div>
-        <div
-          className="etikett etikett--fokus"
-        >
-          <span
-            className="typo-normal"
+            <span
+              class="typo-normal"
+            >
+              Manuell oppfølging
+            </span>
+          </div>
+          <div
+            class="etikett etikett--fokus"
           >
-            Manuell oppfølging
-          </span>
-        </div>
-        <div
-          className="etikett etikett--fokus"
-        >
-          <span
-            className="typo-normal"
+            <span
+              class="typo-normal"
+            >
+              Vergemål
+            </span>
+          </div>
+          <div
+            class="etikett etikett--fokus"
           >
-            Vergemål
-          </span>
-        </div>
-        <div
-          className="etikett etikett--fokus"
-        >
-          <span
-            className="typo-normal"
+            <span
+              class="typo-normal"
+            >
+              Talespråktolk
+            </span>
+          </div>
+          <div
+            class="etikett etikett--fokus"
           >
-            Talespråktolk
-          </span>
-        </div>
-        <div
-          className="etikett etikett--fokus"
-        >
-          <span
-            className="typo-normal"
+            <span
+              class="typo-normal"
+            >
+              Tegnspråktolk
+            </span>
+          </div>
+          <div
+            class="etikett etikett--fokus"
           >
-            Tegnspråktolk
-          </span>
-        </div>
-        <div
-          className="etikett etikett--fokus"
-        >
-          <span
-            className="typo-normal"
+            <span
+              class="typo-normal"
+            >
+              Dødsbo
+            </span>
+          </div>
+          <div
+            class="etikett etikett--fokus"
           >
-            Dødsbo
-          </span>
-        </div>
-        <div
-          className="etikett etikett--fokus"
+            <span
+              class="typo-normal"
+            >
+              Fullmakt
+            </span>
+          </div>
+        </section>
+        <section
+          aria-label="Nav kontor"
+          class="c13"
         >
-          <span
-            className="typo-normal"
+          <h2
+            class="typo-element"
           >
-            Fullmakt
-          </span>
-        </div>
-      </section>
-      <section
-        aria-label="Nav kontor"
-        className="c13"
-      >
-        <h2
-          className="typo-element"
-        >
-          Nav-kontor / 0219 NAV Bærum
-        </h2>
-      </section>
+            Nav-kontor / 0219 NAV Bærum
+          </h2>
+        </section>
+      </div>
     </div>
-  </div>
-  <div
-    className="c14"
-  >
-    <button
-      aria-expanded={false}
-      aria-label="Åpne visittkort (Alt + N)"
-      className="c15"
-      focusOnRelativeParent={true}
-      onClick={[Function]}
-      title="Åpne visittkort (Alt + N)"
+    <div
+      class="c14"
     >
-      <span
-        className="nav-frontend-chevron chevronboks chevron--ned"
-      />
-      <span
-        className="visually-hidden"
+      <button
+        aria-expanded="false"
+        aria-label="Åpne visittkort (Alt + N)"
+        class="c15"
+        title="Åpne visittkort (Alt + N)"
       >
-        Ekspander visittkort
-      </span>
-    </button>
-  </div>
-</section>
+        <span
+          class="nav-frontend-chevron chevronboks chevron--ned"
+        />
+        <span
+          class="visually-hidden"
+        >
+          Ekspander visittkort
+        </span>
+      </button>
+    </div>
+  </section>
+</DocumentFragment>
 `;

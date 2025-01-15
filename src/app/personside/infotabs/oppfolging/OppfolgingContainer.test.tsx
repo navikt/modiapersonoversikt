@@ -1,16 +1,16 @@
-import * as renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import TestProvider from '../../../../test/Testprovider';
 import { setupReactQueryMocks } from '../../../../test/testStore';
 import OppfolgingContainer from './OppfolgingContainer';
 
 test('Viser oppfølgingcontainer med alt innhold', () => {
     setupReactQueryMocks();
-    const container = renderer.create(
+    const container = render(
         <TestProvider>
             <OppfolgingContainer />
         </TestProvider>
     );
 
-    const json = container.toJSON();
+    const json = container.asFragment();
     expect(json).toMatchSnapshot();
 });

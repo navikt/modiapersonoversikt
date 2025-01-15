@@ -1,10 +1,10 @@
-import * as renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import { statiskTraadMock } from '../../../../../mock/meldinger/statiskTraadMock';
 import TidligereMeldinger from './TidligereMeldinger';
 
 test('viser fortsett dialog', () => {
-    const dialogPanelBody = renderer.create(<TidligereMeldinger traad={statiskTraadMock} />);
+    const dialogPanelBody = render(<TidligereMeldinger traad={statiskTraadMock} />);
 
-    expect(dialogPanelBody.toJSON()).toMatchSnapshot();
+    expect(dialogPanelBody.asFragment()).toMatchSnapshot();
     dialogPanelBody.unmount();
 });

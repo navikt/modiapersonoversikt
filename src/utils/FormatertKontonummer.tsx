@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import type { JSX } from 'react';
+
 const Kontonummer = styled.span`
     span:not(:last-child):after {
         content: '.';

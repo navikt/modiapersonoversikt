@@ -1,5 +1,7 @@
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 
+import type { JSX } from 'react';
+
 export function ViktigÅViteAAPInnhold(): JSX.Element {
     return (
         <div>

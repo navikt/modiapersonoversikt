@@ -1,7 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`ArbeidsforholdListe matcher snapshot 1`] = `
-.c2 span:not(:last-child):after {
+<DocumentFragment>
+  .c2 span:not(:last-child):after {
   content: '.';
 }
 
@@ -28,110 +29,111 @@ exports[`ArbeidsforholdListe matcher snapshot 1`] = `
 }
 
 <ol
-  aria-label="Arbeidsgivere"
-  className="c0"
->
-  <li>
-    <dl
-      className="c1"
-    >
-      <div>
-        <dt
-          className="typo-normal"
-        >
-          Arbeidsgiver
-        </dt>
-        <dd
-          className="typo-element"
-        >
-          Bærlevåg Burger og Bitcoin
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-normal"
-        >
-          Kontonummer
-        </dt>
-        <dd
-          className="typo-element"
-        >
-          <span
-            className="c2"
+    aria-label="Arbeidsgivere"
+    class="c0"
+  >
+    <li>
+      <dl
+        class="c1"
+      >
+        <div>
+          <dt
+            class="typo-normal"
           >
-            <span>
-              8786
+            Arbeidsgiver
+          </dt>
+          <dd
+            class="typo-element"
+          >
+            Bærlevåg Burger og Bitcoin
+          </dd>
+        </div>
+        <div>
+          <dt
+            class="typo-normal"
+          >
+            Kontonummer
+          </dt>
+          <dd
+            class="typo-element"
+          >
+            <span
+              class="c2"
+            >
+              <span>
+                8786
+              </span>
+              <span>
+                52
+              </span>
+              <span>
+                75970
+              </span>
             </span>
-            <span>
-              52
-            </span>
-            <span>
-              75970
-            </span>
-          </span>
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-normal"
-        >
-          Inntekstsperiode
-        </dt>
-        <dd
-          className="typo-element"
-        >
-          Månedssats
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-normal"
-        >
-          Inntekt for perioden
-        </dt>
-        <dd
-          className="typo-element"
-        >
-          39 691,00 NOK
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-normal"
-        >
-          Refusjonstype
-        </dt>
-        <dd
-          className="typo-element"
-        >
-          Ikke refusjon
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-normal"
-        >
-          Refusjon til dato
-        </dt>
-        <dd
-          className="typo-element"
-        >
-          12.03.2018
-        </dd>
-      </div>
-      <div>
-        <dt
-          className="typo-normal"
-        >
-          Sykepenger fra og med
-        </dt>
-        <dd
-          className="typo-element"
-        >
-          18.02.2018
-        </dd>
-      </div>
-    </dl>
-  </li>
-</ol>
+          </dd>
+        </div>
+        <div>
+          <dt
+            class="typo-normal"
+          >
+            Inntekstsperiode
+          </dt>
+          <dd
+            class="typo-element"
+          >
+            Månedssats
+          </dd>
+        </div>
+        <div>
+          <dt
+            class="typo-normal"
+          >
+            Inntekt for perioden
+          </dt>
+          <dd
+            class="typo-element"
+          >
+            39 691,00 NOK
+          </dd>
+        </div>
+        <div>
+          <dt
+            class="typo-normal"
+          >
+            Refusjonstype
+          </dt>
+          <dd
+            class="typo-element"
+          >
+            Ikke refusjon
+          </dd>
+        </div>
+        <div>
+          <dt
+            class="typo-normal"
+          >
+            Refusjon til dato
+          </dt>
+          <dd
+            class="typo-element"
+          >
+            12.03.2018
+          </dd>
+        </div>
+        <div>
+          <dt
+            class="typo-normal"
+          >
+            Sykepenger fra og med
+          </dt>
+          <dd
+            class="typo-element"
+          >
+            18.02.2018
+          </dd>
+        </div>
+      </dl>
+    </li>
+  </ol>
+</DocumentFragment>
 `;

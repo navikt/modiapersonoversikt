@@ -1,7 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Viser traad med verktøylinje 1`] = `
-.c23 .snakkeboble-panel {
+<DocumentFragment>
+  .c23 .snakkeboble-panel {
   flex-basis: 40rem;
   padding: 0.5rem 0.5rem 0.3rem;
 }
@@ -284,1220 +285,1125 @@ exports[`Viser traad med verktøylinje 1`] = `
 }
 
 <article
-  className="c0"
-  role="tabpanel"
->
-  <article
-    aria-label="Verktøylinje"
-    aria-labelledby="Helt tilfeldig ID"
+    class="c0"
+    role="tabpanel"
   >
-    <div
-      className="panel c1"
-      tabIndex={-1}
+    <article
+      aria-label="Verktøylinje"
+      aria-labelledby="Helt tilfeldig ID"
     >
       <div
-        className="c2"
+        class="panel c1"
+        tabindex="-1"
       >
         <div
-          className="c3"
+          class="c2"
         >
-          <button
-            aria-expanded={false}
-            className="c4 c5"
-            onClick={[Function]}
+          <div
+            class="c3"
           >
-            <span
-              className="c6"
+            <button
+              aria-expanded="false"
+              class="c4 c5"
             >
               <span
-                className="typo-normal"
+                class="c6"
               >
-                Journalfør
+                <span
+                  class="typo-normal"
+                >
+                  Journalfør
+                </span>
               </span>
-            </span>
-            <span
-              className="nav-frontend-chevron chevronboks chevron--ned"
-            />
-          </button>
-          <button
-            aria-expanded={false}
-            className="c4 c5"
-            onClick={[Function]}
-          >
-            <span
-              className="c6"
+              <span
+                class="nav-frontend-chevron chevronboks chevron--ned"
+              />
+            </button>
+            <button
+              aria-expanded="false"
+              class="c4 c5"
             >
               <span
-                className="typo-normal"
+                class="c6"
               >
-                Oppgave
+                <span
+                  class="typo-normal"
+                >
+                  Oppgave
+                </span>
               </span>
-            </span>
-            <span
-              className="nav-frontend-chevron chevronboks chevron--ned"
-            />
-          </button>
-          <button
-            aria-expanded={false}
-            className="c4 c5"
-            onClick={[Function]}
-          >
-            <span
-              className="c6"
+              <span
+                class="nav-frontend-chevron chevronboks chevron--ned"
+              />
+            </button>
+            <button
+              aria-expanded="false"
+              class="c4 c5"
             >
               <span
-                className="typo-normal"
+                class="c6"
               >
-                Merk
+                <span
+                  class="typo-normal"
+                >
+                  Merk
+                </span>
               </span>
-            </span>
+              <span
+                class="nav-frontend-chevron chevronboks chevron--ned"
+              />
+            </button>
+          </div>
+          <button
+            aria-label="Skriv ut"
+            class="c7"
+          >
             <span
-              className="nav-frontend-chevron chevronboks chevron--ned"
-            />
+              class="typo-normal"
+            >
+              Skriv ut
+            </span>
+             
+            <svg
+              viewBox="0 0 17 16"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <path
+                d="M14.8,4.9H2.2c-0.9,0-1.7,0.7-1.7,1.7v4c0,0.9,0.7,1.7,1.7,1.7h1.7v3c0,0.2,0.1,0.3,0.3,0.3h8.7	c0.2,0,0.3-0.1,0.3-0.3v-3h1.7c0.9,0,1.7-0.7,1.7-1.7v-4C16.5,5.6,15.8,4.9,14.8,4.9z M4.5,14.9h8v-4.7h-8V14.9z"
+                fill="#0067C5"
+                fill-rule="evenodd"
+              />
+              <path
+                d="M4.9,0.9h7.1c0.6,0,1,0.4,1,1v1.4c0,0.6-0.4,1-1,1H4.9c-0.6,0-1-0.4-1-1V1.9C3.9,1.3,4.4,0.9,4.9,0.9z"
+                fill="#0067C5"
+              />
+            </svg>
           </button>
+          <div
+            class="c8"
+          >
+            <div
+              class="c9"
+            >
+              <p
+                class="typo-element"
+              >
+                Journalført:
+              </p>
+              <p
+                class="typo-normal"
+              >
+                30.07.2019: Dagpenger (ukjent saksid)
+              </p>
+              <p
+                class="typo-normal"
+              >
+                28.07.2019: Arbeidsavklaringspenger (ukjent saksid)
+              </p>
+            </div>
+            <div
+              class="c10"
+            >
+              <p
+                class="typo-ingress"
+              >
+                Samtalereferat oppmøte - Arbeid
+              </p>
+              <div
+                class="c11"
+              >
+                <div>
+                  <p
+                    class="typo-element"
+                  >
+                    Skrevet av: Sander Hansen (nzxo4q)
+                  </p>
+                  <p
+                    class="typo-element"
+                  >
+                    Kanal: NAV_NO
+                  </p>
+                  <p
+                    class="typo-element"
+                  >
+                    Type: SAMTALEREFERAT_OPPMOTE
+                  </p>
+                  <p
+                    class="typo-element"
+                  >
+                    Temagruppe: ARBD
+                  </p>
+                </div>
+                <div>
+                  <p
+                    class="typo-element"
+                  >
+                    Fødselsnummer: 10108000398
+                  </p>
+                  <p
+                    class="typo-normal"
+                  >
+                    Mottatt/Sendt: 07.07.2019
+                  </p>
+                  <p
+                    class="typo-normal"
+                  >
+                    Lest: 12.07.2019 00:00
+                  </p>
+                </div>
+              </div>
+              <div
+                class="c12"
+              >
+                <p
+                  class="typo-element"
+                >
+                  Innhold:
+                </p>
+                <div>
+                  <p
+                    class="typo-normal"
+                  >
+                    Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="c10"
+            >
+              <p
+                class="typo-ingress"
+              >
+                Spørsmål fra bruker - Arbeid
+              </p>
+              <div
+                class="c11"
+              >
+                <div>
+                  <p
+                    class="typo-element"
+                  >
+                    Skrevet av: Synne Lunde (e5otkk)
+                  </p>
+                  <p
+                    class="typo-element"
+                  >
+                    Kanal: NAV_NO
+                  </p>
+                  <p
+                    class="typo-element"
+                  >
+                    Type: SPORSMAL_SKRIFTLIG
+                  </p>
+                  <p
+                    class="typo-element"
+                  >
+                    Temagruppe: ARBD
+                  </p>
+                </div>
+                <div>
+                  <p
+                    class="typo-element"
+                  >
+                    Fødselsnummer: 10108000398
+                  </p>
+                  <p
+                    class="typo-normal"
+                  >
+                    Mottatt/Sendt: 12.07.2019
+                  </p>
+                  <p
+                    class="typo-normal"
+                  >
+                    Lest: 11.08.2019 00:00
+                  </p>
+                </div>
+              </div>
+              <div
+                class="c12"
+              >
+                <p
+                  class="typo-element"
+                >
+                  Innhold:
+                </p>
+                <div>
+                  <p
+                    class="typo-normal"
+                  >
+                    Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="c10"
+            >
+              <p
+                class="typo-ingress"
+              >
+                Spørsmål fra bruker - Helse
+              </p>
+              <div
+                class="c11"
+              >
+                <div>
+                  <p
+                    class="typo-element"
+                  >
+                    Skrevet av: Frida Pedersen (xmqgb8)
+                  </p>
+                  <p
+                    class="typo-element"
+                  >
+                    Kanal: NAV_NO
+                  </p>
+                  <p
+                    class="typo-element"
+                  >
+                    Type: SPORSMAL_SKRIFTLIG
+                  </p>
+                  <p
+                    class="typo-element"
+                  >
+                    Temagruppe: HELSE
+                  </p>
+                </div>
+                <div>
+                  <p
+                    class="typo-element"
+                  >
+                    Fødselsnummer: 10108000398
+                  </p>
+                  <p
+                    class="typo-normal"
+                  >
+                    Mottatt/Sendt: 16.07.2019
+                  </p>
+                  <p
+                    class="typo-normal"
+                  >
+                    Lest: 14.07.2019 00:00
+                  </p>
+                </div>
+              </div>
+              <div
+                class="c12"
+              >
+                <p
+                  class="typo-element"
+                >
+                  Innhold:
+                </p>
+                <div>
+                  <p
+                    class="typo-normal"
+                  >
+                    Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="c10"
+            >
+              <p
+                class="typo-ingress"
+              >
+                Spørsmål fra NAV - Arbeid
+              </p>
+              <div
+                class="c11"
+              >
+                <div>
+                  <p
+                    class="typo-element"
+                  >
+                    Skrevet av: Kristoffer Fredriksen (xy70r8)
+                  </p>
+                  <p
+                    class="typo-element"
+                  >
+                    Kanal: NAV_NO
+                  </p>
+                  <p
+                    class="typo-element"
+                  >
+                    Type: SPORSMAL_MODIA_UTGAAENDE
+                  </p>
+                  <p
+                    class="typo-element"
+                  >
+                    Temagruppe: ARBD
+                  </p>
+                </div>
+                <div>
+                  <p
+                    class="typo-element"
+                  >
+                    Fødselsnummer: 10108000398
+                  </p>
+                  <p
+                    class="typo-normal"
+                  >
+                    Mottatt/Sendt: 27.07.2019
+                  </p>
+                  <p
+                    class="typo-normal"
+                  >
+                    Lest: 23.07.2019 00:00
+                  </p>
+                </div>
+              </div>
+              <div
+                class="c12"
+              >
+                <p
+                  class="typo-element"
+                >
+                  Innhold:
+                </p>
+                <div>
+                  <p
+                    class="typo-normal"
+                  >
+                    Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <button
-          aria-label="Skriv ut"
-          className="c7"
-          onClick={[Function]}
+        <section
+          class="c13"
         >
-          <span
-            className="typo-normal"
-          >
-            Skriv ut
-          </span>
-           
           <svg
-            viewBox="0 0 17 16"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlnsXlink="http://www.w3.org/1999/xlink"
+            aria-label="Laster innhold"
+            class="spinner spinner--xl"
+            focusable="false"
+            height="32"
+            kind="spinner-negativ"
+            preserveAspectRatio="xMidYMid"
+            viewBox="0 0 50 50"
+            width="32"
           >
-            <path
-              d="M14.8,4.9H2.2c-0.9,0-1.7,0.7-1.7,1.7v4c0,0.9,0.7,1.7,1.7,1.7h1.7v3c0,0.2,0.1,0.3,0.3,0.3h8.7	c0.2,0,0.3-0.1,0.3-0.3v-3h1.7c0.9,0,1.7-0.7,1.7-1.7v-4C16.5,5.6,15.8,4.9,14.8,4.9z M4.5,14.9h8v-4.7h-8V14.9z"
-              fill="#0067C5"
-              fillRule="evenodd"
+            <title>
+              Venter...
+            </title>
+            <circle
+              cx="25"
+              cy="25"
+              fill="none"
+              r="20"
+              stroke="#eee"
+              stroke-width="5"
+              xmlns="http://www.w3.org/2000/svg"
             />
-            <path
-              d="M4.9,0.9h7.1c0.6,0,1,0.4,1,1v1.4c0,0.6-0.4,1-1,1H4.9c-0.6,0-1-0.4-1-1V1.9C3.9,1.3,4.4,0.9,4.9,0.9z"
-              fill="#0067C5"
+            <circle
+              cx="25"
+              cy="25"
+              fill="none"
+              r="20"
+              stroke="#888"
+              stroke-dasharray="50 155"
+              stroke-linecap="round"
+              stroke-width="5"
             />
           </svg>
-        </button>
+        </section>
         <div
-          className="c8"
+          class="c14"
         >
-          <div
-            className="c9"
-          >
+          <form>
             <p
-              className="typo-element"
+              class="typo-element"
             >
-              Journalført:
-            </p>
-            <p
-              className="typo-normal"
-            >
-              30.07.2019: Dagpenger (ukjent saksid)
-            </p>
-            <p
-              className="typo-normal"
-            >
-              28.07.2019: Arbeidsavklaringspenger (ukjent saksid)
-            </p>
-          </div>
-          <div
-            className="c10"
-          >
-            <p
-              className="typo-ingress"
-            >
-              Samtalereferat oppmøte - Arbeid
+              Opprett oppgave
             </p>
             <div
-              className="c11"
+              class="skjemaelement"
             >
-              <div>
-                <p
-                  className="typo-element"
-                >
-                  Skrevet av: 
-                  Sander Hansen (nzxo4q)
-                </p>
-                <p
-                  className="typo-element"
-                >
-                  Kanal: NAV_NO
-                </p>
-                <p
-                  className="typo-element"
-                >
-                  Type: 
-                  SAMTALEREFERAT_OPPMOTE
-                </p>
-                <p
-                  className="typo-element"
-                >
-                  Temagruppe: 
-                  ARBD
-                </p>
-              </div>
-              <div>
-                <p
-                  className="typo-element"
-                >
-                  Fødselsnummer: 
-                  10108000398
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  Mottatt/Sendt: 
-                  07.07.2019
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  Lest: 
-                  12.07.2019 00:00
-                </p>
-              </div>
-            </div>
-            <div
-              className="c12"
-            >
-              <p
-                className="typo-element"
+              <label
+                class="skjemaelement__label"
+                for="valgtTema"
               >
-                Innhold:
-              </p>
-              <div>
-                <p
-                  className="typo-normal"
-                >
-                  Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div
-            className="c10"
-          >
-            <p
-              className="typo-ingress"
-            >
-              Spørsmål fra bruker - Arbeid
-            </p>
-            <div
-              className="c11"
-            >
-              <div>
-                <p
-                  className="typo-element"
-                >
-                  Skrevet av: 
-                  Synne Lunde (e5otkk)
-                </p>
-                <p
-                  className="typo-element"
-                >
-                  Kanal: NAV_NO
-                </p>
-                <p
-                  className="typo-element"
-                >
-                  Type: 
-                  SPORSMAL_SKRIFTLIG
-                </p>
-                <p
-                  className="typo-element"
-                >
-                  Temagruppe: 
-                  ARBD
-                </p>
-              </div>
-              <div>
-                <p
-                  className="typo-element"
-                >
-                  Fødselsnummer: 
-                  10108000398
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  Mottatt/Sendt: 
-                  12.07.2019
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  Lest: 
-                  11.08.2019 00:00
-                </p>
-              </div>
-            </div>
-            <div
-              className="c12"
-            >
-              <p
-                className="typo-element"
+                Tema
+              </label>
+              <div
+                class="selectContainer input--fullbredde"
               >
-                Innhold:
-              </p>
-              <div>
-                <p
-                  className="typo-normal"
+                <select
+                  aria-invalid="false"
+                  class="skjemaelement__input"
+                  id="valgtTema"
+                  name="valgtTema"
                 >
-                  Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div
-            className="c10"
-          >
-            <p
-              className="typo-ingress"
-            >
-              Spørsmål fra bruker - Helse
-            </p>
-            <div
-              className="c11"
-            >
-              <div>
-                <p
-                  className="typo-element"
-                >
-                  Skrevet av: 
-                  Frida Pedersen (xmqgb8)
-                </p>
-                <p
-                  className="typo-element"
-                >
-                  Kanal: NAV_NO
-                </p>
-                <p
-                  className="typo-element"
-                >
-                  Type: 
-                  SPORSMAL_SKRIFTLIG
-                </p>
-                <p
-                  className="typo-element"
-                >
-                  Temagruppe: 
-                  HELSE
-                </p>
-              </div>
-              <div>
-                <p
-                  className="typo-element"
-                >
-                  Fødselsnummer: 
-                  10108000398
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  Mottatt/Sendt: 
-                  16.07.2019
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  Lest: 
-                  14.07.2019 00:00
-                </p>
+                  <option
+                    disabled=""
+                    value=""
+                  >
+                    Velg tema
+                  </option>
+                  <option
+                    value="AGR"
+                  >
+                    Ajourhold - Grunnopplysninger
+                  </option>
+                  <option
+                    value="AAP"
+                  >
+                    Arbeidsavklaringspenger
+                  </option>
+                  <option
+                    value="BID"
+                  >
+                    Bidrag
+                  </option>
+                </select>
               </div>
             </div>
             <div
-              className="c12"
+              class="skjemaelement"
             >
-              <p
-                className="typo-element"
+              <label
+                class="skjemaelement__label"
+                for="valgtUnderkategori"
               >
-                Innhold:
-              </p>
-              <div>
-                <p
-                  className="typo-normal"
+                Gjelder
+              </label>
+              <div
+                class="selectContainer input--fullbredde"
+              >
+                <select
+                  aria-invalid="false"
+                  class="skjemaelement__input"
+                  id="valgtUnderkategori"
+                  name="valgtUnderkategori"
                 >
-                  Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div
-            className="c10"
-          >
-            <p
-              className="typo-ingress"
-            >
-              Spørsmål fra NAV - Arbeid
-            </p>
-            <div
-              className="c11"
-            >
-              <div>
-                <p
-                  className="typo-element"
-                >
-                  Skrevet av: 
-                  Kristoffer Fredriksen (xy70r8)
-                </p>
-                <p
-                  className="typo-element"
-                >
-                  Kanal: NAV_NO
-                </p>
-                <p
-                  className="typo-element"
-                >
-                  Type: 
-                  SPORSMAL_MODIA_UTGAAENDE
-                </p>
-                <p
-                  className="typo-element"
-                >
-                  Temagruppe: 
-                  ARBD
-                </p>
-              </div>
-              <div>
-                <p
-                  className="typo-element"
-                >
-                  Fødselsnummer: 
-                  10108000398
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  Mottatt/Sendt: 
-                  27.07.2019
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  Lest: 
-                  23.07.2019 00:00
-                </p>
+                  <option
+                    value=""
+                  >
+                    Ingen tema valgt
+                  </option>
+                </select>
               </div>
             </div>
             <div
-              className="c12"
+              class="skjemaelement"
             >
-              <p
-                className="typo-element"
+              <label
+                class="skjemaelement__label"
+                for="valgtOppgavetype"
               >
-                Innhold:
-              </p>
-              <div>
-                <p
-                  className="typo-normal"
+                Type oppgave
+              </label>
+              <div
+                class="selectContainer input--fullbredde"
+              >
+                <select
+                  aria-invalid="false"
+                  class="skjemaelement__input"
+                  id="valgtOppgavetype"
+                  name="valgtOppgavetype"
                 >
-                  Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
-                </p>
+                  <option
+                    disabled=""
+                    value=""
+                  >
+                    Ingen tema valgt
+                  </option>
+                </select>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <section
-        className="c13"
-      >
-        <svg
-          aria-label="Laster innhold"
-          className="spinner spinner--xl"
-          focusable="false"
-          height={32}
-          kind="spinner-negativ"
-          preserveAspectRatio="xMidYMid"
-          viewBox="0 0 50 50"
-          width={32}
-        >
-          <title>
-            Venter...
-          </title>
-          <circle
-            cx="25"
-            cy="25"
-            fill="none"
-            r="20"
-            stroke="#eee"
-            strokeWidth="5"
-            xmlns="http://www.w3.org/2000/svg"
-          />
-          <circle
-            cx="25"
-            cy="25"
-            fill="none"
-            r="20"
-            stroke="#888"
-            strokeDasharray="50 155"
-            strokeLinecap="round"
-            strokeWidth="5"
-          />
-        </svg>
-      </section>
-      <div
-        className="c14"
-      >
-        <form
-          onSubmit={[Function]}
-        >
-          <p
-            className="typo-element"
-          >
-            Opprett oppgave
-          </p>
-          <div
-            className="skjemaelement"
-          >
-            <label
-              className="skjemaelement__label"
-              htmlFor="valgtTema"
-            >
-              Tema
-            </label>
             <div
-              className="selectContainer input--fullbredde"
-            >
-              <select
-                aria-invalid={false}
-                autoFocus={true}
-                className="skjemaelement__input"
-                defaultValue=""
-                disabled={false}
-                id="valgtTema"
-                name="valgtTema"
-                onBlur={[Function]}
-                onChange={[Function]}
-              >
-                <option
-                  disabled={true}
-                  value=""
-                >
-                  Velg tema
-                </option>
-                <option
-                  value="AGR"
-                >
-                  Ajourhold - Grunnopplysninger
-                </option>
-                <option
-                  value="AAP"
-                >
-                  Arbeidsavklaringspenger
-                </option>
-                <option
-                  value="BID"
-                >
-                  Bidrag
-                </option>
-              </select>
-            </div>
-          </div>
-          <div
-            className="skjemaelement"
-          >
-            <label
-              className="skjemaelement__label"
-              htmlFor="valgtUnderkategori"
-            >
-              Gjelder
-            </label>
-            <div
-              className="selectContainer input--fullbredde"
-            >
-              <select
-                aria-invalid={false}
-                autoFocus={false}
-                className="skjemaelement__input"
-                defaultValue=""
-                disabled={false}
-                id="valgtUnderkategori"
-                name="valgtUnderkategori"
-                onBlur={[Function]}
-                onChange={[Function]}
-              >
-                <option
-                  value=""
-                >
-                  Ingen tema valgt
-                </option>
-              </select>
-            </div>
-          </div>
-          <div
-            className="skjemaelement"
-          >
-            <label
-              className="skjemaelement__label"
-              htmlFor="valgtOppgavetype"
-            >
-              Type oppgave
-            </label>
-            <div
-              className="selectContainer input--fullbredde"
-            >
-              <select
-                aria-invalid={false}
-                autoFocus={false}
-                className="skjemaelement__input"
-                defaultValue=""
-                disabled={false}
-                id="valgtOppgavetype"
-                name="valgtOppgavetype"
-                onBlur={[Function]}
-                onChange={[Function]}
-              >
-                <option
-                  disabled={true}
-                  value=""
-                >
-                  Ingen tema valgt
-                </option>
-              </select>
-            </div>
-          </div>
-          <div
-            aria-expanded={false}
-            aria-haspopup="listbox"
-            aria-labelledby="downshift-0-label"
-            aria-owns={null}
-            className="c15"
-            role="combobox"
-          >
-            <div
-              className="c16"
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              aria-labelledby="downshift-0-label"
+              class="c15"
+              role="combobox"
             >
               <div
-                className="skjemaelement"
+                class="c16"
               >
-                <label
-                  className="skjemaelement__label"
-                  htmlFor="valgtEnhet"
+                <div
+                  class="skjemaelement"
                 >
-                  <span>
-                    Velg enhet
-                  </span>
-                </label>
-                <input
-                  aria-activedescendant={null}
-                  aria-autocomplete="list"
-                  aria-controls={null}
-                  aria-invalid={false}
-                  aria-labelledby="downshift-0-label"
-                  autoComplete="off"
-                  className="skjemaelement__input input--fullbredde"
-                  id="valgtEnhet"
-                  name="valgtEnhet"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  onKeyDown={[Function]}
-                  type="text"
-                  value=""
-                />
+                  <label
+                    class="skjemaelement__label"
+                    for="valgtEnhet"
+                  >
+                    <span>
+                      Velg enhet
+                    </span>
+                  </label>
+                  <input
+                    aria-autocomplete="list"
+                    aria-invalid="false"
+                    aria-labelledby="downshift-0-label"
+                    autocomplete="off"
+                    class="skjemaelement__input input--fullbredde"
+                    id="valgtEnhet"
+                    name="valgtEnhet"
+                    type="text"
+                    value=""
+                  />
+                </div>
               </div>
             </div>
-          </div>
-          <div
-            aria-expanded={false}
-            aria-haspopup="listbox"
-            aria-labelledby="downshift-1-label"
-            aria-owns={null}
-            className="c15"
-            role="combobox"
-          >
             <div
-              className="c16"
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              aria-labelledby="downshift-1-label"
+              class="c15"
+              role="combobox"
             >
               <div
-                className="skjemaelement"
+                class="c16"
               >
-                <label
-                  className="skjemaelement__label"
-                  htmlFor="valgtAnsatt"
+                <div
+                  class="skjemaelement"
                 >
-                  Velg ansatt
-                </label>
-                <input
-                  aria-activedescendant={null}
-                  aria-autocomplete="list"
-                  aria-controls={null}
-                  aria-invalid={false}
-                  aria-labelledby="downshift-1-label"
-                  autoComplete="off"
-                  className="skjemaelement__input input--fullbredde"
-                  id="valgtAnsatt"
-                  name="valgtAnsatt"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  onKeyDown={[Function]}
-                  type="text"
-                  value=""
-                />
+                  <label
+                    class="skjemaelement__label"
+                    for="valgtAnsatt"
+                  >
+                    Velg ansatt
+                  </label>
+                  <input
+                    aria-autocomplete="list"
+                    aria-invalid="false"
+                    aria-labelledby="downshift-1-label"
+                    autocomplete="off"
+                    class="skjemaelement__input input--fullbredde"
+                    id="valgtAnsatt"
+                    name="valgtAnsatt"
+                    type="text"
+                    value=""
+                  />
+                </div>
               </div>
             </div>
-          </div>
-          <div
-            className="skjemaelement"
-          >
-            <label
-              className="skjemaelement__label"
-              htmlFor="valgtPrioritet"
-            >
-              Velg prioritet
-            </label>
             <div
-              className="selectContainer input--fullbredde"
+              class="skjemaelement"
             >
-              <select
-                aria-invalid={false}
-                className="skjemaelement__input"
-                disabled={false}
-                id="valgtPrioritet"
-                name="valgtPrioritet"
-                onBlur={[Function]}
-                onChange={[Function]}
+              <label
+                class="skjemaelement__label"
+                for="valgtPrioritet"
               >
-                <option
-                  disabled={true}
-                  value=""
+                Velg prioritet
+              </label>
+              <div
+                class="selectContainer input--fullbredde"
+              >
+                <select
+                  aria-invalid="false"
+                  class="skjemaelement__input"
+                  id="valgtPrioritet"
+                  name="valgtPrioritet"
                 >
-                  Ingen tema valgt
-                </option>
-              </select>
+                  <option
+                    disabled=""
+                    value=""
+                  >
+                    Ingen tema valgt
+                  </option>
+                </select>
+              </div>
             </div>
-          </div>
-          <div
-            className="skjemaelement textarea__container"
-          >
-            <label
-              className="skjemaelement__label"
-              htmlFor="beskrivelse"
-            >
-              Beskrivelse
-            </label>
             <div
-              className="textarea--medMeta__wrapper"
+              class="skjemaelement textarea__container"
             >
-              <textarea
-                aria-describedby=""
-                aria-invalid={false}
-                className="skjemaelement__input textarea--medMeta"
-                id="beskrivelse"
-                name="beskrivelse"
-                onBlur={[Function]}
-                onChange={[Function]}
-                style={
-                  {
-                    "height": "30px",
-                  }
-                }
-                value=""
+              <label
+                class="skjemaelement__label"
+                for="beskrivelse"
+              >
+                Beskrivelse
+              </label>
+              <div
+                class="textarea--medMeta__wrapper"
+              >
+                <textarea
+                  aria-describedby=""
+                  aria-invalid="false"
+                  class="skjemaelement__input textarea--medMeta"
+                  id="beskrivelse"
+                  name="beskrivelse"
+                  style="height: 30px;"
+                />
+              </div>
+              <div
+                aria-hidden="true"
+                class="textareamirror"
               />
             </div>
             <div
-              aria-hidden="true"
-              className="textareamirror"
+              class="c17"
+            >
+              <button
+                class="knapp knapp--hoved"
+                type="submit"
+              >
+                Opprett oppgave
+              </button>
+              <button
+                class="c4"
+                type="button"
+              >
+                Avbryt
+              </button>
+            </div>
+          </form>
+        </div>
+        <form>
+          <fieldset
+            aria-invalid="false"
+            class="skjemagruppe inputPanelGruppe blokk-xxs"
+          >
+            <div
+              class="inputPanelGruppe__inner"
+            >
+              <label
+                class="inputPanel radioPanel inputPanel--disabled"
+                for="Helt tilfeldig ID"
+              >
+                <input
+                  aria-checked="false"
+                  aria-errormessage="Helt tilfeldig ID"
+                  aria-invalid="false"
+                  class="inputPanel__field"
+                  disabled=""
+                  id="Helt tilfeldig ID"
+                  name="merk"
+                  type="radio"
+                  value="FEILSENDT"
+                />
+                <span
+                  class="inputPanel__label"
+                >
+                  Feilsendt post
+                </span>
+              </label>
+              <label
+                class="inputPanel radioPanel"
+                for="Helt tilfeldig ID"
+              >
+                <input
+                  aria-checked="false"
+                  aria-errormessage="Helt tilfeldig ID"
+                  aria-invalid="false"
+                  class="inputPanel__field"
+                  id="Helt tilfeldig ID"
+                  name="merk"
+                  type="radio"
+                  value="SLADDING"
+                />
+                <span
+                  class="inputPanel__label"
+                >
+                  Send til sladding
+                </span>
+              </label>
+              <label
+                class="inputPanel radioPanel inputPanel--disabled"
+                for="Helt tilfeldig ID"
+              >
+                <input
+                  aria-checked="false"
+                  aria-errormessage="Helt tilfeldig ID"
+                  aria-invalid="false"
+                  class="inputPanel__field"
+                  disabled=""
+                  id="Helt tilfeldig ID"
+                  name="merk"
+                  type="radio"
+                  value="LUKK"
+                />
+                <span
+                  class="inputPanel__label"
+                >
+                  Avslutt dialog
+                </span>
+              </label>
+            </div>
+            <div
+              aria-live="polite"
+              id="Helt tilfeldig ID"
             />
-          </div>
+          </fieldset>
           <div
-            className="c17"
+            class="c18"
           >
             <button
-              className="knapp knapp--hoved"
-              disabled={false}
+              class="knapp knapp--hoved"
               type="submit"
             >
-              Opprett oppgave
+              Merk
             </button>
             <button
-              className="c4"
-              onClick={[Function]}
+              class="c4"
               type="button"
             >
-              Avbryt
+              Lukk
             </button>
           </div>
         </form>
       </div>
-      <form
-        onSubmit={[Function]}
+    </article>
+    <section
+      class="c19"
+    >
+      <div
+        class="panel"
       >
-        <fieldset
-          aria-invalid={false}
-          className="skjemagruppe inputPanelGruppe blokk-xxs"
+        <h2
+          class="typo-undertittel c20"
         >
-          <div
-            className="inputPanelGruppe__inner"
-          >
-            <label
-              className="inputPanel radioPanel inputPanel--disabled"
-              htmlFor="Helt tilfeldig ID"
-            >
-              <input
-                aria-checked={false}
-                aria-errormessage="Helt tilfeldig ID"
-                aria-invalid={false}
-                checked={false}
-                className="inputPanel__field"
-                disabled={true}
-                id="Helt tilfeldig ID"
-                name="merk"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                type="radio"
-                value="FEILSENDT"
-              />
-              <span
-                className="inputPanel__label"
-              >
-                Feilsendt post
-              </span>
-            </label>
-            <label
-              className="inputPanel radioPanel"
-              htmlFor="Helt tilfeldig ID"
-            >
-              <input
-                aria-checked={false}
-                aria-errormessage="Helt tilfeldig ID"
-                aria-invalid={false}
-                checked={false}
-                className="inputPanel__field"
-                disabled={false}
-                id="Helt tilfeldig ID"
-                name="merk"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                type="radio"
-                value="SLADDING"
-              />
-              <span
-                className="inputPanel__label"
-              >
-                Send til sladding
-              </span>
-            </label>
-            <label
-              className="inputPanel radioPanel inputPanel--disabled"
-              htmlFor="Helt tilfeldig ID"
-            >
-              <input
-                aria-checked={false}
-                aria-errormessage="Helt tilfeldig ID"
-                aria-invalid={false}
-                checked={false}
-                className="inputPanel__field"
-                disabled={true}
-                id="Helt tilfeldig ID"
-                name="merk"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                type="radio"
-                value="LUKK"
-              />
-              <span
-                className="inputPanel__label"
-              >
-                Avslutt dialog
-              </span>
-            </label>
-          </div>
-          <div
-            aria-live="polite"
-            id="Helt tilfeldig ID"
-          />
-        </fieldset>
+          Ukjent meldingstype: undefined
+        </h2>
         <div
-          className="c18"
+          class="c21"
         >
           <button
-            className="knapp knapp--hoved"
-            disabled={false}
+            class="knapp knapp--hoved"
             type="submit"
           >
-            Merk
-          </button>
-          <button
-            className="c4"
-            onClick={[Function]}
-            type="button"
-          >
-            Lukk
+            Ny melding
           </button>
         </div>
-      </form>
-    </div>
-  </article>
-  <section
-    className="c19"
-  >
-    <div
-      className="panel"
-    >
-      <h2
-        className="typo-undertittel c20"
-      >
-        Ukjent meldingstype: undefined
-      </h2>
-      <div
-        className="c21"
-      >
-        <button
-          className="knapp knapp--hoved"
-          disabled={false}
-          onClick={[Function]}
-          type="submit"
+        <h3
+          aria-live="polite"
+          class="sr-only"
         >
-          Ny melding
-        </button>
-      </div>
-      <h3
-        aria-live="polite"
-        className="sr-only"
-      >
-        Ukjent meldingstype: undefined
-         
-        13.08.2019 00:00
-      </h3>
-      <div
-        className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
-      >
-        <button
-          aria-controls="Helt tilfeldig ID"
-          className="ekspanderbartPanel__hode"
-          id="Helt tilfeldig ID"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          type="button"
-        >
-          <div
-            className="ekspanderbartPanel__flex-wrapper"
-          >
-            <span
-              className="ekspanderbartPanel__tittel"
-            >
-              <p
-                className="typo-undertekst-bold"
-              >
-                Dialogen er journalfort på 
-                2
-                 sak(er)
-              </p>
-            </span>
-            <span
-              className="ekspanderbartPanel__indikator"
-            />
-          </div>
-        </button>
+          Ukjent meldingstype: undefined 13.08.2019 00:00
+        </h3>
         <div
-          aria-labelledby="Helt tilfeldig ID"
-          id="Helt tilfeldig ID"
-          role="region"
-        />
+          class="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
+        >
+          <button
+            aria-controls="Helt tilfeldig ID"
+            class="ekspanderbartPanel__hode"
+            id="Helt tilfeldig ID"
+            type="button"
+          >
+            <div
+              class="ekspanderbartPanel__flex-wrapper"
+            >
+              <span
+                class="ekspanderbartPanel__tittel"
+              >
+                <p
+                  class="typo-undertekst-bold"
+                >
+                  Dialogen er journalfort på 2 sak(er)
+                </p>
+              </span>
+              <span
+                class="ekspanderbartPanel__indikator"
+              />
+            </div>
+          </button>
+          <div
+            aria-labelledby="Helt tilfeldig ID"
+            id="Helt tilfeldig ID"
+            role="region"
+          />
+        </div>
       </div>
-    </div>
-    <ol
-      aria-label="Dialog"
-    >
-      <li
-        className="c23 snakkeboble_ikoner"
+      <ol
+        aria-label="Dialog"
       >
-        <article
-          aria-labelledby="Helt tilfeldig ID"
+        <li
+          class="c23 snakkeboble_ikoner"
         >
-          <div
-            className="snakkeboble snakkeboble--hoyre"
+          <article
+            aria-labelledby="Helt tilfeldig ID"
           >
-            <i
-              className="nav-ikon"
-            />
             <div
-              className="snakkeboble__snakkeboble-pil-container"
+              class="snakkeboble snakkeboble--hoyre"
             >
               <i
-                className="snakkeboble__snakkebole-pil"
+                class="nav-ikon"
               />
-            </div>
-            <div
-              className="panel snakkeboble-panel"
-            >
               <div
-                className="snakkeboble-panel__tekst"
+                class="snakkeboble__snakkeboble-pil-container"
+              >
+                <i
+                  class="snakkeboble__snakkebole-pil"
+                />
+              </div>
+              <div
+                class="panel snakkeboble-panel"
               >
                 <div
-                  className="c24"
+                  class="snakkeboble-panel__tekst"
                 >
-                  <div>
-                    <p
-                      className="typo-normal"
-                    >
-                      Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
-                    </p>
-                  </div>
-                  <div>
-                    <div
-                      className="c25"
-                    >
+                  <div
+                    class="c24"
+                  >
+                    <div>
                       <p
-                        className="c26"
+                        class="typo-normal"
                       >
-                        27.07.2019 00:00
+                        Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
                       </p>
-                      <p
-                        className="c26"
-                      >
-                        Skrevet av Kristoffer Fredriksen (xy70r8)
-                      </p>
+                    </div>
+                    <div>
                       <div
-                        className="c27"
+                        class="c25"
                       >
                         <p
-                          className="c26"
+                          class="c26"
                         >
-                          Lest: 23.07.2019 00:00
+                          27.07.2019 00:00
                         </p>
-                        <svg
-                          aria-hidden="true"
-                          aria-labelledby="title-id"
-                          fill="none"
-                          focusable="false"
-                          height="20"
-                          role="img"
-                          viewBox="0 0 24 24"
-                          width="20"
-                          xmlns="http://www.w3.org/2000/svg"
+                        <p
+                          class="c26"
                         >
-                          <title
-                            id="title-id"
+                          Skrevet av Kristoffer Fredriksen (xy70r8)
+                        </p>
+                        <div
+                          class="c27"
+                        >
+                          <p
+                            class="c26"
                           >
-                            Melding lest
-                          </title>
-                          <path
-                            clipRule="evenodd"
-                            d="M0.210623 7.51518L10.4732 13.0282L10.4789 13.0312L10.4789 13.0312L12 13.8609L13.5211 13.0312L13.5268 13.0281L13.5268 13.0282L23.7894 7.51518L12 1L0.210623 7.51518ZM24 9.67234L15.9314 14.0067L24 19.4557V9.67234ZM23.3783 21.4492L13.9446 15.0784L12.4789 15.8779L12 16.1391L11.5211 15.8779L10.0554 15.0784L0.621651 21.4492C0.980399 21.7905 1.46574 22 2 22H22C22.5343 22 23.0196 21.7905 23.3783 21.4492ZM0 19.4557L8.06862 14.0067L0 9.67234V19.4557Z"
-                            fill="#33aa5f"
-                            fillRule="evenodd"
-                          />
-                        </svg>
+                            Lest: 23.07.2019 00:00
+                          </p>
+                          <svg
+                            aria-hidden="true"
+                            aria-labelledby="title-id"
+                            fill="none"
+                            focusable="false"
+                            height="20"
+                            role="img"
+                            viewBox="0 0 24 24"
+                            width="20"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <title
+                              id="title-id"
+                            >
+                              Melding lest
+                            </title>
+                            <path
+                              clip-rule="evenodd"
+                              d="M0.210623 7.51518L10.4732 13.0282L10.4789 13.0312L10.4789 13.0312L12 13.8609L13.5211 13.0312L13.5268 13.0281L13.5268 13.0282L23.7894 7.51518L12 1L0.210623 7.51518ZM24 9.67234L15.9314 14.0067L24 19.4557V9.67234ZM23.3783 21.4492L13.9446 15.0784L12.4789 15.8779L12 16.1391L11.5211 15.8779L10.0554 15.0784L0.621651 21.4492C0.980399 21.7905 1.46574 22 2 22H22C22.5343 22 23.0196 21.7905 23.3783 21.4492ZM0 19.4557L8.06862 14.0067L0 9.67234V19.4557Z"
+                              fill="#33aa5f"
+                              fill-rule="evenodd"
+                            />
+                          </svg>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </article>
-      </li>
-      <li
-        className="c23 snakkeboble_ikoner"
-      >
-        <article
-          aria-labelledby="Helt tilfeldig ID"
+          </article>
+        </li>
+        <li
+          class="c23 snakkeboble_ikoner"
         >
-          <div
-            className="snakkeboble snakkeboble--venstre"
+          <article
+            aria-labelledby="Helt tilfeldig ID"
           >
-            <i
-              className="bruker-ikon"
-            />
             <div
-              className="snakkeboble__snakkeboble-pil-container"
+              class="snakkeboble snakkeboble--venstre"
             >
               <i
-                className="snakkeboble__snakkebole-pil"
+                class="bruker-ikon"
               />
-            </div>
-            <div
-              className="panel snakkeboble-panel"
-            >
               <div
-                className="snakkeboble-panel__tekst"
+                class="snakkeboble__snakkeboble-pil-container"
               >
-                <div
-                  className="c24"
-                >
-                  <div>
-                    <p
-                      className="typo-normal"
-                    >
-                      Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
-                    </p>
-                  </div>
-                  <div>
-                    <div
-                      className="c25"
-                    >
-                      <p
-                        className="c26"
-                      >
-                        16.07.2019 00:00
-                      </p>
-                      <div
-                        className="c27"
-                      />
-                    </div>
-                  </div>
-                </div>
+                <i
+                  class="snakkeboble__snakkebole-pil"
+                />
               </div>
-            </div>
-          </div>
-        </article>
-      </li>
-      <li
-        className="c23 snakkeboble_ikoner"
-      >
-        <article
-          aria-labelledby="Helt tilfeldig ID"
-        >
-          <div
-            className="snakkeboble snakkeboble--venstre"
-          >
-            <i
-              className="bruker-ikon"
-            />
-            <div
-              className="snakkeboble__snakkeboble-pil-container"
-            >
-              <i
-                className="snakkeboble__snakkebole-pil"
-              />
-            </div>
-            <div
-              className="panel snakkeboble-panel"
-            >
               <div
-                className="snakkeboble-panel__tekst"
+                class="panel snakkeboble-panel"
               >
                 <div
-                  className="c24"
+                  class="snakkeboble-panel__tekst"
                 >
-                  <div>
-                    <p
-                      className="typo-normal"
-                    >
-                      Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
-                    </p>
-                  </div>
-                  <div>
-                    <div
-                      className="c25"
-                    >
+                  <div
+                    class="c24"
+                  >
+                    <div>
                       <p
-                        className="c26"
+                        class="typo-normal"
                       >
-                        12.07.2019 00:00
+                        Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
                       </p>
-                      <div
-                        className="c27"
-                      />
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-      </li>
-      <li
-        className="c23 snakkeboble_ikoner"
-      >
-        <article
-          aria-labelledby="Helt tilfeldig ID"
-        >
-          <div
-            className="snakkeboble snakkeboble--hoyre"
-          >
-            <i
-              className="nav-ikon"
-            />
-            <div
-              className="snakkeboble__snakkeboble-pil-container"
-            >
-              <i
-                className="snakkeboble__snakkebole-pil"
-              />
-            </div>
-            <div
-              className="panel snakkeboble-panel"
-            >
-              <div
-                className="snakkeboble-panel__tekst"
-              >
-                <div
-                  className="c24"
-                >
-                  <div>
-                    <p
-                      className="typo-normal"
-                    >
-                      Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
-                    </p>
-                  </div>
-                  <div>
-                    <div
-                      className="c25"
-                    >
-                      <p
-                        className="c26"
-                      >
-                        07.07.2019 00:00
-                      </p>
-                      <p
-                        className="c26"
-                      >
-                        Skrevet av Sander Hansen (nzxo4q)
-                      </p>
+                    <div>
                       <div
-                        className="c27"
+                        class="c25"
                       >
                         <p
-                          className="c26"
+                          class="c26"
                         >
-                          Lest: 12.07.2019 00:00
+                          16.07.2019 00:00
                         </p>
-                        <svg
-                          aria-hidden="true"
-                          aria-labelledby="title-id"
-                          fill="none"
-                          focusable="false"
-                          height="20"
-                          role="img"
-                          viewBox="0 0 24 24"
-                          width="20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <title
-                            id="title-id"
-                          >
-                            Melding lest
-                          </title>
-                          <path
-                            clipRule="evenodd"
-                            d="M0.210623 7.51518L10.4732 13.0282L10.4789 13.0312L10.4789 13.0312L12 13.8609L13.5211 13.0312L13.5268 13.0281L13.5268 13.0282L23.7894 7.51518L12 1L0.210623 7.51518ZM24 9.67234L15.9314 14.0067L24 19.4557V9.67234ZM23.3783 21.4492L13.9446 15.0784L12.4789 15.8779L12 16.1391L11.5211 15.8779L10.0554 15.0784L0.621651 21.4492C0.980399 21.7905 1.46574 22 2 22H22C22.5343 22 23.0196 21.7905 23.3783 21.4492ZM0 19.4557L8.06862 14.0067L0 9.67234V19.4557Z"
-                            fill="#33aa5f"
-                            fillRule="evenodd"
-                          />
-                        </svg>
+                        <div
+                          class="c27"
+                        />
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </article>
-      </li>
-    </ol>
-  </section>
-</article>
+          </article>
+        </li>
+        <li
+          class="c23 snakkeboble_ikoner"
+        >
+          <article
+            aria-labelledby="Helt tilfeldig ID"
+          >
+            <div
+              class="snakkeboble snakkeboble--venstre"
+            >
+              <i
+                class="bruker-ikon"
+              />
+              <div
+                class="snakkeboble__snakkeboble-pil-container"
+              >
+                <i
+                  class="snakkeboble__snakkebole-pil"
+                />
+              </div>
+              <div
+                class="panel snakkeboble-panel"
+              >
+                <div
+                  class="snakkeboble-panel__tekst"
+                >
+                  <div
+                    class="c24"
+                  >
+                    <div>
+                      <p
+                        class="typo-normal"
+                      >
+                        Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
+                      </p>
+                    </div>
+                    <div>
+                      <div
+                        class="c25"
+                      >
+                        <p
+                          class="c26"
+                        >
+                          12.07.2019 00:00
+                        </p>
+                        <div
+                          class="c27"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </li>
+        <li
+          class="c23 snakkeboble_ikoner"
+        >
+          <article
+            aria-labelledby="Helt tilfeldig ID"
+          >
+            <div
+              class="snakkeboble snakkeboble--hoyre"
+            >
+              <i
+                class="nav-ikon"
+              />
+              <div
+                class="snakkeboble__snakkeboble-pil-container"
+              >
+                <i
+                  class="snakkeboble__snakkebole-pil"
+                />
+              </div>
+              <div
+                class="panel snakkeboble-panel"
+              >
+                <div
+                  class="snakkeboble-panel__tekst"
+                >
+                  <div
+                    class="c24"
+                  >
+                    <div>
+                      <p
+                        class="typo-normal"
+                      >
+                        Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
+                      </p>
+                    </div>
+                    <div>
+                      <div
+                        class="c25"
+                      >
+                        <p
+                          class="c26"
+                        >
+                          07.07.2019 00:00
+                        </p>
+                        <p
+                          class="c26"
+                        >
+                          Skrevet av Sander Hansen (nzxo4q)
+                        </p>
+                        <div
+                          class="c27"
+                        >
+                          <p
+                            class="c26"
+                          >
+                            Lest: 12.07.2019 00:00
+                          </p>
+                          <svg
+                            aria-hidden="true"
+                            aria-labelledby="title-id"
+                            fill="none"
+                            focusable="false"
+                            height="20"
+                            role="img"
+                            viewBox="0 0 24 24"
+                            width="20"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <title
+                              id="title-id"
+                            >
+                              Melding lest
+                            </title>
+                            <path
+                              clip-rule="evenodd"
+                              d="M0.210623 7.51518L10.4732 13.0282L10.4789 13.0312L10.4789 13.0312L12 13.8609L13.5211 13.0312L13.5268 13.0281L13.5268 13.0282L23.7894 7.51518L12 1L0.210623 7.51518ZM24 9.67234L15.9314 14.0067L24 19.4557V9.67234ZM23.3783 21.4492L13.9446 15.0784L12.4789 15.8779L12 16.1391L11.5211 15.8779L10.0554 15.0784L0.621651 21.4492C0.980399 21.7905 1.46574 22 2 22H22C22.5343 22 23.0196 21.7905 23.3783 21.4492ZM0 19.4557L8.06862 14.0067L0 9.67234V19.4557Z"
+                              fill="#33aa5f"
+                              fill-rule="evenodd"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </li>
+      </ol>
+    </section>
+  </article>
+</DocumentFragment>
 `;

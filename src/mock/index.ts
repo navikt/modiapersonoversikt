@@ -18,6 +18,7 @@ import { hentPersondata } from './persondata/persondata';
 import { mockPersonsokResponse, mockStaticPersonsokRequest } from './personsok/personsokMock';
 import { saksbehandlerInnstillingerHandlers } from './saksbehandlerinnstillinger-mock';
 import { getMockSaksoversiktV2 } from './saksoversikt/saksoversikt-mock';
+import { skrivestotteMock } from './skrivestotte';
 import { authMock, tilgangskontrollMock } from './tilgangskontroll-mock';
 import { getMockUtbetalinger } from './utbetalinger/utbetalinger-mock';
 import {
@@ -312,7 +313,7 @@ const opprettSkjermetOppgaveHandler = http.post(
 const standardteksterHandler = [
     http.get(
         `${import.meta.env.BASE_URL}proxy/modia-skrivestotte/skrivestotte`,
-        withDelayedResponse(randomDelay(), STATUS_OK, () => '')
+        withDelayedResponse(randomDelay(), STATUS_OK, () => skrivestotteMock)
     ),
 
     http.post(

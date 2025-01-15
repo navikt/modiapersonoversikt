@@ -17,7 +17,7 @@ import { paths } from '../app/routes/routing';
 import type { AppState } from '../redux/reducers';
 import { type EventListener, runIfEventIsNotInsideRef } from './reactRef-utils';
 
-export function useFocusOnMount(ref: React.RefObject<HTMLElement>) {
+export function useFocusOnMount(ref: React.RefObject<HTMLElement | null>) {
     useOnMount(() => {
         if (ref.current) {
             ref.current.focus();
@@ -57,7 +57,7 @@ export function useOnUpdate(effect: EffectCallback, deps: DependencyList) {
     }, [deps, effect]);
 }
 
-export function useClickOutside<T extends HTMLElement>(ref: RefObject<T>, callback: EventListener) {
+export function useClickOutside<T extends HTMLElement>(ref: RefObject<T | null>, callback: EventListener) {
     const handler: EventListener = useMemo(() => runIfEventIsNotInsideRef(ref, callback), [ref, callback]);
 
     useEffect(() => {
@@ -67,7 +67,7 @@ export function useClickOutside<T extends HTMLElement>(ref: RefObject<T>, callba
 }
 
 export function usePrevious<T>(value: T) {
-    const ref = useRef<T>();
+    const ref = useRef<T>(undefined);
     useEffect(() => {
         ref.current = value;
     });

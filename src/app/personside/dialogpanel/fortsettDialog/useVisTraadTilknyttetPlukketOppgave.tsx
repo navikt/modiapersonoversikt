@@ -10,6 +10,8 @@ import { loggError } from '../../../../utils/logger/frontendLogger';
 import { useInfotabsDyplenker } from '../../infotabs/dyplenker';
 import { eldsteMelding, kanBesvares } from '../../infotabs/meldinger/utils/meldingerUtils';
 
+import type { JSX } from 'react';
+
 interface Pending {
     pending: true;
     placeholder: JSX.Element;

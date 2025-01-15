@@ -1,4 +1,4 @@
-import { type ReactNode, useCallback, useEffect, useState } from 'react';
+import { type JSX, type ReactNode, useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { createGlobalStyle } from 'styled-components';
 import { loggEvent } from '../logger/frontendLogger';

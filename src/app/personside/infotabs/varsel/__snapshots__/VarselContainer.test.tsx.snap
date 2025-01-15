@@ -1,7 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Viser varselcontainer med alt innhold 1`] = `
-.c9 {
+<DocumentFragment>
+  .c9 {
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -170,562 +171,530 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
 }
 
 <div
-  className="c0"
->
-  <div
-    className="panel c1"
+    class="c0"
   >
-    <p
-      className="typo-element"
-    >
-      Dato
-    </p>
-    <p
-      className="typo-element"
-    >
-      Status
-    </p>
-    <p
-      className="typo-element"
-    >
-      Type
-    </p>
-    <p
-      className="typo-element"
-    >
-      Kanal
-    </p>
-  </div>
-  <ol
-    aria-label="Brukerens varsler"
-    className="c2"
-  >
-    <li>
-      <div
-        className="panel c3"
-      >
-        <article
-          aria-labelledby="Helt tilfeldig ID"
-        >
-          <div
-            className="c4"
-            onClick={[Function]}
-          >
-            <p
-              className="typo-normal"
-            >
-              <span
-                className="c5"
-              >
-                11.01.2023
-              </span>
-              <span
-                className="c5"
-              >
-                01.08.2023
-              </span>
-            </p>
-            <div
-              className="c6"
-            >
-              <svg
-                focusable="false"
-                height="1.5em"
-                role="img"
-                viewBox="0 0 24 24"
-                width="1.5em"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M12 2.25a.75.75 0 0 1 .656.387l9.527 17.25A.75.75 0 0 1 21.526 21H2.474a.75.75 0 0 1-.657-1.113l9.526-17.25A.75.75 0 0 1 12 2.25ZM12 8.75a.75.75 0 0 1 .75.75v4a.75.75 0 0 1-1.5 0v-4a.75.75 0 0 1 .75-.75Zm-1 7.75a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"
-                  fill="#ff9100"
-                  fill-rule="evenodd"
-                />
-              </svg>
-            </div>
-            <h4
-              className="typo-element c7"
-              id="Helt tilfeldig ID"
-            >
-              Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
-            </h4>
-            <ul
-              aria-label="Kommunikasjonskanaler"
-              className="c8"
-            >
-              <li
-                className="typo-normal"
-              >
-                DITT_NAV
-              </li>
-              <li
-                className="typo-normal"
-              >
-                SMS
-              </li>
-              <li
-                className="typo-normal"
-              >
-                EPOST
-              </li>
-            </ul>
-            <button
-              aria-expanded={false}
-              aria-label="Vis mer informasjon om varsel/notifikasjon"
-              className="c9"
-              focusOnRelativeParent={true}
-              onClick={[Function]}
-              title="Vis mer informasjon om varsel/notifikasjon"
-            >
-              <span
-                className="nav-frontend-chevron chevronboks chevron--ned"
-              />
-            </button>
-          </div>
-          <dl
-            className="c10"
-          >
-            <div>
-              <dt>
-                Produsert av:
-              </dt>
-              <dd>
-                sf-brukernotifikasjon
-              </dd>
-              <dt>
-                Tekst:
-              </dt>
-              <dd>
-                Et nytt samtalereferat er tilgjengelig i din innboks
-              </dd>
-              <dt>
-                Link:
-              </dt>
-              <dd>
-                https://innboks.nav.no
-              </dd>
-              <dt>
-                Varslet: 
-              </dt>
-              <dd>
-                11.01.2023 - SMS, EPOST
-              </dd>
-              <dt>
-                Revarslet: 
-              </dt>
-              <dd>
-                01.08.2023 - SMS, EPOST
-              </dd>
-              <hr />
-              <div
-                className="c11"
-              >
-                <span
-                  className="c12"
-                >
-                  Varslingsfeil
-                </span>
-                <div
-                  className="c13"
-                >
-                  <li>
-                    01.01.2023
-                     - 
-                    SMS
-                    : 
-                    Feil telefonummer
-                  </li>
-                </div>
-              </div>
-              <hr />
-              <div
-                className="c11"
-              >
-                <span
-                  className="c12"
-                >
-                  Revarslingsfeil
-                </span>
-                <div
-                  className="c13"
-                >
-                  <li>
-                    11.08.2023
-                     - 
-                    EPOST
-                    : 
-                    Feil epost
-                  </li>
-                </div>
-              </div>
-            </div>
-          </dl>
-        </article>
-      </div>
-    </li>
-    <li>
-      <div
-        className="panel c3"
-      >
-        <article
-          aria-labelledby="Helt tilfeldig ID"
-        >
-          <div
-            className="c4"
-            onClick={[Function]}
-          >
-            <p
-              className="typo-normal"
-            >
-              <span
-                className="c5"
-              >
-                11.01.2023
-              </span>
-              <span
-                className="c5"
-              >
-                01.08.2023
-              </span>
-            </p>
-            <div
-              className="c6"
-            >
-              <svg
-                focusable="false"
-                height="1.5em"
-                role="img"
-                viewBox="0 0 24 24"
-                width="1.5em"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M12 2.25a.75.75 0 0 1 .656.387l9.527 17.25A.75.75 0 0 1 21.526 21H2.474a.75.75 0 0 1-.657-1.113l9.526-17.25A.75.75 0 0 1 12 2.25ZM12 8.75a.75.75 0 0 1 .75.75v4a.75.75 0 0 1-1.5 0v-4a.75.75 0 0 1 .75-.75Zm-1 7.75a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"
-                  fill="#ff9100"
-                  fill-rule="evenodd"
-                />
-              </svg>
-            </div>
-            <h4
-              className="typo-element c7"
-              id="Helt tilfeldig ID"
-            >
-              Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
-            </h4>
-            <ul
-              aria-label="Kommunikasjonskanaler"
-              className="c8"
-            >
-              <li
-                className="typo-normal"
-              >
-                DITT_NAV
-              </li>
-              <li
-                className="typo-normal"
-              >
-                SMS
-              </li>
-              <li
-                className="typo-normal"
-              >
-                EPOST
-              </li>
-            </ul>
-            <button
-              aria-expanded={false}
-              aria-label="Vis mer informasjon om varsel/notifikasjon"
-              className="c9"
-              focusOnRelativeParent={true}
-              onClick={[Function]}
-              title="Vis mer informasjon om varsel/notifikasjon"
-            >
-              <span
-                className="nav-frontend-chevron chevronboks chevron--ned"
-              />
-            </button>
-          </div>
-          <dl
-            className="c10"
-          >
-            <div>
-              <dt>
-                Produsert av:
-              </dt>
-              <dd>
-                sf-brukernotifikasjon
-              </dd>
-              <dt>
-                Tekst:
-              </dt>
-              <dd>
-                Et nytt samtalereferat er tilgjengelig i din innboks
-              </dd>
-              <dt>
-                Link:
-              </dt>
-              <dd>
-                https://innboks.nav.no
-              </dd>
-              <dt>
-                Varslet: 
-              </dt>
-              <dd>
-                11.01.2023 - SMS, EPOST
-              </dd>
-              <dt>
-                Revarslet: 
-              </dt>
-              <dd>
-                01.08.2023 - SMS, EPOST
-              </dd>
-              <hr />
-              <div
-                className="c11"
-              >
-                <span
-                  className="c12"
-                >
-                  Varslingsfeil
-                </span>
-                <div
-                  className="c13"
-                >
-                  <li>
-                    01.01.2023
-                     - 
-                    SMS
-                    : 
-                    Feil telefonummer
-                  </li>
-                </div>
-              </div>
-              <hr />
-              <div
-                className="c11"
-              >
-                <span
-                  className="c12"
-                >
-                  Revarslingsfeil
-                </span>
-                <div
-                  className="c13"
-                >
-                  <li>
-                    11.08.2023
-                     - 
-                    EPOST
-                    : 
-                    Feil epost
-                  </li>
-                </div>
-              </div>
-            </div>
-          </dl>
-        </article>
-      </div>
-    </li>
-    <li>
-      <div
-        className="panel c3"
-      >
-        <article
-          aria-labelledby="Helt tilfeldig ID"
-        >
-          <div
-            className="c4"
-            onClick={[Function]}
-          >
-            <p
-              className="typo-normal"
-            >
-              <span
-                className="c5"
-              >
-                11.01.2023
-              </span>
-              <span
-                className="c5"
-              >
-                01.08.2023
-              </span>
-            </p>
-            <div
-              className="c6"
-            >
-              <svg
-                focusable="false"
-                height="1.5em"
-                role="img"
-                viewBox="0 0 24 24"
-                width="1.5em"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M12 2.25a.75.75 0 0 1 .656.387l9.527 17.25A.75.75 0 0 1 21.526 21H2.474a.75.75 0 0 1-.657-1.113l9.526-17.25A.75.75 0 0 1 12 2.25ZM12 8.75a.75.75 0 0 1 .75.75v4a.75.75 0 0 1-1.5 0v-4a.75.75 0 0 1 .75-.75Zm-1 7.75a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"
-                  fill="#ff9100"
-                  fill-rule="evenodd"
-                />
-              </svg>
-            </div>
-            <h4
-              className="typo-element c7"
-              id="Helt tilfeldig ID"
-            >
-              Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
-            </h4>
-            <ul
-              aria-label="Kommunikasjonskanaler"
-              className="c8"
-            >
-              <li
-                className="typo-normal"
-              >
-                DITT_NAV
-              </li>
-              <li
-                className="typo-normal"
-              >
-                SMS
-              </li>
-              <li
-                className="typo-normal"
-              >
-                EPOST
-              </li>
-            </ul>
-            <button
-              aria-expanded={false}
-              aria-label="Vis mer informasjon om varsel/notifikasjon"
-              className="c9"
-              focusOnRelativeParent={true}
-              onClick={[Function]}
-              title="Vis mer informasjon om varsel/notifikasjon"
-            >
-              <span
-                className="nav-frontend-chevron chevronboks chevron--ned"
-              />
-            </button>
-          </div>
-          <dl
-            className="c10"
-          >
-            <div>
-              <dt>
-                Produsert av:
-              </dt>
-              <dd>
-                sf-brukernotifikasjon
-              </dd>
-              <dt>
-                Tekst:
-              </dt>
-              <dd>
-                Et nytt samtalereferat er tilgjengelig i din innboks
-              </dd>
-              <dt>
-                Link:
-              </dt>
-              <dd>
-                https://innboks.nav.no
-              </dd>
-              <dt>
-                Varslet: 
-              </dt>
-              <dd>
-                11.01.2023 - SMS, EPOST
-              </dd>
-              <dt>
-                Revarslet: 
-              </dt>
-              <dd>
-                01.08.2023 - SMS, EPOST
-              </dd>
-              <hr />
-              <div
-                className="c11"
-              >
-                <span
-                  className="c12"
-                >
-                  Varslingsfeil
-                </span>
-                <div
-                  className="c13"
-                >
-                  <li>
-                    01.01.2023
-                     - 
-                    SMS
-                    : 
-                    Feil telefonummer
-                  </li>
-                </div>
-              </div>
-              <hr />
-              <div
-                className="c11"
-              >
-                <span
-                  className="c12"
-                >
-                  Revarslingsfeil
-                </span>
-                <div
-                  className="c13"
-                >
-                  <li>
-                    11.08.2023
-                     - 
-                    EPOST
-                    : 
-                    Feil epost
-                  </li>
-                </div>
-              </div>
-            </div>
-          </dl>
-        </article>
-      </div>
-    </li>
-  </ol>
-  <div
-    className="navds-alert navds-alert--info navds-alert--medium"
-  >
-    <svg
-      aria-labelledby="title-r0"
-      className="navds-alert__icon"
-      fill="none"
-      focusable={false}
-      height="1em"
-      role="img"
-      viewBox="0 0 24 24"
-      width="1em"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <title
-        id="title-r0"
-      >
-        Informasjon
-      </title>
-      <path
-        clipRule="evenodd"
-        d="M3.25 4A.75.75 0 0 1 4 3.25h16a.75.75 0 0 1 .75.75v16a.75.75 0 0 1-.75.75H4a.75.75 0 0 1-.75-.75zM11 7.75a1 1 0 1 1 2 0 1 1 0 0 1-2 0m-1.25 3a.75.75 0 0 1 .75-.75H12a.75.75 0 0 1 .75.75v4.75h.75a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5h.75v-4h-.75a.75.75 0 0 1-.75-.75"
-        fill="currentColor"
-        fillRule="evenodd"
-      />
-    </svg>
     <div
-      className="navds-alert__wrapper navds-alert__wrapper--maxwidth navds-body-long navds-body-long--medium"
+      class="panel c1"
     >
-      Varsler vises kun ett år tilbake i tid.
-      <br />
-      Dersom man trenger å se informasjon om eldre varsler kan man lage en sak i porten for manuell uthenting.
+      <p
+        class="typo-element"
+      >
+        Dato
+      </p>
+      <p
+        class="typo-element"
+      >
+        Status
+      </p>
+      <p
+        class="typo-element"
+      >
+        Type
+      </p>
+      <p
+        class="typo-element"
+      >
+        Kanal
+      </p>
+    </div>
+    <ol
+      aria-label="Brukerens varsler"
+      class="c2"
+    >
+      <li>
+        <div
+          class="panel c3"
+        >
+          <article
+            aria-labelledby="Helt tilfeldig ID"
+          >
+            <div
+              class="c4"
+            >
+              <p
+                class="typo-normal"
+              >
+                <span
+                  class="c5"
+                >
+                  11.01.2023
+                </span>
+                <span
+                  class="c5"
+                >
+                  01.08.2023
+                </span>
+              </p>
+              <div
+                class="c6"
+              >
+                <svg
+                  focusable="false"
+                  height="1.5em"
+                  role="img"
+                  viewBox="0 0 24 24"
+                  width="1.5em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M12 2.25a.75.75 0 0 1 .656.387l9.527 17.25A.75.75 0 0 1 21.526 21H2.474a.75.75 0 0 1-.657-1.113l9.526-17.25A.75.75 0 0 1 12 2.25ZM12 8.75a.75.75 0 0 1 .75.75v4a.75.75 0 0 1-1.5 0v-4a.75.75 0 0 1 .75-.75Zm-1 7.75a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"
+                    fill="#ff9100"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </div>
+              <h4
+                class="typo-element c7"
+                id="Helt tilfeldig ID"
+              >
+                Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
+              </h4>
+              <ul
+                aria-label="Kommunikasjonskanaler"
+                class="c8"
+              >
+                <li
+                  class="typo-normal"
+                >
+                  DITT_NAV
+                </li>
+                <li
+                  class="typo-normal"
+                >
+                  SMS
+                </li>
+                <li
+                  class="typo-normal"
+                >
+                  EPOST
+                </li>
+              </ul>
+              <button
+                aria-expanded="false"
+                aria-label="Vis mer informasjon om varsel/notifikasjon"
+                class="c9"
+                title="Vis mer informasjon om varsel/notifikasjon"
+              >
+                <span
+                  class="nav-frontend-chevron chevronboks chevron--ned"
+                />
+              </button>
+            </div>
+            <dl
+              class="c10"
+            >
+              <div>
+                <dt>
+                  Produsert av:
+                </dt>
+                <dd>
+                  sf-brukernotifikasjon
+                </dd>
+                <dt>
+                  Tekst:
+                </dt>
+                <dd>
+                  Et nytt samtalereferat er tilgjengelig i din innboks
+                </dd>
+                <dt>
+                  Link:
+                </dt>
+                <dd>
+                  https://innboks.nav.no
+                </dd>
+                <dt>
+                  Varslet: 
+                </dt>
+                <dd>
+                  11.01.2023 - SMS, EPOST
+                </dd>
+                <dt>
+                  Revarslet: 
+                </dt>
+                <dd>
+                  01.08.2023 - SMS, EPOST
+                </dd>
+                <hr />
+                <div
+                  class="c11"
+                >
+                  <span
+                    class="c12"
+                  >
+                    Varslingsfeil
+                  </span>
+                  <div
+                    class="c13"
+                  >
+                    <li>
+                      01.01.2023 - SMS: Feil telefonummer
+                    </li>
+                  </div>
+                </div>
+                <hr />
+                <div
+                  class="c11"
+                >
+                  <span
+                    class="c12"
+                  >
+                    Revarslingsfeil
+                  </span>
+                  <div
+                    class="c13"
+                  >
+                    <li>
+                      11.08.2023 - EPOST: Feil epost
+                    </li>
+                  </div>
+                </div>
+              </div>
+            </dl>
+          </article>
+        </div>
+      </li>
+      <li>
+        <div
+          class="panel c3"
+        >
+          <article
+            aria-labelledby="Helt tilfeldig ID"
+          >
+            <div
+              class="c4"
+            >
+              <p
+                class="typo-normal"
+              >
+                <span
+                  class="c5"
+                >
+                  11.01.2023
+                </span>
+                <span
+                  class="c5"
+                >
+                  01.08.2023
+                </span>
+              </p>
+              <div
+                class="c6"
+              >
+                <svg
+                  focusable="false"
+                  height="1.5em"
+                  role="img"
+                  viewBox="0 0 24 24"
+                  width="1.5em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M12 2.25a.75.75 0 0 1 .656.387l9.527 17.25A.75.75 0 0 1 21.526 21H2.474a.75.75 0 0 1-.657-1.113l9.526-17.25A.75.75 0 0 1 12 2.25ZM12 8.75a.75.75 0 0 1 .75.75v4a.75.75 0 0 1-1.5 0v-4a.75.75 0 0 1 .75-.75Zm-1 7.75a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"
+                    fill="#ff9100"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </div>
+              <h4
+                class="typo-element c7"
+                id="Helt tilfeldig ID"
+              >
+                Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
+              </h4>
+              <ul
+                aria-label="Kommunikasjonskanaler"
+                class="c8"
+              >
+                <li
+                  class="typo-normal"
+                >
+                  DITT_NAV
+                </li>
+                <li
+                  class="typo-normal"
+                >
+                  SMS
+                </li>
+                <li
+                  class="typo-normal"
+                >
+                  EPOST
+                </li>
+              </ul>
+              <button
+                aria-expanded="false"
+                aria-label="Vis mer informasjon om varsel/notifikasjon"
+                class="c9"
+                title="Vis mer informasjon om varsel/notifikasjon"
+              >
+                <span
+                  class="nav-frontend-chevron chevronboks chevron--ned"
+                />
+              </button>
+            </div>
+            <dl
+              class="c10"
+            >
+              <div>
+                <dt>
+                  Produsert av:
+                </dt>
+                <dd>
+                  sf-brukernotifikasjon
+                </dd>
+                <dt>
+                  Tekst:
+                </dt>
+                <dd>
+                  Et nytt samtalereferat er tilgjengelig i din innboks
+                </dd>
+                <dt>
+                  Link:
+                </dt>
+                <dd>
+                  https://innboks.nav.no
+                </dd>
+                <dt>
+                  Varslet: 
+                </dt>
+                <dd>
+                  11.01.2023 - SMS, EPOST
+                </dd>
+                <dt>
+                  Revarslet: 
+                </dt>
+                <dd>
+                  01.08.2023 - SMS, EPOST
+                </dd>
+                <hr />
+                <div
+                  class="c11"
+                >
+                  <span
+                    class="c12"
+                  >
+                    Varslingsfeil
+                  </span>
+                  <div
+                    class="c13"
+                  >
+                    <li>
+                      01.01.2023 - SMS: Feil telefonummer
+                    </li>
+                  </div>
+                </div>
+                <hr />
+                <div
+                  class="c11"
+                >
+                  <span
+                    class="c12"
+                  >
+                    Revarslingsfeil
+                  </span>
+                  <div
+                    class="c13"
+                  >
+                    <li>
+                      11.08.2023 - EPOST: Feil epost
+                    </li>
+                  </div>
+                </div>
+              </div>
+            </dl>
+          </article>
+        </div>
+      </li>
+      <li>
+        <div
+          class="panel c3"
+        >
+          <article
+            aria-labelledby="Helt tilfeldig ID"
+          >
+            <div
+              class="c4"
+            >
+              <p
+                class="typo-normal"
+              >
+                <span
+                  class="c5"
+                >
+                  11.01.2023
+                </span>
+                <span
+                  class="c5"
+                >
+                  01.08.2023
+                </span>
+              </p>
+              <div
+                class="c6"
+              >
+                <svg
+                  focusable="false"
+                  height="1.5em"
+                  role="img"
+                  viewBox="0 0 24 24"
+                  width="1.5em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M12 2.25a.75.75 0 0 1 .656.387l9.527 17.25A.75.75 0 0 1 21.526 21H2.474a.75.75 0 0 1-.657-1.113l9.526-17.25A.75.75 0 0 1 12 2.25ZM12 8.75a.75.75 0 0 1 .75.75v4a.75.75 0 0 1-1.5 0v-4a.75.75 0 0 1 .75-.75Zm-1 7.75a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"
+                    fill="#ff9100"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </div>
+              <h4
+                class="typo-element c7"
+                id="Helt tilfeldig ID"
+              >
+                Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
+              </h4>
+              <ul
+                aria-label="Kommunikasjonskanaler"
+                class="c8"
+              >
+                <li
+                  class="typo-normal"
+                >
+                  DITT_NAV
+                </li>
+                <li
+                  class="typo-normal"
+                >
+                  SMS
+                </li>
+                <li
+                  class="typo-normal"
+                >
+                  EPOST
+                </li>
+              </ul>
+              <button
+                aria-expanded="false"
+                aria-label="Vis mer informasjon om varsel/notifikasjon"
+                class="c9"
+                title="Vis mer informasjon om varsel/notifikasjon"
+              >
+                <span
+                  class="nav-frontend-chevron chevronboks chevron--ned"
+                />
+              </button>
+            </div>
+            <dl
+              class="c10"
+            >
+              <div>
+                <dt>
+                  Produsert av:
+                </dt>
+                <dd>
+                  sf-brukernotifikasjon
+                </dd>
+                <dt>
+                  Tekst:
+                </dt>
+                <dd>
+                  Et nytt samtalereferat er tilgjengelig i din innboks
+                </dd>
+                <dt>
+                  Link:
+                </dt>
+                <dd>
+                  https://innboks.nav.no
+                </dd>
+                <dt>
+                  Varslet: 
+                </dt>
+                <dd>
+                  11.01.2023 - SMS, EPOST
+                </dd>
+                <dt>
+                  Revarslet: 
+                </dt>
+                <dd>
+                  01.08.2023 - SMS, EPOST
+                </dd>
+                <hr />
+                <div
+                  class="c11"
+                >
+                  <span
+                    class="c12"
+                  >
+                    Varslingsfeil
+                  </span>
+                  <div
+                    class="c13"
+                  >
+                    <li>
+                      01.01.2023 - SMS: Feil telefonummer
+                    </li>
+                  </div>
+                </div>
+                <hr />
+                <div
+                  class="c11"
+                >
+                  <span
+                    class="c12"
+                  >
+                    Revarslingsfeil
+                  </span>
+                  <div
+                    class="c13"
+                  >
+                    <li>
+                      11.08.2023 - EPOST: Feil epost
+                    </li>
+                  </div>
+                </div>
+              </div>
+            </dl>
+          </article>
+        </div>
+      </li>
+    </ol>
+    <div
+      class="navds-alert navds-alert--info navds-alert--medium"
+    >
+      <svg
+        aria-labelledby="title-r0"
+        class="navds-alert__icon"
+        fill="none"
+        focusable="false"
+        height="1em"
+        role="img"
+        viewBox="0 0 24 24"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title
+          id="title-r0"
+        >
+          Informasjon
+        </title>
+        <path
+          clip-rule="evenodd"
+          d="M3.25 4A.75.75 0 0 1 4 3.25h16a.75.75 0 0 1 .75.75v16a.75.75 0 0 1-.75.75H4a.75.75 0 0 1-.75-.75zM11 7.75a1 1 0 1 1 2 0 1 1 0 0 1-2 0m-1.25 3a.75.75 0 0 1 .75-.75H12a.75.75 0 0 1 .75.75v4.75h.75a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5h.75v-4h-.75a.75.75 0 0 1-.75-.75"
+          fill="currentColor"
+          fill-rule="evenodd"
+        />
+      </svg>
+      <div
+        class="navds-alert__wrapper navds-alert__wrapper--maxwidth navds-body-long navds-body-long--medium"
+      >
+        Varsler vises kun ett år tilbake i tid.
+        <br />
+        Dersom man trenger å se informasjon om eldre varsler kan man lage en sak i porten for manuell uthenting.
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

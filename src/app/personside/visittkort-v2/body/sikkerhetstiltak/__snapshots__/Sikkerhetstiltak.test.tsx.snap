@@ -1,7 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`viser sikkerhetstiltak 1`] = `
-.c4 {
+<DocumentFragment>
+  .c4 {
   color: #645f5a;
   margin-top: 3px;
 }
@@ -42,86 +43,86 @@ exports[`viser sikkerhetstiltak 1`] = `
 }
 
 <section>
-  <div
-    className="c0"
-  >
     <div
-      className="c1"
+      class="c0"
     >
-      <svg
-        height={100}
-        viewBox="0 0 100 100"
-        width={100}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
-          <mask
-            id="sikkerhetstiltakmask"
-          >
-            <rect
-              fill="#fff"
-              height="100%"
-              width="100%"
-            />
-            <line
-              stroke="#000"
-              strokeLinecap="round"
-              strokeWidth="4"
-              x1="50"
-              x2="50"
-              y1="35"
-              y2="67"
-            />
-            <circle
-              cx="50"
-              cy="82"
-              fill="#000"
-              r="4.5"
-            />
-          </mask>
-        </defs>
-        <polygon
-          fill="#BA3A26"
-          mask="url(#sikkerhetstiltakmask)"
-          points="50,5 95,95 5,95"
-          stroke="#BA3A26"
-          strokeLinejoin="round"
-          strokeWidth="4"
-        />
-      </svg>
-    </div>
-    <h3
-      className="typo-undertittel"
-    >
-      Sikkerhetstiltak
-    </h3>
-  </div>
-  <div
-    className="c2"
-  />
-  <div
-    className="c3"
-  >
-    <div
-      className="c0"
-    />
-    <div>
       <div
-        className="c4"
+        class="c1"
       >
-        <p
-          className="typo-undertekst"
+        <svg
+          height="100"
+          viewBox="0 0 100 100"
+          width="100"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          Gyldig: 
-          01.02.2021 – 01.05.2022
+          <defs>
+            <mask
+              id="sikkerhetstiltakmask"
+            >
+              <rect
+                fill="#fff"
+                height="100%"
+                width="100%"
+              />
+              <line
+                stroke="#000"
+                stroke-linecap="round"
+                stroke-width="4"
+                x1="50"
+                x2="50"
+                y1="35"
+                y2="67"
+              />
+              <circle
+                cx="50"
+                cy="82"
+                fill="#000"
+                r="4.5"
+              />
+            </mask>
+          </defs>
+          <polygon
+            fill="#BA3A26"
+            mask="url(#sikkerhetstiltakmask)"
+            points="50,5 95,95 5,95"
+            stroke="#BA3A26"
+            stroke-linejoin="round"
+            stroke-width="4"
+          />
+        </svg>
+      </div>
+      <h3
+        class="typo-undertittel"
+      >
+        Sikkerhetstiltak
+      </h3>
+    </div>
+    <div
+      class="c2"
+    />
+    <div
+      class="c3"
+    >
+      <div
+        class="c0"
+      />
+      <div>
+        <div
+          class="c4"
+        >
+          <p
+            class="typo-undertekst"
+          >
+            Gyldig: 01.02.2021 – 01.05.2022
+          </p>
+        </div>
+        <p
+          class="typo-normal"
+        >
+          Telefonisk utestengelse
         </p>
       </div>
-      <p
-        className="typo-normal"
-      >
-        Telefonisk utestengelse
-      </p>
     </div>
-  </div>
-</section>
+  </section>
+</DocumentFragment>
 `;

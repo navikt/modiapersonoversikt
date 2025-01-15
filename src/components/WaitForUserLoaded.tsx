@@ -1,12 +1,16 @@
 import { Navigate } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
-import { useState } from 'react';
+import { type JSX, useState } from 'react';
 import { CenteredLazySpinner } from 'src/components/LazySpinner';
 import { aktivBrukerAtom, aktivBrukerLastetAtom } from 'src/lib/state/context';
 import { erGyldigishFnr } from 'src/utils/fnr-utils';
 import useTimeout from 'src/utils/hooks/use-timeout';
 
-const WaitForUserLoaded = ({ children }: { children: ({ fnr }: { fnr: string }) => JSX.Element }) => {
+const WaitForUserLoaded = ({
+    children
+}: {
+    children: ({ fnr }: { fnr: string }) => JSX.Element;
+}) => {
     const aktivBruker = useAtomValue(aktivBrukerAtom);
     const aktivBrukerLastet = useAtomValue(aktivBrukerLastetAtom);
 

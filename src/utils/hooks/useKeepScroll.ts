@@ -27,8 +27,8 @@ const storeScroll = (name: string, position: ScrollPosition) => {
     };
 };
 
-function useKeepScroll(ref: React.RefObject<HTMLElement>, keepScrollId: string) {
-    const timer = useRef<NodeJS.Timeout | undefined>();
+function useKeepScroll(ref: React.RefObject<HTMLElement | null>, keepScrollId: string) {
+    const timer = useRef<NodeJS.Timeout | undefined>(undefined);
     useEffect(
         function restoreScroll() {
             const timeout = setTimeout(() => {

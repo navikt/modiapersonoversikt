@@ -4,7 +4,7 @@ import type { RefObject } from 'react';
 type EventWithTarget = Event | React.SyntheticEvent;
 export type EventListener = (event: EventWithTarget) => void;
 
-type Ref = RefObject<HTMLElement> | RefObject<HTMLElement>[];
+type Ref = RefObject<HTMLElement | null> | RefObject<HTMLElement | null>[];
 
 export function eventTagetIsInsideRef(event: EventWithTarget, ref: Ref): boolean {
     if (Array.isArray(ref)) {

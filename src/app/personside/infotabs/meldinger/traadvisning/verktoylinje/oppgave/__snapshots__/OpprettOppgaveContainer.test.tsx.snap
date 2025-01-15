@@ -1,7 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Viser oppgavecontainer med alt innhold 1`] = `
-.c4 {
+<DocumentFragment>
+  .c4 {
   position: relative;
   border: none;
   padding: 0;
@@ -78,289 +79,247 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
 }
 
 <div
-  className="c0"
->
-  <form
-    onSubmit={[Function]}
+    class="c0"
   >
-    <p
-      className="typo-element"
-    >
-      Opprett oppgave
-    </p>
-    <div
-      className="skjemaelement"
-    >
-      <label
-        className="skjemaelement__label"
-        htmlFor="valgtTema"
+    <form>
+      <p
+        class="typo-element"
       >
-        Tema
-      </label>
+        Opprett oppgave
+      </p>
       <div
-        className="selectContainer input--fullbredde"
+        class="skjemaelement"
       >
-        <select
-          aria-invalid={false}
-          autoFocus={true}
-          className="skjemaelement__input"
-          defaultValue=""
-          disabled={false}
-          id="valgtTema"
-          name="valgtTema"
-          onBlur={[Function]}
-          onChange={[Function]}
+        <label
+          class="skjemaelement__label"
+          for="valgtTema"
         >
-          <option
-            disabled={true}
-            value=""
-          >
-            Velg tema
-          </option>
-          <option
-            value="AGR"
-          >
-            Ajourhold - Grunnopplysninger
-          </option>
-          <option
-            value="AAP"
-          >
-            Arbeidsavklaringspenger
-          </option>
-          <option
-            value="BID"
-          >
-            Bidrag
-          </option>
-        </select>
-      </div>
-    </div>
-    <div
-      className="skjemaelement"
-    >
-      <label
-        className="skjemaelement__label"
-        htmlFor="valgtUnderkategori"
-      >
-        Gjelder
-      </label>
-      <div
-        className="selectContainer input--fullbredde"
-      >
-        <select
-          aria-invalid={false}
-          autoFocus={false}
-          className="skjemaelement__input"
-          defaultValue=""
-          disabled={false}
-          id="valgtUnderkategori"
-          name="valgtUnderkategori"
-          onBlur={[Function]}
-          onChange={[Function]}
-        >
-          <option
-            value=""
-          >
-            Ingen tema valgt
-          </option>
-        </select>
-      </div>
-    </div>
-    <div
-      className="skjemaelement"
-    >
-      <label
-        className="skjemaelement__label"
-        htmlFor="valgtOppgavetype"
-      >
-        Type oppgave
-      </label>
-      <div
-        className="selectContainer input--fullbredde"
-      >
-        <select
-          aria-invalid={false}
-          autoFocus={false}
-          className="skjemaelement__input"
-          defaultValue=""
-          disabled={false}
-          id="valgtOppgavetype"
-          name="valgtOppgavetype"
-          onBlur={[Function]}
-          onChange={[Function]}
-        >
-          <option
-            disabled={true}
-            value=""
-          >
-            Ingen tema valgt
-          </option>
-        </select>
-      </div>
-    </div>
-    <div
-      aria-expanded={false}
-      aria-haspopup="listbox"
-      aria-labelledby="downshift-0-label"
-      aria-owns={null}
-      className="c1"
-      role="combobox"
-    >
-      <div
-        className="c2"
-      >
+          Tema
+        </label>
         <div
-          className="skjemaelement"
+          class="selectContainer input--fullbredde"
         >
-          <label
-            className="skjemaelement__label"
-            htmlFor="valgtEnhet"
+          <select
+            aria-invalid="false"
+            class="skjemaelement__input"
+            id="valgtTema"
+            name="valgtTema"
           >
-            <span>
-              Velg enhet
-            </span>
-          </label>
-          <input
-            aria-activedescendant={null}
-            aria-autocomplete="list"
-            aria-controls={null}
-            aria-invalid={false}
-            aria-labelledby="downshift-0-label"
-            autoComplete="off"
-            className="skjemaelement__input input--fullbredde"
-            id="valgtEnhet"
-            name="valgtEnhet"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            onKeyDown={[Function]}
-            type="text"
-            value=""
-          />
+            <option
+              disabled=""
+              value=""
+            >
+              Velg tema
+            </option>
+            <option
+              value="AGR"
+            >
+              Ajourhold - Grunnopplysninger
+            </option>
+            <option
+              value="AAP"
+            >
+              Arbeidsavklaringspenger
+            </option>
+            <option
+              value="BID"
+            >
+              Bidrag
+            </option>
+          </select>
         </div>
       </div>
-    </div>
-    <div
-      aria-expanded={false}
-      aria-haspopup="listbox"
-      aria-labelledby="downshift-1-label"
-      aria-owns={null}
-      className="c1"
-      role="combobox"
-    >
       <div
-        className="c2"
+        class="skjemaelement"
       >
-        <div
-          className="skjemaelement"
+        <label
+          class="skjemaelement__label"
+          for="valgtUnderkategori"
         >
-          <label
-            className="skjemaelement__label"
-            htmlFor="valgtAnsatt"
+          Gjelder
+        </label>
+        <div
+          class="selectContainer input--fullbredde"
+        >
+          <select
+            aria-invalid="false"
+            class="skjemaelement__input"
+            id="valgtUnderkategori"
+            name="valgtUnderkategori"
           >
-            Velg ansatt
-          </label>
-          <input
-            aria-activedescendant={null}
-            aria-autocomplete="list"
-            aria-controls={null}
-            aria-invalid={false}
-            aria-labelledby="downshift-1-label"
-            autoComplete="off"
-            className="skjemaelement__input input--fullbredde"
-            id="valgtAnsatt"
-            name="valgtAnsatt"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            onKeyDown={[Function]}
-            type="text"
-            value=""
-          />
+            <option
+              value=""
+            >
+              Ingen tema valgt
+            </option>
+          </select>
         </div>
       </div>
-    </div>
-    <div
-      className="skjemaelement"
-    >
-      <label
-        className="skjemaelement__label"
-        htmlFor="valgtPrioritet"
-      >
-        Velg prioritet
-      </label>
       <div
-        className="selectContainer input--fullbredde"
+        class="skjemaelement"
       >
-        <select
-          aria-invalid={false}
-          className="skjemaelement__input"
-          disabled={false}
-          id="valgtPrioritet"
-          name="valgtPrioritet"
-          onBlur={[Function]}
-          onChange={[Function]}
+        <label
+          class="skjemaelement__label"
+          for="valgtOppgavetype"
         >
-          <option
-            disabled={true}
-            value=""
+          Type oppgave
+        </label>
+        <div
+          class="selectContainer input--fullbredde"
+        >
+          <select
+            aria-invalid="false"
+            class="skjemaelement__input"
+            id="valgtOppgavetype"
+            name="valgtOppgavetype"
           >
-            Ingen tema valgt
-          </option>
-        </select>
+            <option
+              disabled=""
+              value=""
+            >
+              Ingen tema valgt
+            </option>
+          </select>
+        </div>
       </div>
-    </div>
-    <div
-      className="skjemaelement textarea__container"
-    >
-      <label
-        className="skjemaelement__label"
-        htmlFor="beskrivelse"
-      >
-        Beskrivelse
-      </label>
       <div
-        className="textarea--medMeta__wrapper"
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        aria-labelledby="downshift-0-label"
+        class="c1"
+        role="combobox"
       >
-        <textarea
-          aria-describedby=""
-          aria-invalid={false}
-          className="skjemaelement__input textarea--medMeta"
-          id="beskrivelse"
-          name="beskrivelse"
-          onBlur={[Function]}
-          onChange={[Function]}
-          style={
-            {
-              "height": "30px",
-            }
-          }
-          value=""
+        <div
+          class="c2"
+        >
+          <div
+            class="skjemaelement"
+          >
+            <label
+              class="skjemaelement__label"
+              for="valgtEnhet"
+            >
+              <span>
+                Velg enhet
+              </span>
+            </label>
+            <input
+              aria-autocomplete="list"
+              aria-invalid="false"
+              aria-labelledby="downshift-0-label"
+              autocomplete="off"
+              class="skjemaelement__input input--fullbredde"
+              id="valgtEnhet"
+              name="valgtEnhet"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        aria-labelledby="downshift-1-label"
+        class="c1"
+        role="combobox"
+      >
+        <div
+          class="c2"
+        >
+          <div
+            class="skjemaelement"
+          >
+            <label
+              class="skjemaelement__label"
+              for="valgtAnsatt"
+            >
+              Velg ansatt
+            </label>
+            <input
+              aria-autocomplete="list"
+              aria-invalid="false"
+              aria-labelledby="downshift-1-label"
+              autocomplete="off"
+              class="skjemaelement__input input--fullbredde"
+              id="valgtAnsatt"
+              name="valgtAnsatt"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="skjemaelement"
+      >
+        <label
+          class="skjemaelement__label"
+          for="valgtPrioritet"
+        >
+          Velg prioritet
+        </label>
+        <div
+          class="selectContainer input--fullbredde"
+        >
+          <select
+            aria-invalid="false"
+            class="skjemaelement__input"
+            id="valgtPrioritet"
+            name="valgtPrioritet"
+          >
+            <option
+              disabled=""
+              value=""
+            >
+              Ingen tema valgt
+            </option>
+          </select>
+        </div>
+      </div>
+      <div
+        class="skjemaelement textarea__container"
+      >
+        <label
+          class="skjemaelement__label"
+          for="beskrivelse"
+        >
+          Beskrivelse
+        </label>
+        <div
+          class="textarea--medMeta__wrapper"
+        >
+          <textarea
+            aria-describedby=""
+            aria-invalid="false"
+            class="skjemaelement__input textarea--medMeta"
+            id="beskrivelse"
+            name="beskrivelse"
+            style="height: 30px;"
+          />
+        </div>
+        <div
+          aria-hidden="true"
+          class="textareamirror"
         />
       </div>
       <div
-        aria-hidden="true"
-        className="textareamirror"
-      />
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        className="knapp knapp--hoved"
-        disabled={false}
-        type="submit"
+        class="c3"
       >
-        Opprett oppgave
-      </button>
-      <button
-        className="c4"
-        onClick={[Function]}
-        type="button"
-      >
-        Avbryt
-      </button>
-    </div>
-  </form>
-</div>
+        <button
+          class="knapp knapp--hoved"
+          type="submit"
+        >
+          Opprett oppgave
+        </button>
+        <button
+          class="c4"
+          type="button"
+        >
+          Avbryt
+        </button>
+      </div>
+    </form>
+  </div>
+</DocumentFragment>
 `;

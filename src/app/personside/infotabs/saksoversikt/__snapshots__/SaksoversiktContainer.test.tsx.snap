@@ -1,72 +1,36 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
-<div
-  style={
-    {
-      "maxWidth": "100%",
-      "padding": ".5rem",
-    }
-  }
->
+<DocumentFragment>
   <div
-    style={
-      {
-        "alignItems": "center",
-        "display": "flex",
-        "gap": ".5rem",
-      }
-    }
+    style="padding: 0.5rem; max-width: 100%;"
   >
-    <strong
-      style={
-        {
-          "fontSize": "1rem",
-        }
-      }
+    <div
+      style="display: flex; align-items: center; gap: .5rem;"
     >
-      Something went wrong!
-    </strong>
-    <button
-      onClick={[Function]}
-      style={
-        {
-          "appearance": "none",
-          "border": "1px solid currentColor",
-          "borderRadius": ".25rem",
-          "fontSize": ".6em",
-          "fontWeight": "bold",
-          "padding": ".1rem .2rem",
-        }
-      }
-    >
-      Hide Error
-    </button>
+      <strong
+        style="font-size: 1rem;"
+      >
+        Something went wrong!
+      </strong>
+      <button
+        style="appearance: none; font-size: 0.6em; border: 1px solid currentcolor; padding: 0.1rem 0.2rem; font-weight: bold; border-radius: 0.25rem;"
+      >
+        Hide Error
+      </button>
+    </div>
+    <div
+      style="height: 0.25rem;"
+    />
+    <div>
+      <pre
+        style="font-size: 0.7em; border: 1px solid red; border-radius: 0.25rem; padding: 0.3rem; color: red; overflow: auto;"
+      >
+        <code>
+          Class constructor MockDate cannot be invoked without 'new'
+        </code>
+      </pre>
+    </div>
   </div>
-  <div
-    style={
-      {
-        "height": ".25rem",
-      }
-    }
-  />
-  <div>
-    <pre
-      style={
-        {
-          "border": "1px solid red",
-          "borderRadius": ".25rem",
-          "color": "red",
-          "fontSize": ".7em",
-          "overflow": "auto",
-          "padding": ".3rem",
-        }
-      }
-    >
-      <code>
-        Class constructor MockDate cannot be invoked without 'new'
-      </code>
-    </pre>
-  </div>
-</div>
+</DocumentFragment>
 `;

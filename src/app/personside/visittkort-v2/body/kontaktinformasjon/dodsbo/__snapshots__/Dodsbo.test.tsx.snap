@@ -1,7 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`viser dodsbo 1`] = `
-.c4 {
+<DocumentFragment>
+  .c4 {
   color: #645f5a;
   margin-top: 3px;
 }
@@ -42,92 +43,86 @@ exports[`viser dodsbo 1`] = `
 }
 
 <div
-  className="c0"
->
-  <div
-    className="c1"
+    class="c0"
   >
     <div
-      className="c2"
+      class="c1"
     >
-      <svg
-        height={24}
-        viewBox="0 0 24 24"
-        width={24}
-        xmlns="http://www.w3.org/2000/svg"
+      <div
+        class="c2"
       >
-        <g
-          fill="#C6C2BF"
+        <svg
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <defs>
-            <mask
-              id="locationpinmask"
-            >
-              <rect
-                fill="#fff"
-                height="100%"
-                width="100%"
-              />
-              <circle
-                cx={12}
-                cy={8}
-                fill="#000"
-                r={4}
-              />
-            </mask>
-          </defs>
-          <path
-            d="M19.5 8c0 4.1-7.5 15.5-7.5 15.5S4.5 12.1 4.5 8a7.5 7.5 0 1 1 15 0z"
-            mask="url(#locationpinmask)"
-          />
-        </g>
-      </svg>
+          <g
+            fill="#C6C2BF"
+          >
+            <defs>
+              <mask
+                id="locationpinmask"
+              >
+                <rect
+                  fill="#fff"
+                  height="100%"
+                  width="100%"
+                />
+                <circle
+                  cx="12"
+                  cy="8"
+                  fill="#000"
+                  r="4"
+                />
+              </mask>
+            </defs>
+            <path
+              d="M19.5 8c0 4.1-7.5 15.5-7.5 15.5S4.5 12.1 4.5 8a7.5 7.5 0 1 1 15 0z"
+              mask="url(#locationpinmask)"
+            />
+          </g>
+        </svg>
+      </div>
+      <h4
+        class="typo-element"
+      >
+        Kontaktinformasjon for dødsbo
+      </h4>
     </div>
-    <h4
-      className="typo-element"
-    >
-      Kontaktinformasjon for dødsbo
-    </h4>
-  </div>
-  <p
-    className="typo-normal"
-  >
-    Advokat Navnesen
-  </p>
-  <p
-    className="typo-normal"
-  >
-    Advokatfirma 
-    Advokatkontoret Aremark
-  </p>
-  <p
-    className="typo-normal"
-  >
-    Org. nr: 
-    01234567891011
-  </p>
-  <div
-    className="c3"
-  >
     <p
-      className="typo-normal"
+      class="typo-normal"
     >
-      Elgelia 20, 0000 Aremark
+      Advokat Navnesen
     </p>
-  </div>
-  <div
-    className="c4"
-  >
     <p
-      className="typo-undertekst"
+      class="typo-normal"
     >
-      Endret 
-      01.01.2020
-       av 
-      folkeregisteret
-       
-      (kilde: tingretten)
+      Advokatfirma Advokatkontoret Aremark
     </p>
+    <p
+      class="typo-normal"
+    >
+      Org. nr: 01234567891011
+    </p>
+    <div
+      class="c3"
+    >
+      <p
+        class="typo-normal"
+      >
+        Elgelia 20, 0000 Aremark
+      </p>
+    </div>
+    <div
+      class="c4"
+    >
+      <p
+        class="typo-undertekst"
+      >
+        Endret 01.01.2020 av folkeregisteret (kilde: tingretten)
+      </p>
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;

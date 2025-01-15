@@ -1,4 +1,4 @@
-import * as renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import TestProvider from '../../test/Testprovider';
 import { setupReactQueryMocks } from '../../test/testStore';
 import PersonsokResultat from './PersonsokResultat';
@@ -6,7 +6,7 @@ import PersonsokSkjema from './PersonsokSkjema';
 
 test('viser personsøk-komponent', () => {
     setupReactQueryMocks();
-    const personsokKomponentV3 = renderer.create(
+    const personsokKomponentV3 = render(
         <TestProvider>
             <>
                 <PersonsokSkjema setPosting={() => {}} setResponse={() => {}} />
@@ -15,5 +15,5 @@ test('viser personsøk-komponent', () => {
         </TestProvider>
     );
 
-    expect(personsokKomponentV3.toJSON()).toMatchSnapshot();
+    expect(personsokKomponentV3.asFragment()).toMatchSnapshot();
 });

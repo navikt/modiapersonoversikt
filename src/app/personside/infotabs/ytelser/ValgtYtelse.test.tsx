@@ -1,4 +1,4 @@
-import * as renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import { statiskForeldrepengeMock } from '../../../../mock/ytelse/statiskForeldrepengeMock';
 import { statiskSykepengerMock } from '../../../../mock/ytelse/statiskSykepengerMock';
 import TestProvider from '../../../../test/Testprovider';
@@ -8,33 +8,33 @@ import { pleiepengerTestData } from './pleiepenger/pleiepengerTestData';
 
 test('Om foreldrepenger matcher snapshot', () => {
     setupReactQueryMocks();
-    const resultat = renderer.create(
+    const resultat = render(
         <TestProvider>
             <ValgtYtelse valgtYtelse={statiskForeldrepengeMock} />
         </TestProvider>
     );
 
-    expect(resultat.toJSON()).toMatchSnapshot();
+    expect(resultat.asFragment()).toMatchSnapshot();
 });
 
 test('Om pleiepenger matcher snapshot', () => {
     setupReactQueryMocks();
-    const resultat = renderer.create(
+    const resultat = render(
         <TestProvider>
             <ValgtYtelse valgtYtelse={pleiepengerTestData} />
         </TestProvider>
     );
 
-    expect(resultat.toJSON()).toMatchSnapshot();
+    expect(resultat.asFragment()).toMatchSnapshot();
 });
 
 test('Om sykepenger matcher snapshot', () => {
     setupReactQueryMocks();
-    const resultat = renderer.create(
+    const resultat = render(
         <TestProvider>
             <ValgtYtelse valgtYtelse={statiskSykepengerMock} />
         </TestProvider>
     );
 
-    expect(resultat.toJSON()).toMatchSnapshot();
+    expect(resultat.asFragment()).toMatchSnapshot();
 });

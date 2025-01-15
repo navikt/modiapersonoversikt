@@ -1,7 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`viser sivilstand 1`] = `
-.c1 {
+<DocumentFragment>
+  .c1 {
   position: relative;
   display: flex;
   align-items: center;
@@ -29,57 +30,53 @@ exports[`viser sivilstand 1`] = `
 }
 
 <div
-  className="c0"
->
-  <div
-    className="c1"
+    class="c0"
   >
     <div
-      className="c2"
+      class="c1"
     >
-      <svg
-        height={24}
-        viewBox="0 0 24 24"
-        width={24}
-        xmlns="http://www.w3.org/2000/svg"
+      <div
+        class="c2"
       >
-        <path
-          d="M12 22.4s10.5-8.1 10.5-15.8S13.2-1.7 12 6C10.8-1.7 1.5-1.1 1.5 7.2 1.5 15.4 12 22.4 12 22.4z"
-          fill="#C6C2BF"
-          stroke="none"
-        />
-      </svg>
+        <svg
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 22.4s10.5-8.1 10.5-15.8S13.2-1.7 12 6C10.8-1.7 1.5-1.1 1.5 7.2 1.5 15.4 12 22.4 12 22.4z"
+            fill="#C6C2BF"
+            stroke="none"
+          />
+        </svg>
+      </div>
+      <h4
+        class="typo-element"
+      >
+        Sivilstand
+      </h4>
     </div>
-    <h4
-      className="typo-element"
+    <p
+      class="typo-normal"
     >
-      Sivilstand
-    </h4>
+      Gift (12.12.2005)
+    </p>
+    <p
+      class="typo-normal"
+    >
+      BAREMARK TESTFAMILIEN (Død)
+    </p>
+    <p
+      class="typo-normal"
+    >
+      12345555555
+    </p>
+    <p
+      class="typo-normal"
+    >
+      Bor med bruker
+    </p>
   </div>
-  <p
-    className="typo-normal"
-  >
-    Gift
-     
-    (12.12.2005)
-  </p>
-  <p
-    className="typo-normal"
-  >
-    BAREMARK TESTFAMILIEN
-     (
-    Død
-    )
-  </p>
-  <p
-    className="typo-normal"
-  >
-    12345555555
-  </p>
-  <p
-    className="typo-normal"
-  >
-    Bor med bruker
-  </p>
-</div>
+</DocumentFragment>
 `;

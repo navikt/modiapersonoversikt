@@ -1,7 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`viser fortsett dialog 1`] = `
-.c5 {
+<DocumentFragment>
+  .c5 {
   font-size: 0.85rem;
 }
 
@@ -53,314 +54,296 @@ exports[`viser fortsett dialog 1`] = `
 }
 
 <article
-  className="c0"
->
-  <div
-    className="ekspanderbartPanel ekspanderbartPanel--lukket ekspanderbartPanel--border"
+    class="c0"
   >
-    <button
-      aria-controls="Helt tilfeldig ID"
-      aria-expanded={false}
-      className="ekspanderbartPanel__hode"
-      id="Helt tilfeldig ID"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      type="button"
-    >
-      <div
-        className="ekspanderbartPanel__flex-wrapper"
-      >
-        <span
-          className="ekspanderbartPanel__tittel"
-        >
-          <h2
-            className="typo-undertittel"
-          >
-            Tidligere meldinger
-          </h2>
-        </span>
-        <span
-          className="ekspanderbartPanel__indikator"
-        />
-      </div>
-    </button>
     <div
-      aria-labelledby="Helt tilfeldig ID"
-      id="Helt tilfeldig ID"
-      role="region"
+      class="ekspanderbartPanel ekspanderbartPanel--lukket ekspanderbartPanel--border"
     >
-      <div
-        aria-hidden={true}
-        className="ReactCollapse--collapse"
-        style={
-          {
-            "height": "0px",
-            "overflow": "hidden",
-          }
-        }
+      <button
+        aria-controls="Helt tilfeldig ID"
+        aria-expanded="false"
+        class="ekspanderbartPanel__hode"
+        id="Helt tilfeldig ID"
+        type="button"
       >
         <div
-          className="ReactCollapse--content"
+          class="ekspanderbartPanel__flex-wrapper"
+        >
+          <span
+            class="ekspanderbartPanel__tittel"
+          >
+            <h2
+              class="typo-undertittel"
+            >
+              Tidligere meldinger
+            </h2>
+          </span>
+          <span
+            class="ekspanderbartPanel__indikator"
+          />
+        </div>
+      </button>
+      <div
+        aria-labelledby="Helt tilfeldig ID"
+        id="Helt tilfeldig ID"
+        role="region"
+      >
+        <div
+          aria-hidden="true"
+          class="ReactCollapse--collapse"
+          style="height: 0px; overflow: hidden;"
         >
           <div
-            className="ekspanderbartPanel__innhold"
+            class="ReactCollapse--content"
           >
             <div
-              className="panel c1"
+              class="ekspanderbartPanel__innhold"
             >
-              <ol>
-                <li
-                  className="c2"
-                >
-                  <div
-                    className="ekspanderbartPanel c3 ekspanderbartPanel--lukket"
+              <div
+                class="panel c1"
+              >
+                <ol>
+                  <li
+                    class="c2"
                   >
-                    <button
-                      aria-controls="Helt tilfeldig ID"
-                      aria-expanded={false}
-                      className="ekspanderbartPanel__hode"
-                      id="Helt tilfeldig ID"
-                      onClick={[Function]}
-                      onKeyDown={[Function]}
-                      type="button"
-                    >
-                      <div
-                        className="ekspanderbartPanel__flex-wrapper"
-                      >
-                        <span
-                          className="ekspanderbartPanel__tittel"
-                        >
-                          <div
-                            className="c4"
-                          >
-                            <span
-                              className="sr-only"
-                            >
-                              Melding 
-                              4
-                            </span>
-                            <span
-                              className="sr-only"
-                            >
-                              Lukket
-                            </span>
-                            <h4
-                              className="typo-element"
-                            >
-                              Ukjent meldingstype: undefined
-                            </h4>
-                            <p
-                              className="typo-undertekst"
-                            >
-                              30. juli 2019 00:00
-                            </p>
-                            <p
-                              className="c5"
-                            >
-                              Skrevet av Sander Hansen (nzxo4q)
-                            </p>
-                          </div>
-                        </span>
-                        <span
-                          className="ekspanderbartPanel__indikator"
-                        />
-                      </div>
-                    </button>
                     <div
-                      aria-labelledby="Helt tilfeldig ID"
-                      id="Helt tilfeldig ID"
-                      role="region"
-                    />
-                  </div>
-                </li>
-                <li
-                  className="c2"
-                >
-                  <div
-                    className="ekspanderbartPanel c3 ekspanderbartPanel--lukket"
+                      class="ekspanderbartPanel c3 ekspanderbartPanel--lukket"
+                    >
+                      <button
+                        aria-controls="Helt tilfeldig ID"
+                        aria-expanded="false"
+                        class="ekspanderbartPanel__hode"
+                        id="Helt tilfeldig ID"
+                        type="button"
+                      >
+                        <div
+                          class="ekspanderbartPanel__flex-wrapper"
+                        >
+                          <span
+                            class="ekspanderbartPanel__tittel"
+                          >
+                            <div
+                              class="c4"
+                            >
+                              <span
+                                class="sr-only"
+                              >
+                                Melding 4
+                              </span>
+                              <span
+                                class="sr-only"
+                              >
+                                Lukket
+                              </span>
+                              <h4
+                                class="typo-element"
+                              >
+                                Ukjent meldingstype: undefined
+                              </h4>
+                              <p
+                                class="typo-undertekst"
+                              >
+                                30. juli 2019 00:00
+                              </p>
+                              <p
+                                class="c5"
+                              >
+                                Skrevet av Sander Hansen (nzxo4q)
+                              </p>
+                            </div>
+                          </span>
+                          <span
+                            class="ekspanderbartPanel__indikator"
+                          />
+                        </div>
+                      </button>
+                      <div
+                        aria-labelledby="Helt tilfeldig ID"
+                        id="Helt tilfeldig ID"
+                        role="region"
+                      />
+                    </div>
+                  </li>
+                  <li
+                    class="c2"
                   >
-                    <button
-                      aria-controls="Helt tilfeldig ID"
-                      aria-expanded={false}
-                      className="ekspanderbartPanel__hode"
-                      id="Helt tilfeldig ID"
-                      onClick={[Function]}
-                      onKeyDown={[Function]}
-                      type="button"
-                    >
-                      <div
-                        className="ekspanderbartPanel__flex-wrapper"
-                      >
-                        <span
-                          className="ekspanderbartPanel__tittel"
-                        >
-                          <div
-                            className="c4"
-                          >
-                            <span
-                              className="sr-only"
-                            >
-                              Melding 
-                              3
-                            </span>
-                            <span
-                              className="sr-only"
-                            >
-                              Lukket
-                            </span>
-                            <h4
-                              className="typo-element"
-                            >
-                              Ukjent meldingstype: undefined
-                            </h4>
-                            <p
-                              className="typo-undertekst"
-                            >
-                              10. aug. 2019 00:00
-                            </p>
-                          </div>
-                        </span>
-                        <span
-                          className="ekspanderbartPanel__indikator"
-                        />
-                      </div>
-                    </button>
                     <div
-                      aria-labelledby="Helt tilfeldig ID"
-                      id="Helt tilfeldig ID"
-                      role="region"
-                    />
-                  </div>
-                </li>
-                <li
-                  className="c2"
-                >
-                  <div
-                    className="ekspanderbartPanel c3 ekspanderbartPanel--lukket"
+                      class="ekspanderbartPanel c3 ekspanderbartPanel--lukket"
+                    >
+                      <button
+                        aria-controls="Helt tilfeldig ID"
+                        aria-expanded="false"
+                        class="ekspanderbartPanel__hode"
+                        id="Helt tilfeldig ID"
+                        type="button"
+                      >
+                        <div
+                          class="ekspanderbartPanel__flex-wrapper"
+                        >
+                          <span
+                            class="ekspanderbartPanel__tittel"
+                          >
+                            <div
+                              class="c4"
+                            >
+                              <span
+                                class="sr-only"
+                              >
+                                Melding 3
+                              </span>
+                              <span
+                                class="sr-only"
+                              >
+                                Lukket
+                              </span>
+                              <h4
+                                class="typo-element"
+                              >
+                                Ukjent meldingstype: undefined
+                              </h4>
+                              <p
+                                class="typo-undertekst"
+                              >
+                                10. aug. 2019 00:00
+                              </p>
+                            </div>
+                          </span>
+                          <span
+                            class="ekspanderbartPanel__indikator"
+                          />
+                        </div>
+                      </button>
+                      <div
+                        aria-labelledby="Helt tilfeldig ID"
+                        id="Helt tilfeldig ID"
+                        role="region"
+                      />
+                    </div>
+                  </li>
+                  <li
+                    class="c2"
                   >
-                    <button
-                      aria-controls="Helt tilfeldig ID"
-                      aria-expanded={false}
-                      className="ekspanderbartPanel__hode"
-                      id="Helt tilfeldig ID"
-                      onClick={[Function]}
-                      onKeyDown={[Function]}
-                      type="button"
-                    >
-                      <div
-                        className="ekspanderbartPanel__flex-wrapper"
-                      >
-                        <span
-                          className="ekspanderbartPanel__tittel"
-                        >
-                          <div
-                            className="c4"
-                          >
-                            <span
-                              className="sr-only"
-                            >
-                              Melding 
-                              2
-                            </span>
-                            <span
-                              className="sr-only"
-                            >
-                              Lukket
-                            </span>
-                            <h4
-                              className="typo-element"
-                            >
-                              Ukjent meldingstype: undefined
-                            </h4>
-                            <p
-                              className="typo-undertekst"
-                            >
-                              06. aug. 2019 00:00
-                            </p>
-                          </div>
-                        </span>
-                        <span
-                          className="ekspanderbartPanel__indikator"
-                        />
-                      </div>
-                    </button>
                     <div
-                      aria-labelledby="Helt tilfeldig ID"
-                      id="Helt tilfeldig ID"
-                      role="region"
-                    />
-                  </div>
-                </li>
-                <li
-                  className="c2"
-                >
-                  <div
-                    className="ekspanderbartPanel c3 ekspanderbartPanel--lukket"
+                      class="ekspanderbartPanel c3 ekspanderbartPanel--lukket"
+                    >
+                      <button
+                        aria-controls="Helt tilfeldig ID"
+                        aria-expanded="false"
+                        class="ekspanderbartPanel__hode"
+                        id="Helt tilfeldig ID"
+                        type="button"
+                      >
+                        <div
+                          class="ekspanderbartPanel__flex-wrapper"
+                        >
+                          <span
+                            class="ekspanderbartPanel__tittel"
+                          >
+                            <div
+                              class="c4"
+                            >
+                              <span
+                                class="sr-only"
+                              >
+                                Melding 2
+                              </span>
+                              <span
+                                class="sr-only"
+                              >
+                                Lukket
+                              </span>
+                              <h4
+                                class="typo-element"
+                              >
+                                Ukjent meldingstype: undefined
+                              </h4>
+                              <p
+                                class="typo-undertekst"
+                              >
+                                06. aug. 2019 00:00
+                              </p>
+                            </div>
+                          </span>
+                          <span
+                            class="ekspanderbartPanel__indikator"
+                          />
+                        </div>
+                      </button>
+                      <div
+                        aria-labelledby="Helt tilfeldig ID"
+                        id="Helt tilfeldig ID"
+                        role="region"
+                      />
+                    </div>
+                  </li>
+                  <li
+                    class="c2"
                   >
-                    <button
-                      aria-controls="Helt tilfeldig ID"
-                      aria-expanded={false}
-                      className="ekspanderbartPanel__hode"
-                      id="Helt tilfeldig ID"
-                      onClick={[Function]}
-                      onKeyDown={[Function]}
-                      type="button"
-                    >
-                      <div
-                        className="ekspanderbartPanel__flex-wrapper"
-                      >
-                        <span
-                          className="ekspanderbartPanel__tittel"
-                        >
-                          <div
-                            className="c4"
-                          >
-                            <span
-                              className="sr-only"
-                            >
-                              Melding 
-                              1
-                            </span>
-                            <span
-                              className="sr-only"
-                            >
-                              Lukket
-                            </span>
-                            <h4
-                              className="typo-element"
-                            >
-                              Ukjent meldingstype: undefined
-                            </h4>
-                            <p
-                              className="typo-undertekst"
-                            >
-                              13. aug. 2019 00:00
-                            </p>
-                            <p
-                              className="c5"
-                            >
-                              Skrevet av Kristoffer Fredriksen (xy70r8)
-                            </p>
-                          </div>
-                        </span>
-                        <span
-                          className="ekspanderbartPanel__indikator"
-                        />
-                      </div>
-                    </button>
                     <div
-                      aria-labelledby="Helt tilfeldig ID"
-                      id="Helt tilfeldig ID"
-                      role="region"
-                    />
-                  </div>
-                </li>
-              </ol>
+                      class="ekspanderbartPanel c3 ekspanderbartPanel--lukket"
+                    >
+                      <button
+                        aria-controls="Helt tilfeldig ID"
+                        aria-expanded="false"
+                        class="ekspanderbartPanel__hode"
+                        id="Helt tilfeldig ID"
+                        type="button"
+                      >
+                        <div
+                          class="ekspanderbartPanel__flex-wrapper"
+                        >
+                          <span
+                            class="ekspanderbartPanel__tittel"
+                          >
+                            <div
+                              class="c4"
+                            >
+                              <span
+                                class="sr-only"
+                              >
+                                Melding 1
+                              </span>
+                              <span
+                                class="sr-only"
+                              >
+                                Lukket
+                              </span>
+                              <h4
+                                class="typo-element"
+                              >
+                                Ukjent meldingstype: undefined
+                              </h4>
+                              <p
+                                class="typo-undertekst"
+                              >
+                                13. aug. 2019 00:00
+                              </p>
+                              <p
+                                class="c5"
+                              >
+                                Skrevet av Kristoffer Fredriksen (xy70r8)
+                              </p>
+                            </div>
+                          </span>
+                          <span
+                            class="ekspanderbartPanel__indikator"
+                          />
+                        </div>
+                      </button>
+                      <div
+                        aria-labelledby="Helt tilfeldig ID"
+                        id="Helt tilfeldig ID"
+                        role="region"
+                      />
+                    </div>
+                  </li>
+                </ol>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</article>
+  </article>
+</DocumentFragment>
 `;

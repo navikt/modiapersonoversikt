@@ -1,7 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Foreldrepengeperiode matcher snapshot 1`] = `
-.c4 {
+<DocumentFragment>
+  .c4 {
   display: flex;
   flex-wrap: wrap;
 }
@@ -87,367 +88,363 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
 }
 
 <li
-  className="c0"
->
-  <div
-    className="c1"
+    class="c0"
   >
-    <h3
-      className="typo-element"
-    >
-      Periode 1 - 29.04.2017
-    </h3>
-  </div>
-  <article
-    className="c2"
-  >
-    <article
-      aria-labelledby="Helt tilfeldig ID"
-      className="c3"
+    <div
+      class="c1"
     >
       <h3
-        className="typo-ingress"
-        id="Helt tilfeldig ID"
+        class="typo-element"
       >
-        Om foreldrepengeperioden
+        Periode 1 - 29.04.2017
       </h3>
-      <dl
-        className="c4"
-      >
-        <div>
-          <dt
-            className="typo-normal"
-          >
-            Arbeidsprosent mor
-          </dt>
-          <dd
-            className="typo-element"
-          >
-            58%
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-normal"
-          >
-            Mors situasjon
-          </dt>
-          <dd
-            className="typo-element"
-          >
-            nobis sit quo et quis
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-normal"
-          >
-            Disponibel gradering
-          </dt>
-          <dd
-            className="typo-element"
-          >
-            9%
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-normal"
-          >
-            Forskyvelsesperiode
-          </dt>
-          <dd
-            className="typo-element"
-          >
-            08.10.2014 - 22.08.2014
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-normal"
-          >
-            Andre forskyvelsesperiode
-          </dt>
-          <dd
-            className="typo-element"
-          >
-            09.12.2014 - 26.08.2014
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-normal"
-          >
-            Midlertidig stans
-          </dt>
-          <dd
-            className="typo-element"
-          >
-            2019-02-10
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-normal"
-          >
-            Stansårsak
-          </dt>
-          <dd
-            className="typo-element"
-          >
-            Avsluttet
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-normal"
-          >
-            Avslått
-          </dt>
-          <dd
-            className="typo-element"
-          >
-            Avslått
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-normal"
-          >
-            Mødrekvote
-          </dt>
-          <dd
-            className="typo-element"
-          >
-            —
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-normal"
-          >
-            Rett til Mødrekvote
-          </dt>
-          <dd
-            className="typo-element"
-          >
-            Ingen rett til mødrekvote
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-normal"
-          >
-            Aleneomsorg Mor
-          </dt>
-          <dd
-            className="typo-element"
-          >
-            —
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-normal"
-          >
-            Fedrekvote
-          </dt>
-          <dd
-            className="typo-element"
-          >
-            —
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-normal"
-          >
-            Rett til Fedrekvote
-          </dt>
-          <dd
-            className="typo-element"
-          >
-            Rett til fedrekvote
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-normal"
-          >
-            Aleneomsorg Far
-          </dt>
-          <dd
-            className="typo-element"
-          >
-            —
-          </dd>
-        </div>
-      </dl>
-    </article>
-    <section
-      className="c5"
+    </div>
+    <article
+      class="c2"
     >
-      <h4
-        className="typo-ingress"
+      <article
+        aria-labelledby="Helt tilfeldig ID"
+        class="c3"
       >
-        Utbetalinger
-      </h4>
-      <div
-        className="c6 typo-normal"
-      >
-        <table
-          role="table"
+        <h3
+          class="typo-ingress"
+          id="Helt tilfeldig ID"
         >
-          <thead
-            role="rowgroup"
-          >
-            <tr
-              role="row"
+          Om foreldrepengeperioden
+        </h3>
+        <dl
+          class="c4"
+        >
+          <div>
+            <dt
+              class="typo-normal"
             >
-              <th
-                role="columnheader"
-              >
-                Reg.dato
-              </th>
-              <th
-                role="columnheader"
-              >
-                Type
-              </th>
-              <th
-                role="columnheader"
-              >
-                Periode
-              </th>
-              <th
-                role="columnheader"
-              >
-                Utb.grad
-              </th>
-              <th
-                role="columnheader"
-              >
-                Dagsats
-              </th>
-              <th
-                role="columnheader"
-              >
-                Bruttobeløp
-              </th>
-              <th
-                role="columnheader"
-              >
-                Arb.giver
-              </th>
-              <th
-                role="columnheader"
-              >
-                Org.nummer
-              </th>
-            </tr>
-          </thead>
-          <tbody
-            data-testid="table-tbody"
-            role="rowgroup"
-          >
-            <tr
-              role="row"
+              Arbeidsprosent mor
+            </dt>
+            <dd
+              class="typo-element"
             >
-              <td
-                role="cell"
-              >
-                25.06.2018
-              </td>
-              <td
-                role="cell"
-              >
-                KONTOØVERFØRING
-              </td>
-              <td
-                role="cell"
-              >
-                14.01.2018 - 15.07.2017
-              </td>
-              <td
-                role="cell"
-              >
-                79%
-              </td>
-              <td
-                role="cell"
-              >
-                705,00 NOK
-              </td>
-              <td
-                role="cell"
-              >
-                466,00 NOK
-              </td>
-              <td
-                role="cell"
-              >
-                Vedvik - Lunde
-              </td>
-              <td
-                role="cell"
-              >
-                1234567890
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div
-        className="alertstripe alertstripe--info"
+              58%
+            </dd>
+          </div>
+          <div>
+            <dt
+              class="typo-normal"
+            >
+              Mors situasjon
+            </dt>
+            <dd
+              class="typo-element"
+            >
+              nobis sit quo et quis
+            </dd>
+          </div>
+          <div>
+            <dt
+              class="typo-normal"
+            >
+              Disponibel gradering
+            </dt>
+            <dd
+              class="typo-element"
+            >
+              9%
+            </dd>
+          </div>
+          <div>
+            <dt
+              class="typo-normal"
+            >
+              Forskyvelsesperiode
+            </dt>
+            <dd
+              class="typo-element"
+            >
+              08.10.2014 - 22.08.2014
+            </dd>
+          </div>
+          <div>
+            <dt
+              class="typo-normal"
+            >
+              Andre forskyvelsesperiode
+            </dt>
+            <dd
+              class="typo-element"
+            >
+              09.12.2014 - 26.08.2014
+            </dd>
+          </div>
+          <div>
+            <dt
+              class="typo-normal"
+            >
+              Midlertidig stans
+            </dt>
+            <dd
+              class="typo-element"
+            >
+              2019-02-10
+            </dd>
+          </div>
+          <div>
+            <dt
+              class="typo-normal"
+            >
+              Stansårsak
+            </dt>
+            <dd
+              class="typo-element"
+            >
+              Avsluttet
+            </dd>
+          </div>
+          <div>
+            <dt
+              class="typo-normal"
+            >
+              Avslått
+            </dt>
+            <dd
+              class="typo-element"
+            >
+              Avslått
+            </dd>
+          </div>
+          <div>
+            <dt
+              class="typo-normal"
+            >
+              Mødrekvote
+            </dt>
+            <dd
+              class="typo-element"
+            >
+              —
+            </dd>
+          </div>
+          <div>
+            <dt
+              class="typo-normal"
+            >
+              Rett til Mødrekvote
+            </dt>
+            <dd
+              class="typo-element"
+            >
+              Ingen rett til mødrekvote
+            </dd>
+          </div>
+          <div>
+            <dt
+              class="typo-normal"
+            >
+              Aleneomsorg Mor
+            </dt>
+            <dd
+              class="typo-element"
+            >
+              —
+            </dd>
+          </div>
+          <div>
+            <dt
+              class="typo-normal"
+            >
+              Fedrekvote
+            </dt>
+            <dd
+              class="typo-element"
+            >
+              —
+            </dd>
+          </div>
+          <div>
+            <dt
+              class="typo-normal"
+            >
+              Rett til Fedrekvote
+            </dt>
+            <dd
+              class="typo-element"
+            >
+              Rett til fedrekvote
+            </dd>
+          </div>
+          <div>
+            <dt
+              class="typo-normal"
+            >
+              Aleneomsorg Far
+            </dt>
+            <dd
+              class="typo-element"
+            >
+              —
+            </dd>
+          </div>
+        </dl>
+      </article>
+      <section
+        class="c5"
       >
-        <span
-          className="alertstripe__ikon"
+        <h4
+          class="typo-ingress"
+        >
+          Utbetalinger
+        </h4>
+        <div
+          class="c6 typo-normal"
+        >
+          <table
+            role="table"
+          >
+            <thead
+              role="rowgroup"
+            >
+              <tr
+                role="row"
+              >
+                <th
+                  role="columnheader"
+                >
+                  Reg.dato
+                </th>
+                <th
+                  role="columnheader"
+                >
+                  Type
+                </th>
+                <th
+                  role="columnheader"
+                >
+                  Periode
+                </th>
+                <th
+                  role="columnheader"
+                >
+                  Utb.grad
+                </th>
+                <th
+                  role="columnheader"
+                >
+                  Dagsats
+                </th>
+                <th
+                  role="columnheader"
+                >
+                  Bruttobeløp
+                </th>
+                <th
+                  role="columnheader"
+                >
+                  Arb.giver
+                </th>
+                <th
+                  role="columnheader"
+                >
+                  Org.nummer
+                </th>
+              </tr>
+            </thead>
+            <tbody
+              data-testid="table-tbody"
+              role="rowgroup"
+            >
+              <tr
+                role="row"
+              >
+                <td
+                  role="cell"
+                >
+                  25.06.2018
+                </td>
+                <td
+                  role="cell"
+                >
+                  KONTOØVERFØRING
+                </td>
+                <td
+                  role="cell"
+                >
+                  14.01.2018 - 15.07.2017
+                </td>
+                <td
+                  role="cell"
+                >
+                  79%
+                </td>
+                <td
+                  role="cell"
+                >
+                  705,00 NOK
+                </td>
+                <td
+                  role="cell"
+                >
+                  466,00 NOK
+                </td>
+                <td
+                  role="cell"
+                >
+                  Vedvik - Lunde
+                </td>
+                <td
+                  role="cell"
+                >
+                  1234567890
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          class="alertstripe alertstripe--info"
         >
           <span
-            className="sr-only"
+            class="alertstripe__ikon"
           >
-            info
-          </span>
-          <svg
-            aria-label="info-ikon"
-            focusable="false"
-            height="1.5em"
-            kind="info-sirkel-fyll"
-            role="img"
-            viewBox="0 0 24 24"
-            width="1.5em"
-          >
-            <g
-              fill="none"
+            <span
+              class="sr-only"
             >
-              <path
-                d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
-                fill="#337C9B"
-              />
-              <path
-                d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
-                fill="#FFF"
-              />
-            </g>
-          </svg>
-        </span>
-        <div
-          className="typo-normal alertstripe__tekst"
-        >
-          For detaljer om utførte utbetalinger 
-          <a
-            href="/person/utbetaling"
-            onClick={[Function]}
-            onFocus={[Function]}
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-            onTouchStart={[Function]}
+              info
+            </span>
+            <svg
+              aria-label="info-ikon"
+              focusable="false"
+              height="1.5em"
+              kind="info-sirkel-fyll"
+              role="img"
+              viewBox="0 0 24 24"
+              width="1.5em"
+            >
+              <g
+                fill="none"
+              >
+                <path
+                  d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
+                  fill="#337C9B"
+                />
+                <path
+                  d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
+                  fill="#FFF"
+                />
+              </g>
+            </svg>
+          </span>
+          <div
+            class="typo-normal alertstripe__tekst"
           >
-            se Utbetalingsoversikten.
-          </a>
+            For detaljer om utførte utbetalinger 
+            <a
+              href="/person/utbetaling"
+            >
+              se Utbetalingsoversikten.
+            </a>
+          </div>
         </div>
-      </div>
-    </section>
-  </article>
-</li>
+      </section>
+    </article>
+  </li>
+</DocumentFragment>
 `;

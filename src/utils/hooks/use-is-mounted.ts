@@ -1,6 +1,6 @@
 import { type RefObject, useEffect, useRef } from 'react';
 
-function useIsMounted(): RefObject<boolean> {
+function useIsMounted(): RefObject<boolean | null> {
     const ref = useRef<boolean>(true);
     useEffect(() => {
         return () => {

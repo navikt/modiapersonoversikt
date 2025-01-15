@@ -12,33 +12,31 @@ interface Props {
 }
 
 const CustomStyling = styled(Panel)`
-    padding: 0rem;
-    font-weight: 600;
-    a {
-        padding: ${pxToRem(15)};
-    }
-    a:visited {
-        color: currentColor !important;
-    }
-    .lenkepanel {
-        margin-bottom: 0;
-    }
+  padding: 0rem;
+  font-weight: 600;
+  a {
+    padding: ${pxToRem(15)};
+  }
+  a:visited {
+    color: currentColor !important;
+  }
+  .lenkepanel {
+    margin-bottom: 0;
+  }
 `;
 
-function LenkepanelPersonoversikt(props: Props) {
+const defaultLinkCreator = (props: React.HTMLProps<HTMLAnchorElement>) => (
+    <a target="_blank" rel="noopener noreferrer" {...props} />
+);
+
+function LenkepanelPersonoversikt({ className, url, linkCreator = defaultLinkCreator, children }: Props) {
     return (
-        <CustomStyling className={props.className}>
-            <LenkepanelBase href={props.url} linkCreator={props.linkCreator}>
-                {props.children}
+        <CustomStyling className={className}>
+            <LenkepanelBase href={url} linkCreator={linkCreator}>
+                {children}
             </LenkepanelBase>
         </CustomStyling>
     );
 }
-
-(LenkepanelPersonoversikt as React.FunctionComponent).defaultProps = {
-    linkCreator: (props: React.HTMLProps<HTMLAnchorElement>) => (
-        <a target="_blank" rel="noopener noreferrer" {...props} />
-    )
-};
 
 export default LenkepanelPersonoversikt;

@@ -1,4 +1,4 @@
-import * as renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import { vi } from 'vitest';
 import TestProvider from '../../../test/Testprovider';
 import { setupReactQueryMocks } from '../../../test/testStore';
@@ -12,12 +12,12 @@ beforeEach(() => {
 });
 
 test('viser dialogpanel', () => {
-    const dialogPanelBody = renderer.create(
+    const dialogPanelBody = render(
         <TestProvider>
             <DialogPanel />
         </TestProvider>
     );
 
-    expect(dialogPanelBody.toJSON()).toMatchSnapshot();
+    expect(dialogPanelBody.asFragment()).toMatchSnapshot();
     dialogPanelBody.unmount();
 });

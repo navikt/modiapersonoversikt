@@ -1,7 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Sykepengertilfellet matcher snapshot 1`] = `
-.c1 {
+<DocumentFragment>
+  .c1 {
   display: flex;
   flex-wrap: wrap;
 }
@@ -29,126 +30,127 @@ exports[`Sykepengertilfellet matcher snapshot 1`] = `
 }
 
 <article
-  aria-labelledby="Helt tilfeldig ID"
-  className="c0"
->
-  <h3
-    className="typo-ingress"
-    id="Helt tilfeldig ID"
+    aria-labelledby="Helt tilfeldig ID"
+    class="c0"
   >
-    Sykepengetilfellet
-  </h3>
-  <dl
-    className="c1"
-  >
-    <div>
-      <dt
-        className="typo-normal"
-      >
-        Sykemeldt fra og med
-      </dt>
-      <dd
-        className="typo-element"
-      >
-        06.02.2019
-      </dd>
-    </div>
-    <div>
-      <dt
-        className="typo-normal"
-      >
-        Forbrukte dager
-      </dt>
-      <dd
-        className="typo-element"
-      >
-        23
-      </dd>
-    </div>
-    <div>
-      <dt
-        className="typo-normal"
-      >
-        Untatt aktivitet
-      </dt>
-      <dd
-        className="typo-element"
-      >
-        —
-      </dd>
-    </div>
-    <div>
-      <dt
-        className="typo-normal"
-      >
-        Midlertidig stans
-      </dt>
-      <dd
-        className="typo-element"
-      >
-        —
-      </dd>
-    </div>
-    <div>
-      <dt
-        className="typo-normal"
-      >
-        Sanksjonperiode
-      </dt>
-      <dd
-        className="typo-element"
-      >
-        19.01.2014 - 05.09.2014
-      </dd>
-    </div>
-    <div>
-      <dt
-        className="typo-normal"
-      >
-        Ferieperioder
-      </dt>
-      <dd
-        className="typo-element"
-      >
-        19.01.2014 - 14.01.2014
-      </dd>
-    </div>
-    <div>
-      <dt
-        className="typo-normal"
-      >
-        Forsikring
-      </dt>
-      <dd
-        className="typo-element"
-      >
-        837,00 NOK
-      </dd>
-    </div>
-    <div>
-      <dt
-        className="typo-normal"
-      >
-        Gyldig forsikring
-      </dt>
-      <dd
-        className="typo-element"
-      >
-        Nei
-      </dd>
-    </div>
-    <div>
-      <dt
-        className="typo-normal"
-      >
-        Forsikringsperiode
-      </dt>
-      <dd
-        className="typo-element"
-      >
-        —
-      </dd>
-    </div>
-  </dl>
-</article>
+    <h3
+      class="typo-ingress"
+      id="Helt tilfeldig ID"
+    >
+      Sykepengetilfellet
+    </h3>
+    <dl
+      class="c1"
+    >
+      <div>
+        <dt
+          class="typo-normal"
+        >
+          Sykemeldt fra og med
+        </dt>
+        <dd
+          class="typo-element"
+        >
+          06.02.2019
+        </dd>
+      </div>
+      <div>
+        <dt
+          class="typo-normal"
+        >
+          Forbrukte dager
+        </dt>
+        <dd
+          class="typo-element"
+        >
+          23
+        </dd>
+      </div>
+      <div>
+        <dt
+          class="typo-normal"
+        >
+          Untatt aktivitet
+        </dt>
+        <dd
+          class="typo-element"
+        >
+          —
+        </dd>
+      </div>
+      <div>
+        <dt
+          class="typo-normal"
+        >
+          Midlertidig stans
+        </dt>
+        <dd
+          class="typo-element"
+        >
+          —
+        </dd>
+      </div>
+      <div>
+        <dt
+          class="typo-normal"
+        >
+          Sanksjonperiode
+        </dt>
+        <dd
+          class="typo-element"
+        >
+          19.01.2014 - 05.09.2014
+        </dd>
+      </div>
+      <div>
+        <dt
+          class="typo-normal"
+        >
+          Ferieperioder
+        </dt>
+        <dd
+          class="typo-element"
+        >
+          19.01.2014 - 14.01.2014
+        </dd>
+      </div>
+      <div>
+        <dt
+          class="typo-normal"
+        >
+          Forsikring
+        </dt>
+        <dd
+          class="typo-element"
+        >
+          837,00 NOK
+        </dd>
+      </div>
+      <div>
+        <dt
+          class="typo-normal"
+        >
+          Gyldig forsikring
+        </dt>
+        <dd
+          class="typo-element"
+        >
+          Nei
+        </dd>
+      </div>
+      <div>
+        <dt
+          class="typo-normal"
+        >
+          Forsikringsperiode
+        </dt>
+        <dd
+          class="typo-element"
+        >
+          —
+        </dd>
+      </div>
+    </dl>
+  </article>
+</DocumentFragment>
 `;
