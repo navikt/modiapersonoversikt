@@ -41,7 +41,7 @@ const menuItems = [
     },
     {
         title: 'Arbeid',
-        href: '/new/person/oppfolging',
+        href: '/new/person/arbeid',
         Icon: BriefcaseIcon
     },
     {
