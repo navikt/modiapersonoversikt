@@ -8,6 +8,8 @@ import useHotkey from 'src/utils/hooks/use-hotkey';
 import { twMerge } from 'tailwind-merge';
 import QueryErrorBoundary from '../QueryErrorBoundary';
 import { PersonBadges } from './Badges';
+import { PersonlinjeDetails } from './Details';
+import { Sikkerhetstiltak } from './Sikkerhetstiltak';
 
 const ukjentKjonn: KodeBeskrivelse<Kjonn> = {
     kode: Kjonn.U,
@@ -38,60 +40,69 @@ const PersonLinjeContent = () => {
     const navn = data.person.navn.firstOrNull();
 
     return (
-        <Box
-            as="section"
-            aria-label="personlinje"
-            borderWidth="1"
-            background="bg-default"
-            onClick={() => setIsExpanded((v) => !v)}
-            className="border-border-subtle rounded-xl has-[:focus]:border-border-strong overflow-hidden"
-        >
-            <QueryErrorBoundary error={error}>
-                <HStack
-                    paddingInline="4"
-                    justify="space-between"
-                    className="hover:bg-bg-subtle cursor-pointer"
-                    wrap={false}
-                >
-                    <HStack gap="4" paddingBlock="2">
-                        <Personalia
-                            navn={navn ? `${navn.fornavn} ${navn.mellomnavn ?? ''} ${navn.etternavn}` : 'UKJENT'}
-                            kjonn={kjonn}
-                            alder={data.person.alder}
-                        />
-                        <HStack align="center" className="cursor-[initial]" onClick={(e) => e.stopPropagation()}>
-                            <BodyShort size="small">F.nr: {data.person.personIdent}</BodyShort>
-                            <CopyButton size="xsmall" copyText={data.person.personIdent} />
-                        </HStack>
-                        {data.person.kontaktInformasjon.mobil?.value && (
+        <>
+            <Sikkerhetstiltak sikkerhetstiltak={data.person.sikkerhetstiltak} />
+            <Box
+                as="section"
+                aria-label="personlinje"
+                borderWidth="1"
+                background="bg-default"
+                onClick={() => setIsExpanded((v) => !v)}
+                className="border-border-subtle rounded-xl has-[:focus]:border-border-strong overflow-hidden"
+            >
+                <QueryErrorBoundary error={error}>
+                    <HStack
+                        paddingInline="4"
+                        justify="space-between"
+                        className="hover:bg-bg-subtle cursor-pointer"
+                        wrap={false}
+                    >
+                        <HStack gap="4" paddingBlock="2">
+                            <Personalia
+                                navn={navn ? `${navn.fornavn} ${navn.mellomnavn ?? ''} ${navn.etternavn}` : 'UKJENT'}
+                                kjonn={kjonn}
+                                alder={data.person.alder}
+                            />
                             <HStack align="center" className="cursor-[initial]" onClick={(e) => e.stopPropagation()}>
-                                <BodyShort size="small">Tlf.nr: {data.person.kontaktInformasjon.mobil.value}</BodyShort>
-                                <CopyButton size="xsmall" copyText={data.person.kontaktInformasjon.mobil.value} />
+                                <BodyShort size="small">F.nr: {data.person.personIdent}</BodyShort>
+                                <CopyButton size="xsmall" copyText={data.person.personIdent} />
                             </HStack>
-                        )}
-                        <PersonBadges />
+                            {data.person.kontaktInformasjon.mobil?.value && (
+                                <HStack
+                                    align="center"
+                                    className="cursor-[initial]"
+                                    onClick={(e) => e.stopPropagation()}
+                                >
+                                    <BodyShort size="small">
+                                        Tlf.nr: {data.person.kontaktInformasjon.mobil.value}
+                                    </BodyShort>
+                                    <CopyButton size="xsmall" copyText={data.person.kontaktInformasjon.mobil.value} />
+                                </HStack>
+                            )}
+                            <PersonBadges />
+                        </HStack>
+                        <VStack justify="center">
+                            <Button
+                                className="grow-0"
+                                size="small"
+                                title="Åpne personlinje"
+                                icon={isExpanded ? <ChevronUpIcon aria-hidden /> : <ChevronDownIcon aria-hidden />}
+                                variant="tertiary-neutral"
+                            />
+                        </VStack>
                     </HStack>
-                    <VStack justify="center">
-                        <Button
-                            className="grow-0"
-                            size="small"
-                            title="Åpne personlinje"
-                            icon={isExpanded ? <ChevronUpIcon aria-hidden /> : <ChevronDownIcon aria-hidden />}
-                            variant="tertiary-neutral"
-                        />
-                    </VStack>
-                </HStack>
-                <Box
-                    marginInline="4"
-                    className={twMerge(
-                        'border-t border-border-subtle transition-all duration-75  h-9',
-                        !isExpanded && 'h-0 invisible overflow-hidden'
-                    )}
-                >
-                    Hei content
-                </Box>
-            </QueryErrorBoundary>
-        </Box>
+                    <Box
+                        marginInline="4"
+                        className={twMerge(
+                            'border-t border-border-subtle transition-all duration-75  h-9',
+                            !isExpanded && 'h-0 invisible overflow-hidden'
+                        )}
+                    >
+                        <PersonlinjeDetails />
+                    </Box>
+                </QueryErrorBoundary>
+            </Box>
+        </>
     );
 };
 
