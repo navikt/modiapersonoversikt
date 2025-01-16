@@ -11,7 +11,11 @@ function ValidPeriod({ from, to }: Props) {
         return null;
     }
 
-    return <BodyShort textColor="subtle">Gyldig: {hentPeriodeTekst(from, to)}</BodyShort>;
+    return (
+        <BodyShort textColor="subtle" size="small">
+            Gyldig: {hentPeriodeTekst(from, to)}
+        </BodyShort>
+    );
 }
 
 export default ValidPeriod;

@@ -47,11 +47,11 @@ const PersonLinjeContent = () => {
                 aria-label="personlinje"
                 borderWidth="1"
                 background="bg-default"
-                onClick={() => setIsExpanded((v) => !v)}
                 className="border-border-subtle rounded-xl has-[:focus]:border-border-strong overflow-hidden"
             >
                 <QueryErrorBoundary error={error}>
                     <HStack
+                        onClick={() => setIsExpanded((v) => !v)}
                         paddingInline="4"
                         justify="space-between"
                         className="hover:bg-bg-subtle cursor-pointer"
@@ -94,7 +94,7 @@ const PersonLinjeContent = () => {
                     <Box
                         marginInline="4"
                         className={twMerge(
-                            'border-t border-border-subtle transition-all duration-75  h-9',
+                            'border-t border-border-subtle transition-all duration-75 max-h-[calc(100%_-_8rem)] overflow-y-scroll',
                             !isExpanded && 'h-0 invisible overflow-hidden'
                         )}
                     >
