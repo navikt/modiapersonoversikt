@@ -36,8 +36,8 @@ importers:
         specifier: ^2.1.5
         version: 2.1.5
       '@navikt/navspa':
-        specifier: ^6.2.0
-        version: 6.2.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: ^7.0.0
+        version: 7.0.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@navikt/tag-input':
         specifier: ^2.0.2
         version: 2.0.2(gct6i4lcxszvmjlgvsfus3jouu)
@@ -1030,11 +1030,11 @@ packages:
   '@navikt/fnrvalidator@2.1.5':
     resolution: {integrity: sha512-uHzoL3ZTYwrF7OTKaihNf9xHH6S9WnGqz420HX4lEX+yu5367l+dYxI5OIRVT5MKWEDQ4DCVSAuJhoWValv6Fw==, tarball: https://npm.pkg.github.com/download/@navikt/fnrvalidator/2.1.5/e33cbc5693b14419bbcf4d5daee2ac9eeec532e5}
 
-  '@navikt/navspa@6.2.0':
-    resolution: {integrity: sha512-ix3lqWZWIhIAlmFL883hbmD9kjWk9qeijEGXiQOxPzanpWZ4EeeZhEsXng+MftDurJk04y3Q9i/1x0V7l34O9w==, tarball: https://npm.pkg.github.com/download/@navikt/navspa/6.2.0/fedd207df70dff922a729cef18a28112274202c6}
+  '@navikt/navspa@7.0.0':
+    resolution: {integrity: sha512-ZyXEr0hweUOY92LA1QJjiSHZQSAMjb3rGpYn6WV44uj8e0lunD4sJ60hbZDny8tX6YjVVcLA7IvgXeAQ6w+gxA==, tarball: https://npm.pkg.github.com/download/@navikt/navspa/7.0.0/1dd787b54c65709657f96d0f9a62f2f864d0f29d}
     peerDependencies:
-      react: '>=16.6.0 || 17 || 18'
-      react-dom: '>=16.6.0 || 17 || 18'
+      react: '>=19.0.0'
+      react-dom: '>=19.0.0'
 
   '@navikt/tag-input@2.0.2':
     resolution: {integrity: sha512-1ld7mfoTscx6K2wB6HrxgG8AL3sP+PW8tySygk84txuVgsyAjDHOiw3N3QG5nJcjDTddFXyellyxq6zVC8nOcQ==, tarball: https://npm.pkg.github.com/download/@navikt/tag-input/2.0.2/3140c6202847323a57c4085aa4bcbca31b65866f}
@@ -4476,7 +4476,7 @@ snapshots:
 
   '@navikt/fnrvalidator@2.1.5': {}
 
-  '@navikt/navspa@6.2.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+  '@navikt/navspa@7.0.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       loadjs: 4.3.0
       react: 19.0.0
