@@ -7,14 +7,16 @@ export const Group = ({
     title,
     children
 }: PropsWithChildren<{
-    title: string;
+    title?: string;
 }>) => {
     return (
         <section className="mx-4">
             <HStack>
-                <Heading as="h2" size="small">
-                    {title}
-                </Heading>
+                {title && (
+                    <Heading as="h2" size="small">
+                        {title}
+                    </Heading>
+                )}
             </HStack>
             <Box>{children}</Box>
         </section>

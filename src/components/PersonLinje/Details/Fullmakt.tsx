@@ -7,7 +7,7 @@ import { formaterMobiltelefonnummer } from 'src/utils/telefon-utils';
 import ValidPeriod from '../common/ValidPeriod';
 import { hentNavn } from '../utils';
 import { harFeilendeSystemer } from '../utils';
-import { InfoElement } from './components';
+import { Group, InfoElement } from './components';
 
 type Fullmakt = PersonData['fullmakt'][number];
 type DigitalKontaktTredjepart = PersonData['fullmakt'][0]['digitalKontaktinformasjonTredjepartsperson'];
@@ -121,18 +121,20 @@ function Fullmakter() {
     }
 
     return (
-        <InfoElement title="Fullmakter" icon={<PersonEnvelopeIcon />}>
-            {fullmakter.map((fullmakt) => (
-                <Fullmakt
-                    key={fullmakt.motpartsPersonident}
-                    fullmakt={fullmakt}
-                    harFeilendeSystem={
-                        harFeilendeSystemer(feilendeSystemer, 'PDL_TREDJEPARTSPERSONER') ||
-                        harFeilendeSystemer(feilendeSystemer, 'FULLMAKT')
-                    }
-                />
-            ))}
-        </InfoElement>
+        <Group>
+            <InfoElement title="Fullmakter" icon={<PersonEnvelopeIcon />}>
+                {fullmakter.map((fullmakt) => (
+                    <Fullmakt
+                        key={fullmakt.motpartsPersonident}
+                        fullmakt={fullmakt}
+                        harFeilendeSystem={
+                            harFeilendeSystemer(feilendeSystemer, 'PDL_TREDJEPARTSPERSONER') ||
+                            harFeilendeSystemer(feilendeSystemer, 'FULLMAKT')
+                        }
+                    />
+                ))}
+            </InfoElement>
+        </Group>
     );
 }
 
