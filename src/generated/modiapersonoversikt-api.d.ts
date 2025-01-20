@@ -2126,7 +2126,11 @@ export interface components {
             debitor: components['schemas']['Debitor'];
             kreditor: components['schemas']['Kreditor'];
             posteringer: components['schemas']['KravPostering'][];
-            opprettetDato?: components['schemas']['LocalDate'];
+            /**
+             * Format: date
+             * @example 2025-01-01
+             */
+            opprettetDato?: string;
         };
         KravPostering: {
             kode: string;
@@ -2137,7 +2141,11 @@ export interface components {
             betaltBelop: number;
             /** Format: double */
             gjenstaendeBelop: number;
-            opprettetDato?: components['schemas']['LocalDate'];
+            /**
+             * Format: date
+             * @example 2025-01-01
+             */
+            opprettetDato?: string;
         };
         Kreditor: {
             kreditorId: string;

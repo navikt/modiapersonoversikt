@@ -119,7 +119,7 @@ const SearchResultTable = ({
                         <Table.Row key={k.kravId}>
                             <Table.DataCell>{k.kravId}</Table.DataCell>
                             <Table.DataCell>{k.debitor.name}</Table.DataCell>
-                            <Table.DataCell>{formaterDato(k.opprettetDato)}</Table.DataCell>
+                            <Table.DataCell>{k.opprettetDato ? formaterDato(k.opprettetDato) : '-'}</Table.DataCell>
                         </Table.Row>
                     ))}
                 </Table.Body>
