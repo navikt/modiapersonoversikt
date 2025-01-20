@@ -86,7 +86,7 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
         return urlObj.toString();
     };
 
-    return delayRender ? <Loader /> : children;
+    return delayRender ? <Loader size="3xlarge" /> : children;
 }
 
 export default HandleLegacyUrls;

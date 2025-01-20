@@ -20,10 +20,10 @@ function Decorator() {
     return (
         <StyledNav>
             <InternflateDecoratorV3 {...configV3} />
-            <IfFeatureToggleOn toggleID={FeatureToggles.NyAvansertSok}>
+            <IfFeatureToggleOn loader={<div />} toggleID={FeatureToggles.NyAvansertSok}>
                 <Personsok />
             </IfFeatureToggleOn>
-            <IfFeatureToggleOff toggleID={FeatureToggles.NyAvansertSok}>
+            <IfFeatureToggleOff loader={<div />} toggleID={FeatureToggles.NyAvansertSok}>
                 <PersonsokContainer />
             </IfFeatureToggleOff>
             <OppdateringsloggContainer />
