@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { JSX, ReactNode } from 'react';
 import featuretoggles from '../../rest/resources/featuretogglesResource';
 import LazySpinner from '../LazySpinner';
 import type { FeatureToggles } from './toggleIDs';
@@ -12,6 +12,7 @@ interface Props {
     children: ReactNode;
     toggleID: FeatureToggles;
     mode: DisplayWhenToggleIs;
+    loader?: JSX.Element;
 }
 
 function shouldDisplay(mode: DisplayWhenToggleIs, featureToggleIsOn: boolean): boolean {
@@ -25,7 +26,7 @@ function shouldDisplay(mode: DisplayWhenToggleIs, featureToggleIsOn: boolean): b
 
 function FeatureToggle(props: Props) {
     return featuretoggles.useRenderer({
-        ifPending: <LazySpinner type="S" delay={1000} />,
+        ifPending: props.loader ?? <LazySpinner type="S" delay={1000} />,
         ifData: (toggles) => {
             if (shouldDisplay(props.mode, toggles[props.toggleID])) {
                 return <>{props.children}</>;

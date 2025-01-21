@@ -17,7 +17,6 @@ import { ThemeProvider } from 'src/lib/state/theme';
 import { usePersistentWWLogin } from 'src/login/use-persistent-ww-login';
 import HandleLegacyUrls from 'src/utils/HandleLegacyUrls';
 import useTimeout from 'src/utils/hooks/use-timeout';
-import styled from 'styled-components';
 
 export const Route = createRootRoute({
     component: RootLayout,
@@ -93,14 +92,9 @@ const TanStackRouterDevtools = import.meta.env.DEV
       )
     : () => null;
 
-const AppStyle = styled.div`
-  height: 100vh;
-  @media print {
-    height: auto;
-  }
-  display: flex;
-  flex-flow: column nowrap;
-`;
+const AppWrapper = ({ children }: PropsWithChildren) => (
+    <div className="h-svh print:h-auto flex flex-col flex-nowrap">{children}</div>
+);
 
 function RootLayout() {
     const matchRoute = useMatchRoute();
@@ -113,7 +107,7 @@ function RootLayout() {
                 {isLanding ? (
                     <Outlet />
                 ) : (
-                    <AppStyle>
+                    <AppWrapper>
                         <HandleLegacyUrls>
                             <DemoBanner />
                             <NyModia />
@@ -124,7 +118,7 @@ function RootLayout() {
                                 </App>
                             </ErrorBoundary>
                         </HandleLegacyUrls>
-                    </AppStyle>
+                    </AppWrapper>
                 )}
                 <TanStackRouterDevtools position="bottom-right" />
             </ValgtEnhetProvider>
