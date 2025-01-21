@@ -1,6 +1,6 @@
 import { BodyShort, Box, Button, Heading, HStack, VStack } from '@navikt/ds-react';
 import { EnvelopeClosedIcon } from '@navikt/aksel-icons';
-import { ReactElement, useState } from 'react';
+import { ReactElement } from 'react';
 import { Textarea } from 'nav-frontend-skjema';
 import { Temagruppe } from 'src/models/temagrupper';
 import VelgTema from 'src/components/melding/VelgTema';
@@ -9,24 +9,47 @@ import VelgOppgaveliste, { Oppgaveliste } from 'src/components/melding/VelgOppga
 import { ValgForMeldingstype } from 'src/components/melding/ValgForMeldingstype';
 import VelgSak from 'src/components/melding/VelgSak';
 import AvsluttDialogEtterSending from 'src/components/melding/AvsluttDialogEtterSending';
+import { useForm, useStore } from '@tanstack/react-form';
+import { z } from 'zod';
 
 interface NyMeldingProps {
     lukkeKnapp?: ReactElement<typeof Button>;
+}
+
+interface NyMeldingFormOptions {
+    meldingsType: MeldingsType;
+    melding: string;
+    tema?: Temagruppe;
+    oppgaveliste?: Oppgaveliste;
 }
 
 function NyMelding({ lukkeKnapp }: NyMeldingProps) {
     const enhet = 'NAV'; // TODO: hent fra context
     const bruker = 'Ola Nordmann'; // TODO: hent fra context
 
-    const [meldingsType, setMeldingsType] = useState<MeldingsType>(MeldingsType.Referat);
+    const schema = nyMeldingSchema();
+
+    const form = useForm<NyMeldingFormOptions>({
+        defaultValues: {
+            meldingsType: MeldingsType.Referat,
+            melding: '',
+            tema: undefined,
+            oppgaveliste: Oppgaveliste.MinListe
+        },
+        validators: {
+            onSubmit: schema
+        },
+        onSubmit: (values) => {
+            console.log(values.value);
+        }
+    });
+
+    const meldingsType = useStore(
+        form.store,
+        (state) => state.values.meldingsType
+    );
+
     const meldingsTypeTekst = meldingsTyperTekst[meldingsType];
-
-    const [melding, setMelding] = useState('');
-
-    const [valgtTema, setValgtTema] = useState<Temagruppe | undefined>();
-
-    const [valgtOppgaveliste, setValgtOppgaveliste] = useState<Oppgaveliste>(Oppgaveliste.MinListe);
-
 
     return (
         <Box
@@ -37,58 +60,117 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
             padding="2"
             maxWidth="30vw"
         >
-            <VStack gap="4">
-                <HStack justify="space-between">
-                    <Heading size="medium">Send ny dialog</Heading>
-                    {lukkeKnapp}
-                </HStack>
-                <VelgMeldingsType
-                    meldingsType={meldingsType}
-                    setMeldingsType={setMeldingsType}
-                />
-                <VStack gap="1">
-                    <Heading size="small">{meldingsTypeTekst.tittel}</Heading>
-                    <BodyShort>{meldingsTypeTekst.beskrivelse}</BodyShort>
-                    <Textarea
-                        value={melding}
-                        onChange={(e) =>
-                            setMelding(e.target.value)
-                        }
-
+            <form onSubmit={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                form.handleSubmit();
+            }}>
+                <VStack gap="4">
+                    <HStack justify="space-between">
+                        <Heading size="medium">Send ny dialog</Heading>
+                        {lukkeKnapp}
+                    </HStack>
+                    <form.Field
+                        name="meldingsType"
+                        children={(field) => (
+                            <VelgMeldingsType
+                                meldingsType={field.state.value}
+                                setMeldingsType={(meldingsType) => field.handleChange(meldingsType)}
+                            />
+                        )}
                     />
+                    <VStack gap="1">
+                        <Heading size="small">{meldingsTypeTekst.tittel}</Heading>
+                        <BodyShort>{meldingsTypeTekst.beskrivelse}</BodyShort>
+                        <form.Field
+                            name="melding"
+                            children={(field) => (
+                                <Textarea
+                                    value={field.state.value}
+                                    onChange={(e) =>
+                                        field.handleChange(e.target.value)
+                                    }
+                                />
+                            )}
+                        />
+                    </VStack>
+                    <ValgForMeldingstype
+                        meldingsType={meldingsType}
+                        velgTema={
+                            <form.Field
+                                name="tema"
+                                children={
+                                    (field) => {
+                                        return <VelgTema
+                                            valgtTema={field.state.value}
+                                            setValgtTema={(tema) => field.handleChange(tema)}
+                                        />;
+                                    }
+                                }
+                            />
+                        }
+                        velgOppgaveliste={
+                            <form.Field
+                                name="oppgaveliste"
+                                children={
+                                    (field) => {
+                                        return <VelgOppgaveliste
+                                            valgtOppgaveliste={field.state.value}
+                                            setValgtOppgaveliste={(oppgaveliste) => field.handleChange(oppgaveliste)}
+                                            enhet={enhet}
+                                        />;
+                                    }
+                                }
+                            />
+                        }
+                        velgSak={<VelgSak />}
+                        avsluttDialogEtterSending={
+                            <form.Field
+                                name="meldingsType"
+                                children={(field) => (
+                                    <AvsluttDialogEtterSending
+                                        meldingsType={field.state.value}
+                                        setMeldingsType={(meldingsType) => field.handleChange(meldingsType)}
+                                    />
+                                )}
+                            />
+                        }
+                    />
+                    <Button type="submit">Send til {bruker}</Button>
+                    <Button
+                        variant="tertiary"
+                        icon={<EnvelopeClosedIcon aria-hidden />}
+                        iconPosition="left"
+                        size="small"
+                    >
+                        Se alle dialoger
+                    </Button>
                 </VStack>
-                <ValgForMeldingstype
-                    meldingsType={meldingsType}
-                    velgTema={
-                        <VelgTema valgtTema={valgtTema} setValgtTema={setValgtTema} />
-                    }
-                    velgOppgaveliste={
-                        <VelgOppgaveliste
-                            valgtOppgaveliste={valgtOppgaveliste}
-                            setValgtOppgaveliste={setValgtOppgaveliste}
-                            enhet={enhet}
-                        />
-                    }
-                    velgSak={<VelgSak />}
-                    avsluttDialogEtterSending={
-                        <AvsluttDialogEtterSending
-                            meldingsType={meldingsType}
-                            setMeldingsType={setMeldingsType}
-                        />
-                    }
-                />
-                <Button>Send til {bruker}</Button>
-                <Button
-                    variant="tertiary"
-                    icon={<EnvelopeClosedIcon aria-hidden />}
-                    iconPosition="left"
-                    size="small"
-                >
-                    Se alle dialoger
-                </Button>
-            </VStack>
+            </form>
         </Box>
     );
+}
+
+function nyMeldingSchema() {
+    const meldingSchema = z.object({
+        melding: z.string().min(1, 'Må ha en melding')
+    });
+
+    return z.discriminatedUnion('meldingsType', [
+        z.object({
+            meldingsType: z.literal(MeldingsType.Referat),
+            tema: z.nativeEnum(Temagruppe)
+        }),
+        z.object({
+            meldingsType: z.literal(MeldingsType.Samtale),
+            // TODO: Sak
+            oppgaveliste: z.nativeEnum(Oppgaveliste)
+        }),
+        z.object({
+            meldingsType: z.literal(MeldingsType.Infomelding)
+            // TODO: Sak
+        })
+    ]).and(meldingSchema);
 }
 
 export default NyMelding;
