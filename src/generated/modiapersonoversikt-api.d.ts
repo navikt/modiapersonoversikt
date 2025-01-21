@@ -1330,7 +1330,21 @@ export interface components {
             opprettetAv: string;
         };
         Data: {
-            feilendeSystemer: string[];
+            feilendeSystemer: (
+                | 'NOT_RELEVANT'
+                | 'PROVIDED_VALUE'
+                | 'PDL_GT'
+                | 'PDL_TREDJEPARTSPERSONER'
+                | 'EGEN_ANSATT'
+                | 'DKIF'
+                | 'DKIF_TREDJEPARTSPERSONER'
+                | 'BANKKONTO'
+                | 'OPPFOLGING'
+                | 'VEILEDER_ROLLER'
+                | 'NORG_NAVKONTOR'
+                | 'NORG_KONTAKTINFORMASJON'
+                | 'FULLMAKT'
+            )[];
             person: components['schemas']['Person'];
         };
         DeltBosted: {
@@ -2089,9 +2103,9 @@ export interface components {
         };
         GraphQLClientSourceLocation: {
             /** Format: int32 */
-            column: number;
-            /** Format: int32 */
             line: number;
+            /** Format: int32 */
+            column: number;
         };
         KravRequest: {
             ident: string;
@@ -2112,8 +2126,11 @@ export interface components {
             debitor: components['schemas']['Debitor'];
             kreditor: components['schemas']['Kreditor'];
             posteringer: components['schemas']['KravPostering'][];
-            /** Format: date-time */
-            opprettetDato: string;
+            /**
+             * Format: date
+             * @example 2025-01-01
+             */
+            opprettetDato?: string;
         };
         KravPostering: {
             kode: string;
@@ -2124,8 +2141,11 @@ export interface components {
             betaltBelop: number;
             /** Format: double */
             gjenstaendeBelop: number;
-            /** Format: date-time */
-            opprettetDato: string;
+            /**
+             * Format: date
+             * @example 2025-01-01
+             */
+            opprettetDato?: string;
         };
         Kreditor: {
             kreditorId: string;

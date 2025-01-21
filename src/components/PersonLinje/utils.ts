@@ -4,11 +4,11 @@ import {
     ForelderBarnRelasjonRolle,
     type KodeBeskrivelse,
     type LocalDate,
-    type Navn,
     type PersonMedAlderOgDodsdato,
     type Sivilstand,
     SivilstandType
 } from 'src/app/personside/visittkort-v2/PersondataDomain';
+import type { Navn, PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
 import { ENDASH, formaterDato } from 'src/utils/string-utils';
 
 export function erDod(dodsdato: Array<LocalDate>) {
@@ -50,7 +50,7 @@ export function erPartner(sivilstand: Sivilstand): boolean {
     return sivilstand?.type && aktuelleRelasjoner.includes(sivilstand?.type.kode);
 }
 
-export function hentNavn(navn?: Navn | null, feilmelding = 'Ukjent navn'): string {
+export function hentNavn(navn?: Navn, feilmelding = 'Ukjent navn'): string {
     if (!navn) {
         return feilmelding;
     }
@@ -79,4 +79,11 @@ const ugyldig_gt_map = {
 };
 export function mapUgyldigGT(gt: string): string {
     return ugyldig_gt_map[gt as keyof typeof ugyldig_gt_map] ?? 'Ukjent';
+}
+
+export function harFeilendeSystemer(
+    feilendeSystemer: PersonDataFeilendeSystemer,
+    system: PersonDataFeilendeSystemer[0]
+): boolean {
+    return feilendeSystemer.includes(system);
 }

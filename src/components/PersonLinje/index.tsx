@@ -5,6 +5,7 @@ import { Kjonn, type KodeBeskrivelse } from 'src/app/personside/visittkort-v2/Pe
 import config from 'src/config';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import useHotkey from 'src/utils/hooks/use-hotkey';
+import { useClickAway } from 'src/utils/hooks/useClickAway';
 import { twMerge } from 'tailwind-merge';
 import QueryErrorBoundary from '../QueryErrorBoundary';
 import { PersonBadges } from './Badges';
@@ -23,8 +24,10 @@ export const PersonLinje = () => (
 );
 
 const PersonLinjeContent = () => {
-    const { data, error } = usePersonData();
     const [isExpanded, setIsExpanded] = useState(false);
+    const ref = useClickAway<HTMLDivElement>(() => setIsExpanded(false));
+
+    const { data, error } = usePersonData();
 
     const lenkeNyBrukerprofil = config.isProd ? 'https://pdl-web.intern.nav.no' : 'https://pdl-web.intern.dev.nav.no';
 
@@ -43,15 +46,16 @@ const PersonLinjeContent = () => {
         <>
             <Sikkerhetstiltak sikkerhetstiltak={data.person.sikkerhetstiltak} />
             <Box
+                ref={ref}
                 as="section"
                 aria-label="personlinje"
                 borderWidth="1"
                 background="bg-default"
-                onClick={() => setIsExpanded((v) => !v)}
-                className="border-border-subtle rounded-xl has-[:focus]:border-border-strong overflow-hidden"
+                className="border-border-subtle rounded-xl has-[:focus]:border-border-strong overflow-y-scroll max-h-[70vh]"
             >
                 <QueryErrorBoundary error={error}>
                     <HStack
+                        onClick={() => setIsExpanded((v) => !v)}
                         paddingInline="4"
                         justify="space-between"
                         className="hover:bg-bg-subtle cursor-pointer"
@@ -92,9 +96,9 @@ const PersonLinjeContent = () => {
                         </VStack>
                     </HStack>
                     <Box
-                        marginInline="4"
+                        paddingInline="4"
                         className={twMerge(
-                            'border-t border-border-subtle transition-all duration-75  h-9',
+                            'border-t border-border-subtle transition-all duration-75',
                             !isExpanded && 'h-0 invisible overflow-hidden'
                         )}
                     >
