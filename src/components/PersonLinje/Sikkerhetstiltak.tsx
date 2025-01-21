@@ -42,7 +42,13 @@ export const Sikkerhetstiltak = ({ sikkerhetstiltak }: Props) => {
                 </ul>
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={() => ref.current?.close()}>Ok</Button>
+                <Button
+                    onClick={() => {
+                        ref.current?.close();
+                    }}
+                >
+                    Ok
+                </Button>
             </Modal.Footer>
         </Modal>
     );

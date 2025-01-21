@@ -15,6 +15,11 @@ export type Adresse = components['schemas']['Adresse'];
 export type SistEndret = components['schemas']['SistEndret'];
 export type Navn = components['schemas']['Navn'];
 
+export type AdresseBeskyttelse = components['schemas']['KodeBeskrivelseAdresseBeskyttelse'];
+export type RelasjonPerson =
+    | components['schemas']['ForelderBarnRelasjon']
+    | components['schemas']['SivilstandRelasjon'];
+
 export type OmraadeMedHandling = components['schemas']['OmraadeMedHandlingString'];
 
 export type PersonsokRequest = components['schemas']['PersonsokRequestV3'];

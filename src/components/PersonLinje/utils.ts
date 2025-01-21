@@ -1,17 +1,18 @@
-import {
+import { ForelderBarnRelasjonRolle } from 'src/app/personside/visittkort-v2/PersondataDomain';
+import type {
     AdresseBeskyttelse,
-    type ForelderBarnRelasjon,
-    ForelderBarnRelasjonRolle,
-    type KodeBeskrivelse,
-    type LocalDate,
-    type PersonMedAlderOgDodsdato,
-    type Sivilstand,
-    SivilstandType
-} from 'src/app/personside/visittkort-v2/PersondataDomain';
-import type { Navn, PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
+    Navn,
+    PersonData,
+    PersonDataFeilendeSystemer,
+    RelasjonPerson
+} from 'src/lib/types/modiapersonoversikt-api';
+import { AdresseBeskyttelseKode, SivilstandType } from 'src/lib/types/modiapersonoversikt-api-enums';
 import { ENDASH, formaterDato } from 'src/utils/string-utils';
 
-export function erDod(dodsdato: Array<LocalDate>) {
+type ForelderBarnRelasjon = PersonData['forelderBarnRelasjon'][0];
+type Sivilstand = PersonData['sivilstand'][0];
+
+export function erDod(dodsdato: Array<string>) {
     return dodsdato.isNotEmpty();
 }
 
@@ -36,17 +37,17 @@ export function hentForeldre(relasjoner: ForelderBarnRelasjon[]) {
     );
 }
 
-export function harDiskresjonskode(adressebeskyttelse: KodeBeskrivelse<AdresseBeskyttelse>[]) {
+export function harDiskresjonskode(adressebeskyttelse: AdresseBeskyttelse[]) {
     return adressebeskyttelse.some(
         (beskyttelse) =>
-            beskyttelse.kode === AdresseBeskyttelse.KODE6 ||
-            beskyttelse.kode === AdresseBeskyttelse.KODE6_UTLAND ||
-            beskyttelse.kode === AdresseBeskyttelse.KODE7
+            beskyttelse.kode === AdresseBeskyttelseKode.KODE6 ||
+            beskyttelse.kode === AdresseBeskyttelseKode.KODE6_UTLAND ||
+            beskyttelse.kode === AdresseBeskyttelseKode.KODE7
     );
 }
 
 export function erPartner(sivilstand: Sivilstand): boolean {
-    const aktuelleRelasjoner = [SivilstandType.GIFT, SivilstandType.REGISTRERT_PARTNER];
+    const aktuelleRelasjoner = [SivilstandType.GIFT.valueOf(), SivilstandType.REGISTRERT_PARTNER.valueOf()];
     return sivilstand?.type && aktuelleRelasjoner.includes(sivilstand?.type.kode);
 }
 
@@ -57,7 +58,7 @@ export function hentNavn(navn?: Navn, feilmelding = 'Ukjent navn'): string {
     return navn.fornavn + (navn.mellomnavn ? ` ${navn.mellomnavn} ` : ' ') + navn.etternavn;
 }
 
-export function hentAlderEllerDod(person: PersonMedAlderOgDodsdato): string | undefined {
+export function hentAlderEllerDod(person: RelasjonPerson): string | undefined {
     if (erDod(person.dodsdato)) {
         return 'Død';
     }
