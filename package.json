@@ -5,7 +5,9 @@
     "license": "MIT",
     "main": "build/dist/index.js",
     "type": "module",
-    "files": ["build/dist/"],
+    "files": [
+        "build/dist/"
+    ],
     "engines": {
         "node": "^20.0 || ^22.0"
     },
@@ -33,7 +35,9 @@
         }
     },
     "lint-staged": {
-        "*.{js,ts,tsx,json,less,css,md}": ["biome format --write"]
+        "*.{js,ts,tsx,json,less,css,md}": [
+            "biome format --write"
+        ]
     },
     "dependencies": {
         "@amplitude/analytics-browser": "^2.11.11",
@@ -172,8 +176,18 @@
         }
     },
     "browserslist": {
-        "production": [">0.2%", "not dead", "not op_mini all", "IE 11"],
-        "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version", "IE 11"]
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all",
+            "IE 11"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version",
+            "IE 11"
+        ]
     },
     "msw": {
         "workerDirectory": "./public"
