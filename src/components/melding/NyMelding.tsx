@@ -9,39 +9,27 @@ import VelgOppgaveliste, { Oppgaveliste } from 'src/components/melding/VelgOppga
 import { ValgForMeldingstype } from 'src/components/melding/ValgForMeldingstype';
 import VelgSak from 'src/components/melding/VelgSak';
 import AvsluttDialogEtterSending from 'src/components/melding/AvsluttDialogEtterSending';
-import { useForm, useStore } from '@tanstack/react-form';
+import { FormApi, useForm, useStore } from '@tanstack/react-form';
 import { z } from 'zod';
+import {
+    JournalforingsSak
+} from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
+import { useValgtenhet } from 'src/context/valgtenhet-state';
+import saksbehandlersEnheter from 'src/rest/resources/saksbehandlersEnheterResource';
+import persondataResource from 'src/rest/resources/persondataResource';
+import { capitalizeName } from 'src/utils/string-utils';
 
 interface NyMeldingProps {
     lukkeKnapp?: ReactElement<typeof Button>;
 }
 
-interface NyMeldingFormOptions {
-    meldingsType: MeldingsType;
-    melding: string;
-    tema?: Temagruppe;
-    oppgaveliste?: Oppgaveliste;
-}
-
 function NyMelding({ lukkeKnapp }: NyMeldingProps) {
-    const enhet = 'NAV'; // TODO: hent fra context
-    const bruker = 'Ola Nordmann'; // TODO: hent fra context
+    const enhetsnavn = useEnhetsnavn();
+    const brukernavn = useBrukernavn();
 
     const schema = nyMeldingSchema();
-
-    const form = useForm<NyMeldingFormOptions>({
-        defaultValues: {
-            meldingsType: MeldingsType.Referat,
-            melding: '',
-            tema: undefined,
-            oppgaveliste: Oppgaveliste.MinListe
-        },
-        validators: {
-            onSubmit: schema
-        },
-        onSubmit: (values) => {
-            console.log(values.value);
-        }
+    const form = useNyMeldingForm(schema, ({ value }) => {
+        console.log(value);
     });
 
     const meldingsType = useStore(
@@ -117,13 +105,23 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                                         return <VelgOppgaveliste
                                             valgtOppgaveliste={field.state.value}
                                             setValgtOppgaveliste={(oppgaveliste) => field.handleChange(oppgaveliste)}
-                                            enhet={enhet}
+                                            enhet={enhetsnavn}
                                         />;
                                     }
                                 }
                             />
                         }
-                        velgSak={<VelgSak />}
+                        velgSak={
+                            <form.Field
+                                name="sak"
+                                children={(field) => (
+                                    <VelgSak
+                                        valgtSak={field.state.value}
+                                        setSak={(sak) => field.handleChange(sak)}
+                                    />
+                                )}
+                            />
+                        }
                         avsluttDialogEtterSending={
                             <form.Field
                                 name="meldingsType"
@@ -136,7 +134,7 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                             />
                         }
                     />
-                    <Button type="submit">Send til {bruker}</Button>
+                    <Button type="submit">Send til {brukernavn}</Button>
                     <Button
                         variant="tertiary"
                         icon={<EnvelopeClosedIcon aria-hidden />}
@@ -151,9 +149,38 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
     );
 }
 
+function useEnhetsnavn() {
+    const enhetId = useValgtenhet().enhetId;
+    const enheter = saksbehandlersEnheter.useFetch().data?.enhetliste ?? [];
+    return enheter.find((enhet) => enhet.enhetId === enhetId)?.navn ?? 'Ukjent enhet';
+}
+
+function useBrukernavn() {
+    const brukerResource = persondataResource.useFetch();
+    return brukerResource.data
+        ? capitalizeName(brukerResource.data.person.navn.firstOrNull()?.fornavn || '')
+        : 'bruker';
+}
+
 function nyMeldingSchema() {
     const meldingSchema = z.object({
         melding: z.string().min(1, 'Må ha en melding')
+    });
+
+    const sakSchema = z.object({
+        fagsystemKode: z.string(),
+        fagsystemNavn: z.string(),
+        fagsystemSaksId: z.string().nullable(),
+        finnesIGsak: z.boolean(),
+        finnesIPsak: z.boolean(),
+        opprettetDato: z.string().nullable(),
+        saksId: z.string(),
+        saksIdVisning: z.string(),
+        sakstype: z.string().nullable(),
+        sakstypeForVisningGenerell: z.boolean(),
+        temaKode: z.string(),
+        temaNavn: z.string(),
+        syntetisk: z.boolean().nullable().optional()
     });
 
     return z.discriminatedUnion('meldingsType', [
@@ -163,14 +190,39 @@ function nyMeldingSchema() {
         }),
         z.object({
             meldingsType: z.literal(MeldingsType.Samtale),
-            // TODO: Sak
             oppgaveliste: z.nativeEnum(Oppgaveliste)
-        }),
+        }).merge(sakSchema),
         z.object({
             meldingsType: z.literal(MeldingsType.Infomelding)
-            // TODO: Sak
-        })
+        }).merge(sakSchema)
     ]).and(meldingSchema);
+}
+
+interface NyMeldingFormOptions {
+    meldingsType: MeldingsType;
+    melding: string;
+    tema?: Temagruppe;
+    oppgaveliste?: Oppgaveliste;
+    sak?: JournalforingsSak;
+}
+
+function useNyMeldingForm(schema: ReturnType<typeof nyMeldingSchema>, onSubmit: (values: {
+    value: NyMeldingFormOptions,
+    formApi: FormApi<NyMeldingFormOptions, undefined>
+}) => void) {
+    return useForm<NyMeldingFormOptions>({
+        defaultValues: {
+            meldingsType: MeldingsType.Referat,
+            melding: '',
+            tema: undefined,
+            oppgaveliste: Oppgaveliste.MinListe,
+            sak: undefined
+        },
+        validators: {
+            onSubmit: schema
+        },
+        onSubmit
+    });
 }
 
 export default NyMelding;
