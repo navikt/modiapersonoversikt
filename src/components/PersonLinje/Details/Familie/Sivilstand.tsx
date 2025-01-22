@@ -1,5 +1,5 @@
 import { HeartFillIcon } from '@navikt/aksel-icons';
-import { Alert, BodyShort } from '@navikt/ds-react';
+import { Alert, BodyShort, Detail } from '@navikt/ds-react';
 import type { PersonData } from 'src/lib/types/modiapersonoversikt-api';
 import { SivilstandType } from 'src/lib/types/modiapersonoversikt-api-enums';
 import { formaterDato } from 'src/utils/string-utils';
@@ -33,7 +33,7 @@ function Partner(props: { partner: Sivilstand; harFeilendeSystem: boolean }) {
     if (props.harFeilendeSystem) {
         return (
             <>
-                <BodyShort>
+                <BodyShort size="small">
                     <Sivilstand sivilstand={props.partner} />
                 </BodyShort>
                 <Alert variant="warning">Feilet ved uthenting av informasjon om partner</Alert>
@@ -48,17 +48,17 @@ function Partner(props: { partner: Sivilstand; harFeilendeSystem: boolean }) {
     const navn = partnerRelasjon.navn.firstOrNull();
     return (
         <>
-            <BodyShort>
+            <BodyShort size="small">
                 <Sivilstand sivilstand={props.partner} />
             </BodyShort>
             <Diskresjonskode adressebeskyttelse={partnerRelasjon.adressebeskyttelse} />
-            <BodyShort>
+            <BodyShort size="small">
                 {navn && hentNavn(navn)} ({hentAlderEllerDod(partnerRelasjon)})
             </BodyShort>
-            <BodyShort>{partnerRelasjon.fnr}</BodyShort>
-            <BodyShort size="small">
+            <Detail>{partnerRelasjon.fnr}</Detail>
+            <Detail textColor="subtle">
                 {partnerRelasjon.harSammeAdresse ? <>Bor med bruker</> : <>Bor ikke med bruker</>}
-            </BodyShort>
+            </Detail>
         </>
     );
 }

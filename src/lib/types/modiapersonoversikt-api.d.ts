@@ -14,11 +14,14 @@ export type PersonDataFeilendeSystemer =
 export type Adresse = components['schemas']['Adresse'];
 export type SistEndret = components['schemas']['SistEndret'];
 export type Navn = components['schemas']['Navn'];
+export type NavnOgIdent = components['schemas']['NavnOgIdent'];
 
 export type AdresseBeskyttelse = components['schemas']['KodeBeskrivelseAdresseBeskyttelse'];
 export type RelasjonPerson =
     | components['schemas']['ForelderBarnRelasjon']
     | components['schemas']['SivilstandRelasjon'];
+
+export type Publikumsmottak = components['schemas']['Publikumsmottak'];
 
 export type OmraadeMedHandling = components['schemas']['OmraadeMedHandlingString'];
 

@@ -5,13 +5,18 @@ import { formaterDato } from 'src/utils/string-utils';
 
 export const Group = ({
     title,
+    icon,
     children
 }: PropsWithChildren<{
     title?: string;
+    icon?: ReactElement;
 }>) => {
     return (
-        <section className="mx-4">
-            <HStack>
+        <section className="mx-4 mb-2">
+            <HStack className="relative" align="center">
+                <div aria-hidden className="absolute -left-7 text-2xl text-icon-subtle">
+                    {icon}
+                </div>
                 {title && (
                     <Heading as="h2" size="small">
                         {title}
@@ -28,14 +33,11 @@ export const InfoElement = ({
     title,
     icon
 }: PropsWithChildren<{
-    title: string;
+    title?: string;
     icon?: ReactElement;
 }>) => (
-    <Box marginBlock="4">
+    <Box className="mb-6 mt-2">
         <HStack align="center" className="relative">
-            <div aria-hidden className="absolute -left-6 text-2xl text-icon-subtle">
-                {icon}
-            </div>
             <Heading as="h3" size="xsmall" className="text-medium">
                 {title}
             </Heading>

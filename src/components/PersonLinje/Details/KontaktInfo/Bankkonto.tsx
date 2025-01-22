@@ -1,5 +1,5 @@
 import { BankNoteIcon } from '@navikt/aksel-icons';
-import { Alert, BodyShort } from '@navikt/ds-react';
+import { Alert, BodyShort, Detail } from '@navikt/ds-react';
 import type { PersonData } from 'src/lib/types/modiapersonoversikt-api';
 import { FormatertKontonummer } from 'src/utils/FormatertKontonummer';
 import { InfoElement, LastChanged } from '../components';
@@ -20,9 +20,9 @@ function BankkontoBody({ harFeilendeSystem, bankkonto }: Props) {
 
     return (
         <>
-            <BodyShort size="small">
+            <Detail>
                 <FormatertKontonummer kontonummer={bankkonto.kontonummer} />
-            </BodyShort>
+            </Detail>
             <LastChanged sistEndret={bankkonto.sistEndret} />
         </>
     );

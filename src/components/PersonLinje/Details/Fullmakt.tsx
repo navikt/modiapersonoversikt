@@ -1,6 +1,5 @@
-import { Chat2Icon, GlassesIcon, PencilIcon, PersonEnvelopeIcon } from '@navikt/aksel-icons';
-import { BodyShort, HelpText, ReadMore, Table } from '@navikt/ds-react';
-import { Feilmelding, Normaltekst, Undertekst } from 'nav-frontend-typografi';
+import { Chat2Icon, GlassesIcon, PencilIcon } from '@navikt/aksel-icons';
+import { Alert, Detail, HelpText, ReadMore, Table } from '@navikt/ds-react';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import type { OmraadeMedHandling, PersonData } from 'src/lib/types/modiapersonoversikt-api';
 import { formaterMobiltelefonnummer } from 'src/utils/telefon-utils';
@@ -26,10 +25,8 @@ function KontaktinformasjonFullmakt(props: {
 
     return (
         <>
-            <BodyShort>Telefon: {erReservert ? 'Reservert' : mobilnummer}</BodyShort>
-            <BodyShort size="small" textColor="subtle">
-                <Undertekst>I Kontakt- og reservasjonsregisteret</Undertekst>
-            </BodyShort>
+            <Detail>Telefon: {erReservert ? 'Reservert' : mobilnummer}</Detail>
+            <Detail textColor="subtle">I Kontakt- og reservasjonsregisteret</Detail>
         </>
     );
 }
@@ -88,14 +85,16 @@ const FullmaktTilgangerTabell = ({
 function Fullmakt(props: { fullmakt: Fullmakt; harFeilendeSystem: boolean }) {
     const motpartsPersonNavn = hentNavn(props.fullmakt.motpartsPersonNavn);
     const beskrivelse = props.fullmakt.motpartsRolle === 'FULLMEKTIG' ? 'Fullmektig' : 'Fullmaktsgiver';
-    const harFeilendeSystem = props.harFeilendeSystem ? <Feilmelding>Feilet ved uthenting av navn</Feilmelding> : null;
+    const harFeilendeSystem = props.harFeilendeSystem ? (
+        <Alert variant="warning">Feilet ved uthenting av navn</Alert>
+    ) : null;
 
     return (
         <InfoElement title={beskrivelse}>
             {harFeilendeSystem}
-            <Normaltekst>
+            <Detail>
                 {motpartsPersonNavn} {`(${props.fullmakt.motpartsPersonident})`}
-            </Normaltekst>
+            </Detail>
             <KontaktinformasjonFullmakt
                 kontaktinformasjon={props.fullmakt.digitalKontaktinformasjonTredjepartsperson}
             />
@@ -121,8 +120,8 @@ function Fullmakter() {
     }
 
     return (
-        <Group>
-            <InfoElement title="Fullmakter" icon={<PersonEnvelopeIcon />}>
+        <Group title="Fullmakter">
+            <InfoElement>
                 {fullmakter.map((fullmakt) => (
                     <Fullmakt
                         key={fullmakt.motpartsPersonident}

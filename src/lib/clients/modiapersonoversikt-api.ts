@@ -53,3 +53,7 @@ export const useVarslerData = () => {
         body: { fnr: aktivBruker }
     });
 };
+
+export const useBaseUrls = () => {
+    return $api.useQuery('get', '/rest/baseurls/v2');
+};
