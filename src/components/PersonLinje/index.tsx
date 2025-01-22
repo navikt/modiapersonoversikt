@@ -23,6 +23,45 @@ export const PersonLinje = () => (
     </Suspense>
 );
 
+const PersonlinjeHeader = ({ isExpanded }: { isExpanded: boolean }) => {
+    const { data } = usePersonData();
+
+    const kjonn = data.person.kjonn.firstOrNull() ?? ukjentKjonn;
+    const navn = data.person.navn.firstOrNull();
+
+    return (
+        <>
+            <HStack gap="4" paddingBlock="2">
+                <Personalia
+                    navn={navn ? `${navn.fornavn} ${navn.mellomnavn ?? ''} ${navn.etternavn}` : 'UKJENT'}
+                    kjonn={kjonn}
+                    alder={data.person.alder}
+                />
+                <HStack align="center" className="cursor-[initial]" onClick={(e) => e.stopPropagation()}>
+                    <BodyShort size="small">F.nr: {data.person.personIdent}</BodyShort>
+                    <CopyButton size="xsmall" copyText={data.person.personIdent} />
+                </HStack>
+                {data.person.kontaktInformasjon.mobil?.value && (
+                    <HStack align="center" className="cursor-[initial]" onClick={(e) => e.stopPropagation()}>
+                        <BodyShort size="small">Tlf.nr: {data.person.kontaktInformasjon.mobil.value}</BodyShort>
+                        <CopyButton size="xsmall" copyText={data.person.kontaktInformasjon.mobil.value} />
+                    </HStack>
+                )}
+                <PersonBadges />
+            </HStack>
+            <VStack justify="center">
+                <Button
+                    className="grow-0"
+                    size="small"
+                    title="Åpne personlinje"
+                    icon={isExpanded ? <ChevronUpIcon aria-hidden /> : <ChevronDownIcon aria-hidden />}
+                    variant="tertiary-neutral"
+                />
+            </VStack>
+        </>
+    );
+};
+
 const PersonLinjeContent = () => {
     const [isExpanded, setIsExpanded] = useState(false);
     const ref = useClickAway<HTMLDivElement>(() => setIsExpanded(false));
@@ -38,9 +77,6 @@ const PersonLinjeContent = () => {
         [lenkeNyBrukerprofil],
         'Visittkort'
     );
-
-    const kjonn = data.person.kjonn.firstOrNull() ?? ukjentKjonn;
-    const navn = data.person.navn.firstOrNull();
 
     return (
         <>
@@ -61,39 +97,7 @@ const PersonLinjeContent = () => {
                         className="hover:bg-bg-subtle cursor-pointer"
                         wrap={false}
                     >
-                        <HStack gap="4" paddingBlock="2">
-                            <Personalia
-                                navn={navn ? `${navn.fornavn} ${navn.mellomnavn ?? ''} ${navn.etternavn}` : 'UKJENT'}
-                                kjonn={kjonn}
-                                alder={data.person.alder}
-                            />
-                            <HStack align="center" className="cursor-[initial]" onClick={(e) => e.stopPropagation()}>
-                                <BodyShort size="small">F.nr: {data.person.personIdent}</BodyShort>
-                                <CopyButton size="xsmall" copyText={data.person.personIdent} />
-                            </HStack>
-                            {data.person.kontaktInformasjon.mobil?.value && (
-                                <HStack
-                                    align="center"
-                                    className="cursor-[initial]"
-                                    onClick={(e) => e.stopPropagation()}
-                                >
-                                    <BodyShort size="small">
-                                        Tlf.nr: {data.person.kontaktInformasjon.mobil.value}
-                                    </BodyShort>
-                                    <CopyButton size="xsmall" copyText={data.person.kontaktInformasjon.mobil.value} />
-                                </HStack>
-                            )}
-                            <PersonBadges />
-                        </HStack>
-                        <VStack justify="center">
-                            <Button
-                                className="grow-0"
-                                size="small"
-                                title="Åpne personlinje"
-                                icon={isExpanded ? <ChevronUpIcon aria-hidden /> : <ChevronDownIcon aria-hidden />}
-                                variant="tertiary-neutral"
-                            />
-                        </VStack>
+                        <PersonlinjeHeader isExpanded={isExpanded} />
                     </HStack>
                     <Box
                         paddingInline="4"

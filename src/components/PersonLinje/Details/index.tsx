@@ -1,12 +1,18 @@
-import { VStack } from '@navikt/ds-react';
+import { HStack, VStack } from '@navikt/ds-react';
+import Familie from './Familie';
 import Fullmakter from './Fullmakt';
 import KontaktInfo from './KontaktInfo';
 
 export const PersonlinjeDetails = () => {
     return (
-        <VStack>
-            <KontaktInfo />
-            <Fullmakter />
-        </VStack>
+        <HStack gap="4">
+            <VStack>
+                <KontaktInfo />
+                <Fullmakter />
+            </VStack>
+            <VStack>
+                <Familie />
+            </VStack>
+        </HStack>
     );
 };
