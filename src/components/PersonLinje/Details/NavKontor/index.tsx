@@ -53,7 +53,7 @@ function Publikumsmottak(props: { publikumsmottak: Publikumsmottak[] }) {
                 <Heading spacing size="xsmall" textColor="subtle">
                     Det finnes flere publikumsmottak
                 </Heading>
-                <Accordion size="small" headingSize="xsmall">
+                <Accordion size="small" headingSize="xsmall" className="max-w-96">
                     {otherPublikumsmottak.map((mottak) => (
                         <Accordion.Item key={mottak.besoksadresse.linje1}>
                             <Accordion.Header>{mottak.besoksadresse.linje1}</Accordion.Header>
@@ -133,7 +133,7 @@ function NavKontor() {
                 icon={<NavLogo style={{ width: '2.5rem', marginLeft: '-1rem' }} />}
             >
                 <Publikumsmottak publikumsmottak={navEnhet.publikumsmottak} />
-                <Box>
+                <Box marginBlock="4">
                     <KontorLenke navEnhetId={navEnhet.id} />
                 </Box>
             </InfoElement>

@@ -13,11 +13,11 @@ import Vergemal from './Vergemal';
 export const PersonlinjeDetails = () => {
     return (
         <HStack gap="4" justify="space-between" padding="4">
-            <VStack flexBasis="30%">
+            <VStack flexBasis="30%" flexGrow="1">
                 <KontaktInfo />
                 <Fullmakter />
             </VStack>
-            <VStack flexBasis="30%">
+            <VStack flexBasis="30%" flexGrow="1">
                 <Familie />
                 <Foreldreansvar />
                 <DeltBosted />

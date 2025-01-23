@@ -29,9 +29,9 @@ export const Sikkerhetstiltak = ({ sikkerhetstiltak }: Props) => {
             }}
         >
             <Modal.Body>
-                <ul className="p-4">
+                <ul className="p-4 even:mt-4">
                     {sikkerhetstiltak.map((s) => (
-                        <li className="my-4" key={s.beskrivelse}>
+                        <li className="text-center" key={s.beskrivelse}>
                             <ValidPeriod
                                 from={s.gyldighetsPeriode?.gyldigFraOgMed}
                                 to={s.gyldighetsPeriode?.gyldigTilOgMed}
