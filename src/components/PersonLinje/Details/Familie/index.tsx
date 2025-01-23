@@ -1,4 +1,5 @@
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
+import { PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
 import { harFeilendeSystemer } from '../../utils';
 import { Group } from '../components';
 import Barn from './Barn';
@@ -11,7 +12,7 @@ function Familie() {
     } = usePersonData();
 
     const erUnder22 = person.alder && person.alder <= 21;
-    const harFeilendeSystem = harFeilendeSystemer(feilendeSystemer, 'PDL_TREDJEPARTSPERSONER');
+    const harFeilendeSystem = harFeilendeSystemer(feilendeSystemer, PersonDataFeilendeSystemer.PDL_TREDJEPARTSPERSONER);
 
     return (
         <Group title="Familie">

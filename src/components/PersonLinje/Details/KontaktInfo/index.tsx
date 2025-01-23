@@ -1,5 +1,5 @@
-import { InformasjonElement } from 'src/app/personside/visittkort-v2/PersondataDomain';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
+import { PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
 import { harFeilendeSystemer } from '../../utils';
 import { Group } from '../components';
 import Adresse from './Adresse';
@@ -18,28 +18,28 @@ export default function KontaktInfo() {
             <KontaktinformasjonDodsbo
                 harFeilendeSystem={harFeilendeSystemer(
                     data.feilendeSystemer,
-                    InformasjonElement.PDL_TREDJEPARTSPERSONER
+                    PersonDataFeilendeSystemer.PDL_TREDJEPARTSPERSONER
                 )}
                 dodsbo={person.dodsbo}
             />
             <Adresse person={person} />
             <Epost
-                harFeilendeSystem={harFeilendeSystemer(data.feilendeSystemer, InformasjonElement.DKIF)}
+                harFeilendeSystem={harFeilendeSystemer(data.feilendeSystemer, PersonDataFeilendeSystemer.DKIF)}
                 kontaktinformasjon={person.kontaktInformasjon}
             />
             <Telefon
-                harFeilendeSystem={harFeilendeSystemer(data.feilendeSystemer, InformasjonElement.DKIF)}
+                harFeilendeSystem={harFeilendeSystemer(data.feilendeSystemer, PersonDataFeilendeSystemer.DKIF)}
                 kontaktinformasjon={person.kontaktInformasjon}
             />
             <NavKontaktinfo
                 harFeilendeSystem={harFeilendeSystemer(
                     data.feilendeSystemer,
-                    InformasjonElement.NORG_KONTAKTINFORMASJON
+                    PersonDataFeilendeSystemer.NORG_KONTAKTINFORMASJON
                 )}
                 telefonnummer={person.telefonnummer}
             />
             <Bankkonto
-                harFeilendeSystem={harFeilendeSystemer(data.feilendeSystemer, InformasjonElement.BANKKONTO)}
+                harFeilendeSystem={harFeilendeSystemer(data.feilendeSystemer, PersonDataFeilendeSystemer.BANKKONTO)}
                 bankkonto={person.bankkonto}
             />
         </Group>

@@ -1,7 +1,6 @@
 import { HeartFillIcon } from '@navikt/aksel-icons';
 import { Alert, BodyShort, Detail } from '@navikt/ds-react';
-import type { PersonData } from 'src/lib/types/modiapersonoversikt-api';
-import { SivilstandType } from 'src/lib/types/modiapersonoversikt-api-enums';
+import { type PersonData, SivilstandType } from 'src/lib/types/modiapersonoversikt-api';
 import { formaterDato } from 'src/utils/string-utils';
 import Diskresjonskode from '../../common/DiskresjonsKode';
 import { erPartner, hentAlderEllerDod, hentNavn } from '../../utils';

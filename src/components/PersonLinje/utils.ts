@@ -1,12 +1,13 @@
-import { ForelderBarnRelasjonRolle } from 'src/app/personside/visittkort-v2/PersondataDomain';
-import type {
-    AdresseBeskyttelse,
-    Navn,
-    PersonData,
-    PersonDataFeilendeSystemer,
-    RelasjonPerson
+import {
+    type AdresseBeskyttelse,
+    AdresseBeskyttelseKode,
+    ForelderBarnRelasjonRolle,
+    type Navn,
+    type PersonData,
+    type PersonDataFeilendeSystemer,
+    type RelasjonPerson,
+    SivilstandType
 } from 'src/lib/types/modiapersonoversikt-api';
-import { AdresseBeskyttelseKode, SivilstandType } from 'src/lib/types/modiapersonoversikt-api-enums';
 import { ENDASH, formaterDato } from 'src/utils/string-utils';
 
 type ForelderBarnRelasjon = PersonData['forelderBarnRelasjon'][0];
@@ -83,8 +84,8 @@ export function mapUgyldigGT(gt: string): string {
 }
 
 export function harFeilendeSystemer(
-    feilendeSystemer: PersonDataFeilendeSystemer,
-    system: PersonDataFeilendeSystemer[0]
+    feilendeSystemer: PersonDataFeilendeSystemer[],
+    system: PersonDataFeilendeSystemer
 ): boolean {
     return feilendeSystemer.includes(system);
 }

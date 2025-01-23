@@ -1,5 +1,12 @@
-import type { components } from 'src/generated/modiapersonoversikt-api';
+import {
+    DataFeilendeSystemer,
+    type KodeBeskrivelseAdresseBeskyttelse,
+    KodeBeskrivelseAdresseBeskyttelseKode,
+    KodeBeskrivelseSivilstandTypeKode,
+    type components
+} from 'src/generated/modiapersonoversikt-api';
 import type { ModiapersonoversiktAPI } from 'src/lib/clients/modiapersonoversikt-api';
+export * from 'src/generated/modiapersonoversikt-api';
 
 /*
  * Type aliser for schema typer generert fra OpenAPI. Kun aliaser som refererer til schemaet skal inn
@@ -8,20 +15,12 @@ import type { ModiapersonoversiktAPI } from 'src/lib/clients/modiapersonoversikt
 
 export type PersonData =
     ModiapersonoversiktAPI['/rest/v3/person']['post']['responses']['200']['content']['*/*']['person'];
-export type PersonDataFeilendeSystemer =
-    ModiapersonoversiktAPI['/rest/v3/person']['post']['responses']['200']['content']['*/*']['feilendeSystemer'];
 
-export type Adresse = components['schemas']['Adresse'];
-export type SistEndret = components['schemas']['SistEndret'];
-export type Navn = components['schemas']['Navn'];
-export type NavnOgIdent = components['schemas']['NavnOgIdent'];
-
-export type AdresseBeskyttelse = components['schemas']['KodeBeskrivelseAdresseBeskyttelse'];
 export type RelasjonPerson =
     | components['schemas']['ForelderBarnRelasjon']
     | components['schemas']['SivilstandRelasjon'];
 
-export type Publikumsmottak = components['schemas']['Publikumsmottak'];
+export type AdresseBeskyttelse = KodeBeskrivelseAdresseBeskyttelse;
 
 export type OmraadeMedHandling = components['schemas']['OmraadeMedHandlingString'];
 
@@ -30,3 +29,14 @@ export type PersonsokResponse = components['schemas']['PersonSokResponsDTO'];
 
 export type Varsel = components['schemas']['Event'];
 export type FeiletVarsling = components['schemas']['FeiletVarsling'];
+
+// Enum aliaser for kortere & mer forståelige navn
+
+export const AdresseBeskyttelseKode = KodeBeskrivelseAdresseBeskyttelseKode;
+export type AdresseBeskyttelseKode = KodeBeskrivelseAdresseBeskyttelseKode;
+
+export const SivilstandType = KodeBeskrivelseSivilstandTypeKode;
+export type SivilstandType = KodeBeskrivelseSivilstandTypeKode;
+
+export const PersonDataFeilendeSystemer = DataFeilendeSystemer;
+export type PersonDataFeilendeSystemer = DataFeilendeSystemer;

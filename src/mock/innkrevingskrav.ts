@@ -1,10 +1,13 @@
 import { fakerNB_NO as faker } from '@faker-js/faker';
-import type { paths } from 'src/generated/modiapersonoversikt-api';
+import {
+    DebitorIdentType,
+    type Krav,
+    type KravPostering,
+    KreditorIdentType
+} from 'src/lib/types/modiapersonoversikt-api';
 import { fyllRandomListe } from './utils/mock-utils';
 
-type Innkrevingskrav = paths['/rest/innkrevingskrav/{innkrevingskravId}']['get']['responses']['200']['content']['*/*'];
-
-export const mockInnkrevingsKrav = (kravId: string): Innkrevingskrav => {
+export const mockInnkrevingsKrav = (kravId: string): Krav => {
     const seedNr = kravId
         .split('')
         .map((c) => c.charCodeAt(0))
@@ -16,23 +19,23 @@ export const mockInnkrevingsKrav = (kravId: string): Innkrevingskrav => {
         kravType: 'kravtype',
         kid: 'KID123455132',
         opprettetDato: faker.date.past().toUTCString(),
-        posteringer: fyllRandomListe<Innkrevingskrav['posteringer'][0]>(getMockKravLinje, 4),
+        posteringer: fyllRandomListe<KravPostering>(getMockKravLinje, 4),
         kreditor: {
             kreditorId: '12342341234',
             name: 'Kreditor Kretitorsen',
             ident: '1234234234',
-            identType: 'FNR'
+            identType: KreditorIdentType.FNR
         },
         debitor: {
             debitorId: '2341234',
             name: 'Debitor Debitorsen',
             ident: '1234234234',
-            identType: 'ORG_NR'
+            identType: DebitorIdentType.ORG_NR
         }
     };
 };
 
-const getMockKravLinje = (): Innkrevingskrav['posteringer'][0] => {
+const getMockKravLinje = (): KravPostering => {
     faker.seed();
     return {
         kode: faker.lorem.words({ min: 1, max: 5 }),
