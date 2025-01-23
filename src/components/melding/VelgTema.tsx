@@ -1,13 +1,15 @@
 import { ActionMenu, Button, Label, VStack } from '@navikt/ds-react';
 import { ChevronDownIcon } from '@navikt/aksel-icons';
 import { Temagruppe, temagruppeTekst } from 'src/models/temagrupper';
+import { ReactNode } from 'react';
 
 interface VelgTemaProps {
     valgtTema?: Temagruppe;
     setValgtTema: (temagruppe: Temagruppe) => void;
+    error?: ReactNode;
 }
 
-export default function VelgTema({ valgtTema, setValgtTema }: VelgTemaProps) {
+export default function VelgTema({ valgtTema, setValgtTema, error }: VelgTemaProps) {
     const dropdownTitle = valgtTema ? temagruppeTekst(valgtTema) : 'Velg temagruppe';
 
     const temagruppeActionMenuItems = Object
@@ -39,6 +41,7 @@ export default function VelgTema({ valgtTema, setValgtTema }: VelgTemaProps) {
                     </ActionMenu.Group>
                 </ActionMenu.Content>
             </ActionMenu>
+            {error}
         </VStack>
     );
 }

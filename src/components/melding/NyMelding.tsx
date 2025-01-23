@@ -1,7 +1,6 @@
-import { BodyShort, Box, Button, Heading, HStack, VStack } from '@navikt/ds-react';
+import { Box, Button, ErrorMessage, Heading, HStack, Textarea, VStack } from '@navikt/ds-react';
 import { EnvelopeClosedIcon } from '@navikt/aksel-icons';
 import { ReactElement } from 'react';
-import { Textarea } from 'nav-frontend-skjema';
 import { Temagruppe } from 'src/models/temagrupper';
 import VelgTema from 'src/components/melding/VelgTema';
 import { MeldingsType, meldingsTyperTekst, VelgMeldingsType } from 'src/components/melding/VelgMeldingsType';
@@ -9,7 +8,7 @@ import VelgOppgaveliste, { Oppgaveliste } from 'src/components/melding/VelgOppga
 import { ValgForMeldingstype } from 'src/components/melding/ValgForMeldingstype';
 import VelgSak from 'src/components/melding/VelgSak';
 import AvsluttDialogEtterSending from 'src/components/melding/AvsluttDialogEtterSending';
-import { FormApi, useForm, useStore } from '@tanstack/react-form';
+import { FieldApi, FormApi, useForm, useStore } from '@tanstack/react-form';
 import { z } from 'zod';
 import {
     JournalforingsSak
@@ -67,21 +66,20 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                             />
                         )}
                     />
-                    <VStack gap="1">
-                        <Heading size="small">{meldingsTypeTekst.tittel}</Heading>
-                        <BodyShort>{meldingsTypeTekst.beskrivelse}</BodyShort>
-                        <form.Field
-                            name="melding"
-                            children={(field) => (
-                                <Textarea
-                                    value={field.state.value}
-                                    onChange={(e) =>
-                                        field.handleChange(e.target.value)
-                                    }
-                                />
-                            )}
-                        />
-                    </VStack>
+                    <form.Field
+                        name="melding"
+                        children={(field) => (
+                            <Textarea
+                                label={meldingsTypeTekst.tittel}
+                                description={meldingsTypeTekst.beskrivelse}
+                                value={field.state.value}
+                                onChange={(e) =>
+                                    field.handleChange(e.target.value)
+                                }
+                                error={errorMesageForField(field)}
+                            />
+                        )}
+                    />
                     <ValgForMeldingstype
                         meldingsType={meldingsType}
                         velgTema={
@@ -92,6 +90,7 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                                         return <VelgTema
                                             valgtTema={field.state.value}
                                             setValgtTema={(tema) => field.handleChange(tema)}
+                                            error={errorComponentForField(field)}
                                         />;
                                     }
                                 }
@@ -118,6 +117,7 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                                     <VelgSak
                                         valgtSak={field.state.value}
                                         setSak={(sak) => field.handleChange(sak)}
+                                        error={errorComponentForField(field)}
                                     />
                                 )}
                             />
@@ -147,6 +147,15 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
             </form>
         </Box>
     );
+}
+
+function errorMesageForField(field: FieldApi<NyMeldingFormOptions, any>) {
+    return field.state.meta.errors.isNotEmpty() ? field.state.meta.errors.join(', ') : null;
+}
+
+function errorComponentForField(field: FieldApi<NyMeldingFormOptions, any>) {
+    return field.state.meta.errors.isNotEmpty() ?
+        <ErrorMessage>{errorMesageForField(field)}</ErrorMessage> : null;
 }
 
 function useEnhetsnavn() {
@@ -181,20 +190,22 @@ function nyMeldingSchema() {
         temaKode: z.string(),
         temaNavn: z.string(),
         syntetisk: z.boolean().nullable().optional()
-    });
+    }, { message: 'Må velge en sak' });
 
     return z.discriminatedUnion('meldingsType', [
         z.object({
             meldingsType: z.literal(MeldingsType.Referat),
-            tema: z.nativeEnum(Temagruppe)
+            tema: z.nativeEnum(Temagruppe, { message: 'Må velge et tema' })
         }),
         z.object({
             meldingsType: z.literal(MeldingsType.Samtale),
-            oppgaveliste: z.nativeEnum(Oppgaveliste)
-        }).merge(sakSchema),
+            oppgaveliste: z.nativeEnum(Oppgaveliste),
+            sak: sakSchema
+        }),
         z.object({
-            meldingsType: z.literal(MeldingsType.Infomelding)
-        }).merge(sakSchema)
+            meldingsType: z.literal(MeldingsType.Infomelding),
+            sak: sakSchema
+        })
     ]).and(meldingSchema);
 }
 
@@ -206,10 +217,13 @@ interface NyMeldingFormOptions {
     sak?: JournalforingsSak;
 }
 
-function useNyMeldingForm(schema: ReturnType<typeof nyMeldingSchema>, onSubmit: (values: {
-    value: NyMeldingFormOptions,
-    formApi: FormApi<NyMeldingFormOptions, undefined>
-}) => void) {
+function useNyMeldingForm(
+    schema: ReturnType<typeof nyMeldingSchema>,
+    onSubmit: (values: {
+        value: NyMeldingFormOptions,
+        formApi: FormApi<NyMeldingFormOptions, undefined>
+    }) => void
+) {
     return useForm<NyMeldingFormOptions>({
         defaultValues: {
             meldingsType: MeldingsType.Referat,

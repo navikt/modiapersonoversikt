@@ -1,12 +1,18 @@
 import { Radio, RadioGroup } from '@navikt/ds-react';
 
 interface VelgOppgavelisteProps {
-    valgtOppgaveliste?: Oppgaveliste;
-    setValgtOppgaveliste: (oppgaveliste: Oppgaveliste) => void;
-    enhet: string;
+    valgtOppgaveliste?: Oppgaveliste,
+    setValgtOppgaveliste: (oppgaveliste: Oppgaveliste) => void,
+    enhet: string,
 }
 
-export default function VelgOppgaveliste({ valgtOppgaveliste, setValgtOppgaveliste, enhet }: VelgOppgavelisteProps) {
+export default function VelgOppgaveliste(
+    {
+        valgtOppgaveliste,
+        setValgtOppgaveliste,
+        enhet
+    }: VelgOppgavelisteProps
+) {
     const oppgavelisteRadioKnapper = Object.entries(Oppgaveliste).map(([key, value]) => (
         <Radio key={key} value={value}>{oppgavelisterTekst[value].svarSkalTil(enhet)}</Radio>
     ));

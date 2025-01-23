@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import {
     JournalforingsSak,
     SakKategori
@@ -12,20 +12,18 @@ import {
 } from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/VelgSak';
 import TemaTable from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/TemaTabell';
 import { PlusIcon } from '@navikt/aksel-icons';
-import { formatterDato } from 'src/utils/date-utils';
+import { formatterDatoMedMaanedsnavnOrNull } from 'src/utils/date-utils';
 
 interface VelgSakProps {
     setSak: (sak: JournalforingsSak) => void,
-    valgtSak?: JournalforingsSak;
+    valgtSak?: JournalforingsSak,
+    error?: ReactNode,
 }
 
-export default function VelgSak({ setSak, valgtSak }: VelgSakProps) {
+export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
     const [sakKategori, setSakKategori] = useState<SakKategori>(SakKategori.FAG);
     const [velgSakModalOpen, setVelgSakModalOpen] = useState(false);
     const journalsakerResult = journalsakResource.useFetch();
-    const opprettetDatoForSak = valgtSak?.opprettetDato
-        ? formatterDato(valgtSak.opprettetDato)
-        : '-';
 
     if (journalsakerResult.isPending) {
         return <Spinner type="XL" />;
@@ -51,7 +49,7 @@ export default function VelgSak({ setSak, valgtSak }: VelgSakProps) {
 
     return <VStack gap="1">
         <Heading size="xsmall">Knytt dialogen til en sak</Heading>
-        <HStack gap="2">
+        <VStack gap="2">
             <div className="max-w-30">
                 <Button
                     variant="secondary"
@@ -63,9 +61,15 @@ export default function VelgSak({ setSak, valgtSak }: VelgSakProps) {
                     Velg sak
                 </Button>
             </div>
-            {valgtSak && <Tag
-                variant="info">{valgtSak.saksId} | {valgtSak.temaNavn} | {opprettetDatoForSak}</Tag>}
-        </HStack>
+            {valgtSak &&
+                <div className="flex-auto">
+                    <Tag variant="neutral" size="small">
+                        {valgtSak.saksId} | {valgtSak.temaNavn} | {formatterDatoMedMaanedsnavnOrNull(valgtSak.opprettetDato)}
+                    </Tag>
+                </div>
+            }
+            {error}
+        </VStack>
         <Modal
             header={{ heading: 'Velg sak' }}
             open={velgSakModalOpen}
