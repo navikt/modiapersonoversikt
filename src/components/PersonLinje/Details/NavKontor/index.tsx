@@ -2,7 +2,7 @@ import { Accordion, Alert, BodyShort, Box, Heading, Link, Skeleton } from '@navi
 import { Fragment } from 'react';
 import QueryErrorBoundary from 'src/components/QueryErrorBoundary';
 import { useBaseUrls, usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
-import type { Publikumsmottak } from 'src/lib/types/modiapersonoversikt-api';
+import { PersonDataFeilendeSystemer, type Publikumsmottak } from 'src/lib/types/modiapersonoversikt-api';
 import NavLogo from 'src/svg/NavLogo';
 import { harFeilendeSystemer, mapUgyldigGT } from '../../utils';
 import { Adresseinfo, Group, InfoElement } from '../components';
@@ -99,7 +99,7 @@ function NavKontor() {
 
     const { geografiskTilknytning, navEnhet } = person;
 
-    if (harFeilendeSystemer(feilendeSystemer, 'NORG_NAVKONTOR')) {
+    if (harFeilendeSystemer(feilendeSystemer, PersonDataFeilendeSystemer.NORG_NAVKONTOR)) {
         return (
             <Group title="NAV-kontor">
                 <InfoElement title="Ukjent NAV-kontor" icon={<NavLogo />}>

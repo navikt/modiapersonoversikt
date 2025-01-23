@@ -1330,21 +1330,7 @@ export interface components {
             opprettetAv: string;
         };
         Data: {
-            feilendeSystemer: (
-                | 'NOT_RELEVANT'
-                | 'PROVIDED_VALUE'
-                | 'PDL_GT'
-                | 'PDL_TREDJEPARTSPERSONER'
-                | 'EGEN_ANSATT'
-                | 'DKIF'
-                | 'DKIF_TREDJEPARTSPERSONER'
-                | 'BANKKONTO'
-                | 'OPPFOLGING'
-                | 'VEILEDER_ROLLER'
-                | 'NORG_NAVKONTOR'
-                | 'NORG_KONTAKTINFORMASJON'
-                | 'FULLMAKT'
-            )[];
+            feilendeSystemer: DataFeilendeSystemer[];
             person: components['schemas']['Person'];
         };
         DeltBosted: {
@@ -1361,7 +1347,7 @@ export interface components {
             /** Format: date */
             registrert: string;
             /** @enum {string} */
-            skifteform: 'OFFENTLIG' | 'ANNET' | 'UKJENT';
+            skifteform: DodsboSkifteform;
             sistEndret?: components['schemas']['SistEndret'];
         };
         Enhet: {
@@ -1377,7 +1363,7 @@ export interface components {
         ForelderBarnRelasjon: {
             ident?: string;
             /** @enum {string} */
-            rolle: 'BARN' | 'MOR' | 'FAR' | 'MEDMOR' | 'UKJENT';
+            rolle: ForelderBarnRelasjonRolle;
             navn: components['schemas']['Navn'][];
             fodselsdato: string[];
             kjonn: components['schemas']['KodeBeskrivelseKjonn'][];
@@ -1396,7 +1382,7 @@ export interface components {
             motpartsPersonident: string;
             motpartsPersonNavn: components['schemas']['Navn'];
             /** @enum {string} */
-            motpartsRolle: 'FULLMAKTSGIVER' | 'FULLMEKTIG' | 'UKJENT';
+            motpartsRolle: FullmaktMotpartsRolle;
             omrade: components['schemas']['OmraadeMedHandlingString'][];
             gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'];
             digitalKontaktinformasjonTredjepartsperson?: components['schemas']['DigitalKontaktinformasjonTredjepartsperson'];
@@ -1410,42 +1396,22 @@ export interface components {
         };
         KodeBeskrivelseAdresseBeskyttelse: {
             /** @enum {string} */
-            kode: 'KODE6' | 'KODE6_UTLAND' | 'KODE7' | 'UGRADERT' | 'UKJENT';
+            kode: KodeBeskrivelseAdresseBeskyttelseKode;
             beskrivelse: string;
         };
         KodeBeskrivelseKjonn: {
             /** @enum {string} */
-            kode: 'M' | 'K' | 'U';
+            kode: KodeBeskrivelseKjonnKode;
             beskrivelse: string;
         };
         KodeBeskrivelsePersonStatus: {
             /** @enum {string} */
-            kode:
-                | 'BOSATT'
-                | 'DOD'
-                | 'OPPHORT'
-                | 'INAKTIV'
-                | 'MIDLERTIDIG'
-                | 'FORSVUNNET'
-                | 'UTFLYTTET'
-                | 'IKKE_BOSATT'
-                | 'FODSELSREGISTERT'
-                | 'UKJENT';
+            kode: KodeBeskrivelsePersonStatusKode;
             beskrivelse: string;
         };
         KodeBeskrivelseSivilstandType: {
             /** @enum {string} */
-            kode:
-                | 'UOPPGITT'
-                | 'UGIFT'
-                | 'GIFT'
-                | 'ENKE_ELLER_ENKEMANN'
-                | 'SKILT'
-                | 'SEPARERT'
-                | 'REGISTRERT_PARTNER'
-                | 'SEPARERT_PARTNER'
-                | 'SKILT_PARTNER'
-                | 'GJENLEVENDE_PARTNER';
+            kode: KodeBeskrivelseSivilstandTypeKode;
             beskrivelse: string;
         };
         KodeBeskrivelseString: {
@@ -1469,7 +1435,7 @@ export interface components {
         };
         OmraadeMedHandlingString: {
             omraade: components['schemas']['KodeBeskrivelseString'];
-            handling: ('LES' | 'KOMMUNISER' | 'SKRIV')[];
+            handling: OmraadeMedHandlingStringHandling[];
         };
         OrganisasjonSomAdressat: {
             kontaktperson?: components['schemas']['Navn'];
@@ -1495,7 +1461,7 @@ export interface components {
             adressebeskyttelse: components['schemas']['KodeBeskrivelseAdresseBeskyttelse'][];
             sikkerhetstiltak: components['schemas']['Sikkerhetstiltak'][];
             /** @enum {string} */
-            erEgenAnsatt: 'JA' | 'NEI' | 'UKJENT';
+            erEgenAnsatt: PersonErEgenAnsatt;
             personstatus: components['schemas']['KodeBeskrivelsePersonStatus'][];
             sivilstand: components['schemas']['Sivilstand'][];
             foreldreansvar: components['schemas']['Foreldreansvar'][];
@@ -1580,7 +1546,7 @@ export interface components {
         IdentInformasjon: {
             ident: string;
             /** @enum {string} */
-            gruppe: 'AKTORID' | 'FOLKEREGISTERIDENT' | 'NPID' | '__UNKNOWN_VALUE';
+            gruppe: IdentInformasjonGruppe;
             historisk: boolean;
         };
         Identliste: {
@@ -1598,7 +1564,7 @@ export interface components {
             tom: string;
             relaterteTiltak: string;
             /** @enum {string} */
-            rettighet: 'TILTAKSPENGER' | 'BARNETILLEGG' | 'TILTAKSPENGER_OG_BARNETILLEGG' | 'INGENTING';
+            rettighet: VedtakRettighet;
             vedtakId: string;
             sakId: string;
             /** Format: double */
@@ -1695,12 +1661,12 @@ export interface components {
             skjerming?: string;
             erKassert: boolean;
             /** @enum {string} */
-            dokumentStatus?: 'UNDER_REDIGERING' | 'FERDIGSTILT' | 'AVBRUTT' | 'KASSERT';
+            dokumentStatus?: DokumentDokumentStatus;
         };
         Dokumentmetadata: {
             id: string;
             /** @enum {string} */
-            retning: 'INN' | 'UT' | 'INTERN';
+            retning: DokumentmetadataRetning;
             /** Format: date-time */
             dato: string;
             /** Format: date-time */
@@ -1710,24 +1676,12 @@ export interface components {
             hoveddokument: components['schemas']['Dokument'];
             vedlegg: components['schemas']['Dokument'][];
             /** @enum {string} */
-            avsender: 'SLUTTBRUKER' | 'NAV' | 'EKSTERN_PART' | 'UKJENT';
+            avsender: DokumentmetadataAvsender;
             /** @enum {string} */
-            mottaker: 'SLUTTBRUKER' | 'NAV' | 'EKSTERN_PART' | 'UKJENT';
+            mottaker: DokumentmetadataMottaker;
             tilhorendeSaksid: string;
             tilhorendeFagsaksid?: string;
-            baksystem: (
-                | 'GSAK'
-                | 'PESYS'
-                | 'SAK_OG_BEHANDLING'
-                | 'JOARK'
-                | 'JOARK_SIKKERHETSBEGRENSNING'
-                | 'HENVENDELSE'
-                | 'PDF_KONVERTERING'
-                | 'AKTOER'
-                | 'KODEVERK'
-                | 'SAF'
-                | 'SAK'
-            )[];
+            baksystem: DokumentmetadataBaksystem[];
             temakode: string;
             temakodeVisning: string;
             ettersending: boolean;
@@ -1737,19 +1691,7 @@ export interface components {
         Feil: {
             inneholderFeil: boolean;
             /** @enum {string} */
-            feilmelding?:
-                | 'UKJENT_FEIL'
-                | 'DOKUMENT_IKKE_FUNNET'
-                | 'DOKUMENT_IKKE_TILGJENGELIG'
-                | 'DOKUMENT_SLETTET'
-                | 'SIKKERHETSBEGRENSNING'
-                | 'MANGLER_DOKUMENTMETADATA'
-                | 'JOURNALFORT_ANNET_TEMA'
-                | 'IKKE_JOURNALFORT'
-                | 'SAKSBEHANDLER_IKKE_TILGANG'
-                | 'TEMAKODE_ER_BIDRAG'
-                | 'KORRUPT_PDF'
-                | 'TEKNISK_FEIL';
+            feilmelding?: FeilFeilmelding;
         };
         LocalDate: {
             /** Format: date */
@@ -1763,21 +1705,9 @@ export interface components {
             /** Format: int32 */
             dayOfMonth: number;
             /** @enum {string} */
-            month:
-                | 'JANUARY'
-                | 'FEBRUARY'
-                | 'MARCH'
-                | 'APRIL'
-                | 'MAY'
-                | 'JUNE'
-                | 'JULY'
-                | 'AUGUST'
-                | 'SEPTEMBER'
-                | 'OCTOBER'
-                | 'NOVEMBER'
-                | 'DECEMBER';
+            month: LocalDateMonth;
             /** @enum {string} */
-            dayOfWeek: 'MONDAY' | 'TUESDAY' | 'WEDNESDAY' | 'THURSDAY' | 'FRIDAY' | 'SATURDAY' | 'SUNDAY';
+            dayOfWeek: LocalDateDayOfWeek;
             /** Format: int32 */
             dayOfYear: number;
         };
@@ -1802,21 +1732,9 @@ export interface components {
             /** Format: int32 */
             second: number;
             /** @enum {string} */
-            month:
-                | 'JANUARY'
-                | 'FEBRUARY'
-                | 'MARCH'
-                | 'APRIL'
-                | 'MAY'
-                | 'JUNE'
-                | 'JULY'
-                | 'AUGUST'
-                | 'SEPTEMBER'
-                | 'OCTOBER'
-                | 'NOVEMBER'
-                | 'DECEMBER';
+            month: LocalDateTimeMonth;
             /** @enum {string} */
-            dayOfWeek: 'MONDAY' | 'TUESDAY' | 'WEDNESDAY' | 'THURSDAY' | 'FRIDAY' | 'SATURDAY' | 'SUNDAY';
+            dayOfWeek: LocalDateTimeDayOfWeek;
             /** Format: int32 */
             dayOfYear: number;
             date: components['schemas']['LocalDate'];
@@ -1844,18 +1762,7 @@ export interface components {
             avsluttet?: string;
             fagsystem: string;
             /** @enum {string} */
-            baksystem:
-                | 'GSAK'
-                | 'PESYS'
-                | 'SAK_OG_BEHANDLING'
-                | 'JOARK'
-                | 'JOARK_SIKKERHETSBEGRENSNING'
-                | 'HENVENDELSE'
-                | 'PDF_KONVERTERING'
-                | 'AKTOER'
-                | 'KODEVERK'
-                | 'SAF'
-                | 'SAK';
+            baksystem: SakBaksystem;
         };
         Soknadsstatus: {
             /** Format: int32 */
@@ -1917,7 +1824,7 @@ export interface components {
             fnr: string;
             traadId?: string;
             /** @enum {string} */
-            traadType: 'SAMTALEREFERAT' | 'MELDINGSKJEDE' | 'CHAT';
+            traadType: SendMeldingRequestV2TraadType;
             enhet: string;
             fritekst: string;
             temagruppe?: string;
@@ -1941,29 +1848,14 @@ export interface components {
             id: string;
             meldingsId?: string;
             /** @enum {string} */
-            meldingstype:
-                | 'DOKUMENT_VARSEL'
-                | 'OPPGAVE_VARSEL'
-                | 'SPORSMAL_SKRIFTLIG'
-                | 'SPORSMAL_SKRIFTLIG_DIREKTE'
-                | 'SVAR_SKRIFTLIG'
-                | 'SVAR_OPPMOTE'
-                | 'SVAR_TELEFON'
-                | 'DELVIS_SVAR_SKRIFTLIG'
-                | 'SAMTALEREFERAT_OPPMOTE'
-                | 'SAMTALEREFERAT_TELEFON'
-                | 'SPORSMAL_MODIA_UTGAAENDE'
-                | 'SVAR_SBL_INNGAAENDE'
-                | 'INFOMELDING_MODIA_UTGAAENDE'
-                | 'CHATMELDING_FRA_NAV'
-                | 'CHATMELDING_FRA_BRUKER';
+            meldingstype: MeldingDTOMeldingstype;
             temagruppe: string;
             skrevetAvTekst: string;
             fritekst: string;
             /** Format: date-time */
             lestDato?: string;
             /** @enum {string} */
-            status: 'IKKE_BESVART' | 'IKKE_LEST_AV_BRUKER' | 'LEST_AV_BRUKER';
+            status: MeldingDTOStatus;
             /** Format: date-time */
             opprettetDato: string;
             /** Format: date-time */
@@ -1979,7 +1871,7 @@ export interface components {
             traadId: string;
             fnr: string;
             /** @enum {string} */
-            traadType: 'SAMTALEREFERAT' | 'MELDINGSKJEDE' | 'CHAT';
+            traadType: TraadDTOTraadType;
             temagruppe: string;
             /** Format: date-time */
             opprettetDato?: string;
@@ -2110,13 +2002,13 @@ export interface components {
         KravRequest: {
             ident: string;
             /** @enum {string} */
-            identType: 'FNR' | 'ORG_NR';
+            identType: KravRequestIdentType;
         };
         Debitor: {
             debitorId: string;
             name: string;
             /** @enum {string} */
-            identType: 'FNR' | 'ORG_NR';
+            identType: DebitorIdentType;
             ident: string;
         };
         Krav: {
@@ -2151,7 +2043,7 @@ export interface components {
             kreditorId: string;
             name: string;
             /** @enum {string} */
-            identType: 'FNR' | 'ORG_NR';
+            identType: KreditorIdentType;
             ident: string;
         };
         OpprettSkjermetOppgaveDTO: {
@@ -2207,7 +2099,7 @@ export interface components {
         SendMeldingRequest: {
             traadId?: string;
             /** @enum {string} */
-            traadType: 'SAMTALEREFERAT' | 'MELDINGSKJEDE' | 'CHAT';
+            traadType: SendMeldingRequestTraadType;
             enhet: string;
             fritekst: string;
             temagruppe?: string;
@@ -2280,7 +2172,7 @@ export interface components {
             kode: string;
             tekst: string;
             oppgavetyper: components['schemas']['Oppgavetype'][];
-            prioriteter: ('HOY' | 'NORM' | 'LAV')[];
+            prioriteter: TemaPrioriteter[];
             underkategorier: components['schemas']['Underkategori'][];
         };
         Underkategori: {
@@ -2300,6 +2192,124 @@ export interface components {
     headers: never;
     pathItems: never;
 }
+export type FnrRequest = components['schemas']['FnrRequest'];
+export type EksternVarslingInfo = components['schemas']['EksternVarslingInfo'];
+export type Event = components['schemas']['Event'];
+export type FeiletVarsling = components['schemas']['FeiletVarsling'];
+export type HistorikkEntry = components['schemas']['HistorikkEntry'];
+export type Result = components['schemas']['Result'];
+export type VarslingsTidspunkt = components['schemas']['VarslingsTidspunkt'];
+export type Adressat = components['schemas']['Adressat'];
+export type Adresse = components['schemas']['Adresse'];
+export type AdvokatSomAdressat = components['schemas']['AdvokatSomAdressat'];
+export type Apningstid = components['schemas']['Apningstid'];
+export type Bankkonto = components['schemas']['Bankkonto'];
+export type Data = components['schemas']['Data'];
+export type DeltBosted = components['schemas']['DeltBosted'];
+export type DigitalKontaktinformasjonTredjepartsperson =
+    components['schemas']['DigitalKontaktinformasjonTredjepartsperson'];
+export type Dodsbo = components['schemas']['Dodsbo'];
+export type Enhet = components['schemas']['Enhet'];
+export type Fodested = components['schemas']['Fodested'];
+export type ForelderBarnRelasjon = components['schemas']['ForelderBarnRelasjon'];
+export type Foreldreansvar = components['schemas']['Foreldreansvar'];
+export type Fullmakt = components['schemas']['Fullmakt'];
+export type GyldighetsPeriode = components['schemas']['GyldighetsPeriode'];
+export type KodeBeskrivelseAdresseBeskyttelse = components['schemas']['KodeBeskrivelseAdresseBeskyttelse'];
+export type KodeBeskrivelseKjonn = components['schemas']['KodeBeskrivelseKjonn'];
+export type KodeBeskrivelsePersonStatus = components['schemas']['KodeBeskrivelsePersonStatus'];
+export type KodeBeskrivelseSivilstandType = components['schemas']['KodeBeskrivelseSivilstandType'];
+export type KodeBeskrivelseString = components['schemas']['KodeBeskrivelseString'];
+export type KontaktInformasjon = components['schemas']['KontaktInformasjon'];
+export type Navn = components['schemas']['Navn'];
+export type NavnOgIdent = components['schemas']['NavnOgIdent'];
+export type OmraadeMedHandlingString = components['schemas']['OmraadeMedHandlingString'];
+export type OrganisasjonSomAdressat = components['schemas']['OrganisasjonSomAdressat'];
+export type Person = components['schemas']['Person'];
+export type PersonSomAdressat = components['schemas']['PersonSomAdressat'];
+export type Publikumsmottak = components['schemas']['Publikumsmottak'];
+export type Sikkerhetstiltak = components['schemas']['Sikkerhetstiltak'];
+export type SistEndret = components['schemas']['SistEndret'];
+export type Sivilstand = components['schemas']['Sivilstand'];
+export type SivilstandRelasjon = components['schemas']['SivilstandRelasjon'];
+export type Statsborgerskap = components['schemas']['Statsborgerskap'];
+export type Telefon = components['schemas']['Telefon'];
+export type TilrettelagtKommunikasjon = components['schemas']['TilrettelagtKommunikasjon'];
+export type Verdi = components['schemas']['Verdi'];
+export type Verge = components['schemas']['Verge'];
+export type IdentInformasjon = components['schemas']['IdentInformasjon'];
+export type Identliste = components['schemas']['Identliste'];
+export type FnrDatoRangeRequest = components['schemas']['FnrDatoRangeRequest'];
+export type Vedtak = components['schemas']['Vedtak'];
+export type Arbeidgiver = components['schemas']['Arbeidgiver'];
+export type Skatt = components['schemas']['Skatt'];
+export type Trekk = components['schemas']['Trekk'];
+export type Utbetaling = components['schemas']['Utbetaling'];
+export type UtbetalingerPeriodeDto = components['schemas']['UtbetalingerPeriodeDTO'];
+export type UtbetalingerResponseDto = components['schemas']['UtbetalingerResponseDTO'];
+export type Ytelse = components['schemas']['Ytelse'];
+export type YtelseKomponent = components['schemas']['YtelseKomponent'];
+export type YtelsePeriode = components['schemas']['YtelsePeriode'];
+export type DenyCause = components['schemas']['DenyCause'];
+export type TilgangDto = components['schemas']['TilgangDTO'];
+export type Dokument = components['schemas']['Dokument'];
+export type Dokumentmetadata = components['schemas']['Dokumentmetadata'];
+export type Feil = components['schemas']['Feil'];
+export type LocalDate = components['schemas']['LocalDate'];
+export type LocalDateTime = components['schemas']['LocalDateTime'];
+export type LocalTime = components['schemas']['LocalTime'];
+export type ResultatSoknadsstatus = components['schemas']['ResultatSoknadsstatus'];
+export type Sak = components['schemas']['Sak'];
+export type Soknadsstatus = components['schemas']['Soknadsstatus'];
+export type SoknadsstatusSakstema = components['schemas']['SoknadsstatusSakstema'];
+export type Kontaktinformasjon = components['schemas']['Kontaktinformasjon'];
+export type OppgaveDto = components['schemas']['OppgaveDTO'];
+export type JournalforingSak = components['schemas']['JournalforingSak'];
+export type Resultat = components['schemas']['Resultat'];
+export type BehandlendeEnhetRequest = components['schemas']['BehandlendeEnhetRequest'];
+export type SendMeldingRequestV2 = components['schemas']['SendMeldingRequestV2'];
+export type Journalpost = components['schemas']['Journalpost'];
+export type MeldingDto = components['schemas']['MeldingDTO'];
+export type TraadDto = components['schemas']['TraadDTO'];
+export type Veileder = components['schemas']['Veileder'];
+export type OpprettHenvendelseRequestV2 = components['schemas']['OpprettHenvendelseRequestV2'];
+export type FortsettDialogDto = components['schemas']['FortsettDialogDTO'];
+export type PersonsokRequestV3 = components['schemas']['PersonsokRequestV3'];
+export type BrukerinfoDto = components['schemas']['BrukerinfoDTO'];
+export type KodeverdiDto = components['schemas']['KodeverdiDTO'];
+export type NorskIdentDto = components['schemas']['NorskIdentDTO'];
+export type PersonSokResponsDto = components['schemas']['PersonSokResponsDTO'];
+export type PersonnavnDto = components['schemas']['PersonnavnDTO'];
+export type UtenlandskIdDto = components['schemas']['UtenlandskIdDTO'];
+export type Criterion = components['schemas']['Criterion'];
+export type SearchRule = components['schemas']['SearchRule'];
+export type GraphQlClientError = components['schemas']['GraphQLClientError'];
+export type GraphQlClientResponseResult = components['schemas']['GraphQLClientResponseResult'];
+export type GraphQlClientSourceLocation = components['schemas']['GraphQLClientSourceLocation'];
+export type KravRequest = components['schemas']['KravRequest'];
+export type Debitor = components['schemas']['Debitor'];
+export type Krav = components['schemas']['Krav'];
+export type KravPostering = components['schemas']['KravPostering'];
+export type Kreditor = components['schemas']['Kreditor'];
+export type OpprettSkjermetOppgaveDto = components['schemas']['OpprettSkjermetOppgaveDTO'];
+export type OpprettOppgaveResponseDto = components['schemas']['OpprettOppgaveResponseDTO'];
+export type OpprettOppgaveRequestDto = components['schemas']['OpprettOppgaveRequestDTO'];
+export type SendTilSladdingRequest = components['schemas']['SendTilSladdingRequest'];
+export type LukkTraadRequest = components['schemas']['LukkTraadRequest'];
+export type MerkSomFeilsendtRequest = components['schemas']['MerkSomFeilsendtRequest'];
+export type AvsluttGosysOppgaveRequest = components['schemas']['AvsluttGosysOppgaveRequest'];
+export type SendMeldingRequest = components['schemas']['SendMeldingRequest'];
+export type OpprettHenvendelseRequest = components['schemas']['OpprettHenvendelseRequest'];
+export type AuthIntropectionDto = components['schemas']['AuthIntropectionDTO'];
+export type Ansatt = components['schemas']['Ansatt'];
+export type CaptureStats = components['schemas']['CaptureStats'];
+export type Tokens = components['schemas']['Tokens'];
+export type Me = components['schemas']['Me'];
+export type Enheter = components['schemas']['Enheter'];
+export type Oppgavetype = components['schemas']['Oppgavetype'];
+export type Tema = components['schemas']['Tema'];
+export type Underkategori = components['schemas']['Underkategori'];
+export type BaseUrls = components['schemas']['BaseUrls'];
 export type $defs = Record<string, never>;
 export interface operations {
     hentAlleVarsler: {
@@ -4093,4 +4103,257 @@ export interface operations {
             };
         };
     };
+}
+export enum DataFeilendeSystemer {
+    NOT_RELEVANT = 'NOT_RELEVANT',
+    PROVIDED_VALUE = 'PROVIDED_VALUE',
+    PDL_GT = 'PDL_GT',
+    PDL_TREDJEPARTSPERSONER = 'PDL_TREDJEPARTSPERSONER',
+    EGEN_ANSATT = 'EGEN_ANSATT',
+    DKIF = 'DKIF',
+    DKIF_TREDJEPARTSPERSONER = 'DKIF_TREDJEPARTSPERSONER',
+    BANKKONTO = 'BANKKONTO',
+    OPPFOLGING = 'OPPFOLGING',
+    VEILEDER_ROLLER = 'VEILEDER_ROLLER',
+    NORG_NAVKONTOR = 'NORG_NAVKONTOR',
+    NORG_KONTAKTINFORMASJON = 'NORG_KONTAKTINFORMASJON',
+    FULLMAKT = 'FULLMAKT'
+}
+export enum DodsboSkifteform {
+    OFFENTLIG = 'OFFENTLIG',
+    ANNET = 'ANNET',
+    UKJENT = 'UKJENT'
+}
+export enum ForelderBarnRelasjonRolle {
+    BARN = 'BARN',
+    MOR = 'MOR',
+    FAR = 'FAR',
+    MEDMOR = 'MEDMOR',
+    UKJENT = 'UKJENT'
+}
+export enum FullmaktMotpartsRolle {
+    FULLMAKTSGIVER = 'FULLMAKTSGIVER',
+    FULLMEKTIG = 'FULLMEKTIG',
+    UKJENT = 'UKJENT'
+}
+export enum KodeBeskrivelseAdresseBeskyttelseKode {
+    KODE6 = 'KODE6',
+    KODE6_UTLAND = 'KODE6_UTLAND',
+    KODE7 = 'KODE7',
+    UGRADERT = 'UGRADERT',
+    UKJENT = 'UKJENT'
+}
+export enum KodeBeskrivelseKjonnKode {
+    M = 'M',
+    K = 'K',
+    U = 'U'
+}
+export enum KodeBeskrivelsePersonStatusKode {
+    BOSATT = 'BOSATT',
+    DOD = 'DOD',
+    OPPHORT = 'OPPHORT',
+    INAKTIV = 'INAKTIV',
+    MIDLERTIDIG = 'MIDLERTIDIG',
+    FORSVUNNET = 'FORSVUNNET',
+    UTFLYTTET = 'UTFLYTTET',
+    IKKE_BOSATT = 'IKKE_BOSATT',
+    FODSELSREGISTERT = 'FODSELSREGISTERT',
+    UKJENT = 'UKJENT'
+}
+export enum KodeBeskrivelseSivilstandTypeKode {
+    UOPPGITT = 'UOPPGITT',
+    UGIFT = 'UGIFT',
+    GIFT = 'GIFT',
+    ENKE_ELLER_ENKEMANN = 'ENKE_ELLER_ENKEMANN',
+    SKILT = 'SKILT',
+    SEPARERT = 'SEPARERT',
+    REGISTRERT_PARTNER = 'REGISTRERT_PARTNER',
+    SEPARERT_PARTNER = 'SEPARERT_PARTNER',
+    SKILT_PARTNER = 'SKILT_PARTNER',
+    GJENLEVENDE_PARTNER = 'GJENLEVENDE_PARTNER'
+}
+export enum OmraadeMedHandlingStringHandling {
+    LES = 'LES',
+    KOMMUNISER = 'KOMMUNISER',
+    SKRIV = 'SKRIV'
+}
+export enum PersonErEgenAnsatt {
+    JA = 'JA',
+    NEI = 'NEI',
+    UKJENT = 'UKJENT'
+}
+export enum IdentInformasjonGruppe {
+    AKTORID = 'AKTORID',
+    FOLKEREGISTERIDENT = 'FOLKEREGISTERIDENT',
+    NPID = 'NPID',
+    __UNKNOWN_VALUE = '__UNKNOWN_VALUE'
+}
+export enum VedtakRettighet {
+    TILTAKSPENGER = 'TILTAKSPENGER',
+    BARNETILLEGG = 'BARNETILLEGG',
+    TILTAKSPENGER_OG_BARNETILLEGG = 'TILTAKSPENGER_OG_BARNETILLEGG',
+    INGENTING = 'INGENTING'
+}
+export enum DokumentDokumentStatus {
+    UNDER_REDIGERING = 'UNDER_REDIGERING',
+    FERDIGSTILT = 'FERDIGSTILT',
+    AVBRUTT = 'AVBRUTT',
+    KASSERT = 'KASSERT'
+}
+export enum DokumentmetadataRetning {
+    INN = 'INN',
+    UT = 'UT',
+    INTERN = 'INTERN'
+}
+export enum DokumentmetadataAvsender {
+    SLUTTBRUKER = 'SLUTTBRUKER',
+    NAV = 'NAV',
+    EKSTERN_PART = 'EKSTERN_PART',
+    UKJENT = 'UKJENT'
+}
+export enum DokumentmetadataMottaker {
+    SLUTTBRUKER = 'SLUTTBRUKER',
+    NAV = 'NAV',
+    EKSTERN_PART = 'EKSTERN_PART',
+    UKJENT = 'UKJENT'
+}
+export enum DokumentmetadataBaksystem {
+    GSAK = 'GSAK',
+    PESYS = 'PESYS',
+    SAK_OG_BEHANDLING = 'SAK_OG_BEHANDLING',
+    JOARK = 'JOARK',
+    JOARK_SIKKERHETSBEGRENSNING = 'JOARK_SIKKERHETSBEGRENSNING',
+    HENVENDELSE = 'HENVENDELSE',
+    PDF_KONVERTERING = 'PDF_KONVERTERING',
+    AKTOER = 'AKTOER',
+    KODEVERK = 'KODEVERK',
+    SAF = 'SAF',
+    SAK = 'SAK'
+}
+export enum FeilFeilmelding {
+    UKJENT_FEIL = 'UKJENT_FEIL',
+    DOKUMENT_IKKE_FUNNET = 'DOKUMENT_IKKE_FUNNET',
+    DOKUMENT_IKKE_TILGJENGELIG = 'DOKUMENT_IKKE_TILGJENGELIG',
+    DOKUMENT_SLETTET = 'DOKUMENT_SLETTET',
+    SIKKERHETSBEGRENSNING = 'SIKKERHETSBEGRENSNING',
+    MANGLER_DOKUMENTMETADATA = 'MANGLER_DOKUMENTMETADATA',
+    JOURNALFORT_ANNET_TEMA = 'JOURNALFORT_ANNET_TEMA',
+    IKKE_JOURNALFORT = 'IKKE_JOURNALFORT',
+    SAKSBEHANDLER_IKKE_TILGANG = 'SAKSBEHANDLER_IKKE_TILGANG',
+    TEMAKODE_ER_BIDRAG = 'TEMAKODE_ER_BIDRAG',
+    KORRUPT_PDF = 'KORRUPT_PDF',
+    TEKNISK_FEIL = 'TEKNISK_FEIL'
+}
+export enum LocalDateMonth {
+    JANUARY = 'JANUARY',
+    FEBRUARY = 'FEBRUARY',
+    MARCH = 'MARCH',
+    APRIL = 'APRIL',
+    MAY = 'MAY',
+    JUNE = 'JUNE',
+    JULY = 'JULY',
+    AUGUST = 'AUGUST',
+    SEPTEMBER = 'SEPTEMBER',
+    OCTOBER = 'OCTOBER',
+    NOVEMBER = 'NOVEMBER',
+    DECEMBER = 'DECEMBER'
+}
+export enum LocalDateDayOfWeek {
+    MONDAY = 'MONDAY',
+    TUESDAY = 'TUESDAY',
+    WEDNESDAY = 'WEDNESDAY',
+    THURSDAY = 'THURSDAY',
+    FRIDAY = 'FRIDAY',
+    SATURDAY = 'SATURDAY',
+    SUNDAY = 'SUNDAY'
+}
+export enum LocalDateTimeMonth {
+    JANUARY = 'JANUARY',
+    FEBRUARY = 'FEBRUARY',
+    MARCH = 'MARCH',
+    APRIL = 'APRIL',
+    MAY = 'MAY',
+    JUNE = 'JUNE',
+    JULY = 'JULY',
+    AUGUST = 'AUGUST',
+    SEPTEMBER = 'SEPTEMBER',
+    OCTOBER = 'OCTOBER',
+    NOVEMBER = 'NOVEMBER',
+    DECEMBER = 'DECEMBER'
+}
+export enum LocalDateTimeDayOfWeek {
+    MONDAY = 'MONDAY',
+    TUESDAY = 'TUESDAY',
+    WEDNESDAY = 'WEDNESDAY',
+    THURSDAY = 'THURSDAY',
+    FRIDAY = 'FRIDAY',
+    SATURDAY = 'SATURDAY',
+    SUNDAY = 'SUNDAY'
+}
+export enum SakBaksystem {
+    GSAK = 'GSAK',
+    PESYS = 'PESYS',
+    SAK_OG_BEHANDLING = 'SAK_OG_BEHANDLING',
+    JOARK = 'JOARK',
+    JOARK_SIKKERHETSBEGRENSNING = 'JOARK_SIKKERHETSBEGRENSNING',
+    HENVENDELSE = 'HENVENDELSE',
+    PDF_KONVERTERING = 'PDF_KONVERTERING',
+    AKTOER = 'AKTOER',
+    KODEVERK = 'KODEVERK',
+    SAF = 'SAF',
+    SAK = 'SAK'
+}
+export enum SendMeldingRequestV2TraadType {
+    SAMTALEREFERAT = 'SAMTALEREFERAT',
+    MELDINGSKJEDE = 'MELDINGSKJEDE',
+    CHAT = 'CHAT'
+}
+export enum MeldingDTOMeldingstype {
+    DOKUMENT_VARSEL = 'DOKUMENT_VARSEL',
+    OPPGAVE_VARSEL = 'OPPGAVE_VARSEL',
+    SPORSMAL_SKRIFTLIG = 'SPORSMAL_SKRIFTLIG',
+    SPORSMAL_SKRIFTLIG_DIREKTE = 'SPORSMAL_SKRIFTLIG_DIREKTE',
+    SVAR_SKRIFTLIG = 'SVAR_SKRIFTLIG',
+    SVAR_OPPMOTE = 'SVAR_OPPMOTE',
+    SVAR_TELEFON = 'SVAR_TELEFON',
+    DELVIS_SVAR_SKRIFTLIG = 'DELVIS_SVAR_SKRIFTLIG',
+    SAMTALEREFERAT_OPPMOTE = 'SAMTALEREFERAT_OPPMOTE',
+    SAMTALEREFERAT_TELEFON = 'SAMTALEREFERAT_TELEFON',
+    SPORSMAL_MODIA_UTGAAENDE = 'SPORSMAL_MODIA_UTGAAENDE',
+    SVAR_SBL_INNGAAENDE = 'SVAR_SBL_INNGAAENDE',
+    INFOMELDING_MODIA_UTGAAENDE = 'INFOMELDING_MODIA_UTGAAENDE',
+    CHATMELDING_FRA_NAV = 'CHATMELDING_FRA_NAV',
+    CHATMELDING_FRA_BRUKER = 'CHATMELDING_FRA_BRUKER'
+}
+export enum MeldingDTOStatus {
+    IKKE_BESVART = 'IKKE_BESVART',
+    IKKE_LEST_AV_BRUKER = 'IKKE_LEST_AV_BRUKER',
+    LEST_AV_BRUKER = 'LEST_AV_BRUKER'
+}
+export enum TraadDTOTraadType {
+    SAMTALEREFERAT = 'SAMTALEREFERAT',
+    MELDINGSKJEDE = 'MELDINGSKJEDE',
+    CHAT = 'CHAT'
+}
+export enum KravRequestIdentType {
+    FNR = 'FNR',
+    ORG_NR = 'ORG_NR'
+}
+export enum DebitorIdentType {
+    FNR = 'FNR',
+    ORG_NR = 'ORG_NR'
+}
+export enum KreditorIdentType {
+    FNR = 'FNR',
+    ORG_NR = 'ORG_NR'
+}
+export enum SendMeldingRequestTraadType {
+    SAMTALEREFERAT = 'SAMTALEREFERAT',
+    MELDINGSKJEDE = 'MELDINGSKJEDE',
+    CHAT = 'CHAT'
+}
+export enum TemaPrioriteter {
+    HOY = 'HOY',
+    NORM = 'NORM',
+    LAV = 'LAV'
 }

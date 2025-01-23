@@ -1,7 +1,7 @@
 import { PersonTallShortIcon } from '@navikt/aksel-icons';
 import { Alert, BodyShort } from '@navikt/ds-react';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
-import type { NavnOgIdent, PersonData } from 'src/lib/types/modiapersonoversikt-api';
+import { type NavnOgIdent, type PersonData, PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
 import { harFeilendeSystemer, hentNavn } from '../utils';
 import { Group, InfoElement } from './components';
 
@@ -61,7 +61,10 @@ function Foreldreansvar() {
             {foreldreansvar.map((foreldreansvar, index) => (
                 <ForeldreansvarElement
                     key={`${foreldreansvar.ansvar}-${index}`}
-                    harFeilendeSystem={harFeilendeSystemer(feilendeSystemer, 'PDL_TREDJEPARTSPERSONER')}
+                    harFeilendeSystem={harFeilendeSystemer(
+                        feilendeSystemer,
+                        PersonDataFeilendeSystemer.PDL_TREDJEPARTSPERSONER
+                    )}
                     foreldreansvar={foreldreansvar}
                 />
             ))}

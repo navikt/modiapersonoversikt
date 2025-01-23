@@ -22,7 +22,7 @@ import { type PropsWithChildren, useEffect, useState } from 'react';
 import QueryErrorBoundary from 'src/components/QueryErrorBoundary';
 import IfFeatureToggleOn from 'src/components/featureToggle/IfFeatureToggleOn';
 import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
-import type { paths } from 'src/generated/modiapersonoversikt-api';
+import { type Krav, KravRequestIdentType } from 'src/generated/modiapersonoversikt-api';
 import { $api } from 'src/lib/clients/modiapersonoversikt-api';
 import { formaterDato } from 'src/utils/string-utils';
 import { formaterNOK } from '../personside/infotabs/utbetalinger/utils/utbetalinger-utils';
@@ -88,11 +88,7 @@ const InnkrevingsKravDetaljer = ({ kravId }: { kravId: string }) => {
     );
 };
 
-const SearchResultTable = ({
-    data
-}: {
-    data: paths['/rest/innkrevingskrav']['post']['responses']['200']['content']['*/*'];
-}) => {
+const SearchResultTable = ({ data }: { data: Krav[] }) => {
     const debitor = data.length > 0 ? data[0].debitor : undefined;
     const debitorType = debitor?.identType;
 
@@ -133,7 +129,7 @@ const SearchResults = ({
     identType
 }: {
     id: string;
-    identType: 'FNR' | 'ORG_NR';
+    identType: KravRequestIdentType;
 }) => {
     const { isLoading, data, error } = $api.useQuery('post', '/rest/innkrevingskrav', {
         body: { ident: id, identType }
@@ -298,7 +294,12 @@ const InnkrevingskravSide = () => {
                         </Box>
 
                         {searchType !== 'kravId' && nyIdent && (
-                            <SearchResults id={nyIdent} identType={searchType === 'fnr' ? 'FNR' : 'ORG_NR'} />
+                            <SearchResults
+                                id={nyIdent}
+                                identType={
+                                    searchType === 'fnr' ? KravRequestIdentType.FNR : KravRequestIdentType.ORG_NR
+                                }
+                            />
                         )}
                         {searchType === 'kravId' && kravId && <KravSearchResults kravId={kravId} />}
                     </Box>

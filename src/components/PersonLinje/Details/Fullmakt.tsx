@@ -1,7 +1,11 @@
 import { Chat2Icon, GlassesIcon, PencilIcon } from '@navikt/aksel-icons';
 import { Alert, Detail, HelpText, ReadMore, Table } from '@navikt/ds-react';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
-import type { OmraadeMedHandling, PersonData } from 'src/lib/types/modiapersonoversikt-api';
+import {
+    type OmraadeMedHandling,
+    type PersonData,
+    PersonDataFeilendeSystemer
+} from 'src/lib/types/modiapersonoversikt-api';
 import { formaterMobiltelefonnummer } from 'src/utils/telefon-utils';
 import ValidPeriod from '../common/ValidPeriod';
 import { hentNavn } from '../utils';
@@ -127,8 +131,8 @@ function Fullmakter() {
                         key={fullmakt.motpartsPersonident}
                         fullmakt={fullmakt}
                         harFeilendeSystem={
-                            harFeilendeSystemer(feilendeSystemer, 'PDL_TREDJEPARTSPERSONER') ||
-                            harFeilendeSystemer(feilendeSystemer, 'FULLMAKT')
+                            harFeilendeSystemer(feilendeSystemer, PersonDataFeilendeSystemer.PDL_TREDJEPARTSPERSONER) ||
+                            harFeilendeSystemer(feilendeSystemer, PersonDataFeilendeSystemer.FULLMAKT)
                         }
                     />
                 ))}

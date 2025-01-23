@@ -1,7 +1,6 @@
 import { HStack, Tag } from '@navikt/ds-react';
-import { AdresseBeskyttelse } from 'src/app/personside/visittkort-v2/PersondataDomain';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
-import type { PersonData } from 'src/lib/types/modiapersonoversikt-api';
+import { AdresseBeskyttelseKode, type PersonData } from 'src/lib/types/modiapersonoversikt-api';
 
 export const PersonBadges = () => {
     const {
@@ -31,8 +30,8 @@ function DiskresjonskodeBadges({
     const adressebeskyttelse = adressebeskyttelser.firstOrNull();
     if (
         !adressebeskyttelse?.kode ||
-        adressebeskyttelse?.kode === AdresseBeskyttelse.UGRADERT ||
-        adressebeskyttelse?.kode === AdresseBeskyttelse.UKJENT
+        adressebeskyttelse?.kode === AdresseBeskyttelseKode.UGRADERT ||
+        adressebeskyttelse?.kode === AdresseBeskyttelseKode.UKJENT
     ) {
         return null;
     }
