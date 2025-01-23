@@ -5,7 +5,7 @@ import {
     FigureOutwardFillIcon,
     PersonCrossFillIcon
 } from '@navikt/aksel-icons';
-import { Alert, BodyShort } from '@navikt/ds-react';
+import { Alert, BodyShort, Detail } from '@navikt/ds-react';
 import type { PersonData } from 'src/lib/types/modiapersonoversikt-api';
 import BostedForRelasjon from '../../common/BostedForRelasjon';
 import Diskresjonskode from '../../common/DiskresjonsKode';
@@ -37,13 +37,13 @@ export function ForelderBarnRelasjonVisning({
     return (
         <InfoElement title={beskrivelse} icon={<FamilierelasjonIkon relasjon={relasjon} erBarn={erBarn} />}>
             <Diskresjonskode adressebeskyttelse={relasjon.adressebeskyttelse} />
-            <BodyShort>
+            <BodyShort size="small">
                 {navn && hentNavn(navn)} {alder}
             </BodyShort>
-            <BodyShort>{relasjon.ident ? relasjon.ident : 'Ukjent'}</BodyShort>
-            <BodyShort size="small">
+            <Detail>{relasjon.ident ? relasjon.ident : 'Ukjent'}</Detail>
+            <Detail textColor="subtle">
                 <BostedForRelasjon relasjon={relasjon} />
-            </BodyShort>
+            </Detail>
         </InfoElement>
     );
 }

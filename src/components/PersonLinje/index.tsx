@@ -87,7 +87,7 @@ const PersonLinjeContent = () => {
                 aria-label="personlinje"
                 borderWidth="1"
                 background="bg-default"
-                className="border-border-subtle rounded-xl has-[:focus]:border-border-strong overflow-y-scroll max-h-[70vh]"
+                className="border-border-subtle rounded-xl has-[:focus]:border-border-strong overflow-y-scroll max-h-[85vh]"
             >
                 <QueryErrorBoundary error={error}>
                     <HStack
@@ -100,7 +100,6 @@ const PersonLinjeContent = () => {
                         <PersonlinjeHeader isExpanded={isExpanded} />
                     </HStack>
                     <Box
-                        paddingInline="4"
                         className={twMerge(
                             'border-t border-border-subtle transition-all duration-75',
                             !isExpanded && 'h-0 invisible overflow-hidden'

@@ -1,4 +1,4 @@
-import { BodyShort } from '@navikt/ds-react';
+import { Detail } from '@navikt/ds-react';
 import { hentPeriodeTekst } from '../utils';
 
 type Props = {
@@ -11,11 +11,7 @@ function ValidPeriod({ from, to }: Props) {
         return null;
     }
 
-    return (
-        <BodyShort textColor="subtle" size="small">
-            Gyldig: {hentPeriodeTekst(from, to)}
-        </BodyShort>
-    );
+    return <Detail textColor="subtle">Gyldig: {hentPeriodeTekst(from, to)}</Detail>;
 }
 
 export default ValidPeriod;
