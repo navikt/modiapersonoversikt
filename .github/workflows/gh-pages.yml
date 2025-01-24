@@ -35,7 +35,7 @@ jobs:
             - name: Switch to gh-dev build
               run: |
                   echo 'VITE_USE_HASH_ROUTER=true' >> .env.development
-                  mv .env.development .env.production.local
+                  mv .env.development .env.production
             - name: Build
               env:
                 VITE_APP_BASE_PATH: '/modiapersonoversikt'
