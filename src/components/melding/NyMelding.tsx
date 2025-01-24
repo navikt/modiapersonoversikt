@@ -178,6 +178,7 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
     );
 }
 
+// Funksjonen forventer at parameteren allerede er validert
 function generateRequestBody(value: NyMeldingFormOptions) {
     const common: Pick<SendMeldingRequestV2, 'enhet' | 'fritekst' | 'fnr'> = {
         enhet: value.enhetsId,
