@@ -52,6 +52,7 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
         <VStack gap="2">
             <div className="max-w-30">
                 <Button
+                    type="button"
                     id="knytt-dialog-til-sak"
                     variant="secondary"
                     size="small"

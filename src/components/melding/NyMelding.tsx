@@ -163,6 +163,7 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                     />
                     <Button type="submit" loading={isPending}>Send til {brukerNavn}</Button>
                     <Button
+                        type="button"
                         variant="tertiary"
                         icon={<EnvelopeClosedIcon aria-hidden />}
                         iconPosition="left"

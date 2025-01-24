@@ -8,11 +8,12 @@ export function LukkbarNyMelding() {
 
     return (
         <HStack>
-            {!isOpen && <Button icon={<ChatIcon title="Skriv ny melding" />} onClick={() => setIsOpen(true)} />}
+            {!isOpen && <Button type="button" icon={<ChatIcon title="Skriv ny melding" />} onClick={() => setIsOpen(true)} />}
             {isOpen &&
                 <NyMelding
                     lukkeKnapp={
                         <Button
+                            type="button"
                             icon={<MinusIcon title="Lukk" />}
                             variant="tertiary"
                             size="small"
