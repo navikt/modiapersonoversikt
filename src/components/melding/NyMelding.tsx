@@ -192,7 +192,7 @@ function generateRequestBody(value: NyMeldingFormOptions) {
             request = {
                 ...common,
                 traadType: SendMeldingRequestV2TraadType.SAMTALEREFERAT,
-                // Validert av schema
+                // Tema er validert av schema ved meldingstype Referat
                 temagruppe: value.tema!!
             };
             break;
@@ -200,7 +200,9 @@ function generateRequestBody(value: NyMeldingFormOptions) {
             request = {
                 ...common,
                 traadType: SendMeldingRequestV2TraadType.MELDINGSKJEDE,
-                avsluttet: false
+                avsluttet: false,
+                // Oppgaveliste er validert av schema ved meldingstype Samtale
+                erOppgaveTilknyttetAnsatt: value.oppgaveliste!! === Oppgaveliste.MinListe
             };
             break;
         case MeldingsType.Infomelding:
