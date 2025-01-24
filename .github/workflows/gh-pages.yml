@@ -39,7 +39,7 @@ jobs:
             - name: Build
               env:
                 VITE_APP_BASE_PATH: '/modiapersonoversikt'
-                GH_PAGES: 'true'
+                VITE_GH_PAGES: 'true'
               run: pnpm run build
 
             - name: Deploy

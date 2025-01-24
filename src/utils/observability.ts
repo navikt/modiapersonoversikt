@@ -14,16 +14,20 @@ const customPageMeta: () => Pick<Meta, 'page'> = () => {
 export const initializeObservability = () => {
     const env = getEnvFromHost();
 
-    initializeFaro({
-        url:
-            (import.meta.env.VITE_GRAFANA_COLLECTOR as string) ??
-            (env === 'prod' ? 'https://telemetry.nav.no/collect' : 'https://telemetry.ekstern.dev.nav.no/collect'),
-        app: {
-            name: 'modiapersonoversikt'
-        },
-        metas: [customPageMeta],
-        paused: !import.meta.env.PROD,
-        instrumentations: [...getWebInstrumentations()].filter((v): v is Instrumentation => !!v),
-        ignoreUrls: [/\d{11}/]
-    });
+    try {
+        initializeFaro({
+            url:
+                (import.meta.env.VITE_GRAFANA_COLLECTOR as string) ??
+                (env === 'prod' ? 'https://telemetry.nav.no/collect' : 'https://telemetry.ekstern.dev.nav.no/collect'),
+            app: {
+                name: 'modiapersonoversikt'
+            },
+            metas: [customPageMeta],
+            paused: !import.meta.env.PROD || import.meta.env.VITE_GH_PAGES,
+            instrumentations: [...getWebInstrumentations()].filter((v): v is Instrumentation => !!v),
+            ignoreUrls: [/\d{11}/]
+        });
+    } catch (e) {
+        console.warn('Could not initialize Faro', e);
+    }
 };

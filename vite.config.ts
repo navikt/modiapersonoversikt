@@ -27,7 +27,7 @@ const modiaFrontendCompat = (): {
     return {
         name: 'modia-frontend-html-transform',
         transformIndexHtml(html, ctx) {
-            if (ctx.server || process.env.GH_PAGES === 'true') {
+            if (ctx.server || process.env.VITE_GH_PAGES === 'true') {
                 const removed = html.replace(/<slot environment="prod">((.|\s)*?)<\/slot>/, '');
                 const content = removed.match(/<slot not-environment="prod">((.|\s)*?)<\/slot>/)?.[1];
                 return removed.replace(/<slot not-environment="prod">((.|\s)*?)<\/slot>/, content ?? '');
