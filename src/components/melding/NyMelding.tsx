@@ -1,4 +1,4 @@
-import { Box, Button, ErrorMessage, Heading, HStack, Textarea, VStack } from '@navikt/ds-react';
+import { Alert, Box, Button, ErrorMessage, Heading, HStack, Textarea, VStack } from '@navikt/ds-react';
 import { EnvelopeClosedIcon } from '@navikt/aksel-icons';
 import { ReactElement } from 'react';
 import { Temagruppe } from 'src/models/temagrupper';
@@ -8,7 +8,7 @@ import VelgOppgaveliste, { Oppgaveliste } from 'src/components/melding/VelgOppga
 import { ValgForMeldingstype } from 'src/components/melding/ValgForMeldingstype';
 import VelgSak from 'src/components/melding/VelgSak';
 import AvsluttDialogEtterSending from 'src/components/melding/AvsluttDialogEtterSending';
-import { FieldApi, FormApi, useForm, useStore } from '@tanstack/react-form';
+import { FieldApi, useForm, useStore } from '@tanstack/react-form';
 import { z } from 'zod';
 import {
     JournalforingsSak
@@ -17,25 +17,54 @@ import { useValgtenhet } from 'src/context/valgtenhet-state';
 import saksbehandlersEnheter from 'src/rest/resources/saksbehandlersEnheterResource';
 import persondataResource from 'src/rest/resources/persondataResource';
 import { capitalizeName } from 'src/utils/string-utils';
+import { useFodselsnummer } from 'src/utils/customHooks';
+import { $api } from 'src/lib/clients/modiapersonoversikt-api';
+import { type SendMeldingRequestV2, SendMeldingRequestV2TraadType } from 'src/generated/modiapersonoversikt-api';
 
 interface NyMeldingProps {
     lukkeKnapp?: ReactElement<typeof Button>;
 }
 
 function NyMelding({ lukkeKnapp }: NyMeldingProps) {
-    const enhetsnavn = useEnhetsnavn();
-    const brukernavn = useBrukernavn();
+    const fnr = useFodselsnummer();
+    const enhetsId = useValgtenhet().enhetId;
+    const enhetsNavn = useEnhetsnavn(enhetsId);
+    const brukerNavn = useBrukernavn();
+
+    const defaultFormOptions: NyMeldingFormOptions = {
+        meldingsType: MeldingsType.Referat,
+        melding: '',
+        tema: undefined,
+        oppgaveliste: Oppgaveliste.MinListe,
+        sak: undefined,
+        fnr: fnr ?? '',
+        enhetsId: enhetsId ?? ''
+    };
+    const { error, mutate, isPending, isSuccess } = $api.useMutation('post', '/rest/v2/dialog/sendmelding', {
+        onSuccess: () => {
+            form.reset({
+                ...defaultFormOptions,
+                meldingsType: form.state.values.meldingsType
+            }, { keepDefaultValues: true });
+        }
+    });
 
     const schema = nyMeldingSchema();
-    const form = useNyMeldingForm(schema, ({ value }) => {
-        console.log(value);
+    const form = useForm<NyMeldingFormOptions>({
+        defaultValues: defaultFormOptions,
+        validators: {
+            onSubmit: schema
+        },
+        onSubmit: ({ value }) => {
+            const body = generateRequestBody(value);
+            mutate({ body: body });
+        }
     });
 
     const meldingsType = useStore(
         form.store,
         (state) => state.values.meldingsType
     );
-
     const meldingsTypeTekst = meldingsTyperTekst[meldingsType];
 
     return (
@@ -68,7 +97,7 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                     />
                     <form.Field
                         name="melding"
-                        children={(field) => (
+                        children={(field) =>
                             <Textarea
                                 label={meldingsTypeTekst.tittel}
                                 description={meldingsTypeTekst.beskrivelse}
@@ -78,7 +107,7 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                                 }
                                 error={errorMesageForField(field)}
                             />
-                        )}
+                        }
                     />
                     <ValgForMeldingstype
                         meldingsType={meldingsType}
@@ -86,13 +115,12 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                             <form.Field
                                 name="tema"
                                 children={
-                                    (field) => {
-                                        return <VelgTema
+                                    (field) =>
+                                        <VelgTema
                                             valgtTema={field.state.value}
                                             setValgtTema={(tema) => field.handleChange(tema)}
                                             error={errorComponentForField(field)}
-                                        />;
-                                    }
+                                        />
                                 }
                             />
                         }
@@ -100,13 +128,12 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                             <form.Field
                                 name="oppgaveliste"
                                 children={
-                                    (field) => {
-                                        return <VelgOppgaveliste
+                                    (field) =>
+                                        <VelgOppgaveliste
                                             valgtOppgaveliste={field.state.value}
                                             setValgtOppgaveliste={(oppgaveliste) => field.handleChange(oppgaveliste)}
-                                            enhet={enhetsnavn}
-                                        />;
-                                    }
+                                            enhet={enhetsNavn}
+                                        />
                                 }
                             />
                         }
@@ -125,16 +152,16 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                         avsluttDialogEtterSending={
                             <form.Field
                                 name="meldingsType"
-                                children={(field) => (
+                                children={(field) =>
                                     <AvsluttDialogEtterSending
                                         meldingsType={field.state.value}
                                         setMeldingsType={(meldingsType) => field.handleChange(meldingsType)}
                                     />
-                                )}
+                                }
                             />
                         }
                     />
-                    <Button type="submit">Send til {brukernavn}</Button>
+                    <Button type="submit" loading={isPending}>Send til {brukerNavn}</Button>
                     <Button
                         variant="tertiary"
                         icon={<EnvelopeClosedIcon aria-hidden />}
@@ -143,10 +170,47 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                     >
                         Se alle dialoger
                     </Button>
+                    {isSuccess && <Alert variant="success">Meldingen ble sendt</Alert>}
+                    {error && <Alert variant="error">{error}</Alert>}
                 </VStack>
             </form>
         </Box>
     );
+}
+
+function generateRequestBody(value: NyMeldingFormOptions) {
+    const common: Pick<SendMeldingRequestV2, 'enhet' | 'fritekst' | 'fnr'> = {
+        enhet: value.enhetsId,
+        fritekst: value.melding,
+        fnr: value.fnr
+    };
+    let request: SendMeldingRequestV2;
+
+    switch (value.meldingsType) {
+        case MeldingsType.Referat:
+            request = {
+                ...common,
+                traadType: SendMeldingRequestV2TraadType.SAMTALEREFERAT,
+                // Validert av schema
+                temagruppe: value.tema!!
+            };
+            break;
+        case MeldingsType.Samtale:
+            request = {
+                ...common,
+                traadType: SendMeldingRequestV2TraadType.MELDINGSKJEDE,
+                avsluttet: false
+            };
+            break;
+        case MeldingsType.Infomelding:
+            request = {
+                ...common,
+                traadType: SendMeldingRequestV2TraadType.MELDINGSKJEDE,
+                avsluttet: true
+            };
+            break;
+    }
+    return request;
 }
 
 function errorMesageForField(field: FieldApi<NyMeldingFormOptions, any>) {
@@ -158,8 +222,7 @@ function errorComponentForField(field: FieldApi<NyMeldingFormOptions, any>) {
         <ErrorMessage>{errorMesageForField(field)}</ErrorMessage> : null;
 }
 
-function useEnhetsnavn() {
-    const enhetId = useValgtenhet().enhetId;
+function useEnhetsnavn(enhetId: string) {
     const enheter = saksbehandlersEnheter.useFetch().data?.enhetliste ?? [];
     return enheter.find((enhet) => enhet.enhetId === enhetId)?.navn ?? 'Ukjent enhet';
 }
@@ -172,8 +235,10 @@ function useBrukernavn() {
 }
 
 function nyMeldingSchema() {
-    const meldingSchema = z.object({
-        melding: z.string().min(1, 'Må ha en melding')
+    const commonSchema = z.object({
+        melding: z.string().min(1, 'Må ha en melding'),
+        fnr: z.string().length(11, 'Må ha et gyldig fødselsnummer'),
+        enhetsId: z.string().length(4, 'Må ha gyldig enhetsId')
     });
 
     const sakSchema = z.object({
@@ -206,7 +271,7 @@ function nyMeldingSchema() {
             meldingsType: z.literal(MeldingsType.Infomelding),
             sak: sakSchema
         })
-    ]).and(meldingSchema);
+    ]).and(commonSchema);
 }
 
 interface NyMeldingFormOptions {
@@ -215,28 +280,8 @@ interface NyMeldingFormOptions {
     tema?: Temagruppe;
     oppgaveliste?: Oppgaveliste;
     sak?: JournalforingsSak;
-}
-
-function useNyMeldingForm(
-    schema: ReturnType<typeof nyMeldingSchema>,
-    onSubmit: (values: {
-        value: NyMeldingFormOptions,
-        formApi: FormApi<NyMeldingFormOptions, undefined>
-    }) => void
-) {
-    return useForm<NyMeldingFormOptions>({
-        defaultValues: {
-            meldingsType: MeldingsType.Referat,
-            melding: '',
-            tema: undefined,
-            oppgaveliste: Oppgaveliste.MinListe,
-            sak: undefined
-        },
-        validators: {
-            onSubmit: schema
-        },
-        onSubmit
-    });
+    fnr: string;
+    enhetsId: string;
 }
 
 export default NyMelding;
