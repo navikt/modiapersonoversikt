@@ -20,6 +20,7 @@ import { capitalizeName } from 'src/utils/string-utils';
 import { useFodselsnummer } from 'src/utils/customHooks';
 import { $api } from 'src/lib/clients/modiapersonoversikt-api';
 import { type SendMeldingRequestV2, SendMeldingRequestV2TraadType } from 'src/generated/modiapersonoversikt-api';
+import { Link } from '@tanstack/react-router';
 
 interface NyMeldingProps {
     lukkeKnapp?: ReactElement<typeof Button>;
@@ -83,7 +84,7 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
             }}>
                 <VStack gap="4">
                     <HStack justify="space-between">
-                        <Heading level='1' size="medium">Send ny dialog</Heading>
+                        <Heading level="1" size="medium">Send ny dialog</Heading>
                         {lukkeKnapp}
                     </HStack>
                     <form.Field
@@ -168,6 +169,8 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                         icon={<EnvelopeClosedIcon aria-hidden />}
                         iconPosition="left"
                         size="small"
+                        as={Link}
+                        to="/new/person/meldinger"
                     >
                         Se alle dialoger
                     </Button>
