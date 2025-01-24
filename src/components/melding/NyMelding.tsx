@@ -83,7 +83,7 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
             }}>
                 <VStack gap="4">
                     <HStack justify="space-between">
-                        <Heading size="medium">Send ny dialog</Heading>
+                        <Heading level='1' size="medium">Send ny dialog</Heading>
                         {lukkeKnapp}
                     </HStack>
                     <form.Field

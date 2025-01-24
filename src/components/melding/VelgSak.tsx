@@ -4,7 +4,7 @@ import {
     SakKategori
 } from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import journalsakResource from 'src/rest/resources/journalsakResource';
-import { Alert, Button, Heading, HStack, Modal, Radio, RadioGroup, Table, Tag, VStack } from '@navikt/ds-react';
+import { Alert, Button, HStack, Label, Modal, Radio, RadioGroup, Table, Tag, VStack } from '@navikt/ds-react';
 import Spinner from 'nav-frontend-spinner';
 import {
     fjernSakerSomAlleredeErTilknyttet,
@@ -48,10 +48,11 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
     ));
 
     return <VStack gap="1">
-        <Heading size="xsmall">Knytt dialogen til en sak</Heading>
+        <Label htmlFor="knytt-dialog-til-sak">Knytt dialogen til en sak</Label>
         <VStack gap="2">
             <div className="max-w-30">
                 <Button
+                    id="knytt-dialog-til-sak"
                     variant="secondary"
                     size="small"
                     onClick={() => setVelgSakModalOpen(true)}
