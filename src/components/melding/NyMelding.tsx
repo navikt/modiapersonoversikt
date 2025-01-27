@@ -1,12 +1,14 @@
 import { EnvelopeClosedIcon } from '@navikt/aksel-icons';
-import { Alert, Box, Button, ErrorMessage, HStack, Heading, Textarea, VStack } from '@navikt/ds-react';
+import { Alert, Box, Button, ErrorMessage, Heading, HStack, Textarea, VStack } from '@navikt/ds-react';
 import { type FieldApi, useForm, useStore } from '@tanstack/react-form';
 import { Link } from '@tanstack/react-router';
 import type { ReactElement } from 'react';
-import type { JournalforingsSak } from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
+import type {
+    JournalforingsSak
+} from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import AvsluttDialogEtterSending from 'src/components/melding/AvsluttDialogEtterSending';
 import { ValgForMeldingstype } from 'src/components/melding/ValgForMeldingstype';
-import { MeldingsType, VelgMeldingsType, meldingsTyperTekst } from 'src/components/melding/VelgMeldingsType';
+import { MeldingsType, meldingsTyperTekst, VelgMeldingsType } from 'src/components/melding/VelgMeldingsType';
 import VelgOppgaveliste, { Oppgaveliste } from 'src/components/melding/VelgOppgaveliste';
 import VelgSak from 'src/components/melding/VelgSak';
 import VelgTema from 'src/components/melding/VelgTema';
@@ -16,7 +18,6 @@ import { $api } from 'src/lib/clients/modiapersonoversikt-api';
 import { Temagruppe } from 'src/models/temagrupper';
 import persondataResource from 'src/rest/resources/persondataResource';
 import saksbehandlersEnheter from 'src/rest/resources/saksbehandlersEnheterResource';
-import { useFodselsnummer } from 'src/utils/customHooks';
 import { capitalizeName } from 'src/utils/string-utils';
 import { z } from 'zod';
 import { usePersonAtomValue } from 'src/lib/state/context';
@@ -30,6 +31,7 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
     const enhetsId = useValgtenhet().enhetId;
     const enhetsNavn = useEnhetsnavn(enhetsId);
     const brukerNavn = useBrukernavn();
+    const maksLengdeMelding = 15000;
 
     const defaultFormOptions: NyMeldingFormOptions = {
         meldingsType: MeldingsType.Referat,
@@ -52,7 +54,7 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
         }
     });
 
-    const schema = nyMeldingSchema();
+    const schema = nyMeldingSchema(maksLengdeMelding);
     const form = useForm({
         defaultValues: defaultFormOptions,
         validators: {
@@ -108,6 +110,7 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                                 value={field.state.value}
                                 onChange={(e) => field.handleChange(e.target.value)}
                                 error={errorMesageForField(field)}
+                                maxLength={maksLengdeMelding}
                             />
                         )}
                     />
@@ -241,11 +244,14 @@ function useBrukernavn() {
         : 'bruker';
 }
 
-function nyMeldingSchema() {
+function nyMeldingSchema(maksLengdeMelding: number) {
     const commonSchema = z.object({
-        melding: z.string().min(1, 'Må ha en melding'),
-        fnr: z.string().length(11, 'Må ha et gyldig fødselsnummer'),
-        enhetsId: z.string().length(4, 'Må ha gyldig enhetsId')
+        melding: z
+            .string()
+            .nonempty('Du kan ikke sende en tom melding til bruker')
+            .max(maksLengdeMelding, 'Du kan ikke sende en melding som er lenger enn 15.000 tegn'),
+        fnr: z.string(),
+        enhetsId: z.string()
     });
 
     const sakSchema = z.object(
