@@ -1,9 +1,9 @@
+import type { ReactElement } from 'react';
+import type AvsluttDialogEtterSending from 'src/components/melding/AvsluttDialogEtterSending';
 import { MeldingsType } from 'src/components/melding/VelgMeldingsType';
-import { ReactElement } from 'react';
-import VelgTema from 'src/components/melding/VelgTema';
-import VelgOppgaveliste from 'src/components/melding/VelgOppgaveliste';
-import VelgSak from 'src/components/melding/VelgSak';
-import AvsluttDialogEtterSending from 'src/components/melding/AvsluttDialogEtterSending';
+import type VelgOppgaveliste from 'src/components/melding/VelgOppgaveliste';
+import type VelgSak from 'src/components/melding/VelgSak';
+import type VelgTema from 'src/components/melding/VelgTema';
 
 interface ValgForMeldingstypeProps {
     meldingsType: MeldingsType;
@@ -13,24 +13,24 @@ interface ValgForMeldingstypeProps {
     avsluttDialogEtterSending: ReactElement<typeof AvsluttDialogEtterSending>;
 }
 
-export function ValgForMeldingstype(
-    {
-        meldingsType,
-        velgTema,
-        velgOppgaveliste,
-        velgSak,
-        avsluttDialogEtterSending
-    }: ValgForMeldingstypeProps
-) {
+export function ValgForMeldingstype({
+    meldingsType,
+    velgTema,
+    velgOppgaveliste,
+    velgSak,
+    avsluttDialogEtterSending
+}: ValgForMeldingstypeProps) {
     switch (meldingsType) {
         case MeldingsType.Referat:
             return velgTema;
         case MeldingsType.Samtale:
-            return <>
-                {velgSak}
-                {velgOppgaveliste}
-                {avsluttDialogEtterSending}
-            </>;
+            return (
+                <>
+                    {velgSak}
+                    {velgOppgaveliste}
+                    {avsluttDialogEtterSending}
+                </>
+            );
         case MeldingsType.Infomelding:
             return velgSak;
     }

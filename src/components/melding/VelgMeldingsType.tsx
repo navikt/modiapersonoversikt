@@ -6,20 +6,17 @@ export interface VelgMeldingsTypeProps {
 }
 
 export function VelgMeldingsType({ meldingsType, setMeldingsType }: VelgMeldingsTypeProps) {
-    const meldingsTypeRadioKnapper = Object
-        .entries(MeldingsType)
-        .map(([key, value]) => (
-            <Radio key={key} value={value}>{value}</Radio>
-        ));
+    const meldingsTypeRadioKnapper = Object.entries(MeldingsType).map(([key, value]) => (
+        <Radio key={key} value={value}>
+            {value}
+        </Radio>
+    ));
 
-    return <RadioGroup
-        legend="Type dialog"
-        onChange={setMeldingsType}
-        value={meldingsType}
-        size="small"
-    >
-        {meldingsTypeRadioKnapper}
-    </RadioGroup>;
+    return (
+        <RadioGroup legend="Type dialog" onChange={setMeldingsType} value={meldingsType} size="small">
+            {meldingsTypeRadioKnapper}
+        </RadioGroup>
+    );
 }
 
 export enum MeldingsType {

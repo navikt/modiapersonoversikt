@@ -1,26 +1,24 @@
-import { Alert, Box, Button, ErrorMessage, Heading, HStack, Textarea, VStack } from '@navikt/ds-react';
 import { EnvelopeClosedIcon } from '@navikt/aksel-icons';
-import { ReactElement } from 'react';
-import { Temagruppe } from 'src/models/temagrupper';
-import VelgTema from 'src/components/melding/VelgTema';
-import { MeldingsType, meldingsTyperTekst, VelgMeldingsType } from 'src/components/melding/VelgMeldingsType';
-import VelgOppgaveliste, { Oppgaveliste } from 'src/components/melding/VelgOppgaveliste';
-import { ValgForMeldingstype } from 'src/components/melding/ValgForMeldingstype';
-import VelgSak from 'src/components/melding/VelgSak';
-import AvsluttDialogEtterSending from 'src/components/melding/AvsluttDialogEtterSending';
-import { FieldApi, useForm, useStore } from '@tanstack/react-form';
-import { z } from 'zod';
-import {
-    JournalforingsSak
-} from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
-import { useValgtenhet } from 'src/context/valgtenhet-state';
-import saksbehandlersEnheter from 'src/rest/resources/saksbehandlersEnheterResource';
-import persondataResource from 'src/rest/resources/persondataResource';
-import { capitalizeName } from 'src/utils/string-utils';
-import { useFodselsnummer } from 'src/utils/customHooks';
-import { $api } from 'src/lib/clients/modiapersonoversikt-api';
-import { type SendMeldingRequestV2, SendMeldingRequestV2TraadType } from 'src/generated/modiapersonoversikt-api';
+import { Alert, Box, Button, ErrorMessage, HStack, Heading, Textarea, VStack } from '@navikt/ds-react';
+import { type FieldApi, useForm, useStore } from '@tanstack/react-form';
 import { Link } from '@tanstack/react-router';
+import type { ReactElement } from 'react';
+import type { JournalforingsSak } from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
+import AvsluttDialogEtterSending from 'src/components/melding/AvsluttDialogEtterSending';
+import { ValgForMeldingstype } from 'src/components/melding/ValgForMeldingstype';
+import { MeldingsType, VelgMeldingsType, meldingsTyperTekst } from 'src/components/melding/VelgMeldingsType';
+import VelgOppgaveliste, { Oppgaveliste } from 'src/components/melding/VelgOppgaveliste';
+import VelgSak from 'src/components/melding/VelgSak';
+import VelgTema from 'src/components/melding/VelgTema';
+import { useValgtenhet } from 'src/context/valgtenhet-state';
+import { type SendMeldingRequestV2, SendMeldingRequestV2TraadType } from 'src/generated/modiapersonoversikt-api';
+import { $api } from 'src/lib/clients/modiapersonoversikt-api';
+import { Temagruppe } from 'src/models/temagrupper';
+import persondataResource from 'src/rest/resources/persondataResource';
+import saksbehandlersEnheter from 'src/rest/resources/saksbehandlersEnheterResource';
+import { useFodselsnummer } from 'src/utils/customHooks';
+import { capitalizeName } from 'src/utils/string-utils';
+import { z } from 'zod';
 
 interface NyMeldingProps {
     lukkeKnapp?: ReactElement<typeof Button>;
@@ -43,10 +41,13 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
     };
     const { error, mutate, isPending, isSuccess } = $api.useMutation('post', '/rest/v2/dialog/sendmelding', {
         onSuccess: () => {
-            form.reset({
-                ...defaultFormOptions,
-                meldingsType: form.state.values.meldingsType
-            }, { keepDefaultValues: true });
+            form.reset(
+                {
+                    ...defaultFormOptions,
+                    meldingsType: form.state.values.meldingsType
+                },
+                { keepDefaultValues: true }
+            );
         }
     });
 
@@ -62,10 +63,7 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
         }
     });
 
-    const meldingsType = useStore(
-        form.store,
-        (state) => state.values.meldingsType
-    );
+    const meldingsType = useStore(form.store, (state) => state.values.meldingsType);
     const meldingsTypeTekst = meldingsTyperTekst[meldingsType];
 
     return (
@@ -77,14 +75,18 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
             padding="2"
             maxWidth="30vw"
         >
-            <form onSubmit={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                form.handleSubmit();
-            }}>
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    form.handleSubmit();
+                }}
+            >
                 <VStack gap="4">
                     <HStack justify="space-between">
-                        <Heading level="1" size="medium">Send ny dialog</Heading>
+                        <Heading level="1" size="medium">
+                            Send ny dialog
+                        </Heading>
                         {lukkeKnapp}
                     </HStack>
                     <form.Field
@@ -98,44 +100,40 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                     />
                     <form.Field
                         name="melding"
-                        children={(field) =>
+                        children={(field) => (
                             <Textarea
                                 label={meldingsTypeTekst.tittel}
                                 description={meldingsTypeTekst.beskrivelse}
                                 value={field.state.value}
-                                onChange={(e) =>
-                                    field.handleChange(e.target.value)
-                                }
+                                onChange={(e) => field.handleChange(e.target.value)}
                                 error={errorMesageForField(field)}
                             />
-                        }
+                        )}
                     />
                     <ValgForMeldingstype
                         meldingsType={meldingsType}
                         velgTema={
                             <form.Field
                                 name="tema"
-                                children={
-                                    (field) =>
-                                        <VelgTema
-                                            valgtTema={field.state.value}
-                                            setValgtTema={(tema) => field.handleChange(tema)}
-                                            error={errorComponentForField(field)}
-                                        />
-                                }
+                                children={(field) => (
+                                    <VelgTema
+                                        valgtTema={field.state.value}
+                                        setValgtTema={(tema) => field.handleChange(tema)}
+                                        error={errorComponentForField(field)}
+                                    />
+                                )}
                             />
                         }
                         velgOppgaveliste={
                             <form.Field
                                 name="oppgaveliste"
-                                children={
-                                    (field) =>
-                                        <VelgOppgaveliste
-                                            valgtOppgaveliste={field.state.value}
-                                            setValgtOppgaveliste={(oppgaveliste) => field.handleChange(oppgaveliste)}
-                                            enhet={enhetsNavn}
-                                        />
-                                }
+                                children={(field) => (
+                                    <VelgOppgaveliste
+                                        valgtOppgaveliste={field.state.value}
+                                        setValgtOppgaveliste={(oppgaveliste) => field.handleChange(oppgaveliste)}
+                                        enhet={enhetsNavn}
+                                    />
+                                )}
                             />
                         }
                         velgSak={
@@ -153,16 +151,18 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                         avsluttDialogEtterSending={
                             <form.Field
                                 name="meldingsType"
-                                children={(field) =>
+                                children={(field) => (
                                     <AvsluttDialogEtterSending
                                         meldingsType={field.state.value}
                                         setMeldingsType={(meldingsType) => field.handleChange(meldingsType)}
                                     />
-                                }
+                                )}
                             />
                         }
                     />
-                    <Button type="submit" loading={isPending}>Send til {brukerNavn}</Button>
+                    <Button type="submit" loading={isPending}>
+                        Send til {brukerNavn}
+                    </Button>
                     <Button
                         type="button"
                         variant="tertiary"
@@ -197,7 +197,7 @@ function generateRequestBody(value: NyMeldingFormOptions) {
                 ...common,
                 traadType: SendMeldingRequestV2TraadType.SAMTALEREFERAT,
                 // Tema er validert av schema ved meldingstype Referat
-                temagruppe: value.tema!!
+                temagruppe: value.tema!
             };
             break;
         case MeldingsType.Samtale:
@@ -206,7 +206,7 @@ function generateRequestBody(value: NyMeldingFormOptions) {
                 traadType: SendMeldingRequestV2TraadType.MELDINGSKJEDE,
                 avsluttet: false,
                 // Oppgaveliste er validert av schema ved meldingstype Samtale
-                erOppgaveTilknyttetAnsatt: value.oppgaveliste!! === Oppgaveliste.MinListe
+                erOppgaveTilknyttetAnsatt: value.oppgaveliste! === Oppgaveliste.MinListe
             };
             break;
         case MeldingsType.Infomelding:
@@ -225,8 +225,7 @@ function errorMesageForField(field: FieldApi<NyMeldingFormOptions, any>) {
 }
 
 function errorComponentForField(field: FieldApi<NyMeldingFormOptions, any>) {
-    return field.state.meta.errors.isNotEmpty() ?
-        <ErrorMessage>{errorMesageForField(field)}</ErrorMessage> : null;
+    return field.state.meta.errors.isNotEmpty() ? <ErrorMessage>{errorMesageForField(field)}</ErrorMessage> : null;
 }
 
 function useEnhetsnavn(enhetId: string) {
@@ -248,37 +247,42 @@ function nyMeldingSchema() {
         enhetsId: z.string().length(4, 'Må ha gyldig enhetsId')
     });
 
-    const sakSchema = z.object({
-        fagsystemKode: z.string(),
-        fagsystemNavn: z.string(),
-        fagsystemSaksId: z.string().nullable(),
-        finnesIGsak: z.boolean(),
-        finnesIPsak: z.boolean(),
-        opprettetDato: z.string().nullable(),
-        saksId: z.string(),
-        saksIdVisning: z.string(),
-        sakstype: z.string().nullable(),
-        sakstypeForVisningGenerell: z.boolean(),
-        temaKode: z.string(),
-        temaNavn: z.string(),
-        syntetisk: z.boolean().nullable().optional()
-    }, { message: 'Må velge en sak' });
+    const sakSchema = z.object(
+        {
+            fagsystemKode: z.string(),
+            fagsystemNavn: z.string(),
+            fagsystemSaksId: z.string().nullable(),
+            finnesIGsak: z.boolean(),
+            finnesIPsak: z.boolean(),
+            opprettetDato: z.string().nullable(),
+            saksId: z.string(),
+            saksIdVisning: z.string(),
+            sakstype: z.string().nullable(),
+            sakstypeForVisningGenerell: z.boolean(),
+            temaKode: z.string(),
+            temaNavn: z.string(),
+            syntetisk: z.boolean().nullable().optional()
+        },
+        { message: 'Må velge en sak' }
+    );
 
-    return z.discriminatedUnion('meldingsType', [
-        z.object({
-            meldingsType: z.literal(MeldingsType.Referat),
-            tema: z.nativeEnum(Temagruppe, { message: 'Må velge et tema' })
-        }),
-        z.object({
-            meldingsType: z.literal(MeldingsType.Samtale),
-            oppgaveliste: z.nativeEnum(Oppgaveliste),
-            sak: sakSchema
-        }),
-        z.object({
-            meldingsType: z.literal(MeldingsType.Infomelding),
-            sak: sakSchema
-        })
-    ]).and(commonSchema);
+    return z
+        .discriminatedUnion('meldingsType', [
+            z.object({
+                meldingsType: z.literal(MeldingsType.Referat),
+                tema: z.nativeEnum(Temagruppe, { message: 'Må velge et tema' })
+            }),
+            z.object({
+                meldingsType: z.literal(MeldingsType.Samtale),
+                oppgaveliste: z.nativeEnum(Oppgaveliste),
+                sak: sakSchema
+            }),
+            z.object({
+                meldingsType: z.literal(MeldingsType.Infomelding),
+                sak: sakSchema
+            })
+        ])
+        .and(commonSchema);
 }
 
 interface NyMeldingFormOptions {

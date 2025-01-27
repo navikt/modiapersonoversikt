@@ -6,5 +6,5 @@ export const Route = createLazyFileRoute('/new/person/utbetaling')({
 });
 
 function RouteComponent() {
-    return <LukkbarNyMelding/>;
+    return <LukkbarNyMelding />;
 }
