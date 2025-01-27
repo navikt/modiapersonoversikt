@@ -1,5 +1,4 @@
-import { CheckboxGroup, VStack } from '@navikt/ds-react';
-import { Checkbox } from 'nav-frontend-skjema';
+import { Checkbox, CheckboxGroup, Label, VStack } from '@navikt/ds-react';
 import { MeldingsType } from 'src/components/melding/VelgMeldingsType';
 
 interface AvsluttDialogEtterSendingProps {
@@ -12,11 +11,12 @@ export default function AvsluttDialogEtterSending({ meldingsType, setMeldingsTyp
         <VStack gap="1">
             <CheckboxGroup legend="Avslutt dialog etter sending">
                 <Checkbox
-                    label="Gjør om til infomelding"
                     value={MeldingsType.Infomelding}
                     checked={meldingsType === MeldingsType.Infomelding}
                     onChange={() => setMeldingsType(MeldingsType.Infomelding)}
-                />
+                >
+                    <Label>Gjør om til infomelding</Label>
+                </Checkbox>
             </CheckboxGroup>
         </VStack>
     );
