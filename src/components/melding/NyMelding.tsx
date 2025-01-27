@@ -14,13 +14,13 @@ import VelgSak from 'src/components/melding/VelgSak';
 import VelgTema from 'src/components/melding/VelgTema';
 import { type SendMeldingRequestV2, SendMeldingRequestV2TraadType } from 'src/generated/modiapersonoversikt-api';
 import { $api } from 'src/lib/clients/modiapersonoversikt-api';
-import { Temagruppe } from 'src/models/temagrupper';
 import persondataResource from 'src/rest/resources/persondataResource';
 import saksbehandlersEnheter from 'src/rest/resources/saksbehandlersEnheterResource';
 import { capitalizeName } from 'src/utils/string-utils';
-import { z } from 'zod';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import { useAtomValue } from 'jotai';
+import nyMeldingSchema, { maksLengdeMelding } from 'src/components/melding/nyMeldingSchema';
+import { Temagruppe } from 'src/models/temagrupper';
 
 interface NyMeldingProps {
     lukkeKnapp?: ReactElement<typeof Button>;
@@ -31,7 +31,6 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
     const enhetsId = useAtomValue(aktivEnhetAtom);
     const enhetsNavn = useEnhetsnavn(enhetsId);
     const brukerNavn = useBrukernavn();
-    const maksLengdeMelding = 15000;
 
     const defaultFormOptions: NyMeldingFormOptions = {
         meldingsType: MeldingsType.Referat,
@@ -54,11 +53,10 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
         }
     });
 
-    const schema = nyMeldingSchema(maksLengdeMelding);
     const form = useForm({
         defaultValues: defaultFormOptions,
         validators: {
-            onSubmit: schema
+            onSubmit: nyMeldingSchema
         },
         onSubmit: ({ value }) => {
             const body = generateRequestBody(value);
@@ -236,54 +234,6 @@ function useBrukernavn() {
     return brukerResource.data
         ? capitalizeName(brukerResource.data.person.navn.firstOrNull()?.fornavn || '')
         : 'bruker';
-}
-
-function nyMeldingSchema(maksLengdeMelding: number) {
-    const commonSchema = z.object({
-        melding: z
-            .string()
-            .nonempty('Du kan ikke sende en tom melding til bruker')
-            .max(maksLengdeMelding, 'Du kan ikke sende en melding som er lenger enn 15.000 tegn'),
-        fnr: z.string(),
-        enhetsId: z.string()
-    });
-
-    const sakSchema = z.object(
-        {
-            fagsystemKode: z.string(),
-            fagsystemNavn: z.string(),
-            fagsystemSaksId: z.string().nullable(),
-            finnesIGsak: z.boolean(),
-            finnesIPsak: z.boolean(),
-            opprettetDato: z.string().nullable(),
-            saksId: z.string(),
-            saksIdVisning: z.string(),
-            sakstype: z.string().nullable(),
-            sakstypeForVisningGenerell: z.boolean(),
-            temaKode: z.string(),
-            temaNavn: z.string(),
-            syntetisk: z.boolean().nullable().optional()
-        },
-        { message: 'Meldingen må knyttes til en sak' }
-    );
-
-    return z
-        .discriminatedUnion('meldingsType', [
-            z.object({
-                meldingsType: z.literal(MeldingsType.Referat),
-                tema: z.nativeEnum(Temagruppe, { message: 'Meldingen må knyttes til et tema' })
-            }),
-            z.object({
-                meldingsType: z.literal(MeldingsType.Samtale),
-                oppgaveliste: z.nativeEnum(Oppgaveliste),
-                sak: sakSchema
-            }),
-            z.object({
-                meldingsType: z.literal(MeldingsType.Infomelding),
-                sak: sakSchema
-            })
-        ])
-        .and(commonSchema);
 }
 
 interface NyMeldingFormOptions {
