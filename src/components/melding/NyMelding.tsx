@@ -92,18 +92,16 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                         </Heading>
                         {lukkeKnapp}
                     </HStack>
-                    <form.Field
-                        name="meldingsType"
-                        children={(field) => (
+                    <form.Field name="meldingsType">
+                        {(field) => (
                             <VelgMeldingsType
                                 meldingsType={field.state.value}
                                 setMeldingsType={(meldingsType) => field.handleChange(meldingsType)}
                             />
                         )}
-                    />
-                    <form.Field
-                        name="melding"
-                        children={(field) => (
+                    </form.Field>
+                    <form.Field name="melding">
+                        {(field) => (
                             <Textarea
                                 label={meldingsTypeTekst.tittel}
                                 description={meldingsTypeTekst.beskrivelse}
@@ -113,55 +111,51 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                                 maxLength={maksLengdeMelding}
                             />
                         )}
-                    />
+                    </form.Field>
                     <ValgForMeldingstype
                         meldingsType={meldingsType}
                         velgTema={
-                            <form.Field
-                                name="tema"
-                                children={(field) => (
+                            <form.Field name="tema">
+                                {(field) => (
                                     <VelgTema
                                         valgtTema={field.state.value}
                                         setValgtTema={(tema) => field.handleChange(tema)}
                                         error={errorComponentForField(field)}
                                     />
                                 )}
-                            />
+                            </form.Field>
                         }
                         velgOppgaveliste={
-                            <form.Field
-                                name="oppgaveliste"
-                                children={(field) => (
+                            <form.Field name="oppgaveliste">
+                                {(field) => (
                                     <VelgOppgaveliste
                                         valgtOppgaveliste={field.state.value}
                                         setValgtOppgaveliste={(oppgaveliste) => field.handleChange(oppgaveliste)}
                                         enhet={enhetsNavn}
                                     />
                                 )}
-                            />
+                            </form.Field>
                         }
                         velgSak={
-                            <form.Field
-                                name="sak"
-                                children={(field) => (
+                            <form.Field name="sak">
+                                {(field) => (
                                     <VelgSak
                                         valgtSak={field.state.value}
                                         setSak={(sak) => field.handleChange(sak)}
                                         error={errorComponentForField(field)}
                                     />
                                 )}
-                            />
+                            </form.Field>
                         }
                         avsluttDialogEtterSending={
-                            <form.Field
-                                name="meldingsType"
-                                children={(field) => (
+                            <form.Field name="meldingsType">
+                                {(field) => (
                                     <AvsluttDialogEtterSending
                                         meldingsType={field.state.value}
                                         setMeldingsType={(meldingsType) => field.handleChange(meldingsType)}
                                     />
                                 )}
-                            />
+                            </form.Field>
                         }
                     />
                     <Button type="submit" loading={isPending}>
