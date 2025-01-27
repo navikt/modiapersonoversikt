@@ -20,7 +20,7 @@
         "test": "vitest",
         "lint": "biome check",
         "fix": "biome check --write",
-        "lint:ci": "biome ci",
+        "lint:ci": "biome ci --reporter=github",
         "lint-staged": "lint-staged",
         "types": "tsc --noEmit",
         "gen:routes": "tsr generate",
