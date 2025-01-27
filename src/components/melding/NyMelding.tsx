@@ -264,14 +264,14 @@ function nyMeldingSchema(maksLengdeMelding: number) {
             temaNavn: z.string(),
             syntetisk: z.boolean().nullable().optional()
         },
-        { message: 'Må velge en sak' }
+        { message: 'Meldingen må knyttes til en sak' }
     );
 
     return z
         .discriminatedUnion('meldingsType', [
             z.object({
                 meldingsType: z.literal(MeldingsType.Referat),
-                tema: z.nativeEnum(Temagruppe, { message: 'Må velge et tema' })
+                tema: z.nativeEnum(Temagruppe, { message: 'Meldingen må knyttes til et tema' })
             }),
             z.object({
                 meldingsType: z.literal(MeldingsType.Samtale),
