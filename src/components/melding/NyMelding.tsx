@@ -19,13 +19,14 @@ import saksbehandlersEnheter from 'src/rest/resources/saksbehandlersEnheterResou
 import { useFodselsnummer } from 'src/utils/customHooks';
 import { capitalizeName } from 'src/utils/string-utils';
 import { z } from 'zod';
+import { usePersonAtomValue } from 'src/lib/state/context';
 
 interface NyMeldingProps {
     lukkeKnapp?: ReactElement<typeof Button>;
 }
 
 function NyMelding({ lukkeKnapp }: NyMeldingProps) {
-    const fnr = useFodselsnummer();
+    const fnr = usePersonAtomValue();
     const enhetsId = useValgtenhet().enhetId;
     const enhetsNavn = useEnhetsnavn(enhetsId);
     const brukerNavn = useBrukernavn();
