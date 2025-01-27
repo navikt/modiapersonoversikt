@@ -1,11 +1,11 @@
-import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { type FetchError, post } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import type { Oppgave } from '../../models/meldinger/oppgave';
-import { useFodselsnummer } from '../../utils/customHooks';
-import { type DefaultConfig, type RendererOrConfig, applyDefaults, useRest } from '../useRest';
+import { applyDefaults, type DefaultConfig, type RendererOrConfig, useRest } from '../useRest';
+import { usePersonAtomValue } from 'src/lib/state/context';
 
 function queryKey(fnr: string): [string, string] {
     return ['tildelteoppgaver', fnr];
@@ -22,7 +22,7 @@ const defaults: DefaultConfig = {
 
 const resource = {
     useFetch(): UseQueryResult<Oppgave[], FetchError> {
-        const fnr = useFodselsnummer();
+        const fnr = usePersonAtomValue();
 
         return useQuery({
             queryKey: queryKey(fnr),

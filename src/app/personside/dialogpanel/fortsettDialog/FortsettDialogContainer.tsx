@@ -1,4 +1,4 @@
-import { type UseQueryResult, useQueryClient } from '@tanstack/react-query';
+import { useQueryClient, type UseQueryResult } from '@tanstack/react-query';
 import { Block } from '@tanstack/react-router';
 import { guid } from 'nav-frontend-js-utils';
 import { Undertittel } from 'nav-frontend-typografi';
@@ -18,7 +18,6 @@ import dialogResource from '../../../../rest/resources/dialogResource';
 import journalsakResource from '../../../../rest/resources/journalsakResource';
 import tildelteoppgaver from '../../../../rest/resources/tildelteoppgaverResource';
 import theme from '../../../../styles/personOversiktTheme';
-import { useFodselsnummer } from '../../../../utils/customHooks';
 import { loggError } from '../../../../utils/logger/frontendLogger';
 import { erJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
 import ReflowBoundry from '../ReflowBoundry';
@@ -35,6 +34,7 @@ import {
 } from './FortsettDialogTypes';
 import useOpprettHenvendelse from './useOpprettHenvendelse';
 import { FortsettDialogValidator } from './validatorer';
+import { usePersonAtomValue } from 'src/lib/state/context';
 
 interface Props {
     traad: Traad;
@@ -73,7 +73,7 @@ function FortsettDialogContainer(props: Props) {
         [props.defaultOppgaveDestinasjon, props.traad.traadType]
     );
 
-    const fnr = useFodselsnummer();
+    const fnr = usePersonAtomValue();
     const tittelId = useRef(guid());
     const [state, setState] = useState<FortsettDialogState>(initialState);
     const valgtEnhet = useValgtenhet().enhetId;

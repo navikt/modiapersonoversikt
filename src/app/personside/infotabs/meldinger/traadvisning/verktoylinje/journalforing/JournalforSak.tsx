@@ -10,13 +10,13 @@ import { useValgtenhet } from '../../../../../../../context/valgtenhet-state';
 import type { Traad } from '../../../../../../../models/meldinger/meldinger';
 import dialogResource from '../../../../../../../rest/resources/dialogResource';
 import journalsakResource from '../../../../../../../rest/resources/journalsakResource';
-import { useFodselsnummer } from '../../../../../../../utils/customHooks';
 import { formatterDatoMedMaanedsnavnOrNull } from '../../../../../../../utils/date-utils';
 import { loggError } from '../../../../../../../utils/logger/frontendLogger';
 import { ENDASH } from '../../../../../../../utils/string-utils';
 import { StyledTable } from '../../../../../../../utils/table/StyledTable';
 import type { JournalforingsSak } from './JournalforingPanel';
 import { sakKategori } from './VelgSak';
+import { usePersonAtomValue } from 'src/lib/state/context';
 
 interface Props {
     sak: JournalforingsSak;
@@ -50,7 +50,7 @@ export function JournalforSak(props: Props) {
     const queryClient = useQueryClient();
     const valgtEnhet = useValgtenhet().enhetId;
     const kategori = sakKategori(props.sak);
-    const fnr = useFodselsnummer();
+    const fnr = usePersonAtomValue();
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [journalforingSuksess, setJournalforingSuksess] = useState(false);

@@ -1,7 +1,7 @@
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { type JSX, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { RespectConflictError, postWithConflictVerification } from '../../../../api/api';
+import { postWithConflictVerification, RespectConflictError } from '../../../../api/api';
 import { apiBaseUri } from '../../../../api/config';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { useValgtenhet } from '../../../../context/valgtenhet-state';
@@ -12,8 +12,9 @@ import type {
 } from '../../../../models/meldinger/meldinger';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
 import tildelteoppgaverResource from '../../../../rest/resources/tildelteoppgaverResource';
-import { useFodselsnummer, useOnMount } from '../../../../utils/customHooks';
+import { useOnMount } from '../../../../utils/customHooks';
 import { loggError } from '../../../../utils/logger/frontendLogger';
+import { usePersonAtomValue } from 'src/lib/state/context';
 
 interface NotFinishedOpprettHenvendelse {
     success: false;
@@ -33,7 +34,7 @@ function useOpprettHenvendelse(traad: Traad): OpprettHenvendelseReturns {
     const [response, setResponse] = useState<OpprettHenvendelseResponse | undefined>();
     const tildelteoppgaver = tildelteoppgaverResource.useFetch();
     const dispatch = useDispatch();
-    const fnr = useFodselsnummer();
+    const fnr = usePersonAtomValue();
 
     useOnMount(function getBehandlingsId() {
         const request: OpprettHenvendelseRequestV2 = {

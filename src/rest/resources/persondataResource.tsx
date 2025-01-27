@@ -1,8 +1,8 @@
-import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import { type FetchError, post } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
 import type { Data as Persondata } from '../../app/personside/visittkort-v2/PersondataDomain';
-import { useFodselsnummer } from '../../utils/customHooks';
+import { usePersonAtomValue } from 'src/lib/state/context';
 
 function queryKey(fnr: string) {
     return ['persondata', fnr];
@@ -14,7 +14,7 @@ function urlUtenFnrIPath() {
 
 const resource = {
     useFetch(): UseQueryResult<Persondata, FetchError> {
-        const fnr = useFodselsnummer();
+        const fnr = usePersonAtomValue();
         return useQuery({
             queryKey: queryKey(fnr),
             queryFn: () => post(urlUtenFnrIPath(), { fnr })

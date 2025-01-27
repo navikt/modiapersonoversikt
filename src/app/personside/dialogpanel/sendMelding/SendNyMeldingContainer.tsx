@@ -9,13 +9,13 @@ import { useValgtenhet } from '../../../../context/valgtenhet-state';
 import { Meldingstype, type SendMeldingRequestV2, type Traad, TraadType } from '../../../../models/meldinger/meldinger';
 import dialogResource from '../../../../rest/resources/dialogResource';
 import journalsakResource from '../../../../rest/resources/journalsakResource';
-import { useFodselsnummer } from '../../../../utils/customHooks';
 import useDraft, { type Draft } from '../use-draft';
 import { useAlertOnNavigation } from '../useAlertOnNavigation';
 import SendNyMelding, { OppgavelisteValg, type SendNyMeldingState } from './SendNyMelding';
 import { MeldingSendtFeilet, ReferatSendtKvittering, SamtaleSendtKvittering } from './SendNyMeldingKvittering';
 import { type KvitteringNyMelding, type SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
 import { MeldingValidator } from './validatorer';
+import { usePersonAtomValue } from 'src/lib/state/context';
 
 interface Props {
     defaultOppgaveDestinasjon: OppgavelisteValg;
@@ -35,7 +35,7 @@ function SendNyMeldingContainer(props: Props) {
         }),
         [props.defaultOppgaveDestinasjon]
     );
-    const fnr = useFodselsnummer();
+    const fnr = usePersonAtomValue();
 
     const valgtEnhet = useValgtenhet().enhetId;
     const [state, setState] = useState<SendNyMeldingState>(initialState);

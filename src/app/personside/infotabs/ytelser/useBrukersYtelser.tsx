@@ -2,14 +2,14 @@ import type { UseQueryResult } from '@tanstack/react-query';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { type ReactNode, useMemo } from 'react';
 import type { FetchError } from '../../../../api/api';
-import { type Ytelse, getYtelseIdDato } from '../../../../models/ytelse/ytelse-utils';
+import { getYtelseIdDato, type Ytelse } from '../../../../models/ytelse/ytelse-utils';
 import type { FraTilDato } from '../../../../redux/utbetalinger/types';
 import { useForeldrepenger } from '../../../../rest/resources/foreldrepengerResource';
 import { usePleiepenger } from '../../../../rest/resources/pleiepengerResource';
 import { useSykepenger } from '../../../../rest/resources/sykepengerResource';
 import { useTiltakspenger } from '../../../../rest/resources/tiltakspengerResource';
-import { useFodselsnummer } from '../../../../utils/customHooks';
 import { datoSynkende } from '../../../../utils/date-utils';
+import { usePersonAtomValue } from 'src/lib/state/context';
 
 interface Returns {
     ytelser: Ytelse[];
@@ -55,7 +55,7 @@ function placeholder(resource: UseQueryResult<any, FetchError>, tekster: Placeho
 }
 
 function useBrukersYtelser(periode: FraTilDato): Returns {
-    const fnr = useFodselsnummer();
+    const fnr = usePersonAtomValue();
     const foreldrepengerResponse = useForeldrepenger(fnr, periode.fra, periode.til);
     const pleiepengerResponse = usePleiepenger(fnr, periode.fra, periode.til);
     const sykepengerResponse = useSykepenger(fnr, periode.fra, periode.til);

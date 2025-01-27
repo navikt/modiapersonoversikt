@@ -1,8 +1,8 @@
-import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import { type FetchError, post } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
 import type { VarslerResult } from '../../models/varsel';
-import { useFodselsnummer } from '../../utils/customHooks';
+import { usePersonAtomValue } from 'src/lib/state/context';
 
 function queryKey(fnr: string): [string, string] {
     return ['varsel', fnr];
@@ -13,7 +13,7 @@ function urlV3(): string {
 }
 const resource = {
     useFetch(): UseQueryResult<VarslerResult, FetchError> {
-        const fnr = useFodselsnummer();
+        const fnr = usePersonAtomValue();
 
         return useQuery({
             queryKey: queryKey(fnr),

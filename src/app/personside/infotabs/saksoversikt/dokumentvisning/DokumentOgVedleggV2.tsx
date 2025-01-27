@@ -12,11 +12,12 @@ import { TilbakePil } from '../../../../../components/common-styled-components';
 import type { Dokument, Journalpost } from '../../../../../models/saksoversikt/journalpost';
 import type { SakstemaSoknadsstatus } from '../../../../../models/saksoversikt/sakstema';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
-import { useFocusOnMount, useFodselsnummer } from '../../../../../utils/customHooks';
+import { useFocusOnMount } from '../../../../../utils/customHooks';
 import { useHentAlleSakstemaFraResourceV2 } from '../useSakstemaURLState';
 import { aggregertSakstemaV2 } from '../utils/saksoversiktUtilsV2';
 import DokumentVisning from './SaksDokumentVisning';
 import { getSaksdokumentUrl } from './getSaksdokumentUrl';
+import { usePersonAtomValue } from 'src/lib/state/context';
 
 const Content = styled(Panel)`
   flex-grow: 1;
@@ -60,7 +61,7 @@ function DokumentOgVedlegg(props: Props) {
     const match = useMatchRoute();
     const fullscreen = match({ to: '/saker' });
     const navigate = useNavigate();
-    const fodselsnummer = useFodselsnummer();
+    const fodselsnummer = usePersonAtomValue();
     const { alleSakstema } = useHentAlleSakstemaFraResourceV2();
 
     useFocusOnMount(ref);

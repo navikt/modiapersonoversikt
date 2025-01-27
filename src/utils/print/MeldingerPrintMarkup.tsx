@@ -4,10 +4,10 @@ import styled from 'styled-components';
 import { meldingstittel } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
 import type { Melding, MeldingJournalpost, Traad } from '../../models/meldinger/meldinger';
 import theme from '../../styles/personOversiktTheme';
-import { useFodselsnummer } from '../customHooks';
 import { datoStigende, formatterDato, formatterDatoTid } from '../date-utils';
 import { rule as sladdRule } from '../sladdrule';
 import { formaterDato } from '../string-utils';
+import { usePersonAtomValue } from 'src/lib/state/context';
 
 interface Props {
     valgtTraad: Traad;
@@ -62,7 +62,7 @@ function JournalposterMarkup(props: { journalposter: Array<MeldingJournalpost> }
 }
 
 function EnkeltMeldingMarkup({ melding }: { melding: Melding }) {
-    const fnr = useFodselsnummer();
+    const fnr = usePersonAtomValue();
     const tittel = meldingstittel(melding);
     const temagruppe = melding.temagruppe && <Element>Temagruppe: {melding.temagruppe}</Element>;
 

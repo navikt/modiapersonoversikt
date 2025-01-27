@@ -1,10 +1,10 @@
 import aktoridResource from '../../rest/resources/aktoridResource';
 import baseurls from '../../rest/resources/baseurlsResource';
-import { useFodselsnummer } from '../../utils/customHooks';
+import { usePersonAtomValue } from 'src/lib/state/context';
 
 function useUrlNyPersonforvalter() {
     const baseUrlResource = baseurls.useFetch();
-    const fnr = useFodselsnummer();
+    const fnr = usePersonAtomValue();
     const aktoridResponse = aktoridResource.useFetch(fnr ?? '');
 
     if (!aktoridResponse.data || !baseUrlResource.data) {

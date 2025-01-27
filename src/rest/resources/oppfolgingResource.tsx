@@ -1,13 +1,15 @@
-import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import dayjs from 'dayjs';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { type FetchError, post } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
-import { getUtbetalingerForSiste30DagerDatoer } from '../../app/personside/infotabs/utbetalinger/utils/utbetalinger-utils';
+import {
+    getUtbetalingerForSiste30DagerDatoer
+} from '../../app/personside/infotabs/utbetalinger/utils/utbetalinger-utils';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import type { DetaljertOppfolging } from '../../models/oppfolging';
-import { useFodselsnummer } from '../../utils/customHooks';
-import { type DefaultConfig, type RendererOrConfig, applyDefaults, useRest } from '../useRest';
+import { applyDefaults, type DefaultConfig, type RendererOrConfig, useRest } from '../useRest';
+import { usePersonAtomValue } from 'src/lib/state/context';
 
 const defaults: DefaultConfig = {
     ifPending: <CenteredLazySpinner />,
@@ -16,7 +18,7 @@ const defaults: DefaultConfig = {
 
 const resource = {
     useFetch(fom: string, tom: string): UseQueryResult<DetaljertOppfolging, FetchError> {
-        const fnr = useFodselsnummer();
+        const fnr = usePersonAtomValue();
         const queryParams = `?startDato=${fom}&sluttDato=${tom}`;
         return useQuery({
             queryKey: ['oppfolging', fnr, fom, tom],

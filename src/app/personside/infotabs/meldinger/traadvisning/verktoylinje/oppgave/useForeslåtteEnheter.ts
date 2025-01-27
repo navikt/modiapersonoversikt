@@ -2,12 +2,12 @@ import { useEffect, useMemo, useState } from 'react';
 import type { UseFormReturn } from 'react-hook-form';
 import { apiBaseUri, postConfig } from '../../../../../../../api/config';
 import type { Enhet } from '../../../../../../../models/meldinger/oppgave';
-import { useFodselsnummer } from '../../../../../../../utils/customHooks';
 import { loggError, loggEvent } from '../../../../../../../utils/logger/frontendLogger';
 import type { OppgaveSkjemaForm } from './oppgaveInterfaces';
+import { usePersonAtomValue } from 'src/lib/state/context';
 
 function useForeslatteEnheter({ watch }: UseFormReturn<OppgaveSkjemaForm>) {
-    const fnr = useFodselsnummer();
+    const fnr = usePersonAtomValue();
 
     const temakode = watch('valgtTema');
     const typekode = watch('valgtOppgavetype');
