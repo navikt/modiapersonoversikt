@@ -53,7 +53,7 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
     });
 
     const schema = nyMeldingSchema();
-    const form = useForm<NyMeldingFormOptions>({
+    const form = useForm({
         defaultValues: defaultFormOptions,
         validators: {
             onSubmit: schema
