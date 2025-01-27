@@ -12,7 +12,6 @@ import { MeldingsType, meldingsTyperTekst, VelgMeldingsType } from 'src/componen
 import VelgOppgaveliste, { Oppgaveliste } from 'src/components/melding/VelgOppgaveliste';
 import VelgSak from 'src/components/melding/VelgSak';
 import VelgTema from 'src/components/melding/VelgTema';
-import { useValgtenhet } from 'src/context/valgtenhet-state';
 import { type SendMeldingRequestV2, SendMeldingRequestV2TraadType } from 'src/generated/modiapersonoversikt-api';
 import { $api } from 'src/lib/clients/modiapersonoversikt-api';
 import { Temagruppe } from 'src/models/temagrupper';
@@ -20,7 +19,8 @@ import persondataResource from 'src/rest/resources/persondataResource';
 import saksbehandlersEnheter from 'src/rest/resources/saksbehandlersEnheterResource';
 import { capitalizeName } from 'src/utils/string-utils';
 import { z } from 'zod';
-import { usePersonAtomValue } from 'src/lib/state/context';
+import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
+import { useAtomValue } from 'jotai';
 
 interface NyMeldingProps {
     lukkeKnapp?: ReactElement<typeof Button>;
@@ -28,7 +28,7 @@ interface NyMeldingProps {
 
 function NyMelding({ lukkeKnapp }: NyMeldingProps) {
     const fnr = usePersonAtomValue();
-    const enhetsId = useValgtenhet().enhetId;
+    const enhetsId = useAtomValue(aktivEnhetAtom);
     const enhetsNavn = useEnhetsnavn(enhetsId);
     const brukerNavn = useBrukernavn();
     const maksLengdeMelding = 15000;
@@ -232,7 +232,7 @@ function errorComponentForField(field: FieldApi<NyMeldingFormOptions, any>) {
     return field.state.meta.errors.isNotEmpty() ? <ErrorMessage>{errorMesageForField(field)}</ErrorMessage> : null;
 }
 
-function useEnhetsnavn(enhetId: string) {
+function useEnhetsnavn(enhetId: string | undefined) {
     const enheter = saksbehandlersEnheter.useFetch().data?.enhetliste ?? [];
     return enheter.find((enhet) => enhet.enhetId === enhetId)?.navn ?? 'Ukjent enhet';
 }
