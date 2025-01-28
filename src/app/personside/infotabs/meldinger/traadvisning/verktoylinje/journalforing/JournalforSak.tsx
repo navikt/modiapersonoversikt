@@ -3,6 +3,7 @@ import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { Flatknapp, Hovedknapp } from 'nav-frontend-knapper';
 import { Ingress, Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { useState } from 'react';
+import { usePersonAtomValue } from 'src/lib/state/context';
 import styled from 'styled-components';
 import { post } from '../../../../../../../api/api';
 import { apiBaseUri } from '../../../../../../../api/config';
@@ -16,7 +17,6 @@ import { ENDASH } from '../../../../../../../utils/string-utils';
 import { StyledTable } from '../../../../../../../utils/table/StyledTable';
 import type { JournalforingsSak } from './JournalforingPanel';
 import { sakKategori } from './VelgSak';
-import { usePersonAtomValue } from 'src/lib/state/context';
 
 interface Props {
     sak: JournalforingsSak;

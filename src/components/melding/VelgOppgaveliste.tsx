@@ -1,6 +1,6 @@
 import { RadioGroup } from '@navikt/ds-react';
-import type { Oppgaveliste, OppgavelisteRadioKnapper } from 'src/components/melding/OppgavelisteRadioKnapper';
 import type { ReactElement } from 'react';
+import type { Oppgaveliste, OppgavelisteRadioKnapper } from 'src/components/melding/OppgavelisteRadioKnapper';
 
 interface VelgOppgavelisteProps {
     valgtOppgaveliste?: Oppgaveliste;

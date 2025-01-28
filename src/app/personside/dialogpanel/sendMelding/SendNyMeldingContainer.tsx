@@ -1,6 +1,7 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { Block } from '@tanstack/react-router';
 import { type FormEvent, useCallback, useMemo, useState } from 'react';
+import { usePersonAtomValue } from 'src/lib/state/context';
 import { post } from '../../../../api/api';
 import { apiBaseUri } from '../../../../api/config';
 import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureToggleOn';
@@ -15,7 +16,6 @@ import SendNyMelding, { OppgavelisteValg, type SendNyMeldingState } from './Send
 import { MeldingSendtFeilet, ReferatSendtKvittering, SamtaleSendtKvittering } from './SendNyMeldingKvittering';
 import { type KvitteringNyMelding, type SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
 import { MeldingValidator } from './validatorer';
-import { usePersonAtomValue } from 'src/lib/state/context';
 
 interface Props {
     defaultOppgaveDestinasjon: OppgavelisteValg;

@@ -2,9 +2,7 @@ import { PlusIcon } from '@navikt/aksel-icons';
 import { Alert, Button, HStack, Label, Modal, Radio, RadioGroup, Table, Tag, VStack } from '@navikt/ds-react';
 import Spinner from 'nav-frontend-spinner';
 import { type ReactNode, useState } from 'react';
-import {
-    SakKategori
-} from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
+import { SakKategori } from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import TemaTable from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/TemaTabell';
 import {
     fjernSakerSomAlleredeErTilknyttet,

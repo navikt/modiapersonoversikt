@@ -1,7 +1,8 @@
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { type JSX, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { postWithConflictVerification, RespectConflictError } from '../../../../api/api';
+import { usePersonAtomValue } from 'src/lib/state/context';
+import { RespectConflictError, postWithConflictVerification } from '../../../../api/api';
 import { apiBaseUri } from '../../../../api/config';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { useValgtenhet } from '../../../../context/valgtenhet-state';
@@ -14,7 +15,6 @@ import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions
 import tildelteoppgaverResource from '../../../../rest/resources/tildelteoppgaverResource';
 import { useOnMount } from '../../../../utils/customHooks';
 import { loggError } from '../../../../utils/logger/frontendLogger';
-import { usePersonAtomValue } from 'src/lib/state/context';
 
 interface NotFinishedOpprettHenvendelse {
     success: false;

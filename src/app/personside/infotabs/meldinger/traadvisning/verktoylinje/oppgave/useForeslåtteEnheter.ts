@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
 import type { UseFormReturn } from 'react-hook-form';
+import { usePersonAtomValue } from 'src/lib/state/context';
 import { apiBaseUri, postConfig } from '../../../../../../../api/config';
 import type { Enhet } from '../../../../../../../models/meldinger/oppgave';
 import { loggError, loggEvent } from '../../../../../../../utils/logger/frontendLogger';
 import type { OppgaveSkjemaForm } from './oppgaveInterfaces';
-import { usePersonAtomValue } from 'src/lib/state/context';
 
 function useForeslatteEnheter({ watch }: UseFormReturn<OppgaveSkjemaForm>) {
     const fnr = usePersonAtomValue();

@@ -1,15 +1,13 @@
-import { useQuery, type UseQueryResult } from '@tanstack/react-query';
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
 import dayjs from 'dayjs';
 import AlertStripe from 'nav-frontend-alertstriper';
+import { usePersonAtomValue } from 'src/lib/state/context';
 import { type FetchError, post } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
-import {
-    getUtbetalingerForSiste30DagerDatoer
-} from '../../app/personside/infotabs/utbetalinger/utils/utbetalinger-utils';
+import { getUtbetalingerForSiste30DagerDatoer } from '../../app/personside/infotabs/utbetalinger/utils/utbetalinger-utils';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import type { UtbetalingerResponse } from '../../models/utbetalinger';
-import { applyDefaults, type DefaultConfig, type RendererOrConfig, useRest } from '../useRest';
-import { usePersonAtomValue } from 'src/lib/state/context';
+import { type DefaultConfig, type RendererOrConfig, applyDefaults, useRest } from '../useRest';
 
 function urlV2(fom: string, tom: string): string {
     return `${apiBaseUri}/v2/utbetaling?startDato=${fom}&sluttDato=${tom}`;

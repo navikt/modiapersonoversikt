@@ -1,5 +1,6 @@
 import Tekstomrade, { defaultRules } from 'nav-frontend-tekstomrade';
 import { Element, Ingress, Normaltekst } from 'nav-frontend-typografi';
+import { usePersonAtomValue } from 'src/lib/state/context';
 import styled from 'styled-components';
 import { meldingstittel } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
 import type { Melding, MeldingJournalpost, Traad } from '../../models/meldinger/meldinger';
@@ -7,7 +8,6 @@ import theme from '../../styles/personOversiktTheme';
 import { datoStigende, formatterDato, formatterDatoTid } from '../date-utils';
 import { rule as sladdRule } from '../sladdrule';
 import { formaterDato } from '../string-utils';
-import { usePersonAtomValue } from 'src/lib/state/context';
 
 interface Props {
     valgtTraad: Traad;

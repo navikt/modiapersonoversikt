@@ -1,9 +1,9 @@
 import { Normaltekst } from 'nav-frontend-typografi';
 import type { ReactNode } from 'react';
+import { usePersonAtomValue } from 'src/lib/state/context';
 import styled from 'styled-components';
 import NavLogo from '../../svg/NavLogo';
 import { datoVerbose } from '../date-utils';
-import { usePersonAtomValue } from 'src/lib/state/context';
 
 const Wrapper = styled.div`
     @page {

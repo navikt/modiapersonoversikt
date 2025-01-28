@@ -1,11 +1,11 @@
-import { useQuery, type UseQueryResult } from '@tanstack/react-query';
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
 import AlertStripe from 'nav-frontend-alertstriper';
+import { usePersonAtomValue } from 'src/lib/state/context';
 import { type FetchError, post } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import type { Oppgave } from '../../models/meldinger/oppgave';
-import { applyDefaults, type DefaultConfig, type RendererOrConfig, useRest } from '../useRest';
-import { usePersonAtomValue } from 'src/lib/state/context';
+import { type DefaultConfig, type RendererOrConfig, applyDefaults, useRest } from '../useRest';
 
 function queryKey(fnr: string): [string, string] {
     return ['tildelteoppgaver', fnr];

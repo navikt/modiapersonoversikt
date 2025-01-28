@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
+import { usePersonAtomValue } from 'src/lib/state/context';
 import type { Oppgave } from '../../models/meldinger/oppgave';
 import tildelteoppgaver from '../../rest/resources/tildelteoppgaverResource';
-import { usePersonAtomValue } from 'src/lib/state/context';
 
 const emptyList: Oppgave[] = [];
 function useTildelteOppgaver(): { paaBruker: Oppgave[] } {

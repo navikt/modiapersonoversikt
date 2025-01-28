@@ -1,9 +1,10 @@
-import { useQueryClient, type UseQueryResult } from '@tanstack/react-query';
+import { type UseQueryResult, useQueryClient } from '@tanstack/react-query';
 import { Block } from '@tanstack/react-router';
 import { guid } from 'nav-frontend-js-utils';
 import { Undertittel } from 'nav-frontend-typografi';
 import { type FormEvent, useCallback, useMemo, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { usePersonAtomValue } from 'src/lib/state/context';
 import styled from 'styled-components';
 import { type FetchError, post } from '../../../../api/api';
 import { apiBaseUri } from '../../../../api/config';
@@ -34,7 +35,6 @@ import {
 } from './FortsettDialogTypes';
 import useOpprettHenvendelse from './useOpprettHenvendelse';
 import { FortsettDialogValidator } from './validatorer';
-import { usePersonAtomValue } from 'src/lib/state/context';
 
 interface Props {
     traad: Traad;

@@ -1,27 +1,27 @@
 import { EnvelopeClosedIcon } from '@navikt/aksel-icons';
-import { Alert, Box, Button, ErrorMessage, Heading, HStack, Textarea, VStack } from '@navikt/ds-react';
+import { Alert, Box, Button, ErrorMessage, HStack, Heading, Textarea, VStack } from '@navikt/ds-react';
 import { useForm, useStore } from '@tanstack/react-form';
 import { Link } from '@tanstack/react-router';
+import { useAtomValue } from 'jotai';
 import type { ReactElement } from 'react';
 import AvsluttDialogEtterSending from 'src/components/melding/AvsluttDialogEtterSending';
+import { Oppgaveliste, OppgavelisteRadioKnapper } from 'src/components/melding/OppgavelisteRadioKnapper';
 import { ValgForMeldingstype } from 'src/components/melding/ValgForMeldingstype';
-import { MeldingsType, meldingsTyperTekst, VelgMeldingsType } from 'src/components/melding/VelgMeldingsType';
+import { MeldingsType, VelgMeldingsType, meldingsTyperTekst } from 'src/components/melding/VelgMeldingsType';
 import VelgOppgaveliste from 'src/components/melding/VelgOppgaveliste';
 import VelgSak from 'src/components/melding/VelgSak';
 import VelgTema from 'src/components/melding/VelgTema';
+import nyMeldingSchema, { maksLengdeMelding } from 'src/components/melding/nyMeldingSchema';
 import {
     type JournalforingSak,
     type SendMeldingRequestV2,
     SendMeldingRequestV2TraadType
 } from 'src/generated/modiapersonoversikt-api';
-import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
-import { useAtomValue } from 'jotai';
-import nyMeldingSchema, { maksLengdeMelding } from 'src/components/melding/nyMeldingSchema';
-import type { Temagruppe } from 'src/models/temagrupper';
 import { useSendMelding } from 'src/lib/clients/modiapersonoversikt-api';
-import { useSuspendingBrukernavn } from 'src/lib/hooks/useSuspendingBrukernavn';
 import { useEnhetsnavn } from 'src/lib/hooks/useEnhetsnavn';
-import { Oppgaveliste, OppgavelisteRadioKnapper } from 'src/components/melding/OppgavelisteRadioKnapper';
+import { useSuspendingBrukernavn } from 'src/lib/hooks/useSuspendingBrukernavn';
+import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
+import type { Temagruppe } from 'src/models/temagrupper';
 
 interface NyMeldingProps {
     lukkeKnapp?: ReactElement<typeof Button>;
