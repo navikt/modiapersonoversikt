@@ -19,7 +19,7 @@ import { useAtomValue } from 'jotai';
 import nyMeldingSchema, { maksLengdeMelding } from 'src/components/melding/nyMeldingSchema';
 import type { Temagruppe } from 'src/models/temagrupper';
 import { useSendMelding } from 'src/lib/clients/modiapersonoversikt-api';
-import { useBrukernavn } from 'src/lib/hooks/useBrukernavn';
+import { useSuspendingBrukernavn } from 'src/lib/hooks/useSuspendingBrukernavn';
 import { useEnhetsnavn } from 'src/lib/hooks/useEnhetsnavn';
 
 interface NyMeldingProps {
@@ -30,7 +30,7 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
     const fnr = usePersonAtomValue();
     const enhetsId = useAtomValue(aktivEnhetAtom);
     const enhetsNavn = useEnhetsnavn(enhetsId);
-    const brukerNavn = useBrukernavn();
+    const brukerNavn = useSuspendingBrukernavn();
 
     const { error, mutate, isPending, isSuccess } = useSendMelding(() => {
         form.reset(
