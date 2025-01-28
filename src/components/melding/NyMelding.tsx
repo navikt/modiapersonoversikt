@@ -13,14 +13,13 @@ import VelgOppgaveliste, { Oppgaveliste } from 'src/components/melding/VelgOppga
 import VelgSak from 'src/components/melding/VelgSak';
 import VelgTema from 'src/components/melding/VelgTema';
 import { type SendMeldingRequestV2, SendMeldingRequestV2TraadType } from 'src/generated/modiapersonoversikt-api';
-import persondataResource from 'src/rest/resources/persondataResource';
-import saksbehandlersEnheter from 'src/rest/resources/saksbehandlersEnheterResource';
-import { capitalizeName } from 'src/utils/string-utils';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import { useAtomValue } from 'jotai';
 import nyMeldingSchema, { maksLengdeMelding } from 'src/components/melding/nyMeldingSchema';
 import type { Temagruppe } from 'src/models/temagrupper';
 import { useSendMelding } from 'src/lib/clients/modiapersonoversikt-api';
+import { useBrukernavn } from 'src/lib/hooks/useBrukernavn';
+import { useEnhetsnavn } from 'src/lib/hooks/useEnhetsnavn';
 
 interface NyMeldingProps {
     lukkeKnapp?: ReactElement<typeof Button>;
@@ -32,15 +31,6 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
     const enhetsNavn = useEnhetsnavn(enhetsId);
     const brukerNavn = useBrukernavn();
 
-    const defaultFormOptions: NyMeldingFormOptions = {
-        meldingsType: MeldingsType.Referat,
-        melding: '',
-        tema: undefined,
-        oppgaveliste: Oppgaveliste.MinListe,
-        sak: undefined,
-        fnr: fnr ?? '',
-        enhetsId: enhetsId ?? ''
-    };
     const { error, mutate, isPending, isSuccess } = useSendMelding(() => {
         form.reset(
             {
@@ -51,6 +41,15 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
         );
     });
 
+    const defaultFormOptions: NyMeldingFormOptions = {
+        meldingsType: MeldingsType.Referat,
+        melding: '',
+        tema: undefined,
+        oppgaveliste: Oppgaveliste.MinListe,
+        sak: undefined,
+        fnr: fnr ?? '',
+        enhetsId: enhetsId ?? ''
+    };
     const form = useForm({
         defaultValues: defaultFormOptions,
         validators: {
@@ -226,18 +225,6 @@ function generateRequestBody(value: NyMeldingFormOptions) {
             break;
     }
     return request;
-}
-
-function useEnhetsnavn(enhetId: string | undefined) {
-    const enheter = saksbehandlersEnheter.useFetch().data?.enhetliste ?? [];
-    return enheter.find((enhet) => enhet.enhetId === enhetId)?.navn ?? 'Ukjent enhet';
-}
-
-function useBrukernavn() {
-    const brukerResource = persondataResource.useFetch();
-    return brukerResource.data
-        ? capitalizeName(brukerResource.data.person.navn.firstOrNull()?.fornavn || '')
-        : 'bruker';
 }
 
 interface NyMeldingFormOptions {
