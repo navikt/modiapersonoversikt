@@ -1,7 +1,6 @@
 import { Select, VStack } from '@navikt/ds-react';
 import type { ReactNode } from 'react';
-import { TemagruppeActionMenuItems } from 'src/components/melding/TemagruppeActionMenuItems';
-import type { Temagruppe } from 'src/models/temagrupper';
+import { Temagruppe, temagruppeTekst } from 'src/models/temagrupper';
 
 interface VelgTemaProps {
     valgtTema?: Temagruppe;
@@ -24,4 +23,20 @@ export default function VelgTema({ valgtTema, setValgtTema, error }: VelgTemaPro
             {error}
         </VStack>
     );
+}
+
+function TemagruppeActionMenuItems() {
+    const temagruppeActionMenuItems = Object.values(Temagruppe).map((temagruppe) => (
+        <option key={temagruppe} value={temagruppe}>
+            {temagruppeTekst(temagruppe)}
+        </option>
+    ));
+
+    temagruppeActionMenuItems.unshift(
+        <option key="default" value="" disabled selected>
+            Velg temagruppe
+        </option>
+    );
+
+    return temagruppeActionMenuItems;
 }

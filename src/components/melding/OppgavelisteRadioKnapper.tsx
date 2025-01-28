@@ -4,7 +4,7 @@ export interface OppgavelisteRadioKnapperProps {
     enhet: string;
 }
 
-export function OppgavelisteRadioKnapper({ enhet }: OppgavelisteRadioKnapperProps) {
+export default function OppgavelisteRadioKnapper({ enhet }: OppgavelisteRadioKnapperProps) {
     return Object.entries(Oppgaveliste).map(([key, value]) => (
         <Radio key={key} value={value}>
             {oppgavelisterTekst[value].svarSkalTil(enhet)}

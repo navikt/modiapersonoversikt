@@ -1,5 +1,4 @@
-import { RadioGroup } from '@navikt/ds-react';
-import MeldingsTypeRadioKnapper from 'src/components/melding/MeldingsTypeRadioKnapper';
+import { Radio, RadioGroup } from '@navikt/ds-react';
 
 export interface VelgMeldingsTypeProps {
     meldingsType: MeldingsType;
@@ -12,6 +11,14 @@ export function VelgMeldingsType({ meldingsType, setMeldingsType }: VelgMeldings
             <MeldingsTypeRadioKnapper />
         </RadioGroup>
     );
+}
+
+function MeldingsTypeRadioKnapper() {
+    return Object.entries(MeldingsType).map(([key, value]) => (
+        <Radio key={key} value={value}>
+            {value}
+        </Radio>
+    ));
 }
 
 export enum MeldingsType {
@@ -39,3 +46,4 @@ export const meldingsTyperTekst: Record<MeldingsType, MeldingsTypeTekst> = {
         beskrivelse: 'Brukeren mottar varsel, men kan ikke svare.'
     }
 } as const;
+export default MeldingsTypeRadioKnapper;
