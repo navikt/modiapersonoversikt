@@ -1,17 +1,18 @@
-import { Radio, RadioGroup } from '@navikt/ds-react';
+import { RadioGroup } from '@navikt/ds-react';
+import type { Oppgaveliste, OppgavelisteRadioKnapper } from 'src/components/melding/OppgavelisteRadioKnapper';
+import type { ReactElement } from 'react';
 
 interface VelgOppgavelisteProps {
     valgtOppgaveliste?: Oppgaveliste;
     setValgtOppgaveliste: (oppgaveliste: Oppgaveliste) => void;
-    enhet: string;
+    oppgavelisteRadioKnapper: ReactElement<typeof OppgavelisteRadioKnapper>;
 }
 
-export default function VelgOppgaveliste({ valgtOppgaveliste, setValgtOppgaveliste, enhet }: VelgOppgavelisteProps) {
-    const oppgavelisteRadioKnapper = Object.entries(Oppgaveliste).map(([key, value]) => (
-        <Radio key={key} value={value}>
-            {oppgavelisterTekst[value].svarSkalTil(enhet)}
-        </Radio>
-    ));
+export default function VelgOppgaveliste({
+    valgtOppgaveliste,
+    setValgtOppgaveliste,
+    oppgavelisteRadioKnapper
+}: VelgOppgavelisteProps) {
     return (
         <RadioGroup
             legend="Destinasjon for oppgave ved svar"
@@ -23,21 +24,3 @@ export default function VelgOppgaveliste({ valgtOppgaveliste, setValgtOppgavelis
         </RadioGroup>
     );
 }
-
-export enum Oppgaveliste {
-    MinListe = 'MinListe',
-    EnhetensListe = 'EnhetensListe'
-}
-
-interface OppgavelisteData {
-    svarSkalTil: (enhet: string) => string;
-}
-
-const oppgavelisterTekst: Record<Oppgaveliste, OppgavelisteData> = {
-    MinListe: {
-        svarSkalTil: (enhet) => `Svar skal til min oppgaveliste hos ${enhet}`
-    },
-    EnhetensListe: {
-        svarSkalTil: (enhet) => `Svar skal til ${enhet} sin oppgaveliste`
-    }
-} as const;

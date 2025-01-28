@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { MeldingsType } from 'src/components/melding/VelgMeldingsType';
 import { Temagruppe } from 'src/models/temagrupper';
-import { Oppgaveliste } from 'src/components/melding/VelgOppgaveliste';
+import { Oppgaveliste } from 'src/components/melding/OppgavelisteRadioKnapper';
 
 export const maksLengdeMelding = 15000;
 

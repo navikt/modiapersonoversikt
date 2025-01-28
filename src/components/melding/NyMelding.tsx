@@ -6,7 +6,7 @@ import type { ReactElement } from 'react';
 import AvsluttDialogEtterSending from 'src/components/melding/AvsluttDialogEtterSending';
 import { ValgForMeldingstype } from 'src/components/melding/ValgForMeldingstype';
 import { MeldingsType, meldingsTyperTekst, VelgMeldingsType } from 'src/components/melding/VelgMeldingsType';
-import VelgOppgaveliste, { Oppgaveliste } from 'src/components/melding/VelgOppgaveliste';
+import VelgOppgaveliste from 'src/components/melding/VelgOppgaveliste';
 import VelgSak from 'src/components/melding/VelgSak';
 import VelgTema from 'src/components/melding/VelgTema';
 import {
@@ -21,6 +21,7 @@ import type { Temagruppe } from 'src/models/temagrupper';
 import { useSendMelding } from 'src/lib/clients/modiapersonoversikt-api';
 import { useSuspendingBrukernavn } from 'src/lib/hooks/useSuspendingBrukernavn';
 import { useEnhetsnavn } from 'src/lib/hooks/useEnhetsnavn';
+import { Oppgaveliste, OppgavelisteRadioKnapper } from 'src/components/melding/OppgavelisteRadioKnapper';
 
 interface NyMeldingProps {
     lukkeKnapp?: ReactElement<typeof Button>;
@@ -135,7 +136,7 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                                     <VelgOppgaveliste
                                         valgtOppgaveliste={field.state.value}
                                         setValgtOppgaveliste={(oppgaveliste) => field.handleChange(oppgaveliste)}
-                                        enhet={enhetsNavn}
+                                        oppgavelisteRadioKnapper={<OppgavelisteRadioKnapper enhet={enhetsNavn} />}
                                     />
                                 )}
                             </form.Field>
