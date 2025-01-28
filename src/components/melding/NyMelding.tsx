@@ -13,7 +13,6 @@ import VelgOppgaveliste, { Oppgaveliste } from 'src/components/melding/VelgOppga
 import VelgSak from 'src/components/melding/VelgSak';
 import VelgTema from 'src/components/melding/VelgTema';
 import { type SendMeldingRequestV2, SendMeldingRequestV2TraadType } from 'src/generated/modiapersonoversikt-api';
-import { $api } from 'src/lib/clients/modiapersonoversikt-api';
 import persondataResource from 'src/rest/resources/persondataResource';
 import saksbehandlersEnheter from 'src/rest/resources/saksbehandlersEnheterResource';
 import { capitalizeName } from 'src/utils/string-utils';
@@ -21,6 +20,7 @@ import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import { useAtomValue } from 'jotai';
 import nyMeldingSchema, { maksLengdeMelding } from 'src/components/melding/nyMeldingSchema';
 import type { Temagruppe } from 'src/models/temagrupper';
+import { useSendMelding } from 'src/lib/clients/modiapersonoversikt-api';
 
 interface NyMeldingProps {
     lukkeKnapp?: ReactElement<typeof Button>;
@@ -41,16 +41,14 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
         fnr: fnr ?? '',
         enhetsId: enhetsId ?? ''
     };
-    const { error, mutate, isPending, isSuccess } = $api.useMutation('post', '/rest/v2/dialog/sendmelding', {
-        onSuccess: () => {
-            form.reset(
-                {
-                    ...defaultFormOptions,
-                    meldingsType: form.state.values.meldingsType
-                },
-                { keepDefaultValues: true }
-            );
-        }
+    const { error, mutate, isPending, isSuccess } = useSendMelding(() => {
+        form.reset(
+            {
+                ...defaultFormOptions,
+                meldingsType: form.state.values.meldingsType
+            },
+            { keepDefaultValues: true }
+        );
     });
 
     const form = useForm({
