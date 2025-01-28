@@ -3,16 +3,17 @@ import { Alert, Box, Button, ErrorMessage, Heading, HStack, Textarea, VStack } f
 import { useForm, useStore } from '@tanstack/react-form';
 import { Link } from '@tanstack/react-router';
 import type { ReactElement } from 'react';
-import type {
-    JournalforingsSak
-} from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import AvsluttDialogEtterSending from 'src/components/melding/AvsluttDialogEtterSending';
 import { ValgForMeldingstype } from 'src/components/melding/ValgForMeldingstype';
 import { MeldingsType, meldingsTyperTekst, VelgMeldingsType } from 'src/components/melding/VelgMeldingsType';
 import VelgOppgaveliste, { Oppgaveliste } from 'src/components/melding/VelgOppgaveliste';
 import VelgSak from 'src/components/melding/VelgSak';
 import VelgTema from 'src/components/melding/VelgTema';
-import { type SendMeldingRequestV2, SendMeldingRequestV2TraadType } from 'src/generated/modiapersonoversikt-api';
+import {
+    type JournalforingSak,
+    type SendMeldingRequestV2,
+    SendMeldingRequestV2TraadType
+} from 'src/generated/modiapersonoversikt-api';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import { useAtomValue } from 'jotai';
 import nyMeldingSchema, { maksLengdeMelding } from 'src/components/melding/nyMeldingSchema';
@@ -232,7 +233,7 @@ interface NyMeldingFormOptions {
     melding: string;
     tema?: Temagruppe;
     oppgaveliste?: Oppgaveliste;
-    sak?: JournalforingsSak;
+    sak?: JournalforingSak;
     fnr: string;
     enhetsId: string;
 }

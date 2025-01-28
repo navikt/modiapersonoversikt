@@ -16,19 +16,19 @@ const commonSchema = z.object({
 
 const sakSchema = z.object(
     {
-        fagsystemKode: z.string(),
-        fagsystemNavn: z.string(),
-        fagsystemSaksId: z.string().nullable(),
-        finnesIGsak: z.boolean(),
-        finnesIPsak: z.boolean(),
-        opprettetDato: z.string().nullable(),
-        saksId: z.string(),
-        saksIdVisning: z.string(),
-        sakstype: z.string().nullable(),
-        sakstypeForVisningGenerell: z.boolean(),
-        temaKode: z.string(),
-        temaNavn: z.string(),
-        syntetisk: z.boolean().nullable().optional()
+        fnr: z.string().optional(),
+        saksId: z.string().optional(),
+        fagsystemSaksId: z.string().optional(),
+        temaKode: z.string().optional(),
+        temaNavn: z.string().optional(),
+        fagsystemKode: z.string().optional(),
+        fagsystemNavn: z.string().optional(),
+        sakstype: z.string().optional(),
+        opprettetDato: z.string().optional(),
+        finnesIGsak: z.boolean().optional(),
+        finnesIPsak: z.boolean().optional(),
+        sakstypeForVisningGenerell: z.boolean().optional(),
+        saksIdVisning: z.string().optional()
     },
     { message: 'Meldingen må knyttes til en sak' }
 );

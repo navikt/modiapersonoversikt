@@ -3,7 +3,6 @@ import { Alert, Button, HStack, Label, Modal, Radio, RadioGroup, Table, Tag, VSt
 import Spinner from 'nav-frontend-spinner';
 import { type ReactNode, useState } from 'react';
 import {
-    type JournalforingsSak,
     SakKategori
 } from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import TemaTable from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/TemaTabell';
@@ -11,12 +10,13 @@ import {
     fjernSakerSomAlleredeErTilknyttet,
     fordelSaker
 } from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/VelgSak';
+import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
 import journalsakResource from 'src/rest/resources/journalsakResource';
 import { formatterDatoMedMaanedsnavnOrNull } from 'src/utils/date-utils';
 
 interface VelgSakProps {
-    setSak: (sak: JournalforingsSak) => void;
-    valgtSak?: JournalforingsSak;
+    setSak: (sak: JournalforingSak) => void;
+    valgtSak?: JournalforingSak;
     error?: ReactNode;
 }
 
@@ -43,7 +43,22 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
     const temaTable = fordelteSaker[sakKategori].map((tema) => (
         <TemaTable
             velgSak={(sak) => {
-                setSak(sak);
+                const journalforingSak: JournalforingSak = {
+                    fnr: undefined, // TODO: Finnes ikke i typen som brukes i TemaTable
+                    saksId: sak.saksId,
+                    fagsystemSaksId: sak.fagsystemSaksId ?? undefined,
+                    temaKode: sak.temaKode,
+                    temaNavn: sak.temaNavn,
+                    fagsystemKode: sak.fagsystemKode,
+                    fagsystemNavn: sak.fagsystemNavn,
+                    sakstype: sak.sakstype ?? undefined,
+                    opprettetDato: sak.opprettetDato ?? undefined,
+                    finnesIGsak: sak.finnesIGsak,
+                    finnesIPsak: sak.finnesIPsak,
+                    sakstypeForVisningGenerell: sak.sakstypeForVisningGenerell,
+                    saksIdVisning: sak.saksIdVisning
+                };
+                setSak(journalforingSak);
                 setVelgSakModalOpen(false);
             }}
             key={tema.tema}
