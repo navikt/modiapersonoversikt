@@ -1,6 +1,6 @@
 import { EnvelopeClosedIcon } from '@navikt/aksel-icons';
 import { Alert, Box, Button, ErrorMessage, Heading, HStack, Textarea, VStack } from '@navikt/ds-react';
-import { type FieldApi, useForm, useStore } from '@tanstack/react-form';
+import { useForm, useStore } from '@tanstack/react-form';
 import { Link } from '@tanstack/react-router';
 import type { ReactElement } from 'react';
 import type {
@@ -20,7 +20,7 @@ import { capitalizeName } from 'src/utils/string-utils';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import { useAtomValue } from 'jotai';
 import nyMeldingSchema, { maksLengdeMelding } from 'src/components/melding/nyMeldingSchema';
-import { Temagruppe } from 'src/models/temagrupper';
+import type { Temagruppe } from 'src/models/temagrupper';
 
 interface NyMeldingProps {
     lukkeKnapp?: ReactElement<typeof Button>;
@@ -77,10 +77,10 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
             maxWidth="30vw"
         >
             <form
-                onSubmit={(e) => {
+                onSubmit={async (e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    form.handleSubmit();
+                    await form.handleSubmit();
                 }}
             >
                 <VStack gap="4">
@@ -105,7 +105,7 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                                 description={meldingsTypeTekst.beskrivelse}
                                 value={field.state.value}
                                 onChange={(e) => field.handleChange(e.target.value)}
-                                error={errorMesageForField(field)}
+                                error={field.state.meta.errors.isNotEmpty() ? field.state.meta.errors.join(', ') : null}
                                 maxLength={maksLengdeMelding}
                             />
                         )}
@@ -118,7 +118,15 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                                     <VelgTema
                                         valgtTema={field.state.value}
                                         setValgtTema={(tema) => field.handleChange(tema)}
-                                        error={errorComponentForField(field)}
+                                        error={
+                                            field.state.meta.errors.isNotEmpty() ? (
+                                                <ErrorMessage>
+                                                    {field.state.meta.errors.isNotEmpty()
+                                                        ? field.state.meta.errors.join(', ')
+                                                        : null}
+                                                </ErrorMessage>
+                                            ) : null
+                                        }
                                     />
                                 )}
                             </form.Field>
@@ -140,7 +148,15 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                                     <VelgSak
                                         valgtSak={field.state.value}
                                         setSak={(sak) => field.handleChange(sak)}
-                                        error={errorComponentForField(field)}
+                                        error={
+                                            field.state.meta.errors.isNotEmpty() ? (
+                                                <ErrorMessage>
+                                                    {field.state.meta.errors.isNotEmpty()
+                                                        ? field.state.meta.errors.join(', ')
+                                                        : null}
+                                                </ErrorMessage>
+                                            ) : null
+                                        }
                                     />
                                 )}
                             </form.Field>
@@ -192,8 +208,7 @@ function generateRequestBody(value: NyMeldingFormOptions) {
             request = {
                 ...common,
                 traadType: SendMeldingRequestV2TraadType.SAMTALEREFERAT,
-                // Tema er validert av schema ved meldingstype Referat
-                temagruppe: value.tema!
+                temagruppe: value.tema
             };
             break;
         case MeldingsType.Samtale:
@@ -201,8 +216,7 @@ function generateRequestBody(value: NyMeldingFormOptions) {
                 ...common,
                 traadType: SendMeldingRequestV2TraadType.MELDINGSKJEDE,
                 avsluttet: false,
-                // Oppgaveliste er validert av schema ved meldingstype Samtale
-                erOppgaveTilknyttetAnsatt: value.oppgaveliste! === Oppgaveliste.MinListe
+                erOppgaveTilknyttetAnsatt: value.oppgaveliste === Oppgaveliste.MinListe
             };
             break;
         case MeldingsType.Infomelding:
@@ -214,14 +228,6 @@ function generateRequestBody(value: NyMeldingFormOptions) {
             break;
     }
     return request;
-}
-
-function errorMesageForField(field: FieldApi<NyMeldingFormOptions, any>) {
-    return field.state.meta.errors.isNotEmpty() ? field.state.meta.errors.join(', ') : null;
-}
-
-function errorComponentForField(field: FieldApi<NyMeldingFormOptions, any>) {
-    return field.state.meta.errors.isNotEmpty() ? <ErrorMessage>{errorMesageForField(field)}</ErrorMessage> : null;
 }
 
 function useEnhetsnavn(enhetId: string | undefined) {
