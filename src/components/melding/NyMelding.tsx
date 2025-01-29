@@ -4,7 +4,7 @@ import { Link } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import type { ReactElement } from 'react';
 import AvsluttDialogEtterSending from 'src/components/melding/AvsluttDialogEtterSending';
-import OppgavelisteRadioKnapper, { Oppgaveliste } from 'src/components/melding/OppgavelisteRadioKnapper';
+import { Oppgaveliste, OppgavelisteRadioKnapper } from 'src/components/melding/OppgavelisteRadioKnapper';
 import { ValgForMeldingstype } from 'src/components/melding/ValgForMeldingstype';
 import { MeldingsType, VelgMeldingsType, meldingsTyperTekst } from 'src/components/melding/VelgMeldingsType';
 import VelgOppgaveliste from 'src/components/melding/VelgOppgaveliste';
