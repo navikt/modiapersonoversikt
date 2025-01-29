@@ -1,6 +1,6 @@
 import { EnvelopeClosedIcon } from '@navikt/aksel-icons';
 import { Alert, Box, Button, ErrorMessage, HStack, Heading, Textarea, VStack } from '@navikt/ds-react';
-import { useForm, useStore } from '@tanstack/react-form';
+import { type ValidationError, useForm, useStore } from '@tanstack/react-form';
 import { Link } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import type { ReactElement } from 'react';
@@ -22,6 +22,7 @@ import { useEnhetsnavn } from 'src/lib/hooks/useEnhetsnavn';
 import { useSuspendingBrukernavn } from 'src/lib/hooks/useSuspendingBrukernavn';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import type { Temagruppe } from 'src/models/temagrupper';
+import type { z } from 'zod';
 
 interface NyMeldingProps {
     lukkeKnapp?: ReactElement<typeof Button>;
@@ -43,7 +44,7 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
         );
     });
 
-    const defaultFormOptions: NyMeldingFormOptions = {
+    const defaultFormOptions: DefaultFormOptions = {
         meldingsType: MeldingsType.Referat,
         melding: '',
         tema: undefined,
@@ -58,7 +59,7 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
             onSubmit: nyMeldingSchema
         },
         onSubmit: ({ value }) => {
-            const body = generateRequestBody(value);
+            const body = generateRequestBody(value as NyMeldingSchema);
             mutate({ body: body });
         }
     });
@@ -104,7 +105,7 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                                 description={meldingsTypeTekst.beskrivelse}
                                 value={field.state.value}
                                 onChange={(e) => field.handleChange(e.target.value)}
-                                error={field.state.meta.errors.isNotEmpty() ? field.state.meta.errors.join(', ') : null}
+                                error={buildErrorMessage(field.state.meta.errors)}
                                 maxLength={maksLengdeMelding}
                             />
                         )}
@@ -117,15 +118,7 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                                     <VelgTema
                                         valgtTema={field.state.value}
                                         setValgtTema={(tema) => field.handleChange(tema)}
-                                        error={
-                                            field.state.meta.errors.isNotEmpty() ? (
-                                                <ErrorMessage>
-                                                    {field.state.meta.errors.isNotEmpty()
-                                                        ? field.state.meta.errors.join(', ')
-                                                        : null}
-                                                </ErrorMessage>
-                                            ) : null
-                                        }
+                                        error={<ValidationErrorMessage errors={field.state.meta.errors} />}
                                     />
                                 )}
                             </form.Field>
@@ -147,15 +140,7 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                                     <VelgSak
                                         valgtSak={field.state.value}
                                         setSak={(sak) => field.handleChange(sak)}
-                                        error={
-                                            field.state.meta.errors.isNotEmpty() ? (
-                                                <ErrorMessage>
-                                                    {field.state.meta.errors.isNotEmpty()
-                                                        ? field.state.meta.errors.join(', ')
-                                                        : null}
-                                                </ErrorMessage>
-                                            ) : null
-                                        }
+                                        error={<ValidationErrorMessage errors={field.state.meta.errors} />}
                                     />
                                 )}
                             </form.Field>
@@ -193,8 +178,16 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
     );
 }
 
+function ValidationErrorMessage({ errors }: { errors: ValidationError[] }) {
+    return errors.isNotEmpty() ? <ErrorMessage>{buildErrorMessage(errors)}</ErrorMessage> : null;
+}
+
+function buildErrorMessage(errors: ValidationError[]) {
+    return errors.isNotEmpty() ? errors.join(', ') : null;
+}
+
 // Funksjonen forventer at parameteren allerede er validert
-function generateRequestBody(value: NyMeldingFormOptions) {
+function generateRequestBody(value: NyMeldingSchema) {
     const common: Pick<SendMeldingRequestV2, 'enhet' | 'fritekst' | 'fnr'> = {
         enhet: value.enhetsId,
         fritekst: value.melding,
@@ -229,7 +222,9 @@ function generateRequestBody(value: NyMeldingFormOptions) {
     return request;
 }
 
-interface NyMeldingFormOptions {
+type NyMeldingSchema = z.infer<typeof nyMeldingSchema>;
+
+interface DefaultFormOptions {
     meldingsType: MeldingsType;
     melding: string;
     tema?: Temagruppe;
