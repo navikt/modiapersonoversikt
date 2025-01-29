@@ -1,4 +1,3 @@
-import { EnvelopeClosedIcon } from '@navikt/aksel-icons';
 import { Alert, Box, Button, ErrorMessage, HStack, Heading, Textarea, VStack } from '@navikt/ds-react';
 import { type ValidationError, useForm, useStore } from '@tanstack/react-form';
 import { Link } from '@tanstack/react-router';
@@ -107,6 +106,9 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                                 onChange={(e) => field.handleChange(e.target.value)}
                                 error={buildErrorMessage(field.state.meta.errors)}
                                 maxLength={maksLengdeMelding}
+                                resize="vertical"
+                                minRows={5}
+                                maxRows={15}
                             />
                         )}
                     </form.Field>
@@ -156,20 +158,14 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                             </form.Field>
                         }
                     />
-                    <Button type="submit" loading={isPending}>
-                        Send til {brukerNavn}
-                    </Button>
-                    <Button
-                        type="button"
-                        variant="tertiary"
-                        icon={<EnvelopeClosedIcon aria-hidden />}
-                        iconPosition="left"
-                        size="small"
-                        as={Link}
-                        to="/new/person/meldinger"
-                    >
-                        Se alle dialoger
-                    </Button>
+                    <HStack gap="2">
+                        <Button type="submit" loading={isPending}>
+                            Send til {brukerNavn}
+                        </Button>
+                        <Button type="button" variant="secondary" as={Link} to="/new/person/meldinger">
+                            Se all kommunikasjon
+                        </Button>
+                    </HStack>
                     {isSuccess && <Alert variant="success">Meldingen ble sendt</Alert>}
                     {error && <Alert variant="error">{error}</Alert>}
                 </VStack>

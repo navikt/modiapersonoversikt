@@ -6,10 +6,7 @@ import { z } from 'zod';
 export const maksLengdeMelding = 15000;
 
 const commonSchema = z.object({
-    melding: z
-        .string()
-        .nonempty('Du kan ikke sende en tom melding til bruker')
-        .max(maksLengdeMelding, 'Du kan ikke sende en melding som er lenger enn 15.000 tegn'),
+    melding: z.string().nonempty('Fyll ut meldingsfeltet').max(maksLengdeMelding, `Maks ${maksLengdeMelding} tegn`),
     fnr: z.string(),
     enhetsId: z.string()
 });
@@ -37,7 +34,7 @@ const nyMeldingSchema = z
     .discriminatedUnion('meldingsType', [
         z.object({
             meldingsType: z.literal(MeldingsType.Referat),
-            tema: z.nativeEnum(Temagruppe, { message: 'Meldingen må knyttes til et tema' })
+            tema: z.nativeEnum(Temagruppe, { message: 'Knytt meldingen til en temagruppe' })
         }),
         z.object({
             meldingsType: z.literal(MeldingsType.Samtale),
