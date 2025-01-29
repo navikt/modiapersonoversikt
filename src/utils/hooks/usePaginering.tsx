@@ -69,11 +69,11 @@ function usePaginering<T, K>(
         // skifter til riktig side dersom selected-item settes programatisk, og viser riktig side ved mount
         if (selectedItem && prevSelectedItem !== selectedItem) {
             const compareValue = fieldCompare?.(selectedItem) ?? selectedItem;
-            const index = list.findIndex((item) => fieldCompare?.(item) ?? item === compareValue);
+            const index = list.findIndex((item) => (fieldCompare?.(item) ?? item) === compareValue);
             const newPage = Math.floor(index / pageSize);
             setCurrentPage(newPage);
         }
-    }, [selectedItem, prevSelectedItem, setCurrentPage, pageSize, list, fieldCompare]);
+    }, [selectedItem, prevSelectedItem, pageSize, list, fieldCompare]);
 
     const prevPage = usePrevious(currentPage);
     useEffect(() => {
@@ -97,10 +97,13 @@ function usePaginering<T, K>(
             <Select
                 value={currentPage}
                 // @ts-expect-error dårlig typing
-                //biome-ignore lint/suspicious/noAssignInExpressions: biome migration
-                selectRef={(ref) => (selectRef.current = ref)} //eslint-disable-line
+                selectRef={(ref) => {
+                    selectRef.current = ref;
+                }}
                 label="Velg paginering"
-                onChange={(e) => setCurrentPage(Number.parseInt(e.target.value))}
+                onChange={(e) => {
+                    setCurrentPage(Number.parseInt(e.target.value));
+                }}
             >
                 {options}
             </Select>
