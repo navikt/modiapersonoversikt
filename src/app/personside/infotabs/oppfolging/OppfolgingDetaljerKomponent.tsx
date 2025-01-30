@@ -44,13 +44,23 @@ function VisOppfolgingDetaljer(props: Props) {
         Oppfølgingsvedtak: datoEllerNull(detaljer.vedtaksdato)
     };
 
+    const siste14aVedtak = {
+        'Har 14a vedtak': detaljer.siste14aVedtak ? 'Ja' : 'Nei',
+        Innsatsgruppe: detaljer.siste14aVedtak?.innsatsgruppe.beskrivelse,
+        'Hovedmål': detaljer.siste14aVedtak?.hovedmal?.beskrivelse,
+        'Fattet dato': datoEllerNull(detaljer.siste14aVedtak?.fattetDato)
+    };
+
     return (
         <StyledPanel aria-labelledby={headerId.current}>
             <article>
-                <Undertittel id={headerId.current}>Arbeidsoppfølging</Undertittel>
                 {errorLoadingData}
                 {ikkeFullstendigData}
+                <Undertittel id={headerId.current}>Arbeidsoppfølging</Undertittel>
                 <DescriptionList entries={descriptionListProps} />
+                <br/>
+                <Undertittel id={headerId.current}>14a vedtak</Undertittel>
+                <DescriptionList entries={siste14aVedtak} />
             </article>
         </StyledPanel>
     );
