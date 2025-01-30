@@ -1,12 +1,12 @@
 import { type UseQueryResult, useQuery } from '@tanstack/react-query';
 import dayjs from 'dayjs';
 import AlertStripe from 'nav-frontend-alertstriper';
+import { usePersonAtomValue } from 'src/lib/state/context';
 import { type FetchError, post } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
 import { getUtbetalingerForSiste30DagerDatoer } from '../../app/personside/infotabs/utbetalinger/utils/utbetalinger-utils';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import type { UtbetalingerResponse } from '../../models/utbetalinger';
-import { useFodselsnummer } from '../../utils/customHooks';
 import { type DefaultConfig, type RendererOrConfig, applyDefaults, useRest } from '../useRest';
 
 function urlV2(fom: string, tom: string): string {
@@ -20,7 +20,7 @@ const defaults: DefaultConfig = {
 
 const resource = {
     useFetch(fom: string, tom: string): UseQueryResult<UtbetalingerResponse, FetchError> {
-        const fnr = useFodselsnummer();
+        const fnr = usePersonAtomValue();
         return useQuery({
             queryKey: ['utbetalinger', fnr, fom, tom],
             queryFn: () => post(urlV2(fom, tom), { fnr })

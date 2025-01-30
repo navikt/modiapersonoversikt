@@ -4,6 +4,7 @@ import { guid } from 'nav-frontend-js-utils';
 import { Undertittel } from 'nav-frontend-typografi';
 import { type FormEvent, useCallback, useMemo, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { usePersonAtomValue } from 'src/lib/state/context';
 import styled from 'styled-components';
 import { type FetchError, post } from '../../../../api/api';
 import { apiBaseUri } from '../../../../api/config';
@@ -18,7 +19,6 @@ import dialogResource from '../../../../rest/resources/dialogResource';
 import journalsakResource from '../../../../rest/resources/journalsakResource';
 import tildelteoppgaver from '../../../../rest/resources/tildelteoppgaverResource';
 import theme from '../../../../styles/personOversiktTheme';
-import { useFodselsnummer } from '../../../../utils/customHooks';
 import { loggError } from '../../../../utils/logger/frontendLogger';
 import { erJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
 import ReflowBoundry from '../ReflowBoundry';
@@ -73,7 +73,7 @@ function FortsettDialogContainer(props: Props) {
         [props.defaultOppgaveDestinasjon, props.traad.traadType]
     );
 
-    const fnr = useFodselsnummer();
+    const fnr = usePersonAtomValue();
     const tittelId = useRef(guid());
     const [state, setState] = useState<FortsettDialogState>(initialState);
     const valgtEnhet = useValgtenhet().enhetId;

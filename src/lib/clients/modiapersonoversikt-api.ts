@@ -57,3 +57,13 @@ export const useVarslerData = () => {
 export const useBaseUrls = () => {
     return $api.useQuery('get', '/rest/baseurls/v2');
 };
+
+export const useSendMelding = (onSuccess?: () => void) => {
+    return $api.useMutation('post', '/rest/v2/dialog/sendmelding', {
+        onSuccess
+    });
+};
+
+export const useEnheter = () => {
+    return $api.useQuery('get', '/rest/hode/enheter');
+};

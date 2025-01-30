@@ -15,7 +15,7 @@ export function withDelayedResponse<R extends DefaultBodyType, T extends Default
         | ((request: StrictRequest<T>, params: PathParams, parsedBody?: T) => Promise<R>)
 ): HttpResponseResolver<PathParams, T> {
     return async ({ request, params }) => {
-        const parsedBody = request.method === 'POST' ? await request.json() : undefined;
+        const parsedBody = request.method === 'POST' ? await request.clone().json() : undefined;
         const status = await statusCode(request, parsedBody);
 
         // Don't delay in test

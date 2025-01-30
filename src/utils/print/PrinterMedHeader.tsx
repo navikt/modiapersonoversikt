@@ -1,8 +1,8 @@
 import { Normaltekst } from 'nav-frontend-typografi';
 import type { ReactNode } from 'react';
+import { usePersonAtomValue } from 'src/lib/state/context';
 import styled from 'styled-components';
 import NavLogo from '../../svg/NavLogo';
-import { useFodselsnummer } from '../customHooks';
 import { datoVerbose } from '../date-utils';
 
 const Wrapper = styled.div`
@@ -35,7 +35,7 @@ interface Props {
 }
 
 export function PrinterMedHeader(props: Props) {
-    const fnr = useFodselsnummer();
+    const fnr = usePersonAtomValue();
     return (
         <Wrapper className="ikke-skjul-ved-print-i-gamlemodia">
             <Header>

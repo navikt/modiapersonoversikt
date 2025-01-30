@@ -12,7 +12,7 @@ import {
 } from 'react';
 import { useSelector } from 'react-redux';
 import { nyModiaAtom } from 'src/components/NyModia';
-import { aktivBrukerAtom, usePersonAtomValue } from 'src/lib/state/context';
+import { aktivBrukerAtom } from 'src/lib/state/context';
 import { paths } from '../app/routes/routing';
 import type { AppState } from '../redux/reducers';
 import { type EventListener, runIfEventIsNotInsideRef } from './reactRef-utils';
@@ -76,10 +76,6 @@ export function usePrevious<T>(value: T) {
 
 export function useAppState<T>(selector: (state: AppState) => T) {
     return useSelector((state: AppState) => selector(state));
-}
-
-export function useFodselsnummer() {
-    return usePersonAtomValue();
 }
 
 export function useSettAktivBruker() {

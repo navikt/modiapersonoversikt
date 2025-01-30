@@ -1,4 +1,4 @@
-import { http, type DefaultBodyType, type StrictRequest } from 'msw';
+import { http } from 'msw';
 import { guid } from 'nav-frontend-js-utils';
 import { apiBaseUri } from '../../api/config';
 import {
@@ -21,19 +21,10 @@ import { mockGeneratorMedFodselsnummerV2, verify, withDelayedResponse } from '..
 const STATUS_OK = () => Promise.resolve(200);
 let meldingerBackendMock: MeldingerBackendMock = null as unknown as MeldingerBackendMock;
 
-const harEnhetIdSomQueryParam = (request: StrictRequest<DefaultBodyType>) => {
-    const url = new URL(request.url);
-    const enhetQueryParam = url.searchParams.get('enhet');
-    if (!enhetQueryParam) {
-        return 'Skal ha enhetId i queryParameter';
-    }
-    return undefined;
-};
-
 const meldingerHandler = http.post(
     `${apiBaseUri}/v2/dialog/meldinger`,
     verify(
-        harEnhetIdSomQueryParam,
+        () => undefined,
         withDelayedResponse(
             randomDelay(),
             fodselsNummerErGyldigStatus,

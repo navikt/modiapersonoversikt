@@ -1,6 +1,7 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { Block } from '@tanstack/react-router';
 import { type FormEvent, useCallback, useMemo, useState } from 'react';
+import { usePersonAtomValue } from 'src/lib/state/context';
 import { post } from '../../../../api/api';
 import { apiBaseUri } from '../../../../api/config';
 import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureToggleOn';
@@ -9,7 +10,6 @@ import { useValgtenhet } from '../../../../context/valgtenhet-state';
 import { Meldingstype, type SendMeldingRequestV2, type Traad, TraadType } from '../../../../models/meldinger/meldinger';
 import dialogResource from '../../../../rest/resources/dialogResource';
 import journalsakResource from '../../../../rest/resources/journalsakResource';
-import { useFodselsnummer } from '../../../../utils/customHooks';
 import useDraft, { type Draft } from '../use-draft';
 import { useAlertOnNavigation } from '../useAlertOnNavigation';
 import SendNyMelding, { OppgavelisteValg, type SendNyMeldingState } from './SendNyMelding';
@@ -35,7 +35,7 @@ function SendNyMeldingContainer(props: Props) {
         }),
         [props.defaultOppgaveDestinasjon]
     );
-    const fnr = useFodselsnummer();
+    const fnr = usePersonAtomValue();
 
     const valgtEnhet = useValgtenhet().enhetId;
     const [state, setState] = useState<SendNyMeldingState>(initialState);
