@@ -9,7 +9,6 @@ export const paths = {
     basePath: '',
     standaloneKomponenter: '/components',
     landingPage: '/landingpage',
-    innkrevingskrav: '/innkrevingskrav'
 } as const;
 
 /**

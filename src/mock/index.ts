@@ -35,7 +35,6 @@ import { getMockSykepengerRespons } from './ytelse/sykepenger-mock';
 
 import { http, type DefaultBodyType, type HttpHandler, HttpResponse, type PathParams, type StrictRequest } from 'msw';
 import type { FeatureTogglesResponse } from 'src/rest/resources/featuretogglesResource';
-import { mockInnkrevingsKrav } from './innkrevingskrav';
 import { STATUS_OK, fodselsNummerErGyldigStatus, randomDelay } from './utils-mock';
 import { getMockTiltakspenger } from './ytelse/tiltakspenger-mock';
 
@@ -322,13 +321,6 @@ const standardteksterHandler = [
     )
 ];
 
-const innkrevingsKravHandlers = [
-    http.get(
-        `${apiBaseUri}/innkrevingskrav/:id`,
-        withDelayedResponse(0, STATUS_OK, (_, params) => mockInnkrevingsKrav(params.id as string))
-    )
-];
-
 if (import.meta.env.MODE !== 'test') {
     console.log('=========================='); // tslint:disable-line
     console.log('======== MED MOCK ========'); // tslint:disable-line
@@ -367,6 +359,5 @@ export const handlers: HttpHandler[] = [
     ...getContextHandlers(),
     ...saksbehandlerInnstillingerHandlers,
     ...getDraftHandlers(),
-    ...innkrevingsKravHandlers,
     http.options('*', () => new HttpResponse(null, { status: 200 }))
 ];
