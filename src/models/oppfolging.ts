@@ -25,6 +25,7 @@ export interface DetaljertOppfolging {
     vedtaksdato: string;
     sykefraværsoppfølging: SyfoPunkt[];
     ytelser: (OppfolgingsYtelse | Dagpenger)[];
+    siste14aVedtak?: Siste14aVedtak;
 }
 
 export interface SyfoPunkt {
@@ -63,4 +64,11 @@ export interface OppfolgingsVedtak {
     aktivitetsfase?: string;
     vedtakstatus: string;
     vedtakstype: string;
+}
+
+export interface Siste14aVedtak {
+    innsatsgruppe: { kode: string; beskrivelse: string };
+    hovedmal?: { kode: string; beskrivelse: string };
+    fattetDato: string;
+    fraArena?: boolean;
 }

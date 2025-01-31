@@ -70,7 +70,7 @@ export function formaterDato(rawDate: string | Date): string {
     return dayjs(rawDate).format('DD.MM.YYYY');
 }
 
-export function datoEllerNull(dato: string | Date | null): string | null {
+export function datoEllerNull(dato: string | Date | null | undefined): string | null {
     if (!dato) {
         return null;
     }
