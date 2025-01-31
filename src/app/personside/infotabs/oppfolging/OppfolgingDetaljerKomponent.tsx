@@ -37,7 +37,6 @@ function VisOppfolgingDetaljer(props: Props) {
         'Er under oppfølging': getErUnderOppfolging(detaljer.oppfolging),
         Oppfølgingsenhet: getOppfolgingEnhet(detaljer.oppfolging),
         Rettighetsgruppe: detaljer.rettighetsgruppe,
-        Innsatsgruppe: detaljer.innsatsgruppe,
         Veileder: getVeileder(detaljer.oppfolging?.veileder),
         Meldeplikt: meldeplikt,
         Formidlingsgruppe: detaljer.formidlingsgruppe,
@@ -47,7 +46,7 @@ function VisOppfolgingDetaljer(props: Props) {
     const siste14aVedtak = {
         'Har 14a vedtak': detaljer.siste14aVedtak ? 'Ja' : 'Nei',
         Innsatsgruppe: detaljer.siste14aVedtak?.innsatsgruppe.beskrivelse,
-        'Hovedmål': detaljer.siste14aVedtak?.hovedmal?.beskrivelse,
+        Hovedmål: detaljer.siste14aVedtak?.hovedmal?.beskrivelse,
         'Fattet dato': datoEllerNull(detaljer.siste14aVedtak?.fattetDato)
     };
 
@@ -58,7 +57,7 @@ function VisOppfolgingDetaljer(props: Props) {
                 {ikkeFullstendigData}
                 <Undertittel id={headerId.current}>Arbeidsoppfølging</Undertittel>
                 <DescriptionList entries={descriptionListProps} />
-                <br/>
+                <br />
                 <Undertittel id={headerId.current}>14a vedtak</Undertittel>
                 <DescriptionList entries={siste14aVedtak} />
             </article>

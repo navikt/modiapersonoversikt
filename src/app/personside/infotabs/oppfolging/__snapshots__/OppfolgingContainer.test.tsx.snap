@@ -358,7 +358,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                               januar 1968
                             </span>
                             <button
-                              class="navds-date__caption-button navds-button navds-button--tertiary-neutral navds-button--medium navds-button--icon-only"
+                              class="navds-date__caption-button navds-button navds-button--tertiary navds-button--medium navds-button--icon-only"
                               type="button"
                             >
                               <span
@@ -587,7 +587,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                               </div>
                             </div>
                             <button
-                              class="navds-date__caption-button navds-button navds-button--tertiary-neutral navds-button--medium navds-button--icon-only"
+                              class="navds-date__caption-button navds-button navds-button--tertiary navds-button--medium navds-button--icon-only"
                               type="button"
                             >
                               <span
@@ -1400,7 +1400,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                               januar 1970
                             </span>
                             <button
-                              class="navds-date__caption-button navds-button navds-button--tertiary-neutral navds-button--medium navds-button--icon-only"
+                              class="navds-date__caption-button navds-button navds-button--tertiary navds-button--medium navds-button--icon-only"
                               type="button"
                             >
                               <span
@@ -1539,7 +1539,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                               </div>
                             </div>
                             <button
-                              class="navds-date__caption-button navds-button navds-button--tertiary-neutral navds-button--medium navds-button--icon-only navds-button--disabled"
+                              class="navds-date__caption-button navds-button navds-button--tertiary navds-button--medium navds-button--icon-only navds-button--disabled"
                               disabled=""
                               type="button"
                             >
@@ -2362,18 +2362,6 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
               <dt
                 class="typo-normal"
               >
-                Innsatsgruppe
-              </dt>
-              <dd
-                class="typo-element"
-              >
-                INGRP10
-              </dd>
-            </div>
-            <div>
-              <dt
-                class="typo-normal"
-              >
                 Veileder
               </dt>
               <dd
@@ -2416,6 +2404,65 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                 class="typo-element"
               >
                 24.04.2019
+              </dd>
+            </div>
+          </dl>
+          <br />
+          <h2
+            class="typo-undertittel"
+            id="Helt tilfeldig ID"
+          >
+            14a vedtak
+          </h2>
+          <dl
+            class="c10"
+          >
+            <div>
+              <dt
+                class="typo-normal"
+              >
+                Har 14a vedtak
+              </dt>
+              <dd
+                class="typo-element"
+              >
+                Nei
+              </dd>
+            </div>
+            <div>
+              <dt
+                class="typo-normal"
+              >
+                Innsatsgruppe
+              </dt>
+              <dd
+                class="typo-element"
+              >
+                —
+              </dd>
+            </div>
+            <div>
+              <dt
+                class="typo-normal"
+              >
+                Hovedmål
+              </dt>
+              <dd
+                class="typo-element"
+              >
+                —
+              </dd>
+            </div>
+            <div>
+              <dt
+                class="typo-normal"
+              >
+                Fattet dato
+              </dt>
+              <dd
+                class="typo-element"
+              >
+                —
               </dd>
             </div>
           </dl>
