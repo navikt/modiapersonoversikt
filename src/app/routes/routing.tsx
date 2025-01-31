@@ -8,8 +8,7 @@ export const paths = {
     brukerprofil: '/brukerprofil',
     basePath: '',
     standaloneKomponenter: '/components',
-    landingPage: '/landingpage',
-    innkrevingskrav: '/innkrevingskrav'
+    landingPage: '/landingpage'
 } as const;
 
 /**

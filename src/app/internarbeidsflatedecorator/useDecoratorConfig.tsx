@@ -10,7 +10,6 @@ import { getDomainFromHost, getEnvFromHost } from '../../utils/environment';
 import { loggEvent } from '../../utils/logger/frontendLogger';
 import { parseQueryString, useQueryParams } from '../../utils/url-utils';
 import { DecoratorButtonId as OppdateringsloggButtonId } from '../oppdateringslogg/OppdateringsloggContainer';
-import { paths } from '../routes/routing';
 import type { DecoratorPropsV3, Hotkey } from './decoratorprops';
 
 export function useDecoratorConfig() {
@@ -84,7 +83,6 @@ function lagConfigV3(
           : 'NAV_NO';
 
     const contextProxy = 'modiacontextholder';
-    const showSearchArea = ![paths.innkrevingskrav].some((path) => location.pathname.startsWith(path));
 
     return {
         appName: 'Modia personoversikt',
@@ -117,7 +115,7 @@ function lagConfigV3(
         environment,
         urlFormat: import.meta.env.PROD ? urlFormat : 'NAV_NO',
         showEnheter: true,
-        showSearchArea,
+        showSearchArea: true,
         fetchActiveUserOnMount: true,
         fetchActiveEnhetOnMount: true
     };

@@ -33,6 +33,7 @@ export function useOnMount(effect: EffectCallback) {
 }
 
 type JustOnceEffectCallback = ((done: () => void) => undefined) | (() => undefined | undefined);
+
 export function useJustOnceEffect(effect: JustOnceEffectCallback, deps?: DependencyList) {
     const done = useRef(false);
     const setDone = useCallback(() => {
@@ -99,8 +100,7 @@ export function useSettAktivBruker() {
                 paths.sakerFullscreen,
                 paths.saksdokumentEgetVindu,
                 paths.standaloneKomponenter,
-                paths.landingPage,
-                paths.innkrevingskrav
+                paths.landingPage
             ].some((path) => location.pathname.startsWith(path))
         ) {
             navigate({ to: nyModia ? '/new/person' : paths.personUri });
