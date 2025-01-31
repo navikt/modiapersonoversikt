@@ -447,7 +447,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                               januar 1968
                             </span>
                             <button
-                              class="navds-date__caption-button navds-button navds-button--tertiary navds-button--medium navds-button--icon-only"
+                              class="navds-date__caption-button navds-button navds-button--tertiary-neutral navds-button--medium navds-button--icon-only"
                               type="button"
                             >
                               <span
@@ -676,7 +676,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                               </div>
                             </div>
                             <button
-                              class="navds-date__caption-button navds-button navds-button--tertiary navds-button--medium navds-button--icon-only"
+                              class="navds-date__caption-button navds-button navds-button--tertiary-neutral navds-button--medium navds-button--icon-only"
                               type="button"
                             >
                               <span
@@ -1489,7 +1489,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                               januar 1970
                             </span>
                             <button
-                              class="navds-date__caption-button navds-button navds-button--tertiary navds-button--medium navds-button--icon-only"
+                              class="navds-date__caption-button navds-button navds-button--tertiary-neutral navds-button--medium navds-button--icon-only"
                               type="button"
                             >
                               <span
@@ -1628,7 +1628,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                               </div>
                             </div>
                             <button
-                              class="navds-date__caption-button navds-button navds-button--tertiary navds-button--medium navds-button--icon-only navds-button--disabled"
+                              class="navds-date__caption-button navds-button navds-button--tertiary-neutral navds-button--medium navds-button--icon-only navds-button--disabled"
                               disabled=""
                               type="button"
                             >
