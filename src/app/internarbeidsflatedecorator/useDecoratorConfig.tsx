@@ -79,8 +79,8 @@ function lagConfigV3(
     const urlFormat = import.meta.env.PROD
         ? getDomainFromHost()
         : import.meta.env.VITE_MOCK_ENABLED
-            ? 'LOCAL'
-            : 'NAV_NO';
+          ? 'LOCAL'
+          : 'NAV_NO';
 
     const contextProxy = 'modiacontextholder';
 
