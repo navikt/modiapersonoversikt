@@ -377,7 +377,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             id: 20,
             tittel: 'Forbedret Avansert Søk',
             dato: new Date('2022-06-13 08:00'),
-            aktiv: true,
+            aktiv: false,
             ingress: null,
             beskrivelse: (
                 <Normaltekst>
@@ -392,7 +392,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             id: 21,
             tittel: 'Chat i Modia Personoversikt',
             dato: new Date('2022-06-13 11:00'),
-            aktiv: true,
+            aktiv: false,
             ingress: null,
             beskrivelse: (
                 <>
@@ -409,7 +409,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             id: 22,
             tittel: 'Vise kanaler for notifikasjoner',
             dato: new Date('2022-09-02 14:00'),
-            aktiv: true,
+            aktiv: false,
             ingress: null,
             beskrivelse: (
                 <>
@@ -447,7 +447,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             id: 24,
             tittel: 'Velge enkelt melding for sladding',
             dato: new Date('2022-10-11 12:00'),
-            aktiv: true,
+            aktiv: false,
             ingress: null,
             beskrivelse: (
                 <>
@@ -463,7 +463,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             id: 25,
             tittel: 'Lest dato for utgående dokument',
             dato: new Date('2022-12-14 12:00'),
-            aktiv: true,
+            aktiv: false,
             ingress: null,
             beskrivelse: (
                 <>
@@ -483,7 +483,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             id: 26,
             tittel: 'Oppslag på inaktiv ident',
             dato: new Date('2022-12-20 12:00'),
-            aktiv: true,
+            aktiv: false,
             ingress: null,
             beskrivelse: (
                 <>
@@ -499,7 +499,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             id: 29,
             tittel: 'Endringer på meldingsvisning',
             dato: new Date('2023-02-23 07:00'),
-            aktiv: true,
+            aktiv: false,
             ingress: null,
             beskrivelse: (
                 <>
@@ -522,7 +522,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             id: 30,
             tittel: 'Informasjon om revarsling',
             dato: new Date('2023-04-11 07:00'),
-            aktiv: true,
+            aktiv: false,
             ingress: null,
             beskrivelse: (
                 <>
