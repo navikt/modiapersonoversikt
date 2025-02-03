@@ -28,6 +28,7 @@ import OppslagPaaInaktivIdent from './img/oppslag-paa-inaktiv-ident.png';
 import Revarsling from './img/revarsling.png';
 import Samtalemaler from './img/samtalemaler.png';
 import VisningSikkerhetstiltak from './img/sikkerhetstiltakt-popup.png';
+import Siste14aVedtak from './img/siste-14a-vedtak.png';
 import SladdEnkeltmelding from './img/sladdEnkeltmelding.png';
 import SladdeArsak from './img/sladde-arsak.png';
 import SvarAvslutterDialog from './img/svar-avslutter-dialog.png';
@@ -614,6 +615,19 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                 </>
             ),
             src: AvansertsokTelefonnummer
+        },
+        {
+            id: 37,
+            tittel: '14a vedtak',
+            dato: new Date('2025-02-03 12:00'),
+            aktiv: true,
+            ingress: null,
+            beskrivelse: (
+                <>
+                    <Normaltekst>Det er nå mulig å se om en bruker har 14a vedtak i oppfølgingsoversikten.</Normaltekst>
+                </>
+            ),
+            src: Siste14aVedtak
         }
     ];
 }

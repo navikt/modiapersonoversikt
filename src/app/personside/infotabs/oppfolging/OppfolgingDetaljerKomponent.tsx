@@ -47,7 +47,7 @@ function VisOppfolgingDetaljer(props: Props) {
         'Har 14a vedtak': detaljer.siste14aVedtak ? 'Ja' : 'Nei',
         Innsatsgruppe: detaljer.siste14aVedtak?.innsatsgruppe.beskrivelse,
         Hovedmål: detaljer.siste14aVedtak?.hovedmal?.beskrivelse,
-        'Fattet dato': datoEllerNull(detaljer.siste14aVedtak?.fattetDato)
+        Vedtaksdato: datoEllerNull(detaljer.siste14aVedtak?.fattetDato)
     };
 
     return (
