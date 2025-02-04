@@ -79,22 +79,18 @@ export function sakKategori(sak: JournalforingsSak): SakKategori {
 }
 
 export function fjernSakerSomAlleredeErTilknyttet(
-    saker: Array<JournalforingsSak>,
-    eksisterendeSaker: Array<JournalforingsSakIdentifikator>
-): Array<JournalforingsSak> {
-    const temagrupperte = eksisterendeSaker
-        .filter((it) => it.fagsystemSaksId !== undefined)
-        .reduce(
-            groupBy((it) => it.temaKode),
-            {}
-        );
+    saker: JournalforingsSak[],
+    eksisterendeSaker: JournalforingsSakIdentifikator[]
+): JournalforingsSak[] {
+    const filtrerteSaksIder = eksisterendeSaker
+        .map((sak) => sak.fagsystemSaksId)
+        .filter((id): id is string => typeof id === 'string');
 
-    return saker.filter((sak) => {
-        const tema = sak.temaKode;
-        const temasaker: JournalforingsSakIdentifikator[] = temagrupperte[tema] ?? [];
-        const erJournalfortPaSak = temasaker.find((it) => it.fagsystemSaksId === sak.fagsystemSaksId);
-        return !erJournalfortPaSak;
-    });
+    const eksisterendeSaksIder = new Set(filtrerteSaksIder);
+
+    return saker.filter(
+        (sak) => typeof sak.fagsystemSaksId === 'string' && !eksisterendeSaksIder.has(sak.fagsystemSaksId)
+    );
 }
 
 function VelgSak(props: Props) {
