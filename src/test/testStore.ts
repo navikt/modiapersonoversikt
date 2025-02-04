@@ -86,6 +86,7 @@ export function setupReactQueryMocks() {
         [FeatureToggles.BrukNyDecorator]: true,
         [FeatureToggles.JournalforUtenSvar]: true,
         [FeatureToggles.VisPromptMeldingSending]: true,
+        [FeatureToggles.VisSiste14aVedtak]: true,
         [FeatureToggles.BrukWebworkerPaaInnLogging]: true,
         [FeatureToggles.BrukNyTiltakspenger]: true,
         [FeatureToggles.VisDraftStatus]: true,

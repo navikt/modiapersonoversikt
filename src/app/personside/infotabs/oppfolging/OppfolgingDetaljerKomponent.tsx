@@ -3,6 +3,9 @@ import { guid } from 'nav-frontend-js-utils';
 import Panel from 'nav-frontend-paneler';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useRef } from 'react';
+import IfFeatureToggleOn from 'src/components/featureToggle/IfFeatureToggleOn';
+import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
+import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 import styled from 'styled-components';
 import DescriptionList from '../../../../components/DescriptionList';
 import type { DetaljertOppfolging } from '../../../../models/oppfolging';
@@ -33,15 +36,27 @@ function VisOppfolgingDetaljer(props: Props) {
     const errorLoadingData = props.isError ? (
         <AlertStripe type="advarsel">Kunne ikke laste inn informasjon om brukers oppfølging</AlertStripe>
     ) : null;
-    const descriptionListProps = {
-        'Er under oppfølging': getErUnderOppfolging(detaljer.oppfolging),
-        Oppfølgingsenhet: getOppfolgingEnhet(detaljer.oppfolging),
-        Rettighetsgruppe: detaljer.rettighetsgruppe,
-        Veileder: getVeileder(detaljer.oppfolging?.veileder),
-        Meldeplikt: meldeplikt,
-        Formidlingsgruppe: detaljer.formidlingsgruppe,
-        Oppfølgingsvedtak: datoEllerNull(detaljer.vedtaksdato)
-    };
+    const { isOn } = useFeatureToggle(FeatureToggles.VisSiste14aVedtak);
+    const descriptionListProps = isOn
+        ? {
+              'Er under oppfølging': getErUnderOppfolging(detaljer.oppfolging),
+              Oppfølgingsenhet: getOppfolgingEnhet(detaljer.oppfolging),
+              Rettighetsgruppe: detaljer.rettighetsgruppe,
+              Veileder: getVeileder(detaljer.oppfolging?.veileder),
+              Meldeplikt: meldeplikt,
+              Formidlingsgruppe: detaljer.formidlingsgruppe,
+              Oppfølgingsvedtak: datoEllerNull(detaljer.vedtaksdato)
+          }
+        : {
+              'Er under oppfølging': getErUnderOppfolging(detaljer.oppfolging),
+              Oppfølgingsenhet: getOppfolgingEnhet(detaljer.oppfolging),
+              Innsatsgruppe: detaljer.innsatsgruppe,
+              Rettighetsgruppe: detaljer.rettighetsgruppe,
+              Veileder: getVeileder(detaljer.oppfolging?.veileder),
+              Meldeplikt: meldeplikt,
+              Formidlingsgruppe: detaljer.formidlingsgruppe,
+              Oppfølgingsvedtak: datoEllerNull(detaljer.vedtaksdato)
+          };
 
     const siste14aVedtak = {
         'Har 14a vedtak': detaljer.siste14aVedtak ? 'Ja' : 'Nei',
@@ -58,8 +73,10 @@ function VisOppfolgingDetaljer(props: Props) {
                 <Undertittel id={headerId.current}>Arbeidsoppfølging</Undertittel>
                 <DescriptionList entries={descriptionListProps} />
                 <br />
-                <Undertittel id={headerId.current}>14a vedtak</Undertittel>
-                <DescriptionList entries={siste14aVedtak} />
+                <IfFeatureToggleOn toggleID={FeatureToggles.VisSiste14aVedtak}>
+                    <Undertittel id={headerId.current}>14a vedtak</Undertittel>
+                    <DescriptionList entries={siste14aVedtak} />
+                </IfFeatureToggleOn>
             </article>
         </StyledPanel>
     );
