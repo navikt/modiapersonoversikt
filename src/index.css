@@ -1,5 +1,5 @@
 @import "reset" layer(po-base);
-@import "tailwindcss/base";
+@import "tailwindcss/base" layer(po-base);
 @import "@navikt/ds-css";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
