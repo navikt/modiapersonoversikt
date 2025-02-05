@@ -61,13 +61,18 @@ export function fordelSaker(saker: JournalforingsSak[]): Kategorier {
     );
 
     const fagSaker = Object.entries(temaGruppertefagSaker)
-        //biome-ignore lint/performance/noAccumulatingSpread: biome migration
-        .reduce((acc, [tema, saker]) => [...acc, { tema, saker }], [] as Tema[])
+        .reduce((acc, [tema, saker]) => {
+            acc.push({ tema, saker });
+            return acc;
+        }, [] as Tema[])
         .toSorted((a, b) => a.tema.localeCompare(b.tema));
     const generelleSaker = Object.entries(temaGrupperteGenerelleSaker)
-        //biome-ignore lint/performance/noAccumulatingSpread: biome migration
-        .reduce((acc, [tema, saker]) => [...acc, { tema, saker }], [] as Tema[])
+        .reduce((acc, [tema, saker]) => {
+            acc.push({ tema, saker });
+            return acc;
+        }, [] as Tema[])
         .toSorted((a, b) => a.tema.localeCompare(b.tema));
+
     return {
         [SakKategori.FAG]: fagSaker,
         [SakKategori.GEN]: generelleSaker
