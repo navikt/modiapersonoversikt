@@ -1,4 +1,4 @@
-import { LightBulbIcon, MoonIcon, SunIcon } from '@navikt/aksel-icons';
+import { MoonIcon, SunIcon } from '@navikt/aksel-icons';
 import { HStack, Label, ToggleGroup } from '@navikt/ds-react';
 import { useAtom } from 'jotai';
 import { useCallback } from 'react';
@@ -19,7 +19,6 @@ export const ThemeToggle = () => {
     return (
         <HStack justify="space-between">
             <HStack align="center" gap="2">
-                <LightBulbIcon />
                 <Label size="small">Bytt modus</Label>
             </HStack>
             <ToggleGroup onChange={changeTheme} value={theme} size="small">

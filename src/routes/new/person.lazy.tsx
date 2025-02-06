@@ -1,8 +1,9 @@
-import { HStack, VStack } from '@navikt/ds-react';
+import { Box, HStack, VStack } from '@navikt/ds-react';
 import { Navigate, Outlet, createLazyFileRoute } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import { PersonLinje } from 'src/components/PersonLinje';
 import { PersonSidebarMenu } from 'src/components/PersonSidebar';
+import { LukkbarNyMelding } from 'src/components/melding/LukkbarNyMelding';
 import { aktivBrukerAtom } from 'src/lib/state/context';
 
 export const Route = createLazyFileRoute('/new/person')({
@@ -25,10 +26,17 @@ function PersonLayout() {
             <VStack>
                 <PersonSidebarMenu />
             </VStack>
-            <VStack flexGrow="1">
-                <PersonLinje />
-                <Outlet />
-            </VStack>
+            <HStack gap="2" flexGrow="1" className="flex-nowrap">
+                <VStack gap="2" flexGrow="1">
+                    <Box flexGrow="0">
+                        <PersonLinje />
+                    </Box>
+                    <Outlet />
+                </VStack>
+                <VStack flexGrow="0">
+                    <LukkbarNyMelding />
+                </VStack>
+            </HStack>
         </HStack>
     );
 }

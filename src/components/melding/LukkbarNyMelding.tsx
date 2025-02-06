@@ -1,5 +1,5 @@
 import { ChatIcon, MinusIcon } from '@navikt/aksel-icons';
-import { Button, HStack } from '@navikt/ds-react';
+import { Box, Button, HStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import NyMelding from 'src/components/melding/NyMelding';
 
@@ -7,9 +7,16 @@ export function LukkbarNyMelding() {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <HStack>
+        <HStack flexGrow="1">
             {!isOpen && (
-                <Button type="button" icon={<ChatIcon title="Skriv ny melding" />} onClick={() => setIsOpen(true)} />
+                <Box>
+                    <Button
+                        type="button"
+                        icon={<ChatIcon title="Skriv ny melding" />}
+                        size="small"
+                        onClick={() => setIsOpen(true)}
+                    />
+                </Box>
             )}
             {isOpen && (
                 <NyMelding
