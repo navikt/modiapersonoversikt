@@ -8,7 +8,7 @@
     --m-bg-inverted: #030b16;
 }
 
-[data-theme="dark"] {
+[data-theme="dark"] .new-modia {
     --a-text-default: var(--a-text-on-inverted);
     --a-text-on-alt-1: var(--a-text-subtle);
     --a-bg-default: var(--a-surface-inverted);
