@@ -5,5 +5,5 @@ export enum FeatureToggles {
     BrukNyTiltakspenger = 'modiapersonoversikt.bruk-ny-tiltakspenger',
     NyModiaKnapp = 'modiapersonoversikt.ny-modia-knapp',
     TilgangsMaskin = 'modiapersonoversikt.tilgangsmaskin',
-    BrukPensjon = 'modiapersonoversikt.bruk-pensjon',
+    BrukPensjon = 'modiapersonoversikt.bruk-pensjon'
 }
