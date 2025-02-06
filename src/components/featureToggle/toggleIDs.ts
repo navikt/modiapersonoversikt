@@ -6,6 +6,7 @@ export enum FeatureToggles {
     JournalforUtenSvar = 'modiapersonoversikt.meldinger-uten-svar-kan-journalfores',
     VisDraftStatus = 'modiapersonoversikt.vis-draft-status',
     BrukNyTiltakspenger = 'modiapersonoversikt.bruk-ny-tiltakspenger',
+    BrukPensjon = 'modiapersonoversikt.bruk-ny-tiltakspenger',
     FnrSokForInnkreving = 'modiapersonoversikt.fnr-sok-for-innkreving',
     OrgnrSokForInnkreving = 'modiapersonoversikt.orgnr-sok-for-innkreving',
     NyAvansertSok = 'modiapersonoversikt.ny-avansert-sok',

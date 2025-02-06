@@ -34,6 +34,7 @@ import { getMockPleiepenger } from './ytelse/pleiepenger-mock';
 import { getMockSykepengerRespons } from './ytelse/sykepenger-mock';
 
 import { http, type DefaultBodyType, type HttpHandler, HttpResponse, type PathParams, type StrictRequest } from 'msw';
+import { getMockPensjon } from 'src/mock/ytelse/pensjon-mock';
 import type { FeatureTogglesResponse } from 'src/rest/resources/featuretogglesResource';
 import { STATUS_OK, fodselsNummerErGyldigStatus, randomDelay } from './utils-mock';
 import { getMockTiltakspenger } from './ytelse/tiltakspenger-mock';
@@ -179,6 +180,15 @@ const tiltakspengerMock = http.post(
         randomDelay(),
         fodselsNummerErGyldigStatus,
         mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMockTiltakspenger(fodselsnummer))
+    )
+);
+
+const pensjonMock = http.post(
+    `${apiBaseUri}/v2/ytelse/pensjon`,
+    withDelayedResponse(
+        randomDelay(),
+        fodselsNummerErGyldigStatus,
+        mockGeneratorMedFodselsnummerV2((fnr) => getMockPensjon(fnr))
     )
 );
 
@@ -339,6 +349,7 @@ export const handlers: HttpHandler[] = [
     foreldrepengerHandler,
     pleiepengerHandler,
     tiltakspengerMock,
+    pensjonMock,
     tildelteOppgaverHandler,
     baseUrlsHandler,
     ...featureToggleHandler,

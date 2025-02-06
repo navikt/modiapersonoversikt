@@ -1,4 +1,5 @@
 import { Element, Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import { getPensjonIdDato, getUnikPensjonKey } from 'src/models/ytelse/pensjon';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
 import { getForeldepengerIdDato, getUnikForeldrepengerKey } from '../../../../models/ytelse/foreldrepenger';
 import { getUnikPleiepengerKey } from '../../../../models/ytelse/pleiepenger';
@@ -8,6 +9,7 @@ import {
     type Ytelse,
     getYtelseIdDato,
     isForeldrepenger,
+    isPensjon,
     isPleiepenger,
     isSykepenger,
     isTiltakspenger
@@ -88,6 +90,24 @@ function YtelserListeElement(props: Props) {
                     <Undertittel tag={'h3'}>Tiltakspenger</Undertittel>
                     <Element>ID-dato</Element>
                     <Normaltekst>{formaterDato(getTiltakspengerIdDato(props.ytelse))}</Normaltekst>
+                </VisMerKnapp>
+            </li>
+        );
+    }
+
+    if (isPensjon(props.ytelse)) {
+        const fom = getPensjonIdDato(props.ytelse);
+        return (
+            <li key={getUnikPensjonKey(props.ytelse)}>
+                <VisMerKnapp
+                    key={getUnikPensjonKey(props.ytelse)}
+                    ariaDescription="Vis pensjon"
+                    valgt={props.erValgt}
+                    linkTo={dypLenker.ytelser.link(props.ytelse)}
+                >
+                    <Undertittel tag={'h3'}>Pensjon</Undertittel>
+                    <Element>ID-dato</Element>
+                    <Normaltekst>{fom ? formaterDato(fom) : ''}</Normaltekst>
                 </VisMerKnapp>
             </li>
         );
