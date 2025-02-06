@@ -74,6 +74,7 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
             borderWidth="1"
             padding="2"
             maxWidth="30vw"
+            minWidth="22em"
         >
             <form
                 onSubmit={async (e) => {

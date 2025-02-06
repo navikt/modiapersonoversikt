@@ -112,7 +112,7 @@ export const PersonSidebarMenu = () => {
                                         className={twMerge(
                                             'my-1',
                                             'font-normal',
-                                            expanded && ['justify-start', 'min-w-60'],
+                                            expanded && ['justify-start', 'min-w-52'],
                                             isActive && [
                                                 'bg-surface-alt-1',
                                                 'text-text-on-alt-1',

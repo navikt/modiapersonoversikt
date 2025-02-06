@@ -3,6 +3,10 @@ import {
     type KodeBeskrivelseAdresseBeskyttelse,
     KodeBeskrivelseAdresseBeskyttelseKode,
     KodeBeskrivelseSivilstandTypeKode,
+    MeldingDTOMeldingstype,
+    type MeldingDto,
+    TraadDTOTraadType,
+    type TraadDto,
     type components
 } from 'src/generated/modiapersonoversikt-api';
 import type { ModiapersonoversiktAPI } from 'src/lib/clients/modiapersonoversikt-api';
@@ -40,3 +44,12 @@ export type SivilstandType = KodeBeskrivelseSivilstandTypeKode;
 
 export const PersonDataFeilendeSystemer = DataFeilendeSystemer;
 export type PersonDataFeilendeSystemer = DataFeilendeSystemer;
+
+export type Traad = TraadDto;
+export type Melding = MeldingDto;
+
+export const TraadType = TraadDTOTraadType;
+export type TraadType = TraadDTOTraadType;
+
+export const Meldingstype = MeldingDTOMeldingstype;
+export type Meldingstype = MeldingDTOMeldingstype;
