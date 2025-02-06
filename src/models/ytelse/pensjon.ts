@@ -5,7 +5,7 @@ export interface Pensjon {
     enhetId: string;
     type?: { code: string; decode: string };
     status?: { code: string; decode: string };
-    fom?: string;
+    fom: string;
     tom?: string;
 }
 
