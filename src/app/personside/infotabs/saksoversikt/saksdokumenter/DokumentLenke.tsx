@@ -1,12 +1,8 @@
 import { Link, useLocation } from '@tanstack/react-router';
 import { Element, Undertekst } from 'nav-frontend-typografi';
-import styled from 'styled-components';
 import { type Dokument, DokumentStatus, type Journalpost } from '../../../../../models/saksoversikt/journalpost';
 import type { Sakstema } from '../../../../../models/saksoversikt/sakstema';
-import theme from '../../../../../styles/personOversiktTheme';
-import { getSaksdokumentUrl } from '../dokumentvisning/getSaksdokumentUrl';
 import { erSakerFullscreen } from '../utils/erSakerFullscreen';
-import SvgDownload from './../../../../../svg/download.svg';
 
 interface Props {
     dokument: Dokument;
@@ -14,19 +10,6 @@ interface Props {
     kanVises: boolean;
     journalPost: Journalpost;
 }
-
-const LastNedLenke = styled.a`
-    margin-left: 0.5rem;
-
-    svg {
-        position: relative;
-        top: 2px;
-    }
-
-    &:hover {
-        color: ${theme.color.lenkeSelected};
-    }
-`;
 
 const dokumentTekst = (dokument: Dokument) => {
     return (
@@ -56,7 +39,7 @@ function DokumentLenke(props: Props) {
         );
     }
 
-    const saksdokumentUrl = getSaksdokumentUrl(journalpostId, dokumentReferanse);
+    //  const saksdokumentUrl = getSaksdokumentUrl(journalpostId, dokumentReferanse);
     return (
         <>
             {apneDokumentINyttVindu ? (
@@ -71,16 +54,24 @@ function DokumentLenke(props: Props) {
             ) : (
                 <Link
                     to={erFullScreen ? '/saker' : '/person/saker'}
-                    search={{ sakstema: props.valgtSakstema.temakode, dokument: dokumentReferanse }}
+                    search={{
+                        sakstema: props.valgtSakstema.temakode,
+                        dokument: dokumentReferanse
+                    }}
                     className="lenke typo-element"
                 >
                     {dokumentTekst(props.dokument)}
                 </Link>
             )}
+
+            {/*
+            // Disabled as the link is wrong and does not work
+
             <LastNedLenke href={saksdokumentUrl} className="lenke typo-element" download title="Last ned">
                 <SvgDownload aria-hidden width={20} height={20} />
                 <span className="sr-only">Last ned pdf</span>
             </LastNedLenke>
+              */}
         </>
     );
 }
