@@ -94,7 +94,7 @@ export function fjernSakerSomAlleredeErTilknyttet(
     const eksisterendeSaksIder = new Set(filtrerteSaksIder);
 
     return saker.filter(
-        (sak) => typeof sak.fagsystemSaksId === 'string' && !eksisterendeSaksIder.has(sak.fagsystemSaksId)
+        (sak) => typeof sak.fagsystemSaksId === 'string' ? !eksisterendeSaksIder.has(sak.fagsystemSaksId) : true
     );
 }
 
