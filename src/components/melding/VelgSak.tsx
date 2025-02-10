@@ -54,7 +54,7 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
                             setVelgSakModalOpen(false);
                         }}
                     >
-                        {(context) => (
+                        {({ valgtSakKategori, setSakKategori }) => (
                             <>
                                 <SakVelger.RadioGroup
                                     valgtSakKategori={context.valgtSakKategori}
