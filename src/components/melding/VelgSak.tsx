@@ -1,5 +1,5 @@
 import { PlusIcon } from '@navikt/aksel-icons';
-import { Button, Label, Modal, Tag, VStack } from '@navikt/ds-react';
+import { Alert, Button, HGrid, Label, Modal, Tag, VStack } from '@navikt/ds-react';
 import { type ReactNode, useState } from 'react';
 import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
 import { formatterDatoMedMaanedsnavnOrNull } from 'src/utils/date-utils';
@@ -46,15 +46,43 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
                 open={velgSakModalOpen}
                 onClose={() => setVelgSakModalOpen(false)}
                 closeOnBackdropClick
-                width={1200}
             >
                 <Modal.Body>
-                    <SakVelger
+                    <SakVelger.Root
                         setSak={(sak) => {
                             setSak(sak);
                             setVelgSakModalOpen(false);
                         }}
-                    />
+                    >
+                        {(context) => (
+                            <>
+                                <SakVelger.RadioGroup valgtSakKategori={context.valgtSakKategori} setSakKategori={context.setSakKategori} />
+                                <HGrid align="start" columns={2} gap="4">
+                                    <div className="h-[60vh] overflow-y-auto">
+                                        <SakVelger.TemaTable
+                                            kategorier={context.fordelteSaker}
+                                            valgtKategori={context.valgtSakKategori}
+                                            valgtTema={context.valgtTema}
+                                            setValgtTema={context.setValgtTema}
+                                        />
+                                    </div>
+                                    <div className="h-[60vh] overflow-y-auto">
+                                        <SakVelger.SakTable
+                                            kategorier={context.fordelteSaker}
+                                            valgtKategori={context.valgtSakKategori}
+                                            valgtTema={context.valgtTema}
+                                            setSak={context.setSak}
+                                        />
+                                    </div>
+                                </HGrid>
+                                {context.feiledeSystemer.map((feiledeSystem) => (
+                                    <Alert variant="warning" key={feiledeSystem}>
+                                        {feiledeSystem}
+                                    </Alert>
+                                ))}
+                            </>
+                        )}
+                    </SakVelger.Root>
                 </Modal.Body>
             </Modal>
         </VStack>
