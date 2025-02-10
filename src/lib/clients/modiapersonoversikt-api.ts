@@ -73,4 +73,4 @@ export const useJournalforingSaker = () => {
     return $api.useQuery('post', '/rest/v2/journalforing/saker/', {
         body: { fnr: aktivBruker }
     });
-}
+};

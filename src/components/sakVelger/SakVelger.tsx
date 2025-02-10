@@ -1,13 +1,11 @@
 import { Alert, HStack, Radio, RadioGroup, Table } from '@navikt/ds-react';
-import {
-    SakKategori
-} from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
-import { formatterDatoMedMaanedsnavnOrNull } from 'src/utils/date-utils';
-import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
-import { type Group, groupBy } from 'src/utils/groupArray';
-import { useState } from 'react';
-import { useJournalforingSaker } from 'src/lib/clients/modiapersonoversikt-api';
 import Spinner from 'nav-frontend-spinner';
+import { useState } from 'react';
+import { SakKategori } from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
+import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
+import { useJournalforingSaker } from 'src/lib/clients/modiapersonoversikt-api';
+import { formatterDatoMedMaanedsnavnOrNull } from 'src/utils/date-utils';
+import { type Group, groupBy } from 'src/utils/groupArray';
 
 interface SakVelgerRootContext {
     valgtSakKategori: SakKategori;

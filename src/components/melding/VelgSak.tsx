@@ -1,9 +1,9 @@
 import { PlusIcon } from '@navikt/aksel-icons';
 import { Alert, Button, HGrid, Label, Modal, Tag, VStack } from '@navikt/ds-react';
 import { type ReactNode, useState } from 'react';
+import SakVelger from 'src/components/sakVelger/SakVelger';
 import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
 import { formatterDatoMedMaanedsnavnOrNull } from 'src/utils/date-utils';
-import SakVelger from 'src/components/sakVelger/SakVelger';
 
 interface VelgSakProps {
     setSak: (sak: JournalforingSak) => void;
@@ -56,7 +56,10 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
                     >
                         {(context) => (
                             <>
-                                <SakVelger.RadioGroup valgtSakKategori={context.valgtSakKategori} setSakKategori={context.setSakKategori} />
+                                <SakVelger.RadioGroup
+                                    valgtSakKategori={context.valgtSakKategori}
+                                    setSakKategori={context.setSakKategori}
+                                />
                                 <HGrid align="start" columns={2} gap="4">
                                     <div className="h-[60vh] overflow-y-auto">
                                         <SakVelger.TemaTable
