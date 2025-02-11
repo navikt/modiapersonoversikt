@@ -68,19 +68,21 @@ export const TraadItem = ({
     const aktivTraad = routeApi.useSearch().traadId;
 
     return (
-        <Box
+        <Box.New
             padding="2"
+            background="raised"
             className={twMerge(
-                'cursor-pointer hover:bg-surface-hover group',
-                aktivTraad === traad.traadId ? 'bg-surface-active border-border-strong' : 'bg-surface-default'
+                'cursor-pointer hover:bg-[var(--ax-bg-neutral-moderate-hover)] group',
+                aktivTraad === traad.traadId &&
+                    'bg-[var(--ax-bg-neutral-moderate)] border-[var(--ax-border-neutral-strong)]'
             )}
-            borderColor="border-subtle"
+            borderColor="neutral-subtle"
             borderWidth="1"
             borderRadius="large"
             onClick={() => handleClick(traad.traadId)}
         >
             <HStack justify="space-between" gap="2">
-                <Box>
+                <Box.New>
                     <Heading size="xsmall" as="h3" level="3">
                         {tittel}
                     </Heading>
@@ -97,7 +99,7 @@ export const TraadItem = ({
                         <Feilsendt traad={traad} />
                         <Slettet melding={sisteMelding} />
                     </HStack>
-                </Box>
+                </Box.New>
                 <VStack justify="center">
                     <Button
                         variant="tertiary-neutral"
@@ -108,6 +110,6 @@ export const TraadItem = ({
                     />
                 </VStack>
             </HStack>
-        </Box>
+        </Box.New>
     );
 };

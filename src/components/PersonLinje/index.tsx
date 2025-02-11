@@ -81,20 +81,22 @@ const PersonLinjeContent = () => {
     return (
         <>
             <Sikkerhetstiltak sikkerhetstiltak={data.person.sikkerhetstiltak} />
-            <Box
+            <Box.New
                 ref={ref}
                 as="section"
                 aria-label="personlinje"
                 borderWidth="1"
-                background="bg-default"
-                className="border-border-subtle rounded-xl has-[:focus]:border-border-strong overflow-y-scroll max-h-[85vh]"
+                background="raised"
+                borderColor="neutral-subtle"
+                borderRadius="xlarge"
+                className="has-[:focus]:border-border-strong overflow-y-scroll max-h-[85vh]"
             >
                 <QueryErrorBoundary error={error}>
                     <HStack
                         onClick={() => setIsExpanded((v) => !v)}
                         paddingInline="4"
                         justify="space-between"
-                        className="hover:bg-bg-subtle cursor-pointer"
+                        className="hover:bg-[var(--ax-bg-neutral-moderate-hover)] cursor-pointer"
                         wrap={false}
                     >
                         <PersonlinjeHeader isExpanded={isExpanded} />
@@ -108,7 +110,7 @@ const PersonLinjeContent = () => {
                         <PersonlinjeDetails />
                     </Box>
                 </QueryErrorBoundary>
-            </Box>
+            </Box.New>
         </>
     );
 };
