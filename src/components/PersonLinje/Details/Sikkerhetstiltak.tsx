@@ -13,7 +13,10 @@ function Sikkerhetstiltak() {
     }
 
     return (
-        <Group title="Sikkerhetstiltak" icon={<ExclamationmarkTriangleFillIcon className="text-icon-danger" />}>
+        <Group
+            title="Sikkerhetstiltak"
+            icon={<ExclamationmarkTriangleFillIcon className="text-[var(--ax-text-danger-icon)]" />}
+        >
             <InfoElement>
                 {sikkerhetstiltak.map((sikkerhetstiltak) => {
                     return (

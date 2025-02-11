@@ -67,10 +67,10 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
     const meldingsTypeTekst = meldingsTyperTekst[meldingsType];
 
     return (
-        <Box
-            background="bg-default"
+        <Box.New
+            background="raised"
             borderRadius="large"
-            borderColor="border-subtle"
+            borderColor="neutral-subtle"
             borderWidth="1"
             padding="2"
             maxWidth="30vw"
@@ -171,7 +171,7 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                     {error && <Alert variant="error">{error}</Alert>}
                 </VStack>
             </form>
-        </Box>
+        </Box.New>
     );
 }
 

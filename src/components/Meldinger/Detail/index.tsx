@@ -1,6 +1,7 @@
 import { PersonIcon, PrinterSmallIcon } from '@navikt/aksel-icons';
-import { BodyShort, Box, Button, Chat, HStack, Heading, Tooltip, VStack } from '@navikt/ds-react';
+import { BodyShort, Box, Button, Chat, HStack, Heading, Skeleton, Tooltip, VStack } from '@navikt/ds-react';
 import { useAtomValue } from 'jotai';
+import { Suspense } from 'react';
 import RichText, { defaultRules, HighlightRule, SladdRule } from 'src/components/RichText';
 import { $api } from 'src/lib/clients/modiapersonoversikt-api';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
@@ -40,7 +41,13 @@ const TraadMeta = ({ traad }: { traad: Traad }) => (
     </HStack>
 );
 
-export const TraadDetail = ({ traadId }: { traadId: string }) => {
+export const TraadDetail = ({ traadId }: { traadId: string }) => (
+    <Suspense fallback={<Skeleton variant="rounded" height="200" />}>
+        <TraadDetailContent traadId={traadId} />
+    </Suspense>
+);
+
+const TraadDetailContent = ({ traadId }: { traadId: string }) => {
     const fnr = usePersonAtomValue();
     const enhet = useAtomValue(aktivEnhetAtom) ?? '';
     const { data: traader } = $api.useSuspenseQuery('post', '/rest/v2/dialog/meldinger', {
@@ -55,10 +62,10 @@ export const TraadDetail = ({ traadId }: { traadId: string }) => {
     }
 
     return (
-        <Box
+        <Box.New
             padding="2"
-            background="bg-default"
-            borderColor="border-subtle"
+            background="raised"
+            borderColor="neutral-subtle"
             borderWidth="1"
             borderRadius="large"
             className="flex flex-col"
@@ -78,21 +85,22 @@ export const TraadDetail = ({ traadId }: { traadId: string }) => {
                     </Button>
                 </HStack>
 
-                <Box
+                <Box.New
                     minHeight="0"
                     overflowY="scroll"
-                    borderColor="border-subtle"
+                    background="sunken"
+                    borderColor="neutral-subtle"
                     borderRadius="medium"
                     borderWidth="1"
                     padding="2"
                 >
                     <Meldinger meldinger={traad.meldinger} />
-                </Box>
-                <Box>
-                    <Button className="my-2">Svar</Button>
-                </Box>
+                </Box.New>
+                <Box.New marginBlock="space-8">
+                    <Button>Svar</Button>
+                </Box.New>
             </VStack>
-        </Box>
+        </Box.New>
     );
 };
 

@@ -14,7 +14,6 @@ import { Box, Button, VStack } from '@navikt/ds-react';
 import { Link } from '@tanstack/react-router';
 import { type ComponentProps, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
-import './PersonSidebar.css';
 import { ThemeToggle } from './theme/ThemeToggle';
 
 type MenuItem = {
@@ -70,17 +69,17 @@ export const PersonSidebarMenu = () => {
     const [expanded, setExpanded] = useState(true);
 
     return (
-        <Box
-            className="person-sidebar "
-            background="bg-default"
+        <Box.New
+            className="person-sidebar"
+            background="raised"
             borderRadius="large"
-            borderColor="border-subtle"
+            borderColor="neutral-subtle"
             borderWidth="1"
             flexGrow="1"
         >
             <VStack justify="space-between" height="100%">
-                <Box>
-                    <Box padding="2" className="flex">
+                <Box.New>
+                    <Box.New padding="2" className="flex">
                         <Button
                             aria-hidden
                             icon={
@@ -98,7 +97,7 @@ export const PersonSidebarMenu = () => {
                         >
                             {expanded && <span className="font-normal">Skjul</span>}
                         </Button>
-                    </Box>
+                    </Box.New>
                     <VStack as="nav" aria-label="Person" padding="2" className="divide-y divide-border-divider">
                         {menuItems.map(({ title, href, Icon }) => (
                             <Link key={title} to={href} aria-label={title}>
@@ -107,7 +106,7 @@ export const PersonSidebarMenu = () => {
                                         aria-hidden
                                         tabIndex={-1}
                                         icon={<Icon aria-hidden />}
-                                        variant="tertiary"
+                                        variant="tertiary-neutral"
                                         size="small"
                                         className={twMerge(
                                             'my-1',
@@ -127,11 +126,11 @@ export const PersonSidebarMenu = () => {
                             </Link>
                         ))}
                     </VStack>
-                </Box>
-                <Box aria-hidden padding="2" className={twMerge(!expanded && 'hidden')}>
+                </Box.New>
+                <Box.New aria-hidden padding="2" className={twMerge(!expanded && 'hidden')}>
                     <ThemeToggle />
-                </Box>
+                </Box.New>
             </VStack>
-        </Box>
+        </Box.New>
     );
 };
