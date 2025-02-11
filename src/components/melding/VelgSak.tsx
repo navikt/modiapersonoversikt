@@ -54,31 +54,31 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
                             setVelgSakModalOpen(false);
                         }}
                     >
-                        {({ valgtSakKategori, setSakKategori }) => (
+                        {({ valgtSakKategori, setSakKategori, fordelteSaker, valgtTema, setValgtTema, feiledeSystemer }) => (
                             <>
                                 <SakVelger.RadioGroup
-                                    valgtSakKategori={context.valgtSakKategori}
-                                    setSakKategori={context.setSakKategori}
+                                    valgtSakKategori={valgtSakKategori}
+                                    setSakKategori={setSakKategori}
                                 />
                                 <HGrid align="start" columns={2} gap="4">
                                     <div className="h-[60vh] overflow-y-auto">
                                         <SakVelger.TemaTable
-                                            kategorier={context.fordelteSaker}
-                                            valgtKategori={context.valgtSakKategori}
-                                            valgtTema={context.valgtTema}
-                                            setValgtTema={context.setValgtTema}
+                                            kategorier={fordelteSaker}
+                                            valgtKategori={valgtSakKategori}
+                                            valgtTema={valgtTema}
+                                            setValgtTema={setValgtTema}
                                         />
                                     </div>
                                     <div className="h-[60vh] overflow-y-auto">
                                         <SakVelger.SakTable
-                                            kategorier={context.fordelteSaker}
-                                            valgtKategori={context.valgtSakKategori}
-                                            valgtTema={context.valgtTema}
-                                            setSak={context.setSak}
+                                            kategorier={fordelteSaker}
+                                            valgtKategori={valgtSakKategori}
+                                            valgtTema={valgtTema}
+                                            setSak={setSak}
                                         />
                                     </div>
                                 </HGrid>
-                                {context.feiledeSystemer.map((feiledeSystem) => (
+                                {feiledeSystemer.map((feiledeSystem) => (
                                     <Alert variant="warning" key={feiledeSystem}>
                                         {feiledeSystem}
                                     </Alert>
