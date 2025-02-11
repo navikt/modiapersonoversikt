@@ -19,17 +19,27 @@ initializeObservability();
 
 const router = createRouter();
 
+let preRenderPromise: Promise<unknown> = Promise.resolve();
+
 if (import.meta.env.VITE_MOCK_ENABLED === 'true') {
-    const { worker } = await import('./mock/browser');
-    await worker.start();
+    console.log('import worker code');
+    preRenderPromise = import('./mock/browser.js').then(({ worker }) => {
+        return worker.start({
+            serviceWorker: {
+                url: `${import.meta.env.BASE_URL}/mockServiceWorker.js`
+            }
+        });
+    });
 }
 
-const container = document.getElementById('root');
-//biome-ignore lint/style/noNonNullAssertion: biome migration
-const root = createRoot(container!);
+preRenderPromise.then(() => {
+    const container = document.getElementById('root');
+    //biome-ignore lint/style/noNonNullAssertion: The container element is defined in index.html
+    const root = createRoot(container!);
 
-root.render(
-    <StrictMode>
-        <RouterProvider router={router} />
-    </StrictMode>
-);
+    root.render(
+        <StrictMode>
+            <RouterProvider router={router} />
+        </StrictMode>
+    );
+});
