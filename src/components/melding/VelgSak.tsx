@@ -1,5 +1,5 @@
 import { PlusIcon } from '@navikt/aksel-icons';
-import { Alert, Button, HGrid, Label, Modal, Tag, VStack } from '@navikt/ds-react';
+import { Alert, Button, HGrid, HStack, Label, Modal, Tag, VStack } from '@navikt/ds-react';
 import { type ReactNode, useState } from 'react';
 import SakVelger from 'src/components/sakVelger/SakVelger';
 import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
@@ -54,9 +54,9 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
                             setVelgSakModalOpen(false);
                         }}
                     >
-                        {({ valgtSakKategori, setSakKategori, fordelteSaker, valgtTema, setValgtTema, feiledeSystemer }) => (
-                            <>
-                                <SakVelger.RadioGroup
+                        {({ setSak, valgtSakKategori, setSakKategori, fordelteSaker, valgtTema, setTema, feiledeSystemer }) => (
+                            <HStack gap="2">
+                                <SakVelger.ToggleGroup
                                     valgtSakKategori={valgtSakKategori}
                                     setSakKategori={setSakKategori}
                                 />
@@ -66,7 +66,7 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
                                             kategorier={fordelteSaker}
                                             valgtKategori={valgtSakKategori}
                                             valgtTema={valgtTema}
-                                            setValgtTema={setValgtTema}
+                                            setValgtTema={setTema}
                                         />
                                     </div>
                                     <div className="h-[60vh] overflow-y-auto">
@@ -83,7 +83,7 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
                                         {feiledeSystem}
                                     </Alert>
                                 ))}
-                            </>
+                            </HStack>
                         )}
                     </SakVelger.Root>
                 </Modal.Body>

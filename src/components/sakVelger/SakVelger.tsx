@@ -1,7 +1,9 @@
-import { Alert, HStack, Radio, RadioGroup, Table } from '@navikt/ds-react';
+import { Alert, Table, ToggleGroup } from '@navikt/ds-react';
 import Spinner from 'nav-frontend-spinner';
 import { useState } from 'react';
-import { SakKategori } from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
+import {
+    SakKategori
+} from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
 import { useJournalforingSaker } from 'src/lib/clients/modiapersonoversikt-api';
 import { formatterDatoMedMaanedsnavnOrNull } from 'src/utils/date-utils';
@@ -11,7 +13,7 @@ interface SakVelgerRootContext {
     valgtSakKategori: SakKategori;
     setSakKategori: (sakKategori: SakKategori) => void;
     valgtTema: Tema | undefined;
-    setValgtTema: (tema: Tema) => void;
+    setTema: (tema: Tema) => void;
     saker: JournalforingSak[];
     setSak: (sak: JournalforingSak) => void;
     fordelteSaker: Kategorier;
@@ -27,7 +29,7 @@ const SakVelgerRoot: React.FC<SakVelgerRootProps> = ({ children, setSak }) => {
     const { data, isPending, isError } = useJournalforingSaker();
 
     const [valgtSakKategori, setSakKategori] = useState<SakKategori>(SakKategori.FAG);
-    const [valgtTema, setValgtTema] = useState<Tema | undefined>();
+    const [valgtTema, setTema] = useState<Tema | undefined>();
     if (isPending) {
         return <Spinner type="XL" />;
     }
@@ -48,7 +50,7 @@ const SakVelgerRoot: React.FC<SakVelgerRootProps> = ({ children, setSak }) => {
                 valgtSakKategori,
                 setSakKategori,
                 valgtTema,
-                setValgtTema
+                setTema,
             })}
         </>
     );
@@ -59,17 +61,13 @@ interface SakVelgerRadioGroupProps {
     setSakKategori: (sakKategori: SakKategori) => void;
 }
 
-const SakVelgerRadioGroup: React.FC<SakVelgerRadioGroupProps> = ({ valgtSakKategori, setSakKategori }) => {
+const SakVelgerToggleGroup: React.FC<SakVelgerRadioGroupProps> = ({ valgtSakKategori, setSakKategori }) => {
     return (
-        <RadioGroup legend="Saktype" value={valgtSakKategori} onChange={setSakKategori}>
-            <HStack gap="2">
+        <ToggleGroup label="Saktype" value={valgtSakKategori} onChange={(value) => setSakKategori(value as SakKategori)}>
                 {Object.values(SakKategori).map((sakKategori) => (
-                    <Radio value={sakKategori} key={sakKategori}>
-                        {sakKategori}
-                    </Radio>
+                    <ToggleGroup.Item value={sakKategori} key={sakKategori} label={sakKategori}/>
                 ))}
-            </HStack>
-        </RadioGroup>
+        </ToggleGroup>
     );
 };
 
@@ -147,7 +145,7 @@ const SakVelgerSakTable: React.FC<SakVelgerSakTableProps> = ({ kategorier, valgt
 
 const SakVelger = {
     Root: SakVelgerRoot,
-    RadioGroup: SakVelgerRadioGroup,
+    ToggleGroup: SakVelgerToggleGroup,
     TemaTable: SakVelgerTemaTable,
     SakTable: SakVelgerSakTable
 };
