@@ -1,6 +1,6 @@
 import { Alert, Table, ToggleGroup } from '@navikt/ds-react';
 import Spinner from 'nav-frontend-spinner';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import {
     SakKategori
 } from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
@@ -38,7 +38,7 @@ const SakVelgerRoot: React.FC<SakVelgerRootProps> = ({ children, setSak }) => {
     }
     const { saker, feiledeSystemer } = data;
 
-    const fordelteSaker = fordelSaker(saker);
+    const fordelteSaker = useMemo(() => fordelSaker(saker), [saker]);
 
     return (
         <>
