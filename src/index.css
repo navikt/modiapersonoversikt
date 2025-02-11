@@ -1,33 +1,20 @@
 @import "reset" layer(po-base);
-@import "tailwindcss/base" layer(po-base);
-@import "@navikt/ds-css";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
-
-:root {
-    --m-bg-inverted: #030b16;
-}
-
-[data-theme="dark"] .new-modia {
-    --a-text-default: var(--a-text-on-inverted);
-    --a-text-on-alt-1: var(--a-text-subtle);
-    --a-bg-default: var(--a-surface-inverted);
-    --a-bg-subtle: var(--a-gray-700);
-    --a-surface-subtle: var(--m-bg-inverted);
-    --a-surface-neutral-hover: var(--a-surface-neutral-subtle-hover);
-
-    --a-border-subtle: var(--a-grayalpha-600);
-    --a-border-default: var(--a-grayalpha-800);
-    --a-border-strong: var(--a-grayalpha-900);
-    --a-border-divider: var(--a-grayalpha-900);
-
-    --ac-tag-error-text: var(--a-gray-900);
-    --ac-tag-warning-text: var(--a-gray-900);
-    --ac-tag-info-text: var(--a-gray-900);
-
-    --ac-modal-bg: var(--a-surface-inverted);
-}
+@import "tailwindcss/base" layer(tailwind-base);
+@import "@navikt/ds-css/darkside";
+@import "tailwindcss/components" layer(tailwind-components);
+@import "tailwindcss/utilities" layer(tailwind-utilities);
+@import "./index.less" layer(nav-frontend);
 
 .new-modia {
-    color: var(--a-text-default);
+    color: var(--ax-text-default);
+
+    h1 {
+        font-size: var(--a-font-size-large);
+    }
+}
+
+.dekorator {
+    h1 {
+        font-size: var(--a-font-size-large);
+    }
 }

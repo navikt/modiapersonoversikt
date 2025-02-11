@@ -1,6 +1,7 @@
 import { Box, HStack, VStack } from '@navikt/ds-react';
 import { Navigate, Outlet, createLazyFileRoute } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
+import { Suspense } from 'react';
 import { PersonLinje } from 'src/components/PersonLinje';
 import { PersonSidebarMenu } from 'src/components/PersonSidebar';
 import { LukkbarNyMelding } from 'src/components/melding/LukkbarNyMelding';
@@ -22,7 +23,7 @@ function PersonRoute() {
 
 function PersonLayout() {
     return (
-        <HStack className="bg-surface-subtle new-modia" gap="2" padding="2" flexGrow="1" wrap={false}>
+        <HStack className="new-modia" gap="2" padding="2" flexGrow="1" wrap={false}>
             <VStack>
                 <PersonSidebarMenu />
             </VStack>
@@ -31,7 +32,9 @@ function PersonLayout() {
                     <Box flexGrow="0">
                         <PersonLinje />
                     </Box>
-                    <Outlet />
+                    <Suspense>
+                        <Outlet />
+                    </Suspense>
                 </VStack>
                 <VStack flexGrow="0">
                     <LukkbarNyMelding />
