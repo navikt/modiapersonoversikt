@@ -1,7 +1,6 @@
 import './extra-polyfills';
 import { createRoot } from 'react-dom/client';
 import './index.css';
-import './index.less';
 import { RouterProvider } from '@tanstack/react-router';
 import { StrictMode } from 'react';
 import { createRouter } from './router';

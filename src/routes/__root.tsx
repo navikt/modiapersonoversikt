@@ -1,4 +1,4 @@
-import { Alert, HStack, Loader } from '@navikt/ds-react';
+import { Alert, HStack, Loader, Theme } from '@navikt/ds-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Outlet, createRootRoute, useMatchRoute } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
@@ -13,7 +13,7 @@ import NotFound from 'src/components/NotFound';
 import { NyModia } from 'src/components/NyModia';
 import { ValgtEnhetProvider } from 'src/context/valgtenhet-state';
 import { aktivBrukerLastetAtom, aktivEnhetAtom } from 'src/lib/state/context';
-import { ThemeProvider } from 'src/lib/state/theme';
+import { ThemeProvider, themeAtom } from 'src/lib/state/theme';
 import { usePersistentWWLogin } from 'src/login/use-persistent-ww-login';
 import HandleLegacyUrls from 'src/utils/HandleLegacyUrls';
 import useTimeout from 'src/utils/hooks/use-timeout';
@@ -99,29 +99,33 @@ const AppWrapper = ({ children }: PropsWithChildren) => (
 function RootLayout() {
     const matchRoute = useMatchRoute();
     const isLanding = matchRoute({ to: '/landingpage' });
+    const isNewModia = matchRoute({ to: '/new/person', fuzzy: true }) !== false;
+    const theme = useAtomValue(themeAtom);
 
     return (
         <QueryClientProvider client={queryClient}>
-            <ThemeProvider />
-            <ValgtEnhetProvider>
-                {isLanding ? (
-                    <Outlet />
-                ) : (
-                    <AppWrapper>
-                        <HandleLegacyUrls>
-                            <DemoBanner />
-                            <NyModia />
-                            <Decorator />
-                            <ErrorBoundary boundaryName="app-content">
-                                <App>
-                                    <Outlet />
-                                </App>
-                            </ErrorBoundary>
-                        </HandleLegacyUrls>
-                    </AppWrapper>
-                )}
-                <TanStackRouterDevtools position="bottom-right" />
-            </ValgtEnhetProvider>
+            <Theme hasBackground={isNewModia} theme={isNewModia ? theme : 'light'}>
+                <ThemeProvider />
+                <ValgtEnhetProvider>
+                    {isLanding ? (
+                        <Outlet />
+                    ) : (
+                        <AppWrapper>
+                            <HandleLegacyUrls>
+                                <DemoBanner />
+                                <NyModia />
+                                <Decorator />
+                                <ErrorBoundary boundaryName="app-content">
+                                    <App>
+                                        <Outlet />
+                                    </App>
+                                </ErrorBoundary>
+                            </HandleLegacyUrls>
+                        </AppWrapper>
+                    )}
+                    <TanStackRouterDevtools position="bottom-right" />
+                </ValgtEnhetProvider>
+            </Theme>
         </QueryClientProvider>
     );
 }
