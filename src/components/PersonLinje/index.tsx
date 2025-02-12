@@ -7,6 +7,7 @@ import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import useHotkey from 'src/utils/hooks/use-hotkey';
 import { useClickAway } from 'src/utils/hooks/useClickAway';
 import { twMerge } from 'tailwind-merge';
+import Card from '../Card';
 import QueryErrorBoundary from '../QueryErrorBoundary';
 import { PersonBadges } from './Badges';
 import { PersonlinjeDetails } from './Details';
@@ -81,14 +82,10 @@ const PersonLinjeContent = () => {
     return (
         <>
             <Sikkerhetstiltak sikkerhetstiltak={data.person.sikkerhetstiltak} />
-            <Box.New
+            <Card
                 ref={ref}
                 as="section"
                 aria-label="personlinje"
-                borderWidth="1"
-                background="raised"
-                borderColor="neutral-subtle"
-                borderRadius="xlarge"
                 className="has-[:focus]:border-border-strong overflow-y-scroll max-h-[85vh]"
             >
                 <QueryErrorBoundary error={error}>
@@ -110,7 +107,7 @@ const PersonLinjeContent = () => {
                         <PersonlinjeDetails />
                     </Box>
                 </QueryErrorBoundary>
-            </Box.New>
+            </Card>
         </>
     );
 };

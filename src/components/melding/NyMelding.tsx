@@ -1,4 +1,4 @@
-import { Alert, Box, Button, ErrorMessage, HStack, Heading, Textarea, VStack } from '@navikt/ds-react';
+import { Alert, Button, ErrorMessage, HStack, Heading, Textarea, VStack } from '@navikt/ds-react';
 import { type ValidationError, useForm, useStore } from '@tanstack/react-form';
 import { Link } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
@@ -22,6 +22,7 @@ import { useSuspendingBrukernavn } from 'src/lib/hooks/useSuspendingBrukernavn';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import type { Temagruppe } from 'src/models/temagrupper';
 import type { z } from 'zod';
+import Card from '../Card';
 
 interface NyMeldingProps {
     lukkeKnapp?: ReactElement<typeof Button>;
@@ -67,15 +68,7 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
     const meldingsTypeTekst = meldingsTyperTekst[meldingsType];
 
     return (
-        <Box.New
-            background="raised"
-            borderRadius="large"
-            borderColor="neutral-subtle"
-            borderWidth="1"
-            padding="2"
-            maxWidth="30vw"
-            minWidth="22em"
-        >
+        <Card padding="2" maxWidth="30vw" minWidth="22em">
             <form
                 onSubmit={async (e) => {
                     e.preventDefault();
@@ -171,7 +164,7 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                     {error && <Alert variant="error">{error}</Alert>}
                 </VStack>
             </form>
-        </Box.New>
+        </Card>
     );
 }
 
