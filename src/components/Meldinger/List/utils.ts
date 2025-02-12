@@ -1,4 +1,10 @@
-import { type Melding, Meldingstype, type Traad, TraadDTOTraadType } from 'src/lib/types/modiapersonoversikt-api';
+import {
+    type Melding,
+    Meldingstype,
+    type Traad,
+    TraadDTOTraadType,
+    type Veileder
+} from 'src/lib/types/modiapersonoversikt-api';
 import { Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { datoStigende, datoSynkende, formatterDatoTid } from 'src/utils/date-utils';
 import { meldingstypeTekst, traadTypeTekst } from './tekster';
@@ -148,12 +154,12 @@ export function erBehandlet(traad: Traad): boolean {
     return traad.meldinger.some((melding) => erMeldingFraNav(melding.meldingstype));
 }
 
-export function saksbehandlerTekst(saksbehandler?: Saksbehandler) {
+export function saksbehandlerTekst(saksbehandler?: Veileder) {
     if (!saksbehandler) {
         return 'Ukjent saksbehandler';
     }
     const identTekst = saksbehandler.ident ? `(${saksbehandler.ident})` : '';
-    return `${saksbehandler.fornavn} ${saksbehandler.etternavn} ${identTekst}`;
+    return `${saksbehandler.navn} ${identTekst}`;
 }
 
 export function getFormattertMeldingsDato(melding: Melding) {

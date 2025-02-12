@@ -63,7 +63,7 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
     }
 
     return (
-        <Card padding="2" className="flex flex-col" minHeight="0">
+        <Card as={VStack} padding="2" minHeight="0">
             <VStack minHeight="0" gap="2">
                 <TraadMeta traad={traad} />
                 <HStack gap="4">

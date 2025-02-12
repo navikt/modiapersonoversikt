@@ -1,17 +1,16 @@
-import { Skeleton, VStack } from '@navikt/ds-react';
+import { Skeleton } from '@navikt/ds-react';
 import { useNavigate } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import { Suspense, useCallback } from 'react';
+import { PaginatedList } from 'src/components/PaginatedList';
 import { $api } from 'src/lib/clients/modiapersonoversikt-api';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import { TraadItem } from './TraadItem';
 
 export const TraadList = () => (
-    <VStack gap="2" paddingBlock="4" overflowY="scroll" className="pr-2">
-        <Suspense fallback={Array(8).map((i) => <Skeleton key={i} variant="rounded" height={62} />)}>
-            <Traader />
-        </Suspense>
-    </VStack>
+    <Suspense fallback={Array(8).map((i) => <Skeleton key={i} variant="rounded" height={62} />)}>
+        <Traader />
+    </Suspense>
 );
 
 const Traader = () => {
@@ -33,10 +32,10 @@ const Traader = () => {
     );
 
     return (
-        <>
-            {traader.map((traad) => (
-                <TraadItem key={traad.traadId} traad={traad} handleClick={handleClick} />
-            ))}
-        </>
+        <PaginatedList
+            items={traader}
+            keyExtractor={(item) => item.traadId}
+            renderItem={({ item }) => <TraadItem traad={item} handleClick={handleClick} />}
+        />
     );
 };
