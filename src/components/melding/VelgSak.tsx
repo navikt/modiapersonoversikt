@@ -47,14 +47,22 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
                 onClose={() => setVelgSakModalOpen(false)}
                 closeOnBackdropClick
             >
-                <Modal.Body>
+                <Modal.Body className="overflow-y-hidden">
                     <SakVelger.Root
                         setSak={(sak) => {
                             setSak(sak);
                             setVelgSakModalOpen(false);
                         }}
                     >
-                        {({ setSak, valgtSakKategori, setSakKategori, fordelteSaker, valgtTema, setTema, feiledeSystemer }) => (
+                        {({
+                            setSak,
+                            valgtSakKategori,
+                            setSakKategori,
+                            fordelteSaker,
+                            valgtTema,
+                            setTema,
+                            feiledeSystemer
+                        }) => (
                             <HStack gap="2">
                                 <SakVelger.ToggleGroup
                                     valgtSakKategori={valgtSakKategori}

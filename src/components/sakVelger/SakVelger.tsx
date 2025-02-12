@@ -1,9 +1,7 @@
-import { Alert, Table, ToggleGroup } from '@navikt/ds-react';
+import { Alert, Button, Table, ToggleGroup } from '@navikt/ds-react';
 import Spinner from 'nav-frontend-spinner';
 import { useMemo, useState } from 'react';
-import {
-    SakKategori
-} from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
+import { SakKategori } from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
 import { useJournalforingSaker } from 'src/lib/clients/modiapersonoversikt-api';
 import { formatterDatoMedMaanedsnavnOrNull } from 'src/utils/date-utils';
@@ -30,15 +28,16 @@ const SakVelgerRoot: React.FC<SakVelgerRootProps> = ({ children, setSak }) => {
 
     const [valgtSakKategori, setSakKategori] = useState<SakKategori>(SakKategori.FAG);
     const [valgtTema, setTema] = useState<Tema | undefined>();
+
+    const { saker, feiledeSystemer } = data || { saker: [], feiledeSystemer: [] };
+    const fordelteSaker = useMemo(() => fordelSaker(saker), [saker]);
+
     if (isPending) {
         return <Spinner type="XL" />;
     }
     if (isError) {
         return <Alert variant="error">Feil ved henting av journalsaker</Alert>;
     }
-    const { saker, feiledeSystemer } = data;
-
-    const fordelteSaker = useMemo(() => fordelSaker(saker), [saker]);
 
     return (
         <>
@@ -50,7 +49,7 @@ const SakVelgerRoot: React.FC<SakVelgerRootProps> = ({ children, setSak }) => {
                 valgtSakKategori,
                 setSakKategori,
                 valgtTema,
-                setTema,
+                setTema
             })}
         </>
     );
@@ -63,10 +62,14 @@ interface SakVelgerRadioGroupProps {
 
 const SakVelgerToggleGroup: React.FC<SakVelgerRadioGroupProps> = ({ valgtSakKategori, setSakKategori }) => {
     return (
-        <ToggleGroup label="Saktype" value={valgtSakKategori} onChange={(value) => setSakKategori(value as SakKategori)}>
-                {Object.values(SakKategori).map((sakKategori) => (
-                    <ToggleGroup.Item value={sakKategori} key={sakKategori} label={sakKategori}/>
-                ))}
+        <ToggleGroup
+            label="Saktype"
+            value={valgtSakKategori}
+            onChange={(value) => setSakKategori(value as SakKategori)}
+        >
+            {Object.values(SakKategori).map((sakKategori) => (
+                <ToggleGroup.Item value={sakKategori} key={sakKategori} label={sakKategori} />
+            ))}
         </ToggleGroup>
     );
 };
@@ -85,21 +88,33 @@ const SakVelgerTemaTable: React.FC<SakVelgerTemaTableProps> = ({
     setValgtTema
 }) => {
     return (
-        <Table zebraStripes className="table-fixed">
+        <Table zebraStripes>
             <Table.Header>
-                <Table.HeaderCell scope="col">Tema</Table.HeaderCell>
+                <Table.Row>
+                    <Table.HeaderCell className="min-w-8" scope="col">
+                        Tema
+                    </Table.HeaderCell>
+                    <Table.HeaderCell scope="col" className="sr-only">
+                        Velg
+                    </Table.HeaderCell>
+                </Table.Row>
             </Table.Header>
             <Table.Body>
                 {kategorier[valgtKategori].map((tema) => (
                     <Table.Row
-                        key={tema.tema}
+                        key={`${valgtKategori}-${tema.tema}`}
                         onClick={() => {
                             setValgtTema(tema);
                         }}
                         selected={tema.tema === valgtTema?.tema}
                         className="cursor-pointer"
                     >
-                        <Table.DataCell>{tema.tema}</Table.DataCell>
+                        <Table.HeaderCell scope="row">{tema.tema}</Table.HeaderCell>
+                        <Table.DataCell className="sr-only">
+                            <Button type="button" variant="secondary" onClick={() => setValgtTema(tema)}>
+                                Velg
+                            </Button>
+                        </Table.DataCell>
                     </Table.Row>
                 ))}
             </Table.Body>
@@ -116,10 +131,13 @@ interface SakVelgerSakTableProps {
 
 const SakVelgerSakTable: React.FC<SakVelgerSakTableProps> = ({ kategorier, valgtKategori, valgtTema, setSak }) => {
     return (
-        <Table zebraStripes className="table-fixed">
+        <Table zebraStripes>
             <Table.Header>
                 <Table.HeaderCell scope="col">SaksId</Table.HeaderCell>
                 <Table.HeaderCell scope="col">Opprettet</Table.HeaderCell>
+                <Table.HeaderCell scope="col" className="sr-only">
+                    Velg
+                </Table.HeaderCell>
             </Table.Header>
             <Table.Body>
                 {kategorier[valgtKategori]
@@ -127,7 +145,7 @@ const SakVelgerSakTable: React.FC<SakVelgerSakTableProps> = ({ kategorier, valgt
                     .flatMap((it) =>
                         it.saker.map((sak) => (
                             <Table.Row
-                                key={sak.saksId}
+                                key={`${valgtKategori}-${valgtTema?.tema}-${sak.saksId}`}
                                 onClick={() => {
                                     setSak(sak);
                                 }}
@@ -135,6 +153,11 @@ const SakVelgerSakTable: React.FC<SakVelgerSakTableProps> = ({ kategorier, valgt
                             >
                                 <Table.HeaderCell scope="row">{sak.saksId}</Table.HeaderCell>
                                 <Table.DataCell>{formatterDatoMedMaanedsnavnOrNull(sak.opprettetDato)}</Table.DataCell>
+                                <Table.DataCell className="sr-only">
+                                    <Button type="button" variant="secondary" onClick={() => setSak(sak)}>
+                                        {sak.saksId}
+                                    </Button>
+                                </Table.DataCell>
                             </Table.Row>
                         ))
                     )}
