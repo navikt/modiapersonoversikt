@@ -14,6 +14,7 @@ import { Box, Button, VStack } from '@navikt/ds-react';
 import { Link } from '@tanstack/react-router';
 import { type ComponentProps, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
+import Card from './Card';
 import { ThemeToggle } from './theme/ThemeToggle';
 
 type MenuItem = {
@@ -69,14 +70,7 @@ export const PersonSidebarMenu = () => {
     const [expanded, setExpanded] = useState(true);
 
     return (
-        <Box.New
-            className="person-sidebar"
-            background="raised"
-            borderRadius="large"
-            borderColor="neutral-subtle"
-            borderWidth="1"
-            flexGrow="1"
-        >
+        <Card>
             <VStack justify="space-between" height="100%">
                 <Box.New>
                     <Box.New padding="2" className="flex">
@@ -131,6 +125,6 @@ export const PersonSidebarMenu = () => {
                     <ThemeToggle />
                 </Box.New>
             </VStack>
-        </Box.New>
+        </Card>
     );
 };

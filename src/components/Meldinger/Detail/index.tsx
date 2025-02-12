@@ -2,6 +2,7 @@ import { PersonIcon, PrinterSmallIcon } from '@navikt/aksel-icons';
 import { BodyShort, Box, Button, Chat, HStack, Heading, Skeleton, Tooltip, VStack } from '@navikt/ds-react';
 import { useAtomValue } from 'jotai';
 import { Suspense } from 'react';
+import Card from 'src/components/Card';
 import RichText, { defaultRules, HighlightRule, SladdRule } from 'src/components/RichText';
 import { $api } from 'src/lib/clients/modiapersonoversikt-api';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
@@ -62,15 +63,7 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
     }
 
     return (
-        <Box.New
-            padding="2"
-            background="raised"
-            borderColor="neutral-subtle"
-            borderWidth="1"
-            borderRadius="large"
-            className="flex flex-col"
-            minHeight="0"
-        >
+        <Card padding="2" className="flex flex-col" minHeight="0">
             <VStack minHeight="0" gap="2">
                 <TraadMeta traad={traad} />
                 <HStack gap="4">
@@ -100,7 +93,7 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
                     <Button>Svar</Button>
                 </Box.New>
             </VStack>
-        </Box.New>
+        </Card>
     );
 };
 

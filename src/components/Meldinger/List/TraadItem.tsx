@@ -1,6 +1,7 @@
 import { ChevronRightIcon } from '@navikt/aksel-icons';
 import { BodyShort, Box, Button, HStack, Heading, Tag, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
+import Card from 'src/components/Card';
 import type { TraadDto } from 'src/generated/modiapersonoversikt-api';
 import type { Melding } from 'src/lib/types/modiapersonoversikt-api';
 import { Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
@@ -68,17 +69,13 @@ export const TraadItem = ({
     const aktivTraad = routeApi.useSearch().traadId;
 
     return (
-        <Box.New
+        <Card
             padding="2"
-            background="raised"
             className={twMerge(
                 'cursor-pointer hover:bg-[var(--ax-bg-neutral-moderate-hover)] group',
                 aktivTraad === traad.traadId &&
                     'bg-[var(--ax-bg-neutral-moderate)] border-[var(--ax-border-neutral-strong)]'
             )}
-            borderColor="neutral-subtle"
-            borderWidth="1"
-            borderRadius="large"
             onClick={() => handleClick(traad.traadId)}
         >
             <HStack justify="space-between" gap="2">
@@ -110,6 +107,6 @@ export const TraadItem = ({
                     />
                 </VStack>
             </HStack>
-        </Box.New>
+        </Card>
     );
 };
