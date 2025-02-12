@@ -6,17 +6,19 @@ import { TraadListOptions } from './List/Options';
 
 export const MeldingerPage = () => {
     return (
-        <HStack gap="8" className="min-h-0">
-            <VStack height="100%">
+        <HStack gap="8" minHeight="0" flexGrow="1">
+            <VStack height="100%" paddingBlock="2">
                 <HStack gap="4" justify="space-between">
                     <Heading size="xsmall">Innboks</Heading>
                     <TraadListOptions />
                 </HStack>
                 <TraadList />
             </VStack>
-            <VStack height="100%" className="flex-grow">
+            <VStack flexGrow="1" minHeight="0" maxHeight="100%">
                 <Heading size="xsmall">Dialog</Heading>
-                <TraadDetailSection />
+                <VStack minHeight="0">
+                    <TraadDetailSection />
+                </VStack>
             </VStack>
         </HStack>
     );

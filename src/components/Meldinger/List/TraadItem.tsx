@@ -3,17 +3,24 @@ import { BodyShort, Box, Button, HStack, Heading, Tag, VStack } from '@navikt/ds
 import { getRouteApi } from '@tanstack/react-router';
 import Card from 'src/components/Card';
 import type { TraadDto } from 'src/generated/modiapersonoversikt-api';
+import { usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
+import { usePersonAtomValue } from 'src/lib/state/context';
 import type { Melding } from 'src/lib/types/modiapersonoversikt-api';
 import { Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { twMerge } from 'tailwind-merge';
 import { erFeilsendt, getFormattertMeldingsDato, nyesteMelding, traadstittel } from './utils';
 
 function TildeltSaksbehandler({ traadId }: { traadId: string }) {
-    //const tildelteOppgaver = useTildelteOppgaver();
-    const tildelteOppgaver = {};
+    const oppgaver = usePersonOppgaver();
+    const fnr = usePersonAtomValue();
+    const tildeltTilBruker = oppgaver.data.filter((oppg) => oppg.fødselsnummer === fnr);
 
-    if (tildelteOppgaver.paaBruker.map((oppgave) => oppgave.traadId).includes(traadId)) {
-        return <EtikettSuksess>Tildelt meg</EtikettSuksess>;
+    if (tildeltTilBruker.map((oppgave) => oppgave.traadId).includes(traadId)) {
+        return (
+            <Tag size="xsmall" variant="info">
+                Tildelt meg
+            </Tag>
+        );
     }
 
     return null;
@@ -95,6 +102,7 @@ export const TraadItem = ({
                     <HStack gap="1" wrap>
                         <Feilsendt traad={traad} />
                         <Slettet melding={sisteMelding} />
+                        <TildeltSaksbehandler traadId={traad.traadId} />
                     </HStack>
                 </Box.New>
                 <VStack justify="center">
