@@ -914,7 +914,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
               <p
                 class="typo-normal"
               >
-                2 / 4
+                2 / 5
               </p>
             </div>
             <a
@@ -971,21 +971,21 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <p
                     class="typo-normal"
                   >
-                    ID dato: 06.02.2019
+                    ID dato: 10.01.2020
                   </p>
                   <p
                     class="typo-element"
                   >
-                    Sykepenger
+                    Pensjon
                   </p>
                   <p
                     class="typo-normal"
                   >
-                    100% sykemeldt - Dokumentet Sykepenger behandlet i ny løsning inneholder maksdato
+                    10.01.2020 - 21.02.2020: Type: Afp
                   </p>
                 </div>
                 <button
-                  aria-label="Vis sykepenger"
+                  aria-label="Vis pensjon"
                   aria-selected="false"
                   class="c10"
                 >
