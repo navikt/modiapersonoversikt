@@ -26,7 +26,7 @@ if (import.meta.env.VITE_MOCK_ENABLED === 'true') {
     preRenderPromise = import('./mock/browser.js').then(({ worker }) => {
         return worker.start({
             serviceWorker: {
-                url: `${import.meta.env.BASE_URL}/mockServiceWorker.js`
+                url: `${import.meta.env.BASE_URL || '/'}mockServiceWorker.js`
             }
         });
     });

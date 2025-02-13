@@ -1,15 +1,8 @@
 import { PlusIcon } from '@navikt/aksel-icons';
-import { Alert, Button, HStack, Label, Modal, Radio, RadioGroup, Table, Tag, VStack } from '@navikt/ds-react';
-import Spinner from 'nav-frontend-spinner';
+import { Alert, Button, HGrid, HStack, Label, Modal, Tag, VStack } from '@navikt/ds-react';
 import { type ReactNode, useState } from 'react';
-import { SakKategori } from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
-import TemaTable from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/TemaTabell';
-import {
-    fjernSakerSomAlleredeErTilknyttet,
-    fordelSaker
-} from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/VelgSak';
+import SakVelger from 'src/components/sakVelger/SakVelger';
 import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
-import journalsakResource from 'src/rest/resources/journalsakResource';
 import { formatterDatoMedMaanedsnavnOrNull } from 'src/utils/date-utils';
 
 interface VelgSakProps {
@@ -19,51 +12,7 @@ interface VelgSakProps {
 }
 
 export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
-    const [sakKategori, setSakKategori] = useState<SakKategori>(SakKategori.FAG);
     const [velgSakModalOpen, setVelgSakModalOpen] = useState(false);
-    const journalsakerResult = journalsakResource.useFetch();
-
-    if (journalsakerResult.isPending) {
-        return <Spinner type="XL" />;
-    }
-    if (journalsakerResult.isError) {
-        return <Alert variant="error">Feil ved henting av journalsaker</Alert>;
-    }
-    const { saker, feiledeSystemer } = journalsakerResult.data;
-
-    const feiledeSystemerAlerts = feiledeSystemer.map((feiledeSystem) => (
-        <Alert variant="warning" key={feiledeSystem}>
-            {feiledeSystem}
-        </Alert>
-    ));
-    const filtrerteSaker = fjernSakerSomAlleredeErTilknyttet(saker, []);
-    const fordelteSaker = fordelSaker(filtrerteSaker);
-    const temaTable = fordelteSaker[sakKategori].map((tema) => (
-        <TemaTable
-            velgSak={(sak) => {
-                const journalforingSak: JournalforingSak = {
-                    fnr: undefined, // TODO: Finnes ikke i typen som brukes i TemaTable
-                    saksId: sak.saksId,
-                    fagsystemSaksId: sak.fagsystemSaksId ?? undefined,
-                    temaKode: sak.temaKode,
-                    temaNavn: sak.temaNavn,
-                    fagsystemKode: sak.fagsystemKode,
-                    fagsystemNavn: sak.fagsystemNavn,
-                    sakstype: sak.sakstype ?? undefined,
-                    opprettetDato: sak.opprettetDato ?? undefined,
-                    finnesIGsak: sak.finnesIGsak,
-                    finnesIPsak: sak.finnesIPsak,
-                    sakstypeForVisningGenerell: sak.sakstypeForVisningGenerell,
-                    saksIdVisning: sak.saksIdVisning
-                };
-                setSak(journalforingSak);
-                setVelgSakModalOpen(false);
-            }}
-            key={tema.tema}
-            tema={tema.tema}
-            saker={tema.saker}
-        />
-    ));
 
     return (
         <VStack gap="1">
@@ -98,27 +47,53 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
                 onClose={() => setVelgSakModalOpen(false)}
                 closeOnBackdropClick
             >
-                <Modal.Body>
-                    <RadioGroup legend="Saktype" value={sakKategori} onChange={setSakKategori}>
-                        <HStack gap="2">
-                            {Object.values(SakKategori).map((sakKategori) => (
-                                <Radio value={sakKategori} key={sakKategori}>
-                                    {sakKategori}
-                                </Radio>
-                            ))}
-                        </HStack>
-                    </RadioGroup>
-                    <Table>
-                        <Table.Header>
-                            <Table.HeaderCell />
-                        </Table.Header>
-                        <Table.Body>
-                            <>
-                                {feiledeSystemerAlerts}
-                                {temaTable}
-                            </>
-                        </Table.Body>
-                    </Table>
+                <Modal.Body className="overflow-y-hidden">
+                    <SakVelger.Root
+                        setSak={(sak) => {
+                            setSak(sak);
+                            setVelgSakModalOpen(false);
+                        }}
+                    >
+                        {({
+                            setSak,
+                            valgtSakKategori,
+                            setSakKategori,
+                            fordelteSaker,
+                            valgtTema,
+                            setTema,
+                            feiledeSystemer
+                        }) => (
+                            <HStack gap="2">
+                                <SakVelger.ToggleGroup
+                                    valgtSakKategori={valgtSakKategori}
+                                    setSakKategori={setSakKategori}
+                                />
+                                <HGrid align="start" columns={2} gap="4">
+                                    <div className="h-[60vh] overflow-y-auto">
+                                        <SakVelger.TemaTable
+                                            kategorier={fordelteSaker}
+                                            valgtKategori={valgtSakKategori}
+                                            valgtTema={valgtTema}
+                                            setValgtTema={setTema}
+                                        />
+                                    </div>
+                                    <div className="h-[60vh] overflow-y-auto">
+                                        <SakVelger.SakTable
+                                            kategorier={fordelteSaker}
+                                            valgtKategori={valgtSakKategori}
+                                            valgtTema={valgtTema}
+                                            setSak={setSak}
+                                        />
+                                    </div>
+                                </HGrid>
+                                {feiledeSystemer.map((feiledeSystem) => (
+                                    <Alert variant="warning" key={feiledeSystem}>
+                                        {feiledeSystem}
+                                    </Alert>
+                                ))}
+                            </HStack>
+                        )}
+                    </SakVelger.Root>
                 </Modal.Body>
             </Modal>
         </VStack>

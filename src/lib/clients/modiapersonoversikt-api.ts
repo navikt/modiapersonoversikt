@@ -67,3 +67,10 @@ export const useSendMelding = (onSuccess?: () => void) => {
 export const useEnheter = () => {
     return $api.useQuery('get', '/rest/hode/enheter');
 };
+
+export const useJournalforingSaker = () => {
+    const aktivBruker = usePersonAtomValue();
+    return $api.useQuery('post', '/rest/v2/journalforing/saker/', {
+        body: { fnr: aktivBruker }
+    });
+};
