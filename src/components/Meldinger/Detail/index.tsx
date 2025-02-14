@@ -1,11 +1,12 @@
 import { PersonIcon, PrinterSmallIcon } from '@navikt/aksel-icons';
 import { BodyShort, Box, Button, Chat, HStack, Heading, Skeleton, Tooltip, VStack } from '@navikt/ds-react';
-import { useAtomValue } from 'jotai';
-import { Suspense } from 'react';
+import { useAtom, useAtomValue } from 'jotai';
+import { Suspense, useCallback } from 'react';
 import Card from 'src/components/Card';
 import RichText, { defaultRules, HighlightRule, SladdRule } from 'src/components/RichText';
 import { $api } from 'src/lib/clients/modiapersonoversikt-api';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
+import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
 import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { formaterDato } from 'src/utils/string-utils';
@@ -49,6 +50,7 @@ export const TraadDetail = ({ traadId }: { traadId: string }) => (
 );
 
 const TraadDetailContent = ({ traadId }: { traadId: string }) => {
+    const [, setDialogUnderArbeid] = useAtom(dialogUnderArbeidAtom);
     const fnr = usePersonAtomValue();
     const enhet = useAtomValue(aktivEnhetAtom) ?? '';
     const { data: traader } = $api.useSuspenseQuery('post', '/rest/v2/dialog/meldinger', {
@@ -61,6 +63,10 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
     if (!traad) {
         return <span> fant ikke traaden</span>;
     }
+
+    const svarSamtale = useCallback(() => {
+        setDialogUnderArbeid(traadId);
+    }, [traadId, setDialogUnderArbeid]);
 
     return (
         <Card as={VStack} padding="2" minHeight="0">
@@ -90,7 +96,7 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
                     <Meldinger meldinger={traad.meldinger} />
                 </Box.New>
                 <Box.New marginBlock="space-8">
-                    <Button>Svar</Button>
+                    <Button onClick={svarSamtale}>Svar</Button>
                 </Box.New>
             </VStack>
         </Card>

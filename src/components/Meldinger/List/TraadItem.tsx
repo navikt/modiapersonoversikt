@@ -1,10 +1,13 @@
 import { ChevronRightIcon } from '@navikt/aksel-icons';
 import { BodyShort, Box, Button, HStack, Heading, Tag, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
+import { atom, useAtomValue } from 'jotai';
+import { useMemo } from 'react';
 import Card from 'src/components/Card';
 import type { TraadDto } from 'src/generated/modiapersonoversikt-api';
 import { usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
 import { usePersonAtomValue } from 'src/lib/state/context';
+import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
 import type { Melding } from 'src/lib/types/modiapersonoversikt-api';
 import { Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { twMerge } from 'tailwind-merge';
@@ -25,9 +28,10 @@ function TildeltSaksbehandler({ traadId }: { traadId: string }) {
 
     return null;
 }
-function UnderArbeid({ traad }: { traad: TraadDto }) {
-    const underArbeid = false;
-    if (underArbeid)
+function UnderArbeid({ traadId }: { traadId: string }) {
+    const isUnderArbeid = useAtomValue(useMemo(() => atom((get) => get(dialogUnderArbeidAtom) === traadId), [traadId]));
+
+    if (isUnderArbeid)
         return (
             <Tag size="xsmall" variant="info">
                 Under arbeid
@@ -100,6 +104,7 @@ export const TraadItem = ({
                         {datoTekst}
                     </BodyShort>
                     <HStack gap="1" wrap>
+                        <UnderArbeid traadId={traad.traadId} />
                         <Feilsendt traad={traad} />
                         <Slettet melding={sisteMelding} />
                         <TildeltSaksbehandler traadId={traad.traadId} />
