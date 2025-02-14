@@ -5,10 +5,9 @@ import { createRef, useState } from 'react';
 import styled from 'styled-components';
 import journalsakResource from '../../../../rest/resources/journalsakResource';
 import theme from '../../../../styles/personOversiktTheme';
-import { formatterDatoMedMaanedsnavn } from '../../../../utils/date-utils';
+import { formatterDatoMedMaanedsnavn } from 'src/utils/date-utils';
 import type {
     JournalforingsSak,
-    JournalforingsSakIdentifikator
 } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import VelgSak from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/VelgSak';
 

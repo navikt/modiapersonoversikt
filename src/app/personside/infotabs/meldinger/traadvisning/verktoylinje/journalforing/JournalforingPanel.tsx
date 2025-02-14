@@ -35,11 +35,6 @@ export interface JournalforingsSak {
     syntetisk?: boolean | null;
 }
 
-export interface JournalforingsSakIdentifikator {
-    temaKode: string;
-    fagsystemSaksId?: string;
-}
-
 export type Result = { saker: Array<JournalforingsSak>; feiledeSystemer: Array<string> };
 export type Tema = { tema: string; saker: Array<JournalforingsSak> };
 export type Kategorier = { [key in SakKategori]: Tema[] };
