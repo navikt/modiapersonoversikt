@@ -1,10 +1,10 @@
 import { createLazyFileRoute } from '@tanstack/react-router';
-import { LukkbarNyMelding } from 'src/components/melding/LukkbarNyMelding';
+import { MeldingerPage } from 'src/components/Meldinger';
 
 export const Route = createLazyFileRoute('/new/person/meldinger')({
     component: RouteComponent
 });
 
 function RouteComponent() {
-    return <LukkbarNyMelding />;
+    return <MeldingerPage />;
 }

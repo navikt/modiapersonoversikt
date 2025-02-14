@@ -14,7 +14,7 @@ import { Box, Button, VStack } from '@navikt/ds-react';
 import { Link } from '@tanstack/react-router';
 import { type ComponentProps, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
-import './PersonSidebar.css';
+import Card from './Card';
 import { ThemeToggle } from './theme/ThemeToggle';
 
 type MenuItem = {
@@ -70,17 +70,10 @@ export const PersonSidebarMenu = () => {
     const [expanded, setExpanded] = useState(true);
 
     return (
-        <Box
-            className="person-sidebar "
-            background="bg-default"
-            borderRadius="large"
-            borderColor="border-subtle"
-            borderWidth="1"
-            flexGrow="1"
-        >
+        <Card>
             <VStack justify="space-between" height="100%">
-                <Box>
-                    <Box padding="2" className="flex">
+                <Box.New>
+                    <Box.New padding="2" className="flex">
                         <Button
                             aria-hidden
                             icon={
@@ -98,7 +91,7 @@ export const PersonSidebarMenu = () => {
                         >
                             {expanded && <span className="font-normal">Skjul</span>}
                         </Button>
-                    </Box>
+                    </Box.New>
                     <VStack as="nav" aria-label="Person" padding="2" className="divide-y divide-border-divider">
                         {menuItems.map(({ title, href, Icon }) => (
                             <Link key={title} to={href} aria-label={title}>
@@ -107,12 +100,12 @@ export const PersonSidebarMenu = () => {
                                         aria-hidden
                                         tabIndex={-1}
                                         icon={<Icon aria-hidden />}
-                                        variant="tertiary"
+                                        variant="tertiary-neutral"
                                         size="small"
                                         className={twMerge(
                                             'my-1',
                                             'font-normal',
-                                            expanded && ['justify-start', 'min-w-60'],
+                                            expanded && ['justify-start', 'min-w-52'],
                                             isActive && [
                                                 'bg-surface-alt-1',
                                                 'text-text-on-alt-1',
@@ -127,11 +120,11 @@ export const PersonSidebarMenu = () => {
                             </Link>
                         ))}
                     </VStack>
-                </Box>
-                <Box aria-hidden padding="2" className={twMerge(!expanded && 'hidden')}>
+                </Box.New>
+                <Box.New aria-hidden padding="2" className={twMerge(!expanded && 'hidden')}>
                     <ThemeToggle />
-                </Box>
+                </Box.New>
             </VStack>
-        </Box>
+        </Card>
     );
 };

@@ -23,7 +23,10 @@ function TilrettelagtKommunikasjon() {
     }
 
     return (
-        <Group title="Tilrettelagt kommunikasjon" icon={<ChatExclamationmarkFillIcon className="text-icon-warning" />}>
+        <Group
+            title="Tilrettelagt kommunikasjon"
+            icon={<ChatExclamationmarkFillIcon className="text-[var(--ax-text-warning-icon)]" />}
+        >
             <InfoElement>
                 {tilrettelagtKommunikasjonTekst('Tegnspråk', tilrettelagtKommunikasjon.tegnsprak)}
                 {tilrettelagtKommunikasjonTekst('Talespråk', tilrettelagtKommunikasjon.talesprak)}

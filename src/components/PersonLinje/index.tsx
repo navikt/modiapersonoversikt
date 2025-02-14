@@ -7,6 +7,7 @@ import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import useHotkey from 'src/utils/hooks/use-hotkey';
 import { useClickAway } from 'src/utils/hooks/useClickAway';
 import { twMerge } from 'tailwind-merge';
+import Card from '../Card';
 import QueryErrorBoundary from '../QueryErrorBoundary';
 import { PersonBadges } from './Badges';
 import { PersonlinjeDetails } from './Details';
@@ -81,20 +82,18 @@ const PersonLinjeContent = () => {
     return (
         <>
             <Sikkerhetstiltak sikkerhetstiltak={data.person.sikkerhetstiltak} />
-            <Box
+            <Card
                 ref={ref}
                 as="section"
                 aria-label="personlinje"
-                borderWidth="1"
-                background="bg-default"
-                className="border-border-subtle rounded-xl has-[:focus]:border-border-strong overflow-y-scroll max-h-[85vh]"
+                className="has-[:focus]:border-border-strong overflow-y-scroll max-h-[85vh]"
             >
                 <QueryErrorBoundary error={error}>
                     <HStack
                         onClick={() => setIsExpanded((v) => !v)}
                         paddingInline="4"
                         justify="space-between"
-                        className="hover:bg-bg-subtle cursor-pointer"
+                        className="hover:bg-[var(--ax-bg-neutral-moderate-hover)] cursor-pointer"
                         wrap={false}
                     >
                         <PersonlinjeHeader isExpanded={isExpanded} />
@@ -108,7 +107,7 @@ const PersonLinjeContent = () => {
                         <PersonlinjeDetails />
                     </Box>
                 </QueryErrorBoundary>
-            </Box>
+            </Card>
         </>
     );
 };

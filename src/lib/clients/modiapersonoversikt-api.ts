@@ -74,3 +74,13 @@ export const useJournalforingSaker = () => {
         body: { fnr: aktivBruker }
     });
 };
+
+export const usePersonOppgaver = () => {
+    const aktivBruker = usePersonAtomValue();
+
+    return $api.useSuspenseQuery('post', '/rest/v2/oppgaver/tildelt', {
+        body: {
+            fnr: aktivBruker
+        }
+    });
+};
