@@ -8,6 +8,13 @@ import { createRouter } from './router';
 import { initAmplitude } from './utils/amplitude';
 import { initializeObservability } from './utils/observability';
 
+const baseUrl = () => {
+    if (import.meta.env.BASE_URL.endsWith('/')) {
+        return import.meta.env.BASE_URL;
+    }
+    return `${import.meta.env.BASE_URL}/`;
+};
+
 if (import.meta.env.DEV) {
     window.applicationFeatureToggles = {
         enableFaro: true
@@ -22,11 +29,10 @@ const router = createRouter();
 let preRenderPromise: Promise<unknown> = Promise.resolve();
 
 if (import.meta.env.VITE_MOCK_ENABLED === 'true') {
-    console.log('import worker code');
     preRenderPromise = import('./mock/browser.js').then(({ worker }) => {
         return worker.start({
             serviceWorker: {
-                url: `${import.meta.env.BASE_URL || '/'}mockServiceWorker.js`
+                url: `${baseUrl()}mockServiceWorker.js`
             }
         });
     });
