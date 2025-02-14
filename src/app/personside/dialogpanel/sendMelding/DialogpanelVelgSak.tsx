@@ -15,7 +15,6 @@ import VelgSak from '../../infotabs/meldinger/traadvisning/verktoylinje/journalf
 interface Props {
     valgtSak?: JournalforingsSak;
     setValgtSak: (sak: JournalforingsSak) => void;
-    eksisterendeSaker: Array<JournalforingsSakIdentifikator>;
     visFeilmelding?: boolean;
 }
 
@@ -77,11 +76,7 @@ function DialogpanelVelgSak(props: Props) {
             <StyledModalWrapper contentLabel="Velg sak" onRequestClose={handleOnClose} isOpen={apen}>
                 <Systemtittel>Velg sak</Systemtittel>
                 <Style>
-                    <VelgSak
-                        velgSak={handleVelgSak}
-                        valgtSak={props.valgtSak}
-                        eksisterendeSaker={props.eksisterendeSaker}
-                    />
+                    <VelgSak velgSak={handleVelgSak} valgtSak={props.valgtSak} />
                 </Style>
                 <Hovedknapp onClick={() => settApen(false)}>Lukk</Hovedknapp>
             </StyledModalWrapper>

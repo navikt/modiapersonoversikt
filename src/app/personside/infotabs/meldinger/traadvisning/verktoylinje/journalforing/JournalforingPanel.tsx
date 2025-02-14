@@ -64,10 +64,6 @@ const Margin = styled.div`
 function JournalforingPanel(props: Props) {
     const [aktivtVindu, setAktivtVindu] = useState<AktivtVindu>(AktivtVindu.SAKLISTE);
     const [valgtSak, setValgtSak] = useState<JournalforingsSak>();
-    const eksisterendeJournalposter: Array<JournalforingsSakIdentifikator> = props.traad.journalposter.map((jp) => ({
-        temaKode: jp.journalfortTema,
-        fagsystemSaksId: jp.journalfortSaksid
-    }));
 
     const { isOn: kanJournalForeUtenSvar } = useFeatureToggle(FeatureToggles.JournalforUtenSvar);
 
@@ -95,7 +91,7 @@ function JournalforingPanel(props: Props) {
     if (aktivtVindu === AktivtVindu.SAKVISNING && valgtSak !== undefined) {
         return <JournalforSak traad={props.traad} sak={valgtSak} tilbake={tilbake} lukkPanel={props.lukkPanel} />;
     }
-    return <VelgSak velgSak={velgSak} valgtSak={valgtSak} eksisterendeSaker={eksisterendeJournalposter} />;
+    return <VelgSak velgSak={velgSak} valgtSak={valgtSak} />;
 }
 
 function JournalforingPanelContainer(props: Props) {

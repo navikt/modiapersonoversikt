@@ -1,17 +1,11 @@
 import { AlertStripeAdvarsel, AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { Radio, type RadioProps } from 'nav-frontend-skjema';
 import Spinner from 'nav-frontend-spinner';
+import { type Group, groupBy } from 'src/utils/groupArray';
 import styled from 'styled-components';
 import journalsakResource from '../../../../../../../rest/resources/journalsakResource';
-import { type Group, groupBy } from '../../../../../../../utils/groupArray';
 import useFieldState, { type FieldState } from '../../../../../../../utils/hooks/use-field-state';
-import {
-    type JournalforingsSak,
-    type JournalforingsSakIdentifikator,
-    type Kategorier,
-    SakKategori,
-    type Tema
-} from './JournalforingPanel';
+import { type JournalforingsSak, type Kategorier, SakKategori, type Tema } from './JournalforingPanel';
 import TemaTable from './TemaTabell';
 
 const Form = styled.form`
@@ -41,7 +35,6 @@ function SakgruppeRadio(props: FieldState & RadioProps & { label: SakKategori })
 
 interface Props {
     velgSak: (sak: JournalforingsSak) => void;
-    eksisterendeSaker: Array<JournalforingsSakIdentifikator>;
     valgtSak?: JournalforingsSak;
 }
 
@@ -83,21 +76,6 @@ export function sakKategori(sak: JournalforingsSak): SakKategori {
     return sak.sakstype === 'GEN' ? SakKategori.GEN : SakKategori.FAG;
 }
 
-export function fjernSakerSomAlleredeErTilknyttet(
-    saker: JournalforingsSak[],
-    eksisterendeSaker: JournalforingsSakIdentifikator[]
-): JournalforingsSak[] {
-    const filtrerteSaksIder = eksisterendeSaker
-        .map((sak) => sak.fagsystemSaksId)
-        .filter((id): id is string => typeof id === 'string');
-
-    const eksisterendeSaksIder = new Set(filtrerteSaksIder);
-
-    return saker.filter((sak) =>
-        typeof sak.fagsystemSaksId === 'string' ? !eksisterendeSaksIder.has(sak.fagsystemSaksId) : true
-    );
-}
-
 function VelgSak(props: Props) {
     const valgtKategori = useFieldState(SakKategori.FAG);
     const result = journalsakResource.useFetch();
@@ -110,8 +88,7 @@ function VelgSak(props: Props) {
     }
 
     const { saker, feiledeSystemer } = result.data;
-    const filtrerteSaker = fjernSakerSomAlleredeErTilknyttet(saker, props.eksisterendeSaker);
-    const fordelteSaker = fordelSaker(filtrerteSaker);
+    const fordelteSaker = fordelSaker(saker);
 
     const feiledeSystemerAlerts = feiledeSystemer.map((system) => (
         <AlertStripeAdvarsel className="blokk-xxxs" key={system}>
