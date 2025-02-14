@@ -1,4 +1,4 @@
-import { Box, Pagination, VStack } from '@navikt/ds-react';
+import { Pagination, VStack } from '@navikt/ds-react';
 import { chunk } from 'lodash';
 import { type JSX, useMemo, useState } from 'react';
 
