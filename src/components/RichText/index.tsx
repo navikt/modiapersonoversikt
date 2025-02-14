@@ -1,5 +1,4 @@
 import { LinebreakRule, type Rule, build, parse } from '@navikt/textparser';
-import { createElement } from 'react';
 import { LinkRule, ParagraphRule } from './rules';
 
 export {
@@ -31,7 +30,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 
 export const defaultRules: Rule[] = [LinkRule, LinebreakRule, ParagraphRule];
 
-const RichText = ({ as = 'div', children, disableFormatting, rules, ...rest }: Props) => {
+const RichText = ({ as: Comp = 'div', children, disableFormatting, rules, ...rest }: Props) => {
     if (typeof children !== 'string') {
         return null;
     }
@@ -43,7 +42,7 @@ const RichText = ({ as = 'div', children, disableFormatting, rules, ...rest }: P
     const ast = parse(children, rules);
     const content = build(ast, rules);
 
-    return createElement(as, rest, content);
+    return <Comp {...rest}>{content}</Comp>;
 };
 
 export default RichText;
