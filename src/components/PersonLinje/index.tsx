@@ -19,7 +19,7 @@ const ukjentKjonn: KodeBeskrivelse<Kjonn> = {
 };
 
 export const PersonLinje = () => (
-    <Suspense fallback={<Skeleton variant="rounded" height={60} />}>
+    <Suspense fallback={<Skeleton variant="rounded" height={40} />}>
         <PersonLinjeContent />
     </Suspense>
 );
