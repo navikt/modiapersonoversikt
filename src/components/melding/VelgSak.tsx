@@ -63,7 +63,7 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
                             setTema,
                             feiledeSystemer
                         }) => (
-                            <HStack gap="2">
+                            <VStack gap="2">
                                 <SakVelger.ToggleGroup
                                     valgtSakKategori={valgtSakKategori}
                                     setSakKategori={setSakKategori}
@@ -91,7 +91,7 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
                                         {feiledeSystem}
                                     </Alert>
                                 ))}
-                            </HStack>
+                            </VStack>
                         )}
                     </SakVelger.Root>
                 </Modal.Body>

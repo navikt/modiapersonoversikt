@@ -7,7 +7,7 @@ import { TraadListOptions } from './List/Options';
 export const MeldingerPage = () => {
     return (
         <HStack gap="8" minHeight="0" flexGrow="1">
-            <VStack height="100%" paddingBlock="2">
+            <VStack height="100%" paddingBlock="2" minWidth="16em">
                 <HStack gap="4" justify="space-between">
                     <Heading size="xsmall">Innboks</Heading>
                     <TraadListOptions />
