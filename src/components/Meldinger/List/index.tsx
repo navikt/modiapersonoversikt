@@ -1,4 +1,4 @@
-import { Skeleton } from '@navikt/ds-react';
+import { Skeleton, VStack } from '@navikt/ds-react';
 import { useNavigate } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import { Suspense, useCallback } from 'react';
@@ -8,7 +8,17 @@ import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import { TraadItem } from './TraadItem';
 
 export const TraadList = () => (
-    <Suspense fallback={Array(8).map((i) => <Skeleton key={i} variant="rounded" height={62} />)}>
+    <Suspense
+        fallback={
+            <VStack gap="2" marginBlock="2" marginInline="0 2">
+                {Array(8)
+                    .keys()
+                    .map((i) => (
+                        <Skeleton key={i} variant="rounded" height={68} />
+                    ))}
+            </VStack>
+        }
+    >
         <Traader />
     </Suspense>
 );
