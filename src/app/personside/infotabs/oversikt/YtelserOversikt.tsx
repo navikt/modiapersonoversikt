@@ -1,6 +1,7 @@
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { type ReactNode, useEffect } from 'react';
+import { type Pensjon, getPensjonIdDato, getUnikPensjonKey } from 'src/models/ytelse/pensjon';
 import styled from 'styled-components';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
@@ -43,7 +44,8 @@ function YtelserOversikt(props: Props) {
         ),
         renderTiltakspenger: (tiltakspenger) => (
             <TiltakspengerKomponent tiltakspenger={tiltakspenger} key={getUnikTiltakspengerKey(tiltakspenger)} />
-        )
+        ),
+        renderPensjon: (pensjon) => <PensjonKomponent pensjon={pensjon} key={getUnikPensjonKey(pensjon)} />
     });
 
     const ytelserListe = ytelserMarkup.slice(0, 2);
@@ -142,6 +144,28 @@ function TiltakspengerKomponent(props: { tiltakspenger: Tiltakspenger }) {
                 {props.tiltakspenger.antallBarn &&
                     props.tiltakspenger.antallBarn > 0 &&
                     `(Antall Barn: ${props.tiltakspenger.antallBarn})`}
+            </Normaltekst>
+        </VisMerKnapp>
+    );
+}
+
+function PensjonKomponent(props: { pensjon: Pensjon }) {
+    const dyplenker = useInfotabsDyplenker();
+    const fom = getPensjonIdDato(props.pensjon) ?? '';
+    return (
+        <VisMerKnapp
+            linkTo={dyplenker.ytelser.link(props.pensjon)}
+            valgt={false}
+            ariaDescription="Vis pensjon"
+            className={ytelserTest.oversikt}
+        >
+            <Normaltekst>ID dato: {formaterDato(fom)}</Normaltekst>
+            <Element>Pensjon</Element>
+            <Normaltekst>
+                {props.pensjon.fom ? formaterDato(props.pensjon.fom) : ''} -{' '}
+                {props.pensjon.tom ? formaterDato(props.pensjon.tom) : ''}
+                {': '}
+                {`Type: ${props.pensjon.type ? props.pensjon.type.decode : ''}`}
             </Normaltekst>
         </VisMerKnapp>
     );
