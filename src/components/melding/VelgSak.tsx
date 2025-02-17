@@ -1,5 +1,5 @@
 import { PlusIcon } from '@navikt/aksel-icons';
-import { Alert, Button, HGrid, HStack, Label, Modal, Tag, VStack } from '@navikt/ds-react';
+import { Alert, Button, HGrid, Label, Modal, Tag, VStack } from '@navikt/ds-react';
 import { type ReactNode, useState } from 'react';
 import SakVelger from 'src/components/sakVelger/SakVelger';
 import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
