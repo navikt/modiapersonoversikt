@@ -2,20 +2,16 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import ModalWrapper from 'nav-frontend-modal';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { createRef, useState } from 'react';
+import { formatterDatoMedMaanedsnavn } from 'src/utils/date-utils';
 import styled from 'styled-components';
 import journalsakResource from '../../../../rest/resources/journalsakResource';
 import theme from '../../../../styles/personOversiktTheme';
-import { formatterDatoMedMaanedsnavn } from '../../../../utils/date-utils';
-import type {
-    JournalforingsSak,
-    JournalforingsSakIdentifikator
-} from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
+import type { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import VelgSak from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/VelgSak';
 
 interface Props {
     valgtSak?: JournalforingsSak;
     setValgtSak: (sak: JournalforingsSak) => void;
-    eksisterendeSaker: Array<JournalforingsSakIdentifikator>;
     visFeilmelding?: boolean;
 }
 
@@ -77,11 +73,7 @@ function DialogpanelVelgSak(props: Props) {
             <StyledModalWrapper contentLabel="Velg sak" onRequestClose={handleOnClose} isOpen={apen}>
                 <Systemtittel>Velg sak</Systemtittel>
                 <Style>
-                    <VelgSak
-                        velgSak={handleVelgSak}
-                        valgtSak={props.valgtSak}
-                        eksisterendeSaker={props.eksisterendeSaker}
-                    />
+                    <VelgSak velgSak={handleVelgSak} valgtSak={props.valgtSak} />
                 </Style>
                 <Hovedknapp onClick={() => settApen(false)}>Lukk</Hovedknapp>
             </StyledModalWrapper>
