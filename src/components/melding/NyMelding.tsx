@@ -68,7 +68,7 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
     const meldingsTypeTekst = meldingsTyperTekst[meldingsType];
 
     return (
-        <Card padding="2" maxWidth="30vw" minWidth="22em">
+        <Card padding="2" maxWidth="30vw" minWidth="24em">
             <form
                 onSubmit={async (e) => {
                     e.preventDefault();

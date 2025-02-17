@@ -24,6 +24,7 @@ export const PaginatedList = <T,>({ items, pageSize = 10, renderItem: RenderComp
             <Pagination
                 size="small"
                 page={page + 1}
+                siblingCount={0}
                 count={pageCount}
                 onPageChange={(page) => setPage(page - 1)}
                 prevNextTexts={false}
