@@ -1,12 +1,14 @@
-import { Alert, Button, ErrorMessage, Heading, HStack, Textarea, VStack } from '@navikt/ds-react';
-import { useForm, useStore, type ValidationError } from '@tanstack/react-form';
+import { Alert, Button, ErrorMessage, HStack, Heading, Textarea, VStack } from '@navikt/ds-react';
+import { type ValidationError, useForm, useStore } from '@tanstack/react-form';
 import { Link } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import { type ReactElement, useCallback, useEffect, useMemo, useState } from 'react';
+import DraftStatus from 'src/app/personside/dialogpanel/DraftStatus';
+import useDraft, { type Draft, type DraftContext } from 'src/app/personside/dialogpanel/use-draft';
 import AvsluttDialogEtterSending from 'src/components/melding/AvsluttDialogEtterSending';
 import { Oppgaveliste, OppgavelisteRadioKnapper } from 'src/components/melding/OppgavelisteRadioKnapper';
 import { ValgForMeldingstype } from 'src/components/melding/ValgForMeldingstype';
-import { MeldingsType, meldingsTyperTekst, VelgMeldingsType } from 'src/components/melding/VelgMeldingsType';
+import { MeldingsType, VelgMeldingsType, meldingsTyperTekst } from 'src/components/melding/VelgMeldingsType';
 import VelgOppgaveliste from 'src/components/melding/VelgOppgaveliste';
 import VelgSak from 'src/components/melding/VelgSak';
 import VelgTema from 'src/components/melding/VelgTema';
@@ -23,8 +25,6 @@ import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import type { Temagruppe } from 'src/models/temagrupper';
 import type { z } from 'zod';
 import Card from '../Card';
-import useDraft, { type Draft, type DraftContext } from 'src/app/personside/dialogpanel/use-draft';
-import DraftStatus from 'src/app/personside/dialogpanel/DraftStatus';
 
 interface NyMeldingProps {
     lukkeKnapp?: ReactElement<typeof Button>;

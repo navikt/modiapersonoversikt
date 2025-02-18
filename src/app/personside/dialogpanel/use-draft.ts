@@ -2,9 +2,9 @@ import dayjs, { type Dayjs } from 'dayjs';
 import { debounce } from 'lodash';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FetchError } from 'src/api/api';
-import config from '../../../config';
 import { getEnvFromHost } from 'src/utils/environment';
 import { loggError, loggInfo } from 'src/utils/logger/frontendLogger';
+import config from '../../../config';
 import WebSocketImpl, { Status } from '../../../utils/websocket-impl';
 
 export interface DraftContext {
