@@ -135,11 +135,7 @@ function SendNyMelding(props: Props) {
                         </UnmountClosed>
                         <UnmountClosed isOpened={erSamtale}>
                             <Panel>
-                                <DialogpanelVelgSak
-                                    setValgtSak={(sak) => updateState({ sak })}
-                                    valgtSak={state.sak}
-                                    eksisterendeSaker={[]}
-                                />
+                                <DialogpanelVelgSak setValgtSak={(sak) => updateState({ sak })} valgtSak={state.sak} />
                                 {visFeilmelding ? (
                                     <SkjemaelementFeilmelding>Du må velge sak </SkjemaelementFeilmelding>
                                 ) : undefined}
