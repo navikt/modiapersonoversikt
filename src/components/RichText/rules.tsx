@@ -12,6 +12,23 @@ import {
 import { getText } from '@navikt/textparser/dist/utils';
 import { Normaltekst } from 'nav-frontend-typografi';
 
+export const ParagraphRuleOverride: Rule = {
+    name: 'Paragraph',
+    scope: RuleScope.BLOCK,
+    regex: /((?:[\s\S])+)/,
+    parse(match: RegexMatch): ASTNode {
+        return {
+            name: this.name,
+            content: [match.capture[0]]
+        };
+    },
+    react(node: ASTNode): ReactElementDescription {
+        return {
+            type: 'p'
+        };
+    }
+};
+
 export const ParagraphRule: Rule = {
     ...OriginalParagraphRule,
     react(node: ASTNode, ast: AST): ReactElementDescription {
