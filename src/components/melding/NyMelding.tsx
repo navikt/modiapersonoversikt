@@ -2,7 +2,7 @@ import { Alert, Button, ErrorMessage, HStack, Heading, Textarea, VStack } from '
 import { type ValidationError, useForm, useStore } from '@tanstack/react-form';
 import { Link } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
-import { type ReactElement, useCallback, useEffect, useMemo, useState } from 'react';
+import { type ReactElement, useCallback, useMemo, useState } from 'react';
 import DraftStatus from 'src/app/personside/dialogpanel/DraftStatus';
 import useDraft, { type Draft, type DraftContext } from 'src/app/personside/dialogpanel/use-draft';
 import AvsluttDialogEtterSending from 'src/components/melding/AvsluttDialogEtterSending';
@@ -82,18 +82,7 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
 
     const meldingsType = useStore(form.store, (state) => state.values.meldingsType);
     const meldingsTypeTekst = meldingsTyperTekst[meldingsType];
-    const melding = useStore(form.store, (state) => state.values.melding);
     const meldingFieldMeta = useStore(form.store, (state) => state.fieldMeta.melding);
-
-    useEffect(() => {
-        // Hvis bruker fjerner alt innhold i meldingen, fjern draften
-        if (meldingFieldMeta?.isDirty && melding.length === 0) {
-            removeDraft();
-        }
-        if (melding.length > 0) {
-            updateDraft(melding);
-        }
-    }, [updateDraft, removeDraft, melding, meldingFieldMeta]);
 
     return (
         <Card padding="2" maxWidth="30vw" minWidth="24em">
@@ -119,7 +108,19 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                             />
                         )}
                     </form.Field>
-                    <form.Field name="melding">
+                    <form.Field
+                        name="melding"
+                        listeners={{
+                            onChange: ({ value }) => {
+                                if (value.length === 0) {
+                                    removeDraft();
+                                }
+                                if (value.length > 0) {
+                                    updateDraft(value);
+                                }
+                            }
+                        }}
+                    >
                         {(field) => (
                             <Textarea
                                 label={meldingsTypeTekst.tittel}
