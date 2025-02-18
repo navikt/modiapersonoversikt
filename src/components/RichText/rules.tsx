@@ -15,7 +15,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 export const ParagraphRuleOverride: Rule = {
     name: 'Paragraph',
     scope: RuleScope.BLOCK,
-    regex: /((?:.|\s)+?)(?:$)/,
+    regex: /((?:[\s\S])+)/,
     parse(match: RegexMatch): ASTNode {
         return {
             name: this.name,
