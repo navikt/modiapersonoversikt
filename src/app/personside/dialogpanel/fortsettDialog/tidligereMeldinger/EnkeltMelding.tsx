@@ -1,7 +1,9 @@
+import { LinebreakRule, LinkRule } from '@navikt/textparser';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
-import Tekstomrade, { defaultRules } from 'nav-frontend-tekstomrade';
+import Tekstomrade from 'nav-frontend-tekstomrade';
 import { Element, Undertekst } from 'nav-frontend-typografi';
 import { useState } from 'react';
+import { ParagraphRuleOverride } from 'src/components/RichText';
 import styled from 'styled-components';
 import type { Melding, Traad } from '../../../../../models/meldinger/meldinger';
 import theme from '../../../../../styles/personOversiktTheme';
@@ -51,7 +53,9 @@ function EnkeltMelding(props: Props) {
 
     return (
         <StyledEkspanderbartpanelBase tittel={header} apen={apen} onClick={() => setApen(!apen)} border={false}>
-            <StyledTekstomrade rules={[sladdRule, ...defaultRules]}>{props.melding.fritekst}</StyledTekstomrade>
+            <StyledTekstomrade rules={[sladdRule, LinebreakRule, LinkRule, ParagraphRuleOverride]}>
+                {props.melding.fritekst}
+            </StyledTekstomrade>
         </StyledEkspanderbartpanelBase>
     );
 }

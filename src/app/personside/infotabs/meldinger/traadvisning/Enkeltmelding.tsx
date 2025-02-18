@@ -1,6 +1,6 @@
 import { guid } from 'nav-frontend-js-utils';
 import Snakkeboble from 'nav-frontend-snakkeboble';
-import Tekstomrade, { createDynamicHighlightingRule, defaultRules, type Rule } from 'nav-frontend-tekstomrade';
+import Tekstomrade, { createDynamicHighlightingRule, type Rule } from 'nav-frontend-tekstomrade';
 import { useRef } from 'react';
 import styled from 'styled-components';
 import { LestStatus, type Melding } from '../../../../../models/meldinger/meldinger';
@@ -9,6 +9,8 @@ import { formatterDatoTid } from '../../../../../utils/date-utils';
 import { rule as sladdRule } from '../../../../../utils/sladdrule';
 import { erMeldingFraBruker, erMeldingFraNav } from '../utils/meldingerUtils';
 import './enkeltmelding.less';
+import { LinebreakRule, LinkRule } from '@navikt/textparser';
+import { ParagraphRuleOverride } from 'src/components/RichText';
 import ReadIcon from '../../../../../svg/ReadIcon';
 import UnReadIcon from '../../../../../svg/UnReadIcon';
 
@@ -111,7 +113,7 @@ function EnkeltMelding(props: Props) {
             <article aria-labelledby={tittelId.current}>
                 <Snakkeboble pilHoyre={fraNav} ikonClass={fraNav ? 'nav-ikon' : 'bruker-ikon'}>
                     <SnakkebobleWrapper>
-                        <Tekstomrade rules={[sladdRule, highlightRule, ...defaultRules]}>
+                        <Tekstomrade rules={[sladdRule, highlightRule, LinebreakRule, LinkRule, ParagraphRuleOverride]}>
                             {props.melding.fritekst}
                         </Tekstomrade>
                         <div>
