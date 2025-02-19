@@ -1,10 +1,10 @@
 import dayjs, { type Dayjs } from 'dayjs';
 import { debounce } from 'lodash';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { FetchError } from '../../../api/api';
+import { FetchError } from 'src/api/api';
+import { getEnvFromHost } from 'src/utils/environment';
+import { loggError, loggInfo } from 'src/utils/logger/frontendLogger';
 import config from '../../../config';
-import { getEnvFromHost } from '../../../utils/environment';
-import { loggError, loggInfo } from '../../../utils/logger/frontendLogger';
 import WebSocketImpl, { Status } from '../../../utils/websocket-impl';
 
 export interface DraftContext {
@@ -30,13 +30,13 @@ interface DraftSystem {
     status: DraftState;
 }
 
-interface WsEvent {
+export interface WsEvent {
     type: 'UPDATE' | 'DELETE';
     context: DraftContext;
     content: string | null;
 }
 
-interface WsConfirmation {
+export interface WsConfirmation {
     type: 'OK';
     time: string;
 }
@@ -90,7 +90,7 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
         const ok = lastConfirm.time && lastConfirm.ok && dayjs(lastConfirm.time).isAfter(lastSent);
 
         return {
-            loading: !!loading,
+            loading: loading,
             ok: !!ok,
             saveTime: lastConfirm.time ? dayjs(lastConfirm.time) : null
         };
@@ -120,7 +120,11 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
                     const message = JSON.parse(event.data as string) as WsConfirmation;
 
                     if (message.type === 'OK' && message) {
-                        setLastConfirm({ ok: true, time: new Date(`${message.time}Z`) });
+                        let time = new Date(`${message.time}Z`);
+                        if (time.toString() === 'Invalid Date') {
+                            time = new Date(message.time);
+                        }
+                        setLastConfirm({ ok: true, time: time });
                     }
                 } catch (e) {
                     console.error(e);

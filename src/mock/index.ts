@@ -33,7 +33,15 @@ import { getMockForeldrepenger } from './ytelse/foreldrepenger-mock';
 import { getMockPleiepenger } from './ytelse/pleiepenger-mock';
 import { getMockSykepengerRespons } from './ytelse/sykepenger-mock';
 
-import { http, type DefaultBodyType, type HttpHandler, HttpResponse, type PathParams, type StrictRequest } from 'msw';
+import {
+    http,
+    type DefaultBodyType,
+    type HttpHandler,
+    HttpResponse,
+    type PathParams,
+    type StrictRequest,
+    type WebSocketHandler
+} from 'msw';
 import type { FeatureTogglesResponse } from 'src/rest/resources/featuretogglesResource';
 import { STATUS_OK, fodselsNummerErGyldigStatus, randomDelay } from './utils-mock';
 import { getMockTiltakspenger } from './ytelse/tiltakspenger-mock';
@@ -327,7 +335,7 @@ if (import.meta.env.MODE !== 'test') {
     console.log('=========================='); // tslint:disable-line
 }
 
-export const handlers: HttpHandler[] = [
+export const handlers: (HttpHandler | WebSocketHandler)[] = [
     innloggetSaksbehandlerMock,
     persondataMock,
     ...tilgangsKontrollHandler,

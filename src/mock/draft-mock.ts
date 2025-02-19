@@ -1,8 +1,7 @@
-import { http, HttpResponse, type HttpResponseResolver } from 'msw';
-import type { Draft, DraftContext } from '../app/personside/dialogpanel/use-draft';
+import { http, HttpResponse, type HttpResponseResolver, type WebSocketData, ws } from 'msw';
+import { delayed, randomDelay } from 'src/mock/utils-mock';
+import type { Draft, DraftContext, WsConfirmation, WsEvent } from '../app/personside/dialogpanel/use-draft';
 import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
-import MockWebsocket from './mock-websocket';
-import { delayed, randomDelay } from './utils-mock';
 
 const innloggetSaksbehandler = getMockInnloggetSaksbehandler();
 const storage = window.localStorage;
@@ -22,6 +21,30 @@ if (!storage.getItem(storageKey)) {
 }
 //biome-ignore lint/style/noNonNullAssertion: biome migration
 const drafts = JSON.parse(storage.getItem('modiapersonoversikt-drafts-mock')!) as Draft[];
+const draftWsHandler = ws
+    .link('wss://modiapersonoversikt-draft.intern.dev.nav.no/api/draft/ws/*')
+    .addEventListener('connection', ({ client }) => {
+        client.addEventListener('message', (event: MessageEvent<WebSocketData>) => {
+            const data = JSON.parse(event.data as string) as WsEvent;
+            const draft = drafts.find((draft) => matchContext(draft.context, data.context));
+            if (data.type === 'UPDATE' && data.content) {
+                if (draft) {
+                    draft.content = data.content;
+                } else {
+                    drafts.push({
+                        owner: innloggetSaksbehandler.ident,
+                        content: data.content,
+                        context: data.context,
+                        created: new Date().toISOString()
+                    });
+                }
+            } else if (data.type === 'DELETE' && draft) {
+                drafts.splice(drafts.indexOf(draft), 1);
+            }
+            storage.setItem(storageKey, JSON.stringify(drafts));
+            client.send(JSON.stringify({ type: 'OK', time: new Date().toISOString() } as WsConfirmation));
+        });
+    });
 
 function matchContext(context: DraftContext, other: DraftContext, exact = true): boolean {
     const keys = Object.keys(context);
@@ -42,10 +65,12 @@ function matchContext(context: DraftContext, other: DraftContext, exact = true):
 
 const findDrafts: HttpResponseResolver = ({ request }) => {
     const queryParams = new URL(request.url).searchParams;
-    const exact = !(queryParams.get('exact') === 'false');
-    const context: DraftContext = { ...queryParams.entries };
-    context.exact = 'false';
-    const matchedDrafts: Array<Draft> = drafts.filter((draft: Draft) => matchContext(draft.context, context, exact));
+    const exact = queryParams.get('exact') === 'true';
+    // `exact` is not a part of the context, so we remove it before doing the comparison
+    const context: DraftContext = Object.fromEntries(queryParams.entries().filter(([key]) => key !== 'exact'));
+    const matchedDrafts: Array<Draft> = drafts.filter((draft: Draft) => {
+        return matchContext(draft.context, context, exact);
+    });
 
     return HttpResponse.json(matchedDrafts);
 };
@@ -54,9 +79,8 @@ const generateUid = () => {
     return HttpResponse.json('abba-acdc-1231-beef');
 };
 
-MockWebsocket.setup();
-
 export const getDraftHandlers = () => [
+    draftWsHandler,
     http.get(`${import.meta.env.BASE_URL}proxy/modia-draft/api/draft`, delayed(2 * randomDelay(), findDrafts)),
     http.get(`${import.meta.env.BASE_URL}proxy/modia-draft/api/generate-uid`, delayed(2 * randomDelay(), generateUid))
 ];
