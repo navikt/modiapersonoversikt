@@ -82,7 +82,6 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
 
     const meldingsType = useStore(form.store, (state) => state.values.meldingsType);
     const meldingsTypeTekst = meldingsTyperTekst[meldingsType];
-    const meldingFieldMeta = useStore(form.store, (state) => state.fieldMeta.melding);
 
     return (
         <Card padding="2" maxWidth="30vw" minWidth="24em">
@@ -122,20 +121,24 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                         }}
                     >
                         {(field) => (
-                            <Textarea
-                                label={meldingsTypeTekst.tittel}
-                                description={meldingsTypeTekst.beskrivelse}
-                                value={field.state.value}
-                                onChange={(e) => field.handleChange(e.target.value)}
-                                error={buildErrorMessage(field.state.meta.errors)}
-                                maxLength={maksLengdeMelding}
-                                resize="vertical"
-                                minRows={5}
-                                maxRows={15}
-                            />
+                            <div>
+                                <Textarea
+                                    label={meldingsTypeTekst.tittel}
+                                    description={meldingsTypeTekst.beskrivelse}
+                                    value={field.state.value}
+                                    onChange={(e) => field.handleChange(e.target.value)}
+                                    error={buildErrorMessage(field.state.meta.errors)}
+                                    maxLength={maksLengdeMelding}
+                                    resize="vertical"
+                                    minRows={5}
+                                    maxRows={15}
+                                />
+                                {draftStatus && field.state.value.length > 0 && field.state.meta.isDirty && (
+                                    <DraftStatus state={draftStatus} />
+                                )}
+                            </div>
                         )}
                     </form.Field>
-                    {draftStatus && meldingFieldMeta?.isDirty && <DraftStatus state={draftStatus} />}
                     <ValgForMeldingstype
                         meldingsType={meldingsType}
                         velgTema={
