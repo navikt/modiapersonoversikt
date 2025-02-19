@@ -2,7 +2,9 @@ import { Alert, Button, ErrorMessage, HStack, Heading, Textarea, VStack } from '
 import { type ValidationError, useForm, useStore } from '@tanstack/react-form';
 import { Link } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
-import type { ReactElement } from 'react';
+import { type ReactElement, useCallback, useMemo, useState } from 'react';
+import DraftStatus from 'src/app/personside/dialogpanel/DraftStatus';
+import useDraft, { type Draft, type DraftContext } from 'src/app/personside/dialogpanel/use-draft';
 import AvsluttDialogEtterSending from 'src/components/melding/AvsluttDialogEtterSending';
 import { Oppgaveliste, OppgavelisteRadioKnapper } from 'src/components/melding/OppgavelisteRadioKnapper';
 import { ValgForMeldingstype } from 'src/components/melding/ValgForMeldingstype';
@@ -34,19 +36,18 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
     const enhetsNavn = useEnhetsnavn(enhetsId);
     const brukerNavn = useSuspendingBrukernavn();
 
-    const { error, mutate, isPending, isSuccess } = useSendMelding(() => {
-        form.reset(
-            {
-                ...defaultFormOptions,
-                meldingsType: form.state.values.meldingsType
-            },
-            { keepDefaultValues: true }
-        );
-    });
+    const { error, mutate, isPending, isSuccess } = useSendMelding();
+
+    // Brukes for å sette initialverdien til meldingen basert på draften
+    const [defaultMessage, setDefaultMessage] = useState('');
+    const draftLoader = useCallback((draft: Draft) => setDefaultMessage(draft.content), []);
+    const draftContext: DraftContext = useMemo(() => ({ fnr }), [fnr]);
+
+    const { update: updateDraft, remove: removeDraft, status: draftStatus } = useDraft(draftContext, draftLoader);
 
     const defaultFormOptions: DefaultFormOptions = {
         meldingsType: MeldingsType.Referat,
-        melding: '',
+        melding: defaultMessage,
         tema: undefined,
         oppgaveliste: Oppgaveliste.MinListe,
         sak: undefined,
@@ -60,7 +61,22 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
         },
         onSubmit: ({ value }) => {
             const body = generateRequestBody(value as NyMeldingSchema);
-            mutate({ body: body });
+            mutate(
+                { body: body },
+                {
+                    onSuccess: () => {
+                        removeDraft();
+                        form.reset(
+                            {
+                                ...defaultFormOptions,
+                                melding: '',
+                                meldingsType
+                            },
+                            { keepDefaultValues: true }
+                        );
+                    }
+                }
+            );
         }
     });
 
@@ -91,19 +107,36 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
                             />
                         )}
                     </form.Field>
-                    <form.Field name="melding">
+                    <form.Field
+                        name="melding"
+                        listeners={{
+                            onChange: ({ value }) => {
+                                if (value.length === 0) {
+                                    removeDraft();
+                                }
+                                if (value.length > 0) {
+                                    updateDraft(value);
+                                }
+                            }
+                        }}
+                    >
                         {(field) => (
-                            <Textarea
-                                label={meldingsTypeTekst.tittel}
-                                description={meldingsTypeTekst.beskrivelse}
-                                value={field.state.value}
-                                onChange={(e) => field.handleChange(e.target.value)}
-                                error={buildErrorMessage(field.state.meta.errors)}
-                                maxLength={maksLengdeMelding}
-                                resize="vertical"
-                                minRows={5}
-                                maxRows={15}
-                            />
+                            <div>
+                                <Textarea
+                                    label={meldingsTypeTekst.tittel}
+                                    description={meldingsTypeTekst.beskrivelse}
+                                    value={field.state.value}
+                                    onChange={(e) => field.handleChange(e.target.value)}
+                                    error={buildErrorMessage(field.state.meta.errors)}
+                                    maxLength={maksLengdeMelding}
+                                    resize="vertical"
+                                    minRows={5}
+                                    maxRows={15}
+                                />
+                                {draftStatus && field.state.value.length > 0 && field.state.meta.isDirty && (
+                                    <DraftStatus state={draftStatus} />
+                                )}
+                            </div>
                         )}
                     </form.Field>
                     <ValgForMeldingstype

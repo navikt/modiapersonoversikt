@@ -16,7 +16,7 @@ export default function VelgTema({ valgtTema, setValgtTema, error }: VelgTemaPro
                 onChange={(e) => {
                     setValgtTema(e.target.value as Temagruppe);
                 }}
-                value={valgtTema}
+                value={valgtTema ?? ''}
             >
                 <TemagruppeActionMenuItems />
             </Select>
@@ -33,7 +33,7 @@ function TemagruppeActionMenuItems() {
     ));
 
     temagruppeActionMenuItems.unshift(
-        <option key="default" value="" disabled selected>
+        <option key="default" value="" disabled>
             Velg temagruppe
         </option>
     );
