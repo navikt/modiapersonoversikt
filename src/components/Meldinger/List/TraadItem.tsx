@@ -73,8 +73,6 @@ export const TraadItem = ({
     handleClick: (traadId: string) => void;
 }) => {
     const sisteMelding = nyesteMelding(traad);
-    // TODO: Finn melding under arbeid
-    //
     const datoTekst = getFormattertMeldingsDato(sisteMelding);
     const tittel = traadstittel(traad);
     const aktivTraad = routeApi.useSearch().traadId;

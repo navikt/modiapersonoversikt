@@ -1,16 +1,18 @@
-import { HStack, Heading, VStack } from '@navikt/ds-react';
+import { PrinterSmallIcon } from '@navikt/aksel-icons';
+import { Button, HStack, Heading, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { TraadDetail } from './Detail';
 import { TraadList } from './List';
-import { TraadListOptions } from './List/Options';
 
 export const MeldingerPage = () => {
     return (
-        <HStack gap="8" minHeight="0" flexGrow="1">
-            <VStack height="100%" paddingBlock="2" minWidth="16em">
-                <HStack gap="4" justify="space-between">
+        <HStack gap="4" minHeight="0" flexGrow="1" paddingBlock="0 2">
+            <VStack height="100%" minWidth="16em">
+                <HStack justify="space-between">
                     <Heading size="xsmall">Innboks</Heading>
-                    <TraadListOptions />
+                    <Button variant="tertiary" size="xsmall" icon={<PrinterSmallIcon />}>
+                        Skriv ut alle
+                    </Button>
                 </HStack>
                 <TraadList />
             </VStack>

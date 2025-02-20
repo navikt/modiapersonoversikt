@@ -1,9 +1,10 @@
+import { useAtomValue } from 'jotai';
 import createFetchClient from 'openapi-fetch';
 import createClient from 'openapi-react-query';
 import { FetchError } from 'src/api/api';
 import { apiBaseUriWithoutRest } from 'src/api/config';
 import type { paths } from 'src/generated/modiapersonoversikt-api';
-import { usePersonAtomValue } from 'src/lib/state/context';
+import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 
 export type ModiapersonoversiktAPI = paths;
 
@@ -80,5 +81,15 @@ export const usePersonOppgaver = () => {
         body: {
             fnr: aktivBruker
         }
+    });
+};
+
+export const useMeldinger = () => {
+    const fnr = usePersonAtomValue();
+    const enhet = useAtomValue(aktivEnhetAtom) as string;
+
+    return $api.useSuspenseQuery('post', '/rest/v2/dialog/meldinger', {
+        body: { fnr },
+        params: { query: { enhet } }
     });
 };

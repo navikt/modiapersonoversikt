@@ -1,6 +1,6 @@
 import { Pagination, VStack } from '@navikt/ds-react';
 import { chunk } from 'lodash';
-import { type JSX, useMemo, useState } from 'react';
+import { type JSX, useEffect, useMemo, useState } from 'react';
 
 type Props<T> = {
     items: T[];
@@ -14,10 +14,15 @@ export const PaginatedList = <T,>({ items, pageSize = 10, renderItem: RenderComp
     const pages = useMemo(() => chunk(items, pageSize), [items, pageSize]);
     const pageCount = useMemo(() => pages.length, [pages]);
     const renderItems = useMemo(() => pages[page > pageCount - 1 ? pageCount - 1 : page], [pages, page, pageCount]);
+
+    useEffect(() => {
+        if (items) setPage(0);
+    }, [items]);
+
     return (
         <VStack gap="2" justify="space-between" flexGrow="1" minHeight="0">
-            <VStack gap="2" marginBlock="4" paddingInline="0 2" overflowY="scroll">
-                {renderItems.map((item) => (
+            <VStack gap="2" paddingInline="0 2" overflowY="scroll">
+                {renderItems?.map((item) => (
                     <RenderComp item={item} key={keyExtractor(item)} />
                 ))}
             </VStack>

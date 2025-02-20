@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+import { useMemo } from 'react';
 import {
     type Melding,
     Meldingstype,
@@ -7,6 +9,7 @@ import {
 } from 'src/lib/types/modiapersonoversikt-api';
 import { Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { datoStigende, datoSynkende, formatterDatoTid } from 'src/utils/date-utils';
+import type { MeldingerFilter } from './Filter';
 import { meldingstypeTekst, traadTypeTekst } from './tekster';
 
 /*
@@ -164,4 +167,62 @@ export function saksbehandlerTekst(saksbehandler?: Veileder) {
 
 export function getFormattertMeldingsDato(melding: Melding) {
     return formatterDatoTid(melding?.ferdigstiltDato || melding.opprettetDato);
+}
+
+interface TraadSearchDb {
+    traad: Traad;
+    searchable: string;
+}
+export function useFilterMeldinger(traader: Traad[], filters: MeldingerFilter) {
+    const database: Array<TraadSearchDb> = useMemo(() => {
+        return traader.map((traad) => {
+            const searchable = traad.meldinger
+                .map((melding) => {
+                    const fritekst = melding.fritekst;
+                    const tittel = meldingstittel(melding);
+                    const saksbehandler = melding.skrevetAvTekst;
+                    const datotekst = getFormattertMeldingsDato(melding);
+                    return (fritekst + tittel + saksbehandler + datotekst).toLowerCase();
+                })
+                .join('||');
+
+            return { traad, searchable };
+        });
+    }, [traader]);
+
+    const query = filters.search;
+    const temaGrupper = filters.tema;
+    const traadType = filters.traadType;
+    const dateRange = filters.dateRange;
+
+    const searched = useMemo(() => {
+        if (!query) return database.map((t) => t.traad);
+        const words = query.split(' ').map((word) => word.toLowerCase());
+        return database
+            .filter(({ searchable }) => {
+                return words.every((word) => searchable.includes(word));
+            })
+            .map(({ traad }) => traad)
+            .sort(datoSynkende((traad) => nyesteMelding(traad).opprettetDato));
+    }, [query, database]);
+
+    const filteredByTema = useMemo(() => {
+        if (!temaGrupper || !temaGrupper.length) return searched;
+
+        return searched.filter((t) => temaGrupper.includes(t.temagruppe as Temagruppe));
+    }, [searched, temaGrupper]);
+
+    const filteredByType = useMemo(() => {
+        return filteredByTema.filter((t) => traadType?.includes(t.traadType));
+    }, [filteredByTema, traadType]);
+
+    const filteredByDate = useMemo(() => {
+        if (!dateRange) return filteredByType;
+        return filteredByType.filter((t) => {
+            const lastMsg = dayjs(nyesteMelding(t).opprettetDato);
+            return lastMsg.isAfter(dateRange.from) && lastMsg.isBefore(dateRange.to);
+        });
+    }, [filteredByType, dateRange]);
+
+    return filteredByDate;
 }

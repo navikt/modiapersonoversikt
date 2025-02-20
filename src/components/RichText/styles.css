@@ -1,0 +1,5 @@
+.richText {
+    em {
+        background-color: var(--ax-warning-400);
+    }
+}

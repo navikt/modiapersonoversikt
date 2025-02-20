@@ -1,30 +1,30 @@
 import { PersonIcon, PrinterSmallIcon } from '@navikt/aksel-icons';
 import { BodyShort, Box, Button, Chat, HStack, Heading, Skeleton, Tooltip, VStack } from '@navikt/ds-react';
 import { useAtom, useAtomValue } from 'jotai';
-import { Suspense, useCallback } from 'react';
+import { Suspense, useCallback, useMemo } from 'react';
 import Card from 'src/components/Card';
-import RichText, { defaultRules, HighlightRule, SladdRule } from 'src/components/RichText';
+import RichText, {
+    createDynamicHighlightingRule,
+    defaultRules,
+    HighlightRule,
+    SladdRule
+} from 'src/components/RichText';
 import { $api } from 'src/lib/clients/modiapersonoversikt-api';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
 import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { formaterDato } from 'src/utils/string-utils';
+import { meldingerFilterAtom } from '../List/Filter';
 import { erMeldingFraNav, traadstittel } from '../List/utils';
 
 const TraadMeta = ({ traad }: { traad: Traad }) => (
     <HStack justify="space-between">
         <VStack>
             <Heading size="small" as="h3" level="3">
-                {traadstittel(traad)}
+                {traadstittel(traad)} - {temagruppeTekst(traad.temagruppe as Temagruppe)}
             </Heading>
             <VStack>
-                <HStack gap="2">
-                    <BodyShort size="small" weight="semibold">
-                        Tema:
-                    </BodyShort>
-                    <BodyShort size="small">{temagruppeTekst(traad.temagruppe as Temagruppe)}</BodyShort>
-                </HStack>
                 {traad.opprettetDato && (
                     <HStack gap="2">
                         <BodyShort size="small" weight="semibold">
@@ -37,7 +37,9 @@ const TraadMeta = ({ traad }: { traad: Traad }) => (
         </VStack>
         <Box>
             <Tooltip content="Skriv ut denne dialogen">
-                <Button icon={<PrinterSmallIcon />} size="small" variant="secondary" />
+                <Button icon={<PrinterSmallIcon />} size="xsmall" variant="tertiary">
+                    Skriv ut dialog
+                </Button>
             </Tooltip>
         </Box>
     </HStack>
@@ -60,13 +62,13 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
 
     const traad = traader.find((t) => t.traadId === traadId);
 
-    if (!traad) {
-        return <span> fant ikke traaden</span>;
-    }
-
     const svarSamtale = useCallback(() => {
         setDialogUnderArbeid(traadId);
     }, [traadId, setDialogUnderArbeid]);
+
+    if (!traad) {
+        return <span> fant ikke traaden</span>;
+    }
 
     return (
         <Card as={VStack} padding="2" minHeight="0">
@@ -104,6 +106,8 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
 };
 
 const Meldinger = ({ meldinger }: { meldinger: Traad['meldinger'] }) => {
+    const { search } = useAtomValue(meldingerFilterAtom);
+    const highlightRule = useMemo(() => createDynamicHighlightingRule((search ?? '').split(' ')), [search]);
     return (
         <VStack gap="10" align="baseline">
             {meldinger.map((m) => {
@@ -120,7 +124,9 @@ const Meldinger = ({ meldinger }: { meldinger: Traad['meldinger'] }) => {
                         variant={erFraNav ? 'info' : 'neutral'}
                     >
                         <Chat.Bubble className="text-wrap">
-                            <RichText rules={[SladdRule, HighlightRule, ...defaultRules]}>{m.fritekst}</RichText>
+                            <RichText rules={[SladdRule, HighlightRule, highlightRule, ...defaultRules]}>
+                                {m.fritekst}
+                            </RichText>
                         </Chat.Bubble>
                     </Chat>
                 );
