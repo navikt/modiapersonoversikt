@@ -8,6 +8,7 @@ export {
     BoldRule
 } from '@navikt/textparser';
 export * from './rules';
+import './styles.css';
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
     /**
@@ -42,7 +43,11 @@ const RichText = ({ as: Comp = 'div', children, disableFormatting, rules, ...res
     const ast = parse(children, rules);
     const content = build(ast, rules);
 
-    return <Comp {...rest}>{content}</Comp>;
+    return (
+        <div className="richText">
+            <Comp {...rest}>{content}</Comp>
+        </div>
+    );
 };
 
 export default RichText;
