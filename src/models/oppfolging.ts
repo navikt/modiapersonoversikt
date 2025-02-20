@@ -72,3 +72,7 @@ export interface Siste14aVedtak {
     fattetDato: string;
     fraArena?: boolean;
 }
+
+export interface Siste14aVedtakResponse {
+    siste14aVedtak?: Siste14aVedtak;
+}

@@ -2408,64 +2408,66 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
             </div>
           </dl>
           <br />
-          <h2
-            class="typo-undertittel"
-            id="Helt tilfeldig ID"
-          >
-            14a vedtak
-          </h2>
-          <dl
-            class="c10"
-          >
-            <div>
-              <dt
-                class="typo-normal"
-              >
-                Har 14a vedtak
-              </dt>
-              <dd
-                class="typo-element"
-              >
-                Nei
-              </dd>
-            </div>
-            <div>
-              <dt
-                class="typo-normal"
-              >
-                Innsatsgruppe
-              </dt>
-              <dd
-                class="typo-element"
-              >
-                —
-              </dd>
-            </div>
-            <div>
-              <dt
-                class="typo-normal"
-              >
-                Hovedmål
-              </dt>
-              <dd
-                class="typo-element"
-              >
-                —
-              </dd>
-            </div>
-            <div>
-              <dt
-                class="typo-normal"
-              >
-                Vedtaksdato
-              </dt>
-              <dd
-                class="typo-element"
-              >
-                —
-              </dd>
-            </div>
-          </dl>
+          <article>
+            <h2
+              class="typo-undertittel"
+              id="Helt tilfeldig ID"
+            >
+              14a vedtak
+            </h2>
+            <dl
+              class="c10"
+            >
+              <div>
+                <dt
+                  class="typo-normal"
+                >
+                  Har 14a vedtak
+                </dt>
+                <dd
+                  class="typo-element"
+                >
+                  Nei
+                </dd>
+              </div>
+              <div>
+                <dt
+                  class="typo-normal"
+                >
+                  Innsatsgruppe
+                </dt>
+                <dd
+                  class="typo-element"
+                >
+                  —
+                </dd>
+              </div>
+              <div>
+                <dt
+                  class="typo-normal"
+                >
+                  Hovedmål
+                </dt>
+                <dd
+                  class="typo-element"
+                >
+                  —
+                </dd>
+              </div>
+              <div>
+                <dt
+                  class="typo-normal"
+                >
+                  Vedtaksdato
+                </dt>
+                <dd
+                  class="typo-element"
+                >
+                  —
+                </dd>
+              </div>
+            </dl>
+          </article>
         </article>
       </div>
     </div>
