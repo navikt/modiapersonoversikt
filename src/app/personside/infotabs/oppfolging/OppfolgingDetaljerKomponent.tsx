@@ -3,14 +3,15 @@ import { guid } from 'nav-frontend-js-utils';
 import Panel from 'nav-frontend-paneler';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useRef } from 'react';
+import Siste14aVedtakDetaljer from 'src/app/personside/infotabs/oppfolging/Siste14aVedtakDetaljer';
 import IfFeatureToggleOn from 'src/components/featureToggle/IfFeatureToggleOn';
 import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
 import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
+import type { DetaljertOppfolging } from 'src/models/oppfolging';
+import { pxToRem } from 'src/styles/personOversiktTheme';
+import { datoEllerNull } from 'src/utils/string-utils';
 import styled from 'styled-components';
 import DescriptionList from '../../../../components/DescriptionList';
-import type { DetaljertOppfolging } from '../../../../models/oppfolging';
-import { pxToRem } from '../../../../styles/personOversiktTheme';
-import { datoEllerNull } from '../../../../utils/string-utils';
 import { getErUnderOppfolging, getOppfolgingEnhet, getVeileder } from './oppfolging-utils';
 
 const StyledPanel = styled(Panel)`
@@ -58,13 +59,6 @@ function VisOppfolgingDetaljer(props: Props) {
               Oppfølgingsvedtak: datoEllerNull(detaljer.vedtaksdato)
           };
 
-    const siste14aVedtak = {
-        'Har 14a vedtak': detaljer.siste14aVedtak ? 'Ja' : 'Nei',
-        Innsatsgruppe: detaljer.siste14aVedtak?.innsatsgruppe.beskrivelse,
-        Hovedmål: detaljer.siste14aVedtak?.hovedmal?.beskrivelse,
-        Vedtaksdato: datoEllerNull(detaljer.siste14aVedtak?.fattetDato)
-    };
-
     return (
         <StyledPanel aria-labelledby={headerId.current}>
             <article>
@@ -74,8 +68,7 @@ function VisOppfolgingDetaljer(props: Props) {
                 <DescriptionList entries={descriptionListProps} />
                 <br />
                 <IfFeatureToggleOn toggleID={FeatureToggles.VisSiste14aVedtak}>
-                    <Undertittel id={headerId.current}>14a vedtak</Undertittel>
-                    <DescriptionList entries={siste14aVedtak} />
+                    <Siste14aVedtakDetaljer />
                 </IfFeatureToggleOn>
             </article>
         </StyledPanel>
