@@ -1,15 +1,59 @@
 import { CheckmarkCircleFillIcon, ExclamationmarkTriangleFillIcon } from '@navikt/aksel-icons';
-import { Alert, Box, HStack, Pagination, Skeleton, Table, VStack } from '@navikt/ds-react';
+import { LinkIcon } from '@navikt/aksel-icons';
+import {
+    Alert,
+    BodyShort,
+    Box,
+    HStack,
+    Heading,
+    Link,
+    Pagination,
+    Skeleton,
+    type SortState,
+    Table,
+    VStack
+} from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
-import { type ReactNode, Suspense, useEffect, useMemo } from 'react';
+import { type ReactNode, Suspense, useEffect, useMemo, useState } from 'react';
+import { ScrollBar, scrollBarContainerStyle } from 'src/app/personside/infotabs/utils/InfoTabsScrollBar';
+import Card from 'src/components/Card';
 import QueryErrorBoundary from 'src/components/QueryErrorBoundary';
 import { useVarslerData } from 'src/lib/clients/modiapersonoversikt-api';
 import type { FeiletVarsling, Varsel } from 'src/lib/types/modiapersonoversikt-api';
+import { pxToRem } from 'src/styles/personOversiktTheme';
 import { datoSynkende } from 'src/utils/date-utils';
 import { emptyReplacement } from 'src/utils/string-utils';
 import { ENDASH, formaterDato } from 'src/utils/string-utils';
+import styled from 'styled-components';
 
 const routeApi = getRouteApi('/new/person/varsler');
+const varselMediaTreshold = pxToRem(800);
+
+const VarselStyle = styled.div`
+    ${scrollBarContainerStyle(varselMediaTreshold)};
+    @media (min-width: ${varselMediaTreshold}) {
+        height: 0; /* IE11 */
+        flex-grow: 1; /* IE11 */
+        display: flex;
+        > *:first-child {
+            flex: 50% 1 1;
+        }
+        > *:last-child {
+            flex: 50% 1 1;
+        }
+    }
+    position: relative;
+`;
+
+function comparator<T>(a: T, b: T, orderBy: keyof T): number {
+    if (b[orderBy] == null || b[orderBy] < a[orderBy]) {
+        return -1;
+    }
+    if (b[orderBy] > a[orderBy]) {
+        return 1;
+    }
+    return 0;
+}
 
 const DittNavInformasjonsLinje = ({
     tittel,
@@ -22,57 +66,47 @@ const DittNavInformasjonsLinje = ({
 }) => {
     return (
         <HStack gap="4">
-            <div className="text-sm font-bold">{tittel}</div>
+            <div className="font-bold">{tittel}</div>
             <div className={`${className} text-base`}>{tekst}</div>
         </HStack>
     );
 };
 
-const DittNavInformasjonsLinjer = (varsel: {
-    produsent: string;
-    tekst: string;
-    link: string;
+const DittNavInformasjonsLinjer = ({
+    varsel,
+    kanaler
+}: {
+    varsel: Varsel;
+    kanaler: string[];
 }) => {
     return (
         <VStack gap="1" className="p-2">
+            <HStack justify="space-between">
+                <Heading level="1" size="medium">
+                    {varsel.tekst}
+                </Heading>
+                <Link href={varsel.link}>
+                    <LinkIcon fontSize="1.5rem" />
+                </Link>
+            </HStack>
             <DittNavInformasjonsLinje tittel="Produsert av:" tekst={emptyReplacement(varsel.produsent, ENDASH)} />
-            <DittNavInformasjonsLinje tittel="Tekst:" tekst={emptyReplacement(varsel.tekst, ENDASH)} />
-            <DittNavInformasjonsLinje
-                tittel="Link:"
-                tekst={emptyReplacement(varsel.link, ENDASH)}
-                className="no-underline hover:underline hover:text-blue-600"
-            />
+            <DittNavInformasjonsLinje tittel="Kanaler:" tekst={emptyReplacement(kanaler?.join(', '), ENDASH)} />
         </VStack>
     );
 };
 
-const FeilteVarslingerListe = ({
-    tittel,
-    feilteVarslinger
+const DittNavInformasjonsLinjerV2 = ({
+    varsel,
+    kanaler
 }: {
-    tittel: string;
-    feilteVarslinger: FeiletVarsling[];
+    varsel: Varsel;
+    kanaler: string[];
 }) => {
-    return (
-        <div className="my-2">
-            <div className="font-bold">{tittel}</div>
-            <div>
-                {feilteVarslinger.map((varsling) => (
-                    <li key={`${varsling.tidspunkt} - ${varsling.kanal}`}>
-                        {formaterDato(varsling.tidspunkt)} - {varsling.kanal}: {varsling.feilmelding}
-                    </li>
-                ))}
-            </div>
-        </div>
-    );
-};
-
-const DittNavInformasjonsLinjerV2 = ({ varsel }: { varsel: Varsel }) => {
     const varslingsTidspunkt = varsel.varslingsTidspunkt;
 
     return (
         <>
-            <DittNavInformasjonsLinjer produsent={varsel.produsent} tekst={varsel.tekst} link={varsel.link} />
+            <DittNavInformasjonsLinjer varsel={varsel} kanaler={kanaler} />
             <DittNavInformasjonsLinje
                 tittel="Varslet: "
                 tekst={
@@ -111,33 +145,61 @@ const DittNavInformasjonsLinjerV2 = ({ varsel }: { varsel: Varsel }) => {
     );
 };
 
+const FeilteVarslingerListe = ({
+    tittel,
+    feilteVarslinger
+}: {
+    tittel: string;
+    feilteVarslinger: FeiletVarsling[];
+}) => {
+    return (
+        <div className="my-2">
+            <div className="font-bold">{tittel}</div>
+            <div>
+                {feilteVarslinger.map((varsling) => (
+                    <li key={`${varsling.tidspunkt} - ${varsling.kanal}`}>
+                        {formaterDato(varsling.tidspunkt)} - {varsling.kanal}: {varsling.feilmelding}
+                    </li>
+                ))}
+            </div>
+        </div>
+    );
+};
+
 const dataExtractor = (
     varsel: Varsel
 ): {
+    eventId: string;
     datoer: string[];
     tittel: string;
-    kanaler: string[];
     harFeilteVarsel?: boolean;
+    event: Varsel;
     detaljer?: ReactNode;
 } => {
     const varslingsTidspunkt = varsel.varslingsTidspunkt;
     const aktiv = varsel.aktiv ? '' : ' (Ferdigstilt)';
     const tittel = `Notifikasjon${aktiv}: ${varsel.tekst}`;
-
+    const eventId = varsel.eventId;
     if (!varslingsTidspunkt || !varslingsTidspunkt.tidspunkt) {
         const datoer = [formaterDato(varsel.forstBehandlet)];
-        const kanaler = ['DITT_NAV', ...varsel.eksternVarslingKanaler];
-
-        const detaljer = (
-            <DittNavInformasjonsLinjer produsent={varsel.produsent} tekst={varsel.tekst} link={varsel.link} />
-        );
-
-        return { datoer, tittel, kanaler, detaljer };
+        return { eventId, datoer, tittel, event: varsel };
     }
 
     const datoer = [formaterDato(varslingsTidspunkt.tidspunkt)];
     if (varslingsTidspunkt.renotifikasjonTidspunkt) {
         datoer.push(formaterDato(varslingsTidspunkt.renotifikasjonTidspunkt));
+    }
+
+    const harFeilteVarsel = varslingsTidspunkt.harFeilteVarslinger || varslingsTidspunkt.harFeilteRevarslinger;
+
+    return { eventId, datoer, tittel, harFeilteVarsel, event: varsel };
+};
+
+const varselDetailExtractor = (varsel: Varsel) => {
+    const varslingsTidspunkt = varsel.varslingsTidspunkt;
+    if (!varslingsTidspunkt || !varslingsTidspunkt.tidspunkt) {
+        const kanaler = ['DITT_NAV', ...varsel.eksternVarslingKanaler];
+        return <DittNavInformasjonsLinjer varsel={varsel} kanaler={kanaler} />;
     }
 
     const kanaler = [
@@ -146,13 +208,16 @@ const dataExtractor = (
         ...varslingsTidspunkt.renotifikasjonsKanaler
     ].unique();
 
-    const harFeilteVarsel = varslingsTidspunkt.harFeilteVarslinger || varslingsTidspunkt.harFeilteRevarslinger;
-    const detaljer = <DittNavInformasjonsLinjerV2 varsel={varsel} />;
-
-    return { datoer, tittel, kanaler, detaljer, harFeilteVarsel };
+    return <DittNavInformasjonsLinjerV2 varsel={varsel} kanaler={kanaler} />;
 };
 
-function VarslerNy() {
+function VarslerNy({
+    valgtVarsel,
+    onVarselValg
+}: {
+    valgtVarsel: Varsel | undefined;
+    onVarselValg: (varsel?: Varsel) => void;
+}) {
     const rowsPerPage = 22;
     const { page } = routeApi.useSearch();
     const navigate = routeApi.useNavigate();
@@ -161,16 +226,24 @@ function VarslerNy() {
         feil: [],
         varsler: []
     };
+    const [sort, setSort] = useState<SortState | undefined>();
 
     const varselElementer = useMemo(
-        () => varslerResult.varsler.sort(datoSynkende((v) => v.forstBehandlet)),
-        [varslerResult]
+        () => varslerResult.varsler.sort(datoSynkende((v) => v.forstBehandlet)).map((item) => dataExtractor(item)),
+        [varslerResult, sort]
     );
+    const varselSorted = useMemo(() => {
+        return sort
+            ? varselElementer.sort((a, b) =>
+                  sort.direction === 'ascending' ? comparator(b, a, sort.orderBy) : comparator(a, b, sort.orderBy)
+              )
+            : varselElementer;
+    }, [varslerResult, sort]);
     const varselPagniated = useMemo(
-        () => varselElementer.slice((page - 1) * rowsPerPage, page * rowsPerPage),
-        [varselElementer, page]
+        () => varselSorted.slice((page - 1) * rowsPerPage, page * rowsPerPage),
+        [varselSorted, page, sort]
     );
-    const maxPage = Math.ceil(varselElementer.length / rowsPerPage);
+    const maxPage = Math.ceil(varselSorted.length / rowsPerPage);
 
     const onPageClick = (pageNumber: number) => {
         navigate({ search: { page: pageNumber } });
@@ -181,6 +254,20 @@ function VarslerNy() {
             navigate({ search: { page: 1 } });
         }
     }, [maxPage, page, navigate]);
+
+    const handleSort = (sortKey: string) => {
+        setSort(
+            sort && sortKey === sort.orderBy && sort.direction === 'descending'
+                ? undefined
+                : {
+                      orderBy: sortKey,
+                      direction:
+                          sort && sortKey === sort.orderBy && sort.direction === 'ascending'
+                              ? 'descending'
+                              : 'ascending'
+                  }
+        );
+    };
 
     return (
         <QueryErrorBoundary
@@ -204,25 +291,40 @@ function VarslerNy() {
                         {varslerResult.feil.join('. ')}
                     </Alert>
                 )}
-                <Box background="bg-default">
-                    <Table size="small" className="border border-gray-300 mb-2" aria-label="Varsler">
+                <Box>
+                    <Table
+                        sort={sort}
+                        onSortChange={(sortKey) => handleSort(sortKey)}
+                        size="small"
+                        className="mb-2"
+                        aria-label="Varsler"
+                    >
                         <Table.Header>
                             <Table.Row>
-                                <Table.HeaderCell />
-                                <Table.HeaderCell className="w-28">Dato</Table.HeaderCell>
-                                <Table.HeaderCell className="w-20">Status</Table.HeaderCell>
-                                <Table.HeaderCell>Type</Table.HeaderCell>
-                                <Table.HeaderCell className="w-48">Kanal</Table.HeaderCell>
+                                <Table.ColumnHeader className="w-64" sortKey="tittel" sortable>
+                                    Type
+                                </Table.ColumnHeader>
+                                <Table.ColumnHeader className="w-20" scope="col" sortKey="datoer" sortable>
+                                    Dato
+                                </Table.ColumnHeader>
+                                <Table.ColumnHeader className="w-18" scope="col" sortKey="harFeilteVarsel" sortable>
+                                    Status
+                                </Table.ColumnHeader>
                             </Table.Row>
                         </Table.Header>
                         <Table.Body>
-                            {varselPagniated.map((item, index) => {
-                                const data = dataExtractor(item);
+                            {varselPagniated.map((data, index) => {
                                 return (
-                                    <Table.ExpandableRow
+                                    <Table.Row
                                         key={`${data.datoer}_${data.tittel}_${index}`}
-                                        content={data.detaljer}
+                                        onClick={() => {
+                                            onVarselValg(data.event);
+                                        }}
+                                        selected={valgtVarsel?.eventId === data.eventId}
                                     >
+                                        <Table.DataCell align="left" textSize="small">
+                                            {data.tittel}
+                                        </Table.DataCell>
                                         <Table.DataCell align="left" textSize="small">
                                             {data.datoer}
                                         </Table.DataCell>
@@ -233,13 +335,7 @@ function VarslerNy() {
                                                 <CheckmarkCircleFillIcon fontSize="1.5rem" title="Ok" />
                                             )}
                                         </Table.DataCell>
-                                        <Table.DataCell align="left" textSize="small">
-                                            {data.tittel}
-                                        </Table.DataCell>
-                                        <Table.DataCell align="left" textSize="small">
-                                            {data.kanaler.join(', ')}
-                                        </Table.DataCell>
-                                    </Table.ExpandableRow>
+                                    </Table.Row>
                                 );
                             })}
                         </Table.Body>
@@ -258,21 +354,36 @@ function VarslerNy() {
 }
 
 function VarslerWrapper() {
+    const [valgtVarsel, setValgtVarsel] = useState<Varsel | undefined>();
+
     return (
-        <Suspense
-            fallback={
-                <Box padding="2">
-                    <Skeleton variant="rounded" height={40} />
-                    <Skeleton variant="text" />
-                    <Skeleton variant="text" />
-                    <Skeleton variant="text" />
-                    <Skeleton variant="text" />
-                    <Skeleton variant="text" />
-                </Box>
-            }
-        >
-            <VarslerNy />
-        </Suspense>
+        <>
+            <BodyShort size="large" weight="semibold">
+                Varsler
+            </BodyShort>
+            <BodyShort size="small" weight="semibold">
+                Alle varsler
+            </BodyShort>
+            <VarselStyle>
+                <Suspense
+                    fallback={
+                        <Box padding="2">
+                            <Skeleton variant="rounded" height={40} />
+                            <Skeleton variant="text" />
+                            <Skeleton variant="text" />
+                            <Skeleton variant="text" />
+                            <Skeleton variant="text" />
+                            <Skeleton variant="text" />
+                        </Box>
+                    }
+                >
+                    <VarslerNy valgtVarsel={valgtVarsel} onVarselValg={setValgtVarsel} />
+                </Suspense>
+                <ScrollBar className={'ml-2'}>
+                    {valgtVarsel && <Card padding="4">{varselDetailExtractor(valgtVarsel)}</Card>}
+                </ScrollBar>
+            </VarselStyle>
+        </>
     );
 }
 
