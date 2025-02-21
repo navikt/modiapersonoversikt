@@ -1,4 +1,4 @@
-import { PersonIcon, PrinterSmallIcon } from '@navikt/aksel-icons';
+import { EnvelopeClosedIcon, EnvelopeOpenIcon, PersonIcon, PrinterSmallIcon } from '@navikt/aksel-icons';
 import { BodyShort, Box, Button, Chat, HStack, Heading, Skeleton, Tooltip, VStack } from '@navikt/ds-react';
 import { useAtom, useAtomValue } from 'jotai';
 import { Suspense, useCallback, useMemo } from 'react';
@@ -14,6 +14,7 @@ import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
 import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
+import { formatterDatoTid } from 'src/utils/date-utils';
 import { formaterDato } from 'src/utils/string-utils';
 import { meldingerFilterAtom } from '../List/Filter';
 import { erMeldingFraNav, traadstittel } from '../List/utils';
@@ -104,6 +105,21 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
         </Card>
     );
 };
+const ReadStatus = ({ date }: { date?: string }) =>
+    date ? (
+        <>
+            <BodyShort size="small">Lest</BodyShort>
+            <EnvelopeOpenIcon color="var(--ax-text-success-icon)" />
+            <BodyShort size="small" textColor="subtle">
+                ({formatterDatoTid(date)})
+            </BodyShort>
+        </>
+    ) : (
+        <>
+            <BodyShort size="small">Ikke lest</BodyShort>
+            <EnvelopeClosedIcon color="var(--ax-text-warning-icon)" />
+        </>
+    );
 
 const Meldinger = ({ meldinger }: { meldinger: Traad['meldinger'] }) => {
     const { search } = useAtomValue(meldingerFilterAtom);
@@ -118,7 +134,7 @@ const Meldinger = ({ meldinger }: { meldinger: Traad['meldinger'] }) => {
                         size="small"
                         avatar={erFraNav ? 'nav' : <PersonIcon />}
                         name={m.skrevetAvTekst}
-                        timestamp={m.opprettetDato}
+                        timestamp={formatterDatoTid(m.opprettetDato)}
                         position={erFraNav ? 'right' : 'left'}
                         className={erFraNav ? 'self-end' : undefined}
                         variant={erFraNav ? 'info' : 'neutral'}
@@ -127,6 +143,13 @@ const Meldinger = ({ meldinger }: { meldinger: Traad['meldinger'] }) => {
                             <RichText rules={[SladdRule, HighlightRule, highlightRule, ...defaultRules]}>
                                 {m.fritekst}
                             </RichText>
+                            {erFraNav && (
+                                <Box.New borderColor="neutral-subtleA" borderWidth="1 0 0 0">
+                                    <HStack gap="2" align="center" justify="end">
+                                        <ReadStatus date={m.lestDato} />
+                                    </HStack>
+                                </Box.New>
+                            )}
                         </Chat.Bubble>
                     </Chat>
                 );
