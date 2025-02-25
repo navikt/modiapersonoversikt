@@ -1,18 +1,6 @@
 import { CheckmarkCircleFillIcon, ExclamationmarkTriangleFillIcon } from '@navikt/aksel-icons';
 import { LinkIcon } from '@navikt/aksel-icons';
-import {
-    Alert,
-    BodyShort,
-    Box,
-    HStack,
-    Heading,
-    Link,
-    Pagination,
-    Skeleton,
-    type SortState,
-    Table,
-    VStack
-} from '@navikt/ds-react';
+import { Alert, BodyShort, Box, HStack, Heading, Link, Pagination, Skeleton, Table, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { type ReactNode, Suspense, useEffect, useMemo, useState } from 'react';
 import { ScrollBar, scrollBarContainerStyle } from 'src/app/personside/infotabs/utils/InfoTabsScrollBar';
@@ -44,6 +32,11 @@ const VarselStyle = styled.div`
     }
     position: relative;
 `;
+
+interface SortState {
+    orderBy: 'tittel' | 'eventId' | 'datoer' | 'harFeilteVarsel' | 'sisteDato' | 'event' | 'detaljer';
+    direction: 'descending' | 'ascending';
+}
 
 function comparator<T>(a: T, b: T, orderBy: keyof T): number {
     if (b[orderBy] == null || b[orderBy] < a[orderBy]) {
@@ -107,40 +100,42 @@ const DittNavInformasjonsLinjerV2 = ({
     return (
         <>
             <DittNavInformasjonsLinjer varsel={varsel} kanaler={kanaler} />
-            <DittNavInformasjonsLinje
-                tittel="Varslet: "
-                tekst={
-                    varslingsTidspunkt?.tidspunkt
-                        ? `${formaterDato(varslingsTidspunkt.tidspunkt)} - ${varslingsTidspunkt.sendteKanaler.join(', ')}`
-                        : '-'
-                }
-            />
-            {varslingsTidspunkt?.renotifikasjonTidspunkt && (
+            <VStack gap="1" className="px-2">
                 <DittNavInformasjonsLinje
-                    tittel="Revarslet: "
-                    tekst={`${formaterDato(
-                        varslingsTidspunkt.renotifikasjonTidspunkt
-                    )} - ${varslingsTidspunkt.renotifikasjonsKanaler.join(', ')}`}
+                    tittel="Varslet: "
+                    tekst={
+                        varslingsTidspunkt?.tidspunkt
+                            ? `${formaterDato(varslingsTidspunkt.tidspunkt)} - ${varslingsTidspunkt.sendteKanaler.join(', ')}`
+                            : '-'
+                    }
                 />
-            )}
-            {varslingsTidspunkt?.harFeilteVarslinger && (
-                <>
-                    <hr />
-                    <FeilteVarslingerListe
-                        tittel="Varslingsfeil"
-                        feilteVarslinger={varslingsTidspunkt.feilteVarsliner}
+                {varslingsTidspunkt?.renotifikasjonTidspunkt && (
+                    <DittNavInformasjonsLinje
+                        tittel="Revarslet: "
+                        tekst={`${formaterDato(
+                            varslingsTidspunkt.renotifikasjonTidspunkt
+                        )} - ${varslingsTidspunkt.renotifikasjonsKanaler.join(', ')}`}
                     />
-                </>
-            )}
-            {varslingsTidspunkt?.harFeilteRevarslinger && (
-                <>
-                    <hr />
-                    <FeilteVarslingerListe
-                        tittel="Revarslingsfeil"
-                        feilteVarslinger={varslingsTidspunkt.feilteRevarslinger}
-                    />
-                </>
-            )}
+                )}
+                {varslingsTidspunkt?.harFeilteVarslinger && (
+                    <>
+                        <hr />
+                        <FeilteVarslingerListe
+                            tittel="Varslingsfeil"
+                            feilteVarslinger={varslingsTidspunkt.feilteVarsliner}
+                        />
+                    </>
+                )}
+                {varslingsTidspunkt?.harFeilteRevarslinger && (
+                    <>
+                        <hr />
+                        <FeilteVarslingerListe
+                            tittel="Revarslingsfeil"
+                            feilteVarslinger={varslingsTidspunkt.feilteRevarslinger}
+                        />
+                    </>
+                )}
+            </VStack>
         </>
     );
 };
@@ -171,6 +166,7 @@ const dataExtractor = (
 ): {
     eventId: string;
     datoer: string[];
+    sisteDato: string;
     tittel: string;
     harFeilteVarsel?: boolean;
     event: Varsel;
@@ -181,18 +177,18 @@ const dataExtractor = (
     const tittel = `Notifikasjon${aktiv}: ${varsel.tekst}`;
     const eventId = varsel.eventId;
     if (!varslingsTidspunkt || !varslingsTidspunkt.tidspunkt) {
-        const datoer = [formaterDato(varsel.forstBehandlet)];
-        return { eventId, datoer, tittel, event: varsel };
+        const datoer = [varsel.forstBehandlet];
+        return { eventId, datoer, tittel, sisteDato: datoer[0], event: varsel };
     }
 
-    const datoer = [formaterDato(varslingsTidspunkt.tidspunkt)];
+    const datoer = [varslingsTidspunkt.tidspunkt];
     if (varslingsTidspunkt.renotifikasjonTidspunkt) {
-        datoer.push(formaterDato(varslingsTidspunkt.renotifikasjonTidspunkt));
+        datoer.unshift(varslingsTidspunkt.renotifikasjonTidspunkt);
     }
 
     const harFeilteVarsel = varslingsTidspunkt.harFeilteVarslinger || varslingsTidspunkt.harFeilteRevarslinger;
 
-    return { eventId, datoer, tittel, harFeilteVarsel, event: varsel };
+    return { eventId, datoer, tittel, sisteDato: datoer[0], harFeilteVarsel, event: varsel };
 };
 
 const varselDetailExtractor = (varsel: Varsel) => {
@@ -259,13 +255,13 @@ function VarslerNy({
         setSort(
             sort && sortKey === sort.orderBy && sort.direction === 'descending'
                 ? undefined
-                : {
+                : ({
                       orderBy: sortKey,
                       direction:
                           sort && sortKey === sort.orderBy && sort.direction === 'ascending'
                               ? 'descending'
                               : 'ascending'
-                  }
+                  } as SortState)
         );
     };
 
@@ -304,7 +300,7 @@ function VarslerNy({
                                 <Table.ColumnHeader className="w-64" sortKey="tittel" sortable>
                                     Type
                                 </Table.ColumnHeader>
-                                <Table.ColumnHeader className="w-20" scope="col" sortKey="datoer" sortable>
+                                <Table.ColumnHeader className="w-20" scope="col" sortKey="sisteDato" sortable>
                                     Dato
                                 </Table.ColumnHeader>
                                 <Table.ColumnHeader className="w-18" scope="col" sortKey="harFeilteVarsel" sortable>
@@ -326,7 +322,7 @@ function VarslerNy({
                                             {data.tittel}
                                         </Table.DataCell>
                                         <Table.DataCell align="left" textSize="small">
-                                            {data.datoer}
+                                            {data.datoer.map(formaterDato).join(', ')}
                                         </Table.DataCell>
                                         <Table.DataCell align="left" textSize="small">
                                             {data.harFeilteVarsel ? (
@@ -379,7 +375,7 @@ function VarslerWrapper() {
                 >
                     <VarslerNy valgtVarsel={valgtVarsel} onVarselValg={setValgtVarsel} />
                 </Suspense>
-                <ScrollBar className={'ml-2'}>
+                <ScrollBar className={'ml-2'} keepScrollId="valgte-varsel-detailje">
                     {valgtVarsel && <Card padding="4">{varselDetailExtractor(valgtVarsel)}</Card>}
                 </ScrollBar>
             </VarselStyle>
