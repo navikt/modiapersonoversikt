@@ -133,7 +133,7 @@ const meldingerFilterDateAtom = atom(
 );
 const DateFilter = () => {
     const [value, setValue] = useAtom(meldingerFilterDateAtom);
-    return <DateRangeSelector range={value} onChange={setValue} />;
+    return <DateRangeSelector range={value} onChange={setValue} defaultPeriodType={null} />;
 };
 
 const FilterTitle = () => {

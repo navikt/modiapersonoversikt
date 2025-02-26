@@ -34,10 +34,11 @@ type Props = {
     range?: DateRange;
     onChange: (period?: DateRange) => void;
     required?: boolean;
+    defaultPeriodType?: PeriodType | null;
 };
 
-function DateRangeSelector({ range: period, onChange, required }: Props) {
-    const [periodType, setPeriodType] = useState<PeriodType | undefined>(PeriodType.LAST_30_DAYS);
+function DateRangeSelector({ range: period, onChange, required, defaultPeriodType = PeriodType.LAST_30_DAYS }: Props) {
+    const [periodType, setPeriodType] = useState<PeriodType | null>(defaultPeriodType);
 
     const onFraTilDatoChange = (val: DateRange) => {
         onChange(val);
@@ -51,9 +52,9 @@ function DateRangeSelector({ range: period, onChange, required }: Props) {
     );
 
     const resetFilter = useCallback(() => {
-        setPeriodType(undefined);
+        setPeriodType(defaultPeriodType);
         onChange(undefined);
-    }, [onChange]);
+    }, [onChange, defaultPeriodType]);
 
     return (
         <VStack gap="2">

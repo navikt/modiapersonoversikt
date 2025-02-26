@@ -67,7 +67,7 @@ export const SladdRule: Rule = {
     },
     react(): ReactElementDescription {
         return {
-            type: (props) => <span className="box-decoration-clone rounded" {...props} />
+            type: (props) => <span className="box-decoration-clone rounded bg-[currentColor]" {...props} />
         };
     }
 };
