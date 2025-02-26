@@ -47,7 +47,7 @@
         "@navikt/fnrvalidator": "^2.1.5",
         "@navikt/navspa": "^7.0.0",
         "@navikt/tag-input": "^2.0.2",
-        "@navikt/textparser": "^2.4.0",
+        "@navikt/textparser": "^2.5.0",
         "@tanstack/react-form": "^0.41.3",
         "@tanstack/react-query": "^5.65.0",
         "@tanstack/react-router": "^1.97.25",
