@@ -34,7 +34,9 @@ const nyMeldingSchema = z
     .discriminatedUnion('meldingsType', [
         z.object({
             meldingsType: z.literal(MeldingsType.Referat),
-            tema: z.nativeEnum(Temagruppe, { message: 'Knytt meldingen til en temagruppe' })
+            tema: z.nativeEnum(Temagruppe, {
+                message: 'Knytt meldingen til en temagruppe'
+            })
         }),
         z.object({
             meldingsType: z.literal(MeldingsType.Samtale),
@@ -49,3 +51,16 @@ const nyMeldingSchema = z
     .and(commonSchema);
 
 export default nyMeldingSchema;
+
+export const fortsettDialogSchema = z
+    .object({
+        traadId: z.string(),
+        traadType: z.enum([MeldingsType.Referat, MeldingsType.Samtale]),
+        temagruppe: z.string().optional(),
+        behandlingsId: z.string().optional(),
+        oppgaveId: z.string().optional(),
+        avsluttet: z.boolean().optional(),
+        oppgaveliste: z.nativeEnum(Oppgaveliste).optional(),
+        sak: sakSchema.optional()
+    })
+    .and(commonSchema);

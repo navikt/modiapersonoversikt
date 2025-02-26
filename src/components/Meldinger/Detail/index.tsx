@@ -125,7 +125,7 @@ const Meldinger = ({ meldinger }: { meldinger: Traad['meldinger'] }) => {
     const { search } = useAtomValue(meldingerFilterAtom);
     const highlightRule = useMemo(() => createDynamicHighlightingRule((search ?? '').split(' ')), [search]);
     return (
-        <VStack gap="10" align="baseline">
+        <VStack gap="10" align="baseline" paddingBlock="0 16">
             {meldinger.map((m) => {
                 const erFraNav = erMeldingFraNav(m.meldingstype);
                 return (

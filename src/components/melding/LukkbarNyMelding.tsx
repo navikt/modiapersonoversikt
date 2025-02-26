@@ -1,7 +1,9 @@
 import { ChatIcon, MinusIcon } from '@navikt/aksel-icons';
 import { Box, Button, HStack } from '@navikt/ds-react';
+import { useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
-import NyMelding from 'src/components/melding/NyMelding';
+import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
+import { SendMelding } from './SendMelding';
 
 export function LukkbarNyMelding() {
     const [isOpen, setIsOpen] = useState(localStorage.getItem('ny-melding-is-open') !== 'false');
@@ -9,6 +11,13 @@ export function LukkbarNyMelding() {
     useEffect(() => {
         localStorage.setItem('ny-melding-is-open', String(isOpen));
     }, [isOpen]);
+
+    const oppgave = useAtomValue(dialogUnderArbeidAtom);
+    useEffect(() => {
+        if (oppgave) {
+            setIsOpen(true);
+        }
+    }, [oppgave]);
 
     return (
         <HStack flexGrow="1">
@@ -23,7 +32,7 @@ export function LukkbarNyMelding() {
                 </Box>
             )}
             {isOpen && (
-                <NyMelding
+                <SendMelding
                     lukkeKnapp={
                         <Button
                             type="button"

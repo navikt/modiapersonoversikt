@@ -1,8 +1,8 @@
-import { Alert, Button, ErrorMessage, HStack, Heading, Textarea, VStack } from '@navikt/ds-react';
+import { Alert, Button, ErrorMessage, HStack, Textarea, VStack } from '@navikt/ds-react';
 import { type ValidationError, useForm, useStore } from '@tanstack/react-form';
 import { Link } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
-import { type ReactElement, useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import DraftStatus from 'src/app/personside/dialogpanel/DraftStatus';
 import useDraft, { type Draft, type DraftContext } from 'src/app/personside/dialogpanel/use-draft';
 import AvsluttDialogEtterSending from 'src/components/melding/AvsluttDialogEtterSending';
@@ -24,13 +24,8 @@ import { useSuspendingBrukernavn } from 'src/lib/hooks/useSuspendingBrukernavn';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import type { Temagruppe } from 'src/models/temagrupper';
 import type { z } from 'zod';
-import Card from '../Card';
 
-interface NyMeldingProps {
-    lukkeKnapp?: ReactElement<typeof Button>;
-}
-
-function NyMelding({ lukkeKnapp }: NyMeldingProps) {
+function NyMelding() {
     const fnr = usePersonAtomValue();
     const enhetsId = useAtomValue(aktivEnhetAtom);
     const enhetsNavn = useEnhetsnavn(enhetsId);
@@ -84,120 +79,112 @@ function NyMelding({ lukkeKnapp }: NyMeldingProps) {
     const meldingsTypeTekst = meldingsTyperTekst[meldingsType];
 
     return (
-        <Card padding="2" maxWidth="30vw" minWidth="24em">
-            <form
-                onSubmit={async (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    await form.handleSubmit();
-                }}
-            >
-                <VStack gap="4">
-                    <HStack justify="space-between">
-                        <Heading level="1" size="medium">
-                            Send ny dialog
-                        </Heading>
-                        {lukkeKnapp}
-                    </HStack>
-                    <form.Field name="meldingsType">
-                        {(field) => (
-                            <VelgMeldingsType
-                                meldingsType={field.state.value}
-                                setMeldingsType={(meldingsType) => field.handleChange(meldingsType)}
-                            />
-                        )}
-                    </form.Field>
-                    <form.Field
-                        name="melding"
-                        listeners={{
-                            onChange: ({ value }) => {
-                                if (value.length === 0) {
-                                    removeDraft();
-                                }
-                                if (value.length > 0) {
-                                    updateDraft(value);
-                                }
+        <form
+            onSubmit={async (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                await form.handleSubmit();
+            }}
+        >
+            <VStack gap="4">
+                <form.Field name="meldingsType">
+                    {(field) => (
+                        <VelgMeldingsType
+                            meldingsType={field.state.value}
+                            setMeldingsType={(meldingsType) => field.handleChange(meldingsType)}
+                        />
+                    )}
+                </form.Field>
+                <form.Field
+                    name="melding"
+                    listeners={{
+                        onChange: ({ value }) => {
+                            if (value.length === 0) {
+                                removeDraft();
                             }
-                        }}
-                    >
-                        {(field) => (
-                            <div>
-                                <Textarea
-                                    label={meldingsTypeTekst.tittel}
-                                    description={meldingsTypeTekst.beskrivelse}
-                                    value={field.state.value}
-                                    onChange={(e) => field.handleChange(e.target.value)}
-                                    error={buildErrorMessage(field.state.meta.errors)}
-                                    maxLength={maksLengdeMelding}
-                                    resize="vertical"
-                                    minRows={5}
-                                    maxRows={15}
+                            if (value.length > 0) {
+                                updateDraft(value);
+                            }
+                        }
+                    }}
+                >
+                    {(field) => (
+                        <div>
+                            <Textarea
+                                label={meldingsTypeTekst.tittel}
+                                description={meldingsTypeTekst.beskrivelse}
+                                value={field.state.value}
+                                onChange={(e) => field.handleChange(e.target.value)}
+                                error={buildErrorMessage(field.state.meta.errors)}
+                                maxLength={maksLengdeMelding}
+                                resize="vertical"
+                                minRows={5}
+                                maxRows={15}
+                            />
+                            {draftStatus && field.state.value.length > 0 && field.state.meta.isDirty && (
+                                <DraftStatus state={draftStatus} />
+                            )}
+                        </div>
+                    )}
+                </form.Field>
+                <ValgForMeldingstype
+                    meldingsType={meldingsType}
+                    velgTema={
+                        <form.Field name="tema">
+                            {(field) => (
+                                <VelgTema
+                                    valgtTema={field.state.value}
+                                    setValgtTema={(tema) => field.handleChange(tema)}
+                                    error={<ValidationErrorMessage errors={field.state.meta.errors} />}
                                 />
-                                {draftStatus && field.state.value.length > 0 && field.state.meta.isDirty && (
-                                    <DraftStatus state={draftStatus} />
-                                )}
-                            </div>
-                        )}
-                    </form.Field>
-                    <ValgForMeldingstype
-                        meldingsType={meldingsType}
-                        velgTema={
-                            <form.Field name="tema">
-                                {(field) => (
-                                    <VelgTema
-                                        valgtTema={field.state.value}
-                                        setValgtTema={(tema) => field.handleChange(tema)}
-                                        error={<ValidationErrorMessage errors={field.state.meta.errors} />}
-                                    />
-                                )}
-                            </form.Field>
-                        }
-                        velgOppgaveliste={
-                            <form.Field name="oppgaveliste">
-                                {(field) => (
-                                    <VelgOppgaveliste
-                                        valgtOppgaveliste={field.state.value}
-                                        setValgtOppgaveliste={(oppgaveliste) => field.handleChange(oppgaveliste)}
-                                        oppgavelisteRadioKnapper={<OppgavelisteRadioKnapper enhet={enhetsNavn} />}
-                                    />
-                                )}
-                            </form.Field>
-                        }
-                        velgSak={
-                            <form.Field name="sak">
-                                {(field) => (
-                                    <VelgSak
-                                        valgtSak={field.state.value}
-                                        setSak={(sak) => field.handleChange(sak)}
-                                        error={<ValidationErrorMessage errors={field.state.meta.errors} />}
-                                    />
-                                )}
-                            </form.Field>
-                        }
-                        avsluttDialogEtterSending={
-                            <form.Field name="meldingsType">
-                                {(field) => (
-                                    <AvsluttDialogEtterSending
-                                        meldingsType={field.state.value}
-                                        setMeldingsType={(meldingsType) => field.handleChange(meldingsType)}
-                                    />
-                                )}
-                            </form.Field>
-                        }
-                    />
-                    <HStack gap="2">
-                        <Button type="submit" loading={isPending}>
-                            Send til {brukerNavn}
-                        </Button>
-                        <Button type="button" variant="secondary" as={Link} to="/new/person/meldinger">
-                            Se all kommunikasjon
-                        </Button>
-                    </HStack>
-                    {isSuccess && <Alert variant="success">Meldingen ble sendt</Alert>}
-                    {error && <Alert variant="error">{error}</Alert>}
-                </VStack>
-            </form>
-        </Card>
+                            )}
+                        </form.Field>
+                    }
+                    velgOppgaveliste={
+                        <form.Field name="oppgaveliste">
+                            {(field) => (
+                                <VelgOppgaveliste
+                                    valgtOppgaveliste={field.state.value}
+                                    setValgtOppgaveliste={(oppgaveliste) => field.handleChange(oppgaveliste)}
+                                    oppgavelisteRadioKnapper={<OppgavelisteRadioKnapper enhet={enhetsNavn} />}
+                                />
+                            )}
+                        </form.Field>
+                    }
+                    velgSak={
+                        <form.Field name="sak">
+                            {(field) => (
+                                <VelgSak
+                                    valgtSak={field.state.value}
+                                    setSak={(sak) => field.handleChange(sak)}
+                                    error={<ValidationErrorMessage errors={field.state.meta.errors} />}
+                                />
+                            )}
+                        </form.Field>
+                    }
+                    avsluttDialogEtterSending={
+                        <form.Field name="meldingsType">
+                            {(field) => (
+                                <AvsluttDialogEtterSending
+                                    meldingsType={field.state.value}
+                                    setMeldingsType={(meldingsType) => field.handleChange(meldingsType)}
+                                />
+                            )}
+                        </form.Field>
+                    }
+                />
+                <HStack gap="2">
+                    <Button type="submit" loading={isPending}>
+                        Send til {brukerNavn}
+                    </Button>
+                    <Button type="button" variant="secondary" as={Link} to="/new/person/meldinger">
+                        Se all kommunikasjon
+                    </Button>
+                </HStack>
+                {isSuccess && <Alert variant="success">Meldingen ble sendt</Alert>}
+                {error && <Alert variant="error">{error}</Alert>}
+            </VStack>
+        </form>
     );
 }
 

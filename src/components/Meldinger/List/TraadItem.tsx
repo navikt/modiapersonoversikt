@@ -67,15 +67,17 @@ const routeApi = getRouteApi('/new/person/meldinger');
 
 export const TraadItem = ({
     traad,
-    handleClick
+    handleClick,
+    inMeldingerRoute = true
 }: {
     traad: TraadDto;
     handleClick: (traadId: string) => void;
+    inMeldingerRoute?: boolean;
 }) => {
     const sisteMelding = nyesteMelding(traad);
     const datoTekst = getFormattertMeldingsDato(sisteMelding);
     const tittel = traadstittel(traad);
-    const aktivTraad = routeApi.useSearch().traadId;
+    const aktivTraad = inMeldingerRoute ? routeApi.useSearch().traadId : undefined;
 
     return (
         <Card
