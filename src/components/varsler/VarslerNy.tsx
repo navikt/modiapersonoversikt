@@ -256,7 +256,7 @@ function VarslerNy({
             }
         >
             <div className="flex flex-col w-full max-h-screen overflow-auto pb-6">
-                <Alert variant="info" className="mb-2" fullWidth={true} contentMaxWidth={false}>
+                <Alert variant="info" className="blokk-xs mb-2">
                     Varsler vises kun ett år tilbake i tid. Dersom man trenger å se informasjon om eldre varsler kan man
                     lage en sak i porten for manuell uthenting.
                 </Alert>
