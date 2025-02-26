@@ -42,8 +42,8 @@ importers:
         specifier: ^2.0.2
         version: 2.0.2(gct6i4lcxszvmjlgvsfus3jouu)
       '@navikt/textparser':
-        specifier: ^2.4.0
-        version: 2.4.0(react@19.0.0)
+        specifier: ^2.5.0
+        version: 2.5.0(react@19.0.0)
       '@tanstack/react-form':
         specifier: ^0.41.3
         version: 0.41.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)
@@ -1050,6 +1050,9 @@ packages:
     peerDependencies:
       '@types/react': '>=17.0.30'
       react: '>=17.0.0 || >19.0.0-rc'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
 
   '@navikt/ds-tailwind@7.12.2':
     resolution: {integrity: sha512-ryqIsvswbkrcM6Qt02SfLK/Pp08weP3RQlCHmWb518iIM11lr0hcGo00cDViVpqrE6A/TdUC9GcMqhmVzj7+JA==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tailwind/7.12.2/7b824e02a09e60ee8f6ea27a15917fd854b65eb3}
@@ -1076,8 +1079,8 @@ packages:
       nav-frontend-skjema-style: ^2.0.9
       react: ^15.4.2 || ^16.0.0 || ^17.0.0
 
-  '@navikt/textparser@2.4.0':
-    resolution: {integrity: sha512-BfNBGLfoD71rhl9P/vbQa3s26ks1/Lw5kEGWzufYKM2WrrvqNdQBdPJdxWAwFG+Ty7HWmKumTUlDaod2cfgt9A==, tarball: https://npm.pkg.github.com/download/@navikt/textparser/2.4.0/e1e734e9d799fefc0878c1e9c4e91c0fa5247678}
+  '@navikt/textparser@2.5.0':
+    resolution: {integrity: sha512-OUL3apcxTsEIVFtherKlNyZyOYoKBHOajMpiqZZz6u1zB69wnpuQLkped1FQ7KmPxK+AhUiErBDkKZZohq4FLQ==, tarball: https://npm.pkg.github.com/download/@navikt/textparser/2.5.0/42c12bc8b98309f3700bb620acebf035505ed369}
     peerDependencies:
       react: ^15.4.2 || ^16.0.0 || ^17.0.0 || ^18.0.0
 
@@ -4551,11 +4554,12 @@ snapshots:
       '@floating-ui/react-dom': 2.1.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@navikt/aksel-icons': 7.12.2
       '@navikt/ds-tokens': 7.12.2
-      '@types/react': 19.0.8
       clsx: 2.1.1
       date-fns: 3.6.0
       react: 19.0.0
       react-day-picker: 8.10.1(date-fns@3.6.0)(react@19.0.0)
+    optionalDependencies:
+      '@types/react': 19.0.8
     transitivePeerDependencies:
       - react-dom
 
@@ -4580,7 +4584,7 @@ snapshots:
       nav-frontend-skjema-style: 2.2.3(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)
       react: 19.0.0
 
-  '@navikt/textparser@2.4.0(react@19.0.0)':
+  '@navikt/textparser@2.5.0(react@19.0.0)':
     dependencies:
       react: 19.0.0
 
@@ -6494,7 +6498,7 @@ snapshots:
 
   nav-frontend-tekstomrade@2.1.3(nav-frontend-lenker@1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.0.0))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0):
     dependencies:
-      '@navikt/textparser': 2.4.0(react@19.0.0)
+      '@navikt/textparser': 2.5.0(react@19.0.0)
       nav-frontend-lenker: 1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.0.0)
       nav-frontend-typografi: 3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0)
       prop-types: 15.8.1
