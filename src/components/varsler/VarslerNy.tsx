@@ -54,7 +54,7 @@ const DittNavInformasjonsLinjer = ({
 }) => {
     return (
         <VStack gap="1" className="p-2">
-            <Heading level="1" size="small">
+            <Heading level="2" size="xsmall">
                 {varsel.tekst}
             </Heading>
             <DittNavInformasjonsLinje tittel="Produsert av:" tekst={emptyReplacement(varsel.produsent, ENDASH)} />
