@@ -1,5 +1,5 @@
 import { EnvelopeClosedIcon, EnvelopeOpenIcon, PersonIcon, PrinterSmallIcon } from '@navikt/aksel-icons';
-import { BodyShort, Box, Button, Chat, HStack, Heading, Skeleton, Tooltip, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Box, Button, Chat, HStack, Heading, Skeleton, Tooltip, VStack } from '@navikt/ds-react';
 import { useAtom, useAtomValue } from 'jotai';
 import { Suspense, useCallback, useMemo } from 'react';
 import Card from 'src/components/Card';
@@ -17,7 +17,7 @@ import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { formatterDatoTid } from 'src/utils/date-utils';
 import { formaterDato } from 'src/utils/string-utils';
 import { meldingerFilterAtom } from '../List/Filter';
-import { erMeldingFraNav, traadstittel } from '../List/utils';
+import { erMeldingFraNav, nyesteMelding, saksbehandlerTekst, traadKanBesvares, traadstittel } from '../List/utils';
 
 const TraadMeta = ({ traad }: { traad: Traad }) => (
     <HStack justify="space-between">
@@ -71,6 +71,11 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
         return <span> fant ikke traaden</span>;
     }
 
+    const kanBesvares = traadKanBesvares(traad);
+    const melding = nyesteMelding(traad);
+    const avsluttetDato = traad.avsluttetDato || melding.avsluttetDato;
+    const avsluttetAv = traad.sistEndretAv || melding.skrevetAvTekst;
+
     return (
         <Card as={VStack} padding="2" minHeight="0">
             <VStack minHeight="0" gap="2">
@@ -87,6 +92,24 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
                     </Button>
                 </HStack>
 
+                {avsluttetDato && !kanBesvares && (
+                    <Alert variant="info" size="small">
+                        Samtalen er avsluttet av {avsluttetAv} {formatterDatoTid(avsluttetDato)}
+                    </Alert>
+                )}
+
+                {melding.markertSomFeilsendtAv && (
+                    <Alert variant="warning" size="small">
+                        Markert som feilsendt av {saksbehandlerTekst(melding.markertSomFeilsendtAv)}{' '}
+                        {melding.ferdigstiltDato && formaterDato(melding.ferdigstiltDato)}
+                    </Alert>
+                )}
+                {melding.sendtTilSladding && (
+                    <Alert variant="warning" size="small">
+                        Tråden ligger til behandling for sladding
+                    </Alert>
+                )}
+
                 <Box.New
                     minHeight="0"
                     overflowY="scroll"
@@ -98,9 +121,11 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
                 >
                     <Meldinger meldinger={traad.meldinger} />
                 </Box.New>
-                <Box.New marginBlock="space-8">
-                    <Button onClick={svarSamtale}>Svar</Button>
-                </Box.New>
+                {kanBesvares && (
+                    <Box.New marginBlock="space-8">
+                        <Button onClick={svarSamtale}>Svar</Button>
+                    </Box.New>
+                )}
             </VStack>
         </Card>
     );
