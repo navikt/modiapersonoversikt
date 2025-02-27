@@ -3,35 +3,15 @@ import { LinkIcon } from '@navikt/aksel-icons';
 import { Alert, BodyShort, Box, HStack, Heading, Link, Pagination, Skeleton, Table, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { type ReactNode, Suspense, useEffect, useMemo, useState } from 'react';
-import { ScrollBar, scrollBarContainerStyle } from 'src/app/personside/infotabs/utils/InfoTabsScrollBar';
 import Card from 'src/components/Card';
 import QueryErrorBoundary from 'src/components/QueryErrorBoundary';
 import { useVarslerData } from 'src/lib/clients/modiapersonoversikt-api';
 import type { FeiletVarsling, Varsel } from 'src/lib/types/modiapersonoversikt-api';
-import { pxToRem } from 'src/styles/personOversiktTheme';
 import { datoSynkende } from 'src/utils/date-utils';
 import { emptyReplacement } from 'src/utils/string-utils';
 import { ENDASH, formaterDato } from 'src/utils/string-utils';
-import styled from 'styled-components';
 
 const routeApi = getRouteApi('/new/person/varsler');
-const varselMediaTreshold = pxToRem(800);
-
-const VarselStyle = styled.div`
-    ${scrollBarContainerStyle(varselMediaTreshold)};
-    @media (min-width: ${varselMediaTreshold}) {
-        height: 0; /* IE11 */
-        flex-grow: 1; /* IE11 */
-        display: flex;
-        > *:first-child {
-            flex: 50% 1 1;
-        }
-        > *:last-child {
-            flex: 50% 1 1;
-        }
-    }
-    position: relative;
-`;
 
 interface SortState {
     orderBy: 'tittel' | 'eventId' | 'datoer' | 'harFeilteVarsel' | 'sisteDato' | 'event' | 'detaljer';
@@ -74,16 +54,14 @@ const DittNavInformasjonsLinjer = ({
 }) => {
     return (
         <VStack gap="1" className="p-2">
-            <HStack justify="space-between">
-                <Heading level="1" size="medium">
-                    {varsel.tekst}
-                </Heading>
-                <Link href={varsel.link}>
-                    <LinkIcon fontSize="1.5rem" />
-                </Link>
-            </HStack>
+            <Heading level="2" size="xsmall">
+                {varsel.tekst}
+            </Heading>
             <DittNavInformasjonsLinje tittel="Produsert av:" tekst={emptyReplacement(varsel.produsent, ENDASH)} />
             <DittNavInformasjonsLinje tittel="Kanaler:" tekst={emptyReplacement(kanaler?.join(', '), ENDASH)} />
+            <Link href={varsel.link} className="no-underline">
+                <LinkIcon fontSize="1.5rem" /> Kopier lenke
+            </Link>
         </VStack>
     );
 };
@@ -214,7 +192,7 @@ function VarslerNy({
     valgtVarsel: Varsel | undefined;
     onVarselValg: (varsel?: Varsel) => void;
 }) {
-    const rowsPerPage = 22;
+    const rowsPerPage = 14;
     const { page } = routeApi.useSearch();
     const navigate = routeApi.useNavigate();
     const varslerResponse = useVarslerData();
@@ -278,12 +256,12 @@ function VarslerNy({
             }
         >
             <div className="flex flex-col w-full max-h-screen overflow-auto pb-6">
-                <Alert variant="info" className="my-4" fullWidth={true} contentMaxWidth={false}>
+                <Alert variant="info" className="blokk-xs mb-2">
                     Varsler vises kun ett år tilbake i tid. Dersom man trenger å se informasjon om eldre varsler kan man
                     lage en sak i porten for manuell uthenting.
                 </Alert>
                 {varslerResult.feil.length > 0 && (
-                    <Alert variant="error" className="blokk-xs my-4">
+                    <Alert variant="error" className="blokk-xs mb-4">
                         {varslerResult.feil.join('. ')}
                     </Alert>
                 )}
@@ -319,7 +297,7 @@ function VarslerNy({
                                         selected={valgtVarsel?.eventId === data.eventId}
                                     >
                                         <Table.DataCell align="left" textSize="small">
-                                            {data.tittel}
+                                            <span className="line-clamp-1">{data.tittel}</span>
                                         </Table.DataCell>
                                         <Table.DataCell align="left" textSize="small">
                                             {data.datoer.map(formaterDato).join(', ')}
@@ -360,25 +338,27 @@ function VarslerWrapper() {
             <BodyShort size="small" weight="semibold">
                 Alle varsler
             </BodyShort>
-            <VarselStyle>
-                <Suspense
-                    fallback={
-                        <Box padding="2">
-                            <Skeleton variant="rounded" height={40} />
-                            <Skeleton variant="text" />
-                            <Skeleton variant="text" />
-                            <Skeleton variant="text" />
-                            <Skeleton variant="text" />
-                            <Skeleton variant="text" />
-                        </Box>
-                    }
-                >
-                    <VarslerNy valgtVarsel={valgtVarsel} onVarselValg={setValgtVarsel} />
-                </Suspense>
-                <ScrollBar className={'ml-2'} keepScrollId="valgte-varsel-detailje">
+            <div className="flex">
+                <div className="w-1/2">
+                    <Suspense
+                        fallback={
+                            <Box padding="2">
+                                <Skeleton variant="rounded" height={40} />
+                                <Skeleton variant="text" />
+                                <Skeleton variant="text" />
+                                <Skeleton variant="text" />
+                                <Skeleton variant="text" />
+                                <Skeleton variant="text" />
+                            </Box>
+                        }
+                    >
+                        <VarslerNy valgtVarsel={valgtVarsel} onVarselValg={setValgtVarsel} />
+                    </Suspense>
+                </div>
+                <div className="ml-2 w-1/2">
                     {valgtVarsel && <Card padding="4">{varselDetailExtractor(valgtVarsel)}</Card>}
-                </ScrollBar>
-            </VarselStyle>
+                </div>
+            </div>
         </>
     );
 }
