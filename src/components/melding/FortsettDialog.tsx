@@ -1,11 +1,11 @@
-import { Alert, Button, Checkbox, HStack, Textarea, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Box, Button, Checkbox, HStack, Textarea, VStack } from '@navikt/ds-react';
 import { type ValidationError, useForm } from '@tanstack/react-form';
-import { useNavigate } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import { useCallback, useMemo, useState } from 'react';
 import DraftStatus from 'src/app/personside/dialogpanel/DraftStatus';
 import type { Draft, DraftContext } from 'src/app/personside/dialogpanel/use-draft';
 import useDraft from 'src/app/personside/dialogpanel/use-draft';
+import { Link } from 'src/components/Link';
 import { useSendMelding } from 'src/lib/clients/modiapersonoversikt-api';
 import { useEnhetsnavn } from 'src/lib/hooks/useEnhetsnavn';
 import { useSuspendingBrukernavn } from 'src/lib/hooks/useSuspendingBrukernavn';
@@ -16,8 +16,9 @@ import {
     type Traad,
     TraadType
 } from 'src/lib/types/modiapersonoversikt-api';
+import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
+import { formatterDatoTid } from 'src/utils/date-utils';
 import type { z } from 'zod';
-import { TraadItem } from '../Meldinger/List/TraadItem';
 import { erJournalfort } from '../Meldinger/List/utils';
 import { Oppgaveliste, OppgavelisteRadioKnapper } from './OppgavelisteRadioKnapper';
 import { MeldingsType, meldingsTyperTekst, traadTypeToMeldingsType } from './VelgMeldingsType';
@@ -35,8 +36,6 @@ export const FortsettDialog = ({ traad }: Props) => {
     const enhetsId = useAtomValue(aktivEnhetAtom);
     const enhetsNavn = useEnhetsnavn(enhetsId);
     const brukerNavn = useSuspendingBrukernavn();
-
-    const navigate = useNavigate();
 
     const { error, mutate, isPending, isSuccess } = useSendMelding();
 
@@ -89,16 +88,29 @@ export const FortsettDialog = ({ traad }: Props) => {
             }}
         >
             <VStack gap="2">
-                <TraadItem
-                    inMeldingerRoute={false}
-                    traad={traad}
-                    handleClick={() => {
-                        navigate({
-                            to: '/new/person/meldinger',
-                            search: { traadId: traad.traadId }
-                        });
-                    }}
-                />
+                <Box.New
+                    padding="2"
+                    background="sunken"
+                    borderColor="neutral-subtle"
+                    borderWidth="1"
+                    borderRadius="medium"
+                >
+                    <VStack gap="2">
+                        <BodyShort>
+                            <span className="font-semibold">Tema: </span>
+                            {temagruppeTekst(traad.temagruppe as Temagruppe)}
+                        </BodyShort>
+                        {traad.opprettetDato && (
+                            <BodyShort>
+                                Opprettet:{' '}
+                                <span className="text-text-subtle">{formatterDatoTid(traad.opprettetDato)}</span>
+                            </BodyShort>
+                        )}
+                        <Link to="/new/person/meldinger" search={{ traadId: traad.traadId }}>
+                            Gå til dialog
+                        </Link>
+                    </VStack>
+                </Box.New>
                 <form.Field
                     name="melding"
                     listeners={{
@@ -157,7 +169,7 @@ export const FortsettDialog = ({ traad }: Props) => {
                         </form.Field>
                         <form.Subscribe selector={(s) => s.values.avsluttet}>
                             {(avsluttet) =>
-                                !avsluttet && (
+                                !avsluttet ? (
                                     <form.Field name="oppgaveliste">
                                         {(field) => (
                                             <VelgOppgaveliste
@@ -171,6 +183,8 @@ export const FortsettDialog = ({ traad }: Props) => {
                                             />
                                         )}
                                     </form.Field>
+                                ) : (
+                                    <Alert variant="info">Bruker kan ikke skrive mer i denne samtalen</Alert>
                                 )
                             }
                         </form.Subscribe>

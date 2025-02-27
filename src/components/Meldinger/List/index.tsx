@@ -1,12 +1,13 @@
 import { Alert, Skeleton, VStack } from '@navikt/ds-react';
-import { useNavigate } from '@tanstack/react-router';
+import { useNavigate, useSearch } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
-import { Suspense, useCallback } from 'react';
+import { Suspense, useCallback, useMemo } from 'react';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
+import { datoSynkende } from 'src/utils/date-utils';
 import { TraadListFilterCard, meldingerFilterAtom } from './Filter';
 import { TraadItem } from './TraadItem';
-import { useFilterMeldinger } from './utils';
+import { nyesteMelding, useFilterMeldinger } from './utils';
 
 export const TraadList = () => (
     <Suspense
@@ -30,7 +31,11 @@ export const TraadList = () => (
 const Traader = () => {
     const { data: traader } = useMeldinger();
     const filters = useAtomValue(meldingerFilterAtom);
-    const filteredMeldinger = useFilterMeldinger(traader, filters);
+    const sortedTraader = useMemo(
+        () => traader.toSorted(datoSynkende((t) => nyesteMelding(t).opprettetDato)),
+        [traader]
+    );
+    const filteredMeldinger = useFilterMeldinger(sortedTraader, filters);
     const navigate = useNavigate({ from: '/person/meldinger' });
 
     const handleClick = useCallback(
@@ -48,9 +53,15 @@ const Traader = () => {
         return <Alert variant="info">Fant ingen dialoger</Alert>;
     }
 
+    const traadId = useSearch({
+        from: '/new/person/meldinger',
+        select: (p) => p.traadId
+    });
+
     return (
         <>
             <PaginatedList
+                selectedKey={traadId}
                 items={filteredMeldinger}
                 keyExtractor={(item) => item.traadId}
                 renderItem={({ item }) => <TraadItem traad={item} handleClick={handleClick} />}
