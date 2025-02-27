@@ -1,6 +1,18 @@
 import { CheckmarkCircleFillIcon, ExclamationmarkTriangleFillIcon } from '@navikt/aksel-icons';
 import { LinkIcon } from '@navikt/aksel-icons';
-import { Alert, BodyShort, Box, HStack, Heading, Link, Pagination, Skeleton, Table, VStack } from '@navikt/ds-react';
+import {
+    Alert,
+    BodyShort,
+    Box,
+    ErrorMessage,
+    HStack,
+    Heading,
+    Link,
+    Pagination,
+    Skeleton,
+    Table,
+    VStack
+} from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { type ReactNode, Suspense, useEffect, useMemo, useState } from 'react';
 import Card from 'src/components/Card';
@@ -59,9 +71,6 @@ const DittNavInformasjonsLinjer = ({
             </Heading>
             <DittNavInformasjonsLinje tittel="Produsert av:" tekst={emptyReplacement(varsel.produsent, ENDASH)} />
             <DittNavInformasjonsLinje tittel="Kanaler:" tekst={emptyReplacement(kanaler?.join(', '), ENDASH)} />
-            <Link href={varsel.link} className="no-underline">
-                <LinkIcon fontSize="1.5rem" /> Kopier lenke
-            </Link>
         </VStack>
     );
 };
@@ -96,22 +105,16 @@ const DittNavInformasjonsLinjerV2 = ({
                     />
                 )}
                 {varslingsTidspunkt?.harFeilteVarslinger && (
-                    <>
-                        <hr />
-                        <FeilteVarslingerListe
-                            tittel="Varslingsfeil"
-                            feilteVarslinger={varslingsTidspunkt.feilteVarsliner}
-                        />
-                    </>
+                    <FeilteVarslingerListe
+                        tittel="Varslingsfeil"
+                        feilteVarslinger={varslingsTidspunkt.feilteVarsliner}
+                    />
                 )}
                 {varslingsTidspunkt?.harFeilteRevarslinger && (
-                    <>
-                        <hr />
-                        <FeilteVarslingerListe
-                            tittel="Revarslingsfeil"
-                            feilteVarslinger={varslingsTidspunkt.feilteRevarslinger}
-                        />
-                    </>
+                    <FeilteVarslingerListe
+                        tittel="Revarslingsfeil"
+                        feilteVarslinger={varslingsTidspunkt.feilteRevarslinger}
+                    />
                 )}
             </VStack>
         </>
@@ -126,13 +129,15 @@ const FeilteVarslingerListe = ({
     feilteVarslinger: FeiletVarsling[];
 }) => {
     return (
-        <div className="my-2">
+        <div className="my-1">
             <div className="font-bold">{tittel}</div>
             <div>
                 {feilteVarslinger.map((varsling) => (
-                    <li key={`${varsling.tidspunkt} - ${varsling.kanal}`}>
-                        {formaterDato(varsling.tidspunkt)} - {varsling.kanal}: {varsling.feilmelding}
-                    </li>
+                    <div key={`${varsling.tidspunkt} - ${varsling.kanal}`}>
+                        <ErrorMessage size="small" showIcon>
+                            {formaterDato(varsling.tidspunkt)} - {varsling.kanal}: {varsling.feilmelding}
+                        </ErrorMessage>
+                    </div>
                 ))}
             </div>
         </div>
@@ -356,7 +361,14 @@ function VarslerWrapper() {
                     </Suspense>
                 </div>
                 <div className="ml-2 w-1/2">
-                    {valgtVarsel && <Card padding="4">{varselDetailExtractor(valgtVarsel)}</Card>}
+                    {valgtVarsel && (
+                        <Card padding="4">
+                            {varselDetailExtractor(valgtVarsel)}
+                            <Link href={valgtVarsel.link} className="no-underline mt-2">
+                                <LinkIcon fontSize="1rem" /> Kopier lenke
+                            </Link>
+                        </Card>
+                    )}
                 </div>
             </div>
         </>
