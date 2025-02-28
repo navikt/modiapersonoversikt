@@ -1,4 +1,5 @@
 import { Radio, RadioGroup } from '@navikt/ds-react';
+import { TraadType } from 'src/lib/types/modiapersonoversikt-api';
 
 export interface VelgMeldingsTypeProps {
     meldingsType: MeldingsType;
@@ -47,3 +48,13 @@ export const meldingsTyperTekst: Record<MeldingsType, MeldingsTypeTekst> = {
     }
 } as const;
 export default MeldingsTypeRadioKnapper;
+
+export const traadTypeToMeldingsType = (traadType: TraadType): MeldingsType => {
+    switch (traadType) {
+        case TraadType.SAMTALEREFERAT:
+            return MeldingsType.Referat;
+        case TraadType.MELDINGSKJEDE:
+        case TraadType.CHAT:
+            return MeldingsType.Samtale;
+    }
+};
