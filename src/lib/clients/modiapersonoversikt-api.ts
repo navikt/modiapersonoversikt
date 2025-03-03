@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { useAtomValue } from 'jotai';
 import createFetchClient from 'openapi-fetch';
 import createClient from 'openapi-react-query';
@@ -60,7 +61,20 @@ export const useBaseUrls = () => {
 };
 
 export const useSendMelding = () => {
-    return $api.useMutation('post', '/rest/v2/dialog/sendmelding');
+    const queryClient = useQueryClient();
+    const fnr = usePersonAtomValue();
+    const enhet = useAtomValue(aktivEnhetAtom) as string;
+
+    return $api.useMutation('post', '/rest/v2/dialog/sendmelding', {
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: $api.queryOptions('post', '/rest/v2/dialog/meldinger', {
+                    body: { fnr },
+                    params: { query: { enhet } }
+                }).queryKey
+            });
+        }
+    });
 };
 
 export const useEnheter = () => {
@@ -82,6 +96,21 @@ export const usePersonOppgaver = () => {
             fnr: aktivBruker
         }
     });
+};
+
+export const useOppgaveForTraad = (traadId: string) => {
+    const aktivBruker = usePersonAtomValue();
+
+    const { data: oppgaver } = $api.useSuspenseQuery('post', '/rest/v2/oppgaver/tildelt', {
+        body: {
+            fnr: aktivBruker
+        }
+    });
+
+    const oppgave = oppgaver.find((oppgave) => oppgave.traadId === traadId);
+    const erSTOOppgave = !!oppgave?.erSTOOppgave;
+
+    return { oppgave, erSTOOppgave };
 };
 
 export const useMeldinger = () => {
