@@ -54,11 +54,6 @@ export default nyMeldingSchema;
 
 export const fortsettDialogSchema = z
     .object({
-        traadId: z.string(),
-        traadType: z.enum([MeldingsType.Referat, MeldingsType.Samtale]),
-        temagruppe: z.string().optional(),
-        behandlingsId: z.string().optional(),
-        oppgaveId: z.string().optional(),
         avsluttet: z.boolean().optional(),
         oppgaveliste: z.nativeEnum(Oppgaveliste).optional(),
         sak: sakSchema.optional()
