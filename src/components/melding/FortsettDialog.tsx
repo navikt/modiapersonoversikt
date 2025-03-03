@@ -1,15 +1,16 @@
-import { Alert, BodyShort, Box, Button, Checkbox, HStack, Textarea, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Box, Button, Checkbox, HStack, Loader, Textarea, VStack } from '@navikt/ds-react';
 import { type ValidationError, useForm } from '@tanstack/react-form';
-import { useAtomValue } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { useCallback, useMemo, useState } from 'react';
 import DraftStatus from 'src/app/personside/dialogpanel/DraftStatus';
 import type { Draft, DraftContext } from 'src/app/personside/dialogpanel/use-draft';
 import useDraft from 'src/app/personside/dialogpanel/use-draft';
 import { Link } from 'src/components/Link';
-import { useSendMelding } from 'src/lib/clients/modiapersonoversikt-api';
+import { useOppgaveForTraad, useSendMelding } from 'src/lib/clients/modiapersonoversikt-api';
 import { useEnhetsnavn } from 'src/lib/hooks/useEnhetsnavn';
 import { useSuspendingBrukernavn } from 'src/lib/hooks/useSuspendingBrukernavn';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
+import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
 import {
     type SendMeldingRequestV2,
     SendMeldingRequestV2TraadType,
@@ -21,10 +22,11 @@ import { formatterDatoTid } from 'src/utils/date-utils';
 import type { z } from 'zod';
 import { erJournalfort } from '../Meldinger/List/utils';
 import { Oppgaveliste, OppgavelisteRadioKnapper } from './OppgavelisteRadioKnapper';
-import { MeldingsType, meldingsTyperTekst, traadTypeToMeldingsType } from './VelgMeldingsType';
+import { meldingsTyperTekst, traadTypeToMeldingsType } from './VelgMeldingsType';
 import VelgOppgaveliste from './VelgOppgaveliste';
 import VelgSak from './VelgSak';
 import { fortsettDialogSchema, maksLengdeMelding } from './nyMeldingSchema';
+import { useTraadHenvendelse } from './useHenvendelse';
 
 type FortsettDialogForm = z.infer<typeof fortsettDialogSchema>;
 
@@ -34,8 +36,10 @@ type Props = {
 export const FortsettDialog = ({ traad }: Props) => {
     const fnr = usePersonAtomValue();
     const enhetsId = useAtomValue(aktivEnhetAtom);
+    const [, setDialogUnderArbeid] = useAtom(dialogUnderArbeidAtom);
     const enhetsNavn = useEnhetsnavn(enhetsId);
     const brukerNavn = useSuspendingBrukernavn();
+    const { oppgave } = useOppgaveForTraad(traad.traadId);
 
     const { error, mutate, isPending, isSuccess } = useSendMelding();
 
@@ -49,10 +53,13 @@ export const FortsettDialog = ({ traad }: Props) => {
     const defaultFormOptions = {
         traadId: traad.traadId,
         melding: defaultMessage,
-        traadType: traadTypeToMeldingsType(traad.traadType),
         fnr: fnr,
-        enhetsId: enhetsId ?? ''
+        enhetsId: enhetsId ?? '',
+        oppgaveliste: Oppgaveliste.MinListe
     } as FortsettDialogForm;
+
+    const { data: henvendelse, isPending: henvendelsePending } = useTraadHenvendelse(traad);
+    const oppgaveId = oppgave?.oppgaveId ?? henvendelse?.oppgaveId;
 
     const form = useForm({
         defaultValues: defaultFormOptions,
@@ -60,13 +67,20 @@ export const FortsettDialog = ({ traad }: Props) => {
             onSubmit: fortsettDialogSchema
         },
         onSubmit: ({ value }) => {
-            console.log(value);
-            const body = generateRequestBody(value as FortsettDialogForm);
+            const body = generateRequestBody(value as FortsettDialogForm, traad, oppgaveId, henvendelse?.behandlingsId);
             mutate(
                 { body: body },
                 {
                     onSuccess: () => {
                         removeDraft();
+                        form.reset(
+                            {
+                                ...defaultFormOptions,
+                                melding: ''
+                            },
+                            { keepDefaultValues: true }
+                        );
+                        setDialogUnderArbeid(undefined);
                     }
                 }
             );
@@ -78,6 +92,10 @@ export const FortsettDialog = ({ traad }: Props) => {
     const erSamtalereferat = traad.traadType === TraadType.SAMTALEREFERAT;
     const erOksosTraad = traad.meldinger.some((it) => it.temagruppe === 'OKSOS');
     const visVelgSak = !erJournalfort(traad) && !erOksosTraad;
+
+    if (henvendelsePending) {
+        return <Loader size="medium" />;
+    }
 
     return (
         <form
@@ -192,7 +210,7 @@ export const FortsettDialog = ({ traad }: Props) => {
                 )}
                 <HStack gap="2" justify="center">
                     <Button type="submit" loading={isPending}>
-                        Send til {brukerNavn}
+                        Send til {brukerNavn} {oppgaveId ? 'og avslutt oppgave' : ''}
                     </Button>
                 </HStack>
                 {isSuccess && <Alert variant="success">Meldingen ble sendt</Alert>}
@@ -202,30 +220,36 @@ export const FortsettDialog = ({ traad }: Props) => {
     );
 };
 
-function generateRequestBody(value: z.infer<typeof fortsettDialogSchema>) {
+function generateRequestBody(
+    value: z.infer<typeof fortsettDialogSchema>,
+    traad: Traad,
+    oppgaveId?: string,
+    behandlingsId?: string
+) {
     const common: SendMeldingRequestV2 = {
         enhet: value.enhetsId,
         fritekst: value.melding,
         fnr: value.fnr,
-        traadType:
-            value.traadType === MeldingsType.Samtale
-                ? SendMeldingRequestV2TraadType.SAMTALEREFERAT
-                : SendMeldingRequestV2TraadType.MELDINGSKJEDE,
-        sak: value.sak
+        traadType: SendMeldingRequestV2TraadType[traad.traadType],
+        traadId: traad.traadId,
+        temagruppe: traad.temagruppe,
+        behandlingsId,
+        oppgaveId
     };
 
-    switch (value.traadType) {
-        case MeldingsType.Samtale:
+    switch (common.traadType) {
+        case SendMeldingRequestV2TraadType.SAMTALEREFERAT:
             return {
                 ...common,
-                traadType: SendMeldingRequestV2TraadType.MELDINGSKJEDE,
-                erOppgaveTilknyttetAnsatt: value.oppgaveliste === Oppgaveliste.MinListe
+                erOppgaveTilknyttetAnsatt: true,
+                avsluttet: value.avsluttet
             };
-        case MeldingsType.Referat:
+        default:
             return {
                 ...common,
-                traadType: SendMeldingRequestV2TraadType.MELDINGSKJEDE,
-                avsluttet: true
+                erOppgaveTilknyttetAnsatt: value.avsluttet ? false : value.oppgaveliste === Oppgaveliste.MinListe,
+                avsluttet: true,
+                sak: value.sak
             };
     }
 }
