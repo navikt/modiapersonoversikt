@@ -142,7 +142,7 @@
         "@types/react-redux": "^7.1.34",
         "autoprefixer": "^10.4.20",
         "cross-env": "^7.0.3",
-        "happy-dom": "^17.1.9",
+        "happy-dom": "^16.7.3",
         "jest-styled-components": "^7.2.0",
         "less": "^4.2.2",
         "lint-staged": "^15.4.3",
