@@ -428,12 +428,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   >
                     <div
                       class="rdp navds-date"
+                      data-mode="single"
                     >
                       <div
                         class="rdp-months"
                       >
                         <div
-                          class="rdp-month rdp-caption_start rdp-caption_end"
+                          class="rdp-month"
                         >
                           <div
                             class="navds-date__caption"
@@ -442,7 +443,6 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                               aria-atomic="true"
                               aria-live="polite"
                               class="navds-sr-only"
-                              id="react-day-picker-1"
                             >
                               januar 1968
                             </span>
@@ -598,44 +598,9 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                     id="select-r7"
                                   >
                                     <option
-                                      value="1969"
+                                      value="1960"
                                     >
-                                      1969
-                                    </option>
-                                    <option
-                                      value="1968"
-                                    >
-                                      1968
-                                    </option>
-                                    <option
-                                      value="1967"
-                                    >
-                                      1967
-                                    </option>
-                                    <option
-                                      value="1966"
-                                    >
-                                      1966
-                                    </option>
-                                    <option
-                                      value="1965"
-                                    >
-                                      1965
-                                    </option>
-                                    <option
-                                      value="1964"
-                                    >
-                                      1964
-                                    </option>
-                                    <option
-                                      value="1963"
-                                    >
-                                      1963
-                                    </option>
-                                    <option
-                                      value="1962"
-                                    >
-                                      1962
+                                      1960
                                     </option>
                                     <option
                                       value="1961"
@@ -643,9 +608,44 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                       1961
                                     </option>
                                     <option
-                                      value="1960"
+                                      value="1962"
                                     >
-                                      1960
+                                      1962
+                                    </option>
+                                    <option
+                                      value="1963"
+                                    >
+                                      1963
+                                    </option>
+                                    <option
+                                      value="1964"
+                                    >
+                                      1964
+                                    </option>
+                                    <option
+                                      value="1965"
+                                    >
+                                      1965
+                                    </option>
+                                    <option
+                                      value="1966"
+                                    >
+                                      1966
+                                    </option>
+                                    <option
+                                      value="1967"
+                                    >
+                                      1967
+                                    </option>
+                                    <option
+                                      value="1968"
+                                    >
+                                      1968
+                                    </option>
+                                    <option
+                                      value="1969"
+                                    >
+                                      1969
                                     </option>
                                   </select>
                                   <svg
@@ -706,7 +706,8 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                             </button>
                           </div>
                           <table
-                            aria-labelledby="react-day-picker-1"
+                            aria-label="januar 1968"
+                            aria-multiselectable="false"
                             class="rdp-table"
                             role="grid"
                           >
@@ -775,13 +776,17 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 class="rdp-row"
                               >
                                 <td
+                                  aria-selected="true"
                                   class="rdp-cell"
+                                  data-day="1968-01-01"
+                                  data-selected="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="mandag 1"
                                     aria-pressed="true"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_selected"
-                                    name="day"
+                                    class="rdp-day rdp-button rdp-day_selected"
+                                    data-pressed="true"
                                     tabindex="0"
                                     type="button"
                                   >
@@ -790,12 +795,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-02"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="tirsdag 2"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -804,12 +810,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-03"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="onsdag 3"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -818,12 +825,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-04"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="torsdag 4"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -832,12 +840,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-05"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="fredag 5"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -846,12 +855,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-06"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="lørdag 6"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -860,12 +870,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-07"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="søndag 7"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -878,12 +889,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                               >
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-08"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="mandag 8"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -892,12 +904,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-09"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="tirsdag 9"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -906,12 +919,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-10"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="onsdag 10"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -920,12 +934,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-11"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="torsdag 11"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -934,12 +949,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-12"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="fredag 12"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -948,12 +964,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-13"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="lørdag 13"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -962,12 +979,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-14"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="søndag 14"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -980,12 +998,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                               >
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-15"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="mandag 15"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -994,12 +1013,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-16"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="tirsdag 16"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1008,12 +1028,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-17"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="onsdag 17"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1022,12 +1043,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-18"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="torsdag 18"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1036,12 +1058,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-19"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="fredag 19"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1050,12 +1073,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-20"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="lørdag 20"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1064,12 +1088,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-21"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="søndag 21"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1082,12 +1107,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                               >
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-22"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="mandag 22"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1096,12 +1122,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-23"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="tirsdag 23"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1110,12 +1137,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-24"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="onsdag 24"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1124,12 +1152,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-25"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="torsdag 25"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1138,12 +1167,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-26"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="fredag 26"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1152,12 +1182,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-27"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="lørdag 27"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1166,12 +1197,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-28"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="søndag 28"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1184,12 +1216,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                               >
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-29"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="mandag 29"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1198,12 +1231,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-30"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="tirsdag 30"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1212,12 +1246,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-01-31"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="onsdag 31"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day"
-                                    name="day"
+                                    class="rdp-day rdp-button"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1226,13 +1261,15 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-02-01"
+                                  data-month="1968-02"
+                                  data-outside="true"
                                 >
                                   <button
                                     aria-hidden="true"
                                     aria-label="torsdag 1"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_outside"
-                                    name="day"
+                                    class="rdp-day rdp-button rdp-day_outside"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1241,13 +1278,15 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-02-02"
+                                  data-month="1968-02"
+                                  data-outside="true"
                                 >
                                   <button
                                     aria-hidden="true"
                                     aria-label="fredag 2"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_outside"
-                                    name="day"
+                                    class="rdp-day rdp-button rdp-day_outside"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1256,13 +1295,15 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-02-03"
+                                  data-month="1968-02"
+                                  data-outside="true"
                                 >
                                   <button
                                     aria-hidden="true"
                                     aria-label="lørdag 3"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_outside"
-                                    name="day"
+                                    class="rdp-day rdp-button rdp-day_outside"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1271,126 +1312,19 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1968-02-04"
+                                  data-month="1968-02"
+                                  data-outside="true"
                                 >
                                   <button
                                     aria-hidden="true"
                                     aria-label="søndag 4"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_outside"
-                                    name="day"
+                                    class="rdp-day rdp-button rdp-day_outside"
                                     tabindex="-1"
                                     type="button"
                                   >
                                     4
-                                  </button>
-                                </td>
-                              </tr>
-                              <tr
-                                class="rdp-row"
-                              >
-                                <td
-                                  class="rdp-cell"
-                                >
-                                  <button
-                                    aria-hidden="true"
-                                    aria-label="mandag 5"
-                                    aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_outside"
-                                    name="day"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    5
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                >
-                                  <button
-                                    aria-hidden="true"
-                                    aria-label="tirsdag 6"
-                                    aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_outside"
-                                    name="day"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    6
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                >
-                                  <button
-                                    aria-hidden="true"
-                                    aria-label="onsdag 7"
-                                    aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_outside"
-                                    name="day"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    7
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                >
-                                  <button
-                                    aria-hidden="true"
-                                    aria-label="torsdag 8"
-                                    aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_outside"
-                                    name="day"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    8
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                >
-                                  <button
-                                    aria-hidden="true"
-                                    aria-label="fredag 9"
-                                    aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_outside"
-                                    name="day"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    9
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                >
-                                  <button
-                                    aria-hidden="true"
-                                    aria-label="lørdag 10"
-                                    aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_outside"
-                                    name="day"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    10
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                >
-                                  <button
-                                    aria-hidden="true"
-                                    aria-label="søndag 11"
-                                    aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_outside"
-                                    name="day"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    11
                                   </button>
                                 </td>
                               </tr>
@@ -1470,12 +1404,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   >
                     <div
                       class="rdp navds-date"
+                      data-mode="single"
                     >
                       <div
                         class="rdp-months"
                       >
                         <div
-                          class="rdp-month rdp-caption_start rdp-caption_end"
+                          class="rdp-month"
                         >
                           <div
                             class="navds-date__caption"
@@ -1484,7 +1419,6 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                               aria-atomic="true"
                               aria-live="polite"
                               class="navds-sr-only"
-                              id="react-day-picker-2"
                             >
                               januar 1970
                             </span>
@@ -1541,6 +1475,72 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                     >
                                       januar
                                     </option>
+                                    <option
+                                      disabled=""
+                                      value="1"
+                                    >
+                                      februar
+                                    </option>
+                                    <option
+                                      disabled=""
+                                      value="2"
+                                    >
+                                      mars
+                                    </option>
+                                    <option
+                                      disabled=""
+                                      value="3"
+                                    >
+                                      april
+                                    </option>
+                                    <option
+                                      disabled=""
+                                      value="4"
+                                    >
+                                      mai
+                                    </option>
+                                    <option
+                                      disabled=""
+                                      value="5"
+                                    >
+                                      juni
+                                    </option>
+                                    <option
+                                      disabled=""
+                                      value="6"
+                                    >
+                                      juli
+                                    </option>
+                                    <option
+                                      disabled=""
+                                      value="7"
+                                    >
+                                      august
+                                    </option>
+                                    <option
+                                      disabled=""
+                                      value="8"
+                                    >
+                                      september
+                                    </option>
+                                    <option
+                                      disabled=""
+                                      value="9"
+                                    >
+                                      oktober
+                                    </option>
+                                    <option
+                                      disabled=""
+                                      value="10"
+                                    >
+                                      november
+                                    </option>
+                                    <option
+                                      disabled=""
+                                      value="11"
+                                    >
+                                      desember
+                                    </option>
                                   </select>
                                   <svg
                                     aria-hidden="true"
@@ -1585,9 +1585,9 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                     id="select-ri"
                                   >
                                     <option
-                                      value="1970"
+                                      value="1968"
                                     >
-                                      1970
+                                      1968
                                     </option>
                                     <option
                                       value="1969"
@@ -1595,9 +1595,9 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                       1969
                                     </option>
                                     <option
-                                      value="1968"
+                                      value="1970"
                                     >
-                                      1968
+                                      1970
                                     </option>
                                   </select>
                                   <svg
@@ -1659,7 +1659,8 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                             </button>
                           </div>
                           <table
-                            aria-labelledby="react-day-picker-2"
+                            aria-label="januar 1970"
+                            aria-multiselectable="false"
                             class="rdp-table"
                             role="grid"
                           >
@@ -1729,13 +1730,15 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                               >
                                 <td
                                   class="rdp-cell"
+                                  data-day="1969-12-29"
+                                  data-month="1969-12"
+                                  data-outside="true"
                                 >
                                   <button
                                     aria-hidden="true"
                                     aria-label="mandag 29"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_outside"
-                                    name="day"
+                                    class="rdp-day rdp-button rdp-day_outside"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1744,13 +1747,15 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1969-12-30"
+                                  data-month="1969-12"
+                                  data-outside="true"
                                 >
                                   <button
                                     aria-hidden="true"
                                     aria-label="tirsdag 30"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_outside"
-                                    name="day"
+                                    class="rdp-day rdp-button rdp-day_outside"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1759,13 +1764,15 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1969-12-31"
+                                  data-month="1969-12"
+                                  data-outside="true"
                                 >
                                   <button
                                     aria-hidden="true"
                                     aria-label="onsdag 31"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_outside"
-                                    name="day"
+                                    class="rdp-day rdp-button rdp-day_outside"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1773,13 +1780,19 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                   </button>
                                 </td>
                                 <td
+                                  aria-selected="true"
                                   class="rdp-cell"
+                                  data-day="1970-01-01"
+                                  data-selected="true"
+                                  data-today="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="torsdag 1"
                                     aria-pressed="true"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_selected rdp-day_today"
-                                    name="day"
+                                    class="rdp-day rdp-button rdp-day_selected rdp-day_today"
+                                    data-pressed="true"
+                                    data-today="true"
                                     tabindex="0"
                                     type="button"
                                   >
@@ -1788,13 +1801,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-02"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="fredag 2"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1803,13 +1819,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-03"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="lørdag 3"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1818,13 +1837,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-04"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="søndag 4"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1837,13 +1859,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                               >
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-05"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="mandag 5"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1852,13 +1877,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-06"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="tirsdag 6"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1867,13 +1895,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-07"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="onsdag 7"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1882,13 +1913,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-08"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="torsdag 8"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1897,13 +1931,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-09"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="fredag 9"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1912,13 +1949,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-10"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="lørdag 10"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1927,13 +1967,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-11"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="søndag 11"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1946,13 +1989,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                               >
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-12"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="mandag 12"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1961,13 +2007,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-13"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="tirsdag 13"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1976,13 +2025,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-14"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="onsdag 14"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -1991,13 +2043,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-15"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="torsdag 15"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -2006,13 +2061,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-16"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="fredag 16"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -2021,13 +2079,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-17"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="lørdag 17"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -2036,13 +2097,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-18"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="søndag 18"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -2055,13 +2119,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                               >
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-19"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="mandag 19"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -2070,13 +2137,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-20"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="tirsdag 20"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -2085,13 +2155,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-21"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="onsdag 21"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -2100,13 +2173,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-22"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="torsdag 22"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -2115,13 +2191,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-23"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="fredag 23"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -2130,13 +2209,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-24"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="lørdag 24"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -2145,13 +2227,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-25"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="søndag 25"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -2164,13 +2249,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                               >
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-26"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="mandag 26"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -2179,13 +2267,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-27"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="tirsdag 27"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -2194,13 +2285,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-28"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="onsdag 28"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -2209,13 +2303,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-29"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="torsdag 29"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -2224,13 +2321,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-30"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="fredag 30"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
@@ -2239,149 +2339,20 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 </td>
                                 <td
                                   class="rdp-cell"
+                                  data-day="1970-01-31"
+                                  data-disabled="true"
                                 >
                                   <button
+                                    aria-hidden="false"
                                     aria-label="lørdag 31"
                                     aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled"
+                                    class="rdp-day rdp-button rdp-day_disabled"
+                                    data-pressed="false"
                                     disabled=""
-                                    name="day"
                                     tabindex="-1"
                                     type="button"
                                   >
                                     31
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                >
-                                  <button
-                                    aria-hidden="true"
-                                    aria-label="søndag 1"
-                                    aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled rdp-day_outside"
-                                    disabled=""
-                                    name="day"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    1
-                                  </button>
-                                </td>
-                              </tr>
-                              <tr
-                                class="rdp-row"
-                              >
-                                <td
-                                  class="rdp-cell"
-                                >
-                                  <button
-                                    aria-hidden="true"
-                                    aria-label="mandag 2"
-                                    aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled rdp-day_outside"
-                                    disabled=""
-                                    name="day"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    2
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                >
-                                  <button
-                                    aria-hidden="true"
-                                    aria-label="tirsdag 3"
-                                    aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled rdp-day_outside"
-                                    disabled=""
-                                    name="day"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    3
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                >
-                                  <button
-                                    aria-hidden="true"
-                                    aria-label="onsdag 4"
-                                    aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled rdp-day_outside"
-                                    disabled=""
-                                    name="day"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    4
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                >
-                                  <button
-                                    aria-hidden="true"
-                                    aria-label="torsdag 5"
-                                    aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled rdp-day_outside"
-                                    disabled=""
-                                    name="day"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    5
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                >
-                                  <button
-                                    aria-hidden="true"
-                                    aria-label="fredag 6"
-                                    aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled rdp-day_outside"
-                                    disabled=""
-                                    name="day"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    6
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                >
-                                  <button
-                                    aria-hidden="true"
-                                    aria-label="lørdag 7"
-                                    aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled rdp-day_outside"
-                                    disabled=""
-                                    name="day"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    7
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                >
-                                  <button
-                                    aria-hidden="true"
-                                    aria-label="søndag 8"
-                                    aria-pressed="false"
-                                    class="rdp-button_reset rdp-button rdp-day rdp-day_disabled rdp-day_outside"
-                                    disabled=""
-                                    name="day"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    8
                                   </button>
                                 </td>
                               </tr>
