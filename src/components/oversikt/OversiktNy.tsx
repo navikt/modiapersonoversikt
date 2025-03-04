@@ -1,6 +1,8 @@
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
-import { BodyLong, ExpansionCard, HGrid, HStack, Heading, Link, VStack } from '@navikt/ds-react';
+import { BodyLong, BodyShort, ExpansionCard, HGrid, HStack, Heading, VStack } from '@navikt/ds-react';
+import type { ComponentProps } from 'react';
 import Card from 'src/components/Card';
+import { Link } from 'src/components/Link';
 
 const menuItems = [
     {
@@ -38,21 +40,25 @@ const menuItems = [
         href: '/new/person/varsler',
         beskrivelse: 'Kort beskrivelse av hva varsler er'
     }
-];
+] as const;
 
-const OversiktDetailCard = ({ title, beskrivelse, href }: { title: string; beskrivelse: string; href: string }) => {
+const OversiktDetailCard = ({
+    title,
+    beskrivelse,
+    to
+}: { title: string; beskrivelse: string; to: ComponentProps<typeof Link>['to'] }) => {
     return (
         <Card padding="4">
             <VStack justify="space-between">
                 <HStack wrap={false} gap="4" align="top" justify="space-between">
                     <Heading size="medium">{title}</Heading>
-                    <div className="border border-gray-400 rounded-md px-2 pt-1">
-                        <Link key={title} className="no-underline" href={`${href}`} aria-label={title} variant="action">
-                            <ExternalLinkIcon title={`link_til_${title}`} fontSize="1.5rem" />
+                    <Card flexGrow={0} padding="2" className="aspect-square">
+                        <Link key={title} className="no-underline" to={to} aria-label={title} variant="action">
+                            <ExternalLinkIcon aria-hidden fontSize="1.5rem" />
                         </Link>
-                    </div>
+                    </Card>
                 </HStack>
-                <p className="mt-4">{beskrivelse}</p>
+                <BodyShort className="mt-4">{beskrivelse}</BodyShort>
             </VStack>
         </Card>
     );
@@ -74,7 +80,7 @@ function OversiktNy() {
                             key={item.title}
                             title={item.title}
                             beskrivelse={item.beskrivelse}
-                            href={item.href}
+                            to={item.href}
                         />
                     );
                 })}
