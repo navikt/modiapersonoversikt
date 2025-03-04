@@ -21,6 +21,7 @@ import { z } from 'zod';
 import LenkeDrekV2 from './LenkeDrekV2';
 
 const FIELD_GROUP_ERROR = 'Minst en av navn, adresse, telefonnummer, eller utenlandsk ID må fylles ut for å kunne søke';
+const fieldGroup = ['name', 'dnr', 'address', 'phoneNumber'] as const;
 
 const fieldLabels: Record<keyof z.infer<typeof personSokSchema>, [string, ReactNode] | [string]> = {
     name: ['Navn (fonetisk søk)'],
@@ -31,7 +32,8 @@ const fieldLabels: Record<keyof z.infer<typeof personSokSchema>, [string, ReactN
     birthDateTo: ['Fødselsdato til'],
     gender: ['Kjønn'],
     ageFrom: ['Alder fra'],
-    ageTo: ['Alder til']
+    ageTo: ['Alder til'],
+    _fieldgroup: ['']
 };
 
 const personSokSchema = z
@@ -44,14 +46,19 @@ const personSokSchema = z
         ageTo: z.number({ coerce: true, message: 'Må være et gyldig tall' }).min(0).optional(),
         gender: z.enum(['M', 'K', '']),
         address: z.string(),
-        phoneNumber: z.string().regex(/^(\d+)?$/, 'Må inneholde kun tall')
+        phoneNumber: z
+            .string()
+            .regex(/^(\d+)?$/, 'Må inneholde kun tall')
+            .optional(),
+        _fieldgroup: z.never()
     })
     .partial()
     .superRefine((val, ctx) => {
         if (!val.name && !val.dnr && !val.address && !val.phoneNumber) {
             ctx.addIssue({
                 code: z.ZodIssueCode.custom,
-                message: FIELD_GROUP_ERROR
+                message: FIELD_GROUP_ERROR,
+                path: ['_fieldgroup']
             });
         }
     });
@@ -73,7 +80,7 @@ export function PersonsokForm({ onSubmit, onReset }: Props) {
         defaultValues: {
             name: '',
             dnr: ''
-        },
+        } as z.infer<typeof personSokSchema>,
         validators: {
             onChange: personSokSchema
         },
@@ -105,13 +112,20 @@ export function PersonsokForm({ onSubmit, onReset }: Props) {
         >
             <VStack marginBlock="8" gap="4">
                 <Box className="grid grid-cols-2 gap-4 items-end">
-                    {(['name', 'dnr', 'address', 'phoneNumber'] as const).map((fieldName) => (
-                        <form.Field name={fieldName} key={fieldName}>
+                    {fieldGroup.map((fieldName) => (
+                        <form.Field
+                            name={fieldName}
+                            key={fieldName}
+                            validators={{
+                                onChangeListenTo: fieldGroup.map((a) => a)
+                            }}
+                        >
                             {(field) => (
                                 <TextField
                                     error={
-                                        field.state.meta.errors[0] ??
-                                        field.form.state.errors.some((a) => a?.toString().includes(FIELD_GROUP_ERROR))
+                                        field.form.state.errorMap.onChange?._fieldgroup.length
+                                            ? true
+                                            : field.state.meta.errors.join(', ')
                                     }
                                     value={field.state.value}
                                     name={field.name}
@@ -154,7 +168,7 @@ export function PersonsokForm({ onSubmit, onReset }: Props) {
                                     }
                                     onBlur={field.handleBlur}
                                     value={field.state.value}
-                                    error={field.state.meta.errors[0]}
+                                    error={field.state.meta.errors.join(', ')}
                                 />
                             )}
                         </form.Field>
@@ -169,7 +183,7 @@ export function PersonsokForm({ onSubmit, onReset }: Props) {
                                     }
                                     onBlur={field.handleBlur}
                                     value={field.state.value}
-                                    error={field.state.meta.errors[0]}
+                                    error={field.state.meta.errors.join(', ')}
                                 />
                             )}
                         </form.Field>
@@ -199,13 +213,17 @@ export function PersonsokForm({ onSubmit, onReset }: Props) {
             <Box>
                 <form.Subscribe selector={(state) => [state.errors]}>
                     {([errors]) => {
+                        console.log(errors);
                         return (
                             errors.length > 0 && (
                                 <VStack>
                                     {form.state.errors
-                                        .filter((e) => e === FIELD_GROUP_ERROR)
+                                        .filter((e) => !!e)
+                                        .map((e) => Object.values(e))
+                                        .flat(2)
+                                        .filter((e) => e.message === FIELD_GROUP_ERROR)
                                         .map((e) => (
-                                            <ErrorMessage key={e}>{e}</ErrorMessage>
+                                            <ErrorMessage key={e.message}>{e.message}</ErrorMessage>
                                         ))}
                                 </VStack>
                             )
