@@ -1,6 +1,5 @@
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { BodyLong, BodyShort, ExpansionCard, HGrid, HStack, Heading, VStack } from '@navikt/ds-react';
-import type { ComponentProps } from 'react';
 import Card from 'src/components/Card';
 import { Link } from 'src/components/Link';
 
@@ -46,16 +45,18 @@ const OversiktDetailCard = ({
     title,
     beskrivelse,
     to
-}: { title: string; beskrivelse: string; to: ComponentProps<typeof Link>['to'] }) => {
+}: { title: string; beskrivelse: string; to: (typeof menuItems)[number]['href'] }) => {
     return (
         <Card padding="4">
             <VStack justify="space-between">
-                <HStack wrap={false} gap="4" align="top" justify="space-between">
+                <HStack wrap={false} gap="4" justify="space-between">
                     <Heading size="medium">{title}</Heading>
-                    <Card flexGrow={0} padding="2" className="aspect-square">
-                        <Link key={title} className="no-underline" to={to} aria-label={title} variant="action">
-                            <ExternalLinkIcon aria-hidden fontSize="1.5rem" />
-                        </Link>
+                    <Card flexGrow={0}>
+                        <VStack align="center" className="p-2">
+                            <Link key={title} className="no-underline" to={to} aria-label={title} variant="action">
+                                <ExternalLinkIcon aria-hidden fontSize="1.5rem" />
+                            </Link>
+                        </VStack>
                     </Card>
                 </HStack>
                 <BodyShort className="mt-4">{beskrivelse}</BodyShort>
