@@ -1,10 +1,11 @@
-import { Alert, Button, HStack, Heading } from '@navikt/ds-react';
+import { Alert, Button, HStack, Heading, Skeleton } from '@navikt/ds-react';
 import { useAtom } from 'jotai';
-import { type ReactElement, useCallback, useMemo } from 'react';
+import { type ReactElement, Suspense, useCallback, useMemo } from 'react';
 import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
 import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
 import { TraadType } from 'src/lib/types/modiapersonoversikt-api';
 import Card from '../Card';
+import ErrorBoundary from '../ErrorBoundary';
 import { FortsettDialog } from './FortsettDialog';
 import NyMelding from './NyMelding';
 
@@ -13,6 +14,23 @@ type Props = {
 };
 
 export const SendMelding = ({ lukkeKnapp }: Props) => {
+    return (
+        <ErrorBoundary boundaryName="sendmelding">
+            <Suspense
+                fallback={
+                    <>
+                        <Skeleton variant="text" />
+                        <Skeleton variant="rounded" height={100} />
+                    </>
+                }
+            >
+                <SendMeldingContent lukkeKnapp={lukkeKnapp} />
+            </Suspense>
+        </ErrorBoundary>
+    );
+};
+
+const SendMeldingContent = ({ lukkeKnapp }: Props) => {
     const [oppgave, setOppgave] = useAtom(dialogUnderArbeidAtom);
     const { data: meldinger } = useMeldinger();
     const traad = useMemo(() => meldinger.find((m) => m.traadId === oppgave), [meldinger, oppgave]);
