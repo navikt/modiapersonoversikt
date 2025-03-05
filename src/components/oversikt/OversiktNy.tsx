@@ -48,7 +48,7 @@ const OversiktDetailCard = ({
 }: { title: string; beskrivelse: string; to: (typeof menuItems)[number]['href'] }) => {
     return (
         <Card padding="4">
-            <VStack justify="space-between">
+            <VStack justify="space-between" gap="4">
                 <HStack wrap={false} gap="4" justify="space-between">
                     <Heading size="medium">{title}</Heading>
                     <Card flexGrow={0}>
@@ -59,7 +59,7 @@ const OversiktDetailCard = ({
                         </VStack>
                     </Card>
                 </HStack>
-                <BodyShort gap="5">{beskrivelse}</BodyShort>
+                <BodyShort >{beskrivelse}</BodyShort>
             </VStack>
         </Card>
     );
