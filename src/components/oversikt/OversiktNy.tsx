@@ -59,7 +59,7 @@ const OversiktDetailCard = ({
                         </VStack>
                     </Card>
                 </HStack>
-                <BodyShort className="mt-4">{beskrivelse}</BodyShort>
+                <BodyShort gap="5">{beskrivelse}</BodyShort>
             </VStack>
         </Card>
     );
