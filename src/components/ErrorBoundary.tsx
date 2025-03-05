@@ -1,6 +1,4 @@
-import { FaroErrorBoundary } from '@grafana/faro-react';
 import { Alert } from '@navikt/ds-react';
-import AlertStripe from 'nav-frontend-alertstriper';
 import type * as React from 'react';
 import { ErrorBoundary as ReactErrorBoundary } from 'react-error-boundary';
 import { FetchError } from 'src/api/api';
@@ -19,13 +17,7 @@ const ErrorBoundary = ({
     boundaryName,
     errorText
 }: React.PropsWithChildren<{ boundaryName: string; errorText?: string }>) => {
-    return window.faro && import.meta.env.PROD ? (
-        <FaroErrorBoundary
-            fallback={<AlertStripe type={'advarsel'}>Beklager, det skjedde en feil. ({boundaryName})</AlertStripe>}
-        >
-            {children}
-        </FaroErrorBoundary>
-    ) : (
+    return (
         <ReactErrorBoundary
             fallbackRender={({ error }) => {
                 if (error instanceof FetchError) return <FetchErrorRenderer error={error} errorText={errorText} />;
