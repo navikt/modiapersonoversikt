@@ -16,6 +16,23 @@ const getErrorText = (error: FetchError) => {
     }
 };
 
+export const FetchErrorRenderer = ({
+    errorText,
+    error
+}: {
+    errorText?: string;
+    error: FetchError;
+}) => {
+    const errText = errorText ?? getErrorText(error);
+    return (
+        <Alert variant="error">
+            <Heading size="xsmall">Feil ved henting av data:</Heading>
+            <BodyShort size="small">{errText}</BodyShort>
+            {error.traceId && <Detail>ID: {error.traceId}</Detail>}
+        </Alert>
+    );
+};
+
 type Props = {
     loading?: boolean;
     loader?: ReactNode;
@@ -37,14 +54,7 @@ const QueryErrorBoundary = ({ children, error, loading, loader, errorText }: Pro
     }
 
     if (error) {
-        const errText = errorText ?? getErrorText(error);
-        return (
-            <Alert variant="error">
-                <Heading size="xsmall">Feil ved henting av data:</Heading>
-                <BodyShort size="small">{errText}</BodyShort>
-                {error.traceId && <Detail>ID: {error.traceId}</Detail>}
-            </Alert>
-        );
+        return <FetchErrorRenderer error={error} errorText={errorText} />;
     }
 
     return children;

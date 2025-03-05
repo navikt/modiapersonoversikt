@@ -3,6 +3,7 @@ import { Alert, BodyShort, Box, Button, Chat, HStack, Heading, Skeleton, Tooltip
 import { useAtom, useAtomValue } from 'jotai';
 import { Suspense, useCallback, useMemo } from 'react';
 import Card from 'src/components/Card';
+import ErrorBoundary from 'src/components/ErrorBoundary';
 import RichText, {
     createDynamicHighlightingRule,
     defaultRules,
@@ -47,9 +48,11 @@ const TraadMeta = ({ traad }: { traad: Traad }) => (
 );
 
 export const TraadDetail = ({ traadId }: { traadId: string }) => (
-    <Suspense fallback={<Skeleton variant="rounded" height="200" />}>
-        <TraadDetailContent traadId={traadId} />
-    </Suspense>
+    <ErrorBoundary boundaryName="traaddetail">
+        <Suspense fallback={<Skeleton variant="rounded" height="200" />}>
+            <TraadDetailContent traadId={traadId} />
+        </Suspense>
+    </ErrorBoundary>
 );
 
 const TraadDetailContent = ({ traadId }: { traadId: string }) => {

@@ -213,7 +213,6 @@ export function PersonsokForm({ onSubmit, onReset }: Props) {
             <Box>
                 <form.Subscribe selector={(state) => [state.errors]}>
                     {([errors]) => {
-                        console.log(errors);
                         return (
                             errors.length > 0 && (
                                 <VStack>
