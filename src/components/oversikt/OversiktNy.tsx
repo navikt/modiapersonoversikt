@@ -59,7 +59,7 @@ const OversiktDetailCard = ({
                         </VStack>
                     </Card>
                 </HStack>
-                <BodyShort >{beskrivelse}</BodyShort>
+                <BodyShort>{beskrivelse}</BodyShort>
             </VStack>
         </Card>
     );
