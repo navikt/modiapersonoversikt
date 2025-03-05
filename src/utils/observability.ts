@@ -1,4 +1,10 @@
-import { type Instrumentation, type Meta, getWebInstrumentations, initializeFaro } from '@grafana/faro-react';
+import {
+    type Instrumentation,
+    type Meta,
+    ReactIntegration,
+    getWebInstrumentations,
+    initializeFaro
+} from '@grafana/faro-react';
 import { getEnvFromHost } from './environment';
 
 const customPageMeta: () => Pick<Meta, 'page'> = () => {
@@ -24,7 +30,9 @@ export const initializeObservability = () => {
             },
             metas: [customPageMeta],
             paused: !import.meta.env.PROD || import.meta.env.VITE_GH_PAGES,
-            instrumentations: [...getWebInstrumentations()].filter((v): v is Instrumentation => !!v),
+            instrumentations: [...getWebInstrumentations(), new ReactIntegration()].filter(
+                (v): v is Instrumentation => !!v
+            ),
             ignoreUrls: [/\d{11}/]
         });
     } catch (e) {
