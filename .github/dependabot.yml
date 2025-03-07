@@ -1,4 +1,11 @@
 version: 2
+
+registries:
+  nav-ghpr:
+    type: npm-registry
+    url: https://npm.pkg.github.com
+    token: ${{ secrets.READER_TOKEN }}
+
 updates:
   - package-ecosystem: npm
     directory: "/"
@@ -6,12 +13,15 @@ updates:
       interval: daily
       time: "05:00"
       timezone: Europe/Oslo
+    registries: "*"
+
   - package-ecosystem: docker
     directory: "/"
     schedule:
       interval: daily
       time: "05:00"
       timezone: Europe/Oslo
+
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
