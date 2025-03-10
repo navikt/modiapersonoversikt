@@ -129,8 +129,8 @@ importers:
         specifier: ^1.1.2
         version: 1.1.2(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)
       nav-frontend-lenkepanel:
-        specifier: ^1.1.1
-        version: 1.1.2(classnames@2.5.1)(nav-frontend-lenkepanel-style@1.1.1(nav-frontend-chevron-style@1.0.4)(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1)))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0)
+        specifier: ^2.0.2
+        version: 2.0.2(classnames@2.5.1)(nav-frontend-lenkepanel-style@1.1.1(nav-frontend-chevron-style@1.0.4)(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1)))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0)
       nav-frontend-lenkepanel-style:
         specifier: ^1.1.1
         version: 1.1.1(nav-frontend-chevron-style@1.0.4)(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))
@@ -2862,12 +2862,12 @@ packages:
       nav-frontend-core: ^5.0.11
       nav-frontend-paneler-style: ^1.0.0
 
-  nav-frontend-lenkepanel@1.1.2:
-    resolution: {integrity: sha512-toSS00PsGk6eOkV4y8s7demyKPgaNZ45HU0RAcO6X8++vaIZQZO5LJj+SpOd0e74Uy09A3tEwDnlL2ifDfNlgw==}
+  nav-frontend-lenkepanel@2.0.2:
+    resolution: {integrity: sha512-Rk0x7ikUHl+HQKWbkvkOs4YNlmik7cMaUlBbDcZnpntWBKWnLa30L3ag1EJ7kEAMo0VsYq1c7EIyqH9IrHj46g==}
     peerDependencies:
       classnames: ^2.2.5
-      nav-frontend-lenkepanel-style: ^1.0.0
-      nav-frontend-typografi: ^3.0.2
+      nav-frontend-lenkepanel-style: ^2.0.0
+      nav-frontend-typografi: ^4.0.0
       prop-types: ^15.5.10
       react: ^16.8.0 || ^17.0.0
 
@@ -6364,7 +6364,7 @@ snapshots:
       nav-frontend-core: 5.1.1
       nav-frontend-paneler-style: 1.1.1(nav-frontend-core@5.1.1)
 
-  nav-frontend-lenkepanel@1.1.2(classnames@2.5.1)(nav-frontend-lenkepanel-style@1.1.1(nav-frontend-chevron-style@1.0.4)(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1)))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0):
+  nav-frontend-lenkepanel@2.0.2(classnames@2.5.1)(nav-frontend-lenkepanel-style@1.1.1(nav-frontend-chevron-style@1.0.4)(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1)))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0):
     dependencies:
       classnames: 2.5.1
       nav-frontend-lenkepanel-style: 1.1.1(nav-frontend-chevron-style@1.0.4)(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))
