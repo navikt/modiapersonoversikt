@@ -19,6 +19,7 @@ import { formatterDatoTid } from 'src/utils/date-utils';
 import { formaterDato } from 'src/utils/string-utils';
 import { meldingerFilterAtom } from '../List/Filter';
 import { erMeldingFraNav, nyesteMelding, saksbehandlerTekst, traadKanBesvares, traadstittel } from '../List/utils';
+import { Journalposter } from './Journalposter';
 
 const TraadMeta = ({ traad }: { traad: Traad }) => (
     <HStack justify="space-between">
@@ -112,6 +113,8 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
                         Tråden ligger til behandling for sladding
                     </Alert>
                 )}
+
+                <Journalposter journalposter={traad.journalposter} />
 
                 <Box.New
                     minHeight="0"
