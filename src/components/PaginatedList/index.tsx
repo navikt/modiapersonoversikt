@@ -1,13 +1,15 @@
 import { Pagination, VStack } from '@navikt/ds-react';
 import { chunk } from 'lodash';
-import { type JSX, useEffect, useMemo, useState } from 'react';
+import { type ComponentProps, type ComponentPropsWithRef, type JSX, useEffect, useMemo, useState } from 'react';
 
-type Props<T, KeyType> = {
+type Props<T, KeyType> = Omit<ComponentPropsWithRef<typeof VStack>, 'as'> & {
     items: T[];
     pageSize?: number;
     renderItem: ({ item }: { item: T }) => JSX.Element;
     keyExtractor: (item: T) => KeyType;
     selectedKey?: KeyType;
+    as?: ComponentPropsWithRef<typeof VStack>['as'];
+    paginationSrHeading?: ComponentProps<typeof Pagination>['srHeading'];
 };
 
 export const PaginatedList = <T, KeyType extends string | number>({
@@ -15,7 +17,10 @@ export const PaginatedList = <T, KeyType extends string | number>({
     pageSize = 10,
     renderItem: RenderComp,
     keyExtractor,
-    selectedKey
+    selectedKey,
+    as,
+    paginationSrHeading,
+    ...rest
 }: Props<T, KeyType>) => {
     const [page, setPage] = useState(0);
     const pages = useMemo(() => chunk(items, pageSize), [items, pageSize]);
@@ -34,13 +39,14 @@ export const PaginatedList = <T, KeyType extends string | number>({
     }, [selectedKey, pages, keyExtractor]);
 
     return (
-        <VStack gap="2" justify="space-between" flexGrow="1" minHeight="0">
+        <VStack as={as ?? 'div'} gap="2" justify="space-between" flexGrow="1" minHeight="0" {...rest}>
             <VStack gap="2" paddingInline="0 2" overflowY="scroll">
                 {renderItems?.map((item) => (
                     <RenderComp item={item} key={keyExtractor(item)} />
                 ))}
             </VStack>
             <Pagination
+                srHeading={paginationSrHeading}
                 size="small"
                 page={page + 1}
                 siblingCount={0}
