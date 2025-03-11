@@ -112,7 +112,7 @@
         "react-redux": "^7.2.0",
         "redux": "^4.2.1",
         "redux-thunk": "^2.4.2",
-        "styled-components": "^6.1.14",
+        "styled-components": "^6.1.15",
         "tailwind-merge": "^3.0.2",
         "vite": "^6.2.1",
         "vite-plugin-svgr": "^4.3.0",
