@@ -40,7 +40,7 @@ importers:
         version: 7.0.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@navikt/tag-input':
         specifier: ^2.0.2
-        version: 2.0.2(gct6i4lcxszvmjlgvsfus3jouu)
+        version: 2.0.2(zhghbl4nx4iikodyf7oymvy5ue)
       '@navikt/textparser':
         specifier: ^2.5.0
         version: 2.5.0(react@19.0.0)
@@ -79,7 +79,7 @@ importers:
         version: 2.3.0
       nav-datovelger:
         specifier: ^11.1.2
-        version: 11.4.0(vr4o4nhcalhouhhisoe2xbqfo4)
+        version: 11.4.0(nc5kcsrgfonofrmg4l7l3cptyu)
       nav-frontend-alertstriper:
         specifier: ^3.1.1
         version: 3.1.2(classnames@2.5.1)(nav-frontend-alertstriper-style@2.1.1(nav-frontend-core@5.1.1)(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0)
@@ -135,8 +135,8 @@ importers:
         specifier: ^1.1.1
         version: 1.1.1(nav-frontend-chevron-style@1.0.4)(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))
       nav-frontend-lenker:
-        specifier: ^1.1.1
-        version: 1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.0.0)
+        specifier: ^2.0.2
+        version: 2.0.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.0.0)
       nav-frontend-lenker-style:
         specifier: ^1.1.1
         version: 1.1.1(nav-frontend-core@5.1.1)
@@ -166,7 +166,7 @@ importers:
         version: 1.1.1
       nav-frontend-skjema:
         specifier: ^3.2.1
-        version: 3.2.6(@navikt/fnrvalidator@2.1.5)(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.0.0))(nav-frontend-lenker@1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.0.0))(nav-frontend-skjema-style@2.2.3(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0)
+        version: 3.2.6(@navikt/fnrvalidator@2.1.5)(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.0.0))(nav-frontend-lenker@2.0.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.0.0))(nav-frontend-skjema-style@2.2.3(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0)
       nav-frontend-skjema-style:
         specifier: ^2.2.3
         version: 2.2.3(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)
@@ -196,7 +196,7 @@ importers:
         version: 1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)
       nav-frontend-tekstomrade:
         specifier: ^2.1.1
-        version: 2.1.3(nav-frontend-lenker@1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.0.0))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0)
+        version: 2.1.3(nav-frontend-lenker@2.0.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.0.0))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0)
       nav-frontend-typografi:
         specifier: ^3.1.1
         version: 3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0)
@@ -2889,11 +2889,11 @@ packages:
     peerDependencies:
       nav-frontend-core: ^5.0.11
 
-  nav-frontend-lenker@1.1.2:
-    resolution: {integrity: sha512-kAtI1QL4+xqbxy/uiPSWC0wLVsJ3aplGQP5ZTV4f7Aa3ZGBbFkEmDd95tTOh2oAehE1t6ohXu/lueGKIvPXhLw==}
+  nav-frontend-lenker@2.0.2:
+    resolution: {integrity: sha512-Gib0qoJuuWgN60ZWqlGR+d47yRymPvlMQmgflgdTRIvvgpATwxTNaTD3qY5lFtIOJQcxImNCIuhw1y4eEjSyOg==}
     peerDependencies:
       classnames: ^2.2.5
-      nav-frontend-lenker-style: ^1.0.0
+      nav-frontend-lenker-style: ^2.0.0
       prop-types: ^15.5.10
       react: ^16.8.0 || ^17.0.0
 
@@ -4604,12 +4604,12 @@ snapshots:
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
 
-  '@navikt/tag-input@2.0.2(gct6i4lcxszvmjlgvsfus3jouu)':
+  '@navikt/tag-input@2.0.2(zhghbl4nx4iikodyf7oymvy5ue)':
     dependencies:
       classnames: 2.5.1
       nav-frontend-js-utils: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.0.0)
       nav-frontend-knapper: 2.1.4(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.0.0))(nav-frontend-knapper-style@1.1.2(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(prop-types@15.8.1)(react@19.0.0)
-      nav-frontend-skjema: 3.2.6(@navikt/fnrvalidator@2.1.5)(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.0.0))(nav-frontend-lenker@1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.0.0))(nav-frontend-skjema-style@2.2.3(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0)
+      nav-frontend-skjema: 3.2.6(@navikt/fnrvalidator@2.1.5)(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.0.0))(nav-frontend-lenker@2.0.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.0.0))(nav-frontend-skjema-style@2.2.3(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0)
       nav-frontend-skjema-style: 2.2.3(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)
       react: 19.0.0
 
@@ -6262,14 +6262,14 @@ snapshots:
 
   nanoid@3.3.9: {}
 
-  nav-datovelger@11.4.0(vr4o4nhcalhouhhisoe2xbqfo4):
+  nav-datovelger@11.4.0(nc5kcsrgfonofrmg4l7l3cptyu):
     dependencies:
       classnames: 2.5.1
       dayjs: 1.11.13
       focus-trap-react: 8.11.3(prop-types@15.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       nav-frontend-core: 5.1.1
       nav-frontend-js-utils: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.0.0)
-      nav-frontend-skjema: 3.2.6(@navikt/fnrvalidator@2.1.5)(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.0.0))(nav-frontend-lenker@1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.0.0))(nav-frontend-skjema-style@2.2.3(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0)
+      nav-frontend-skjema: 3.2.6(@navikt/fnrvalidator@2.1.5)(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.0.0))(nav-frontend-lenker@2.0.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.0.0))(nav-frontend-skjema-style@2.2.3(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0)
       nav-frontend-typografi: 3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0)
       react: 19.0.0
       react-day-picker: 7.4.10(react@19.0.0)
@@ -6398,7 +6398,7 @@ snapshots:
     dependencies:
       nav-frontend-core: 5.1.1
 
-  nav-frontend-lenker@1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.0.0):
+  nav-frontend-lenker@2.0.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.0.0):
     dependencies:
       classnames: 2.5.1
       nav-frontend-lenker-style: 1.1.1(nav-frontend-core@5.1.1)
@@ -6462,12 +6462,12 @@ snapshots:
       nav-frontend-paneler-style: 1.1.1(nav-frontend-core@5.1.1)
       nav-frontend-typografi-style: 1.1.1
 
-  nav-frontend-skjema@3.2.6(@navikt/fnrvalidator@2.1.5)(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.0.0))(nav-frontend-lenker@1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.0.0))(nav-frontend-skjema-style@2.2.3(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0):
+  nav-frontend-skjema@3.2.6(@navikt/fnrvalidator@2.1.5)(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.0.0))(nav-frontend-lenker@2.0.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.0.0))(nav-frontend-skjema-style@2.2.3(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0):
     dependencies:
       '@navikt/fnrvalidator': 2.1.5
       classnames: 2.5.1
       nav-frontend-js-utils: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.0.0)
-      nav-frontend-lenker: 1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.0.0)
+      nav-frontend-lenker: 2.0.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.0.0)
       nav-frontend-skjema-style: 2.2.3(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)
       nav-frontend-typografi: 3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0)
       prop-types: 15.8.1
@@ -6522,10 +6522,10 @@ snapshots:
       nav-frontend-tabs-style: 1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)
       react: 19.0.0
 
-  nav-frontend-tekstomrade@2.1.3(nav-frontend-lenker@1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.0.0))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0):
+  nav-frontend-tekstomrade@2.1.3(nav-frontend-lenker@2.0.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.0.0))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0):
     dependencies:
       '@navikt/textparser': 2.5.0(react@19.0.0)
-      nav-frontend-lenker: 1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.0.0)
+      nav-frontend-lenker: 2.0.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.0.0)
       nav-frontend-typografi: 3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0)
       prop-types: 15.8.1
       react: 19.0.0
