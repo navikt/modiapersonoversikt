@@ -81,6 +81,7 @@ export const TraadItem = ({
 
     return (
         <Card
+            data-testid="traaditem"
             padding="2"
             className={twMerge(
                 'cursor-pointer hover:bg-[var(--ax-bg-neutral-moderate-hover)] group',
@@ -114,8 +115,13 @@ export const TraadItem = ({
                     <Button
                         variant="tertiary-neutral"
                         size="small"
+                        name="Åpne"
+                        aria-label="Åpne"
                         icon={
-                            <ChevronRightIcon className="translate-x-0 group-hover:translate-x-1 transition-transform" />
+                            <ChevronRightIcon
+                                aria-hidden
+                                className="translate-x-0 group-hover:translate-x-1 transition-transform"
+                            />
                         }
                     />
                 </VStack>

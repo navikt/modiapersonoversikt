@@ -82,7 +82,7 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
 
     return (
         <Card as={VStack} padding="2" minHeight="0">
-            <VStack minHeight="0" gap="2">
+            <VStack minHeight="0" gap="2" as="section" aria-label="Dialogdetaljer">
                 <TraadMeta traad={traad} />
                 <HStack gap="4">
                     <Button variant="secondary-neutral" size="small">
@@ -156,7 +156,7 @@ const Meldinger = ({ meldinger }: { meldinger: Traad['meldinger'] }) => {
     const { search } = useAtomValue(meldingerFilterAtom);
     const highlightRule = useMemo(() => createDynamicHighlightingRule((search ?? '').split(' ')), [search]);
     return (
-        <VStack gap="10" align="baseline" paddingBlock="0 16">
+        <VStack gap="10" align="baseline" paddingBlock="0 16" as="section" aria-label="Meldinger">
             {meldinger.map((m) => {
                 const erFraNav = erMeldingFraNav(m.meldingstype);
                 return (

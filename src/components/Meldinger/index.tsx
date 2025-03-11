@@ -6,7 +6,7 @@ import { TraadList } from './List';
 
 export const MeldingerPage = () => {
     return (
-        <HStack gap="4" minHeight="0" flexGrow="1" paddingBlock="0 2">
+        <HStack gap="4" minHeight="0" flexGrow="1" paddingBlock="0 2" wrap={false}>
             <VStack height="100%" minWidth="16em">
                 <HStack justify="space-between">
                     <Heading size="xsmall">Innboks</Heading>

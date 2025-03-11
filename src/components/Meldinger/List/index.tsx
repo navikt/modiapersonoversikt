@@ -64,6 +64,12 @@ const Traader = () => {
     return (
         <>
             <PaginatedList
+                paginationSrHeading={{
+                    tag: 'h3',
+                    text: 'Trådlistepaginering'
+                }}
+                aria-label="Tråder"
+                as="section"
                 selectedKey={traadId}
                 items={filteredMeldinger}
                 keyExtractor={(item) => item.traadId}
