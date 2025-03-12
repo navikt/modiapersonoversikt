@@ -39,7 +39,7 @@ const Traader = () => {
         [traader]
     );
     const filteredMeldinger = useFilterMeldinger(sortedTraader, filters);
-    const navigate = useNavigate({ from: '/person/meldinger' });
+    const navigate = useNavigate({ from: '/new/person/meldinger' });
 
     const handleClick = useCallback(
         (traadId: string) => {

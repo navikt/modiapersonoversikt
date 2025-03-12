@@ -46,7 +46,8 @@ export default defineConfig({
     /* Run your local dev server before starting the tests */
     webServer: {
         env: {
-            VITE_E2E: 'true'
+            VITE_E2E: 'true',
+            VITE_MOCK_ENABLED: 'true'
         },
         timeout: 3 * 60 * 1000,
         command: 'pnpm run start',
