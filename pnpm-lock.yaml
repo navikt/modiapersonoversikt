@@ -177,8 +177,8 @@ importers:
         specifier: ^1.1.1
         version: 1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)
       nav-frontend-spinner:
-        specifier: ^2.0.16
-        version: 2.0.17(classnames@2.5.1)(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-spinner-style@1.0.2)(prop-types@15.8.1)(react@19.0.0)
+        specifier: ^3.0.1
+        version: 3.0.1(classnames@2.5.1)(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-spinner-style@1.0.2)(prop-types@15.8.1)(react@19.0.0)
       nav-frontend-spinner-style:
         specifier: ^1.0.2
         version: 1.0.2
@@ -2999,12 +2999,12 @@ packages:
   nav-frontend-spinner-style@1.0.2:
     resolution: {integrity: sha512-7zHnZdV2vF5kAOq0KCVBBpU2g6eI8rilmFx88oTTRTVPwKjCGcbYW6BzFUSN9rGuuI6AxiWQRu5mnxRPNZW9BA==}
 
-  nav-frontend-spinner@2.0.17:
-    resolution: {integrity: sha512-xw26fPn+Ocal+H4Y5rdifMxGLvyrcv7DXXne1DIR+08rk8oJNSbZM5+LXUtQVSPT6k/EhFposGzVG+WdXOMfAw==}
+  nav-frontend-spinner@3.0.1:
+    resolution: {integrity: sha512-aypBmm5ux6qknI69kW0fTn694mg2739DCPW0F5mcui1oIADuEhQpWSbUJVbQ+613X6u0SNxPeOSgxF1jHtuAuQ==}
     peerDependencies:
       classnames: ^2.2.5
-      nav-frontend-ikoner-assets: ^2.0.9
-      nav-frontend-spinner-style: ^1.0.0
+      nav-frontend-ikoner-assets: ^3.0.0
+      nav-frontend-spinner-style: ^1.0.2
       prop-types: ^15.5.10
       react: ^16.8.0 || ^17.0.0
 
@@ -6496,7 +6496,7 @@ snapshots:
 
   nav-frontend-spinner-style@1.0.2: {}
 
-  nav-frontend-spinner@2.0.17(classnames@2.5.1)(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-spinner-style@1.0.2)(prop-types@15.8.1)(react@19.0.0):
+  nav-frontend-spinner@3.0.1(classnames@2.5.1)(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-spinner-style@1.0.2)(prop-types@15.8.1)(react@19.0.0):
     dependencies:
       classnames: 2.5.1
       nav-frontend-ikoner-assets: 2.0.10
