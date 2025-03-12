@@ -69,8 +69,8 @@ importers:
         specifier: ^5.0.5
         version: 5.4.7(react@19.0.0)
       jotai:
-        specifier: ^2.12.1
-        version: 2.12.1(@types/react@19.0.10)(react@19.0.0)
+        specifier: ^2.12.2
+        version: 2.12.2(@types/react@19.0.10)(react@19.0.0)
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -2526,8 +2526,8 @@ packages:
     resolution: {integrity: sha512-2yTgeWTWzMWkHu6Jp9NKgePDaYHbntiwvYuuJLbbN9vl7DC9DvXKOB2BC3ZZ92D3cvV/aflH0osDfwpHepQ53w==}
     hasBin: true
 
-  jotai@2.12.1:
-    resolution: {integrity: sha512-VUW0nMPYIru5g89tdxwr9ftiVdc/nGV9jvHISN8Ucx+m1vI9dBeHemfqYzEuw5XSkmYjD/MEyApN9k6yrATsZQ==}
+  jotai@2.12.2:
+    resolution: {integrity: sha512-oN8715y7MkjXlSrpyjlR887TOuc/NLZMs9gvgtfWH/JP47ChwO0lR2ijSwBvPMYyXRAPT+liIAhuBavluKGgtA==}
     engines: {node: '>=12.20.0'}
     peerDependencies:
       '@types/react': '>=17.0.0'
@@ -6062,7 +6062,7 @@ snapshots:
 
   jiti@1.21.6: {}
 
-  jotai@2.12.1(@types/react@19.0.10)(react@19.0.0):
+  jotai@2.12.2(@types/react@19.0.10)(react@19.0.0):
     optionalDependencies:
       '@types/react': 19.0.10
       react: 19.0.0
