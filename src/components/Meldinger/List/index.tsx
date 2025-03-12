@@ -39,7 +39,7 @@ const Traader = () => {
         [traader]
     );
     const filteredMeldinger = useFilterMeldinger(sortedTraader, filters);
-    const navigate = useNavigate({ from: '/person/meldinger' });
+    const navigate = useNavigate({ from: '/new/person/meldinger' });
 
     const handleClick = useCallback(
         (traadId: string) => {
@@ -64,6 +64,12 @@ const Traader = () => {
     return (
         <>
             <PaginatedList
+                paginationSrHeading={{
+                    tag: 'h3',
+                    text: 'Trådlistepaginering'
+                }}
+                aria-label="Tråder"
+                as="section"
                 selectedKey={traadId}
                 items={filteredMeldinger}
                 keyExtractor={(item) => item.traadId}
