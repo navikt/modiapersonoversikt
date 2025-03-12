@@ -22,7 +22,7 @@ const ErrorBoundary = ({
             fallbackRender={({ error }) => {
                 if (error instanceof FetchError) return <FetchErrorRenderer error={error} errorText={errorText} />;
 
-                return <Alert variant="error">{errorText ?? 'Beklager, det skedde en feil'}</Alert>;
+                return <Alert variant="error">{errorText ?? 'Det skjedde en feil'}</Alert>;
             }}
         >
             {children}

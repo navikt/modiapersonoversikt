@@ -53,3 +53,34 @@ test('Send ny melding', async ({ page }) => {
     await expect(meldinger).toHaveCount(1);
     await expect(meldinger.first().getByRole('paragraph').first()).toHaveText('playwright new melding');
 });
+
+test('Journalfore dialog', async ({ page }) => {
+    // traadId from statiskTraadMock
+    await page.goto('/new/person/meldinger?traadId=sg838exr');
+    const journalposterTable = page.getByTestId('journalposter-table');
+    const journalposter = journalposterTable.getByRole('row');
+    await expect(journalposterTable).toBeVisible();
+    const existingRows = await journalposter.count();
+
+    await page.getByRole('button', { name: 'Journalfør' }).click();
+
+    const modal = page.getByRole('dialog');
+    const submitButton = modal.getByRole('button', { name: 'Journalfør' });
+    await expect(submitButton).toBeDisabled();
+
+    const temaRow = modal.getByRole('row', { name: 'Dagpenger' });
+    await temaRow.click();
+    const sakRow = modal.getByRole('table', { name: 'Saker' }).getByRole('row').first();
+    const saksId = (await sakRow.getByRole('rowheader').textContent()) ?? 'Fail';
+    await sakRow.click();
+
+    await expect(submitButton).not.toBeDisabled();
+
+    await submitButton.click();
+    await expect(modal).not.toBeVisible();
+
+    const newRows = await journalposter.count();
+
+    expect(newRows).toEqual(existingRows + 1);
+    await expect(journalposterTable.getByText(saksId)).toBeVisible();
+});

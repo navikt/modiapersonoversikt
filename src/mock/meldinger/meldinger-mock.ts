@@ -17,6 +17,7 @@ import { backendDatoTidformat } from '../../utils/date-utils';
 import standardTeksterMock from '../standardTeksterMock';
 import { fyllRandomListe } from '../utils/mock-utils';
 import standardTraader from './standardTraader';
+import { statiskTraadMock } from './statiskTraadMock';
 
 // Legger inn to konstanter for å sørge for at vi får korrelasjon på tvers av mocking (tråd-oppgave feks)
 export const MOCKED_TRAADID_1 = '123';
@@ -68,10 +69,13 @@ function getMockTraad(): Traad {
 }
 
 function getHardKodetTraader(): Traad[] {
-    return standardTraader.map((traad) => ({
-        ...traad,
-        traadId: faker.string.alphanumeric(8)
-    }));
+    return [
+        ...standardTraader.map((traad) => ({
+            ...traad,
+            traadId: faker.string.alphanumeric(8)
+        })),
+        statiskTraadMock
+    ];
 }
 
 function getMelding(temagruppe: Temagruppe | null): Melding {
