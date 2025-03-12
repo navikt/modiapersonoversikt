@@ -4,7 +4,7 @@ test('Select melding', async ({ page }) => {
     await page.goto('/new/person/meldinger');
 
     const meldingerList = page.getByRole('region', { name: 'Tråder' });
-    await expect(meldingerList).toBeVisible({ timeout: 5000 });
+    await expect(meldingerList).toBeVisible();
     const meldingerCards = meldingerList.getByTestId('traaditem');
     expect((await meldingerCards.all()).length).toBeGreaterThan(5);
 
@@ -17,7 +17,9 @@ test('Select melding', async ({ page }) => {
 
 test('Send melding i tråd', async ({ page }) => {
     await page.goto('/new/person/meldinger');
-    await page.getByTestId('traaditem').nth(2).getByRole('button').click();
+    const traadToClick = page.getByTestId('traaditem').nth(2);
+    await expect(traadToClick).toBeVisible();
+    await traadToClick.getByRole('button').click();
 
     await page.getByRole('button', { name: 'Svar' }).click();
 
