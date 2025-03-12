@@ -77,6 +77,23 @@ export const useSendMelding = () => {
     });
 };
 
+export const useJournalforMutation = () => {
+    const queryClient = useQueryClient();
+    const fnr = usePersonAtomValue();
+    const enhet = useAtomValue(aktivEnhetAtom) as string;
+
+    return $api.useMutation('post', '/rest/v2/journalforing/{traadId}', {
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: $api.queryOptions('post', '/rest/v2/dialog/meldinger', {
+                    body: { fnr },
+                    params: { query: { enhet } }
+                }).queryKey
+            });
+        }
+    });
+};
+
 export const useEnheter = () => {
     return $api.useQuery('get', '/rest/hode/enheter');
 };

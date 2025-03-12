@@ -1,4 +1,4 @@
-import { Alert, Button, Table, ToggleGroup } from '@navikt/ds-react';
+import { Alert, BodyShort, Button, Table, ToggleGroup } from '@navikt/ds-react';
 import Spinner from 'nav-frontend-spinner';
 import { useMemo, useState } from 'react';
 import { SakKategori } from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
@@ -13,13 +13,13 @@ interface SakVelgerRootContext {
     valgtTema: Tema | undefined;
     setTema: (tema: Tema) => void;
     saker: JournalforingSak[];
-    setSak: (sak: JournalforingSak) => void;
+    setSak: (sak: JournalforingSak, kategori: SakKategori, tema: Tema) => void;
     fordelteSaker: Kategorier;
     feiledeSystemer: string[];
 }
 
 interface SakVelgerRootProps {
-    setSak: (sak: JournalforingSak) => void;
+    setSak: (sak: JournalforingSak, kategori: SakKategori, tema: Tema) => void;
     children: (context: SakVelgerRootContext) => React.ReactNode;
 }
 
@@ -63,6 +63,7 @@ interface SakVelgerRadioGroupProps {
 const SakVelgerToggleGroup: React.FC<SakVelgerRadioGroupProps> = ({ valgtSakKategori, setSakKategori }) => {
     return (
         <ToggleGroup
+            size="small"
             label="Saktype"
             value={valgtSakKategori}
             onChange={(value) => setSakKategori(value as SakKategori)}
@@ -88,7 +89,7 @@ const SakVelgerTemaTable: React.FC<SakVelgerTemaTableProps> = ({
     setValgtTema
 }) => {
     return (
-        <Table zebraStripes>
+        <Table zebraStripes size="small" aria-label="Tema">
             <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell className="min-w-8" scope="col">
@@ -126,12 +127,21 @@ interface SakVelgerSakTableProps {
     kategorier: Kategorier;
     valgtKategori: SakKategori;
     valgtTema: Tema | undefined;
-    setSak: (sak: JournalforingSak) => void;
+    valgtSak?: JournalforingSak;
+    setSak: (sak: JournalforingSak, kategori: SakKategori, tema: Tema) => void;
 }
 
-const SakVelgerSakTable: React.FC<SakVelgerSakTableProps> = ({ kategorier, valgtKategori, valgtTema, setSak }) => {
+const SakVelgerSakTable: React.FC<SakVelgerSakTableProps> = ({
+    kategorier,
+    valgtKategori,
+    valgtTema,
+    valgtSak,
+    setSak
+}) => {
+    if (!valgtTema) return <BodyShort>Velg et tema</BodyShort>;
+
     return (
-        <Table zebraStripes>
+        <Table zebraStripes size="small" aria-label="Saker">
             <Table.Header>
                 <Table.HeaderCell scope="col">SaksId</Table.HeaderCell>
                 <Table.HeaderCell scope="col">Opprettet</Table.HeaderCell>
@@ -141,20 +151,25 @@ const SakVelgerSakTable: React.FC<SakVelgerSakTableProps> = ({ kategorier, valgt
             </Table.Header>
             <Table.Body>
                 {kategorier[valgtKategori]
-                    .filter((it) => it.tema === valgtTema?.tema)
+                    .filter((it) => it.tema === valgtTema.tema)
                     .flatMap((it) =>
                         it.saker.map((sak) => (
                             <Table.Row
-                                key={`${valgtKategori}-${valgtTema?.tema}-${sak.saksId}`}
+                                key={`${valgtKategori}-${valgtTema.tema}-${sak.saksId}`}
                                 onClick={() => {
-                                    setSak(sak);
+                                    setSak(sak, valgtKategori, valgtTema);
                                 }}
                                 className="cursor-pointer"
+                                selected={valgtSak?.saksId ? valgtSak.saksId === sak.saksId : undefined}
                             >
                                 <Table.HeaderCell scope="row">{sak.saksId}</Table.HeaderCell>
                                 <Table.DataCell>{formatterDatoMedMaanedsnavnOrNull(sak.opprettetDato)}</Table.DataCell>
                                 <Table.DataCell className="sr-only">
-                                    <Button type="button" variant="secondary" onClick={() => setSak(sak)}>
+                                    <Button
+                                        type="button"
+                                        variant="secondary"
+                                        onClick={() => setSak(sak, valgtKategori, valgtTema)}
+                                    >
                                         {sak.saksId}
                                     </Button>
                                 </Table.DataCell>

@@ -35,6 +35,7 @@ import { getMockSykepengerRespons } from './ytelse/sykepenger-mock';
 
 import { http, type DefaultBodyType, type HttpHandler, HttpResponse, type PathParams, type StrictRequest } from 'msw';
 import { getMockPensjon } from 'src/mock/ytelse/pensjon-mock';
+import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
 import type { FeatureTogglesResponse } from 'src/rest/resources/featuretogglesResource';
 import { STATUS_OK, fodselsNummerErGyldigStatus, randomDelay } from './utils-mock';
 import { getMockTiltakspenger } from './ytelse/tiltakspenger-mock';
@@ -304,7 +305,11 @@ const journalForingHandler = [
         `${apiBaseUri}/v2/journalforing/:traadId`,
         verify(
             harEnhetIdSomQueryParam,
-            withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+            withDelayedResponse(randomDelay(), STATUS_OK, async (req, params: PathParams<'traadId'>) => {
+                const body = (await req.json()) as JournalforingSak;
+                meldingerBackendMock.journalfor(params.traadId as string, body);
+                return {};
+            })
         )
     )
 ];
