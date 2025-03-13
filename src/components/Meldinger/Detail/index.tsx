@@ -1,7 +1,7 @@
 import { EnvelopeClosedIcon, EnvelopeOpenIcon, PersonIcon, PrinterSmallIcon } from '@navikt/aksel-icons';
 import { Alert, BodyShort, Box, Button, Chat, HStack, Heading, Skeleton, Tooltip, VStack } from '@navikt/ds-react';
 import { useAtom, useAtomValue } from 'jotai';
-import { Suspense, useCallback, useMemo } from 'react';
+import { Suspense, useCallback, useMemo, useState } from 'react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import RichText, {
@@ -17,6 +17,7 @@ import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
 import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { formatterDatoTid } from 'src/utils/date-utils';
 import { formaterDato } from 'src/utils/string-utils';
+import { JournalForingModal } from '../Journalforing';
 import { meldingerFilterAtom } from '../List/Filter';
 import { erMeldingFraNav, nyesteMelding, saksbehandlerTekst, traadKanBesvares, traadstittel } from '../List/utils';
 import { Journalposter } from './Journalposter';
@@ -80,12 +81,14 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
     const avsluttetDato = traad.avsluttetDato || melding.avsluttetDato;
     const avsluttetAv = traad.sistEndretAv || melding.skrevetAvTekst;
 
+    const [journalforingOpen, setJournalforingOpen] = useState(false);
+
     return (
         <Card as={VStack} padding="2" minHeight="0">
             <VStack minHeight="0" gap="2" as="section" aria-label="Dialogdetaljer">
                 <TraadMeta traad={traad} />
                 <HStack gap="4">
-                    <Button variant="secondary-neutral" size="small">
+                    <Button variant="secondary-neutral" size="small" onClick={() => setJournalforingOpen(true)}>
                         Journalfør
                     </Button>
                     <Button variant="secondary-neutral" size="small">
@@ -133,6 +136,8 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
                     </Box.New>
                 )}
             </VStack>
+
+            <JournalForingModal open={journalforingOpen} setOpen={setJournalforingOpen} traad={traad} />
         </Card>
     );
 };

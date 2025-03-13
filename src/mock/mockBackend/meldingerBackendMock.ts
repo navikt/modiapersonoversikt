@@ -1,9 +1,11 @@
 import dayjs from 'dayjs';
 import { guid } from 'nav-frontend-js-utils';
+import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
 import { nyesteMelding } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
 import {
     LestStatus,
     type Melding,
+    type MeldingJournalpost,
     Meldingstype,
     type OpprettHenvendelseRequest,
     type OpprettHenvendelseResponse,
@@ -20,6 +22,7 @@ export class MeldingerBackendMock {
     private sendteSvar: Traad[] = [];
     private fnr = '';
     private oppgaveBackendMock: OppgaverBackendMock;
+    private journalposter: Record<string, MeldingJournalpost[]> = {};
 
     constructor(oppgaveBackendMock: OppgaverBackendMock) {
         this.oppgaveBackendMock = oppgaveBackendMock;
@@ -40,15 +43,18 @@ export class MeldingerBackendMock {
         const alleTraader = [...this.sendteNyeMeldinger, ...mockTraader];
 
         return alleTraader.map((traad) => {
+            const journalposter = this.journalposter[traad.traadId];
+
             const tilhorendeSvar = this.sendteSvar
                 .filter((svar) => svar.traadId === traad.traadId)
                 .flatMap((traad) => traad.meldinger);
+
             return maskerMeldingVedManglendeTilgang({
                 traadId: traad.traadId,
                 traadType: traad.traadType,
                 temagruppe: traad.temagruppe,
                 meldinger: [...tilhorendeSvar, ...traad.meldinger],
-                journalposter: traad.journalposter
+                journalposter: [...traad.journalposter, ...(journalposter ?? [])]
             });
         });
     }
@@ -85,6 +91,21 @@ export class MeldingerBackendMock {
             oppgaveId: oppgave?.oppgaveId
         };
     }
+
+    public journalfor(traadId: string, request: JournalforingSak) {
+        const newJournalpost = toJournalpost(request);
+        this.journalposter[traadId] = [...(this.journalposter[traadId] ?? []), newJournalpost];
+    }
+}
+
+function toJournalpost(req: JournalforingSak): Traad['journalposter'][number] {
+    return {
+        journalfortAv: { navn: 'Veileder', ident: 'Z999999' },
+        journalfortDato: dayjs().format(backendDatoTidformat),
+        journalfortTema: req.temaKode as string,
+        journalfortTemanavn: req.temaNavn as string,
+        journalfortSaksid: req.saksId as string
+    };
 }
 
 function getMockMelding(): Melding {

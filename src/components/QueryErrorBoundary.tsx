@@ -18,15 +18,17 @@ const getErrorText = (error: FetchError) => {
 
 export const FetchErrorRenderer = ({
     errorText,
-    error
+    error,
+    title = 'Feil ved henting av data:'
 }: {
     errorText?: string;
     error: FetchError;
+    title?: string;
 }) => {
     const errText = errorText ?? getErrorText(error);
     return (
         <Alert variant="error">
-            <Heading size="xsmall">Feil ved henting av data:</Heading>
+            <Heading size="xsmall">{title}</Heading>
             <BodyShort size="small">{errText}</BodyShort>
             {error.traceId && <Detail>ID: {error.traceId}</Detail>}
         </Alert>
