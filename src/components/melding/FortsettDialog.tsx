@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Box, Button, Checkbox, HStack, Loader, Textarea, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Box, Button, Checkbox, HStack, Loader, VStack } from '@navikt/ds-react';
 import { type ValidationError, useForm } from '@tanstack/react-form';
 import { useAtom, useAtomValue } from 'jotai';
 import { useCallback, useMemo, useState } from 'react';
@@ -21,6 +21,7 @@ import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { formatterDatoTid } from 'src/utils/date-utils';
 import type { z } from 'zod';
 import { erJournalfort } from '../Meldinger/List/utils';
+import AutocompleteTextarea from './AutoCompleteTextarea';
 import { Oppgaveliste, OppgavelisteRadioKnapper } from './OppgavelisteRadioKnapper';
 import { meldingsTyperTekst, traadTypeToMeldingsType } from './VelgMeldingsType';
 import VelgOppgaveliste from './VelgOppgaveliste';
@@ -144,7 +145,7 @@ export const FortsettDialog = ({ traad }: Props) => {
                 >
                     {(field) => (
                         <div>
-                            <Textarea
+                            <AutocompleteTextarea
                                 autoFocus
                                 label="Ny melding i dialog"
                                 description={meldingsTypeTekst.beskrivelse}
@@ -153,7 +154,7 @@ export const FortsettDialog = ({ traad }: Props) => {
                                 error={buildErrorMessage(field.state.meta.errors)}
                                 maxLength={maksLengdeMelding}
                                 resize="vertical"
-                                minRows={5}
+                                minRows={10}
                                 maxRows={15}
                             />
                             {draftStatus && field.state.value.length > 0 && field.state.meta.isDirty && (

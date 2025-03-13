@@ -1,4 +1,4 @@
-import { Alert, Button, ErrorMessage, HStack, Textarea, VStack } from '@navikt/ds-react';
+import { Alert, Button, ErrorMessage, HStack, VStack } from '@navikt/ds-react';
 import { type ValidationError, useForm, useStore } from '@tanstack/react-form';
 import { Link } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
@@ -24,6 +24,7 @@ import { useSuspendingBrukernavn } from 'src/lib/hooks/useSuspendingBrukernavn';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import type { Temagruppe } from 'src/models/temagrupper';
 import type { z } from 'zod';
+import AutocompleteTextarea from './AutoCompleteTextarea';
 
 function NyMelding() {
     const fnr = usePersonAtomValue();
@@ -110,7 +111,7 @@ function NyMelding() {
                 >
                     {(field) => (
                         <div>
-                            <Textarea
+                            <AutocompleteTextarea
                                 label={meldingsTypeTekst.tittel}
                                 description={meldingsTypeTekst.beskrivelse}
                                 value={field.state.value}
@@ -118,7 +119,7 @@ function NyMelding() {
                                 error={buildErrorMessage(field.state.meta.errors)}
                                 maxLength={maksLengdeMelding}
                                 resize="vertical"
-                                minRows={5}
+                                minRows={10}
                                 maxRows={15}
                             />
                             {draftStatus && field.state.value.length > 0 && field.state.meta.isDirty && (
