@@ -84,3 +84,14 @@ test('Journalfore dialog', async ({ page }) => {
     expect(newRows).toEqual(existingRows + 1);
     await expect(journalposterTable.getByText(saksId)).toBeVisible();
 });
+test('Autocomplete textarea', async ({ page }) => {
+    await page.goto('/new/person');
+    const textarea = page.getByRole('textbox');
+
+    await textarea.clear();
+
+    await textarea.pressSequentially('hei ');
+
+    const replacedText = 'Hei, Aremark';
+    await expect(textarea).toHaveText(replacedText);
+});

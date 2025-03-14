@@ -1,9 +1,9 @@
 import { ChevronDownIcon, ChevronUpIcon, PersonIcon } from '@navikt/aksel-icons';
 import { BodyShort, Box, Button, CopyButton, HStack, Label, Skeleton, VStack } from '@navikt/ds-react';
 import { Suspense, useState } from 'react';
-import { Kjonn, type KodeBeskrivelse } from 'src/app/personside/visittkort-v2/PersondataDomain';
 import config from 'src/config';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
+import { Kjonn, type KodeBeskrivelseKjonn } from 'src/lib/types/modiapersonoversikt-api';
 import useHotkey from 'src/utils/hooks/use-hotkey';
 import { useClickAway } from 'src/utils/hooks/useClickAway';
 import { twMerge } from 'tailwind-merge';
@@ -13,7 +13,7 @@ import { PersonBadges } from './Badges';
 import { PersonlinjeDetails } from './Details';
 import { Sikkerhetstiltak } from './Sikkerhetstiltak';
 
-const ukjentKjonn: KodeBeskrivelse<Kjonn> = {
+const ukjentKjonn: KodeBeskrivelseKjonn = {
     kode: Kjonn.U,
     beskrivelse: 'Ukjent kjønn'
 };
@@ -115,7 +115,7 @@ const PersonLinjeContent = () => {
 type PersonaliaProps = {
     navn: string;
     alder?: number;
-    kjonn: KodeBeskrivelse<'M' | 'K' | 'U'>;
+    kjonn: KodeBeskrivelseKjonn;
 };
 
 const Personalia = ({ navn, alder, kjonn }: PersonaliaProps) => {

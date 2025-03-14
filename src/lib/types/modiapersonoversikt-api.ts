@@ -2,6 +2,7 @@ import {
     DataFeilendeSystemer,
     type KodeBeskrivelseAdresseBeskyttelse,
     KodeBeskrivelseAdresseBeskyttelseKode,
+    KodeBeskrivelseKjonnKode,
     KodeBeskrivelseSivilstandTypeKode,
     MeldingDTOMeldingstype,
     type MeldingDto,
@@ -53,3 +54,6 @@ export type TraadType = TraadDTOTraadType;
 
 export const Meldingstype = MeldingDTOMeldingstype;
 export type Meldingstype = MeldingDTOMeldingstype;
+
+export const Kjonn = KodeBeskrivelseKjonnKode;
+export type Kjonn = KodeBeskrivelseKjonnKode;

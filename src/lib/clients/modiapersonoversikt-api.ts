@@ -139,3 +139,7 @@ export const useMeldinger = () => {
         params: { query: { enhet } }
     });
 };
+
+export const useInnloggetSaksbehandler = () => {
+    return $api.useSuspenseQuery('get', '/rest/hode/me');
+};
