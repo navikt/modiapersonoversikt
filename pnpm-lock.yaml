@@ -96,8 +96,8 @@ importers:
         specifier: ^5.0.1
         version: 5.1.1
       nav-frontend-ekspanderbartpanel:
-        specifier: ^3.1.2
-        version: 3.1.4(@types/react-collapse@5.0.4)(classnames@2.5.1)(nav-frontend-ekspanderbartpanel-style@1.1.2(nav-frontend-chevron-style@1.0.4)(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.0.0))(react-collapse@5.1.1(react@19.0.0))(react@19.0.0)
+        specifier: ^4.0.4
+        version: 4.0.4(@types/react-collapse@5.0.4)(classnames@2.5.1)(nav-frontend-ekspanderbartpanel-style@1.1.2(nav-frontend-chevron-style@1.0.4)(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.0.0))(react-collapse@5.1.1(react@19.0.0))(react@19.0.0)
       nav-frontend-ekspanderbartpanel-style:
         specifier: ^1.1.2
         version: 1.1.2(nav-frontend-chevron-style@1.0.4)(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)
@@ -2793,13 +2793,13 @@ packages:
       nav-frontend-paneler-style: ^1.0.0
       nav-frontend-typografi-style: ^1.0.33
 
-  nav-frontend-ekspanderbartpanel@3.1.4:
-    resolution: {integrity: sha512-3tNGyZRY2ZO4VQj1FEH+CbbmGUEowFPGM+KJozw4GdXDxEFlI85RelaUiCHQcASNWsc7ewItSCxCGpvOQ4CYYQ==}
+  nav-frontend-ekspanderbartpanel@4.0.4:
+    resolution: {integrity: sha512-MNIhCAcHH0K6LMvmLAcqjSUAyH54dSZvDLgXE3UPtmAwlhgTIoHarB1nsoNHauoBvByLosR3pclrX4VY9Wc8Rw==}
     peerDependencies:
       '@types/react-collapse': ^5.0.0
       classnames: ^2.2.5
-      nav-frontend-ekspanderbartpanel-style: ^1.0.38
-      nav-frontend-js-utils: ^1.0.16
+      nav-frontend-ekspanderbartpanel-style: ^2.0.0
+      nav-frontend-js-utils: ^1.0.19
       react: ^16.8.0 || ^17.0.0
       react-collapse: ^5.0.0
 
@@ -6313,7 +6313,7 @@ snapshots:
       nav-frontend-paneler-style: 1.1.1(nav-frontend-core@5.1.1)
       nav-frontend-typografi-style: 1.1.1
 
-  nav-frontend-ekspanderbartpanel@3.1.4(@types/react-collapse@5.0.4)(classnames@2.5.1)(nav-frontend-ekspanderbartpanel-style@1.1.2(nav-frontend-chevron-style@1.0.4)(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.0.0))(react-collapse@5.1.1(react@19.0.0))(react@19.0.0):
+  nav-frontend-ekspanderbartpanel@4.0.4(@types/react-collapse@5.0.4)(classnames@2.5.1)(nav-frontend-ekspanderbartpanel-style@1.1.2(nav-frontend-chevron-style@1.0.4)(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.0.0))(react-collapse@5.1.1(react@19.0.0))(react@19.0.0):
     dependencies:
       '@types/react-collapse': 5.0.4
       classnames: 2.5.1
