@@ -3,7 +3,7 @@ import { guid } from 'nav-frontend-js-utils';
 import Panel from 'nav-frontend-paneler';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useRef } from 'react';
-import Siste14aVedtakDetaljer from 'src/app/personside/infotabs/oppfolging/Siste14aVedtakDetaljer';
+import Siste14aVedtakDetaljer from 'src/app/personside/infotabs/oppfolging/Gjeldende14aVedtakDetaljer';
 import IfFeatureToggleOn from 'src/components/featureToggle/IfFeatureToggleOn';
 import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
 import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';

@@ -12,6 +12,7 @@ import FiltreringSakstema from './img/filtrering-sakstema.png';
 import ForbedretAvansertSok from './img/forbedret-avansertsok.jpg';
 import ForeldreansvarBilde from './img/foreldreansvar1.png';
 import FortlopendeJournalforing from './img/fortlopende-journalforing.png';
+import Gjeldende14aVedtak from './img/gjeldende_14a-vedtak.png';
 import InfomeldingBilde from './img/infomelding.jpg';
 import JournalforFlere from './img/journalfor-flere.png';
 import Journalforing from './img/journaloring.png';
@@ -28,7 +29,6 @@ import OppslagPaaInaktivIdent from './img/oppslag-paa-inaktiv-ident.png';
 import Revarsling from './img/revarsling.png';
 import Samtalemaler from './img/samtalemaler.png';
 import VisningSikkerhetstiltak from './img/sikkerhetstiltakt-popup.png';
-import Siste14aVedtak from './img/siste-14a-vedtak.png';
 import SladdEnkeltmelding from './img/sladdEnkeltmelding.png';
 import SladdeArsak from './img/sladde-arsak.png';
 import SvarAvslutterDialog from './img/svar-avslutter-dialog.png';
@@ -627,7 +627,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                     <Normaltekst>Det er nå mulig å se om en bruker har 14a vedtak i oppfølgingsoversikten.</Normaltekst>
                 </>
             ),
-            src: Siste14aVedtak
+            src: Gjeldende14aVedtak
         }
     ];
 }
