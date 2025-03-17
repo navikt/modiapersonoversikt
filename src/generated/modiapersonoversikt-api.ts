@@ -116,6 +116,38 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    '/rest/v2/ytelse/pensjon': {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations['hentPensjonSaker'];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    '/rest/v2/ytelse/pensjon/{sakId}': {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations['hentPensjonSakEtteroppgjorshistorikk'];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     '/rest/v2/ytelse/foreldrepenger': {
         parameters: {
             query?: never;
@@ -255,6 +287,22 @@ export interface paths {
         get?: never;
         put?: never;
         post: operations['hentUtvidetOppf'];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    '/rest/v2/oppfolging/siste14AVedtak': {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations['hentSiste14AVedtak'];
         delete?: never;
         options?: never;
         head?: never;
@@ -416,22 +464,6 @@ export interface paths {
         get?: never;
         put?: never;
         post: operations['pdlPersonsok'];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/innkrevingskrav': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations['hentAlleInnkrevingskrav'];
         delete?: never;
         options?: never;
         head?: never;
@@ -961,22 +993,6 @@ export interface paths {
             cookie?: never;
         };
         get: operations['hentSystembrukerToken'];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/innkrevingskrav/{innkrevingskravId}': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations['hentInnkrevingskrav'];
         put?: never;
         post?: never;
         delete?: never;
@@ -1576,6 +1592,45 @@ export interface components {
             /** Format: int32 */
             antallBarn?: number;
         };
+        Code: {
+            code: string;
+            decode: string;
+        };
+        PensjonSak: {
+            /** Format: int64 */
+            id: number;
+            type?: components['schemas']['Code'];
+            status?: components['schemas']['Code'];
+            /** Format: date */
+            fom?: string;
+            /** Format: date */
+            tom?: string;
+            enhetId: string;
+        };
+        PensjonEtteroppgjorYtelse: {
+            type?: components['schemas']['Code'];
+            /** Format: int32 */
+            inntekt?: number;
+            /** Format: int32 */
+            fradrag?: number;
+            /** Format: int32 */
+            inntektBruktIEtteroppgjor?: number;
+            /** Format: int32 */
+            avviksbelop?: number;
+        };
+        PensjonEtteroppgjorshistorikk: {
+            /** Format: date */
+            fom: string;
+            /** Format: date */
+            tom: string;
+            resultat?: components['schemas']['Code'];
+            /** Format: int32 */
+            belop?: number;
+            /** Format: date */
+            vedtaksdato?: string;
+            ar: string;
+            ytelser: components['schemas']['PensjonEtteroppgjorYtelse'][];
+        };
         Arbeidgiver: {
             orgnr: string;
             navn?: string;
@@ -1794,6 +1849,24 @@ export interface components {
             'f\u00F8dselsnummer'?: string;
             erSTOOppgave: boolean;
         };
+        HovedmalDetaljert: {
+            kode?: string;
+            beskrivelse?: string;
+        };
+        InnsatsgruppeDetaljert: {
+            kode?: string;
+            beskrivelse?: string;
+        };
+        Siste14aVedtak: {
+            innsatsgruppe: components['schemas']['InnsatsgruppeDetaljert'];
+            hovedmal?: components['schemas']['HovedmalDetaljert'];
+            /** Format: date-time */
+            fattetDato: string;
+            fraArena?: boolean;
+        };
+        Siste14aVedtakResponse: {
+            siste14aVedtak?: components['schemas']['Siste14aVedtak'];
+        };
         JournalforingSak: {
             fnr?: string;
             saksId?: string;
@@ -1999,53 +2072,6 @@ export interface components {
             /** Format: int32 */
             column: number;
         };
-        KravRequest: {
-            ident: string;
-            /** @enum {string} */
-            identType: KravRequestIdentType;
-        };
-        Debitor: {
-            debitorId: string;
-            name: string;
-            /** @enum {string} */
-            identType: DebitorIdentType;
-            ident: string;
-        };
-        Krav: {
-            kravId: string;
-            kid: string;
-            kravType: string;
-            debitor: components['schemas']['Debitor'];
-            kreditor: components['schemas']['Kreditor'];
-            posteringer: components['schemas']['KravPostering'][];
-            /**
-             * Format: date
-             * @example 2025-01-01
-             */
-            opprettetDato?: string;
-        };
-        KravPostering: {
-            kode: string;
-            beskrivelse: string;
-            /** Format: double */
-            opprinneligBelop: number;
-            /** Format: double */
-            betaltBelop: number;
-            /** Format: double */
-            gjenstaendeBelop: number;
-            /**
-             * Format: date
-             * @example 2025-01-01
-             */
-            opprettetDato?: string;
-        };
-        Kreditor: {
-            kreditorId: string;
-            name: string;
-            /** @enum {string} */
-            identType: KreditorIdentType;
-            ident: string;
-        };
         OpprettSkjermetOppgaveDTO: {
             opprettetavenhetsnummer: string;
             fnr: string;
@@ -2153,14 +2179,18 @@ export interface components {
             system?: string;
         };
         Me: {
-            ident?: string;
-            navn?: string;
-            fornavn?: string;
-            etternavn?: string;
+            ident: string;
+            navn: string;
+            fornavn: string;
+            etternavn: string;
         };
-        Enheter: {
-            ident?: string;
-            enhetliste?: components['schemas']['Enhet'][];
+        VeilederEnheter: {
+            ident: string;
+            enhetliste: components['schemas']['VeiledersEnhet'][];
+        };
+        VeiledersEnhet: {
+            enhetId: string;
+            navn: string;
         };
         Oppgavetype: {
             kode: string;
@@ -2241,6 +2271,10 @@ export type IdentInformasjon = components['schemas']['IdentInformasjon'];
 export type Identliste = components['schemas']['Identliste'];
 export type FnrDatoRangeRequest = components['schemas']['FnrDatoRangeRequest'];
 export type Vedtak = components['schemas']['Vedtak'];
+export type Code = components['schemas']['Code'];
+export type PensjonSak = components['schemas']['PensjonSak'];
+export type PensjonEtteroppgjorYtelse = components['schemas']['PensjonEtteroppgjorYtelse'];
+export type PensjonEtteroppgjorshistorikk = components['schemas']['PensjonEtteroppgjorshistorikk'];
 export type Arbeidgiver = components['schemas']['Arbeidgiver'];
 export type Skatt = components['schemas']['Skatt'];
 export type Trekk = components['schemas']['Trekk'];
@@ -2264,6 +2298,10 @@ export type Soknadsstatus = components['schemas']['Soknadsstatus'];
 export type SoknadsstatusSakstema = components['schemas']['SoknadsstatusSakstema'];
 export type Kontaktinformasjon = components['schemas']['Kontaktinformasjon'];
 export type OppgaveDto = components['schemas']['OppgaveDTO'];
+export type HovedmalDetaljert = components['schemas']['HovedmalDetaljert'];
+export type InnsatsgruppeDetaljert = components['schemas']['InnsatsgruppeDetaljert'];
+export type Siste14aVedtak = components['schemas']['Siste14aVedtak'];
+export type Siste14aVedtakResponse = components['schemas']['Siste14aVedtakResponse'];
 export type JournalforingSak = components['schemas']['JournalforingSak'];
 export type Resultat = components['schemas']['Resultat'];
 export type BehandlendeEnhetRequest = components['schemas']['BehandlendeEnhetRequest'];
@@ -2286,11 +2324,6 @@ export type SearchRule = components['schemas']['SearchRule'];
 export type GraphQlClientError = components['schemas']['GraphQLClientError'];
 export type GraphQlClientResponseResult = components['schemas']['GraphQLClientResponseResult'];
 export type GraphQlClientSourceLocation = components['schemas']['GraphQLClientSourceLocation'];
-export type KravRequest = components['schemas']['KravRequest'];
-export type Debitor = components['schemas']['Debitor'];
-export type Krav = components['schemas']['Krav'];
-export type KravPostering = components['schemas']['KravPostering'];
-export type Kreditor = components['schemas']['Kreditor'];
 export type OpprettSkjermetOppgaveDto = components['schemas']['OpprettSkjermetOppgaveDTO'];
 export type OpprettOppgaveResponseDto = components['schemas']['OpprettOppgaveResponseDTO'];
 export type OpprettOppgaveRequestDto = components['schemas']['OpprettOppgaveRequestDTO'];
@@ -2305,7 +2338,8 @@ export type Ansatt = components['schemas']['Ansatt'];
 export type CaptureStats = components['schemas']['CaptureStats'];
 export type Tokens = components['schemas']['Tokens'];
 export type Me = components['schemas']['Me'];
-export type Enheter = components['schemas']['Enheter'];
+export type VeilederEnheter = components['schemas']['VeilederEnheter'];
+export type VeiledersEnhet = components['schemas']['VeiledersEnhet'];
 export type Oppgavetype = components['schemas']['Oppgavetype'];
 export type Tema = components['schemas']['Tema'];
 export type Underkategori = components['schemas']['Underkategori'];
@@ -2484,6 +2518,56 @@ export interface operations {
             };
         };
     };
+    hentPensjonSaker: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                'application/json': components['schemas']['FnrDatoRangeRequest'];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    '*/*': components['schemas']['PensjonSak'][];
+                };
+            };
+        };
+    };
+    hentPensjonSakEtteroppgjorshistorikk: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                sakId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                'application/json': components['schemas']['FnrDatoRangeRequest'];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    '*/*': components['schemas']['PensjonEtteroppgjorshistorikk'][];
+                };
+            };
+        };
+    };
     hentForeldrepenger: {
         parameters: {
             query?: never;
@@ -2631,7 +2715,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    'application/pdf': Record<string, never>;
+                    '*/*': Record<string, never>;
                 };
             };
         };
@@ -2755,6 +2839,30 @@ export interface operations {
                     '*/*': {
                         [key: string]: Record<string, never>;
                     };
+                };
+            };
+        };
+    };
+    hentSiste14AVedtak: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                'application/json': components['schemas']['FnrRequest'];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    '*/*': components['schemas']['Siste14aVedtakResponse'];
                 };
             };
         };
@@ -3004,30 +3112,6 @@ export interface operations {
                 };
                 content: {
                     '*/*': components['schemas']['GraphQLClientResponseResult'];
-                };
-            };
-        };
-    };
-    hentAlleInnkrevingskrav: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                'application/json': components['schemas']['KravRequest'];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['Krav'][];
                 };
             };
         };
@@ -3762,28 +3846,6 @@ export interface operations {
             };
         };
     };
-    hentInnkrevingskrav: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                innkrevingskravId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['Krav'];
-                };
-            };
-        };
-    };
     hentSaksbehandler: {
         parameters: {
             query?: never;
@@ -3819,7 +3881,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    '*/*': components['schemas']['Enheter'];
+                    '*/*': components['schemas']['VeilederEnheter'];
                 };
             };
         };
@@ -4334,18 +4396,6 @@ export enum TraadDTOTraadType {
     SAMTALEREFERAT = 'SAMTALEREFERAT',
     MELDINGSKJEDE = 'MELDINGSKJEDE',
     CHAT = 'CHAT'
-}
-export enum KravRequestIdentType {
-    FNR = 'FNR',
-    ORG_NR = 'ORG_NR'
-}
-export enum DebitorIdentType {
-    FNR = 'FNR',
-    ORG_NR = 'ORG_NR'
-}
-export enum KreditorIdentType {
-    FNR = 'FNR',
-    ORG_NR = 'ORG_NR'
 }
 export enum SendMeldingRequestTraadType {
     SAMTALEREFERAT = 'SAMTALEREFERAT',
