@@ -183,8 +183,8 @@ importers:
         specifier: ^1.0.2
         version: 1.0.2
       nav-frontend-stegindikator:
-        specifier: 0.0.52
-        version: 0.0.52(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.0.0))(nav-frontend-stegindikator-style@1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(react@19.0.0)
+        specifier: 2.0.3
+        version: 2.0.3(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.0.0))(nav-frontend-stegindikator-style@1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(react@19.0.0)
       nav-frontend-stegindikator-style:
         specifier: ^1.0.31
         version: 1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)
@@ -3004,13 +3004,13 @@ packages:
       nav-frontend-core: ^5.0.11
       nav-frontend-typografi-style: ^1.0.33
 
-  nav-frontend-stegindikator@0.0.52:
-    resolution: {integrity: sha512-AT7jP8NbdK+LOEAU40pjehkVUzsGxaLwRTFkG95QJravH4j+m3IbuBKZAv5MAlwNTnKF9AKSk++HEkvo13TNJw==}
+  nav-frontend-stegindikator@2.0.3:
+    resolution: {integrity: sha512-VpiclgRm3EJzuNb4LwJLT95cVqhCDgKf/bieTtFssEF/I8+ss/Tzpnf3ldE7/VetRLsYVHRe/UH+Ml4Q5LFHjw==}
     peerDependencies:
       classnames: ^2.2.5
-      nav-frontend-js-utils: ^1.0.9
-      nav-frontend-stegindikator-style: ^1.0.31
-      react: ^15.4.2 || ^16.0.0
+      nav-frontend-js-utils: ^1.0.19
+      nav-frontend-stegindikator-style: ^2.0.0
+      react: ^16.8.0 || ^17.0.0
 
   nav-frontend-tabs-style@1.1.1:
     resolution: {integrity: sha512-sKx7eNBDhtsAMQv6uquI6S94qthS6PmieF4JZ230xyP8SOX2WX8AFgOJYEeQ0iQ/MOkjx5F3KHeUTNVKaLFhEQ==}
@@ -6485,7 +6485,7 @@ snapshots:
       nav-frontend-core: 5.1.1
       nav-frontend-typografi-style: 1.1.1
 
-  nav-frontend-stegindikator@0.0.52(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.0.0))(nav-frontend-stegindikator-style@1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(react@19.0.0):
+  nav-frontend-stegindikator@2.0.3(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.0.0))(nav-frontend-stegindikator-style@1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(react@19.0.0):
     dependencies:
       classnames: 2.5.1
       nav-frontend-js-utils: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.0.0)
