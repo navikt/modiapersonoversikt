@@ -9,8 +9,8 @@ import { formatterDatoTid } from '../../../../../utils/date-utils';
 import { rule as sladdRule } from '../../../../../utils/sladdrule';
 import { erMeldingFraBruker, erMeldingFraNav } from '../utils/meldingerUtils';
 import './enkeltmelding.less';
-import { LinebreakRule, LinkRule } from '@navikt/textparser';
-import { ParagraphRuleOverride } from 'src/components/RichText';
+import { LinebreakRule } from '@navikt/textparser';
+import { LinkRule, ParagraphRuleOverride } from 'src/components/RichText';
 import ReadIcon from '../../../../../svg/ReadIcon';
 import UnReadIcon from '../../../../../svg/UnReadIcon';
 

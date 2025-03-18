@@ -50,7 +50,7 @@ export const LinkRule: Rule = {
 
         return {
             type: Link,
-            props: { href, target: '_blank' }
+            props: { href, target: '_blank', style: { link: { color: '#0000EE' }, hover: { color: '#551A8B' } } }
         };
     }
 };
