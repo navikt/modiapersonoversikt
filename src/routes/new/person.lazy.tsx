@@ -2,6 +2,7 @@ import { Box, HStack, VStack } from '@navikt/ds-react';
 import { Navigate, Outlet, createLazyFileRoute } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import { Suspense } from 'react';
+import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 import { PersonLinje } from 'src/components/PersonLinje';
 import { PersonSidebarMenu } from 'src/components/PersonSidebar';
 import { LukkbarNyMelding } from 'src/components/melding/LukkbarNyMelding';
@@ -27,19 +28,20 @@ function PersonLayout() {
             <VStack>
                 <PersonSidebarMenu />
             </VStack>
-            <HStack gap="2" flexGrow="1" className="flex-nowrap">
-                <VStack gap="2" flexGrow="1">
-                    <Box flexGrow="0">
-                        <PersonLinje />
-                    </Box>
-                    <Suspense>
-                        <Outlet />
-                    </Suspense>
-                </VStack>
-                <VStack flexGrow="0">
-                    <LukkbarNyMelding />
-                </VStack>
-            </HStack>
+            <PanelGroup direction="horizontal" autoSaveId="person-content">
+                <Panel order={1} className="mr-2">
+                    <VStack gap="2" height="100%">
+                        <Box flexGrow="0">
+                            <PersonLinje />
+                        </Box>
+                        <Suspense>
+                            <Outlet />
+                        </Suspense>
+                    </VStack>
+                </Panel>
+                <PanelResizeHandle className="hover:bg-surface-neutral-subtle-hover w-1 focus:bg-blue-50" />
+                <LukkbarNyMelding />
+            </PanelGroup>
         </HStack>
     );
 }

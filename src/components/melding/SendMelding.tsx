@@ -45,7 +45,7 @@ const SendMeldingContent = ({ lukkeKnapp }: Props) => {
     );
 
     return (
-        <Card padding="2" maxWidth="30vw" minWidth="24em">
+        <Card padding="2">
             <HStack justify="space-between">
                 <Heading level="1" size="medium">
                     {oppgave ? continueText : 'Send ny dialog'}
