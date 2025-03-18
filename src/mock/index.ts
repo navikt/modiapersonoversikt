@@ -230,7 +230,7 @@ const oppgaveEnhetHandler = http.get(
     withDelayedResponse(randomDelay(), STATUS_OK, () => getMockEnheter())
 );
 
-const foreslotteEnhetHandler = http.get(
+const foreslotteEnhetHandler = http.post(
     `${apiBaseUri}/v2/enheter/oppgavebehandlere/v2/foreslatte`,
     withDelayedResponse(randomDelay(), STATUS_OK, () => getForeslattEnhet())
 );

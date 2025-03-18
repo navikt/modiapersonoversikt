@@ -1686,14 +1686,14 @@ export interface components {
             'f\u00F8dselsnummer'?: string;
             erSTOOppgave: boolean;
         };
-        Enhet: {
-            enhetId: string;
-            navn: string;
-        };
         OppfolgingDTO: {
             erUnderOppfolging?: boolean;
             veileder?: components['schemas']['Veileder'];
-            enhet?: components['schemas']['Enhet'];
+            enhet?: components['schemas']['OppfolgingsEnhet'];
+        };
+        OppfolgingsEnhet: {
+            enhetId: string;
+            navn: string;
         };
         Veileder: {
             fornavn: string;
@@ -1799,6 +1799,13 @@ export interface components {
             temakode: string;
             typekode: string;
             underkategorikode?: string;
+        };
+        Enhet: {
+            enhetId: string;
+            enhetNavn: string;
+            /** @enum {string} */
+            status: EnhetStatus;
+            oppgavebehandler: boolean;
         };
         SendMeldingRequestV2: {
             fnr: string;
@@ -1982,7 +1989,8 @@ export interface components {
             temaKode: string;
             underkategoriKode?: string;
             oppgaveTypeKode: string;
-            prioritetKode: string;
+            /** @enum {string} */
+            prioritetKode: OpprettSkjermetOppgaveDTOPrioritetKode;
         };
         OpprettOppgaveResponseDTO: {
             id: string;
@@ -1990,8 +1998,7 @@ export interface components {
         OpprettOppgaveRequestDTO: {
             fnr: string;
             opprettetavenhetsnummer: string;
-            /** Format: int32 */
-            valgtEnhetId: number;
+            valgtEnhetId: string;
             behandlingskjedeId: string;
             /** Format: int32 */
             dagerFrist: number;
@@ -2001,7 +2008,8 @@ export interface components {
             temaKode: string;
             underkategoriKode?: string;
             oppgaveTypeKode: string;
-            prioritetKode: string;
+            /** @enum {string} */
+            prioritetKode: OpprettOppgaveRequestDTOPrioritetKode;
         };
         SendTilSladdingRequest: {
             fnr: string;
@@ -2030,9 +2038,9 @@ export interface components {
             expirationDate: number;
         };
         Ansatt: {
-            fornavn?: string;
-            etternavn?: string;
-            ident?: string;
+            fornavn: string;
+            etternavn: string;
+            ident: string;
         };
         CaptureStats: {
             /** Format: int32 */
@@ -2084,11 +2092,16 @@ export interface components {
             /** Format: int32 */
             dagerFrist: number;
         };
+        Prioritet: {
+            /** @enum {string} */
+            kode: PrioritetKode;
+            tekst: string;
+        };
         Tema: {
             kode: string;
             tekst: string;
             oppgavetyper: components['schemas']['Oppgavetype'][];
-            prioriteter: TemaPrioriteter[];
+            prioriteter: components['schemas']['Prioritet'][];
             underkategorier: components['schemas']['Underkategori'][];
         };
         Underkategori: {
@@ -2210,8 +2223,8 @@ export type Soknadsstatus = components['schemas']['Soknadsstatus'];
 export type SoknadsstatusSakstema = components['schemas']['SoknadsstatusSakstema'];
 export type Kontaktinformasjon = components['schemas']['Kontaktinformasjon'];
 export type OppgaveDto = components['schemas']['OppgaveDTO'];
-export type Enhet = components['schemas']['Enhet'];
 export type OppfolgingDto = components['schemas']['OppfolgingDTO'];
+export type OppfolgingsEnhet = components['schemas']['OppfolgingsEnhet'];
 export type Veileder = components['schemas']['Veileder'];
 export type DagpengeytelseDto = components['schemas']['DagpengeytelseDTO'];
 export type OppfolgingsYtelseDto = components['schemas']['OppfolgingsYtelseDTO'];
@@ -2225,6 +2238,7 @@ export type Innsatsgruppe = components['schemas']['Innsatsgruppe'];
 export type JournalforingSak = components['schemas']['JournalforingSak'];
 export type Resultat = components['schemas']['Resultat'];
 export type BehandlendeEnhetRequest = components['schemas']['BehandlendeEnhetRequest'];
+export type Enhet = components['schemas']['Enhet'];
 export type SendMeldingRequestV2 = components['schemas']['SendMeldingRequestV2'];
 export type Journalpost = components['schemas']['Journalpost'];
 export type MeldingDto = components['schemas']['MeldingDTO'];
@@ -2258,6 +2272,7 @@ export type Me = components['schemas']['Me'];
 export type VeilederEnheter = components['schemas']['VeilederEnheter'];
 export type VeiledersEnhet = components['schemas']['VeiledersEnhet'];
 export type Oppgavetype = components['schemas']['Oppgavetype'];
+export type Prioritet = components['schemas']['Prioritet'];
 export type Tema = components['schemas']['Tema'];
 export type Underkategori = components['schemas']['Underkategori'];
 export type BaseUrls = components['schemas']['BaseUrls'];
@@ -3714,6 +3729,12 @@ export enum SakBaksystem {
     SAF = 'SAF',
     SAK = 'SAK'
 }
+export enum EnhetStatus {
+    UNDER_ETABLERING = 'UNDER_ETABLERING',
+    AKTIV = 'AKTIV',
+    UNDER_AVVIKLING = 'UNDER_AVVIKLING',
+    NEDLAGT = 'NEDLAGT'
+}
 export enum SendMeldingRequestV2TraadType {
     SAMTALEREFERAT = 'SAMTALEREFERAT',
     MELDINGSKJEDE = 'MELDINGSKJEDE',
@@ -3746,7 +3767,17 @@ export enum TraadDTOTraadType {
     MELDINGSKJEDE = 'MELDINGSKJEDE',
     CHAT = 'CHAT'
 }
-export enum TemaPrioriteter {
+export enum OpprettSkjermetOppgaveDTOPrioritetKode {
+    HOY = 'HOY',
+    NORM = 'NORM',
+    LAV = 'LAV'
+}
+export enum OpprettOppgaveRequestDTOPrioritetKode {
+    HOY = 'HOY',
+    NORM = 'NORM',
+    LAV = 'LAV'
+}
+export enum PrioritetKode {
     HOY = 'HOY',
     NORM = 'NORM',
     LAV = 'LAV'
