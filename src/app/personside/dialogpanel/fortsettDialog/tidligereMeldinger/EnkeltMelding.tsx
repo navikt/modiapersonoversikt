@@ -1,9 +1,9 @@
-import { LinebreakRule, LinkRule } from '@navikt/textparser';
+import { LinebreakRule } from '@navikt/textparser';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import Tekstomrade from 'nav-frontend-tekstomrade';
 import { Element, Undertekst } from 'nav-frontend-typografi';
 import { useState } from 'react';
-import { ParagraphRuleOverride } from 'src/components/RichText';
+import { LinkRule, ParagraphRuleOverride } from 'src/components/RichText';
 import styled from 'styled-components';
 import type { Melding, Traad } from '../../../../../models/meldinger/meldinger';
 import theme from '../../../../../styles/personOversiktTheme';
