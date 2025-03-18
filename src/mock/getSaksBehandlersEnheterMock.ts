@@ -3,7 +3,7 @@ import { enheter } from './context-mock';
 
 export function getSaksBehandlersEnheterMock(): SaksbehandlersEnheter {
     return {
-        ident: 'Z990000',
+        ident: 'Z999999',
         enhetliste: enheter
     };
 }

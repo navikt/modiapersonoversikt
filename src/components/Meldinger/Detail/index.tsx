@@ -13,6 +13,7 @@ import { formaterDato } from 'src/utils/string-utils';
 import { JournalForingModal } from '../Journalforing';
 import { nyesteMelding, saksbehandlerTekst, traadKanBesvares, traadstittel } from '../List/utils';
 import { DialogMerkMeny } from '../Merk';
+import { OppgaveModal } from '../Oppgave';
 import { Journalposter } from './Journalposter';
 import { Meldinger } from './Meldinger';
 
@@ -54,6 +55,7 @@ export const TraadDetail = ({ traadId }: { traadId: string }) => (
 const TraadDetailContent = ({ traadId }: { traadId: string }) => {
     const setDialogUnderArbeid = useSetAtom(dialogUnderArbeidAtom);
     const [journalforingOpen, setJournalforingOpen] = useState(false);
+    const [oppgaveOpen, setOppgaveOpen] = useState(false);
 
     const traad = useTraadById(traadId);
 
@@ -78,7 +80,7 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
                     <Button variant="secondary" size="small" onClick={() => setJournalforingOpen(true)}>
                         Journalfør
                     </Button>
-                    <Button variant="secondary" size="small">
+                    <Button variant="secondary" size="small" onClick={() => setOppgaveOpen(true)}>
                         Oppgave
                     </Button>
                     <DialogMerkMeny traadId={traadId} />
@@ -113,6 +115,7 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
             </VStack>
 
             <JournalForingModal open={journalforingOpen} setOpen={setJournalforingOpen} traad={traad} />
+            <OppgaveModal open={oppgaveOpen} setOpen={setOppgaveOpen} traad={traad} />
         </Card>
     );
 };

@@ -260,3 +260,63 @@ export const useGjeldende14aVedtak = () => {
         body: { fnr }
     });
 };
+
+export const useGsakTema = () => {
+    return $api.useSuspenseQuery('get', '/rest/dialogoppgave/v2/tema');
+};
+
+export const useOppgaveMutation = () => {
+    return $api.useMutation('post', '/rest/dialogoppgave/v2/opprett', {
+        onSuccess: () => {
+            toast.success('Opprettet oppgave');
+        },
+        onError: () => {
+            toast.error('Kunne ikke opprette oppgaven');
+        }
+    });
+};
+
+export const useOppgaveBehandlerEnheter = () => {
+    return $api.useSuspenseQuery('get', '/rest/v2/enheter/oppgavebehandlere/alle');
+};
+
+export const useAnsattePaaEnhet = (enhetId: string) => {
+    return $api.useQuery(
+        'get',
+        '/rest/v2/enheter/{enhetId}/ansatte',
+        {
+            params: { path: { enhetId } }
+        },
+        {
+            enabled: enhetId.length > 0
+        }
+    );
+};
+
+export const useForeslotteEnheter = ({
+    temakode,
+    typekode,
+    underkategori
+}: {
+    temakode?: string;
+    typekode?: string;
+    underkategori?: string;
+}) => {
+    const fnr = usePersonAtomValue();
+
+    return $api.useQuery(
+        'post',
+        '/rest/v2/enheter/oppgavebehandlere/v2/foreslatte',
+        {
+            body: {
+                fnr,
+                temakode: temakode ?? '',
+                typekode: typekode ?? '',
+                underkategori
+            }
+        },
+        {
+            enabled: !!(temakode && typekode)
+        }
+    );
+};
