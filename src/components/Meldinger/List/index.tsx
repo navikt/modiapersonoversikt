@@ -48,6 +48,11 @@ const Traader = () => {
         [navigate]
     );
 
+    const traadId = useSearch({
+        from: '/new/person/meldinger',
+        select: (p) => p.traadId
+    });
+
     if (traader.length === 0) {
         return <Alert variant="info">Brukeren har ingen dialoger</Alert>;
     }
@@ -55,11 +60,6 @@ const Traader = () => {
     if (filteredMeldinger.length === 0) {
         return <Alert variant="info">Fant ingen dialoger</Alert>;
     }
-
-    const traadId = useSearch({
-        from: '/new/person/meldinger',
-        select: (p) => p.traadId
-    });
 
     return (
         <>
