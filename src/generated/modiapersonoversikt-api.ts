@@ -293,7 +293,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v2/oppfolging/siste14AVedtak': {
+    '/rest/v2/oppfolging/hent-gjeldende-14a-vedtak': {
         parameters: {
             query?: never;
             header?: never;
@@ -302,7 +302,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations['hentSiste14AVedtak'];
+        post: operations['hentGjeldende14aVedtak'];
         delete?: never;
         options?: never;
         head?: never;
@@ -1573,24 +1573,28 @@ export interface components {
             fom?: string;
             tom?: string;
         };
-        Vedtak: {
+        Barnetilleggperiode: {
+            /** Format: int32 */
+            antallBarn: number;
+            periode: components['schemas']['Periode'];
+        };
+        Periode: {
             /** Format: date */
-            fom: string;
+            fraOgMed: string;
             /** Format: date */
-            tom: string;
-            relaterteTiltak: string;
-            /** @enum {string} */
-            rettighet: VedtakRettighet;
+            tilOgMed: string;
+        };
+        VedtakPerioderResponseInner: {
             vedtakId: string;
-            sakId: string;
-            /** Format: double */
-            antallDager?: number;
-            /** Format: int32 */
-            dagsatsTiltakspenger?: number;
-            /** Format: int32 */
-            dagsatsBarnetillegg?: number;
-            /** Format: int32 */
-            antallBarn?: number;
+            /** @enum {string} */
+            rettighet: VedtakPerioderResponseInnerRettighet;
+            periode: components['schemas']['Periode'];
+            /** @enum {string} */
+            kilde: VedtakPerioderResponseInnerKilde;
+            barnetillegg?: components['schemas']['VedtakPerioderResponseInnerBarnetillegg'];
+        };
+        VedtakPerioderResponseInnerBarnetillegg: {
+            perioder?: components['schemas']['Barnetilleggperiode'][];
         };
         Code: {
             code: string;
@@ -1849,23 +1853,22 @@ export interface components {
             'f\u00F8dselsnummer'?: string;
             erSTOOppgave: boolean;
         };
-        HovedmalDetaljert: {
-            kode?: string;
-            beskrivelse?: string;
-        };
-        InnsatsgruppeDetaljert: {
-            kode?: string;
-            beskrivelse?: string;
-        };
-        Siste14aVedtak: {
-            innsatsgruppe: components['schemas']['InnsatsgruppeDetaljert'];
-            hovedmal?: components['schemas']['HovedmalDetaljert'];
+        Gjeldende14aVedtak: {
+            innsatsgruppe: components['schemas']['Innsatsgruppe'];
+            hovedmal?: components['schemas']['Hovedmal'];
             /** Format: date-time */
             fattetDato: string;
-            fraArena?: boolean;
         };
-        Siste14aVedtakResponse: {
-            siste14aVedtak?: components['schemas']['Siste14aVedtak'];
+        Gjeldende14aVedtakResponse: {
+            gjeldende14aVedtak?: components['schemas']['Gjeldende14aVedtak'];
+        };
+        Hovedmal: {
+            kode: string;
+            beskrivelse: string;
+        };
+        Innsatsgruppe: {
+            kode: string;
+            beskrivelse: string;
         };
         JournalforingSak: {
             fnr?: string;
@@ -2270,7 +2273,10 @@ export type Verge = components['schemas']['Verge'];
 export type IdentInformasjon = components['schemas']['IdentInformasjon'];
 export type Identliste = components['schemas']['Identliste'];
 export type FnrDatoRangeRequest = components['schemas']['FnrDatoRangeRequest'];
-export type Vedtak = components['schemas']['Vedtak'];
+export type Barnetilleggperiode = components['schemas']['Barnetilleggperiode'];
+export type Periode = components['schemas']['Periode'];
+export type VedtakPerioderResponseInner = components['schemas']['VedtakPerioderResponseInner'];
+export type VedtakPerioderResponseInnerBarnetillegg = components['schemas']['VedtakPerioderResponseInnerBarnetillegg'];
 export type Code = components['schemas']['Code'];
 export type PensjonSak = components['schemas']['PensjonSak'];
 export type PensjonEtteroppgjorYtelse = components['schemas']['PensjonEtteroppgjorYtelse'];
@@ -2298,10 +2304,10 @@ export type Soknadsstatus = components['schemas']['Soknadsstatus'];
 export type SoknadsstatusSakstema = components['schemas']['SoknadsstatusSakstema'];
 export type Kontaktinformasjon = components['schemas']['Kontaktinformasjon'];
 export type OppgaveDto = components['schemas']['OppgaveDTO'];
-export type HovedmalDetaljert = components['schemas']['HovedmalDetaljert'];
-export type InnsatsgruppeDetaljert = components['schemas']['InnsatsgruppeDetaljert'];
-export type Siste14aVedtak = components['schemas']['Siste14aVedtak'];
-export type Siste14aVedtakResponse = components['schemas']['Siste14aVedtakResponse'];
+export type Gjeldende14aVedtak = components['schemas']['Gjeldende14aVedtak'];
+export type Gjeldende14aVedtakResponse = components['schemas']['Gjeldende14aVedtakResponse'];
+export type Hovedmal = components['schemas']['Hovedmal'];
+export type Innsatsgruppe = components['schemas']['Innsatsgruppe'];
 export type JournalforingSak = components['schemas']['JournalforingSak'];
 export type Resultat = components['schemas']['Resultat'];
 export type BehandlendeEnhetRequest = components['schemas']['BehandlendeEnhetRequest'];
@@ -2461,7 +2467,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    '*/*': components['schemas']['Vedtak'][];
+                    '*/*': components['schemas']['VedtakPerioderResponseInner'][];
                 };
             };
         };
@@ -2843,7 +2849,7 @@ export interface operations {
             };
         };
     };
-    hentSiste14AVedtak: {
+    hentGjeldende14aVedtak: {
         parameters: {
             query?: never;
             header?: never;
@@ -2862,7 +2868,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    '*/*': components['schemas']['Siste14aVedtakResponse'];
+                    '*/*': components['schemas']['Gjeldende14aVedtakResponse'];
                 };
             };
         };
@@ -4250,11 +4256,13 @@ export enum IdentInformasjonGruppe {
     NPID = 'NPID',
     __UNKNOWN_VALUE = '__UNKNOWN_VALUE'
 }
-export enum VedtakRettighet {
+export enum VedtakPerioderResponseInnerRettighet {
     TILTAKSPENGER = 'TILTAKSPENGER',
-    BARNETILLEGG = 'BARNETILLEGG',
-    TILTAKSPENGER_OG_BARNETILLEGG = 'TILTAKSPENGER_OG_BARNETILLEGG',
-    INGENTING = 'INGENTING'
+    TILTAKSPENGER_OG_BARNETILLEGG = 'TILTAKSPENGER_OG_BARNETILLEGG'
+}
+export enum VedtakPerioderResponseInnerKilde {
+    TPSAK = 'TPSAK',
+    ARENA = 'ARENA'
 }
 export enum DokumentDokumentStatus {
     UNDER_REDIGERING = 'UNDER_REDIGERING',
