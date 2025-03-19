@@ -13,6 +13,10 @@
     }
 }
 
+.aksel-theme[data-background="true"].light {
+    background-color: var(--ax-bg-neutral-soft);
+}
+
 .dekorator {
     h1 {
         font-size: var(--a-font-size-large);
