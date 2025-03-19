@@ -1,6 +1,18 @@
-import { Box, ExpansionCard, Fieldset, HStack, Search, Switch, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
+import { XMarkIcon } from '@navikt/aksel-icons';
+import {
+    Box,
+    Button,
+    ExpansionCard,
+    Fieldset,
+    HStack,
+    Search,
+    Switch,
+    UNSAFE_Combobox,
+    VStack
+} from '@navikt/ds-react';
 import { atom, useAtom, useAtomValue } from 'jotai';
-import { debounce, xor } from 'lodash';
+import { atomWithReset, useResetAtom } from 'jotai/utils';
+import { debounce, isEqual, xor } from 'lodash';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import DateRangeSelector from 'src/components/DateFilters/DatePeriodSelector';
 import type { DateRange } from 'src/components/DateFilters/types';
@@ -13,12 +25,14 @@ export type MeldingerFilter = {
     tema?: Temagruppe[];
     search?: string;
     traadType?: TraadType[];
-    dateRange?: DateRange;
+    dateRange: DateRange | null;
+};
+const defaultFilters: MeldingerFilter = {
+    traadType: Object.values(TraadType),
+    dateRange: null
 };
 
-export const meldingerFilterAtom = atom<MeldingerFilter>({
-    traadType: Object.values(TraadType)
-});
+export const meldingerFilterAtom = atomWithReset<MeldingerFilter>(defaultFilters);
 const meldingerFilterTemaAtom = atom(
     (get) => get(meldingerFilterAtom).tema,
     (_get, set, newVal: Temagruppe) => {
@@ -124,7 +138,7 @@ const TraadTypeFilter = () => {
 
 const meldingerFilterDateAtom = atom(
     (get) => get(meldingerFilterAtom).dateRange,
-    (_get, set, dateRange?: DateRange) => {
+    (_get, set, dateRange: DateRange | null) => {
         set(meldingerFilterAtom, (filters) => ({
             ...filters,
             dateRange
@@ -133,7 +147,7 @@ const meldingerFilterDateAtom = atom(
 );
 const DateFilter = () => {
     const [value, setValue] = useAtom(meldingerFilterDateAtom);
-    return <DateRangeSelector range={value} onChange={setValue} defaultPeriodType={null} />;
+    return <DateRangeSelector resettable={false} range={value} onChange={setValue} defaultPeriodType={null} />;
 };
 
 const FilterTitle = () => {
@@ -160,6 +174,20 @@ const FilterTitle = () => {
     return <>Filter {activeFilters}</>;
 };
 
+const ResetFilters = () => {
+    const resetFilter = useResetAtom(meldingerFilterAtom);
+    const filters = useAtomValue(meldingerFilterAtom);
+    const canReset = useMemo(() => !isEqual(filters, defaultFilters), [filters]);
+
+    if (!canReset) return;
+
+    return (
+        <Button variant="tertiary" size="small" icon={<XMarkIcon />} onClick={resetFilter}>
+            Resett filter
+        </Button>
+    );
+};
+
 export const TraadListFilterCard = () => {
     return (
         <Box.New marginInline="0 2">
@@ -182,6 +210,9 @@ export const TraadListFilterCard = () => {
                         </Box.New>
                         <Box.New>
                             <DateFilter />
+                        </Box.New>
+                        <Box.New>
+                            <ResetFilters />
                         </Box.New>
                     </VStack>
                 </ExpansionCard.Content>

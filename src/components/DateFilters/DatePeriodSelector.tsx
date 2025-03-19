@@ -1,7 +1,7 @@
 import { XMarkIcon } from '@navikt/aksel-icons';
 import { Box, Button, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import dayjs from 'dayjs';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import PeriodDatePicker from './PeriodDatePicker';
 import { type DateRange, PeriodType } from './types';
 
@@ -31,14 +31,27 @@ const getPeriodFromOption = (periodeValg: PeriodType): DateRange => {
 };
 
 type Props = {
-    range?: DateRange;
-    onChange: (period?: DateRange) => void;
+    range: DateRange | null;
+    onChange: (period: DateRange | null) => void;
     required?: boolean;
     defaultPeriodType?: PeriodType | null;
+    resettable?: boolean;
 };
 
-function DateRangeSelector({ range: period, onChange, required, defaultPeriodType = PeriodType.LAST_30_DAYS }: Props) {
+function DateRangeSelector({
+    range: period,
+    onChange,
+    resettable,
+    required,
+    defaultPeriodType = PeriodType.LAST_30_DAYS
+}: Props) {
     const [periodType, setPeriodType] = useState<PeriodType | null>(defaultPeriodType);
+
+    useEffect(() => {
+        if (period === null) {
+            setPeriodType(defaultPeriodType);
+        }
+    });
 
     const onFraTilDatoChange = (val: DateRange) => {
         onChange(val);
@@ -53,7 +66,7 @@ function DateRangeSelector({ range: period, onChange, required, defaultPeriodTyp
 
     const resetFilter = useCallback(() => {
         setPeriodType(defaultPeriodType);
-        onChange(undefined);
+        onChange(null);
     }, [onChange, defaultPeriodType]);
 
     return (
@@ -65,8 +78,10 @@ function DateRangeSelector({ range: period, onChange, required, defaultPeriodTyp
                     </Radio>
                 ))}
             </RadioGroup>
-            {periodType === PeriodType.CUSTOM && <PeriodDatePicker period={period} onUpdate={onFraTilDatoChange} />}
-            {periodType && !required && (
+            {periodType === PeriodType.CUSTOM && (
+                <PeriodDatePicker period={period ?? undefined} onUpdate={onFraTilDatoChange} />
+            )}
+            {periodType && !required && resettable && (
                 <Box.New>
                     <Button variant="tertiary" size="small" icon={<XMarkIcon />} onClick={resetFilter}>
                         Resett datofilter
