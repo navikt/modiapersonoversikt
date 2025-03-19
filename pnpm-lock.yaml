@@ -40,7 +40,7 @@ importers:
         version: 7.0.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@navikt/tag-input':
         specifier: ^2.0.2
-        version: 2.0.2(0f3b7396ca7397ec7b893aaa2e44808e)
+        version: 2.0.2(gct6i4lcxszvmjlgvsfus3jouu)
       '@navikt/textparser':
         specifier: ^2.5.0
         version: 2.5.0(react@19.0.0)
@@ -79,7 +79,7 @@ importers:
         version: 2.3.0
       nav-datovelger:
         specifier: ^11.1.2
-        version: 11.4.0(c695abbe13a9c78573b24a2b9d6291bc)
+        version: 11.4.0(vr4o4nhcalhouhhisoe2xbqfo4)
       nav-frontend-alertstriper:
         specifier: ^3.1.1
         version: 3.1.2(classnames@2.5.1)(nav-frontend-alertstriper-style@2.1.1(nav-frontend-core@5.1.1)(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0)
@@ -262,8 +262,8 @@ importers:
         specifier: ^9.5.1
         version: 9.5.1
       '@navikt/aksel-stylelint':
-        specifier: ^7.17.1
-        version: 7.17.1
+        specifier: ^7.17.3
+        version: 7.17.3
       '@playwright/test':
         specifier: ^1.50.1
         version: 1.50.1
@@ -1056,8 +1056,8 @@ packages:
   '@navikt/aksel-icons@7.17.2':
     resolution: {integrity: sha512-Zhn4cBgmxJwNK8tkvkrVi+l5m/UIX5Ai/CfGXRWYp1SPHXLL7oJIjT2/9dceR5wsmXxQX+9CXuOBKe7UeCrgvw==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/7.17.2/182d9a4c0e8274add0a4bb38dc6c287cb4d0b8a5}
 
-  '@navikt/aksel-stylelint@7.17.1':
-    resolution: {integrity: sha512-j2uJjhZffLJnNKORNUAk5fZ/cfGgkdIPZi/nn9NtV9Bq0fvOguz985xeXjfrkg9PY7AlwEvPDw+Qig8JvYrVHA==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-stylelint/7.17.1/0c318edbfc50e1385598e91f9b7a04dff0cd5a74}
+  '@navikt/aksel-stylelint@7.17.3':
+    resolution: {integrity: sha512-blNsv9qKaT2B4C8gSzUZG7i4xlqSusGpByKyLA/FJe6bXzaBPQLjAs+oj94MHVqR52tacCDR8OZd81jtZsseGg==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-stylelint/7.17.3/6195cd81356e9c33baf94ee4933233b9ecbaace6}
 
   '@navikt/ds-css@7.17.1':
     resolution: {integrity: sha512-c8b9S7oLIQjoGRfejOyMlMnB89P8c9Sy9a+B/hAgtJlglxT0LJ9V8CoABsAFJ1sMWsMC+gPpq+tQ1bnTj0DaaA==, tarball: https://npm.pkg.github.com/download/@navikt/ds-css/7.17.1/4a99f531d7243f3c3a3b77cc892d376a3b16abb9}
@@ -1067,9 +1067,6 @@ packages:
     peerDependencies:
       '@types/react': '>=17.0.30'
       react: '>=17.0.0 || >19.0.0-rc'
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
 
   '@navikt/ds-tailwind@7.15.0':
     resolution: {integrity: sha512-sj1L6bSc1T0xat9DPyKjkDcXhQd9I94Nj9vDQ44pikUYDIoj0/8WG2S/2qI2yB2Hj/hNwP1tAdaChrlim/9WRg==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tailwind/7.15.0/b761ae2085ec07eec9915a0321a020f93b349c53}
@@ -4570,7 +4567,7 @@ snapshots:
 
   '@navikt/aksel-icons@7.17.2': {}
 
-  '@navikt/aksel-stylelint@7.17.1': {}
+  '@navikt/aksel-stylelint@7.17.3': {}
 
   '@navikt/ds-css@7.17.1': {}
 
@@ -4580,12 +4577,11 @@ snapshots:
       '@floating-ui/react-dom': 2.1.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@navikt/aksel-icons': 7.17.2
       '@navikt/ds-tokens': 7.17.2
+      '@types/react': 19.0.10
       clsx: 2.1.1
       date-fns: 4.1.0
       react: 19.0.0
       react-day-picker: 9.5.0(react@19.0.0)
-    optionalDependencies:
-      '@types/react': 19.0.10
     transitivePeerDependencies:
       - react-dom
 
@@ -4601,7 +4597,7 @@ snapshots:
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
 
-  '@navikt/tag-input@2.0.2(0f3b7396ca7397ec7b893aaa2e44808e)':
+  '@navikt/tag-input@2.0.2(gct6i4lcxszvmjlgvsfus3jouu)':
     dependencies:
       classnames: 2.5.1
       nav-frontend-js-utils: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.0.0)
@@ -6257,7 +6253,7 @@ snapshots:
 
   nanoid@3.3.9: {}
 
-  nav-datovelger@11.4.0(c695abbe13a9c78573b24a2b9d6291bc):
+  nav-datovelger@11.4.0(vr4o4nhcalhouhhisoe2xbqfo4):
     dependencies:
       classnames: 2.5.1
       dayjs: 1.11.13
