@@ -262,8 +262,8 @@ importers:
         specifier: ^9.5.1
         version: 9.5.1
       '@navikt/aksel-stylelint':
-        specifier: ^7.17.1
-        version: 7.17.1
+        specifier: ^7.17.3
+        version: 7.17.3
       '@playwright/test':
         specifier: ^1.50.1
         version: 1.50.1
@@ -1056,8 +1056,8 @@ packages:
   '@navikt/aksel-icons@7.17.2':
     resolution: {integrity: sha512-Zhn4cBgmxJwNK8tkvkrVi+l5m/UIX5Ai/CfGXRWYp1SPHXLL7oJIjT2/9dceR5wsmXxQX+9CXuOBKe7UeCrgvw==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/7.17.2/182d9a4c0e8274add0a4bb38dc6c287cb4d0b8a5}
 
-  '@navikt/aksel-stylelint@7.17.1':
-    resolution: {integrity: sha512-j2uJjhZffLJnNKORNUAk5fZ/cfGgkdIPZi/nn9NtV9Bq0fvOguz985xeXjfrkg9PY7AlwEvPDw+Qig8JvYrVHA==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-stylelint/7.17.1/0c318edbfc50e1385598e91f9b7a04dff0cd5a74}
+  '@navikt/aksel-stylelint@7.17.3':
+    resolution: {integrity: sha512-blNsv9qKaT2B4C8gSzUZG7i4xlqSusGpByKyLA/FJe6bXzaBPQLjAs+oj94MHVqR52tacCDR8OZd81jtZsseGg==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-stylelint/7.17.3/6195cd81356e9c33baf94ee4933233b9ecbaace6}
 
   '@navikt/ds-css@7.17.1':
     resolution: {integrity: sha512-c8b9S7oLIQjoGRfejOyMlMnB89P8c9Sy9a+B/hAgtJlglxT0LJ9V8CoABsAFJ1sMWsMC+gPpq+tQ1bnTj0DaaA==, tarball: https://npm.pkg.github.com/download/@navikt/ds-css/7.17.1/4a99f531d7243f3c3a3b77cc892d376a3b16abb9}
@@ -4567,7 +4567,7 @@ snapshots:
 
   '@navikt/aksel-icons@7.17.2': {}
 
-  '@navikt/aksel-stylelint@7.17.1': {}
+  '@navikt/aksel-stylelint@7.17.3': {}
 
   '@navikt/ds-css@7.17.1': {}
 
