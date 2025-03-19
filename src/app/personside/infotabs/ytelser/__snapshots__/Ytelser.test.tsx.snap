@@ -2688,24 +2688,12 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       <dt
                         class="typo-normal"
                       >
-                        Dagsats
+                        Kilde
                       </dt>
                       <dd
                         class="typo-element"
                       >
-                        430,00 NOK
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        class="typo-normal"
-                      >
-                        Antall dager
-                      </dt>
-                      <dd
-                        class="typo-element"
-                      >
-                        20
+                        TPSAK
                       </dd>
                     </div>
                   </dl>
@@ -2739,12 +2727,12 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       <dt
                         class="typo-normal"
                       >
-                        Dagsats barnetillegg
+                        Periode
                       </dt>
                       <dd
                         class="typo-element"
                       >
-                        154,00 NOK
+                        20.01.2020 - 21.02.2020
                       </dd>
                     </div>
                   </dl>

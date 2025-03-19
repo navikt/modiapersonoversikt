@@ -1,19 +1,11 @@
+import type { VedtakPerioderResponseInner } from 'src/generated/modiapersonoversikt-api';
+
 export type TiltakspengerResource = Tiltakspenger[] | null;
 
-export interface Tiltakspenger {
-    fom: string;
-    tom: string;
-    relaterteTiltak: string;
-    rettighet: 'TILTAKSPENGER';
-    vedtakId: string;
-    antallDager?: number;
-    dagsatsTiltakspenger?: number;
-    dagsatsBarnetillegg?: number;
-    antallBarn?: number;
-}
+export type Tiltakspenger = VedtakPerioderResponseInner;
 
 export function getTiltakspengerIdDato(ytelse: Tiltakspenger) {
-    return ytelse.fom;
+    return ytelse.periode.fraOgMed;
 }
 
 export function getUnikTiltakspengerKey(ytelse: Tiltakspenger) {

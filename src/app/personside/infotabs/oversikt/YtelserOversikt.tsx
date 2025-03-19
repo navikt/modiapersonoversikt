@@ -16,15 +16,15 @@ import {
 import { getUnikYtelseKey } from '../../../../models/ytelse/ytelse-utils';
 import theme from '../../../../styles/personOversiktTheme';
 import { usePrevious } from '../../../../utils/customHooks';
-import { NOKellerNull, formaterDato } from '../../../../utils/string-utils';
+import { formaterDato } from '../../../../utils/string-utils';
 import { ytelserTest } from '../dyplenkeTest/utils-dyplenker-test';
 import { useInfotabsDyplenker } from '../dyplenker';
 import useBrukersYtelserMarkup from '../ytelser/useBrukersYtelserMarkup';
 
 const YtelserStyle = styled.div`
-    > *:not(:first-child) {
-        border-top: ${theme.border.skille};
-    }
+  > *:not(:first-child) {
+    border-top: ${theme.border.skille};
+  }
 `;
 
 interface Props {
@@ -107,7 +107,9 @@ function SykepengerKomponent(props: { sykepenger: Sykepenger }) {
     );
 }
 
-function ForeldrepengerKomponent(props: { foreldrepenger: Foreldrepengerettighet }) {
+function ForeldrepengerKomponent(props: {
+    foreldrepenger: Foreldrepengerettighet;
+}) {
     const dyplenker = useInfotabsDyplenker();
     return (
         <VisMerKnapp
@@ -138,12 +140,11 @@ function TiltakspengerKomponent(props: { tiltakspenger: Tiltakspenger }) {
             <Normaltekst>ID dato: {formaterDato(getTiltakspengerIdDato(props.tiltakspenger))}</Normaltekst>
             <Element>Tiltakspenger</Element>
             <Normaltekst>
-                {formaterDato(props.tiltakspenger.fom)} - {formaterDato(props.tiltakspenger.tom)}
+                {formaterDato(props.tiltakspenger.periode.fraOgMed)} -{' '}
+                {formaterDato(props.tiltakspenger.periode.tilOgMed)}
                 {': '}
-                Dagsats: {NOKellerNull(props.tiltakspenger.dagsatsTiltakspenger)}{' '}
-                {props.tiltakspenger.antallBarn &&
-                    props.tiltakspenger.antallBarn > 0 &&
-                    `(Antall Barn: ${props.tiltakspenger.antallBarn})`}
+                {props.tiltakspenger.barnetillegg?.perioder &&
+                    `(Antall barn: ${props.tiltakspenger.barnetillegg.perioder.map((p) => `${p.antallBarn}, `)})`}
             </Normaltekst>
         </VisMerKnapp>
     );

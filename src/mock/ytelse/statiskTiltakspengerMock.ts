@@ -1,13 +1,26 @@
+import {
+    VedtakPerioderResponseInnerKilde,
+    VedtakPerioderResponseInnerRettighet
+} from 'src/generated/modiapersonoversikt-api';
 import type { Tiltakspenger } from '../../models/ytelse/tiltakspenger';
 
 export const statiskTiltakspengerMock: Tiltakspenger = {
-    fom: '2020-01-10',
-    tom: '2020-02-21',
-    rettighet: 'TILTAKSPENGER',
+    periode: {
+        fraOgMed: '2020-01-10',
+        tilOgMed: '2020-02-21'
+    },
+    kilde: VedtakPerioderResponseInnerKilde.TPSAK,
+    rettighet: VedtakPerioderResponseInnerRettighet.TILTAKSPENGER,
     vedtakId: '987sdfklo',
-    dagsatsTiltakspenger: 430,
-    relaterteTiltak: '987sdf98',
-    antallBarn: 1,
-    dagsatsBarnetillegg: 154,
-    antallDager: 20
+    barnetillegg: {
+        perioder: [
+            {
+                periode: {
+                    fraOgMed: '2020-01-20',
+                    tilOgMed: '2020-02-21'
+                },
+                antallBarn: 1
+            }
+        ]
+    }
 };
