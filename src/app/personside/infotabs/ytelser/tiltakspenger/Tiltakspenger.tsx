@@ -8,7 +8,7 @@ import type { Tiltakspenger as ITiltakspenger } from '../../../../../models/ytel
 import theme from '../../../../../styles/personOversiktTheme';
 import { useOnMount } from '../../../../../utils/customHooks';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
-import { NOKellerNull, formaterDato } from '../../../../../utils/string-utils';
+import { formaterDato } from '../../../../../utils/string-utils';
 import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
 
 interface Props {
@@ -16,16 +16,16 @@ interface Props {
 }
 
 const StyledPanel = styled(Panel)`
-    padding: ${theme.margin.layout};
+  padding: ${theme.margin.layout};
 `;
 
 const OversiktStyling = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    > * {
-        flex-basis: 40%;
-        flex-grow: 1;
-    }
+  display: flex;
+  flex-wrap: wrap;
+  > * {
+    flex-basis: 40%;
+    flex-grow: 1;
+  }
 `;
 
 function Tiltakspenger(props: Props) {
@@ -35,10 +35,9 @@ function Tiltakspenger(props: Props) {
     });
 
     const tiltakspengerEntries = {
-        'Fra og med': formaterDato(props.tiltakspenger.fom),
-        'Til og med': formaterDato(props.tiltakspenger.tom),
-        Dagsats: NOKellerNull(props.tiltakspenger.dagsatsTiltakspenger),
-        'Antall dager': props.tiltakspenger.antallDager
+        'Fra og med': formaterDato(props.tiltakspenger.periode.fraOgMed),
+        'Til og med': formaterDato(props.tiltakspenger.periode.tilOgMed),
+        Kilde: props.tiltakspenger.kilde
     };
 
     return (
@@ -53,10 +52,14 @@ function Tiltakspenger(props: Props) {
                             <DescriptionList entries={tiltakspengerEntries} />
                         </YtelserInfoGruppe>
 
-                        <TiltakspengerBarneTillegg
-                            antallBarn={props.tiltakspenger.antallBarn ?? 0}
-                            dagsats={props.tiltakspenger.dagsatsBarnetillegg}
-                        />
+                        {props.tiltakspenger.barnetillegg?.perioder?.map((p) => (
+                            <TiltakspengerBarneTillegg
+                                key={p.periode.fraOgMed}
+                                antallBarn={p.antallBarn}
+                                fom={p.periode.fraOgMed}
+                                tom={p.periode.tilOgMed}
+                            />
+                        ))}
                     </OversiktStyling>
                 </StyledPanel>
             </article>
@@ -66,12 +69,13 @@ function Tiltakspenger(props: Props) {
 
 type BarneTilleggProps = {
     antallBarn: number;
-    dagsats?: number;
+    fom: string;
+    tom: string;
 };
 const TiltakspengerBarneTillegg = (props: BarneTilleggProps) => {
     const entries = {
         'Antall barn': props.antallBarn,
-        'Dagsats barnetillegg': NOKellerNull(props.dagsats)
+        Periode: `${formaterDato(props.fom)} - ${formaterDato(props.tom)}`
     };
 
     return (

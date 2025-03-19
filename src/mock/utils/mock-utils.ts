@@ -10,11 +10,11 @@ export function vektetSjanse(seededFaker: Faker, vekt: number) {
     return seededFaker.datatype.boolean(vekt);
 }
 
-export function fyllRandomListe<T>(dataGen: () => T, max: number, kanVæreTom?: boolean): Array<T> {
+export function fyllRandomListe<T>(dataGen: (i?: number) => T, max: number, kanVæreTom?: boolean): Array<T> {
     const liste = [];
     const n = navfaker.random.integer(max) || (kanVæreTom === true ? 0 : 1);
     for (let i = 0; i < n; i++) {
-        liste.push(dataGen());
+        liste.push(dataGen(i));
     }
     return liste;
 }
