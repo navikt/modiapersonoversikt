@@ -81,8 +81,8 @@ importers:
         specifier: ^11.1.2
         version: 11.4.0(vr4o4nhcalhouhhisoe2xbqfo4)
       nav-frontend-alertstriper:
-        specifier: ^3.1.1
-        version: 3.1.2(classnames@2.5.1)(nav-frontend-alertstriper-style@2.1.1(nav-frontend-core@5.1.1)(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0)
+        specifier: ^4.0.2
+        version: 4.0.2(classnames@2.5.1)(nav-frontend-alertstriper-style@2.1.1(nav-frontend-core@5.1.1)(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0)
       nav-frontend-alertstriper-style:
         specifier: ^2.1.1
         version: 2.1.1(nav-frontend-core@5.1.1)(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)
@@ -2758,13 +2758,13 @@ packages:
       nav-frontend-paneler-style: ^1.0.2
       nav-frontend-typografi-style: ^1.0.33
 
-  nav-frontend-alertstriper@3.1.2:
-    resolution: {integrity: sha512-+zHjrdLlS33lFcj8sZgMA9l42LL+GYELj6nTVPGOJ8yhA51TztVIkenqGvXF4qTehHgS2MfqsnCvQiNT3cAFkQ==}
+  nav-frontend-alertstriper@4.0.2:
+    resolution: {integrity: sha512-1J5PpubJA+C0mstt5DWf7bateMlze4Pehrb79TCSWc+mm69TYjhQPjt/mEBT8C9/U9Jnpr6x86aaUGi+ZZnSxw==}
     peerDependencies:
       classnames: ^2.2.5
-      nav-frontend-alertstriper-style: ^2.0.35
-      nav-frontend-ikoner-assets: ^2.0.9
-      nav-frontend-typografi: ^3.0.2
+      nav-frontend-alertstriper-style: ^3.0.0
+      nav-frontend-ikoner-assets: ^3.0.0
+      nav-frontend-typografi: ^4.0.0
       prop-types: ^15.5.10
       react: ^16.8.0 || ^17.0.0
 
@@ -6279,7 +6279,7 @@ snapshots:
       nav-frontend-paneler-style: 1.1.1(nav-frontend-core@5.1.1)
       nav-frontend-typografi-style: 1.1.1
 
-  nav-frontend-alertstriper@3.1.2(classnames@2.5.1)(nav-frontend-alertstriper-style@2.1.1(nav-frontend-core@5.1.1)(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0):
+  nav-frontend-alertstriper@4.0.2(classnames@2.5.1)(nav-frontend-alertstriper-style@2.1.1(nav-frontend-core@5.1.1)(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0):
     dependencies:
       classnames: 2.5.1
       nav-frontend-alertstriper-style: 2.1.1(nav-frontend-core@5.1.1)(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)
