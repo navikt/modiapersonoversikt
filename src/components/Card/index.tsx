@@ -8,6 +8,7 @@ type Props = Omit<ComponentPropsWithRef<typeof Box.New>, 'as'> & {
 const Card = ({ children, as, ...rest }: PropsWithChildren<Props>) => {
     return (
         <Box.New
+            className="shadow-md"
             background="raised"
             borderRadius="large"
             borderColor="neutral-subtle"
