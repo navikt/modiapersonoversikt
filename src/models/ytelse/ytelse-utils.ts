@@ -19,7 +19,7 @@ export function isSykepenger(ytelse: Ytelse): ytelse is Sykepenger {
     return 'sykmeldtFom' in ytelse;
 }
 export function isTiltakspenger(ytelse: Ytelse): ytelse is Tiltakspenger {
-    return 'rettighet' in ytelse && ytelse.rettighet === 'TILTAKSPENGER';
+    return 'rettighet' in ytelse;
 }
 export function isPensjon(ytelse: Ytelse): ytelse is Pensjon {
     return 'fom' in ytelse;
