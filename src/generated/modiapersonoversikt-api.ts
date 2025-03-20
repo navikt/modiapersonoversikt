@@ -437,23 +437,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/journalforing/{fnr}/{traadId}': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** @deprecated */
-        post: operations['knyttTilSak_1'];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     '/rest/internal/pdlsok': {
         parameters: {
             query?: never;
@@ -566,57 +549,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/dialog/{fnr}/sendmelding': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** @deprecated */
-        post: operations['sendMeldinger_1'];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/dialog/{fnr}/fortsett/opprett': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** @deprecated */
-        post: operations['startFortsettDialog_1'];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/dialog/{fnr}/fortsett/ferdigstill': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** @deprecated */
-        post: operations['sendFortsettDialog_1'];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     '/rest/v2/tilgang/auth': {
         parameters: {
             query?: never;
@@ -625,57 +557,6 @@ export interface paths {
             cookie?: never;
         };
         get: operations['authIntropection'];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/v2/person/{fnr}': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @deprecated */
-        get: operations['hentPersondata_1'];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/v2/person/{fnr}/identer': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @deprecated */
-        get: operations['hentIdenter_1'];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/v2/person/{fnr}/aktorid': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @deprecated */
-        get: operations['hentAktorId_1'];
         put?: never;
         post?: never;
         delete?: never;
@@ -724,227 +605,6 @@ export interface paths {
             cookie?: never;
         };
         get: operations['hentAlleEnheterForOppgave'];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/utbetaling/{fnr}': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @deprecated */
-        get: operations['hent_2'];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/tilgang': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @deprecated */
-        get: operations['harTilgang_2'];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/tilgang/{fnr}': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @deprecated */
-        get: operations['harTilgang_3'];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/tilgang/auth': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @deprecated */
-        get: operations['authIntropection_1'];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/saker/{fnr}/v2/sakstema': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @deprecated */
-        get: operations['hentSakstemaSoknadsstatus_1'];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/saker/{fnr}/dokument/{journalpostId}/{dokumentreferanse}': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @deprecated */
-        get: operations['hentDokument_1'];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/person/{fnr}/kontaktinformasjon': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @deprecated */
-        get: operations['hentKontaktinformasjon_1'];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/oppgaver/tildelt': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @deprecated */
-        get: operations['finnTildelte_2'];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/oppgaver/tildelt/{fnr}': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @deprecated */
-        get: operations['finnTildelte_3'];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/oppgaver/oppgavedata/{oppgaveId}': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @deprecated */
-        get: operations['getOppgaveData_1'];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/oppfolging/{fnr}': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @deprecated */
-        get: operations['hent_3'];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/oppfolging/{fnr}/ytelserogkontrakter': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @deprecated */
-        get: operations['hentUtvidetOppf_1'];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/journalforing/{fnr}/saker/': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @deprecated */
-        get: operations['hentSaker_1'];
         put?: never;
         post?: never;
         delete?: never;
@@ -1081,54 +741,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/enheter/{enhetId}/ansatte': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations['hentAnsattePaaEnhet_1'];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/enheter/oppgavebehandlere/v2/foreslatte': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations['hentBehandlendeEnhet_1'];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/enheter/oppgavebehandlere/alle': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations['hentAlleEnheterForOppgave_1'];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     '/rest/dialogoppgave/v2/tema': {
         parameters: {
             query?: never;
@@ -1153,23 +765,6 @@ export interface paths {
             cookie?: never;
         };
         get: operations['hentSladdeArsaker'];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/dialog/{fnr}/meldinger': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @deprecated */
-        get: operations['hentMeldinger_1'];
         put?: never;
         post?: never;
         delete?: never;
@@ -1366,11 +961,6 @@ export interface components {
             skifteform: DodsboSkifteform;
             sistEndret?: components['schemas']['SistEndret'];
         };
-        Enhet: {
-            id: string;
-            navn: string;
-            publikumsmottak: components['schemas']['Publikumsmottak'][];
-        };
         Fodested: {
             land?: components['schemas']['KodeBeskrivelseString'];
             kommune?: string;
@@ -1472,7 +1062,7 @@ export interface components {
             bostedAdresse: components['schemas']['Adresse'][];
             kontaktAdresse: components['schemas']['Adresse'][];
             oppholdsAdresse: components['schemas']['Adresse'][];
-            navEnhet?: components['schemas']['Enhet'];
+            navEnhet?: components['schemas']['PersonDataEnhet'];
             statsborgerskap: components['schemas']['Statsborgerskap'][];
             adressebeskyttelse: components['schemas']['KodeBeskrivelseAdresseBeskyttelse'][];
             sikkerhetstiltak: components['schemas']['Sikkerhetstiltak'][];
@@ -1490,6 +1080,11 @@ export interface components {
             kontaktInformasjon: components['schemas']['KontaktInformasjon'];
             bankkonto?: components['schemas']['Bankkonto'];
             forelderBarnRelasjon: components['schemas']['ForelderBarnRelasjon'][];
+        };
+        PersonDataEnhet: {
+            id: string;
+            navn: string;
+            publikumsmottak: components['schemas']['Publikumsmottak'][];
         };
         PersonSomAdressat: {
             fnr?: string;
@@ -1896,6 +1491,13 @@ export interface components {
             typekode: string;
             underkategorikode?: string;
         };
+        Enhet: {
+            enhetId: string;
+            enhetNavn: string;
+            /** @enum {string} */
+            status: EnhetStatus;
+            oppgavebehandler: boolean;
+        };
         SendMeldingRequestV2: {
             fnr: string;
             traadId?: string;
@@ -2125,23 +1727,6 @@ export interface components {
             oppgaveid: string;
             beskrivelse: string;
         };
-        SendMeldingRequest: {
-            traadId?: string;
-            /** @enum {string} */
-            traadType: SendMeldingRequestTraadType;
-            enhet: string;
-            fritekst: string;
-            temagruppe?: string;
-            sak?: components['schemas']['JournalforingSak'];
-            erOppgaveTilknyttetAnsatt?: boolean;
-            avsluttet?: boolean;
-            behandlingsId?: string;
-            oppgaveId?: string;
-        };
-        OpprettHenvendelseRequest: {
-            enhet?: string;
-            traadId: string;
-        };
         AuthIntropectionDTO: {
             /** Format: int64 */
             expirationDate: number;
@@ -2242,7 +1827,6 @@ export type DeltBosted = components['schemas']['DeltBosted'];
 export type DigitalKontaktinformasjonTredjepartsperson =
     components['schemas']['DigitalKontaktinformasjonTredjepartsperson'];
 export type Dodsbo = components['schemas']['Dodsbo'];
-export type Enhet = components['schemas']['Enhet'];
 export type Fodested = components['schemas']['Fodested'];
 export type ForelderBarnRelasjon = components['schemas']['ForelderBarnRelasjon'];
 export type Foreldreansvar = components['schemas']['Foreldreansvar'];
@@ -2259,6 +1843,7 @@ export type NavnOgIdent = components['schemas']['NavnOgIdent'];
 export type OmraadeMedHandlingString = components['schemas']['OmraadeMedHandlingString'];
 export type OrganisasjonSomAdressat = components['schemas']['OrganisasjonSomAdressat'];
 export type Person = components['schemas']['Person'];
+export type PersonDataEnhet = components['schemas']['PersonDataEnhet'];
 export type PersonSomAdressat = components['schemas']['PersonSomAdressat'];
 export type Publikumsmottak = components['schemas']['Publikumsmottak'];
 export type Sikkerhetstiltak = components['schemas']['Sikkerhetstiltak'];
@@ -2311,6 +1896,7 @@ export type Innsatsgruppe = components['schemas']['Innsatsgruppe'];
 export type JournalforingSak = components['schemas']['JournalforingSak'];
 export type Resultat = components['schemas']['Resultat'];
 export type BehandlendeEnhetRequest = components['schemas']['BehandlendeEnhetRequest'];
+export type Enhet = components['schemas']['Enhet'];
 export type SendMeldingRequestV2 = components['schemas']['SendMeldingRequestV2'];
 export type Journalpost = components['schemas']['Journalpost'];
 export type MeldingDto = components['schemas']['MeldingDTO'];
@@ -2337,8 +1923,6 @@ export type SendTilSladdingRequest = components['schemas']['SendTilSladdingReque
 export type LukkTraadRequest = components['schemas']['LukkTraadRequest'];
 export type MerkSomFeilsendtRequest = components['schemas']['MerkSomFeilsendtRequest'];
 export type AvsluttGosysOppgaveRequest = components['schemas']['AvsluttGosysOppgaveRequest'];
-export type SendMeldingRequest = components['schemas']['SendMeldingRequest'];
-export type OpprettHenvendelseRequest = components['schemas']['OpprettHenvendelseRequest'];
 export type AuthIntropectionDto = components['schemas']['AuthIntropectionDTO'];
 export type Ansatt = components['schemas']['Ansatt'];
 export type CaptureStats = components['schemas']['CaptureStats'];
@@ -3071,33 +2655,6 @@ export interface operations {
             };
         };
     };
-    knyttTilSak_1: {
-        parameters: {
-            query?: {
-                enhet?: string;
-            };
-            header?: never;
-            path: {
-                fnr: string;
-                traadId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                'application/json': components['schemas']['JournalforingSak'];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
     pdlPersonsok: {
         parameters: {
             query?: never;
@@ -3258,86 +2815,6 @@ export interface operations {
             };
         };
     };
-    sendMeldinger_1: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                fnr: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                'application/json': components['schemas']['SendMeldingRequest'];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['TraadDTO'];
-                };
-            };
-        };
-    };
-    startFortsettDialog_1: {
-        parameters: {
-            query?: never;
-            header?: {
-                'Ignore-Conflict'?: boolean;
-            };
-            path: {
-                fnr: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                'application/json': components['schemas']['OpprettHenvendelseRequest'];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['FortsettDialogDTO'];
-                };
-            };
-        };
-    };
-    sendFortsettDialog_1: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                fnr: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                'application/json': components['schemas']['SendMeldingRequest'];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['TraadDTO'];
-                };
-            };
-        };
-    };
     authIntropection: {
         parameters: {
             query?: never;
@@ -3354,72 +2831,6 @@ export interface operations {
                 };
                 content: {
                     '*/*': components['schemas']['AuthIntropectionDTO'];
-                };
-            };
-        };
-    };
-    hentPersondata_1: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                fnr: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['Data'];
-                };
-            };
-        };
-    };
-    hentIdenter_1: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                fnr: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['Identliste'];
-                };
-            };
-        };
-    };
-    hentAktorId_1: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                fnr: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': string;
                 };
             };
         };
@@ -3484,302 +2895,6 @@ export interface operations {
                 };
                 content: {
                     '*/*': components['schemas']['Enhet'][];
-                };
-            };
-        };
-    };
-    hent_2: {
-        parameters: {
-            query: {
-                startDato: string;
-                sluttDato: string;
-            };
-            header?: never;
-            path: {
-                fnr: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['UtbetalingerResponseDTO'];
-                };
-            };
-        };
-    };
-    harTilgang_2: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['TilgangDTO'];
-                };
-            };
-        };
-    };
-    harTilgang_3: {
-        parameters: {
-            query?: {
-                enhet?: string;
-            };
-            header?: never;
-            path: {
-                fnr: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['TilgangDTO'];
-                };
-            };
-        };
-    };
-    authIntropection_1: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['AuthIntropectionDTO'];
-                };
-            };
-        };
-    };
-    hentSakstemaSoknadsstatus_1: {
-        parameters: {
-            query: {
-                enhet: string;
-            };
-            header?: never;
-            path: {
-                fnr: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['ResultatSoknadsstatus'];
-                };
-            };
-        };
-    };
-    hentDokument_1: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                fnr: string;
-                journalpostId: string;
-                dokumentreferanse: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    'application/pdf': Record<string, never>;
-                };
-            };
-        };
-    };
-    hentKontaktinformasjon_1: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                fnr: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['Kontaktinformasjon'];
-                };
-            };
-        };
-    };
-    finnTildelte_2: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['OppgaveDTO'][];
-                };
-            };
-        };
-    };
-    finnTildelte_3: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                fnr: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['OppgaveDTO'][];
-                };
-            };
-        };
-    };
-    getOppgaveData_1: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                oppgaveId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['OppgaveDTO'];
-                };
-            };
-        };
-    };
-    hent_3: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                fnr: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': {
-                        [key: string]: Record<string, never>;
-                    };
-                };
-            };
-        };
-    };
-    hentUtvidetOppf_1: {
-        parameters: {
-            query?: {
-                startDato?: string;
-                sluttDato?: string;
-            };
-            header?: never;
-            path: {
-                fnr: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': {
-                        [key: string]: Record<string, never>;
-                    };
-                };
-            };
-        };
-    };
-    hentSaker_1: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                fnr: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['Resultat'];
                 };
             };
         };
@@ -3962,73 +3077,6 @@ export interface operations {
             };
         };
     };
-    hentAnsattePaaEnhet_1: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                enhetId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['Ansatt'][];
-                };
-            };
-        };
-    };
-    hentBehandlendeEnhet_1: {
-        parameters: {
-            query: {
-                fnr: string;
-                temakode: string;
-                typekode: string;
-                underkategori?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['Enhet'][];
-                };
-            };
-        };
-    };
-    hentAlleEnheterForOppgave_1: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['Enhet'][];
-                };
-            };
-        };
-    };
     hentAlleTema: {
         parameters: {
             query?: never;
@@ -4067,30 +3115,6 @@ export interface operations {
                 };
                 content: {
                     '*/*': string[];
-                };
-            };
-        };
-    };
-    hentMeldinger_1: {
-        parameters: {
-            query: {
-                enhet: string;
-            };
-            header?: never;
-            path: {
-                fnr: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['TraadDTO'][];
                 };
             };
         };
@@ -4373,6 +3397,12 @@ export enum SakBaksystem {
     SAF = 'SAF',
     SAK = 'SAK'
 }
+export enum EnhetStatus {
+    UNDER_ETABLERING = 'UNDER_ETABLERING',
+    AKTIV = 'AKTIV',
+    UNDER_AVVIKLING = 'UNDER_AVVIKLING',
+    NEDLAGT = 'NEDLAGT'
+}
 export enum SendMeldingRequestV2TraadType {
     SAMTALEREFERAT = 'SAMTALEREFERAT',
     MELDINGSKJEDE = 'MELDINGSKJEDE',
@@ -4401,11 +3431,6 @@ export enum MeldingDTOStatus {
     LEST_AV_BRUKER = 'LEST_AV_BRUKER'
 }
 export enum TraadDTOTraadType {
-    SAMTALEREFERAT = 'SAMTALEREFERAT',
-    MELDINGSKJEDE = 'MELDINGSKJEDE',
-    CHAT = 'CHAT'
-}
-export enum SendMeldingRequestTraadType {
     SAMTALEREFERAT = 'SAMTALEREFERAT',
     MELDINGSKJEDE = 'MELDINGSKJEDE',
     CHAT = 'CHAT'
