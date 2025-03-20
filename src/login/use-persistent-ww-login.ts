@@ -14,7 +14,7 @@ const authResource = {
     useFetch(): UseQueryResult<AuthIntropectionDTO, FetchError> {
         return useQuery({
             queryKey: ['auth'],
-            queryFn: () => get(`${apiBaseUri}/tilgang/auth`)
+            queryFn: () => get(`${apiBaseUri}/v2/tilgang/auth`)
         });
     }
 };
