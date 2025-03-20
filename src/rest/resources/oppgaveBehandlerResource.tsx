@@ -4,7 +4,7 @@ import { apiBaseUri } from '../../api/config';
 import type { Enhet } from '../../models/meldinger/oppgave';
 
 const queryKey = ['oppgavebehandlere'];
-const url = `${apiBaseUri}/enheter/oppgavebehandlere/alle`;
+const url = `${apiBaseUri}/v2/enheter/oppgavebehandlere/alle`;
 
 const resource = {
     usePrefetch() {
