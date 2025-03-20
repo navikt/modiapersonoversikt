@@ -160,7 +160,7 @@
         "typescript": "^5.8.2",
         "undici": "^7.5.0",
         "vite-require": "^0.2.3",
-        "vitest": "^3.0.7"
+        "vitest": "^3.0.9"
     },
     "overrides": {
         "nav-frontend-js-utils": {
