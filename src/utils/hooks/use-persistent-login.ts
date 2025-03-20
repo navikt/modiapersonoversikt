@@ -135,12 +135,15 @@ const authResource = {
     useFetch(): UseQueryResult<AuthIntropectionDTO, FetchError> {
         return useQuery({
             queryKey: ['auth'],
-            queryFn: () => get(`${apiBaseUri}/tilgang/auth`)
+            queryFn: () => get(`${apiBaseUri}/v2/tilgang/auth`)
         });
     }
 };
 
-export type PersistentLoginState = { isLoggedIn: boolean; errorStatus?: ErrorReason };
+export type PersistentLoginState = {
+    isLoggedIn: boolean;
+    errorStatus?: ErrorReason;
+};
 export default function usePersistentLogin(): PersistentLoginState {
     if (debug) console.debug('Using debugging of persistent-loging');
 
