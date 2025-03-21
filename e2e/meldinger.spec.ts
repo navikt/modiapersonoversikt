@@ -95,3 +95,19 @@ test('Autocomplete textarea', async ({ page }) => {
     const replacedText = 'Hei, Aremark';
     await expect(textarea).toHaveText(replacedText);
 });
+
+test('Avslutt dialog', async ({ page }) => {
+    await page.goto('/new/person/meldinger?traadId=XJjYJeZH');
+    await page.getByRole('button', { name: 'Merk' }).click();
+    const avsluttItem = page.getByRole('menuitem', { name: 'Avslutt' });
+    await expect(avsluttItem).toBeVisible();
+    await avsluttItem.click();
+
+    const avsluttDialog = page.getByRole('dialog', { name: 'Avslutt dialog' });
+    await expect(avsluttDialog).toBeVisible();
+    await avsluttDialog.getByRole('button', { name: 'Avslutt' }).click();
+
+    await expect(avsluttDialog).not.toBeVisible();
+
+    await expect(page.getByText('Samtalen er avsluttet')).toBeVisible();
+});

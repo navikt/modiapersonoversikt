@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { merge } from 'lodash';
 import { guid } from 'nav-frontend-js-utils';
 import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
 import { nyesteMelding } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
@@ -23,6 +24,7 @@ export class MeldingerBackendMock {
     private fnr = '';
     private oppgaveBackendMock: OppgaverBackendMock;
     private journalposter: Record<string, MeldingJournalpost[]> = {};
+    private patches: Record<string, Partial<Traad>[]> = {};
 
     constructor(oppgaveBackendMock: OppgaverBackendMock) {
         this.oppgaveBackendMock = oppgaveBackendMock;
@@ -49,12 +51,21 @@ export class MeldingerBackendMock {
                 .filter((svar) => svar.traadId === traad.traadId)
                 .flatMap((traad) => traad.meldinger);
 
+            const patches = this.patches[traad.traadId];
+            const patched = traad;
+            if (patches) {
+                for (const patch of patches) {
+                    merge(patched, patch);
+                }
+            }
+
             return maskerMeldingVedManglendeTilgang({
-                traadId: traad.traadId,
-                traadType: traad.traadType,
-                temagruppe: traad.temagruppe,
-                meldinger: [...tilhorendeSvar, ...traad.meldinger],
-                journalposter: [...traad.journalposter, ...(journalposter ?? [])]
+                ...patched,
+                traadId: patched.traadId,
+                traadType: patched.traadType,
+                temagruppe: patched.temagruppe,
+                meldinger: [...tilhorendeSvar, ...patched.meldinger],
+                journalposter: [...patched.journalposter, ...(journalposter ?? [])]
             });
         });
     }
@@ -95,6 +106,22 @@ export class MeldingerBackendMock {
     public journalfor(traadId: string, request: JournalforingSak) {
         const newJournalpost = toJournalpost(request);
         this.journalposter[traadId] = [...(this.journalposter[traadId] ?? []), newJournalpost];
+    }
+
+    public lukkTraad(traadId: string, fnr: string) {
+        const traad = getMockTraader(fnr).find((t) => t.traadId === traadId);
+        if (!traad) return;
+
+        this.patches[traadId] = [
+            ...(this.patches[traadId] ?? []),
+            {
+                avsluttetDato: dayjs().format('YYYY-MM-DD hh:mm'),
+                meldinger: traad.meldinger.map((m) => ({
+                    ...m,
+                    avsluttetDato: dayjs().format('YYYY-MM-DD hh:mm')
+                }))
+            }
+        ];
     }
 }
 

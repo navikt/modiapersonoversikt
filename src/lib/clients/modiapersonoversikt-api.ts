@@ -140,6 +140,76 @@ export const useMeldinger = () => {
     });
 };
 
+export const useTraadById = (traadId: string) => {
+    const fnr = usePersonAtomValue();
+    const enhet = useAtomValue(aktivEnhetAtom) ?? '';
+    const { data: traader } = $api.useSuspenseQuery('post', '/rest/v2/dialog/meldinger', {
+        body: { fnr },
+        params: { query: { enhet } }
+    });
+
+    const traad = traader.find((t) => t.traadId === traadId);
+
+    return traad;
+};
+
 export const useInnloggetSaksbehandler = () => {
     return $api.useSuspenseQuery('get', '/rest/hode/me');
+};
+
+export const useSladdeAarsaker = (traadId: string) => {
+    return $api.useSuspenseQuery('get', '/rest/dialogmerking/sladdearsaker/{kjedeid}', {
+        params: { path: { kjedeid: traadId } }
+    });
+};
+
+export const useSendTilSladdingMutation = () => {
+    const queryClient = useQueryClient();
+    const fnr = usePersonAtomValue();
+    const enhet = useAtomValue(aktivEnhetAtom) as string;
+
+    return $api.useMutation('post', '/rest/dialogmerking/sladding', {
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: $api.queryOptions('post', '/rest/v2/dialog/meldinger', {
+                    body: { fnr },
+                    params: { query: { enhet } }
+                }).queryKey
+            });
+        }
+    });
+};
+
+export const useMarkerFeilsendtMutation = () => {
+    const queryClient = useQueryClient();
+    const fnr = usePersonAtomValue();
+    const enhet = useAtomValue(aktivEnhetAtom) as string;
+
+    return $api.useMutation('post', '/rest/dialogmerking/feilsendt', {
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: $api.queryOptions('post', '/rest/v2/dialog/meldinger', {
+                    body: { fnr },
+                    params: { query: { enhet } }
+                }).queryKey
+            });
+        }
+    });
+};
+
+export const useAvsluttDialogMutation = () => {
+    const queryClient = useQueryClient();
+    const fnr = usePersonAtomValue();
+    const enhet = useAtomValue(aktivEnhetAtom) as string;
+
+    return $api.useMutation('post', '/rest/dialogmerking/lukk-traad', {
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: $api.queryOptions('post', '/rest/v2/dialog/meldinger', {
+                    body: { fnr },
+                    params: { query: { enhet } }
+                }).queryKey
+            });
+        }
+    });
 };

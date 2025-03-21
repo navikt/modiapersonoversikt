@@ -1,5 +1,6 @@
-import { http } from 'msw';
+import { http, type DefaultBodyType } from 'msw';
 import { guid } from 'nav-frontend-js-utils';
+import type { LukkTraadRequest } from 'src/generated/modiapersonoversikt-api';
 import { apiBaseUri } from '../../api/config';
 import {
     erChatMelding,
@@ -77,17 +78,17 @@ const sendMeldinghandler = http.post(
 );
 
 const merkFeilsendtHandler = http.post(
-    `${apiBaseUri}/v2/dialogmerking/feilsendt`,
+    `${apiBaseUri}/dialogmerking/feilsendt`,
     withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
 );
 
 const sladdingHandlers = [
     http.post(
-        `${apiBaseUri}/v2/dialogmerking/sladding`,
+        `${apiBaseUri}/dialogmerking/sladding`,
         withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
     ),
     http.get(
-        `${apiBaseUri}/v2/dialogmerking/sladdearsaker/:kjedeId`,
+        `${apiBaseUri}/dialogmerking/sladdearsaker/:kjedeId`,
         withDelayedResponse(randomDelay(), STATUS_OK, () => [
             'Sendt til feil bruker',
             'Innholder sensitiv informasjon',
@@ -103,7 +104,10 @@ const avsluttOppgaveGosysHandler = http.post(
 
 const lukkTraadHandler = http.post(
     `${apiBaseUri}/dialogmerking/lukk-traad`,
-    withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+    withDelayedResponse<DefaultBodyType, LukkTraadRequest>(randomDelay(), STATUS_OK, async (request) => {
+        const { traadId, fnr } = await request.json();
+        meldingerBackendMock.lukkTraad(traadId, fnr);
+    })
 );
 
 export const getSFDialogHandlers = (backend: MeldingerBackendMock) => {
