@@ -79,7 +79,7 @@ importers:
         version: 2.3.0
       nav-datovelger:
         specifier: ^11.1.2
-        version: 11.4.0(vr4o4nhcalhouhhisoe2xbqfo4)
+        version: 11.4.0(mqlswrflpfoionw4kl2ajpf7fa)
       nav-frontend-alertstriper:
         specifier: ^3.1.1
         version: 3.1.2(classnames@2.5.1)(nav-frontend-alertstriper-style@2.1.1(nav-frontend-core@5.1.1)(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0)
@@ -213,8 +213,8 @@ importers:
         specifier: ^19.0.0
         version: 19.0.0
       react-day-picker:
-        specifier: ^7.3.2
-        version: 7.4.10(react@19.0.0)
+        specifier: ^9.6.3
+        version: 9.6.3(react@19.0.0)
       react-dom:
         specifier: ^19.0.0
         version: 19.0.0(react@19.0.0)
@@ -3317,13 +3317,14 @@ packages:
     peerDependencies:
       react: '>=16.3.0'
 
-  react-day-picker@7.4.10:
-    resolution: {integrity: sha512-/QkK75qLKdyLmv0kcVzhL7HoJPazoZXS8a6HixbVoK6vWey1Od1WRLcxfyEiUsRfccAlIlf6oKHShqY2SM82rA==}
-    peerDependencies:
-      react: ~0.13.x || ~0.14.x || ^15.0.0 || ^16.0.0 || ^17.0.0
-
   react-day-picker@9.5.0:
     resolution: {integrity: sha512-WmJnPFVLnKh5Qscm7wavMNg86rqPverSWjx+zgK8/ZmGRSQ8c8OoqW10RI+AzAfT2atIxImpCUU2R9Z7Xb2SUA==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      react: '>=16.8.0'
+
+  react-day-picker@9.6.3:
+    resolution: {integrity: sha512-rDqCSKAl5MLX0z1fLkYcBenQK4ANlYaAhUR0ruVSVAhAa7/ZmKQqgDpXPoS7bYEkgBRH06LO1qNFP1Ki8uiZpw==}
     engines: {node: '>=18'}
     peerDependencies:
       react: '>=16.8.0'
@@ -6284,7 +6285,7 @@ snapshots:
 
   nanoid@3.3.8: {}
 
-  nav-datovelger@11.4.0(vr4o4nhcalhouhhisoe2xbqfo4):
+  nav-datovelger@11.4.0(mqlswrflpfoionw4kl2ajpf7fa):
     dependencies:
       classnames: 2.5.1
       dayjs: 1.11.13
@@ -6294,7 +6295,7 @@ snapshots:
       nav-frontend-skjema: 3.2.6(@navikt/fnrvalidator@2.1.5)(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.0.0))(nav-frontend-lenker@1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.0.0))(nav-frontend-skjema-style@2.2.3(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0)
       nav-frontend-typografi: 3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0)
       react: 19.0.0
-      react-day-picker: 7.4.10(react@19.0.0)
+      react-day-picker: 9.6.3(react@19.0.0)
     transitivePeerDependencies:
       - prop-types
       - react-dom
@@ -6795,12 +6796,14 @@ snapshots:
     dependencies:
       react: 19.0.0
 
-  react-day-picker@7.4.10(react@19.0.0):
+  react-day-picker@9.5.0(react@19.0.0):
     dependencies:
-      prop-types: 15.8.1
+      '@date-fns/tz': 1.2.0
+      date-fns: 4.1.0
+      date-fns-jalali: 4.1.0-0
       react: 19.0.0
 
-  react-day-picker@9.5.0(react@19.0.0):
+  react-day-picker@9.6.3(react@19.0.0):
     dependencies:
       '@date-fns/tz': 1.2.0
       date-fns: 4.1.0
