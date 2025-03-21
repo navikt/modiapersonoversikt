@@ -153,8 +153,8 @@ importers:
         specifier: ^1.1.1
         version: 1.1.1(nav-frontend-core@5.1.1)(nav-frontend-lukknapp-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))
       nav-frontend-paneler:
-        specifier: ^2.1.1
-        version: 2.1.2(classnames@2.5.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0)
+        specifier: ^3.0.2
+        version: 3.0.2(classnames@2.5.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0)
       nav-frontend-paneler-style:
         specifier: ^1.1.1
         version: 1.1.1(nav-frontend-core@5.1.1)
@@ -172,7 +172,7 @@ importers:
         version: 2.2.3(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)
       nav-frontend-snakkeboble:
         specifier: ^2.1.1
-        version: 2.1.2(classnames@2.5.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-paneler@2.1.2(classnames@2.5.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0))(nav-frontend-snakkeboble-style@1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0)
+        version: 2.1.2(classnames@2.5.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-paneler@3.0.2(classnames@2.5.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0))(nav-frontend-snakkeboble-style@1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0)
       nav-frontend-snakkeboble-style:
         specifier: ^1.1.1
         version: 1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)
@@ -2943,13 +2943,13 @@ packages:
     peerDependencies:
       nav-frontend-core: ^5.0.11
 
-  nav-frontend-paneler@2.1.2:
-    resolution: {integrity: sha512-jpXh5uG8+Cui7KrvPBBUepeomOMpV2+clxe7pQg8Fk7q9evWFXM/1Lv2TPo03jEzQgr5bn/tfY1C+ZNQhs/h3w==}
+  nav-frontend-paneler@3.0.2:
+    resolution: {integrity: sha512-SJIOPC9znsmxHmeDHDWaXpr1K0uJoIlF+iEvC7svjZEOw1GaK6i6EoER9lysnyTnljFFMgyyt2OwpOp7sNulQQ==}
     peerDependencies:
       classnames: ^2.2.5
-      nav-frontend-paneler-style: ^1.0.0
-      nav-frontend-typografi: ^3.0.2
-      nav-frontend-typografi-style: ^1.0.33
+      nav-frontend-paneler-style: ^2.0.0
+      nav-frontend-typografi: ^4.0.0
+      nav-frontend-typografi-style: ^2.0.0
       prop-types: ^15.5.10
       react: ^16.8.0 || ^17.0.0
 
@@ -6458,7 +6458,7 @@ snapshots:
     dependencies:
       nav-frontend-core: 5.1.1
 
-  nav-frontend-paneler@2.1.2(classnames@2.5.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0):
+  nav-frontend-paneler@3.0.2(classnames@2.5.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0):
     dependencies:
       classnames: 2.5.1
       nav-frontend-paneler-style: 1.1.1(nav-frontend-core@5.1.1)
@@ -6500,10 +6500,10 @@ snapshots:
       nav-frontend-core: 5.1.1
       nav-frontend-typografi-style: 1.1.1
 
-  nav-frontend-snakkeboble@2.1.2(classnames@2.5.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-paneler@2.1.2(classnames@2.5.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0))(nav-frontend-snakkeboble-style@1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0):
+  nav-frontend-snakkeboble@2.1.2(classnames@2.5.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-paneler@3.0.2(classnames@2.5.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0))(nav-frontend-snakkeboble-style@1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0):
     dependencies:
       classnames: 2.5.1
-      nav-frontend-paneler: 2.1.2(classnames@2.5.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0)
+      nav-frontend-paneler: 3.0.2(classnames@2.5.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0)
       nav-frontend-paneler-style: 1.1.1(nav-frontend-core@5.1.1)
       nav-frontend-snakkeboble-style: 1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)
       nav-frontend-typografi: 3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0)
