@@ -5,6 +5,7 @@ import createFetchClient from 'openapi-fetch';
 import createClient from 'openapi-react-query';
 import { FetchError } from 'src/api/api';
 import { apiBaseUriWithoutRest } from 'src/api/config';
+import { toast } from 'src/components/toasts';
 import type { paths } from 'src/generated/modiapersonoversikt-api';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 
@@ -74,6 +75,10 @@ export const useSendMelding = () => {
                     params: { query: { enhet } }
                 }).queryKey
             });
+            toast.success('Melding sendt');
+        },
+        onError: () => {
+            toast.error('Kunne ikke sende melding');
         }
     });
 };
@@ -91,6 +96,10 @@ export const useJournalforMutation = () => {
                     params: { query: { enhet } }
                 }).queryKey
             });
+            toast.success('Tråden ble journalført');
+        },
+        onError: () => {
+            toast.error('Kunne ikke journalføre tråden');
         }
     });
 };
@@ -177,6 +186,10 @@ export const useSendTilSladdingMutation = () => {
                     params: { query: { enhet } }
                 }).queryKey
             });
+            toast.success('Meldingene ble sendt til sladding');
+        },
+        onError: () => {
+            toast.error('Kunne ikke sende til sladding');
         }
     });
 };
@@ -194,6 +207,10 @@ export const useMarkerFeilsendtMutation = () => {
                     params: { query: { enhet } }
                 }).queryKey
             });
+            toast.success('Tråden ble markert som feilsent');
+        },
+        onError: () => {
+            toast.error('Kunne ikke avslutte dialogen');
         }
     });
 };
@@ -211,6 +228,10 @@ export const useAvsluttDialogMutation = () => {
                     params: { query: { enhet } }
                 }).queryKey
             });
+            toast.success('Tråden ble avsluttet');
+        },
+        onError: () => {
+            toast.error('Kunne ikke avslutte tråden');
         }
     });
 };

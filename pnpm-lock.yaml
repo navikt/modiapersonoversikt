@@ -40,7 +40,7 @@ importers:
         version: 7.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@navikt/tag-input':
         specifier: ^2.0.2
-        version: 2.0.2(7tmcxve3q2crcswam2mdob3u34)
+        version: 2.0.2(abca7f4e1ad9cdbc505686a03e715e40)
       '@navikt/textparser':
         specifier: ^2.5.0
         version: 2.5.0(react@19.1.0)
@@ -233,6 +233,9 @@ importers:
       redux-thunk:
         specifier: ^2.4.2
         version: 2.4.2(redux@4.2.1)
+      sonner:
+        specifier: ^2.0.1
+        version: 2.0.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       styled-components:
         specifier: ^6.1.17
         version: 6.1.17(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -1154,6 +1157,9 @@ packages:
     peerDependencies:
       '@types/react': '>=17.0.30'
       react: '>=17.0.0 || >19.0.0-rc'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
 
   '@navikt/ds-tailwind@7.18.0':
     resolution: {integrity: sha512-lZy6jRgXpNxAXr9griUO58Gd4F8fQ7FGgWzaZm+YunSMU4uLksPU5IhrNScMBf8YjNL3KeEir518nPCklA9bdQ==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tailwind/7.18.0/e46f846e53aa4a31d98eaff121739b2ad2293132}
@@ -3775,6 +3781,12 @@ packages:
   solid-js@1.9.5:
     resolution: {integrity: sha512-ogI3DaFcyn6UhYhrgcyRAMbu/buBJitYQASZz5WzfQVPP10RD2AbCoRZ517psnezrasyCbWzIxZ6kVqet768xw==}
 
+  sonner@2.0.1:
+    resolution: {integrity: sha512-FRBphaehZ5tLdLcQ8g2WOIRE+Y7BCfWi5Zyd8bCvBjiW8TxxAyoWZIxS661Yz6TGPqFQ4VLzOF89WEYhfynSFQ==}
+    peerDependencies:
+      react: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+      react-dom: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
@@ -4990,11 +5002,12 @@ snapshots:
       '@floating-ui/react-dom': 2.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@navikt/aksel-icons': 7.19.0
       '@navikt/ds-tokens': 7.18.0
-      '@types/react': 19.1.0
       clsx: 2.1.1
       date-fns: 4.1.0
       react: 19.1.0
       react-day-picker: 9.6.1(react@19.1.0)
+    optionalDependencies:
+      '@types/react': 19.1.0
     transitivePeerDependencies:
       - react-dom
 
@@ -5010,7 +5023,7 @@ snapshots:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
-  '@navikt/tag-input@2.0.2(7tmcxve3q2crcswam2mdob3u34)':
+  '@navikt/tag-input@2.0.2(abca7f4e1ad9cdbc505686a03e715e40)':
     dependencies:
       classnames: 2.5.1
       nav-frontend-js-utils: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.1.0)
@@ -7644,6 +7657,11 @@ snapshots:
       csstype: 3.1.3
       seroval: 1.2.1
       seroval-plugins: 1.2.1(seroval@1.2.1)
+
+  sonner@2.0.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+    dependencies:
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
 
   source-map-js@1.2.1: {}
 
