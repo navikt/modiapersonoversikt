@@ -1,26 +1,20 @@
-import { EnvelopeClosedIcon, EnvelopeOpenIcon, PersonIcon, PrinterSmallIcon } from '@navikt/aksel-icons';
-import { Alert, BodyShort, Box, Button, Chat, HStack, Heading, Skeleton, Tooltip, VStack } from '@navikt/ds-react';
-import { useAtom, useAtomValue } from 'jotai';
-import { Suspense, useCallback, useMemo, useState } from 'react';
+import { PrinterSmallIcon } from '@navikt/aksel-icons';
+import { Alert, BodyShort, Box, Button, HStack, Heading, Skeleton, Tooltip, VStack } from '@navikt/ds-react';
+import { useSetAtom } from 'jotai';
+import { Suspense, useCallback, useState } from 'react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
-import RichText, {
-    createDynamicHighlightingRule,
-    defaultRules,
-    HighlightRule,
-    SladdRule
-} from 'src/components/RichText';
-import { $api } from 'src/lib/clients/modiapersonoversikt-api';
-import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
+import { useTraadById } from 'src/lib/clients/modiapersonoversikt-api';
 import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
 import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { formatterDatoTid } from 'src/utils/date-utils';
 import { formaterDato } from 'src/utils/string-utils';
 import { JournalForingModal } from '../Journalforing';
-import { meldingerFilterAtom } from '../List/Filter';
-import { erMeldingFraNav, nyesteMelding, saksbehandlerTekst, traadKanBesvares, traadstittel } from '../List/utils';
+import { nyesteMelding, saksbehandlerTekst, traadKanBesvares, traadstittel } from '../List/utils';
+import { DialogMerkMeny } from '../Merk';
 import { Journalposter } from './Journalposter';
+import { Meldinger } from './Meldinger';
 
 const TraadMeta = ({ traad }: { traad: Traad }) => (
     <HStack justify="space-between">
@@ -58,15 +52,10 @@ export const TraadDetail = ({ traadId }: { traadId: string }) => (
 );
 
 const TraadDetailContent = ({ traadId }: { traadId: string }) => {
-    const [, setDialogUnderArbeid] = useAtom(dialogUnderArbeidAtom);
-    const fnr = usePersonAtomValue();
-    const enhet = useAtomValue(aktivEnhetAtom) ?? '';
-    const { data: traader } = $api.useSuspenseQuery('post', '/rest/v2/dialog/meldinger', {
-        body: { fnr },
-        params: { query: { enhet } }
-    });
+    const setDialogUnderArbeid = useSetAtom(dialogUnderArbeidAtom);
+    const [journalforingOpen, setJournalforingOpen] = useState(false);
 
-    const traad = traader.find((t) => t.traadId === traadId);
+    const traad = useTraadById(traadId);
 
     const svarSamtale = useCallback(() => {
         setDialogUnderArbeid(traadId);
@@ -81,22 +70,18 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
     const avsluttetDato = traad.avsluttetDato || melding.avsluttetDato;
     const avsluttetAv = traad.sistEndretAv || melding.skrevetAvTekst;
 
-    const [journalforingOpen, setJournalforingOpen] = useState(false);
-
     return (
         <Card as={VStack} padding="2" minHeight="0">
             <VStack minHeight="0" gap="2" as="section" aria-label="Dialogdetaljer">
                 <TraadMeta traad={traad} />
                 <HStack gap="4">
-                    <Button variant="secondary-neutral" size="small" onClick={() => setJournalforingOpen(true)}>
+                    <Button variant="secondary" size="small" onClick={() => setJournalforingOpen(true)}>
                         Journalfør
                     </Button>
-                    <Button variant="secondary-neutral" size="small">
+                    <Button variant="secondary" size="small">
                         Oppgave
                     </Button>
-                    <Button variant="secondary-neutral" size="small">
-                        Merk
-                    </Button>
+                    <DialogMerkMeny traadId={traadId} />
                 </HStack>
 
                 {avsluttetDato && !kanBesvares && (
@@ -119,17 +104,7 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
 
                 <Journalposter journalposter={traad.journalposter} />
 
-                <Box.New
-                    minHeight="0"
-                    overflowY="scroll"
-                    background="sunken"
-                    borderColor="neutral-subtle"
-                    borderRadius="medium"
-                    borderWidth="1"
-                    padding="2"
-                >
-                    <Meldinger meldinger={traad.meldinger} />
-                </Box.New>
+                <Meldinger meldinger={traad.meldinger} />
                 {kanBesvares && (
                     <Box.New marginBlock="space-8">
                         <Button onClick={svarSamtale}>Svar</Button>
@@ -139,57 +114,5 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
 
             <JournalForingModal open={journalforingOpen} setOpen={setJournalforingOpen} traad={traad} />
         </Card>
-    );
-};
-const ReadStatus = ({ date }: { date?: string }) =>
-    date ? (
-        <>
-            <BodyShort size="small">Lest</BodyShort>
-            <EnvelopeOpenIcon color="var(--ax-text-success-icon)" />
-            <BodyShort size="small" textColor="subtle">
-                ({formatterDatoTid(date)})
-            </BodyShort>
-        </>
-    ) : (
-        <>
-            <BodyShort size="small">Ikke lest</BodyShort>
-            <EnvelopeClosedIcon color="var(--ax-text-warning-icon)" />
-        </>
-    );
-
-const Meldinger = ({ meldinger }: { meldinger: Traad['meldinger'] }) => {
-    const { search } = useAtomValue(meldingerFilterAtom);
-    const highlightRule = useMemo(() => createDynamicHighlightingRule((search ?? '').split(' ')), [search]);
-    return (
-        <VStack gap="10" align="baseline" paddingBlock="0 16" as="section" aria-label="Meldinger">
-            {meldinger.map((m) => {
-                const erFraNav = erMeldingFraNav(m.meldingstype);
-                return (
-                    <Chat
-                        key={m.id}
-                        size="small"
-                        avatar={erFraNav ? 'nav' : <PersonIcon />}
-                        name={m.skrevetAvTekst}
-                        timestamp={formatterDatoTid(m.opprettetDato)}
-                        position={erFraNav ? 'right' : 'left'}
-                        className={erFraNav ? 'self-end' : undefined}
-                        variant={erFraNav ? 'info' : 'neutral'}
-                    >
-                        <Chat.Bubble className="text-wrap">
-                            <RichText rules={[SladdRule, HighlightRule, highlightRule, ...defaultRules]}>
-                                {m.fritekst}
-                            </RichText>
-                            {erFraNav && (
-                                <Box.New borderColor="neutral-subtleA" borderWidth="1 0 0 0">
-                                    <HStack gap="2" align="center" justify="end">
-                                        <ReadStatus date={m.lestDato} />
-                                    </HStack>
-                                </Box.New>
-                            )}
-                        </Chat.Bubble>
-                    </Chat>
-                );
-            })}
-        </VStack>
     );
 };
