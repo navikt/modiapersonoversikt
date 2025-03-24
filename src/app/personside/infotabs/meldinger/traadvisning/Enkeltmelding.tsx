@@ -74,8 +74,7 @@ const StyledMeldingStatus = styled.div`
     margin-left: auto;
 `;
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function Avsender({ melding, rule }: { melding: Melding; rule?: Rule }) {
+export function Avsender({ melding }: { melding: Melding; rule?: Rule }) {
     if (erMeldingFraBruker(melding.meldingstype)) {
         return null;
     }

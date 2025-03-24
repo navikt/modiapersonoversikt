@@ -45,7 +45,7 @@ const focusOnRelativeParent = css`
     }
 `;
 
-export const theme = {
+const theme = {
     color: {
         ...navFarger,
         lenkeSelected: '#005b82',

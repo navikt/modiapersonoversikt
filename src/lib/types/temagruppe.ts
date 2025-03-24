@@ -16,15 +16,6 @@ export enum Temagruppe {
     InnholdSlettet = '' // Dette er en hack fra baksystemene. Man har der valgt å sette temagruppe til tom string for å vise at innholdet i meldingen har blitt slettet
 }
 
-export const TemaSamtalereferat = [
-    Temagruppe.Arbeid,
-    Temagruppe.Helse,
-    Temagruppe.Familie,
-    Temagruppe.Hjelpemiddel,
-    Temagruppe.Pensjon,
-    Temagruppe.Øvrig
-];
-
 export function temagruppeTekst(temagruppe: Temagruppe | null) {
     switch (temagruppe) {
         case Temagruppe.Uføretrygd:

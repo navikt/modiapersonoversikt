@@ -27,7 +27,7 @@ export function getMockTiltakspenger(fødselsnummer: string): TiltakspengerResou
     return fyllRandomListe<Tiltakspenger>((i) => getMockTiltakspengerYtelser(fødselsnummer, i), 3);
 }
 
-export function getMockTiltakspengerYtelser(fødselsnummer: string, i?: number): Tiltakspenger {
+function getMockTiltakspengerYtelser(fødselsnummer: string, i?: number): Tiltakspenger {
     faker.seed(Number(fødselsnummer) + (i ?? 0));
     navfaker.seed(`${fødselsnummer}pleiepenger${i}`);
 

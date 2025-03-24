@@ -1,21 +1,21 @@
 import { Locale } from 'src/lib/types/skrivestotte';
 
-export interface InlineRule {
+interface InlineRule {
     type: 'internal';
     regex: RegExp;
     replacement: () => string;
 }
 
-export interface ExternalRule {
+interface ExternalRule {
     type: 'external';
     regex: RegExp;
     externalId: string;
     locale?: Locale;
 }
 
-export type Rule = InlineRule | ExternalRule;
+type Rule = InlineRule | ExternalRule;
 
-export type Rules = Array<Rule>;
+type Rules = Array<Rule>;
 
 const navKontorSignaturReferanse = 'b4b67323-f57d-47a2-ac19-7ba4b62fe156';
 export const rules: Rules = [
