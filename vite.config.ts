@@ -110,10 +110,6 @@ export default defineConfig({
                 replacement: '$1'
             },
             {
-                find: '~react-day-picker',
-                replacement: 'react-day-picker'
-            },
-            {
                 find: '~nav-frontend-core',
                 replacement: 'nav-frontend-core'
             }

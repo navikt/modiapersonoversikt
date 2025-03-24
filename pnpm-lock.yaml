@@ -40,7 +40,7 @@ importers:
         version: 7.0.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@navikt/tag-input':
         specifier: ^2.0.2
-        version: 2.0.2(gct6i4lcxszvmjlgvsfus3jouu)
+        version: 2.0.2(0f3b7396ca7397ec7b893aaa2e44808e)
       '@navikt/textparser':
         specifier: ^2.5.0
         version: 2.5.0(react@19.0.0)
@@ -77,9 +77,6 @@ importers:
       md5:
         specifier: ^2.3.0
         version: 2.3.0
-      nav-datovelger:
-        specifier: ^11.1.2
-        version: 11.4.0(vr4o4nhcalhouhhisoe2xbqfo4)
       nav-frontend-alertstriper:
         specifier: ^3.1.1
         version: 3.1.2(classnames@2.5.1)(nav-frontend-alertstriper-style@2.1.1(nav-frontend-core@5.1.1)(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0)
@@ -212,9 +209,6 @@ importers:
       react:
         specifier: ^19.0.0
         version: 19.0.0
-      react-day-picker:
-        specifier: ^7.3.2
-        version: 7.4.10(react@19.0.0)
       react-dom:
         specifier: ^19.0.0
         version: 19.0.0(react@19.0.0)
@@ -1067,6 +1061,9 @@ packages:
     peerDependencies:
       '@types/react': '>=17.0.30'
       react: '>=17.0.0 || >19.0.0-rc'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
 
   '@navikt/ds-tailwind@7.15.0':
     resolution: {integrity: sha512-sj1L6bSc1T0xat9DPyKjkDcXhQd9I94Nj9vDQ44pikUYDIoj0/8WG2S/2qI2yB2Hj/hNwP1tAdaChrlim/9WRg==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tailwind/7.15.0/b761ae2085ec07eec9915a0321a020f93b349c53}
@@ -2250,16 +2247,6 @@ packages:
   flatted@3.3.3:
     resolution: {integrity: sha512-GX+ysw4PBCz0PzosHDepZGANEuFCMLrnRTiEy9McGjmkCQYwRq4A/X786G/fjM/+OjsWSU1ZrY5qyARZmO/uwg==}
 
-  focus-trap-react@8.11.3:
-    resolution: {integrity: sha512-y126gMYuB1aVYiEZSP6/v9bAfVmAIUVixanhcoMelkz7bOh+l0c3h05CEHC8S63ztxdRI2AAPS9AsTat6jlDeQ==}
-    peerDependencies:
-      prop-types: ^15.8.1
-      react: '>=16.0.0'
-      react-dom: '>=16.0.0'
-
-  focus-trap@6.9.4:
-    resolution: {integrity: sha512-v2NTsZe2FF59Y+sDykKY+XjqZ0cPfhq/hikWVL88BqLivnNiEffAsac6rP6H45ff9wG9LL5ToiDqrLEP9GX9mw==}
-
   for-each@0.3.5:
     resolution: {integrity: sha512-dKx12eRCVIzqCxFGplyFKJMPvLEWgmNtUrpTiJIR5u97zEhRG8ySrtboPHZXx7daLxQVrl643cTzbab2tkQjxg==}
     engines: {node: '>= 0.4'}
@@ -2747,18 +2734,6 @@ packages:
     resolution: {integrity: sha512-WNLf5Sd8oZxOm+TzppcYk8gVOgP+l58xNy58D0nbUnOxOWRWvlcCV4kUF7ltmI6PsrLl/BgKEyS4mqsGChFN0w==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
-
-  nav-datovelger@11.4.0:
-    resolution: {integrity: sha512-q1V9yW9qPM2Fkx3NVi6KO8OdxfANiMF3mnF+QmDSqT2OykIXLgW6A92W3gnSCQFJVAAP+OY6vGW5VIdrLnzv2Q==}
-    peerDependencies:
-      classnames: ^2.2.x
-      dayjs: ^1.10.x
-      nav-frontend-core: ^5.0.x
-      nav-frontend-js-utils: ^1.0.x
-      nav-frontend-skjema: ^3.1.x
-      nav-frontend-typografi: ^3.0.x
-      react: '17'
-      react-day-picker: ^7.4.x
 
   nav-faker@3.2.4:
     resolution: {integrity: sha512-XnpyF0iPMgDaFToussR8AyRSj1lrnQvsswdeG9tCstR2cqj2FhBO9udKyhXnbuxTbG9lXzGswpVexQhtl0H0Ag==}
@@ -3317,11 +3292,6 @@ packages:
     peerDependencies:
       react: '>=16.3.0'
 
-  react-day-picker@7.4.10:
-    resolution: {integrity: sha512-/QkK75qLKdyLmv0kcVzhL7HoJPazoZXS8a6HixbVoK6vWey1Od1WRLcxfyEiUsRfccAlIlf6oKHShqY2SM82rA==}
-    peerDependencies:
-      react: ~0.13.x || ~0.14.x || ^15.0.0 || ^16.0.0 || ^17.0.0
-
   react-day-picker@9.5.0:
     resolution: {integrity: sha512-WmJnPFVLnKh5Qscm7wavMNg86rqPverSWjx+zgK8/ZmGRSQ8c8OoqW10RI+AzAfT2atIxImpCUU2R9Z7Xb2SUA==}
     engines: {node: '>=18'}
@@ -3645,9 +3615,6 @@ packages:
 
   svg-tags@1.0.0:
     resolution: {integrity: sha512-ovssysQTa+luh7A5Weu3Rta6FJlFBBbInjOh722LIt6klpU2/HtdUbszju/G4devcvk8PGt7FCLv5wftu3THUA==}
-
-  tabbable@5.3.3:
-    resolution: {integrity: sha512-QD9qKY3StfbZqWOPLp0++pOrAVb/HbUi5xCc8cUo4XjP19808oaMiDzn0leBY5mCespIBM0CIZePzZjgzR83kA==}
 
   tabbable@6.2.0:
     resolution: {integrity: sha512-Cat63mxsVJlzYvN51JmVXIgNoUokrIaT2zLclCXjRd8boZ0004U4KCs/sToJ75C6sdlByWxpYnb5Boif1VSFew==}
@@ -4590,11 +4557,12 @@ snapshots:
       '@floating-ui/react-dom': 2.1.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@navikt/aksel-icons': 7.17.2
       '@navikt/ds-tokens': 7.17.2
-      '@types/react': 19.0.10
       clsx: 2.1.1
       date-fns: 4.1.0
       react: 19.0.0
       react-day-picker: 9.5.0(react@19.0.0)
+    optionalDependencies:
+      '@types/react': 19.0.10
     transitivePeerDependencies:
       - react-dom
 
@@ -4610,7 +4578,7 @@ snapshots:
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
 
-  '@navikt/tag-input@2.0.2(gct6i4lcxszvmjlgvsfus3jouu)':
+  '@navikt/tag-input@2.0.2(0f3b7396ca7397ec7b893aaa2e44808e)':
     dependencies:
       classnames: 2.5.1
       nav-frontend-js-utils: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.0.0)
@@ -5809,18 +5777,6 @@ snapshots:
 
   flatted@3.3.3: {}
 
-  focus-trap-react@8.11.3(prop-types@15.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
-    dependencies:
-      focus-trap: 6.9.4
-      prop-types: 15.8.1
-      react: 19.0.0
-      react-dom: 19.0.0(react@19.0.0)
-      tabbable: 5.3.3
-
-  focus-trap@6.9.4:
-    dependencies:
-      tabbable: 5.3.3
-
   for-each@0.3.5:
     dependencies:
       is-callable: 1.2.7
@@ -6278,21 +6234,6 @@ snapshots:
   nanoid@3.3.11: {}
 
   nanoid@3.3.8: {}
-
-  nav-datovelger@11.4.0(vr4o4nhcalhouhhisoe2xbqfo4):
-    dependencies:
-      classnames: 2.5.1
-      dayjs: 1.11.13
-      focus-trap-react: 8.11.3(prop-types@15.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      nav-frontend-core: 5.1.1
-      nav-frontend-js-utils: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.0.0)
-      nav-frontend-skjema: 3.2.6(@navikt/fnrvalidator@2.1.5)(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.0.0))(nav-frontend-lenker@1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.0.0))(nav-frontend-skjema-style@2.2.3(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0)
-      nav-frontend-typografi: 3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0)
-      react: 19.0.0
-      react-day-picker: 7.4.10(react@19.0.0)
-    transitivePeerDependencies:
-      - prop-types
-      - react-dom
 
   nav-faker@3.2.4:
     dependencies:
@@ -6790,11 +6731,6 @@ snapshots:
     dependencies:
       react: 19.0.0
 
-  react-day-picker@7.4.10(react@19.0.0):
-    dependencies:
-      prop-types: 15.8.1
-      react: 19.0.0
-
   react-day-picker@9.5.0(react@19.0.0):
     dependencies:
       '@date-fns/tz': 1.2.0
@@ -7159,8 +7095,6 @@ snapshots:
   svg-parser@2.0.4: {}
 
   svg-tags@1.0.0: {}
-
-  tabbable@5.3.3: {}
 
   tabbable@6.2.0: {}
 
