@@ -71,7 +71,8 @@ export const initAmplitude = () => {
     return amplitudeInstance;
 };
 
-export const trackPageView = () => {
+//@ts-ignore
+const _trackPageView = () => {
     if (!amplitudeInstance) {
         console.warn('Amplitude is not initialized. Ignoring');
         return;

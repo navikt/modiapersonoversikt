@@ -4,8 +4,8 @@ import KnappBase from 'nav-frontend-knapper';
 import RawModal from 'nav-frontend-modal';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import * as React from 'react';
+import type { PersistentLoginState } from 'src/login/use-persistent-ww-login';
 import styled from 'styled-components';
-import type { PersistentLoginState } from '../utils/hooks/use-persistent-login';
 
 const Modal = styled(RawModal)`
   text-align: center;

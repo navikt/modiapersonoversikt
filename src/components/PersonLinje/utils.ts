@@ -21,7 +21,7 @@ export function hentBarnUnder22(forelderBarnRelasjon: ForelderBarnRelasjon[]) {
     return hentBarn(forelderBarnRelasjon).filter((barn) => hentAlderOrDefault(barn) <= 21);
 }
 
-export function hentBarn(forelderBarnRelasjon: ForelderBarnRelasjon[]) {
+function hentBarn(forelderBarnRelasjon: ForelderBarnRelasjon[]) {
     return forelderBarnRelasjon.filter((relasjon) => relasjon.rolle === ForelderBarnRelasjonRolle.BARN);
 }
 

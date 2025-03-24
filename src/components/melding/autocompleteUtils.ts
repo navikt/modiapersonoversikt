@@ -14,7 +14,7 @@ export type AutofullforData = {
     saksbehandler?: Me;
 };
 
-export type AutofullforMap = {
+type AutofullforMap = {
     'bruker.fnr': string;
     'bruker.fornavn': string;
     'bruker.etternavn': string;

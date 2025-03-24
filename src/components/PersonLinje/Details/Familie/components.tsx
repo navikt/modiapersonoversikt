@@ -48,7 +48,7 @@ export function ForelderBarnRelasjonVisning({
     );
 }
 
-export function FamilierelasjonIkon({
+function FamilierelasjonIkon({
     relasjon,
     erBarn
 }: {

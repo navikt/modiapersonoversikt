@@ -1,6 +1,6 @@
 import type * as React from 'react';
 import styled from 'styled-components';
-import { theme } from '../styles/personOversiktTheme';
+import theme from '../styles/personOversiktTheme';
 
 interface StyleProps {
     width?: string;

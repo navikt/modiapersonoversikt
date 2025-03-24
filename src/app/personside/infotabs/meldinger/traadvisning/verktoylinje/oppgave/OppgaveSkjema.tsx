@@ -82,7 +82,7 @@ function OppgaveSkjema(props: OppgaveProps) {
                     if (props.onSuccessCallback) props.onSuccessCallback();
                 })
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                .catch((error: Error) => {
+                .catch((_error: Error) => {
                     settResultat(Resultat.FEIL);
                 })
         );

@@ -5,7 +5,7 @@ import * as React from 'react';
 import { type ChangeEvent, type ReactNode, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import type { Traad } from '../../../../../models/meldinger/meldinger';
-import { pxToRem, theme } from '../../../../../styles/personOversiktTheme';
+import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { meldingerTest } from '../../dyplenkeTest/utils-dyplenker-test';
 import { valgtMeldingKlasse } from './TraadListe';
 import TraadSammendrag from './TraadSammendrag';

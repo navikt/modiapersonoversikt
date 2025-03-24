@@ -2,10 +2,8 @@ import { LinebreakRule, type Rule, build, parse } from '@navikt/textparser';
 import { LinkRule, ParagraphRule } from './rules';
 
 export {
-    LinebreakRule,
     HighlightRule,
-    createDynamicHighlightingRule,
-    BoldRule
+    createDynamicHighlightingRule
 } from '@navikt/textparser';
 export * from './rules';
 import './styles.css';

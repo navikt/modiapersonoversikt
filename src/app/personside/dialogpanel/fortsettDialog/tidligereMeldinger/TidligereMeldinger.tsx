@@ -4,7 +4,7 @@ import { Undertittel } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import type { Traad } from '../../../../../models/meldinger/meldinger';
-import { theme } from '../../../../../styles/personOversiktTheme';
+import theme from '../../../../../styles/personOversiktTheme';
 import EnkeltMelding from './EnkeltMelding';
 
 interface Props {

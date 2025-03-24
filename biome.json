@@ -52,7 +52,8 @@
                         "noSetterReturn": "off",
                         "noUnreachable": "off",
                         "noUnreachableSuper": "off",
-                        "noUnusedImports": "error"
+                        "noUnusedImports": "error",
+                        "noUnusedVariables": "error"
                     },
                     "style": {
                         "noArguments": "error",

@@ -25,12 +25,12 @@ export enum SaksoversiktActionTypes {
     SetDokumentAvsenderFilter = 'SetDokumentAvsenderFilter'
 }
 
-export interface SetViktigÅViteÅpen extends Action {
+interface SetViktigÅViteÅpen extends Action {
     type: SaksoversiktActionTypes.SetViktigÅViteÅpen;
     åpen: boolean;
 }
 
-export interface SetDokumentAvsenderFilter {
+interface SetDokumentAvsenderFilter {
     type: SaksoversiktActionTypes.SetDokumentAvsenderFilter;
     filterEndring: Partial<DokumentAvsenderFilter>;
 }

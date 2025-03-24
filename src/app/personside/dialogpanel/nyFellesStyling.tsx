@@ -7,7 +7,7 @@ import ErrorBoundary from '../../../components/ErrorBoundary';
 import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
 import VisuallyHiddenAutoFokusHeader from '../../../components/VisuallyHiddenAutoFokusHeader';
 import type { Traad } from '../../../models/meldinger/meldinger';
-import { theme } from '../../../styles/personOversiktTheme';
+import theme from '../../../styles/personOversiktTheme';
 import Verktoylinje from '../infotabs/meldinger/traadvisning/verktoylinje/Verktoylinje';
 import { traadstittel } from '../infotabs/meldinger/utils/meldingerUtils';
 import GaaTilNesteOppgaveKnapp from './GaaTilNesteOppgaveKnapp';

@@ -1,9 +1,3 @@
-import { getByRole } from '@testing-library/react';
-
-export function getAktivTab(infoTabs: HTMLElement) {
-    return getByRole(infoTabs, 'tab', { selected: true });
-}
-
 export const meldingerTest = {
     oversikt: 'test-meldinger-oversikt',
     melding: 'test-meldinger-melding'

@@ -20,9 +20,9 @@ import standardTraader from './standardTraader';
 import { statiskTraadMock } from './statiskTraadMock';
 
 // Legger inn to konstanter for å sørge for at vi får korrelasjon på tvers av mocking (tråd-oppgave feks)
-export const MOCKED_TRAADID_1 = '123';
-export const MOCKED_TRAADID_2 = '321';
-export const MOCKED_TRAADID_3 = '987';
+const MOCKED_TRAADID_1 = '123';
+const MOCKED_TRAADID_2 = '321';
+const MOCKED_TRAADID_3 = '987';
 
 export function getMockTraader(fodselsnummer: string): Traad[] {
     faker.seed(Number(fodselsnummer));

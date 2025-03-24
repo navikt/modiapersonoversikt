@@ -1,7 +1,7 @@
 import { Radio, RadioGroup } from '@navikt/ds-react';
 import { TraadType } from 'src/lib/types/modiapersonoversikt-api';
 
-export interface VelgMeldingsTypeProps {
+interface VelgMeldingsTypeProps {
     meldingsType: MeldingsType;
     setMeldingsType: (meldingsType: MeldingsType) => void;
 }
@@ -28,7 +28,7 @@ export enum MeldingsType {
     Infomelding = 'Infomelding'
 }
 
-export interface MeldingsTypeTekst {
+interface MeldingsTypeTekst {
     tittel: string;
     beskrivelse: string;
 }
@@ -47,7 +47,6 @@ export const meldingsTyperTekst: Record<MeldingsType, MeldingsTypeTekst> = {
         beskrivelse: 'Brukeren mottar varsel, men kan ikke svare.'
     }
 } as const;
-export default MeldingsTypeRadioKnapper;
 
 export const traadTypeToMeldingsType = (traadType: TraadType): MeldingsType => {
     switch (traadType) {

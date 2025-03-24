@@ -2,13 +2,19 @@ import { type UseQueryResult, useQuery } from '@tanstack/react-query';
 import { useEffect, useMemo, useState } from 'react';
 import { type FetchError, get } from '../api/api';
 import { apiBaseUri } from '../api/config';
-import {
-    type AuthIntropectionDTO,
-    ErrorReason,
-    INVALID_EXPIRATION_DATE,
-    type PersistentLoginState
-} from '../utils/hooks/use-persistent-login';
 import { persistentLoginWebworkerFactory } from './persistentLoginWebWorkerFactory';
+
+enum ErrorReason {
+    INVALID_EXPIRATION_DATE = 'INVALID_EXP_DATE',
+    FETCH_ERROR = 'FETCH_ERROR'
+}
+export type AuthIntropectionDTO = { expirationDate: number };
+const INVALID_EXPIRATION_DATE = -1;
+
+export type PersistentLoginState = {
+    isLoggedIn: boolean;
+    errorStatus?: ErrorReason;
+};
 
 const authResource = {
     useFetch(): UseQueryResult<AuthIntropectionDTO, FetchError> {

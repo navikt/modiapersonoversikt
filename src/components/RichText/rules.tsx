@@ -22,7 +22,7 @@ export const ParagraphRuleOverride: Rule = {
             content: [match.capture[0]]
         };
     },
-    react(node: ASTNode): ReactElementDescription {
+    react(_node: ASTNode): ReactElementDescription {
         return {
             type: 'p'
         };

@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { theme } from '../../styles/personOversiktTheme';
+import theme from '../../styles/personOversiktTheme';
 
 export const LayoutWrapper = styled.main`
     width: 100vw;

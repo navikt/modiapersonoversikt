@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { theme } from '../styles/personOversiktTheme';
+import theme from '../styles/personOversiktTheme';
 
 const FillCenterAndFadeIn = styled.div`
     flex-grow: 1;

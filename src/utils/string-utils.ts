@@ -98,6 +98,6 @@ export function capitalizeName(name: string): string {
 export function capitalizeAfterPunctuation(name: string): string {
     return name.replace(
         /(^|[.!?]\s+)([a-zøæå])/gm,
-        (txt, group1: string, group2: string) => group1 + group2.toUpperCase()
+        (_txt, group1: string, group2: string) => group1 + group2.toUpperCase()
     );
 }

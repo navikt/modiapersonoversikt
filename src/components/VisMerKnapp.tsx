@@ -2,7 +2,7 @@ import { useNavigate } from '@tanstack/react-router';
 import { HoyreChevron } from 'nav-frontend-chevron';
 import type * as React from 'react';
 import styled, { css } from 'styled-components';
-import { pxToRem, theme } from '../styles/personOversiktTheme';
+import theme, { pxToRem } from '../styles/personOversiktTheme';
 import { isSelectingText } from '../utils/function-utils';
 
 const Wrapper = styled.div<{ valgt: boolean }>`

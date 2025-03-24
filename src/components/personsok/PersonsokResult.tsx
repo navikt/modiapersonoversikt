@@ -131,16 +131,7 @@ function BostedsadresseCelle(props: { bostedsadresse?: string }) {
     return null;
 }
 
-export function BostedCelle(props: {
-    brukerinfo: PersonsokResponse['brukerinfo'];
-}) {
-    if (props.brukerinfo?.ansvarligEnhet) {
-        return <BodyShort size="small">{props.brukerinfo.ansvarligEnhet}</BodyShort>;
-    }
-    return null;
-}
-
-export function UtenlandskIDCelle(props: {
+function UtenlandskIDCelle(props: {
     utenlandskID?: PersonsokResponse['utenlandskID'];
 }) {
     const harUtenlandskID = props.utenlandskID?.some(

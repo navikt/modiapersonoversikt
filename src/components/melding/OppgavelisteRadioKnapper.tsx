@@ -1,6 +1,6 @@
 import { Radio } from '@navikt/ds-react';
 
-export interface OppgavelisteRadioKnapperProps {
+interface OppgavelisteRadioKnapperProps {
     enhet: string;
 }
 

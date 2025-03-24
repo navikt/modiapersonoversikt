@@ -4,8 +4,6 @@ import { type PropsWithChildren, useEffect } from 'react';
 
 export const themeAtom = atomWithStorage<'light' | 'dark'>('theme', 'light');
 
-export const useTheme = () => useAtomValue(themeAtom);
-
 export const ThemeProvider = ({ children }: PropsWithChildren) => {
     const theme = useAtomValue(themeAtom);
 
