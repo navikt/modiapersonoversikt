@@ -1,6 +1,9 @@
 name: Build & deploy to GCP
 
-on: [push]
+on:
+  push:
+    branch: [master]
+  workflow_dispatch:
 
 env:
     CI: true
@@ -39,7 +42,6 @@ jobs:
               run: pnpm run lint:ci
 
             - name: Publish Docker image
-              if: github.ref == 'refs/heads/master'
               uses: nais/docker-build-push@v0
               id: docker-build-push
               with:
@@ -52,7 +54,6 @@ jobs:
     deploy-dev:
         name: Deploy to dev-gcp
         needs: build
-        if: github.ref == 'refs/heads/master'
         environment: dev-gcp
         runs-on: ubuntu-latest
         permissions:
