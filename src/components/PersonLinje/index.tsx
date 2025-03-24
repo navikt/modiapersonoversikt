@@ -86,21 +86,21 @@ const PersonLinjeContent = () => {
                 ref={ref}
                 as="section"
                 aria-label="personlinje"
-                className="has-[:focus]:border-border-strong overflow-y-scroll max-h-[85vh]"
+                className="has-[:focus]:border-ax-border-neutral-strong overflow-y-scroll max-h-[85vh]"
             >
                 <QueryErrorBoundary error={error}>
                     <HStack
                         onClick={() => setIsExpanded((v) => !v)}
                         paddingInline="4"
                         justify="space-between"
-                        className="hover:bg-[var(--ax-bg-neutral-moderate-hover)] cursor-pointer"
+                        className="hover:bg-ax-bg-neutral-moderate-hover cursor-pointer"
                         wrap={false}
                     >
                         <PersonlinjeHeader isExpanded={isExpanded} />
                     </HStack>
                     <Box
                         className={twMerge(
-                            'border-t border-border-subtle transition-all duration-75',
+                            'border-t border-ax-border-neutral-subtle transition-all duration-75',
                             !isExpanded && 'h-0 invisible overflow-hidden'
                         )}
                     >
