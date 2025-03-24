@@ -101,7 +101,7 @@
         "nav-frontend-tekstomrade": "^2.1.1",
         "nav-frontend-typografi": "^3.1.1",
         "nav-frontend-typografi-style": "^1.0.22",
-        "openapi-fetch": "^0.13.4",
+        "openapi-fetch": "^0.13.5",
         "openapi-react-query": "^0.3.0",
         "react": "^19.0.0",
         "react-day-picker": "^7.3.2",
