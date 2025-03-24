@@ -19,14 +19,6 @@ interface ToggleVisAction extends Action {
     vis: boolean;
 }
 
-export function toggleVisVarsel(varsel: UnifiedVarsel, vis: boolean): ToggleVisAction {
-    return {
-        type: actionKeys.TOGGLE_VIS_VARSEL,
-        varsel: varsel,
-        vis: vis
-    };
-}
-
 type Actions = ToggleVisAction;
 
 // biome-ignore lint/style/useDefaultParameterLast: biome migration

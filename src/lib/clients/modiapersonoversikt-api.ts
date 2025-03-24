@@ -9,7 +9,7 @@ import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 
 export type ModiapersonoversiktAPI = paths;
 
-export const personoversiktApiClient = createFetchClient<paths>({
+const personoversiktApiClient = createFetchClient<paths>({
     baseUrl: apiBaseUriWithoutRest,
     credentials: 'include',
     mode: 'cors',

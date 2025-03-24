@@ -1,6 +1,6 @@
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import styled, { css } from 'styled-components';
-import { theme } from '../styles/personOversiktTheme';
+import theme from '../styles/personOversiktTheme';
 import DelayRender from './DelayRender';
 import FillCenterAndFadeIn from './FillCenterAndFadeIn';
 

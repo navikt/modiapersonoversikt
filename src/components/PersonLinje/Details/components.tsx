@@ -30,8 +30,7 @@ export const Group = ({
 
 export const InfoElement = ({
     children,
-    title,
-    icon
+    title
 }: PropsWithChildren<{
     title?: string;
     icon?: ReactElement;

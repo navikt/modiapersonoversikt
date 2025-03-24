@@ -3,7 +3,7 @@ import { createBrowserHistory, createRouter as createReactRouter } from '@tansta
 import type { PropsWithChildren } from 'react';
 import { routeTree } from './routeTree.gen';
 
-export const history = createBrowserHistory();
+const history = createBrowserHistory();
 
 export function createRouter({ Wrap }: { Wrap?: ({ children }: PropsWithChildren) => React.JSX.Element } = {}) {
     return createReactRouter({

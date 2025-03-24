@@ -65,7 +65,7 @@ export interface OppfolgingsVedtak {
     vedtakstype: string;
 }
 
-export interface Gjeldende14aVedtak {
+interface Gjeldende14aVedtak {
     innsatsgruppe: { kode: string; beskrivelse: string };
     hovedmal?: { kode: string; beskrivelse: string };
     fattetDato: string;

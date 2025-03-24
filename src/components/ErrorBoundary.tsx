@@ -14,7 +14,7 @@ import { FetchErrorRenderer } from './QueryErrorBoundary';
  */
 const ErrorBoundary = ({
     children,
-    boundaryName,
+    //boundaryName,
     errorText
 }: React.PropsWithChildren<{ boundaryName: string; errorText?: string }>) => {
     return (

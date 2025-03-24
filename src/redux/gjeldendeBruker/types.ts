@@ -20,7 +20,3 @@ export type GjeldendeBrukerActions = SetNyGjeldendeBrukerAction;
 export function useGjeldendeBruker(): string {
     return useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
 }
-
-export function useGjeldendeBrukerLastet(): boolean {
-    return useSelector((state: AppState) => !!state.gjeldendeBruker.hasLoaded);
-}

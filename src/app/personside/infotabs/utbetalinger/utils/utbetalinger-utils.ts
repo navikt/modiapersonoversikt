@@ -30,7 +30,7 @@ export function trekkBelopAscComparator(a: Trekk, b: Trekk) {
     return a.trekkbelop - b.trekkbelop;
 }
 
-export const toIsoDateString = (date: Dayjs) => date.format(ISO_DATE_FORMAT);
+const toIsoDateString = (date: Dayjs) => date.format(ISO_DATE_FORMAT);
 
 export const getFraDateFromPeriod = (periodeValg: PeriodeValg): FraTilDato => {
     switch (periodeValg) {
