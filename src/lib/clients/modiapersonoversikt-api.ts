@@ -1,10 +1,12 @@
-import { useQueryClient } from '@tanstack/react-query';
+import { type UseQueryResult, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useAtomValue } from 'jotai';
 import createFetchClient from 'openapi-fetch';
 import createClient from 'openapi-react-query';
-import { FetchError } from 'src/api/api';
-import { apiBaseUriWithoutRest } from 'src/api/config';
-import type { paths } from 'src/generated/modiapersonoversikt-api';
+import { FetchError, post } from 'src/api/api';
+import { apiBaseUri, apiBaseUriWithoutRest } from 'src/api/config';
+import type { DateRange } from 'src/components/DateFilters/types';
+import { utbetalingFilterDateRangeAtom } from 'src/components/Utbetaling/List/Filter';
+import type { UtbetalingerResponseDto, paths } from 'src/generated/modiapersonoversikt-api';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 
 export type ModiapersonoversiktAPI = paths;
@@ -142,4 +144,23 @@ export const useMeldinger = () => {
 
 export const useInnloggetSaksbehandler = () => {
     return $api.useSuspenseQuery('get', '/rest/hode/me');
+};
+
+function urlV2(fom: string, tom: string): string {
+    return `${apiBaseUri}/v2/utbetaling?startDato=${fom}&sluttDato=${tom}`;
+}
+
+export const useUtbetalingFilterDateRange: () => DateRange = () => {
+    return useAtomValue(utbetalingFilterDateRangeAtom);
+};
+
+export const useUtbetalinger: () => UseQueryResult<UtbetalingerResponseDto, FetchError> = () => {
+    const fnr = usePersonAtomValue();
+    const dateRange = useUtbetalingFilterDateRange();
+    const fom = dateRange.from.format('YYYY-MM-DD');
+    const tom = dateRange.to.format('YYYY-MM-DD');
+    return useQuery({
+        queryKey: ['utbetalinger', fnr, fom, tom],
+        queryFn: () => post(urlV2(fom, tom), { fnr })
+    });
 };
