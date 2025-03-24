@@ -22,8 +22,24 @@ export function nyesteMelding(traad: Traad): Melding {
     return [...traad.meldinger].sort(datoSynkende((melding) => melding.opprettetDato))[0];
 }
 
-function eldsteMelding(traad: Traad): Melding {
+export function eldsteMelding(traad: Traad): Melding {
     return [...traad.meldinger].sort(datoStigende((melding) => melding.opprettetDato))[0];
+}
+
+export function kanBesvares(traad?: Traad): boolean {
+    if (!traad) {
+        return false;
+    }
+    const melding = eldsteMelding(traad);
+
+    if (erMeldingstypeSamtalereferat(melding.meldingstype)) {
+        return true;
+    }
+    /**
+     * For meldingskjeder i salesforce er det kun mulig å sende oppfølgingsmeldinger
+     * før tråden blir avsluttet. På dette tidspunktet vil tråden bli journalført og låst.
+     */
+    return !melding.avsluttetDato;
 }
 
 export function traadKanBesvares(traad?: Traad): boolean {
@@ -59,6 +75,18 @@ export function traadstittel(traad: Traad): string {
     return traadTypeTekst(infoMelding, traad.traadType);
 }
 
+export function erMeldingstypeSamtalereferat(meldingstype: Meldingstype) {
+    return [Meldingstype.SAMTALEREFERAT_OPPMOTE, Meldingstype.SAMTALEREFERAT_TELEFON].includes(meldingstype);
+}
+
+export function erChatMelding(meldingstype: Meldingstype): boolean {
+    return [Meldingstype.CHATMELDING_FRA_BRUKER, Meldingstype.CHATMELDING_FRA_NAV].includes(meldingstype);
+}
+
+export function erChatTraad(traad: Traad): boolean {
+    return erChatMelding(nyesteMelding(traad).meldingstype);
+}
+
 export function erMeldingFraNav(meldingstype: Meldingstype) {
     return [
         Meldingstype.SVAR_SKRIFTLIG,
@@ -70,7 +98,7 @@ export function erMeldingFraNav(meldingstype: Meldingstype) {
     ].includes(meldingstype);
 }
 
-function erKontorsperret(traad: Traad): boolean {
+export function erKontorsperret(traad: Traad): boolean {
     return !!eldsteMelding(traad).kontorsperretEnhet;
 }
 
@@ -84,6 +112,14 @@ export function erJournalfort(traad: Traad): boolean {
 
 export function erFeilsendt(traad: Traad): boolean {
     return !!eldsteMelding(traad).markertSomFeilsendtAv;
+}
+
+export function erMeldingFeilsendt(melding: Melding): boolean {
+    return !!melding.markertSomFeilsendtAv;
+}
+
+export function erBehandlet(traad: Traad): boolean {
+    return traad.meldinger.some((melding) => erMeldingFraNav(melding.meldingstype));
 }
 
 export function saksbehandlerTekst(saksbehandler?: Veileder) {
