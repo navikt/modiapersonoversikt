@@ -78,8 +78,8 @@ importers:
         specifier: ^2.3.0
         version: 2.3.0
       nav-datovelger:
-        specifier: ^11.1.2
-        version: 11.4.0(vr4o4nhcalhouhhisoe2xbqfo4)
+        specifier: ^12.6.0
+        version: 12.6.0(vr4o4nhcalhouhhisoe2xbqfo4)
       nav-frontend-alertstriper:
         specifier: ^3.1.1
         version: 3.1.2(classnames@2.5.1)(nav-frontend-alertstriper-style@2.1.1(nav-frontend-core@5.1.1)(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.0.0))(prop-types@15.8.1)(react@19.0.0)
@@ -2748,15 +2748,15 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  nav-datovelger@11.4.0:
-    resolution: {integrity: sha512-q1V9yW9qPM2Fkx3NVi6KO8OdxfANiMF3mnF+QmDSqT2OykIXLgW6A92W3gnSCQFJVAAP+OY6vGW5VIdrLnzv2Q==}
+  nav-datovelger@12.6.0:
+    resolution: {integrity: sha512-z7hmVcPSqZAoOX40hG/a7E9QQNZoPjRfL2Qn+ylYIYLv5Nx0lzFVZPHnubzdUFTYBf5SFJ6EGWcv9u6ISn2FDA==}
     peerDependencies:
-      classnames: ^2.2.x
+      classnames: ^2.3.x
       dayjs: ^1.10.x
-      nav-frontend-core: ^5.0.x
+      nav-frontend-core: ^6.0.x
       nav-frontend-js-utils: ^1.0.x
-      nav-frontend-skjema: ^3.1.x
-      nav-frontend-typografi: ^3.0.x
+      nav-frontend-skjema: ^4.0.x
+      nav-frontend-typografi: ^4.0.x
       react: '17'
       react-day-picker: ^7.4.x
 
@@ -6284,7 +6284,7 @@ snapshots:
 
   nanoid@3.3.8: {}
 
-  nav-datovelger@11.4.0(vr4o4nhcalhouhhisoe2xbqfo4):
+  nav-datovelger@12.6.0(vr4o4nhcalhouhhisoe2xbqfo4):
     dependencies:
       classnames: 2.5.1
       dayjs: 1.11.13
