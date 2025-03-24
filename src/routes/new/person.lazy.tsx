@@ -39,7 +39,7 @@ function PersonLayout() {
                         </Suspense>
                     </VStack>
                 </Panel>
-                <PanelResizeHandle className="hover:bg-surface-neutral-subtle-hover w-1 focus:bg-blue-50" />
+                <PanelResizeHandle className="hover:bg-ax-bg-neutral-moderate-hover w-1 focus:bg-ax-brand-blue-100" />
                 <LukkbarNyMelding />
             </PanelGroup>
         </HStack>
