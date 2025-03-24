@@ -1,0 +1,7 @@
+{
+    "$schema": "https://unpkg.com/knip@5/schema.json",
+    "entry": ["src/main.tsx", "src/routes/**/*.tsx", "src/loginWebWorker.ts"],
+    "project": ["src/**/*.ts", "src/**/*.tsx"],
+    "ignore": ["src/generated/**"],
+    "ignoreDependencies": ["@grafana/.+", "@navikt/ds-css"]
+}

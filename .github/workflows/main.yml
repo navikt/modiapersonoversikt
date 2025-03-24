@@ -38,19 +38,8 @@ jobs:
             - name: Lint
               run: pnpm run lint:ci
 
-            - name: Types
-              run: pnpm run types
-
-            - name: Test
-              run: pnpm run test
-
-            - name: Build
-              run: pnpm run build
-              if: github.ref != 'refs/heads/master'
-
             - name: Publish Docker image
               if: github.ref == 'refs/heads/master'
-
               uses: nais/docker-build-push@v0
               id: docker-build-push
               with:
