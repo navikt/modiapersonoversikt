@@ -31,12 +31,12 @@ export interface SetValgtPeriode {
     periodeEndring: PeriodeOptions;
 }
 
-export interface SetSykefraverEkspandertAction {
+interface SetSykefraverEkspandertAction {
     type: OppfolgingActionTypes.SetSykefraverEkspandert;
     ekspandert: boolean;
 }
 
-export interface SetYtelserEkspandertAction {
+interface SetYtelserEkspandertAction {
     type: OppfolgingActionTypes.SetYtelserEkspandert;
     ekspandert: boolean;
 }

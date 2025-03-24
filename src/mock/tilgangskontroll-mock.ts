@@ -1,8 +1,8 @@
 import { fakerNB_NO as faker } from '@faker-js/faker';
+import type { AuthIntropectionDto } from 'src/lib/types/modiapersonoversikt-api';
 import { IkkeTilgangArsak, type TilgangDTO } from '../rest/resources/tilgangskontrollResource';
-import type { AuthIntropectionDTO } from '../utils/hooks/use-persistent-login';
 
-export function authMock(): AuthIntropectionDTO {
+export function authMock(): AuthIntropectionDto {
     return { expirationDate: new Date().getTime() + 2.5 * 60 * 1000 };
 }
 export function tilgangskontrollMock(fnr: string | undefined) {

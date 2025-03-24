@@ -25,7 +25,7 @@ interface DocumentingHotkey extends BaseHotkey {
 }
 export type Hotkey = ActionHotkey | DocumentingHotkey;
 
-export type Environment = 'q0' | 'q1' | 'q2' | 'q3' | 'q4' | 'prod' | 'local' | 'mock';
+type Environment = 'q0' | 'q1' | 'q2' | 'q3' | 'q4' | 'prod' | 'local' | 'mock';
 
 type UrlFormat = 'LOCAL' | 'NAV_NO' | 'ANSATT';
 

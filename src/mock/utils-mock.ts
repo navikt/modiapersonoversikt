@@ -3,7 +3,7 @@ import type { HttpResponseResolver, StrictRequest } from 'msw';
 import navfaker from 'nav-faker';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 
-export const STATUS_BAD_REQUEST = () => 400;
+const STATUS_BAD_REQUEST = () => 400;
 export const STATUS_OK = () => Promise.resolve(200);
 
 export function delayed(ms: number, handler: HttpResponseResolver): HttpResponseResolver {

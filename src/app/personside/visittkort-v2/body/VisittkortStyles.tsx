@@ -1,7 +1,7 @@
 import { Undertittel } from 'nav-frontend-typografi';
 import type { JSX, ReactNode } from 'react';
 import styled from 'styled-components';
-import { theme } from '../../../../styles/personOversiktTheme';
+import theme from '../../../../styles/personOversiktTheme';
 import TittelOgIkon from './IkonOgTittel';
 
 export const VisittkortBodyWrapper = styled.section`
