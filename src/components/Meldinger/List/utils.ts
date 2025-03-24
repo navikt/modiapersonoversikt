@@ -79,7 +79,7 @@ export function erMeldingstypeSamtalereferat(meldingstype: Meldingstype) {
     return [Meldingstype.SAMTALEREFERAT_OPPMOTE, Meldingstype.SAMTALEREFERAT_TELEFON].includes(meldingstype);
 }
 
-export function erChatMelding(meldingstype: Meldingstype): boolean {
+function erChatMelding(meldingstype: Meldingstype): boolean {
     return [Meldingstype.CHATMELDING_FRA_BRUKER, Meldingstype.CHATMELDING_FRA_NAV].includes(meldingstype);
 }
 

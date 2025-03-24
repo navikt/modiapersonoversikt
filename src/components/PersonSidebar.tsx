@@ -92,7 +92,12 @@ export const PersonSidebarMenu = () => {
                             {expanded && <span className="font-normal">Skjul</span>}
                         </Button>
                     </Box.New>
-                    <VStack as="nav" aria-label="Person" padding="2" className="divide-y divide-border-divider">
+                    <VStack
+                        as="nav"
+                        aria-label="Person"
+                        padding="2"
+                        className="divide-y divide-ax-border-neutral-subtle "
+                    >
                         {menuItems.map(({ title, href, Icon }) => (
                             <Link key={title} to={href} aria-label={title}>
                                 {({ isActive }) => (
@@ -105,12 +110,12 @@ export const PersonSidebarMenu = () => {
                                         className={twMerge(
                                             'my-1',
                                             'font-normal',
+                                            !isActive && ['hover:bg-ax-bg-accent-moderate-hover'],
                                             expanded && ['justify-start', 'min-w-44'],
                                             isActive && [
-                                                'bg-surface-alt-1',
-                                                'text-text-on-alt-1',
-                                                'hover:bg-surface-alt-1',
-                                                'hover:text-text-on-alt-1'
+                                                'bg-ax-bg-accent-moderate-pressed',
+                                                'text-ax-text-accent',
+                                                'hover:text-ax-text-accent'
                                             ]
                                         )}
                                     >

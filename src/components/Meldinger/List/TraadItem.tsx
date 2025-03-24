@@ -85,8 +85,7 @@ export const TraadItem = ({
             padding="2"
             className={twMerge(
                 'cursor-pointer hover:bg-[var(--ax-bg-neutral-moderate-hover)] group',
-                aktivTraad === traad.traadId &&
-                    'bg-[var(--ax-bg-neutral-moderate)] border-[var(--ax-border-neutral-strong)]'
+                aktivTraad === traad.traadId && 'bg-ax-bg-neutral-moderate border-ax-border-neutral-strong'
             )}
             onClick={() => handleClick(traad.traadId)}
         >
