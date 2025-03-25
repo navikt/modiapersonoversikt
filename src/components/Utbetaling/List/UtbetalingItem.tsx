@@ -5,28 +5,23 @@ import Card from 'src/components/Card';
 import { formaterNOK, getUtbetalingId } from 'src/components/Utbetaling/List/utils';
 import type { Utbetaling } from 'src/generated/modiapersonoversikt-api';
 import { formatterDato } from 'src/utils/date-utils';
-import { twMerge } from 'tailwind-merge';
 
 const routeApi = getRouteApi('/new/person/utbetaling');
 
 export const UtbetalingItem = ({
     utbetaling,
-    handleClick,
-    inRoute = true
+    handleClick
 }: {
     utbetaling: Utbetaling;
     handleClick: (id: string) => void;
-    inRoute?: boolean;
 }) => {
-    const aktivUtbetaling = inRoute ? routeApi.useSearch().id : undefined;
+    const aktivUtbetaling = routeApi.useSearch().id;
     const id = getUtbetalingId(utbetaling);
     return (
         <Card
             padding="2"
-            className={twMerge(
-                'cursor-pointer hover:bg-[var(--ax-bg-neutral-moderate-hover)] group',
-                aktivUtbetaling === id && 'bg-[var(--ax-bg-neutral-moderate)] border-[var(--ax-border-neutral-strong)]'
-            )}
+            className={`cursor-pointer hover:hover:bg-ax-bg-neutral-moderate-hover group
+                ${aktivUtbetaling === id ? 'bg-ax-bg-neutral-moderate ' : ''}`}
             onClick={() => handleClick(id)}
         >
             <HStack justify="space-between" gap="1" wrap={false}>
@@ -53,6 +48,8 @@ export const UtbetalingItem = ({
                 <Button
                     variant="tertiary-neutral"
                     size="small"
+                    name="Åpne"
+                    aria-label="Åpne"
                     icon={<ChevronRightIcon className="translate-x-0 group-hover:translate-x-1 transition-transform" />}
                 />
             </HStack>

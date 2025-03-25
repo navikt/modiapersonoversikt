@@ -16,11 +16,10 @@ import {
     getTypeFromYtelse,
     getUtbetalingId,
     reduceUtbetlingerTilYtelser,
-    summertBelopFraUtbetalinger,
-    useFilterUtbetalinger
+    summertBelopFraUtbetalinger
 } from 'src/components/Utbetaling/List/utils';
 import type { Utbetaling, Ytelse } from 'src/generated/modiapersonoversikt-api';
-import { useUtbetalingFilterDateRange } from 'src/lib/clients/modiapersonoversikt-api';
+import { useUtbetalingFilterDateRange, useUtbetalinger } from 'src/lib/clients/modiapersonoversikt-api';
 import { formatterDato } from 'src/utils/date-utils';
 import { groupArray } from 'src/utils/groupArray';
 import { loggEvent } from 'src/utils/logger/frontendLogger';
@@ -60,21 +59,21 @@ const getYtelsesKomponentSammendragListe = (ytelser: Ytelse[]) => {
 };
 
 const getYtelsesKomponentDetail = (ytelse: Ytelse) => {
-    const ytelseskomponentListe = ytelse.ytelseskomponentListe.map((komponent, i) => ({
+    const ytelseskomponentListe = ytelse.ytelseskomponentListe.map((komponent) => ({
         type: komponent.ytelseskomponenttype,
         sats: komponent.satsbelop ? formaterNOK(komponent.satsbelop) : '-',
         antall: `${komponent.satsantall}`,
         belop: formaterNOK(komponent.ytelseskomponentbelop)
     }));
 
-    const skattListe = ytelse.skattListe.map((komponent, i) => ({
+    const skattListe = ytelse.skattListe.map((komponent) => ({
         type: 'Skattetrekk',
         sats: '-',
         antall: '-',
         belop: formaterNOK(komponent.skattebelop)
     }));
 
-    const trekkListe = ytelse.trekkListe.map((komponent, i) => ({
+    const trekkListe = ytelse.trekkListe.map((komponent) => ({
         type: komponent.trekktype,
         sats: '-',
         antall: '-',
@@ -213,7 +212,7 @@ const UtbetalingtYtelseDetaljer = ({ ytelser }: { ytelser: Ytelse[] }) => {
 
 const UtbetaltBelop = ({ brutto, trekk, netto }: { brutto: string; trekk: string; netto: string }) => {
     return (
-        <HGrid gap="4" columns={4} className="mt-4 pt-4 border-t border-gray-200">
+        <HGrid gap="4" columns={4} marginBlock="4" paddingBlock="4" className="border-t border-border-subtle">
             <VStack justify="space-between">
                 <BodyShort size="small" weight="semibold">
                     Brutto:
@@ -369,8 +368,11 @@ const UtbetalingerSammendrag = ({ utbetalinger, periode }: { utbetalinger: Utbet
 const routeApi = getRouteApi('/new/person/utbetaling');
 
 export const UtbetalingDetail = () => {
-    const utbetalinger = useFilterUtbetalinger();
     const dateRange = useUtbetalingFilterDateRange();
+    const startDato = dateRange.from.format('YYYY-MM-DD');
+    const sluttDato = dateRange.to.format('YYYY-MM-DD');
+    const { data } = useUtbetalinger(startDato, sluttDato);
+    const utbetalinger = data?.utbetalinger ?? [];
     const { id } = routeApi.useSearch();
     const selectedUtbetaling = utbetalinger.find((item) => getUtbetalingId(item) === id);
 

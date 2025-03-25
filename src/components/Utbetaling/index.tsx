@@ -1,6 +1,6 @@
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { HStack, Heading, VStack } from '@navikt/ds-react';
-import { Link } from 'src/components/Link';
+import { Link } from '@tanstack/react-router';
 import { UtbetalingDetail } from 'src/components/Utbetaling/Detail';
 import { UtbetalingerList } from 'src/components/Utbetaling/List';
 import { arenaURL } from 'src/components/Utbetaling/List/utils';
@@ -10,7 +10,7 @@ export const UtbetalingPage = () => {
         <HStack gap="1" minHeight="0" flexGrow="1" wrap={false}>
             <VStack height="100%" minWidth="12em" gap="4">
                 <Heading size="xsmall">Utbetaling</Heading>
-                <Link className="no-underline" to={arenaURL()} aria-label={'Se meldekort i Arena'} variant="action">
+                <Link className="no-underline" to={arenaURL()} aria-label={'Se meldekort i Arena'}>
                     Se meldekort i Arena <ExternalLinkIcon aria-hidden fontSize="1.2rem" />
                 </Link>
                 <UtbetalingerList />

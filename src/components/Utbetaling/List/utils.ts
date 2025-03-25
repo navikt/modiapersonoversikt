@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { useAtomValue } from 'jotai/index';
+import { useAtomValue } from 'jotai';
 import { useMemo } from 'react';
 import { type UtbetalingFilter, utbetalingFilterAtom } from 'src/components/Utbetaling/List/Filter';
 import { useUtbetalinger } from 'src/lib/clients/modiapersonoversikt-api';
@@ -45,7 +45,9 @@ const filterUtbetalinger = (utbetalinger: Utbetaling[], filters: UtbetalingFilte
 
 export const useFilterUtbetalinger = () => {
     const filters = useAtomValue(utbetalingFilterAtom);
-    const { data } = useUtbetalinger();
+    const startDato = filters.dateRange.from.format('YYYY-MM-DD');
+    const sluttDato = filters.dateRange.to.format('YYYY-MM-DD');
+    const { data } = useUtbetalinger(startDato, sluttDato);
     const utbetalinger = data?.utbetalinger ?? [];
 
     const sortedUtbetalinger = utbetalinger.toSorted(datoSynkende((t) => t.posteringsdato));
