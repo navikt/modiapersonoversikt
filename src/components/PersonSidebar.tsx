@@ -2,11 +2,10 @@ import {
     ArrowLeftIcon,
     ArrowRightIcon,
     BellIcon,
-    BriefcaseIcon,
     ChatIcon,
-    FaceSmileIcon,
     FileIcon,
     HandShakeHeartIcon,
+    HouseIcon,
     PersonGroupIcon,
     PiggybankIcon
 } from '@navikt/aksel-icons';
@@ -15,7 +14,7 @@ import { Link } from '@tanstack/react-router';
 import { type ComponentProps, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import Card from './Card';
-import { ThemeToggle } from './theme/ThemeToggle';
+import { ThemeIconToggle, ThemeToggle } from './theme/ThemeToggle';
 
 type MenuItem = {
     title: string;
@@ -27,7 +26,7 @@ const menuItems = [
     {
         title: 'Oversikt',
         href: '/new/person/oversikt',
-        Icon: FaceSmileIcon
+        Icon: HouseIcon
     },
     {
         title: 'Oppfølging',
@@ -40,11 +39,6 @@ const menuItems = [
         Icon: ChatIcon
     },
     {
-        title: 'Arbeid',
-        href: '/new/person/arbeid',
-        Icon: BriefcaseIcon
-    },
-    {
         title: 'Utbetaling',
         href: '/new/person/utbetaling',
         Icon: PiggybankIcon
@@ -55,7 +49,7 @@ const menuItems = [
         Icon: HandShakeHeartIcon
     },
     {
-        title: 'Dokumenter',
+        title: 'Saker',
         href: '/new/person/saker',
         Icon: FileIcon
     },
@@ -126,8 +120,8 @@ export const PersonSidebarMenu = () => {
                         ))}
                     </VStack>
                 </Box.New>
-                <Box.New aria-hidden padding="2" className={twMerge(!expanded && 'hidden')}>
-                    <ThemeToggle />
+                <Box.New aria-hidden padding="2">
+                    {expanded ? <ThemeToggle /> : <ThemeIconToggle />}
                 </Box.New>
             </VStack>
         </Card>

@@ -15,11 +15,6 @@ const menuItems = [
         beskrivelse: 'Kort beskrivelse av hva kommunikasjon er'
     },
     {
-        title: 'Arbeid',
-        href: '/new/person/arbeid',
-        beskrivelse: 'Kort beskrivelse av hva arbeid er'
-    },
-    {
         title: 'Utbetaling',
         href: '/new/person/utbetaling',
         beskrivelse: 'Kort beskrivelse av hva utbetaling er'
@@ -45,7 +40,11 @@ const OversiktDetailCard = ({
     title,
     beskrivelse,
     to
-}: { title: string; beskrivelse: string; to: (typeof menuItems)[number]['href'] }) => {
+}: {
+    title: string;
+    beskrivelse: string;
+    to: (typeof menuItems)[number]['href'];
+}) => {
     return (
         <Card padding="4">
             <VStack justify="space-between" gap="4">
