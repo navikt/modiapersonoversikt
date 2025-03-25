@@ -1,11 +1,13 @@
 import { BodyLong, BodyShort, Box, HGrid, HStack, Heading, Table, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import dayjs from 'dayjs';
+import { useAtomValue } from 'jotai/index';
 import * as React from 'react';
 import AriaNotification from 'src/components/AriaNotification';
 import Card from 'src/components/Card';
 import type { DateRange } from 'src/components/DateFilters/types';
 import PrintKnapp from 'src/components/PrintKnapp';
+import { utbetalingFilterDateRangeAtom } from 'src/components/Utbetaling/List/Filter';
 import {
     filtrerBortUtbetalingerSomIkkeErUtbetalt,
     formaterNOK,
@@ -19,7 +21,7 @@ import {
     summertBelopFraUtbetalinger
 } from 'src/components/Utbetaling/List/utils';
 import type { Utbetaling, Ytelse } from 'src/generated/modiapersonoversikt-api';
-import { useUtbetalingFilterDateRange, useUtbetalinger } from 'src/lib/clients/modiapersonoversikt-api';
+import { useUtbetalinger } from 'src/lib/clients/modiapersonoversikt-api';
 import { formatterDato } from 'src/utils/date-utils';
 import { groupArray } from 'src/utils/groupArray';
 import { loggEvent } from 'src/utils/logger/frontendLogger';
@@ -368,7 +370,7 @@ const UtbetalingerSammendrag = ({ utbetalinger, periode }: { utbetalinger: Utbet
 const routeApi = getRouteApi('/new/person/utbetaling');
 
 export const UtbetalingDetail = () => {
-    const dateRange = useUtbetalingFilterDateRange();
+    const dateRange = useAtomValue(utbetalingFilterDateRangeAtom);
     const startDato = dateRange.from.format('YYYY-MM-DD');
     const sluttDato = dateRange.to.format('YYYY-MM-DD');
     const { data } = useUtbetalinger(startDato, sluttDato);

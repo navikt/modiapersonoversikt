@@ -147,8 +147,8 @@ export const arenaURL = () => {
 export const getUtbetalingId = (utbetaling: Utbetaling) =>
     `${utbetaling.ytelser?.map((item) => item.type?.replace(/\s+/g, ''))?.join('')}${utbetaling.posteringsdato}`;
 
-export const utbetaltTilBruker = 'Bruker';
-export const utbetaltTilOrganisasjon = 'Organisasjon';
-export const utbetaltTilSamhandler = 'Samhandler';
+const utbetaltTilBruker = 'Bruker';
+const utbetaltTilOrganisasjon = 'Organisasjon';
+const utbetaltTilSamhandler = 'Samhandler';
 
 export const utbetalingMottakere = [utbetaltTilBruker, utbetaltTilOrganisasjon, utbetaltTilSamhandler];

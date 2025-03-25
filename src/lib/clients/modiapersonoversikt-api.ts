@@ -4,8 +4,6 @@ import createFetchClient from 'openapi-fetch';
 import createClient from 'openapi-react-query';
 import { FetchError } from 'src/api/api';
 import { apiBaseUriWithoutRest } from 'src/api/config';
-import type { DateRange } from 'src/components/DateFilters/types';
-import { utbetalingFilterDateRangeAtom } from 'src/components/Utbetaling/List/Filter';
 import type { paths } from 'src/generated/modiapersonoversikt-api';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 
@@ -214,10 +212,6 @@ export const useAvsluttDialogMutation = () => {
             });
         }
     });
-};
-
-export const useUtbetalingFilterDateRange: () => DateRange = () => {
-    return useAtomValue(utbetalingFilterDateRangeAtom);
 };
 
 export const useUtbetalinger = (startDato: string, sluttDato: string) => {

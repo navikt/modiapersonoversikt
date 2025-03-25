@@ -7,7 +7,7 @@ import DateRangeSelector, { getPeriodFromOption } from 'src/components/DateFilte
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
 import { reduceUtbetlingerTilYtelser, utbetalingMottakere } from 'src/components/Utbetaling/List/utils';
 import type { Utbetaling, Ytelse } from 'src/generated/modiapersonoversikt-api';
-import { useUtbetalingFilterDateRange, useUtbetalinger } from 'src/lib/clients/modiapersonoversikt-api';
+import { useUtbetalinger } from 'src/lib/clients/modiapersonoversikt-api';
 import { sorterAlfabetisk } from 'src/utils/string-utils';
 
 export type UtbetalingFilter = {
@@ -62,7 +62,7 @@ const DateFilter = () => {
 
 const UtbetalingYtelserFilter = () => {
     const [selectedYtelse, setSelectedYtelse] = useAtom(utbetalingFilterYtelseTypeAtom);
-    const dateRange = useUtbetalingFilterDateRange();
+    const dateRange = useAtomValue(utbetalingFilterDateRangeAtom);
     const startDato = dateRange.from.format('YYYY-MM-DD');
     const sluttDato = dateRange.to.format('YYYY-MM-DD');
     const { data } = useUtbetalinger(startDato, sluttDato);
