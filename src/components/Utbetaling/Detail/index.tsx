@@ -118,7 +118,7 @@ const getYtelsesKomponentDetail = (ytelse: Ytelse) => {
             )}
             <HStack justify="space-between" gap="3" className="my-4 mr-6">
                 <BodyShort size="small" weight="semibold">
-                    Utbetalt:
+                    Nettobeløp:
                 </BodyShort>
                 <BodyShort size="small" weight="semibold">
                     {formaterNOK(ytelse.nettobelop)}
@@ -160,7 +160,7 @@ const UtbetalingerYtelserSammendrag = ({ ytelser, expandTable }: { ytelser: Ytel
                             >
                                 <Table.HeaderCell scope="row">{ytelsesType}</Table.HeaderCell>
                                 <Table.DataCell>
-                                    {formaterDato(periode.fra)} - {formaterDato(periode.til)}
+                                    {formaterDato(periode.start)} - {formaterDato(periode.slutt)}
                                 </Table.DataCell>
                                 <Table.DataCell>{formaterNOK(getBruttoSumYtelser(ytelser))}</Table.DataCell>
                                 <Table.DataCell>{formaterNOK(getTrekkSumYtelser(ytelser))}</Table.DataCell>
@@ -183,7 +183,7 @@ const UtbetalingtYtelseDetaljer = ({ ytelser }: { ytelser: Ytelse[] }) => {
                     <Table.HeaderCell className="w-56">Periode</Table.HeaderCell>
                     <Table.HeaderCell className="w-28">Brutto</Table.HeaderCell>
                     <Table.HeaderCell className="w-28">Trekk</Table.HeaderCell>
-                    <Table.HeaderCell className="w-28">Utbetalt</Table.HeaderCell>
+                    <Table.HeaderCell className="w-28">Netto</Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
             <Table.Body>
@@ -239,9 +239,9 @@ const UtbetaltBelop = ({ brutto, trekk, netto }: { brutto: string; trekk: string
 const UtbetalingDetaljer = ({ utbetaling }: { utbetaling: Utbetaling }) => {
     const printer = usePrinter();
     const printerButtonRef = React.createRef<HTMLButtonElement>();
-    const brutto = summertBelopFraUtbetalinger([utbetaling], getBruttoSumYtelser);
-    const trekk = summertBelopFraUtbetalinger([utbetaling], getTrekkSumYtelser);
-    const netto = summertBelopFraUtbetalinger([utbetaling], getNettoSumYtelser);
+    const brutto = summertBelopFraUtbetalinger([utbetaling], getBruttoSumYtelser, false);
+    const trekk = summertBelopFraUtbetalinger([utbetaling], getTrekkSumYtelser, true);
+    const netto = summertBelopFraUtbetalinger([utbetaling], getNettoSumYtelser, true);
     const ytelser = utbetaling.ytelser;
 
     const handlePrint = () => {
@@ -328,10 +328,10 @@ const UtbetalingerSammendrag = ({ utbetalinger, periode }: { utbetalinger: Utbet
     const printer = usePrinter();
     const fom = periode.from.format('YYYY-MM-DD');
     const tom = periode.to.format('YYYY-MM-DD');
-    const utbetalingsPeriode: string = `${fom} - ${tom}`;
-    const brutto: string = summertBelopFraUtbetalinger(utbetalinger, getBruttoSumYtelser);
-    const trekk: string = summertBelopFraUtbetalinger(utbetalinger, getTrekkSumYtelser);
-    const netto: string = summertBelopFraUtbetalinger(utbetalinger, getNettoSumYtelser);
+    const utbetalingsPeriode = `${fom} - ${tom}`;
+    const brutto = summertBelopFraUtbetalinger(utbetalinger, getBruttoSumYtelser, false);
+    const trekk = summertBelopFraUtbetalinger(utbetalinger, getTrekkSumYtelser, true);
+    const netto = summertBelopFraUtbetalinger(utbetalinger, getNettoSumYtelser, true);
     const printerButtonRef = React.createRef<HTMLButtonElement>();
     const ytelser = getAlleUtbetalteYtelserFraUtbetalinger(utbetalinger);
 

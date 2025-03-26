@@ -4,10 +4,8 @@ import { useMemo } from 'react';
 import { type UtbetalingFilter, utbetalingFilterAtom } from 'src/components/Utbetaling/List/Filter';
 import { useUtbetalinger } from 'src/lib/clients/modiapersonoversikt-api';
 import { usePersonAtomValue } from 'src/lib/state/context';
-import type { Utbetaling, Ytelse } from 'src/lib/types/modiapersonoversikt-api';
-import type { Periode } from 'src/models/tid';
-import { datoSynkende, datoVerbose } from 'src/utils/date-utils';
-import { loggError } from 'src/utils/logger/frontendLogger';
+import type { Utbetaling, Ytelse, YtelsePeriode } from 'src/lib/types/modiapersonoversikt-api';
+import { datoSynkende } from 'src/utils/date-utils';
 import { finnMiljoStreng } from 'src/utils/url-utils';
 
 const filterUtbetalinger = (utbetalinger: Utbetaling[], filters: UtbetalingFilter): Utbetaling[] => {
@@ -75,62 +73,38 @@ export const reduceUtbetlingerTilYtelser = (utbetalinger: Utbetaling[]): Ytelse[
     return utbetalinger.flatMap((utbetaling) => utbetaling.ytelser ?? []);
 };
 
-export const formaterNOK = (beløp: number): string => {
-    return beløp.toLocaleString('no', { minimumFractionDigits: 2 });
-};
-export const getGjeldendeDatoForUtbetaling = (utbetaling: Utbetaling): string => {
-    return utbetaling.utbetalingsdato || utbetaling.forfallsdato || utbetaling.posteringsdato;
-};
-export const maanedOgAarForUtbetaling = (utbetaling: Utbetaling) => {
-    const verbose = datoVerbose(getGjeldendeDatoForUtbetaling(utbetaling));
-    return `${verbose.måned} ${verbose.år}`;
-};
-export const utbetalingDatoComparator = (a: Utbetaling, b: Utbetaling) => {
-    return dayjs(getGjeldendeDatoForUtbetaling(b)).unix() - dayjs(getGjeldendeDatoForUtbetaling(a)).unix();
+export const formaterNOK = (belop: number): string => {
+    return belop.toLocaleString('no', { minimumFractionDigits: 2 });
 };
 
 export const summertBelopFraUtbetalinger = (
     utbetalinger: Utbetaling[],
-    getSumFromYtelser: (ytelser: Ytelse[]) => number
+    getSumFromYtelser: (ytelser: Ytelse[]) => number,
+    fjernUtbetalingerSomIkkeErUtbetalt: boolean
 ): string => {
-    try {
-        const sum = utbetalinger
-            .filter(filtrerBortUtbetalingerSomIkkeErUtbetalt)
-            .reduce((acc: number, utbetaling: Utbetaling) => {
-                if (!utbetaling.ytelser) {
-                    loggError(
-                        new Error('Kunne ikke beregne sum på utbetaling'),
-                        '"ytelser" er ikke definert på utbetaling, sum må beregnes fra ytelser',
-                        { utbetaling: utbetaling }
-                    );
-                    throw new Error();
-                }
-
-                return acc + getSumFromYtelser(utbetaling.ytelser);
-            }, 0);
-
-        return formaterNOK(sum);
-    } catch {
-        return 'Manglende data';
-    }
+    const ytelser = utbetalinger
+        .filter((utbetaling) => !fjernUtbetalingerSomIkkeErUtbetalt || utbetaling.status.toLowerCase() === 'utbetalt')
+        .flatMap((utbetaling) => utbetaling.ytelser ?? []);
+    const sum = getSumFromYtelser(ytelser);
+    return formaterNOK(sum);
 };
 
 export const getTypeFromYtelse = (ytelse: Ytelse) => ytelse.type || 'Mangler beskrivelse';
 
-export const getPeriodeFromYtelser = (ytelser: Ytelse[]): Periode => {
+export const getPeriodeFromYtelser = (ytelser: Ytelse[]): YtelsePeriode => {
     return ytelser.reduce(
-        (acc: Periode, ytelse: Ytelse) => {
+        (acc: YtelsePeriode, ytelse: Ytelse) => {
             if (!ytelse.periode) {
                 return acc;
             }
             return {
-                fra: dayjs(ytelse.periode.start).isBefore(dayjs(acc.fra)) ? ytelse.periode.start : acc.fra,
-                til: dayjs(ytelse.periode.slutt).isAfter(dayjs(acc.til)) ? ytelse.periode.slutt : acc.til
+                start: dayjs(ytelse.periode.start).isBefore(dayjs(acc.start)) ? ytelse.periode.start : acc.start,
+                slutt: dayjs(ytelse.periode.slutt).isAfter(dayjs(acc.slutt)) ? ytelse.periode.slutt : acc.slutt
             };
         },
         {
-            fra: dayjs().format(),
-            til: dayjs(0).format()
+            start: dayjs().format(),
+            slutt: dayjs(0).format()
         }
     );
 };
