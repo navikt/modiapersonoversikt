@@ -8,8 +8,6 @@ import { loggError } from 'src/utils/logger/frontendLogger';
 import { formaterDato } from 'src/utils/string-utils';
 
 export const utbetaltTilBruker = 'Bruker';
-export const utbetaltTilOrganisasjon = 'Organisasjon';
-export const utbetaltTilSamhandler = 'Samhandler';
 
 export function maanedOgAarForUtbetaling(utbetaling: Utbetaling) {
     const verbose = datoVerbose(getGjeldendeDatoForUtbetaling(utbetaling));
