@@ -1,5 +1,5 @@
 import { MoonIcon, SunIcon } from '@navikt/aksel-icons';
-import { HStack, Label, ToggleGroup } from '@navikt/ds-react';
+import { Button, HStack, Label, ToggleGroup } from '@navikt/ds-react';
 import { useAtom } from 'jotai';
 import { useCallback } from 'react';
 import { themeAtom } from 'src/lib/state/theme';
@@ -28,5 +28,23 @@ export const ThemeToggle = () => {
                 <ToggleGroup.Item icon={<MoonIcon />} value="dark" />
             </ToggleGroup>
         </HStack>
+    );
+};
+
+export const ThemeIconToggle = () => {
+    const [theme, setTheme] = useAtom(themeAtom);
+
+    const changeTheme = useCallback(() => {
+        setTheme((v) => (v === 'light' ? 'dark' : 'light'));
+    }, [setTheme]);
+
+    return (
+        <Button
+            size="small"
+            variant="tertiary-neutral"
+            onClick={changeTheme}
+            name="Bytt tema"
+            icon={theme === 'light' ? <MoonIcon /> : <SunIcon />}
+        />
     );
 };
