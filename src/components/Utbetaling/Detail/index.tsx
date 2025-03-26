@@ -1,12 +1,13 @@
-import { BodyLong, BodyShort, Box, HGrid, HStack, Heading, Table, VStack } from '@navikt/ds-react';
+import { PrinterSmallIcon } from '@navikt/aksel-icons';
+import { BodyLong, BodyShort, Box, Button, HGrid, HStack, Heading, Skeleton, Table, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import dayjs from 'dayjs';
-import { useAtomValue } from 'jotai/index';
-import * as React from 'react';
+import { useAtomValue } from 'jotai';
+import { Suspense } from 'react';
 import AriaNotification from 'src/components/AriaNotification';
 import Card from 'src/components/Card';
 import type { DateRange } from 'src/components/DateFilters/types';
-import PrintKnapp from 'src/components/PrintKnapp';
+import ErrorBoundary from 'src/components/ErrorBoundary';
 import { utbetalingFilterDateRangeAtom } from 'src/components/Utbetaling/List/Filter';
 import {
     filtrerBortUtbetalingerSomIkkeErUtbetalt,
@@ -238,7 +239,6 @@ const UtbetaltBelop = ({ brutto, trekk, netto }: { brutto: string; trekk: string
 };
 const UtbetalingDetaljer = ({ utbetaling }: { utbetaling: Utbetaling }) => {
     const printer = usePrinter();
-    const printerButtonRef = React.createRef<HTMLButtonElement>();
     const brutto = summertBelopFraUtbetalinger([utbetaling], getBruttoSumYtelser, false);
     const trekk = summertBelopFraUtbetalinger([utbetaling], getTrekkSumYtelser, true);
     const netto = summertBelopFraUtbetalinger([utbetaling], getNettoSumYtelser, true);
@@ -261,9 +261,15 @@ const UtbetalingDetaljer = ({ utbetaling }: { utbetaling: Utbetaling }) => {
                             ?.unique()
                             .join(', ')}
                     </Heading>
-                    <span ref={printerButtonRef}>
-                        <PrintKnapp onClick={handlePrint} tittel="Skriv ut" />
-                    </span>
+                    <Button
+                        size="small"
+                        variant="tertiary"
+                        iconPosition="right"
+                        icon={<PrinterSmallIcon aria-hidden />}
+                        onClick={handlePrint}
+                    >
+                        Skriv ut
+                    </Button>
                 </HStack>
                 <HGrid gap="4" columns={2} className="mt-4">
                     <VStack justify="space-between">
@@ -332,7 +338,6 @@ const UtbetalingerSammendrag = ({ utbetalinger, periode }: { utbetalinger: Utbet
     const brutto = summertBelopFraUtbetalinger(utbetalinger, getBruttoSumYtelser, false);
     const trekk = summertBelopFraUtbetalinger(utbetalinger, getTrekkSumYtelser, true);
     const netto = summertBelopFraUtbetalinger(utbetalinger, getNettoSumYtelser, true);
-    const printerButtonRef = React.createRef<HTMLButtonElement>();
     const ytelser = getAlleUtbetalteYtelserFraUtbetalinger(utbetalinger);
 
     const handlePrint = () => {
@@ -348,9 +353,15 @@ const UtbetalingerSammendrag = ({ utbetalinger, periode }: { utbetalinger: Utbet
                     <Heading as="h3" size="small">
                         Totalt utbetalt ({utbetalingsPeriode})
                     </Heading>
-                    <span ref={printerButtonRef}>
-                        <PrintKnapp onClick={handlePrint} tittel="Skriv ut" />
-                    </span>
+                    <Button
+                        size="small"
+                        variant="tertiary"
+                        iconPosition="right"
+                        icon={<PrinterSmallIcon aria-hidden />}
+                        onClick={handlePrint}
+                    >
+                        Skriv ut
+                    </Button>
                 </HStack>
                 <AriaNotification
                     beskjed={`Det finnes ${utbetalinger.length} utbetalinger for valgt periode og filtrering`}
@@ -369,25 +380,30 @@ const UtbetalingerSammendrag = ({ utbetalinger, periode }: { utbetalinger: Utbet
 
 const routeApi = getRouteApi('/new/person/utbetaling');
 
-export const UtbetalingDetail = () => {
+const UtbetalingDetail = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
+    const { id } = routeApi.useSearch();
+    const selectedUtbetaling = utbetalinger.find((item) => getUtbetalingId(item) === id);
+
+    return <Box.New>{selectedUtbetaling && <UtbetalingDetaljer utbetaling={selectedUtbetaling} />}</Box.New>;
+};
+
+export const UtbetalingerDetail = () => {
     const dateRange = useAtomValue(utbetalingFilterDateRangeAtom);
     const startDato = dateRange.from.format('YYYY-MM-DD');
     const sluttDato = dateRange.to.format('YYYY-MM-DD');
     const { data } = useUtbetalinger(startDato, sluttDato);
     const utbetalinger = data?.utbetalinger ?? [];
-    const { id } = routeApi.useSearch();
-    const selectedUtbetaling = utbetalinger.find((item) => getUtbetalingId(item) === id);
 
     return (
-        <VStack flexGrow="1" minHeight="0" maxHeight="100%" className="overflow-scroll">
-            <Box.New>
-                <UtbetalingerSammendrag utbetalinger={utbetalinger} periode={dateRange} />
-            </Box.New>
-            {selectedUtbetaling && (
-                <Box.New>
-                    <UtbetalingDetaljer utbetaling={selectedUtbetaling} />
-                </Box.New>
-            )}
-        </VStack>
+        <ErrorBoundary boundaryName="utbetalingDetaljer">
+            <Suspense fallback={<Skeleton variant="rounded" height="200" />}>
+                <VStack flexGrow="1" minHeight="0" maxHeight="100%" className="overflow-scroll">
+                    <Box.New>
+                        <UtbetalingerSammendrag utbetalinger={utbetalinger} periode={dateRange} />
+                    </Box.New>
+                    <UtbetalingDetail utbetalinger={utbetalinger} />
+                </VStack>
+            </Suspense>
+        </ErrorBoundary>
     );
 };
