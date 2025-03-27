@@ -1,5 +1,5 @@
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
-import { BodyLong, BodyShort, ExpansionCard, HGrid, HStack, Heading, VStack } from '@navikt/ds-react';
+import { BodyLong, BodyShort, Button, ExpansionCard, HGrid, HStack, Heading, VStack } from '@navikt/ds-react';
 import Card from 'src/components/Card';
 import { Link } from 'src/components/Link';
 
@@ -53,12 +53,17 @@ const OversiktDetailCard = ({
                     <Card flexGrow={0}>
                         <VStack align="center" className="p-2">
                             <Link key={title} className="no-underline" to={to} aria-label={title} variant="action">
-                                <ExternalLinkIcon aria-hidden fontSize="1.5rem" />
+                                <ExternalLinkIcon aria-hidden fontSize="1rem" />
                             </Link>
                         </VStack>
                     </Card>
                 </HStack>
-                <BodyShort>{beskrivelse}</BodyShort>
+                <VStack justify="space-between" gap="4" align="start">
+                    <BodyShort>{beskrivelse}</BodyShort>
+                    <Button variant="secondary" as={Link} to={to} className="no-underline">
+                        {title}
+                    </Button>
+                </VStack>
             </VStack>
         </Card>
     );
