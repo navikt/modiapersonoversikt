@@ -102,7 +102,7 @@
         "nav-frontend-typografi": "^3.1.1",
         "nav-frontend-typografi-style": "^1.0.22",
         "openapi-fetch": "^0.13.5",
-        "openapi-react-query": "^0.3.0",
+        "openapi-react-query": "^0.3.1",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
         "react-error-boundary": "^5.0.0",
