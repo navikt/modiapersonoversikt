@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from 'react';
 import PeriodDatePicker from './PeriodDatePicker';
 import { type DateRange, PeriodType } from './types';
 
-const getPeriodFromOption = (periodeValg: PeriodType): DateRange => {
+export const getPeriodFromOption = (periodeValg: PeriodType): DateRange => {
     switch (periodeValg) {
         case PeriodType.LAST_30_DAYS:
             return {
