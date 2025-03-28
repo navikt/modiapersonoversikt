@@ -36,7 +36,7 @@ function OppfolgingContainer() {
                 <OppfolgingFilter />
                 <VisOppfolgingDetaljer detaljertOppfolging={oppfolging ?? {}} isError={oppfolgingResponse.isError} />
             </DetaljertInfoWrapper>
-            <SykefraversoppfolgingEkspanderbartPanel syfoPunkter={oppfolging?.sykefraværsoppfølging ?? []} />
+            <SykefraversoppfolgingEkspanderbartPanel syfoPunkter={oppfolging?.sykefravaersoppfolging ?? []} />
             <OppfolgingYtelserEkspanderbartPanel ytelser={oppfolging?.ytelser ?? []} />
         </OppfolgingStyle>
     );
