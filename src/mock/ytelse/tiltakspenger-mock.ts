@@ -2,12 +2,9 @@ import { fakerNB_NO as faker } from '@faker-js/faker';
 import dayjs from 'dayjs';
 
 import navfaker from 'nav-faker/dist/index';
-import {
-    VedtakPerioderResponseInnerKilde,
-    VedtakPerioderResponseInnerRettighet
-} from 'src/generated/modiapersonoversikt-api';
-import type { Tiltakspenger, TiltakspengerResource } from '../../models/ytelse/tiltakspenger';
-import { backendDatoformat } from '../../utils/date-utils';
+import { VedtakDTOKilde, VedtakDTORettighet } from 'src/generated/modiapersonoversikt-api';
+import type { Tiltakspenger, TiltakspengerResource } from 'src/models/ytelse/tiltakspenger';
+import { backendDatoformat } from 'src/utils/date-utils';
 import { aremark } from '../persondata/aremark';
 import { fyllRandomListe } from '../utils/mock-utils';
 import { statiskTiltakspengerMock } from './statiskTiltakspengerMock';
@@ -35,11 +32,9 @@ function getMockTiltakspengerYtelser(fødselsnummer: string, i?: number): Tiltak
     const tom = dayjs(fom).add(faker.number.int(40), 'days').format(backendDatoformat);
 
     return {
-        kilde: navfaker.random.vektetSjanse(0.4)
-            ? VedtakPerioderResponseInnerKilde.ARENA
-            : VedtakPerioderResponseInnerKilde.TPSAK,
+        kilde: navfaker.random.vektetSjanse(0.4) ? VedtakDTOKilde.ARENA : VedtakDTOKilde.TPSAK,
         vedtakId: faker.string.alphanumeric(8),
-        rettighet: VedtakPerioderResponseInnerRettighet.TILTAKSPENGER,
+        rettighet: VedtakDTORettighet.TILTAKSPENGER,
         periode: {
             fraOgMed: fom,
             tilOgMed: tom

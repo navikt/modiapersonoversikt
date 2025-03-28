@@ -1168,7 +1168,10 @@ export interface components {
             fom?: string;
             tom?: string;
         };
-        Barnetilleggperiode: {
+        Barnetillegg: {
+            perioder: components['schemas']['BarnetilleggPeriode'][];
+        };
+        BarnetilleggPeriode: {
             /** Format: int32 */
             antallBarn: number;
             periode: components['schemas']['Periode'];
@@ -1179,17 +1182,14 @@ export interface components {
             /** Format: date */
             tilOgMed: string;
         };
-        VedtakPerioderResponseInner: {
+        VedtakDTO: {
             vedtakId: string;
             /** @enum {string} */
-            rettighet: VedtakPerioderResponseInnerRettighet;
+            rettighet: VedtakDTORettighet;
             periode: components['schemas']['Periode'];
             /** @enum {string} */
-            kilde: VedtakPerioderResponseInnerKilde;
-            barnetillegg?: components['schemas']['VedtakPerioderResponseInnerBarnetillegg'];
-        };
-        VedtakPerioderResponseInnerBarnetillegg: {
-            perioder?: components['schemas']['Barnetilleggperiode'][];
+            kilde: VedtakDTOKilde;
+            barnetillegg?: components['schemas']['Barnetillegg'];
         };
         Code: {
             code: string;
@@ -1394,8 +1394,10 @@ export interface components {
             date: components['schemas']['LocalDate'];
         };
         LocalTime: {
-            value?: components['schemas']['LocalTime'];
-            value$kotlinx_datetime: components['schemas']['LocalTime'];
+            /** @example 14:30:00 */
+            value?: string;
+            /** @example 14:30:00 */
+            value$kotlinx_datetime: string;
             /** Format: int32 */
             nanosecond: number;
             /** Format: int32 */
@@ -1448,6 +1450,77 @@ export interface components {
             'f\u00F8dselsnummer'?: string;
             erSTOOppgave: boolean;
         };
+        Enhet: {
+            enhetId: string;
+            navn: string;
+        };
+        OppfolgingDTO: {
+            erUnderOppfolging: boolean;
+            veileder?: components['schemas']['Veileder'];
+            enhet?: components['schemas']['Enhet'];
+        };
+        Veileder: {
+            fornavn: string;
+            etternavn: string;
+            ident: string;
+            navn: string;
+        };
+        DagpengeytelseDTO: {
+            type: 'DagpengeytelseDTO';
+        } & (Omit<WithRequired<components['schemas']['YtelseDTO'], 'type'>, 'type'> & {
+            type: string;
+            status: string;
+            datoKravMottat?: string;
+            vedtak: components['schemas']['VedtakDTO'][];
+            fom?: string;
+            tom?: string;
+            /** Format: int32 */
+            dagerIgjenMedBortfall?: number;
+            /** Format: int32 */
+            ukerIgjenMedBortfall?: number;
+            /** Format: int32 */
+            dagerIgjenPermittering?: number;
+            /** Format: int32 */
+            ukerIgjenPermittering?: number;
+            /** Format: int32 */
+            dagerIgjen?: number;
+            /** Format: int32 */
+            ukerIgjen?: number;
+        });
+        OppfolgingsYtelseDTO: {
+            type: 'OppfolgingsYtelseDTO';
+        } & (Omit<WithRequired<components['schemas']['YtelseDTO'], 'type'>, 'type'> & {
+            type: string;
+            status: string;
+            datoKravMottat?: string;
+            vedtak: components['schemas']['VedtakDTO'][];
+            fom?: string;
+            tom?: string;
+            /** Format: int32 */
+            dagerIgjenMedBortfall?: number;
+            /** Format: int32 */
+            ukerIgjenMedBortfall?: number;
+        });
+        SyfoPunktDTO: {
+            'fastOppf\u00F8lgingspunkt': boolean;
+            dato?: string;
+            status: string;
+            syfoHendelse: string;
+        };
+        UtvidetOppfolgingDTO: {
+            oppfolging?: components['schemas']['OppfolgingDTO'];
+            meldeplikt?: boolean;
+            formidlingsgruppe?: string;
+            innsatsgruppe?: string;
+            sykmeldtFra?: string;
+            rettighetsgruppe: string;
+            vedtaksdato?: string;
+            sykefravaersoppfolging: components['schemas']['SyfoPunktDTO'][];
+            ytelser: (components['schemas']['DagpengeytelseDTO'] | components['schemas']['OppfolgingsYtelseDTO'])[];
+        };
+        YtelseDTO: {
+            type: string;
+        };
         Gjeldende14aVedtak: {
             innsatsgruppe: components['schemas']['Innsatsgruppe'];
             hovedmal?: components['schemas']['Hovedmal'];
@@ -1490,13 +1563,6 @@ export interface components {
             temakode: string;
             typekode: string;
             underkategorikode?: string;
-        };
-        Enhet: {
-            enhetId: string;
-            enhetNavn: string;
-            /** @enum {string} */
-            status: EnhetStatus;
-            oppgavebehandler: boolean;
         };
         SendMeldingRequestV2: {
             fnr: string;
@@ -1562,10 +1628,6 @@ export interface components {
             lukketAv?: string;
             meldinger: components['schemas']['MeldingDTO'][];
             journalposter: components['schemas']['Journalpost'][];
-        };
-        Veileder: {
-            ident: string;
-            navn: string;
         };
         OpprettHenvendelseRequestV2: {
             fnr: string;
@@ -1858,10 +1920,10 @@ export type Verge = components['schemas']['Verge'];
 export type IdentInformasjon = components['schemas']['IdentInformasjon'];
 export type Identliste = components['schemas']['Identliste'];
 export type FnrDatoRangeRequest = components['schemas']['FnrDatoRangeRequest'];
-export type Barnetilleggperiode = components['schemas']['Barnetilleggperiode'];
+export type Barnetillegg = components['schemas']['Barnetillegg'];
+export type BarnetilleggPeriode = components['schemas']['BarnetilleggPeriode'];
 export type Periode = components['schemas']['Periode'];
-export type VedtakPerioderResponseInner = components['schemas']['VedtakPerioderResponseInner'];
-export type VedtakPerioderResponseInnerBarnetillegg = components['schemas']['VedtakPerioderResponseInnerBarnetillegg'];
+export type VedtakDto = components['schemas']['VedtakDTO'];
 export type Code = components['schemas']['Code'];
 export type PensjonSak = components['schemas']['PensjonSak'];
 export type PensjonEtteroppgjorYtelse = components['schemas']['PensjonEtteroppgjorYtelse'];
@@ -1889,6 +1951,14 @@ export type Soknadsstatus = components['schemas']['Soknadsstatus'];
 export type SoknadsstatusSakstema = components['schemas']['SoknadsstatusSakstema'];
 export type Kontaktinformasjon = components['schemas']['Kontaktinformasjon'];
 export type OppgaveDto = components['schemas']['OppgaveDTO'];
+export type Enhet = components['schemas']['Enhet'];
+export type OppfolgingDto = components['schemas']['OppfolgingDTO'];
+export type Veileder = components['schemas']['Veileder'];
+export type DagpengeytelseDto = components['schemas']['DagpengeytelseDTO'];
+export type OppfolgingsYtelseDto = components['schemas']['OppfolgingsYtelseDTO'];
+export type SyfoPunktDto = components['schemas']['SyfoPunktDTO'];
+export type UtvidetOppfolgingDto = components['schemas']['UtvidetOppfolgingDTO'];
+export type YtelseDto = components['schemas']['YtelseDTO'];
 export type Gjeldende14aVedtak = components['schemas']['Gjeldende14aVedtak'];
 export type Gjeldende14aVedtakResponse = components['schemas']['Gjeldende14aVedtakResponse'];
 export type Hovedmal = components['schemas']['Hovedmal'];
@@ -1896,12 +1966,10 @@ export type Innsatsgruppe = components['schemas']['Innsatsgruppe'];
 export type JournalforingSak = components['schemas']['JournalforingSak'];
 export type Resultat = components['schemas']['Resultat'];
 export type BehandlendeEnhetRequest = components['schemas']['BehandlendeEnhetRequest'];
-export type Enhet = components['schemas']['Enhet'];
 export type SendMeldingRequestV2 = components['schemas']['SendMeldingRequestV2'];
 export type Journalpost = components['schemas']['Journalpost'];
 export type MeldingDto = components['schemas']['MeldingDTO'];
 export type TraadDto = components['schemas']['TraadDTO'];
-export type Veileder = components['schemas']['Veileder'];
 export type OpprettHenvendelseRequestV2 = components['schemas']['OpprettHenvendelseRequestV2'];
 export type FortsettDialogDto = components['schemas']['FortsettDialogDTO'];
 export type PersonsokRequestV3 = components['schemas']['PersonsokRequestV3'];
@@ -2051,7 +2119,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    '*/*': components['schemas']['VedtakPerioderResponseInner'][];
+                    '*/*': components['schemas']['VedtakDTO'][];
                 };
             };
         };
@@ -2397,9 +2465,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    '*/*': {
-                        [key: string]: Record<string, never>;
-                    };
+                    '*/*': components['schemas']['OppfolgingDTO'];
                 };
             };
         };
@@ -2426,9 +2492,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    '*/*': {
-                        [key: string]: Record<string, never>;
-                    };
+                    '*/*': components['schemas']['UtvidetOppfolgingDTO'];
                 };
             };
         };
@@ -3280,11 +3344,11 @@ export enum IdentInformasjonGruppe {
     NPID = 'NPID',
     __UNKNOWN_VALUE = '__UNKNOWN_VALUE'
 }
-export enum VedtakPerioderResponseInnerRettighet {
+export enum VedtakDTORettighet {
     TILTAKSPENGER = 'TILTAKSPENGER',
     TILTAKSPENGER_OG_BARNETILLEGG = 'TILTAKSPENGER_OG_BARNETILLEGG'
 }
-export enum VedtakPerioderResponseInnerKilde {
+export enum VedtakDTOKilde {
     TPSAK = 'TPSAK',
     ARENA = 'ARENA'
 }
@@ -3397,12 +3461,9 @@ export enum SakBaksystem {
     SAF = 'SAF',
     SAK = 'SAK'
 }
-export enum EnhetStatus {
-    UNDER_ETABLERING = 'UNDER_ETABLERING',
-    AKTIV = 'AKTIV',
-    UNDER_AVVIKLING = 'UNDER_AVVIKLING',
-    NEDLAGT = 'NEDLAGT'
-}
+type WithRequired<T, K extends keyof T> = T & {
+    [P in K]-?: T[P];
+};
 export enum SendMeldingRequestV2TraadType {
     SAMTALEREFERAT = 'SAMTALEREFERAT',
     MELDINGSKJEDE = 'MELDINGSKJEDE',
