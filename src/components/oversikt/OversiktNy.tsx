@@ -1,5 +1,5 @@
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
-import { BodyLong, BodyShort, Button, ExpansionCard, HGrid, HStack, Heading, VStack } from '@navikt/ds-react';
+import { BodyLong, BodyShort, Button, HGrid, HStack, Heading, VStack } from '@navikt/ds-react';
 import Card from 'src/components/Card';
 import { Link } from 'src/components/Link';
 
@@ -50,17 +50,18 @@ const OversiktDetailCard = ({
             <VStack justify="space-between" gap="4">
                 <HStack wrap={false} gap="4" justify="space-between">
                     <Heading size="medium">{title}</Heading>
-                    <Card flexGrow={0}>
-                        <VStack align="center" className="p-2">
-                            <Link key={title} className="no-underline" to={to} aria-label={title} variant="action">
-                                <ExternalLinkIcon aria-hidden fontSize="1rem" />
-                            </Link>
-                        </VStack>
-                    </Card>
                 </HStack>
                 <VStack justify="space-between" gap="4" align="start">
                     <BodyShort>{beskrivelse}</BodyShort>
-                    <Button variant="secondary" as={Link} to={to} className="no-underline">
+                    <Button
+                        size="small"
+                        variant="secondary"
+                        as={Link}
+                        to={to}
+                        className="no-underline"
+                        iconPosition="right"
+                        icon={<ExternalLinkIcon aria-hidden fontSize="1rem" />}
+                    >
                         {title}
                     </Button>
                 </VStack>
@@ -90,16 +91,6 @@ function OversiktNy() {
                     );
                 })}
             </HGrid>
-
-            <ExpansionCard aria-label="Hvor henter vi informasjon fra?">
-                <ExpansionCard.Header>
-                    <ExpansionCard.Title>Hvor henter vi informasjon fra?</ExpansionCard.Title>
-                    <ExpansionCard.Description>Hvilke data henter vi ut, og fra hvor?</ExpansionCard.Description>
-                </ExpansionCard.Header>
-                <ExpansionCard.Content>
-                    <BodyLong spacing>Hvis du er helt eller delvis</BodyLong>
-                </ExpansionCard.Content>
-            </ExpansionCard>
         </VStack>
     );
 }

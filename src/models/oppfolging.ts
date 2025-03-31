@@ -23,7 +23,7 @@ export interface DetaljertOppfolging {
     sykemeldtFra: string;
     rettighetsgruppe: string;
     vedtaksdato: string;
-    sykefraværsoppfølging: SyfoPunkt[];
+    sykefravaersoppfolging: SyfoPunkt[];
     ytelser: (OppfolgingsYtelse | Dagpenger)[];
 }
 
