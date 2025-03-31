@@ -45,8 +45,8 @@ importers:
         specifier: ^2.5.0
         version: 2.5.0(react@19.0.0)
       '@tanstack/react-form':
-        specifier: ^1.1.2
-        version: 1.1.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.8.2)
+        specifier: ^1.2.1
+        version: 1.2.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.8.2)
       '@tanstack/react-query':
         specifier: ^5.69.0
         version: 5.69.0(react@19.0.0)
@@ -1214,8 +1214,8 @@ packages:
     resolution: {integrity: sha512-nZvPWneybAWen2rhFksvhpA1VYIsr2bIrpJU4z20SQeH8BKUzPRiO+EtCodRqQQe/NIvf/tD85POtLRJ9PjaiA==}
     engines: {node: '>=18.17.0', npm: '>=9.5.0'}
 
-  '@remix-run/node@2.16.2':
-    resolution: {integrity: sha512-Q+DdX9YU1eCqwtWxJG2rIk2sYVZokCzb/T3ZsnhkWkSc0/NTMcrtkQY6JRymcMEoR+oVnJaJ9xPHt1P/BV4k9Q==}
+  '@remix-run/node@2.16.3':
+    resolution: {integrity: sha512-6FLMNPUwVk/XMZs83li5LvXz0UGG1MXE+6p6rIh29COFASOPEy8tlhu5OSnkMWlGrnaGfjejlSr3lWmdiE864Q==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       typescript: ^5.1.0
@@ -1227,8 +1227,8 @@ packages:
     resolution: {integrity: sha512-O3rHJzAQKamUz1fvE0Qaw0xSFqsA/yafi2iqeE0pvdFtCO1viYx8QL6f3Ln/aCCTLxs68SLf0KPM9eSeM8yBnA==}
     engines: {node: '>=14.0.0'}
 
-  '@remix-run/server-runtime@2.16.2':
-    resolution: {integrity: sha512-tleEyGfFcczyUzBumDXRV4ns8ghqoCXgiNUrTWmvtI+8Vaw9bIB9Y4/m852YNLz1Kum1d936SobATzijhnEPsA==}
+  '@remix-run/server-runtime@2.16.3':
+    resolution: {integrity: sha512-1CRiymt8XjGgyuxvCg1GFLEv0SLUNKeUtYF4a94xHv6Kkx5X+L/YZYxXEeJ3I0czuGcMcPqcqmdwfEo1hoMi8Q==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       typescript: ^5.1.0
@@ -1434,8 +1434,8 @@ packages:
     peerDependencies:
       '@svgr/core': '*'
 
-  '@tanstack/form-core@1.1.2':
-    resolution: {integrity: sha512-Pjges7LoCKoglwnXPQrOUlR2L4LEyb6LVr3sMPcLCw15Ex32J7ox4rVEoz2TwPxz8LgoXl+sNsPn2Qp+thhTuQ==}
+  '@tanstack/form-core@1.1.3':
+    resolution: {integrity: sha512-BJPBvCB4HkNIKreAlSR3537+/mfV/rLswtMRFeOpmX2eMTriHNpbF5Mam5mblP4TxfjlrroKug50JDwd6+8CtQ==}
 
   '@tanstack/history@1.112.8':
     resolution: {integrity: sha512-+EPOvUtnA3PnIBF2oUhggdy7UrVimLZd1SpULhV1UiesNgKtmLjArO7ZdGPrRq7pRXhc8V0ZAWTI9vfplhZfeA==}
@@ -1448,8 +1448,8 @@ packages:
   '@tanstack/query-core@5.69.0':
     resolution: {integrity: sha512-Kn410jq6vs1P8Nm+ZsRj9H+U3C0kjuEkYLxbiCyn3MDEiYor1j2DGVULqAz62SLZtUZ/e9Xt6xMXiJ3NJ65WyQ==}
 
-  '@tanstack/react-form@1.1.2':
-    resolution: {integrity: sha512-kbjKFvFrNMe+3QHJxmKLO61mXuScgRcB6xAWLI7yw8UkQ/MNVi1ZoL3inp5I4hDkcjdpCD1Syn1DotMOX5XQxw==}
+  '@tanstack/react-form@1.2.1':
+    resolution: {integrity: sha512-4tMCOWbPTJSqmL3E6Dt0dS7TVwxHDaScr6Z5SRbQD+eU+iSje+K4kzL17qzBpgNcA+dvXDlZqbDDpKxapXTK6A==}
     peerDependencies:
       '@tanstack/react-start': ^1.112.0
       react: ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -3600,8 +3600,8 @@ packages:
   url-parse@1.5.10:
     resolution: {integrity: sha512-WypcfiRhfeUP9vvF0j6rw0J3hrWrw6iZv3+22h6iRMJ/8z1Tj6XfLP4DsUix5MhMPnXpiHDoKyoZ/bdCkwBCiQ==}
 
-  use-sync-external-store@1.4.0:
-    resolution: {integrity: sha512-9WXSPC5fMv61vaupRkCKCxsPxBocVnwakBEkMIHHpkTTg6icbJtg6jzgtLDm4bl3cSHAca52rYWih0k4K3PfHw==}
+  use-sync-external-store@1.5.0:
+    resolution: {integrity: sha512-Rb46I4cGGVBmjamjphe8L/UnvJD+uPPtTkNvX5mZgqdbavhI4EbgIWJiIHXJ8bc/i9EQGPRh4DwEURJ552Do0A==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
@@ -4618,9 +4618,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@remix-run/node@2.16.2(typescript@5.8.2)':
+  '@remix-run/node@2.16.3(typescript@5.8.2)':
     dependencies:
-      '@remix-run/server-runtime': 2.16.2(typescript@5.8.2)
+      '@remix-run/server-runtime': 2.16.3(typescript@5.8.2)
       '@remix-run/web-fetch': 4.4.2
       '@web3-storage/multipart-parser': 1.0.0
       cookie-signature: 1.2.2
@@ -4632,7 +4632,7 @@ snapshots:
 
   '@remix-run/router@1.23.0': {}
 
-  '@remix-run/server-runtime@2.16.2(typescript@5.8.2)':
+  '@remix-run/server-runtime@2.16.3(typescript@5.8.2)':
     dependencies:
       '@remix-run/router': 1.23.0
       '@types/cookie': 0.6.0
@@ -4816,7 +4816,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@tanstack/form-core@1.1.2':
+  '@tanstack/form-core@1.1.3':
     dependencies:
       '@tanstack/store': 0.7.0
 
@@ -4826,10 +4826,10 @@ snapshots:
 
   '@tanstack/query-core@5.69.0': {}
 
-  '@tanstack/react-form@1.1.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.8.2)':
+  '@tanstack/react-form@1.2.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.8.2)':
     dependencies:
-      '@remix-run/node': 2.16.2(typescript@5.8.2)
-      '@tanstack/form-core': 1.1.2
+      '@remix-run/node': 2.16.3(typescript@5.8.2)
+      '@tanstack/form-core': 1.1.3
       '@tanstack/react-store': 0.7.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       decode-formdata: 0.8.0
       react: 19.0.0
@@ -4858,7 +4858,7 @@ snapshots:
       '@tanstack/store': 0.7.0
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
-      use-sync-external-store: 1.4.0(react@19.0.0)
+      use-sync-external-store: 1.5.0(react@19.0.0)
 
   '@tanstack/router-cli@1.114.29(@tanstack/react-router@1.114.29(react-dom@19.0.0(react@19.0.0))(react@19.0.0))':
     dependencies:
@@ -6946,7 +6946,7 @@ snapshots:
       querystringify: 2.2.0
       requires-port: 1.0.0
 
-  use-sync-external-store@1.4.0(react@19.0.0):
+  use-sync-external-store@1.5.0(react@19.0.0):
     dependencies:
       react: 19.0.0
 
