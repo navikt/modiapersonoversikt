@@ -44,7 +44,7 @@
         "@navikt/aksel-icons": "^7.17.4",
         "@navikt/ds-css": "^7.17.4",
         "@navikt/ds-react": "^7.17.4",
-        "@navikt/ds-tailwind": "^7.17.4",
+        "@navikt/ds-tailwind": "^7.18.0",
         "@navikt/fnrvalidator": "^2.1.5",
         "@navikt/navspa": "^7.0.0",
         "@navikt/tag-input": "^2.0.2",
