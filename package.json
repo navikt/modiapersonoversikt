@@ -123,7 +123,7 @@
         "@faker-js/faker": "^9.6.0",
         "@playwright/test": "^1.51.1",
         "@tanstack/router-cli": "^1.114.29",
-        "@tanstack/router-devtools": "^1.112.8",
+        "@tanstack/router-devtools": "^1.114.29",
         "@tanstack/router-plugin": "^1.112.8",
         "@testing-library/jest-dom": "^6.6.3",
         "@testing-library/react": "^16.2.0",
