@@ -151,7 +151,7 @@
         "prop-types": "^15.8.1",
         "react-collapse": "^5.1.1",
         "redux-devtools-extension": "^2.13.9",
-        "tailwindcss": "^3.4.17",
+        "tailwindcss": "^4.1.0",
         "typescript": "^5.8.2",
         "undici": "^7.6.0",
         "vite-require": "^0.2.3",
