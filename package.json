@@ -140,7 +140,7 @@
         "autoprefixer": "^10.4.21",
         "happy-dom": "^17.4.4",
         "jest-styled-components": "^7.2.0",
-        "knip": "^5.46.2",
+        "knip": "^5.46.4",
         "less": "^4.2.2",
         "lint-staged": "^15.5.0",
         "msw": "^2.7.3",
