@@ -313,8 +313,8 @@ importers:
         specifier: ^7.2.0
         version: 7.2.0(styled-components@6.1.16(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
       knip:
-        specifier: ^5.46.2
-        version: 5.46.2(@types/node@22.13.14)(typescript@5.8.2)
+        specifier: ^5.46.4
+        version: 5.46.4(@types/node@22.13.14)(typescript@5.8.2)
       less:
         specifier: ^4.2.2
         version: 4.2.2
@@ -2473,8 +2473,8 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
 
-  knip@5.46.2:
-    resolution: {integrity: sha512-QGVkUVUwNv1zDOmb9ob4jraWNZu06O5xPa5cl97wzHmGGqJHkLfuvAzGTpuVxgujq+FKOXTbD8vv1TfimKTPAQ==}
+  knip@5.46.4:
+    resolution: {integrity: sha512-iU2VGdXOPOj6Y8jEeixYMjlf2MCLZNjB63u2pfuP14gprRFjxgF+8wZiCgrjvogWt9H2WT+ytLYouXoEFAcm5g==}
     engines: {node: '>=18.18.0'}
     hasBin: true
     peerDependencies:
@@ -5894,7 +5894,7 @@ snapshots:
 
   json5@2.2.3: {}
 
-  knip@5.46.2(@types/node@22.13.14)(typescript@5.8.2):
+  knip@5.46.4(@types/node@22.13.14)(typescript@5.8.2):
     dependencies:
       '@nodelib/fs.walk': 3.0.1
       '@snyk/github-codeowners': 1.1.0
