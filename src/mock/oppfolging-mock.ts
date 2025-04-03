@@ -34,7 +34,7 @@ function getSaksbehandler(): Saksbehandler {
 
 function getAnsattEnhet(): AnsattEnhet {
     return {
-        id: 'E0001',
+        enhetId: 'E0001',
         navn: faker.company.name(),
         status: 'ESTAT'
     };
