@@ -11,7 +11,7 @@ export function getOppfolgingEnhet(oppfolging: Oppfolging | null): string {
     if (oppfolging == null) {
         return '\u2014';
     }
-    return oppfolging.enhet ? `${oppfolging.enhet.id} ${oppfolging.enhet.navn}` : 'Ikke angitt';
+    return oppfolging.enhet ? `${oppfolging.enhet.enhetId} ${oppfolging.enhet.navn}` : 'Ikke angitt';
 }
 
 export function getVeileder(veileder: Saksbehandler | null | undefined): string {

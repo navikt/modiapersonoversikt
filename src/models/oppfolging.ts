@@ -10,7 +10,7 @@ export interface Saksbehandler {
 }
 
 export interface AnsattEnhet {
-    id: string;
+    enhetId: string;
     navn: string;
     status: string;
 }
