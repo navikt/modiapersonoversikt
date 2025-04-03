@@ -4,7 +4,7 @@ export const statiskOppfolgingMock: DetaljertOppfolging = {
     oppfolging: {
         erUnderOppfolging: false,
         veileder: { ident: 'Z0000001', navn: 'Testident Testidentesen' },
-        enhet: { id: 'E0001', navn: 'Tangen AS', status: 'ESTAT' }
+        enhet: { enhetId: 'E0001', navn: 'Tangen AS', status: 'ESTAT' }
     },
     meldeplikt: false,
     formidlingsgruppe: 'FMGRP2',

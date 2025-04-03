@@ -44,6 +44,12 @@ export function useInfotabsDyplenker(): Dyplenker {
     const paths = personPaths;
     const pathname = useLocation().pathname;
 
+    const cleanStringValue = (param?: string) => {
+        if (!param) return;
+        const decoded = decodeURIComponent(param);
+        return decoded.replace(/^"|"$/g, '');
+    };
+
     return useMemo(
         () => ({
             utbetaling: {
@@ -57,7 +63,10 @@ export function useInfotabsDyplenker(): Dyplenker {
             meldinger: {
                 link: (traad: Traad) => `${paths.meldinger}?traadId=${traad.traadId}`,
                 route: `${paths.meldinger}`,
-                erValgt: (traad: Traad) => traad.traadId === queryParams.traadId
+                erValgt: (traad: Traad) => {
+                    const traadId = cleanStringValue(queryParams.traadId);
+                    return traad.traadId === traadId;
+                }
             },
             saker: {
                 link: (sakstema, valgtDokumentId, standalone) =>
