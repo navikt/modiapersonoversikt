@@ -212,14 +212,12 @@ function findWordBoundary(text: string, initialPosition: number): [number, numbe
     const words = text.split(/\s/);
     const indices = new Array(words.length);
     for (let i = 0; i < words.length; i++) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
         const start = i === 0 ? 0 : indices[i - 1][1] + 1;
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+
         const end = start + words[i].length;
         indices[i] = [start, end];
 
         if (start <= initialPosition && end >= initialPosition) {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-return
             return [start, end];
         }
     }
@@ -256,7 +254,6 @@ function noAriaTellerTekst(antallTegn: number, maxLength: number) {
 
 function asChangeEvent<T>(event: React.KeyboardEvent<T>): React.ChangeEvent<T> {
     if (event.target && event.target === event.currentTarget) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-explicit-any
         //biome-ignore lint/suspicious/noExplicitAny: biome migration
         return event as any;
     }

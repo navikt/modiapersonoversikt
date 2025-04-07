@@ -13,7 +13,6 @@ function FormTextarea<
 >(props: Props<TFieldValues, TFieldName>) {
     const { ref, input, error } = useFieldState(props.name, props.form);
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { form, name, ...inputProps } = props;
 
     const value = form.watch(props.name);

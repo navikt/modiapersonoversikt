@@ -25,68 +25,68 @@ import ViktigÅVite from '../viktigavite/viktigavite';
 import JournalpostListeElementV2 from './JournalPostListeElement/JournalpostListeElementV2';
 
 const StyledPanel = styled(Panel)`
-    padding: 0rem;
-    position: relative;
-    margin-bottom: 2rem;
+  padding: 0rem;
+  position: relative;
+  margin-bottom: 2rem;
 `;
 
 const InfoOgFilterPanel = styled.section`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: ${pxToRem(15)};
+  > *:first-child {
+    flex-grow: 1;
+  }
+  > div {
+    > * {
+      margin-bottom: 0.5rem;
+    }
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: space-between;
-    padding: ${pxToRem(15)};
-    > *:first-child {
-        flex-grow: 1;
-    }
-    > div {
-        > * {
-            margin-bottom: 0.5rem;
-        }
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-    > div:last-child {
-        align-items: flex-end;
-        flex-grow: 1;
-    }
+  }
+  > div:last-child {
+    align-items: flex-end;
+    flex-grow: 1;
+  }
 `;
 
 const DokumenterListe = styled.ol`
-    padding: 0;
-    margin: 0;
-    list-style: none;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 `;
 
 const ÅrsGruppeStyle = styled.li`
-    ol {
-        padding: 0;
-        margin: 0;
-    }
-    ol > *:not(:first-child) {
-        border-top: ${theme.border.skille};
-    }
+  ol {
+    padding: 0;
+    margin: 0;
+  }
+  ol > *:not(:first-child) {
+    border-top: ${theme.border.skille};
+  }
 `;
 
 const Form = styled.form`
-    display: flex;
-    > *:not(:last-child) {
-        padding-right: 1rem;
-    }
-    > * {
-        margin-bottom: 0;
-    }
+  display: flex;
+  > *:not(:last-child) {
+    padding-right: 1rem;
+  }
+  > * {
+    margin-bottom: 0;
+  }
 `;
 
 const TittelWrapperStyling = styled.div`
-    display: inline-flex;
-    align-items: center;
-    > *:last-child {
-        margin-left: 1rem;
-    }
-    &:focus {
-        outline: none;
-    }
+  display: inline-flex;
+  align-items: center;
+  > *:last-child {
+    margin-left: 1rem;
+  }
+  &:focus {
+    outline: none;
+  }
 `;
 
 interface JournalpostGruppeProps {
@@ -163,18 +163,18 @@ function JournalpostListe(props: DokumentListeProps) {
 }
 
 const PaginatorStyling = styled.div`
-    label {
-        ${theme.visuallyHidden};
-    }
-    padding: ${pxToRem(15)};
-    padding-top: 0;
-    .skjemaelement {
-        margin: 0;
-    }
+  label {
+    ${theme.visuallyHidden};
+  }
+  padding: ${pxToRem(15)};
+  padding-top: 0;
+  .skjemaelement {
+    margin: 0;
+  }
 `;
 
 const PrevNextButtonsStyling = styled.div`
-    padding: ${pxToRem(15)};
+  padding: ${pxToRem(15)};
 `;
 
 interface Props {
@@ -205,20 +205,23 @@ function JournalPoster(props: Props) {
     const handleOppdaterAvsenderFilter = (filter: 'nav' | 'andre' | 'bruker') => {
         const query = avsenderFilterQuery ?? [];
         const avsender = query.includes(filter) ? query.filter((f) => f !== filter) : [...query, filter];
-        navigate({ from: isFullscreen ? '/saker' : '/person/saker', search: { avsender } });
+        navigate({
+            from: isFullscreen ? '/saker' : '/person/saker',
+            search: { avsender }
+        });
     };
 
-    const prevSakstema = usePrevious(aggregertSak);
+    const prevSakstemaKode = usePrevious(aggregertSak.temakode);
     useEffect(
         function scrollToTopVedNyttSakstema() {
-            if (!aggregertSak || !prevSakstema) {
+            if (!aggregertSak || !prevSakstemaKode) {
                 return;
             }
-            if (prevSakstema !== aggregertSak) {
+            if (prevSakstemaKode !== aggregertSak.temakode) {
                 if (tittelRef.current) tittelRef.current.focus();
             }
         },
-        [aggregertSak, tittelRef, prevSakstema]
+        [aggregertSak, tittelRef, prevSakstemaKode]
     );
 
     const filterCheckboxer = (

@@ -24,11 +24,15 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
     const settGjeldendeBruker = useSettAktivBruker();
     const navigate = useNavigate();
     const [delayRender, setDelayRender] = useState(!!validFnr);
+    const [behandlingsid, setBehandlingsid] = useState<string | undefined>(undefined);
 
     useOnMount(() => {
         if (queryParams.henvendelseid) {
-            queryParams.behandlingsid = queryParams.henvendelseid;
+            setBehandlingsid(queryParams.henvendelseid);
+        } else {
+            setBehandlingsid(queryParams.behandlingsid);
         }
+
         if (queryParams.sokFnrCode) {
             post<{
                 aktivBruker: string;
@@ -50,9 +54,9 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
 
     const handleLegacyUrls = (fnr?: string) => {
         const linkTilValgtHenvendelse = `${paths.personUri}/${INFOTABS.MELDINGER.path}` as const;
-        const newQuery = { traadId: queryParams.behandlingsid };
+        const newQuery = { traadId: behandlingsid };
 
-        if (queryParams.oppgaveid && queryParams.behandlingsid && fnr) {
+        if (queryParams.oppgaveid && behandlingsid && fnr) {
             settGjeldendeBruker(fnr, false);
             loggEvent('Oppgave', 'FraGosys');
             navigate({
@@ -60,7 +64,7 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
                 search: newQuery,
                 replace: true
             });
-        } else if (fnr && queryParams.behandlingsid) {
+        } else if (fnr && behandlingsid) {
             loggEvent('Henvendelse', 'FraGosys');
             settGjeldendeBruker(fnr, false);
             navigate({
@@ -68,7 +72,7 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
                 search: newQuery,
                 replace: true
             });
-        } else if (queryParams.behandlingsid) {
+        } else if (behandlingsid) {
             loggEvent('Henvendelse', 'FraGosys');
             navigate({
                 to: linkTilValgtHenvendelse,
