@@ -367,7 +367,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   >
                     <label
                       class="navds-form-field__label navds-label navds-label--small"
-                      for="datepicker-input-r1"
+                      for="datepicker-input-«r1»"
                     >
                       Fra
                     </label>
@@ -377,7 +377,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       <input
                         autocomplete="off"
                         class="navds-date__field-input navds-text-field__input navds-body-short navds-body-short--small"
-                        id="datepicker-input-r1"
+                        id="datepicker-input-«r1»"
                         size="11"
                         value="01.01.1968"
                       />
@@ -387,7 +387,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                         type="button"
                       >
                         <svg
-                          aria-labelledby="title-r2"
+                          aria-labelledby="title-«r2»"
                           fill="none"
                           focusable="false"
                           height="1em"
@@ -397,7 +397,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <title
-                            id="title-r2"
+                            id="title-«r2»"
                           >
                             Åpne datovelger
                           </title>
@@ -414,7 +414,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       aria-live="polite"
                       aria-relevant="additions removals"
                       class="navds-form-field__error"
-                      id="datepicker-input-error-r1"
+                      id="datepicker-input-error-«r1»"
                     />
                   </div>
                   <div
@@ -422,7 +422,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                     class="navds-popover navds-date__popover navds-popover--hidden"
                     data-index="0"
                     data-placement="bottom-start"
-                    id="r0"
+                    id="«r0»"
                     role="dialog"
                     style="position: fixed; left: 0px; top: 0px; transform: translate(0px, 0px);"
                   >
@@ -454,7 +454,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 class="navds-button__icon"
                               >
                                 <svg
-                                  aria-labelledby="title-r4"
+                                  aria-labelledby="title-«r4»"
                                   fill="none"
                                   focusable="false"
                                   height="1em"
@@ -464,7 +464,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                   xmlns="http://www.w3.org/2000/svg"
                                 >
                                   <title
-                                    id="title-r4"
+                                    id="title-«r4»"
                                   >
                                     Gå til forrige måned
                                   </title>
@@ -483,7 +483,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                               >
                                 <label
                                   class="navds-form-field__label navds-sr-only navds-label"
-                                  for="select-r5"
+                                  for="select-«r5»"
                                 >
                                   Måned
                                 </label>
@@ -492,7 +492,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 >
                                   <select
                                     class="navds-select__input navds-body-short navds-body-short--medium"
-                                    id="select-r5"
+                                    id="select-«r5»"
                                   >
                                     <option
                                       value="0"
@@ -578,7 +578,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                   aria-live="polite"
                                   aria-relevant="additions removals"
                                   class="navds-form-field__error"
-                                  id="select-error-r5"
+                                  id="select-error-«r5»"
                                 />
                               </div>
                               <div
@@ -586,7 +586,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                               >
                                 <label
                                   class="navds-form-field__label navds-sr-only navds-label"
-                                  for="select-r7"
+                                  for="select-«r7»"
                                 >
                                   År
                                 </label>
@@ -595,7 +595,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 >
                                   <select
                                     class="navds-select__input navds-body-short navds-body-short--medium"
-                                    id="select-r7"
+                                    id="select-«r7»"
                                   >
                                     <option
                                       value="1960"
@@ -671,7 +671,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                   aria-live="polite"
                                   aria-relevant="additions removals"
                                   class="navds-form-field__error"
-                                  id="select-error-r7"
+                                  id="select-error-«r7»"
                                 />
                               </div>
                             </div>
@@ -683,7 +683,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 class="navds-button__icon"
                               >
                                 <svg
-                                  aria-labelledby="title-r9"
+                                  aria-labelledby="title-«r9»"
                                   fill="none"
                                   focusable="false"
                                   height="1em"
@@ -693,7 +693,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                   xmlns="http://www.w3.org/2000/svg"
                                 >
                                   <title
-                                    id="title-r9"
+                                    id="title-«r9»"
                                   >
                                     Gå til neste måned
                                   </title>
@@ -1343,7 +1343,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   >
                     <label
                       class="navds-form-field__label navds-label navds-label--small"
-                      for="datepicker-input-rc"
+                      for="datepicker-input-«rc»"
                     >
                       Til
                     </label>
@@ -1353,7 +1353,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       <input
                         autocomplete="off"
                         class="navds-date__field-input navds-text-field__input navds-body-short navds-body-short--small"
-                        id="datepicker-input-rc"
+                        id="datepicker-input-«rc»"
                         size="11"
                         value="01.01.1970"
                       />
@@ -1363,7 +1363,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                         type="button"
                       >
                         <svg
-                          aria-labelledby="title-rd"
+                          aria-labelledby="title-«rd»"
                           fill="none"
                           focusable="false"
                           height="1em"
@@ -1373,7 +1373,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <title
-                            id="title-rd"
+                            id="title-«rd»"
                           >
                             Åpne datovelger
                           </title>
@@ -1390,7 +1390,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       aria-live="polite"
                       aria-relevant="additions removals"
                       class="navds-form-field__error"
-                      id="datepicker-input-error-rc"
+                      id="datepicker-input-error-«rc»"
                     />
                   </div>
                   <div
@@ -1398,7 +1398,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                     class="navds-popover navds-date__popover navds-popover--hidden"
                     data-index="0"
                     data-placement="bottom-start"
-                    id="rb"
+                    id="«rb»"
                     role="dialog"
                     style="position: fixed; left: 0px; top: 0px; transform: translate(0px, 0px);"
                   >
@@ -1430,7 +1430,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 class="navds-button__icon"
                               >
                                 <svg
-                                  aria-labelledby="title-rf"
+                                  aria-labelledby="title-«rf»"
                                   fill="none"
                                   focusable="false"
                                   height="1em"
@@ -1440,7 +1440,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                   xmlns="http://www.w3.org/2000/svg"
                                 >
                                   <title
-                                    id="title-rf"
+                                    id="title-«rf»"
                                   >
                                     Gå til forrige måned
                                   </title>
@@ -1459,7 +1459,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                               >
                                 <label
                                   class="navds-form-field__label navds-sr-only navds-label"
-                                  for="select-rg"
+                                  for="select-«rg»"
                                 >
                                   Måned
                                 </label>
@@ -1468,7 +1468,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 >
                                   <select
                                     class="navds-select__input navds-body-short navds-body-short--medium"
-                                    id="select-rg"
+                                    id="select-«rg»"
                                   >
                                     <option
                                       value="0"
@@ -1565,7 +1565,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                   aria-live="polite"
                                   aria-relevant="additions removals"
                                   class="navds-form-field__error"
-                                  id="select-error-rg"
+                                  id="select-error-«rg»"
                                 />
                               </div>
                               <div
@@ -1573,7 +1573,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                               >
                                 <label
                                   class="navds-form-field__label navds-sr-only navds-label"
-                                  for="select-ri"
+                                  for="select-«ri»"
                                 >
                                   År
                                 </label>
@@ -1582,7 +1582,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 >
                                   <select
                                     class="navds-select__input navds-body-short navds-body-short--medium"
-                                    id="select-ri"
+                                    id="select-«ri»"
                                   >
                                     <option
                                       value="1968"
@@ -1623,7 +1623,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                   aria-live="polite"
                                   aria-relevant="additions removals"
                                   class="navds-form-field__error"
-                                  id="select-error-ri"
+                                  id="select-error-«ri»"
                                 />
                               </div>
                             </div>
@@ -1636,7 +1636,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                 class="navds-button__icon"
                               >
                                 <svg
-                                  aria-labelledby="title-rk"
+                                  aria-labelledby="title-«rk»"
                                   fill="none"
                                   focusable="false"
                                   height="1em"
@@ -1646,7 +1646,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                                   xmlns="http://www.w3.org/2000/svg"
                                 >
                                   <title
-                                    id="title-rk"
+                                    id="title-«rk»"
                                   >
                                     Gå til neste måned
                                   </title>
