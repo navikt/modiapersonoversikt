@@ -8,6 +8,11 @@ import { TanStackRouterVite } from '@tanstack/router-plugin/vite';
 import react from '@vitejs/plugin-react';
 import vitePluginSvgr from 'vite-plugin-svgr';
 import { viteRequire } from 'vite-require';
+import { reactCompilerSources } from './reactCompiler';
+
+const reactCompilerConfig = {
+    sources: (filename: string) => reactCompilerSources.some((dir) => filename.indexOf(dir) !== -1)
+};
 
 const fixNavFrontendStyle = (packages: string[]) =>
     packages.map((name) => ({
@@ -58,7 +63,11 @@ export default defineConfig({
     },
     plugins: [
         TanStackRouterVite(),
-        react(),
+        react({
+            babel: {
+                plugins: [['babel-plugin-react-compiler', reactCompilerConfig]]
+            }
+        }),
         vitePluginSvgr({
             include: '**/*.svg'
         }),
