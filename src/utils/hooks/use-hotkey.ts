@@ -1,10 +1,22 @@
 import { type DependencyList, useCallback, useEffect, useMemo } from 'react';
 import { loggEvent } from '../logger/frontendLogger';
 
-type KeyDescription = { char: string; altKey?: boolean; ctrlKey?: boolean; metaKey?: boolean; shiftKey?: boolean };
+type KeyDescription = {
+    char: string;
+    altKey?: boolean;
+    ctrlKey?: boolean;
+    metaKey?: boolean;
+    shiftKey?: boolean;
+};
 function toKeyDescription(value: string | KeyDescription): KeyDescription {
     if (typeof value === 'string') {
-        return { char: value, altKey: false, ctrlKey: false, metaKey: false, shiftKey: false };
+        return {
+            char: value,
+            altKey: false,
+            ctrlKey: false,
+            metaKey: false,
+            shiftKey: false
+        };
     }
     return value;
 }
@@ -29,6 +41,7 @@ export default function useHotkey(
     loggAction: string,
     element: HTMLElement = document.body
 ) {
+    // eslint-disable-next-line
     const stableAction = useMemo(() => action, deps);
     const keyDescription = useCallback(toKeyDescription, [key])(key);
     const handler = useCallback(
@@ -36,7 +49,9 @@ export default function useHotkey(
             if (matches(keyDescription, event)) {
                 event.preventDefault();
                 event.stopPropagation();
-                loggEvent(loggAction, 'Hurtigtast', { type: `Alt + ${keyDescription.char}` });
+                loggEvent(loggAction, 'Hurtigtast', {
+                    type: `Alt + ${keyDescription.char}`
+                });
                 stableAction();
             }
         },

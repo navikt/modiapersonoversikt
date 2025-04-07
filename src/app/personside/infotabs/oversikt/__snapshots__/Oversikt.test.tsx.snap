@@ -910,13 +910,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
             </h3>
             <div
               class="c4"
-            >
-              <p
-                class="typo-normal"
-              >
-                2 / 5
-              </p>
-            </div>
+            />
             <a
               class="c5 lenke"
               href="/person/ytelser"

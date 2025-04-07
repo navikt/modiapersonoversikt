@@ -95,8 +95,7 @@ const SearchField = () => {
         setInternalValue(value ?? '');
     }, [value]);
 
-    // biome-ignore lint/correctness/useExhaustiveDependencies: Incorrect lint warn
-    const setAtomValue = useCallback(debounce(setValue, 500), [setValue]);
+    const setAtomValue = debounce(setValue, 500);
     return (
         <Search
             size="small"

@@ -11,7 +11,10 @@ const LARGE_SIZE = 50;
 
 export function LukkbarNyMelding() {
     const panelRef = useRef<ImperativePanelHandle>(null);
-    const [isLarge, setIsLarge] = useState((panelRef.current?.getSize() ?? PANEL_SIZE) > PANEL_SIZE);
+    const [isLarge, setIsLarge] = useState(false);
+    useEffect(() => {
+        setIsLarge((panelRef.current?.getSize() ?? PANEL_SIZE) > PANEL_SIZE);
+    }, []);
     const [isOpen, setIsOpen] = useState(localStorage.getItem('ny-melding-is-open') !== 'false');
 
     useEffect(() => {

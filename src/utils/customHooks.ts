@@ -1,5 +1,6 @@
 import { useNavigate } from '@tanstack/react-router';
 import { useAtomValue, useSetAtom } from 'jotai';
+import { eq } from 'lodash';
 import type * as React from 'react';
 import {
     type DependencyList,
@@ -8,7 +9,8 @@ import {
     useCallback,
     useEffect,
     useMemo,
-    useRef
+    useRef,
+    useState
 } from 'react';
 import { useSelector } from 'react-redux';
 import { nyModiaAtom } from 'src/components/NyModia';
@@ -68,11 +70,15 @@ export function useClickOutside<T extends HTMLElement>(ref: RefObject<T | null>,
 }
 
 export function usePrevious<T>(value: T) {
-    const ref = useRef<T>(undefined);
-    useEffect(() => {
-        ref.current = value;
-    });
-    return ref.current;
+    const [current, setCurrent] = useState<T>(value);
+    const [previous, setPrevious] = useState<T | null>(null);
+
+    if (!eq(previous, value)) {
+        setPrevious(current);
+        setCurrent(value);
+    }
+
+    return previous;
 }
 
 export function useAppState<T>(selector: (state: AppState) => T) {
