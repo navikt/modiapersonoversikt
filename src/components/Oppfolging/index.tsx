@@ -1,4 +1,4 @@
-import { BodyShort, HGrid, Heading, VStack } from '@navikt/ds-react';
+import { BodyShort, HGrid, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { Suspense } from 'react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
@@ -108,7 +108,17 @@ export const OppfolgingPage = () => {
         <VStack gap="2" minHeight="0">
             <Heading size="xsmall">Oppfølging</Heading>
             <ErrorBoundary boundaryName="oppfolgingDetaljer">
-                <Suspense fallback={<Card gap="2" />}>
+                <Suspense
+                    fallback={
+                        <Card gap="2">
+                            {Array(2)
+                                .keys()
+                                .map((i) => (
+                                    <Skeleton key={i} variant="rounded" height={68} />
+                                ))}
+                        </Card>
+                    }
+                >
                     <OppfolgingDetaljer />
                 </Suspense>
             </ErrorBoundary>
@@ -116,7 +126,17 @@ export const OppfolgingPage = () => {
                 14 a-vedtak
             </Heading>
             <ErrorBoundary boundaryName="gjeldende14aVedtakDetaljer">
-                <Suspense fallback={<Card gap="2" />}>
+                <Suspense
+                    fallback={
+                        <Card gap="2">
+                            {Array(2)
+                                .keys()
+                                .map((i) => (
+                                    <Skeleton key={i} variant="rounded" height={68} />
+                                ))}
+                        </Card>
+                    }
+                >
                     <Gjeldende14aVedtakDetaljer />
                 </Suspense>
             </ErrorBoundary>
