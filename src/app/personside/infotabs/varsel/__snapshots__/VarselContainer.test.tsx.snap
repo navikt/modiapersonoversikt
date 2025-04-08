@@ -665,7 +665,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
       class="navds-alert navds-alert--info navds-alert--medium"
     >
       <svg
-        aria-labelledby="title-r0"
+        aria-labelledby="title-«r0»"
         class="navds-alert__icon"
         fill="none"
         focusable="false"
@@ -676,7 +676,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
         xmlns="http://www.w3.org/2000/svg"
       >
         <title
-          id="title-r0"
+          id="title-«r0»"
         >
           Informasjon
         </title>
