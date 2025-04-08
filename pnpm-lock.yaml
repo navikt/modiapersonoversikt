@@ -352,8 +352,8 @@ importers:
         specifier: ^5.8.2
         version: 5.8.2
       undici:
-        specifier: ^7.6.0
-        version: 7.6.0
+        specifier: ^7.7.0
+        version: 7.7.0
       vite-require:
         specifier: ^0.2.3
         version: 0.2.3
@@ -3629,8 +3629,8 @@ packages:
     resolution: {integrity: sha512-uROZWze0R0itiAKVPsYhFov9LxrPMHLMEQFszeI2gCN6bnIIZ8twzBCJcN2LJrBBLfrP0t1FW0g+JmKVl8Vk1g==}
     engines: {node: '>=18.17'}
 
-  undici@7.6.0:
-    resolution: {integrity: sha512-gaFsbThjrDGvAaD670r81RZro/s6H2PVZF640Qn0p5kZK+/rim7/mmyfp2W7VB5vOMaFM8vuFBJUaMlaZTYHlA==}
+  undici@7.7.0:
+    resolution: {integrity: sha512-tZ6+5NBq4KH35rr46XJ2JPFKxfcBlYNaqLF/wyWIO9RMHqqU/gx/CLB1Y2qMcgB8lWw/bKHa7qzspqCN7mUHvA==}
     engines: {node: '>=20.18.1'}
 
   universalify@0.2.0:
@@ -7032,7 +7032,7 @@ snapshots:
 
   undici@6.21.2: {}
 
-  undici@7.6.0: {}
+  undici@7.7.0: {}
 
   universalify@0.2.0: {}
 
