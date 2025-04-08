@@ -199,7 +199,7 @@ exports[`viser fullmakt 1`] = `
                       type="button"
                     >
                       <svg
-                        aria-labelledby="title-r1"
+                        aria-labelledby="title-«r1»"
                         class="navds-help-text__icon"
                         fill="none"
                         focusable="false"
@@ -210,7 +210,7 @@ exports[`viser fullmakt 1`] = `
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <title
-                          id="title-r1"
+                          id="title-«r1»"
                         >
                           Hva betyr lese/innsyn?
                         </title>
@@ -230,7 +230,7 @@ exports[`viser fullmakt 1`] = `
                         />
                       </svg>
                       <svg
-                        aria-labelledby="title-r2"
+                        aria-labelledby="title-«r2»"
                         class="navds-help-text__icon navds-help-text__icon--filled"
                         fill="none"
                         focusable="false"
@@ -241,7 +241,7 @@ exports[`viser fullmakt 1`] = `
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <title
-                          id="title-r2"
+                          id="title-«r2»"
                         >
                           Hva betyr lese/innsyn?
                         </title>
@@ -293,7 +293,7 @@ exports[`viser fullmakt 1`] = `
                       type="button"
                     >
                       <svg
-                        aria-labelledby="title-r4"
+                        aria-labelledby="title-«r4»"
                         class="navds-help-text__icon"
                         fill="none"
                         focusable="false"
@@ -304,7 +304,7 @@ exports[`viser fullmakt 1`] = `
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <title
-                          id="title-r4"
+                          id="title-«r4»"
                         >
                           Hva betyr snakke/kommunisere?
                         </title>
@@ -324,7 +324,7 @@ exports[`viser fullmakt 1`] = `
                         />
                       </svg>
                       <svg
-                        aria-labelledby="title-r5"
+                        aria-labelledby="title-«r5»"
                         class="navds-help-text__icon navds-help-text__icon--filled"
                         fill="none"
                         focusable="false"
@@ -335,7 +335,7 @@ exports[`viser fullmakt 1`] = `
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <title
-                          id="title-r5"
+                          id="title-«r5»"
                         >
                           Hva betyr snakke/kommunisere?
                         </title>
@@ -387,7 +387,7 @@ exports[`viser fullmakt 1`] = `
                       type="button"
                     >
                       <svg
-                        aria-labelledby="title-r7"
+                        aria-labelledby="title-«r7»"
                         class="navds-help-text__icon"
                         fill="none"
                         focusable="false"
@@ -398,7 +398,7 @@ exports[`viser fullmakt 1`] = `
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <title
-                          id="title-r7"
+                          id="title-«r7»"
                         >
                           Hva betyr Søke/klage?
                         </title>
@@ -418,7 +418,7 @@ exports[`viser fullmakt 1`] = `
                         />
                       </svg>
                       <svg
-                        aria-labelledby="title-r8"
+                        aria-labelledby="title-«r8»"
                         class="navds-help-text__icon navds-help-text__icon--filled"
                         fill="none"
                         focusable="false"
@@ -429,7 +429,7 @@ exports[`viser fullmakt 1`] = `
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <title
-                          id="title-r8"
+                          id="title-«r8»"
                         >
                           Hva betyr Søke/klage?
                         </title>
@@ -485,7 +485,7 @@ exports[`viser fullmakt 1`] = `
                   class="navds-table__data-cell navds-body-short navds-body-short--medium"
                 >
                   <svg
-                    aria-labelledby="title-ra"
+                    aria-labelledby="title-«ra»"
                     fill="none"
                     focusable="false"
                     height="1em"
@@ -495,7 +495,7 @@ exports[`viser fullmakt 1`] = `
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <title
-                      id="title-ra"
+                      id="title-«ra»"
                     >
                       Lese/innsyn
                     </title>
@@ -511,7 +511,7 @@ exports[`viser fullmakt 1`] = `
                   class="navds-table__data-cell navds-body-short navds-body-short--medium"
                 >
                   <svg
-                    aria-labelledby="title-rb"
+                    aria-labelledby="title-«rb»"
                     fill="none"
                     focusable="false"
                     height="1em"
@@ -521,7 +521,7 @@ exports[`viser fullmakt 1`] = `
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <title
-                      id="title-rb"
+                      id="title-«rb»"
                     >
                       Snakke/kommunisere
                     </title>
@@ -549,7 +549,7 @@ exports[`viser fullmakt 1`] = `
                   class="navds-table__data-cell navds-body-short navds-body-short--medium"
                 >
                   <svg
-                    aria-labelledby="title-rc"
+                    aria-labelledby="title-«rc»"
                     fill="none"
                     focusable="false"
                     height="1em"
@@ -559,7 +559,7 @@ exports[`viser fullmakt 1`] = `
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <title
-                      id="title-rc"
+                      id="title-«rc»"
                     >
                       Lese/innsyn
                     </title>
@@ -575,7 +575,7 @@ exports[`viser fullmakt 1`] = `
                   class="navds-table__data-cell navds-body-short navds-body-short--medium"
                 >
                   <svg
-                    aria-labelledby="title-rd"
+                    aria-labelledby="title-«rd»"
                     fill="none"
                     focusable="false"
                     height="1em"
@@ -585,7 +585,7 @@ exports[`viser fullmakt 1`] = `
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <title
-                      id="title-rd"
+                      id="title-«rd»"
                     >
                       Snakke/kommunisere
                     </title>
@@ -601,7 +601,7 @@ exports[`viser fullmakt 1`] = `
                   class="navds-table__data-cell navds-body-short navds-body-short--medium"
                 >
                   <svg
-                    aria-labelledby="title-re"
+                    aria-labelledby="title-«re»"
                     fill="none"
                     focusable="false"
                     height="1em"
@@ -611,7 +611,7 @@ exports[`viser fullmakt 1`] = `
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <title
-                      id="title-re"
+                      id="title-«re»"
                     >
                       Søke/klage
                     </title>
