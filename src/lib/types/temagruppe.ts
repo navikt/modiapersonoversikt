@@ -51,7 +51,6 @@ export function temagruppeTekst(temagruppe: Temagruppe | null) {
         case null:
             return 'Ingen temagruppe';
         default:
-            // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
             return `Ukjent temagruppe: ${temagruppe}`;
     }
 }
