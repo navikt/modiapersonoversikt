@@ -13,6 +13,15 @@
 
     <link rel="preload" href="https://cdn.nav.no/aksel/fonts/SourceSans3-normal.woff2" as="font" type="font/woff2" crossorigin/>
 
+    <slot not-environment="prod">
+        <script
+            defer
+            src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
+            data-host-url="https://umami.nav.no"
+            data-website-id="bc5cfdcd-ecc1-402b-8cb0-c30913f0bd13"
+        ></script>
+    </slot>
+
     <style>
         @layer base, po-base, tailwind-base, nav-frontend, aksel.components, tailwind-components, tailwind-utilities, decorator;
     </style>

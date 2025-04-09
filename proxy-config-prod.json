@@ -28,7 +28,7 @@
         "font-src": ["'self'", "data:", "https://cdn.nav.no"],
         "connect-src": [
             "'self'",
-            "amplitude.nav.no",
+            "umami.nav.no",
             "wss://modiaeventdistribution.intern.nav.no",
             "wss://modiacontextholder.intern.nav.no",
             "wss://veilederflatehendelser.adeo.no",

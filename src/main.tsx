@@ -4,7 +4,6 @@ import './index.css';
 import { RouterProvider } from '@tanstack/react-router';
 import { StrictMode } from 'react';
 import { createRouter } from './router';
-import { initAmplitude } from './utils/amplitude';
 import { initializeObservability } from './utils/observability';
 
 const baseUrl = () => {
@@ -20,7 +19,6 @@ if (import.meta.env.DEV) {
     };
 }
 
-initAmplitude();
 initializeObservability();
 
 const router = createRouter();

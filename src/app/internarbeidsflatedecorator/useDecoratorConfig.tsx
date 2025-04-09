@@ -4,7 +4,7 @@ import { aktivBrukerAtom, aktivBrukerLastetAtom, aktivEnhetAtom } from 'src/lib/
 import config from '../../config';
 import type { Enhet } from '../../rest/resources/saksbehandlersEnheterResource';
 import bjelleIkon from '../../svg/bjelle.svg?raw';
-import { trackNavigation, updateUserEnhet } from '../../utils/amplitude';
+import { trackNavigation, updateUserEnhet } from '../../utils/analytics';
 import { useOnMount, useSettAktivBruker } from '../../utils/customHooks';
 import { getDomainFromHost, getEnvFromHost } from '../../utils/environment';
 import { loggEvent } from '../../utils/logger/frontendLogger';

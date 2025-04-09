@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { UnmountClosed } from 'react-collapse';
 import AriaNotification from '../../../components/AriaNotification';
 import { useVisittkortState } from '../../../context/visittkort-state';
-import { trackAccordionClosed, trackAccordionOpened } from '../../../utils/amplitude';
+import { trackAccordionClosed, trackAccordionOpened } from '../../../utils/analytics';
 import useHotkey from '../../../utils/hooks/use-hotkey';
 import useUrlNyPersonforvalter from '../../brukerprofil/useUrlNyPersonforvalter';
 import { InformasjonElement, type Data as Persondata } from './PersondataDomain';
