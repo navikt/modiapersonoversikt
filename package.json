@@ -38,7 +38,6 @@
         "*.{js,ts,tsx,json,less,css,md}": ["biome format --write"]
     },
     "dependencies": {
-        "@amplitude/analytics-browser": "^2.13.0",
         "@grafana/faro-react": "^1.15.0",
         "@grafana/faro-web-sdk": "^1.15.0",
         "@grafana/faro-web-tracing": "^1.14.3",

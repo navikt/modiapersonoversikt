@@ -1,7 +1,7 @@
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { useState } from 'react';
+import { trackAccordionClosed, trackAccordionOpened } from 'src/utils/analytics';
 import type { SyfoPunkt } from '../../../../models/oppfolging';
-import { trackAccordionClosed, trackAccordionOpened } from '../../../../utils/amplitude';
 import { datoSynkende, formatterDato } from '../../../../utils/date-utils';
 import { StyledTable } from '../../../../utils/table/StyledTable';
 import EkspanderbartYtelserPanel from '../ytelser/felles-styling/EkspanderbartYtelserPanel';
