@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Outlet, createRootRoute, useMatchRoute } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import { type PropsWithChildren, lazy, useState } from 'react';
+import { Toaster } from 'sonner';
 import HentGlobaleVerdier from 'src/app/FetchSessionInfoOgLeggIRedux';
 import LoggetUtModal from 'src/app/LoggetUtModal';
 import VelgEnhet from 'src/app/VelgEnhet';
@@ -124,6 +125,7 @@ function RootLayout() {
                         </AppWrapper>
                     )}
                     <TanStackRouterDevtools position="bottom-right" />
+                    <Toaster position="top-right" theme={theme} richColors />
                 </ValgtEnhetProvider>
             </Theme>
         </QueryClientProvider>
