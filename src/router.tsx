@@ -1,9 +1,9 @@
-import { createBrowserHistory, createRouter as createReactRouter } from '@tanstack/react-router';
+import { createBrowserHistory, createHashHistory, createRouter as createReactRouter } from '@tanstack/react-router';
 
 import type { PropsWithChildren } from 'react';
 import { routeTree } from './routeTree.gen';
 
-const history = createBrowserHistory();
+const history = import.meta.env.VITE_USE_HASH_ROUTER ? createHashHistory() : createBrowserHistory();
 
 export function createRouter({ Wrap }: { Wrap?: ({ children }: PropsWithChildren) => React.JSX.Element } = {}) {
     return createReactRouter({
