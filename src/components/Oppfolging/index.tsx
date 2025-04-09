@@ -108,17 +108,7 @@ export const OppfolgingPage = () => {
         <VStack gap="2" minHeight="0">
             <Heading size="xsmall">Oppfølging</Heading>
             <ErrorBoundary boundaryName="oppfolgingDetaljer">
-                <Suspense
-                    fallback={
-                        <Card gap="2">
-                            {Array(2)
-                                .keys()
-                                .map((i) => (
-                                    <Skeleton key={i} variant="rounded" height={68} />
-                                ))}
-                        </Card>
-                    }
-                >
+                <Suspense fallback={<Skeleton variant="rounded" height={166} />}>
                     <OppfolgingDetaljer />
                 </Suspense>
             </ErrorBoundary>
@@ -126,17 +116,7 @@ export const OppfolgingPage = () => {
                 14 a-vedtak
             </Heading>
             <ErrorBoundary boundaryName="gjeldende14aVedtakDetaljer">
-                <Suspense
-                    fallback={
-                        <Card gap="2">
-                            {Array(2)
-                                .keys()
-                                .map((i) => (
-                                    <Skeleton key={i} variant="rounded" height={68} />
-                                ))}
-                        </Card>
-                    }
-                >
+                <Suspense fallback={<Skeleton variant="rounded" height={166} />}>
                     <Gjeldende14aVedtakDetaljer />
                 </Suspense>
             </ErrorBoundary>
