@@ -13,8 +13,7 @@ export function createRouter({ Wrap }: { Wrap?: ({ children }: PropsWithChildren
         },
         defaultPreload: 'intent',
         history,
-        Wrap,
-        basepath: import.meta.env.BASE_URL
+        Wrap
     });
 }
 
