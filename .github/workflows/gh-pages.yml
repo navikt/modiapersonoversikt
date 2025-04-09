@@ -38,6 +38,7 @@ jobs:
                   mv .env.development .env.production
             - name: Build
               env:
+                VITE_APP_BASE_PATH: '/modiapersonoversikt'
                 VITE_GH_PAGES: 'true'
               run: pnpm run build
 
