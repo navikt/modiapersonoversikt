@@ -157,7 +157,7 @@
         "react-collapse": "^5.1.1",
         "redux-devtools-extension": "^2.13.9",
         "tailwindcss": "^3.4.17",
-        "typescript": "^5.8.2",
+        "typescript": "^5.8.3",
         "typescript-eslint": "^8.29.1",
         "undici": "^7.7.0",
         "vite-require": "^0.2.3",
