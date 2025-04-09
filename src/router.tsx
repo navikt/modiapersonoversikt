@@ -3,7 +3,7 @@ import { createBrowserHistory, createHashHistory, createRouter as createReactRou
 import type { PropsWithChildren } from 'react';
 import { routeTree } from './routeTree.gen';
 
-const history = import.meta.env.VITE_USE_HASH_ROUTER ? createHashHistory() : createBrowserHistory();
+const history = import.meta.env.VITE_USE_HASH_ROUTER === 'true' ? createHashHistory() : createBrowserHistory();
 
 export function createRouter({ Wrap }: { Wrap?: ({ children }: PropsWithChildren) => React.JSX.Element } = {}) {
     return createReactRouter({
