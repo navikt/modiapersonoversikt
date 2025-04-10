@@ -1,4 +1,4 @@
-import type { Pleiepengerettighet } from '../../../../../models/ytelse/pleiepenger';
+import type { Pleiepengerettighet } from 'src/models/ytelse/pleiepenger';
 
 export const pleiepengerTestData: Pleiepengerettighet = {
     barnet: '12345678910',
@@ -31,7 +31,7 @@ export const pleiepengerTestData: Pleiepengerettighet = {
                     kompensasjonsgrad: 63,
                     utbetalingsgrad: 100,
                     anvistUtbetaling: '2017-05-28',
-                    bruttobeløp: 120,
+                    bruttobelop: 120,
                     dagsats: 5,
                     pleiepengegrad: 66
                 },
@@ -40,7 +40,7 @@ export const pleiepengerTestData: Pleiepengerettighet = {
                     kompensasjonsgrad: 83,
                     utbetalingsgrad: 100,
                     anvistUtbetaling: '2017-06-21',
-                    bruttobeløp: 596,
+                    bruttobelop: 596,
                     dagsats: 27,
                     pleiepengegrad: 58
                 }
@@ -68,7 +68,7 @@ export const pleiepengerTestData: Pleiepengerettighet = {
                     kompensasjonsgrad: 100,
                     utbetalingsgrad: 100,
                     anvistUtbetaling: '2018-06-29',
-                    bruttobeløp: 69,
+                    bruttobelop: 69,
                     dagsats: 12,
                     pleiepengegrad: 92
                 }
