@@ -3,5 +3,5 @@
     "entry": ["src/main.tsx", "src/routes/**/*.tsx", "src/loginWebWorker.ts", "src/window-variabler.ts"],
     "project": ["src/**/*.ts", "src/**/*.tsx"],
     "ignore": ["src/generated/**"],
-    "ignoreDependencies": ["@grafana/.+", "@navikt/ds-css", "babel-plugin-react-compiler"]
+    "ignoreDependencies": ["@grafana/.+", "@navikt/ds-css", "babel-plugin-react-compiler", "@tailwindcss/postcss"]
 }
