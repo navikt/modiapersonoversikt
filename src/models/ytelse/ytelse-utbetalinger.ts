@@ -4,7 +4,7 @@ export interface KommendeUtbetaling {
     vedtak: null | Periode;
     utbetalingsgrad: null | number;
     utbetalingsdato: null | string;
-    bruttobeløp: null | number;
+    bruttobelop: null | number;
     arbeidsgiverNavn: null | string;
     arbeidsgiverKontonr: null | string;
     arbeidsgiverOrgNr: null | string;
@@ -13,12 +13,12 @@ export interface KommendeUtbetaling {
     type: null | string;
 }
 
-export interface UtbetalingPåVent {
+export interface UtbetalingPaaVent {
     vedtak: null | Periode;
     utbetalingsgrad: null | number;
-    oppgjørstype: null | string;
+    oppgjorstype: null | string;
     arbeidskategori: null | string;
-    stansårsak: null | string;
+    stansaarsak: null | string;
     ferie1: null | Periode;
     ferie2: null | Periode;
     sanksjon: null | Sanksjonsperiode;

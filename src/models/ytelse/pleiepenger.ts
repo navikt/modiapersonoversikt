@@ -30,7 +30,7 @@ export interface Vedtak {
     kompensasjonsgrad: number | null;
     utbetalingsgrad: number;
     anvistUtbetaling: string;
-    bruttobeløp: number;
+    bruttobelop: number;
     dagsats: number;
     pleiepengegrad: number | null;
 }

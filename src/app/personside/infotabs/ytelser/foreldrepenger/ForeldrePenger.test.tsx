@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { statiskForeldrepengeMock } from '../../../../../mock/ytelse/statiskForeldrepengeMock';
+import { statiskForeldrepengeMock } from 'src/mock/ytelse/statiskForeldrepengeMock';
 import TestProvider from '../../../../../test/Testprovider';
 import Foreldrepenger from './ForeldrePenger';
 

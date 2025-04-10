@@ -1,24 +1,24 @@
 import type { Periode } from '../tid';
 import type { Arbeidsforhold } from './arbeidsforhold';
-import type { KommendeUtbetaling, UtbetalingPåVent } from './ytelse-utbetalinger';
+import type { KommendeUtbetaling, UtbetalingPaaVent } from './ytelse-utbetalinger';
 
 export interface SykepengerResponse {
     sykepenger: Sykepenger[] | null;
 }
 
 export interface Sykepenger {
-    fødselsnummer: string;
+    fodselsnummer: string;
     sykmeldtFom: string;
     forbrukteDager: number;
     ferie1: null | Periode;
     ferie2: null | Periode;
     sanksjon: null | Periode;
-    stansårsak: null | string;
+    stansaarsak: null | string;
     unntakAktivitet: null | string;
     forsikring: null | Forsikring;
     sykmeldinger: Sykmelding[];
     kommendeUtbetalinger: KommendeUtbetaling[];
-    utbetalingerPåVent: UtbetalingPåVent[];
+    utbetalingerPaaVent: UtbetalingPaaVent[];
     bruker: string;
     midlertidigStanset: null | string;
     slutt: null | string;

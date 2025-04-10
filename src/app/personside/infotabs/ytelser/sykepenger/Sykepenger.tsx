@@ -1,13 +1,13 @@
 import { guid } from 'nav-frontend-js-utils';
 import Panel from 'nav-frontend-paneler';
 import { useRef } from 'react';
+import { useOnMount } from 'src/utils/customHooks';
+import { datoSynkende } from 'src/utils/date-utils';
+import { loggEvent } from 'src/utils/logger/frontendLogger';
 import styled from 'styled-components';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import type { Sykepenger as ISykepenger } from '../../../../../models/ytelse/sykepenger';
 import theme from '../../../../../styles/personOversiktTheme';
-import { useOnMount } from '../../../../../utils/customHooks';
-import { datoSynkende } from '../../../../../utils/date-utils';
-import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import Arbeidssituasjon from '../arbeidsforhold/Arbeidssituasjon';
 import KommendeUtbetalinger from '../utbetalinger/kommendeUtbetalinger/KommendeUtbetalinger';
 import Sykemelding from './sykemelding/Sykemelding';
@@ -62,7 +62,7 @@ function Sykepenger(props: Props) {
                         </Flex>
                         <Arbeidssituasjon sykepenger={props.sykepenger} />
                     </OversiktStyling>
-                    <UtbetalingerPVentListe utbetalingerPåVent={props.sykepenger.utbetalingerPåVent} />
+                    <UtbetalingerPVentListe utbetalingerPaaVent={props.sykepenger.utbetalingerPaaVent} />
                     <KommendeUtbetalinger kommendeUtbetalinger={props.sykepenger.kommendeUtbetalinger} />
                 </StyledPanel>
             </article>

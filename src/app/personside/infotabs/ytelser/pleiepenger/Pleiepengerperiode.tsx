@@ -1,9 +1,9 @@
 import { Ingress } from 'nav-frontend-typografi';
+import type { Pleiepengeperiode } from 'src/models/ytelse/pleiepenger';
+import { NOKellerNull, formaterDato, prosentEllerNull } from 'src/utils/string-utils';
+import { StyledTable } from 'src/utils/table/StyledTable';
 import styled from 'styled-components';
-import type { Pleiepengeperiode } from '../../../../../models/ytelse/pleiepenger';
 import theme from '../../../../../styles/personOversiktTheme';
-import { NOKellerNull, formaterDato, prosentEllerNull } from '../../../../../utils/string-utils';
-import { StyledTable } from '../../../../../utils/table/StyledTable';
 import YtelserPeriode from '../felles-styling/YtelserPeriode';
 
 interface Props {
@@ -24,7 +24,7 @@ function Pleiepengerperiode({ periode, ...props }: Props) {
     const rows = periode.vedtak.map((vedtak) => [
         formaterDato(vedtak.periode.fom),
         formaterDato(vedtak.periode.tom),
-        NOKellerNull(vedtak.bruttobeløp),
+        NOKellerNull(vedtak.bruttobelop),
         formaterDato(vedtak.anvistUtbetaling),
         NOKellerNull(vedtak.dagsats),
         prosentEllerNull(vedtak.pleiepengegrad)

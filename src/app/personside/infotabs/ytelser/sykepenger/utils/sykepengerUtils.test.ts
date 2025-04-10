@@ -1,5 +1,5 @@
-import { getMockSykmelding } from '../../../../../../mock/ytelse/sykepenger-mock';
-import type { Sykmelding } from '../../../../../../models/ytelse/sykepenger';
+import { getMockSykmelding } from 'src/mock/ytelse/sykepenger-mock';
+import type { Sykmelding } from 'src/models/ytelse/sykepenger';
 import { getSykemeldingPeriode } from './sykepengerUtils';
 
 test('Finner riktig periode for sykemeldinger', () => {

@@ -90,7 +90,7 @@ function getVedtak(): Vedtak {
         kompensasjonsgrad: navfaker.random.vektetSjanse(0.5) ? 100 : navfaker.random.integer(100),
         utbetalingsgrad: navfaker.random.vektetSjanse(0.5) ? 100 : navfaker.random.integer(100),
         anvistUtbetaling: dayjs(faker.date.past({ years: 2 })).format(backendDatoformat),
-        bruttobeløp: Number(faker.commerce.price()),
+        bruttobelop: Number(faker.commerce.price()),
         dagsats: navfaker.random.integer(70),
         pleiepengegrad: navfaker.random.integer(100)
     };

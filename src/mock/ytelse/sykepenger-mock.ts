@@ -2,7 +2,7 @@ import { fakerNB_NO as faker } from '@faker-js/faker';
 import dayjs from 'dayjs';
 import navfaker from 'nav-faker/dist/index';
 
-import type { Arbeidsforhold } from '../../models/ytelse/arbeidsforhold';
+import type { Arbeidsforhold } from 'src/models/ytelse/arbeidsforhold';
 import type {
     Forsikring,
     Gradering,
@@ -10,9 +10,9 @@ import type {
     SykepengerResponse,
     Sykmelding,
     Yrkesskade
-} from '../../models/ytelse/sykepenger';
-import type { KommendeUtbetaling, UtbetalingPåVent } from '../../models/ytelse/ytelse-utbetalinger';
-import { backendDatoformat } from '../../utils/date-utils';
+} from 'src/models/ytelse/sykepenger';
+import type { KommendeUtbetaling, UtbetalingPaaVent } from 'src/models/ytelse/ytelse-utbetalinger';
+import { backendDatoformat } from 'src/utils/date-utils';
 import { getPeriode } from '../periodeMock';
 import { aremark } from '../persondata/aremark';
 import { fyllRandomListe } from '../utils/mock-utils';
@@ -42,18 +42,18 @@ export function getMockSykepengerRespons(fødselsnummer: string): SykepengerResp
 
 function getMockSykmepenger(fødselsnummer: string): Sykepenger {
     return {
-        fødselsnummer: fødselsnummer,
+        fodselsnummer: fødselsnummer,
         sykmeldtFom: dayjs(faker.date.past({ years: 1 })).format(backendDatoformat),
         forbrukteDager: navfaker.random.integer(100),
         ferie1: navfaker.random.vektetSjanse(0.3) ? getPeriode() : null,
         ferie2: navfaker.random.vektetSjanse(0.3) ? getPeriode() : null,
         sanksjon: navfaker.random.vektetSjanse(0.3) ? getPeriode() : null,
-        stansårsak: navfaker.random.vektetSjanse(0.3) ? 'Svindel og bedrag' : null,
+        stansaarsak: navfaker.random.vektetSjanse(0.3) ? 'Svindel og bedrag' : null,
         unntakAktivitet: navfaker.random.vektetSjanse(0.3) ? 'Untatt aktivitet' : null,
         forsikring: navfaker.random.vektetSjanse(0.3) ? getForsikring() : null,
         sykmeldinger: fyllRandomListe<Sykmelding>(() => getMockSykmelding(), 3),
         kommendeUtbetalinger: fyllRandomListe<KommendeUtbetaling>(() => getKommendeUtbetaling(faker), 3, true),
-        utbetalingerPåVent: fyllRandomListe<UtbetalingPåVent>(() => getUtbetalingPåVent(faker), 2, true),
+        utbetalingerPaaVent: fyllRandomListe<UtbetalingPaaVent>(() => getUtbetalingPåVent(faker), 2, true),
         bruker: fødselsnummer,
         midlertidigStanset: navfaker.random.vektetSjanse(0.3)
             ? dayjs(faker.date.past({ years: 1 })).format(backendDatoformat)

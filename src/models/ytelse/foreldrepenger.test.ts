@@ -1,13 +1,13 @@
-import { statiskForeldrepengeMock } from '../../mock/ytelse/statiskForeldrepengeMock';
-import { type Adopsjon, type Foreldrepengerettighet, type Fødsel, isAdopsjon, isFødsel } from './foreldrepenger';
+import { statiskForeldrepengeMock } from 'src/mock/ytelse/statiskForeldrepengeMock';
+import { type Adopsjon, type Fodsel, type Foreldrepengerettighet, isAdopsjon, isFodsel } from './foreldrepenger';
 
-test('typeguard isFødsel funker', () => {
-    const foreldrepengeRettighet: Fødsel = {
+test('typeguard isFodsel funker', () => {
+    const foreldrepengeRettighet: Fodsel = {
         ...statiskForeldrepengeMock,
         termin: '2018-01-01'
     };
 
-    expect(isFødsel(foreldrepengeRettighet)).toBe(true);
+    expect(isFodsel(foreldrepengeRettighet)).toBe(true);
     expect(isAdopsjon(foreldrepengeRettighet)).toBe(false);
 });
 
@@ -20,7 +20,7 @@ test('typeguard isAdopsjon funker', () => {
     };
 
     expect(isAdopsjon(foreldrepengeRettighet)).toBe(true);
-    expect(isFødsel(foreldrepengeRettighet)).toBe(false);
+    expect(isFodsel(foreldrepengeRettighet)).toBe(false);
 });
 
 test('Hvis omsorgsovertakelse og termin er satt til null blir det ikke gjennkjent som adopsjon eller fødsel', () => {
@@ -35,5 +35,5 @@ test('Hvis omsorgsovertakelse og termin er satt til null blir det ikke gjennkjen
     };
 
     expect(isAdopsjon(foreldrepengeRettighet)).toBe(false);
-    expect(isFødsel(foreldrepengeRettighet)).toBe(false);
+    expect(isFodsel(foreldrepengeRettighet)).toBe(false);
 });

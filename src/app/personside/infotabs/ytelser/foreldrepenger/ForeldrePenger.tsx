@@ -2,10 +2,10 @@ import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { guid } from 'nav-frontend-js-utils';
 import Panel from 'nav-frontend-paneler';
 import { useRef } from 'react';
+import type { Foreldrepengerettighet } from 'src/models/ytelse/foreldrepenger';
+import { useOnMount } from 'src/utils/customHooks';
+import { loggEvent } from 'src/utils/logger/frontendLogger';
 import styled from 'styled-components';
-import type { Foreldrepengerettighet } from '../../../../../models/ytelse/foreldrepenger';
-import { useOnMount } from '../../../../../utils/customHooks';
-import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import ForeldrepengePeriode from './ForeldrepengePeriode';
 import Oversikt from './Oversikt';
 
