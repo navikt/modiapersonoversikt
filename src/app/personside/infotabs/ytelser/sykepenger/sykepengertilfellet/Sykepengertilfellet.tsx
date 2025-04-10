@@ -46,7 +46,7 @@ function Sykepengertilfellet({ sykepenger }: Props) {
         'Untatt aktivitet': sykepenger.unntakAktivitet,
         'Midlertidig stans': sykepenger.midlertidigStanset,
         ...fjernEntriesUtenVerdi({
-            Stansårsak: sykepenger.stansårsak,
+            Stansårsak: sykepenger.stansaarsak,
             Sanksjonperiode: periodeEllerNull(sykepenger.sanksjon)
         }),
         Ferieperioder: periodeEllerNull(sykepenger.ferie1),

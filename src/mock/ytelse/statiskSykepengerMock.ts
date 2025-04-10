@@ -13,12 +13,12 @@ const arbeidsforhold = {
     sykepengerFom: '2018-02-18'
 };
 
-const statiskUtbetalingPåVentMock = {
+const statiskUtbetalingPaaVentMock = {
     vedtak: { fra: '2017-10-13', til: '2018-10-10' },
     utbetalingsgrad: 62,
-    oppgjørstype: 'Spesidaler i pung',
+    oppgjorstype: 'Spesidaler i pung',
     arbeidskategori: 'Omreisende skald',
-    stansårsak: 'Pga mistenkelig oppførsel',
+    stansaarsak: 'Pga mistenkelig oppførsel',
     ferie1: { fra: '2017-07-04', til: '2018-10-29' },
     ferie2: { fra: '2017-07-13', til: '2019-02-03' },
     sanksjon: { fra: '2018-04-24', til: '2018-10-31' },
@@ -46,7 +46,7 @@ const sykmelding = {
 };
 
 export const statiskSykepengerMock: Sykepenger = {
-    fødselsnummer: '10108000398',
+    fodselsnummer: '10108000398',
     sykmeldtFom: '2019-02-06',
     forbrukteDager: 23,
     ferie1: { fra: '2014-01-19T06:56:39.720Z', til: '2014-01-14T00:16:11.870Z' },
@@ -55,7 +55,7 @@ export const statiskSykepengerMock: Sykepenger = {
         fra: '2014-01-19T01:31:21.521Z',
         til: '2014-09-05T11:21:25.288Z'
     },
-    stansårsak: null,
+    stansaarsak: null,
     unntakAktivitet: null,
     forsikring: {
         forsikringsordning: 'Betaler beskyttelsespenger til Mafia',
@@ -65,7 +65,7 @@ export const statiskSykepengerMock: Sykepenger = {
     },
     sykmeldinger: [sykmelding, sykmelding],
     kommendeUtbetalinger: [statiskKommendeUtbetaling, statiskKommendeUtbetaling],
-    utbetalingerPåVent: [statiskUtbetalingPåVentMock, statiskUtbetalingPåVentMock],
+    utbetalingerPaaVent: [statiskUtbetalingPaaVentMock, statiskUtbetalingPaaVentMock],
     bruker: '10108000398',
     midlertidigStanset: null,
     slutt: '2019-01-16',

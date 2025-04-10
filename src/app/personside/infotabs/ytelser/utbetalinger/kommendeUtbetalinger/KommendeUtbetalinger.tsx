@@ -40,7 +40,7 @@ function Utbetalinger({ kommendeUtbetalinger }: Props) {
         periodeEllerNull(kommendeUtbetaling.vedtak),
         prosentEllerNull(kommendeUtbetaling.utbetalingsgrad),
         NOKellerNull(kommendeUtbetaling.dagsats),
-        NOKellerNull(kommendeUtbetaling.bruttobeløp),
+        NOKellerNull(kommendeUtbetaling.bruttobelop),
         kommendeUtbetaling.arbeidsgiverNavn,
         kommendeUtbetaling.arbeidsgiverOrgNr
     ]);

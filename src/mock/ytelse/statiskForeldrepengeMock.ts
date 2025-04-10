@@ -1,10 +1,10 @@
-import type { Fødsel } from '../../models/ytelse/foreldrepenger';
+import type { Fodsel } from 'src/models/ytelse/foreldrepenger';
 
 export const statiskKommendeUtbetaling = {
     vedtak: { fra: '2018-01-14', til: '2017-07-15' },
     utbetalingsgrad: 79,
     utbetalingsdato: '2018-06-25',
-    bruttobeløp: 466,
+    bruttobelop: 466,
     arbeidsgiverNavn: 'Vedvik - Lunde',
     arbeidsgiverOrgNr: '1234567890',
     arbeidsgiverKontonr: '549801574',
@@ -13,37 +13,37 @@ export const statiskKommendeUtbetaling = {
     type: 'KONTOØVERFØRING'
 };
 
-export const statiskForeldrepengeMock: Fødsel = {
+export const statiskForeldrepengeMock: Fodsel = {
     forelder: '10108000398',
     andreForeldersFnr: '03063850003',
     antallBarn: 5,
-    barnetsFødselsdato: '2019-02-11',
+    barnetsFodselsdato: '2019-02-11',
     dekningsgrad: 34,
     fedrekvoteTom: '2019-02-10',
-    mødrekvoteTom: null,
+    modrekvoteTom: null,
     foreldrepengetype: 'Fødselspenger',
     graderingsdager: 55,
     restDager: 41,
     rettighetFom: '2017-11-21',
     eldsteIdDato: null,
-    foreldreAvSammeKjønn: null,
+    foreldreAvSammeKjonn: null,
     periode: [
         {
-            fødselsnummer: '10108000398',
+            fodselsnummer: '10108000398',
             harAleneomsorgFar: null,
             harAleneomsorgMor: null,
             arbeidsprosentMor: 58,
-            avslagsårsak: 'Avslag',
-            avslått: 'Avslått',
+            avslagsaarsak: 'Avslag',
+            avslaatt: 'Avslått',
             disponibelGradering: 9,
             erFedrekvote: null,
-            erMødrekvote: null,
-            forskyvelsesårsak1: null,
+            erModrekvote: null,
+            forskyvelsesaarsak1: null,
             forskyvelsesperiode1: {
                 fra: '2014-10-08T14:22:55.629Z',
                 til: '2014-08-22T10:50:40.296Z'
             },
-            forskyvelsesårsak2: null,
+            forskyvelsesaarsak2: null,
             forskyvelsesperiode2: {
                 fra: '2014-12-09T16:29:21.344Z',
                 til: '2014-08-26T10:23:03.605Z'
@@ -52,8 +52,8 @@ export const statiskForeldrepengeMock: Fødsel = {
             midlertidigStansDato: '2019-02-10',
             morSituasjon: 'nobis sit quo et quis',
             rettTilFedrekvote: 'Rett til fedrekvote',
-            rettTilMødrekvote: 'Ingen rett til mødrekvote',
-            stansårsak: 'Avsluttet',
+            rettTilModrekvote: 'Ingen rett til mødrekvote',
+            stansaarsak: 'Avsluttet',
             kommendeUtbetalinger: [statiskKommendeUtbetaling]
         }
     ],

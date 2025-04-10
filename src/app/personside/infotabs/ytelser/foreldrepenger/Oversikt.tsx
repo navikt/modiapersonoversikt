@@ -1,4 +1,4 @@
-import { type Foreldrepengerettighet, isAdopsjon, isFødsel } from 'src/models/ytelse/foreldrepenger';
+import { type Foreldrepengerettighet, isAdopsjon, isFodsel } from 'src/models/ytelse/foreldrepenger';
 import { datoEllerNull, formaterDato, prosentEllerNull } from 'src/utils/string-utils';
 import styled from 'styled-components';
 import DescriptionList, {
@@ -33,7 +33,7 @@ const Flex = styled.div`
 `;
 
 function omsorgsovertakelseEllerTermin(foreldrePenger: Foreldrepengerettighet) {
-    if (isFødsel(foreldrePenger)) {
+    if (isFodsel(foreldrePenger)) {
         return {
             Termindato: datoEllerNull(foreldrePenger.termin)
         };
@@ -58,18 +58,18 @@ function Oversikt({ foreldrePenger }: Props) {
         Maksdato: foreldrePenger.slutt && formaterDato(foreldrePenger.slutt),
         Arbeidskategori: foreldrePenger.arbeidskategori,
         ...fjernEntriesUtenVerdi({
-            'Mødrekvote til og med': datoEllerNull(foreldrePenger.mødrekvoteTom),
+            'Mødrekvote til og med': datoEllerNull(foreldrePenger.modrekvoteTom),
             'Fedrekvote til og med': datoEllerNull(foreldrePenger.fedrekvoteTom)
         })
     };
 
     const barnet: DescriptionListEntries = {
         ...omsorgsovertakelseEllerTermin(foreldrePenger),
-        Fødselsdato: datoEllerNull(foreldrePenger.barnetsFødselsdato),
+        Fødselsdato: datoEllerNull(foreldrePenger.barnetsFodselsdato),
         'Annen forelder': foreldrePenger.andreForeldersFnr,
         'Antall barn': foreldrePenger.antallBarn,
         ...fjernEntriesUtenVerdi({
-            'Foreldre av samme kjønn': foreldrePenger.foreldreAvSammeKjønn
+            'Foreldre av samme kjønn': foreldrePenger.foreldreAvSammeKjonn
         })
     };
 

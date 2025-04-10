@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { backendDatoformat } from '../../utils/date-utils';
+import { backendDatoformat } from 'src/utils/date-utils';
 import type { Periode } from '../tid';
 import type { Arbeidsforhold } from './arbeidsforhold';
 import type { KommendeUtbetaling } from './ytelse-utbetalinger';
@@ -16,28 +16,28 @@ export function isAdopsjon(foreldrepenger: Foreldrepengerettighet): foreldrepeng
     return !!(foreldrepenger as Adopsjon).omsorgsovertakelse;
 }
 
-export interface Fødsel extends Foreldrepengerettighet {
+export interface Fodsel extends Foreldrepengerettighet {
     termin: string;
 }
 
-export function isFødsel(foreldrepenger: Foreldrepengerettighet): foreldrepenger is Fødsel {
-    return !!(foreldrepenger as Fødsel).termin;
+export function isFodsel(foreldrepenger: Foreldrepengerettighet): foreldrepenger is Fodsel {
+    return !!(foreldrepenger as Fodsel).termin;
 }
 
 export interface Foreldrepengerettighet {
     forelder: string;
     andreForeldersFnr: string | null;
     antallBarn: number | null;
-    barnetsFødselsdato: string | null;
+    barnetsFodselsdato: string | null;
     dekningsgrad: number;
     fedrekvoteTom: string | null;
-    mødrekvoteTom: string | null;
+    modrekvoteTom: string | null;
     foreldrepengetype: string | null;
     graderingsdager: number | null;
     restDager: number;
     rettighetFom: string | null;
     eldsteIdDato: string | null;
-    foreldreAvSammeKjønn: string | null;
+    foreldreAvSammeKjonn: string | null;
     periode: Foreldrepengerperiode[];
     slutt: string | null;
     arbeidsforhold: Arbeidsforhold[];
@@ -46,25 +46,25 @@ export interface Foreldrepengerettighet {
 }
 
 export interface Foreldrepengerperiode {
-    fødselsnummer: string;
+    fodselsnummer: string;
     harAleneomsorgFar: boolean | null;
     harAleneomsorgMor: boolean | null;
     arbeidsprosentMor: number | null;
-    avslagsårsak: string | null;
-    avslått: string | null;
+    avslagsaarsak: string | null;
+    avslaatt: string | null;
     disponibelGradering: number | null;
     erFedrekvote: boolean | null;
-    erMødrekvote: boolean | null;
-    forskyvelsesårsak1: string | null;
+    erModrekvote: boolean | null;
+    forskyvelsesaarsak1: string | null;
     forskyvelsesperiode1: Periode | null;
-    forskyvelsesårsak2: string | null;
+    forskyvelsesaarsak2: string | null;
     forskyvelsesperiode2: Periode | null;
     foreldrepengerFom: string;
     midlertidigStansDato: string | null;
     morSituasjon: string | null;
     rettTilFedrekvote: string;
-    rettTilMødrekvote: string;
-    stansårsak: string | null;
+    rettTilModrekvote: string;
+    stansaarsak: string | null;
     kommendeUtbetalinger: KommendeUtbetaling[];
 }
 
