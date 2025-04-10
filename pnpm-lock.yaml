@@ -15,8 +15,8 @@ importers:
         specifier: ^1.15.0
         version: 1.15.0
       '@grafana/faro-web-tracing':
-        specifier: ^1.14.3
-        version: 1.14.3
+        specifier: ^1.15.0
+        version: 1.15.0
       '@navikt/aksel-icons':
         specifier: ^7.19.0
         version: 7.19.0
@@ -37,7 +37,7 @@ importers:
         version: 7.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@navikt/tag-input':
         specifier: ^2.0.2
-        version: 2.0.2(abca7f4e1ad9cdbc505686a03e715e40)
+        version: 2.0.2(7tmcxve3q2crcswam2mdob3u34)
       '@navikt/textparser':
         specifier: ^2.5.0
         version: 2.5.0(react@19.1.0)
@@ -1045,10 +1045,6 @@ packages:
     resolution: {integrity: sha512-2wJvqgYCW0trQzPLGKqQYUECIqycaMBLyo7YbG3PmgXEqbVNYQCSKuQ/5RnRNpebWv0uu0ZG/pYmjjyYO8ooUQ==}
     engines: {node: '>=18.0.0'}
 
-  '@grafana/faro-web-tracing@1.14.3':
-    resolution: {integrity: sha512-XzAJJeXSWkAOkI1f1Gb9jZxXTfqyutJjt8gO6oa40iFKSwmFgjepgZ1KiPNb5KSLYZ15lg71wM93fFsOPQ/7Hg==}
-    engines: {node: '>=18.0.0'}
-
   '@grafana/faro-web-tracing@1.15.0':
     resolution: {integrity: sha512-NP1cebpvQqeSdkMMOMkUJnt3HvShR3aVBSiKnvO9gm0qW09nI2yOLRs1Dyl5aEeC/57EKdyGsHpzpgnfpj2Kng==}
     engines: {node: '>=18.0.0'}
@@ -1130,9 +1126,6 @@ packages:
     peerDependencies:
       '@types/react': '>=17.0.30'
       react: '>=17.0.0 || >19.0.0-rc'
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
 
   '@navikt/ds-tailwind@7.18.0':
     resolution: {integrity: sha512-lZy6jRgXpNxAXr9griUO58Gd4F8fQ7FGgWzaZm+YunSMU4uLksPU5IhrNScMBf8YjNL3KeEir518nPCklA9bdQ==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tailwind/7.18.0/e46f846e53aa4a31d98eaff121739b2ad2293132}
@@ -1287,8 +1280,8 @@ packages:
     resolution: {integrity: sha512-lp4qAiMTD4sNWW4DbKLBkfiMZ4jbAboJIGOQr5DvciMRI494OapieI9qiODpOt0XBr1LjIDy1xAGAnVs5supTA==}
     engines: {node: '>=14'}
 
-  '@opentelemetry/semantic-conventions@1.30.0':
-    resolution: {integrity: sha512-4VlGgo32k2EQ2wcCY3vEU28A0O13aOtHz3Xt2/2U5FAh9EfhD6t6DqL5Z6yAnRCntbTFDU4YfbpyzSlHNWycPw==}
+  '@opentelemetry/semantic-conventions@1.31.0':
+    resolution: {integrity: sha512-cYJeP+6qN0UnBv1r09hXl0YorB8kXHv61BC0NUlBA8vxrylZ4/C8lnva3gd1E8n33DNYSaiGW+DuGoSt0QQ7Dw==}
     engines: {node: '>=14'}
 
   '@pkgjs/parseargs@0.11.0':
@@ -4814,22 +4807,6 @@ snapshots:
       ua-parser-js: 1.0.40
       web-vitals: 4.2.4
 
-  '@grafana/faro-web-tracing@1.14.3':
-    dependencies:
-      '@grafana/faro-web-sdk': 1.15.0
-      '@opentelemetry/api': 1.9.0
-      '@opentelemetry/core': 2.0.0(@opentelemetry/api@1.9.0)
-      '@opentelemetry/exporter-trace-otlp-http': 0.57.2(@opentelemetry/api@1.9.0)
-      '@opentelemetry/instrumentation': 0.57.2(@opentelemetry/api@1.9.0)
-      '@opentelemetry/instrumentation-fetch': 0.57.2(@opentelemetry/api@1.9.0)
-      '@opentelemetry/instrumentation-xml-http-request': 0.57.2(@opentelemetry/api@1.9.0)
-      '@opentelemetry/otlp-transformer': 0.57.2(@opentelemetry/api@1.9.0)
-      '@opentelemetry/resources': 1.30.1(@opentelemetry/api@1.9.0)
-      '@opentelemetry/sdk-trace-web': 1.30.1(@opentelemetry/api@1.9.0)
-      '@opentelemetry/semantic-conventions': 1.30.0
-    transitivePeerDependencies:
-      - supports-color
-
   '@grafana/faro-web-tracing@1.15.0':
     dependencies:
       '@grafana/faro-web-sdk': 1.15.0
@@ -4842,7 +4819,7 @@ snapshots:
       '@opentelemetry/otlp-transformer': 0.57.2(@opentelemetry/api@1.9.0)
       '@opentelemetry/resources': 1.30.1(@opentelemetry/api@1.9.0)
       '@opentelemetry/sdk-trace-web': 1.30.1(@opentelemetry/api@1.9.0)
-      '@opentelemetry/semantic-conventions': 1.30.0
+      '@opentelemetry/semantic-conventions': 1.31.0
     transitivePeerDependencies:
       - supports-color
 
@@ -4930,12 +4907,11 @@ snapshots:
       '@floating-ui/react-dom': 2.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@navikt/aksel-icons': 7.19.0
       '@navikt/ds-tokens': 7.18.0
+      '@types/react': 19.1.0
       clsx: 2.1.1
       date-fns: 4.1.0
       react: 19.1.0
       react-day-picker: 9.6.1(react@19.1.0)
-    optionalDependencies:
-      '@types/react': 19.1.0
     transitivePeerDependencies:
       - react-dom
 
@@ -4951,7 +4927,7 @@ snapshots:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
-  '@navikt/tag-input@2.0.2(abca7f4e1ad9cdbc505686a03e715e40)':
+  '@navikt/tag-input@2.0.2(7tmcxve3q2crcswam2mdob3u34)':
     dependencies:
       classnames: 2.5.1
       nav-frontend-js-utils: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.1.0)
@@ -5011,7 +4987,7 @@ snapshots:
   '@opentelemetry/core@2.0.0(@opentelemetry/api@1.9.0)':
     dependencies:
       '@opentelemetry/api': 1.9.0
-      '@opentelemetry/semantic-conventions': 1.30.0
+      '@opentelemetry/semantic-conventions': 1.31.0
 
   '@opentelemetry/exporter-trace-otlp-http@0.57.2(@opentelemetry/api@1.9.0)':
     dependencies:
@@ -5106,7 +5082,7 @@ snapshots:
 
   '@opentelemetry/semantic-conventions@1.28.0': {}
 
-  '@opentelemetry/semantic-conventions@1.30.0': {}
+  '@opentelemetry/semantic-conventions@1.31.0': {}
 
   '@pkgjs/parseargs@0.11.0':
     optional: true
