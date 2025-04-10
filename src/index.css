@@ -1,9 +1,9 @@
-@import "reset" layer(po-base);
-@import "tailwindcss/base" layer(tailwind-base);
-@import "@navikt/ds-css/darkside";
-@import "tailwindcss/components" layer(tailwind-components);
-@import "tailwindcss/utilities" layer(tailwind-utilities);
+@import "./reset.css" layer(po-base);
+@import "tailwindcss";
+@import "@navikt/ds-css/darkside" layer(aksel);
 @import "./index.less" layer(nav-frontend);
+
+@config "../tailwind.config.js";
 
 .new-modia {
     color: var(--ax-text-default);
