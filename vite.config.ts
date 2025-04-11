@@ -8,10 +8,12 @@ import { TanStackRouterVite } from '@tanstack/router-plugin/vite';
 import react from '@vitejs/plugin-react';
 import vitePluginSvgr from 'vite-plugin-svgr';
 import { viteRequire } from 'vite-require';
-import { reactCompilerSources } from './reactCompiler';
+import { reactCompilerIgnore, reactCompilerSources } from './reactCompiler';
 
 const reactCompilerConfig = {
-    sources: (filename: string) => reactCompilerSources.some((dir) => filename.indexOf(dir) !== -1)
+    sources: (filename: string) =>
+        reactCompilerSources.some((dir) => filename.indexOf(dir) !== -1) &&
+        !reactCompilerIgnore.some((dir) => filename.indexOf(dir) !== -1)
 };
 
 const fixNavFrontendStyle = (packages: string[]) =>
