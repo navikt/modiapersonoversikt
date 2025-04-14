@@ -45,9 +45,9 @@ const SendMeldingContent = ({ lukkeKnapp }: Props) => {
     );
 
     return (
-        <Card padding="2">
+        <Card padding="2" as="section" aria-label="Dialogpanel">
             <HStack justify="space-between">
-                <Heading level="1" size="medium">
+                <Heading level="2" size="medium">
                     {oppgave ? continueText : 'Send ny dialog'}
                 </Heading>
                 {lukkeKnapp}

@@ -9,7 +9,9 @@ export const MeldingerPage = () => {
         <HStack gap="4" minHeight="0" flexGrow="1" paddingBlock="0 2" wrap={false}>
             <VStack height="100%" minWidth="16em">
                 <HStack justify="space-between">
-                    <Heading size="xsmall">Innboks</Heading>
+                    <Heading level="2" size="xsmall">
+                        Innboks
+                    </Heading>
                     <Button variant="tertiary" size="xsmall" icon={<PrinterSmallIcon />}>
                         Skriv ut alle
                     </Button>
@@ -17,7 +19,9 @@ export const MeldingerPage = () => {
                 <TraadList />
             </VStack>
             <VStack flexGrow="1" minHeight="0" maxHeight="100%">
-                <Heading size="xsmall">Dialog</Heading>
+                <Heading level="2" size="xsmall">
+                    Dialog
+                </Heading>
                 <VStack minHeight="0">
                     <TraadDetailSection />
                 </VStack>

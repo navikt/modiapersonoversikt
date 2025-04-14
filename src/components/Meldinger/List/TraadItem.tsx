@@ -86,6 +86,7 @@ export const TraadItem = ({
                 aktivTraad === traad.traadId && 'bg-ax-bg-neutral-moderate border-ax-border-neutral-strong'
             )}
             onClick={() => handleClick(traad.traadId)}
+            as="li"
         >
             <HStack justify="space-between" gap="2">
                 <Box.New>
