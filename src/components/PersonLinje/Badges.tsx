@@ -1,4 +1,4 @@
-import { HStack, Tag } from '@navikt/ds-react';
+import { HStack, Heading, Tag } from '@navikt/ds-react';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { AdresseBeskyttelseKode, type PersonData } from 'src/lib/types/modiapersonoversikt-api';
 
@@ -8,7 +8,10 @@ export const PersonBadges = () => {
     } = usePersonData();
 
     return (
-        <HStack align="center" gap="1" as="section" aria-label="etiketter" className="flex-1">
+        <HStack align="center" gap="1" as="section" className="flex-1">
+            <Heading visuallyHidden size="xsmall" level="3">
+                Etiketter
+            </Heading>
             <DiskresjonskodeBadges adressebeskyttelser={person.adressebeskyttelse} />
             <EgenAnsattBadge erEgenansatt={person.erEgenAnsatt} />
             <SikkerhetstiltakBadge sikkerhetstiltak={person.sikkerhetstiltak} />

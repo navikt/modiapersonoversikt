@@ -18,7 +18,7 @@ export const Group = ({
                     {icon}
                 </div>
                 {title && (
-                    <Heading as="h2" size="small">
+                    <Heading as="h3" size="small">
                         {title}
                     </Heading>
                 )}
@@ -37,7 +37,7 @@ export const InfoElement = ({
 }>) => (
     <Box className="mb-6 mt-2">
         <HStack align="center" className="relative">
-            <Heading as="h3" size="xsmall" className="text-medium">
+            <Heading as="h4" size="xsmall" className="text-medium">
                 {title}
             </Heading>
         </HStack>

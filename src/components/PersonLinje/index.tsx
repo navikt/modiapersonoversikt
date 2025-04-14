@@ -1,5 +1,5 @@
 import { ChevronDownIcon, ChevronUpIcon, PersonIcon } from '@navikt/aksel-icons';
-import { BodyShort, Box, Button, CopyButton, HStack, Label, Skeleton, VStack } from '@navikt/ds-react';
+import { BodyShort, Box, Button, CopyButton, HStack, Heading, Label, Skeleton, VStack } from '@navikt/ds-react';
 import { Suspense, useState } from 'react';
 import config from 'src/config';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
@@ -8,7 +8,7 @@ import useHotkey from 'src/utils/hooks/use-hotkey';
 import { useClickAway } from 'src/utils/hooks/useClickAway';
 import { twMerge } from 'tailwind-merge';
 import Card from '../Card';
-import QueryErrorBoundary from '../QueryErrorBoundary';
+import ErrorBoundary from '../ErrorBoundary';
 import { PersonBadges } from './Badges';
 import { PersonlinjeDetails } from './Details';
 import { Sikkerhetstiltak } from './Sikkerhetstiltak';
@@ -20,7 +20,9 @@ const ukjentKjonn: KodeBeskrivelseKjonn = {
 
 export const PersonLinje = () => (
     <Suspense fallback={<Skeleton variant="rounded" height={40} />}>
-        <PersonLinjeContent />
+        <ErrorBoundary boundaryName="personlinje">
+            <PersonLinjeContent />
+        </ErrorBoundary>
     </Suspense>
 );
 
@@ -67,7 +69,7 @@ const PersonLinjeContent = () => {
     const [isExpanded, setIsExpanded] = useState(false);
     const ref = useClickAway<HTMLDivElement>(() => setIsExpanded(false));
 
-    const { data, error } = usePersonData();
+    const { data } = usePersonData();
 
     const lenkeNyBrukerprofil = config.isProd ? 'https://pdl-web.intern.nav.no' : 'https://pdl-web.intern.dev.nav.no';
 
@@ -88,25 +90,26 @@ const PersonLinjeContent = () => {
                 aria-label="personlinje"
                 className="has-[:focus]:border-ax-border-neutral-strong overflow-y-scroll max-h-[85vh]"
             >
-                <QueryErrorBoundary error={error}>
-                    <HStack
-                        onClick={() => setIsExpanded((v) => !v)}
-                        paddingInline="4"
-                        justify="space-between"
-                        className="hover:bg-ax-bg-neutral-moderate-hover cursor-pointer"
-                        wrap={false}
-                    >
-                        <PersonlinjeHeader isExpanded={isExpanded} />
-                    </HStack>
-                    <Box
-                        className={twMerge(
-                            'border-t border-ax-border-neutral-subtle transition-all duration-75',
-                            !isExpanded && 'h-0 invisible overflow-hidden'
-                        )}
-                    >
-                        <PersonlinjeDetails />
-                    </Box>
-                </QueryErrorBoundary>
+                <Heading visuallyHidden size="xsmall" level="2">
+                    Personlinje
+                </Heading>
+                <HStack
+                    onClick={() => setIsExpanded((v) => !v)}
+                    paddingInline="4"
+                    justify="space-between"
+                    className="hover:bg-ax-bg-neutral-moderate-hover cursor-pointer"
+                    wrap={false}
+                >
+                    <PersonlinjeHeader isExpanded={isExpanded} />
+                </HStack>
+                <Box
+                    className={twMerge(
+                        'border-t border-ax-border-neutral-subtle transition-all duration-75',
+                        !isExpanded && 'h-0 invisible overflow-hidden'
+                    )}
+                >
+                    <PersonlinjeDetails />
+                </Box>
             </Card>
         </>
     );

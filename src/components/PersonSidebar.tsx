@@ -9,7 +9,7 @@ import {
     PersonGroupIcon,
     PiggybankIcon
 } from '@navikt/aksel-icons';
-import { Box, Button, VStack } from '@navikt/ds-react';
+import { Box, Button, Heading, VStack } from '@navikt/ds-react';
 import { Link } from '@tanstack/react-router';
 import { type ComponentProps, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
@@ -92,6 +92,9 @@ export const PersonSidebarMenu = () => {
                         padding="2"
                         className="divide-y divide-ax-border-neutral-subtle "
                     >
+                        <Heading visuallyHidden size="small" level="2">
+                            Person sider
+                        </Heading>
                         {menuItems.map(({ title, href, Icon }) => (
                             <Link key={title} to={href} aria-label={title}>
                                 {({ isActive }) => (
