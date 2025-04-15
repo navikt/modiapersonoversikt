@@ -3,9 +3,10 @@ import { getRouteApi } from '@tanstack/react-router';
 import { Suspense } from 'react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
-import { type VarselData, useFilterVarlser } from 'src/components/varsler/List/utils';
+import { useFilterVarsler } from 'src/components/varsler/List/utils';
 import type { FeiletVarsling, Varsel } from 'src/lib/types/modiapersonoversikt-api';
 import { ENDASH, emptyReplacement, formaterDato } from 'src/utils/string-utils';
+import { twMerge } from 'tailwind-merge';
 
 const routeApi = getRouteApi('/new/person/varsler');
 
@@ -44,7 +45,7 @@ const DittNavInformasjonsLinje = ({
     return (
         <HStack gap="4">
             <div className="font-bold">{tittel}</div>
-            <div className={`${className} text-base`}>{tekst}</div>
+            <div className={twMerge('text-base', className)}>{tekst}</div>
         </HStack>
     );
 };
@@ -113,23 +114,31 @@ const DittNavInformasjonsLinjerV2 = ({
     );
 };
 
-const varselDetailExtractor = (varsel: VarselData) => {
-    if (varsel.erVarselV2) {
-        return <DittNavInformasjonsLinjerV2 varsel={varsel.event} kanaler={varsel.kanaler} />;
-    }
+const VarselDetailExtractor = () => {
+    const { id } = routeApi.useSearch();
+    const varlser = useFilterVarsler();
+    const varsel = varlser.find((item) => item.eventId === id);
 
-    return <DittNavInformasjonsLinjer varsel={varsel.event} kanaler={varsel.kanaler} />;
+    return (
+        <>
+            {varsel && (
+                <Card>
+                    {varsel.erVarslerV2 ? (
+                        <DittNavInformasjonsLinjerV2 varsel={varsel.event} kanaler={varsel.kanaler} />
+                    ) : (
+                        <DittNavInformasjonsLinjer varsel={varsel.event} kanaler={varsel.kanaler} />
+                    )}
+                </Card>
+            )}
+        </>
+    );
 };
 
 export const VarselDetail = () => {
-    const { id } = routeApi.useSearch();
-    const varlser = useFilterVarlser();
-    const selectedVarsler = varlser.find((item) => item.eventId === id);
-
     return (
         <ErrorBoundary boundaryName="vaslerDetaljer">
             <Suspense fallback={<Skeleton variant="rounded" height="200" />}>
-                <Card>{selectedVarsler && varselDetailExtractor(selectedVarsler)}</Card>
+                <VarselDetailExtractor />
             </Suspense>
         </ErrorBoundary>
     );

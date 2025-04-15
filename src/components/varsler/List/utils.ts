@@ -14,7 +14,7 @@ export interface VarselData {
     sisteDato: string;
     tittel: string;
     harFeilteVarsel?: boolean;
-    erVarselV2: boolean;
+    erVarslerV2: boolean;
     event: Varsel;
 }
 
@@ -45,9 +45,8 @@ const filterVarsler = (varsler: VarselData[], filters: VarslerFilter): VarselDat
     return filteredList ?? [];
 };
 
-export const useFilterVarlser = () => {
+export const useFilterVarsler = () => {
     const filters = useAtomValue(varslerFilterAtom);
-    console.log(filters);
     const { data } = useVarslerData();
     const varslerResult = data || {
         feil: [],
@@ -69,7 +68,7 @@ const dataExtractor = (varsel: Varsel): VarselData => {
     if (!varslingsTidspunkt || !varslingsTidspunkt.tidspunkt) {
         const datoer = [varsel.forstBehandlet];
         const kanaler = ['DITT_NAV', ...varsel.eksternVarslingKanaler];
-        return { eventId, datoer, kanaler, tittel, sisteDato: datoer[0], erVarselV2: false, event: varsel };
+        return { eventId, datoer, kanaler, tittel, sisteDato: datoer[0], erVarslerV2: false, event: varsel };
     }
 
     const datoer = [varslingsTidspunkt.tidspunkt];
@@ -84,5 +83,14 @@ const dataExtractor = (varsel: Varsel): VarselData => {
 
     const harFeilteVarsel = varslingsTidspunkt.harFeilteVarslinger || varslingsTidspunkt.harFeilteRevarslinger;
 
-    return { eventId, datoer, kanaler, tittel, sisteDato: datoer[0], harFeilteVarsel, erVarselV2: true, event: varsel };
+    return {
+        eventId,
+        datoer,
+        kanaler,
+        tittel,
+        sisteDato: datoer[0],
+        harFeilteVarsel,
+        erVarslerV2: true,
+        event: varsel
+    };
 };

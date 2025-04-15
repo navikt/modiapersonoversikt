@@ -98,7 +98,7 @@ const VarslerStatusFilter = () => {
     );
 
     return (
-        <Fieldset size="small" legend="Varsel kanal">
+        <Fieldset size="small" legend="">
             <Switch size="small" checked={failedVarsler} onChange={() => onToggleSelected(!failedVarsler)}>
                 Vis varlser som feilet
             </Switch>

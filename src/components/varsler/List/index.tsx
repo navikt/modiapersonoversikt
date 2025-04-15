@@ -5,7 +5,7 @@ import ErrorBoundary from 'src/components/ErrorBoundary';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { VarslerItem } from 'src/components/varsler/List/VarslerItem';
 import { VarslerListFilter } from './Filter';
-import { useFilterVarlser } from './utils';
+import { useFilterVarsler } from './utils';
 
 export const VarslerList = () => (
     <ErrorBoundary boundaryName="varslerList">
@@ -29,7 +29,7 @@ export const VarslerList = () => (
 );
 
 const VarslerListList = () => {
-    const varsler = useFilterVarlser();
+    const varsler = useFilterVarsler();
     const navigate = useNavigate({ from: '/new/person/varsler' });
 
     const handleClick = useCallback(
