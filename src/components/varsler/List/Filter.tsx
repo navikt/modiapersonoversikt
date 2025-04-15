@@ -17,7 +17,7 @@ const ditNav = 'DITT_NAV';
 const epost = 'EPOST';
 const sms = 'SMS';
 
-export const varslerKanaler = [ditNav, epost, sms];
+const varslerKanaler = [ditNav, epost, sms];
 
 export const varslerFilterAtom = atomWithReset<VarslerFilter>({
     dateRange: defaultDate,
@@ -45,7 +45,7 @@ const varslerFilterVarslerKanalAtom = atom(
     }
 );
 
-export const varslerFilterDateRangeAtom = atom(
+const varslerFilterDateRangeAtom = atom(
     (get) => get(varslerFilterAtom).dateRange,
     (_get, set, dateRange: DateRange | null) => {
         const range = dateRange ?? defaultDate;
