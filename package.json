@@ -142,7 +142,7 @@
         "@types/react-redux": "^7.1.34",
         "babel-plugin-react-compiler": "19.0.0-beta-e993439-20250405",
         "eslint": "^9.24.0",
-        "eslint-plugin-react-compiler": "19.0.0-beta-e993439-20250405",
+        "eslint-plugin-react-compiler": "19.0.0-beta-ebf51a3-20250411",
         "happy-dom": "^17.4.4",
         "jest-styled-components": "^7.2.0",
         "knip": "^5.47.0",
