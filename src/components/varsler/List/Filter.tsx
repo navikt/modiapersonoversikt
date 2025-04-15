@@ -6,18 +6,16 @@ import { useCallback, useMemo } from 'react';
 import DateRangeSelector, { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
 
+export type VarslerKanal = 'DITT_NAV' | 'EPOST' | 'SMS';
+
 export type VarslerFilter = {
     dateRange: DateRange;
     failedVarslerOnly: boolean;
-    kanaler: string[];
+    kanaler: VarslerKanal[];
 };
 
 const defaultDate = getPeriodFromOption(PeriodType.CUSTOM);
-const ditNav = 'DITT_NAV';
-const epost = 'EPOST';
-const sms = 'SMS';
-
-const varslerKanaler = [ditNav, epost, sms];
+const varslerKanaler: VarslerKanal[] = ['DITT_NAV', 'EPOST', 'SMS'];
 
 export const varslerFilterAtom = atomWithReset<VarslerFilter>({
     dateRange: defaultDate,
@@ -37,7 +35,7 @@ const varslerFilterVarslerStatusAtom = atom(
 
 const varslerFilterVarslerKanalAtom = atom(
     (get) => get(varslerFilterAtom).kanaler,
-    (_get, set, newVal: string) => {
+    (_get, set, newVal: VarslerKanal) => {
         set(varslerFilterAtom, (filters) => ({
             ...filters,
             kanaler: filters.kanaler ? xor(filters.kanaler, [newVal]) : [newVal]
@@ -64,14 +62,14 @@ const DateFilter = () => {
 const VarslerKanalFilter = () => {
     const [selectedKanaler, setSelectedKanaler] = useAtom(varslerFilterVarslerKanalAtom);
     const onToggleSelected = useCallback(
-        (option: string) => {
+        (option: VarslerKanal) => {
             setSelectedKanaler(option);
         },
         [setSelectedKanaler]
     );
 
     return (
-        <Fieldset size="small" legend="Varsel kanal">
+        <Fieldset size="small" legend="Varslingskanal">
             <VStack gap="2">
                 {varslerKanaler.map((kanal) => (
                     <Switch
@@ -98,11 +96,9 @@ const VarslerStatusFilter = () => {
     );
 
     return (
-        <Fieldset size="small" legend="">
-            <Switch size="small" checked={failedVarsler} onChange={() => onToggleSelected(!failedVarsler)}>
-                Vis varlser som feilet
-            </Switch>
-        </Fieldset>
+        <Switch size="small" checked={failedVarsler} onChange={() => onToggleSelected(!failedVarsler)}>
+            Vis varlser som feilet
+        </Switch>
     );
 };
 

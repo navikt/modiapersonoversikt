@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai/index';
 import { useMemo } from 'react';
-import type { VarslerFilter } from 'src/components/varsler/List/Filter';
+import type { VarslerFilter, VarslerKanal } from 'src/components/varsler/List/Filter';
 import { varslerFilterAtom } from 'src/components/varsler/List/Filter';
 import { useVarslerData } from 'src/lib/clients/modiapersonoversikt-api';
 import type { Varsel } from 'src/lib/types/modiapersonoversikt-api';
@@ -27,7 +27,7 @@ const filterVarsler = (varsler: VarselData[], filters: VarslerFilter): VarselDat
     let filteredList = varsler;
     if (kanaler?.length > 0) {
         filteredList = filteredList.filter((varsel) => {
-            return varsel.kanaler.some((kanal) => kanaler.includes(kanal));
+            return varsel.kanaler.some((kanal) => kanaler.includes(kanal as VarslerKanal));
         });
     }
 

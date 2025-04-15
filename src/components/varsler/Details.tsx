@@ -1,4 +1,4 @@
-import { ErrorMessage, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { BodyShort, ErrorMessage, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { Suspense } from 'react';
 import Card from 'src/components/Card';
@@ -6,7 +6,6 @@ import ErrorBoundary from 'src/components/ErrorBoundary';
 import { useFilterVarsler } from 'src/components/varsler/List/utils';
 import type { FeiletVarsling, Varsel } from 'src/lib/types/modiapersonoversikt-api';
 import { ENDASH, emptyReplacement, formaterDato } from 'src/utils/string-utils';
-import { twMerge } from 'tailwind-merge';
 
 const routeApi = getRouteApi('/new/person/varsler');
 
@@ -18,35 +17,31 @@ const FeilteVarslingerListe = ({
     feilteVarslinger: FeiletVarsling[];
 }) => {
     return (
-        <div className="my-1">
-            <div className="font-bold">{tittel}</div>
-            <div>
-                {feilteVarslinger.map((varsling) => (
-                    <div key={`${varsling.tidspunkt} - ${varsling.kanal}`}>
-                        <ErrorMessage size="small" showIcon>
-                            {formaterDato(varsling.tidspunkt)} - {varsling.kanal}: {varsling.feilmelding}
-                        </ErrorMessage>
-                    </div>
-                ))}
-            </div>
-        </div>
+        <HStack gap="2">
+            <b>{tittel}: </b>{' '}
+            {feilteVarslinger.map((varsling) => (
+                <div key={`${varsling.tidspunkt} - ${varsling.kanal}`}>
+                    <ErrorMessage size="small" showIcon>
+                        {formaterDato(varsling.tidspunkt)} - {varsling.kanal}: {varsling.feilmelding}
+                    </ErrorMessage>
+                </div>
+            ))}
+        </HStack>
     );
 };
 
 const DittNavInformasjonsLinje = ({
     tittel,
-    tekst,
-    className
+    tekst
 }: {
     tittel: string;
     tekst: string;
     className?: string;
 }) => {
     return (
-        <HStack gap="4">
-            <div className="font-bold">{tittel}</div>
-            <div className={twMerge('text-base', className)}>{tekst}</div>
-        </HStack>
+        <BodyShort size="medium">
+            <b>{tittel} </b> {tekst}
+        </BodyShort>
     );
 };
 
