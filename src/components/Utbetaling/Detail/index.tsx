@@ -387,7 +387,7 @@ const UtbetalingDetail = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
     return <Box.New>{selectedUtbetaling && <UtbetalingDetaljer utbetaling={selectedUtbetaling} />}</Box.New>;
 };
 
-export const UtbetalingerDetail = () => {
+const UtbetalingerDetail = () => {
     const dateRange = useAtomValue(utbetalingFilterDateRangeAtom);
     const startDato = dateRange.from.format('YYYY-MM-DD');
     const sluttDato = dateRange.to.format('YYYY-MM-DD');
@@ -395,14 +395,20 @@ export const UtbetalingerDetail = () => {
     const utbetalinger = data?.utbetalinger ?? [];
 
     return (
+        <VStack flexGrow="1" minHeight="0" maxHeight="100%" className="overflow-scroll">
+            <Box.New>
+                <UtbetalingerSammendrag utbetalinger={utbetalinger} periode={dateRange} />
+            </Box.New>
+            <UtbetalingDetail utbetalinger={utbetalinger} />
+        </VStack>
+    );
+};
+
+export const UtbetalingerDetailPage = () => {
+    return (
         <ErrorBoundary boundaryName="utbetalingDetaljer">
             <Suspense fallback={<Skeleton variant="rounded" height="200" />}>
-                <VStack flexGrow="1" minHeight="0" maxHeight="100%" className="overflow-scroll">
-                    <Box.New>
-                        <UtbetalingerSammendrag utbetalinger={utbetalinger} periode={dateRange} />
-                    </Box.New>
-                    <UtbetalingDetail utbetalinger={utbetalinger} />
-                </VStack>
+                <UtbetalingerDetail />
             </Suspense>
         </ErrorBoundary>
     );
