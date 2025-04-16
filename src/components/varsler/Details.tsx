@@ -1,4 +1,4 @@
-import { BodyShort, ErrorMessage, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { BodyLong, ErrorMessage, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { Suspense } from 'react';
 import Card from 'src/components/Card';
@@ -17,8 +17,12 @@ const FeilteVarslingerListe = ({
     feilteVarslinger: FeiletVarsling[];
 }) => {
     return (
-        <HStack gap="2">
-            <b>{tittel}: </b>{' '}
+        <HStack gap="1">
+            <HStack width="8rem">
+                <BodyLong size="medium" weight="semibold">
+                    {tittel}
+                </BodyLong>
+            </HStack>
             {feilteVarslinger.map((varsling) => (
                 <div key={`${varsling.tidspunkt} - ${varsling.kanal}`}>
                     <ErrorMessage size="small" showIcon>
@@ -39,9 +43,14 @@ const DittNavInformasjonsLinje = ({
     className?: string;
 }) => {
     return (
-        <BodyShort size="medium">
-            <b>{tittel} </b> {tekst}
-        </BodyShort>
+        <HStack gap="1">
+            <HStack width="8rem">
+                <BodyLong size="medium" weight="semibold">
+                    {tittel}
+                </BodyLong>
+            </HStack>
+            <BodyLong>{tekst}</BodyLong>
+        </HStack>
     );
 };
 
@@ -54,7 +63,7 @@ const DittNavInformasjonsLinjer = ({
 }) => {
     return (
         <VStack gap="1" className="p-2">
-            <Heading level="3" size="xsmall">
+            <Heading level="3" size="xsmall" className="mb-4">
                 {varsel.tekst}
             </Heading>
             <DittNavInformasjonsLinje tittel="Produsert av:" tekst={emptyReplacement(varsel.produsent, ENDASH)} />
@@ -94,13 +103,13 @@ const DittNavInformasjonsLinjerV2 = ({
                 )}
                 {varslingsTidspunkt?.harFeilteVarslinger && (
                     <FeilteVarslingerListe
-                        tittel="Varslingsfeil"
+                        tittel="Varslingsfeil: "
                         feilteVarslinger={varslingsTidspunkt.feilteVarsliner}
                     />
                 )}
                 {varslingsTidspunkt?.harFeilteRevarslinger && (
                     <FeilteVarslingerListe
-                        tittel="Revarslingsfeil"
+                        tittel="Revarslingsfeil: "
                         feilteVarslinger={varslingsTidspunkt.feilteRevarslinger}
                     />
                 )}

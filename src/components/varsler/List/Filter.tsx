@@ -56,7 +56,9 @@ const varslerFilterDateRangeAtom = atom(
 
 const DateFilter = () => {
     const [value, setValue] = useAtom(varslerFilterDateRangeAtom);
-    return <DateRangeSelector range={value} onChange={setValue} />;
+    return (
+        <DateRangeSelector resettable={false} range={value} onChange={setValue} defaultPeriodType={PeriodType.CUSTOM} />
+    );
 };
 
 const VarslerKanalFilter = () => {
