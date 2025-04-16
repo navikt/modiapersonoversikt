@@ -16,14 +16,7 @@ type Props = {
 export const SendMelding = ({ lukkeKnapp }: Props) => {
     return (
         <ErrorBoundary boundaryName="sendmelding">
-            <Suspense
-                fallback={
-                    <>
-                        <Skeleton variant="text" />
-                        <Skeleton variant="rounded" height={100} />
-                    </>
-                }
-            >
+            <Suspense fallback={<Skeleton variant="rounded" height="100%" />}>
                 <SendMeldingContent lukkeKnapp={lukkeKnapp} />
             </Suspense>
         </ErrorBoundary>
