@@ -1,7 +1,7 @@
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { Button, HStack, Heading, VStack } from '@navikt/ds-react';
 import { Link } from '@tanstack/react-router';
-import { UtbetalingerDetail } from 'src/components/Utbetaling/Detail';
+import { UtbetalingerDetailPage } from 'src/components/Utbetaling/Detail';
 import { UtbetalingerList } from 'src/components/Utbetaling/List';
 import { arenaURL } from 'src/components/Utbetaling/List/utils';
 
@@ -25,7 +25,7 @@ export const UtbetalingPage = () => {
                 </HStack>
                 <UtbetalingerList />
             </VStack>
-            <UtbetalingerDetail />
+            <UtbetalingerDetailPage />
         </HStack>
     );
 };
