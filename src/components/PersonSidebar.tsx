@@ -93,7 +93,7 @@ export const PersonSidebarMenu = () => {
                         className="divide-y divide-ax-border-neutral-subtle "
                     >
                         <Heading visuallyHidden size="small" level="2">
-                            Person sider
+                            Faner
                         </Heading>
                         {menuItems.map(({ title, href, Icon }) => (
                             <Link key={title} to={href} aria-label={title}>
