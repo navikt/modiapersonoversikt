@@ -18,8 +18,8 @@ importers:
         specifier: ^1.16.0
         version: 1.16.0
       '@navikt/aksel-icons':
-        specifier: ^7.19.0
-        version: 7.19.0
+        specifier: ^7.20.0
+        version: 7.20.0
       '@navikt/ds-css':
         specifier: ^7.20.0
         version: 7.20.0
@@ -938,9 +938,6 @@ packages:
   '@mswjs/interceptors@0.37.6':
     resolution: {integrity: sha512-wK+5pLK5XFmgtH3aQ2YVvA3HohS3xqV/OxuVOdNx9Wpnz7VE/fnC+e1A7ln6LFYeck7gOJ/dsZV6OLplOtAJ2w==}
     engines: {node: '>=18'}
-
-  '@navikt/aksel-icons@7.19.0':
-    resolution: {integrity: sha512-h0iR/WJgCn13YjR4w7YfiaAddmupaV350inzF1svkvtkavsKavKXCLH3HYcjyYOuoVmrUMSVuLOdXnL6QzjGXg==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/7.19.0/1a73f21564a3889805575f1e55490ac0370607e5}
 
   '@navikt/aksel-icons@7.20.0':
     resolution: {integrity: sha512-coPPqEHofM5fqjpgWBesEsuDZRcq3MbkGZh0Rs/qUEggvLzZR0GKaYeW/PZ8Cp4rvNDGlYVfwMeoXW9CIcy6tQ==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/7.20.0/cfca4a1ccdf8191e259bcfe093fd97d3110939ea}
@@ -4314,8 +4311,6 @@ snapshots:
       is-node-process: 1.2.0
       outvariant: 1.4.3
       strict-event-emitter: 0.5.1
-
-  '@navikt/aksel-icons@7.19.0': {}
 
   '@navikt/aksel-icons@7.20.0': {}
 
