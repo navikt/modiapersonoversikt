@@ -51,8 +51,8 @@ importers:
         specifier: ^1.116.0
         version: 1.116.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@vitejs/plugin-react':
-        specifier: ^4.4.0
-        version: 4.4.0(vite@6.3.2(@types/node@22.14.1)(jiti@2.4.2)(less@4.3.0)(lightningcss@1.29.2)(tsx@4.19.3)(yaml@2.7.1))
+        specifier: ^4.4.1
+        version: 4.4.1(vite@6.3.2(@types/node@22.14.1)(jiti@2.4.2)(less@4.3.0)(lightningcss@1.29.2)(tsx@4.19.3)(yaml@2.7.1))
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
@@ -765,10 +765,6 @@ packages:
 
   '@eslint/eslintrc@3.3.1':
     resolution: {integrity: sha512-gtF186CXhIl1p4pJNGZw8Yc6RlshoePRvE0X91oPGb3vZ8pM3qOS9W9NGPat9LziaBV7XrJWGylNQXkGcnM3IQ==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  '@eslint/js@9.24.0':
-    resolution: {integrity: sha512-uIY/y3z0uvOGX8cp1C2fiC4+ZmBhp6yZWkojtHL1YEMnRt1Y63HB9TM17proGEmeG7HeUY+UP36F0aknKYTpYA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@eslint/js@9.25.0':
@@ -1658,8 +1654,8 @@ packages:
     resolution: {integrity: sha512-aEhgas7aJ6vZnNFC7K4/vMGDGyOiqWcYZPpIWrTKuTAlsvDNKy2GFDqh9smL+iq069ZvR0YzEeq0B8NJlLzjFA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@vitejs/plugin-react@4.4.0':
-    resolution: {integrity: sha512-x/EztcTKVj+TDeANY1WjNeYsvZjZdfWRMP/KXi5Yn8BoTzpa13ZltaQqKfvWYbX8CE10GOHHdC5v86jY9x8i/g==}
+  '@vitejs/plugin-react@4.4.1':
+    resolution: {integrity: sha512-IpEm5ZmeXAP/osiBXVVP5KjFMzbWOonMs0NaQQl+xYnUAcq4oHUBsF2+p4MgKWG4YMmFYJU8A6sxRPuowllm6w==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^4.2.0 || ^5.0.0 || ^6.0.0
@@ -1821,8 +1817,8 @@ packages:
   camelize@1.0.1:
     resolution: {integrity: sha512-dU+Tx2fsypxTgtLoE36npi3UqcjSSMNYfkqgmoEhtZrraP5VWq0K7FkWVTYa8eMPtnU/G2txVsfdCJTn9uzpuQ==}
 
-  caniuse-lite@1.0.30001714:
-    resolution: {integrity: sha512-mtgapdwDLSSBnCI3JokHM7oEQBLxiJKVRtg10AxM1AyeiKcM96f0Mkbqeq+1AbiCtvMcHRulAAEMu693JrSWqg==}
+  caniuse-lite@1.0.30001715:
+    resolution: {integrity: sha512-7ptkFGMm2OAOgvZpwgA4yjQ5SQbrNVGdRjzH0pBdy1Fasvcr+KAeECmbCAECzTuDuoX0FCY8KzUxjf9+9kfZEw==}
 
   chai@5.2.0:
     resolution: {integrity: sha512-mCuXncKXk5iCLhfhwTc0izo0gtEmpz5CtG2y8GiOINBlMVS6v8TMRc5TaLWKS6692m9+dVVfzgeVxR5UxWHTYw==}
@@ -2020,8 +2016,8 @@ packages:
   easy-table@1.2.0:
     resolution: {integrity: sha512-OFzVOv03YpvtcWGe5AayU5G2hgybsg3iqA6drU8UaoZyB9jLGMTrz9+asnLp/E+6qPh88yEI1gvyZFZ41dmgww==}
 
-  electron-to-chromium@1.5.137:
-    resolution: {integrity: sha512-/QSJaU2JyIuTbbABAo/crOs+SuAZLS+fVVS10PVrIT9hrRkmZl8Hb0xPSkKRUUWHQtYzXHpQUW3Dy5hwMzGZkA==}
+  electron-to-chromium@1.5.139:
+    resolution: {integrity: sha512-GGnRYOTdN5LYpwbIr0rwP/ZHOQSvAF6TG0LSzp28uCBb9JiXHJGmaaKw29qjNJc5bGnnp6kXJqRnGMQoELwi5w==}
 
   emoji-regex@10.4.0:
     resolution: {integrity: sha512-EC+0oUMY1Rqm4O6LLrgjtYDvcVYTy7chDnM4Q7030tP4Kwj3u/pR6gP9ygnp2CJMK5Gq+9Q2oqmrFJAz01DXjw==}
@@ -4104,8 +4100,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@eslint/js@9.24.0': {}
-
   '@eslint/js@9.25.0': {}
 
   '@eslint/object-schema@2.1.6': {}
@@ -5018,7 +5012,7 @@ snapshots:
       '@typescript-eslint/types': 8.30.1
       eslint-visitor-keys: 4.2.0
 
-  '@vitejs/plugin-react@4.4.0(vite@6.3.2(@types/node@22.14.1)(jiti@2.4.2)(less@4.3.0)(lightningcss@1.29.2)(tsx@4.19.3)(yaml@2.7.1))':
+  '@vitejs/plugin-react@4.4.1(vite@6.3.2(@types/node@22.14.1)(jiti@2.4.2)(less@4.3.0)(lightningcss@1.29.2)(tsx@4.19.3)(yaml@2.7.1))':
     dependencies:
       '@babel/core': 7.26.10
       '@babel/plugin-transform-react-jsx-self': 7.25.9(@babel/core@7.26.10)
@@ -5167,8 +5161,8 @@ snapshots:
 
   browserslist@4.24.4:
     dependencies:
-      caniuse-lite: 1.0.30001714
-      electron-to-chromium: 1.5.137
+      caniuse-lite: 1.0.30001715
+      electron-to-chromium: 1.5.139
       node-releases: 2.0.19
       update-browserslist-db: 1.1.3(browserslist@4.24.4)
 
@@ -5180,7 +5174,7 @@ snapshots:
 
   camelize@1.0.1: {}
 
-  caniuse-lite@1.0.30001714: {}
+  caniuse-lite@1.0.30001715: {}
 
   chai@5.2.0:
     dependencies:
@@ -5359,7 +5353,7 @@ snapshots:
     optionalDependencies:
       wcwidth: 1.0.1
 
-  electron-to-chromium@1.5.137: {}
+  electron-to-chromium@1.5.139: {}
 
   emoji-regex@10.4.0: {}
 
