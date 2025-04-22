@@ -29,7 +29,8 @@ function Email({ harFeilendeSystem, kontaktinformasjon }: Props) {
     return (
         <InfoElement title="E-post" icon={<EnvelopeClosedIcon />}>
             <KRRInfo
-                erReservert={kontaktinformasjon.erReservert}
+                erReservert={kontaktinformasjon.erReservert?.value}
+                reservasjonOppdatert={kontaktinformasjon.erReservert?.sistOppdatert}
                 kontaktinformasjonVerdi={epost}
                 sistOppdatert={sistOppdatert}
             />

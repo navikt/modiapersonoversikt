@@ -32,7 +32,8 @@ function Telefon({ harFeilendeSystem, kontaktinformasjon }: Props) {
     return (
         <InfoElement title="Telefon" icon={<PhoneIcon />}>
             <KRRInfo
-                erReservert={kontaktinformasjon.erReservert}
+                erReservert={kontaktinformasjon.erReservert?.value}
+                reservasjonOppdatert={kontaktinformasjon.erReservert?.sistOppdatert}
                 kontaktinformasjonVerdi={telefonnummer}
                 sistOppdatert={sistOppdatert}
             />

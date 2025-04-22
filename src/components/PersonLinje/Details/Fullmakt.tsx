@@ -22,7 +22,7 @@ function KontaktinformasjonFullmakt(props: {
         return null;
     }
 
-    const erReservert = props.kontaktinformasjon.reservasjon === 'true';
+    const erReservert = props.kontaktinformasjon.reservasjon === true;
     const mobilnummer = formaterMobiltelefonnummer(
         props.kontaktinformasjon.mobiltelefonnummer ?? 'Fant ikke telefonnummer'
     );

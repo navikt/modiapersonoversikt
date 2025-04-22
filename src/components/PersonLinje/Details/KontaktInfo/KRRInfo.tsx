@@ -2,17 +2,21 @@ import { BodyShort } from '@navikt/ds-react';
 
 interface Props {
     erReservert?: boolean;
+    reservasjonOppdatert?: string | null;
     kontaktinformasjonVerdi: string | null;
     sistOppdatert: string | null;
 }
 
-function KRRInfo({ erReservert, kontaktinformasjonVerdi, sistOppdatert }: Props) {
+function KRRInfo({ erReservert, reservasjonOppdatert, kontaktinformasjonVerdi, sistOppdatert }: Props) {
     if (erReservert) {
         return (
             <>
                 <BodyShort size="small">Reservert</BodyShort>
                 <BodyShort size="small" className="text-sm" textColor="subtle">
                     I Kontakt- og reservasjonsregisteret
+                </BodyShort>
+                <BodyShort size="small" textColor="subtle" className="text-sm">
+                    Endret {reservasjonOppdatert} i Kontakt- og reservasjonsregisteret
                 </BodyShort>
             </>
         );
