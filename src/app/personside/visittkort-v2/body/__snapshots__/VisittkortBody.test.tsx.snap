@@ -496,6 +496,15 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               I Kontakt- og reservasjonsregisteret
             </p>
           </div>
+          <div
+            class="c7"
+          >
+            <p
+              class="typo-undertekst"
+            >
+              Endret 2020-01-01 i Kontakt- og reservasjonsregisteret
+            </p>
+          </div>
         </div>
         <div
           class="c4"
@@ -537,6 +546,15 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               class="typo-undertekst"
             >
               I Kontakt- og reservasjonsregisteret
+            </p>
+          </div>
+          <div
+            class="c7"
+          >
+            <p
+              class="typo-undertekst"
+            >
+              Endret 2020-01-01 i Kontakt- og reservasjonsregisteret
             </p>
           </div>
         </div>

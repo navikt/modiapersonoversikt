@@ -32,7 +32,8 @@ function Telefon({ harFeilendeSystem, kontaktinformasjon }: Props) {
     return (
         <VisittkortElement beskrivelse="Telefon" ikon={<PhoneIkon />}>
             <DigitalKontaktinformasjon
-                erReservert={kontaktinformasjon.erReservert}
+                erReservert={kontaktinformasjon.erReservert?.value}
+                reservasjonOppdatert={kontaktinformasjon.erReservert?.sistOppdatert}
                 kontaktinformasjonVerdi={telefonnummer}
                 sistOppdatert={sistOppdatert}
             />
