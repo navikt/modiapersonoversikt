@@ -49,7 +49,9 @@ const OversiktDetailCard = ({
         <Card padding="4">
             <VStack justify="space-between" gap="4">
                 <HStack wrap={false} gap="4" justify="space-between">
-                    <Heading size="medium">{title}</Heading>
+                    <Heading as="h3" size="small">
+                        {title}
+                    </Heading>
                 </HStack>
                 <VStack justify="space-between" gap="4" align="start">
                     <BodyShort>{beskrivelse}</BodyShort>
@@ -75,7 +77,9 @@ function OversiktNy() {
         <VStack gap="4" paddingBlock="2">
             <Card padding="4">
                 <VStack align="center">
-                    <Heading size="large">Modia personoversikt</Heading>
+                    <Heading as="h2" size="medium">
+                        Modia personoversikt
+                    </Heading>
                     <BodyLong spacing>Kort beskrivelse av hva modia er</BodyLong>
                 </VStack>
             </Card>
