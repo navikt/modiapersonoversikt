@@ -7,7 +7,7 @@ interface Props {
 
 function ReservertIKRREtikett(props: Props) {
     const { kontaktInformasjon } = props;
-    if (kontaktInformasjon?.erReservert) {
+    if (kontaktInformasjon?.erReservert?.value === true) {
         return <EtikettBase type="fokus">Reservert i KRR</EtikettBase>;
     }
     if (kontaktInformasjon && !kontaktInformasjon.epost?.value && !kontaktInformasjon.mobil?.value) {

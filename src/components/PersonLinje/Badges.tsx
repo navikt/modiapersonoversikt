@@ -81,7 +81,7 @@ function ReservertIKRRBadge({
 }: {
     kontaktInfo: PersonData['kontaktInformasjon'];
 }) {
-    if (kontaktInfo?.erReservert) {
+    if (kontaktInfo?.erReservert?.value) {
         return (
             <Tag size="small" variant="warning">
                 Reservert i KRR
@@ -103,7 +103,7 @@ function ManuellStatusBadge({
 }: {
     kontaktInfo: PersonData['kontaktInformasjon'];
 }) {
-    const erManuell = kontaktInfo?.erManuell || kontaktInfo?.erReservert;
+    const erManuell = kontaktInfo?.erManuell || kontaktInfo?.erReservert?.value;
 
     if (erManuell) {
         return (

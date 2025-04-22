@@ -456,7 +456,11 @@ export const aremark: Person = {
         }
     ],
     kontaktInformasjon: {
-        erReservert: true,
+        erReservert: {
+            value: true,
+            sistOppdatert: '2020-01-01' as LocalDate,
+            sistVerifisert: null
+        },
         erManuell: true,
         epost: {
             value: 'epost@nav.no',

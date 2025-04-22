@@ -29,7 +29,8 @@ function Epost({ harFeilendeSystem, kontaktinformasjon }: Props) {
     return (
         <VisittkortElement beskrivelse="E-post" ikon={<EmailIkon />}>
             <DigitalKontaktinformasjon
-                erReservert={kontaktinformasjon.erReservert}
+                erReservert={kontaktinformasjon.erReservert?.value}
+                reservasjonOppdatert={kontaktinformasjon.erReservert?.sistOppdatert}
                 kontaktinformasjonVerdi={epost}
                 sistOppdatert={sistOppdatert}
             />

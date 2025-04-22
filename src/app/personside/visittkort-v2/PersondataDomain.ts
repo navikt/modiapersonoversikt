@@ -298,12 +298,12 @@ export enum ForelderBarnRelasjonRolle {
 
 export interface KontaktInformasjon {
     erManuell: boolean | null;
-    erReservert: boolean | null;
+    erReservert: DkifVerdi<boolean> | null;
     epost: DkifVerdi | null;
     mobil: DkifVerdi | null;
 }
-interface DkifVerdi {
-    value: string | null;
+interface DkifVerdi<T = string> {
+    value: T | null;
     sistOppdatert: LocalDate | null;
     sistVerifisert: LocalDate | null;
 }

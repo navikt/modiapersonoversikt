@@ -2,17 +2,24 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import EtikettGraa from '../../../../../components/EtikettGraa';
 
 interface Props {
-    erReservert: boolean | null;
+    erReservert?: boolean | null;
+    reservasjonOppdatert?: string | null;
     kontaktinformasjonVerdi: string | null;
     sistOppdatert: string | null;
 }
 
-function DigitalKontaktinformasjon({ erReservert, kontaktinformasjonVerdi, sistOppdatert }: Props) {
+function DigitalKontaktinformasjon({
+    erReservert,
+    reservasjonOppdatert,
+    kontaktinformasjonVerdi,
+    sistOppdatert
+}: Props) {
     if (erReservert) {
         return (
             <>
                 <Normaltekst>Reservert</Normaltekst>
                 <EtikettGraa>I Kontakt- og reservasjonsregisteret</EtikettGraa>
+                <EtikettGraa>Endret {reservasjonOppdatert} i Kontakt- og reservasjonsregisteret</EtikettGraa>
             </>
         );
     }

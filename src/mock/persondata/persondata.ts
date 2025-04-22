@@ -22,7 +22,11 @@ import { aremark } from './aremark';
 // Til bruk under testing av funksjonalitet
 const erDod = false;
 const visEtiketter = true;
-const erReservert = false;
+const erReservert = {
+    value: false,
+    sistOppdatert: '2020-01-01' as LocalDate,
+    sistVerifisert: null
+};
 const ikkeRegistrert = false;
 
 export function hentPersondata(fodselsnummer: string): PersonData | null {
