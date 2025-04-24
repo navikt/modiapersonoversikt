@@ -15,8 +15,8 @@ importers:
         specifier: ^1.17.1
         version: 1.17.1
       '@grafana/faro-web-tracing':
-        specifier: ^1.17.0
-        version: 1.17.0
+        specifier: ^1.17.1
+        version: 1.17.1
       '@navikt/aksel-icons':
         specifier: ^7.20.0
         version: 7.20.0
@@ -826,10 +826,6 @@ packages:
 
   '@grafana/faro-web-sdk@1.17.1':
     resolution: {integrity: sha512-fEMUhBN1wlRHdleAmjTnQRzqlfGZOtFRkEBH2uTadKXs2JHy93jnwDOl2Kpg0XKKCfCFr+BVkpwzgM7bkSNpfQ==}
-    engines: {node: '>=18.0.0'}
-
-  '@grafana/faro-web-tracing@1.17.0':
-    resolution: {integrity: sha512-f7foo6Y3YVVOyKS5TDJeGmUnwpsxVf/qHIZJ5K1dq6zlF9GDjD7vqyhNXVrSB/yUW+N+4X43U7UaTPMnId8qHQ==}
     engines: {node: '>=18.0.0'}
 
   '@grafana/faro-web-tracing@1.17.1':
@@ -4167,22 +4163,6 @@ snapshots:
       '@grafana/faro-core': 1.17.1
       ua-parser-js: 1.0.40
       web-vitals: 4.2.4
-
-  '@grafana/faro-web-tracing@1.17.0':
-    dependencies:
-      '@grafana/faro-web-sdk': 1.17.1
-      '@opentelemetry/api': 1.9.0
-      '@opentelemetry/core': 2.0.0(@opentelemetry/api@1.9.0)
-      '@opentelemetry/exporter-trace-otlp-http': 0.200.0(@opentelemetry/api@1.9.0)
-      '@opentelemetry/instrumentation': 0.200.0(@opentelemetry/api@1.9.0)
-      '@opentelemetry/instrumentation-fetch': 0.200.0(@opentelemetry/api@1.9.0)
-      '@opentelemetry/instrumentation-xml-http-request': 0.200.0(@opentelemetry/api@1.9.0)
-      '@opentelemetry/otlp-transformer': 0.200.0(@opentelemetry/api@1.9.0)
-      '@opentelemetry/resources': 2.0.0(@opentelemetry/api@1.9.0)
-      '@opentelemetry/sdk-trace-web': 2.0.0(@opentelemetry/api@1.9.0)
-      '@opentelemetry/semantic-conventions': 1.32.0
-    transitivePeerDependencies:
-      - supports-color
 
   '@grafana/faro-web-tracing@1.17.1':
     dependencies:
