@@ -15,8 +15,8 @@ importers:
         specifier: ^1.17.2
         version: 1.17.2
       '@grafana/faro-web-tracing':
-        specifier: ^1.17.1
-        version: 1.17.1
+        specifier: ^1.17.2
+        version: 1.17.2
       '@navikt/aksel-icons':
         specifier: ^7.20.0
         version: 7.20.0
@@ -828,8 +828,8 @@ packages:
     resolution: {integrity: sha512-zzSnp9LnDJGvuDP3URT9biUrwd0NA5v2T8kKHaok6hw/hYOlzMk1I5gl3UDg2+V9ugfnFduDIItNeucBtRXCqg==}
     engines: {node: '>=18.0.0'}
 
-  '@grafana/faro-web-tracing@1.17.1':
-    resolution: {integrity: sha512-xrU0e7yQw+gPJBzZUjlnHh2Cm7Tqqt0lTJopnNjgtk4Urc+9s2OrLwbjKcMbNqWBXvxqdhaJCE0UCUyUORxrsg==}
+  '@grafana/faro-web-tracing@1.17.2':
+    resolution: {integrity: sha512-bqmz794mU8Iyk3z1emVyPOOgn+CmtetTIB0+FKcGL/9bFDbswTinmPfpHVXhHVi+bRueX+YfohOOW0p/SrYrqQ==}
     engines: {node: '>=18.0.0'}
 
   '@humanfs/core@0.19.1':
@@ -4150,7 +4150,7 @@ snapshots:
   '@grafana/faro-react@1.17.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@grafana/faro-web-sdk': 1.17.2
-      '@grafana/faro-web-tracing': 1.17.1
+      '@grafana/faro-web-tracing': 1.17.2
       hoist-non-react-statics: 3.3.2
       react: 19.1.0
     optionalDependencies:
@@ -4164,7 +4164,7 @@ snapshots:
       ua-parser-js: 1.0.40
       web-vitals: 4.2.4
 
-  '@grafana/faro-web-tracing@1.17.1':
+  '@grafana/faro-web-tracing@1.17.2':
     dependencies:
       '@grafana/faro-web-sdk': 1.17.2
       '@opentelemetry/api': 1.9.0
