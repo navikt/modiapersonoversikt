@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@grafana/faro-react':
-        specifier: ^1.17.1
-        version: 1.17.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^1.17.2
+        version: 1.17.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@grafana/faro-web-sdk':
         specifier: ^1.17.2
         version: 1.17.2
@@ -811,8 +811,8 @@ packages:
     resolution: {integrity: sha512-T80BU9StIUGdwn+RrYcIQFY3VTj51rAqHvWRjMmrAVp5l8oNNQUdtYo3gZPRt5djx+hPpUB9dI+ZM6cnVK+z2Q==}
     engines: {node: '>=18.0.0'}
 
-  '@grafana/faro-react@1.17.1':
-    resolution: {integrity: sha512-476G89iJgLyeEyrWrlUaRgEYuTezjQyeueDXFYfmtn/vSr8g603Dv54vzZ+fw5N3NZypHBcQ3q/qtS9NftYfsQ==}
+  '@grafana/faro-react@1.17.2':
+    resolution: {integrity: sha512-VKLwkJsZNMIjCgYsd0j09MHTw5PXjo45Akt6HmiGUVCM3JhvQF4l1nYzY+qmanPj3YwXUhrGf9TtBS5XE+Goog==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -4147,7 +4147,7 @@ snapshots:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/otlp-transformer': 0.200.0(@opentelemetry/api@1.9.0)
 
-  '@grafana/faro-react@1.17.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@grafana/faro-react@1.17.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@grafana/faro-web-sdk': 1.17.2
       '@grafana/faro-web-tracing': 1.17.2
