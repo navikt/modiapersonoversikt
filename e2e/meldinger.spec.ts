@@ -111,3 +111,27 @@ test('Avslutt dialog', async ({ page }) => {
 
     await expect(page.getByText('Samtalen er avsluttet')).toBeVisible();
 });
+
+test('Lag ny oppgave', async ({ page }) => {
+    await page.goto('/new/person/meldinger?traadId=XJjYJeZH');
+    await page.getByRole('button', { name: 'oppgave' }).click();
+
+    const opprettDialog = page.getByRole('dialog', { name: 'Opprett oppgave' });
+    await expect(opprettDialog).toBeVisible();
+
+    await opprettDialog.getByRole('combobox', { name: 'Tema' }).selectOption('Bidrag');
+    await opprettDialog.getByRole('combobox', { name: 'Gjelder' }).selectOption('Anke');
+    await opprettDialog.getByRole('combobox', { name: 'Oppgavetype' }).selectOption('Kontakt bruker');
+
+    await opprettDialog.getByRole('checkbox').check();
+
+    await opprettDialog.getByRole('combobox', { name: 'Prioritering' }).selectOption('Høy');
+    await opprettDialog.getByRole('textbox').fill('Test beskrivelse av en oppgave');
+
+    const oppgaveResPromise = page.waitForResponse('**/opprett');
+    await opprettDialog.getByRole('button', { name: 'Opprett oppgave' }).click();
+    const oppgaveRes = await oppgaveResPromise;
+
+    expect(oppgaveRes.ok).toBeTruthy();
+    await expect(opprettDialog).not.toBeVisible();
+});

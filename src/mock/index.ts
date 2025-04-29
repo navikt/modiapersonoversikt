@@ -33,9 +33,20 @@ import { getMockForeldrepenger } from './ytelse/foreldrepenger-mock';
 import { getMockPleiepenger } from './ytelse/pleiepenger-mock';
 import { getMockSykepengerRespons } from './ytelse/sykepenger-mock';
 
-import { http, type DefaultBodyType, type HttpHandler, HttpResponse, type PathParams, type StrictRequest } from 'msw';
-import { getMockPensjon } from 'src/mock/ytelse/pensjon-mock';
-import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
+import {
+    http,
+    type DefaultBodyType,
+    type HttpHandler,
+    HttpResponse,
+    type PathParams,
+    type StrictRequest,
+    type WebSocketHandler
+} from 'msw';
+import type {
+    JournalforingSak,
+    OpprettOppgaveRequestDto,
+    OpprettOppgaveResponseDto
+} from 'src/generated/modiapersonoversikt-api';
 import type { FeatureTogglesResponse } from 'src/rest/resources/featuretogglesResource';
 import { STATUS_OK, fodselsNummerErGyldigStatus, randomDelay } from './utils-mock';
 import { getMockTiltakspenger } from './ytelse/tiltakspenger-mock';
@@ -316,7 +327,11 @@ const journalForingHandler = [
 
 const opprettOppgaveHandler = http.post(
     `${apiBaseUri}/dialogoppgave/v2/opprett`,
-    withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+    withDelayedResponse<OpprettOppgaveResponseDto, OpprettOppgaveRequestDto>(
+        randomDelay(),
+        STATUS_OK,
+        async (request) => oppgaveBackendMock.opprettOppgave(await request.json())
+    )
 );
 
 const opprettSkjermetOppgaveHandler = http.post(
@@ -342,7 +357,7 @@ if (import.meta.env.MODE !== 'test') {
     console.log('=========================='); // tslint:disable-line
 }
 
-export const handlers: HttpHandler[] = [
+export const handlers: (HttpHandler | WebSocketHandler)[] = [
     innloggetSaksbehandlerMock,
     persondataMock,
     ...tilgangsKontrollHandler,

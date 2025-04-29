@@ -6,6 +6,7 @@ import {
     type ComboboxProps,
     ErrorSummary,
     HStack,
+    Loader,
     Modal,
     Select,
     Textarea,
@@ -58,7 +59,13 @@ export const OppgaveModal = ({ open, setOpen, traad }: Props) => {
         >
             <Modal.Body>
                 <Box.New minHeight="60vh" overflowY="scroll" paddingInline="4">
-                    <Suspense>
+                    <Suspense
+                        fallback={
+                            <HStack justify="center" align="center">
+                                <Loader size="3xlarge" />
+                            </HStack>
+                        }
+                    >
                         <ErrorBoundary boundaryName="oppgaveForm">
                             {open && <OppgaveForm traad={traad} onSuccess={() => setOpen(false)} />}
                         </ErrorBoundary>
@@ -466,14 +473,16 @@ const EnhetSelect = ({
 
     const selectedOption = enhetOptions.find((o) => o.value === value);
     return (
-        <UNSAFE_Combobox
-            size="small"
-            options={enhetOptions}
-            selectedOptions={selectedOption ? [selectedOption] : undefined}
-            onToggleSelected={(option) => setValue(option)}
-            error={error}
-            {...props}
-        />
+        <div data-testid="enhet-select">
+            <UNSAFE_Combobox
+                size="small"
+                options={enhetOptions}
+                selectedOptions={selectedOption ? [selectedOption] : []}
+                onToggleSelected={(option) => setValue(option)}
+                error={error}
+                {...props}
+            />
+        </div>
     );
 };
 
@@ -499,20 +508,22 @@ const AnsattSelect = ({
     const selectedOption = options.find((o) => o.value === value);
 
     useEffect(() => {
-        if (value && !selectedOption) {
+        if (value && !isLoading && !selectedOption) {
             setValue('');
         }
-    }, [value, selectedOption, setValue]);
+    }, [value, isLoading, selectedOption, setValue]);
 
     return (
-        <UNSAFE_Combobox
-            isLoading={isLoading}
-            size="small"
-            selectedOptions={selectedOption ? [selectedOption] : []}
-            options={options}
-            label={label}
-            onToggleSelected={(option) => setValue(option)}
-            {...props}
-        />
+        <div data-testid="ansatt-select">
+            <UNSAFE_Combobox
+                isLoading={isLoading}
+                size="small"
+                selectedOptions={selectedOption ? [selectedOption] : []}
+                options={options}
+                label={label}
+                onToggleSelected={(option) => setValue(option)}
+                {...props}
+            />
+        </div>
     );
 };
