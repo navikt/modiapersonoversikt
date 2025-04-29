@@ -42,7 +42,11 @@ import {
     type StrictRequest,
     type WebSocketHandler
 } from 'msw';
-import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
+import type {
+    JournalforingSak,
+    OpprettOppgaveRequestDto,
+    OpprettOppgaveResponseDto
+} from 'src/generated/modiapersonoversikt-api';
 import type { FeatureTogglesResponse } from 'src/rest/resources/featuretogglesResource';
 import { STATUS_OK, fodselsNummerErGyldigStatus, randomDelay } from './utils-mock';
 import { getMockTiltakspenger } from './ytelse/tiltakspenger-mock';
@@ -314,7 +318,11 @@ const journalForingHandler = [
 
 const opprettOppgaveHandler = http.post(
     `${apiBaseUri}/dialogoppgave/v2/opprett`,
-    withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+    withDelayedResponse<OpprettOppgaveResponseDto, OpprettOppgaveRequestDto>(
+        randomDelay(),
+        STATUS_OK,
+        async (request) => oppgaveBackendMock.opprettOppgave(await request.json())
+    )
 );
 
 const opprettSkjermetOppgaveHandler = http.post(

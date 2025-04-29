@@ -266,9 +266,17 @@ export const useGsakTema = () => {
 };
 
 export const useOppgaveMutation = () => {
+    const queryClient = useQueryClient();
+    const fnr = usePersonAtomValue();
+
     return $api.useMutation('post', '/rest/dialogoppgave/v2/opprett', {
         onSuccess: () => {
             toast.success('Opprettet oppgave');
+            queryClient.invalidateQueries({
+                queryKey: $api.queryOptions('post', '/rest/v2/oppgaver/tildelt', {
+                    body: { fnr }
+                }).queryKey
+            });
         },
         onError: () => {
             toast.error('Kunne ikke opprette oppgaven');
