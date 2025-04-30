@@ -2,7 +2,7 @@ import type { InnloggetSaksbehandler } from '../rest/resources/innloggetSaksbeha
 
 export function getMockInnloggetSaksbehandler(): InnloggetSaksbehandler {
     return {
-        ident: 'Z990000',
+        ident: 'Z999999',
         navn: 'Kari Etternavn',
         fornavn: 'Kari',
         etternavn: 'Etternavn'

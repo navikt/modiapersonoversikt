@@ -43,6 +43,11 @@ export function getForeslattEnhet(): Enhet[] {
 export function getMockEnheter(): Enhet[] {
     return [
         {
+            enhetId: '0219',
+            enhetNavn: 'NAV Bærum',
+            status: 'Aktiv'
+        },
+        {
             enhetId: '0118',
             enhetNavn: 'NAV Aremark',
             status: 'Aktiv'
