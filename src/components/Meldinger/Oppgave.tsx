@@ -15,7 +15,7 @@ import {
 } from '@navikt/ds-react';
 import { type StandardSchemaV1Issue, useForm } from '@tanstack/react-form';
 import { useAtomValue } from 'jotai';
-import { Suspense, useEffect, useRef } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { OpprettOppgaveRequestDTOPrioritetKode, PrioritetKode } from 'src/generated/modiapersonoversikt-api';
 import {
     useAnsattePaaEnhet,
@@ -50,7 +50,6 @@ export const OppgaveModal = ({ open, setOpen, traad }: Props) => {
             open={open}
             onClose={() => {
                 setOpen(false);
-                //reset();
             }}
             closeOnBackdropClick
             style={{
@@ -83,7 +82,7 @@ export const OppgaveModal = ({ open, setOpen, traad }: Props) => {
 
 const oppgaveFormValidator = z.object({
     valgtTema: z.string().nonempty('Tema er påkrevd'),
-    valgtUnderkategori: z.string().nonempty('Underkategori er påkrevd'),
+    valgtUnderkategori: z.string(),
     valgtOppgavetype: z.string().nonempty('Oppgavetype er påkrevd'),
     minListe: z.boolean().optional(),
     beskrivelse: z.string().nonempty('Oppgaven må ha en beskrivelse'),
@@ -105,6 +104,7 @@ const OppgaveForm = ({
     onSuccess: () => void;
 }) => {
     const errorSummaryRef = useRef<HTMLDivElement>(null);
+    const [hasSubmitted, setHasSubmitted] = useState(false);
     const fnr = usePersonAtomValue();
     const enhet = useAtomValue(aktivEnhetAtom);
     const { data: veileder } = useInnloggetSaksbehandler();
@@ -126,10 +126,7 @@ const OppgaveForm = ({
         } as OppgaveFormValue,
         validators: {
             onSubmit: oppgaveFormValidator,
-            onBlurAsync: async ({ formApi, value }) =>
-                formApi.state.submissionAttempts > 0
-                    ? (await oppgaveFormValidator['~standard'].validate(value)).issues
-                    : undefined
+            onBlur: hasSubmitted ? oppgaveFormValidator : undefined
         },
         canSubmitWhenInvalid: true,
         onSubmit: ({ value }) => {
@@ -162,6 +159,7 @@ const OppgaveForm = ({
     return (
         <form
             onSubmit={async (e) => {
+                setHasSubmitted(true);
                 e.preventDefault();
                 e.stopPropagation();
                 await form.handleSubmit();
@@ -212,8 +210,8 @@ const OppgaveForm = ({
                                             onBlur={field.handleBlur}
                                             error={field.state.meta.errors.firstOrNull()?.message}
                                         >
-                                            <option value="" disabled>
-                                                --Velg et tema--
+                                            <option value="" disabled={underKategorier.length === 0}>
+                                                {underKategorier.length ? 'Ingen underkategori' : '-- Velg et tema --'}
                                             </option>
                                             {underKategorier.map((tema) => (
                                                 <option value={tema.kode} key={tema.kode}>
@@ -255,7 +253,7 @@ const OppgaveForm = ({
                                             error={field.state.meta.errors.firstOrNull()?.message}
                                         >
                                             <option value="" disabled>
-                                                --Velg et tema--
+                                                {oppgaveTyper.length ? '-- Veg oppgavetype --' : '-- Velg et tema --'}
                                             </option>
                                             {oppgaveTyper.map((oppgave) => (
                                                 <option value={oppgave.kode} key={oppgave.kode}>
@@ -379,7 +377,7 @@ const OppgaveForm = ({
                                                 </>
                                             ) : (
                                                 <option value="" disabled>
-                                                    --Velg et tema--
+                                                    -- Velg et tema --
                                                 </option>
                                             )}
                                         </Select>
@@ -417,7 +415,7 @@ const OppgaveForm = ({
                         errors && (
                             <ErrorSummary
                                 ref={errorSummaryRef}
-                                heading="Du må rette disse feilene for å lage oppgaven:"
+                                heading="Du må rette disse feilene før du kan opprette oppgaven:"
                             >
                                 {Object.values(errors)
                                     .flat()
