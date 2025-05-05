@@ -70,6 +70,14 @@ function meldingstittel(melding: Melding): string {
     return `${meldingstypeTekst(melding.meldingstype)} - ${temagruppeTekst(melding.temagruppe as Temagruppe)}`;
 }
 
+function erMeldingFraBruker(meldingstype: Meldingstype) {
+    return [
+        Meldingstype.SPORSMAL_SKRIFTLIG,
+        Meldingstype.SVAR_SBL_INNGAAENDE,
+        Meldingstype.CHATMELDING_FRA_BRUKER
+    ].includes(meldingstype);
+}
+
 export function traadstittel(traad: Traad): string {
     const infoMelding = traadErInfoMelding(traad);
     return traadTypeTekst(infoMelding, traad.traadType);
@@ -85,6 +93,18 @@ function erChatMelding(meldingstype: Meldingstype): boolean {
 
 export function erChatTraad(traad: Traad): boolean {
     return erChatMelding(nyesteMelding(traad).meldingstype);
+}
+
+export function erUbesvartHenvendelseFraBruker(traad: Traad): boolean {
+    if (traad.meldinger.length > 1) {
+        return false;
+    }
+    const melding = traad.meldinger[0];
+    if (!erMeldingFraBruker(melding.meldingstype)) {
+        return false;
+    }
+
+    return !melding.avsluttetDato;
 }
 
 export function erMeldingFraNav(meldingstype: Meldingstype) {

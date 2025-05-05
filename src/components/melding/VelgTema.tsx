@@ -17,6 +17,7 @@ export default function VelgTema({ valgtTema, setValgtTema, error }: VelgTemaPro
                     setValgtTema(e.target.value as Temagruppe);
                 }}
                 value={valgtTema ?? ''}
+                size="small"
             >
                 <TemagruppeActionMenuItems />
             </Select>
