@@ -126,18 +126,27 @@ export const usePersonOppgaver = () => {
 };
 
 export const useOppgaveForTraad = (traadId: string) => {
-    const aktivBruker = usePersonAtomValue();
-
-    const { data: oppgaver } = $api.useSuspenseQuery('post', '/rest/v2/oppgaver/tildelt', {
-        body: {
-            fnr: aktivBruker
-        }
-    });
+    const { data: oppgaver } = usePersonOppgaver();
 
     const oppgave = oppgaver.find((oppgave) => oppgave.traadId === traadId);
     const erSTOOppgave = !!oppgave?.erSTOOppgave;
 
     return { oppgave, erSTOOppgave };
+};
+
+export const useAvsluttOppgaveMutation = () => {
+    const queryClient = useQueryClient();
+    const fnr = usePersonAtomValue();
+
+    return $api.useMutation('post', '/rest/dialogmerking/avsluttgosysoppgave', {
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: $api.queryOptions('post', '/rest/v2/oppgaver/tildelt', {
+                    body: { fnr }
+                }).queryKey
+            });
+        }
+    });
 };
 
 export const useMeldinger = () => {

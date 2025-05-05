@@ -14,6 +14,7 @@ export default function AvsluttDialogEtterSending({ meldingsType, setMeldingsTyp
                     value={MeldingsType.Infomelding}
                     checked={meldingsType === MeldingsType.Infomelding}
                     onChange={() => setMeldingsType(MeldingsType.Infomelding)}
+                    size="small"
                 >
                     <Label>Gjør om til infomelding</Label>
                 </Checkbox>
