@@ -1,0 +1,25 @@
+.printWrapper {
+  @page {
+    size: auto;
+  }
+  @media print {
+    margin: 5mm;
+    display: block;
+  }
+  .visually-hidden {
+    display: none;
+  }
+}
+
+.printHeader {
+  > * {
+    margin-bottom: 1rem;
+  }
+  display: none;
+  @media print {
+    display: flex;
+  }
+  flex-direction: column;
+  align-items: center;
+  padding: 0 2rem 3rem;
+}

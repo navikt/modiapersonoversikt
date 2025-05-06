@@ -22,3 +22,15 @@
         font-size: var(--a-font-size-large);
     }
 }
+
+@media print {
+    .print-hide {
+        display: none !important;
+    }
+}
+
+@media not print {
+    .print-only {
+        display: none !important;
+    }
+}
