@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@grafana/faro-react':
-        specifier: ^1.17.2
-        version: 1.17.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^1.18.0
+        version: 1.18.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@grafana/faro-web-sdk':
         specifier: ^1.17.2
         version: 1.17.2
@@ -827,9 +827,13 @@ packages:
     resolution: {integrity: sha512-T80BU9StIUGdwn+RrYcIQFY3VTj51rAqHvWRjMmrAVp5l8oNNQUdtYo3gZPRt5djx+hPpUB9dI+ZM6cnVK+z2Q==}
     engines: {node: '>=18.0.0'}
 
-  '@grafana/faro-react@1.17.2':
-    resolution: {integrity: sha512-VKLwkJsZNMIjCgYsd0j09MHTw5PXjo45Akt6HmiGUVCM3JhvQF4l1nYzY+qmanPj3YwXUhrGf9TtBS5XE+Goog==}
-    engines: {node: '>=18.0.0'}
+  '@grafana/faro-core@1.18.0':
+    resolution: {integrity: sha512-gix8AkQS5tLCNDdyuyhhDRGVKwTnaRxkT84Tn8r7lAqHYNdJNfx/8uJfIA2S3C49SsE9iOg2xhqYqm16kQmyKA==}
+    engines: {node: '>=20.0.0'}
+
+  '@grafana/faro-react@1.18.0':
+    resolution: {integrity: sha512-by7Mb/d7NSU8xyqObadTkwelF9ONnoFC8bvRJB+DUz/pq0OS5qbFfsE5L1g2HRPi2yFz8T0ugse3d7Gvr/WhBA==}
+    engines: {node: '>=20.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -844,9 +848,17 @@ packages:
     resolution: {integrity: sha512-zzSnp9LnDJGvuDP3URT9biUrwd0NA5v2T8kKHaok6hw/hYOlzMk1I5gl3UDg2+V9ugfnFduDIItNeucBtRXCqg==}
     engines: {node: '>=18.0.0'}
 
+  '@grafana/faro-web-sdk@1.18.0':
+    resolution: {integrity: sha512-ZEKKcmOhC/fdwchgWiBFe92FuiZXGB7785mUVi/Uwg+/sfxayJODpKnERDasdGzNZDFvPyL/meVnCG/9yI0wHA==}
+    engines: {node: '>=20.0.0'}
+
   '@grafana/faro-web-tracing@1.17.2':
     resolution: {integrity: sha512-bqmz794mU8Iyk3z1emVyPOOgn+CmtetTIB0+FKcGL/9bFDbswTinmPfpHVXhHVi+bRueX+YfohOOW0p/SrYrqQ==}
     engines: {node: '>=18.0.0'}
+
+  '@grafana/faro-web-tracing@1.18.0':
+    resolution: {integrity: sha512-9tdG5yZspsrpWF8y8NmI9sF0k2GC6W0GhGlaa+JnAY7ynmH3DtrRmriGcKnnAjC7J1H3sz4oSNjlY9GuQyoy+w==}
+    engines: {node: '>=20.0.0'}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -4393,10 +4405,15 @@ snapshots:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/otlp-transformer': 0.200.0(@opentelemetry/api@1.9.0)
 
-  '@grafana/faro-react@1.17.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@grafana/faro-core@1.18.0':
     dependencies:
-      '@grafana/faro-web-sdk': 1.17.2
-      '@grafana/faro-web-tracing': 1.17.2
+      '@opentelemetry/api': 1.9.0
+      '@opentelemetry/otlp-transformer': 0.200.0(@opentelemetry/api@1.9.0)
+
+  '@grafana/faro-react@1.18.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      '@grafana/faro-web-sdk': 1.18.0
+      '@grafana/faro-web-tracing': 1.18.0
       hoist-non-react-statics: 3.3.2
       react: 19.1.0
     optionalDependencies:
@@ -4410,9 +4427,31 @@ snapshots:
       ua-parser-js: 1.0.40
       web-vitals: 4.2.4
 
+  '@grafana/faro-web-sdk@1.18.0':
+    dependencies:
+      '@grafana/faro-core': 1.18.0
+      ua-parser-js: 1.0.40
+      web-vitals: 4.2.4
+
   '@grafana/faro-web-tracing@1.17.2':
     dependencies:
       '@grafana/faro-web-sdk': 1.17.2
+      '@opentelemetry/api': 1.9.0
+      '@opentelemetry/core': 2.0.0(@opentelemetry/api@1.9.0)
+      '@opentelemetry/exporter-trace-otlp-http': 0.200.0(@opentelemetry/api@1.9.0)
+      '@opentelemetry/instrumentation': 0.200.0(@opentelemetry/api@1.9.0)
+      '@opentelemetry/instrumentation-fetch': 0.200.0(@opentelemetry/api@1.9.0)
+      '@opentelemetry/instrumentation-xml-http-request': 0.200.0(@opentelemetry/api@1.9.0)
+      '@opentelemetry/otlp-transformer': 0.200.0(@opentelemetry/api@1.9.0)
+      '@opentelemetry/resources': 2.0.0(@opentelemetry/api@1.9.0)
+      '@opentelemetry/sdk-trace-web': 2.0.0(@opentelemetry/api@1.9.0)
+      '@opentelemetry/semantic-conventions': 1.32.0
+    transitivePeerDependencies:
+      - supports-color
+
+  '@grafana/faro-web-tracing@1.18.0':
+    dependencies:
+      '@grafana/faro-web-sdk': 1.18.0
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/core': 2.0.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/exporter-trace-otlp-http': 0.200.0(@opentelemetry/api@1.9.0)
