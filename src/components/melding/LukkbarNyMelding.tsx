@@ -5,6 +5,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { type ImperativePanelHandle, Panel } from 'react-resizable-panels';
 import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
 import { SendMelding } from './SendMelding';
+import { TildelteOppgaver } from './TildelteOppgaver';
+import { UbesvarteMeldinger } from './UbesvarteMeldinger';
 
 const PANEL_SIZE = 30;
 const LARGE_SIZE = 50;
@@ -49,7 +51,9 @@ export function LukkbarNyMelding() {
 
     return (
         <Panel onResize={onExpand} ref={panelRef} defaultSize={PANEL_SIZE} minSize={20} maxSize={60} order={2}>
-            <VStack height="100%">
+            <VStack height="100%" gap="2">
+                <UbesvarteMeldinger />
+                <TildelteOppgaver />
                 <SendMelding
                     lukkeKnapp={
                         <HStack gap="2">

@@ -174,11 +174,11 @@ function NyMelding() {
                         </form.Field>
                     }
                 />
-                <HStack gap="2">
-                    <Button type="submit" loading={isPending}>
+                <HStack gap="2" justify="space-between">
+                    <Button type="submit" size="small" loading={isPending}>
                         Send til {brukerNavn}
                     </Button>
-                    <Button type="button" variant="secondary" as={Link} to="/new/person/meldinger">
+                    <Button type="button" size="small" variant="secondary" as={Link} to="/new/person/meldinger">
                         Se all kommunikasjon
                     </Button>
                 </HStack>

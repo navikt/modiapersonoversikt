@@ -1,6 +1,5 @@
 import { http, type DefaultBodyType } from 'msw';
-import { guid } from 'nav-frontend-js-utils';
-import type { LukkTraadRequest } from 'src/generated/modiapersonoversikt-api';
+import type { AvsluttGosysOppgaveRequest, LukkTraadRequest } from 'src/generated/modiapersonoversikt-api';
 import { apiBaseUri } from '../../api/config';
 import {
     erChatMelding,
@@ -16,11 +15,13 @@ import {
     type Traad
 } from '../../models/meldinger/meldinger';
 import type { MeldingerBackendMock } from '../mockBackend/meldingerBackendMock';
+import type { OppgaverBackendMock } from '../mockBackend/oppgaverBackendMock';
 import { fodselsNummerErGyldigStatus, randomDelay } from '../utils-mock';
 import { mockGeneratorMedFodselsnummerV2, verify, withDelayedResponse } from '../utils/fetch-utils';
 
 const STATUS_OK = () => Promise.resolve(200);
 let meldingerBackendMock: MeldingerBackendMock = null as unknown as MeldingerBackendMock;
+let oppgaverBackendMock: OppgaverBackendMock = null as unknown as OppgaverBackendMock;
 
 const meldingerHandler = http.post(
     `${apiBaseUri}/v2/dialog/meldinger`,
@@ -36,12 +37,11 @@ const meldingerHandler = http.post(
     )
 );
 
-function simulateSf(trader: Traad[]): Traad[] {
+export function simulateSf(trader: Traad[]): Traad[] {
     //biome-ignore lint/complexity/noForEach: biome migration
     trader.forEach((trad: Traad) => {
         trad.meldinger.forEach((melding: Melding, index: number) => {
-            melding.id = `trad-${guid()}`; // Denne informasjonen får vi ikke, og autogenereres derfor på backend
-            melding.meldingsId = guid(); // Denne informasjonen får vi ikke, og autogenereres derfor på backend
+            melding.id = `${trad.traadId}-${hashCode(melding.fritekst)}`; // Denne informasjonen får vi ikke, og autogenereres derfor på backend
 
             // SF har bare samtalereferat og meldingskjede, så vi utleder de gamle typene etter beste evne.
             melding.meldingstype = (() => {
@@ -59,6 +59,20 @@ function simulateSf(trader: Traad[]): Traad[] {
         });
     });
     return trader;
+}
+
+/**
+ * Returns a hash code from a string
+ * @see http://werxltd.com/wp/2010/05/13/javascript-implementation-of-javas-string-hashcode-method/
+ */
+function hashCode(str: string) {
+    let hash = 0;
+    for (let i = 0, len = str.length; i < len; i++) {
+        const chr = str.charCodeAt(i);
+        hash = (hash << 5) - hash + chr;
+        hash |= 0; // Convert to 32bit integer
+    }
+    return hash;
 }
 
 const opprettHenvendelseHandler = http.post(
@@ -99,7 +113,10 @@ const sladdingHandlers = [
 
 const avsluttOppgaveGosysHandler = http.post(
     `${apiBaseUri}/dialogmerking/avsluttgosysoppgave`,
-    withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+    withDelayedResponse<string, AvsluttGosysOppgaveRequest>(randomDelay(), STATUS_OK, async (request) => {
+        oppgaverBackendMock.ferdigStillOppgave((await request.json()).oppgaveid);
+        return 'OK';
+    })
 );
 
 const lukkTraadHandler = http.post(
@@ -110,8 +127,9 @@ const lukkTraadHandler = http.post(
     })
 );
 
-export const getSFDialogHandlers = (backend: MeldingerBackendMock) => {
+export const getSFDialogHandlers = (backend: MeldingerBackendMock, oppgaverBackend: OppgaverBackendMock) => {
     meldingerBackendMock = backend;
+    oppgaverBackendMock = oppgaverBackend;
 
     return [
         meldingerHandler,

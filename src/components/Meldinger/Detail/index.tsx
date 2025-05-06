@@ -4,12 +4,13 @@ import { useSetAtom } from 'jotai';
 import { Suspense, useCallback, useState } from 'react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
-import { useTraadById } from 'src/lib/clients/modiapersonoversikt-api';
+import { useOppgaveForTraad, useTraadById } from 'src/lib/clients/modiapersonoversikt-api';
 import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
 import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { formatterDatoTid } from 'src/utils/date-utils';
 import { formaterDato } from 'src/utils/string-utils';
+import { AvsluttOppgaveModal } from '../AvsluttOppgave';
 import { JournalForingModal } from '../Journalforing';
 import { nyesteMelding, saksbehandlerTekst, traadKanBesvares, traadstittel } from '../List/utils';
 import { DialogMerkMeny } from '../Merk';
@@ -52,6 +53,22 @@ export const TraadDetail = ({ traadId }: { traadId: string }) => (
     </ErrorBoundary>
 );
 
+const AvsluttOppgaveButton = ({ traadId }: { traadId: string }) => {
+    const [open, setOpen] = useState(false);
+    const { oppgave } = useOppgaveForTraad(traadId);
+
+    if (!oppgave) return null;
+
+    return (
+        <>
+            <Button size="small" variant="primary" onClick={() => setOpen(true)}>
+                Avslutt oppgave
+            </Button>
+            <AvsluttOppgaveModal oppgave={oppgave} open={open} onClose={() => setOpen(false)} />
+        </>
+    );
+};
+
 const TraadDetailContent = ({ traadId }: { traadId: string }) => {
     const setDialogUnderArbeid = useSetAtom(dialogUnderArbeidAtom);
     const [journalforingOpen, setJournalforingOpen] = useState(false);
@@ -81,9 +98,10 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
                         Journalfør
                     </Button>
                     <Button variant="secondary" size="small" onClick={() => setOppgaveOpen(true)}>
-                        Oppgave
+                        Ny oppgave
                     </Button>
                     <DialogMerkMeny traadId={traadId} />
+                    <AvsluttOppgaveButton traadId={traadId} />
                 </HStack>
 
                 {avsluttetDato && !kanBesvares && (

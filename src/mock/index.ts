@@ -54,6 +54,8 @@ import { getMockTiltakspenger } from './ytelse/tiltakspenger-mock';
 const oppgaveBackendMock = new OppgaverBackendMock();
 const meldingerBackendMock = new MeldingerBackendMock(oppgaveBackendMock);
 
+oppgaveBackendMock.setMeldingerBackend(meldingerBackendMock);
+
 const harEnhetIdSomQueryParam = (request: StrictRequest<DefaultBodyType>) => {
     const url = new URL(request.url);
     const enhetQueryParam = url.searchParams.get('enhet');
@@ -376,7 +378,7 @@ export const handlers: (HttpHandler | WebSocketHandler)[] = [
     ...personsokHandler,
     ...journalForingHandler,
     ...standardteksterHandler,
-    ...getSFDialogHandlers(meldingerBackendMock),
+    ...getSFDialogHandlers(meldingerBackendMock, oppgaveBackendMock),
     ...getContextHandlers(),
     ...saksbehandlerInnstillingerHandlers,
     ...getDraftHandlers(),
