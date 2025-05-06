@@ -1,9 +1,10 @@
 import { PrinterSmallIcon } from '@navikt/aksel-icons';
-import { Alert, BodyShort, Box, Button, HStack, Heading, Skeleton, Tooltip, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Box, Button, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { useSetAtom } from 'jotai';
 import { Suspense, useCallback, useState } from 'react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
+import usePrinter from 'src/components/Print/usePrinter';
 import { useOppgaveForTraad, useTraadById } from 'src/lib/clients/modiapersonoversikt-api';
 import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
@@ -13,10 +14,27 @@ import { formaterDato } from 'src/utils/string-utils';
 import { AvsluttOppgaveModal } from '../AvsluttOppgave';
 import { JournalForingModal } from '../Journalforing';
 import { nyesteMelding, saksbehandlerTekst, traadKanBesvares, traadstittel } from '../List/utils';
+import MeldingerPrint from '../MeldingerPrint';
 import { DialogMerkMeny } from '../Merk';
 import { OppgaveModal } from '../Oppgave';
 import { Journalposter } from './Journalposter';
 import { Meldinger } from './Meldinger';
+
+const PrintThread = ({ traad }: { traad: Traad }) => {
+    const printer = usePrinter();
+    const PrinterWrapper = printer.printerWrapper;
+
+    return (
+        <>
+            <Button icon={<PrinterSmallIcon />} size="xsmall" variant="tertiary" onClick={() => printer.triggerPrint()}>
+                Skriv ut dialog
+            </Button>
+            <PrinterWrapper>
+                <MeldingerPrint traad={traad} />
+            </PrinterWrapper>
+        </>
+    );
+};
 
 const TraadMeta = ({ traad }: { traad: Traad }) => (
     <HStack justify="space-between">
@@ -36,11 +54,7 @@ const TraadMeta = ({ traad }: { traad: Traad }) => (
             </VStack>
         </VStack>
         <Box>
-            <Tooltip content="Skriv ut denne dialogen">
-                <Button icon={<PrinterSmallIcon />} size="xsmall" variant="tertiary">
-                    Skriv ut dialog
-                </Button>
-            </Tooltip>
+            <PrintThread traad={traad} />
         </Box>
     </HStack>
 );

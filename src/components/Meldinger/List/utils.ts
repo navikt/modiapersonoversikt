@@ -63,7 +63,7 @@ function traadErInfoMelding(traad: Traad): boolean {
     return traad.meldinger.length === 1 && !!melding.avsluttetDato;
 }
 
-function meldingstittel(melding: Melding): string {
+export function meldingstittel(melding: Melding): string {
     if (melding.temagruppe === Temagruppe.InnholdSlettet) {
         return meldingstypeTekst(melding.meldingstype);
     }
