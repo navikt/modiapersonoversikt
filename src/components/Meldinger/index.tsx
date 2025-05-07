@@ -1,8 +1,32 @@
 import { PrinterSmallIcon } from '@navikt/aksel-icons';
 import { Button, HStack, Heading, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
+import { memo } from 'react';
+import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
+import usePrinter from '../Print/usePrinter';
 import { TraadDetail } from './Detail';
 import { TraadList } from './List';
+import MeldingerPrint from './MeldingerPrint';
+
+const PrintThreads = () => {
+    const printer = usePrinter();
+    const PrinterWrapper = printer.printerWrapper;
+    const { data: traader } = useMeldinger();
+
+    return (
+        <>
+            <Button variant="tertiary" size="xsmall" icon={<PrinterSmallIcon />} onClick={() => printer.triggerPrint()}>
+                Skriv ut alle
+            </Button>
+            <PrinterWrapper>
+                {traader.map((traad) => (
+                    <MeldingerPrint key={traad.traadId} traad={traad} />
+                ))}
+            </PrinterWrapper>
+        </>
+    );
+};
+const PrintThreadsMemo = memo(PrintThreads);
 
 export const MeldingerPage = () => {
     return (
@@ -12,9 +36,7 @@ export const MeldingerPage = () => {
                     <Heading level="2" size="xsmall">
                         Innboks
                     </Heading>
-                    <Button variant="tertiary" size="xsmall" icon={<PrinterSmallIcon />}>
-                        Skriv ut alle
-                    </Button>
+                    <PrintThreadsMemo />
                 </HStack>
                 <TraadList />
             </VStack>
