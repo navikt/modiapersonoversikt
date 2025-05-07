@@ -45,8 +45,8 @@ importers:
         specifier: ^1.9.1
         version: 1.9.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@tanstack/react-query':
-        specifier: ^5.75.2
-        version: 5.75.2(react@19.1.0)
+        specifier: ^5.75.4
+        version: 5.75.4(react@19.1.0)
       '@tanstack/react-router':
         specifier: ^1.117.0
         version: 1.117.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -202,7 +202,7 @@ importers:
         version: 0.13.7
       openapi-react-query:
         specifier: ^0.3.1
-        version: 0.3.1(@tanstack/react-query@5.75.2(react@19.1.0))(openapi-fetch@0.13.7)
+        version: 0.3.1(@tanstack/react-query@5.75.4(react@19.1.0))(openapi-fetch@0.13.7)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -1397,8 +1397,8 @@ packages:
     resolution: {integrity: sha512-K7JJNrRVvyjAVnbXOH2XLRhFXDkeP54Kt2P4FR1Kl2KDGlIbkua5VqZQD2rot3qaDrpufyUa63nuLai1kOLTsQ==}
     engines: {node: '>=12'}
 
-  '@tanstack/query-core@5.75.0':
-    resolution: {integrity: sha512-rk8KQuCdhoRkzjRVF3QxLgAfFUyS0k7+GCQjlGEpEGco+qazJ0eMH6aO1DjDjibH7/ik383nnztua3BG+lOnwg==}
+  '@tanstack/query-core@5.75.4':
+    resolution: {integrity: sha512-pcqOUgWG9oGlzkfRQQMMsEFmtQu0wq81A414CtELZGq+ztVwSTAaoB3AZRAXQJs88LmNMk2YpUKuQbrvzNDyRg==}
 
   '@tanstack/react-form@1.9.1':
     resolution: {integrity: sha512-DGJXpAGoCVJUsuzFqtvuBNre86tr53QQsJxK1IivckYsqz8jOZCQfGYudnqoiPeC0azQPgTp1ezifxdslSrHbw==}
@@ -1412,8 +1412,8 @@ packages:
       vinxi:
         optional: true
 
-  '@tanstack/react-query@5.75.2':
-    resolution: {integrity: sha512-8F8VOsWUfSkCFoi62O9HSZT9jDgg28Ln8Z2dYKfRo/O2A0sgvr0uxTuNoon3PPXoDuHofv5V3elBI1M2Gh1MPg==}
+  '@tanstack/react-query@5.75.4':
+    resolution: {integrity: sha512-Vf65pzYRkf8fk9SP1ncIZjvaXszBhtsvpf+h45Y/9kOywOrVZfBGUpCdffdsVzbmBzmz6TCFes9bM0d3pRrIsA==}
     peerDependencies:
       react: ^18 || ^19
 
@@ -4945,7 +4945,7 @@ snapshots:
 
   '@tanstack/history@1.115.0': {}
 
-  '@tanstack/query-core@5.75.0': {}
+  '@tanstack/query-core@5.75.4': {}
 
   '@tanstack/react-form@1.9.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
@@ -4957,9 +4957,9 @@ snapshots:
     transitivePeerDependencies:
       - react-dom
 
-  '@tanstack/react-query@5.75.2(react@19.1.0)':
+  '@tanstack/react-query@5.75.4(react@19.1.0)':
     dependencies:
-      '@tanstack/query-core': 5.75.0
+      '@tanstack/query-core': 5.75.4
       react: 19.1.0
 
   '@tanstack/react-router-devtools@1.117.0(@tanstack/react-router@1.117.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@tanstack/router-core@1.117.0)(csstype@3.1.3)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(tiny-invariant@1.3.3)':
@@ -6700,9 +6700,9 @@ snapshots:
     dependencies:
       openapi-typescript-helpers: 0.0.15
 
-  openapi-react-query@0.3.1(@tanstack/react-query@5.75.2(react@19.1.0))(openapi-fetch@0.13.7):
+  openapi-react-query@0.3.1(@tanstack/react-query@5.75.4(react@19.1.0))(openapi-fetch@0.13.7):
     dependencies:
-      '@tanstack/react-query': 5.75.2(react@19.1.0)
+      '@tanstack/react-query': 5.75.4(react@19.1.0)
       openapi-fetch: 0.13.7
       openapi-typescript-helpers: 0.0.15
 
