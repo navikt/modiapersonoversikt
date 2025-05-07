@@ -42,8 +42,8 @@ importers:
         specifier: ^2.5.0
         version: 2.5.0(react@19.1.0)
       '@tanstack/react-form':
-        specifier: ^1.9.0
-        version: 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^1.9.1
+        version: 1.9.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@tanstack/react-query':
         specifier: ^5.75.2
         version: 5.75.2(react@19.1.0)
@@ -826,10 +826,12 @@ packages:
   '@grafana/faro-core@1.18.0':
     resolution: {integrity: sha512-gix8AkQS5tLCNDdyuyhhDRGVKwTnaRxkT84Tn8r7lAqHYNdJNfx/8uJfIA2S3C49SsE9iOg2xhqYqm16kQmyKA==}
     engines: {node: '>=20.0.0'}
+    deprecated: Use @grafana/faro-core@1.18.1 instead - 1.18.0 deprecated due to node 18 EOL major change being done in a minor release
 
   '@grafana/faro-react@1.18.0':
     resolution: {integrity: sha512-by7Mb/d7NSU8xyqObadTkwelF9ONnoFC8bvRJB+DUz/pq0OS5qbFfsE5L1g2HRPi2yFz8T0ugse3d7Gvr/WhBA==}
     engines: {node: '>=20.0.0'}
+    deprecated: Use @grafana/faro-react@1.18.1 instead - 1.18.0 deprecated due to node 18 EOL major change being done in a minor release
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -843,6 +845,7 @@ packages:
   '@grafana/faro-web-sdk@1.18.0':
     resolution: {integrity: sha512-ZEKKcmOhC/fdwchgWiBFe92FuiZXGB7785mUVi/Uwg+/sfxayJODpKnERDasdGzNZDFvPyL/meVnCG/9yI0wHA==}
     engines: {node: '>=20.0.0'}
+    deprecated: Use @grafana/faro-web-sdk@1.18.1 instead - 1.18.0 deprecated due to node 18 EOL major change being done in a minor release
 
   '@grafana/faro-web-tracing@1.17.2':
     resolution: {integrity: sha512-bqmz794mU8Iyk3z1emVyPOOgn+CmtetTIB0+FKcGL/9bFDbswTinmPfpHVXhHVi+bRueX+YfohOOW0p/SrYrqQ==}
@@ -851,6 +854,7 @@ packages:
   '@grafana/faro-web-tracing@1.18.0':
     resolution: {integrity: sha512-9tdG5yZspsrpWF8y8NmI9sF0k2GC6W0GhGlaa+JnAY7ynmH3DtrRmriGcKnnAjC7J1H3sz4oSNjlY9GuQyoy+w==}
     engines: {node: '>=20.0.0'}
+    deprecated: Use @grafana/faro-web-tracing@1.18.1 instead - 1.18.0 deprecated due to node 18 EOL major change being done in a minor release
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -1386,8 +1390,8 @@ packages:
   '@tailwindcss/postcss@4.1.5':
     resolution: {integrity: sha512-5lAC2/pzuyfhsFgk6I58HcNy6vPK3dV/PoPxSDuOTVbDvCddYHzHiJZZInGIY0venvzzfrTEUAXJFULAfFmObg==}
 
-  '@tanstack/form-core@1.9.0':
-    resolution: {integrity: sha512-lEXXQdIMW7PcybwnzJ+6VaEC65tWV/ZCgYfR5nC+lApXSlLPN+bp1fJanIclsw5U4dnx3DOxeOy/uzXwJ02wDQ==}
+  '@tanstack/form-core@1.9.1':
+    resolution: {integrity: sha512-v/bz3UB7EHfxDUkzGZm44NhlbRqR8x26xozTIWR/0UfuQBtp6CDGIL/kQArWIrKkWV2zX2KZ7vR9XTsNdzHMgQ==}
 
   '@tanstack/history@1.115.0':
     resolution: {integrity: sha512-K7JJNrRVvyjAVnbXOH2XLRhFXDkeP54Kt2P4FR1Kl2KDGlIbkua5VqZQD2rot3qaDrpufyUa63nuLai1kOLTsQ==}
@@ -1396,8 +1400,8 @@ packages:
   '@tanstack/query-core@5.75.0':
     resolution: {integrity: sha512-rk8KQuCdhoRkzjRVF3QxLgAfFUyS0k7+GCQjlGEpEGco+qazJ0eMH6aO1DjDjibH7/ik383nnztua3BG+lOnwg==}
 
-  '@tanstack/react-form@1.9.0':
-    resolution: {integrity: sha512-jbd3QsohonHF93750uuFLTcv1pZeMOmfKP5kZu/VIwc3aZ1Y6NRsesx/CBhdPZD79ApCPZ7WfUmsKMLIER29gw==}
+  '@tanstack/react-form@1.9.1':
+    resolution: {integrity: sha512-DGJXpAGoCVJUsuzFqtvuBNre86tr53QQsJxK1IivckYsqz8jOZCQfGYudnqoiPeC0azQPgTp1ezifxdslSrHbw==}
     peerDependencies:
       '@tanstack/react-start': ^1.112.0
       react: ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -4935,7 +4939,7 @@ snapshots:
       postcss: 8.5.3
       tailwindcss: 4.1.5
 
-  '@tanstack/form-core@1.9.0':
+  '@tanstack/form-core@1.9.1':
     dependencies:
       '@tanstack/store': 0.7.0
 
@@ -4943,9 +4947,9 @@ snapshots:
 
   '@tanstack/query-core@5.75.0': {}
 
-  '@tanstack/react-form@1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@tanstack/react-form@1.9.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@tanstack/form-core': 1.9.0
+      '@tanstack/form-core': 1.9.1
       '@tanstack/react-store': 0.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       decode-formdata: 0.9.0
       devalue: 5.1.1
