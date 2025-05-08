@@ -12,8 +12,8 @@ importers:
         specifier: ^1.18.1
         version: 1.18.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@grafana/faro-web-sdk':
-        specifier: ^1.18.0
-        version: 1.18.0
+        specifier: ^1.18.1
+        version: 1.18.1
       '@grafana/faro-web-tracing':
         specifier: ^1.17.2
         version: 1.17.2
@@ -823,11 +823,6 @@ packages:
   '@floating-ui/utils@0.2.9':
     resolution: {integrity: sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==}
 
-  '@grafana/faro-core@1.18.0':
-    resolution: {integrity: sha512-gix8AkQS5tLCNDdyuyhhDRGVKwTnaRxkT84Tn8r7lAqHYNdJNfx/8uJfIA2S3C49SsE9iOg2xhqYqm16kQmyKA==}
-    engines: {node: '>=20.0.0'}
-    deprecated: Use @grafana/faro-core@1.18.1 instead - 1.18.0 deprecated due to node 18 EOL major change being done in a minor release
-
   '@grafana/faro-core@1.18.1':
     resolution: {integrity: sha512-Qa2RBMFHbffdSqeNCOazHuKZrbyYGXKwUIh/RkXAJX/euR7QUfGS2po3vaKK6fwatNBAA277cbPjVpyYLh3ozg==}
     engines: {node: '>=18.0.0'}
@@ -844,11 +839,6 @@ packages:
         optional: true
       react-router-dom:
         optional: true
-
-  '@grafana/faro-web-sdk@1.18.0':
-    resolution: {integrity: sha512-ZEKKcmOhC/fdwchgWiBFe92FuiZXGB7785mUVi/Uwg+/sfxayJODpKnERDasdGzNZDFvPyL/meVnCG/9yI0wHA==}
-    engines: {node: '>=20.0.0'}
-    deprecated: Use @grafana/faro-web-sdk@1.18.1 instead - 1.18.0 deprecated due to node 18 EOL major change being done in a minor release
 
   '@grafana/faro-web-sdk@1.18.1':
     resolution: {integrity: sha512-WscD+HgDCDgbXZKnlL4Pe0/RKLOCXpiGIlTOCys1snZxbKEFmH5s6cltbJiySWTEJUiCvTCpIsaIJJTmdKyAxw==}
@@ -4390,11 +4380,6 @@ snapshots:
 
   '@floating-ui/utils@0.2.9': {}
 
-  '@grafana/faro-core@1.18.0':
-    dependencies:
-      '@opentelemetry/api': 1.9.0
-      '@opentelemetry/otlp-transformer': 0.200.0(@opentelemetry/api@1.9.0)
-
   '@grafana/faro-core@1.18.1':
     dependencies:
       '@opentelemetry/api': 1.9.0
@@ -4411,12 +4396,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@grafana/faro-web-sdk@1.18.0':
-    dependencies:
-      '@grafana/faro-core': 1.18.0
-      ua-parser-js: 1.0.40
-      web-vitals: 4.2.4
-
   '@grafana/faro-web-sdk@1.18.1':
     dependencies:
       '@grafana/faro-core': 1.18.1
@@ -4425,7 +4404,7 @@ snapshots:
 
   '@grafana/faro-web-tracing@1.17.2':
     dependencies:
-      '@grafana/faro-web-sdk': 1.18.0
+      '@grafana/faro-web-sdk': 1.18.1
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/core': 2.0.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/exporter-trace-otlp-http': 0.200.0(@opentelemetry/api@1.9.0)
