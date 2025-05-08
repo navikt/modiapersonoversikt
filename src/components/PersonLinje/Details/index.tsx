@@ -1,4 +1,5 @@
 import { HStack, VStack } from '@navikt/ds-react';
+import DodsdatoInfo from 'src/components/PersonLinje/Details/DodsdatoInfo';
 import DeltBosted from './DeltBosted';
 import Familie from './Familie';
 import Foreldreansvar from './ForeldreAnsvar';
@@ -14,6 +15,7 @@ export const PersonlinjeDetails = () => {
     return (
         <HStack gap="4" justify="space-between" padding="4">
             <VStack flexBasis="30%" flexGrow="1">
+                <DodsdatoInfo />
                 <KontaktInfo />
                 <Fullmakter />
             </VStack>

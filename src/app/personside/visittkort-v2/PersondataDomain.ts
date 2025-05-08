@@ -13,7 +13,7 @@ export interface Person extends PersonMedAlderOgDodsdato {
     fodselsdato: Array<LocalDate>;
     geografiskTilknytning: string | null;
     alder: number | null;
-    dodsdato: Array<LocalDate>;
+    dodsdato: Array<Dodsdato>;
     bostedAdresse: Array<Adresse>;
     kontaktAdresse: Array<Adresse>;
     oppholdsAdresse: Array<Adresse>;
@@ -36,9 +36,14 @@ export interface Person extends PersonMedAlderOgDodsdato {
     forelderBarnRelasjon: Array<ForelderBarnRelasjon>;
 }
 
+export interface Dodsdato {
+    dodsdato: LocalDate;
+    sistEndret: SistEndret | null;
+}
+
 export interface PersonMedAlderOgDodsdato {
     alder: number | null;
-    dodsdato: Array<LocalDate>;
+    dodsdato: Array<Dodsdato> | Array<LocalDate>;
 }
 
 export interface KodeBeskrivelse<T> {

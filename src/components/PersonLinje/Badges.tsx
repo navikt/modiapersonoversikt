@@ -9,6 +9,7 @@ export const PersonBadges = () => {
 
     return (
         <HStack align="center" gap="1" as="section" className="flex-1">
+            <DodBadge dodsdato={person.dodsdato} />
             <Heading visuallyHidden size="xsmall" level="3">
                 Etiketter
             </Heading>
@@ -148,6 +149,18 @@ function TilrettelagtKommunikasjonsBadge({
             {talesprakEtikett}
             {tegnsprakEtikett}
         </>
+    );
+}
+
+function DodBadge({ dodsdato }: { dodsdato: PersonData['dodsdato'] }) {
+    if (dodsdato.isEmpty()) {
+        return null;
+    }
+
+    return (
+        <Tag size="small" variant="error">
+            Død
+        </Tag>
     );
 }
 

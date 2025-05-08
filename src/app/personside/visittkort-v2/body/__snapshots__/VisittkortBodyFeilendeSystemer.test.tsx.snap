@@ -2,7 +2,16 @@
 
 exports[`viser info om bruker i visittkortbody 1`] = `
 <DocumentFragment>
-  .c2 {
+  .c7 {
+  color: #645f5a;
+  margin-top: 3px;
+}
+
+.c7 .typo-etikett-liten {
+  line-height: 1rem;
+}
+
+.c2 {
   position: relative;
   display: flex;
   align-items: center;
@@ -19,6 +28,14 @@ exports[`viser info om bruker i visittkortbody 1`] = `
 .c5 >svg {
   height: 1.5rem;
   width: auto;
+}
+
+.c4 {
+  margin: 10px 0 20px 0;
+}
+
+.c4:last-child {
+  margin: 10px 0 0 0;
 }
 
 .c0 {
@@ -54,23 +71,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
 
 .c3 {
   margin-bottom: 1rem;
-}
-
-.c7 {
-  color: #645f5a;
-  margin-top: 3px;
-}
-
-.c7 .typo-etikett-liten {
-  line-height: 1rem;
-}
-
-.c4 {
-  margin: 10px 0 20px 0;
-}
-
-.c4:last-child {
-  margin: 10px 0 0 0;
 }
 
 .c8 {

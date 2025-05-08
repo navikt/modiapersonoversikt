@@ -47,7 +47,7 @@ function Fodselsnummer({ person }: Props) {
 function Dodsdato({ person }: Props) {
     const dodsdato = person.dodsdato.firstOrNull();
     if (dodsdato) {
-        const formatertDodsdato = formaterDato(dodsdato);
+        const formatertDodsdato = formaterDato(dodsdato.dodsdato);
         return <span>Død {formatertDodsdato}</span>;
     }
     return null;
