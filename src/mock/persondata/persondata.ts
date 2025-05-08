@@ -78,7 +78,19 @@ export function lagPerson(fnr: string): Person {
         fodselsdato: ['2000-02-02' as LocalDate],
         geografiskTilknytning: '1234',
         alder: 40,
-        dodsdato: erDod ? ['2018-06-07' as LocalDate] : [],
+        dodsdato: erDod
+            ? [
+                  {
+                      dodsdato: '2018-06-07' as LocalDate,
+                      sistEndret: {
+                          ident: 'Folkeregisteret',
+                          tidspunkt: '2020-01-01T10:15:30' as LocalDateTime,
+                          system: 'folkeregisteret',
+                          kilde: erDod ? 'tingretten' : ''
+                      }
+                  }
+              ]
+            : [],
         bostedAdresse: [
             {
                 coAdresse: 'C/O Annet Navn',

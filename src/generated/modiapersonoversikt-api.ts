@@ -961,6 +961,11 @@ export interface components {
             skifteform: DodsboSkifteform;
             sistEndret?: components['schemas']['SistEndret'];
         };
+        Dodsdato: {
+            /** Format: date */
+            dodsdato: string;
+            sistEndret?: components['schemas']['SistEndret'];
+        };
         Fodested: {
             land?: components['schemas']['KodeBeskrivelseString'];
             kommune?: string;
@@ -1058,7 +1063,7 @@ export interface components {
             geografiskTilknytning?: string;
             /** Format: int32 */
             alder?: number;
-            dodsdato: string[];
+            dodsdato: components['schemas']['Dodsdato'][];
             bostedAdresse: components['schemas']['Adresse'][];
             kontaktAdresse: components['schemas']['Adresse'][];
             oppholdsAdresse: components['schemas']['Adresse'][];
@@ -1537,7 +1542,7 @@ export interface components {
             start: string;
             slutt: string;
         };
-        DenyCause: Record<string, never>;
+        DenyCause: unknown;
         TilgangDTO: {
             harTilgang: boolean;
             ikkeTilgangArsak?: components['schemas']['DenyCause'];
@@ -1630,9 +1635,7 @@ export interface components {
             date: components['schemas']['LocalDate'];
         };
         LocalTime: {
-            /** @example 14:30:00 */
             value?: string;
-            /** @example 14:30:00 */
             value$kotlinx_datetime: string;
             /** Format: int32 */
             nanosecond: number;
@@ -1963,15 +1966,15 @@ export interface components {
         };
         GraphQLClientError: {
             message: string;
-            path?: Record<string, never>[];
+            path?: unknown[];
             extensions?: {
-                [key: string]: Record<string, never>;
+                [key: string]: unknown;
             };
             locations?: components['schemas']['GraphQLClientSourceLocation'][];
         };
         GraphQLClientResponseResult: {
             extensions?: {
-                [key: string]: Record<string, never>;
+                [key: string]: unknown;
             };
             data?: components['schemas']['Result'];
             errors?: components['schemas']['GraphQLClientError'][];
@@ -2138,6 +2141,7 @@ export type DeltBosted = components['schemas']['DeltBosted'];
 export type DigitalKontaktinformasjonTredjepartsperson =
     components['schemas']['DigitalKontaktinformasjonTredjepartsperson'];
 export type Dodsbo = components['schemas']['Dodsbo'];
+export type Dodsdato = components['schemas']['Dodsdato'];
 export type Fodested = components['schemas']['Fodested'];
 export type ForelderBarnRelasjon = components['schemas']['ForelderBarnRelasjon'];
 export type Foreldreansvar = components['schemas']['Foreldreansvar'];
