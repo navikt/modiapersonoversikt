@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import DodsdatoInfo from 'src/app/personside/visittkort-v2/body/DodsdatoInfo';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import type { Data as PersonData } from '../PersondataDomain';
@@ -21,6 +22,7 @@ interface Props {
 function SingleColumnLayout(persondata: PersonData) {
     return (
         <Kolonne>
+            <DodsdatoInfo person={persondata.person} />
             <Kontaktinformasjon persondata={persondata} />
             <Fullmakter feilendeSystemer={persondata.feilendeSystemer} fullmakter={persondata.person.fullmakt} />
             <Familie feilendeSystemer={persondata.feilendeSystemer} person={persondata.person} />
@@ -46,6 +48,7 @@ function DoubleColumnLayout(persondata: PersonData) {
     return (
         <>
             <Kolonne>
+                <DodsdatoInfo person={persondata.person} />
                 <Kontaktinformasjon persondata={persondata} />
                 <Fullmakter feilendeSystemer={persondata.feilendeSystemer} fullmakter={persondata.person.fullmakt} />
                 <Familie feilendeSystemer={persondata.feilendeSystemer} person={persondata.person} />
@@ -74,6 +77,7 @@ function TripleColumnLayout(persondata: PersonData) {
     return (
         <>
             <Kolonne>
+                <DodsdatoInfo person={persondata.person} />
                 <Kontaktinformasjon persondata={persondata} />
                 <Fullmakter feilendeSystemer={persondata.feilendeSystemer} fullmakter={persondata.person.fullmakt} />
             </Kolonne>

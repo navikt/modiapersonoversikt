@@ -1,6 +1,7 @@
-import { ENDASH, formaterDato } from '../../../utils/string-utils';
+import { ENDASH, formaterDato } from 'src/utils/string-utils';
 import {
     AdresseBeskyttelse,
+    type Dodsdato,
     type ForelderBarnRelasjon,
     ForelderBarnRelasjonRolle,
     type KodeBeskrivelse,
@@ -11,7 +12,7 @@ import {
     SivilstandType
 } from './PersondataDomain';
 
-export function erDod(dodsdato: Array<LocalDate>) {
+export function erDod(dodsdato: Array<LocalDate> | Array<Dodsdato>) {
     return dodsdato.isNotEmpty();
 }
 
