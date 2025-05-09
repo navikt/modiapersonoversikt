@@ -9,7 +9,7 @@ export interface UtbetalingerState {
 export interface UtbetalingFilterState {
     periode: PeriodeOptions;
     utbetaltTil: Array<string>;
-    ytelser: Array<string>;
+    ytelser: Record<string, boolean>;
 }
 
 export interface PeriodeOptions {

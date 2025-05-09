@@ -17,7 +17,7 @@ const initialState: UtbetalingerState = {
             }
         },
         utbetaltTil: [],
-        ytelser: []
+        ytelser: {}
     }
 };
 

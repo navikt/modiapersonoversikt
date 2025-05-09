@@ -14,33 +14,42 @@ interface Props {
 class YtelseValg extends Component<Props> {
     constructor(props: Props) {
         super(props);
-        if (props.filterState.ytelser.length === 0) {
+        this.updateYtelseFilterWithNewValues();
+    }
+
+    updateYtelseFilterWithNewValues() {
+        const tidligereYtelser = this.props.filterState.ytelser;
+        const tidligereYtelserKeys = Object.keys(tidligereYtelser);
+        const nyeYtelser = this.getUnikeYtelserRecord(this.props.utbetalinger);
+
+        if (Object.keys(nyeYtelser).filter((y) => !tidligereYtelserKeys.includes(y)).length > 0) {
             this.props.onChange({
-                ytelser: [...this.getUnikeYtelser(props.utbetalinger)]
+                ytelser: { ...nyeYtelser, ...tidligereYtelser }
             });
         }
     }
 
-    componentDidUpdate(prevProps: Props) {
-        const tidligereYtelser = this.getUnikeYtelser(prevProps.utbetalinger);
-        const nyeYtelser = this.getUnikeYtelser(this.props.utbetalinger).filter(
-            (ytelse: string) => !tidligereYtelser.includes(ytelse)
-        );
-        if (nyeYtelser.length > 0) {
-            this.props.onChange({
-                ytelser: [...this.props.filterState.ytelser, ...nyeYtelser]
-            });
-        }
+    componentDidUpdate() {
+        this.updateYtelseFilterWithNewValues();
     }
 
     onYtelseChange(change: string) {
-        const ytelseState = this.props.filterState.ytelser;
-        const newYtelseState: Array<string> = ytelseState.includes(change)
-            ? ytelseState.filter((ytelse: string) => ytelse !== change)
-            : [...ytelseState, change];
         this.props.onChange({
-            ytelser: newYtelseState
+            ytelser: {
+                ...this.props.filterState.ytelser,
+                [change]: !this.props.filterState.ytelser[change]
+            }
         });
+    }
+
+    getUnikeYtelserRecord(utbetalinger: Utbetaling[]): Record<string, boolean> {
+        return this.getUnikeYtelser(utbetalinger).reduce(
+            (rec, ytelse) => {
+                rec[ytelse] = true;
+                return rec;
+            },
+            {} as Record<string, boolean>
+        );
     }
 
     getUnikeYtelser(utbetalinger: Utbetaling[]): string[] {
@@ -57,7 +66,7 @@ class YtelseValg extends Component<Props> {
             <Checkbox
                 key={ytelse}
                 label={ytelse}
-                checked={this.props.filterState.ytelser.includes(ytelse)}
+                checked={this.props.filterState.ytelser[ytelse]}
                 onChange={() => this.onYtelseChange(ytelse)}
             />
         ));

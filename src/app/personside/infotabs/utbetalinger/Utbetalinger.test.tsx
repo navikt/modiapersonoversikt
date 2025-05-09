@@ -12,13 +12,13 @@ const filterState: UtbetalingFilterState = {
         }
     },
     utbetaltTil: ['Bruker'],
-    ytelser: ['Sykepenger']
+    ytelser: { Sykepenger: true }
 };
 
 test('filtrerer bort ytelser i utbetalinger som ikke er valgt i filter', () => {
     const filter: UtbetalingFilterState = {
         ...filterState,
-        ytelser: ['Dagpenger']
+        ytelser: { Dagpenger: true }
     };
 
     const utbetalinger: Utbetaling[] = [
@@ -58,7 +58,7 @@ test('filtrerer bort ytelser i utbetalinger som ikke er valgt i filter', () => {
 test('filtrerer bort utbetalinger som ikke er utbetalt til valgt mottaker i filter', () => {
     const filter: UtbetalingFilterState = {
         ...filterState,
-        ytelser: ['Dagpenger'],
+        ytelser: { Dagpenger: true },
         utbetaltTil: ['Berit AS']
     };
 

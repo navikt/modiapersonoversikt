@@ -229,7 +229,7 @@ const mockFilter: UtbetalingFilterState = {
             til: dayjs().format(ISO_DATE_FORMAT)
         }
     },
-    ytelser: [],
+    ytelser: {},
     utbetaltTil: []
 };
 
