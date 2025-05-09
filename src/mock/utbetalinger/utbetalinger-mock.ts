@@ -25,7 +25,9 @@ export function getMockUtbetalinger(fodselsnummer: string, startDato: string, sl
     navfaker.seed(`${fodselsnummer}utbetaling`);
 
     return {
-        utbetalinger: getUtbetalinger(fodselsnummer),
+        utbetalinger: getUtbetalinger(fodselsnummer).filter(
+            (u) => dayjs(u.posteringsdato).isAfter(startDato) && dayjs(u.posteringsdato).isBefore(sluttDato)
+        ),
         periode: {
             startDato: startDato,
             sluttDato: sluttDato

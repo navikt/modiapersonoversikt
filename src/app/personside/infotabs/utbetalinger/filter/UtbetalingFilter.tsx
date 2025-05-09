@@ -17,36 +17,36 @@ import UtbetaltTilValg from './UtbetaltTilValg';
 import YtelseValg from './YtelseValg';
 
 const FiltreringsPanel = styled(Panel)`
-    padding: ${pxToRem(15)};
+  padding: ${pxToRem(15)};
 `;
 
 const InputPanel = styled.form`
-    display: flex;
-    flex-direction: column;
-    margin-top: 1.5rem;
-    > *:first-child {
-        margin-bottom: 0.5rem;
-    }
-    > * {
-        margin-top: 0.5rem;
-    }
-    .skjemaelement--horisontal {
-        margin-bottom: 0.4rem;
-    }
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+  > *:first-child {
+    margin-bottom: 0.5rem;
+  }
+  > * {
+    margin-top: 0.5rem;
+  }
+  .skjemaelement--horisontal {
+    margin-bottom: 0.4rem;
+  }
 `;
 
 const WrapOnSmallScreen = styled.div`
-    @media (max-width: ${theme.media.utbetalinger.maxWidth}) {
-        display: flex;
-        flex-wrap: wrap;
-        > * {
-            flex-grow: 1;
-            flex-basis: 30%;
-        }
-        > *:not(:last-child) {
-            margin-right: 1rem;
-        }
+  @media (max-width: ${theme.media.utbetalinger.maxWidth}) {
+    display: flex;
+    flex-wrap: wrap;
+    > * {
+      flex-grow: 1;
+      flex-basis: 30%;
     }
+    > *:not(:last-child) {
+      margin-right: 1rem;
+    }
+  }
 `;
 
 function visCheckbokser(utbetalingerResponse: UtbetalingerResponse): boolean {

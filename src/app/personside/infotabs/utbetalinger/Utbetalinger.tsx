@@ -20,31 +20,31 @@ import {
 } from './utils/utbetalinger-utils';
 
 const UtbetalingerPanel = styled(Panel)`
-    padding: 0rem;
-    margin-top: ${theme.margin.layout};
-    margin-bottom: ${theme.margin.layout};
-    > *:first-child {
-        padding: ${pxToRem(15)};
-    }
+  padding: 0rem;
+  margin-top: ${theme.margin.layout};
+  margin-bottom: ${theme.margin.layout};
+  > *:first-child {
+    padding: ${pxToRem(15)};
+  }
 `;
 
 const UtbetalingerListe = styled.ol`
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 `;
 
 const Wrapper = styled.div`
-    ol {
-        list-style: none;
-    }
+  ol {
+    list-style: none;
+  }
 `;
 
 const OnOneLine = styled.div`
-    display: inline-flex;
-    align-items: center;
-    > *:last-child {
-        margin-left: 1rem;
-    }
+  display: inline-flex;
+  align-items: center;
+  > *:last-child {
+    margin-left: 1rem;
+  }
 `;
 
 export function getFiltrerteUtbetalinger(utbetalinger: Utbetaling[], filter: UtbetalingFilterState) {
@@ -59,7 +59,7 @@ function filtrerPaUtbetaltTilValg(utbetaling: Utbetaling, filter: UtbetalingFilt
 
 function filtrerBortYtelserSomIkkeErValgt(utbetaling: Utbetaling, filter: UtbetalingFilterState): Utbetaling {
     const ytelser = reduceUtbetlingerTilYtelser([utbetaling]);
-    const filtrerteYtelser = ytelser.filter((ytelse) => filter.ytelser.includes(getTypeFromYtelse(ytelse)));
+    const filtrerteYtelser = ytelser.filter((ytelse) => filter.ytelser[getTypeFromYtelse(ytelse)] === true);
     if (filtrerteYtelser.length === ytelser.length) {
         return utbetaling;
     }
