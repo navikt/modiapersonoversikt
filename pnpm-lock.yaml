@@ -265,8 +265,8 @@ importers:
         specifier: ^4.1.5
         version: 4.1.5
       '@tanstack/router-cli':
-        specifier: ^1.120.2
-        version: 1.120.2(@tanstack/react-router@1.117.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
+        specifier: ^1.120.3
+        version: 1.120.3(@tanstack/react-router@1.117.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
       '@tanstack/router-devtools':
         specifier: ^1.117.0
         version: 1.117.0(@tanstack/react-router@1.117.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@tanstack/router-core@1.117.0)(csstype@3.1.3)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(tiny-invariant@1.3.3)
@@ -1434,8 +1434,8 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
-  '@tanstack/router-cli@1.120.2':
-    resolution: {integrity: sha512-Pw+s5pYkQ3E7zJFVGoJUgOVVFLekRXoEtpcdBgvgzLSDmE9/LT7WwAzdZmv3YVvpBsVF2qn95PDAlQT0TiRUYA==}
+  '@tanstack/router-cli@1.120.3':
+    resolution: {integrity: sha512-N7XrkywKdAjBou2/2CCrOR+Ht0iHDtlWlGhPaHfZ+XIz+AWWZrnuuZSxTrOpo9BLVmGCLGBz1ByJv8TwdbQCjQ==}
     engines: {node: '>=12'}
     hasBin: true
 
@@ -1480,11 +1480,11 @@ packages:
       '@tanstack/react-router':
         optional: true
 
-  '@tanstack/router-generator@1.120.2':
-    resolution: {integrity: sha512-rI+hQjUtsAZs5K2292zM6OE/fHAVRZxejAkrLlaQlunphqJYtHBizXk15SP9QsP3i+QvS1D8YnioMPvSlVPEOw==}
+  '@tanstack/router-generator@1.120.3':
+    resolution: {integrity: sha512-Lz0nIwGNM+vlLGGiSBTQvcD2gW5WhoIeZN8IlTBssUb33m21QLpoj9ozpXFDrlzk36rTn5NcijHEStpYqrvQbA==}
     engines: {node: '>=12'}
     peerDependencies:
-      '@tanstack/react-router': ^1.120.2
+      '@tanstack/react-router': ^1.120.3
     peerDependenciesMeta:
       '@tanstack/react-router':
         optional: true
@@ -4985,9 +4985,9 @@ snapshots:
       react-dom: 19.1.0(react@19.1.0)
       use-sync-external-store: 1.5.0(react@19.1.0)
 
-  '@tanstack/router-cli@1.120.2(@tanstack/react-router@1.117.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))':
+  '@tanstack/router-cli@1.120.3(@tanstack/react-router@1.117.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))':
     dependencies:
-      '@tanstack/router-generator': 1.120.2(@tanstack/react-router@1.117.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
+      '@tanstack/router-generator': 1.120.3(@tanstack/react-router@1.117.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
       chokidar: 3.6.0
       yargs: 17.7.2
     transitivePeerDependencies:
@@ -5038,7 +5038,7 @@ snapshots:
     optionalDependencies:
       '@tanstack/react-router': 1.117.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
 
-  '@tanstack/router-generator@1.120.2(@tanstack/react-router@1.117.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))':
+  '@tanstack/router-generator@1.120.3(@tanstack/react-router@1.117.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))':
     dependencies:
       '@tanstack/virtual-file-routes': 1.115.0
       prettier: 3.5.3
