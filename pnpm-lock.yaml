@@ -325,8 +325,8 @@ importers:
         specifier: ^7.2.0
         version: 7.2.0(styled-components@6.1.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
       knip:
-        specifier: ^5.53.0
-        version: 5.53.0(@types/node@22.15.16)(typescript@5.8.3)
+        specifier: ^5.55.1
+        version: 5.55.1(@types/node@22.15.16)(typescript@5.8.3)
       less:
         specifier: ^4.3.0
         version: 4.3.0
@@ -2228,6 +2228,9 @@ packages:
   fastq@1.19.1:
     resolution: {integrity: sha512-GwLTyxkCXjXbxqIhTsMI2Nui8huMPtnxg7krajPJAjnEG/iiOS7i+zCtWGZR9G0NBKbXKh6X9m9UIsYX/N6vvQ==}
 
+  fd-package-json@1.2.0:
+    resolution: {integrity: sha512-45LSPmWf+gC5tdCQMNH4s9Sr00bIkiD9aN7dc5hqkrEw1geRYyDQS1v1oMHAW3ysfxfndqGsrDREHHjNNbKUfA==}
+
   fdir@6.4.4:
     resolution: {integrity: sha512-1NZP+GK4GfuAv3PqKvxQRDMjdSRZjnkq7KfhlNrCNNlZ0ygQFpebfrnfnq/W7fpUnAv9aGWmY1zKx7FYL3gwhg==}
     peerDependencies:
@@ -2258,6 +2261,11 @@ packages:
 
   flatted@3.3.3:
     resolution: {integrity: sha512-GX+ysw4PBCz0PzosHDepZGANEuFCMLrnRTiEy9McGjmkCQYwRq4A/X786G/fjM/+OjsWSU1ZrY5qyARZmO/uwg==}
+
+  formatly@0.2.3:
+    resolution: {integrity: sha512-WH01vbXEjh9L3bqn5V620xUAWs32CmK4IzWRRY6ep5zpa/mrisL4d9+pRVuETORVDTQw8OycSO1WC68PL51RaA==}
+    engines: {node: '>=18.3.0'}
+    hasBin: true
 
   forwarded@0.2.0:
     resolution: {integrity: sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==}
@@ -2536,8 +2544,8 @@ packages:
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
 
-  knip@5.53.0:
-    resolution: {integrity: sha512-z8tTV59Rkwd/FRaSikKUIyLx9YY846muUJtmF+nM7e7f63LGyjqnSSsGBfE9RorqNanVqXvTjosGYkfKCmV7Nw==}
+  knip@5.55.1:
+    resolution: {integrity: sha512-NYXjgGrXgMdabUKCP2TlBH/e83m9KnLc1VLyWHUtoRrCEJ/C15YtbafrpTvm3td+jE4VdDPgudvXT1IMtCx8lw==}
     engines: {node: '>=18.18.0'}
     hasBin: true
     peerDependencies:
@@ -3877,6 +3885,9 @@ packages:
       jsdom:
         optional: true
 
+  walk-up-path@3.0.1:
+    resolution: {integrity: sha512-9YlCL/ynK3CTlrSRrDxZvUauLzAswPCrsaCgilqFevUYpeEW0/3ScEjaa3kbW/T0ghhkEr7mv+fpjqn1Y1YuTA==}
+
   warning@4.0.3:
     resolution: {integrity: sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==}
 
@@ -3964,6 +3975,12 @@ packages:
     engines: {node: '>=18.0.0'}
     peerDependencies:
       zod: ^3.18.0
+
+  zod-validation-error@3.4.1:
+    resolution: {integrity: sha512-1KP64yqDPQ3rupxNv7oXhf7KdhHHgaqbKuspVoiN93TT0xrBjql+Svjkdjq/Qh/7GSMmgQs3AfvBT0heE35thw==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      zod: ^3.24.4
 
   zod@3.24.4:
     resolution: {integrity: sha512-OdqJE9UDRPwWsrHjLN2F8bPxvwJBK22EHLWtanu0LSYr5YqzsaaW3RMgmjwr8Rypg5k+meEJdSPXJZXE/yqOMg==}
@@ -5891,6 +5908,10 @@ snapshots:
     dependencies:
       reusify: 1.1.0
 
+  fd-package-json@1.2.0:
+    dependencies:
+      walk-up-path: 3.0.1
+
   fdir@6.4.4(picomatch@4.0.2):
     optionalDependencies:
       picomatch: 4.0.2
@@ -5925,6 +5946,10 @@ snapshots:
       keyv: 4.5.4
 
   flatted@3.3.3: {}
+
+  formatly@0.2.3:
+    dependencies:
+      fd-package-json: 1.2.0
 
   forwarded@0.2.0: {}
 
@@ -6141,12 +6166,13 @@ snapshots:
     dependencies:
       json-buffer: 3.0.1
 
-  knip@5.53.0(@types/node@22.15.16)(typescript@5.8.3):
+  knip@5.55.1(@types/node@22.15.16)(typescript@5.8.3):
     dependencies:
       '@nodelib/fs.walk': 1.2.8
       '@types/node': 22.15.16
       enhanced-resolve: 5.18.1
       fast-glob: 3.3.3
+      formatly: 0.2.3
       jiti: 2.4.2
       js-yaml: 4.1.0
       minimist: 1.2.8
@@ -6156,7 +6182,7 @@ snapshots:
       strip-json-comments: 5.0.1
       typescript: 5.8.3
       zod: 3.24.4
-      zod-validation-error: 3.4.0(zod@3.24.4)
+      zod-validation-error: 3.4.1(zod@3.24.4)
 
   less@4.3.0:
     dependencies:
@@ -7445,6 +7471,8 @@ snapshots:
       - tsx
       - yaml
 
+  walk-up-path@3.0.1: {}
+
   warning@4.0.3:
     dependencies:
       loose-envify: 1.4.0
@@ -7517,6 +7545,10 @@ snapshots:
       zod: 3.24.4
 
   zod-validation-error@3.4.0(zod@3.24.4):
+    dependencies:
+      zod: 3.24.4
+
+  zod-validation-error@3.4.1(zod@3.24.4):
     dependencies:
       zod: 3.24.4
 
