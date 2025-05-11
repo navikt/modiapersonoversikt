@@ -1,14 +1,14 @@
 import { render } from '@testing-library/react';
-import TestProvider from '../../../../test/Testprovider';
+import { TestStoreWithoutRouter } from '../../../../test/Testprovider';
 import { setupReactQueryMocks } from '../../../../test/testStore';
 import OppfolgingContainer from './OppfolgingContainer';
 
-test('Viser oppfølgingcontainer med alt innhold', () => {
+test('Viser oppfølgingcontainer med alt innhold', async () => {
     setupReactQueryMocks();
     const container = render(
-        <TestProvider>
+        <TestStoreWithoutRouter>
             <OppfolgingContainer />
-        </TestProvider>
+        </TestStoreWithoutRouter>
     );
 
     const json = container.asFragment();

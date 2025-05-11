@@ -1,15 +1,11 @@
-import { render } from '@testing-library/react';
-import TestProvider from '../../../../test/Testprovider';
+import { act } from '@testing-library/react';
+import { renderWithProviders } from '../../../../test/Testprovider';
 import { setupReactQueryMocks } from '../../../../test/testStore';
 import SaksoversiktContainerV2 from './SaksoversiktContainerV2';
 
-test('Viser saksoversiktcontainer med alt innhold', () => {
+test('Viser saksoversiktcontainer med alt innhold', async () => {
     setupReactQueryMocks();
-    const container = render(
-        <TestProvider>
-            <SaksoversiktContainerV2 />
-        </TestProvider>
-    );
+    const container = await act(() => renderWithProviders(<SaksoversiktContainerV2 />));
 
     const json = container.asFragment();
     expect(json).toMatchSnapshot();

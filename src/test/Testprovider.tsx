@@ -27,6 +27,28 @@ const queryClient = new QueryClient({
     }
 });
 
+export const TestStoreWithoutRouter = ({ customStore, children }: Props) => {
+    const store = customStore || getTestStore();
+
+    const jstore = createStore();
+    jstore.set(aktivBrukerAtom, store.getState().gjeldendeBruker.fødselsnummer);
+    return (
+        <Provider store={store}>
+            <JProvider store={jstore}>
+                <QueryClientProvider client={queryClient}>
+                    <DialogpanelStateProvider>
+                        <VisittkortStateProvider>
+                            <MeldingsokProvider>
+                                <ValgtEnhetProvider>{children}</ValgtEnhetProvider>
+                            </MeldingsokProvider>
+                        </VisittkortStateProvider>
+                    </DialogpanelStateProvider>
+                </QueryClientProvider>
+            </JProvider>
+        </Provider>
+    );
+};
+
 const setupTestRouter = (customStore: Props['customStore'], children: Props['children']) => {
     const rootRoute = createRootRoute();
     const store = customStore || getTestStore();
@@ -61,15 +83,9 @@ const setupTestRouter = (customStore: Props['customStore'], children: Props['chi
     });
 };
 
-function TestProvider({ children, customStore }: Props) {
-    return <RouterProvider router={setupTestRouter(customStore, children)} />;
-}
-
-export const renderWithProviders = async (children: ReactElement) => {
-    const testRouter = setupTestRouter(undefined, children);
+export const renderWithProviders = async (children: ReactElement, customStore?: Props['customStore']) => {
+    const testRouter = setupTestRouter(customStore, children);
     const testRendered = render(<RouterProvider router={testRouter} />);
     await testRouter.load();
     return testRendered;
 };
-
-export default TestProvider;

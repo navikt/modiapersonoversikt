@@ -1,7 +1,7 @@
-import { render } from '@testing-library/react';
+import { act } from '@testing-library/react';
 import { statiskMockUtbetaling, statiskMockYtelse } from '../../../../../mock/utbetalinger/statiskMockUtbetaling';
 import type { Utbetaling } from '../../../../../models/utbetalinger';
-import TestProvider from '../../../../../test/Testprovider';
+import { renderWithProviders } from '../../../../../test/Testprovider';
 import SammensattUtbetaling from './SammensattUtbetaling';
 
 const sammensattUtbetaling: Utbetaling = {
@@ -9,11 +9,9 @@ const sammensattUtbetaling: Utbetaling = {
     ytelser: [statiskMockYtelse, statiskMockYtelse]
 };
 
-test('Viser utbetalingsdetaljer riktig med liste med ytelser og trekk', () => {
-    const visittkortheader = render(
-        <TestProvider>
-            <SammensattUtbetaling utbetaling={sammensattUtbetaling} erValgtIUrl={false} />
-        </TestProvider>
+test('Viser utbetalingsdetaljer riktig med liste med ytelser og trekk', async () => {
+    const visittkortheader = await act(() =>
+        renderWithProviders(<SammensattUtbetaling utbetaling={sammensattUtbetaling} erValgtIUrl={false} />)
     );
 
     const json = visittkortheader.asFragment();

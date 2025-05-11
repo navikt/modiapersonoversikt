@@ -1,6 +1,6 @@
-import { render } from '@testing-library/react';
+import { act } from '@testing-library/react';
 import { vi } from 'vitest';
-import TestProvider from '../../../test/Testprovider';
+import { renderWithProviders } from '../../../test/Testprovider';
 import { setupReactQueryMocks } from '../../../test/testStore';
 import DialogPanel from './DialogPanel';
 
@@ -11,12 +11,8 @@ beforeEach(() => {
     setupReactQueryMocks();
 });
 
-test('viser dialogpanel', () => {
-    const dialogPanelBody = render(
-        <TestProvider>
-            <DialogPanel />
-        </TestProvider>
-    );
+test('viser dialogpanel', async () => {
+    const dialogPanelBody = await act(() => renderWithProviders(<DialogPanel />));
 
     expect(dialogPanelBody.asFragment()).toMatchSnapshot();
     dialogPanelBody.unmount();

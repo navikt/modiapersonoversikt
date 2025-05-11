@@ -242,7 +242,7 @@ exports[`viser send ny melding 1`] = `
                         class="skjemaelement__input textarea--medMeta"
                         id="Helt tilfeldig ID"
                         placeholder="Alt du skriver i denne boksen blir synlig for Aremark når du trykker "Del med Aremark""
-                        style="height: 30px;"
+                        style="height: 25px;"
                       />
                       <p
                         class="textarea--medMeta__teller"
@@ -257,7 +257,9 @@ exports[`viser send ny melding 1`] = `
                     <div
                       aria-hidden="true"
                       class="textareamirror"
-                    />
+                    >
+                       
+                    </div>
                   </div>
                   <div
                     class="c10"

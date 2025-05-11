@@ -1,13 +1,11 @@
-import { render } from '@testing-library/react';
-import TestProvider from '../../../../../test/Testprovider';
+import { act } from '@testing-library/react';
+import { renderWithProviders } from '../../../../../test/Testprovider';
 import { aremark } from './../../../../../mock/persondata/aremark';
 import Fullmakter from './Fullmakt';
 
-test('viser fullmakt', () => {
-    const visittkortbody = render(
-        <TestProvider>
-            <Fullmakter feilendeSystemer={[]} fullmakter={aremark.fullmakt} />
-        </TestProvider>
+test('viser fullmakt', async () => {
+    const visittkortbody = await act(() =>
+        renderWithProviders(<Fullmakter feilendeSystemer={[]} fullmakter={aremark.fullmakt} />)
     );
 
     expect(visittkortbody.asFragment()).toMatchSnapshot();

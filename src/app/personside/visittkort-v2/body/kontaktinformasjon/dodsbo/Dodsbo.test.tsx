@@ -1,13 +1,11 @@
-import { render } from '@testing-library/react';
+import { act } from '@testing-library/react';
 import { aremark } from '../../../../../../mock/persondata/aremark';
-import TestProvider from '../../../../../../test/Testprovider';
+import { renderWithProviders } from '../../../../../../test/Testprovider';
 import KontaktinformasjonDodsbo from './Dodsbo';
 
-test('viser dodsbo', () => {
-    const dodsbo = render(
-        <TestProvider>
-            <KontaktinformasjonDodsbo harFeilendeSystem={false} dodsbo={aremark.dodsbo} />
-        </TestProvider>
+test('viser dodsbo', async () => {
+    const dodsbo = await act(() =>
+        renderWithProviders(<KontaktinformasjonDodsbo harFeilendeSystem={false} dodsbo={aremark.dodsbo} />)
     );
 
     expect(dodsbo.asFragment()).toMatchSnapshot();

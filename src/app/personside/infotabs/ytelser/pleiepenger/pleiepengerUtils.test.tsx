@@ -1,8 +1,8 @@
-import { render } from '@testing-library/react';
+import { act } from '@testing-library/react';
 import { getMockPleiepengerettighet } from 'src/mock/ytelse/pleiepenger-mock';
 import type { Arbeidsforhold } from 'src/models/ytelse/arbeidsforhold';
 import type { Pleiepengerettighet } from 'src/models/ytelse/pleiepenger';
-import TestProvider from '../../../../../test/Testprovider';
+import { renderWithProviders } from '../../../../../test/Testprovider';
 import Pleiepenger from './Pleiepenger';
 import {
     getAlleArbiedsforholdSortert,
@@ -141,7 +141,7 @@ describe('arbeidsforhold i pleiepengerettighet', () => {
     });
 });
 
-test('rendrer fint selv om bruker ikke har noen arbeidsforhold', () => {
+test('rendrer fint selv om bruker ikke har noen arbeidsforhold', async () => {
     const testRettighetUtenArbeidsforhold: Pleiepengerettighet = {
         ...testRettighet,
         perioder: [
@@ -152,10 +152,8 @@ test('rendrer fint selv om bruker ikke har noen arbeidsforhold', () => {
         ]
     };
 
-    const { container } = render(
-        <TestProvider>
-            <Pleiepenger pleiepenger={testRettighetUtenArbeidsforhold} />
-        </TestProvider>
+    const { container } = await act(() =>
+        renderWithProviders(<Pleiepenger pleiepenger={testRettighetUtenArbeidsforhold} />)
     );
 
     expect(container).toHaveTextContent('Ingen arbeidsgiver er registrert');
