@@ -1,6 +1,6 @@
-import { render } from '@testing-library/react';
+import { act } from '@testing-library/react';
 import { aremark } from '../../../../mock/persondata/aremark';
-import TestProvider from '../../../../test/Testprovider';
+import { renderWithProviders } from '../../../../test/Testprovider';
 import type { LocalDate, Person, Data as PersonData } from '../PersondataDomain';
 import { hentNavn } from '../visittkort-utils';
 import VisittkortHeader from './VisittkortHeader';
@@ -11,28 +11,28 @@ function lagPersondataForAremark(): PersonData {
 }
 
 describe('Tester visittkort-header sin funksjonalitet', () => {
-    test('viser info om bruker i visittkort-header', () => {
-        const visittkortHeader = render(
-            <TestProvider>
+    test('viser info om bruker i visittkort-header', async () => {
+        const visittkortHeader = await act(() =>
+            renderWithProviders(
                 <VisittkortHeader persondata={lagPersondataForAremark()} erApen={false} toggleApen={() => null} />
-            </TestProvider>
+            )
         );
 
         const json = visittkortHeader.asFragment();
         expect(json).toMatchSnapshot();
     });
 
-    test('setter fokus på brukerens navn on mount', () => {
+    test('setter fokus på brukerens navn on mount', async () => {
         const person: Person = {
             ...aremark,
             sikkerhetstiltak: []
         };
 
         const oppdatertPerson: PersonData = { feilendeSystemer: [], person };
-        render(
-            <TestProvider>
+        await act(() =>
+            renderWithProviders(
                 <VisittkortHeader persondata={oppdatertPerson} erApen={false} toggleApen={() => null} />
-            </TestProvider>
+            )
         );
 
         const focusedElement = document.activeElement;
@@ -44,7 +44,7 @@ describe('Tester visittkort-header sin funksjonalitet', () => {
         }
     });
 
-    test('setter fokus på sikkerhetstiltak on mount', () => {
+    test('setter fokus på sikkerhetstiltak on mount', async () => {
         const person: Person = {
             ...aremark,
             sikkerhetstiltak: [
@@ -61,10 +61,10 @@ describe('Tester visittkort-header sin funksjonalitet', () => {
 
         const oppdatertPerson: PersonData = { feilendeSystemer: [], person };
 
-        render(
-            <TestProvider>
+        await act(() =>
+            renderWithProviders(
                 <VisittkortHeader persondata={oppdatertPerson} erApen={false} toggleApen={() => null} />
-            </TestProvider>
+            )
         );
 
         const focusedElement = document.activeElement;

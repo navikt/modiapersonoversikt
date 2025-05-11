@@ -2,7 +2,7 @@
 
 exports[`Viser oppgavecontainer med alt innhold 1`] = `
 <DocumentFragment>
-  .c4 {
+  .c3 {
   position: relative;
   border: none;
   padding: 0;
@@ -14,7 +14,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
   color: #0067c5;
 }
 
-.c4:after {
+.c3:after {
   border-bottom: 1px #b7b1a9 solid;
   position: absolute;
   bottom: 0;
@@ -22,16 +22,16 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
   width: 100%;
 }
 
-.c4:focus {
+.c3:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c4:hover {
+.c3:hover {
   opacity: 0.8;
 }
 
-.c4:hover:after {
+.c3:hover:after {
   content: '';
   border-color: #0067c5;
 }
@@ -46,6 +46,11 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
 
 .c2 .skjemaelement {
   margin-bottom: 0;
+}
+
+.c4 {
+  display: inline-block;
+  float: right;
 }
 
 .c0 {
@@ -69,12 +74,12 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
   margin-bottom: 0.7rem;
 }
 
-.c3 {
+.c5 {
   display: flex;
   justify-content: space-between;
 }
 
-.c3 button {
+.c5 button {
   margin: 0;
 }
 
@@ -202,6 +207,12 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
               <span>
                 Velg enhet
               </span>
+              <button
+                class="c3 c4"
+                type="button"
+              >
+                Sett til min oppgaveliste
+              </button>
             </label>
             <input
               aria-autocomplete="list"
@@ -295,16 +306,18 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
             class="skjemaelement__input textarea--medMeta"
             id="beskrivelse"
             name="beskrivelse"
-            style="height: 30px;"
+            style="height: 25px;"
           />
         </div>
         <div
           aria-hidden="true"
           class="textareamirror"
-        />
+        >
+           
+        </div>
       </div>
       <div
-        class="c3"
+        class="c5"
       >
         <button
           class="knapp knapp--hoved"
@@ -313,7 +326,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
           Opprett oppgave
         </button>
         <button
-          class="c4"
+          class="c3"
           type="button"
         >
           Avbryt

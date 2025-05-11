@@ -1,7 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import { act } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { getStaticMockSaksoversiktV2 } from '../../../../../../mock/saksoversikt/saksoversikt-mock';
 import { Feilmelding, type Journalpost } from '../../../../../../models/saksoversikt/journalpost';
-import TestProvider from '../../../../../../test/Testprovider';
+import { renderWithProviders } from '../../../../../../test/Testprovider';
 import { getTestStore } from '../../../../../../test/testStore';
 import { aggregertSakstemaV2 } from '../../utils/saksoversiktUtilsV2';
 import JournalpostListeElementV2 from './JournalpostListeElementV2';
@@ -10,7 +11,7 @@ describe('JournalpostListeElementV2', () => {
     const staticSaksoversikt = getStaticMockSaksoversiktV2();
     const valgtSakstema = aggregertSakstemaV2(staticSaksoversikt.resultat);
 
-    it('Viser ikke-tilgang-ikon om journalpost har sikkerhetsbegrensning', () => {
+    it('Viser ikke-tilgang-ikon om journalpost har sikkerhetsbegrensning', async () => {
         const { testStore, journalposter } = lagStoreMedJustertDokumentMetadata({
             feil: {
                 inneholderFeil: true,
@@ -18,34 +19,36 @@ describe('JournalpostListeElementV2', () => {
             }
         });
 
-        render(
-            <TestProvider customStore={testStore}>
+        await act(() =>
+            renderWithProviders(
                 <JournalpostListeElementV2
                     journalpost={journalposter}
                     harTilgangTilSakstema={true}
                     valgtSakstema={valgtSakstema}
-                />
-            </TestProvider>
+                />,
+                testStore
+            )
         );
         expect(screen.getByTestId('ikke-tilgang-ikon')).toBeInTheDocument();
     });
 
-    it('Viser ikke-tilgang-ikon hvis ikke tilgang til sakstema', () => {
+    it('Viser ikke-tilgang-ikon hvis ikke tilgang til sakstema', async () => {
         const { testStore, journalposter } = lagStoreMedJustertDokumentMetadata({});
 
-        render(
-            <TestProvider customStore={testStore}>
+        await act(() =>
+            renderWithProviders(
                 <JournalpostListeElementV2
                     valgtSakstema={valgtSakstema}
                     journalpost={journalposter}
                     harTilgangTilSakstema={false}
-                />
-            </TestProvider>
+                />,
+                testStore
+            )
         );
         expect(screen.getByTestId('ikke-tilgang-ikon')).toBeInTheDocument();
     });
 
-    it('Viser tilgang-ikon hvis tilgang til sakstema og ikke sikkerhetsbegrensning, selv om ikke tilgang til alle dokumenter', () => {
+    it('Viser tilgang-ikon hvis tilgang til sakstema og ikke sikkerhetsbegrensning, selv om ikke tilgang til alle dokumenter', async () => {
         const hoveddokument = staticSaksoversikt.resultat[0].dokumentMetadata[0].hoveddokument;
         const vedlegg = staticSaksoversikt.resultat[0].dokumentMetadata[0].vedlegg[0];
         const { testStore, journalposter } = lagStoreMedJustertDokumentMetadata({
@@ -62,32 +65,34 @@ describe('JournalpostListeElementV2', () => {
             ]
         });
 
-        render(
-            <TestProvider customStore={testStore}>
+        await act(() =>
+            renderWithProviders(
                 <JournalpostListeElementV2
                     journalpost={journalposter}
                     harTilgangTilSakstema={true}
                     valgtSakstema={valgtSakstema}
-                />
-            </TestProvider>
+                />,
+                testStore
+            )
         );
 
         expect(screen.getByTestId('dokument-ikon')).toBeInTheDocument();
     });
 
-    it('Viser ikke-tilgang-ikon selv i "Alle" sakstemalisten', () => {
+    it('Viser ikke-tilgang-ikon selv i "Alle" sakstemalisten', async () => {
         const { testStore, journalposter } = lagStoreMedJustertDokumentMetadata({
             feil: { inneholderFeil: false, feilmelding: null }
         });
 
-        render(
-            <TestProvider customStore={testStore}>
+        await act(() =>
+            renderWithProviders(
                 <JournalpostListeElementV2
                     journalpost={journalposter}
                     harTilgangTilSakstema={true}
                     valgtSakstema={valgtSakstema}
-                />
-            </TestProvider>
+                />,
+                testStore
+            )
         );
         expect(screen.getByTestId('dokument-ikon')).toBeInTheDocument();
     });

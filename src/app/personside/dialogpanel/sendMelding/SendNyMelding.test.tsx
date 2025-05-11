@@ -1,6 +1,6 @@
-import { render } from '@testing-library/react';
+import { act } from '@testing-library/react';
 import { vi } from 'vitest';
-import TestProvider from '../../../../test/Testprovider';
+import { renderWithProviders } from '../../../../test/Testprovider';
 import { setupReactQueryMocks } from '../../../../test/testStore';
 import { OppgavelisteValg } from './SendNyMelding';
 import SendNyMeldingContainer from './SendNyMeldingContainer';
@@ -12,11 +12,9 @@ beforeEach(() => {
     setupReactQueryMocks();
 });
 
-test('viser send ny melding', () => {
-    const dialogPanelBody = render(
-        <TestProvider>
-            <SendNyMeldingContainer defaultOppgaveDestinasjon={OppgavelisteValg.MinListe} />
-        </TestProvider>
+test('viser send ny melding', async () => {
+    const dialogPanelBody = await act(() =>
+        renderWithProviders(<SendNyMeldingContainer defaultOppgaveDestinasjon={OppgavelisteValg.MinListe} />)
     );
 
     expect(dialogPanelBody.asFragment()).toMatchSnapshot();

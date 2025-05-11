@@ -1,20 +1,20 @@
-import { render } from '@testing-library/react';
+import { act } from '@testing-library/react';
 import { aremark } from '../../../../mock/persondata/aremark';
-import TestProvider from '../../../../test/Testprovider';
+import { renderWithProviders } from '../../../../test/Testprovider';
 import { setupReactQueryMocks } from '../../../../test/testStore';
 import VisittkortBody from './VisittkortBody';
 
-test('viser info om bruker i visittkortbody', () => {
+test('viser info om bruker i visittkortbody', async () => {
     setupReactQueryMocks();
-    const visittkortbody = render(
-        <TestProvider>
+    const visittkortbody = await act(() =>
+        renderWithProviders(
             <VisittkortBody
                 persondata={{
                     feilendeSystemer: [],
                     person: aremark
                 }}
             />
-        </TestProvider>
+        )
     );
 
     expect(visittkortbody.asFragment()).toMatchSnapshot();

@@ -1,14 +1,12 @@
-import { render } from '@testing-library/react';
+import { act } from '@testing-library/react';
 import { statiskForeldrepengeMock } from 'src/mock/ytelse/statiskForeldrepengeMock';
-import TestProvider from '../../../../../test/Testprovider';
+import { renderWithProviders } from '../../../../../test/Testprovider';
 import ForeldrepengePeriode from './ForeldrepengePeriode';
 
-test('Foreldrepengeperiode matcher snapshot', () => {
+test('Foreldrepengeperiode matcher snapshot', async () => {
     const testRettighet = statiskForeldrepengeMock;
-    const result = render(
-        <TestProvider>
-            <ForeldrepengePeriode periode={testRettighet.periode[0]} periodenr={1} />
-        </TestProvider>
+    const result = await act(() =>
+        renderWithProviders(<ForeldrepengePeriode periode={testRettighet.periode[0]} periodenr={1} />)
     );
 
     expect(result.asFragment()).toMatchSnapshot();
