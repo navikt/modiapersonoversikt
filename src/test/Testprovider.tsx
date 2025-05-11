@@ -1,7 +1,8 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Outlet, RouterProvider, createRootRoute, createRoute, createRouter } from '@tanstack/react-router';
+import { RouterProvider, createRootRoute, createRoute, createRouter } from '@tanstack/react-router';
+import { render } from '@testing-library/react';
 import { Provider as JProvider, createStore } from 'jotai';
-import type { ReactNode } from 'react';
+import type { ReactElement, ReactNode } from 'react';
 import { Provider } from 'react-redux';
 import type { Store } from 'redux';
 import { aktivBrukerAtom } from 'src/lib/state/context';
@@ -26,14 +27,14 @@ const queryClient = new QueryClient({
     }
 });
 
-function TestProvider({ children, customStore }: Props) {
-    const rootRoute = createRootRoute({ component: Outlet });
+const setupTestRouter = (customStore: Props['customStore'], children: Props['children']) => {
+    const rootRoute = createRootRoute();
     const store = customStore || getTestStore();
 
     const jstore = createStore();
     jstore.set(aktivBrukerAtom, store.getState().gjeldendeBruker.fødselsnummer);
 
-    rootRoute.addChildren([
+    const routeTree = rootRoute.addChildren([
         createRoute({
             getParentRoute: () => rootRoute,
             path: '$',
@@ -55,12 +56,20 @@ function TestProvider({ children, customStore }: Props) {
         })
     ]);
 
-    const router = createRouter({
-        routeTree: rootRoute
+    return createRouter({
+        routeTree
     });
+};
 
-    //@ts-ignore: Weird behaviour when creating a dummy router like this
-    return <RouterProvider router={router} />;
+function TestProvider({ children, customStore }: Props) {
+    return <RouterProvider router={setupTestRouter(customStore, children)} />;
 }
+
+export const renderWithProviders = async (children: ReactElement) => {
+    const testRouter = setupTestRouter(undefined, children);
+    const testRendered = render(<RouterProvider router={testRouter} />);
+    await testRouter.load();
+    return testRendered;
+};
 
 export default TestProvider;
