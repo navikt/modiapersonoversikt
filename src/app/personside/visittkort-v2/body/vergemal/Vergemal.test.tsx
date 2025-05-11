@@ -1,13 +1,11 @@
-import { render } from '@testing-library/react';
+import { act } from '@testing-library/react';
 import { aremark } from '../../../../../mock/persondata/aremark';
-import TestProvider from '../../../../../test/Testprovider';
+import { renderWithProviders } from '../../../../../test/Testprovider';
 import Vergemal from './Vergemal';
 
-test('viser vergemål', () => {
-    const visittkortbody = render(
-        <TestProvider>
-            <Vergemal feilendeSystemer={[]} vergemal={aremark.vergemal} />
-        </TestProvider>
+test('viser vergemål', async () => {
+    const visittkortbody = await act(() =>
+        renderWithProviders(<Vergemal feilendeSystemer={[]} vergemal={aremark.vergemal} />)
     );
 
     expect(visittkortbody.asFragment()).toMatchSnapshot();

@@ -2,77 +2,77 @@
 
 exports[`Viser traad med verktøylinje 1`] = `
 <DocumentFragment>
-  .c23 .snakkeboble-panel {
+  .c27 .snakkeboble-panel {
   flex-basis: 40rem;
   padding: 0.5rem 0.5rem 0.3rem;
 }
 
-.c23 a {
+.c27 a {
   word-break: break-word;
 }
 
-.c23 .snakkeboble {
+.c27 .snakkeboble {
   margin: 0;
 }
 
-.c25 {
+.c29 {
   display: flex;
   gap: 0.5rem;
 }
 
-.c24 {
+.c28 {
   text-align: left;
 }
 
-.c24 em {
+.c28 em {
   font-style: normal;
   background-color: #eed28c;
   box-shadow: 0 0 0 0.2rem #eed28c;
   border-radius: 0.625rem;
 }
 
-.c24 >*:not(:last-child) {
+.c28 >*:not(:last-child) {
   margin-bottom: 0.5rem;
 }
 
-.c26 {
+.c30 {
   font-size: 0.85rem;
 }
 
-.c27 {
+.c31 {
   display: flex;
   gap: 0.3rem;
   margin-left: auto;
 }
 
-.c19 {
+.c23 {
   flex-grow: 1;
 }
 
-.c19 >*:last-child {
+.c23 >*:last-child {
   margin-top: .5rem;
 }
 
-.c21 {
+.c25 {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
 
-.c20 {
+.c24 {
   margin-bottom: 0.3rem;
 }
 
-.c22 {
+.c26 {
   margin-top: 0.8rem;
 }
 
-.c22 .ekspanderbartPanel__hode,
-.c22 .ekspanderbartPanel__innhold {
+.c26 .ekspanderbartPanel__hode,
+.c26 .ekspanderbartPanel__innhold {
   padding: 0.1rem 0.2rem;
 }
 
-.c22 .ekspanderbartPanel__tittel {
+.c26 .ekspanderbartPanel__tittel {
   color: #0067c5;
 }
 
@@ -160,56 +160,96 @@ exports[`Viser traad med verktøylinje 1`] = `
   page-break-inside: avoid;
 }
 
+.c16 .ekspanderbartPanel {
+  position: relative;
+}
+
+.c16 .ekspanderbartPanel__hode {
+  padding: 0.35rem 0.5rem;
+  position: sticky;
+  top: 0;
+}
+
+.c16 .ekspanderbartPanel__innhold {
+  padding: 0.3rem;
+}
+
+.c14 {
+  display: flex;
+}
+
+.c14 >* {
+  margin: 0;
+}
+
+.c14 >*:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.c15 .radioknapp+label {
+  cline-height: 1.25rem;
+}
+
+.c15 .radioknapp+label:before {
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
 .c13 {
   position: relative;
   text-align: center;
   padding-top: 1rem;
 }
 
-.c18 {
+.c22 {
   display: flex;
   justify-content: space-between;
 }
 
-.c15 {
+.c18 {
   position: relative;
 }
 
-.c16 {
+.c19 {
   position: relative;
 }
 
-.c16 .skjemaelement {
+.c19 .skjemaelement {
   margin-bottom: 0;
 }
 
-.c14 {
+.c20 {
+  display: inline-block;
+  float: right;
+}
+
+.c17 {
   padding-top: 1rem;
 }
 
-.c14 .inputPanelGruppe__inner {
+.c17 .inputPanelGruppe__inner {
   display: flex;
 }
 
-.c14 .inputPanelGruppe__inner >* {
+.c17 .inputPanelGruppe__inner >* {
   flex-grow: 1;
 }
 
-.c14 label {
+.c17 label {
   font-weight: 600;
   margin-bottom: 0.1rem;
 }
 
-.c14 .skjemaelement {
+.c17 .skjemaelement {
   margin-bottom: 0.7rem;
 }
 
-.c17 {
+.c21 {
   display: flex;
   justify-content: space-between;
 }
 
-.c17 button {
+.c21 button {
   margin: 0;
 }
 
@@ -249,25 +289,25 @@ exports[`Viser traad med verktøylinje 1`] = `
 }
 
 @media print {
-  .c23 {
+  .c27 {
     page-break-inside: avoid;
     border: solid 0.0625rem #78706a;
     margin-bottom: 2rem;
   }
 
-  .c23 .snakkeboble__snakkeboble-pil-container,
-  .c23 .nav-ikon,
-  .c23 .bruker-ikon {
+  .c27 .snakkeboble__snakkeboble-pil-container,
+  .c27 .nav-ikon,
+  .c27 .bruker-ikon {
     display: none;
   }
 
-  .c23 .snakkeboble-panel {
+  .c27 .snakkeboble-panel {
     flex-basis: 100%;
   }
 }
 
 @media print {
-  .c22 {
+  .c26 {
     display: none;
   }
 }
@@ -679,42 +719,584 @@ exports[`Viser traad med verktøylinje 1`] = `
         <section
           class="c13"
         >
-          <svg
-            aria-label="Laster innhold"
-            class="spinner spinner--xl"
-            focusable="false"
-            height="32"
-            kind="spinner-negativ"
-            preserveAspectRatio="xMidYMid"
-            viewBox="0 0 50 50"
-            width="32"
+          <h2
+            class="sr-only"
           >
-            <title>
-              Venter...
-            </title>
-            <circle
-              cx="25"
-              cy="25"
-              fill="none"
-              r="20"
-              stroke="#eee"
-              stroke-width="5"
-              xmlns="http://www.w3.org/2000/svg"
+            Velg sak
+          </h2>
+          <form
+            class="c14"
+          >
+            <div
+              class="skjemaelement c15"
+            >
+              <input
+                aria-invalid="false"
+                checked=""
+                class="skjemaelement__input radioknapp"
+                id="Helt tilfeldig ID"
+                name="journalforing-sakgruppe"
+                type="radio"
+                value="Fagsaker"
+              />
+              <label
+                class="skjemaelement__label"
+                for="Helt tilfeldig ID"
+              >
+                Fagsaker
+              </label>
+            </div>
+            <div
+              class="skjemaelement c15"
+            >
+              <input
+                aria-invalid="false"
+                class="skjemaelement__input radioknapp"
+                id="Helt tilfeldig ID"
+                name="journalforing-sakgruppe"
+                type="radio"
+                value="Generelle saker"
+              />
+              <label
+                class="skjemaelement__label"
+                for="Helt tilfeldig ID"
+              >
+                Generelle saker
+              </label>
+            </div>
+          </form>
+          <div />
+          <div
+            class="ekspanderbartPanel c16 blokk-xxxs ekspanderbartPanel--lukket ekspanderbartPanel--border"
+          >
+            <button
+              aria-controls="Helt tilfeldig ID"
+              aria-expanded="false"
+              class="ekspanderbartPanel__hode"
+              id="Helt tilfeldig ID"
+              type="button"
+            >
+              <div
+                class="ekspanderbartPanel__flex-wrapper"
+              >
+                <span
+                  class="ekspanderbartPanel__tittel"
+                >
+                  <h4
+                    class="typo-element"
+                  >
+                    Arbeidsavklaringspenger
+                  </h4>
+                </span>
+                <span
+                  class="ekspanderbartPanel__indikator"
+                />
+              </div>
+            </button>
+            <div
+              aria-labelledby="Helt tilfeldig ID"
+              id="Helt tilfeldig ID"
+              role="region"
             />
-            <circle
-              cx="25"
-              cy="25"
-              fill="none"
-              r="20"
-              stroke="#888"
-              stroke-dasharray="50 155"
-              stroke-linecap="round"
-              stroke-width="5"
+          </div>
+          <div
+            class="ekspanderbartPanel c16 blokk-xxxs ekspanderbartPanel--lukket ekspanderbartPanel--border"
+          >
+            <button
+              aria-controls="Helt tilfeldig ID"
+              aria-expanded="false"
+              class="ekspanderbartPanel__hode"
+              id="Helt tilfeldig ID"
+              type="button"
+            >
+              <div
+                class="ekspanderbartPanel__flex-wrapper"
+              >
+                <span
+                  class="ekspanderbartPanel__tittel"
+                >
+                  <h4
+                    class="typo-element"
+                  >
+                    Barnetrygd
+                  </h4>
+                </span>
+                <span
+                  class="ekspanderbartPanel__indikator"
+                />
+              </div>
+            </button>
+            <div
+              aria-labelledby="Helt tilfeldig ID"
+              id="Helt tilfeldig ID"
+              role="region"
             />
-          </svg>
+          </div>
+          <div
+            class="ekspanderbartPanel c16 blokk-xxxs ekspanderbartPanel--lukket ekspanderbartPanel--border"
+          >
+            <button
+              aria-controls="Helt tilfeldig ID"
+              aria-expanded="false"
+              class="ekspanderbartPanel__hode"
+              id="Helt tilfeldig ID"
+              type="button"
+            >
+              <div
+                class="ekspanderbartPanel__flex-wrapper"
+              >
+                <span
+                  class="ekspanderbartPanel__tittel"
+                >
+                  <h4
+                    class="typo-element"
+                  >
+                    Bidrag
+                  </h4>
+                </span>
+                <span
+                  class="ekspanderbartPanel__indikator"
+                />
+              </div>
+            </button>
+            <div
+              aria-labelledby="Helt tilfeldig ID"
+              id="Helt tilfeldig ID"
+              role="region"
+            />
+          </div>
+          <div
+            class="ekspanderbartPanel c16 blokk-xxxs ekspanderbartPanel--lukket ekspanderbartPanel--border"
+          >
+            <button
+              aria-controls="Helt tilfeldig ID"
+              aria-expanded="false"
+              class="ekspanderbartPanel__hode"
+              id="Helt tilfeldig ID"
+              type="button"
+            >
+              <div
+                class="ekspanderbartPanel__flex-wrapper"
+              >
+                <span
+                  class="ekspanderbartPanel__tittel"
+                >
+                  <h4
+                    class="typo-element"
+                  >
+                    Dagpenger
+                  </h4>
+                </span>
+                <span
+                  class="ekspanderbartPanel__indikator"
+                />
+              </div>
+            </button>
+            <div
+              aria-labelledby="Helt tilfeldig ID"
+              id="Helt tilfeldig ID"
+              role="region"
+            />
+          </div>
+          <div
+            class="ekspanderbartPanel c16 blokk-xxxs ekspanderbartPanel--lukket ekspanderbartPanel--border"
+          >
+            <button
+              aria-controls="Helt tilfeldig ID"
+              aria-expanded="false"
+              class="ekspanderbartPanel__hode"
+              id="Helt tilfeldig ID"
+              type="button"
+            >
+              <div
+                class="ekspanderbartPanel__flex-wrapper"
+              >
+                <span
+                  class="ekspanderbartPanel__tittel"
+                >
+                  <h4
+                    class="typo-element"
+                  >
+                    Enslig forsørger
+                  </h4>
+                </span>
+                <span
+                  class="ekspanderbartPanel__indikator"
+                />
+              </div>
+            </button>
+            <div
+              aria-labelledby="Helt tilfeldig ID"
+              id="Helt tilfeldig ID"
+              role="region"
+            />
+          </div>
+          <div
+            class="ekspanderbartPanel c16 blokk-xxxs ekspanderbartPanel--lukket ekspanderbartPanel--border"
+          >
+            <button
+              aria-controls="Helt tilfeldig ID"
+              aria-expanded="false"
+              class="ekspanderbartPanel__hode"
+              id="Helt tilfeldig ID"
+              type="button"
+            >
+              <div
+                class="ekspanderbartPanel__flex-wrapper"
+              >
+                <span
+                  class="ekspanderbartPanel__tittel"
+                >
+                  <h4
+                    class="typo-element"
+                  >
+                    Foreldre- og svangerskapspenger
+                  </h4>
+                </span>
+                <span
+                  class="ekspanderbartPanel__indikator"
+                />
+              </div>
+            </button>
+            <div
+              aria-labelledby="Helt tilfeldig ID"
+              id="Helt tilfeldig ID"
+              role="region"
+            />
+          </div>
+          <div
+            class="ekspanderbartPanel c16 blokk-xxxs ekspanderbartPanel--lukket ekspanderbartPanel--border"
+          >
+            <button
+              aria-controls="Helt tilfeldig ID"
+              aria-expanded="false"
+              class="ekspanderbartPanel__hode"
+              id="Helt tilfeldig ID"
+              type="button"
+            >
+              <div
+                class="ekspanderbartPanel__flex-wrapper"
+              >
+                <span
+                  class="ekspanderbartPanel__tittel"
+                >
+                  <h4
+                    class="typo-element"
+                  >
+                    Gravferdsstønad
+                  </h4>
+                </span>
+                <span
+                  class="ekspanderbartPanel__indikator"
+                />
+              </div>
+            </button>
+            <div
+              aria-labelledby="Helt tilfeldig ID"
+              id="Helt tilfeldig ID"
+              role="region"
+            />
+          </div>
+          <div
+            class="ekspanderbartPanel c16 blokk-xxxs ekspanderbartPanel--lukket ekspanderbartPanel--border"
+          >
+            <button
+              aria-controls="Helt tilfeldig ID"
+              aria-expanded="false"
+              class="ekspanderbartPanel__hode"
+              id="Helt tilfeldig ID"
+              type="button"
+            >
+              <div
+                class="ekspanderbartPanel__flex-wrapper"
+              >
+                <span
+                  class="ekspanderbartPanel__tittel"
+                >
+                  <h4
+                    class="typo-element"
+                  >
+                    Hjelpemidler
+                  </h4>
+                </span>
+                <span
+                  class="ekspanderbartPanel__indikator"
+                />
+              </div>
+            </button>
+            <div
+              aria-labelledby="Helt tilfeldig ID"
+              id="Helt tilfeldig ID"
+              role="region"
+            />
+          </div>
+          <div
+            class="ekspanderbartPanel c16 blokk-xxxs ekspanderbartPanel--lukket ekspanderbartPanel--border"
+          >
+            <button
+              aria-controls="Helt tilfeldig ID"
+              aria-expanded="false"
+              class="ekspanderbartPanel__hode"
+              id="Helt tilfeldig ID"
+              type="button"
+            >
+              <div
+                class="ekspanderbartPanel__flex-wrapper"
+              >
+                <span
+                  class="ekspanderbartPanel__tittel"
+                >
+                  <h4
+                    class="typo-element"
+                  >
+                    Kontantstøtte
+                  </h4>
+                </span>
+                <span
+                  class="ekspanderbartPanel__indikator"
+                />
+              </div>
+            </button>
+            <div
+              aria-labelledby="Helt tilfeldig ID"
+              id="Helt tilfeldig ID"
+              role="region"
+            />
+          </div>
+          <div
+            class="ekspanderbartPanel c16 blokk-xxxs ekspanderbartPanel--lukket ekspanderbartPanel--border"
+          >
+            <button
+              aria-controls="Helt tilfeldig ID"
+              aria-expanded="false"
+              class="ekspanderbartPanel__hode"
+              id="Helt tilfeldig ID"
+              type="button"
+            >
+              <div
+                class="ekspanderbartPanel__flex-wrapper"
+              >
+                <span
+                  class="ekspanderbartPanel__tittel"
+                >
+                  <h4
+                    class="typo-element"
+                  >
+                    Medlemskap
+                  </h4>
+                </span>
+                <span
+                  class="ekspanderbartPanel__indikator"
+                />
+              </div>
+            </button>
+            <div
+              aria-labelledby="Helt tilfeldig ID"
+              id="Helt tilfeldig ID"
+              role="region"
+            />
+          </div>
+          <div
+            class="ekspanderbartPanel c16 blokk-xxxs ekspanderbartPanel--lukket ekspanderbartPanel--border"
+          >
+            <button
+              aria-controls="Helt tilfeldig ID"
+              aria-expanded="false"
+              class="ekspanderbartPanel__hode"
+              id="Helt tilfeldig ID"
+              type="button"
+            >
+              <div
+                class="ekspanderbartPanel__flex-wrapper"
+              >
+                <span
+                  class="ekspanderbartPanel__tittel"
+                >
+                  <h4
+                    class="typo-element"
+                  >
+                    Oppfølging
+                  </h4>
+                </span>
+                <span
+                  class="ekspanderbartPanel__indikator"
+                />
+              </div>
+            </button>
+            <div
+              aria-labelledby="Helt tilfeldig ID"
+              id="Helt tilfeldig ID"
+              role="region"
+            />
+          </div>
+          <div
+            class="ekspanderbartPanel c16 blokk-xxxs ekspanderbartPanel--lukket ekspanderbartPanel--border"
+          >
+            <button
+              aria-controls="Helt tilfeldig ID"
+              aria-expanded="false"
+              class="ekspanderbartPanel__hode"
+              id="Helt tilfeldig ID"
+              type="button"
+            >
+              <div
+                class="ekspanderbartPanel__flex-wrapper"
+              >
+                <span
+                  class="ekspanderbartPanel__tittel"
+                >
+                  <h4
+                    class="typo-element"
+                  >
+                    Pensjon
+                  </h4>
+                </span>
+                <span
+                  class="ekspanderbartPanel__indikator"
+                />
+              </div>
+            </button>
+            <div
+              aria-labelledby="Helt tilfeldig ID"
+              id="Helt tilfeldig ID"
+              role="region"
+            />
+          </div>
+          <div
+            class="ekspanderbartPanel c16 blokk-xxxs ekspanderbartPanel--lukket ekspanderbartPanel--border"
+          >
+            <button
+              aria-controls="Helt tilfeldig ID"
+              aria-expanded="false"
+              class="ekspanderbartPanel__hode"
+              id="Helt tilfeldig ID"
+              type="button"
+            >
+              <div
+                class="ekspanderbartPanel__flex-wrapper"
+              >
+                <span
+                  class="ekspanderbartPanel__tittel"
+                >
+                  <h4
+                    class="typo-element"
+                  >
+                    Sykepenger
+                  </h4>
+                </span>
+                <span
+                  class="ekspanderbartPanel__indikator"
+                />
+              </div>
+            </button>
+            <div
+              aria-labelledby="Helt tilfeldig ID"
+              id="Helt tilfeldig ID"
+              role="region"
+            />
+          </div>
+          <div
+            class="ekspanderbartPanel c16 blokk-xxxs ekspanderbartPanel--lukket ekspanderbartPanel--border"
+          >
+            <button
+              aria-controls="Helt tilfeldig ID"
+              aria-expanded="false"
+              class="ekspanderbartPanel__hode"
+              id="Helt tilfeldig ID"
+              type="button"
+            >
+              <div
+                class="ekspanderbartPanel__flex-wrapper"
+              >
+                <span
+                  class="ekspanderbartPanel__tittel"
+                >
+                  <h4
+                    class="typo-element"
+                  >
+                    Tiltakspenger
+                  </h4>
+                </span>
+                <span
+                  class="ekspanderbartPanel__indikator"
+                />
+              </div>
+            </button>
+            <div
+              aria-labelledby="Helt tilfeldig ID"
+              id="Helt tilfeldig ID"
+              role="region"
+            />
+          </div>
+          <div
+            class="ekspanderbartPanel c16 blokk-xxxs ekspanderbartPanel--lukket ekspanderbartPanel--border"
+          >
+            <button
+              aria-controls="Helt tilfeldig ID"
+              aria-expanded="false"
+              class="ekspanderbartPanel__hode"
+              id="Helt tilfeldig ID"
+              type="button"
+            >
+              <div
+                class="ekspanderbartPanel__flex-wrapper"
+              >
+                <span
+                  class="ekspanderbartPanel__tittel"
+                >
+                  <h4
+                    class="typo-element"
+                  >
+                    Uføretrygd
+                  </h4>
+                </span>
+                <span
+                  class="ekspanderbartPanel__indikator"
+                />
+              </div>
+            </button>
+            <div
+              aria-labelledby="Helt tilfeldig ID"
+              id="Helt tilfeldig ID"
+              role="region"
+            />
+          </div>
+          <div
+            class="ekspanderbartPanel c16 blokk-xxxs ekspanderbartPanel--lukket ekspanderbartPanel--border"
+          >
+            <button
+              aria-controls="Helt tilfeldig ID"
+              aria-expanded="false"
+              class="ekspanderbartPanel__hode"
+              id="Helt tilfeldig ID"
+              type="button"
+            >
+              <div
+                class="ekspanderbartPanel__flex-wrapper"
+              >
+                <span
+                  class="ekspanderbartPanel__tittel"
+                >
+                  <h4
+                    class="typo-element"
+                  >
+                    Yrkesskade / Menerstatning
+                  </h4>
+                </span>
+                <span
+                  class="ekspanderbartPanel__indikator"
+                />
+              </div>
+            </button>
+            <div
+              aria-labelledby="Helt tilfeldig ID"
+              id="Helt tilfeldig ID"
+              role="region"
+            />
+          </div>
         </section>
         <div
-          class="c14"
+          class="c17"
         >
           <form>
             <p
@@ -821,11 +1403,11 @@ exports[`Viser traad med verktøylinje 1`] = `
               aria-expanded="false"
               aria-haspopup="listbox"
               aria-labelledby="downshift-0-label"
-              class="c15"
+              class="c18"
               role="combobox"
             >
               <div
-                class="c16"
+                class="c19"
               >
                 <div
                   class="skjemaelement"
@@ -837,6 +1419,12 @@ exports[`Viser traad med verktøylinje 1`] = `
                     <span>
                       Velg enhet
                     </span>
+                    <button
+                      class="c4 c20"
+                      type="button"
+                    >
+                      Sett til min oppgaveliste
+                    </button>
                   </label>
                   <input
                     aria-autocomplete="list"
@@ -856,11 +1444,11 @@ exports[`Viser traad med verktøylinje 1`] = `
               aria-expanded="false"
               aria-haspopup="listbox"
               aria-labelledby="downshift-1-label"
-              class="c15"
+              class="c18"
               role="combobox"
             >
               <div
-                class="c16"
+                class="c19"
               >
                 <div
                   class="skjemaelement"
@@ -930,16 +1518,18 @@ exports[`Viser traad med verktøylinje 1`] = `
                   class="skjemaelement__input textarea--medMeta"
                   id="beskrivelse"
                   name="beskrivelse"
-                  style="height: 30px;"
+                  style="height: 25px;"
                 />
               </div>
               <div
                 aria-hidden="true"
                 class="textareamirror"
-              />
+              >
+                 
+              </div>
             </div>
             <div
-              class="c17"
+              class="c21"
             >
               <button
                 class="knapp knapp--hoved"
@@ -1033,7 +1623,7 @@ exports[`Viser traad med verktøylinje 1`] = `
             />
           </fieldset>
           <div
-            class="c18"
+            class="c22"
           >
             <button
               class="knapp knapp--hoved"
@@ -1052,18 +1642,18 @@ exports[`Viser traad med verktøylinje 1`] = `
       </div>
     </article>
     <section
-      class="c19"
+      class="c23"
     >
       <div
         class="panel"
       >
         <h2
-          class="typo-undertittel c20"
+          class="typo-undertittel c24"
         >
           Ukjent meldingstype: undefined
         </h2>
         <div
-          class="c21"
+          class="c25"
         >
           <button
             class="knapp knapp--hoved"
@@ -1079,7 +1669,7 @@ exports[`Viser traad med verktøylinje 1`] = `
           Ukjent meldingstype: undefined 13.08.2019 00:00
         </h3>
         <div
-          class="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
+          class="ekspanderbartPanel c26 ekspanderbartPanel--lukket"
         >
           <button
             aria-controls="Helt tilfeldig ID"
@@ -1115,7 +1705,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         aria-label="Dialog"
       >
         <li
-          class="c23 snakkeboble_ikoner"
+          class="c27 snakkeboble_ikoner"
         >
           <article
             aria-labelledby="Helt tilfeldig ID"
@@ -1140,7 +1730,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                   class="snakkeboble-panel__tekst"
                 >
                   <div
-                    class="c24"
+                    class="c28"
                   >
                     <div>
                       <p>
@@ -1149,23 +1739,23 @@ exports[`Viser traad med verktøylinje 1`] = `
                     </div>
                     <div>
                       <div
-                        class="c25"
+                        class="c29"
                       >
                         <p
-                          class="c26"
+                          class="c30"
                         >
                           27.07.2019 00:00
                         </p>
                         <p
-                          class="c26"
+                          class="c30"
                         >
                           Skrevet av Kristoffer Fredriksen (xy70r8)
                         </p>
                         <div
-                          class="c27"
+                          class="c31"
                         >
                           <p
-                            class="c26"
+                            class="c30"
                           >
                             Lest: 23.07.2019 00:00
                           </p>
@@ -1202,7 +1792,7 @@ exports[`Viser traad med verktøylinje 1`] = `
           </article>
         </li>
         <li
-          class="c23 snakkeboble_ikoner"
+          class="c27 snakkeboble_ikoner"
         >
           <article
             aria-labelledby="Helt tilfeldig ID"
@@ -1227,7 +1817,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                   class="snakkeboble-panel__tekst"
                 >
                   <div
-                    class="c24"
+                    class="c28"
                   >
                     <div>
                       <p>
@@ -1236,15 +1826,15 @@ exports[`Viser traad med verktøylinje 1`] = `
                     </div>
                     <div>
                       <div
-                        class="c25"
+                        class="c29"
                       >
                         <p
-                          class="c26"
+                          class="c30"
                         >
                           16.07.2019 00:00
                         </p>
                         <div
-                          class="c27"
+                          class="c31"
                         />
                       </div>
                     </div>
@@ -1255,7 +1845,7 @@ exports[`Viser traad med verktøylinje 1`] = `
           </article>
         </li>
         <li
-          class="c23 snakkeboble_ikoner"
+          class="c27 snakkeboble_ikoner"
         >
           <article
             aria-labelledby="Helt tilfeldig ID"
@@ -1280,7 +1870,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                   class="snakkeboble-panel__tekst"
                 >
                   <div
-                    class="c24"
+                    class="c28"
                   >
                     <div>
                       <p>
@@ -1289,15 +1879,15 @@ exports[`Viser traad med verktøylinje 1`] = `
                     </div>
                     <div>
                       <div
-                        class="c25"
+                        class="c29"
                       >
                         <p
-                          class="c26"
+                          class="c30"
                         >
                           12.07.2019 00:00
                         </p>
                         <div
-                          class="c27"
+                          class="c31"
                         />
                       </div>
                     </div>
@@ -1308,7 +1898,7 @@ exports[`Viser traad med verktøylinje 1`] = `
           </article>
         </li>
         <li
-          class="c23 snakkeboble_ikoner"
+          class="c27 snakkeboble_ikoner"
         >
           <article
             aria-labelledby="Helt tilfeldig ID"
@@ -1333,7 +1923,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                   class="snakkeboble-panel__tekst"
                 >
                   <div
-                    class="c24"
+                    class="c28"
                   >
                     <div>
                       <p>
@@ -1342,23 +1932,23 @@ exports[`Viser traad med verktøylinje 1`] = `
                     </div>
                     <div>
                       <div
-                        class="c25"
+                        class="c29"
                       >
                         <p
-                          class="c26"
+                          class="c30"
                         >
                           07.07.2019 00:00
                         </p>
                         <p
-                          class="c26"
+                          class="c30"
                         >
                           Skrevet av Sander Hansen (nzxo4q)
                         </p>
                         <div
-                          class="c27"
+                          class="c31"
                         >
                           <p
-                            class="c26"
+                            class="c30"
                           >
                             Lest: 12.07.2019 00:00
                           </p>

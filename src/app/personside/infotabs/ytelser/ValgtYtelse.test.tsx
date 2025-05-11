@@ -1,40 +1,28 @@
-import { render } from '@testing-library/react';
+import { act } from '@testing-library/react';
 import { statiskForeldrepengeMock } from '../../../../mock/ytelse/statiskForeldrepengeMock';
 import { statiskSykepengerMock } from '../../../../mock/ytelse/statiskSykepengerMock';
-import TestProvider from '../../../../test/Testprovider';
+import { renderWithProviders } from '../../../../test/Testprovider';
 import { setupReactQueryMocks } from '../../../../test/testStore';
 import ValgtYtelse from './ValgtYtelse';
 import { pleiepengerTestData } from './pleiepenger/pleiepengerTestData';
 
-test('Om foreldrepenger matcher snapshot', () => {
+test('Om foreldrepenger matcher snapshot', async () => {
     setupReactQueryMocks();
-    const resultat = render(
-        <TestProvider>
-            <ValgtYtelse valgtYtelse={statiskForeldrepengeMock} />
-        </TestProvider>
-    );
+    const resultat = await act(() => renderWithProviders(<ValgtYtelse valgtYtelse={statiskForeldrepengeMock} />));
 
     expect(resultat.asFragment()).toMatchSnapshot();
 });
 
-test('Om pleiepenger matcher snapshot', () => {
+test('Om pleiepenger matcher snapshot', async () => {
     setupReactQueryMocks();
-    const resultat = render(
-        <TestProvider>
-            <ValgtYtelse valgtYtelse={pleiepengerTestData} />
-        </TestProvider>
-    );
+    const resultat = await act(() => renderWithProviders(<ValgtYtelse valgtYtelse={pleiepengerTestData} />));
 
     expect(resultat.asFragment()).toMatchSnapshot();
 });
 
-test('Om sykepenger matcher snapshot', () => {
+test('Om sykepenger matcher snapshot', async () => {
     setupReactQueryMocks();
-    const resultat = render(
-        <TestProvider>
-            <ValgtYtelse valgtYtelse={statiskSykepengerMock} />
-        </TestProvider>
-    );
+    const resultat = await act(() => renderWithProviders(<ValgtYtelse valgtYtelse={statiskSykepengerMock} />));
 
     expect(resultat.asFragment()).toMatchSnapshot();
 });

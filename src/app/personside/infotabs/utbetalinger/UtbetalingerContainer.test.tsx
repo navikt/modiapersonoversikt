@@ -1,11 +1,11 @@
-import { render } from '@testing-library/react';
+import { act } from '@testing-library/react';
 import { statiskMockUtbetaling } from '../../../../mock/utbetalinger/statiskMockUtbetaling';
 import utbetalingerResource from '../../../../rest/resources/utbetalingerResource';
-import TestProvider from '../../../../test/Testprovider';
-import { getTestStore, mockReactQuery, setupReactQueryMocks } from '../../../../test/testStore';
+import { renderWithProviders } from '../../../../test/Testprovider';
+import { mockReactQuery, setupReactQueryMocks } from '../../../../test/testStore';
 import UtbetalingerContainer from './UtbetalingerContainer';
 
-test('Viser utbetalingercontainer med alt innhold', () => {
+test('Viser utbetalingercontainer med alt innhold', async () => {
     vi.useRealTimers();
     setupReactQueryMocks();
     mockReactQuery(utbetalingerResource.useFetch, {
@@ -13,13 +13,7 @@ test('Viser utbetalingercontainer med alt innhold', () => {
         periode: { sluttDato: '1986-12-28', startDato: '1905-01-01' }
     });
 
-    const testStore = getTestStore();
-
-    const visittkortheader = render(
-        <TestProvider customStore={testStore}>
-            <UtbetalingerContainer />
-        </TestProvider>
-    );
+    const visittkortheader = await act(() => renderWithProviders(<UtbetalingerContainer />));
     const json = visittkortheader.asFragment();
     expect(json).toMatchSnapshot();
 });

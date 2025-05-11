@@ -1,17 +1,17 @@
-import { render } from '@testing-library/react';
+import { act } from '@testing-library/react';
 import { statiskTraadMock } from '../../../../../mock/meldinger/statiskTraadMock';
-import TestProvider from '../../../../../test/Testprovider';
+import { renderWithProviders } from '../../../../../test/Testprovider';
 import { setupReactQueryMocks } from '../../../../../test/testStore';
 import TraadListe from './TraadListe';
 
-test('Viser Traadliste', () => {
+test('Viser Traadliste', async () => {
     setupReactQueryMocks();
     const traader = [statiskTraadMock];
 
-    const container = render(
-        <TestProvider>
+    const container = await act(() =>
+        renderWithProviders(
             <TraadListe traader={traader} valgtTraad={traader[0]} traaderEtterSokOgFiltrering={traader} />
-        </TestProvider>
+        )
     );
 
     const json = container.asFragment();
