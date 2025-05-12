@@ -198,11 +198,11 @@ importers:
         specifier: ^1.0.22
         version: 1.1.1
       openapi-fetch:
-        specifier: ^0.13.7
-        version: 0.13.7
+        specifier: ^0.13.8
+        version: 0.13.8
       openapi-react-query:
         specifier: ^0.4.1
-        version: 0.4.1(@tanstack/react-query@5.75.4(react@19.1.0))(openapi-fetch@0.13.7)
+        version: 0.4.1(@tanstack/react-query@5.75.4(react@19.1.0))(openapi-fetch@0.13.8)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -3126,8 +3126,8 @@ packages:
     resolution: {integrity: sha512-VXJjc87FScF88uafS3JllDgvAm+c/Slfz06lorj2uAY34rlUu0Nt+v8wreiImcrgAjjIHp1rXpTDlLOGw29WwQ==}
     engines: {node: '>=18'}
 
-  openapi-fetch@0.13.7:
-    resolution: {integrity: sha512-3QdcAgvLFZ4j9Rcja7/Tq1j0qyv/LPqnHzwtMz5gKj6iddTdP48r+FZd8rmb+6xL9CdnJ5OmgdM0CpgGBi6Fgg==}
+  openapi-fetch@0.13.8:
+    resolution: {integrity: sha512-yJ4QKRyNxE44baQ9mY5+r/kAzZ8yXMemtNAOFwOzRXJscdjSxxzWSNlyBAr+o5JjkUw9Lc3W7OIoca0cY3PYnQ==}
 
   openapi-react-query@0.4.1:
     resolution: {integrity: sha512-8GfaaOOigG7XWEZC9uOTeFdByBAIPI4A8jg4L7MKMH197kcILI31gk5ljW31vAhmVSyH0zPwn2Bt+i453dlT6w==}
@@ -6710,14 +6710,14 @@ snapshots:
     dependencies:
       mimic-function: 5.0.1
 
-  openapi-fetch@0.13.7:
+  openapi-fetch@0.13.8:
     dependencies:
       openapi-typescript-helpers: 0.0.15
 
-  openapi-react-query@0.4.1(@tanstack/react-query@5.75.4(react@19.1.0))(openapi-fetch@0.13.7):
+  openapi-react-query@0.4.1(@tanstack/react-query@5.75.4(react@19.1.0))(openapi-fetch@0.13.8):
     dependencies:
       '@tanstack/react-query': 5.75.4(react@19.1.0)
-      openapi-fetch: 0.13.7
+      openapi-fetch: 0.13.8
       openapi-typescript-helpers: 0.0.15
 
   openapi-typescript-helpers@0.0.15: {}
