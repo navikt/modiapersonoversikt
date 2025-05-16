@@ -122,7 +122,7 @@
     "devDependencies": {
         "@biomejs/biome": "1.9.4",
         "@eslint/js": "^9.25.1",
-        "@faker-js/faker": "^9.7.0",
+        "@faker-js/faker": "^9.8.0",
         "@playwright/test": "^1.52.0",
         "@tailwindcss/postcss": "^4.1.6",
         "@tanstack/router-cli": "^1.120.3",
