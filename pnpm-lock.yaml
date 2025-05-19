@@ -253,8 +253,8 @@ importers:
         specifier: 1.9.4
         version: 1.9.4
       '@eslint/js':
-        specifier: ^9.26.0
-        version: 9.26.0
+        specifier: ^9.27.0
+        version: 9.27.0
       '@faker-js/faker':
         specifier: ^9.8.0
         version: 9.8.0
