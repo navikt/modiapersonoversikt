@@ -27,8 +27,8 @@ importers:
         specifier: ^7.21.1
         version: 7.21.1(@types/react@19.1.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@navikt/ds-tailwind':
-        specifier: ^7.21.1
-        version: 7.21.1
+        specifier: ^7.22.0
+        version: 7.22.0
       '@navikt/fnrvalidator':
         specifier: ^2.1.5
         version: 2.1.5
@@ -839,10 +839,6 @@ packages:
     resolution: {integrity: sha512-gtF186CXhIl1p4pJNGZw8Yc6RlshoePRvE0X91oPGb3vZ8pM3qOS9W9NGPat9LziaBV7XrJWGylNQXkGcnM3IQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@eslint/js@9.26.0':
-    resolution: {integrity: sha512-I9XlJawFdSMvWjDt6wksMCrgns5ggLNfFwFvnShsleWruvXM514Qxk8V246efTw+eo9JABvVz+u3q2RiAowKxQ==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
   '@eslint/js@9.27.0':
     resolution: {integrity: sha512-G5JD9Tu5HJEu4z2Uo4aHY2sLV64B7CDMXxFzqzjl3NKd6RVzSXNoE80jk7Y0lJkTTkjiIhBAqmlYwjuBY3tvpA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
@@ -997,8 +993,8 @@ packages:
       '@types/react': '>=17.0.30'
       react: '>=17.0.0 || >19.0.0-rc'
 
-  '@navikt/ds-tailwind@7.21.1':
-    resolution: {integrity: sha512-NwII7sP5WjOAClSihJPgkXAikOyTLVRDq15bBM4zRuybPtNW8GPCkTRzMQzT55ZycAjgZ+kcnm5VXbQmKNUrsg==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tailwind/7.21.1/74a680d8e55ab83791db28bb05940a64d81a2b38}
+  '@navikt/ds-tailwind@7.22.0':
+    resolution: {integrity: sha512-qhDCcn9AcxKPSNrjgFqLkjbvTAEFj9sPMqGoF/AhkiDtbdHQeUlT8QV99CKNlX6cZnUN6VpZ4ikvJaZNmH5pwQ==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tailwind/7.22.0/558cee1e89b79fa9aff3c5b449b6cd47b596c8ae}
 
   '@navikt/ds-tokens@7.21.1':
     resolution: {integrity: sha512-QUmQr7yXbN5CBoNBLb+Sp16nZEK8exdJgeOQdtpHq+GwWYlm8dm52W2M+HuG3VvDhr/FkBCkvMRphsJ05nwxEw==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/7.21.1/ca947d05a69efb44c4b146c8341852352915ec43}
@@ -4323,8 +4319,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@eslint/js@9.26.0': {}
-
   '@eslint/js@9.27.0': {}
 
   '@eslint/object-schema@2.1.6': {}
@@ -4493,7 +4487,7 @@ snapshots:
     transitivePeerDependencies:
       - react-dom
 
-  '@navikt/ds-tailwind@7.21.1': {}
+  '@navikt/ds-tailwind@7.22.0': {}
 
   '@navikt/ds-tokens@7.21.1': {}
 
