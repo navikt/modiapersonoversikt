@@ -43,11 +43,9 @@ export const JournalForingModal = ({ traad, open, setOpen }: Props) => {
             },
             {
                 onSuccess: () => {
-                    setTimeout(() => {
-                        setValgtSak(undefined);
-                        reset();
-                        setOpen(false);
-                    }, 1000);
+                    setValgtSak(undefined);
+                    reset();
+                    setOpen(false);
                 }
             }
         );
