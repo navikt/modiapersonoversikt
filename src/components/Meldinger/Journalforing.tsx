@@ -1,6 +1,6 @@
 import { Alert, Button, HGrid, Modal, VStack } from '@navikt/ds-react';
 import { useAtomValue } from 'jotai';
-import { useCallback, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FetchError } from 'src/api/api';
 import SakVelger from 'src/components/sakVelger/SakVelger';
 import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
@@ -12,26 +12,19 @@ import { kanTraadJournalforesV2 } from './List/utils';
 
 type Props = {
     traad: Traad;
-    open: boolean;
-    setOpen: (open: boolean) => void;
+    close: () => void;
 };
 
-export const JournalForingModal = ({ traad, open, setOpen }: Props) => {
+export const JournalForingModal = ({ traad, close }: Props) => {
     const fnr = usePersonAtomValue();
     const enhet = useAtomValue(aktivEnhetAtom) as string;
     const [valgtSak, setValgtSak] = useState<JournalforingSak | undefined>();
 
-    useEffect(() => {
-        if (open) {
-            setValgtSak(undefined);
-        }
-    }, [open]);
-
     const kanJournalfores = kanTraadJournalforesV2(traad);
 
-    const { mutate, isPending, reset, error, isError } = useJournalforMutation();
+    const { mutate, isPending, error, isError } = useJournalforMutation();
 
-    const journalFor = useCallback(() => {
+    const journalFor = () => {
         if (!valgtSak) {
             return;
         }
@@ -41,29 +34,12 @@ export const JournalForingModal = ({ traad, open, setOpen }: Props) => {
                 params: { path: { traadId: traad.traadId }, query: { enhet } },
                 body: { ...valgtSak, fnr }
             },
-            {
-                onSuccess: () => {
-                    setTimeout(() => {
-                        setValgtSak(undefined);
-                        reset();
-                        setOpen(false);
-                    }, 1000);
-                }
-            }
+            { onSuccess: close }
         );
-    }, [traad, fnr, enhet, mutate, reset, valgtSak, setOpen]);
+    };
 
     return (
-        <Modal
-            header={{ heading: 'Journalfør dialog' }}
-            open={open}
-            onClose={() => {
-                setOpen(false);
-                reset();
-                setValgtSak(undefined);
-            }}
-            closeOnBackdropClick
-        >
+        <Modal open onClose={close} header={{ heading: 'Journalfør dialog' }} closeOnBackdropClick>
             <Modal.Body className="overflow-y-hidden">
                 {kanJournalfores ? (
                     <SakVelger.Root
@@ -128,7 +104,7 @@ export const JournalForingModal = ({ traad, open, setOpen }: Props) => {
                 <Button onClick={journalFor} disabled={!valgtSak} loading={isPending}>
                     Journalfør
                 </Button>
-                <Button onClick={() => setOpen(false)} variant="secondary">
+                <Button onClick={close} variant="secondary">
                     Avbryt
                 </Button>
             </Modal.Footer>

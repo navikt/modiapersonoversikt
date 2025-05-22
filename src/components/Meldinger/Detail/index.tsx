@@ -146,7 +146,7 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
                 )}
             </VStack>
 
-            <JournalForingModal open={journalforingOpen} setOpen={setJournalforingOpen} traad={traad} />
+            {journalforingOpen && <JournalForingModal close={() => setJournalforingOpen(false)} traad={traad} />}
             <OppgaveModal open={oppgaveOpen} setOpen={setOppgaveOpen} traad={traad} />
         </Card>
     );
