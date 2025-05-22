@@ -39,7 +39,7 @@
     },
     "dependencies": {
         "@grafana/faro-react": "^1.18.1",
-        "@grafana/faro-web-sdk": "^1.18.1",
+        "@grafana/faro-web-sdk": "^1.18.2",
         "@grafana/faro-web-tracing": "^1.18.1",
         "@navikt/aksel-icons": "^7.22.0",
         "@navikt/ds-css": "^7.21.1",
