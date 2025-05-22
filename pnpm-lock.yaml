@@ -24,8 +24,8 @@ importers:
         specifier: ^7.22.0
         version: 7.22.0
       '@navikt/ds-react':
-        specifier: ^7.21.1
-        version: 7.21.1(@types/react@19.1.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^7.22.0
+        version: 7.22.0(@types/react@19.1.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@navikt/ds-tailwind':
         specifier: ^7.22.0
         version: 7.22.0
@@ -985,8 +985,8 @@ packages:
   '@navikt/ds-css@7.22.0':
     resolution: {integrity: sha512-DI2/iyY/pZmuYjVi5TuQWvBXRKCph4PPcHzkuUDJb52q8WRcG6x29ZMOe3+ipIOu70m+veXARv2wl5pE0k8HrA==, tarball: https://npm.pkg.github.com/download/@navikt/ds-css/7.22.0/b82a26d41583e5484f0f426a5fdfe2a43de140f9}
 
-  '@navikt/ds-react@7.21.1':
-    resolution: {integrity: sha512-LE15YmXsWraawObDWfhEfi+3waX46s+poulZ/qJjlKPaWCybpPDgfSEh2uuLMqKo+zm6C5xSjDmM/Srq90dzag==, tarball: https://npm.pkg.github.com/download/@navikt/ds-react/7.21.1/7388b4026118d513474af64cf27257a90f481fec}
+  '@navikt/ds-react@7.22.0':
+    resolution: {integrity: sha512-4fhSc5nxRy5ZgL46k1okqgkVwAnglyIiK1ucsPFI3znHCO9zOYyeYmc2HaE/X+fw8XF3AoSksJzISpL0bgVuAQ==, tarball: https://npm.pkg.github.com/download/@navikt/ds-react/7.22.0/cb6df10ed26fd8cb288c302e44e17370e5be90da}
     peerDependencies:
       '@types/react': '>=17.0.30'
       react: '>=17.0.0 || >19.0.0-rc'
@@ -994,8 +994,8 @@ packages:
   '@navikt/ds-tailwind@7.22.0':
     resolution: {integrity: sha512-qhDCcn9AcxKPSNrjgFqLkjbvTAEFj9sPMqGoF/AhkiDtbdHQeUlT8QV99CKNlX6cZnUN6VpZ4ikvJaZNmH5pwQ==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tailwind/7.22.0/558cee1e89b79fa9aff3c5b449b6cd47b596c8ae}
 
-  '@navikt/ds-tokens@7.21.1':
-    resolution: {integrity: sha512-QUmQr7yXbN5CBoNBLb+Sp16nZEK8exdJgeOQdtpHq+GwWYlm8dm52W2M+HuG3VvDhr/FkBCkvMRphsJ05nwxEw==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/7.21.1/ca947d05a69efb44c4b146c8341852352915ec43}
+  '@navikt/ds-tokens@7.22.0':
+    resolution: {integrity: sha512-FiE3bzpKg2U0ESAre5I2WDMFaN/xcpBDyViecjiNZZeJfTqRbSiKQpLADzZlhZj3tbcwz4aughCBVkZScNG0sQ==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/7.22.0/793c4e3da6051e5e6f3400dac9fbc27caf02864a}
 
   '@navikt/fnrvalidator@2.1.5':
     resolution: {integrity: sha512-uHzoL3ZTYwrF7OTKaihNf9xHH6S9WnGqz420HX4lEX+yu5367l+dYxI5OIRVT5MKWEDQ4DCVSAuJhoWValv6Fw==, tarball: https://npm.pkg.github.com/download/@navikt/fnrvalidator/2.1.5/e33cbc5693b14419bbcf4d5daee2ac9eeec532e5}
@@ -4503,12 +4503,12 @@ snapshots:
 
   '@navikt/ds-css@7.22.0': {}
 
-  '@navikt/ds-react@7.21.1(@types/react@19.1.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@navikt/ds-react@7.22.0(@types/react@19.1.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@floating-ui/react': 0.27.8(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@floating-ui/react-dom': 2.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@navikt/aksel-icons': 7.22.0
-      '@navikt/ds-tokens': 7.21.1
+      '@navikt/ds-tokens': 7.22.0
       '@types/react': 19.1.4
       clsx: 2.1.1
       date-fns: 4.1.0
@@ -4519,7 +4519,7 @@ snapshots:
 
   '@navikt/ds-tailwind@7.22.0': {}
 
-  '@navikt/ds-tokens@7.21.1': {}
+  '@navikt/ds-tokens@7.22.0': {}
 
   '@navikt/fnrvalidator@2.1.5': {}
 
