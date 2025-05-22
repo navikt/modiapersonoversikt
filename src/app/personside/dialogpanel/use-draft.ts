@@ -97,6 +97,9 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
     }, [lastConfirm, lastSent, timeout]);
 
     useEffect(() => {
+        // Disable websockets in vitest
+        if (process.env.VITEST) return;
+
         const urlProvider = async (ws: WebSocketImpl) => {
             const response: Response = await fetch(`${draftUrl}/api/generate-uid`);
             if (!response.ok) {
