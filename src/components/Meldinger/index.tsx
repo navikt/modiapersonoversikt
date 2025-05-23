@@ -38,7 +38,7 @@ export const MeldingerPage = () => {
                         Innboks
                     </Heading>
                 </HStack>
-                <ErrorBoundary boundaryName="traadlist" errorText={''}>
+                <ErrorBoundary boundaryName="traadlist">
                     <Suspense
                         fallback={
                             <VStack gap="2" marginInline="0 2">
