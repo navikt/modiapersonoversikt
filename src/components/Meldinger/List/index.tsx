@@ -1,8 +1,7 @@
-import { Alert, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, VStack } from '@navikt/ds-react';
 import { useNavigate, useSearch } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
-import { Suspense, useCallback, useMemo } from 'react';
-import ErrorBoundary from 'src/components/ErrorBoundary';
+import { useCallback, useMemo } from 'react';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
 import { datoSynkende } from 'src/utils/date-utils';
@@ -11,24 +10,10 @@ import { TraadItem } from './TraadItem';
 import { nyesteMelding, useFilterMeldinger } from './utils';
 
 export const TraadList = () => (
-    <ErrorBoundary boundaryName="traadlist">
-        <Suspense
-            fallback={
-                <VStack gap="2" marginInline="0 2">
-                    {Array(8)
-                        .keys()
-                        .map((i) => (
-                            <Skeleton key={i} variant="rounded" height={68} />
-                        ))}
-                </VStack>
-            }
-        >
-            <VStack minHeight="0" gap="2">
-                <TraadListFilterCard />
-                <Traader />
-            </VStack>
-        </Suspense>
-    </ErrorBoundary>
+    <VStack minHeight="0" gap="2">
+        <TraadListFilterCard />
+        <Traader />
+    </VStack>
 );
 
 const Traader = () => {
