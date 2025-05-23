@@ -14,9 +14,9 @@ type Props = {
 
 export const SendMelding = ({ lukkeKnapp }: Props) => {
     return (
-            <Suspense fallback={<Skeleton variant="rounded" height="100%" />}>
-                <SendMeldingContent lukkeKnapp={lukkeKnapp} />
-            </Suspense>
+        <Suspense fallback={<Skeleton variant="rounded" height="100%" />}>
+            <SendMeldingContent lukkeKnapp={lukkeKnapp} />
+        </Suspense>
     );
 };
 
