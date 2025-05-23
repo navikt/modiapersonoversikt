@@ -17,6 +17,9 @@
     "linter": {
         "enabled": true,
         "rules": {
+            "nursery": {
+                "useConsistentCurlyBraces": "warn"
+            },
             "recommended": true,
             "suspicious": {
                 "noArrayIndexKey": "warn"
