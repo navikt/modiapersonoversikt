@@ -5,7 +5,6 @@ import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
 import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
 import { TraadType } from 'src/lib/types/modiapersonoversikt-api';
 import Card from '../Card';
-import ErrorBoundary from '../ErrorBoundary';
 import { FortsettDialog } from './FortsettDialog';
 import NyMelding from './NyMelding';
 
@@ -15,11 +14,9 @@ type Props = {
 
 export const SendMelding = ({ lukkeKnapp }: Props) => {
     return (
-        <ErrorBoundary boundaryName="sendmelding">
-            <Suspense fallback={<Skeleton variant="rounded" height="100%" />}>
-                <SendMeldingContent lukkeKnapp={lukkeKnapp} />
-            </Suspense>
-        </ErrorBoundary>
+        <Suspense fallback={<Skeleton variant="rounded" height="100%" />}>
+            <SendMeldingContent lukkeKnapp={lukkeKnapp} />
+        </Suspense>
     );
 };
 
