@@ -325,8 +325,8 @@ importers:
         specifier: ^7.2.0
         version: 7.2.0(styled-components@6.1.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
       knip:
-        specifier: ^5.56.0
-        version: 5.56.0(@types/node@22.15.21)(typescript@5.8.3)
+        specifier: ^5.58.0
+        version: 5.58.0(@types/node@22.15.21)(typescript@5.8.3)
       less:
         specifier: ^4.3.0
         version: 4.3.0
@@ -975,8 +975,8 @@ packages:
     resolution: {integrity: sha512-wK+5pLK5XFmgtH3aQ2YVvA3HohS3xqV/OxuVOdNx9Wpnz7VE/fnC+e1A7ln6LFYeck7gOJ/dsZV6OLplOtAJ2w==}
     engines: {node: '>=18'}
 
-  '@napi-rs/wasm-runtime@0.2.9':
-    resolution: {integrity: sha512-OKRBiajrrxB9ATokgEQoG87Z25c67pCpYcCwmXYX8PBftC9pBfN18gnm/fh1wurSLEKIAt+QRFLFCQISrb66Jg==}
+  '@napi-rs/wasm-runtime@0.2.10':
+    resolution: {integrity: sha512-bCsCyeZEwVErsGmyPNSzwfwFn4OdxBj0mmv6hOFucB/k81Ojdu68RbZdxYsRQUPc9l6SU5F/cG+bXgWs3oUgsQ==}
 
   '@navikt/aksel-icons@7.22.0':
     resolution: {integrity: sha512-1hCTk4/zKjYD0pfvrHYOqQmP0r+8XyRG8tenSSVAtnOlyEYvWfUdQwczfGv0VbjYp/UPaSQbkWhpj5z48KF3SA==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/7.22.0/8cd947078332dbbc5f48e32d10746fd876acb581}
@@ -2537,8 +2537,8 @@ packages:
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
 
-  knip@5.56.0:
-    resolution: {integrity: sha512-4RNCi41ax0zzl7jloxiUAcomwHIW+tj201jfr7TmHkSvb1/LkChsfXH0JOFFesVHhtSrMw6Dv4N6fmfFd4sJ0Q==}
+  knip@5.58.0:
+    resolution: {integrity: sha512-U3+ADL9mylwia7bU85CYeHSdMI7DIpaCzH37NZ8rru/dgq56iyiS0oTELhfNaCYu+TcRyuijU2YQf9o0zUGA5w==}
     engines: {node: '>=18.18.0'}
     hasBin: true
     peerDependencies:
@@ -4459,7 +4459,7 @@ snapshots:
       outvariant: 1.4.3
       strict-event-emitter: 0.5.1
 
-  '@napi-rs/wasm-runtime@0.2.9':
+  '@napi-rs/wasm-runtime@0.2.10':
     dependencies:
       '@emnapi/core': 1.4.3
       '@emnapi/runtime': 1.4.3
@@ -4664,7 +4664,7 @@ snapshots:
 
   '@oxc-resolver/binding-wasm32-wasi@9.0.2':
     dependencies:
-      '@napi-rs/wasm-runtime': 0.2.9
+      '@napi-rs/wasm-runtime': 0.2.10
     optional: true
 
   '@oxc-resolver/binding-win32-arm64-msvc@9.0.2':
@@ -5993,7 +5993,7 @@ snapshots:
     dependencies:
       json-buffer: 3.0.1
 
-  knip@5.56.0(@types/node@22.15.21)(typescript@5.8.3):
+  knip@5.58.0(@types/node@22.15.21)(typescript@5.8.3):
     dependencies:
       '@nodelib/fs.walk': 1.2.8
       '@types/node': 22.15.21
