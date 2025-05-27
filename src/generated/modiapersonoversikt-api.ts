@@ -164,6 +164,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    '/rest/v2/ytelse/alle-ytelser': {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations['hentYtelser'];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     '/rest/v2/utbetaling': {
         parameters: {
             query?: never;
@@ -190,6 +206,22 @@ export interface paths {
         get: operations['harTilgang'];
         put?: never;
         post: operations['harTilgang_1'];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    '/rest/v2/tilgang/v2': {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations['harTilgangV2'];
         delete?: never;
         options?: never;
         head?: never;
@@ -1471,6 +1503,35 @@ export interface components {
         ForeldrepengerResponse: {
             foreldrepenger?: components['schemas']['Foreldrepenger'][];
         };
+        ForeldrepengerYtelse: components['schemas']['YtelseData'] & {
+            data: components['schemas']['Foreldrepenger'];
+        };
+        PensjonYtelse: components['schemas']['YtelseData'] & {
+            data: components['schemas']['PensjonSak'];
+        };
+        PleiepengerYtelse: components['schemas']['YtelseData'] & {
+            data: components['schemas']['Pleiepenger'];
+        };
+        SykepengerYtelse: components['schemas']['YtelseData'] & {
+            data: components['schemas']['Sykepenger'];
+        };
+        TiltakspengerYtelse: components['schemas']['YtelseData'] & {
+            data: components['schemas']['VedtakDTO'];
+        };
+        YtelseData: unknown;
+        YtelseResponse: {
+            ytelser?: components['schemas']['YtelseVedtak'][];
+        };
+        YtelseVedtak: {
+            /** @enum {string} */
+            ytelseType: YtelseVedtakYtelseType;
+            ytelseData:
+                | components['schemas']['ForeldrepengerYtelse']
+                | components['schemas']['PensjonYtelse']
+                | components['schemas']['PleiepengerYtelse']
+                | components['schemas']['SykepengerYtelse']
+                | components['schemas']['TiltakspengerYtelse'];
+        };
         Arbeidgiver: {
             orgnr: string;
             navn?: string;
@@ -1546,6 +1607,7 @@ export interface components {
         TilgangDTO: {
             harTilgang: boolean;
             ikkeTilgangArsak?: components['schemas']['DenyCause'];
+            message?: string;
             aktivIdent?: string;
         };
         Dokument: {
@@ -1710,7 +1772,7 @@ export interface components {
             type?: string;
             status?: string;
             datoKravMottat?: string;
-            vedtak?: components['schemas']['VedtakDTO'][];
+            vedtak?: components['schemas']['OppfolgingYtelseVedtakDTO'][];
             fom?: string;
             tom?: string;
             /** Format: int32 */
@@ -1726,13 +1788,20 @@ export interface components {
             /** Format: int32 */
             ukerIgjen?: number;
         });
+        OppfolgingYtelseVedtakDTO: {
+            aktivFra?: string;
+            aktivTil?: string;
+            aktivitetsfase?: string;
+            vedtakstatus?: string;
+            vedtakstype?: string;
+        };
         OppfolgingsYtelseDTO: {
             type: 'OppfolgingsYtelseDTO';
         } & (Omit<components['schemas']['YtelseDTO'], 'type'> & {
             type?: string;
             status?: string;
             datoKravMottat?: string;
-            vedtak?: components['schemas']['VedtakDTO'][];
+            vedtak?: components['schemas']['OppfolgingYtelseVedtakDTO'][];
             fom?: string;
             tom?: string;
             /** Format: int32 */
@@ -1871,7 +1940,6 @@ export interface components {
             avsluttetDato?: string;
             sistEndretAv?: string;
             sladding?: boolean;
-            lukketAv?: string;
             meldinger: components['schemas']['MeldingDTO'][];
             journalposter: components['schemas']['Journalpost'][];
         };
@@ -2204,6 +2272,14 @@ export type ForeldrepengePeriode = components['schemas']['ForeldrepengePeriode']
 export type Foreldrepenger = components['schemas']['Foreldrepenger'];
 export type ForeldrepengerArbeidsforhold = components['schemas']['ForeldrepengerArbeidsforhold'];
 export type ForeldrepengerResponse = components['schemas']['ForeldrepengerResponse'];
+export type ForeldrepengerYtelse = components['schemas']['ForeldrepengerYtelse'];
+export type PensjonYtelse = components['schemas']['PensjonYtelse'];
+export type PleiepengerYtelse = components['schemas']['PleiepengerYtelse'];
+export type SykepengerYtelse = components['schemas']['SykepengerYtelse'];
+export type TiltakspengerYtelse = components['schemas']['TiltakspengerYtelse'];
+export type YtelseData = components['schemas']['YtelseData'];
+export type YtelseResponse = components['schemas']['YtelseResponse'];
+export type YtelseVedtak = components['schemas']['YtelseVedtak'];
 export type Arbeidgiver = components['schemas']['Arbeidgiver'];
 export type Skatt = components['schemas']['Skatt'];
 export type Trekk = components['schemas']['Trekk'];
@@ -2231,6 +2307,7 @@ export type OppfolgingDto = components['schemas']['OppfolgingDTO'];
 export type OppfolgingsEnhet = components['schemas']['OppfolgingsEnhet'];
 export type Veileder = components['schemas']['Veileder'];
 export type DagpengeytelseDto = components['schemas']['DagpengeytelseDTO'];
+export type OppfolgingYtelseVedtakDto = components['schemas']['OppfolgingYtelseVedtakDTO'];
 export type OppfolgingsYtelseDto = components['schemas']['OppfolgingsYtelseDTO'];
 export type SyfoPunktDto = components['schemas']['SyfoPunktDTO'];
 export type UtvidetOppfolgingDto = components['schemas']['UtvidetOppfolgingDTO'];
@@ -2524,6 +2601,30 @@ export interface operations {
             };
         };
     };
+    hentYtelser: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                'application/json': components['schemas']['FnrDatoRangeRequest'];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    '*/*': components['schemas']['YtelseResponse'];
+                };
+            };
+        };
+    };
     hent: {
         parameters: {
             query: {
@@ -2572,6 +2673,32 @@ export interface operations {
         };
     };
     harTilgang_1: {
+        parameters: {
+            query?: {
+                enhet?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                'application/json': components['schemas']['FnrRequest'];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    '*/*': components['schemas']['TilgangDTO'];
+                };
+            };
+        };
+    };
+    harTilgangV2: {
         parameters: {
             query?: {
                 enhet?: string;
@@ -3618,11 +3745,19 @@ export enum IdentInformasjonGruppe {
 }
 export enum VedtakDTORettighet {
     TILTAKSPENGER = 'TILTAKSPENGER',
-    TILTAKSPENGER_OG_BARNETILLEGG = 'TILTAKSPENGER_OG_BARNETILLEGG'
+    TILTAKSPENGER_OG_BARNETILLEGG = 'TILTAKSPENGER_OG_BARNETILLEGG',
+    INGENTING = 'INGENTING'
 }
 export enum VedtakDTOKilde {
     TPSAK = 'TPSAK',
     ARENA = 'ARENA'
+}
+export enum YtelseVedtakYtelseType {
+    Sykepenger = 'Sykepenger',
+    Foreldrepenger = 'Foreldrepenger',
+    Pleiepenger = 'Pleiepenger',
+    Tiltakspenge = 'Tiltakspenge',
+    Pensjon = 'Pensjon'
 }
 export enum DokumentDokumentStatus {
     UNDER_REDIGERING = 'UNDER_REDIGERING',
