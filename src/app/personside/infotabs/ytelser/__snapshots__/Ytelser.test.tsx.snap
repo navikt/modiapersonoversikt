@@ -2666,6 +2666,18 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                         TPSAK
                       </dd>
                     </div>
+                    <div>
+                      <dt
+                        class="typo-normal"
+                      >
+                        Rettighet
+                      </dt>
+                      <dd
+                        class="typo-element"
+                      >
+                        TILTAKSPENGER
+                      </dd>
+                    </div>
                   </dl>
                 </article>
                 <article
