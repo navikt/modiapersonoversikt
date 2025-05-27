@@ -38,7 +38,7 @@
         "*.{js,ts,tsx,json,less,css,md}": ["biome format --write"]
     },
     "dependencies": {
-        "@grafana/faro-react": "^1.18.1",
+        "@grafana/faro-react": "^1.18.2",
         "@grafana/faro-web-sdk": "^1.18.2",
         "@grafana/faro-web-tracing": "^1.18.2",
         "@navikt/aksel-icons": "^7.22.0",
