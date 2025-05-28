@@ -1,3 +1,5 @@
+import { hentDatoForSisteHendelseV2 } from 'src/app/personside/infotabs/saksoversikt/utils/saksoversiktUtilsV2';
+import { datoSynkende } from 'src/utils/date-utils';
 import styled from 'styled-components';
 import type { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import theme from '../../../../../styles/personOversiktTheme';
@@ -19,5 +21,7 @@ export function saksikon(harTilgang: boolean) {
 }
 
 export function filtrerSakstemaerUtenDataV2(sakstemaer: Sakstema[]): Sakstema[] {
-    return sakstemaer.filter((sakstema) => sakstema.dokumentMetadata.length > 0);
+    return sakstemaer
+        .filter((sakstema) => sakstema.dokumentMetadata.length > 0)
+        .sort(datoSynkende((it: Sakstema) => hentDatoForSisteHendelseV2(it) ?? Date()));
 }
