@@ -5,7 +5,7 @@ import { aktivBrukerAtom, aktivEnhetAtom } from 'src/lib/state/context';
 import { type FetchError, post } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
-import type { SakstemaSoknadsstatusResponse } from '../../models/saksoversikt/sakstema';
+import type { SakstemaResponse } from '../../models/saksoversikt/sakstema';
 import { type DefaultConfig, type RendererOrConfig, applyDefaults, useRest } from '../useRest';
 
 const defaults: DefaultConfig = {
@@ -23,7 +23,7 @@ function urlUtenFnrIPathV2(enhet?: string) {
 }
 
 const resource = {
-    useFetch(): UseQueryResult<SakstemaSoknadsstatusResponse, FetchError> {
+    useFetch(): UseQueryResult<SakstemaResponse, FetchError> {
         const fnr = useAtomValue(aktivBrukerAtom);
         const enhet = useAtomValue(aktivEnhetAtom);
 
@@ -32,7 +32,7 @@ const resource = {
             queryFn: () => post(urlUtenFnrIPathV2(enhet), { fnr })
         });
     },
-    useRenderer(renderer: RendererOrConfig<SakstemaSoknadsstatusResponse>) {
+    useRenderer(renderer: RendererOrConfig<SakstemaResponse>) {
         const response = this.useFetch();
         return useRest(response, applyDefaults(defaults, renderer));
     }

@@ -1,20 +1,14 @@
 import { Baksystem } from '../../models/saksoversikt/fellesSak';
 import { DokumentStatus, Entitet, Feilmelding, Kommunikasjonsretning } from '../../models/saksoversikt/journalpost';
-import type { SakstemaSoknadsstatus } from '../../models/saksoversikt/sakstema';
+import type { Sakstema } from '../../models/saksoversikt/sakstema';
 
-export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
+export function getAremarkSakstemaListeV2(): Sakstema[] {
     return [
         {
             harTilgang: false,
             temakode: 'SYK',
             temanavn: 'Sykepenger',
             erGruppert: false,
-            soknadsstatus: {
-                avbrutt: 0,
-                ferdigBehandlet: 0,
-                underBehandling: 1,
-                sistOppdatert: '2018-12-24T14:24:51.000'
-            },
             dokumentMetadata: [
                 {
                     id: 'u9fcztqt',
@@ -228,12 +222,6 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
             temakode: 'AAP',
             temanavn: 'Arbeidsavklaringspenger',
             erGruppert: true,
-            soknadsstatus: {
-                underBehandling: 1,
-                ferdigBehandlet: 2,
-                avbrutt: 0,
-                sistOppdatert: '2018-06-25T06:23:38.000'
-            },
             dokumentMetadata: [
                 {
                     id: 'wdxbl8gq',
@@ -395,12 +383,6 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
             temakode: 'BAR',
             temanavn: 'Barnetrygd',
             erGruppert: false,
-            soknadsstatus: {
-                ferdigBehandlet: 0,
-                underBehandling: 0,
-                avbrutt: 1,
-                sistOppdatert: '2018-03-20T19:27:45.000'
-            },
             dokumentMetadata: [
                 {
                     id: '03fmouny',
@@ -479,12 +461,6 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
             temakode: 'IND',
             temanavn: 'Tiltakspenger',
             erGruppert: false,
-            soknadsstatus: {
-                avbrutt: 0,
-                ferdigBehandlet: 0,
-                underBehandling: 1,
-                sistOppdatert: '2018-01-14T03:43:31.000'
-            },
             dokumentMetadata: [
                 {
                     id: '1ml24a5l',
@@ -558,11 +534,6 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
             temakode: 'GEN',
             temanavn: 'Generell',
             erGruppert: true,
-            soknadsstatus: {
-                underBehandling: 0,
-                ferdigBehandlet: 0,
-                avbrutt: 0
-            },
             dokumentMetadata: [
                 {
                     id: 'afp4donc',
@@ -696,11 +667,6 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
             temakode: 'BID',
             temanavn: 'Bidrag',
             erGruppert: false,
-            soknadsstatus: {
-                avbrutt: 0,
-                ferdigBehandlet: 0,
-                underBehandling: 0
-            },
             dokumentMetadata: [],
             tilhorendeSaker: [],
             feilkoder: []
