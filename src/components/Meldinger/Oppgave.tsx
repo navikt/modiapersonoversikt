@@ -108,7 +108,7 @@ const OppgaveForm = ({
     const fnr = usePersonAtomValue();
     const enhet = useAtomValue(aktivEnhetAtom);
     const { data: veileder } = useInnloggetSaksbehandler();
-    const { mutate, error, isError } = useOppgaveMutation();
+    const { mutateAsync, error, isError } = useOppgaveMutation();
     const brukersEnhet = enhet ?? '-';
     const brukerIdent = veileder.ident;
 
@@ -129,8 +129,8 @@ const OppgaveForm = ({
             onBlur: hasSubmitted ? oppgaveFormValidator : undefined
         },
         canSubmitWhenInvalid: true,
-        onSubmit: ({ value }) => {
-            mutate(
+        onSubmit: async ({ value }) => {
+            await mutateAsync(
                 {
                     body: {
                         fnr,
