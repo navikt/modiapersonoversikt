@@ -7,6 +7,7 @@ import DraftStatus from 'src/app/personside/dialogpanel/DraftStatus';
 import useDraft, { type Draft, type DraftContext } from 'src/app/personside/dialogpanel/use-draft';
 import AvsluttDialogEtterSending from 'src/components/melding/AvsluttDialogEtterSending';
 import { Oppgaveliste, OppgavelisteRadioKnapper } from 'src/components/melding/OppgavelisteRadioKnapper';
+import StandardTekstModal from 'src/components/melding/StandardTeksterModal';
 import { ValgForMeldingstype } from 'src/components/melding/ValgForMeldingstype';
 import { MeldingsType, VelgMeldingsType, meldingsTyperTekst } from 'src/components/melding/VelgMeldingsType';
 import VelgOppgaveliste from 'src/components/melding/VelgOppgaveliste';
@@ -88,6 +89,7 @@ function NyMelding() {
             }}
         >
             <VStack gap="4">
+                <StandardTekstModal />
                 <form.Field name="meldingsType">
                     {(field) => (
                         <VelgMeldingsType
