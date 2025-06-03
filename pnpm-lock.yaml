@@ -37,7 +37,7 @@ importers:
         version: 7.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@navikt/tag-input':
         specifier: ^2.0.2
-        version: 2.0.2(7tmcxve3q2crcswam2mdob3u34)
+        version: 2.0.2(abca7f4e1ad9cdbc505686a03e715e40)
       '@navikt/textparser':
         specifier: ^2.5.0
         version: 2.5.0(react@19.1.0)
@@ -319,8 +319,8 @@ importers:
         specifier: 19.0.0-beta-714736e-20250131
         version: 19.0.0-beta-714736e-20250131(eslint@9.27.0(jiti@2.4.2))
       happy-dom:
-        specifier: ^17.4.7
-        version: 17.4.7
+        specifier: ^17.6.1
+        version: 17.6.1
       jest-styled-components:
         specifier: ^7.2.0
         version: 7.2.0(styled-components@6.1.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
@@ -368,7 +368,7 @@ importers:
         version: 0.2.3
       vitest:
         specifier: ^3.1.4
-        version: 3.1.4(@types/node@22.15.21)(happy-dom@17.4.7)(jiti@2.4.2)(less@4.3.0)(lightningcss@1.30.1)(msw@2.8.4(@types/node@22.15.21)(typescript@5.8.3))(tsx@4.19.4)(yaml@2.7.1)
+        version: 3.1.4(@types/node@22.15.21)(happy-dom@17.6.1)(jiti@2.4.2)(less@4.3.0)(lightningcss@1.30.1)(msw@2.8.4(@types/node@22.15.21)(typescript@5.8.3))(tsx@4.19.4)(yaml@2.7.1)
 
 packages:
 
@@ -562,6 +562,10 @@ packages:
 
   '@babel/runtime@7.27.1':
     resolution: {integrity: sha512-1x3D2xEk2fRo3PAhwQwu5UubzgiVWSXTBfWpVd2Mx2AzRqJuDJCsgaDVZ7HB5iGzDW1Hl1sWN2mFyKjmR9uAog==}
+    engines: {node: '>=6.9.0'}
+
+  '@babel/runtime@7.27.4':
+    resolution: {integrity: sha512-t3yaEOuGu9NlIZ+hIeGbBjFtZT7j2cb2tg0fuaJKeGotchRjjLfrBA9Kwf8quhpP1EUuxModQg04q/mBwyg8uA==}
     engines: {node: '>=6.9.0'}
 
   '@babel/template@7.27.2':
@@ -2519,8 +2523,8 @@ packages:
     resolution: {integrity: sha512-mS1lbMsxgQj6hge1XZ6p7GPhbrtFwUFYi3wRzXAC/FmYnyXMTvvI3td3rjmQ2u8ewXueaSvRPWaEcgVVOT9Jnw==}
     engines: {node: ^12.22.0 || ^14.16.0 || ^16.0.0 || >=17.0.0}
 
-  happy-dom@17.4.7:
-    resolution: {integrity: sha512-NZypxadhCiV5NT4A+Y86aQVVKQ05KDmueja3sz008uJfDRwz028wd0aTiJPwo4RQlvlz0fznkEEBBCHVNWc08g==}
+  happy-dom@17.6.1:
+    resolution: {integrity: sha512-x2Iie2VWObB283X/KXwJ7g5f+4acfm8Pmf9KWUn6gujFUvFlSWytZYTv74bdFH40fPDedbI6/V6U3dYYMtW4SQ==}
     engines: {node: '>=18.0.0'}
 
   has-flag@4.0.0:
@@ -4258,6 +4262,8 @@ snapshots:
 
   '@babel/runtime@7.27.1': {}
 
+  '@babel/runtime@7.27.4': {}
+
   '@babel/template@7.27.2':
     dependencies:
       '@babel/code-frame': 7.27.1
@@ -4725,7 +4731,7 @@ snapshots:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
-  '@navikt/tag-input@2.0.2(7tmcxve3q2crcswam2mdob3u34)':
+  '@navikt/tag-input@2.0.2(abca7f4e1ad9cdbc505686a03e715e40)':
     dependencies:
       classnames: 2.5.1
       nav-frontend-js-utils: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.1.0)
@@ -5318,7 +5324,7 @@ snapshots:
   '@testing-library/dom@10.4.0':
     dependencies:
       '@babel/code-frame': 7.27.1
-      '@babel/runtime': 7.27.1
+      '@babel/runtime': 7.27.4
       '@types/aria-query': 5.0.4
       aria-query: 5.3.0
       chalk: 4.1.2
@@ -6118,7 +6124,7 @@ snapshots:
 
   graphql@16.11.0: {}
 
-  happy-dom@17.4.7:
+  happy-dom@17.6.1:
     dependencies:
       webidl-conversions: 7.0.0
       whatwg-mimetype: 3.0.0
@@ -7407,7 +7413,7 @@ snapshots:
       tsx: 4.19.4
       yaml: 2.7.1
 
-  vitest@3.1.4(@types/node@22.15.21)(happy-dom@17.4.7)(jiti@2.4.2)(less@4.3.0)(lightningcss@1.30.1)(msw@2.8.4(@types/node@22.15.21)(typescript@5.8.3))(tsx@4.19.4)(yaml@2.7.1):
+  vitest@3.1.4(@types/node@22.15.21)(happy-dom@17.6.1)(jiti@2.4.2)(less@4.3.0)(lightningcss@1.30.1)(msw@2.8.4(@types/node@22.15.21)(typescript@5.8.3))(tsx@4.19.4)(yaml@2.7.1):
     dependencies:
       '@vitest/expect': 3.1.4
       '@vitest/mocker': 3.1.4(msw@2.8.4(@types/node@22.15.21)(typescript@5.8.3))(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(less@4.3.0)(lightningcss@1.30.1)(tsx@4.19.4)(yaml@2.7.1))
@@ -7432,7 +7438,7 @@ snapshots:
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 22.15.21
-      happy-dom: 17.4.7
+      happy-dom: 17.6.1
     transitivePeerDependencies:
       - jiti
       - less
