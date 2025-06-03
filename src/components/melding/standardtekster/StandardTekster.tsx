@@ -1,15 +1,13 @@
-import { Button, HStack, Search, VStack } from '@navikt/ds-react';
+import { Box, Button, HGrid, HStack, Search, VStack } from '@navikt/ds-react';
 import { atom } from 'jotai';
 import { useAtom } from 'jotai/index';
 import { debounce } from 'lodash';
-import Hjelpetekst from 'nav-frontend-hjelpetekst';
-import { PopoverOrientering } from 'nav-frontend-popover';
 import { useEffect, useState } from 'react';
 import type * as StandardTeksterType from 'src/app/personside/dialogpanel/sendMelding/standardTekster/domain.ts';
 import { sokEtterTekster } from 'src/app/personside/dialogpanel/sendMelding/standardTekster/sokUtils';
-import LocaleVelger from 'src/components/melding/LocaleVelger';
-import StandardtekstListe from 'src/components/melding/StandardTekstListe';
-import StandardTekstPreview from 'src/components/melding/StandardTekstPreview';
+import LocaleVelger from 'src/components/melding/standardtekster/LocaleVelger';
+import StandardtekstListe from 'src/components/melding/standardtekster/StandardTekstListe';
+import StandardTekstPreview from 'src/components/melding/standardtekster/StandardTekstPreview';
 import { Locale } from 'src/lib/types/skrivestotte';
 import skrivestotteResource from 'src/rest/resources/skrivestotteResource';
 
@@ -63,10 +61,11 @@ const SearchField = () => {
 
     return (
         <Search
+            className="py-3"
             name="standardtekstsok"
             label="Søk etter standardtekster"
             autoComplete="off"
-            variant="secondary"
+            variant="simple"
             value={internalValue}
             onChange={(v) => {
                 setInternalValue(v);
@@ -79,30 +78,30 @@ const SearchField = () => {
 function StandardTekster() {
     const { data } = skrivestotteResource.useFetch();
     useSetDefaultAtomVerdier(data);
-    const [values] = useAtom(standardTekstSokAtom);
 
     return (
-        <>
+        <Box minHeight="30rem" maxHeight="40rem" maxWidth="57rem" minWidth="40rem" width="100%">
             <h2 className="sr-only">Standardtekster</h2>
-            <HStack>
-                <SearchField />
-                <Hjelpetekst type={PopoverOrientering.UnderHoyre}>
-                    Filtrer på tags ved å skrive "#eksempel" + mellomrom
-                </Hjelpetekst>
-            </HStack>
-            <HStack wrap={false}>
+            <SearchField />
+            <HGrid gap="0" columns={2}>
                 <StandardtekstListe />
-                <VStack gap="space-16" className="flex min-w-2/3">
-                    <StandardTekstPreview tekst={values.tekst} locale={values.locale} />
-                    <div>
-                        <LocaleVelger />
+                <VStack
+                    justify="space-between"
+                    gap="space-16"
+                    className="flex min-w-2/3 max-h-[40rem] h-full overflow-visible bg-ax-accent-100 p-4 rounded sm"
+                >
+                    <StandardTekstPreview />
+                    <HStack justify="space-between" align="end">
+                        <div>
+                            <LocaleVelger />
+                        </div>
                         <Button>
                             Velg <span className="sr-only">tekst</span>
                         </Button>
-                    </div>
+                    </HStack>
                 </VStack>
-            </HStack>
-        </>
+            </HGrid>
+        </Box>
     );
 }
 

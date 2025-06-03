@@ -1,6 +1,6 @@
 import { BodyLong, Button, Modal } from '@navikt/ds-react';
 import { useState } from 'react';
-import StandardTekster from 'src/components/melding/StandardTekster';
+import StandardTekster from 'src/components/melding/standardtekster/StandardTekster';
 
 function StandardTekstModal() {
     const [open, setOpen] = useState<boolean>();
@@ -10,8 +10,8 @@ function StandardTekstModal() {
             <Button onClick={() => setOpen(true)}>Åpne modal</Button>
             <span className="sr-only">Standardtekster</span>
             <Modal open={open} header={{ heading: 'Velg standardtekst' }} onClose={() => setOpen(false)}>
-                <Modal.Body>
-                    <BodyLong>
+                <Modal.Body className="overflow-y-hidden px-3">
+                    <BodyLong className="p-0">
                         <StandardTekster />
                     </BodyLong>
                 </Modal.Body>
