@@ -1,7 +1,7 @@
 import { useNavigate, useSearch } from '@tanstack/react-router';
 import { useMemo } from 'react';
 import type { Dokument, Journalpost } from '../../../../models/saksoversikt/journalpost';
-import type { SakstemaSoknadsstatus } from '../../../../models/saksoversikt/sakstema';
+import type { Sakstema } from '../../../../models/saksoversikt/sakstema';
 import sakstemaResource from '../../../../rest/resources/sakstemaResource';
 import { datoSynkende } from '../../../../utils/date-utils';
 import { filtrerSakstemaerUtenDataV2 } from './sakstemaliste/SakstemaListeUtils';
@@ -9,27 +9,27 @@ import { sakstemakodeAlle, sakstemakodeIngen } from './utils/saksoversiktUtilsV2
 import { hentDatoForSisteHendelseV2 } from './utils/saksoversiktUtilsV2';
 
 interface SakstemaURLStateV2 {
-    valgteSakstemaer: SakstemaSoknadsstatus[];
+    valgteSakstemaer: Sakstema[];
     valgtDokument: Dokument | undefined;
     valgtJournalpost: Journalpost | undefined;
     setIngenValgte(): void;
     setAlleValgte(): void;
-    toggleValgtSakstema(sakstema: SakstemaSoknadsstatus): void;
+    toggleValgtSakstema(sakstema: Sakstema): void;
 }
 
 interface SakstemaResourceV2 {
-    alleSakstema: SakstemaSoknadsstatus[];
+    alleSakstema: Sakstema[];
     isLoading: boolean;
 }
 
-export function useSakstemaURLStateV2(alleSakstemaer: SakstemaSoknadsstatus[]): SakstemaURLStateV2 {
+export function useSakstemaURLStateV2(alleSakstemaer: Sakstema[]): SakstemaURLStateV2 {
     const filtrertAlleSakstemaer = filtrerSakstemaerUtenDataV2(alleSakstemaer);
     const navigate = useNavigate({ from: '/person/saker' });
     const query = useSearch({ strict: false });
     const queryParams = useSearch({ strict: false }); //SYK-BAR-AAP
     return useMemo(() => {
         const sakstemaerFraUrl: string[] = queryParams.sakstema?.split('-') ?? [sakstemakodeAlle];
-        const valgteSakstemaer: SakstemaSoknadsstatus[] = sakstemaerFraUrl.includes(sakstemakodeAlle)
+        const valgteSakstemaer: Sakstema[] = sakstemaerFraUrl.includes(sakstemakodeAlle)
             ? filtrertAlleSakstemaer
             : filtrertAlleSakstemaer.filter((sakstema) => sakstemaerFraUrl.includes(sakstema.temakode));
 
@@ -53,7 +53,7 @@ export function useSakstemaURLStateV2(alleSakstemaer: SakstemaSoknadsstatus[]): 
             });
         };
 
-        const toggleValgtSakstema = (sakstema: SakstemaSoknadsstatus) => {
+        const toggleValgtSakstema = (sakstema: Sakstema) => {
             const nyTemaliste = valgteSakstemaer.includes(sakstema)
                 ? valgteSakstemaer.filter((tema) => tema !== sakstema)
                 : [...valgteSakstemaer, sakstema];
