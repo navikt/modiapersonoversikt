@@ -24,15 +24,10 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
     const settGjeldendeBruker = useSettAktivBruker();
     const navigate = useNavigate();
     const [delayRender, setDelayRender] = useState(!!validFnr);
-    const [behandlingsid, setBehandlingsid] = useState<string | undefined>(undefined);
 
     useOnMount(() => {
-        if (queryParams.henvendelseid) {
-            setBehandlingsid(queryParams.henvendelseid);
-        } else {
-            setBehandlingsid(queryParams.behandlingsid);
-        }
-
+        const behandlingsId = queryParams.henvendelseid || queryParams.behandlingsid;
+        const oppgaveId = queryParams.oppgaveid;
         if (queryParams.sokFnrCode) {
             post<{
                 aktivBruker: string;
@@ -44,19 +39,19 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
             }).then((res) => {
                 const url = removeParamFromURL('sokFnrCode');
                 window.history.replaceState(null, '', url.toString());
-                handleLegacyUrls(res.aktivBruker);
+                handleLegacyUrls(res.aktivBruker, behandlingsId, oppgaveId);
             });
         } else {
-            handleLegacyUrls(queryParams.sokFnr ?? validFnr);
+            handleLegacyUrls(queryParams.sokFnr ?? validFnr, behandlingsId, oppgaveId);
             setDelayRender(false);
         }
     });
 
-    const handleLegacyUrls = (fnr?: string) => {
+    const handleLegacyUrls = (fnr?: string, behandlingsId?: string, oppgaveId?: string) => {
         const linkTilValgtHenvendelse = `${paths.personUri}/${INFOTABS.MELDINGER.path}` as const;
-        const newQuery = { traadId: behandlingsid };
+        const newQuery = { traadId: behandlingsId };
 
-        if (queryParams.oppgaveid && behandlingsid && fnr) {
+        if (oppgaveId && behandlingsId && fnr) {
             settGjeldendeBruker(fnr, false);
             loggEvent('Oppgave', 'FraGosys');
             navigate({
@@ -64,7 +59,7 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
                 search: newQuery,
                 replace: true
             });
-        } else if (fnr && behandlingsid) {
+        } else if (fnr && behandlingsId) {
             loggEvent('Henvendelse', 'FraGosys');
             settGjeldendeBruker(fnr, false);
             navigate({
@@ -72,7 +67,7 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
                 search: newQuery,
                 replace: true
             });
-        } else if (behandlingsid) {
+        } else if (behandlingsId) {
             loggEvent('Henvendelse', 'FraGosys');
             navigate({
                 to: linkTilValgtHenvendelse,
