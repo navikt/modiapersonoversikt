@@ -49,7 +49,7 @@
         "@navikt/navspa": "^7.1.0",
         "@navikt/tag-input": "^2.0.2",
         "@navikt/textparser": "^2.5.0",
-        "@tanstack/react-form": "^1.12.0",
+        "@tanstack/react-form": "^1.12.1",
         "@tanstack/react-query": "^5.75.4",
         "@tanstack/react-router": "^1.120.11",
         "@vitejs/plugin-react": "^4.5.0",
