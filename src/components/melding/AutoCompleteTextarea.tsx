@@ -1,5 +1,4 @@
-import { InformationIcon } from '@navikt/aksel-icons';
-import { Alert, Button, HStack, Modal, Textarea, VStack } from '@navikt/ds-react';
+import { Alert, HStack, Textarea, VStack } from '@navikt/ds-react';
 import {
     type ChangeEvent,
     type ComponentProps,
@@ -10,59 +9,13 @@ import {
     useState
 } from 'react';
 import { rapporterBruk } from 'src/app/personside/dialogpanel/sendMelding/standardTekster/sokUtils';
+import AutoCompleteTekstTips from 'src/components/melding/standardtekster/AutoCompleteTekstTips';
 import StandardTekstModal from 'src/components/melding/standardtekster/StandardTeksterModal';
 import { useStandardTekster } from 'src/lib/clients/skrivestotte';
 import { Locale, type Tekst } from 'src/lib/types/skrivestotte';
 import { loggEvent } from 'src/utils/logger/frontendLogger';
 import { rules } from './autocompleteRules';
 import { type AutofullforData, autofullfor, byggAutofullforMap, useAutoFullforData } from './autocompleteUtils';
-
-function AutoTekstTips() {
-    const modalRef = useRef<HTMLDialogElement>(null);
-    return (
-        <div>
-            <Button
-                variant="secondary"
-                size="small"
-                icon={<InformationIcon title="Åpne modal med autofullfør tips" />}
-                onClick={(e) => {
-                    e.preventDefault();
-                    modalRef?.current?.showModal();
-                }}
-            />
-            <Modal ref={modalRef} aria-labelledby="autocomplete-tips" header={{ heading: 'Autofullfør-tips' }}>
-                <Modal.Body>
-                    <ul>
-                        <li>foet + mellomrom: Brukers fulle navn</li>
-                        <li>mvh + mellomrom: Signatur</li>
-                        <li>hei + mellomrom: Hei bruker</li>
-                        <li>AAP + mellomrom: arbeidsavklaringspenger</li>
-                        <li>sbt + mellomrom: saksbehandlingstid</li>
-                        <li>nay + mellomrom: Nav Arbeid og ytelser</li>
-                        <li>nfp + mellomrom: Nav Familie- og pensjonsytelser</li>
-                        <li>hi, + mellomrom: Hi, bruker (engelsk)</li>
-                        <li>mvh/aap + nn eller en + mellomrom: autofullfør på nynorsk eller engelsk</li>
-                        <li>fp + mellomrom: foreldrepenger</li>
-                        <li>bm + mellomrom: bidragsmottaker</li>
-                        <li>bp + mellomrom: bidragspliktig</li>
-                        <li>ag + mellomrom: arbeidsgiver</li>
-                        <li>ub + mellomrom: utbetaling</li>
-                        <li>dp + mellomrom: dagpenger</li>
-                        <li>dpv + mellomrom: dagpengevedtak</li>
-                        <li>sp + mellomrom: sykepenger</li>
-                        <li>sosp + mellomrom: søknad om sykepenger</li>
-                        <li>info + mellomrom: informasjon</li>
-                        <li>baut + mellomrom: utvidet barnetrygd</li>
-                        <li>baor + mellomrom: ordinær barnetrygd</li>
-                        <li>aareg + mellomrom: arbeidsgiver- og arbeidstakerregisteret</li>
-                        <li>aev + mellomrom: arbeidsevnevurdering</li>
-                        <li>uft + mellomrom: uføretrygd</li>
-                    </ul>
-                </Modal.Body>
-            </Modal>
-        </div>
-    );
-}
 
 const SPACE = ' ';
 const ENTER = 'Enter';
@@ -186,7 +139,7 @@ function AutocompleteTextarea({ onChange, description, ...rest }: Props) {
                     <VStack gap="2">
                         {description}
                         <HStack gap="1">
-                            <AutoTekstTips />
+                            <AutoCompleteTekstTips />
                             <StandardTekstModal
                                 textAreaRef={textAreaRef}
                                 submitTekst={(standardTekst) => settInnStandardTekst(standardTekst, textAreaRef)}
