@@ -1,45 +1,67 @@
-import { Alert, HStack, Heading, HelpText, Textarea } from '@navikt/ds-react';
-import { type ChangeEvent, type ComponentProps, type KeyboardEvent, useCallback, useState } from 'react';
+import { InformationIcon } from '@navikt/aksel-icons';
+import { Alert, Button, HStack, Modal, Textarea, VStack } from '@navikt/ds-react';
+import {
+    type ChangeEvent,
+    type ComponentProps,
+    type KeyboardEvent,
+    type RefObject,
+    useCallback,
+    useRef,
+    useState
+} from 'react';
 import { rapporterBruk } from 'src/app/personside/dialogpanel/sendMelding/standardTekster/sokUtils';
+import StandardTekstModal from 'src/components/melding/standardtekster/StandardTeksterModal';
 import { useStandardTekster } from 'src/lib/clients/skrivestotte';
 import { Locale, type Tekst } from 'src/lib/types/skrivestotte';
 import { loggEvent } from 'src/utils/logger/frontendLogger';
 import { rules } from './autocompleteRules';
 import { type AutofullforData, autofullfor, byggAutofullforMap, useAutoFullforData } from './autocompleteUtils';
 
-function AutoTekstTips() {
+function AutoTekstTips({ toggleModal, open }: { toggleModal: (open: boolean) => void; open: boolean }) {
     return (
-        <HelpText aria-labelledby="autocomplete-tips">
-            <Heading as="h4" id="autocomplete-tips" size="xsmall">
-                Autofullfør-tips:
-            </Heading>
-            <ul>
-                <li>foet + mellomrom: Brukers fulle navn</li>
-                <li>mvh + mellomrom: Signatur</li>
-                <li>hei + mellomrom: Hei bruker</li>
-                <li>AAP + mellomrom: arbeidsavklaringspenger</li>
-                <li>sbt + mellomrom: saksbehandlingstid</li>
-                <li>nay + mellomrom: Nav Arbeid og ytelser</li>
-                <li>nfp + mellomrom: Nav Familie- og pensjonsytelser</li>
-                <li>hi, + mellomrom: Hi, bruker (engelsk)</li>
-                <li>mvh/aap + nn eller en + mellomrom: autofullfør på nynorsk eller engelsk</li>
-                <li>fp + mellomrom: foreldrepenger</li>
-                <li>bm + mellomrom: bidragsmottaker</li>
-                <li>bp + mellomrom: bidragspliktig</li>
-                <li>ag + mellomrom: arbeidsgiver</li>
-                <li>ub + mellomrom: utbetaling</li>
-                <li>dp + mellomrom: dagpenger</li>
-                <li>dpv + mellomrom: dagpengevedtak</li>
-                <li>sp + mellomrom: sykepenger</li>
-                <li>sosp + mellomrom: søknad om sykepenger</li>
-                <li>info + mellomrom: informasjon</li>
-                <li>baut + mellomrom: utvidet barnetrygd</li>
-                <li>baor + mellomrom: ordinær barnetrygd</li>
-                <li>aareg + mellomrom: arbeidsgiver- og arbeidstakerregisteret</li>
-                <li>aev + mellomrom: arbeidsevnevurdering</li>
-                <li>uft + mellomrom: uføretrygd</li>
-            </ul>
-        </HelpText>
+        <div>
+            <Button
+                variant="secondary"
+                size="small"
+                icon={<InformationIcon title="Åpne modal med autofullfør tips" />}
+                onClick={() => toggleModal(true)}
+            />
+            <Modal
+                open={open}
+                onClose={() => toggleModal(false)}
+                aria-labelledby="autocomplete-tips"
+                header={{ heading: 'Autofullfør-tips' }}
+            >
+                <Modal.Body>
+                    <ul>
+                        <li>foet + mellomrom: Brukers fulle navn</li>
+                        <li>mvh + mellomrom: Signatur</li>
+                        <li>hei + mellomrom: Hei bruker</li>
+                        <li>AAP + mellomrom: arbeidsavklaringspenger</li>
+                        <li>sbt + mellomrom: saksbehandlingstid</li>
+                        <li>nay + mellomrom: Nav Arbeid og ytelser</li>
+                        <li>nfp + mellomrom: Nav Familie- og pensjonsytelser</li>
+                        <li>hi, + mellomrom: Hi, bruker (engelsk)</li>
+                        <li>mvh/aap + nn eller en + mellomrom: autofullfør på nynorsk eller engelsk</li>
+                        <li>fp + mellomrom: foreldrepenger</li>
+                        <li>bm + mellomrom: bidragsmottaker</li>
+                        <li>bp + mellomrom: bidragspliktig</li>
+                        <li>ag + mellomrom: arbeidsgiver</li>
+                        <li>ub + mellomrom: utbetaling</li>
+                        <li>dp + mellomrom: dagpenger</li>
+                        <li>dpv + mellomrom: dagpengevedtak</li>
+                        <li>sp + mellomrom: sykepenger</li>
+                        <li>sosp + mellomrom: søknad om sykepenger</li>
+                        <li>info + mellomrom: informasjon</li>
+                        <li>baut + mellomrom: utvidet barnetrygd</li>
+                        <li>baor + mellomrom: ordinær barnetrygd</li>
+                        <li>aareg + mellomrom: arbeidsgiver- og arbeidstakerregisteret</li>
+                        <li>aev + mellomrom: arbeidsevnevurdering</li>
+                        <li>uft + mellomrom: uføretrygd</li>
+                    </ul>
+                </Modal.Body>
+            </Modal>
+        </div>
     );
 }
 
@@ -73,6 +95,14 @@ function autoFullfor(autofullforData: AutofullforData, parsedText: string) {
     return autofullfor(parsedText, autofullforMap);
 }
 
+const settInnStandardTekst = (standardTekst: string, textAreaRef: RefObject<HTMLTextAreaElement | null>) => {
+    if (!textAreaRef.current) return;
+    textAreaRef.current.value =
+        !textAreaRef.current.value || textAreaRef.current.value === ''
+            ? standardTekst
+            : `${textAreaRef.current.value}\n${standardTekst}`;
+};
+
 function asChangeEvent<T>(event: KeyboardEvent<T>): ChangeEvent<T> {
     if (event.target && event.target === event.currentTarget) {
         return event as unknown as ChangeEvent<T>;
@@ -86,6 +116,7 @@ function AutocompleteTextarea({ onChange, description, ...rest }: Props) {
     const autofullforData = useAutoFullforData();
     const [feilmelding, settFeilmelding] = useState<string>();
     const standardtekster = useStandardTekster();
+    const [openAutoFullforModal, setOpenAutoFullforModal] = useState(false);
 
     const onKeyDown: React.KeyboardEventHandler = useCallback(
         (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -147,14 +178,22 @@ function AutocompleteTextarea({ onChange, description, ...rest }: Props) {
         [autofullforData, onChange, standardtekster]
     );
 
+    const textAreaRef = useRef<HTMLTextAreaElement>(null);
     return (
         <>
             <Textarea
+                ref={textAreaRef}
                 onKeyDown={onKeyDown}
                 description={
-                    <HStack>
-                        {description} <AutoTekstTips />
-                    </HStack>
+                    <VStack gap="2">
+                        {description}
+                        <HStack gap="1">
+                            <AutoTekstTips toggleModal={setOpenAutoFullforModal} open={openAutoFullforModal} />
+                            <StandardTekstModal
+                                submitTekst={(standardTekst) => settInnStandardTekst(standardTekst, textAreaRef)}
+                            />
+                        </HStack>
+                    </VStack>
                 }
                 onChange={onChange}
                 {...rest}
