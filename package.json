@@ -145,7 +145,7 @@
         "eslint-plugin-react-compiler": "19.0.0-beta-714736e-20250131",
         "happy-dom": "^17.6.3",
         "jest-styled-components": "^7.2.0",
-        "knip": "^5.58.1",
+        "knip": "^5.60.0",
         "less": "^4.3.0",
         "lint-staged": "^16.0.0",
         "msw": "^2.9.0",
