@@ -17,21 +17,20 @@ import { loggEvent } from 'src/utils/logger/frontendLogger';
 import { rules } from './autocompleteRules';
 import { type AutofullforData, autofullfor, byggAutofullforMap, useAutoFullforData } from './autocompleteUtils';
 
-function AutoTekstTips({ toggleModal, open }: { toggleModal: (open: boolean) => void; open: boolean }) {
+function AutoTekstTips() {
+    const modalRef = useRef<HTMLDialogElement>(null);
     return (
         <div>
             <Button
                 variant="secondary"
                 size="small"
                 icon={<InformationIcon title="Åpne modal med autofullfør tips" />}
-                onClick={() => toggleModal(true)}
+                onClick={(e) => {
+                    e.preventDefault();
+                    modalRef?.current?.showModal();
+                }}
             />
-            <Modal
-                open={open}
-                onClose={() => toggleModal(false)}
-                aria-labelledby="autocomplete-tips"
-                header={{ heading: 'Autofullfør-tips' }}
-            >
+            <Modal ref={modalRef} aria-labelledby="autocomplete-tips" header={{ heading: 'Autofullfør-tips' }}>
                 <Modal.Body>
                     <ul>
                         <li>foet + mellomrom: Brukers fulle navn</li>
@@ -116,7 +115,6 @@ function AutocompleteTextarea({ onChange, description, ...rest }: Props) {
     const autofullforData = useAutoFullforData();
     const [feilmelding, settFeilmelding] = useState<string>();
     const standardtekster = useStandardTekster();
-    const [openAutoFullforModal, setOpenAutoFullforModal] = useState(false);
 
     const onKeyDown: React.KeyboardEventHandler = useCallback(
         (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -188,8 +186,9 @@ function AutocompleteTextarea({ onChange, description, ...rest }: Props) {
                     <VStack gap="2">
                         {description}
                         <HStack gap="1">
-                            <AutoTekstTips toggleModal={setOpenAutoFullforModal} open={openAutoFullforModal} />
+                            <AutoTekstTips />
                             <StandardTekstModal
+                                textAreaRef={textAreaRef}
                                 submitTekst={(standardTekst) => settInnStandardTekst(standardTekst, textAreaRef)}
                             />
                         </HStack>

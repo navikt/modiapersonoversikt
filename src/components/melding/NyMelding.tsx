@@ -13,7 +13,6 @@ import VelgOppgaveliste from 'src/components/melding/VelgOppgaveliste';
 import VelgSak from 'src/components/melding/VelgSak';
 import VelgTema from 'src/components/melding/VelgTema';
 import nyMeldingSchema, { maksLengdeMelding } from 'src/components/melding/nyMeldingSchema';
-import StandardTekstModal from 'src/components/melding/standardtekster/StandardTeksterModal';
 import {
     type JournalforingSak,
     type SendMeldingRequestV2,
@@ -89,7 +88,6 @@ function NyMelding() {
             }}
         >
             <VStack gap="4">
-                <StandardTekstModal />
                 <form.Field name="meldingsType">
                     {(field) => (
                         <VelgMeldingsType
