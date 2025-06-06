@@ -159,7 +159,7 @@
         "typescript-eslint": "^8.33.1",
         "undici": "^7.10.0",
         "vite-require": "^0.2.3",
-        "vitest": "^3.2.1"
+        "vitest": "^3.2.2"
     },
     "overrides": {
         "nav-frontend-js-utils": {
