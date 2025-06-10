@@ -2,14 +2,14 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { memo } from 'react';
 import styled from 'styled-components';
 import VisMerKnapp from '../../../../../components/VisMerKnapp';
-import type { Sakstema } from '../../../../../models/saksoversikt/sakstema';
+import { Behandlingsstatus, type SakstemaSoknadsstatus } from '../../../../../models/saksoversikt/sakstema';
 import { sakerTest } from '../../dyplenkeTest/utils-dyplenker-test';
 import { useInfotabsDyplenker } from '../../dyplenker';
 import { hentFormattertDatoForSisteHendelseV2 } from '../utils/saksoversiktUtilsV2';
-import { SVGStyling, saksikon } from './SakstemaListeUtils';
+import { SVGStyling, saksikon, visAntallSakerSomHarbehandlingsstatusV2 } from './SakstemaListeUtils';
 
 interface Props {
-    sakstema: Sakstema;
+    sakstema: SakstemaSoknadsstatus;
     erValgt: boolean;
 }
 
@@ -32,6 +32,19 @@ const Flex = styled.div`
 
 function SakstemaListeElementKnapp(props: Props) {
     const dyplenker = useInfotabsDyplenker();
+
+    const sakerUnderBehandling = visAntallSakerSomHarbehandlingsstatusV2(
+        props.sakstema,
+        Behandlingsstatus.UnderBehandling,
+        'under behandling'
+    );
+
+    const sakerFerdigBehandlet = visAntallSakerSomHarbehandlingsstatusV2(
+        props.sakstema,
+        Behandlingsstatus.FerdigBehandlet,
+        'ferdig behandlet'
+    );
+
     return (
         <li className={sakerTest.sakstema}>
             <VisMerKnapp
@@ -49,6 +62,8 @@ function SakstemaListeElementKnapp(props: Props) {
                                 {hentFormattertDatoForSisteHendelseV2(props.sakstema)}
                             </Normaltekst>
                         </UUcustomOrder>
+                        {sakerUnderBehandling}
+                        {sakerFerdigBehandlet}
                     </div>
                     <SVGStyling>{saksikon(props.sakstema.harTilgang)}</SVGStyling>
                 </Flex>

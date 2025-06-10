@@ -3,7 +3,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import type { ReactNode } from 'react';
 import styled from 'styled-components';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
-import type { Sakstema } from '../../../../models/saksoversikt/sakstema';
+import type { SakstemaSoknadsstatus } from '../../../../models/saksoversikt/sakstema';
 import resource from '../../../../rest/resources/sakstemaResource';
 import theme from '../../../../styles/personOversiktTheme';
 import { useOnMount } from '../../../../utils/customHooks';
@@ -27,7 +27,7 @@ function SakerOversikt(props: Props) {
     });
 }
 
-function SakerPanel(props: { sakstema: Sakstema[] } & Props) {
+function SakerPanel(props: { sakstema: SakstemaSoknadsstatus[] } & Props) {
     const sakstemakomponenter = filtrerSakstemaerUtenDataV2(props.sakstema)
         .slice(0, 2)
         .map((sakstema, index) => <SakstemaListeElementKnappV2 sakstema={sakstema} key={index} erValgt={false} />);
