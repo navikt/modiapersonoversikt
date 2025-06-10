@@ -2,12 +2,13 @@ import { fakerNB_NO as faker } from '@faker-js/faker';
 
 import navfaker from 'nav-faker/dist/index';
 import type { Sak } from '../../models/saksoversikt/sak';
-import type { Sakstema, SakstemaResponse } from '../../models/saksoversikt/sakstema';
+import type { SakstemaSoknadsstatus, SakstemaSoknadsstatusResponse } from '../../models/saksoversikt/sakstema';
 import { aremark } from '../persondata/aremark';
 import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
 import { getAremarkSakstemaListeV2 } from './aremark-saksoversikt-mockV2';
 import { getJournalposter } from './journalpost-mock';
 import { getBaksystem, getSaksdato } from './saksoversikt-felles-mock';
+import { getSoknadsstatus } from './soknadsstatus-mock';
 
 const temaarray = [
     ['AAP', 'Arbeidsavklaringspenger'],
@@ -24,7 +25,7 @@ const temaarray = [
     ['SYK', 'Sykepenger']
 ];
 
-export function getMockSaksoversiktV2(fødselsnummer: string): SakstemaResponse {
+export function getMockSaksoversiktV2(fødselsnummer: string): SakstemaSoknadsstatusResponse {
     if (fødselsnummer === aremark.personIdent) {
         return {
             resultat: getAremarkSakstemaListeV2()
@@ -39,13 +40,13 @@ export function getMockSaksoversiktV2(fødselsnummer: string): SakstemaResponse 
     };
 }
 
-export function getStaticMockSaksoversiktV2(): SakstemaResponse {
+export function getStaticMockSaksoversiktV2(): SakstemaSoknadsstatusResponse {
     return {
         resultat: getAremarkSakstemaListeV2()
     };
 }
 
-function getSakstemaListeV2(): Sakstema[] {
+function getSakstemaListeV2(): SakstemaSoknadsstatus[] {
     if (navfaker.random.vektetSjanse(0.3)) {
         return [];
     }
@@ -53,7 +54,7 @@ function getSakstemaListeV2(): Sakstema[] {
     return fyllRandomListe(getSakstemaV2, 20, true);
 }
 
-function getSakstemaV2(): Sakstema {
+function getSakstemaV2(): SakstemaSoknadsstatus {
     const tema = faker.helpers.arrayElement(temaarray);
 
     return {
@@ -61,6 +62,7 @@ function getSakstemaV2(): Sakstema {
         temakode: tema[0],
         temanavn: tema[1],
         erGruppert: faker.datatype.boolean(),
+        soknadsstatus: getSoknadsstatus(navfaker),
         dokumentMetadata: getJournalposter(faker, navfaker, tema),
         tilhorendeSaker: fyllRandomListe(() => getSak(tema[0]), 15),
         feilkoder: getFeilkoder()
