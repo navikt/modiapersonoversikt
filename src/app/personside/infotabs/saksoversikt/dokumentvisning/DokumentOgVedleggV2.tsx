@@ -11,7 +11,7 @@ import styled from 'styled-components';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import { TilbakePil } from '../../../../../components/common-styled-components';
 import type { Dokument, Journalpost } from '../../../../../models/saksoversikt/journalpost';
-import type { Sakstema } from '../../../../../models/saksoversikt/sakstema';
+import type { SakstemaSoknadsstatus } from '../../../../../models/saksoversikt/sakstema';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { useFocusOnMount } from '../../../../../utils/customHooks';
 import { useHentAlleSakstemaFraResourceV2 } from '../useSakstemaURLState';
@@ -51,7 +51,7 @@ const HeaderStyle = styled(Panel)`
 `;
 
 interface Props {
-    valgteSakstemaer: Sakstema[];
+    valgteSakstemaer: SakstemaSoknadsstatus[];
     valgtDokument: Dokument | undefined;
     valgtJournalpost: Journalpost | undefined;
 }

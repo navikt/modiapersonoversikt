@@ -658,9 +658,14 @@ exports[`Viser oversikt med alt innhold 1`] = `
                           <p
                             class="typo-normal order-first"
                           >
-                            05.12.2018
+                            24.12.2018
                           </p>
                         </div>
+                        <p
+                          class="typo-normal metadata"
+                        >
+                          1 søknad er under behandling.
+                        </p>
                       </div>
                       <span
                         class="c14"
@@ -717,9 +722,19 @@ exports[`Viser oversikt med alt innhold 1`] = `
                           <p
                             class="typo-normal order-first"
                           >
-                            18.03.2018
+                            25.06.2018
                           </p>
                         </div>
+                        <p
+                          class="typo-normal metadata"
+                        >
+                          1 søknad er under behandling.
+                        </p>
+                        <p
+                          class="typo-normal metadata"
+                        >
+                          2 søknader er ferdig behandlet.
+                        </p>
                       </div>
                       <span
                         class="c14"
