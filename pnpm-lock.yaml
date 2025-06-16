@@ -246,8 +246,8 @@ importers:
         specifier: ^4.3.0
         version: 4.3.0(rollup@4.40.2)(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.30)(jiti@2.4.2)(less@4.3.0)(lightningcss@1.30.1)(tsx@4.20.3)(yaml@2.8.0))
       zod:
-        specifier: ^3.25.62
-        version: 3.25.62
+        specifier: ^3.25.64
+        version: 3.25.64
     devDependencies:
       '@biomejs/biome':
         specifier: 1.9.4
@@ -4158,8 +4158,8 @@ packages:
     peerDependencies:
       zod: ^3.25.0
 
-  zod@3.25.62:
-    resolution: {integrity: sha512-YCxsr4DmhPcrKPC9R1oBHQNlQzlJEyPAId//qTau/vBee9uO8K6prmRq4eMkOyxvBfH4wDPIPdLx9HVMWIY3xA==}
+  zod@3.25.64:
+    resolution: {integrity: sha512-hbP9FpSZf7pkS7hRVUrOjhwKJNyampPgtXKc3AN6DsWtoHsg2Sb4SQaS4Tcay380zSwd2VPo9G9180emBACp5g==}
 
 snapshots:
 
@@ -5510,7 +5510,7 @@ snapshots:
       '@tanstack/virtual-file-routes': 1.115.0
       prettier: 3.5.3
       tsx: 4.19.4
-      zod: 3.25.62
+      zod: 3.25.64
     optionalDependencies:
       '@tanstack/react-router': 1.121.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
 
@@ -5523,7 +5523,7 @@ snapshots:
       recast: 0.23.11
       source-map: 0.7.4
       tsx: 4.20.3
-      zod: 3.25.62
+      zod: 3.25.64
     transitivePeerDependencies:
       - supports-color
 
@@ -5545,7 +5545,7 @@ snapshots:
       babel-dead-code-elimination: 1.0.10
       chokidar: 3.6.0
       unplugin: 2.3.5
-      zod: 3.25.62
+      zod: 3.25.64
     optionalDependencies:
       '@tanstack/react-router': 1.121.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       vite: 6.3.5(@types/node@22.15.30)(jiti@2.4.2)(less@4.3.0)(lightningcss@1.30.1)(tsx@4.20.3)(yaml@2.8.0)
@@ -6236,8 +6236,8 @@ snapshots:
       '@babel/plugin-proposal-private-methods': 7.18.6(@babel/core@7.26.10)
       eslint: 9.29.0(jiti@2.4.2)
       hermes-parser: 0.25.1
-      zod: 3.25.62
-      zod-validation-error: 3.4.0(zod@3.25.62)
+      zod: 3.25.64
+      zod-validation-error: 3.4.0(zod@3.25.64)
     transitivePeerDependencies:
       - supports-color
 
@@ -6576,8 +6576,8 @@ snapshots:
       smol-toml: 1.3.4
       strip-json-comments: 5.0.2
       typescript: 5.8.3
-      zod: 3.25.62
-      zod-validation-error: 3.5.0(zod@3.25.62)
+      zod: 3.25.64
+      zod-validation-error: 3.5.0(zod@3.25.64)
 
   less@4.3.0:
     dependencies:
@@ -7858,12 +7858,12 @@ snapshots:
 
   yoctocolors-cjs@2.1.2: {}
 
-  zod-validation-error@3.4.0(zod@3.25.62):
+  zod-validation-error@3.4.0(zod@3.25.64):
     dependencies:
-      zod: 3.25.62
+      zod: 3.25.64
 
-  zod-validation-error@3.5.0(zod@3.25.62):
+  zod-validation-error@3.5.0(zod@3.25.64):
     dependencies:
-      zod: 3.25.62
+      zod: 3.25.64
 
-  zod@3.25.62: {}
+  zod@3.25.64: {}
