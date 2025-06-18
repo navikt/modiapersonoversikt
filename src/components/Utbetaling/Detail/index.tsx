@@ -362,7 +362,9 @@ const UtbetalingerSammendrag = ({ utbetalinger, periode }: { utbetalinger: Utbet
                         Skriv ut
                     </Button>
                 </HStack>
-                <p>Det finnes {utbetalinger.length} utbetalinger for valgt periode og filtrering</p>
+                <BodyShort size="small">
+                    Det finnes {utbetalinger.length} utbetalinger for valgt periode og filtrering
+                </BodyShort>
                 <UtbetaltBelop brutto={brutto} trekk={trekk} netto={netto} />
                 <VStack gap="2" className="mt-4">
                     <BodyShort size="medium" weight="semibold">

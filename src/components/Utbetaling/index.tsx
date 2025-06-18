@@ -8,7 +8,7 @@ import { arenaURL } from 'src/components/Utbetaling/List/utils';
 export const UtbetalingPage = () => {
     return (
         <HStack gap="1" minHeight="0" flexGrow="1" wrap={false}>
-            <VStack height="100%" minWidth="12em" gap="4">
+            <VStack height="100%" minWidth="12em">
                 <Heading size="xsmall">Utbetalinger</Heading>
                 <HStack>
                     <Button
