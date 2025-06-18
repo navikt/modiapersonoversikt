@@ -1,5 +1,3 @@
-import type { Fodsel } from 'src/models/ytelse/foreldrepenger';
-
 export const statiskKommendeUtbetaling = {
     vedtak: { fra: '2018-01-14', til: '2017-07-15' },
     utbetalingsgrad: 79,
@@ -13,7 +11,7 @@ export const statiskKommendeUtbetaling = {
     type: 'KONTOØVERFØRING'
 };
 
-export const statiskForeldrepengeMock: Fodsel = {
+export const statiskForeldrepengeMock = {
     forelder: '10108000398',
     andreForeldersFnr: '03063850003',
     antallBarn: 5,
