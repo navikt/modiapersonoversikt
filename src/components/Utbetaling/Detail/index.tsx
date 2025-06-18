@@ -4,7 +4,6 @@ import { getRouteApi } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai';
 import { Suspense } from 'react';
-import AriaNotification from 'src/components/AriaNotification';
 import Card from 'src/components/Card';
 import type { DateRange } from 'src/components/DateFilters/types';
 import ErrorBoundary from 'src/components/ErrorBoundary';
@@ -363,9 +362,9 @@ const UtbetalingerSammendrag = ({ utbetalinger, periode }: { utbetalinger: Utbet
                         Skriv ut
                     </Button>
                 </HStack>
-                <AriaNotification
-                    beskjed={`Det finnes ${utbetalinger.length} utbetalinger for valgt periode og filtrering`}
-                />
+                <BodyShort size="small">
+                    Det finnes {utbetalinger.length} utbetalinger for valgt periode og filtrering
+                </BodyShort>
                 <UtbetaltBelop brutto={brutto} trekk={trekk} netto={netto} />
                 <VStack gap="2" className="mt-4">
                     <BodyShort size="medium" weight="semibold">

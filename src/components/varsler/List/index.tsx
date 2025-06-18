@@ -1,4 +1,4 @@
-import { Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, Skeleton, VStack } from '@navikt/ds-react';
 import { useNavigate, useSearch } from '@tanstack/react-router';
 import { Suspense, useCallback } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
@@ -43,6 +43,14 @@ const VarslerListList = () => {
         from: '/new/person/varsler',
         select: (p) => p.id
     });
+
+    if (varsler.length === 0) {
+        return (
+            <Alert className="mr-2" variant="info">
+                Fant ingen varsler
+            </Alert>
+        );
+    }
 
     return (
         <>
