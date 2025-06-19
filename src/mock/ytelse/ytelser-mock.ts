@@ -2,14 +2,14 @@ import { pleiepengerTestData } from 'src/app/personside/infotabs/ytelser/pleiepe
 import type { YtelseResponse } from 'src/generated/modiapersonoversikt-api';
 import { YtelseVedtakYtelseType } from 'src/generated/modiapersonoversikt-api';
 import { aremark } from 'src/mock/persondata/aremark';
-import { statiskForeldrepengeMock } from 'src/mock/ytelse/statiskForeldrepengeMock';
+import { statiskForeldrepengeMockNy } from 'src/mock/ytelse/statiskForeldrepengeMock';
 import { statiskSykepengerMock } from 'src/mock/ytelse/statiskSykepengerMock';
 import { statiskTiltakspengerMock } from 'src/mock/ytelse/statiskTiltakspengerMock';
 
 export function getMockYtelserRespons(fnr: string): YtelseResponse {
     const foreldrePenger = {
         ytelseType: YtelseVedtakYtelseType.Foreldrepenger,
-        ytelseData: { data: statiskForeldrepengeMock }
+        ytelseData: { data: statiskForeldrepengeMockNy }
     };
     const sykePenger = { ytelseType: YtelseVedtakYtelseType.Sykepenger, ytelseData: { data: statiskSykepengerMock } };
     const pleiePenger = { ytelseType: YtelseVedtakYtelseType.Pleiepenger, ytelseData: { data: pleiepengerTestData } };
