@@ -132,22 +132,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v2/ytelse/pensjon/{sakId}': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations['hentPensjonSakEtteroppgjorshistorikk'];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     '/rest/v2/ytelse/foreldrepenger': {
         parameters: {
             query?: never;
@@ -237,7 +221,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations['hentSakstemaSoknadsstatus'];
+        post: operations['hentSakstema'];
         delete?: never;
         options?: never;
         head?: never;
@@ -1400,44 +1384,16 @@ export interface components {
             fom?: string;
             tom?: string;
         };
-        Code: {
-            code: string;
-            decode: string;
-        };
         PensjonSak: {
             /** Format: int64 */
-            id: number;
-            type?: components['schemas']['Code'];
-            status?: components['schemas']['Code'];
+            sakid: number;
+            sakType: string;
+            sakStatus: string;
             /** Format: date */
-            fom?: string;
+            fomDato?: string;
             /** Format: date */
-            tom?: string;
-            enhetId: string;
-        };
-        PensjonEtteroppgjorYtelse: {
-            type?: components['schemas']['Code'];
-            /** Format: int32 */
-            inntekt?: number;
-            /** Format: int32 */
-            fradrag?: number;
-            /** Format: int32 */
-            inntektBruktIEtteroppgjor?: number;
-            /** Format: int32 */
-            avviksbelop?: number;
-        };
-        PensjonEtteroppgjorshistorikk: {
-            /** Format: date */
-            fom: string;
-            /** Format: date */
-            tom: string;
-            resultat?: components['schemas']['Code'];
-            /** Format: int32 */
-            belop?: number;
-            /** Format: date */
-            vedtaksdato?: string;
-            ar: string;
-            ytelser: components['schemas']['PensjonEtteroppgjorYtelse'][];
+            tomDato?: string;
+            enhetsId: string;
         };
         ForeldrepengePeriode: {
             fodselsnummer?: string;
@@ -1650,67 +1606,6 @@ export interface components {
             /** @enum {string} */
             feilmelding?: FeilFeilmelding;
         };
-        LocalDate: {
-            /** Format: date */
-            value?: string;
-            /** Format: date */
-            value$kotlinx_datetime: string;
-            /** Format: int32 */
-            monthNumber: number;
-            /** Format: int32 */
-            year: number;
-            /** Format: int32 */
-            dayOfMonth: number;
-            /** @enum {string} */
-            month: LocalDateMonth;
-            /** @enum {string} */
-            dayOfWeek: LocalDateDayOfWeek;
-            /** Format: int32 */
-            dayOfYear: number;
-        };
-        LocalDateTime: {
-            /** Format: date-time */
-            value?: string;
-            /** Format: date-time */
-            value$kotlinx_datetime: string;
-            /** Format: int32 */
-            monthNumber: number;
-            /** Format: int32 */
-            nanosecond: number;
-            time: components['schemas']['LocalTime'];
-            /** Format: int32 */
-            year: number;
-            /** Format: int32 */
-            dayOfMonth: number;
-            /** Format: int32 */
-            hour: number;
-            /** Format: int32 */
-            minute: number;
-            /** Format: int32 */
-            second: number;
-            /** @enum {string} */
-            month: LocalDateTimeMonth;
-            /** @enum {string} */
-            dayOfWeek: LocalDateTimeDayOfWeek;
-            /** Format: int32 */
-            dayOfYear: number;
-            date: components['schemas']['LocalDate'];
-        };
-        LocalTime: {
-            value?: string;
-            value$kotlinx_datetime: string;
-            /** Format: int32 */
-            nanosecond: number;
-            /** Format: int32 */
-            hour: number;
-            /** Format: int32 */
-            minute: number;
-            /** Format: int32 */
-            second: number;
-        };
-        ResultatSoknadsstatus: {
-            resultat: components['schemas']['SoknadsstatusSakstema'][];
-        };
         Sak: {
             temakode: string;
             saksid: string;
@@ -1721,24 +1616,17 @@ export interface components {
             /** @enum {string} */
             baksystem: SakBaksystem;
         };
-        Soknadsstatus: {
-            /** Format: int32 */
-            underBehandling: number;
-            /** Format: int32 */
-            ferdigBehandlet: number;
-            /** Format: int32 */
-            avbrutt: number;
-            sistOppdatert?: components['schemas']['LocalDateTime'];
-        };
-        SoknadsstatusSakstema: {
+        Sakstema: {
             temakode: string;
             temanavn: string;
             erGruppert: boolean;
-            soknadsstatus: components['schemas']['Soknadsstatus'];
             dokumentMetadata: components['schemas']['Dokumentmetadata'][];
             tilhorendeSaker: components['schemas']['Sak'][];
             feilkoder: number[];
             harTilgang: boolean;
+        };
+        SakstemaResponse: {
+            resultat: components['schemas']['Sakstema'][];
         };
         Kontaktinformasjon: {
             epost?: components['schemas']['VerdiString'];
@@ -2264,10 +2152,7 @@ export type PleiepengerPeriode = components['schemas']['PleiepengerPeriode'];
 export type PleiepengerResponse = components['schemas']['PleiepengerResponse'];
 export type PleiepengerVedtak = components['schemas']['PleiepengerVedtak'];
 export type PleiepengerVedtakPeriode = components['schemas']['PleiepengerVedtakPeriode'];
-export type Code = components['schemas']['Code'];
 export type PensjonSak = components['schemas']['PensjonSak'];
-export type PensjonEtteroppgjorYtelse = components['schemas']['PensjonEtteroppgjorYtelse'];
-export type PensjonEtteroppgjorshistorikk = components['schemas']['PensjonEtteroppgjorshistorikk'];
 export type ForeldrepengePeriode = components['schemas']['ForeldrepengePeriode'];
 export type Foreldrepenger = components['schemas']['Foreldrepenger'];
 export type ForeldrepengerArbeidsforhold = components['schemas']['ForeldrepengerArbeidsforhold'];
@@ -2294,13 +2179,9 @@ export type TilgangDto = components['schemas']['TilgangDTO'];
 export type Dokument = components['schemas']['Dokument'];
 export type Dokumentmetadata = components['schemas']['Dokumentmetadata'];
 export type Feil = components['schemas']['Feil'];
-export type LocalDate = components['schemas']['LocalDate'];
-export type LocalDateTime = components['schemas']['LocalDateTime'];
-export type LocalTime = components['schemas']['LocalTime'];
-export type ResultatSoknadsstatus = components['schemas']['ResultatSoknadsstatus'];
 export type Sak = components['schemas']['Sak'];
-export type Soknadsstatus = components['schemas']['Soknadsstatus'];
-export type SoknadsstatusSakstema = components['schemas']['SoknadsstatusSakstema'];
+export type Sakstema = components['schemas']['Sakstema'];
+export type SakstemaResponse = components['schemas']['SakstemaResponse'];
 export type Kontaktinformasjon = components['schemas']['Kontaktinformasjon'];
 export type OppgaveDto = components['schemas']['OppgaveDTO'];
 export type OppfolgingDto = components['schemas']['OppfolgingDTO'];
@@ -2551,32 +2432,6 @@ export interface operations {
             };
         };
     };
-    hentPensjonSakEtteroppgjorshistorikk: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                sakId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                'application/json': components['schemas']['FnrDatoRangeRequest'];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['PensjonEtteroppgjorshistorikk'][];
-                };
-            };
-        };
-    };
     hentForeldrepenger: {
         parameters: {
             query?: never;
@@ -2724,7 +2579,7 @@ export interface operations {
             };
         };
     };
-    hentSakstemaSoknadsstatus: {
+    hentSakstema: {
         parameters: {
             query: {
                 enhet: string;
@@ -2745,7 +2600,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    '*/*': components['schemas']['ResultatSoknadsstatus'];
+                    '*/*': components['schemas']['SakstemaResponse'];
                 };
             };
         };
@@ -3808,52 +3663,6 @@ export enum FeilFeilmelding {
     TEMAKODE_ER_BIDRAG = 'TEMAKODE_ER_BIDRAG',
     KORRUPT_PDF = 'KORRUPT_PDF',
     TEKNISK_FEIL = 'TEKNISK_FEIL'
-}
-export enum LocalDateMonth {
-    JANUARY = 'JANUARY',
-    FEBRUARY = 'FEBRUARY',
-    MARCH = 'MARCH',
-    APRIL = 'APRIL',
-    MAY = 'MAY',
-    JUNE = 'JUNE',
-    JULY = 'JULY',
-    AUGUST = 'AUGUST',
-    SEPTEMBER = 'SEPTEMBER',
-    OCTOBER = 'OCTOBER',
-    NOVEMBER = 'NOVEMBER',
-    DECEMBER = 'DECEMBER'
-}
-export enum LocalDateDayOfWeek {
-    MONDAY = 'MONDAY',
-    TUESDAY = 'TUESDAY',
-    WEDNESDAY = 'WEDNESDAY',
-    THURSDAY = 'THURSDAY',
-    FRIDAY = 'FRIDAY',
-    SATURDAY = 'SATURDAY',
-    SUNDAY = 'SUNDAY'
-}
-export enum LocalDateTimeMonth {
-    JANUARY = 'JANUARY',
-    FEBRUARY = 'FEBRUARY',
-    MARCH = 'MARCH',
-    APRIL = 'APRIL',
-    MAY = 'MAY',
-    JUNE = 'JUNE',
-    JULY = 'JULY',
-    AUGUST = 'AUGUST',
-    SEPTEMBER = 'SEPTEMBER',
-    OCTOBER = 'OCTOBER',
-    NOVEMBER = 'NOVEMBER',
-    DECEMBER = 'DECEMBER'
-}
-export enum LocalDateTimeDayOfWeek {
-    MONDAY = 'MONDAY',
-    TUESDAY = 'TUESDAY',
-    WEDNESDAY = 'WEDNESDAY',
-    THURSDAY = 'THURSDAY',
-    FRIDAY = 'FRIDAY',
-    SATURDAY = 'SATURDAY',
-    SUNDAY = 'SUNDAY'
 }
 export enum SakBaksystem {
     GSAK = 'GSAK',

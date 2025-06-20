@@ -1,6 +1,4 @@
-import type { Pleiepengerettighet } from 'src/models/ytelse/pleiepenger';
-
-export const pleiepengerTestData: Pleiepengerettighet = {
+export const pleiepengerTestData = {
     barnet: '12345678910',
     omsorgsperson: '12076632144',
     andreOmsorgsperson: '26087625779',
