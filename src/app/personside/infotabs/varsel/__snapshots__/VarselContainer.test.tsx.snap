@@ -663,6 +663,8 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
     </ol>
     <div
       class="navds-alert navds-alert--info navds-alert--medium"
+      data-color="info"
+      data-variant="info"
     >
       <svg
         aria-labelledby="title-«r0»"
