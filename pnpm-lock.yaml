@@ -265,8 +265,8 @@ importers:
         specifier: ^4.1.10
         version: 4.1.10
       '@tanstack/router-cli':
-        specifier: ^1.121.25
-        version: 1.121.25
+        specifier: ^1.121.34
+        version: 1.121.34
       '@tanstack/router-devtools':
         specifier: ^1.121.5
         version: 1.121.5(@tanstack/react-router@1.121.34(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@tanstack/router-core@1.121.34)(csstype@3.1.3)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(solid-js@1.9.7)(tiny-invariant@1.3.3)
@@ -1717,10 +1717,6 @@ packages:
     resolution: {integrity: sha512-K7JJNrRVvyjAVnbXOH2XLRhFXDkeP54Kt2P4FR1Kl2KDGlIbkua5VqZQD2rot3qaDrpufyUa63nuLai1kOLTsQ==}
     engines: {node: '>=12'}
 
-  '@tanstack/history@1.121.21':
-    resolution: {integrity: sha512-8BFGA7fpElicM1aEfZRDoEiWgMrNb/fVuJjSKv+nYtbp7jdtqt57fROi/uDGf6PLlgJbMoT3GWxqveZisOUEKA==}
-    engines: {node: '>=12'}
-
   '@tanstack/history@1.121.34':
     resolution: {integrity: sha512-YL8dGi5ZU+xvtav2boRlw4zrRghkY6hvdcmHhA0RGSJ/CBgzv+cbADW9eYJLx74XMZvIQ1pp6VMbrpXnnM5gHA==}
     engines: {node: '>=12'}
@@ -1766,17 +1762,13 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
-  '@tanstack/router-cli@1.121.25':
-    resolution: {integrity: sha512-R5FyJNaU9PdZMKZq3P02RiQWD/SF8J2pYWKv7hHt+MA3elgpVhcaJyxRJ3H7UtkOwQxOdJykExCcmh01QgHWFA==}
+  '@tanstack/router-cli@1.121.34':
+    resolution: {integrity: sha512-OkBZ+n58wcXU45m1b0f58Uce0mkEoNav+ZeHwrPQWfvw3TQdc9cmH57Kss01YgeOBgCbTaPyAiPJltPl05LjmA==}
     engines: {node: '>=12'}
     hasBin: true
 
   '@tanstack/router-core@1.120.15':
     resolution: {integrity: sha512-soLj+mEuvSxAVFK/3b85IowkkvmSuQL6J0RSIyKJFGFgy0CmUzpcBGEO99+JNWvvvzHgIoY4F4KtLIN+rvFSFA==}
-    engines: {node: '>=12'}
-
-  '@tanstack/router-core@1.121.27':
-    resolution: {integrity: sha512-6lCQ3p7KhJ8Qy33TPRM6wIkQ1XKaikD5qqx3K2fPr3YtyDNefKQValbSAkb2CBB+hlDodfHNyxemE9alnQr55A==}
     engines: {node: '>=12'}
 
   '@tanstack/router-core@1.121.34':
@@ -1816,8 +1808,8 @@ packages:
       '@tanstack/react-router':
         optional: true
 
-  '@tanstack/router-generator@1.121.25':
-    resolution: {integrity: sha512-G4N3/nm9jpexW4CAfS5eoe5BdSzCsBoUB4nhD96WkKEFKo6gopsbV6dQSBYua+nGYEtuj7TK4WarrNTnAeqW3A==}
+  '@tanstack/router-generator@1.121.34':
+    resolution: {integrity: sha512-JmxlhK8f7LIxHV8BAHikeiYGfwM9p5nxbEMpujNgTmC0dBwSyes+Zm0DzEL0EotVXZy+CyI/9bVa7z+9nWvqlA==}
     engines: {node: '>=12'}
 
   '@tanstack/router-plugin@1.120.15':
@@ -3508,6 +3500,11 @@ packages:
 
   prettier@3.5.3:
     resolution: {integrity: sha512-QQtaxnoDJeAkDvDKWCLiwIXkTgRhwYDEQCghU9Z6q03iyek/rxRh/2lC3HB7P8sWT2xC/y5JDctPLBIGzHKbhw==}
+    engines: {node: '>=14'}
+    hasBin: true
+
+  prettier@3.6.0:
+    resolution: {integrity: sha512-ujSB9uXHJKzM/2GBuE0hBOUgC77CN3Bnpqa+g80bkv3T3A93wL/xlzDATHhnhkzifz/UE2SNOvmbTz5hSkDlHw==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -5409,8 +5406,6 @@ snapshots:
 
   '@tanstack/history@1.115.0': {}
 
-  '@tanstack/history@1.121.21': {}
-
   '@tanstack/history@1.121.34': {}
 
   '@tanstack/query-core@5.75.4': {}
@@ -5460,9 +5455,9 @@ snapshots:
       react-dom: 19.1.0(react@19.1.0)
       use-sync-external-store: 1.5.0(react@19.1.0)
 
-  '@tanstack/router-cli@1.121.25':
+  '@tanstack/router-cli@1.121.34':
     dependencies:
-      '@tanstack/router-generator': 1.121.25
+      '@tanstack/router-generator': 1.121.34
       chokidar: 3.6.0
       yargs: 17.7.2
     transitivePeerDependencies:
@@ -5471,12 +5466,6 @@ snapshots:
   '@tanstack/router-core@1.120.15':
     dependencies:
       '@tanstack/history': 1.115.0
-      '@tanstack/store': 0.7.1
-      tiny-invariant: 1.3.3
-
-  '@tanstack/router-core@1.121.27':
-    dependencies:
-      '@tanstack/history': 1.121.21
       '@tanstack/store': 0.7.1
       tiny-invariant: 1.3.3
 
@@ -5520,12 +5509,12 @@ snapshots:
     optionalDependencies:
       '@tanstack/react-router': 1.121.34(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
 
-  '@tanstack/router-generator@1.121.25':
+  '@tanstack/router-generator@1.121.34':
     dependencies:
-      '@tanstack/router-core': 1.121.27
+      '@tanstack/router-core': 1.121.34
       '@tanstack/router-utils': 1.121.21
       '@tanstack/virtual-file-routes': 1.121.21
-      prettier: 3.5.3
+      prettier: 3.6.0
       recast: 0.23.11
       source-map: 0.7.4
       tsx: 4.20.3
@@ -7224,6 +7213,8 @@ snapshots:
   prelude-ls@1.2.1: {}
 
   prettier@3.5.3: {}
+
+  prettier@3.6.0: {}
 
   pretty-format@27.5.1:
     dependencies:
