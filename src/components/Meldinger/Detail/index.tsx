@@ -120,7 +120,7 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
 
                 {avsluttetDato && !kanBesvares && (
                     <Alert variant="info" size="small">
-                        Samtalen er avsluttet av {avsluttetAv} {formatterDatoTid(avsluttetDato)}
+                        Samtalen er avsluttet av {avsluttetAv ?? 'Systembruker'} {formatterDatoTid(avsluttetDato)}
                     </Alert>
                 )}
 
