@@ -81,7 +81,9 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
                     <StyledAlertStripeInfo>Tråden ligger til behandling for sladding</StyledAlertStripeInfo>
                 )}
                 {avsluttetDato && !kanBesvares && (
-                    <StyledAlertStripeInfo>Samtalen er avsluttet av {avsluttetAv}</StyledAlertStripeInfo>
+                    <StyledAlertStripeInfo>
+                        Samtalen er avsluttet av {avsluttetAv ?? 'Systembruker'}
+                    </StyledAlertStripeInfo>
                 )}
             </>
         );
