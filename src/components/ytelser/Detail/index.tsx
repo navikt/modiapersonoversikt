@@ -15,10 +15,7 @@ import {
     YtelseVedtakYtelseType
 } from 'src/generated/modiapersonoversikt-api';
 
-export const TitleValuePairComponent = ({
-    title,
-    value
-}: { title: string; value: string | number | null | undefined }) => {
+const TitleValuePairComponent = ({ title, value }: { title: string; value: string | number | null | undefined }) => {
     return (
         <VStack justify="space-between">
             <BodyShort size="small" weight="semibold">

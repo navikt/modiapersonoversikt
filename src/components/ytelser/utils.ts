@@ -179,7 +179,7 @@ export function getPleiepengerArbiedsforholdSortert(pleiePenger: Pleiepenger): P
     return sorterArbeidsforholdEtterRefusjonTom(arbeidsforhold);
 }
 
-export function sorterArbeidsforholdEtterRefusjonTom(
+function sorterArbeidsforholdEtterRefusjonTom(
     arbeidsforhold: PleiepengerArbeidsforhold[]
 ): PleiepengerArbeidsforhold[] {
     return arbeidsforhold.sort(datoStigende((a) => a.refusjonTom || new Date(0))).reverse();

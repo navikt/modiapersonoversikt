@@ -30,13 +30,6 @@ export function prosentEllerNull(value: number | null | undefined): string | nul
     return `${value}%`;
 }
 
-export function prosentEllerTomString(value: number | null | undefined): string {
-    if (!value) {
-        return '';
-    }
-    return `${value}%`;
-}
-
 export function NOKellerNull(value: number | null | undefined): string | null {
     if (!value) {
         return null;

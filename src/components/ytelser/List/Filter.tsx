@@ -29,7 +29,7 @@ const filterYtelseTypeAtom = atom(
     }
 );
 
-export const filterDateRangeAtom = atom(
+const filterDateRangeAtom = atom(
     (get) => get(ytelseFilterAtom).dateRange,
     (_get, set, dateRange: DateRange | null) => {
         const range = dateRange ?? defaultDate;
