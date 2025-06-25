@@ -1,4 +1,4 @@
-import { VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, VStack } from '@navikt/ds-react';
 import { useNavigate, useSearch } from '@tanstack/react-router';
 import { useCallback } from 'react';
 import { PaginatedList } from 'src/components/PaginatedList';
@@ -29,8 +29,17 @@ const YtelseList = () => {
         select: (p) => p.id
     });
 
+    if (ytelser.length === 0) {
+        return (
+            <Alert className="mr-2" variant="info">
+                Fant ingen ytelser
+            </Alert>
+        );
+    }
+
     return (
         <>
+            <BodyShort size="small">Det finnes {ytelser.length} ytelser for valgt periode og filtrering</BodyShort>
             <PaginatedList
                 selectedKey={selectedKey}
                 items={ytelser}

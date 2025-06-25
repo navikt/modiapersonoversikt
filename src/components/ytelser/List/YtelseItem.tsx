@@ -1,6 +1,7 @@
 import { ChevronRightIcon } from '@navikt/aksel-icons';
 import { BodyShort, Button, HStack, Heading, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
+import dayjs from 'dayjs';
 import {} from 'nav-frontend-typografi';
 import Card from 'src/components/Card';
 import { getUnikYtelseKey, getYtelseIdDato } from 'src/components/ytelser/utils';
@@ -54,7 +55,7 @@ export const YtelseItem = ({
                         <BodyShort size="small" weight="semibold">
                             Dato:
                         </BodyShort>
-                        <BodyShort size="small">{getYtelseIdDato(ytelse)}</BodyShort>
+                        <BodyShort size="small">{dayjs(getYtelseIdDato(ytelse)).format('DD.MM.YYYY')}</BodyShort>
                     </HStack>
                     {ytelse.ytelseType === YtelseVedtakYtelseType.Pleiepenger && (
                         <HStack gap="2">
