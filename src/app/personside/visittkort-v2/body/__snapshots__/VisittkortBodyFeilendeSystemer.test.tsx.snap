@@ -736,7 +736,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                     >
                       <div
                         class="navds-help-text"
-                        data-color="info"
                       >
                         <button
                           aria-expanded="false"
@@ -831,7 +830,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                     >
                       <div
                         class="navds-help-text"
-                        data-color="info"
                       >
                         <button
                           aria-expanded="false"
@@ -926,7 +924,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                     >
                       <div
                         class="navds-help-text"
-                        data-color="info"
                       >
                         <button
                           aria-expanded="false"
