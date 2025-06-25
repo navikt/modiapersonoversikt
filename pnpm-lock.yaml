@@ -21,8 +21,8 @@ importers:
         specifier: ^7.23.2
         version: 7.23.2
       '@navikt/ds-css':
-        specifier: ^7.23.1
-        version: 7.23.1
+        specifier: ^7.23.2
+        version: 7.23.2
       '@navikt/ds-react':
         specifier: ^7.23.2
         version: 7.23.2(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -1184,8 +1184,8 @@ packages:
   '@navikt/aksel-icons@7.23.2':
     resolution: {integrity: sha512-My2frgQ7MZE68NWe3ENuO3G2V5wlCClvzuAPpY46vSbLU//VP6Pr7gnZWFNdrf4C5QMTACC0PzbNcWXNSxVBHg==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/7.23.2/6e6827d01e8243f0df3e509156737c867f99a5e6}
 
-  '@navikt/ds-css@7.23.1':
-    resolution: {integrity: sha512-vPzxMsx4w+bllQ89KOkfeeEQiShOF7kaJcrj1t438gVJMuEmAW0dKUXspIoDu67umIJzhiQmDxxs1hEho8IFmg==, tarball: https://npm.pkg.github.com/download/@navikt/ds-css/7.23.1/402d1d8d043e3ab8189fb18032af202d7a345135}
+  '@navikt/ds-css@7.23.2':
+    resolution: {integrity: sha512-yl1m86RUdP5n9U66PDRyv0EJywbLnVCoeAXuuR6TjQJVOuCL/S+nG8AahKYRTZVZ//uJrpsSkY0nDLEBi9BJLw==, tarball: https://npm.pkg.github.com/download/@navikt/ds-css/7.23.2/70a2d8c52bbc50122f42fe65dd99d4932d9c29c5}
 
   '@navikt/ds-react@7.23.2':
     resolution: {integrity: sha512-E6NUUgZ7Egw3U9ThaV5tqD+HRdRqentH3N4eo2A6pIvWIo7Rm0GV9XOZgRn3kkmP2tkC4P+laEsBbiN3v4G96Q==, tarball: https://npm.pkg.github.com/download/@navikt/ds-react/7.23.2/96459a01109acb20c93d4073013ee0bee91fe638}
@@ -4876,7 +4876,7 @@ snapshots:
 
   '@navikt/aksel-icons@7.23.2': {}
 
-  '@navikt/ds-css@7.23.1': {}
+  '@navikt/ds-css@7.23.2': {}
 
   '@navikt/ds-react@7.23.2(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
