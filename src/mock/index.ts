@@ -47,6 +47,7 @@ import type {
     OpprettOppgaveRequestDto,
     OpprettOppgaveResponseDto
 } from 'src/generated/modiapersonoversikt-api';
+import { getMockYtelserRespons } from 'src/mock/ytelse/ytelser-mock';
 import type { FeatureTogglesResponse } from 'src/rest/resources/featuretogglesResource';
 import { STATUS_OK, fodselsNummerErGyldigStatus, randomDelay } from './utils-mock';
 import { getMockTiltakspenger } from './ytelse/tiltakspenger-mock';
@@ -194,6 +195,15 @@ const tiltakspengerMock = http.post(
         randomDelay(),
         fodselsNummerErGyldigStatus,
         mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMockTiltakspenger(fodselsnummer))
+    )
+);
+
+const ytelseHandler = http.post(
+    `${apiBaseUri}/v2/ytelse/alle-ytelser`,
+    withDelayedResponse(
+        randomDelay(),
+        fodselsNummerErGyldigStatus,
+        mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMockYtelserRespons(fodselsnummer))
     )
 );
 
@@ -372,6 +382,7 @@ export const handlers: (HttpHandler | WebSocketHandler)[] = [
     pleiepengerHandler,
     tiltakspengerMock,
     pensjonMock,
+    ytelseHandler,
     tildelteOppgaverHandler,
     baseUrlsHandler,
     ...featureToggleHandler,

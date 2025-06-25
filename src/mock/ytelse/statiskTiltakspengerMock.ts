@@ -1,7 +1,6 @@
 import { VedtakDTOKilde, VedtakDTORettighet } from 'src/generated/modiapersonoversikt-api';
-import type { Tiltakspenger } from '../../models/ytelse/tiltakspenger';
 
-export const statiskTiltakspengerMock: Tiltakspenger = {
+export const statiskTiltakspengerMock = {
     periode: {
         fraOgMed: '2020-01-10',
         tilOgMed: '2020-02-21'
