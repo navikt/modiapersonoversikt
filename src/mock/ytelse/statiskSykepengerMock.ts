@@ -1,4 +1,3 @@
-import type { Sykepenger } from '../../models/ytelse/sykepenger';
 import { statiskKommendeUtbetaling } from './statiskForeldrepengeMock';
 
 const arbeidsforhold = {
@@ -45,7 +44,7 @@ const sykmelding = {
     ]
 };
 
-export const statiskSykepengerMock: Sykepenger = {
+export const statiskSykepengerMock = {
     fodselsnummer: '10108000398',
     sykmeldtFom: '2019-02-06',
     forbrukteDager: 23,

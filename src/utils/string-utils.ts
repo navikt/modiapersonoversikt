@@ -23,7 +23,7 @@ export function sorterAlfabetisk(a: string, b: string) {
     return a > b ? 1 : -1;
 }
 
-export function prosentEllerNull(value: number | null): string | null {
+export function prosentEllerNull(value: number | null | undefined): string | null {
     if (!value) {
         return null;
     }
@@ -37,7 +37,7 @@ export function NOKellerNull(value: number | null | undefined): string | null {
     return `${formaterNOK(value)} NOK`;
 }
 
-export function convertBoolTilJaNei(verdi: boolean | null): string | null {
+export function convertBoolTilJaNei(verdi: boolean | null | undefined): string | null {
     switch (verdi) {
         case true:
             return 'Ja';
@@ -77,7 +77,7 @@ export function datoEllerNull(dato: string | Date | null | undefined): string | 
     return formaterDato(dato);
 }
 
-export function datoEllerTomString(dato: string | Date | null): string {
+export function datoEllerTomString(dato: string | Date | null | undefined): string {
     if (!dato) {
         return '';
     }
