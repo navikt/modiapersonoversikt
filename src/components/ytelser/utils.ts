@@ -1,6 +1,5 @@
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai/index';
-import { useMemo } from 'react';
 import { type YtelseFilter, ytelseFilterAtom } from 'src/components/ytelser/List/Filter';
 import { useYtelser } from 'src/lib/clients/modiapersonoversikt-api';
 import type {
@@ -43,7 +42,7 @@ export const useFilterYtelser = () => {
     const ytelser: YtelseVedtak[] = ytelseResponse.data?.ytelser ?? [];
     const ytelserSortert = ytelser.sort(datoSynkende((ytelse: YtelseVedtak) => getYtelseIdDato(ytelse)));
 
-    return useMemo(() => filterYtelser(ytelserSortert, filters), [ytelser, filters]);
+    return filterYtelser(ytelserSortert, filters);
 };
 
 export function getYtelseIdDato(ytelse: YtelseVedtak): string {
