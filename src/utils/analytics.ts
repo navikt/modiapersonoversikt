@@ -10,17 +10,6 @@ declare global {
     }
 }
 
-export const trackNavigation = (destination: string, linkText: string) => {
-    if (!window.umami) {
-        console.warn('Umami is not initialized. Ignoring');
-        return;
-    }
-    window.umami.track('lenke klikket', {
-        tekst: linkText,
-        destinasjon: destination
-    });
-};
-
 export const trackAccordionOpened = (name: string) => {
     if (!window.umami) {
         console.warn('Umami is not initialized. Ignoring');
