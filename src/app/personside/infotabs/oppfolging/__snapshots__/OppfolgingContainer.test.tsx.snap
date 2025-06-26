@@ -359,8 +359,6 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                             </span>
                             <button
                               class="navds-date__caption-button navds-button navds-button--tertiary-neutral navds-button--medium navds-button--icon-only"
-                              data-color="neutral"
-                              data-variant="tertiary"
                               type="button"
                             >
                               <span
@@ -590,8 +588,6 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                             </div>
                             <button
                               class="navds-date__caption-button navds-button navds-button--tertiary-neutral navds-button--medium navds-button--icon-only"
-                              data-color="neutral"
-                              data-variant="tertiary"
                               type="button"
                             >
                               <span
@@ -1339,8 +1335,6 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                             </span>
                             <button
                               class="navds-date__caption-button navds-button navds-button--tertiary-neutral navds-button--medium navds-button--icon-only"
-                              data-color="neutral"
-                              data-variant="tertiary"
                               type="button"
                             >
                               <span
@@ -1546,8 +1540,6 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                             </div>
                             <button
                               class="navds-date__caption-button navds-button navds-button--tertiary-neutral navds-button--medium navds-button--icon-only navds-button--disabled"
-                              data-color="neutral"
-                              data-variant="tertiary"
                               disabled=""
                               type="button"
                             >
