@@ -1,14 +1,14 @@
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useCallback } from 'react';
 import { aktivBrukerAtom, aktivBrukerLastetAtom, aktivEnhetAtom } from 'src/lib/state/context';
-import type { Enhet } from 'src/rest/resources/saksbehandlersEnheterResource';
-import { updateUserEnhet } from 'src/utils/analytics';
-import { useOnMount, useSettAktivBruker } from 'src/utils/customHooks';
-import { getDomainFromHost, getEnvFromHost } from 'src/utils/environment';
-import { loggEvent } from 'src/utils/logger/frontendLogger';
-import { parseQueryString, useQueryParams } from 'src/utils/url-utils';
 import config from '../../config';
+import type { Enhet } from '../../rest/resources/saksbehandlersEnheterResource';
 import bjelleIkon from '../../svg/bjelle.svg?raw';
+import { trackNavigation, updateUserEnhet } from '../../utils/analytics';
+import { useOnMount, useSettAktivBruker } from '../../utils/customHooks';
+import { getDomainFromHost, getEnvFromHost } from '../../utils/environment';
+import { loggEvent } from '../../utils/logger/frontendLogger';
+import { parseQueryString, useQueryParams } from '../../utils/url-utils';
 import { DecoratorButtonId as OppdateringsloggButtonId } from '../oppdateringslogg/OppdateringsloggContainer';
 import type { DecoratorPropsV3, Hotkey } from './decoratorprops';
 
@@ -35,10 +35,15 @@ export function useDecoratorConfig() {
         setAktivEnhet(enhet);
     };
 
-    const configV3 = useCallback(lagConfigV3, [aktivEnhet, settAktivBruker, handleSetEnhet])(
+    const handleLinkClick = (link: { text: string; url: string }) => {
+        trackNavigation(link.text, link.url);
+    };
+
+    const configV3 = useCallback(lagConfigV3, [aktivEnhet, settAktivBruker, handleSetEnhet, handleLinkClick])(
         aktivEnhet,
         settAktivBruker,
-        handleSetEnhet
+        handleSetEnhet,
+        handleLinkClick
     );
 
     return { configV3 };
