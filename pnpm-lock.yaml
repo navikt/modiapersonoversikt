@@ -21,8 +21,8 @@ importers:
         specifier: ^7.24.0
         version: 7.24.0
       '@navikt/ds-css':
-        specifier: ^7.23.2
-        version: 7.23.2
+        specifier: ^7.24.0
+        version: 7.24.0
       '@navikt/ds-react':
         specifier: ^7.23.2
         version: 7.23.2(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -37,7 +37,7 @@ importers:
         version: 7.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@navikt/tag-input':
         specifier: ^2.0.2
-        version: 2.0.2(abca7f4e1ad9cdbc505686a03e715e40)
+        version: 2.0.2(7tmcxve3q2crcswam2mdob3u34)
       '@navikt/textparser':
         specifier: ^2.5.0
         version: 2.5.0(react@19.1.0)
@@ -1184,8 +1184,8 @@ packages:
   '@navikt/aksel-icons@7.24.0':
     resolution: {integrity: sha512-9dP7brTTM7x8W8+1om8MW5Kk29L4IX39UiSDBWTavh1exoO0nz1UMwq48l5C9qYW4rz9H7m63EWgSfg4gxhQDw==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/7.24.0/1f3bef13a6de84402eac4341fc6b26ee9e405a60}
 
-  '@navikt/ds-css@7.23.2':
-    resolution: {integrity: sha512-yl1m86RUdP5n9U66PDRyv0EJywbLnVCoeAXuuR6TjQJVOuCL/S+nG8AahKYRTZVZ//uJrpsSkY0nDLEBi9BJLw==, tarball: https://npm.pkg.github.com/download/@navikt/ds-css/7.23.2/70a2d8c52bbc50122f42fe65dd99d4932d9c29c5}
+  '@navikt/ds-css@7.24.0':
+    resolution: {integrity: sha512-3DPHjENMMkau++WzcjcT7XW2K2TXR7YYfDdFVP6hH058dHoIFt3WwE4ar77/HOD8s3XN/lw/UlAm0dvKdXxBMQ==, tarball: https://npm.pkg.github.com/download/@navikt/ds-css/7.24.0/1f7fdec67be88e3058a9342a237fc8b5b25d7a57}
 
   '@navikt/ds-react@7.23.2':
     resolution: {integrity: sha512-E6NUUgZ7Egw3U9ThaV5tqD+HRdRqentH3N4eo2A6pIvWIo7Rm0GV9XOZgRn3kkmP2tkC4P+laEsBbiN3v4G96Q==, tarball: https://npm.pkg.github.com/download/@navikt/ds-react/7.23.2/96459a01109acb20c93d4073013ee0bee91fe638}
@@ -4885,7 +4885,7 @@ snapshots:
 
   '@navikt/aksel-icons@7.24.0': {}
 
-  '@navikt/ds-css@7.23.2': {}
+  '@navikt/ds-css@7.24.0': {}
 
   '@navikt/ds-react@7.23.2(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
@@ -4913,7 +4913,7 @@ snapshots:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
-  '@navikt/tag-input@2.0.2(abca7f4e1ad9cdbc505686a03e715e40)':
+  '@navikt/tag-input@2.0.2(7tmcxve3q2crcswam2mdob3u34)':
     dependencies:
       classnames: 2.5.1
       nav-frontend-js-utils: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.1.0)
