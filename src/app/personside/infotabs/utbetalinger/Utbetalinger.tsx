@@ -50,6 +50,9 @@ const OnOneLine = styled.div`
 export function getFiltrerteUtbetalinger(utbetalinger: Utbetaling[], filter: UtbetalingFilterState) {
     return utbetalinger
         .filter((utbetaling) => filtrerPaUtbetaltTilValg(utbetaling, filter))
+        .filter((utbetaling) =>
+            utbetaling.ytelser?.some((ytelse) => ytelse.type && filter.ytelser[ytelse.type] === true)
+        )
         .map((utbetaling) => filtrerBortYtelserSomIkkeErValgt(utbetaling, filter));
 }
 
