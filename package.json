@@ -43,7 +43,7 @@
         "@grafana/faro-web-tracing": "^1.18.2",
         "@navikt/aksel-icons": "^7.24.0",
         "@navikt/ds-css": "^7.24.0",
-        "@navikt/ds-react": "^7.23.2",
+        "@navikt/ds-react": "^7.24.0",
         "@navikt/ds-tailwind": "^7.23.1",
         "@navikt/fnrvalidator": "^2.1.5",
         "@navikt/navspa": "^7.1.0",
