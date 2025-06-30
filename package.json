@@ -51,7 +51,7 @@
         "@navikt/textparser": "^2.5.0",
         "@tanstack/react-form": "^1.12.3",
         "@tanstack/react-query": "^5.75.4",
-        "@tanstack/react-router": "^1.121.34",
+        "@tanstack/react-router": "^1.123.0",
         "@vitejs/plugin-react": "^4.6.0",
         "classnames": "^2.5.1",
         "dayjs": "^1.11.13",
