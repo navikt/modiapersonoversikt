@@ -18,10 +18,10 @@ import {
     getTypeFromYtelse,
     getUtbetalingId,
     reduceUtbetlingerTilYtelser,
-    summertBelopFraUtbetalinger
+    summertBelopFraUtbetalinger,
+    useFilterUtbetalinger
 } from 'src/components/Utbetaling/List/utils';
 import type { Utbetaling, Ytelse } from 'src/generated/modiapersonoversikt-api';
-import { useUtbetalinger } from 'src/lib/clients/modiapersonoversikt-api';
 import { formatterDato } from 'src/utils/date-utils';
 import { groupArray } from 'src/utils/groupArray';
 import { loggEvent } from 'src/utils/logger/frontendLogger';
@@ -388,10 +388,7 @@ const UtbetalingDetail = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
 
 const UtbetalingerDetail = () => {
     const dateRange = useAtomValue(utbetalingFilterDateRangeAtom);
-    const startDato = dateRange.from.format('YYYY-MM-DD');
-    const sluttDato = dateRange.to.format('YYYY-MM-DD');
-    const { data } = useUtbetalinger(startDato, sluttDato);
-    const utbetalinger = data?.utbetalinger ?? [];
+    const utbetalinger = useFilterUtbetalinger();
 
     return (
         <VStack flexGrow="1" minHeight="0" maxHeight="100%" className="overflow-scroll">
