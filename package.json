@@ -125,7 +125,7 @@
         "@faker-js/faker": "^9.8.0",
         "@playwright/test": "^1.53.1",
         "@tailwindcss/postcss": "^4.1.11",
-        "@tanstack/router-cli": "^1.121.34",
+        "@tanstack/router-cli": "^1.123.2",
         "@tanstack/router-devtools": "^1.121.34",
         "@tanstack/router-plugin": "^1.121.37",
         "@testing-library/jest-dom": "^6.6.3",
