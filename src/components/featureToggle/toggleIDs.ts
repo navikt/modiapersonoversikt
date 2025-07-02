@@ -9,5 +9,6 @@ export enum FeatureToggles {
     FnrSokForInnkreving = 'modiapersonoversikt.fnr-sok-for-innkreving',
     OrgnrSokForInnkreving = 'modiapersonoversikt.orgnr-sok-for-innkreving',
     NyAvansertSok = 'modiapersonoversikt.ny-avansert-sok',
-    NyModiaKnapp = 'modiapersonoversikt.ny-modia-knapp'
+    NyModiaKnapp = 'modiapersonoversikt.ny-modia-knapp',
+    TilgangsMaskin = 'modiapersonoversikt.tilgangsmaskin'
 }

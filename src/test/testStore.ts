@@ -93,7 +93,8 @@ export function setupReactQueryMocks() {
         [FeatureToggles.NyAvansertSok]: true,
         [FeatureToggles.FnrSokForInnkreving]: true,
         [FeatureToggles.OrgnrSokForInnkreving]: true,
-        [FeatureToggles.NyModiaKnapp]: true
+        [FeatureToggles.NyModiaKnapp]: true,
+        [FeatureToggles.TilgangsMaskin]: true
     });
     mockReactQuery(gsaktemaResource.useFetch, getMockGsakTema());
     mockReactQuery(foreldrepengerResource.useForeldrepenger, {

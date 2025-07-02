@@ -40,21 +40,21 @@ function queryKey(fnr: string | undefined) {
     return ['tilgangskontroll', fnr];
 }
 
-function urlV2(enhet: string | undefined) {
+function url(enhet: string | undefined, enableTilgangsMaskin: boolean) {
     const params = enhet ? `?enhet=${enhet}` : '';
-    return `${apiBaseUri}/v2/tilgang${params}`;
+    return `${apiBaseUri}/v2/tilgang${enableTilgangsMaskin ? '/v2' : ''}${params}`;
 }
 
 const resource = {
-    useFetch(fnr: string): UseQueryResult<TilgangDTO, FetchError> {
+    useFetch(fnr: string, enableTilgangsMaskin: boolean): UseQueryResult<TilgangDTO, FetchError> {
         const enhet = useValgtenhet().enhetId;
         return useQuery({
             queryKey: queryKey(fnr),
-            queryFn: () => post(urlV2(enhet), { fnr })
+            queryFn: () => post(url(enhet, enableTilgangsMaskin), { fnr })
         });
     },
-    useRenderer(fnr: string, renderer: RendererOrConfig<TilgangDTO>) {
-        const response = this.useFetch(fnr);
+    useRenderer(fnr: string, enableTilgangsMaskin: boolean, renderer: RendererOrConfig<TilgangDTO>) {
+        const response = this.useFetch(fnr, enableTilgangsMaskin);
         return useRest(response, applyDefaults(defaults, renderer));
     }
 };
