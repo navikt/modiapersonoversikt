@@ -126,7 +126,7 @@
         "@playwright/test": "^1.53.2",
         "@tailwindcss/postcss": "^4.1.11",
         "@tanstack/router-cli": "^1.124.0",
-        "@tanstack/router-devtools": "^1.121.34",
+        "@tanstack/router-devtools": "^1.124.0",
         "@tanstack/router-plugin": "^1.124.0",
         "@testing-library/jest-dom": "^6.6.3",
         "@testing-library/react": "^16.3.0",
