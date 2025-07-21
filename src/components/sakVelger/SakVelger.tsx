@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import { SakKategori } from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
 import { useJournalforingSaker } from 'src/lib/clients/modiapersonoversikt-api';
-import { formatterDatoMedMaanedsnavnOrNull } from 'src/utils/date-utils';
+import { datoSynkende, formatterDatoMedMaanedsnavnOrNull } from 'src/utils/date-utils';
 import { type Group, groupBy } from 'src/utils/groupArray';
 
 interface SakVelgerRootContext {
@@ -211,13 +211,15 @@ function fordelSaker(saker: JournalforingSak[]): Kategorier {
 
     const fagSaker = Object.entries(temaGruppertefagSaker)
         .reduce((acc, [tema, saker]) => {
-            acc.push({ tema, saker });
+            const sortedSaker = saker.sort(datoSynkende((t) => t.opprettetDato || new Date(0)));
+            acc.push({ tema, saker: sortedSaker });
             return acc;
         }, [] as Tema[])
         .toSorted((a, b) => a.tema.localeCompare(b.tema));
     const generelleSaker = Object.entries(temaGrupperteGenerelleSaker)
         .reduce((acc, [tema, saker]) => {
-            acc.push({ tema, saker });
+            const sortedSaker = saker.sort(datoSynkende((t) => t.opprettetDato || new Date(0)));
+            acc.push({ tema, saker: sortedSaker });
             return acc;
         }, [] as Tema[])
         .toSorted((a, b) => a.tema.localeCompare(b.tema));
