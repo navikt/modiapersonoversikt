@@ -10,12 +10,29 @@
     <meta property="og:description"
           content="Intern arbeidsflate. Brukes som personoppslag og dialogverktøy av veiledere og saksbehandlere i Nav">
     <link rel="shortcut icon" href="./favicon.ico">
-
+    
     <link rel="preload" href="https://cdn.nav.no/aksel/fonts/SourceSans3-normal.woff2" as="font" type="font/woff2" crossorigin/>
+    <script>
+        window.sendViaBeacon = (event, payload) => {
+            const data = {
+                type: "event",
+                payload: {
+                    referrer: "",
+                    ...payload
+                }
+            };
+            if (navigator.sendBeacon) {
+                navigator.sendBeacon("https://umami.nav.no/api/send", JSON.stringify(data));
+            } else {
+                fetch("https://umami.nav.no/api/send", { method: "POST", body: JSON.stringify(data), keepalive: true });
+            }
+        };
+    </script>
 
     <slot not-environment="prod">
         <script
             defer
+            data-before-send="sendViaBeacon"
             src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
             data-host-url="https://umami.nav.no"
             data-website-id="bc5cfdcd-ecc1-402b-8cb0-c30913f0bd13"
@@ -24,6 +41,7 @@
     <slot environment="prod">
         <script
             defer
+            data-before-send="sendViaBeacon"
             src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
             data-host-url="https://umami.nav.no"
             data-website-id="a8c2ec9c-2846-4154-8841-5db26494171a"
