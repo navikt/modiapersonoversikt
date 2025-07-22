@@ -1,5 +1,5 @@
 import { ChevronDownIcon, ChevronUpIcon, PersonIcon } from '@navikt/aksel-icons';
-import { BodyShort, Box, Button, CopyButton, HStack, Heading, Label, Skeleton, VStack } from '@navikt/ds-react';
+import { BodyShort, Box, Button, CopyButton, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { Suspense, useState } from 'react';
 import config from 'src/config';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
@@ -125,7 +125,7 @@ const Personalia = ({ navn, alder, kjonn }: PersonaliaProps) => {
     return (
         <HStack align="center" gap="1">
             <PersonIcon fontSize="1.2rem" aria-hidden />
-            <Label className="capitalize">{navn.toLowerCase()}</Label>
+            <p className="capitalize font-medium">{navn.toLowerCase()}</p>
             <BodyShort>
                 ({kjonn.beskrivelse}, {alder ?? 'Unkjent alder'})
             </BodyShort>

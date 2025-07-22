@@ -50,7 +50,7 @@ function Publikumsmottak(props: { publikumsmottak: Publikumsmottak[] }) {
     const flerePublikumsmottak =
         otherPublikumsmottak.length > 0 ? (
             <>
-                <Heading spacing size="xsmall" textColor="subtle">
+                <Heading level="3" spacing size="xsmall">
                     Det finnes flere publikumsmottak
                 </Heading>
                 <Accordion size="small" headingSize="xsmall" className="max-w-96">
