@@ -6,7 +6,7 @@
 @config "../tailwind.config.js";
 
 .new-modia {
-    color: var(--ax-text-default);
+    color: var(--ax-text-neutral);
 
     h1 {
         font-size: var(--a-font-size-large);
