@@ -1,6 +1,7 @@
 import { AlertStripeAdvarsel, AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { Radio, type RadioProps } from 'nav-frontend-skjema';
 import Spinner from 'nav-frontend-spinner';
+import { datoSynkende } from 'src/utils/date-utils';
 import { type Group, groupBy } from 'src/utils/groupArray';
 import styled from 'styled-components';
 import journalsakResource from '../../../../../../../rest/resources/journalsakResource';
@@ -55,13 +56,15 @@ export function fordelSaker(saker: JournalforingsSak[]): Kategorier {
 
     const fagSaker = Object.entries(temaGruppertefagSaker)
         .reduce((acc, [tema, saker]) => {
-            acc.push({ tema, saker });
+            const sortedSaker = saker.sort(datoSynkende((t) => t.opprettetDato || new Date(0)));
+            acc.push({ tema, saker: sortedSaker });
             return acc;
         }, [] as Tema[])
         .toSorted((a, b) => a.tema.localeCompare(b.tema));
     const generelleSaker = Object.entries(temaGrupperteGenerelleSaker)
         .reduce((acc, [tema, saker]) => {
-            acc.push({ tema, saker });
+            const sortedSaker = saker.sort(datoSynkende((t) => t.opprettetDato || new Date(0)));
+            acc.push({ tema, saker: sortedSaker });
             return acc;
         }, [] as Tema[])
         .toSorted((a, b) => a.tema.localeCompare(b.tema));
