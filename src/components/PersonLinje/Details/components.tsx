@@ -37,9 +37,11 @@ export const InfoElement = ({
 }>) => (
     <Box className="mb-6 mt-2">
         <HStack align="center" className="relative">
-            <Heading as="h4" size="xsmall" className="text-medium">
-                {title}
-            </Heading>
+            {title && (
+                <Heading as="h4" size="xsmall" className="text-medium">
+                    {title}
+                </Heading>
+            )}
         </HStack>
         <Box>{children}</Box>
     </Box>
