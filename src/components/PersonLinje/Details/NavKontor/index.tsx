@@ -80,12 +80,7 @@ function KontorLenke({ navEnhetId }: { navEnhetId: string }) {
 
     return (
         <QueryErrorBoundary loading={isLoading} error={error} loader={<Skeleton variant="text" />}>
-            <Link
-                href={`${baseUrl}/#/startsok?enhetNr=${navEnhetId}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="lenke"
-            >
+            <Link href={`${baseUrl}/#/startsok?enhetNr=${navEnhetId}`} target="_blank" rel="noopener noreferrer">
                 Mer informasjon om kontoret
             </Link>
         </QueryErrorBoundary>
