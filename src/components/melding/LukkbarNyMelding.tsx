@@ -14,11 +14,22 @@ const LARGE_SIZE = 50;
 
 export function LukkbarNyMelding() {
     const panelRef = useRef<ImperativePanelHandle>(null);
+    const openButtonRef = useRef<HTMLButtonElement | null>(null); // Create a ref for the second button
+
     const [isLarge, setIsLarge] = useState(false);
     useEffect(() => {
         setIsLarge((panelRef.current?.getSize() ?? PANEL_SIZE) > PANEL_SIZE);
     }, []);
     const [isOpen, setIsOpen] = useState(localStorage.getItem('ny-melding-is-open') !== 'false');
+
+    const minimizeAndSetFocusToOpenButton = () => {
+        setIsOpen(false);
+        setTimeout(() => {
+            if (openButtonRef.current) {
+                openButtonRef.current.focus();
+            }
+        }, 0);
+    };
 
     useEffect(() => {
         localStorage.setItem('ny-melding-is-open', String(isOpen));
@@ -42,6 +53,7 @@ export function LukkbarNyMelding() {
             <Box>
                 <Button
                     type="button"
+                    ref={openButtonRef}
                     icon={<ChatIcon title="Skriv ny melding" />}
                     size="small"
                     onClick={() => setIsOpen(true)}
@@ -60,7 +72,6 @@ export function LukkbarNyMelding() {
                         lukkeKnapp={
                             <HStack gap="2">
                                 <Button
-                                    aria-hidden
                                     type="button"
                                     icon={isLarge ? <ShrinkIcon title="Minimer" /> : <ExpandIcon title="Ekspander" />}
                                     variant="tertiary"
@@ -73,12 +84,11 @@ export function LukkbarNyMelding() {
                                     }}
                                 />
                                 <Button
-                                    aria-hidden
                                     type="button"
                                     icon={<MinusIcon title="Lukk" />}
                                     variant="tertiary"
                                     size="small"
-                                    onClick={() => setIsOpen(false)}
+                                    onClick={minimizeAndSetFocusToOpenButton}
                                 />
                             </HStack>
                         }
