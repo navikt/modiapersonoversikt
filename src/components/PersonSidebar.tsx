@@ -69,7 +69,6 @@ export const PersonSidebarMenu = () => {
                 <Box.New>
                     <Box.New padding="2" className="flex">
                         <Button
-                            aria-hidden
                             icon={
                                 expanded ? (
                                     <ArrowLeftIcon className="group-hover:-translate-x-1" />
@@ -77,6 +76,8 @@ export const PersonSidebarMenu = () => {
                                     <ArrowRightIcon className="group-hover:translate-x-1" />
                                 )
                             }
+                            aria-controls="sidebar-person" // Link to the sidebar's ID
+                            aria-expanded={expanded}
                             variant="tertiary-neutral"
                             size="small"
                             onClick={() => setExpanded((v) => !v)}
@@ -88,6 +89,7 @@ export const PersonSidebarMenu = () => {
                     </Box.New>
                     <VStack
                         as="nav"
+                        id="sidebar-person"
                         aria-label="Person"
                         padding="2"
                         className="divide-y divide-ax-border-neutral-subtle "
@@ -123,9 +125,7 @@ export const PersonSidebarMenu = () => {
                         ))}
                     </VStack>
                 </Box.New>
-                <Box.New aria-hidden padding="2">
-                    {expanded ? <ThemeToggle /> : <ThemeIconToggle />}
-                </Box.New>
+                <Box.New padding="2">{expanded ? <ThemeToggle /> : <ThemeIconToggle />}</Box.New>
             </VStack>
         </Card>
     );
