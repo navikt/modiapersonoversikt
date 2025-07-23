@@ -12,9 +12,11 @@ export const UbesvarteMeldinger = () => {
     }
 
     return (
-        <Alert variant="warning" size="small">
-            Brukeren har {antallUbesvarteTraader}{' '}
-            {antallUbesvarteTraader > 1 ? 'ubesvarte henvendelser' : 'ubesvart henvendelse'}
-        </Alert>
+        <aside aria-label="Ubesvarte henvendelser">
+            <Alert variant="warning" size="small">
+                Brukeren har {antallUbesvarteTraader}{' '}
+                {antallUbesvarteTraader > 1 ? 'ubesvarte henvendelser' : 'ubesvart henvendelse'}
+            </Alert>
+        </aside>
     );
 };

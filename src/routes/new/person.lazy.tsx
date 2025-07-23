@@ -30,7 +30,7 @@ function PersonLayout() {
             </VStack>
             <PanelGroup direction="horizontal" autoSaveId="person-content">
                 <Panel order={1} className="mr-2">
-                    <VStack gap="2" height="100%">
+                    <VStack as="main" gap="2" height="100%">
                         <Box flexGrow="0">
                             <PersonLinje />
                         </Box>
