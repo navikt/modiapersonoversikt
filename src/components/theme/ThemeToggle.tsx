@@ -33,6 +33,7 @@ export const ThemeToggle = () => {
 
 export const ThemeIconToggle = () => {
     const [theme, setTheme] = useAtom(themeAtom);
+    const endreTilTemaTekst = theme === 'light' ? 'mørkt' : 'lyst';
 
     const changeTheme = useCallback(() => {
         setTheme((v) => (v === 'light' ? 'dark' : 'light'));
@@ -43,8 +44,8 @@ export const ThemeIconToggle = () => {
             size="small"
             variant="tertiary-neutral"
             onClick={changeTheme}
-            name="Bytt tema"
-            icon={theme === 'light' ? <MoonIcon /> : <SunIcon />}
+            title={`Bytt til ${endreTilTemaTekst} tema`}
+            icon={theme === 'light' ? <MoonIcon aria-hidden /> : <SunIcon aria-hidden />}
         />
     );
 };
