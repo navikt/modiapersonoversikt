@@ -1,4 +1,4 @@
-import { Alert, HStack, Loader, Theme } from '@navikt/ds-react';
+import { Alert, Button, HStack, Link, Loader, Theme } from '@navikt/ds-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Outlet, createRootRoute, useMatchRoute } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
@@ -97,6 +97,14 @@ const AppWrapper = ({ children }: PropsWithChildren) => (
     <div className="h-svh print:h-auto flex flex-col flex-nowrap">{children}</div>
 );
 
+const SkipNavigasjonsLink = () => {
+    return (
+        <Button href="#main-content" as={Link} className="absolute not-focus:-left-full top-0 ">
+            Hopp over navigasjon
+        </Button>
+    );
+};
+
 function RootLayout() {
     const matchRoute = useMatchRoute();
     const isLanding = matchRoute({ to: '/landingpage' });
@@ -116,6 +124,7 @@ function RootLayout() {
                         <Outlet />
                     ) : (
                         <AppWrapper>
+                            <SkipNavigasjonsLink />
                             <HandleLegacyUrls>
                                 <DemoBanner />
                                 <NyModia />
