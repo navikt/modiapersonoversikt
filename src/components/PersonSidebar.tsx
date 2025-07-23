@@ -71,20 +71,21 @@ export const PersonSidebarMenu = () => {
                         <Button
                             icon={
                                 expanded ? (
-                                    <ArrowLeftIcon className="group-hover:-translate-x-1" />
+                                    <ArrowLeftIcon className="group-hover:-translate-x-1" aria-hidden />
                                 ) : (
-                                    <ArrowRightIcon className="group-hover:translate-x-1" />
+                                    <ArrowRightIcon className="group-hover:translate-x-1" aria-hidden />
                                 )
                             }
-                            aria-controls="sidebar-person" // Link to the sidebar's ID
+                            aria-controls="sidebar-person"
                             aria-expanded={expanded}
                             variant="tertiary-neutral"
                             size="small"
                             onClick={() => setExpanded((v) => !v)}
-                            className="flex-1 justify-end group"
+                            className="flex-1 justify-end group p-0"
                             iconPosition="right"
                         >
                             {expanded && <span className="font-normal">Skjul</span>}
+                            {!expanded && <span className="sr-only">Vis</span>}
                         </Button>
                     </Box.New>
                     <VStack
