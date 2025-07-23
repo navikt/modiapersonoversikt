@@ -19,11 +19,17 @@ export const ThemeToggle = () => {
     return (
         <HStack justify="space-between">
             <HStack align="center" gap="2">
-                <Label htmlFor="theme-toggle" size="small">
+                <Label id="bytt-modus" htmlFor="theme-toggle" size="small">
                     Bytt modus
                 </Label>
             </HStack>
-            <ToggleGroup id="theme-toggle" onChange={changeTheme} value={theme} size="small">
+            <ToggleGroup
+                aria-labelledby="bytt-modus"
+                id="theme-toggle"
+                onChange={changeTheme}
+                value={theme}
+                size="small"
+            >
                 <ToggleGroup.Item title="Lyst tema" icon={<SunIcon aria-hidden />} value="light" />
                 <ToggleGroup.Item title="Mørkt tema" icon={<MoonIcon aria-hidden />} value="dark" />
             </ToggleGroup>
