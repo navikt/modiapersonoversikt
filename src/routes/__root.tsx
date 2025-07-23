@@ -2,7 +2,7 @@ import { Alert, HStack, Loader, Theme } from '@navikt/ds-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Outlet, createRootRoute, useMatchRoute } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
-import { type PropsWithChildren, lazy, useState } from 'react';
+import { type PropsWithChildren, lazy, useEffect, useState } from 'react';
 import { Toaster } from 'sonner';
 import HentGlobaleVerdier from 'src/app/FetchSessionInfoOgLeggIRedux';
 import LoggetUtModal from 'src/app/LoggetUtModal';
@@ -102,6 +102,10 @@ function RootLayout() {
     const isLanding = matchRoute({ to: '/landingpage' });
     const isNewModia = matchRoute({ to: '/new/person', fuzzy: true }) !== false;
     const theme = useAtomValue(themeAtom);
+
+    useEffect(() => {
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+    }, [theme]);
 
     return (
         <QueryClientProvider client={queryClient}>

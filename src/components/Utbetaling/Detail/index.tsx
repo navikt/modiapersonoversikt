@@ -90,7 +90,7 @@ const getYtelsesKomponentDetail = (ytelse: Ytelse) => {
                 <Table size="small" zebraStripes={true}>
                     <Table.Header>
                         <Table.Row>
-                            <Table.HeaderCell scope="col" />
+                            <Table.DataCell scope="col" />
                             <Table.HeaderCell scope="col" className="w-28">
                                 Sats
                             </Table.HeaderCell>
@@ -133,10 +133,11 @@ const UtbetalingerYtelserSammendrag = ({ ytelser, expandTable }: { ytelser: Ytel
 
     return (
         <Table size="small">
+            <caption className="font-bold text-left ">Sammendrag</caption>
             <Table.Header>
                 <Table.Row>
-                    <Table.HeaderCell />
-                    <Table.HeaderCell />
+                    <Table.DataCell />
+                    <Table.DataCell />
                     <Table.HeaderCell className="w-56">Periode</Table.HeaderCell>
                     <Table.HeaderCell className="w-28">Brutto</Table.HeaderCell>
                     <Table.HeaderCell className="w-28">Trekk</Table.HeaderCell>
@@ -178,8 +179,8 @@ const UtbetalingtYtelseDetaljer = ({ ytelser }: { ytelser: Ytelse[] }) => {
         <Table size="small" title={'Ytelser'}>
             <Table.Header>
                 <Table.Row>
-                    <Table.HeaderCell />
-                    <Table.HeaderCell />
+                    <Table.DataCell />
+                    <Table.DataCell />
                     <Table.HeaderCell className="w-56">Periode</Table.HeaderCell>
                     <Table.HeaderCell className="w-28">Brutto</Table.HeaderCell>
                     <Table.HeaderCell className="w-28">Trekk</Table.HeaderCell>
@@ -367,9 +368,6 @@ const UtbetalingerSammendrag = ({ utbetalinger, periode }: { utbetalinger: Utbet
                 </BodyShort>
                 <UtbetaltBelop brutto={brutto} trekk={trekk} netto={netto} />
                 <VStack gap="2" className="mt-4">
-                    <BodyShort size="medium" weight="semibold">
-                        Sammendrag
-                    </BodyShort>
                     {ytelser?.length > 0 && <UtbetalingerYtelserSammendrag ytelser={ytelser} expandTable={true} />}
                 </VStack>
             </PrinterWrapper>

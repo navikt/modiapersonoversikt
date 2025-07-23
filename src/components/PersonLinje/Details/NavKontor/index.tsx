@@ -50,7 +50,7 @@ function Publikumsmottak(props: { publikumsmottak: Publikumsmottak[] }) {
     const flerePublikumsmottak =
         otherPublikumsmottak.length > 0 ? (
             <>
-                <Heading spacing size="xsmall" textColor="subtle">
+                <Heading level="3" spacing size="xsmall">
                     Det finnes flere publikumsmottak
                 </Heading>
                 <Accordion size="small" headingSize="xsmall" className="max-w-96">
@@ -80,12 +80,7 @@ function KontorLenke({ navEnhetId }: { navEnhetId: string }) {
 
     return (
         <QueryErrorBoundary loading={isLoading} error={error} loader={<Skeleton variant="text" />}>
-            <Link
-                href={`${baseUrl}/#/startsok?enhetNr=${navEnhetId}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="lenke"
-            >
+            <Link href={`${baseUrl}/#/startsok?enhetNr=${navEnhetId}`} target="_blank" rel="noopener noreferrer">
                 Mer informasjon om kontoret
             </Link>
         </QueryErrorBoundary>
