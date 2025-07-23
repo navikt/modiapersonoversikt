@@ -30,14 +30,16 @@ function PersonLayout() {
             </VStack>
             <PanelGroup direction="horizontal" autoSaveId="person-content">
                 <Panel order={1} className="mr-2">
-                    <VStack as="main" gap="2" height="100%">
-                        <Box flexGrow="0">
-                            <PersonLinje />
-                        </Box>
-                        <Suspense>
-                            <Outlet />
-                        </Suspense>
-                    </VStack>
+                    <main id="main-content">
+                        <VStack gap="2" height="100%">
+                            <Box flexGrow="0">
+                                <PersonLinje />
+                            </Box>
+                            <Suspense>
+                                <Outlet />
+                            </Suspense>
+                        </VStack>
+                    </main>
                 </Panel>
                 <PanelResizeHandle className="hover:bg-ax-bg-neutral-moderate-hover w-1 focus:bg-ax-brand-blue-100" />
                 <LukkbarNyMelding />
