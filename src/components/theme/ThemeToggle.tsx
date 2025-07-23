@@ -24,8 +24,8 @@ export const ThemeToggle = () => {
                 </Label>
             </HStack>
             <ToggleGroup id="theme-toggle" onChange={changeTheme} value={theme} size="small">
-                <ToggleGroup.Item icon={<SunIcon />} value="light" />
-                <ToggleGroup.Item icon={<MoonIcon />} value="dark" />
+                <ToggleGroup.Item title="Lyst tema" icon={<SunIcon aria-hidden />} value="light" />
+                <ToggleGroup.Item title="Mørkt tema" icon={<MoonIcon aria-hidden />} value="dark" />
             </ToggleGroup>
         </HStack>
     );
