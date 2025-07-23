@@ -65,7 +65,7 @@ export const PersonSidebarMenu = () => {
 
     return (
         <Card>
-            <VStack justify="space-between" height="100%">
+            <VStack justify="space-between" height="100%" as="nav">
                 <Box.New>
                     <Box.New padding="2" className="flex">
                         <Button
@@ -89,7 +89,6 @@ export const PersonSidebarMenu = () => {
                         </Button>
                     </Box.New>
                     <VStack
-                        as="nav"
                         id="sidebar-person"
                         aria-label="Person"
                         padding="2"
