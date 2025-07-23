@@ -15,6 +15,7 @@ const LARGE_SIZE = 50;
 export function LukkbarNyMelding() {
     const panelRef = useRef<ImperativePanelHandle>(null);
     const openButtonRef = useRef<HTMLButtonElement | null>(null); // Create a ref for the second button
+    const closeButtonRef = useRef<HTMLButtonElement | null>(null); // Create a ref for the second button
 
     const [isLarge, setIsLarge] = useState(false);
     useEffect(() => {
@@ -22,11 +23,20 @@ export function LukkbarNyMelding() {
     }, []);
     const [isOpen, setIsOpen] = useState(localStorage.getItem('ny-melding-is-open') !== 'false');
 
-    const minimizeAndSetFocusToOpenButton = () => {
+    const closeAndSetFocusToOpenButton = () => {
         setIsOpen(false);
         setTimeout(() => {
             if (openButtonRef.current) {
                 openButtonRef.current.focus();
+            }
+        }, 0);
+    };
+
+    const openAndSetFocusToCloseButton = () => {
+        setIsOpen(true);
+        setTimeout(() => {
+            if (closeButtonRef.current) {
+                closeButtonRef.current.focus();
             }
         }, 0);
     };
@@ -56,7 +66,7 @@ export function LukkbarNyMelding() {
                     ref={openButtonRef}
                     icon={<ChatIcon title="Skriv ny melding" />}
                     size="small"
-                    onClick={() => setIsOpen(true)}
+                    onClick={openAndSetFocusToCloseButton}
                 />
             </Box>
         );
@@ -88,7 +98,8 @@ export function LukkbarNyMelding() {
                                     icon={<MinusIcon title="Lukk" />}
                                     variant="tertiary"
                                     size="small"
-                                    onClick={minimizeAndSetFocusToOpenButton}
+                                    ref={closeButtonRef}
+                                    onClick={closeAndSetFocusToOpenButton}
                                 />
                             </HStack>
                         }
