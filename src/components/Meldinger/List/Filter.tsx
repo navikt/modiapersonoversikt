@@ -19,6 +19,7 @@ import type { DateRange } from 'src/components/DateFilters/types';
 import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
 import { TraadType } from 'src/lib/types/modiapersonoversikt-api';
 import { Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
+import { twMerge } from 'tailwind-merge';
 import { traadTypeTekst } from './tekster';
 
 export type MeldingerFilter = {
@@ -188,9 +189,18 @@ const ResetFilters = () => {
 };
 
 export const TraadListFilterCard = () => {
+    const [open, setOpen] = useState(false);
+
     return (
-        <Box.New marginInline="0 2">
-            <ExpansionCard size="small" aria-label="Filtrer meldinger">
+        <Box.New marginInline="0 2" className={twMerge(open && 'max-h-full')}>
+            <ExpansionCard
+                onClick={() => {
+                    setOpen((prev: boolean) => !prev);
+                }}
+                size="small"
+                aria-label="Filtrer meldinger"
+                className="overflow-auto max-h-full"
+            >
                 <ExpansionCard.Header className="p-1">
                     <Box.New paddingInline="4">
                         <ExpansionCard.Title size="small">
