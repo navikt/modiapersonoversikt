@@ -64,7 +64,7 @@ export const PersonSidebarMenu = () => {
     const [expanded, setExpanded] = useState(true);
 
     return (
-        <Card>
+        <Card className="h-full overflow-auto">
             <VStack justify="space-between" height="100%" as="nav">
                 <Box.New>
                     <Box.New padding="2" className="flex">
