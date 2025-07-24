@@ -24,7 +24,7 @@ let meldingerBackendMock: MeldingerBackendMock = null as unknown as MeldingerBac
 let oppgaverBackendMock: OppgaverBackendMock = null as unknown as OppgaverBackendMock;
 
 const meldingerHandler = http.post(
-    `${apiBaseUri}/v2/dialog/meldinger`,
+    `${apiBaseUri}/dialog/meldinger`,
     verify(
         () => undefined,
         withDelayedResponse(
@@ -76,7 +76,7 @@ function hashCode(str: string) {
 }
 
 const opprettHenvendelseHandler = http.post(
-    `${apiBaseUri}/v2/dialog/fortsett/opprett`,
+    `${apiBaseUri}/dialog/fortsett/opprett`,
     withDelayedResponse<OpprettHenvendelseResponse, OpprettHenvendelseRequest>(
         randomDelay(),
         STATUS_OK,
@@ -85,7 +85,7 @@ const opprettHenvendelseHandler = http.post(
 );
 
 const sendMeldinghandler = http.post(
-    `${apiBaseUri}/v2/dialog/sendmelding`,
+    `${apiBaseUri}/dialog/sendmelding`,
     withDelayedResponse<Traad, SendMeldingRequest>(randomDelay() * 2, STATUS_OK, async (request) => {
         return meldingerBackendMock.sendMelding(await request.json());
     })

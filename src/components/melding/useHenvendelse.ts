@@ -9,7 +9,7 @@ export const useTraadHenvendelse = (traad: Traad) => {
     const fnr = usePersonAtomValue();
     const { refetch } = usePersonOppgaver();
 
-    const { mutate, data, isSuccess, isPending } = $api.useMutation('post', '/rest/v2/dialog/fortsett/opprett');
+    const { mutate, data, isSuccess, isPending } = $api.useMutation('post', '/rest/dialog/fortsett/opprett');
     const getOppgave = useCallback(async () => {
         mutate(
             { body: { fnr, enhet, traadId: traad.traadId } },

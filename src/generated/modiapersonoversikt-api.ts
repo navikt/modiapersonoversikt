@@ -373,7 +373,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v2/dialog/sendmelding': {
+    '/rest/dialog/sendmelding': {
         parameters: {
             query?: never;
             header?: never;
@@ -389,7 +389,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v2/dialog/meldinger': {
+    '/rest/dialog/meldinger': {
         parameters: {
             query?: never;
             header?: never;
@@ -405,7 +405,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v2/dialog/fortsett/opprett': {
+    '/rest/dialog/fortsett/opprett': {
         parameters: {
             query?: never;
             header?: never;
@@ -421,7 +421,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v2/dialog/fortsett/ferdigstill': {
+    '/rest/dialog/fortsett/ferdigstill': {
         parameters: {
             query?: never;
             header?: never;

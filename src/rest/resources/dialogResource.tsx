@@ -10,7 +10,7 @@ import { type DefaultConfig, type RendererOrConfig, applyDefaults, useRest } fro
 
 function urlUtenFnrIPath(enhet?: string) {
     const header = enhet ? `?enhet=${enhet}` : '';
-    return `${apiBaseUri}/v2/dialog/meldinger${header}`;
+    return `${apiBaseUri}/dialog/meldinger${header}`;
 }
 
 const defaults: DefaultConfig = {
