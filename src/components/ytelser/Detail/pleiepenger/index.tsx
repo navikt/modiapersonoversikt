@@ -152,11 +152,7 @@ const Arbeidssituasjon = ({ pleiePenger }: { pleiePenger: Pleiepenger }) => {
             <Heading as="h4" size="small">
                 Arbeidssituasjon
             </Heading>
-            <ArbeidsForholdListe
-                arbeidsForholdList={arbeidsforhold}
-                ytelseType={YtelseVedtakYtelseType.Pleiepenger}
-                columns={4}
-            />
+            <ArbeidsForholdListe arbeidsForholdList={arbeidsforhold} ytelseType={YtelseVedtakYtelseType.Pleiepenger} />
         </Card>
     );
 };

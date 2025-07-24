@@ -1,4 +1,4 @@
-import { HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { HGrid, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { Suspense } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { ValgteYtelseDetailPage } from 'src/components/ytelser/Detail';
@@ -18,13 +18,15 @@ export const YtelserPage = () => {
                     </VStack>
                 }
             >
-                <HStack gap="1" minHeight="0" wrap={false}>
-                    <VStack height="100%" minWidth="14em">
+                <HGrid gap="1" columns={{ xs: 1, md: 2 }} className="h-full overflow-scroll md:overflow-hidden">
+                    <VStack height="100%" minWidth="14em" className="md:overflow-hidden">
                         <Heading size="xsmall">Ytelser</Heading>
                         <YtelserList />
                     </VStack>
-                    <ValgteYtelseDetailPage />
-                </HStack>
+                    <VStack className="min-h-100 md:min-h-0 overflow-hidden md:overflow-scroll">
+                        <ValgteYtelseDetailPage />
+                    </VStack>
+                </HGrid>
             </Suspense>
         </ErrorBoundary>
     );

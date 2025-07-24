@@ -69,7 +69,7 @@ const Sykepengertilfellet = ({ sykepenger }: { sykepenger: Sykepenger }) => {
             <Heading as="h4" size="small">
                 Sykepengertilfellet
             </Heading>
-            <TitleValuePairsComponent entries={sykepengeTilfelletEntries} columns={4} />
+            <TitleValuePairsComponent entries={sykepengeTilfelletEntries} columns={{ xs: 2, lg: 4 }} />
         </Card>
     );
 };
@@ -85,11 +85,10 @@ const Arbeidssituasjon = ({ sykepenger }: { sykepenger: Sykepenger }) => {
             <Heading as="h4" size="small">
                 Arbeidssituasjon
             </Heading>
-            <TitleValuePairsComponent entries={arbeidssituasjonEntries} columns={4} />
+            <TitleValuePairsComponent entries={arbeidssituasjonEntries} columns={{ xs: 2, lg: 4 }} />
             <ArbeidsForholdListe
                 arbeidsForholdList={sykepenger.arbeidsforholdListe ?? []}
                 ytelseType={YtelseVedtakYtelseType.Sykepenger}
-                columns={4}
             />
         </Card>
     );

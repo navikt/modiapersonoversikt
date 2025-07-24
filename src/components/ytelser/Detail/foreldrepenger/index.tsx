@@ -83,7 +83,10 @@ const ForeldrePengerRetten = ({ foreldrePenger }: { foreldrePenger: Foreldrepeng
             <Heading as="h4" size="small">
                 Om foreldrepengeretten
             </Heading>
-            <TitleValuePairsComponent entries={getForeldrePengerRettenEntries(foreldrePenger)} columns={4} />
+            <TitleValuePairsComponent
+                entries={getForeldrePengerRettenEntries(foreldrePenger)}
+                columns={{ xs: 2, lg: 4 }}
+            />
         </Card>
     );
 };
@@ -94,7 +97,10 @@ const ForeldrePengerRettenBarnet = ({ foreldrePenger }: { foreldrePenger: Foreld
             <Heading as="h4" size="small">
                 Om barnet
             </Heading>
-            <TitleValuePairsComponent entries={getForeldrePengerBarnetEntries(foreldrePenger)} columns={4} />
+            <TitleValuePairsComponent
+                entries={getForeldrePengerBarnetEntries(foreldrePenger)}
+                columns={{ xs: 2, lg: 4 }}
+            />
         </Card>
     );
 };
@@ -114,7 +120,7 @@ const ForeldrepengePerioder = ({ foreldrePenger }: { foreldrePenger: Foreldrepen
                             <Accordion.Content>
                                 <TitleValuePairsComponent
                                     entries={getForeldrePengerPeriodeEntries(periode)}
-                                    columns={4}
+                                    columns={{ xs: 2, lg: 4 }}
                                 />
                             </Accordion.Content>
                         </Accordion.Item>
@@ -134,7 +140,6 @@ const Arbeidssituasjon = ({ foreldrePenger }: { foreldrePenger: Foreldrepenger }
             <ArbeidsForholdListe
                 arbeidsForholdList={foreldrePenger.arbeidsforhold ?? []}
                 ytelseType={YtelseVedtakYtelseType.Foreldrepenger}
-                columns={4}
             />
         </Card>
     );
