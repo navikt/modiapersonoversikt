@@ -11,12 +11,10 @@ import { NOKellerNull, datoEllerNull } from 'src/utils/string-utils';
 
 function ArbeidsForholdListe({
     arbeidsForholdList,
-    ytelseType,
-    columns
+    ytelseType
 }: {
     arbeidsForholdList: (ForeldrepengerArbeidsforhold | PleiepengerArbeidsforhold | SykmeldingArbeidsforhold)[];
     ytelseType: YtelseVedtakYtelseType;
-    columns?: number;
 }) {
     if (!arbeidsForholdList || arbeidsForholdList.length === 0) {
         return <Alert variant="info">Ingen arbeidsgiver er registrert.</Alert>;
@@ -79,7 +77,7 @@ function ArbeidsForholdListe({
                             <Accordion.Content>
                                 <TitleValuePairsComponent
                                     entries={getArbeidsForholdEntries(arbeidsForhold)}
-                                    columns={columns}
+                                    columns={{ xs: 2, lg: 4 }}
                                 />
                             </Accordion.Content>
                         </Accordion.Item>

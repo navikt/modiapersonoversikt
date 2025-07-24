@@ -2,9 +2,10 @@ import { Box, ExpansionCard, Fieldset, Switch, VStack } from '@navikt/ds-react';
 import { atom, useAtom, useAtomValue } from 'jotai';
 import { atomWithReset } from 'jotai/utils';
 import { xor } from 'lodash';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import DateRangeSelector, { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
+import { twMerge } from 'tailwind-merge';
 
 export type VarslerKanal = 'DITT_NAV' | 'EPOST' | 'SMS';
 
@@ -126,9 +127,24 @@ const FilterTitle = () => {
 };
 
 export const VarslerListFilter = () => {
+    const [open, setOpen] = useState(false);
+    const expansionFilterRef = useRef<HTMLDivElement>(null);
+
+    const handleExpansionChange = () => {
+        setTimeout(() => {
+            if (!expansionFilterRef.current) return;
+            setOpen(expansionFilterRef.current.classList.contains('aksel-expansioncard--open'));
+        }, 0);
+    };
     return (
-        <Box.New marginInline="0 2">
-            <ExpansionCard size="small" aria-label="Filtrer varsler">
+        <Box.New marginInline="0 2" className={twMerge(open && 'max-h-full')}>
+            <ExpansionCard
+                size="small"
+                aria-label="Filtrer varsler"
+                ref={expansionFilterRef}
+                onClick={handleExpansionChange}
+                className={twMerge(open && 'max-h-full overflow-auto')}
+            >
                 <ExpansionCard.Header className="p-1">
                     <Box.New paddingInline="4">
                         <ExpansionCard.Title size="small">

@@ -105,7 +105,7 @@ const Gjeldende14aVedtakDetaljer = () => {
 
 export const OppfolgingPage = () => {
     return (
-        <VStack gap="2" minHeight="0">
+        <VStack gap="2" minHeight="0" className="overflow-auto">
             <Heading size="xsmall">Oppfølging</Heading>
             <ErrorBoundary boundaryName="oppfolgingDetaljer">
                 <Suspense fallback={<Skeleton variant="rounded" height={166} />}>

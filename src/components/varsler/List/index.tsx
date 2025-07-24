@@ -20,7 +20,7 @@ export const VarslerList = () => (
                 </VStack>
             }
         >
-            <VStack minHeight="0" gap="2" maxWidth="30rem">
+            <VStack minHeight="0" gap="2">
                 <VarslerListFilter />
                 <VarslerListList />
             </VStack>
