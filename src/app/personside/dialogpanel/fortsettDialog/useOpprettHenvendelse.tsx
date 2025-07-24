@@ -43,7 +43,7 @@ function useOpprettHenvendelse(traad: Traad): OpprettHenvendelseReturns {
             traadId: traad.traadId
         };
 
-        const url = `${apiBaseUri}/v2/dialog/fortsett/opprett`;
+        const url = `${apiBaseUri}/dialog/fortsett/opprett`;
         postWithConflictVerification(
             url,
             request,

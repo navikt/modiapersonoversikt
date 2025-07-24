@@ -67,10 +67,10 @@ export const useSendMelding = () => {
     const fnr = usePersonAtomValue();
     const enhet = useAtomValue(aktivEnhetAtom) as string;
 
-    return $api.useMutation('post', '/rest/v2/dialog/sendmelding', {
+    return $api.useMutation('post', '/rest/dialog/sendmelding', {
         onSuccess: () => {
             queryClient.invalidateQueries({
-                queryKey: $api.queryOptions('post', '/rest/v2/dialog/meldinger', {
+                queryKey: $api.queryOptions('post', '/rest/dialog/meldinger', {
                     body: { fnr },
                     params: { query: { enhet } }
                 }).queryKey
@@ -91,7 +91,7 @@ export const useJournalforMutation = () => {
     return $api.useMutation('post', '/rest/v2/journalforing/{traadId}', {
         onSuccess: () => {
             queryClient.invalidateQueries({
-                queryKey: $api.queryOptions('post', '/rest/v2/dialog/meldinger', {
+                queryKey: $api.queryOptions('post', '/rest/dialog/meldinger', {
                     body: { fnr },
                     params: { query: { enhet } }
                 }).queryKey
@@ -153,7 +153,7 @@ export const useMeldinger = () => {
     const fnr = usePersonAtomValue();
     const enhet = useAtomValue(aktivEnhetAtom) as string;
 
-    return $api.useSuspenseQuery('post', '/rest/v2/dialog/meldinger', {
+    return $api.useSuspenseQuery('post', '/rest/dialog/meldinger', {
         body: { fnr },
         params: { query: { enhet } }
     });
@@ -162,7 +162,7 @@ export const useMeldinger = () => {
 export const useTraadById = (traadId: string) => {
     const fnr = usePersonAtomValue();
     const enhet = useAtomValue(aktivEnhetAtom) ?? '';
-    const { data: traader } = $api.useSuspenseQuery('post', '/rest/v2/dialog/meldinger', {
+    const { data: traader } = $api.useSuspenseQuery('post', '/rest/dialog/meldinger', {
         body: { fnr },
         params: { query: { enhet } }
     });
@@ -190,7 +190,7 @@ export const useSendTilSladdingMutation = () => {
     return $api.useMutation('post', '/rest/dialogmerking/sladding', {
         onSuccess: () => {
             queryClient.invalidateQueries({
-                queryKey: $api.queryOptions('post', '/rest/v2/dialog/meldinger', {
+                queryKey: $api.queryOptions('post', '/rest/dialog/meldinger', {
                     body: { fnr },
                     params: { query: { enhet } }
                 }).queryKey
@@ -211,7 +211,7 @@ export const useMarkerFeilsendtMutation = () => {
     return $api.useMutation('post', '/rest/dialogmerking/feilsendt', {
         onSuccess: () => {
             queryClient.invalidateQueries({
-                queryKey: $api.queryOptions('post', '/rest/v2/dialog/meldinger', {
+                queryKey: $api.queryOptions('post', '/rest/dialog/meldinger', {
                     body: { fnr },
                     params: { query: { enhet } }
                 }).queryKey
@@ -232,7 +232,7 @@ export const useAvsluttDialogMutation = () => {
     return $api.useMutation('post', '/rest/dialogmerking/lukk-traad', {
         onSuccess: () => {
             queryClient.invalidateQueries({
-                queryKey: $api.queryOptions('post', '/rest/v2/dialog/meldinger', {
+                queryKey: $api.queryOptions('post', '/rest/dialog/meldinger', {
                     body: { fnr },
                     params: { query: { enhet } }
                 }).queryKey
