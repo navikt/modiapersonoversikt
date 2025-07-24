@@ -14,7 +14,7 @@ const OppfolgingDetaljer = () => {
             <Heading as="h4" size="small">
                 Arbeidsoppfølging
             </Heading>
-            <HGrid gap="4" columns={4} className="mt-2">
+            <HGrid gap="4" columns={{ sm: 1, md: 2, lg: 4 }} className="mt-2">
                 <VStack justify="space-between">
                     <BodyShort size="small" weight="semibold">
                         Status:
@@ -73,7 +73,7 @@ const Gjeldende14aVedtakDetaljer = () => {
             <Heading as="h4" size="small">
                 14 a-vedtak
             </Heading>{' '}
-            <HGrid gap="4" columns={2} className="mt-4">
+            <HGrid gap="4" columns={{ sm: 1, md: 2 }} className="mt-4">
                 <VStack justify="space-between">
                     <BodyShort size="small" weight="semibold">
                         Status:
