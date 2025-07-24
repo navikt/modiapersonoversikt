@@ -138,7 +138,7 @@ function SendNyMeldingContainer(props: Props) {
             enhet: valgtEnhet,
             fritekst: state.tekst
         };
-        const url = `${apiBaseUri}/v2/dialog/sendmelding`;
+        const url = `${apiBaseUri}/dialog/sendmelding`;
 
         if (MeldingValidator.erGyldigReferat(state) && state.tema) {
             const temagruppe = state.tema;
