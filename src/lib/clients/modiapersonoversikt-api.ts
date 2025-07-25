@@ -258,14 +258,14 @@ export const useOppfolging = () => {
     const slutt = dayjs().format('YYYY-MM-DD');
 
     const fnr = usePersonAtomValue();
-    return $api.useSuspenseQuery('post', '/rest/v2/oppfolging/ytelserogkontrakter', {
+    return $api.useSuspenseQuery('post', '/rest/oppfolging/ytelserogkontrakter', {
         body: { fnr, start, slutt }
     });
 };
 
 export const useGjeldende14aVedtak = () => {
     const fnr = usePersonAtomValue();
-    return $api.useSuspenseQuery('post', '/rest/v2/oppfolging/hent-gjeldende-14a-vedtak', {
+    return $api.useSuspenseQuery('post', '/rest/oppfolging/hent-gjeldende-14a-vedtak', {
         body: { fnr }
     });
 };

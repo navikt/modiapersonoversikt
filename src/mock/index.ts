@@ -208,7 +208,7 @@ const ytelseHandler = http.post(
 );
 
 const oppfolgingHandler = http.post(
-    `${apiBaseUri}/v2/oppfolging`,
+    `${apiBaseUri}/oppfolging`,
     withDelayedResponse(
         randomDelay(),
         fodselsNummerErGyldigStatus,
@@ -217,7 +217,7 @@ const oppfolgingHandler = http.post(
 );
 
 const ytelserogkontrakterHandler = http.post(
-    `${apiBaseUri}/v2/oppfolging/ytelserogkontrakter`,
+    `${apiBaseUri}/oppfolging/ytelserogkontrakter`,
     withDelayedResponse(
         randomDelay(),
         fodselsNummerErGyldigStatus,
