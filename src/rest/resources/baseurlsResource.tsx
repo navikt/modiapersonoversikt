@@ -7,7 +7,7 @@ import type { BaseUrls } from '../../models/baseurls';
 import { type DefaultConfig, type RendererOrConfig, applyDefaults, useRest } from '../useRest';
 
 const queryKey = ['baseurls'];
-const url = `${apiBaseUri}/baseurls/v2`;
+const url = `${apiBaseUri}/baseurls`;
 const defaults: DefaultConfig = {
     ifPending: <CenteredLazySpinner />,
     ifError: <AlertStripe type="advarsel">Kunne ikke laste inn baseurls</AlertStripe>

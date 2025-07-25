@@ -4,7 +4,7 @@
  */
 
 export interface paths {
-    '/rest/v3/varsler': {
+    '/rest/varsler': {
         parameters: {
             query?: never;
             header?: never;
@@ -789,7 +789,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/baseurls/v2': {
+    '/rest/baseurls': {
         parameters: {
             query?: never;
             header?: never;
