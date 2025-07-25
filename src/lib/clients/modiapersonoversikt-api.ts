@@ -271,7 +271,7 @@ export const useGjeldende14aVedtak = () => {
 };
 
 export const useGsakTema = () => {
-    return $api.useSuspenseQuery('get', '/rest/dialogoppgave/v2/tema');
+    return $api.useSuspenseQuery('get', '/rest/dialogoppgave/tema');
 };
 
 export const useOppgaveMutation = () => {

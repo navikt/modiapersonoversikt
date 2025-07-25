@@ -757,7 +757,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/dialogoppgave/v2/tema': {
+    '/rest/dialogoppgave/tema': {
         parameters: {
             query?: never;
             header?: never;
