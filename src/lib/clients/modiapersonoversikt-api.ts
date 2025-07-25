@@ -294,13 +294,13 @@ export const useOppgaveMutation = () => {
 };
 
 export const useOppgaveBehandlerEnheter = () => {
-    return $api.useSuspenseQuery('get', '/rest/v2/enheter/oppgavebehandlere/alle');
+    return $api.useSuspenseQuery('get', '/rest/enheter/oppgavebehandlere/alle');
 };
 
 export const useAnsattePaaEnhet = (enhetId: string) => {
     return $api.useQuery(
         'get',
-        '/rest/v2/enheter/{enhetId}/ansatte',
+        '/rest/enheter/{enhetId}/ansatte',
         {
             params: { path: { enhetId } }
         },
@@ -323,7 +323,7 @@ export const useForeslotteEnheter = ({
 
     return $api.useQuery(
         'post',
-        '/rest/v2/enheter/oppgavebehandlere/v2/foreslatte',
+        '/rest/enheter/oppgavebehandlere/foreslatte',
         {
             body: {
                 fnr,

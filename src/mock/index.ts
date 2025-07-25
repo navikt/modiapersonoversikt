@@ -249,17 +249,17 @@ const gsakHandler = http.get(
 );
 
 const oppgaveEnhetHandler = http.get(
-    `${apiBaseUri}/v2/enheter/oppgavebehandlere/alle`,
+    `${apiBaseUri}/enheter/oppgavebehandlere/alle`,
     withDelayedResponse(randomDelay(), STATUS_OK, () => getMockEnheter())
 );
 
 const foreslotteEnhetHandler = http.post(
-    `${apiBaseUri}/v2/enheter/oppgavebehandlere/v2/foreslatte`,
+    `${apiBaseUri}/enheter/oppgavebehandlere/foreslatte`,
     withDelayedResponse(randomDelay(), STATUS_OK, () => getForeslattEnhet())
 );
 
 const ansattePaaEnhetHandler = http.get(
-    `${apiBaseUri}/v2/enheter/:enhetId/ansatte`,
+    `${apiBaseUri}/enheter/:enhetId/ansatte`,
     withDelayedResponse(
         randomDelay(),
         STATUS_OK,
