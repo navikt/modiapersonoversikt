@@ -20,7 +20,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v3/person': {
+    '/rest/person': {
         parameters: {
             query?: never;
             header?: never;
@@ -36,7 +36,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v3/person/identer': {
+    '/rest/person/identer': {
         parameters: {
             query?: never;
             header?: never;
@@ -52,7 +52,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v3/person/aktorid': {
+    '/rest/person/aktorid': {
         parameters: {
             query?: never;
             header?: never;

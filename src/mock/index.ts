@@ -78,15 +78,6 @@ const saksbehandlerEnheterHandler = http.get(
 const tilgangsKontrollHandler = [
     http.get(`${apiBaseUri}/tilgang/auth`, withDelayedResponse(randomDelay(), STATUS_OK, authMock)),
 
-    http.get(
-        `${apiBaseUri}/tilgang/:fodselsnummer?`,
-        withDelayedResponse(
-            randomDelay(),
-            () => Promise.resolve(Math.random() > 0.98 ? 400 : 200),
-            mockGeneratorMedFodselsnummer(tilgangskontrollMock)
-        )
-    ),
-
     http.post(
         `${apiBaseUri}/tilgang`,
         withDelayedResponse(
@@ -107,7 +98,7 @@ const tilgangsKontrollHandler = [
 ];
 
 const persondataMock = http.post(
-    `${apiBaseUri}/v3/person`,
+    `${apiBaseUri}/person`,
     withDelayedResponse(
         randomDelay(),
         fodselsNummerErGyldigStatus,
@@ -117,25 +108,11 @@ const persondataMock = http.post(
 
 const aktorIdMock = [
     http.post(
-        `${apiBaseUri}/v3/person/aktorid`,
+        `${apiBaseUri}/person/aktorid`,
         withDelayedResponse(
             randomDelay(),
             fodselsNummerErGyldigStatus,
             mockGeneratorMedFodselsnummerV2((fodselsnummer) => getAktorId(fodselsnummer))
-        )
-    )
-];
-
-const saksoversiktV2Handler = [
-    http.get(
-        `${apiBaseUri}/saker/:fodselsnummer/v2/sakstema`,
-        verify(
-            harEnhetIdSomQueryParam,
-            withDelayedResponse(
-                randomDelay(),
-                fodselsNummerErGyldigStatus,
-                mockGeneratorMedFodselsnummer(getMockSaksoversiktV2)
-            )
         )
     )
 ];
@@ -370,7 +347,6 @@ export const handlers: (HttpHandler | WebSocketHandler)[] = [
     innloggetSaksbehandlerMock,
     persondataMock,
     ...tilgangsKontrollHandler,
-    ...saksoversiktV2Handler,
     ...aktorIdMock,
     saksoversiktV3Handler,
     utbetalingerHandler,
