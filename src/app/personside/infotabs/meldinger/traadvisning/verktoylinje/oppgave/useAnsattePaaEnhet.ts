@@ -19,7 +19,7 @@ function useAnsattePaaEnhet(enhetId?: string): Returns {
 
         setPending(true);
         loggEvent('Fetch', 'LagOppgave-Ansatte');
-        fetch(`${apiBaseUri}/v2/enheter/${enhetId}/ansatte`, includeCredentials)
+        fetch(`${apiBaseUri}/enheter/${enhetId}/ansatte`, includeCredentials)
             .then((response) => response.json())
             .then(setAnsatte)
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument

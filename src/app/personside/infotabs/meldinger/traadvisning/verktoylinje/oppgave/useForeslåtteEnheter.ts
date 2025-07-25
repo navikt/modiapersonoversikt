@@ -28,7 +28,7 @@ function useForeslatteEnheter({ watch }: UseFormReturn<OppgaveSkjemaForm>) {
             underkategori: underkategori
         };
 
-        const fetchResponse = fetch(`${apiBaseUri}/v2/enheter/oppgavebehandlere/v2/foreslatte`, postConfig(request));
+        const fetchResponse = fetch(`${apiBaseUri}/enheter/oppgavebehandlere/foreslatte`, postConfig(request));
         setPending(true);
         loggEvent('Fetch', 'LagOppgave-ForeslåtteEnheter');
         fetchResponse
