@@ -225,7 +225,7 @@ const ytelserogkontrakterHandler = http.post(
     )
 );
 
-const varslerHandler = http.post<PathParams, { fnr: string }>(`${apiBaseUri}/v3/varsler`, async ({ request }) => {
+const varslerHandler = http.post<PathParams, { fnr: string }>(`${apiBaseUri}/varsler`, async ({ request }) => {
     const body = await request.json();
     const fnr = body.fnr;
     if (!erGyldigFødselsnummer(fnr)) {
@@ -274,10 +274,7 @@ const tildelteOppgaverHandler = http.post(
     withDelayedResponse(randomDelay(), STATUS_OK, () => oppgaveBackendMock.getTildelteOppgaver())
 );
 
-const baseUrlsHandler = http.get(
-    `${apiBaseUri}/baseurls/v2`,
-    withDelayedResponse(randomDelay(), STATUS_OK, mockBaseUrls)
-);
+const baseUrlsHandler = http.get(`${apiBaseUri}/baseurls`, withDelayedResponse(randomDelay(), STATUS_OK, mockBaseUrls));
 
 const featureToggleHandler = [
     http.get(
