@@ -247,7 +247,7 @@ export const useAvsluttDialogMutation = () => {
 
 export const useUtbetalinger = (startDato: string, sluttDato: string) => {
     const fnr = usePersonAtomValue();
-    return $api.useSuspenseQuery('post', '/rest/v2/utbetaling', {
+    return $api.useSuspenseQuery('post', '/rest/utbetaling', {
         body: { fnr },
         params: { query: { startDato, sluttDato } }
     });
