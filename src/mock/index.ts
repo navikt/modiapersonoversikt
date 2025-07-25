@@ -279,7 +279,7 @@ const personsokHandler = [
 ];
 
 const tildelteOppgaverHandler = http.post(
-    `${apiBaseUri}/v2/oppgaver/tildelt`,
+    `${apiBaseUri}/oppgaver/tildelt`,
     withDelayedResponse(randomDelay(), STATUS_OK, () => oppgaveBackendMock.getTildelteOppgaver())
 );
 

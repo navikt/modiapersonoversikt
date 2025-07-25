@@ -12,7 +12,7 @@ function queryKey(fnr: string): [string, string] {
 }
 
 function urlUtenFnrIPath(): string {
-    return `${apiBaseUri}/v2/oppgaver/tildelt`;
+    return `${apiBaseUri}/oppgaver/tildelt`;
 }
 
 const defaults: DefaultConfig = {

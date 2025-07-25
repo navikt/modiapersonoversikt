@@ -118,7 +118,7 @@ export const useJournalforingSaker = () => {
 export const usePersonOppgaver = () => {
     const aktivBruker = usePersonAtomValue();
 
-    return $api.useSuspenseQuery('post', '/rest/v2/oppgaver/tildelt', {
+    return $api.useSuspenseQuery('post', '/rest/oppgaver/tildelt', {
         body: {
             fnr: aktivBruker
         }
@@ -141,7 +141,7 @@ export const useAvsluttOppgaveMutation = () => {
     return $api.useMutation('post', '/rest/dialogmerking/avsluttgosysoppgave', {
         onSuccess: () => {
             queryClient.invalidateQueries({
-                queryKey: $api.queryOptions('post', '/rest/v2/oppgaver/tildelt', {
+                queryKey: $api.queryOptions('post', '/rest/oppgaver/tildelt', {
                     body: { fnr }
                 }).queryKey
             });
@@ -282,7 +282,7 @@ export const useOppgaveMutation = () => {
         onSuccess: () => {
             toast.success('Opprettet oppgave');
             queryClient.invalidateQueries({
-                queryKey: $api.queryOptions('post', '/rest/v2/oppgaver/tildelt', {
+                queryKey: $api.queryOptions('post', '/rest/oppgaver/tildelt', {
                     body: { fnr }
                 }).queryKey
             });
