@@ -11,7 +11,7 @@ export const useSykepenger = (
     return useQuery({
         queryKey: ['sykepenger', fnr, fom, tom],
         queryFn: () =>
-            post(`${apiBaseUri}/v2/ytelse/sykepenger`, {
+            post(`${apiBaseUri}/ytelse/sykepenger`, {
                 fnr,
                 fom: fom,
                 tom: tom

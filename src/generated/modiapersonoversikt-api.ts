@@ -68,7 +68,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v2/ytelse/tiltakspenger': {
+    '/rest/ytelse/tiltakspenger': {
         parameters: {
             query?: never;
             header?: never;
@@ -84,7 +84,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v2/ytelse/sykepenger': {
+    '/rest/ytelse/sykepenger': {
         parameters: {
             query?: never;
             header?: never;
@@ -100,7 +100,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v2/ytelse/pleiepenger': {
+    '/rest/ytelse/pleiepenger': {
         parameters: {
             query?: never;
             header?: never;
@@ -116,7 +116,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v2/ytelse/pensjon': {
+    '/rest/ytelse/pensjon': {
         parameters: {
             query?: never;
             header?: never;
@@ -132,7 +132,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v2/ytelse/foreldrepenger': {
+    '/rest/ytelse/foreldrepenger': {
         parameters: {
             query?: never;
             header?: never;
@@ -148,7 +148,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v2/ytelse/alle-ytelser': {
+    '/rest/ytelse/alle-ytelser': {
         parameters: {
             query?: never;
             header?: never;

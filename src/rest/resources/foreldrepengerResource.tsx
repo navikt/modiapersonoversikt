@@ -11,7 +11,7 @@ export const useForeldrepenger = (
     return useQuery({
         queryKey: ['foreldrepenger', fnr, fom, tom],
         queryFn: () =>
-            post(`${apiBaseUri}/v2/ytelse/foreldrepenger`, {
+            post(`${apiBaseUri}/ytelse/foreldrepenger`, {
                 fnr,
                 fom: fom,
                 tom: tom
