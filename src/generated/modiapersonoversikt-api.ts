@@ -260,7 +260,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v2/oppgaver/tildelt': {
+    '/rest/oppgaver/tildelt': {
         parameters: {
             query?: never;
             header?: never;
@@ -581,7 +581,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v2/oppgaver/oppgavedata/{oppgaveId}': {
+    '/rest/oppgaver/oppgavedata/{oppgaveId}': {
         parameters: {
             query?: never;
             header?: never;
