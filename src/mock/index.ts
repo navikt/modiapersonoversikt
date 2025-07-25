@@ -163,7 +163,7 @@ const utbetalingerHandler = http.post(
 );
 
 const sykepengerHandler = http.post(
-    `${apiBaseUri}/v2/ytelse/sykepenger`,
+    `${apiBaseUri}/ytelse/sykepenger`,
     withDelayedResponse(
         randomDelay(),
         fodselsNummerErGyldigStatus,
@@ -172,7 +172,7 @@ const sykepengerHandler = http.post(
 );
 
 const foreldrepengerHandler = http.post(
-    `${apiBaseUri}/v2/ytelse/foreldrepenger`,
+    `${apiBaseUri}/ytelse/foreldrepenger`,
     withDelayedResponse(
         randomDelay(),
         fodselsNummerErGyldigStatus,
@@ -181,7 +181,7 @@ const foreldrepengerHandler = http.post(
 );
 
 const pleiepengerHandler = http.post(
-    `${apiBaseUri}/v2/ytelse/pleiepenger`,
+    `${apiBaseUri}/ytelse/pleiepenger`,
     withDelayedResponse(
         randomDelay(),
         fodselsNummerErGyldigStatus,
@@ -190,7 +190,7 @@ const pleiepengerHandler = http.post(
 );
 
 const tiltakspengerMock = http.post(
-    `${apiBaseUri}/v2/ytelse/tiltakspenger`,
+    `${apiBaseUri}/ytelse/tiltakspenger`,
     withDelayedResponse(
         randomDelay(),
         fodselsNummerErGyldigStatus,
@@ -199,7 +199,7 @@ const tiltakspengerMock = http.post(
 );
 
 const ytelseHandler = http.post(
-    `${apiBaseUri}/v2/ytelse/alle-ytelser`,
+    `${apiBaseUri}/ytelse/alle-ytelser`,
     withDelayedResponse(
         randomDelay(),
         fodselsNummerErGyldigStatus,

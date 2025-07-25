@@ -14,7 +14,7 @@ export const useTiltakspenger = (
     return useQuery({
         queryKey: ['tiltakspenger', fnr, fom, tom],
         queryFn: () =>
-            post(`${apiBaseUri}/v2/ytelse/tiltakspenger`, {
+            post(`${apiBaseUri}/ytelse/tiltakspenger`, {
                 fnr,
                 fom,
                 tom
