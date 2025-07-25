@@ -469,7 +469,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/dialogoppgave/v2/opprettskjermetoppgave': {
+    '/rest/dialogoppgave/opprettskjermetoppgave': {
         parameters: {
             query?: never;
             header?: never;
@@ -485,7 +485,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/dialogoppgave/v2/opprett': {
+    '/rest/dialogoppgave/opprett': {
         parameters: {
             query?: never;
             header?: never;

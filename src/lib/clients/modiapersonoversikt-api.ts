@@ -278,7 +278,7 @@ export const useOppgaveMutation = () => {
     const queryClient = useQueryClient();
     const fnr = usePersonAtomValue();
 
-    return $api.useMutation('post', '/rest/dialogoppgave/v2/opprett', {
+    return $api.useMutation('post', '/rest/dialogoppgave/opprett', {
         onSuccess: () => {
             toast.success('Opprettet oppgave');
             queryClient.invalidateQueries({
