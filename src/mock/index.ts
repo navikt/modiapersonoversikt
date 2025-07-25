@@ -141,7 +141,7 @@ const saksoversiktV2Handler = [
 ];
 
 const saksoversiktV3Handler = http.post(
-    `${apiBaseUri}/v2/saker/v2/sakstema`,
+    `${apiBaseUri}/saker/sakstema`,
     verify(
         harEnhetIdSomQueryParam,
         withDelayedResponse(

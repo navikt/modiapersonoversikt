@@ -13,13 +13,13 @@ const defaults: DefaultConfig = {
     ifError: <AlertStripe type="advarsel">Kunne ikke laste inn tema</AlertStripe>
 };
 
-function queryKeyV2(fnr: string | undefined, enhet: string | undefined) {
-    return ['sakstemaV2', fnr, enhet];
+function queryKey(fnr: string | undefined, enhet: string | undefined) {
+    return ['sakstema', fnr, enhet];
 }
 
-function urlUtenFnrIPathV2(enhet?: string) {
+function url(enhet?: string) {
     const header = enhet ? `?enhet=${enhet}` : '';
-    return `${apiBaseUri}/v2/saker/v2/sakstema${header}`;
+    return `${apiBaseUri}/saker/sakstema${header}`;
 }
 
 const resource = {
@@ -28,8 +28,8 @@ const resource = {
         const enhet = useAtomValue(aktivEnhetAtom);
 
         return useQuery({
-            queryKey: queryKeyV2(fnr, enhet),
-            queryFn: () => post(urlUtenFnrIPathV2(enhet), { fnr })
+            queryKey: queryKey(fnr, enhet),
+            queryFn: () => post(url(enhet), { fnr })
         });
     },
     useRenderer(renderer: RendererOrConfig<SakstemaSoknadsstatusResponse>) {
