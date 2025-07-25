@@ -212,7 +212,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v2/saker/v2/sakstema': {
+    '/rest/saker/sakstema': {
         parameters: {
             query?: never;
             header?: never;
@@ -228,7 +228,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v2/saker/dokument/{journalpostId}/{dokumentreferanse}': {
+    '/rest/saker/dokument/{journalpostId}/{dokumentreferanse}': {
         parameters: {
             query?: never;
             header?: never;
