@@ -9,7 +9,7 @@ function queryKey(fnr: string) {
 }
 
 function urlUtenFnrIPath() {
-    return `${apiBaseUri}/v3/person`;
+    return `${apiBaseUri}/person`;
 }
 
 const resource = {

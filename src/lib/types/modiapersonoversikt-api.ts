@@ -18,8 +18,7 @@ export * from 'src/generated/modiapersonoversikt-api';
  * her for å enklere referere til typer i koden.
  */
 
-export type PersonData =
-    ModiapersonoversiktAPI['/rest/v3/person']['post']['responses']['200']['content']['*/*']['person'];
+export type PersonData = ModiapersonoversiktAPI['/rest/person']['post']['responses']['200']['content']['*/*']['person'];
 
 export type RelasjonPerson =
     | components['schemas']['ForelderBarnRelasjon']
