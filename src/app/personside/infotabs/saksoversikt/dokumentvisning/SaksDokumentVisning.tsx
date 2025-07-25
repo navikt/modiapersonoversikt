@@ -41,7 +41,7 @@ function DokumentVisning(props: Props) {
         return <AlertStripeInfo>Kan ikke vise dokumenter i Internet Explorer. Prøv chrome</AlertStripeInfo>;
     }
 
-    const urlV2 = getMockableUrl(byggDokumentVisningUrlV2(props.url));
+    const urlV2 = getMockableUrl(byggDokumentVisningUrl(props.url));
 
     return (
         <ObjectHttpFeilHandtering url={urlV2} fnr={props.fnr} width="100%" height="100%" onError={onError}>
@@ -52,9 +52,9 @@ function DokumentVisning(props: Props) {
     );
 }
 
-function byggDokumentVisningUrlV2(url: string): string {
+function byggDokumentVisningUrl(url: string): string {
     const { journalpost, dokument } = parseQueryString<{ journalpost: string; dokument: string }>(url); // Format til url: 'journalpost=etcoicxr&dokument=q90p8dnw'
-    return `${apiBaseUri}/v2/saker/dokument/${journalpost}/${dokument}`;
+    return `${apiBaseUri}/saker/dokument/${journalpost}/${dokument}`;
 }
 
 function feilmelding(statusKode: number) {
