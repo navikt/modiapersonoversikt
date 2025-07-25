@@ -326,7 +326,7 @@ const journalForingHandler = [
 ];
 
 const opprettOppgaveHandler = http.post(
-    `${apiBaseUri}/dialogoppgave/v2/opprett`,
+    `${apiBaseUri}/dialogoppgave/opprett`,
     withDelayedResponse<OpprettOppgaveResponseDto, OpprettOppgaveRequestDto>(
         randomDelay(),
         STATUS_OK,
@@ -335,7 +335,7 @@ const opprettOppgaveHandler = http.post(
 );
 
 const opprettSkjermetOppgaveHandler = http.post(
-    `${apiBaseUri}/dialogoppgave/v2/opprettskjermetoppgave`,
+    `${apiBaseUri}/dialogoppgave/opprettskjermetoppgave`,
     withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
 );
 

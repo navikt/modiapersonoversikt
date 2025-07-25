@@ -55,7 +55,7 @@ function OppgaveSkjemaBegrensetTilgang(props: SkjermetOppgaveProps) {
     // biome-ignore lint/suspicious/noExplicitAny: Old types
     function submitHandler(values: OppgaveSkjemaBegrensetTilgangForm): Promise<any> {
         const request = lagSkjermetOppgaveRequest(values, valgtBrukersFnr, saksbehandlersEnhet || '');
-        return post(`${apiBaseUri}/dialogoppgave/v2/opprettskjermetoppgave`, request, 'OpprettOppgaveSkjermetPerson')
+        return post(`${apiBaseUri}/dialogoppgave/opprettskjermetoppgave`, request, 'OpprettOppgaveSkjermetPerson')
             .then(() => {
                 settResultat(Resultat.VELLYKKET);
                 if (props.onSuccessCallback) props.onSuccessCallback();
