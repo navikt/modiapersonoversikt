@@ -1,0 +1,2 @@
+import{N as d,C as i,a4 as n}from"./main-Dhq2PonC.js";const m=a=>{const e=d.c(8);let o,r,s;e[0]!==a?({children:r,as:o,...s}=a,e[0]=a,e[1]=o,e[2]=r,e[3]=s):(o=e[1],r=e[2],s=e[3]);const l=o??"div";let t;return e[4]!==r||e[5]!==s||e[6]!==l?(t=i.jsx(n.New,{className:"shadow-md",background:"raised",borderRadius:"large",borderColor:"neutral-subtle",borderWidth:"1",flexGrow:"1",as:l,...s,children:r}),e[4]=r,e[5]=s,e[6]=l,e[7]=t):t=e[7],t};export{m as C};
+//# sourceMappingURL=index-M5JxhHi_.js.map
