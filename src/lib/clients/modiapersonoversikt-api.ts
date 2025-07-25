@@ -340,7 +340,7 @@ export const useForeslotteEnheter = ({
 
 export const useYtelser = (fom: string, tom: string) => {
     const fnr = usePersonAtomValue();
-    return $api.useSuspenseQuery('post', '/rest/v2/ytelse/alle-ytelser', {
+    return $api.useSuspenseQuery('post', '/rest/ytelse/alle-ytelser', {
         body: { fnr, fom, tom }
     });
 };
