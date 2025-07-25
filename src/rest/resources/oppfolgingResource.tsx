@@ -20,7 +20,7 @@ const resource = {
         const queryParams = `?startDato=${fom}&sluttDato=${tom}`;
         return useQuery({
             queryKey: ['oppfolging', fnr, fom, tom],
-            queryFn: () => post(`${apiBaseUri}/v2/oppfolging/ytelserogkontrakter${queryParams}`, { fnr })
+            queryFn: () => post(`${apiBaseUri}/oppfolging/ytelserogkontrakter${queryParams}`, { fnr })
         });
     },
     useOversiktRenderer(renderer: RendererOrConfig<DetaljertOppfolging>) {

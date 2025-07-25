@@ -9,7 +9,7 @@ const resource = {
         const fnr = usePersonAtomValue();
         return useQuery({
             queryKey: ['gjeldende14AVedtak', fnr],
-            queryFn: () => post(`${apiBaseUri}/v2/oppfolging/hent-gjeldende-14a-vedtak`, { fnr })
+            queryFn: () => post(`${apiBaseUri}/oppfolging/hent-gjeldende-14a-vedtak`, { fnr })
         });
     }
 };

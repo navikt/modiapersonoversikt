@@ -277,7 +277,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v2/oppfolging': {
+    '/rest/oppfolging': {
         parameters: {
             query?: never;
             header?: never;
@@ -293,7 +293,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v2/oppfolging/ytelserogkontrakter': {
+    '/rest/oppfolging/ytelserogkontrakter': {
         parameters: {
             query?: never;
             header?: never;
@@ -309,7 +309,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v2/oppfolging/hent-gjeldende-14a-vedtak': {
+    '/rest/oppfolging/hent-gjeldende-14a-vedtak': {
         parameters: {
             query?: never;
             header?: never;
