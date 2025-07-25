@@ -76,7 +76,7 @@ const saksbehandlerEnheterHandler = http.get(
 );
 
 const tilgangsKontrollHandler = [
-    http.get(`${apiBaseUri}/v2/tilgang/auth`, withDelayedResponse(randomDelay(), STATUS_OK, authMock)),
+    http.get(`${apiBaseUri}/tilgang/auth`, withDelayedResponse(randomDelay(), STATUS_OK, authMock)),
 
     http.get(
         `${apiBaseUri}/tilgang/:fodselsnummer?`,
@@ -88,7 +88,7 @@ const tilgangsKontrollHandler = [
     ),
 
     http.post(
-        `${apiBaseUri}/v2/tilgang`,
+        `${apiBaseUri}/tilgang`,
         withDelayedResponse(
             randomDelay(),
             () => Promise.resolve(Math.random() > 0.98 ? 400 : 200),
@@ -97,7 +97,7 @@ const tilgangsKontrollHandler = [
     ),
 
     http.post(
-        `${apiBaseUri}/v2/tilgang`,
+        `${apiBaseUri}/tilgang`,
         withDelayedResponse(
             randomDelay(),
             () => Promise.resolve(Math.random() > 0.98 ? 400 : 200),

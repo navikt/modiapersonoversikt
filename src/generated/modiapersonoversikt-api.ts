@@ -180,7 +180,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v2/tilgang': {
+    '/rest/tilgang': {
         parameters: {
             query?: never;
             header?: never;
@@ -196,7 +196,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v2/tilgang/v2': {
+    '/rest/tilgang/v2': {
         parameters: {
             query?: never;
             header?: never;
@@ -565,7 +565,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v2/tilgang/auth': {
+    '/rest/tilgang/auth': {
         parameters: {
             query?: never;
             header?: never;
