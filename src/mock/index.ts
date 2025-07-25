@@ -153,7 +153,7 @@ const saksoversiktV3Handler = http.post(
 );
 
 const utbetalingerHandler = http.post(
-    `${apiBaseUri}/v2/utbetaling`,
+    `${apiBaseUri}/utbetaling`,
     withDelayedResponse(randomDelay(), fodselsNummerErGyldigStatus, async (req, _params, body) => {
         const reqBody = body ?? (await req.json());
         const url = new URL(req.url);
