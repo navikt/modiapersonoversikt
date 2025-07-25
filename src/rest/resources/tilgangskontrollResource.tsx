@@ -42,7 +42,7 @@ function queryKey(fnr: string | undefined) {
 
 function url(enhet: string | undefined, enableTilgangsMaskin: boolean) {
     const params = enhet ? `?enhet=${enhet}` : '';
-    return `${apiBaseUri}/v2/tilgang${enableTilgangsMaskin ? '/v2' : ''}${params}`;
+    return `${apiBaseUri}/tilgang${enableTilgangsMaskin ? '/v2' : ''}${params}`;
 }
 
 const resource = {
