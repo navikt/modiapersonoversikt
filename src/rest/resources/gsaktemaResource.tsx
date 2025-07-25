@@ -7,7 +7,7 @@ import type { GsakTema } from '../../models/meldinger/oppgave';
 import { type DefaultConfig, type RendererOrConfig, applyDefaults, useRest } from '../useRest';
 
 const queryKey = ['gsaktema'];
-const url = `${apiBaseUri}/dialogoppgave/v2/tema`;
+const url = `${apiBaseUri}/dialogoppgave/tema`;
 const defaults: DefaultConfig = {
     ifPending: <CenteredLazySpinner />,
     ifError: <AlertStripe type="advarsel">Kunne ikke laste inn tema</AlertStripe>

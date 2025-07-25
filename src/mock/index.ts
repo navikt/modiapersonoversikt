@@ -244,7 +244,7 @@ const varslerHandler = http.post<PathParams, { fnr: string }>(`${apiBaseUri}/var
 });
 
 const gsakHandler = http.get(
-    `${apiBaseUri}/dialogoppgave/v2/tema`,
+    `${apiBaseUri}/dialogoppgave/tema`,
     withDelayedResponse(randomDelay(), STATUS_OK, () => getMockGsakTema())
 );
 
