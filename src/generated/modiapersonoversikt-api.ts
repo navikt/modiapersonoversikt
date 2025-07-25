@@ -357,7 +357,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v2/enheter/oppgavebehandlere/v2/foreslatte': {
+    '/rest/enheter/oppgavebehandlere/foreslatte': {
         parameters: {
             query?: never;
             header?: never;
@@ -597,7 +597,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v2/enheter/{enhetId}/ansatte': {
+    '/rest/enheter/{enhetId}/ansatte': {
         parameters: {
             query?: never;
             header?: never;
@@ -613,7 +613,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v2/enheter/oppgavebehandlere/alle': {
+    '/rest/enheter/oppgavebehandlere/alle': {
         parameters: {
             query?: never;
             header?: never;
