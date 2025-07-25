@@ -46,7 +46,7 @@ export const $api = createClient(personoversiktApiClient);
 
 export const usePersonData = () => {
     const aktivBruker = usePersonAtomValue();
-    return $api.useSuspenseQuery('post', '/rest/v3/person', {
+    return $api.useSuspenseQuery('post', '/rest/person', {
         body: { fnr: aktivBruker }
     });
 };
