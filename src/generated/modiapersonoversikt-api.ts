@@ -244,7 +244,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v2/person/kontaktinformasjon': {
+    '/rest/person/kontaktinformasjon': {
         parameters: {
             query?: never;
             header?: never;
