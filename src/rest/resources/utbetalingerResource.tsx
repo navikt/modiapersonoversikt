@@ -10,7 +10,7 @@ import type { UtbetalingerResponse } from '../../models/utbetalinger';
 import { type DefaultConfig, type RendererOrConfig, applyDefaults, useRest } from '../useRest';
 
 function urlV2(fom: string, tom: string): string {
-    return `${apiBaseUri}/v2/utbetaling?startDato=${fom}&sluttDato=${tom}`;
+    return `${apiBaseUri}/utbetaling?startDato=${fom}&sluttDato=${tom}`;
 }
 
 const defaults: DefaultConfig = {

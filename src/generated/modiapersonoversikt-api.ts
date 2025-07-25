@@ -164,7 +164,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v2/utbetaling': {
+    '/rest/utbetaling': {
         parameters: {
             query?: never;
             header?: never;
