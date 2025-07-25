@@ -62,7 +62,7 @@ export function JournalforSak(props: Props) {
 
         setSubmitting(true);
         const enhetheader = valgtEnhet ? `?enhet=${valgtEnhet}` : '';
-        const url = `${apiBaseUri}/v2/journalforing/${props.traad.traadId}${enhetheader}`;
+        const url = `${apiBaseUri}/journalforing/${props.traad.traadId}${enhetheader}`;
         const body = { ...props.sak, fnr };
 
         post(url, body, 'Journalføring')

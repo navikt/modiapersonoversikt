@@ -88,7 +88,7 @@ export const useJournalforMutation = () => {
     const fnr = usePersonAtomValue();
     const enhet = useAtomValue(aktivEnhetAtom) as string;
 
-    return $api.useMutation('post', '/rest/v2/journalforing/{traadId}', {
+    return $api.useMutation('post', '/rest/journalforing/{traadId}', {
         onSuccess: () => {
             queryClient.invalidateQueries({
                 queryKey: $api.queryOptions('post', '/rest/dialog/meldinger', {
@@ -110,7 +110,7 @@ export const useEnheter = () => {
 
 export const useJournalforingSaker = () => {
     const aktivBruker = usePersonAtomValue();
-    return $api.useQuery('post', '/rest/v2/journalforing/saker/', {
+    return $api.useQuery('post', '/rest/journalforing/saker/', {
         body: { fnr: aktivBruker }
     });
 };
