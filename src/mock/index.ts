@@ -305,7 +305,7 @@ const journalForingHandler = [
         withDelayedResponse(randomDelay(), STATUS_OK, () => saker)
     ),
     http.post(
-        `${apiBaseUri}/v2/journalforing/saker/`,
+        `${apiBaseUri}/journalforing/saker/`,
         withDelayedResponse(randomDelay(), STATUS_OK, () => saker)
     ),
     http.post(
@@ -316,7 +316,7 @@ const journalForingHandler = [
         )
     ),
     http.post(
-        `${apiBaseUri}/v2/journalforing/:traadId`,
+        `${apiBaseUri}/journalforing/:traadId`,
         verify(
             harEnhetIdSomQueryParam,
             withDelayedResponse(randomDelay(), STATUS_OK, async (req, params: PathParams<'traadId'>) => {

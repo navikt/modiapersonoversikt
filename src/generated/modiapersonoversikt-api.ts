@@ -325,7 +325,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v2/journalforing/{traadId}': {
+    '/rest/journalforing/{traadId}': {
         parameters: {
             query?: never;
             header?: never;
@@ -341,7 +341,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/v2/journalforing/saker/': {
+    '/rest/journalforing/saker/': {
         parameters: {
             query?: never;
             header?: never;
