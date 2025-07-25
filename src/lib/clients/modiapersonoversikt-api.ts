@@ -53,13 +53,13 @@ export const usePersonData = () => {
 
 export const useVarslerData = () => {
     const aktivBruker = usePersonAtomValue();
-    return $api.useSuspenseQuery('post', '/rest/v3/varsler', {
+    return $api.useSuspenseQuery('post', '/rest/varsler', {
         body: { fnr: aktivBruker }
     });
 };
 
 export const useBaseUrls = () => {
-    return $api.useQuery('get', '/rest/baseurls/v2');
+    return $api.useQuery('get', '/rest/baseurls');
 };
 
 export const useSendMelding = () => {

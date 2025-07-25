@@ -9,7 +9,7 @@ function queryKey(fnr: string): [string, string] {
 }
 
 function urlV3(): string {
-    return `${apiBaseUri}/v3/varsler`;
+    return `${apiBaseUri}/varsler`;
 }
 const resource = {
     useFetch(): UseQueryResult<VarslerResult, FetchError> {
