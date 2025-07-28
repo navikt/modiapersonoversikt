@@ -20,6 +20,7 @@ export const UtbetalingItem = ({
     return (
         <Card
             padding="2"
+            as="li"
             className={`cursor-pointer hover:hover:bg-ax-bg-neutral-moderate-hover group
                 ${aktivUtbetaling === id ? 'bg-ax-bg-neutral-moderate ' : ''}`}
             onClick={() => handleClick(id)}

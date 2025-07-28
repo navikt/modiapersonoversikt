@@ -42,6 +42,7 @@ export const YtelseItem = ({
     return (
         <Card
             padding="2"
+            as="li"
             className={`cursor-pointer hover:hover:bg-ax-bg-neutral-moderate-hover group
                 ${aktivYtelse === id ? 'bg-ax-bg-neutral-moderate ' : ''}`}
             onClick={() => handleClick(id)}
