@@ -4,8 +4,12 @@ import { VarslerList } from 'src/components/varsler/List';
 
 export const VarslerPage = () => {
     return (
-        <HGrid gap="1" columns={{ xs: 1, md: 2 }} className="h-full w-full overflow-scroll md:overflow-hidden">
-            <VStack height="100%" gap="1" width="100%" minWidth="12em" className="md:overflow-hidden">
+        <HGrid
+            gap="1"
+            columns={{ xs: 1, md: 'max-content 1fr' }}
+            className="h-full w-full overflow-scroll md:overflow-hidden"
+        >
+            <VStack height="100%" gap="1" width="100%" className="md:overflow-hidden" maxWidth="16em">
                 <Heading level="2" size="xsmall">
                     Varsler
                 </Heading>

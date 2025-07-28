@@ -1,5 +1,5 @@
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
-import { Button, HGrid, HStack, Heading, VStack } from '@navikt/ds-react';
+import { Button, HGrid, HStack, VStack } from '@navikt/ds-react';
 import { Link } from '@tanstack/react-router';
 import { UtbetalingerDetailPage } from 'src/components/Utbetaling/Detail';
 import { UtbetalingerList } from 'src/components/Utbetaling/List';
@@ -7,9 +7,8 @@ import { arenaURL } from 'src/components/Utbetaling/List/utils';
 
 export const UtbetalingPage = () => {
     return (
-        <HGrid gap="1" columns={{ xs: 1, md: 2 }} className="h-full overflow-scroll md:overflow-hidden">
-            <VStack height="100%" minWidth="12em" className="md:overflow-hidden">
-                <Heading size="xsmall">Utbetalinger</Heading>
+        <HGrid gap="1" columns={{ xs: 1, md: 'max-content 1fr' }} className="h-full overflow-scroll md:overflow-hidden">
+            <VStack height="100%" className="md:overflow-hidden" maxWidth="16em">
                 <HStack>
                     <Button
                         size="small"
