@@ -55,11 +55,11 @@ export const MeldingerPage = () => {
                     </Suspense>
                 </ErrorBoundary>
             </VStack>
-            <VStack flexGrow="1" minHeight="0" maxHeight="100%">
+            <VStack flexGrow="1" className="min-h-100 md:min-h-0">
                 <Heading level="2" size="xsmall">
                     Dialog
                 </Heading>
-                <VStack className="min-h-100 md:min-h-0 overflow-hidden md:overflow-scroll">
+                <VStack className="md:overflow-scroll">
                     <TraadDetailSection />
                 </VStack>
             </VStack>

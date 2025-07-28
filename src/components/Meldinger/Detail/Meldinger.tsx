@@ -30,8 +30,7 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
     const highlightRule = useMemo(() => createDynamicHighlightingRule((search ?? '').split(' ')), [search]);
     return (
         <Box.New
-            minHeight="0"
-            overflowY="scroll"
+            className="min-h-100 md:min-h-0 overflow-hidden md:overflow-scroll"
             background="sunken"
             borderColor="neutral-subtle"
             borderRadius="medium"
