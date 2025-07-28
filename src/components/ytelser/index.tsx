@@ -23,7 +23,7 @@ export const YtelserPage = () => {
                     columns={{ xs: 1, md: 'max-content 1fr' }}
                     className="h-full overflow-scroll md:overflow-hidden"
                 >
-                    <VStack height="100%" className="md:overflow-hidden" maxWidth="16em">
+                    <VStack height="100%" className="md:overflow-hidden md:max-w-[16em]">
                         <Heading size="xsmall">Ytelser</Heading>
                         <YtelserList />
                     </VStack>
