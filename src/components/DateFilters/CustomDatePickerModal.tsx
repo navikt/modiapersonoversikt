@@ -1,5 +1,5 @@
 import { CalendarIcon } from '@navikt/aksel-icons';
-import { Button, DatePicker, ErrorMessage, HStack, Modal, TextField, useDatepicker } from '@navikt/ds-react';
+import { Button, DatePicker, ErrorMessage, HStack, Modal, TextField, VStack, useDatepicker } from '@navikt/ds-react';
 import dayjs, { type Dayjs } from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { useEffect, useMemo, useState } from 'react';
@@ -117,7 +117,7 @@ function PeriodDatePicker(props: Props) {
 
     return (
         <>
-            <HStack gap="2" className="">
+            <VStack gap="2" className="">
                 <HStack className="items-end" gap="1">
                     <TextField
                         label="Dato fra"
@@ -172,7 +172,7 @@ function PeriodDatePicker(props: Props) {
                         </Modal.Footer>
                     </Modal>
                 </HStack>
-            </HStack>
+            </VStack>
             {periodeFeilmelding && <ErrorMessage>{periodeFeilmelding}</ErrorMessage>}
         </>
     );

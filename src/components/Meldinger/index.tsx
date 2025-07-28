@@ -32,7 +32,7 @@ const PrintThreadsMemo = memo(PrintThreads);
 export const MeldingerPage = () => {
     return (
         <HGrid gap="1" columns={{ xs: 1, md: 'max-content 1fr' }} className="h-full overflow-scroll md:overflow-hidden">
-            <VStack height="100%" minWidth="16em" className="md:overflow-hidden">
+            <VStack height="100%" className="md:overflow-hidden md:max-w-[16em]">
                 <HStack justify="space-between">
                     <Heading level="2" size="xsmall">
                         Innboks
