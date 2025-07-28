@@ -19,7 +19,7 @@ export const YtelserPage = () => {
                 }
             >
                 <HGrid gap="1" columns={{ xs: 1, md: 2 }} className="h-full overflow-scroll md:overflow-hidden">
-                    <VStack height="100%" minWidth="14em" className="md:overflow-hidden">
+                    <VStack height="100%" className="md:overflow-hidden">
                         <Heading size="xsmall">Ytelser</Heading>
                         <YtelserList />
                     </VStack>
