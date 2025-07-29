@@ -1,8 +1,8 @@
-import { Box, ExpansionCard, Fieldset, Switch, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
+import { Box, ExpansionCard, Fieldset, Skeleton, Switch, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
 import { atom, useAtom, useAtomValue } from 'jotai';
 import { atomWithReset } from 'jotai/utils';
 import { xor } from 'lodash';
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { Suspense, useCallback, useMemo, useRef, useState } from 'react';
 import DateRangeSelector, { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
 import { reduceUtbetlingerTilYtelser, utbetalingMottakere } from 'src/components/Utbetaling/List/utils';
@@ -173,7 +173,16 @@ export const UtbetalingListFilter = () => {
                 <ExpansionCard.Content className="overflow-visible">
                     <VStack gap="2">
                         <Box.New maxWidth="17rem">
-                            <UtbetalingYtelserFilter />
+                            <Suspense
+                                fallback={
+                                    <VStack gap="2">
+                                        <span className="font-ax-bold">Ytelse</span>
+                                        <Skeleton width="100%" variant="rounded" height="2rem" />
+                                    </VStack>
+                                }
+                            >
+                                <UtbetalingYtelserFilter />
+                            </Suspense>
                         </Box.New>
                         <Box.New maxWidth="17rem">
                             <UtbetaltTilFilter />
