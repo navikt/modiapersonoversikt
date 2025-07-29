@@ -51,9 +51,9 @@ export const MeldingerPage = () => {
                         }
                     >
                         <PrintThreadsMemo />
-                        <TraadList />
                     </Suspense>
                 </ErrorBoundary>
+                <TraadList />
             </VStack>
             <VStack flexGrow="1" className="min-h-100 md:min-h-0">
                 <Heading level="2" size="xsmall">
