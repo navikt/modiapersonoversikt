@@ -194,7 +194,13 @@ function ValidationErrorMessage({ errors }: { errors: ValidationError[] }) {
 }
 
 function buildErrorMessage(errors: ValidationError[]) {
-    return errors.isNotEmpty() ? errors.join(', ') : null;
+    const flatErrors = errors.flatMap((e) => (Array.isArray(e) ? e : [e]));
+    return flatErrors.length > 0
+        ? flatErrors
+              .filter((e) => e.message != null)
+              .map((e) => e.message)
+              .join(', ')
+        : null;
 }
 
 // Funksjonen forventer at parameteren allerede er validert
