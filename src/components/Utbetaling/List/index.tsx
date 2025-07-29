@@ -8,24 +8,26 @@ import { UtbetalingListFilter } from './Filter';
 import { getUtbetalingId, useFilterUtbetalinger } from './utils';
 
 export const UtbetalingerList = () => (
-    <ErrorBoundary boundaryName="utbetalingerList">
-        <Suspense
-            fallback={
-                <VStack gap="2" marginInline="0 2">
-                    {Array(8)
-                        .keys()
-                        .map((i) => (
-                            <Skeleton key={i} variant="rounded" height={68} />
-                        ))}
+    <VStack minHeight="0" gap="2">
+        <UtbetalingListFilter />
+        <ErrorBoundary boundaryName="UtbetalingerList">
+            <Suspense
+                fallback={
+                    <VStack gap="2" marginInline="0 2">
+                        {Array(8)
+                            .keys()
+                            .map((i) => (
+                                <Skeleton key={i} variant="rounded" height={68} />
+                            ))}
+                    </VStack>
+                }
+            >
+                <VStack minHeight="0" gap="2">
+                    <UtbetalingList />
                 </VStack>
-            }
-        >
-            <VStack minHeight="0" gap="2">
-                <UtbetalingListFilter />
-                <UtbetalingList />
-            </VStack>
-        </Suspense>
-    </ErrorBoundary>
+            </Suspense>
+        </ErrorBoundary>
+    </VStack>
 );
 
 const UtbetalingList = () => {
