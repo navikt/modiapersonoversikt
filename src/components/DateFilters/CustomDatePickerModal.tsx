@@ -2,7 +2,7 @@ import { CalendarIcon } from '@navikt/aksel-icons';
 import { Button, DatePicker, ErrorMessage, HStack, Modal, TextField, VStack, useDatepicker } from '@navikt/ds-react';
 import dayjs, { type Dayjs } from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
-import { useEffect, useMemo, useState } from 'react';
+import { type ChangeEvent, useEffect, useMemo, useState } from 'react';
 import useDebounce from 'src/utils/hooks/use-debounce';
 import type { DateRange } from './types';
 
@@ -28,9 +28,10 @@ function PeriodDatePicker(props: Props) {
     const [fromDate, setFromDate] = useState(dayjs(props.period?.from));
     const [toDate, setToDate] = useState(dayjs(props.period?.to));
 
-    const [fromDateInput, setFromDateInput] = useState<string>(dateToString(props.period?.from));
+    const [fromDateKeyboardInput, setFromDateKeyboardInput] = useState<string>(dateToString(props.period?.from));
     const [toDateKeyboardInput, setToDateKeyboardInput] = useState<string>(dateToString(props.period?.to));
-    const debouncedFromDate = useDebounce(fromDateInput, 300);
+
+    const debouncedFromDate = useDebounce(fromDateKeyboardInput, 300);
     const debouncedToDate = useDebounce(toDateKeyboardInput, 300);
 
     const [periodeFeilmelding, setPeriodeFeilmelding] = useState<string | undefined>();
@@ -60,19 +61,21 @@ function PeriodDatePicker(props: Props) {
     );
 
     useEffect(() => {
-        if (!stringToDate(debouncedFromDate).isValid()) return;
-        onRangeDateChange(stringToDate(debouncedFromDate), dayjs(toDate));
-    }, [debouncedFromDate, toDate]);
+        if (!debouncedFromDate || !stringToDate(debouncedFromDate).isValid()) return;
+        const event = { target: { value: debouncedFromDate } } as ChangeEvent<HTMLInputElement>;
+        fromInputProps?.onChange?.(event);
+    }, [debouncedFromDate]);
 
     useEffect(() => {
-        if (!stringToDate(debouncedToDate).isValid()) return;
-        onRangeDateChange(dayjs(fromDate), stringToDate(debouncedToDate));
-    }, [debouncedToDate, fromDate]);
+        if (!debouncedToDate || !stringToDate(debouncedToDate).isValid()) return;
+        const event = { target: { value: debouncedToDate } } as ChangeEvent<HTMLInputElement>;
+        toInputProps?.onChange?.(event);
+    }, [debouncedToDate]);
 
     const onFromDateChange = (val?: Date) => {
         const dateValue = dayjs(val);
         setFromDate(dateValue);
-        setFromDateInput(dateToString(dateValue));
+        setFromDateKeyboardInput(dateToString(dateValue));
         onRangeDateChange(dateValue, toDate);
         setFromModalOpen(false);
     };
@@ -101,18 +104,14 @@ function PeriodDatePicker(props: Props) {
         return periodeValidering.find((validering) => validering.erUgyldig(from, to))?.feilmelding;
     };
 
-    const { datepickerProps: fromDatepickerProps } = useDatepicker({
+    const { datepickerProps: fromDatepickerProps, inputProps: fromInputProps } = useDatepicker({
         defaultSelected: fromDate.toDate(),
-        onDateChange: onFromDateChange,
-        fromDate: minFromDate,
-        toDate: maxFromDate
+        onDateChange: onFromDateChange
     });
 
-    const { datepickerProps: toDatepickerProps } = useDatepicker({
+    const { datepickerProps: toDatepickerProps, inputProps: toInputProps } = useDatepicker({
         defaultSelected: toDate.toDate(),
-        onDateChange: onToDateChange,
-        fromDate: minToDate,
-        toDate: maxToDate
+        onDateChange: onToDateChange
     });
 
     return (
@@ -121,8 +120,10 @@ function PeriodDatePicker(props: Props) {
                 <HStack className="items-end" gap="1">
                     <TextField
                         label="Dato fra"
-                        value={fromDateInput}
-                        onChange={(e) => setFromDateInput(e.target.value)}
+                        value={fromDateKeyboardInput}
+                        onChange={(e) => {
+                            setFromDateKeyboardInput(e.target.value);
+                        }}
                         size="small"
                     />
                     <Button
@@ -137,7 +138,12 @@ function PeriodDatePicker(props: Props) {
                         open={fromModalOpen}
                         onClose={() => setFromModalOpen(false)}
                     >
-                        <DatePicker.Standalone {...fromDatepickerProps} />
+                        <DatePicker.Standalone
+                            {...fromDatepickerProps}
+                            dropdownCaption
+                            fromDate={minFromDate}
+                            toDate={maxFromDate}
+                        />
                         <Modal.Footer className="p-0">
                             <Button type="button" variant="tertiary" onClick={() => setFromModalOpen(false)}>
                                 Lukk
@@ -150,7 +156,9 @@ function PeriodDatePicker(props: Props) {
                         label="Dato til"
                         value={toDateKeyboardInput}
                         size="small"
-                        onChange={(e) => setToDateKeyboardInput(e.target.value)}
+                        onChange={(e) => {
+                            setToDateKeyboardInput(e.target.value);
+                        }}
                     />
                     <Button
                         variant="secondary"
@@ -164,7 +172,12 @@ function PeriodDatePicker(props: Props) {
                         open={toModalOpen}
                         onClose={() => setToModalOpen(false)}
                     >
-                        <DatePicker.Standalone {...toDatepickerProps} />
+                        <DatePicker.Standalone
+                            dropdownCaption
+                            fromDate={minToDate}
+                            toDate={maxToDate}
+                            {...toDatepickerProps}
+                        />
                         <Modal.Footer className="p-0">
                             <Button type="button" variant="tertiary" onClick={() => setToModalOpen(false)}>
                                 Lukk
