@@ -90,7 +90,7 @@ function StandardTekster({
         <Box minHeight="30rem" maxHeight="40rem">
             <h2 className="sr-only">Standardtekster</h2>
             <SokeFelt sokRef={sokRef} />
-            <HGrid gap="2" columns={{ xs: '1fr', sm: '1fr 2fr' }} className="min-h-[30rem]">
+            <HGrid gap="2" columns="1fr 2fr">
                 <StandardtekstListe listeRef={listeRef} />
                 {erGyldigValg(values.tekst, values.locale) ? (
                     <VStack justify="space-between" gap="space-16" className="bg-ax-accent-100 p-4 rounded-sm">
