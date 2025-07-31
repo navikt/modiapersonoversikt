@@ -55,7 +55,7 @@ export const MeldingerPage = () => {
                 </ErrorBoundary>
                 <TraadList />
             </VStack>
-            <VStack flexGrow="1" minHeight={{ xs: '100', md: '0' }} overflowX="hidden">
+            <VStack flexGrow="1" overflowX="hidden" className="min-h-100 md:min-h-0">
                 <Heading level="2" size="xsmall">
                     Dialog
                 </Heading>
