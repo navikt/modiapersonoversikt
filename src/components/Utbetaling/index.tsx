@@ -21,7 +21,7 @@ export const UtbetalingPage = () => {
                         as={Link}
                         to={arenaURL()}
                         iconPosition="right"
-                        aria-label={'Se meldekort i Arena'}
+                        aria-label="Se meldekort i Arena"
                         icon={<ExternalLinkIcon aria-hidden fontSize="1rem" />}
                     >
                         Se meldekort i Arena
@@ -29,7 +29,7 @@ export const UtbetalingPage = () => {
                 </HStack>
                 <UtbetalingerList />
             </VStack>
-            <VStack overflow={{ xs: 'hidden', md: 'scroll' }} minHeight={{ xs: '100%', md: '0' }}>
+            <VStack overflow={{ xs: 'hidden', md: 'scroll' }} className="min-h-100 md:min-h-0">
                 <UtbetalingerDetailPage />
             </VStack>
         </HGrid>

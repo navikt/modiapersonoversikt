@@ -28,7 +28,7 @@ export const YtelserPage = () => {
                         <Heading size="xsmall">Ytelser</Heading>
                         <YtelserList />
                     </VStack>
-                    <VStack minHeight={{ xs: '100%', md: '0' }} overflow={{ xs: 'hidden', md: 'scroll' }}>
+                    <VStack className="min-h-100 md:min-h-0" overflow={{ xs: 'hidden', md: 'scroll' }}>
                         <ValgteYtelseDetailPage />
                     </VStack>
                 </HGrid>
