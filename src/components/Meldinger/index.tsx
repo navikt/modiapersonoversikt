@@ -55,11 +55,11 @@ export const MeldingerPage = () => {
                 </ErrorBoundary>
                 <TraadList />
             </VStack>
-            <VStack flexGrow="1" minHeight={{ xs: '100', md: '0' }}>
+            <VStack flexGrow="1" minHeight={{ xs: '100', md: '0' }} overflowX="hidden">
                 <Heading level="2" size="xsmall">
                     Dialog
                 </Heading>
-                <VStack overflow={{ md: 'scroll' }}>
+                <VStack overflowY={{ md: 'scroll' }}>
                     <TraadDetailSection />
                 </VStack>
             </VStack>
