@@ -48,7 +48,7 @@ function PeriodDatePicker(props: Props) {
                 erUgyldig(fra: Dayjs, til: Dayjs) {
                     return !fra.isValid() || !til.isValid();
                 },
-                feilmelding: 'Du må velge gyldig fra og til dato. Gyldig datoformat er dd.mm.åååå'
+                feilmelding: 'Du må velge gyldig fra- og til-dato. Gyldig datoformat er dd.mm.åååå'
             },
             {
                 erUgyldig(fra: Dayjs, til: Dayjs) {
