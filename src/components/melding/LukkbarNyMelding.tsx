@@ -74,7 +74,7 @@ export function LukkbarNyMelding() {
 
     return (
         <Panel onResize={onExpand} ref={panelRef} defaultSize={PANEL_SIZE} minSize={20} maxSize={60} order={2}>
-            <VStack height="100%" gap="2" className="overflow-auto">
+            <VStack height="100%" gap="2" overflow="auto">
                 <ErrorBoundary boundaryName="sendmelding">
                     <UbesvarteMeldinger />
                     <TildelteOppgaver />

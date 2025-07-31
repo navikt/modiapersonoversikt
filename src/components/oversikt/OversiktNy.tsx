@@ -74,7 +74,7 @@ const OversiktDetailCard = ({
 
 function OversiktNy() {
     return (
-        <VStack gap="4" paddingBlock="2" className="overflow-auto">
+        <VStack gap="4" paddingBlock="2" overflow="auto">
             <Card padding="4">
                 <VStack align="center">
                     <Heading as="h2" size="medium">
