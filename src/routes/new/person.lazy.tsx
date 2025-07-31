@@ -29,8 +29,8 @@ function PersonLayout() {
                 <PersonSidebarMenu />
             </VStack>
             <PanelGroup direction="horizontal" autoSaveId="person-content">
-                <Panel order={1} className="mr-2">
-                    <main id="main-content" className="h-full">
+                <Panel order={1} className="mr-2 overflow-scroll">
+                    <Box as="main" id="main-content" height="100%">
                         <VStack gap="2" height="100%">
                             <Box flexGrow="0">
                                 <PersonLinje />
@@ -39,7 +39,7 @@ function PersonLayout() {
                                 <Outlet />
                             </Suspense>
                         </VStack>
-                    </main>
+                    </Box>
                 </Panel>
                 <PanelResizeHandle className="hover:bg-ax-bg-neutral-moderate-hover w-1 focus:bg-ax-brand-blue-100" />
                 <LukkbarNyMelding />

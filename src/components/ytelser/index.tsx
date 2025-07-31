@@ -21,13 +21,14 @@ export const YtelserPage = () => {
                 <HGrid
                     gap="1"
                     columns={{ xs: 1, md: 'max-content 1fr' }}
-                    className="h-full overflow-scroll md:overflow-hidden"
+                    height="100%"
+                    overflow={{ xs: 'scroll', md: 'hidden' }}
                 >
-                    <VStack height="100%" className="md:overflow-hidden md:max-w-[16em]">
+                    <VStack height="100%" maxWidth={{ md: '16em' }} overflow={{ md: 'hidden' }}>
                         <Heading size="xsmall">Ytelser</Heading>
                         <YtelserList />
                     </VStack>
-                    <VStack className="min-h-100 md:min-h-0 overflow-hidden md:overflow-scroll">
+                    <VStack minHeight={{ xs: '100%', md: '0' }} overflow={{ xs: 'hidden', md: 'scroll' }}>
                         <ValgteYtelseDetailPage />
                     </VStack>
                 </HGrid>
