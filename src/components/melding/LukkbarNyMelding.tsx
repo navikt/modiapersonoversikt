@@ -14,11 +14,32 @@ const LARGE_SIZE = 50;
 
 export function LukkbarNyMelding() {
     const panelRef = useRef<ImperativePanelHandle>(null);
+    const openButtonRef = useRef<HTMLButtonElement | null>(null); // Create a ref for the second button
+    const closeButtonRef = useRef<HTMLButtonElement | null>(null); // Create a ref for the second button
+
     const [isLarge, setIsLarge] = useState(false);
     useEffect(() => {
         setIsLarge((panelRef.current?.getSize() ?? PANEL_SIZE) > PANEL_SIZE);
     }, []);
     const [isOpen, setIsOpen] = useState(localStorage.getItem('ny-melding-is-open') !== 'false');
+
+    const closeAndSetFocusToOpenButton = () => {
+        setIsOpen(false);
+        setTimeout(() => {
+            if (openButtonRef.current) {
+                openButtonRef.current.focus();
+            }
+        }, 0);
+    };
+
+    const openAndSetFocusToCloseButton = () => {
+        setIsOpen(true);
+        setTimeout(() => {
+            if (closeButtonRef.current) {
+                closeButtonRef.current.focus();
+            }
+        }, 0);
+    };
 
     useEffect(() => {
         localStorage.setItem('ny-melding-is-open', String(isOpen));
@@ -42,9 +63,10 @@ export function LukkbarNyMelding() {
             <Box>
                 <Button
                     type="button"
+                    ref={openButtonRef}
                     icon={<ChatIcon title="Skriv ny melding" />}
                     size="small"
-                    onClick={() => setIsOpen(true)}
+                    onClick={openAndSetFocusToCloseButton}
                 />
             </Box>
         );
@@ -52,7 +74,7 @@ export function LukkbarNyMelding() {
 
     return (
         <Panel onResize={onExpand} ref={panelRef} defaultSize={PANEL_SIZE} minSize={20} maxSize={60} order={2}>
-            <VStack height="100%" gap="2">
+            <VStack height="100%" gap="2" overflow="auto">
                 <ErrorBoundary boundaryName="sendmelding">
                     <UbesvarteMeldinger />
                     <TildelteOppgaver />
@@ -60,7 +82,6 @@ export function LukkbarNyMelding() {
                         lukkeKnapp={
                             <HStack gap="2">
                                 <Button
-                                    aria-hidden
                                     type="button"
                                     icon={isLarge ? <ShrinkIcon title="Minimer" /> : <ExpandIcon title="Ekspander" />}
                                     variant="tertiary"
@@ -73,12 +94,12 @@ export function LukkbarNyMelding() {
                                     }}
                                 />
                                 <Button
-                                    aria-hidden
                                     type="button"
                                     icon={<MinusIcon title="Lukk" />}
                                     variant="tertiary"
                                     size="small"
-                                    onClick={() => setIsOpen(false)}
+                                    ref={closeButtonRef}
+                                    onClick={closeAndSetFocusToOpenButton}
                                 />
                             </HStack>
                         }

@@ -64,30 +64,33 @@ export const PersonSidebarMenu = () => {
     const [expanded, setExpanded] = useState(true);
 
     return (
-        <Card>
-            <VStack justify="space-between" height="100%">
+        <Card className="h-full overflow-auto">
+            <VStack justify="space-between" height="100%" as="nav">
                 <Box.New>
                     <Box.New padding="2" className="flex">
                         <Button
-                            aria-hidden
                             icon={
                                 expanded ? (
-                                    <ArrowLeftIcon className="group-hover:-translate-x-1" />
+                                    <ArrowLeftIcon className="group-hover:-translate-x-1" aria-hidden />
                                 ) : (
-                                    <ArrowRightIcon className="group-hover:translate-x-1" />
+                                    <ArrowRightIcon className="group-hover:translate-x-1" aria-hidden />
                                 )
                             }
+                            aria-controls="sidebar-person"
+                            aria-expanded={expanded}
                             variant="tertiary-neutral"
                             size="small"
                             onClick={() => setExpanded((v) => !v)}
-                            className="flex-1 justify-end group"
+                            className="flex-1 justify-end group p-0"
                             iconPosition="right"
                         >
                             {expanded && <span className="font-normal">Skjul</span>}
+                            {!expanded && <span className="sr-only">Vis</span>}
                         </Button>
                     </Box.New>
                     <VStack
                         as="nav"
+                        id="sidebar-person"
                         aria-label="Person"
                         padding="2"
                         className="divide-y divide-ax-border-neutral-subtle "
@@ -123,9 +126,7 @@ export const PersonSidebarMenu = () => {
                         ))}
                     </VStack>
                 </Box.New>
-                <Box.New aria-hidden padding="2">
-                    {expanded ? <ThemeToggle /> : <ThemeIconToggle />}
-                </Box.New>
+                <Box.New padding="2">{expanded ? <ThemeToggle /> : <ThemeIconToggle />}</Box.New>
             </VStack>
         </Card>
     );

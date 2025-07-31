@@ -18,7 +18,7 @@ const TiltaksPengerRetten = ({ tiltaksPenger }: { tiltaksPenger: VedtakDto }) =>
             <Heading as="h4" size="small">
                 Om tiltakspenger
             </Heading>
-            <TitleValuePairsComponent entries={entries} columns={4} />
+            <TitleValuePairsComponent entries={entries} columns={{ xs: 2, lg: 4 }} />
         </Card>
     );
 };
@@ -37,7 +37,7 @@ const TiltaksPengerBarneTillegg = ({ tiltaksPenger }: { tiltaksPenger: VedtakDto
                 Barnetillegg
             </Heading>
             {tiltaksPenger.barnetillegg?.perioder?.map((periode, index) => {
-                return <TitleValuePairsComponent key={index} entries={getBarneTilleggEntries(periode)} columns={4} />;
+                return <TitleValuePairsComponent key={index} entries={getBarneTilleggEntries(periode)} />;
             })}
         </Card>
     );

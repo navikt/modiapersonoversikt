@@ -29,15 +29,17 @@ function PersonLayout() {
                 <PersonSidebarMenu />
             </VStack>
             <PanelGroup direction="horizontal" autoSaveId="person-content">
-                <Panel order={1} className="mr-2">
-                    <VStack gap="2" height="100%">
-                        <Box flexGrow="0">
-                            <PersonLinje />
-                        </Box>
-                        <Suspense>
-                            <Outlet />
-                        </Suspense>
-                    </VStack>
+                <Panel order={1} className="mr-2 overflow-scroll">
+                    <Box as="main" id="main-content" height="100%">
+                        <VStack gap="2" height="100%">
+                            <Box flexGrow="0">
+                                <PersonLinje />
+                            </Box>
+                            <Suspense>
+                                <Outlet />
+                            </Suspense>
+                        </VStack>
+                    </Box>
                 </Panel>
                 <PanelResizeHandle className="hover:bg-ax-bg-neutral-moderate-hover w-1 focus:bg-ax-brand-blue-100" />
                 <LukkbarNyMelding />

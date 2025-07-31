@@ -88,7 +88,9 @@ const PersonLinjeContent = () => {
                 ref={ref}
                 as="section"
                 aria-label="personlinje"
-                className="has-[:focus]:border-ax-border-neutral-strong overflow-y-scroll max-h-[85vh]"
+                overflow="scroll"
+                maxheight="85vh"
+                className="has-[:focus]:border-ax-border-neutral-strong"
             >
                 <Heading visuallyHidden size="xsmall" level="2">
                     Personlinje

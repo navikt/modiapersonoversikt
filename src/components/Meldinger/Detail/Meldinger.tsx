@@ -31,8 +31,9 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
     return (
         <Box.New
             minHeight="0"
-            overflowY="scroll"
+            overflowY={{ xs: 'hidden', md: 'scroll' }}
             background="sunken"
+            overflowX="scroll"
             borderColor="neutral-subtle"
             borderRadius="medium"
             borderWidth="1"

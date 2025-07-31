@@ -1,5 +1,5 @@
 import { PrinterSmallIcon } from '@navikt/aksel-icons';
-import { Button, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { Button, HGrid, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { Suspense, memo } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
@@ -31,8 +31,8 @@ const PrintThreadsMemo = memo(PrintThreads);
 
 export const MeldingerPage = () => {
     return (
-        <HStack gap="4" minHeight="0" flexGrow="1" paddingBlock="0 2" wrap={false}>
-            <VStack height="100%" minWidth="16em">
+        <HGrid gap="1" columns={{ xs: 1, md: 'max-content 1fr' }} overflow={{ xs: 'scroll', md: 'hidden' }}>
+            <VStack height="100%" maxWidth={{ md: '16em' }} overflow={{ md: 'hidden' }}>
                 <HStack justify="space-between">
                     <Heading level="2" size="xsmall">
                         Innboks
@@ -51,19 +51,19 @@ export const MeldingerPage = () => {
                         }
                     >
                         <PrintThreadsMemo />
-                        <TraadList />
                     </Suspense>
                 </ErrorBoundary>
+                <TraadList />
             </VStack>
-            <VStack flexGrow="1" minHeight="0" maxHeight="100%">
+            <VStack flexGrow="1" overflowX="hidden" className="min-h-100 md:min-h-0">
                 <Heading level="2" size="xsmall">
                     Dialog
                 </Heading>
-                <VStack minHeight="0">
+                <VStack overflowY={{ md: 'scroll' }}>
                     <TraadDetailSection />
                 </VStack>
             </VStack>
-        </HStack>
+        </HGrid>
     );
 };
 

@@ -13,12 +13,13 @@ import {
 import { atom, useAtom, useAtomValue } from 'jotai';
 import { atomWithReset, useResetAtom } from 'jotai/utils';
 import { debounce, isEqual, xor } from 'lodash';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import DateRangeSelector from 'src/components/DateFilters/DatePeriodSelector';
 import type { DateRange } from 'src/components/DateFilters/types';
 import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
 import { TraadType } from 'src/lib/types/modiapersonoversikt-api';
 import { Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
+import { twMerge } from 'tailwind-merge';
 import { traadTypeTekst } from './tekster';
 
 export type MeldingerFilter = {
@@ -188,9 +189,25 @@ const ResetFilters = () => {
 };
 
 export const TraadListFilterCard = () => {
+    const [open, setOpen] = useState(false);
+    const expansionFilterRef = useRef<HTMLDivElement>(null);
+
+    const handleExpansionChange = () => {
+        setTimeout(() => {
+            if (!expansionFilterRef.current) return;
+            setOpen(expansionFilterRef.current.classList.contains('aksel-expansioncard--open'));
+        }, 0);
+    };
+
     return (
-        <Box.New marginInline="0 2">
-            <ExpansionCard size="small" aria-label="Filtrer meldinger">
+        <Box.New marginInline="0 2" className={twMerge(open && 'max-h-full')}>
+            <ExpansionCard
+                onClick={handleExpansionChange}
+                ref={expansionFilterRef}
+                size="small"
+                aria-label="Filtrer meldinger"
+                className={twMerge(open && 'max-h-full overflow-auto')}
+            >
                 <ExpansionCard.Header className="p-1">
                     <Box.New paddingInline="4">
                         <ExpansionCard.Title size="small">

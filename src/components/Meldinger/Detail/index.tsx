@@ -104,8 +104,8 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
     const avsluttetAv = traad.sistEndretAv || melding.skrevetAvTekst;
 
     return (
-        <Card as={VStack} padding="2" minHeight="0">
-            <VStack minHeight="0" gap="2" as="section" aria-label="Dialogdetaljer">
+        <Card as={VStack} padding="2" minHeight={{ xs: '100%', md: '0' }} overflow="auto">
+            <VStack minHeight={{ xs: '100%', md: '0' }} gap="2" as="section" aria-label="Dialogdetaljer">
                 <TraadMeta traad={traad} />
                 <HStack gap="4">
                     <Button variant="secondary" size="small" onClick={() => setJournalforingOpen(true)}>

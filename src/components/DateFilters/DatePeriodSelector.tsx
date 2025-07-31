@@ -2,7 +2,7 @@ import { XMarkIcon } from '@navikt/aksel-icons';
 import { Box, Button, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import dayjs from 'dayjs';
 import { useCallback, useEffect, useState } from 'react';
-import PeriodDatePicker from './PeriodDatePicker';
+import CustomDatePickerModal from 'src/components/DateFilters/CustomDatePickerModal';
 import { type DateRange, PeriodType } from './types';
 
 export const getPeriodFromOption = (periodeValg: PeriodType): DateRange => {
@@ -79,7 +79,7 @@ function DateRangeSelector({
                 ))}
             </RadioGroup>
             {periodType === PeriodType.CUSTOM && (
-                <PeriodDatePicker period={period ?? undefined} onUpdate={onFraTilDatoChange} />
+                <CustomDatePickerModal period={period ?? undefined} onUpdate={onFraTilDatoChange} />
             )}
             {periodType && !required && resettable && (
                 <Box.New>

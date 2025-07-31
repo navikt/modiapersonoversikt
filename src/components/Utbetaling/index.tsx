@@ -1,5 +1,5 @@
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
-import { Button, HStack, Heading, VStack } from '@navikt/ds-react';
+import { Button, HGrid, HStack, VStack } from '@navikt/ds-react';
 import { Link } from '@tanstack/react-router';
 import { UtbetalingerDetailPage } from 'src/components/Utbetaling/Detail';
 import { UtbetalingerList } from 'src/components/Utbetaling/List';
@@ -7,9 +7,13 @@ import { arenaURL } from 'src/components/Utbetaling/List/utils';
 
 export const UtbetalingPage = () => {
     return (
-        <HStack gap="1" minHeight="0" flexGrow="1" wrap={false}>
-            <VStack height="100%" minWidth="12em">
-                <Heading size="xsmall">Utbetalinger</Heading>
+        <HGrid
+            gap="1"
+            columns={{ xs: 1, md: 'max-content 1fr' }}
+            height="100%"
+            overflow={{ xs: 'scroll', md: 'hidden' }}
+        >
+            <VStack height="100%" maxWidth={{ md: '16em' }} overflow={{ md: 'hidden' }}>
                 <HStack>
                     <Button
                         size="small"
@@ -17,7 +21,7 @@ export const UtbetalingPage = () => {
                         as={Link}
                         to={arenaURL()}
                         iconPosition="right"
-                        aria-label={'Se meldekort i Arena'}
+                        aria-label="Se meldekort i Arena"
                         icon={<ExternalLinkIcon aria-hidden fontSize="1rem" />}
                     >
                         Se meldekort i Arena
@@ -25,7 +29,9 @@ export const UtbetalingPage = () => {
                 </HStack>
                 <UtbetalingerList />
             </VStack>
-            <UtbetalingerDetailPage />
-        </HStack>
+            <VStack overflow={{ xs: 'hidden', md: 'scroll' }} className="min-h-100 md:min-h-0">
+                <UtbetalingerDetailPage />
+            </VStack>
+        </HGrid>
     );
 };

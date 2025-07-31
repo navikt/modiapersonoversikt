@@ -74,7 +74,7 @@ const OversiktDetailCard = ({
 
 function OversiktNy() {
     return (
-        <VStack gap="4" paddingBlock="2">
+        <VStack gap="4" paddingBlock="2" overflow="auto">
             <Card padding="4">
                 <VStack align="center">
                     <Heading as="h2" size="medium">
@@ -83,7 +83,7 @@ function OversiktNy() {
                     <BodyLong spacing>Kort beskrivelse av hva modia er</BodyLong>
                 </VStack>
             </Card>
-            <HGrid gap="4" columns={3}>
+            <HGrid gap="4" columns={{ sm: 1, md: 2, lg: 3 }}>
                 {menuItems.map((item) => {
                     return (
                         <OversiktDetailCard

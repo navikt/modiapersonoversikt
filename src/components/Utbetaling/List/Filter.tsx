@@ -1,14 +1,15 @@
-import { Box, ExpansionCard, Fieldset, Switch, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
+import { Box, ExpansionCard, Fieldset, Skeleton, Switch, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
 import { atom, useAtom, useAtomValue } from 'jotai';
 import { atomWithReset } from 'jotai/utils';
 import { xor } from 'lodash';
-import { useCallback, useMemo } from 'react';
+import { Suspense, useCallback, useMemo, useRef, useState } from 'react';
 import DateRangeSelector, { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
 import { reduceUtbetlingerTilYtelser, utbetalingMottakere } from 'src/components/Utbetaling/List/utils';
 import type { Utbetaling, Ytelse } from 'src/generated/modiapersonoversikt-api';
 import { useUtbetalinger } from 'src/lib/clients/modiapersonoversikt-api';
 import { sorterAlfabetisk } from 'src/utils/string-utils';
+import { twMerge } from 'tailwind-merge';
 
 export type UtbetalingFilter = {
     dateRange: DateRange;
@@ -144,9 +145,24 @@ const FilterTitle = () => {
 };
 
 export const UtbetalingListFilter = () => {
+    const [open, setOpen] = useState(false);
+    const expansionFilterRef = useRef<HTMLDivElement>(null);
+
+    const handleExpansionChange = () => {
+        setTimeout(() => {
+            if (!expansionFilterRef.current) return;
+            setOpen(expansionFilterRef.current.classList.contains('aksel-expansioncard--open'));
+        }, 0);
+    };
     return (
-        <Box.New marginInline="0 2">
-            <ExpansionCard size="small" aria-label="Filtrer utbetalinger">
+        <Box.New marginInline="0 2" className={twMerge(open && 'max-h-full')}>
+            <ExpansionCard
+                onClick={handleExpansionChange}
+                ref={expansionFilterRef}
+                className={twMerge(open && 'max-h-full overflow-auto')}
+                size="small"
+                aria-label="Filtrer utbetalinger"
+            >
                 <ExpansionCard.Header className="p-1">
                     <Box.New paddingInline="4">
                         <ExpansionCard.Title size="small">
@@ -157,7 +173,16 @@ export const UtbetalingListFilter = () => {
                 <ExpansionCard.Content className="overflow-visible">
                     <VStack gap="2">
                         <Box.New maxWidth="17rem">
-                            <UtbetalingYtelserFilter />
+                            <Suspense
+                                fallback={
+                                    <VStack gap="2">
+                                        <span className="font-ax-bold">Ytelse</span>
+                                        <Skeleton width="100%" variant="rounded" height="2rem" />
+                                    </VStack>
+                                }
+                            >
+                                <UtbetalingYtelserFilter />
+                            </Suspense>
                         </Box.New>
                         <Box.New maxWidth="17rem">
                             <UtbetaltTilFilter />

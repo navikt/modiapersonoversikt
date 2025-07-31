@@ -8,24 +8,24 @@ import { VarslerListFilter } from './Filter';
 import { useFilterVarsler } from './utils';
 
 export const VarslerList = () => (
-    <ErrorBoundary boundaryName="varslerList">
-        <Suspense
-            fallback={
-                <VStack gap="2" marginInline="0 2">
-                    {Array(8)
-                        .keys()
-                        .map((i) => (
-                            <Skeleton key={i} variant="rounded" height={68} />
-                        ))}
-                </VStack>
-            }
-        >
-            <VStack minHeight="0" gap="2" maxWidth="30rem">
-                <VarslerListFilter />
+    <VStack minHeight="0" gap="2">
+        <VarslerListFilter />
+        <ErrorBoundary boundaryName="varslerList">
+            <Suspense
+                fallback={
+                    <VStack gap="2" marginInline="0 2">
+                        {Array(8)
+                            .keys()
+                            .map((i) => (
+                                <Skeleton key={i} variant="rounded" height={68} width="100%" />
+                            ))}
+                    </VStack>
+                }
+            >
                 <VarslerListList />
-            </VStack>
-        </Suspense>
-    </ErrorBoundary>
+            </Suspense>
+        </ErrorBoundary>
+    </VStack>
 );
 
 const VarslerListList = () => {
