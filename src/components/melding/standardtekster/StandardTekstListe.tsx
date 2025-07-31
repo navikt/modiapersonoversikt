@@ -65,7 +65,7 @@ function StandardtekstListe({ listeRef }: { listeRef: React.RefObject<HTMLDivEle
     }, [visAntall, klikketViaKeyboard]);
 
     return (
-        <VStack className="overflow-y-scroll max-h-[30rem]">
+        <VStack overflow="auto" maxHeight="30rem">
             <h3 className="sr-only">Velg samtalemal</h3>
             <div className="font-ax-bold" aria-live="polite">
                 {values.filtrerteTekster.length} samtalemaler traff søket
