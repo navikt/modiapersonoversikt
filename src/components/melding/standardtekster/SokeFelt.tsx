@@ -54,7 +54,7 @@ const SokeFelt = ({ sokRef }: { sokRef: RefObject<HTMLDivElement | null> }) => {
         <Search
             autoFocus
             ref={sokRef}
-            className="py-3"
+            className="py-1 md:py-3"
             name="standardtekstsok"
             label="Søk etter standardtekster"
             autoComplete="off"
