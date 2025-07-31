@@ -31,8 +31,8 @@ const PrintThreadsMemo = memo(PrintThreads);
 
 export const MeldingerPage = () => {
     return (
-        <HGrid gap="1" columns={{ xs: 1, md: 'max-content 1fr' }} className="h-full overflow-scroll md:overflow-hidden">
-            <VStack height="100%" className="md:overflow-hidden md:max-w-[16em]">
+        <HGrid gap="1" columns={{ xs: 1, md: 'max-content 1fr' }} overflow={{ xs: 'scroll', md: 'hidden' }}>
+            <VStack height="100%" maxWidth={{ md: '16em' }} overflow={{ md: 'hidden' }}>
                 <HStack justify="space-between">
                     <Heading level="2" size="xsmall">
                         Innboks
@@ -55,11 +55,11 @@ export const MeldingerPage = () => {
                 </ErrorBoundary>
                 <TraadList />
             </VStack>
-            <VStack flexGrow="1" className="min-h-100 md:min-h-0">
+            <VStack flexGrow="1" minHeight={{ xs: '100', md: '0' }}>
                 <Heading level="2" size="xsmall">
                     Dialog
                 </Heading>
-                <VStack className="md:overflow-scroll">
+                <VStack overflow={{ md: 'scroll' }}>
                     <TraadDetailSection />
                 </VStack>
             </VStack>

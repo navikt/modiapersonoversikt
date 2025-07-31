@@ -89,6 +89,7 @@ export const PersonSidebarMenu = () => {
                         </Button>
                     </Box.New>
                     <VStack
+                        as="nav"
                         id="sidebar-person"
                         aria-label="Person"
                         padding="2"

@@ -116,8 +116,8 @@ function PeriodDatePicker(props: Props) {
 
     return (
         <>
-            <VStack gap="2" className="">
-                <HStack className="items-end" gap="1">
+            <VStack gap="2">
+                <HStack align="end" gap="1">
                     <TextField
                         label="Dato fra"
                         value={fromDateKeyboardInput}
@@ -151,7 +151,7 @@ function PeriodDatePicker(props: Props) {
                         </Modal.Footer>
                     </Modal>
                 </HStack>
-                <HStack className="items-end" gap="1">
+                <HStack align="end" gap="1">
                     <TextField
                         label="Dato til"
                         value={toDateKeyboardInput}
