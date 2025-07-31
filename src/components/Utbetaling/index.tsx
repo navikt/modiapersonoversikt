@@ -7,8 +7,13 @@ import { arenaURL } from 'src/components/Utbetaling/List/utils';
 
 export const UtbetalingPage = () => {
     return (
-        <HGrid gap="1" columns={{ xs: 1, md: 'max-content 1fr' }} className="h-full overflow-scroll md:overflow-hidden">
-            <VStack height="100%" className="md:overflow-hidden md:max-w-[16em]">
+        <HGrid
+            gap="1"
+            columns={{ xs: 1, md: 'max-content 1fr' }}
+            height="100%"
+            overflow={{ xs: 'scroll', md: 'hidden' }}
+        >
+            <VStack height="100%" maxWidth={{ md: '16em' }} overflow={{ md: 'hidden' }}>
                 <HStack>
                     <Button
                         size="small"
@@ -24,7 +29,7 @@ export const UtbetalingPage = () => {
                 </HStack>
                 <UtbetalingerList />
             </VStack>
-            <VStack className="min-h-100 md:min-h-0 overflow-hidden md:overflow-scroll">
+            <VStack overflow={{ xs: 'hidden', md: 'scroll' }} minHeight={{ xs: '100%', md: '0' }}>
                 <UtbetalingerDetailPage />
             </VStack>
         </HGrid>

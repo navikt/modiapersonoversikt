@@ -137,7 +137,7 @@ export const VarslerListFilter = () => {
         }, 0);
     };
     return (
-        <Box.New marginInline="0 2" className={twMerge(open && 'max-h-full')}>
+        <Box.New marginInline="0 2" maxHeight={open ? '100%' : {}}>
             <ExpansionCard
                 size="small"
                 aria-label="Filtrer varsler"
