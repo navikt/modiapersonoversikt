@@ -32,7 +32,7 @@ function StandardTekstModal({
                 width="50rem"
                 header={{ heading: 'Velg standardtekst', closeButton: false }}
             >
-                <Modal.Body className="sm:overflow-y-hidden ">
+                <Modal.Body className="overflow-y-hidden ">
                     <StandardTekster modalRef={modalRef} velgTekst={setTekst} />
                 </Modal.Body>
             </Modal>
