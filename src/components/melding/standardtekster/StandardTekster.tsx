@@ -87,7 +87,7 @@ function StandardTekster({
     useSubmitTekstByEnter(sokRef, submitTekstOgLukkModal, [values.filtrerteTekster, values.tekst]);
 
     return (
-        <Box minHeight="30rem" maxHeight="40rem">
+        <Box>
             <h2 className="sr-only">Standardtekster</h2>
             <SokeFelt sokRef={sokRef} />
             <HGrid gap="2" columns="1fr 2fr">
@@ -96,8 +96,9 @@ function StandardTekster({
                     <VStack
                         justify="space-between"
                         gap="space-16"
-                        minHeight={{ sm: '30rem' }}
+                        overflowY="auto"
                         className="bg-ax-accent-100 p-4 rounded-sm"
+                        height="60vh"
                     >
                         <StandardTekstPreview />
                         <HStack justify="space-between" align="end">
