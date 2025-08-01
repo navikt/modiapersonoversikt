@@ -93,7 +93,12 @@ function StandardTekster({
             <HGrid gap="2" columns="1fr 2fr">
                 <StandardtekstListe listeRef={listeRef} />
                 {erGyldigValg(values.tekst, values.locale) ? (
-                    <VStack justify="space-between" gap="space-16" className="bg-ax-accent-100 p-4 rounded-sm">
+                    <VStack
+                        justify="space-between"
+                        gap="space-16"
+                        minHeight={{ sm: '30rem' }}
+                        className="bg-ax-accent-100 p-4 rounded-sm"
+                    >
                         <StandardTekstPreview />
                         <HStack justify="space-between" align="end">
                             <div>
