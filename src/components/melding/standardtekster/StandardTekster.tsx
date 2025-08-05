@@ -97,7 +97,7 @@ function StandardTekster({
                         justify="space-between"
                         gap="space-16"
                         overflowY="auto"
-                        className="bg-ax-accent-100 p-4 rounded-sm"
+                        className="bg-ax-bg-accent-soft p-4 rounded-sm"
                         height="60vh"
                     >
                         <StandardTekstPreview />
