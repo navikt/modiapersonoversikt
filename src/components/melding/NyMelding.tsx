@@ -10,9 +10,9 @@ import { Oppgaveliste, OppgavelisteRadioKnapper } from 'src/components/melding/O
 import { ValgForMeldingstype } from 'src/components/melding/ValgForMeldingstype';
 import { MeldingsType, VelgMeldingsType, meldingsTyperTekst } from 'src/components/melding/VelgMeldingsType';
 import VelgOppgaveliste from 'src/components/melding/VelgOppgaveliste';
-import VelgSak from 'src/components/melding/VelgSak';
 import VelgTema from 'src/components/melding/VelgTema';
 import nyMeldingSchema, { maksLengdeMelding } from 'src/components/melding/nyMeldingSchema';
+import VelgSak from 'src/components/sakVelger/VelgSak';
 import {
     type JournalforingSak,
     type SendMeldingRequestV2,
