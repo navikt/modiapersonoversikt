@@ -5,6 +5,7 @@ import type { Kategorier, Tema } from 'src/components/sakVelger/SakVelger';
 import { usePiltasterIListe } from 'src/components/sakVelger/keyboardHooks';
 import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
 import { formatterDatoMedMaanedsnavnOrNull } from 'src/utils/date-utils';
+import { twMerge } from 'tailwind-merge';
 
 interface SakVelgerSakListProps {
     kategorier: Kategorier;
@@ -14,6 +15,7 @@ interface SakVelgerSakListProps {
     setSakIFokus: (sak: JournalforingSak | undefined) => void;
     sakIFokus?: JournalforingSak;
     saksListeRef: React.RefObject<HTMLDivElement | null>;
+    valgtSak?: JournalforingSak;
 }
 
 const SakVelgerSakList: React.FC<SakVelgerSakListProps> = ({
@@ -23,7 +25,8 @@ const SakVelgerSakList: React.FC<SakVelgerSakListProps> = ({
     setSak,
     sakIFokus,
     setSakIFokus,
-    saksListeRef
+    saksListeRef,
+    valgtSak
 }) => {
     const saker = kategorier[valgtKategori].filter((it) => it.tema === valgtTema?.tema).flatMap((it) => it.saker);
 
@@ -32,7 +35,7 @@ const SakVelgerSakList: React.FC<SakVelgerSakListProps> = ({
     if (!valgtTema) return <BodyShort>Velg et tema</BodyShort>;
 
     return (
-        <VStack className="bg-ax-bg-accent-soft  rounded-sm" padding="4">
+        <VStack className="bg-ax-bg-accent-soft rounded-sm" padding="4">
             <Heading size="xsmall" as="h2" id="heading-listbox2" className="mb-2">
                 Velg sak
             </Heading>
@@ -45,7 +48,7 @@ const SakVelgerSakList: React.FC<SakVelgerSakListProps> = ({
             <div
                 tabIndex={0}
                 className="h-[55vh] overflow-auto"
-                // biome-ignore lint/a11y/useSemanticElements: <explanation>
+                // biome-ignore lint/a11y/useSemanticElements: <Custom tabindex og tastaturnavigasjon gir bedre ux enn select/option>
                 role="listbox"
                 aria-labelledby="heading-listbox2"
                 ref={saksListeRef}
@@ -56,7 +59,8 @@ const SakVelgerSakList: React.FC<SakVelgerSakListProps> = ({
                         key={sak.saksId}
                         sak={sak}
                         onClick={() => setSak(sak, valgtKategori, valgtTema)}
-                        valgt={sakIFokus}
+                        valgtSak={valgtSak}
+                        sakIFokus={sakIFokus}
                     />
                 ))}
             </div>
@@ -67,15 +71,16 @@ const SakVelgerSakList: React.FC<SakVelgerSakListProps> = ({
 const SakListeElement = ({
     sak,
     onClick,
-    valgt
-}: { sak: JournalforingSak; onClick: () => void; valgt?: JournalforingSak }) => {
+    valgtSak,
+    sakIFokus
+}: { sak: JournalforingSak; onClick: () => void; valgtSak?: JournalforingSak; sakIFokus?: JournalforingSak }) => {
     const sakRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        if (valgt === sak && sakRef.current) {
+        if (sakIFokus === sak && sakRef.current) {
             sakRef.current.focus();
         }
-    }, [valgt, sak]);
+    }, [sakIFokus, sak]);
 
     return (
         <div
@@ -85,8 +90,13 @@ const SakListeElement = ({
             // biome-ignore lint/a11y/useSemanticElements: <Custom tabindex og tastaturnavigasjon gir bedre ux enn select/option>
             role="option"
             onClick={onClick}
-            className="z-10 cursor-pointer py-1 border-b-2 focus:border-0 hover:bg-ax-bg-accent-moderate-hover focus:bg-ax-bg-accent-moderate-hover focus:outline-2 focus:outline-ax-border-accent-strong"
-            aria-selected={valgt?.saksId === sak.saksId}
+            className={twMerge(
+                valgtSak?.saksId === sak.saksId
+                    ? 'bg-ax-bg-accent-moderate-pressed outline-ax-border-accent-strong outline-2'
+                    : 'border-b-2 focus:border-0 hover:bg-ax-bg-accent-moderate-hover focus:bg-ax-bg-accent-moderate-hover focus:outline-2 focus:outline-ax-border-accent-strong',
+                'cursor-pointer py-1'
+            )}
+            aria-selected={valgtSak?.saksId === sak.saksId}
             onSelect={onClick}
             onKeyDown={(e) => {
                 if (e.key !== 'Enter' && e.key !== 'space') return;

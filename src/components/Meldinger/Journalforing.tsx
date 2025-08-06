@@ -39,7 +39,7 @@ export const JournalForingModal = ({ traad, close }: Props) => {
     };
 
     return (
-        <Modal open onClose={close} header={{ heading: 'Journalfør dialog' }} closeOnBackdropClick>
+        <Modal width="50rem" open onClose={close} header={{ heading: 'Journalfør dialog' }} closeOnBackdropClick>
             <Modal.Body className="overflow-y-hidden">
                 {kanJournalfores ? (
                     <SakVelger.Root
@@ -54,7 +54,11 @@ export const JournalForingModal = ({ traad, close }: Props) => {
                             fordelteSaker,
                             valgtTema,
                             setTema,
-                            feiledeSystemer
+                            feiledeSystemer,
+                            sakIFokus,
+                            setSakIFokus,
+                            temaListeRef,
+                            saksListeRef
                         }) => (
                             <VStack gap="2">
                                 <SakVelger.ToggleGroup
@@ -62,20 +66,24 @@ export const JournalForingModal = ({ traad, close }: Props) => {
                                     setSakKategori={setSakKategori}
                                 />
                                 <HGrid align="start" columns={2} gap="4">
-                                    <div className="h-[60vh] overflow-y-auto">
-                                        <SakVelger.TemaTable
+                                    <div className="h-[60vh]">
+                                        <SakVelger.TemaListe
                                             kategorier={fordelteSaker}
                                             valgtKategori={valgtSakKategori}
                                             valgtTema={valgtTema}
                                             setValgtTema={setTema}
+                                            temaListeRef={temaListeRef}
                                         />
                                     </div>
-                                    <div className="h-[60vh] overflow-y-auto">
-                                        <SakVelger.SakTable
+                                    <div className="h-[60vh] ">
+                                        <SakVelger.SakListe
                                             kategorier={fordelteSaker}
                                             valgtKategori={valgtSakKategori}
                                             valgtTema={valgtTema}
                                             setSak={setSak}
+                                            saksListeRef={saksListeRef}
+                                            sakIFokus={sakIFokus}
+                                            setSakIFokus={setSakIFokus}
                                             valgtSak={valgtSak}
                                         />
                                     </div>
