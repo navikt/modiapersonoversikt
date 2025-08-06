@@ -73,7 +73,7 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
                                     valgtSakKategori={valgtSakKategori}
                                     setSakKategori={setSakKategori}
                                 />
-                                <HGrid align="start" columns={2} gap="4">
+                                <HGrid align="start" columns={2} gap="2">
                                     <div className="h-[60vh]">
                                         <SakVelger.TemaListe
                                             kategorier={fordelteSaker}
