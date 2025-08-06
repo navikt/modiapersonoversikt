@@ -27,7 +27,7 @@ function TemaListeElement({ tema, valgt, onChange }: Props) {
             // biome-ignore lint/a11y/useSemanticElements: <Custom tabindex og tastaturnavigasjon gir bedre ux enn select/option>
             role="option"
             aria-selected={valgt}
-            tabIndex={valgt ? 0 : -1}
+            tabIndex={-1}
             onClick={() => {
                 onChange(tema);
             }}
