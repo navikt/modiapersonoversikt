@@ -7,15 +7,17 @@ import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
 import { useJournalforMutation } from 'src/lib/clients/modiapersonoversikt-api';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
+import { twMerge } from 'tailwind-merge';
 import { FetchErrorRenderer } from '../QueryErrorBoundary';
 import { kanTraadJournalforesV2 } from './List/utils';
 
 type Props = {
     traad: Traad;
     close: () => void;
+    isOpen: boolean;
 };
 
-export const JournalForingModal = ({ traad, close }: Props) => {
+export const JournalForingModal = ({ traad, close, isOpen }: Props) => {
     const fnr = usePersonAtomValue();
     const enhet = useAtomValue(aktivEnhetAtom) as string;
     const [valgtSak, setValgtSak] = useState<JournalforingSak | undefined>();
@@ -39,7 +41,14 @@ export const JournalForingModal = ({ traad, close }: Props) => {
     };
 
     return (
-        <Modal width="50rem" open onClose={close} header={{ heading: 'Journalfør dialog' }} closeOnBackdropClick>
+        <Modal
+            // Må conditionally sette bredde for å passe playwright test
+            className={twMerge(isOpen && 'w-[50rem]')}
+            open={isOpen}
+            onClose={close}
+            header={{ heading: 'Journalfør dialog' }}
+            closeOnBackdropClick
+        >
             <Modal.Body className="overflow-y-hidden">
                 {kanJournalfores ? (
                     <SakVelger.Root

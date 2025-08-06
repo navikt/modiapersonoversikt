@@ -64,16 +64,14 @@ test('Journalfore dialog', async ({ page }) => {
 
     await page.getByRole('button', { name: 'Journalfør' }).click();
 
-    const modal = page.getByRole('dialog');
+    const modal = page.getByRole('dialog', { name: 'Journalfør dialog' });
     const submitButton = modal.getByRole('button', { name: 'Journalfør' });
     await expect(submitButton).toBeDisabled();
 
     const temaRow = modal.getByRole('option', { name: 'Dagpenger' });
     await temaRow.click();
     const sakRow = modal.getByRole('listbox', { name: 'Velg sak' }).getByRole('option').first();
-    console.log(sakRow);
-    const saksId = (await sakRow.textContent()) ?? 'Fail';
-    console.log(saksId);
+    const saksId = (await sakRow.locator('span').first().textContent()) ?? 'Fail';
     await sakRow.click();
 
     await expect(submitButton).not.toBeDisabled();
@@ -81,9 +79,7 @@ test('Journalfore dialog', async ({ page }) => {
     await submitButton.click();
     await expect(modal).not.toBeVisible();
 
-    const newRows = await journalposter.count();
-
-    expect(newRows).toEqual(existingRows + 1);
+    await expect(journalposter).toHaveCount(existingRows + 1);
     await expect(journalposterTable.getByText(saksId)).toBeVisible();
 });
 test('Autocomplete textarea', async ({ page }) => {
