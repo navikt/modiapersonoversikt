@@ -68,10 +68,12 @@ test('Journalfore dialog', async ({ page }) => {
     const submitButton = modal.getByRole('button', { name: 'Journalfør' });
     await expect(submitButton).toBeDisabled();
 
-    const temaRow = modal.getByRole('row', { name: 'Dagpenger' });
+    const temaRow = modal.getByRole('option', { name: 'Dagpenger' });
     await temaRow.click();
-    const sakRow = modal.getByRole('table', { name: 'Saker' }).getByRole('row').first();
-    const saksId = (await sakRow.getByRole('rowheader').textContent()) ?? 'Fail';
+    const sakRow = modal.getByRole('listbox', { name: 'Velg sak' }).getByRole('option').first();
+    console.log(sakRow);
+    const saksId = (await sakRow.textContent()) ?? 'Fail';
+    console.log(saksId);
     await sakRow.click();
 
     await expect(submitButton).not.toBeDisabled();
