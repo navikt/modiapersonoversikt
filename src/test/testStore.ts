@@ -83,16 +83,10 @@ export function setupReactQueryMocks() {
     mockReactQuery(dialogResource.useFetch, [statiskTraadMock]);
     mockReactQuery(baseurlsResource.useFetch, mockBaseUrls());
     mockReactQuery(featuretogglesResource.useFetch, {
-        [FeatureToggles.BrukNyDecorator]: true,
         [FeatureToggles.JournalforUtenSvar]: true,
         [FeatureToggles.VisPromptMeldingSending]: true,
         [FeatureToggles.VisSiste14aVedtak]: true,
-        [FeatureToggles.BrukWebworkerPaaInnLogging]: true,
         [FeatureToggles.BrukNyTiltakspenger]: true,
-        [FeatureToggles.VisDraftStatus]: true,
-        [FeatureToggles.NyAvansertSok]: true,
-        [FeatureToggles.FnrSokForInnkreving]: true,
-        [FeatureToggles.OrgnrSokForInnkreving]: true,
         [FeatureToggles.NyModiaKnapp]: true,
         [FeatureToggles.TilgangsMaskin]: true
     });
