@@ -13,12 +13,7 @@ function StandardTekstPreview() {
             <Heading size="small" level="4">
                 {values.tekst?.overskrift}
             </Heading>
-            <BodyShort
-                size="small"
-                style={{
-                    wordBreak: 'break-word'
-                }}
-            >
+            <BodyShort size="small" className="wrap-break-word">
                 {values.tekst?.innhold[values.locale] as string}
             </BodyShort>
         </div>
