@@ -4,30 +4,29 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { RadioPanelGruppe, type RadioPanelProps } from 'nav-frontend-skjema';
 import { type FormEvent, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
-import { type FetchError, post } from '../../../../../../../api/api';
-import { apiBaseUri } from '../../../../../../../api/config';
-import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
-import { useValgtenhet } from '../../../../../../../context/valgtenhet-state';
-import type { Traad } from '../../../../../../../models/meldinger/meldinger';
+import { type FetchError, post } from 'src/api/api';
+import { apiBaseUri } from 'src/api/config';
+import { LenkeKnapp } from 'src/components/common-styled-components';
+import { useValgtenhet } from 'src/context/valgtenhet-state';
+import type { Traad } from 'src/models/meldinger/meldinger';
 import type {
     MerkLukkTraadRequest,
     MerkRequestMedBehandlingskjede,
     SendTilSladdingRequest
-} from '../../../../../../../models/meldinger/merk';
-import type { Oppgave } from '../../../../../../../models/meldinger/oppgave';
-import { setIngenValgtTraadDialogpanel } from '../../../../../../../redux/oppgave/actions';
-import type { AppState } from '../../../../../../../redux/reducers';
-import dialogResource from '../../../../../../../rest/resources/dialogResource';
-import tildelteoppgaver from '../../../../../../../rest/resources/tildelteoppgaverResource';
-import { useFocusOnFirstFocusable } from '../../../../../../../utils/hooks/use-focus-on-first-focusable';
+} from 'src/models/meldinger/merk';
+import type { Oppgave } from 'src/models/meldinger/oppgave';
+import { setIngenValgtTraadDialogpanel } from 'src/redux/oppgave/actions';
+import type { AppState } from 'src/redux/reducers';
+import dialogResource from 'src/rest/resources/dialogResource';
+import tildelteoppgaver from 'src/rest/resources/tildelteoppgaverResource';
+import { useFocusOnFirstFocusable } from 'src/utils/hooks/use-focus-on-first-focusable';
+import styled from 'styled-components';
 import {
     eldsteMelding,
     erBehandlet,
     erChatTraad,
     erFeilsendt,
     erJournalfort,
-    erKontorsperret,
     erMeldingFeilsendt,
     erMeldingstypeSamtalereferat,
     kanBesvares
@@ -60,13 +59,7 @@ function lagBehandlingskjede(traad: Traad) {
 }
 
 function visStandardvalg(traad: Traad): boolean {
-    return (
-        !erJournalfort(traad) &&
-        !erFeilsendt(traad) &&
-        erBehandlet(traad) &&
-        !erKontorsperret(traad) &&
-        !erChatTraad(traad)
-    );
+    return !erJournalfort(traad) && !erFeilsendt(traad) && erBehandlet(traad) && !erChatTraad(traad);
 }
 
 function traadKanLukkes(traad: Traad): boolean {
@@ -209,9 +202,9 @@ function MerkPanel(props: Props) {
             <RadioPanelGruppe
                 className="blokk-xxs"
                 radios={radioprops}
-                name={'merk'}
+                name="merk"
                 checked={valgtOperasjon}
-                legend={''}
+                legend=""
                 onChange={(_, value) => settValgtOperasjon(MerkOperasjon[value as MerkOperasjon])}
             />
             {valgtOperasjon === MerkOperasjon.SLADDING && (

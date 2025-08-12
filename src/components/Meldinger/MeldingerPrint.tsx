@@ -85,16 +85,12 @@ function MeldingerPrint(props: Props) {
     const feilsendt = eldsteMelding.markertSomFeilsendtAv && (
         <Element> Markert som feilsendt av {eldsteMelding.markertSomFeilsendtAv.ident?.toUpperCase()}</Element>
     );
-    const kontorsperre = eldsteMelding.kontorsperretAv && (
-        <Element>Kontorsperret for {eldsteMelding.kontorsperretEnhet}</Element>
-    );
     const journalposter = <JournalposterMarkup journalposter={props.traad.journalposter} />;
     const enkeltmeldinger = meldinger.map((melding) => <EnkeltMeldingMarkup melding={melding} key={melding.id} />);
     return (
         <div className="print-only break-after-page">
             <Box.New marginBlock="0 8">
                 {feilsendt}
-                {kontorsperre}
                 {journalposter}
             </Box.New>
             {enkeltmeldinger}
