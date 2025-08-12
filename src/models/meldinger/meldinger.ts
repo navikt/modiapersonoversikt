@@ -1,4 +1,4 @@
-import type { JournalforingsSak } from '../../app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
+import type { JournalforingsSak } from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import type { Temagruppe } from '../temagrupper';
 
 export interface Traad {
@@ -23,8 +23,6 @@ export interface Melding {
     opprettetDato: string;
     ferdigstiltDato?: string;
     avsluttetDato?: string;
-    kontorsperretEnhet?: string;
-    kontorsperretAv?: Saksbehandler;
     sendtTilSladding: boolean;
     markertSomFeilsendtAv?: Saksbehandler;
 }

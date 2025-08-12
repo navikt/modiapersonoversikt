@@ -1,5 +1,5 @@
-import type { Traad } from '../../../../../../../models/meldinger/meldinger';
-import type { GsakTema } from '../../../../../../../models/meldinger/oppgave';
+import type { Traad } from 'src/models/meldinger/meldinger';
+import type { GsakTema } from 'src/models/meldinger/oppgave';
 
 export interface OppgaveProps extends SkjermetOppgaveProps {
     valgtTraad: Traad;
@@ -8,7 +8,6 @@ export interface OppgaveProps extends SkjermetOppgaveProps {
 export interface SkjermetOppgaveProps {
     gsakTema: GsakTema[];
     lukkPanel: () => void;
-    onSuccessCallback?: () => void;
 }
 
 export type OppgaveSkjemaForm = {

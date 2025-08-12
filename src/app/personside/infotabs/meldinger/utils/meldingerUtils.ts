@@ -1,14 +1,8 @@
 import { useMemo } from 'react';
-import {
-    type Melding,
-    Meldingstype,
-    type Saksbehandler,
-    type Traad,
-    TraadType
-} from '../../../../../models/meldinger/meldinger';
-import { Temagruppe, temagruppeTekst } from '../../../../../models/temagrupper';
-import { datoStigende, datoSynkende, formatterDatoTid } from '../../../../../utils/date-utils';
-import useDebounce from '../../../../../utils/hooks/use-debounce';
+import { type Melding, Meldingstype, type Saksbehandler, type Traad, TraadType } from 'src/models/meldinger/meldinger';
+import { Temagruppe, temagruppeTekst } from 'src/models/temagrupper';
+import { datoStigende, datoSynkende, formatterDatoTid } from 'src/utils/date-utils';
+import useDebounce from 'src/utils/hooks/use-debounce';
 import { meldingstypeTekst, traadTypeTekst } from './meldingstekster';
 
 /*
@@ -131,16 +125,12 @@ export function erMeldingFraNav(meldingstype: Meldingstype) {
     ].includes(meldingstype);
 }
 
-export function erKontorsperret(traad: Traad): boolean {
-    return !!eldsteMelding(traad).kontorsperretEnhet;
-}
-
 export function kanTraadJournalforesV2(traad: Traad): boolean {
-    return !erKontorsperret(traad) && !erFeilsendt(traad);
+    return !erFeilsendt(traad);
 }
 
 export function kanTraadJournalfores(traad: Traad): boolean {
-    return !erKontorsperret(traad) && !erFeilsendt(traad) && erBehandlet(traad);
+    return !erFeilsendt(traad) && erBehandlet(traad);
 }
 
 export function erJournalfort(traad: Traad): boolean {

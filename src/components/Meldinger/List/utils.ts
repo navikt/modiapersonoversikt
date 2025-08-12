@@ -118,12 +118,8 @@ export function erMeldingFraNav(meldingstype: Meldingstype) {
     ].includes(meldingstype);
 }
 
-export function erKontorsperret(traad: Traad): boolean {
-    return !!eldsteMelding(traad).kontorsperretEnhet;
-}
-
 export function kanTraadJournalforesV2(traad: Traad): boolean {
-    return !erKontorsperret(traad) && !erFeilsendt(traad);
+    return !erFeilsendt(traad);
 }
 
 export function erJournalfort(traad: Traad): boolean {
