@@ -17,7 +17,7 @@ test('Select melding', async ({ page }) => {
 
 test('Send melding i tråd', async ({ page }) => {
     await page.goto('/new/person/meldinger');
-    const traadToClick = page.getByTestId('traaditem').nth(2);
+    const traadToClick = page.getByTestId('traaditem').nth(4);
     await expect(traadToClick).toBeVisible();
     await traadToClick.getByRole('button').click();
 
