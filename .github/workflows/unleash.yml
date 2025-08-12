@@ -14,7 +14,7 @@ jobs:
       id-token: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Deploy unleash api token
         uses: nais/deploy/actions/deploy@v2
         env:
@@ -30,7 +30,7 @@ jobs:
       id-token: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Deploy unleash api token
         uses: nais/deploy/actions/deploy@v2
         env:
