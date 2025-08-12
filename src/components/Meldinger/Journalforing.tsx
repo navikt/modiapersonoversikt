@@ -7,15 +7,17 @@ import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
 import { useJournalforMutation } from 'src/lib/clients/modiapersonoversikt-api';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
+import { twMerge } from 'tailwind-merge';
 import { FetchErrorRenderer } from '../QueryErrorBoundary';
 import { kanTraadJournalforesV2 } from './List/utils';
 
 type Props = {
     traad: Traad;
     close: () => void;
+    isOpen: boolean;
 };
 
-export const JournalForingModal = ({ traad, close }: Props) => {
+export const JournalForingModal = ({ traad, close, isOpen }: Props) => {
     const fnr = usePersonAtomValue();
     const enhet = useAtomValue(aktivEnhetAtom) as string;
     const [valgtSak, setValgtSak] = useState<JournalforingSak | undefined>();
@@ -39,7 +41,14 @@ export const JournalForingModal = ({ traad, close }: Props) => {
     };
 
     return (
-        <Modal open onClose={close} header={{ heading: 'Journalfør dialog' }} closeOnBackdropClick>
+        <Modal
+            // Må conditionally sette bredde for å passe playwright test
+            className={twMerge(isOpen && 'w-[50rem]')}
+            open={isOpen}
+            onClose={close}
+            header={{ heading: 'Journalfør dialog' }}
+            closeOnBackdropClick
+        >
             <Modal.Body className="overflow-y-hidden">
                 {kanJournalfores ? (
                     <SakVelger.Root
@@ -54,7 +63,11 @@ export const JournalForingModal = ({ traad, close }: Props) => {
                             fordelteSaker,
                             valgtTema,
                             setTema,
-                            feiledeSystemer
+                            feiledeSystemer,
+                            sakIFokus,
+                            setSakIFokus,
+                            temaListeRef,
+                            saksListeRef
                         }) => (
                             <VStack gap="2">
                                 <SakVelger.ToggleGroup
@@ -62,20 +75,24 @@ export const JournalForingModal = ({ traad, close }: Props) => {
                                     setSakKategori={setSakKategori}
                                 />
                                 <HGrid align="start" columns={2} gap="4">
-                                    <div className="h-[60vh] overflow-y-auto">
-                                        <SakVelger.TemaTable
+                                    <div className="h-[60vh]">
+                                        <SakVelger.TemaListe
                                             kategorier={fordelteSaker}
                                             valgtKategori={valgtSakKategori}
                                             valgtTema={valgtTema}
                                             setValgtTema={setTema}
+                                            temaListeRef={temaListeRef}
                                         />
                                     </div>
-                                    <div className="h-[60vh] overflow-y-auto">
-                                        <SakVelger.SakTable
+                                    <div className="h-[60vh] ">
+                                        <SakVelger.SakListe
                                             kategorier={fordelteSaker}
                                             valgtKategori={valgtSakKategori}
                                             valgtTema={valgtTema}
                                             setSak={setSak}
+                                            saksListeRef={saksListeRef}
+                                            sakIFokus={sakIFokus}
+                                            setSakIFokus={setSakIFokus}
                                             valgtSak={valgtSak}
                                         />
                                     </div>

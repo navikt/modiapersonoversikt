@@ -44,6 +44,7 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
             <Modal
                 header={{ heading: 'Velg sak' }}
                 open={velgSakModalOpen}
+                width="50rem"
                 onClose={() => setVelgSakModalOpen(false)}
                 closeOnBackdropClick
             >
@@ -61,28 +62,36 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
                             fordelteSaker,
                             valgtTema,
                             setTema,
-                            feiledeSystemer
+                            feiledeSystemer,
+                            sakIFokus,
+                            setSakIFokus,
+                            saksListeRef,
+                            temaListeRef
                         }) => (
                             <VStack gap="2">
                                 <SakVelger.ToggleGroup
                                     valgtSakKategori={valgtSakKategori}
                                     setSakKategori={setSakKategori}
                                 />
-                                <HGrid align="start" columns={2} gap="4">
-                                    <div className="h-[60vh] overflow-y-auto">
-                                        <SakVelger.TemaTable
+                                <HGrid align="start" columns={2} gap="2">
+                                    <div className="h-[60vh]">
+                                        <SakVelger.TemaListe
                                             kategorier={fordelteSaker}
                                             valgtKategori={valgtSakKategori}
                                             valgtTema={valgtTema}
                                             setValgtTema={setTema}
+                                            temaListeRef={temaListeRef}
                                         />
                                     </div>
-                                    <div className="h-[60vh] overflow-y-auto">
-                                        <SakVelger.SakTable
+                                    <div className="h-[60vh]">
+                                        <SakVelger.SakListe
                                             kategorier={fordelteSaker}
                                             valgtKategori={valgtSakKategori}
                                             valgtTema={valgtTema}
                                             setSak={setSak}
+                                            setSakIFokus={setSakIFokus}
+                                            sakIFokus={sakIFokus}
+                                            saksListeRef={saksListeRef}
                                         />
                                     </div>
                                 </HGrid>

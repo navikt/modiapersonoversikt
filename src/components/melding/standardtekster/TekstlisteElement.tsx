@@ -17,8 +17,8 @@ function TekstListeElement({ tekst, valgt, onChange }: Props) {
         <li className="list-none m-1">
             <HStack
                 className={twMerge(
-                    'p-1.5 w-full focus-within:bg-ax-bg-accent-moderate-pressed-a hover:bg-ax-bg-accent-moderate-hover rounded-sm',
-                    keyboardFocused && 'focus-within:outline-2  focus-within:outline-ax-accent-800',
+                    'p-1.5 w-full focus-within:bg-ax-bg-accent-moderate-pressed hover:bg-ax-bg-accent-moderate-hover rounded-sm',
+                    keyboardFocused && 'focus-within:outline-2  focus-within:outline-ax-border-accent-strong',
                     valgt && 'bg-ax-bg-accent-moderate-pressed'
                 )}
                 onClick={() => {

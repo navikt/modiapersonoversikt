@@ -2,8 +2,8 @@ import type { ReactElement } from 'react';
 import type AvsluttDialogEtterSending from 'src/components/melding/AvsluttDialogEtterSending';
 import { MeldingsType } from 'src/components/melding/VelgMeldingsType';
 import type VelgOppgaveliste from 'src/components/melding/VelgOppgaveliste';
-import type VelgSak from 'src/components/melding/VelgSak';
 import type VelgTema from 'src/components/melding/VelgTema';
+import type VelgSak from 'src/components/sakVelger/VelgSak';
 
 interface ValgForMeldingstypeProps {
     meldingsType: MeldingsType;

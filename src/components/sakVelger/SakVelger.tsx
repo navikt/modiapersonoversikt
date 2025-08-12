@@ -1,10 +1,14 @@
-import { Alert, BodyShort, Button, Table, ToggleGroup } from '@navikt/ds-react';
+import { Alert } from '@navikt/ds-react';
 import Spinner from 'nav-frontend-spinner';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { SakKategori } from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
+import SakVelgerSakList from 'src/components/sakVelger/SakVelgerSakList';
+import SakVelgerTemaList from 'src/components/sakVelger/SakVelgerTemaList';
+import SakVelgerToggleGroup from 'src/components/sakVelger/SakVelgerToggleGroup';
+import { useFokusVedPiltaster } from 'src/components/sakVelger/keyboardHooks';
 import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
 import { useJournalforingSaker } from 'src/lib/clients/modiapersonoversikt-api';
-import { datoSynkende, formatterDatoMedMaanedsnavnOrNull } from 'src/utils/date-utils';
+import { datoSynkende } from 'src/utils/date-utils';
 import { type Group, groupBy } from 'src/utils/groupArray';
 
 interface SakVelgerRootContext {
@@ -16,6 +20,10 @@ interface SakVelgerRootContext {
     setSak: (sak: JournalforingSak, kategori: SakKategori, tema: Tema) => void;
     fordelteSaker: Kategorier;
     feiledeSystemer: string[];
+    sakIFokus: JournalforingSak | undefined;
+    setSakIFokus: (sak: JournalforingSak | undefined) => void;
+    temaListeRef: React.RefObject<HTMLDivElement | null>;
+    saksListeRef: React.RefObject<HTMLDivElement | null>;
 }
 
 interface SakVelgerRootProps {
@@ -29,8 +37,42 @@ const SakVelgerRoot: React.FC<SakVelgerRootProps> = ({ children, setSak }) => {
     const [valgtSakKategori, setSakKategori] = useState<SakKategori>(SakKategori.FAG);
     const [valgtTema, setTema] = useState<Tema | undefined>();
 
+    const [sakIFokus, setSakIFokus] = useState<JournalforingSak | undefined>();
+
     const { saker, feiledeSystemer } = data || { saker: [], feiledeSystemer: [] };
     const fordelteSaker = useMemo(() => fordelSaker(saker), [saker]);
+
+    const temaListeRef = useRef<HTMLDivElement>(null);
+    const saksListeRef = useRef<HTMLDivElement>(null);
+
+    const valgteSaker = useMemo(
+        () => fordelteSaker[valgtSakKategori].filter((tema) => tema === valgtTema).flatMap((tema) => tema.saker),
+        [valgtTema, fordelteSaker, valgtSakKategori]
+    );
+
+    const foksuserPaaValgtTema = () => {
+        setSakIFokus(undefined);
+        const valgTemaDOM = document.getElementById(valgtTema?.tema.replace(/\s+/g, '') ?? '');
+        if (valgTemaDOM) {
+            valgTemaDOM.focus();
+        }
+    };
+
+    const fokuserPaaForsteSak = () => {
+        valgteSaker.length ? setSakIFokus(valgteSaker[0]) : undefined;
+    };
+
+    useFokusVedPiltaster(
+        saksListeRef,
+        temaListeRef,
+        [valgtTema, valgteSaker],
+        foksuserPaaValgtTema,
+        fokuserPaaForsteSak
+    );
+
+    useEffect(() => {
+        setTema(fordelteSaker[valgtSakKategori][0]);
+    }, [valgtSakKategori, fordelteSaker]);
 
     if (isPending) {
         return <Spinner type="XL" />;
@@ -41,6 +83,7 @@ const SakVelgerRoot: React.FC<SakVelgerRootProps> = ({ children, setSak }) => {
 
     return (
         <>
+            {/* eslint-disable-next-line react-compiler/react-compiler */}
             {children({
                 saker,
                 setSak,
@@ -49,143 +92,21 @@ const SakVelgerRoot: React.FC<SakVelgerRootProps> = ({ children, setSak }) => {
                 valgtSakKategori,
                 setSakKategori,
                 valgtTema,
-                setTema
+                setTema,
+                sakIFokus,
+                setSakIFokus,
+                temaListeRef,
+                saksListeRef
             })}
         </>
-    );
-};
-
-interface SakVelgerRadioGroupProps {
-    valgtSakKategori: SakKategori;
-    setSakKategori: (sakKategori: SakKategori) => void;
-}
-
-const SakVelgerToggleGroup: React.FC<SakVelgerRadioGroupProps> = ({ valgtSakKategori, setSakKategori }) => {
-    return (
-        <ToggleGroup
-            size="small"
-            label="Saktype"
-            value={valgtSakKategori}
-            onChange={(value) => setSakKategori(value as SakKategori)}
-        >
-            {Object.values(SakKategori).map((sakKategori) => (
-                <ToggleGroup.Item value={sakKategori} key={sakKategori} label={sakKategori} />
-            ))}
-        </ToggleGroup>
-    );
-};
-
-interface SakVelgerTemaTableProps {
-    kategorier: Kategorier;
-    valgtKategori: SakKategori;
-    valgtTema: Tema | undefined;
-    setValgtTema: (tema: Tema) => void;
-}
-
-const SakVelgerTemaTable: React.FC<SakVelgerTemaTableProps> = ({
-    kategorier,
-    valgtKategori,
-    valgtTema,
-    setValgtTema
-}) => {
-    return (
-        <Table zebraStripes size="small" aria-label="Tema">
-            <Table.Header>
-                <Table.Row>
-                    <Table.HeaderCell className="min-w-8" scope="col">
-                        Tema
-                    </Table.HeaderCell>
-                    <Table.HeaderCell scope="col" className="sr-only">
-                        Velg
-                    </Table.HeaderCell>
-                </Table.Row>
-            </Table.Header>
-            <Table.Body>
-                {kategorier[valgtKategori].map((tema) => (
-                    <Table.Row
-                        key={`${valgtKategori}-${tema.tema}`}
-                        onClick={() => {
-                            setValgtTema(tema);
-                        }}
-                        selected={tema.tema === valgtTema?.tema}
-                        className="cursor-pointer"
-                    >
-                        <Table.HeaderCell scope="row">{tema.tema}</Table.HeaderCell>
-                        <Table.DataCell className="sr-only">
-                            <Button type="button" variant="secondary" onClick={() => setValgtTema(tema)}>
-                                Velg
-                            </Button>
-                        </Table.DataCell>
-                    </Table.Row>
-                ))}
-            </Table.Body>
-        </Table>
-    );
-};
-
-interface SakVelgerSakTableProps {
-    kategorier: Kategorier;
-    valgtKategori: SakKategori;
-    valgtTema: Tema | undefined;
-    valgtSak?: JournalforingSak;
-    setSak: (sak: JournalforingSak, kategori: SakKategori, tema: Tema) => void;
-}
-
-const SakVelgerSakTable: React.FC<SakVelgerSakTableProps> = ({
-    kategorier,
-    valgtKategori,
-    valgtTema,
-    valgtSak,
-    setSak
-}) => {
-    if (!valgtTema) return <BodyShort>Velg et tema</BodyShort>;
-
-    return (
-        <Table zebraStripes size="small" aria-label="Saker">
-            <Table.Header>
-                <Table.HeaderCell scope="col">SaksId</Table.HeaderCell>
-                <Table.HeaderCell scope="col">Opprettet</Table.HeaderCell>
-                <Table.HeaderCell scope="col" className="sr-only">
-                    Velg
-                </Table.HeaderCell>
-            </Table.Header>
-            <Table.Body>
-                {kategorier[valgtKategori]
-                    .filter((it) => it.tema === valgtTema.tema)
-                    .flatMap((it) =>
-                        it.saker.map((sak) => (
-                            <Table.Row
-                                key={`${valgtKategori}-${valgtTema.tema}-${sak.saksId}`}
-                                onClick={() => {
-                                    setSak(sak, valgtKategori, valgtTema);
-                                }}
-                                className="cursor-pointer"
-                                selected={valgtSak?.saksId ? valgtSak.saksId === sak.saksId : undefined}
-                            >
-                                <Table.HeaderCell scope="row">{sak.saksId}</Table.HeaderCell>
-                                <Table.DataCell>{formatterDatoMedMaanedsnavnOrNull(sak.opprettetDato)}</Table.DataCell>
-                                <Table.DataCell className="sr-only">
-                                    <Button
-                                        type="button"
-                                        variant="secondary"
-                                        onClick={() => setSak(sak, valgtKategori, valgtTema)}
-                                    >
-                                        {sak.saksId}
-                                    </Button>
-                                </Table.DataCell>
-                            </Table.Row>
-                        ))
-                    )}
-            </Table.Body>
-        </Table>
     );
 };
 
 const SakVelger = {
     Root: SakVelgerRoot,
     ToggleGroup: SakVelgerToggleGroup,
-    TemaTable: SakVelgerTemaTable,
-    SakTable: SakVelgerSakTable
+    TemaListe: SakVelgerTemaList,
+    SakListe: SakVelgerSakList
 };
 
 export default SakVelger;
@@ -234,5 +155,5 @@ function sakKategori(sak: JournalforingSak): SakKategori {
     return sak.sakstype === 'GEN' ? SakKategori.GEN : SakKategori.FAG;
 }
 
-type Tema = { tema: string; saker: Array<JournalforingSak> };
-type Kategorier = { [key in SakKategori]: Tema[] };
+export type Tema = { tema: string; saker: Array<JournalforingSak> };
+export type Kategorier = { [key in SakKategori]: Tema[] };

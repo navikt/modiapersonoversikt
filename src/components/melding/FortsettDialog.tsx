@@ -6,6 +6,7 @@ import DraftStatus from 'src/app/personside/dialogpanel/DraftStatus';
 import type { Draft, DraftContext } from 'src/app/personside/dialogpanel/use-draft';
 import useDraft from 'src/app/personside/dialogpanel/use-draft';
 import { Link } from 'src/components/Link';
+import VelgSak from 'src/components/sakVelger/VelgSak';
 import { useOppgaveForTraad, useSendMelding } from 'src/lib/clients/modiapersonoversikt-api';
 import { useEnhetsnavn } from 'src/lib/hooks/useEnhetsnavn';
 import { useSuspendingBrukernavn } from 'src/lib/hooks/useSuspendingBrukernavn';
@@ -25,7 +26,6 @@ import AutocompleteTextarea from './AutoCompleteTextarea';
 import { Oppgaveliste, OppgavelisteRadioKnapper } from './OppgavelisteRadioKnapper';
 import { meldingsTyperTekst, traadTypeToMeldingsType } from './VelgMeldingsType';
 import VelgOppgaveliste from './VelgOppgaveliste';
-import VelgSak from './VelgSak';
 import { fortsettDialogSchema, maksLengdeMelding } from './nyMeldingSchema';
 import { useTraadHenvendelse } from './useHenvendelse';
 
