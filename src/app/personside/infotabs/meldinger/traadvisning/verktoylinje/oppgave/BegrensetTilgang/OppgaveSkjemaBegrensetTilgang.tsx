@@ -58,7 +58,6 @@ function OppgaveSkjemaBegrensetTilgang(props: SkjermetOppgaveProps) {
         return post(`${apiBaseUri}/dialogoppgave/opprettskjermetoppgave`, request, 'OpprettOppgaveSkjermetPerson')
             .then(() => {
                 settResultat(Resultat.VELLYKKET);
-                if (props.onSuccessCallback) props.onSuccessCallback();
             })
             .catch(() => {
                 settResultat(Resultat.FEIL);
