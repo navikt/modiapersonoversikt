@@ -17,7 +17,7 @@ test('Select melding', async ({ page }) => {
 
 test('Send melding i tråd', async ({ page }) => {
     await page.goto('/new/person/meldinger');
-    const traadToClick = page.getByTestId('traaditem').nth(2);
+    const traadToClick = page.getByTestId('traaditem').nth(4);
     await expect(traadToClick).toBeVisible();
     await traadToClick.getByRole('button').click();
 
@@ -95,7 +95,7 @@ test('Autocomplete textarea', async ({ page }) => {
 });
 
 test('Avslutt dialog', async ({ page }) => {
-    await page.goto('/new/person/meldinger?traadId=XJjYJeZH');
+    await page.goto('/new/person/meldinger?traadId=0DjWfYnF');
     await page.getByRole('button', { name: 'Merk' }).click();
     const avsluttItem = page.getByRole('menuitem', { name: 'Avslutt' });
     await expect(avsluttItem).toBeVisible();
@@ -111,7 +111,7 @@ test('Avslutt dialog', async ({ page }) => {
 });
 
 test('Lag ny oppgave', async ({ page }) => {
-    await page.goto('/new/person/meldinger?traadId=XJjYJeZH');
+    await page.goto('/new/person/meldinger?traadId=0DjWfYnF');
     await page.getByRole('button', { name: 'oppgave' }).click();
 
     const opprettDialog = page.getByRole('dialog', { name: 'Opprett oppgave' });

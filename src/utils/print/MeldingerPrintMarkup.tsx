@@ -1,9 +1,9 @@
 import Tekstomrade, { defaultRules } from 'nav-frontend-tekstomrade';
 import { Element, Ingress, Normaltekst } from 'nav-frontend-typografi';
+import { meldingstittel } from 'src/app/personside/infotabs/meldinger/utils/meldingerUtils';
 import { usePersonAtomValue } from 'src/lib/state/context';
+import type { Melding, MeldingJournalpost, Traad } from 'src/models/meldinger/meldinger';
 import styled from 'styled-components';
-import { meldingstittel } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
-import type { Melding, MeldingJournalpost, Traad } from '../../models/meldinger/meldinger';
 import theme from '../../styles/personOversiktTheme';
 import { datoStigende, formatterDato, formatterDatoTid } from '../date-utils';
 import { rule as sladdRule } from '../sladdrule';
@@ -105,16 +105,12 @@ function MeldingerPrintMarkup(props: Props) {
     const feilsendt = eldsteMelding.markertSomFeilsendtAv && (
         <Element> Markert som feilsendt av {eldsteMelding.markertSomFeilsendtAv.ident?.toUpperCase()}</Element>
     );
-    const kontorsperre = eldsteMelding.kontorsperretAv && (
-        <Element>Kontorsperret for {eldsteMelding.kontorsperretEnhet}</Element>
-    );
     const journalposter = <JournalposterMarkup journalposter={props.valgtTraad.journalposter} />;
     const enkeltmeldinger = meldinger.map((melding) => <EnkeltMeldingMarkup melding={melding} key={melding.id} />);
     return (
         <StyledTraad>
             <Topptekst>
                 {feilsendt}
-                {kontorsperre}
                 {journalposter}
             </Topptekst>
             {enkeltmeldinger}

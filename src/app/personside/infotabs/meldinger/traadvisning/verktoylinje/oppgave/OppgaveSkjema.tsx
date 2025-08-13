@@ -3,13 +3,13 @@ import { Element } from 'nav-frontend-typografi';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
+import { post } from 'src/api/api';
+import { apiBaseUri } from 'src/api/config';
+import { LenkeKnapp } from 'src/components/common-styled-components';
+import FormErrorSummary from 'src/components/form/FormErrorSummary';
+import { useValgtenhet } from 'src/context/valgtenhet-state';
+import type { AppState } from 'src/redux/reducers';
 import styled from 'styled-components';
-import { post } from '../../../../../../../api/api';
-import { apiBaseUri } from '../../../../../../../api/config';
-import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
-import FormErrorSummary from '../../../../../../../components/form/FormErrorSummary';
-import { useValgtenhet } from '../../../../../../../context/valgtenhet-state';
-import type { AppState } from '../../../../../../../redux/reducers';
 import { erBehandlet } from '../../../utils/meldingerUtils';
 import { Resultat } from '../utils/VisPostResultat';
 import AvsluttGosysOppgaveSkjema from './AvsluttGosysOppgaveSkjema';
@@ -79,7 +79,6 @@ function OppgaveSkjema(props: OppgaveProps) {
             post(`${apiBaseUri}/dialogoppgave/opprett`, request, 'OpprettOppgave')
                 .then(() => {
                     settResultat(Resultat.VELLYKKET);
-                    if (props.onSuccessCallback) props.onSuccessCallback();
                 })
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 .catch((_error: Error) => {
@@ -96,19 +95,18 @@ function OppgaveSkjema(props: OppgaveProps) {
         return <OppgaveSkjemaResultat resultat={resultat} lukkPanel={props.lukkPanel} />;
     }
 
-    const knappetekst = props.onSuccessCallback ? 'Merk som kontorsperret' : 'Opprett oppgave';
     return (
         <SkjemaStyle>
             <AvsluttGosysOppgaveSkjema valgtTraad={props.valgtTraad} />
             <form onSubmit={form.handleSubmit(submitHandler)}>
-                <FormErrorSummary form={form} tittel={'For å kunne søke må du rett opp i følgende:'} />
+                <FormErrorSummary form={form} tittel="For å kunne søke må du rett opp i følgende:" />
                 <Element>Opprett oppgave</Element>
                 <OppgaveSkjemaTemaGjelderTypeOppgave form={form} gsakTema={props.gsakTema} valgtTema={valgtTema} />
                 <OppgaveSkjemaEnhetAnsatt form={form} saksbehandlersEnhet={saksbehandlersEnhet} />
                 <OppgaveSkjemaPrioritetBeskrivelse form={form} valgtTema={valgtTema} />
                 <KnappStyle>
                     <Hovedknapp htmlType="submit" spinner={form.formState.isSubmitting} autoDisableVedSpinner>
-                        {knappetekst}
+                        Opprett oppgave
                     </Hovedknapp>
                     <LenkeKnapp type="button" onClick={props.lukkPanel}>
                         Avbryt

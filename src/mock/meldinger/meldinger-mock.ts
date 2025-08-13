@@ -1,8 +1,8 @@
 import { fakerNB_NO as faker } from '@faker-js/faker';
 import dayjs from 'dayjs';
 import navfaker from 'nav-faker';
-import { type AutofullforMap, autofullfor } from '../../app/personside/dialogpanel/sendMelding/autofullforUtils';
-import { erMeldingFraNav, saksbehandlerTekst } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
+import { type AutofullforMap, autofullfor } from 'src/app/personside/dialogpanel/sendMelding/autofullforUtils';
+import { erMeldingFraNav, saksbehandlerTekst } from 'src/app/personside/infotabs/meldinger/utils/meldingerUtils';
 import {
     LestStatus,
     type Melding,
@@ -11,9 +11,9 @@ import {
     type Saksbehandler,
     type Traad,
     TraadType
-} from '../../models/meldinger/meldinger';
-import { TemaSamtalereferat, Temagruppe } from '../../models/temagrupper';
-import { backendDatoTidformat } from '../../utils/date-utils';
+} from 'src/models/meldinger/meldinger';
+import { TemaSamtalereferat, Temagruppe } from 'src/models/temagrupper';
+import { backendDatoTidformat } from 'src/utils/date-utils';
 import standardTeksterMock from '../standardTeksterMock';
 import { fyllRandomListe } from '../utils/mock-utils';
 import standardTraader from './standardTraader';
@@ -79,7 +79,6 @@ function getHardKodetTraader(): Traad[] {
 }
 
 function getMelding(temagruppe: Temagruppe | null): Melding {
-    const visKontorsperre = navfaker.random.vektetSjanse(0.1);
     const visMarkertSomFeilsendt = navfaker.random.vektetSjanse(0.1);
     const meldingstype = faker.helpers.arrayElement(Object.values(Meldingstype));
     const sladdingNiva = faker.helpers.arrayElement([0, 0, 0, 0, 1, 1, 1, 1, 2]);
@@ -113,8 +112,6 @@ function getMelding(temagruppe: Temagruppe | null): Melding {
         status: faker.helpers.arrayElement([LestStatus.IkkeLest, LestStatus.Lest]),
         opprettetDato: dayjs(faker.date.recent({ days: 40 })).format(backendDatoTidformat),
         ferdigstiltDato: dayjs(faker.date.recent({ days: 40 })).format(backendDatoTidformat),
-        kontorsperretAv: visKontorsperre ? getSaksbehandler() : undefined,
-        kontorsperretEnhet: visKontorsperre ? faker.company.name() : undefined,
         sendtTilSladding: sladdingNiva !== 0,
         markertSomFeilsendtAv: visMarkertSomFeilsendt ? getSaksbehandler() : undefined
     };
@@ -158,8 +155,6 @@ function getChatMelding(temagruppe: Temagruppe | null): Melding {
         status: faker.helpers.arrayElement([LestStatus.IkkeLest, LestStatus.Lest]),
         opprettetDato: dayjs(faker.date.recent({ days: 1 })).format(backendDatoTidformat),
         ferdigstiltDato: dayjs(faker.date.recent({ days: 40 })).format(backendDatoTidformat),
-        kontorsperretAv: undefined,
-        kontorsperretEnhet: undefined,
         sendtTilSladding: false,
         markertSomFeilsendtAv: undefined,
         avsluttetDato: dayjs(faker.date.recent({ days: 10 })).format(backendDatoTidformat)

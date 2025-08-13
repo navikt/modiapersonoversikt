@@ -19,7 +19,6 @@ import {
     erChatTraad,
     erFeilsendt,
     erJournalfort,
-    erKontorsperret,
     erMeldingFeilsendt,
     erMeldingstypeSamtalereferat,
     kanBesvares
@@ -30,13 +29,7 @@ function getMeldingerForMerking(traad: Traad) {
 }
 
 function visStandardvalg(traad: Traad): boolean {
-    return (
-        !erJournalfort(traad) &&
-        !erFeilsendt(traad) &&
-        erBehandlet(traad) &&
-        !erKontorsperret(traad) &&
-        !erChatTraad(traad)
-    );
+    return !erJournalfort(traad) && !erFeilsendt(traad) && erBehandlet(traad) && !erChatTraad(traad);
 }
 
 function traadKanLukkes(traad: Traad): boolean {
