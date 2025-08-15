@@ -54,9 +54,8 @@ export const filterSaker = (saker: SaksDokumenter[], filters: SakerFilter): Sak[
     return filteredList;
 };
 
-export const filterDokumenter = (dokumenter: Dokumentmetadata[], filters: SakerFilter): Sak[] => {
-    const { avsender, dateRange } = filters;
-
+export const filterDokumenter = (dokumenter: Dokumentmetadata[]): Dokumentmetadata[] => {
+    const { avsender } = useAtomValue(sakerFilterAtom);
     if (!dokumenter || dokumenter.length === 0) {
         return [];
     }
@@ -64,13 +63,6 @@ export const filterDokumenter = (dokumenter: Dokumentmetadata[], filters: SakerF
     let filteredList = dokumenter;
     if (avsender?.length) {
         filteredList = filteredList.filter((dokument) => avsender.includes(dokument.avsender));
-    }
-
-    if (dateRange?.from && dateRange?.to) {
-        filteredList = filteredList.filter((dokument) => {
-            const dato = dayjs(dokument.opprettet);
-            return dato.isAfter(dateRange.from) && dato.isBefore(dateRange.to);
-        });
     }
 
     return filteredList;
@@ -119,7 +111,12 @@ export const byggDokumentVisningUrl = (url: string): string => {
 
 export const getSakId = (sak: Sak) => `${sak.temakode}-${sak.saksid}`;
 
-export const sakerAvsender = [Object.values(DokumentmetadataAvsender)];
+export const sakerAvsender = [
+    { value: DokumentmetadataAvsender.NAV, label: 'Nav' },
+    { value: DokumentmetadataAvsender.SLUTTBRUKER, label: 'Bruker' },
+    { value: DokumentmetadataAvsender.EKSTERN_PART, label: 'Ekstern' },
+    { value: DokumentmetadataAvsender.UKJENT, label: 'Ukjent' }
+];
 export const sakStatusAapen = 'åpen';
 export const sakStatusAvsluttet = 'avsluttett';
 export const sakStatuser = [sakStatusAapen, sakStatusAvsluttet];

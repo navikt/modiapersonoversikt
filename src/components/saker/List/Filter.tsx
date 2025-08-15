@@ -45,7 +45,7 @@ const sakerFilterSaksIdAtom = atom(
     }
 );
 
-const sakerFilterAvsenderAtom = atom(
+export const sakerFilterAvsenderAtom = atom(
     (get) => get(sakerFilterAtom).avsender,
     (_get, set, newVal: string) => {
         set(sakerFilterAtom, (filters) => ({

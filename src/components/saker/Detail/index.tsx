@@ -1,17 +1,35 @@
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
-import { Accordion, Alert, BodyShort, Box, Button, HStack, Heading, Skeleton, Tabs, VStack } from '@navikt/ds-react';
+import {
+    Accordion,
+    Alert,
+    BodyShort,
+    Box,
+    Button,
+    Fieldset,
+    HStack,
+    Heading,
+    Skeleton,
+    Spacer,
+    Switch,
+    Tabs,
+    VStack
+} from '@navikt/ds-react';
 import { Link, getRouteApi } from '@tanstack/react-router';
-import { Suspense, useState } from 'react';
+import { useAtom } from 'jotai/index';
+import { Suspense, useCallback, useState } from 'react';
 import { getSaksdokumentUrl } from 'src/app/personside/infotabs/saksoversikt/dokumentvisning/getSaksdokumentUrl';
 import { hentNavn } from 'src/app/personside/visittkort-v2/visittkort-utils';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import DokumentVisning from 'src/components/saker/Detail/DokumentVisning';
 import ViktigAaVite from 'src/components/saker/Detail/viktigavite/ViktigAaVite';
+import { sakerFilterAvsenderAtom } from 'src/components/saker/List/Filter';
 import {
     constructNorg2FrontendLink,
     dokumentKanVises,
+    filterDokumenter,
     getSakId,
+    sakerAvsender,
     tekstBasertPaRetning,
     useFilterSaker
 } from 'src/components/saker/utils';
@@ -218,13 +236,40 @@ export const SakDetailPage = () => {
                     as={Link}
                     to={norgUrl}
                     iconPosition="right"
-                    target={'_blank'}
-                    aria-label={'Oversikt over enheter og tema de behandler'}
+                    target="_blank"
+                    aria-label="Oversikt over enheter og tema de behandler"
                     icon={<ExternalLinkIcon aria-hidden fontSize="1rem" />}
                 >
                     Oversikt over enheter og tema de behandler
                 </Button>
             </HStack>
+        );
+    };
+
+    const DokumentAvsenderFilter = () => {
+        const [selectedAvsender, setSelectedAvsender] = useAtom(sakerFilterAvsenderAtom);
+        const onToggleSelected = useCallback(
+            (option: string) => {
+                setSelectedAvsender(option);
+            },
+            [setSelectedAvsender]
+        );
+
+        return (
+            <Fieldset size="small" legend="Avsender">
+                <HStack gap="2">
+                    {sakerAvsender.map((status) => (
+                        <Switch
+                            key={status.value}
+                            size="small"
+                            checked={selectedAvsender.includes(status.value)}
+                            onChange={() => onToggleSelected(status.value)}
+                        >
+                            <p className="capitalize font-medium">{status.label}</p>
+                        </Switch>
+                    ))}
+                </HStack>
+            </Fieldset>
         );
     };
 
@@ -240,7 +285,7 @@ export const SakDetailPage = () => {
             );
         }
 
-        const journalPoster = valgtSak?.tilhorendeDokumenter ?? [];
+        const journalPoster = valgtSak?.tilhorendeDokumenter ? filterDokumenter(valgtSak?.tilhorendeDokumenter) : [];
 
         const sakEntries = {
             Tema: valgtSak.temanavn,
@@ -266,9 +311,13 @@ export const SakDetailPage = () => {
                 </Box.New>
                 <Box.New>
                     <Card padding="4" className="mt-1 mb-4">
-                        <Heading as="h3" size="small" className="mb-2" level="3">
-                            Saksdokumenter
-                        </Heading>
+                        <HStack>
+                            <Heading as="h3" size="small" className="mb-2" level="3">
+                                Saksdokumenter
+                            </Heading>
+                            <Spacer />
+                            <DokumentAvsenderFilter />
+                        </HStack>
                         <JournalPoster journalPoster={journalPoster} columns={6} />
                     </Card>
                     <Alert type="info" variant="info">
