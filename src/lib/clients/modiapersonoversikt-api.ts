@@ -245,6 +245,15 @@ export const useAvsluttDialogMutation = () => {
     });
 };
 
+export const useSakerDokumenter = () => {
+    const fnr = usePersonAtomValue();
+    const enhet = useAtomValue(aktivEnhetAtom) as string;
+    return $api.useSuspenseQuery('post', '/rest/saker/saker_og_dokumenter', {
+        body: { fnr },
+        params: { query: { enhet } }
+    });
+};
+
 export const useUtbetalinger = (startDato: string, sluttDato: string) => {
     const fnr = usePersonAtomValue();
     return $api.useSuspenseQuery('post', '/rest/utbetaling', {

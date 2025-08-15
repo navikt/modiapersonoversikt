@@ -1,6 +1,8 @@
 import { fakerNB_NO as faker } from '@faker-js/faker';
 
 import navfaker from 'nav-faker/dist/index';
+import type { ResultatSaksDokumenter } from 'src/generated/modiapersonoversikt-api';
+import { getAremarkSaksOgDokumenterListe } from 'src/mock/saksoversikt/aremark-saks-og-dokumenter-mock';
 import type { Sak } from '../../models/saksoversikt/sak';
 import type { SakstemaSoknadsstatus, SakstemaSoknadsstatusResponse } from '../../models/saksoversikt/sakstema';
 import { aremark } from '../persondata/aremark';
@@ -44,6 +46,13 @@ export function getStaticMockSaksoversiktV2(): SakstemaSoknadsstatusResponse {
     return {
         resultat: getAremarkSakstemaListeV2()
     };
+}
+
+export function getStaticMockSaksoOgDokumenter(fnr: string): ResultatSaksDokumenter {
+    if (fnr === aremark.personIdent) {
+        return getAremarkSaksOgDokumenterListe();
+    }
+    return { saker: [], temaer: [], feilendeSystemer: [] };
 }
 
 function getSakstemaListeV2(): SakstemaSoknadsstatus[] {

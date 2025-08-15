@@ -79,7 +79,7 @@ function OppfolgingVisning({ detaljertOppfolging }: { detaljertOppfolging: Detal
             <Veileder detaljertOppfolging={detaljertOppfolging} />
             <Element>Innsatsgruppe / Rettighetsgruppe:</Element>
             <Normaltekst>
-                {innsatsgruppe} / {rettighetsgruppe}{' '}
+                {innsatsgruppe} / {rettighetsgruppe}
             </Normaltekst>
             <YtelserForBruker detaljertOppfolging={detaljertOppfolging} />
         </>

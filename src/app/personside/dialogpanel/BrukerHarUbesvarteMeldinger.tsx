@@ -22,7 +22,7 @@ function BrukerHarUbesvarteMeldinger() {
     return (
         <Styling>
             <AlertStripeInfo>
-                Brukeren har {antallUbesvarteTraader}{' '}
+                Brukeren har {antallUbesvarteTraader}
                 {antallUbesvarteTraader > 1 ? 'ubesvarte henvendelser' : 'ubesvart henvendelse'}
             </AlertStripeInfo>
         </Styling>

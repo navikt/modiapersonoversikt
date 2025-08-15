@@ -53,7 +53,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                 <>
                     <Normaltekst>Oppdateringene vil vises her fra den nyeste til den eldste.</Normaltekst>
                     <Normaltekst>
-                        Ved nye oppdateringer vil bjelleikonet{' '}
+                        Ved nye oppdateringer vil bjelleikonet
                         <img src={BjelleikonVarselBilde} alt="bjelleikon med varsel" width="20em" /> være markert med
                         rødt.
                     </Normaltekst>
@@ -128,9 +128,8 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                             'https://navno.sharepoint.com/sites/enhet-kontaktsenter/SitePages/Familie-Felles-Barneloven.aspx'
                         }
                     >
-                        {' '}
                         Les mer om Foreldreansvar på Navet.
-                    </a>{' '}
+                    </a>
                     Foreldreansvar vil kun bli vist på barnet og ikke foreldre.
                 </Normaltekst>
             ),
@@ -468,10 +467,10 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             beskrivelse: (
                 <>
                     <Normaltekst>
-                        Nå vil du kunne se dato for når utgående dokument er lest av bruker på{' '}
+                        Nå vil du kunne se dato for når utgående dokument er lest av bruker på
                         <a href="https://www.nav.no" target="_blank" rel="noreferrer">
                             nav.no
-                        </a>{' '}
+                        </a>
                         i saksoversikten. <br /> Alle dokument som er lest etter 12.10.22 vil få opp denne
                         informasjonen.
                     </Normaltekst>
@@ -505,14 +504,14 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                 <>
                     <Normaltekst>
                         Det er gjort endringer på meldingsvisning. Nå er det kun tre valg, referat, samtale og
-                        infomelding. Se fagmelding på{' '}
+                        infomelding. Se fagmelding på
                         <a
                             href="https://navno.sharepoint.com/sites/fag-og-ytelser-fagsystemer/SitePages/Endringer-i-Modia-personoversikt-fra-27.-mars.aspx"
                             target="_blank"
                             rel="noreferrer"
                         >
                             navet
-                        </a>{' '}
+                        </a>
                     </Normaltekst>
                 </>
             ),
@@ -575,7 +574,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                 <>
                     <Normaltekst>
                         Søk etter person med kontonummer er nå fjernet fra "Avansert søk". For å søke etter personer med
-                        et gitt kontonummer kan man benytte kontonummersøk i{' '}
+                        et gitt kontonummer kan man benytte kontonummersøk i
                         <a href="https://utbetalingsportalen.intern.nav.no" target="_blank" rel="noreferrer">
                             utbetalingsportalen
                         </a>
