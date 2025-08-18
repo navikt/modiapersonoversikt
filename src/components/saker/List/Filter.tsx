@@ -47,7 +47,7 @@ const sakerFilterSaksIdAtom = atom(
 
 export const sakerFilterAvsenderAtom = atom(
     (get) => get(sakerFilterAtom).avsender,
-    (_get, set, newVal: string) => {
+    (_get, set, newVal: DokumentmetadataAvsender) => {
         set(sakerFilterAtom, (filters) => ({
             ...filters,
             avsender: xor(filters.avsender, [newVal])
@@ -65,7 +65,7 @@ const sakerFilterStatusAtom = atom(
     }
 );
 
-export const sakerFilterDateRangeAtom = atom(
+const sakerFilterDateRangeAtom = atom(
     (get) => get(sakerFilterAtom).dateRange,
     (_get, set, dateRange: DateRange | null) => {
         const range = dateRange ?? defaultDate;

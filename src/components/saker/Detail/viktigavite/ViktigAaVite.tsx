@@ -1,18 +1,18 @@
 import { ExpansionCard } from '@navikt/ds-react';
-import type { Sakstema } from 'src/generated/modiapersonoversikt-api';
+import type { SaksDokumenter } from 'src/generated/modiapersonoversikt-api';
 import { ViktigAaViteAapInnhold } from './AapInnhold';
 import { ViktigAaViteDagInnhold } from './DagInnhold';
 import { ViktigAaViteIndInnhold } from './IndInnhold';
 
-const ViktigAaVite = ({ valgtSakstema }: { valgtSakstema?: Sakstema }) => {
+const ViktigAaVite = ({ valgtSak }: { valgtSak?: SaksDokumenter }) => {
     const temakoderMedTekst = ['AAP', 'DAG', 'IND'];
 
-    if (!valgtSakstema || !temakoderMedTekst.includes(valgtSakstema.temakode)) {
+    if (!valgtSak || !temakoderMedTekst.includes(valgtSak.temakode)) {
         return null;
     }
 
     const innhold = () => {
-        switch (valgtSakstema.temakode) {
+        switch (valgtSak.temakode) {
             case 'AAP':
                 return <ViktigAaViteAapInnhold />;
             case 'DAG':
@@ -24,7 +24,7 @@ const ViktigAaVite = ({ valgtSakstema }: { valgtSakstema?: Sakstema }) => {
         }
     };
 
-    const title = `Viktig å vite om ${valgtSakstema?.temanavn}`;
+    const title = `Viktig å vite om ${valgtSak?.temanavn}`;
 
     return (
         <ExpansionCard size="small" aria-label={title} className="border-1 border-border-subtle border-gray-200">

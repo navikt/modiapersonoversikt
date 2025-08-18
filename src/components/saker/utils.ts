@@ -5,24 +5,17 @@ import { apiBaseUri } from 'src/api/config';
 import type { SakerFilter } from 'src/components/saker/List/Filter';
 import { sakerFilterAtom } from 'src/components/saker/List/Filter';
 import { useSakerDokumenter } from 'src/lib/clients/modiapersonoversikt-api';
-import type {
-    Dokument,
-    Dokumentmetadata,
-    Journalpost,
-    Sak,
-    SaksDokumenter,
-    Sakstema
-} from 'src/lib/types/modiapersonoversikt-api';
+import type { Dokument, Dokumentmetadata, Person, SaksDokumenter } from 'src/lib/types/modiapersonoversikt-api';
 import {
     DokumentmetadataAvsender,
     DokumentmetadataMottaker,
-    DokumentmetadataRetning
+    DokumentmetadataRetning,
+    FeilFeilmelding
 } from 'src/lib/types/modiapersonoversikt-api';
-import { Feilmelding } from 'src/models/saksoversikt/journalpost';
 import { datoSynkende } from 'src/utils/date-utils';
 import { parseQueryString } from 'src/utils/url-utils';
 
-export const filterSaker = (saker: SaksDokumenter[], filters: SakerFilter): Sak[] => {
+const filterSaker = (saker: SaksDokumenter[], filters: SakerFilter): SaksDokumenter[] => {
     const { saksId, temaer, status, dateRange } = filters;
 
     if (!saker || saker.length === 0) {
@@ -68,12 +61,12 @@ export const filterDokumenter = (dokumenter: Dokumentmetadata[]): Dokumentmetada
     return filteredList;
 };
 
-export const useFilterSaker = () => {
+export const useFilterSaker = (): SaksDokumenter[] => {
     const filters = useAtomValue(sakerFilterAtom);
     const { data } = useSakerDokumenter();
     const saker = data?.saker ?? [];
 
-    const sortedSaker = saker.toSorted(datoSynkende((t) => t.opprettet));
+    const sortedSaker = saker.toSorted(datoSynkende((t) => t.opprettet || new Date(0)));
 
     return useMemo(() => filterSaker(sortedSaker, filters), [sortedSaker, filters]);
 };
@@ -83,13 +76,6 @@ export const useTemaer = () => {
     const temaer = data?.temaer ?? [];
 
     return useMemo(() => temaer, [temaer]);
-};
-
-export const useFeilendeSystemer = () => {
-    const { data } = useSakerDokumenter();
-    const feilendeSystemer = data?.feilendeSystemer ?? [];
-
-    return useMemo(() => feilendeSystemer, [feilendeSystemer]);
 };
 
 export const feilmelding = (statusKode: number) => {
@@ -109,7 +95,7 @@ export const byggDokumentVisningUrl = (url: string): string => {
     return `${apiBaseUri}/saker/dokument/${journalpost}/${dokument}`;
 };
 
-export const getSakId = (sak: Sak) => `${sak.temakode}-${sak.saksid}`;
+export const getSakId = (sak: SaksDokumenter) => `${sak.temakode}-${sak.saksid}`;
 
 export const sakerAvsender = [
     { value: DokumentmetadataAvsender.NAV, label: 'Nav' },
@@ -117,26 +103,26 @@ export const sakerAvsender = [
     { value: DokumentmetadataAvsender.EKSTERN_PART, label: 'Ekstern' },
     { value: DokumentmetadataAvsender.UKJENT, label: 'Ukjent' }
 ];
-export const sakStatusAapen = 'åpen';
-export const sakStatusAvsluttet = 'avsluttett';
+const sakStatusAapen = 'åpen';
+const sakStatusAvsluttet = 'avsluttett';
 export const sakStatuser = [sakStatusAapen, sakStatusAvsluttet];
-export const sakstemakodeAlle = 'ALLE';
+const sakstemakodeAlle = 'ALLE';
 
 export const constructNorg2FrontendLink = (
     baseUrl: string,
-    valgtSakstema?: Sakstema,
+    valgtSak?: SaksDokumenter,
     geografiskTilknytning?: string
 ): string => {
-    const temaQuery = valgtSakstema ? buildTemaQueryForNorg(valgtSakstema) : '';
+    const temaQuery = valgtSak ? buildTemaQueryForNorg(valgtSak) : '';
     return `${baseUrl}/#/startsok?tema=${temaQuery}&gt=${geografiskTilknytning || ''}`;
 };
 
-export const buildTemaQueryForNorg = (sakstema: Sakstema): string => {
-    if (sakstema.temakode !== sakstemakodeAlle) {
-        return sakstema.temakode;
+const buildTemaQueryForNorg = (sak: SaksDokumenter): string => {
+    if (sak.temakode !== sakstemakodeAlle) {
+        return sak.temakode;
     }
 
-    const uniqueTemakodes = sakstema.dokumentMetadata.reduce((acc: string[], journal: Journalpost) => {
+    const uniqueTemakodes = sak.tilhorendeDokumenter.reduce((acc: string[], journal: Dokumentmetadata) => {
         if (!acc.includes(journal.temakode)) {
             acc.push(journal.temakode);
         }
@@ -150,9 +136,9 @@ export const dokumentKanVises = (journalpost: Dokumentmetadata, dokument: Dokume
     return dokument.kanVises && harTilgangTilJournalpost(journalpost);
 };
 
-export const harTilgangTilJournalpost = (journalpost: Dokumentmetadata) => {
+const harTilgangTilJournalpost = (journalpost: Dokumentmetadata) => {
     const saksid = journalpost.tilhorendeFagsaksid || journalpost.tilhorendeSaksid || '';
-    return journalpost.feil?.feilmelding !== Feilmelding.Sikkerhetsbegrensning && saksid.length !== 0;
+    return journalpost.feil?.feilmelding !== FeilFeilmelding.SIKKERHETSBEGRENSNING && saksid.length !== 0;
 };
 
 export const tekstBasertPaRetning = (brukernavn: string, journalpost: Dokumentmetadata) => {
@@ -174,3 +160,15 @@ const utgaendeTekst = (mottaker: DokumentmetadataMottaker, mottakernavn: string)
     const dokumentmottaker = mottaker === DokumentmetadataMottaker.SLUTTBRUKER ? '' : `(Sendt til ${mottakernavn})`;
     return `Fra NAV ${dokumentmottaker}`;
 };
+
+export function hentBrukerNavn(person: Person | null): string {
+    const navn = person?.navn.firstOrNull();
+    if (!navn) {
+        return 'Ukjent navn';
+    }
+    return navn.fornavn + (navn.mellomnavn ? ` ${navn.mellomnavn} ` : ' ') + navn.etternavn;
+}
+
+export function getSaksdokumentUrl(journalpostId?: string, dokumentreferanse?: string) {
+    return `journalpost=${journalpostId}&dokument=${dokumentreferanse}`;
+}
