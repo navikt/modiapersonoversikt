@@ -15,17 +15,16 @@ import {
     VStack
 } from '@navikt/ds-react';
 import { Link, getRouteApi } from '@tanstack/react-router';
-import { useAtom } from 'jotai/index';
+import { useAtom, useAtomValue } from 'jotai/index';
 import { Suspense, useCallback, useState } from 'react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import DokumentVisning from 'src/components/saker/Detail/DokumentVisning';
 import ViktigAaVite from 'src/components/saker/Detail/viktigavite/ViktigAaVite';
-import { sakerFilterAvsenderAtom } from 'src/components/saker/List/Filter';
+import { sakerFilterAtom, sakerFilterAvsenderAtom } from 'src/components/saker/List/Filter';
 import {
     constructNorg2FrontendLink,
     dokumentKanVises,
-    filterDokumenter,
     getSakId,
     getSaksdokumentUrl,
     hentBrukerNavn,
@@ -282,6 +281,7 @@ export const SakDetailPage = () => {
     const SakDetails = () => {
         const { id } = routeApi.useSearch();
         const saker = useFilterSaker();
+        const { avsender } = useAtomValue(sakerFilterAtom);
         const valgtSak = saker.find((item) => getSakId(item) === id);
         if (!valgtSak) {
             return (
@@ -290,6 +290,29 @@ export const SakDetailPage = () => {
                 </VStack>
             );
         }
+
+        if (!valgtSak.harTilgang) {
+            return (
+                <VStack flexGrow="1" minHeight="0" className="mt-6">
+                    <Alert variant="warning">
+                        Du kan ikke se innholdet i denne saken fordi du ikke har tilgang til tema {valgtSak.temanavn}.
+                    </Alert>
+                </VStack>
+            );
+        }
+
+        const filterDokumenter = (dokumenter: Dokumentmetadata[]): Dokumentmetadata[] => {
+            if (!dokumenter || dokumenter.length === 0) {
+                return [];
+            }
+
+            let filteredList = dokumenter;
+            if (avsender?.length) {
+                filteredList = filteredList.filter((dokument) => avsender.includes(dokument.avsender));
+            }
+
+            return filteredList;
+        };
 
         const journalPoster = valgtSak?.tilhorendeDokumenter ? filterDokumenter(valgtSak?.tilhorendeDokumenter) : [];
 

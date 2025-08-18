@@ -1,4 +1,4 @@
-import { ChevronRightIcon } from '@navikt/aksel-icons';
+import { ChevronRightIcon, CircleSlashIcon } from '@navikt/aksel-icons';
 import { BodyShort, Button, HStack, Heading, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import Card from 'src/components/Card';
@@ -50,13 +50,19 @@ export const SakItem = ({
                         </BodyShort>
                     </HStack>
                 </VStack>
-                <Button
-                    variant="tertiary-neutral"
-                    size="small"
-                    name="Åpne"
-                    aria-label="Åpne"
-                    icon={<ChevronRightIcon className="translate-x-0 group-hover:translate-x-1 transition-transform" />}
-                />
+                {sak.harTilgang ? (
+                    <Button
+                        variant="tertiary-neutral"
+                        size="small"
+                        name="Åpne"
+                        aria-label="Åpne"
+                        icon={
+                            <ChevronRightIcon className="translate-x-0 group-hover:translate-x-1 transition-transform" />
+                        }
+                    />
+                ) : (
+                    <CircleSlashIcon title="Du har ikke tema tilgang" fontSize="1rem" />
+                )}
             </HStack>
         </Card>
     );

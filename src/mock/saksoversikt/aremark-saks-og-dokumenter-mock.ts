@@ -3838,7 +3838,7 @@ export const getAremarkSaksOgDokumenterListe = () => {
                 opprettet: '2023-02-07T00:00:00',
                 fagsystem: 'FS22',
                 baksystem: SaksDokumenterBaksystem.SAF,
-                harTilgang: false,
+                harTilgang: true,
                 feilendeSystemer: []
             },
             {
@@ -5269,7 +5269,7 @@ export const getAremarkSaksOgDokumenterListe = () => {
                 opprettet: '2023-02-07T00:00:00',
                 fagsystem: 'FS22',
                 baksystem: SaksDokumenterBaksystem.SAF,
-                harTilgang: false,
+                harTilgang: true,
                 feilendeSystemer: []
             },
             {
@@ -5489,7 +5489,7 @@ export const getAremarkSaksOgDokumenterListe = () => {
                 opprettet: '2023-02-07T00:00:00',
                 fagsystem: 'FS22',
                 baksystem: SaksDokumenterBaksystem.SAF,
-                harTilgang: false,
+                harTilgang: true,
                 feilendeSystemer: []
             },
             {
@@ -5502,7 +5502,7 @@ export const getAremarkSaksOgDokumenterListe = () => {
                 opprettet: '2023-02-07T00:00:00',
                 fagsystem: 'FS22',
                 baksystem: SaksDokumenterBaksystem.SAF,
-                harTilgang: false,
+                harTilgang: true,
                 feilendeSystemer: []
             },
             {
@@ -5619,7 +5619,7 @@ export const getAremarkSaksOgDokumenterListe = () => {
                 opprettet: '2023-02-07T00:00:00',
                 fagsystem: 'FS22',
                 baksystem: SaksDokumenterBaksystem.SAF,
-                harTilgang: false,
+                harTilgang: true,
                 feilendeSystemer: []
             },
             {
@@ -5632,7 +5632,7 @@ export const getAremarkSaksOgDokumenterListe = () => {
                 opprettet: '2023-02-07T00:00:00',
                 fagsystem: 'FS22',
                 baksystem: SaksDokumenterBaksystem.SAF,
-                harTilgang: false,
+                harTilgang: true,
                 feilendeSystemer: []
             },
             {
@@ -5645,7 +5645,7 @@ export const getAremarkSaksOgDokumenterListe = () => {
                 opprettet: '2023-02-07T00:00:00',
                 fagsystem: 'FS22',
                 baksystem: SaksDokumenterBaksystem.SAF,
-                harTilgang: false,
+                harTilgang: true,
                 feilendeSystemer: []
             },
             {
@@ -6079,7 +6079,7 @@ export const getAremarkSaksOgDokumenterListe = () => {
                 opprettet: '2023-03-13T00:00:00',
                 fagsystem: 'FS22',
                 baksystem: SaksDokumenterBaksystem.SAF,
-                harTilgang: false,
+                harTilgang: true,
                 feilendeSystemer: []
             },
             {
@@ -6758,7 +6758,7 @@ export const getAremarkSaksOgDokumenterListe = () => {
                 opprettet: '2023-05-02T00:00:00',
                 fagsystem: 'FS22',
                 baksystem: SaksDokumenterBaksystem.SAF,
-                harTilgang: false,
+                harTilgang: true,
                 feilendeSystemer: []
             },
             {
@@ -10231,7 +10231,7 @@ export const getAremarkSaksOgDokumenterListe = () => {
                 opprettet: '2024-06-27T00:00:00',
                 fagsystem: 'KELVIN',
                 baksystem: SaksDokumenterBaksystem.SAF,
-                harTilgang: false,
+                harTilgang: true,
                 feilendeSystemer: []
             },
             {
@@ -13502,7 +13502,7 @@ export const getAremarkSaksOgDokumenterListe = () => {
                 opprettet: '2025-07-01T00:00:00',
                 fagsystem: 'FS22',
                 baksystem: SaksDokumenterBaksystem.SAF,
-                harTilgang: false,
+                harTilgang: true,
                 feilendeSystemer: []
             },
             {

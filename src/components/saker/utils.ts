@@ -47,20 +47,6 @@ const filterSaker = (saker: SaksDokumenter[], filters: SakerFilter): SaksDokumen
     return filteredList;
 };
 
-export const filterDokumenter = (dokumenter: Dokumentmetadata[]): Dokumentmetadata[] => {
-    const { avsender } = useAtomValue(sakerFilterAtom);
-    if (!dokumenter || dokumenter.length === 0) {
-        return [];
-    }
-
-    let filteredList = dokumenter;
-    if (avsender?.length) {
-        filteredList = filteredList.filter((dokument) => avsender.includes(dokument.avsender));
-    }
-
-    return filteredList;
-};
-
 export const useFilterSaker = (): SaksDokumenter[] => {
     const filters = useAtomValue(sakerFilterAtom);
     const { data } = useSakerDokumenter();
