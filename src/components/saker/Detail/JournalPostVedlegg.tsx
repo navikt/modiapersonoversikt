@@ -4,7 +4,7 @@ import Dokument from 'src/components/saker/Detail/Dokument';
 import { tekstBasertPaRetning } from 'src/components/saker/utils';
 import type { Dokumentmetadata } from 'src/generated/modiapersonoversikt-api';
 
-const JournalPostVedlegg = ({ journalPost, brukersNavn }: { journalPost: Dokumentmetadata; brukersNavn?: string }) => {
+const JournalPostVedlegg = ({ journalPost, brukersNavn }: { journalPost: Dokumentmetadata; brukersNavn: string }) => {
     const [openMap, setOpenMap] = useState<{
         [key: string]: boolean;
     }>({});

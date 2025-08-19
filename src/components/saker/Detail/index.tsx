@@ -55,7 +55,7 @@ const NorgLenke = ({
     geografiskTilknytning
 }: {
     valgtSak?: SaksDokumenter;
-    geografiskTilknytning?: string | null;
+    geografiskTilknytning?: string;
 }) => {
     const baseUrlResource = baseurlsResource.useFetch();
     const norg2Frontend = baseUrlResource.data?.norg2Frontend ?? '';

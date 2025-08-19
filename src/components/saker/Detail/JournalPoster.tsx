@@ -12,7 +12,7 @@ const JournalPoster = ({
     journalPoster,
     brukersNavn,
     columns
-}: { journalPoster: Dokumentmetadata[]; brukersNavn?: string; columns?: number }) => {
+}: { journalPoster: Dokumentmetadata[]; brukersNavn: string; columns?: number }) => {
     const [openMap, setOpenMap] = useState<{ [key: string]: boolean }>({});
 
     if (journalPoster.length === 0) {
