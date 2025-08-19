@@ -5,6 +5,10 @@ import { tekstBasertPaRetning } from 'src/components/saker/utils';
 import type { Dokumentmetadata } from 'src/generated/modiapersonoversikt-api';
 
 const JournalPostVedlegg = ({ journalPost, brukersNavn }: { journalPost: Dokumentmetadata; brukersNavn?: string }) => {
+    const [openMap, setOpenMap] = useState<{
+        [key: string]: boolean;
+    }>({});
+
     if (journalPost.vedlegg.length === 0) {
         return (
             <Alert variant="info" className="my-4">
@@ -12,9 +16,6 @@ const JournalPostVedlegg = ({ journalPost, brukersNavn }: { journalPost: Dokumen
             </Alert>
         );
     }
-    const [openMap, setOpenMap] = useState<{
-        [key: string]: boolean;
-    }>({});
 
     const handleAccordionChange = (id: string, isOpen: boolean) => {
         setOpenMap({

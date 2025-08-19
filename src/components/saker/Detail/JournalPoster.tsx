@@ -13,10 +13,11 @@ const JournalPoster = ({
     brukersNavn,
     columns
 }: { journalPoster: Dokumentmetadata[]; brukersNavn?: string; columns?: number }) => {
+    const [openMap, setOpenMap] = useState<{ [key: string]: boolean }>({});
+
     if (journalPoster.length === 0) {
         return <Alert variant="info">Valgte sak har ikke dokumenter.</Alert>;
     }
-    const [openMap, setOpenMap] = useState<{ [key: string]: boolean }>({});
 
     const getDokumentEntries = (journalPost: Dokumentmetadata, dokument: Dokument) => {
         return {
