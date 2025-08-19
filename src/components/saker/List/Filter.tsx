@@ -1,12 +1,13 @@
-import { Box, ExpansionCard, Fieldset, Search, Switch, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
+import { Box, ExpansionCard, Fieldset, Search, Skeleton, Switch, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
 import { atom, useAtom, useAtomValue } from 'jotai';
 import { atomWithReset } from 'jotai/utils';
 import { debounce, xor } from 'lodash';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import DateRangeSelector, { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
 import { sakStatuser, useTemaer } from 'src/components/saker/utils';
 import type { DokumentmetadataAvsender } from 'src/generated/modiapersonoversikt-api';
+import { twMerge } from 'tailwind-merge';
 
 export type SakerFilter = {
     dateRange: DateRange;
@@ -183,9 +184,25 @@ const FilterTitle = () => {
 };
 
 export const SakerFilter = () => {
+    const [open, setOpen] = useState(false);
+    const expansionFilterRef = useRef<HTMLDivElement>(null);
+
+    const handleExpansionChange = () => {
+        setTimeout(() => {
+            if (!expansionFilterRef.current) return;
+            setOpen(expansionFilterRef.current.classList.contains('aksel-expansioncard--open'));
+        }, 0);
+    };
+
     return (
-        <Box.New marginInline="0 2">
-            <ExpansionCard size="small" aria-label="Filtrer saker">
+        <Box.New marginInline="0 2" className={twMerge(open && 'max-h-full')}>
+            <ExpansionCard
+                onClick={handleExpansionChange}
+                ref={expansionFilterRef}
+                className={twMerge(open && 'max-h-full overflow-auto')}
+                size="small"
+                aria-label="Filtrer saker"
+            >
                 <ExpansionCard.Header className="p-1">
                     <Box.New paddingInline="4">
                         <ExpansionCard.Title size="small">
@@ -195,13 +212,22 @@ export const SakerFilter = () => {
                 </ExpansionCard.Header>
                 <ExpansionCard.Content className="overflow-visible">
                     <VStack gap="2">
-                        <Box.New maxWidth="17rem">
+                        <Box.New maxWidth="15rem">
                             <SaksIdSearchField />
                         </Box.New>
-                        <Box.New maxWidth="17rem">
-                            <TemaFilter />
+                        <Box.New maxWidth="15rem">
+                            <Suspense
+                                fallback={
+                                    <VStack gap="2">
+                                        <span className="font-ax-bold">Tema</span>
+                                        <Skeleton width="100%" variant="rounded" height="2rem" />
+                                    </VStack>
+                                }
+                            >
+                                <TemaFilter />
+                            </Suspense>
                         </Box.New>
-                        <Box.New maxWidth="17rem">
+                        <Box.New maxWidth="15rem">
                             <StatusFilter />
                         </Box.New>
                         <Box.New>

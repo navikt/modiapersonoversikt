@@ -1,221 +1,33 @@
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
-import {
-    Accordion,
-    Alert,
-    BodyShort,
-    Box,
-    Button,
-    Fieldset,
-    HStack,
-    Heading,
-    Skeleton,
-    Spacer,
-    Switch,
-    Tabs,
-    VStack
-} from '@navikt/ds-react';
+import { Alert, BodyLong, Box, Button, HStack, Heading, Skeleton, Spacer, Switch, VStack } from '@navikt/ds-react';
 import { Link, getRouteApi } from '@tanstack/react-router';
 import { useAtom, useAtomValue } from 'jotai/index';
-import { Suspense, useCallback, useState } from 'react';
+import { Suspense, useCallback } from 'react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
-import DokumentVisning from 'src/components/saker/Detail/DokumentVisning';
+import JournalPoster from 'src/components/saker/Detail/JournalPoster';
 import ViktigAaVite from 'src/components/saker/Detail/viktigavite/ViktigAaVite';
 import { sakerFilterAtom, sakerFilterAvsenderAtom } from 'src/components/saker/List/Filter';
 import {
     constructNorg2FrontendLink,
-    dokumentKanVises,
     getSakId,
-    getSaksdokumentUrl,
     hentBrukerNavn,
     sakerAvsender,
-    tekstBasertPaRetning,
     useFilterSaker
 } from 'src/components/saker/utils';
 import { TitleValuePairsComponent } from 'src/components/ytelser/Detail';
-import type {
-    Dokument,
-    Dokumentmetadata,
-    DokumentmetadataAvsender,
-    SaksDokumenter
-} from 'src/generated/modiapersonoversikt-api';
-import { DokumentDokumentStatus } from 'src/generated/modiapersonoversikt-api';
+import type { Dokumentmetadata, DokumentmetadataAvsender, SaksDokumenter } from 'src/generated/modiapersonoversikt-api';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
-import { usePersonAtomValue } from 'src/lib/state/context';
 import baseurlsResource from 'src/rest/resources/baseurlsResource';
-import { formatterDato, formatterDatoTid } from 'src/utils/date-utils';
+import { formatterDato } from 'src/utils/date-utils';
 import { datoEllerNull } from 'src/utils/string-utils';
 
 export const SakDetailPage = () => {
     const routeApi = getRouteApi('/new/person/saker');
-    const fnr = usePersonAtomValue();
     const {
         data: { person }
     } = usePersonData();
     const brukersNavn = hentBrukerNavn(person);
-
-    const JournalPostVedlegg = ({ journalPost }: { journalPost: Dokumentmetadata }) => {
-        if (journalPost.vedlegg.length === 0) {
-            return (
-                <Alert variant="info" className="my-4">
-                    Valgte sak har ikke vedlegg.
-                </Alert>
-            );
-        }
-        const [openMap, setOpenMap] = useState<{
-            [key: string]: boolean;
-        }>({});
-
-        const handleAccordionChange = (id: string, isOpen: boolean) => {
-            setOpenMap({
-                ...openMap,
-                [id]: isOpen
-            });
-        };
-
-        return (
-            <Accordion size="small" headingSize="xsmall">
-                {journalPost.vedlegg.map((vedlegg, index) => {
-                    const key = `${index}`;
-                    const isOpen = openMap[key] ?? false;
-                    return (
-                        <Accordion.Item
-                            key={key}
-                            open={isOpen}
-                            onOpenChange={() => handleAccordionChange(key, !isOpen)}
-                        >
-                            <Accordion.Header>
-                                {vedlegg.tittel}({tekstBasertPaRetning(brukersNavn, journalPost)})
-                            </Accordion.Header>
-                            <Accordion.Content>
-                                {isOpen && (
-                                    <VStack gap="4" flexGrow="1" className="overflow-scroll">
-                                        <Dokument
-                                            journalPost={journalPost}
-                                            kanVises={!vedlegg.logiskDokument}
-                                            dokument={vedlegg}
-                                        />
-                                    </VStack>
-                                )}
-                            </Accordion.Content>
-                        </Accordion.Item>
-                    );
-                })}
-            </Accordion>
-        );
-    };
-
-    const JournalPoster = ({ journalPoster, columns }: { journalPoster: Dokumentmetadata[]; columns?: number }) => {
-        if (journalPoster.length === 0) {
-            return <Alert variant="info">Valgte sak har ikke dokumenter.</Alert>;
-        }
-        const [openMap, setOpenMap] = useState<{ [key: string]: boolean }>({});
-
-        const getDokumentEntries = (journalPost: Dokumentmetadata, dokument: Dokument) => {
-            return {
-                Dato: datoEllerNull(journalPost.dato),
-                JournalpostId: journalPost.journalpostId,
-                Avsender: journalPost.avsender,
-                Mottaker: journalPost.mottaker,
-                Status: dokument.dokumentStatus,
-                Lestdato: journalPost.lestDato ? formatterDatoTid(new Date(journalPost.lestDato)) : 'Ikke lest',
-                Vedlegg: `Dokumentet har ${journalPost.vedlegg.length} vedlegg`
-            };
-        };
-
-        const handleAccordionChange = (id: string, isOpen: boolean) => {
-            setOpenMap({
-                ...openMap,
-                [id]: isOpen
-            });
-        };
-
-        return (
-            <VStack gap="2">
-                <Accordion size="small" headingSize="xsmall">
-                    {journalPoster.map((journalPost) => {
-                        const hovedDokument = journalPost.hoveddokument;
-                        const tilgangTilHoveddokument = dokumentKanVises(journalPost, hovedDokument);
-                        const isOpen = openMap[journalPost.id] ?? false;
-                        return (
-                            <Accordion.Item
-                                key={journalPost.id}
-                                open={isOpen}
-                                onOpenChange={() => handleAccordionChange(journalPost.id, !isOpen)}
-                            >
-                                <Accordion.Header>
-                                    <VStack gap="2">
-                                        <BodyShort size="small" weight="semibold">
-                                            {tekstBasertPaRetning(brukersNavn, journalPost)} (
-                                            {datoEllerNull(journalPost.dato)})
-                                        </BodyShort>
-                                        <BodyShort size="small"> {hovedDokument.tittel}</BodyShort>
-                                    </VStack>
-                                </Accordion.Header>
-                                <Accordion.Content>
-                                    {isOpen && (
-                                        <VStack gap="4" flexGrow="1" className="overflow-scroll">
-                                            <TitleValuePairsComponent
-                                                entries={getDokumentEntries(journalPost, hovedDokument)}
-                                                columns={columns}
-                                            />
-                                            <Tabs size="small" defaultValue="hoveddokument">
-                                                <Tabs.List>
-                                                    <Tabs.Tab value="hoveddokument" label="Hoveddokument" />
-                                                    <Tabs.Tab value="vedlegg" label="Vedlegg" />
-                                                </Tabs.List>
-                                                <Tabs.Panel lazy={true} value="hoveddokument">
-                                                    <Dokument
-                                                        journalPost={journalPost}
-                                                        dokument={hovedDokument}
-                                                        kanVises={tilgangTilHoveddokument}
-                                                    />
-                                                </Tabs.Panel>
-                                                <Tabs.Panel lazy={true} value="vedlegg">
-                                                    <JournalPostVedlegg journalPost={journalPost} />
-                                                </Tabs.Panel>
-                                            </Tabs>
-                                        </VStack>
-                                    )}
-                                </Accordion.Content>
-                            </Accordion.Item>
-                        );
-                    })}
-                </Accordion>
-            </VStack>
-        );
-    };
-
-    const Dokument = ({
-        journalPost,
-        dokument,
-        kanVises
-    }: { journalPost: Dokumentmetadata; dokument: Dokument; kanVises: boolean }) => {
-        const journalpostId = journalPost.journalpostId;
-        const dokumentReferanse = dokument.dokumentreferanse;
-        const ikkeTilgjengelig = journalpostId === null || dokumentReferanse === null;
-
-        const dokumentTekst = (dokument: Dokument) => {
-            return (
-                dokument.tittel +
-                (dokument.skjerming ? ' (Skjermet)' : '') +
-                (dokument.dokumentStatus === DokumentDokumentStatus.KASSERT ? ' (Kassert)' : '') +
-                (ikkeTilgjengelig ? ' (Dokument er ikke tilgjengelig)' : '')
-            );
-        };
-
-        if (!kanVises || ikkeTilgjengelig) {
-            return (
-                <Alert variant="warning" className="my-4">
-                    {dokumentTekst(dokument)}
-                </Alert>
-            );
-        }
-
-        const dokumentUrl = getSaksdokumentUrl(journalpostId, dokumentReferanse);
-
-        return <DokumentVisning fnr={fnr} url={dokumentUrl} />;
-    };
 
     const NorgLenke = ({
         valgtSak
@@ -261,20 +73,19 @@ export const SakDetailPage = () => {
         );
 
         return (
-            <Fieldset size="small" legend="Avsender">
-                <HStack gap="2">
-                    {sakerAvsender.map((status) => (
-                        <Switch
-                            key={status.value}
-                            size="small"
-                            checked={selectedAvsender.includes(status.value)}
-                            onChange={() => onToggleSelected(status.value)}
-                        >
-                            <p className="capitalize font-medium">{status.label}</p>
-                        </Switch>
-                    ))}
-                </HStack>
-            </Fieldset>
+            <HStack gap="2" align="center">
+                <BodyLong size="small">Avsender: </BodyLong>
+                {sakerAvsender.map((status) => (
+                    <Switch
+                        key={status.value}
+                        size="small"
+                        checked={selectedAvsender.includes(status.value)}
+                        onChange={() => onToggleSelected(status.value)}
+                    >
+                        <p className="capitalize font-medium">{status.label}</p>
+                    </Switch>
+                ))}
+            </HStack>
         );
     };
 
@@ -347,7 +158,7 @@ export const SakDetailPage = () => {
                             <Spacer />
                             <DokumentAvsenderFilter />
                         </HStack>
-                        <JournalPoster journalPoster={journalPoster} columns={6} />
+                        <JournalPoster journalPoster={journalPoster} brukersNavn={brukersNavn} columns={4} />
                     </Card>
                     <Alert variant="info">
                         Modia viser elektroniske dokumenter brukeren har sendt inn via nav.no etter 9. desember 2014.
