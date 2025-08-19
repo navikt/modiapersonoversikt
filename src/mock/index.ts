@@ -17,7 +17,7 @@ import { getMockOppfolging, getMockYtelserOgKontrakter } from './oppfolging-mock
 import { hentPersondata } from './persondata/persondata';
 import { mockPersonsokResponse, mockStaticPersonsokRequest } from './personsok/personsokMock';
 import { saksbehandlerInnstillingerHandlers } from './saksbehandlerinnstillinger-mock';
-import { getMockSaksoversiktV2 } from './saksoversikt/saksoversikt-mock';
+import { getMockSaksoversiktV2, getStaticMockSaksoOgDokumenter } from './saksoversikt/saksoversikt-mock';
 import { skrivestotteMock } from './skrivestotte';
 import { authMock, tilgangskontrollMock } from './tilgangskontroll-mock';
 import { getMockUtbetalinger } from './utbetalinger/utbetalinger-mock';
@@ -134,6 +134,18 @@ const saksoversiktV3Handler = http.post(
             randomDelay(),
             fodselsNummerErGyldigStatus,
             mockGeneratorMedFodselsnummerV2(getMockSaksoversiktV2)
+        )
+    )
+);
+
+const sakerOgDokumenterHandler = http.post(
+    `${apiBaseUri}/saker/saker_og_dokumenter`,
+    verify(
+        harEnhetIdSomQueryParam,
+        withDelayedResponse(
+            randomDelay(),
+            fodselsNummerErGyldigStatus,
+            mockGeneratorMedFodselsnummerV2((fodselsnummer) => getStaticMockSaksoOgDokumenter(fodselsnummer))
         )
     )
 );
@@ -349,6 +361,7 @@ export const handlers: (HttpHandler | WebSocketHandler)[] = [
     ...tilgangsKontrollHandler,
     ...aktorIdMock,
     saksoversiktV3Handler,
+    sakerOgDokumenterHandler,
     utbetalingerHandler,
     sykepengerHandler,
     foreldrepengerHandler,

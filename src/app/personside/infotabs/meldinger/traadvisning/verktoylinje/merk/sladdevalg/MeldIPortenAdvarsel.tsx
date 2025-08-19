@@ -8,7 +8,7 @@ function MeldIPortenAdvarsel(props: Props) {
     const className = props.className ?? 'blokk-xxs';
     return (
         <AlertStripeAdvarsel className={className}>
-            Sak om feilregistrering/sladding må meldes i{' '}
+            Sak om feilregistrering/sladding må meldes i
             <a
                 href="https://jira.adeo.no/plugins/servlet/desk/portal/541/create/1481"
                 target="_blank"

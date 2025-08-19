@@ -4,70 +4,6 @@
  */
 
 export interface paths {
-    '/rest/varsler': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations['hentAlleVarsler'];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/person': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations['hentPersondata'];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/person/identer': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations['hentIdenter'];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/person/aktorid': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations['hentAktorId'];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     '/rest/ytelse/tiltakspenger': {
         parameters: {
             query?: never;
@@ -164,6 +100,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    '/rest/varsler': {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations['hentAlleVarsler'];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     '/rest/utbetaling': {
         parameters: {
             query?: never;
@@ -221,7 +173,23 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations['hentSakstema'];
+        post: operations['hentSakstemaSoknadsstatus'];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    '/rest/saker/saker_og_dokumenter': {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations['hentSaker'];
         delete?: never;
         options?: never;
         head?: never;
@@ -244,6 +212,38 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    '/rest/personsok/v3': {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations['sokPdlV3'];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    '/rest/person': {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations['hentPersondata'];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     '/rest/person/kontaktinformasjon': {
         parameters: {
             query?: never;
@@ -254,6 +254,38 @@ export interface paths {
         get?: never;
         put?: never;
         post: operations['hentKontaktinformasjon'];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    '/rest/person/identer': {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations['hentIdenter'];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    '/rest/person/aktorid': {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations['hentAktorId'];
         delete?: never;
         options?: never;
         head?: never;
@@ -350,103 +382,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations['hentSaker'];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/enheter/oppgavebehandlere/foreslatte': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations['hentBehandlendeEnhet'];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/dialog/sendmelding': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations['sendMeldinger'];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/dialog/meldinger': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations['hentMeldinger'];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/dialog/fortsett/opprett': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations['startFortsettDialog'];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/dialog/fortsett/ferdigstill': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations['sendFortsettDialog'];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/personsok/v3': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations['sokPdlV3'];
+        post: operations['hentSaker_1'];
         delete?: never;
         options?: never;
         head?: never;
@@ -463,6 +399,22 @@ export interface paths {
         get?: never;
         put?: never;
         post: operations['pdlPersonsok'];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    '/rest/enheter/oppgavebehandlere/foreslatte': {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations['hentBehandlendeEnhet'];
         delete?: never;
         options?: never;
         head?: never;
@@ -565,6 +517,70 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    '/rest/dialog/sendmelding': {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations['sendMeldinger'];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    '/rest/dialog/meldinger': {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations['hentMeldinger'];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    '/rest/dialog/fortsett/opprett': {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations['startFortsettDialog'];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    '/rest/dialog/fortsett/ferdigstill': {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations['sendFortsettDialog'];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     '/rest/tilgang/auth': {
         parameters: {
             query?: never;
@@ -589,38 +605,6 @@ export interface paths {
             cookie?: never;
         };
         get: operations['getOppgaveData'];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/enheter/{enhetId}/ansatte': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations['hentAnsattePaaEnhet'];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/enheter/oppgavebehandlere/alle': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations['hentAlleEnheterForOppgave'];
         put?: never;
         post?: never;
         delete?: never;
@@ -757,6 +741,38 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    '/rest/enheter/{enhetId}/ansatte': {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations['hentAnsattePaaEnhet'];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    '/rest/enheter/oppgavebehandlere/alle': {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations['hentAlleEnheterForOppgave'];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     '/rest/dialogoppgave/tema': {
         parameters: {
             query?: never;
@@ -796,7 +812,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations['hentV2'];
+        get: operations['hent_2'];
         put?: never;
         post?: never;
         delete?: never;
@@ -857,340 +873,6 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
-        FnrRequest: {
-            fnr: string;
-        };
-        EksternVarslingInfo: {
-            sendt: boolean;
-            renotifikasjonSendt: boolean;
-            prefererteKanaler: string[];
-            sendteKanaler: string[];
-            historikk: components['schemas']['HistorikkEntry'][];
-        };
-        Event: {
-            fodselsnummer: string;
-            grupperingsId?: string;
-            eventId: string;
-            /** Format: date-time */
-            forstBehandlet: string;
-            produsent: string;
-            /** Format: int32 */
-            sikkerhetsnivaa: number;
-            /** Format: date-time */
-            sistOppdatert: string;
-            tekst: string;
-            link: string;
-            aktiv: boolean;
-            eksternVarslingSendt: boolean;
-            eksternVarslingKanaler: string[];
-            eksternVarsling?: components['schemas']['EksternVarslingInfo'];
-            varslingsTidspunkt?: components['schemas']['VarslingsTidspunkt'];
-        };
-        FeiletVarsling: {
-            /** Format: date-time */
-            tidspunkt: string;
-            feilmelding: string;
-            kanal?: string;
-        };
-        HistorikkEntry: {
-            melding: string;
-            status: string;
-            /** Format: int64 */
-            distribusjonsId?: number;
-            kanal?: string;
-            renotifikasjon?: boolean;
-            /** Format: date-time */
-            tidspunkt: string;
-        };
-        Result: {
-            feil: string[];
-            varsler: components['schemas']['Event'][];
-        };
-        VarslingsTidspunkt: {
-            sendt: boolean;
-            /** Format: date-time */
-            tidspunkt?: string;
-            renotifikasjonSendt: boolean;
-            /** Format: date-time */
-            renotifikasjonTidspunkt?: string;
-            sendteKanaler: string[];
-            renotifikasjonsKanaler: string[];
-            harFeilteVarslinger: boolean;
-            harFeilteRevarslinger: boolean;
-            feilteVarsliner: components['schemas']['FeiletVarsling'][];
-            feilteRevarslinger: components['schemas']['FeiletVarsling'][];
-        };
-        Adressat: {
-            advokatSomAdressat?: components['schemas']['AdvokatSomAdressat'];
-            personSomAdressat?: components['schemas']['PersonSomAdressat'];
-            organisasjonSomAdressat?: components['schemas']['OrganisasjonSomAdressat'];
-        };
-        Adresse: {
-            coAdresse?: string;
-            linje1: string;
-            linje2?: string;
-            linje3?: string;
-            /** Format: date */
-            angittFlyttedato?: string;
-            sistEndret?: components['schemas']['SistEndret'];
-            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'];
-        };
-        AdvokatSomAdressat: {
-            kontaktperson: components['schemas']['Navn'];
-            organisasjonsnavn?: string;
-            organisasjonsnummer?: string;
-        };
-        Apningstid: {
-            ukedag: string;
-            apningstid: string;
-        };
-        Bankkonto: {
-            kontonummer: string;
-            banknavn?: string;
-            sistEndret?: components['schemas']['SistEndret'];
-            bankkode?: string;
-            swift?: string;
-            landkode?: components['schemas']['KodeBeskrivelseString'];
-            adresse?: components['schemas']['Adresse'];
-            valuta?: components['schemas']['KodeBeskrivelseString'];
-            kilde?: string;
-            opprettetAv: string;
-        };
-        Data: {
-            feilendeSystemer: DataFeilendeSystemer[];
-            person: components['schemas']['Person'];
-        };
-        DeltBosted: {
-            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'];
-            adresse?: components['schemas']['Adresse'];
-        };
-        DigitalKontaktinformasjonTredjepartsperson: {
-            reservasjon?: boolean;
-            mobiltelefonnummer?: string;
-        };
-        Dodsbo: {
-            adressat: components['schemas']['Adressat'];
-            adresse: components['schemas']['Adresse'];
-            /** Format: date */
-            registrert: string;
-            /** @enum {string} */
-            skifteform: DodsboSkifteform;
-            sistEndret?: components['schemas']['SistEndret'];
-        };
-        Dodsdato: {
-            /** Format: date */
-            dodsdato: string;
-            sistEndret?: components['schemas']['SistEndret'];
-        };
-        Fodested: {
-            land?: components['schemas']['KodeBeskrivelseString'];
-            kommune?: string;
-            fodested?: string;
-        };
-        ForelderBarnRelasjon: {
-            ident?: string;
-            /** @enum {string} */
-            rolle: ForelderBarnRelasjonRolle;
-            navn: components['schemas']['Navn'][];
-            fodselsdato: string[];
-            kjonn: components['schemas']['KodeBeskrivelseKjonn'][];
-            /** Format: int32 */
-            alder?: number;
-            adressebeskyttelse: components['schemas']['KodeBeskrivelseAdresseBeskyttelse'][];
-            harSammeAdresse: boolean;
-            dodsdato: string[];
-        };
-        Foreldreansvar: {
-            ansvar: string;
-            ansvarlig?: components['schemas']['NavnOgIdent'];
-            ansvarsubject?: components['schemas']['NavnOgIdent'];
-        };
-        Fullmakt: {
-            motpartsPersonident: string;
-            motpartsPersonNavn: components['schemas']['Navn'];
-            /** @enum {string} */
-            motpartsRolle: FullmaktMotpartsRolle;
-            omrade: components['schemas']['OmraadeMedHandlingString'][];
-            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'];
-            digitalKontaktinformasjonTredjepartsperson?: components['schemas']['DigitalKontaktinformasjonTredjepartsperson'];
-            kilde?: string;
-        };
-        GyldighetsPeriode: {
-            /** Format: date */
-            gyldigFraOgMed?: string;
-            /** Format: date */
-            gyldigTilOgMed?: string;
-        };
-        KodeBeskrivelseAdresseBeskyttelse: {
-            /** @enum {string} */
-            kode: KodeBeskrivelseAdresseBeskyttelseKode;
-            beskrivelse: string;
-        };
-        KodeBeskrivelseKjonn: {
-            /** @enum {string} */
-            kode: KodeBeskrivelseKjonnKode;
-            beskrivelse: string;
-        };
-        KodeBeskrivelsePersonStatus: {
-            /** @enum {string} */
-            kode: KodeBeskrivelsePersonStatusKode;
-            beskrivelse: string;
-        };
-        KodeBeskrivelseSivilstandType: {
-            /** @enum {string} */
-            kode: KodeBeskrivelseSivilstandTypeKode;
-            beskrivelse: string;
-        };
-        KodeBeskrivelseString: {
-            kode: string;
-            beskrivelse: string;
-        };
-        KontaktInformasjon: {
-            erManuell?: boolean;
-            erReservert?: components['schemas']['VerdiBoolean'];
-            epost?: components['schemas']['VerdiString'];
-            mobil?: components['schemas']['VerdiString'];
-        };
-        Navn: {
-            fornavn: string;
-            mellomnavn?: string;
-            etternavn: string;
-        };
-        NavnOgIdent: {
-            navn?: components['schemas']['Navn'];
-            ident?: string;
-        };
-        OmraadeMedHandlingString: {
-            omraade: components['schemas']['KodeBeskrivelseString'];
-            handling: OmraadeMedHandlingStringHandling[];
-        };
-        OrganisasjonSomAdressat: {
-            kontaktperson?: components['schemas']['Navn'];
-            organisasjonsnavn: string;
-            organisasjonsnummer?: string;
-        };
-        Person: {
-            fnr: string;
-            personIdent: string;
-            navn: components['schemas']['Navn'][];
-            kjonn: components['schemas']['KodeBeskrivelseKjonn'][];
-            fodselsdato: string[];
-            fodested: components['schemas']['Fodested'][];
-            geografiskTilknytning?: string;
-            /** Format: int32 */
-            alder?: number;
-            dodsdato: components['schemas']['Dodsdato'][];
-            bostedAdresse: components['schemas']['Adresse'][];
-            kontaktAdresse: components['schemas']['Adresse'][];
-            oppholdsAdresse: components['schemas']['Adresse'][];
-            navEnhet?: components['schemas']['PersonDataEnhet'];
-            statsborgerskap: components['schemas']['Statsborgerskap'][];
-            adressebeskyttelse: components['schemas']['KodeBeskrivelseAdresseBeskyttelse'][];
-            sikkerhetstiltak: components['schemas']['Sikkerhetstiltak'][];
-            /** @enum {string} */
-            erEgenAnsatt: PersonErEgenAnsatt;
-            personstatus: components['schemas']['KodeBeskrivelsePersonStatus'][];
-            sivilstand: components['schemas']['Sivilstand'][];
-            foreldreansvar: components['schemas']['Foreldreansvar'][];
-            deltBosted: components['schemas']['DeltBosted'][];
-            dodsbo: components['schemas']['Dodsbo'][];
-            fullmakt: components['schemas']['Fullmakt'][];
-            vergemal: components['schemas']['Verge'][];
-            tilrettelagtKommunikasjon: components['schemas']['TilrettelagtKommunikasjon'];
-            telefonnummer: components['schemas']['Telefon'][];
-            kontaktInformasjon: components['schemas']['KontaktInformasjon'];
-            bankkonto?: components['schemas']['Bankkonto'];
-            forelderBarnRelasjon: components['schemas']['ForelderBarnRelasjon'][];
-        };
-        PersonDataEnhet: {
-            id: string;
-            navn: string;
-            publikumsmottak: components['schemas']['Publikumsmottak'][];
-        };
-        PersonSomAdressat: {
-            fnr?: string;
-            navn: components['schemas']['Navn'][];
-            /** Format: date */
-            fodselsdato?: string;
-        };
-        Publikumsmottak: {
-            besoksadresse: components['schemas']['Adresse'];
-            apningstider: components['schemas']['Apningstid'][];
-        };
-        Sikkerhetstiltak: {
-            type: string;
-            beskrivelse: string;
-            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'];
-        };
-        SistEndret: {
-            ident: string;
-            /** Format: date-time */
-            tidspunkt: string;
-            system: string;
-            kilde: string;
-        };
-        Sivilstand: {
-            type: components['schemas']['KodeBeskrivelseSivilstandType'];
-            /** Format: date */
-            gyldigFraOgMed?: string;
-            sivilstandRelasjon?: components['schemas']['SivilstandRelasjon'];
-        };
-        SivilstandRelasjon: {
-            fnr: string;
-            navn: components['schemas']['Navn'][];
-            /** Format: int32 */
-            alder?: number;
-            adressebeskyttelse: components['schemas']['KodeBeskrivelseAdresseBeskyttelse'][];
-            harSammeAdresse: boolean;
-            dodsdato: string[];
-        };
-        Statsborgerskap: {
-            land: components['schemas']['KodeBeskrivelseString'];
-            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'];
-        };
-        Telefon: {
-            retningsnummer?: components['schemas']['KodeBeskrivelseString'];
-            identifikator: string;
-            sistEndret?: components['schemas']['SistEndret'];
-            /** Format: int32 */
-            prioritet: number;
-        };
-        TilrettelagtKommunikasjon: {
-            talesprak: components['schemas']['KodeBeskrivelseString'][];
-            tegnsprak: components['schemas']['KodeBeskrivelseString'][];
-        };
-        VerdiBoolean: {
-            value?: boolean;
-            /** Format: date */
-            sistOppdatert?: string;
-            /** Format: date */
-            sistVerifisert?: string;
-        };
-        VerdiString: {
-            value?: string;
-            /** Format: date */
-            sistOppdatert?: string;
-            /** Format: date */
-            sistVerifisert?: string;
-        };
-        Verge: {
-            ident?: string;
-            navn?: components['schemas']['Navn'];
-            vergesakstype: string;
-            omfang: string;
-            tjenesteOppgaver?: string[];
-            embete?: string;
-            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'];
-        };
-        IdentInformasjon: {
-            ident: string;
-            /** @enum {string} */
-            gruppe: IdentInformasjonGruppe;
-            historisk: boolean;
-        };
-        Identliste: {
-            identer: components['schemas']['IdentInformasjon'][];
-        };
         FnrDatoRangeRequest: {
             fnr: string;
             fom?: string;
@@ -1488,6 +1170,69 @@ export interface components {
                 | components['schemas']['SykepengerYtelse']
                 | components['schemas']['TiltakspengerYtelse'];
         };
+        FnrRequest: {
+            fnr: string;
+        };
+        EksternVarslingInfo: {
+            sendt: boolean;
+            renotifikasjonSendt: boolean;
+            prefererteKanaler: string[];
+            sendteKanaler: string[];
+            historikk: components['schemas']['HistorikkEntry'][];
+        };
+        Event: {
+            fodselsnummer: string;
+            grupperingsId?: string;
+            eventId: string;
+            /** Format: date-time */
+            forstBehandlet: string;
+            produsent: string;
+            /** Format: int32 */
+            sikkerhetsnivaa: number;
+            /** Format: date-time */
+            sistOppdatert: string;
+            tekst: string;
+            link: string;
+            aktiv: boolean;
+            eksternVarslingSendt: boolean;
+            eksternVarslingKanaler: string[];
+            eksternVarsling?: components['schemas']['EksternVarslingInfo'];
+            varslingsTidspunkt?: components['schemas']['VarslingsTidspunkt'];
+        };
+        FeiletVarsling: {
+            /** Format: date-time */
+            tidspunkt: string;
+            feilmelding: string;
+            kanal?: string;
+        };
+        HistorikkEntry: {
+            melding: string;
+            status: string;
+            /** Format: int64 */
+            distribusjonsId?: number;
+            kanal?: string;
+            renotifikasjon?: boolean;
+            /** Format: date-time */
+            tidspunkt: string;
+        };
+        Result: {
+            feil: string[];
+            varsler: components['schemas']['Event'][];
+        };
+        VarslingsTidspunkt: {
+            sendt: boolean;
+            /** Format: date-time */
+            tidspunkt?: string;
+            renotifikasjonSendt: boolean;
+            /** Format: date-time */
+            renotifikasjonTidspunkt?: string;
+            sendteKanaler: string[];
+            renotifikasjonsKanaler: string[];
+            harFeilteVarslinger: boolean;
+            harFeilteRevarslinger: boolean;
+            feilteVarsliner: components['schemas']['FeiletVarsling'][];
+            feilteRevarslinger: components['schemas']['FeiletVarsling'][];
+        };
         Arbeidgiver: {
             orgnr: string;
             navn?: string;
@@ -1606,6 +1351,67 @@ export interface components {
             /** @enum {string} */
             feilmelding?: FeilFeilmelding;
         };
+        LocalDate: {
+            /** Format: date */
+            value?: string;
+            /** Format: date */
+            value$kotlinx_datetime: string;
+            /** Format: int32 */
+            monthNumber: number;
+            /** Format: int32 */
+            year: number;
+            /** Format: int32 */
+            dayOfMonth: number;
+            /** @enum {string} */
+            month: LocalDateMonth;
+            /** @enum {string} */
+            dayOfWeek: LocalDateDayOfWeek;
+            /** Format: int32 */
+            dayOfYear: number;
+        };
+        LocalDateTime: {
+            /** Format: date-time */
+            value?: string;
+            /** Format: date-time */
+            value$kotlinx_datetime: string;
+            /** Format: int32 */
+            monthNumber: number;
+            /** Format: int32 */
+            nanosecond: number;
+            time: components['schemas']['LocalTime'];
+            /** Format: int32 */
+            year: number;
+            /** Format: int32 */
+            dayOfMonth: number;
+            /** Format: int32 */
+            hour: number;
+            /** Format: int32 */
+            minute: number;
+            /** Format: int32 */
+            second: number;
+            /** @enum {string} */
+            month: LocalDateTimeMonth;
+            /** @enum {string} */
+            dayOfWeek: LocalDateTimeDayOfWeek;
+            /** Format: int32 */
+            dayOfYear: number;
+            date: components['schemas']['LocalDate'];
+        };
+        LocalTime: {
+            value?: string;
+            value$kotlinx_datetime: string;
+            /** Format: int32 */
+            nanosecond: number;
+            /** Format: int32 */
+            hour: number;
+            /** Format: int32 */
+            minute: number;
+            /** Format: int32 */
+            second: number;
+        };
+        ResultatSoknadsstatus: {
+            resultat: components['schemas']['SoknadsstatusSakstema'][];
+        };
         Sak: {
             temakode: string;
             saksid: string;
@@ -1616,22 +1422,378 @@ export interface components {
             /** @enum {string} */
             baksystem: SakBaksystem;
         };
-        Sakstema: {
+        Soknadsstatus: {
+            /** Format: int32 */
+            underBehandling: number;
+            /** Format: int32 */
+            ferdigBehandlet: number;
+            /** Format: int32 */
+            avbrutt: number;
+            sistOppdatert?: components['schemas']['LocalDateTime'];
+        };
+        SoknadsstatusSakstema: {
             temakode: string;
             temanavn: string;
             erGruppert: boolean;
+            soknadsstatus: components['schemas']['Soknadsstatus'];
             dokumentMetadata: components['schemas']['Dokumentmetadata'][];
             tilhorendeSaker: components['schemas']['Sak'][];
             feilkoder: number[];
             harTilgang: boolean;
         };
-        SakstemaResponse: {
-            resultat: components['schemas']['Sakstema'][];
+        ResultatSaksDokumenter: {
+            saker: components['schemas']['SaksDokumenter'][];
+            temaer: components['schemas']['Sakstema'][];
+            feilendeSystemer: ResultatSaksDokumenterFeilendeSystemer[];
+        };
+        SaksDokumenter: {
+            temakode: string;
+            temanavn: string;
+            saksid: string;
+            fagsaksnummer?: string;
+            tilhorendeDokumenter: components['schemas']['Dokumentmetadata'][];
+            /** Format: date-time */
+            avsluttet?: string;
+            /** Format: date-time */
+            opprettet?: string;
+            fagsystem: string;
+            /** @enum {string} */
+            baksystem: SaksDokumenterBaksystem;
+            harTilgang: boolean;
+            feilendeSystemer: SaksDokumenterFeilendeSystemer[];
+        };
+        Sakstema: {
+            temakode: string;
+            temanavn: string;
+        };
+        PersonsokRequestV3: {
+            enhet?: string;
+            navn?: string;
+            utenlandskID?: string;
+            /** Format: int32 */
+            alderFra?: number;
+            /** Format: int32 */
+            alderTil?: number;
+            fodselsdatoFra?: string;
+            fodselsdatoTil?: string;
+            kjonn?: string;
+            adresse?: string;
+            telefonnummer?: string;
+        };
+        BrukerinfoDTO: {
+            gjeldendePostadresseType?: components['schemas']['KodeverdiDTO'];
+            midlertidigPostadresse?: string;
+            ansvarligEnhet?: string;
+        };
+        KodeverdiDTO: {
+            kodeRef?: string;
+            beskrivelse?: string;
+        };
+        NorskIdentDTO: {
+            ident: string;
+            type?: components['schemas']['KodeverdiDTO'];
+        };
+        PersonSokResponsDTO: {
+            ident: components['schemas']['NorskIdentDTO'];
+            navn: components['schemas']['PersonnavnDTO'];
+            diskresjonskode?: components['schemas']['KodeverdiDTO'];
+            postadresse?: string;
+            bostedsadresse?: string;
+            kjonn?: components['schemas']['KodeverdiDTO'];
+            status?: components['schemas']['KodeverdiDTO'];
+            brukerinfo?: components['schemas']['BrukerinfoDTO'];
+            utenlandskID?: components['schemas']['UtenlandskIdDTO'][];
+        };
+        PersonnavnDTO: {
+            fornavn: string;
+            etternavn: string;
+            mellomnavn?: string;
+            sammensatt: string;
+        };
+        UtenlandskIdDTO: {
+            identifikasjonsnummer: string;
+            utstederland: string;
+        };
+        Adressat: {
+            advokatSomAdressat?: components['schemas']['AdvokatSomAdressat'];
+            personSomAdressat?: components['schemas']['PersonSomAdressat'];
+            organisasjonSomAdressat?: components['schemas']['OrganisasjonSomAdressat'];
+        };
+        Adresse: {
+            coAdresse?: string;
+            linje1: string;
+            linje2?: string;
+            linje3?: string;
+            /** Format: date */
+            angittFlyttedato?: string;
+            sistEndret?: components['schemas']['SistEndret'];
+            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'];
+        };
+        AdvokatSomAdressat: {
+            kontaktperson: components['schemas']['Navn'];
+            organisasjonsnavn?: string;
+            organisasjonsnummer?: string;
+        };
+        Apningstid: {
+            ukedag: string;
+            apningstid: string;
+        };
+        Bankkonto: {
+            kontonummer: string;
+            banknavn?: string;
+            sistEndret?: components['schemas']['SistEndret'];
+            bankkode?: string;
+            swift?: string;
+            landkode?: components['schemas']['KodeBeskrivelseString'];
+            adresse?: components['schemas']['Adresse'];
+            valuta?: components['schemas']['KodeBeskrivelseString'];
+            kilde?: string;
+            opprettetAv: string;
+        };
+        Data: {
+            feilendeSystemer: DataFeilendeSystemer[];
+            person: components['schemas']['Person'];
+        };
+        DeltBosted: {
+            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'];
+            adresse?: components['schemas']['Adresse'];
+        };
+        DigitalKontaktinformasjonTredjepartsperson: {
+            reservasjon?: boolean;
+            mobiltelefonnummer?: string;
+        };
+        Dodsbo: {
+            adressat: components['schemas']['Adressat'];
+            adresse: components['schemas']['Adresse'];
+            /** Format: date */
+            registrert: string;
+            /** @enum {string} */
+            skifteform: DodsboSkifteform;
+            sistEndret?: components['schemas']['SistEndret'];
+        };
+        Dodsdato: {
+            /** Format: date */
+            dodsdato: string;
+            sistEndret?: components['schemas']['SistEndret'];
+        };
+        Fodested: {
+            land?: components['schemas']['KodeBeskrivelseString'];
+            kommune?: string;
+            fodested?: string;
+        };
+        ForelderBarnRelasjon: {
+            ident?: string;
+            /** @enum {string} */
+            rolle: ForelderBarnRelasjonRolle;
+            navn: components['schemas']['Navn'][];
+            fodselsdato: string[];
+            kjonn: components['schemas']['KodeBeskrivelseKjonn'][];
+            /** Format: int32 */
+            alder?: number;
+            adressebeskyttelse: components['schemas']['KodeBeskrivelseAdresseBeskyttelse'][];
+            harSammeAdresse: boolean;
+            dodsdato: string[];
+        };
+        Foreldreansvar: {
+            ansvar: string;
+            ansvarlig?: components['schemas']['NavnOgIdent'];
+            ansvarsubject?: components['schemas']['NavnOgIdent'];
+        };
+        Fullmakt: {
+            motpartsPersonident: string;
+            motpartsPersonNavn: components['schemas']['Navn'];
+            /** @enum {string} */
+            motpartsRolle: FullmaktMotpartsRolle;
+            omrade: components['schemas']['OmraadeMedHandlingString'][];
+            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'];
+            digitalKontaktinformasjonTredjepartsperson?: components['schemas']['DigitalKontaktinformasjonTredjepartsperson'];
+            kilde?: string;
+        };
+        GyldighetsPeriode: {
+            /** Format: date */
+            gyldigFraOgMed?: string;
+            /** Format: date */
+            gyldigTilOgMed?: string;
+        };
+        KodeBeskrivelseAdresseBeskyttelse: {
+            /** @enum {string} */
+            kode: KodeBeskrivelseAdresseBeskyttelseKode;
+            beskrivelse: string;
+        };
+        KodeBeskrivelseKjonn: {
+            /** @enum {string} */
+            kode: KodeBeskrivelseKjonnKode;
+            beskrivelse: string;
+        };
+        KodeBeskrivelsePersonStatus: {
+            /** @enum {string} */
+            kode: KodeBeskrivelsePersonStatusKode;
+            beskrivelse: string;
+        };
+        KodeBeskrivelseSivilstandType: {
+            /** @enum {string} */
+            kode: KodeBeskrivelseSivilstandTypeKode;
+            beskrivelse: string;
+        };
+        KodeBeskrivelseString: {
+            kode: string;
+            beskrivelse: string;
+        };
+        KontaktInformasjon: {
+            erManuell?: boolean;
+            erReservert?: components['schemas']['VerdiBoolean'];
+            epost?: components['schemas']['VerdiString'];
+            mobil?: components['schemas']['VerdiString'];
+        };
+        Navn: {
+            fornavn: string;
+            mellomnavn?: string;
+            etternavn: string;
+        };
+        NavnOgIdent: {
+            navn?: components['schemas']['Navn'];
+            ident?: string;
+        };
+        OmraadeMedHandlingString: {
+            omraade: components['schemas']['KodeBeskrivelseString'];
+            handling: OmraadeMedHandlingStringHandling[];
+        };
+        OrganisasjonSomAdressat: {
+            kontaktperson?: components['schemas']['Navn'];
+            organisasjonsnavn: string;
+            organisasjonsnummer?: string;
+        };
+        Person: {
+            fnr: string;
+            personIdent: string;
+            navn: components['schemas']['Navn'][];
+            kjonn: components['schemas']['KodeBeskrivelseKjonn'][];
+            fodselsdato: string[];
+            fodested: components['schemas']['Fodested'][];
+            geografiskTilknytning?: string;
+            /** Format: int32 */
+            alder?: number;
+            dodsdato: components['schemas']['Dodsdato'][];
+            bostedAdresse: components['schemas']['Adresse'][];
+            kontaktAdresse: components['schemas']['Adresse'][];
+            oppholdsAdresse: components['schemas']['Adresse'][];
+            navEnhet?: components['schemas']['PersonDataEnhet'];
+            statsborgerskap: components['schemas']['Statsborgerskap'][];
+            adressebeskyttelse: components['schemas']['KodeBeskrivelseAdresseBeskyttelse'][];
+            sikkerhetstiltak: components['schemas']['Sikkerhetstiltak'][];
+            /** @enum {string} */
+            erEgenAnsatt: PersonErEgenAnsatt;
+            personstatus: components['schemas']['KodeBeskrivelsePersonStatus'][];
+            sivilstand: components['schemas']['Sivilstand'][];
+            foreldreansvar: components['schemas']['Foreldreansvar'][];
+            deltBosted: components['schemas']['DeltBosted'][];
+            dodsbo: components['schemas']['Dodsbo'][];
+            fullmakt: components['schemas']['Fullmakt'][];
+            vergemal: components['schemas']['Verge'][];
+            tilrettelagtKommunikasjon: components['schemas']['TilrettelagtKommunikasjon'];
+            rettsligHandleevne: components['schemas']['RettsligHandleevne'][];
+            telefonnummer: components['schemas']['Telefon'][];
+            kontaktInformasjon: components['schemas']['KontaktInformasjon'];
+            bankkonto?: components['schemas']['Bankkonto'];
+            forelderBarnRelasjon: components['schemas']['ForelderBarnRelasjon'][];
+        };
+        PersonDataEnhet: {
+            id: string;
+            navn: string;
+            publikumsmottak: components['schemas']['Publikumsmottak'][];
+        };
+        PersonSomAdressat: {
+            fnr?: string;
+            navn: components['schemas']['Navn'][];
+            /** Format: date */
+            fodselsdato?: string;
+        };
+        Publikumsmottak: {
+            besoksadresse: components['schemas']['Adresse'];
+            apningstider: components['schemas']['Apningstid'][];
+        };
+        RettsligHandleevne: {
+            omfang?: string;
+            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'];
+        };
+        Sikkerhetstiltak: {
+            type: string;
+            beskrivelse: string;
+            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'];
+        };
+        SistEndret: {
+            ident: string;
+            /** Format: date-time */
+            tidspunkt: string;
+            system: string;
+            kilde: string;
+        };
+        Sivilstand: {
+            type: components['schemas']['KodeBeskrivelseSivilstandType'];
+            /** Format: date */
+            gyldigFraOgMed?: string;
+            sivilstandRelasjon?: components['schemas']['SivilstandRelasjon'];
+        };
+        SivilstandRelasjon: {
+            fnr: string;
+            navn: components['schemas']['Navn'][];
+            /** Format: int32 */
+            alder?: number;
+            adressebeskyttelse: components['schemas']['KodeBeskrivelseAdresseBeskyttelse'][];
+            harSammeAdresse: boolean;
+            dodsdato: string[];
+        };
+        Statsborgerskap: {
+            land: components['schemas']['KodeBeskrivelseString'];
+            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'];
+        };
+        Telefon: {
+            retningsnummer?: components['schemas']['KodeBeskrivelseString'];
+            identifikator: string;
+            sistEndret?: components['schemas']['SistEndret'];
+            /** Format: int32 */
+            prioritet: number;
+        };
+        TilrettelagtKommunikasjon: {
+            talesprak: components['schemas']['KodeBeskrivelseString'][];
+            tegnsprak: components['schemas']['KodeBeskrivelseString'][];
+        };
+        VerdiBoolean: {
+            value?: boolean;
+            /** Format: date */
+            sistOppdatert?: string;
+            /** Format: date */
+            sistVerifisert?: string;
+        };
+        VerdiString: {
+            value?: string;
+            /** Format: date */
+            sistOppdatert?: string;
+            /** Format: date */
+            sistVerifisert?: string;
+        };
+        Verge: {
+            ident?: string;
+            navn?: components['schemas']['Navn'];
+            vergesakstype: string;
+            omfang: string;
+            tjenesteOppgaver?: string[];
+            embete?: string;
+            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'];
         };
         Kontaktinformasjon: {
             epost?: components['schemas']['VerdiString'];
             mobiltelefon?: components['schemas']['VerdiString'];
             reservasjon?: components['schemas']['VerdiBoolean'];
+        };
+        IdentInformasjon: {
+            ident: string;
+            /** @enum {string} */
+            gruppe: IdentInformasjonGruppe;
+            historisk: boolean;
+        };
+        Identliste: {
+            identer: components['schemas']['IdentInformasjon'][];
         };
         OppgaveDTO: {
             oppgaveId: string;
@@ -1754,6 +1916,59 @@ export interface components {
             saker: components['schemas']['JournalforingSak'][];
             feiledeSystemer: string[];
         };
+        Criterion: {
+            fieldName?: string;
+            and?: components['schemas']['Criterion'][];
+            or?: components['schemas']['Criterion'][];
+            not?: components['schemas']['Criterion'][];
+            searchRule?: components['schemas']['SearchRule'];
+            searchHistorical?: boolean;
+        };
+        SearchRule: {
+            exists?: boolean;
+            notEquals?: string;
+            equals?: string;
+            contains?: string;
+            fuzzy?: string;
+            /** Format: double */
+            random?: number;
+            wildcard?: string;
+            startsWith?: string;
+            regex?: string;
+            after?: string;
+            before?: string;
+            lessThan?: string;
+            greaterThan?: string;
+            from?: string;
+            to?: string;
+            fromExcluding?: string;
+            toExcluding?: string;
+            caseSensitive?: boolean;
+            disablePhonetic?: boolean;
+            /** Format: double */
+            boost?: number;
+        };
+        GraphQLClientError: {
+            message: string;
+            path?: unknown[];
+            extensions?: {
+                [key: string]: unknown;
+            };
+            locations?: components['schemas']['GraphQLClientSourceLocation'][];
+        };
+        GraphQLClientResponseResult: {
+            errors?: components['schemas']['GraphQLClientError'][];
+            extensions?: {
+                [key: string]: unknown;
+            };
+            data?: components['schemas']['Result'];
+        };
+        GraphQLClientSourceLocation: {
+            /** Format: int32 */
+            column: number;
+            /** Format: int32 */
+            line: number;
+        };
         BehandlendeEnhetRequest: {
             fnr: string;
             temakode: string;
@@ -1766,6 +1981,57 @@ export interface components {
             /** @enum {string} */
             status: EnhetStatus;
             oppgavebehandler: boolean;
+        };
+        OpprettSkjermetOppgaveDTO: {
+            opprettetavenhetsnummer: string;
+            fnr: string;
+            beskrivelse: string;
+            temaKode: string;
+            underkategoriKode?: string;
+            oppgaveTypeKode: string;
+            /** @enum {string} */
+            prioritetKode: OpprettSkjermetOppgaveDTOPrioritetKode;
+        };
+        OpprettOppgaveResponseDTO: {
+            id: string;
+        };
+        OpprettOppgaveRequestDTO: {
+            fnr: string;
+            opprettetavenhetsnummer: string;
+            valgtEnhetId: string;
+            behandlingskjedeId: string;
+            /** Format: int32 */
+            dagerFrist: number;
+            ansvarligEnhetId: string;
+            ansvarligIdent?: string;
+            beskrivelse: string;
+            temaKode: string;
+            underkategoriKode?: string;
+            oppgaveTypeKode: string;
+            /** @enum {string} */
+            prioritetKode: OpprettOppgaveRequestDTOPrioritetKode;
+        };
+        SendTilSladdingRequest: {
+            fnr: string;
+            traadId: string;
+            arsak: string;
+            meldingId?: string[];
+        };
+        LukkTraadRequest: {
+            fnr: string;
+            saksbehandlerValgtEnhet: string;
+            traadId: string;
+            oppgaveId?: string;
+        };
+        MerkSomFeilsendtRequest: {
+            fnr: string;
+            behandlingsidListe: string[];
+        };
+        AvsluttGosysOppgaveRequest: {
+            fnr: string;
+            saksbehandlerValgtEnhet: string;
+            oppgaveid: string;
+            beskrivelse: string;
         };
         SendMeldingRequestV2: {
             fnr: string;
@@ -1840,166 +2106,9 @@ export interface components {
             behandlingsId: string;
             oppgaveId?: string;
         };
-        PersonsokRequestV3: {
-            enhet?: string;
-            navn?: string;
-            utenlandskID?: string;
-            /** Format: int32 */
-            alderFra?: number;
-            /** Format: int32 */
-            alderTil?: number;
-            fodselsdatoFra?: string;
-            fodselsdatoTil?: string;
-            kjonn?: string;
-            adresse?: string;
-            telefonnummer?: string;
-        };
-        BrukerinfoDTO: {
-            gjeldendePostadresseType?: components['schemas']['KodeverdiDTO'];
-            midlertidigPostadresse?: string;
-            ansvarligEnhet?: string;
-        };
-        KodeverdiDTO: {
-            kodeRef?: string;
-            beskrivelse?: string;
-        };
-        NorskIdentDTO: {
-            ident: string;
-            type?: components['schemas']['KodeverdiDTO'];
-        };
-        PersonSokResponsDTO: {
-            ident: components['schemas']['NorskIdentDTO'];
-            navn: components['schemas']['PersonnavnDTO'];
-            diskresjonskode?: components['schemas']['KodeverdiDTO'];
-            postadresse?: string;
-            bostedsadresse?: string;
-            kjonn?: components['schemas']['KodeverdiDTO'];
-            status?: components['schemas']['KodeverdiDTO'];
-            brukerinfo?: components['schemas']['BrukerinfoDTO'];
-            utenlandskID?: components['schemas']['UtenlandskIdDTO'][];
-        };
-        PersonnavnDTO: {
-            fornavn: string;
-            etternavn: string;
-            mellomnavn?: string;
-            sammensatt: string;
-        };
-        UtenlandskIdDTO: {
-            identifikasjonsnummer: string;
-            utstederland: string;
-        };
-        Criterion: {
-            fieldName?: string;
-            and?: components['schemas']['Criterion'][];
-            or?: components['schemas']['Criterion'][];
-            not?: components['schemas']['Criterion'][];
-            searchRule?: components['schemas']['SearchRule'];
-            searchHistorical?: boolean;
-        };
-        SearchRule: {
-            exists?: boolean;
-            notEquals?: string;
-            equals?: string;
-            contains?: string;
-            fuzzy?: string;
-            /** Format: double */
-            random?: number;
-            wildcard?: string;
-            startsWith?: string;
-            regex?: string;
-            after?: string;
-            before?: string;
-            lessThan?: string;
-            greaterThan?: string;
-            from?: string;
-            to?: string;
-            fromExcluding?: string;
-            toExcluding?: string;
-            caseSensitive?: boolean;
-            disablePhonetic?: boolean;
-            /** Format: double */
-            boost?: number;
-        };
-        GraphQLClientError: {
-            message: string;
-            path?: unknown[];
-            extensions?: {
-                [key: string]: unknown;
-            };
-            locations?: components['schemas']['GraphQLClientSourceLocation'][];
-        };
-        GraphQLClientResponseResult: {
-            extensions?: {
-                [key: string]: unknown;
-            };
-            data?: components['schemas']['Result'];
-            errors?: components['schemas']['GraphQLClientError'][];
-        };
-        GraphQLClientSourceLocation: {
-            /** Format: int32 */
-            line: number;
-            /** Format: int32 */
-            column: number;
-        };
-        OpprettSkjermetOppgaveDTO: {
-            opprettetavenhetsnummer: string;
-            fnr: string;
-            beskrivelse: string;
-            temaKode: string;
-            underkategoriKode?: string;
-            oppgaveTypeKode: string;
-            /** @enum {string} */
-            prioritetKode: OpprettSkjermetOppgaveDTOPrioritetKode;
-        };
-        OpprettOppgaveResponseDTO: {
-            id: string;
-        };
-        OpprettOppgaveRequestDTO: {
-            fnr: string;
-            opprettetavenhetsnummer: string;
-            valgtEnhetId: string;
-            behandlingskjedeId: string;
-            /** Format: int32 */
-            dagerFrist: number;
-            ansvarligEnhetId: string;
-            ansvarligIdent?: string;
-            beskrivelse: string;
-            temaKode: string;
-            underkategoriKode?: string;
-            oppgaveTypeKode: string;
-            /** @enum {string} */
-            prioritetKode: OpprettOppgaveRequestDTOPrioritetKode;
-        };
-        SendTilSladdingRequest: {
-            fnr: string;
-            traadId: string;
-            arsak: string;
-            meldingId?: string[];
-        };
-        LukkTraadRequest: {
-            fnr: string;
-            saksbehandlerValgtEnhet: string;
-            traadId: string;
-            oppgaveId?: string;
-        };
-        MerkSomFeilsendtRequest: {
-            fnr: string;
-            behandlingsidListe: string[];
-        };
-        AvsluttGosysOppgaveRequest: {
-            fnr: string;
-            saksbehandlerValgtEnhet: string;
-            oppgaveid: string;
-            beskrivelse: string;
-        };
         AuthIntropectionDTO: {
             /** Format: int64 */
             expirationDate: number;
-        };
-        Ansatt: {
-            fornavn: string;
-            etternavn: string;
-            ident: string;
         };
         CaptureStats: {
             /** Format: int32 */
@@ -2045,6 +2154,11 @@ export interface components {
             enhetId: string;
             navn: string;
         };
+        Ansatt: {
+            fornavn: string;
+            etternavn: string;
+            ident: string;
+        };
         Oppgavetype: {
             kode: string;
             tekst: string;
@@ -2080,55 +2194,6 @@ export interface components {
     headers: never;
     pathItems: never;
 }
-export type FnrRequest = components['schemas']['FnrRequest'];
-export type EksternVarslingInfo = components['schemas']['EksternVarslingInfo'];
-export type Event = components['schemas']['Event'];
-export type FeiletVarsling = components['schemas']['FeiletVarsling'];
-export type HistorikkEntry = components['schemas']['HistorikkEntry'];
-export type Result = components['schemas']['Result'];
-export type VarslingsTidspunkt = components['schemas']['VarslingsTidspunkt'];
-export type Adressat = components['schemas']['Adressat'];
-export type Adresse = components['schemas']['Adresse'];
-export type AdvokatSomAdressat = components['schemas']['AdvokatSomAdressat'];
-export type Apningstid = components['schemas']['Apningstid'];
-export type Bankkonto = components['schemas']['Bankkonto'];
-export type Data = components['schemas']['Data'];
-export type DeltBosted = components['schemas']['DeltBosted'];
-export type DigitalKontaktinformasjonTredjepartsperson =
-    components['schemas']['DigitalKontaktinformasjonTredjepartsperson'];
-export type Dodsbo = components['schemas']['Dodsbo'];
-export type Dodsdato = components['schemas']['Dodsdato'];
-export type Fodested = components['schemas']['Fodested'];
-export type ForelderBarnRelasjon = components['schemas']['ForelderBarnRelasjon'];
-export type Foreldreansvar = components['schemas']['Foreldreansvar'];
-export type Fullmakt = components['schemas']['Fullmakt'];
-export type GyldighetsPeriode = components['schemas']['GyldighetsPeriode'];
-export type KodeBeskrivelseAdresseBeskyttelse = components['schemas']['KodeBeskrivelseAdresseBeskyttelse'];
-export type KodeBeskrivelseKjonn = components['schemas']['KodeBeskrivelseKjonn'];
-export type KodeBeskrivelsePersonStatus = components['schemas']['KodeBeskrivelsePersonStatus'];
-export type KodeBeskrivelseSivilstandType = components['schemas']['KodeBeskrivelseSivilstandType'];
-export type KodeBeskrivelseString = components['schemas']['KodeBeskrivelseString'];
-export type KontaktInformasjon = components['schemas']['KontaktInformasjon'];
-export type Navn = components['schemas']['Navn'];
-export type NavnOgIdent = components['schemas']['NavnOgIdent'];
-export type OmraadeMedHandlingString = components['schemas']['OmraadeMedHandlingString'];
-export type OrganisasjonSomAdressat = components['schemas']['OrganisasjonSomAdressat'];
-export type Person = components['schemas']['Person'];
-export type PersonDataEnhet = components['schemas']['PersonDataEnhet'];
-export type PersonSomAdressat = components['schemas']['PersonSomAdressat'];
-export type Publikumsmottak = components['schemas']['Publikumsmottak'];
-export type Sikkerhetstiltak = components['schemas']['Sikkerhetstiltak'];
-export type SistEndret = components['schemas']['SistEndret'];
-export type Sivilstand = components['schemas']['Sivilstand'];
-export type SivilstandRelasjon = components['schemas']['SivilstandRelasjon'];
-export type Statsborgerskap = components['schemas']['Statsborgerskap'];
-export type Telefon = components['schemas']['Telefon'];
-export type TilrettelagtKommunikasjon = components['schemas']['TilrettelagtKommunikasjon'];
-export type VerdiBoolean = components['schemas']['VerdiBoolean'];
-export type VerdiString = components['schemas']['VerdiString'];
-export type Verge = components['schemas']['Verge'];
-export type IdentInformasjon = components['schemas']['IdentInformasjon'];
-export type Identliste = components['schemas']['Identliste'];
 export type FnrDatoRangeRequest = components['schemas']['FnrDatoRangeRequest'];
 export type Barnetillegg = components['schemas']['Barnetillegg'];
 export type BarnetilleggPeriode = components['schemas']['BarnetilleggPeriode'];
@@ -2165,6 +2230,13 @@ export type TiltakspengerYtelse = components['schemas']['TiltakspengerYtelse'];
 export type YtelseData = components['schemas']['YtelseData'];
 export type YtelseResponse = components['schemas']['YtelseResponse'];
 export type YtelseVedtak = components['schemas']['YtelseVedtak'];
+export type FnrRequest = components['schemas']['FnrRequest'];
+export type EksternVarslingInfo = components['schemas']['EksternVarslingInfo'];
+export type Event = components['schemas']['Event'];
+export type FeiletVarsling = components['schemas']['FeiletVarsling'];
+export type HistorikkEntry = components['schemas']['HistorikkEntry'];
+export type Result = components['schemas']['Result'];
+export type VarslingsTidspunkt = components['schemas']['VarslingsTidspunkt'];
 export type Arbeidgiver = components['schemas']['Arbeidgiver'];
 export type Skatt = components['schemas']['Skatt'];
 export type Trekk = components['schemas']['Trekk'];
@@ -2179,10 +2251,67 @@ export type TilgangDto = components['schemas']['TilgangDTO'];
 export type Dokument = components['schemas']['Dokument'];
 export type Dokumentmetadata = components['schemas']['Dokumentmetadata'];
 export type Feil = components['schemas']['Feil'];
+export type LocalDate = components['schemas']['LocalDate'];
+export type LocalDateTime = components['schemas']['LocalDateTime'];
+export type LocalTime = components['schemas']['LocalTime'];
+export type ResultatSoknadsstatus = components['schemas']['ResultatSoknadsstatus'];
 export type Sak = components['schemas']['Sak'];
+export type Soknadsstatus = components['schemas']['Soknadsstatus'];
+export type SoknadsstatusSakstema = components['schemas']['SoknadsstatusSakstema'];
+export type ResultatSaksDokumenter = components['schemas']['ResultatSaksDokumenter'];
+export type SaksDokumenter = components['schemas']['SaksDokumenter'];
 export type Sakstema = components['schemas']['Sakstema'];
-export type SakstemaResponse = components['schemas']['SakstemaResponse'];
+export type PersonsokRequestV3 = components['schemas']['PersonsokRequestV3'];
+export type BrukerinfoDto = components['schemas']['BrukerinfoDTO'];
+export type KodeverdiDto = components['schemas']['KodeverdiDTO'];
+export type NorskIdentDto = components['schemas']['NorskIdentDTO'];
+export type PersonSokResponsDto = components['schemas']['PersonSokResponsDTO'];
+export type PersonnavnDto = components['schemas']['PersonnavnDTO'];
+export type UtenlandskIdDto = components['schemas']['UtenlandskIdDTO'];
+export type Adressat = components['schemas']['Adressat'];
+export type Adresse = components['schemas']['Adresse'];
+export type AdvokatSomAdressat = components['schemas']['AdvokatSomAdressat'];
+export type Apningstid = components['schemas']['Apningstid'];
+export type Bankkonto = components['schemas']['Bankkonto'];
+export type Data = components['schemas']['Data'];
+export type DeltBosted = components['schemas']['DeltBosted'];
+export type DigitalKontaktinformasjonTredjepartsperson =
+    components['schemas']['DigitalKontaktinformasjonTredjepartsperson'];
+export type Dodsbo = components['schemas']['Dodsbo'];
+export type Dodsdato = components['schemas']['Dodsdato'];
+export type Fodested = components['schemas']['Fodested'];
+export type ForelderBarnRelasjon = components['schemas']['ForelderBarnRelasjon'];
+export type Foreldreansvar = components['schemas']['Foreldreansvar'];
+export type Fullmakt = components['schemas']['Fullmakt'];
+export type GyldighetsPeriode = components['schemas']['GyldighetsPeriode'];
+export type KodeBeskrivelseAdresseBeskyttelse = components['schemas']['KodeBeskrivelseAdresseBeskyttelse'];
+export type KodeBeskrivelseKjonn = components['schemas']['KodeBeskrivelseKjonn'];
+export type KodeBeskrivelsePersonStatus = components['schemas']['KodeBeskrivelsePersonStatus'];
+export type KodeBeskrivelseSivilstandType = components['schemas']['KodeBeskrivelseSivilstandType'];
+export type KodeBeskrivelseString = components['schemas']['KodeBeskrivelseString'];
+export type KontaktInformasjon = components['schemas']['KontaktInformasjon'];
+export type Navn = components['schemas']['Navn'];
+export type NavnOgIdent = components['schemas']['NavnOgIdent'];
+export type OmraadeMedHandlingString = components['schemas']['OmraadeMedHandlingString'];
+export type OrganisasjonSomAdressat = components['schemas']['OrganisasjonSomAdressat'];
+export type Person = components['schemas']['Person'];
+export type PersonDataEnhet = components['schemas']['PersonDataEnhet'];
+export type PersonSomAdressat = components['schemas']['PersonSomAdressat'];
+export type Publikumsmottak = components['schemas']['Publikumsmottak'];
+export type RettsligHandleevne = components['schemas']['RettsligHandleevne'];
+export type Sikkerhetstiltak = components['schemas']['Sikkerhetstiltak'];
+export type SistEndret = components['schemas']['SistEndret'];
+export type Sivilstand = components['schemas']['Sivilstand'];
+export type SivilstandRelasjon = components['schemas']['SivilstandRelasjon'];
+export type Statsborgerskap = components['schemas']['Statsborgerskap'];
+export type Telefon = components['schemas']['Telefon'];
+export type TilrettelagtKommunikasjon = components['schemas']['TilrettelagtKommunikasjon'];
+export type VerdiBoolean = components['schemas']['VerdiBoolean'];
+export type VerdiString = components['schemas']['VerdiString'];
+export type Verge = components['schemas']['Verge'];
 export type Kontaktinformasjon = components['schemas']['Kontaktinformasjon'];
+export type IdentInformasjon = components['schemas']['IdentInformasjon'];
+export type Identliste = components['schemas']['Identliste'];
 export type OppgaveDto = components['schemas']['OppgaveDTO'];
 export type OppfolgingDto = components['schemas']['OppfolgingDTO'];
 export type OppfolgingsEnhet = components['schemas']['OppfolgingsEnhet'];
@@ -2199,26 +2328,13 @@ export type Hovedmal = components['schemas']['Hovedmal'];
 export type Innsatsgruppe = components['schemas']['Innsatsgruppe'];
 export type JournalforingSak = components['schemas']['JournalforingSak'];
 export type Resultat = components['schemas']['Resultat'];
-export type BehandlendeEnhetRequest = components['schemas']['BehandlendeEnhetRequest'];
-export type Enhet = components['schemas']['Enhet'];
-export type SendMeldingRequestV2 = components['schemas']['SendMeldingRequestV2'];
-export type Journalpost = components['schemas']['Journalpost'];
-export type MeldingDto = components['schemas']['MeldingDTO'];
-export type TraadDto = components['schemas']['TraadDTO'];
-export type OpprettHenvendelseRequestV2 = components['schemas']['OpprettHenvendelseRequestV2'];
-export type FortsettDialogDto = components['schemas']['FortsettDialogDTO'];
-export type PersonsokRequestV3 = components['schemas']['PersonsokRequestV3'];
-export type BrukerinfoDto = components['schemas']['BrukerinfoDTO'];
-export type KodeverdiDto = components['schemas']['KodeverdiDTO'];
-export type NorskIdentDto = components['schemas']['NorskIdentDTO'];
-export type PersonSokResponsDto = components['schemas']['PersonSokResponsDTO'];
-export type PersonnavnDto = components['schemas']['PersonnavnDTO'];
-export type UtenlandskIdDto = components['schemas']['UtenlandskIdDTO'];
 export type Criterion = components['schemas']['Criterion'];
 export type SearchRule = components['schemas']['SearchRule'];
 export type GraphQlClientError = components['schemas']['GraphQLClientError'];
 export type GraphQlClientResponseResult = components['schemas']['GraphQLClientResponseResult'];
 export type GraphQlClientSourceLocation = components['schemas']['GraphQLClientSourceLocation'];
+export type BehandlendeEnhetRequest = components['schemas']['BehandlendeEnhetRequest'];
+export type Enhet = components['schemas']['Enhet'];
 export type OpprettSkjermetOppgaveDto = components['schemas']['OpprettSkjermetOppgaveDTO'];
 export type OpprettOppgaveResponseDto = components['schemas']['OpprettOppgaveResponseDTO'];
 export type OpprettOppgaveRequestDto = components['schemas']['OpprettOppgaveRequestDTO'];
@@ -2226,13 +2342,19 @@ export type SendTilSladdingRequest = components['schemas']['SendTilSladdingReque
 export type LukkTraadRequest = components['schemas']['LukkTraadRequest'];
 export type MerkSomFeilsendtRequest = components['schemas']['MerkSomFeilsendtRequest'];
 export type AvsluttGosysOppgaveRequest = components['schemas']['AvsluttGosysOppgaveRequest'];
+export type SendMeldingRequestV2 = components['schemas']['SendMeldingRequestV2'];
+export type Journalpost = components['schemas']['Journalpost'];
+export type MeldingDto = components['schemas']['MeldingDTO'];
+export type TraadDto = components['schemas']['TraadDTO'];
+export type OpprettHenvendelseRequestV2 = components['schemas']['OpprettHenvendelseRequestV2'];
+export type FortsettDialogDto = components['schemas']['FortsettDialogDTO'];
 export type AuthIntropectionDto = components['schemas']['AuthIntropectionDTO'];
-export type Ansatt = components['schemas']['Ansatt'];
 export type CaptureStats = components['schemas']['CaptureStats'];
 export type Tokens = components['schemas']['Tokens'];
 export type Me = components['schemas']['Me'];
 export type VeilederEnheter = components['schemas']['VeilederEnheter'];
 export type VeiledersEnhet = components['schemas']['VeiledersEnhet'];
+export type Ansatt = components['schemas']['Ansatt'];
 export type Oppgavetype = components['schemas']['Oppgavetype'];
 export type Prioritet = components['schemas']['Prioritet'];
 export type Tema = components['schemas']['Tema'];
@@ -2240,102 +2362,6 @@ export type Underkategori = components['schemas']['Underkategori'];
 export type BaseUrls = components['schemas']['BaseUrls'];
 export type $defs = Record<string, never>;
 export interface operations {
-    hentAlleVarsler: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                'application/json': components['schemas']['FnrRequest'];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['Result'];
-                };
-            };
-        };
-    };
-    hentPersondata: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                'application/json': components['schemas']['FnrRequest'];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['Data'];
-                };
-            };
-        };
-    };
-    hentIdenter: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                'application/json': components['schemas']['FnrRequest'];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['Identliste'];
-                };
-            };
-        };
-    };
-    hentAktorId: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                'application/json': components['schemas']['FnrRequest'];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': string;
-                };
-            };
-        };
-    };
     hentTiltakspenger: {
         parameters: {
             query?: never;
@@ -2480,6 +2506,30 @@ export interface operations {
             };
         };
     };
+    hentAlleVarsler: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                'application/json': components['schemas']['FnrRequest'];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    '*/*': components['schemas']['Result'];
+                };
+            };
+        };
+    };
     hent: {
         parameters: {
             query: {
@@ -2579,7 +2629,7 @@ export interface operations {
             };
         };
     };
-    hentSakstema: {
+    hentSakstemaSoknadsstatus: {
         parameters: {
             query: {
                 enhet: string;
@@ -2600,7 +2650,33 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    '*/*': components['schemas']['SakstemaResponse'];
+                    '*/*': components['schemas']['ResultatSoknadsstatus'];
+                };
+            };
+        };
+    };
+    hentSaker: {
+        parameters: {
+            query: {
+                enhet: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                'application/json': components['schemas']['FnrRequest'];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    '*/*': components['schemas']['ResultatSaksDokumenter'];
                 };
             };
         };
@@ -2632,6 +2708,54 @@ export interface operations {
             };
         };
     };
+    sokPdlV3: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                'application/json': components['schemas']['PersonsokRequestV3'];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    '*/*': components['schemas']['PersonSokResponsDTO'][];
+                };
+            };
+        };
+    };
+    hentPersondata: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                'application/json': components['schemas']['FnrRequest'];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    '*/*': components['schemas']['Data'];
+                };
+            };
+        };
+    };
     hentKontaktinformasjon: {
         parameters: {
             query?: never;
@@ -2652,6 +2776,54 @@ export interface operations {
                 };
                 content: {
                     '*/*': components['schemas']['Kontaktinformasjon'];
+                };
+            };
+        };
+    };
+    hentIdenter: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                'application/json': components['schemas']['FnrRequest'];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    '*/*': components['schemas']['Identliste'];
+                };
+            };
+        };
+    };
+    hentAktorId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                'application/json': components['schemas']['FnrRequest'];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    '*/*': string;
                 };
             };
         };
@@ -2801,7 +2973,7 @@ export interface operations {
             };
         };
     };
-    hentSaker: {
+    hentSaker_1: {
         parameters: {
             query?: never;
             header?: never;
@@ -2821,154 +2993,6 @@ export interface operations {
                 };
                 content: {
                     '*/*': components['schemas']['Resultat'];
-                };
-            };
-        };
-    };
-    hentBehandlendeEnhet: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                'application/json': components['schemas']['BehandlendeEnhetRequest'];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['Enhet'][];
-                };
-            };
-        };
-    };
-    sendMeldinger: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                'application/json': components['schemas']['SendMeldingRequestV2'];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['TraadDTO'];
-                };
-            };
-        };
-    };
-    hentMeldinger: {
-        parameters: {
-            query: {
-                enhet: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                'application/json': components['schemas']['FnrRequest'];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['TraadDTO'][];
-                };
-            };
-        };
-    };
-    startFortsettDialog: {
-        parameters: {
-            query?: never;
-            header?: {
-                'Ignore-Conflict'?: boolean;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                'application/json': components['schemas']['OpprettHenvendelseRequestV2'];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['FortsettDialogDTO'];
-                };
-            };
-        };
-    };
-    sendFortsettDialog: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                'application/json': components['schemas']['SendMeldingRequestV2'];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['TraadDTO'];
-                };
-            };
-        };
-    };
-    sokPdlV3: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                'application/json': components['schemas']['PersonsokRequestV3'];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['PersonSokResponsDTO'][];
                 };
             };
         };
@@ -2993,6 +3017,30 @@ export interface operations {
                 };
                 content: {
                     '*/*': components['schemas']['GraphQLClientResponseResult'];
+                };
+            };
+        };
+    };
+    hentBehandlendeEnhet: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                'application/json': components['schemas']['BehandlendeEnhetRequest'];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    '*/*': components['schemas']['Enhet'][];
                 };
             };
         };
@@ -3133,6 +3181,106 @@ export interface operations {
             };
         };
     };
+    sendMeldinger: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                'application/json': components['schemas']['SendMeldingRequestV2'];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    '*/*': components['schemas']['TraadDTO'];
+                };
+            };
+        };
+    };
+    hentMeldinger: {
+        parameters: {
+            query: {
+                enhet: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                'application/json': components['schemas']['FnrRequest'];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    '*/*': components['schemas']['TraadDTO'][];
+                };
+            };
+        };
+    };
+    startFortsettDialog: {
+        parameters: {
+            query?: never;
+            header?: {
+                'Ignore-Conflict'?: boolean;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                'application/json': components['schemas']['OpprettHenvendelseRequestV2'];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    '*/*': components['schemas']['FortsettDialogDTO'];
+                };
+            };
+        };
+    };
+    sendFortsettDialog: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                'application/json': components['schemas']['SendMeldingRequestV2'];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    '*/*': components['schemas']['TraadDTO'];
+                };
+            };
+        };
+    };
     authIntropection: {
         parameters: {
             query?: never;
@@ -3171,48 +3319,6 @@ export interface operations {
                 };
                 content: {
                     '*/*': components['schemas']['OppgaveDTO'];
-                };
-            };
-        };
-    };
-    hentAnsattePaaEnhet: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                enhetId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['Ansatt'][];
-                };
-            };
-        };
-    };
-    hentAlleEnheterForOppgave: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['Enhet'][];
                 };
             };
         };
@@ -3395,6 +3501,48 @@ export interface operations {
             };
         };
     };
+    hentAnsattePaaEnhet: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                enhetId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    '*/*': components['schemas']['Ansatt'][];
+                };
+            };
+        };
+    };
+    hentAlleEnheterForOppgave: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    '*/*': components['schemas']['Enhet'][];
+                };
+            };
+        };
+    };
     hentAlleTema: {
         parameters: {
             query?: never;
@@ -3437,7 +3585,7 @@ export interface operations {
             };
         };
     };
-    hentV2: {
+    hent_2: {
         parameters: {
             query?: never;
             header?: never;
@@ -3513,6 +3661,170 @@ export interface operations {
             };
         };
     };
+}
+export enum VedtakDTORettighet {
+    TILTAKSPENGER = 'TILTAKSPENGER',
+    TILTAKSPENGER_OG_BARNETILLEGG = 'TILTAKSPENGER_OG_BARNETILLEGG',
+    INGENTING = 'INGENTING'
+}
+export enum VedtakDTOKilde {
+    TPSAK = 'TPSAK',
+    ARENA = 'ARENA'
+}
+export enum YtelseVedtakYtelseType {
+    Sykepenger = 'Sykepenger',
+    Foreldrepenger = 'Foreldrepenger',
+    Pleiepenger = 'Pleiepenger',
+    Tiltakspenge = 'Tiltakspenge',
+    Pensjon = 'Pensjon'
+}
+export enum DokumentDokumentStatus {
+    UNDER_REDIGERING = 'UNDER_REDIGERING',
+    FERDIGSTILT = 'FERDIGSTILT',
+    AVBRUTT = 'AVBRUTT',
+    KASSERT = 'KASSERT'
+}
+export enum DokumentmetadataRetning {
+    INN = 'INN',
+    UT = 'UT',
+    INTERN = 'INTERN'
+}
+export enum DokumentmetadataAvsender {
+    SLUTTBRUKER = 'SLUTTBRUKER',
+    NAV = 'NAV',
+    EKSTERN_PART = 'EKSTERN_PART',
+    UKJENT = 'UKJENT'
+}
+export enum DokumentmetadataMottaker {
+    SLUTTBRUKER = 'SLUTTBRUKER',
+    NAV = 'NAV',
+    EKSTERN_PART = 'EKSTERN_PART',
+    UKJENT = 'UKJENT'
+}
+export enum DokumentmetadataBaksystem {
+    GSAK = 'GSAK',
+    PESYS = 'PESYS',
+    SAK_OG_BEHANDLING = 'SAK_OG_BEHANDLING',
+    JOARK = 'JOARK',
+    JOARK_SIKKERHETSBEGRENSNING = 'JOARK_SIKKERHETSBEGRENSNING',
+    HENVENDELSE = 'HENVENDELSE',
+    PDF_KONVERTERING = 'PDF_KONVERTERING',
+    AKTOER = 'AKTOER',
+    KODEVERK = 'KODEVERK',
+    SAF = 'SAF',
+    SAK = 'SAK'
+}
+export enum FeilFeilmelding {
+    UKJENT_FEIL = 'UKJENT_FEIL',
+    DOKUMENT_IKKE_FUNNET = 'DOKUMENT_IKKE_FUNNET',
+    DOKUMENT_IKKE_TILGJENGELIG = 'DOKUMENT_IKKE_TILGJENGELIG',
+    DOKUMENT_SLETTET = 'DOKUMENT_SLETTET',
+    SIKKERHETSBEGRENSNING = 'SIKKERHETSBEGRENSNING',
+    MANGLER_DOKUMENTMETADATA = 'MANGLER_DOKUMENTMETADATA',
+    JOURNALFORT_ANNET_TEMA = 'JOURNALFORT_ANNET_TEMA',
+    IKKE_JOURNALFORT = 'IKKE_JOURNALFORT',
+    SAKSBEHANDLER_IKKE_TILGANG = 'SAKSBEHANDLER_IKKE_TILGANG',
+    TEMAKODE_ER_BIDRAG = 'TEMAKODE_ER_BIDRAG',
+    KORRUPT_PDF = 'KORRUPT_PDF',
+    TEKNISK_FEIL = 'TEKNISK_FEIL'
+}
+export enum LocalDateMonth {
+    JANUARY = 'JANUARY',
+    FEBRUARY = 'FEBRUARY',
+    MARCH = 'MARCH',
+    APRIL = 'APRIL',
+    MAY = 'MAY',
+    JUNE = 'JUNE',
+    JULY = 'JULY',
+    AUGUST = 'AUGUST',
+    SEPTEMBER = 'SEPTEMBER',
+    OCTOBER = 'OCTOBER',
+    NOVEMBER = 'NOVEMBER',
+    DECEMBER = 'DECEMBER'
+}
+export enum LocalDateDayOfWeek {
+    MONDAY = 'MONDAY',
+    TUESDAY = 'TUESDAY',
+    WEDNESDAY = 'WEDNESDAY',
+    THURSDAY = 'THURSDAY',
+    FRIDAY = 'FRIDAY',
+    SATURDAY = 'SATURDAY',
+    SUNDAY = 'SUNDAY'
+}
+export enum LocalDateTimeMonth {
+    JANUARY = 'JANUARY',
+    FEBRUARY = 'FEBRUARY',
+    MARCH = 'MARCH',
+    APRIL = 'APRIL',
+    MAY = 'MAY',
+    JUNE = 'JUNE',
+    JULY = 'JULY',
+    AUGUST = 'AUGUST',
+    SEPTEMBER = 'SEPTEMBER',
+    OCTOBER = 'OCTOBER',
+    NOVEMBER = 'NOVEMBER',
+    DECEMBER = 'DECEMBER'
+}
+export enum LocalDateTimeDayOfWeek {
+    MONDAY = 'MONDAY',
+    TUESDAY = 'TUESDAY',
+    WEDNESDAY = 'WEDNESDAY',
+    THURSDAY = 'THURSDAY',
+    FRIDAY = 'FRIDAY',
+    SATURDAY = 'SATURDAY',
+    SUNDAY = 'SUNDAY'
+}
+export enum SakBaksystem {
+    GSAK = 'GSAK',
+    PESYS = 'PESYS',
+    SAK_OG_BEHANDLING = 'SAK_OG_BEHANDLING',
+    JOARK = 'JOARK',
+    JOARK_SIKKERHETSBEGRENSNING = 'JOARK_SIKKERHETSBEGRENSNING',
+    HENVENDELSE = 'HENVENDELSE',
+    PDF_KONVERTERING = 'PDF_KONVERTERING',
+    AKTOER = 'AKTOER',
+    KODEVERK = 'KODEVERK',
+    SAF = 'SAF',
+    SAK = 'SAK'
+}
+export enum ResultatSaksDokumenterFeilendeSystemer {
+    GSAK = 'GSAK',
+    PESYS = 'PESYS',
+    SAK_OG_BEHANDLING = 'SAK_OG_BEHANDLING',
+    JOARK = 'JOARK',
+    JOARK_SIKKERHETSBEGRENSNING = 'JOARK_SIKKERHETSBEGRENSNING',
+    HENVENDELSE = 'HENVENDELSE',
+    PDF_KONVERTERING = 'PDF_KONVERTERING',
+    AKTOER = 'AKTOER',
+    KODEVERK = 'KODEVERK',
+    SAF = 'SAF',
+    SAK = 'SAK'
+}
+export enum SaksDokumenterBaksystem {
+    GSAK = 'GSAK',
+    PESYS = 'PESYS',
+    SAK_OG_BEHANDLING = 'SAK_OG_BEHANDLING',
+    JOARK = 'JOARK',
+    JOARK_SIKKERHETSBEGRENSNING = 'JOARK_SIKKERHETSBEGRENSNING',
+    HENVENDELSE = 'HENVENDELSE',
+    PDF_KONVERTERING = 'PDF_KONVERTERING',
+    AKTOER = 'AKTOER',
+    KODEVERK = 'KODEVERK',
+    SAF = 'SAF',
+    SAK = 'SAK'
+}
+export enum SaksDokumenterFeilendeSystemer {
+    GSAK = 'GSAK',
+    PESYS = 'PESYS',
+    SAK_OG_BEHANDLING = 'SAK_OG_BEHANDLING',
+    JOARK = 'JOARK',
+    JOARK_SIKKERHETSBEGRENSNING = 'JOARK_SIKKERHETSBEGRENSNING',
+    HENVENDELSE = 'HENVENDELSE',
+    PDF_KONVERTERING = 'PDF_KONVERTERING',
+    AKTOER = 'AKTOER',
+    KODEVERK = 'KODEVERK',
+    SAF = 'SAF',
+    SAK = 'SAK'
 }
 export enum DataFeilendeSystemer {
     NOT_RELEVANT = 'NOT_RELEVANT',
@@ -3598,90 +3910,21 @@ export enum IdentInformasjonGruppe {
     NPID = 'NPID',
     __UNKNOWN_VALUE = '__UNKNOWN_VALUE'
 }
-export enum VedtakDTORettighet {
-    TILTAKSPENGER = 'TILTAKSPENGER',
-    TILTAKSPENGER_OG_BARNETILLEGG = 'TILTAKSPENGER_OG_BARNETILLEGG',
-    INGENTING = 'INGENTING'
-}
-export enum VedtakDTOKilde {
-    TPSAK = 'TPSAK',
-    ARENA = 'ARENA'
-}
-export enum YtelseVedtakYtelseType {
-    Sykepenger = 'Sykepenger',
-    Foreldrepenger = 'Foreldrepenger',
-    Pleiepenger = 'Pleiepenger',
-    Tiltakspenge = 'Tiltakspenge',
-    Pensjon = 'Pensjon'
-}
-export enum DokumentDokumentStatus {
-    UNDER_REDIGERING = 'UNDER_REDIGERING',
-    FERDIGSTILT = 'FERDIGSTILT',
-    AVBRUTT = 'AVBRUTT',
-    KASSERT = 'KASSERT'
-}
-export enum DokumentmetadataRetning {
-    INN = 'INN',
-    UT = 'UT',
-    INTERN = 'INTERN'
-}
-export enum DokumentmetadataAvsender {
-    SLUTTBRUKER = 'SLUTTBRUKER',
-    NAV = 'NAV',
-    EKSTERN_PART = 'EKSTERN_PART',
-    UKJENT = 'UKJENT'
-}
-export enum DokumentmetadataMottaker {
-    SLUTTBRUKER = 'SLUTTBRUKER',
-    NAV = 'NAV',
-    EKSTERN_PART = 'EKSTERN_PART',
-    UKJENT = 'UKJENT'
-}
-export enum DokumentmetadataBaksystem {
-    GSAK = 'GSAK',
-    PESYS = 'PESYS',
-    SAK_OG_BEHANDLING = 'SAK_OG_BEHANDLING',
-    JOARK = 'JOARK',
-    JOARK_SIKKERHETSBEGRENSNING = 'JOARK_SIKKERHETSBEGRENSNING',
-    HENVENDELSE = 'HENVENDELSE',
-    PDF_KONVERTERING = 'PDF_KONVERTERING',
-    AKTOER = 'AKTOER',
-    KODEVERK = 'KODEVERK',
-    SAF = 'SAF',
-    SAK = 'SAK'
-}
-export enum FeilFeilmelding {
-    UKJENT_FEIL = 'UKJENT_FEIL',
-    DOKUMENT_IKKE_FUNNET = 'DOKUMENT_IKKE_FUNNET',
-    DOKUMENT_IKKE_TILGJENGELIG = 'DOKUMENT_IKKE_TILGJENGELIG',
-    DOKUMENT_SLETTET = 'DOKUMENT_SLETTET',
-    SIKKERHETSBEGRENSNING = 'SIKKERHETSBEGRENSNING',
-    MANGLER_DOKUMENTMETADATA = 'MANGLER_DOKUMENTMETADATA',
-    JOURNALFORT_ANNET_TEMA = 'JOURNALFORT_ANNET_TEMA',
-    IKKE_JOURNALFORT = 'IKKE_JOURNALFORT',
-    SAKSBEHANDLER_IKKE_TILGANG = 'SAKSBEHANDLER_IKKE_TILGANG',
-    TEMAKODE_ER_BIDRAG = 'TEMAKODE_ER_BIDRAG',
-    KORRUPT_PDF = 'KORRUPT_PDF',
-    TEKNISK_FEIL = 'TEKNISK_FEIL'
-}
-export enum SakBaksystem {
-    GSAK = 'GSAK',
-    PESYS = 'PESYS',
-    SAK_OG_BEHANDLING = 'SAK_OG_BEHANDLING',
-    JOARK = 'JOARK',
-    JOARK_SIKKERHETSBEGRENSNING = 'JOARK_SIKKERHETSBEGRENSNING',
-    HENVENDELSE = 'HENVENDELSE',
-    PDF_KONVERTERING = 'PDF_KONVERTERING',
-    AKTOER = 'AKTOER',
-    KODEVERK = 'KODEVERK',
-    SAF = 'SAF',
-    SAK = 'SAK'
-}
 export enum EnhetStatus {
     UNDER_ETABLERING = 'UNDER_ETABLERING',
     AKTIV = 'AKTIV',
     UNDER_AVVIKLING = 'UNDER_AVVIKLING',
     NEDLAGT = 'NEDLAGT'
+}
+export enum OpprettSkjermetOppgaveDTOPrioritetKode {
+    HOY = 'HOY',
+    NORM = 'NORM',
+    LAV = 'LAV'
+}
+export enum OpprettOppgaveRequestDTOPrioritetKode {
+    HOY = 'HOY',
+    NORM = 'NORM',
+    LAV = 'LAV'
 }
 export enum SendMeldingRequestV2TraadType {
     SAMTALEREFERAT = 'SAMTALEREFERAT',
@@ -3714,16 +3957,6 @@ export enum TraadDTOTraadType {
     SAMTALEREFERAT = 'SAMTALEREFERAT',
     MELDINGSKJEDE = 'MELDINGSKJEDE',
     CHAT = 'CHAT'
-}
-export enum OpprettSkjermetOppgaveDTOPrioritetKode {
-    HOY = 'HOY',
-    NORM = 'NORM',
-    LAV = 'LAV'
-}
-export enum OpprettOppgaveRequestDTOPrioritetKode {
-    HOY = 'HOY',
-    NORM = 'NORM',
-    LAV = 'LAV'
 }
 export enum PrioritetKode {
     HOY = 'HOY',

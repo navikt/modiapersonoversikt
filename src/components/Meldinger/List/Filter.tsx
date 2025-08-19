@@ -102,6 +102,7 @@ const SearchField = () => {
             size="small"
             label="Søkeord"
             variant="secondary"
+            hideLabel={false}
             value={internalValue}
             onChange={(v) => {
                 setInternalValue(v);
