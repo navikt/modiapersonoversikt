@@ -4,18 +4,23 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import Panel from 'nav-frontend-paneler';
 import { Normaltekst, UndertekstBold, Undertittel } from 'nav-frontend-typografi';
 import { useDispatch } from 'react-redux';
+import EnkeltMelding from 'src/app/personside/infotabs/meldinger/traadvisning/Enkeltmelding';
+import {
+    nyesteMelding,
+    saksbehandlerTekst,
+    traadKanBesvares,
+    traadstittel
+} from 'src/app/personside/infotabs/meldinger/utils/meldingerUtils';
+import { useDialogpanelState } from 'src/context/dialogpanel-state';
+import type { Traad } from 'src/models/meldinger/meldinger';
+import { setValgtTraadDialogpanel } from 'src/redux/oppgave/actions';
+import theme from 'src/styles/personOversiktTheme';
+import { useAppState } from 'src/utils/customHooks';
+import { datoSynkende, formatterDato, formatterDatoTid } from 'src/utils/date-utils';
+import { loggEvent } from 'src/utils/logger/frontendLogger';
+import type { Printer } from 'src/utils/print/usePrinter';
+import { formaterDato } from 'src/utils/string-utils';
 import styled from 'styled-components';
-import { useDialogpanelState } from '../../../../../context/dialogpanel-state';
-import type { Traad } from '../../../../../models/meldinger/meldinger';
-import { setValgtTraadDialogpanel } from '../../../../../redux/oppgave/actions';
-import theme from '../../../../../styles/personOversiktTheme';
-import { useAppState } from '../../../../../utils/customHooks';
-import { datoSynkende, formatterDato, formatterDatoTid } from '../../../../../utils/date-utils';
-import { loggEvent } from '../../../../../utils/logger/frontendLogger';
-import type { Printer } from '../../../../../utils/print/usePrinter';
-import { formaterDato } from '../../../../../utils/string-utils';
-import { nyesteMelding, saksbehandlerTekst, traadKanBesvares, traadstittel } from '../utils/meldingerUtils';
-import EnkeltMelding from './Enkeltmelding';
 
 interface Props {
     valgtTraad: Traad;
@@ -66,7 +71,7 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     const kanBesvares = traadKanBesvares(valgtTraad);
     const melding = nyesteMelding(valgtTraad);
     const avsluttetDato = valgtTraad.avsluttetDato || melding.avsluttetDato;
-    const avsluttetAv = valgtTraad.sistEndretAv || melding.skrevetAvTekst;
+    const avsluttetAv = melding.skrevetAvTekst;
 
     if (melding.markertSomFeilsendtAv || melding.sendtTilSladding || (avsluttetDato && !kanBesvares)) {
         return (
