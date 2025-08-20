@@ -71,7 +71,6 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     const kanBesvares = traadKanBesvares(valgtTraad);
     const melding = nyesteMelding(valgtTraad);
     const avsluttetDato = valgtTraad.avsluttetDato || melding.avsluttetDato;
-    const avsluttetAv = melding.skrevetAvTekst;
 
     if (melding.markertSomFeilsendtAv || melding.sendtTilSladding || (avsluttetDato && !kanBesvares)) {
         return (
@@ -85,11 +84,7 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
                 {melding.sendtTilSladding && (
                     <StyledAlertStripeInfo>Tråden ligger til behandling for sladding</StyledAlertStripeInfo>
                 )}
-                {avsluttetDato && !kanBesvares && (
-                    <StyledAlertStripeInfo>
-                        Samtalen er avsluttet av {avsluttetAv ?? 'Systembruker'}
-                    </StyledAlertStripeInfo>
-                )}
+                {avsluttetDato && !kanBesvares && <StyledAlertStripeInfo>Samtalen er avsluttet</StyledAlertStripeInfo>}
             </>
         );
     }

@@ -101,7 +101,6 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
     const kanBesvares = traadKanBesvares(traad);
     const melding = nyesteMelding(traad);
     const avsluttetDato = traad.avsluttetDato || melding.avsluttetDato;
-    const avsluttetAv = melding.skrevetAvTekst;
 
     return (
         <Card as={VStack} padding="2" minHeight={{ xs: '100%', md: '0' }} overflow="auto">
@@ -120,7 +119,7 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
 
                 {avsluttetDato && !kanBesvares && (
                     <Alert variant="info" size="small">
-                        Samtalen er avsluttet av {avsluttetAv ?? 'Systembruker'} {formatterDatoTid(avsluttetDato)}
+                        Samtalen er avsluttet {formatterDatoTid(avsluttetDato)}
                     </Alert>
                 )}
 
