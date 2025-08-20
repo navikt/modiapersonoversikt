@@ -101,7 +101,7 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
     const kanBesvares = traadKanBesvares(traad);
     const melding = nyesteMelding(traad);
     const avsluttetDato = traad.avsluttetDato || melding.avsluttetDato;
-    const avsluttetAv = melding.skrevetAvTekst;
+    const avsluttetAv = traad.avsluttetAv || melding.skrevetAvTekst;
 
     return (
         <Card as={VStack} padding="2" minHeight={{ xs: '100%', md: '0' }} overflow="auto">
@@ -133,6 +133,11 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
                 {melding.sendtTilSladding && (
                     <Alert variant="warning" size="small">
                         Tråden ligger til behandling for sladding
+                    </Alert>
+                )}
+                {traad.sattTilSladdingAv && (
+                    <Alert variant="warning" size="small">
+                        Tråden er satt til sladding av {traad.sattTilSladdingAv}
                     </Alert>
                 )}
 
