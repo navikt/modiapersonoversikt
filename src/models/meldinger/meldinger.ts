@@ -8,6 +8,8 @@ export interface Traad {
     meldinger: Melding[];
     journalposter: Array<MeldingJournalpost>;
     avsluttetDato?: string;
+    avsluttetAv?: string;
+    sattTilSladdingAv?: string;
 }
 
 export interface Melding {

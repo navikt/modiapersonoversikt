@@ -1800,6 +1800,19 @@ export interface components {
             traadId?: string;
             'f\u00F8dselsnummer'?: string;
             erSTOOppgave: boolean;
+            tildeltEnhetsnr: string;
+            tema: string;
+            temagruppe?: string;
+            oppgavetype: string;
+            prioritet: string;
+            status: string;
+            aktivDato: components['schemas']['LocalDate'];
+            endretAvEnhetsnr?: string;
+            opprettetAvEnhetsnr?: string;
+            saksreferanse?: string;
+            beskrivelse?: string;
+            fristFerdigstillelse?: components['schemas']['LocalDate'];
+            opprettetTidspunkt?: components['schemas']['LocalDateTime'];
         };
         OppfolgingDTO: {
             erUnderOppfolging?: boolean;
@@ -1957,17 +1970,17 @@ export interface components {
             locations?: components['schemas']['GraphQLClientSourceLocation'][];
         };
         GraphQLClientResponseResult: {
-            errors?: components['schemas']['GraphQLClientError'][];
             extensions?: {
                 [key: string]: unknown;
             };
             data?: components['schemas']['Result'];
+            errors?: components['schemas']['GraphQLClientError'][];
         };
         GraphQLClientSourceLocation: {
             /** Format: int32 */
-            column: number;
-            /** Format: int32 */
             line: number;
+            /** Format: int32 */
+            column: number;
         };
         BehandlendeEnhetRequest: {
             fnr: string;
@@ -2075,8 +2088,6 @@ export interface components {
             avsluttetDato?: string;
             /** Format: date-time */
             ferdigstiltDato: string;
-            kontorsperretEnhet?: string;
-            kontorsperretAv?: components['schemas']['Veileder'];
             sendtTilSladding: boolean;
             markertSomFeilsendtAv?: components['schemas']['Veileder'];
         };
@@ -2088,11 +2099,11 @@ export interface components {
             temagruppe: string;
             /** Format: date-time */
             opprettetDato?: string;
-            kontorsperre: boolean;
             feilsendt: boolean;
             /** Format: date-time */
             avsluttetDato?: string;
-            sistEndretAv?: string;
+            avsluttetAv?: string;
+            sattTilSladdingAv?: string;
             sladding?: boolean;
             meldinger: components['schemas']['MeldingDTO'][];
             journalposter: components['schemas']['Journalpost'][];
