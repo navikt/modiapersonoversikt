@@ -48,6 +48,7 @@ import type {
     OpprettOppgaveResponseDto
 } from 'src/generated/modiapersonoversikt-api';
 import { getMockPensjon } from 'src/mock/ytelse/pensjon-mock';
+
 import { getMockYtelserRespons } from 'src/mock/ytelse/ytelser-mock';
 import type { FeatureTogglesResponse } from 'src/rest/resources/featuretogglesResource';
 import { STATUS_OK, fodselsNummerErGyldigStatus, randomDelay } from './utils-mock';
@@ -377,7 +378,6 @@ export const handlers: (HttpHandler | WebSocketHandler)[] = [
     foreldrepengerHandler,
     pleiepengerHandler,
     tiltakspengerMock,
-    pensjonMock,
     ytelseHandler,
     pensjonMock,
     tildelteOppgaverHandler,
