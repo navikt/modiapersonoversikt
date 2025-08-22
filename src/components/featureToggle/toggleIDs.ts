@@ -4,6 +4,5 @@ export enum FeatureToggles {
     JournalforUtenSvar = 'modiapersonoversikt.meldinger-uten-svar-kan-journalfores',
     BrukNyTiltakspenger = 'modiapersonoversikt.bruk-ny-tiltakspenger',
     NyModiaKnapp = 'modiapersonoversikt.ny-modia-knapp',
-    TilgangsMaskin = 'modiapersonoversikt.tilgangsmaskin',
-    BrukPensjon = 'modiapersonoversikt.bruk-pensjon'
+    TilgangsMaskin = 'modiapersonoversikt.tilgangsmaskin'
 }

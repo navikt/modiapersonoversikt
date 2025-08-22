@@ -22,7 +22,7 @@ export function isTiltakspenger(ytelse: Ytelse): ytelse is Tiltakspenger {
     return 'rettighet' in ytelse;
 }
 export function isPensjon(ytelse: Ytelse): ytelse is Pensjon {
-    return 'fom' in ytelse;
+    return 'fomDato' in ytelse;
 }
 
 export function getYtelseIdDato(ytelse: Ytelse) {

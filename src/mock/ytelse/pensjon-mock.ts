@@ -22,19 +22,19 @@ export function getMockPensjon(fnr: string): PensjonResource {
     return fyllRandomListe<Pensjon>(() => getMockPensjonYtelser(fnr), 3);
 }
 
-export function getMockPensjonYtelser(fnr: string): Pensjon {
+function getMockPensjonYtelser(fnr: string): Pensjon {
     faker.seed(Number(fnr));
     navfaker.seed(`${fnr}pensjon`);
 
-    const fom = dayjs(faker.date.past({ years: 2 })).format(backendDatoformat);
-    const tom = dayjs(fom).add(faker.number.int(40), 'days').format(backendDatoformat);
+    const fomDato = dayjs(faker.date.past({ years: 2 })).format(backendDatoformat);
+    const tomDato = dayjs(fomDato).add(faker.number.int(40), 'days').format(backendDatoformat);
 
     return {
-        id: faker.string.alphanumeric(8),
-        fom,
-        tom,
+        sakid: faker.string.alphanumeric(8),
+        fomDato,
+        tomDato,
         enhetId: '0129',
-        type: { code: 'AFP', decode: 'Afp' },
-        status: { code: 'OPPRETTET', decode: 'Opprettet' }
+        sakType: 'AFP',
+        sakStatus: 'OPPRETTET'
     };
 }

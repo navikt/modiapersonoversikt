@@ -90,10 +90,8 @@ export function setupReactQueryMocks() {
         [FeatureToggles.VisPromptMeldingSending]: true,
         [FeatureToggles.VisSiste14aVedtak]: true,
         [FeatureToggles.BrukNyTiltakspenger]: true,
-        [FeatureToggles.BrukPensjon]: true,
         [FeatureToggles.NyModiaKnapp]: true,
-        [FeatureToggles.TilgangsMaskin]: true,
-        [FeatureToggles.BrukPensjon]: true
+        [FeatureToggles.TilgangsMaskin]: true
     });
     mockReactQuery(gsaktemaResource.useFetch, getMockGsakTema());
     mockReactQuery(foreldrepengerResource.useForeldrepenger, {

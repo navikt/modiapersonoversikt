@@ -163,10 +163,10 @@ function PensjonKomponent(props: { pensjon: Pensjon }) {
             <Normaltekst>ID dato: {formaterDato(fom)}</Normaltekst>
             <Element>Pensjon</Element>
             <Normaltekst>
-                {props.pensjon.fom ? formaterDato(props.pensjon.fom) : ''} -{' '}
-                {props.pensjon.tom ? formaterDato(props.pensjon.tom) : ''}
+                {props.pensjon.fomDato ? formaterDato(props.pensjon.fomDato) : ''} -{' '}
+                {props.pensjon.tomDato ? formaterDato(props.pensjon.tomDato) : ''}
                 {': '}
-                {`Type: ${props.pensjon.type ? props.pensjon.type.decode : ''}`}
+                {`Type: ${props.pensjon.sakType ?? ''}`}
             </Normaltekst>
         </VisMerKnapp>
     );

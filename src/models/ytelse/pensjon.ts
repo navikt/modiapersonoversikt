@@ -1,18 +1,21 @@
+import dayjs from 'dayjs';
+import { backendDatoformat } from 'src/utils/date-utils';
+
 export type PensjonResource = Pensjon[] | null;
 
 export interface Pensjon {
-    id: string;
+    sakid: string;
     enhetId: string;
-    type?: { code: string; decode: string };
-    status?: { code: string; decode: string };
-    fom: string;
-    tom?: string;
+    sakType: string;
+    sakStatus: string;
+    fomDato?: string;
+    tomDato?: string;
 }
 
 export function getPensjonIdDato(ytelse: Pensjon) {
-    return ytelse.fom;
+    return ytelse.fomDato ?? dayjs().format(backendDatoformat);
 }
 
 export function getUnikPensjonKey(ytelse: Pensjon) {
-    return `pensjon${ytelse.id}`;
+    return `pensjon${ytelse.sakid}`;
 }

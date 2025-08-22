@@ -31,10 +31,10 @@ function Pensjon(props: Props) {
     });
 
     const pensjonEntries = {
-        'Fra og med': props.pensjon.fom ? formaterDato(props.pensjon.fom) : '',
-        'Til og med': props.pensjon.tom ? formaterDato(props.pensjon.tom) : '',
-        Type: props.pensjon.type ? props.pensjon.type.decode : '',
-        Status: props.pensjon.status ? props.pensjon.status.decode : ''
+        'Fra og med': props.pensjon.fomDato ? formaterDato(props.pensjon.fomDato) : '',
+        'Til og med': props.pensjon.tomDato ? formaterDato(props.pensjon.tomDato) : '',
+        Type: props.pensjon.sakType ?? '',
+        Status: props.pensjon.sakStatus ?? ''
     };
 
     return (

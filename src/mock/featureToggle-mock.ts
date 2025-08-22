@@ -9,8 +9,6 @@ export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleRespon
             return true;
         case FeatureToggles.NyModiaKnapp:
             return true;
-        case FeatureToggles.BrukPensjon:
-            return true;
         default:
             return Math.random() > 0.5;
     }
