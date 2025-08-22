@@ -3,12 +3,14 @@ import { getRouteApi } from '@tanstack/react-router';
 import { Suspense } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { ForeldrePengerDetails } from 'src/components/ytelser/Detail/foreldrepenger';
+import { PensjonDetails } from 'src/components/ytelser/Detail/pensjon';
 import { PleiePengerDetails } from 'src/components/ytelser/Detail/pleiepenger';
 import { SykepengerDetails } from 'src/components/ytelser/Detail/sykepenger';
 import { TiltaksPengerDetails } from 'src/components/ytelser/Detail/tiltakspenger';
 import { getUnikYtelseKey, useFilterYtelser } from 'src/components/ytelser/utils';
 import {
     type Foreldrepenger,
+    type PensjonSak,
     type Pleiepenger,
     type Sykepenger,
     type VedtakDto,
@@ -75,7 +77,7 @@ const YtelseDataDetails = () => {
         case YtelseVedtakYtelseType.Tiltakspenge:
             return <TiltaksPengerDetails tiltaksPenger={selectedYtelse.ytelseData.data as VedtakDto} />;
         case YtelseVedtakYtelseType.Pensjon:
-            return <Alert variant="info">Underarbeide</Alert>;
+            return <PensjonDetails pensjon={selectedYtelse.ytelseData.data as PensjonSak} />;
         default:
             return <Alert variant="info">Ukjent ytelse type {selectedYtelse.ytelseType}</Alert>;
     }

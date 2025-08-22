@@ -34,7 +34,8 @@ function Pensjon(props: Props) {
         'Fra og med': props.pensjon.fomDato ? formaterDato(props.pensjon.fomDato) : '',
         'Til og med': props.pensjon.tomDato ? formaterDato(props.pensjon.tomDato) : '',
         Type: props.pensjon.sakType ?? '',
-        Status: props.pensjon.sakStatus ?? ''
+        Status: props.pensjon.sakStatus ?? '',
+        Enhet: props.pensjon.enhetId ?? ''
     };
 
     return (
