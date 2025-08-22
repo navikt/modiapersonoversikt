@@ -4,8 +4,8 @@ import { backendDatoformat } from 'src/utils/date-utils';
 export type PensjonResource = Pensjon[] | null;
 
 export interface Pensjon {
-    sakid: string;
-    enhetId: string;
+    sakid: number;
+    enhetsId: string;
     sakType: string;
     sakStatus: string;
     fomDato?: string;

@@ -30,10 +30,10 @@ function getMockPensjonYtelser(fnr: string): Pensjon {
     const tomDato = dayjs(fomDato).add(faker.number.int(40), 'days').format(backendDatoformat);
 
     return {
-        sakid: faker.string.alphanumeric(8),
+        sakid: faker.number.int(100),
         fomDato,
         tomDato,
-        enhetId: '0129',
+        enhetsId: '0129',
         sakType: 'AFP',
         sakStatus: 'OPPRETTET'
     };

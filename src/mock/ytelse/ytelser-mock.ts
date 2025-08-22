@@ -1,5 +1,5 @@
 import { pleiepengerTestData } from 'src/app/personside/infotabs/ytelser/pleiepenger/pleiepengerTestData';
-import type { YtelseResponse } from 'src/generated/modiapersonoversikt-api';
+import type { PensjonSak, YtelseResponse } from 'src/generated/modiapersonoversikt-api';
 import { YtelseVedtakYtelseType } from 'src/generated/modiapersonoversikt-api';
 import { aremark } from 'src/mock/persondata/aremark';
 import { statiskForeldrepengeMockNy } from 'src/mock/ytelse/statiskForeldrepengeMock';
@@ -18,7 +18,10 @@ export function getMockYtelserRespons(fnr: string): YtelseResponse {
         ytelseType: YtelseVedtakYtelseType.Tiltakspenge,
         ytelseData: { data: statiskTiltakspengerMock }
     };
-    const pensjon = { ytelseType: YtelseVedtakYtelseType.Pensjon, ytelseData: { data: statiskPensjonMock } };
+    const pensjon = {
+        ytelseType: YtelseVedtakYtelseType.Pensjon,
+        ytelseData: { data: statiskPensjonMock as PensjonSak }
+    };
 
     if (fnr === aremark.personIdent) {
         return {

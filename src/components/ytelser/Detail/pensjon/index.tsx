@@ -11,7 +11,7 @@ const PensjonSak = ({ pensjon }: { pensjon: PensjonSak }) => {
         'Til og med': pensjon.tomDato ? formaterDato(pensjon.tomDato) : '',
         Type: pensjon.sakType ?? '',
         Status: pensjon.sakStatus ?? '',
-        Enhet: pensjon.enhetId ?? ''
+        Enhet: pensjon.enhetsId ?? ''
     };
 
     return (
