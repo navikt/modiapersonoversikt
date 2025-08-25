@@ -40,7 +40,7 @@ const filterSaker = (saker: SaksDokumenter[], filters: SakerFilter): SaksDokumen
     if (dateRange?.from && dateRange?.to) {
         filteredList = filteredList.filter((sak) => {
             const dato = dayjs(sak.opprettet);
-            return dato.isAfter(dateRange.from) && dato.isBefore(dateRange.to);
+            return dato.isSameOrAfter(dateRange.from) && dato.isSameOrBefore(dateRange.to);
         });
     }
 

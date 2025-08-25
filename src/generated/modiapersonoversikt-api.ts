@@ -1806,13 +1806,16 @@ export interface components {
             oppgavetype: string;
             prioritet: string;
             status: string;
-            aktivDato: components['schemas']['LocalDate'];
+            /** Format: date */
+            aktivDato: string;
             endretAvEnhetsnr?: string;
             opprettetAvEnhetsnr?: string;
             saksreferanse?: string;
             beskrivelse?: string;
-            fristFerdigstillelse?: components['schemas']['LocalDate'];
-            opprettetTidspunkt?: components['schemas']['LocalDateTime'];
+            /** Format: date */
+            fristFerdigstillelse?: string;
+            /** Format: date-time */
+            opprettetTidspunkt?: string;
         };
         OppfolgingDTO: {
             erUnderOppfolging?: boolean;

@@ -30,6 +30,11 @@ const menuItems = [
         beskrivelse: 'Kort beskrivelse av hva dokumenter er'
     },
     {
+        title: 'Oppgaver',
+        href: '/new/person/oppgaver',
+        beskrivelse: 'Kort beskrivelse av hva oppgaver er'
+    },
+    {
         title: 'Varsler',
         href: '/new/person/varsler',
         beskrivelse: 'Kort beskrivelse av hva varsler er'

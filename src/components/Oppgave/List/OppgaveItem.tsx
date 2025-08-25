@@ -1,48 +1,48 @@
-import { CheckmarkCircleFillIcon, ChevronRightIcon, ExclamationmarkTriangleFillIcon } from '@navikt/aksel-icons';
+import { ChevronRightIcon } from '@navikt/aksel-icons';
 import { BodyShort, Button, HStack, Heading, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import Card from 'src/components/Card';
-import type { VarselData } from 'src/components/varsler/List/utils';
-import { formaterDato } from 'src/utils/string-utils';
+import { getOppgaveId } from 'src/components/Oppgave/List/utils';
+import type { OppgaveDto } from 'src/generated/modiapersonoversikt-api';
+import { formatterDato } from 'src/utils/date-utils';
 
-const routeApi = getRouteApi('/new/person/varsler');
+const routeApi = getRouteApi('/new/person/oppgaver');
 
-export const VarslerItem = ({
-    varsel,
+export const OppgaveItem = ({
+    oppgave,
     handleClick
 }: {
-    varsel: VarselData;
+    oppgave: OppgaveDto;
     handleClick: (id: string) => void;
 }) => {
-    const aktivVarsel = routeApi.useSearch().id;
+    const aktivOppgaveId = routeApi.useSearch().id;
+    const id = getOppgaveId(oppgave);
     return (
         <Card
             padding="2"
             className={`cursor-pointer hover:hover:bg-ax-bg-neutral-moderate-hover group
-                ${aktivVarsel === varsel.eventId ? 'bg-ax-bg-neutral-moderate ' : ''}`}
-            onClick={() => handleClick(varsel.eventId)}
+                ${aktivOppgaveId === id ? 'bg-ax-bg-neutral-moderate ' : ''}`}
+            onClick={() => handleClick(id)}
             as="li"
         >
             <HStack justify="space-between" gap="1" wrap={false}>
                 <VStack justify="center" gap="1">
                     <Heading size="xsmall" as="h3" level="3">
-                        {varsel.tittel}
+                        {oppgave.tema}
                     </Heading>
                     <HStack gap="2">
                         <BodyShort size="small" weight="semibold">
-                            Varsel datoer:
+                            Temagruppe:
                         </BodyShort>
-                        <BodyShort size="small">{varsel.datoer.map(formaterDato).join(', ')}</BodyShort>
+                        <BodyShort size="small">{oppgave.temagruppe}</BodyShort>
                     </HStack>
                     <HStack gap="2">
                         <BodyShort size="small" weight="semibold">
-                            Status:
+                            Forfallsdato:
                         </BodyShort>
-                        {varsel.harFeilteVarsel ? (
-                            <ExclamationmarkTriangleFillIcon fontSize="1.5rem" title="Har feil" />
-                        ) : (
-                            <CheckmarkCircleFillIcon fontSize="1.5rem" title="Ok" />
-                        )}
+                        <BodyShort size="small">
+                            {oppgave.fristFerdigstillelse ? formatterDato(oppgave.fristFerdigstillelse) : ''}
+                        </BodyShort>
                     </HStack>
                 </VStack>
                 <Button
