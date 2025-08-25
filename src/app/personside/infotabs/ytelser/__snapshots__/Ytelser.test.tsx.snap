@@ -2463,6 +2463,38 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       <h3
                         class="typo-undertittel"
                       >
+                        Pensjon
+                      </h3>
+                      <p
+                        class="typo-element"
+                      >
+                        ID-dato
+                      </p>
+                      <p
+                        class="typo-normal"
+                      >
+                        10.01.2020
+                      </p>
+                    </div>
+                    <button
+                      aria-label="Vis pensjon"
+                      aria-selected="false"
+                      class="c13"
+                    >
+                      <span
+                        class="nav-frontend-chevron chevronboks chevron--hoyre"
+                      />
+                    </button>
+                  </div>
+                </li>
+                <li>
+                  <div
+                    class="c14"
+                  >
+                    <div>
+                      <h3
+                        class="typo-undertittel"
+                      >
                         Sykepengerrettighet
                       </h3>
                       <p

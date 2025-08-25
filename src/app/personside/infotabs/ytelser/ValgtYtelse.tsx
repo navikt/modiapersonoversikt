@@ -2,10 +2,12 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { guid } from 'nav-frontend-js-utils';
 import { useRef } from 'react';
 import { useEffect } from 'react';
+import Pensjon from 'src/app/personside/infotabs/ytelser/pensjon/Pensjon';
 import styled from 'styled-components';
 import {
     type Ytelse,
     isForeldrepenger,
+    isPensjon,
     isPleiepenger,
     isSykepenger,
     isTiltakspenger
@@ -39,6 +41,9 @@ function YtelseMarkup(props: { ytelse: Ytelse }) {
     }
     if (isTiltakspenger(props.ytelse)) {
         return <Tiltakspenger tiltakspenger={props.ytelse} />;
+    }
+    if (isPensjon(props.ytelse)) {
+        return <Pensjon pensjon={props.ytelse} />;
     }
     loggError(new Error('Ytelse ikke håndtert, kunne ikke finne markup'));
     return null;
