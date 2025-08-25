@@ -1,16 +1,10 @@
 import { Alert, BodyShort, HGrid, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
-import { Suspense, useMemo } from 'react';
+import { Suspense } from 'react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { TraadDetail } from 'src/components/Meldinger/Detail';
 import { getOppgaveId, useFilterOppgave } from 'src/components/Oppgave/List/utils';
-import RichText, {
-    createDynamicHighlightingRule,
-    defaultRules,
-    HighlightRule,
-    SladdRule
-} from 'src/components/RichText';
 import type { OppgaveDto } from 'src/generated/modiapersonoversikt-api';
 import { useGsakTema } from 'src/lib/clients/modiapersonoversikt-api';
 import { datoEllerNull } from 'src/utils/string-utils';
@@ -23,7 +17,6 @@ const OppgaveDetailInfo = ({ oppgave }: { oppgave: OppgaveDto }) => {
     const oppgaveTyper = tema?.oppgavetyper ?? [];
     const oppgavetype = oppgaveTyper.find((o) => o.kode === oppgave.oppgavetype);
     const prioritering = tema?.prioriteter.find((o) => o.kode === oppgave.prioritet);
-    const highlightRule = useMemo(() => createDynamicHighlightingRule(''.split(' ')), []);
 
     return (
         <Card padding="4">
@@ -103,9 +96,7 @@ const OppgaveDetailInfo = ({ oppgave }: { oppgave: OppgaveDto }) => {
                 <BodyShort size="small" weight="semibold">
                     Beskrivelse:
                 </BodyShort>
-                <RichText rules={[SladdRule, HighlightRule, highlightRule, ...defaultRules]}>
-                    {oppgave?.beskrivelse}
-                </RichText>
+                <BodyShort size="small">{oppgave?.beskrivelse}</BodyShort>
             </VStack>
         </Card>
     );
