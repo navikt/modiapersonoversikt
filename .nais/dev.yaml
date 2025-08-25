@@ -66,6 +66,8 @@ spec:
         - application: modiapersonoversikt-draft
         - application: modiacontextholder
         - application: modiapersonoversikt-api
+        - application: logging
+          namespace: nais-system
       external:
         - host: personoversikt-unleash-api.nav.cloud.nais.io
   envFrom:
