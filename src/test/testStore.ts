@@ -1,6 +1,7 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { type Dispatch, type Store, applyMiddleware, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
+import { statiskPensjonMock } from 'src/mock/ytelse/statiskPensjonMock';
 import { type MockInstance, vi } from 'vitest';
 import type { FetchError } from '../api/api';
 import { pleiepengerTestData } from '../app/personside/infotabs/ytelser/pleiepenger/pleiepengerTestData';
@@ -26,6 +27,7 @@ import * as foreldrepengerResource from '../rest/resources/foreldrepengerResourc
 import gsaktemaResource from '../rest/resources/gsaktemaResource';
 import innstillingerResource from '../rest/resources/innstillingerResource';
 import oppfolgingResource from '../rest/resources/oppfolgingResource';
+import * as pensjonResource from '../rest/resources/pensjonResource';
 import persondataResource from '../rest/resources/persondataResource';
 import * as pleiepengerResource from '../rest/resources/pleiepengerResource';
 import sakstemaResource from '../rest/resources/sakstemaResource';
@@ -68,6 +70,7 @@ export function setupReactQueryMocks() {
     vi.spyOn(pleiepengerResource, 'usePleiepenger');
     vi.spyOn(sykepengerResource, 'useSykepenger');
     vi.spyOn(tiltakspengerResource, 'useTiltakspenger');
+    vi.spyOn(pensjonResource, 'usePensjon');
     vi.spyOn(gsaktemaResource, 'useFetch');
     vi.spyOn(oppfolgingResource, 'useFetch');
     vi.spyOn(sakstemaResource, 'useFetch');
@@ -101,6 +104,7 @@ export function setupReactQueryMocks() {
         sykepenger: [statiskSykepengerMock]
     });
     mockReactQuery(tiltakspengerResource.useTiltakspenger, [statiskTiltakspengerMock]);
+    mockReactQuery(pensjonResource.usePensjon, [statiskPensjonMock]);
     mockReactQuery(oppfolgingResource.useFetch, statiskOppfolgingMock);
     mockReactQuery(sakstemaResource.useFetch, getStaticMockSaksoversiktV2());
     mockReactQuery(utbetalingerResource.useFetch, statiskMockUtbetalingRespons);
