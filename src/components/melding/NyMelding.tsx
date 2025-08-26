@@ -157,7 +157,7 @@ function NyMelding() {
                             {(field) => (
                                 <VelgSak
                                     valgtSak={field.state.value}
-                                    setSak={(sak) => field.handleChange(sak)}
+                                    setSak={(sak) => field.handleChange({ ...sak, fnr: sak.fnr ?? '' })}
                                     error={<ValidationErrorMessage errors={field.state.meta.errors} />}
                                 />
                             )}
@@ -225,14 +225,17 @@ function generateRequestBody(value: NyMeldingSchema) {
                 ...common,
                 traadType: SendMeldingRequestV2TraadType.MELDINGSKJEDE,
                 avsluttet: false,
-                erOppgaveTilknyttetAnsatt: value.oppgaveliste === Oppgaveliste.MinListe
+                erOppgaveTilknyttetAnsatt: value.oppgaveliste === Oppgaveliste.MinListe,
+                sak: value.sak
             };
             break;
         case MeldingsType.Infomelding:
             request = {
                 ...common,
                 traadType: SendMeldingRequestV2TraadType.MELDINGSKJEDE,
-                avsluttet: true
+                avsluttet: true,
+                sak: value.sak,
+                erOppgaveTilknyttetAnsatt: value.oppgaveliste === Oppgaveliste.MinListe
             };
             break;
     }
