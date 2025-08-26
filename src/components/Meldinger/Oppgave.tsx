@@ -4,7 +4,6 @@ import {
     Button,
     Checkbox,
     type ComboboxProps,
-    ErrorSummary,
     HStack,
     Loader,
     Modal,
@@ -13,7 +12,7 @@ import {
     UNSAFE_Combobox,
     VStack
 } from '@navikt/ds-react';
-import { type StandardSchemaV1Issue, useForm } from '@tanstack/react-form';
+import { useForm } from '@tanstack/react-form';
 import { useAtomValue } from 'jotai';
 import { Suspense, useEffect, useRef, useState } from 'react';
 import { OpprettOppgaveRequestDTOPrioritetKode, PrioritetKode } from 'src/generated/modiapersonoversikt-api';
@@ -37,12 +36,6 @@ type Props = {
     traad: Traad;
 };
 
-const getHrefToField = (path: StandardSchemaV1Issue['path']) => {
-    if (path === undefined || path.length === 0) return undefined;
-
-    return `#${path.join('.')}`;
-};
-
 export const OppgaveModal = ({ open, setOpen, traad }: Props) => {
     return (
         <Modal
@@ -57,7 +50,7 @@ export const OppgaveModal = ({ open, setOpen, traad }: Props) => {
             }}
         >
             <Modal.Body>
-                <Box.New minHeight="60vh" overflowY="scroll" paddingInline="4">
+                <Box.New overflowY="scroll" paddingInline="4">
                     <Suspense
                         fallback={
                             <HStack justify="center" align="center">
@@ -71,11 +64,6 @@ export const OppgaveModal = ({ open, setOpen, traad }: Props) => {
                     </Suspense>
                 </Box.New>
             </Modal.Body>
-            <Modal.Footer>
-                <Button variant="secondary" onClick={() => setOpen(false)}>
-                    Avbryt
-                </Button>
-            </Modal.Footer>
         </Modal>
     );
 };
@@ -168,7 +156,7 @@ const OppgaveForm = ({
             }}
         >
             <VStack gap="4">
-                <HStack gap="4" justify="space-between">
+                <VStack gap="4" justify="space-between">
                     <form.Field name="valgtTema">
                         {(field) => (
                             <Select
@@ -266,7 +254,7 @@ const OppgaveForm = ({
                             );
                         }}
                     </form.Subscribe>
-                </HStack>
+                </VStack>
 
                 <form.Field
                     name="minListe"
@@ -294,7 +282,7 @@ const OppgaveForm = ({
                     )}
                 </form.Field>
 
-                <HStack gap="4">
+                <VStack gap="4" justify="space-between">
                     <form.Subscribe
                         selector={(f) =>
                             [
@@ -345,9 +333,7 @@ const OppgaveForm = ({
                             </form.Field>
                         )}
                     </form.Subscribe>
-                </HStack>
 
-                <HStack>
                     <form.Subscribe selector={(f) => [f.values.valgtTema]}>
                         {([valgtTema]) => {
                             const prioriteter = gsakTema.find((t) => t.kode === valgtTema)?.prioriteter;
@@ -386,7 +372,7 @@ const OppgaveForm = ({
                             );
                         }}
                     </form.Subscribe>
-                </HStack>
+                </VStack>
 
                 <form.Field name="beskrivelse">
                     {(field) => (
@@ -397,11 +383,18 @@ const OppgaveForm = ({
                             onChange={(e) => field.handleChange(e.target.value)}
                             value={field.state.value}
                             label="Beskrivelse"
+                            minRows={10}
+                            resize
                         />
                     )}
                 </form.Field>
 
-                <HStack marginBlock="4">
+                {isError && (
+                    <Alert variant="error" title="Kunne ikke opprette oppgave">
+                        {error}
+                    </Alert>
+                )}
+                <HStack gap="4" marginBlock="4">
                     <form.Subscribe selector={(f) => [f.isSubmitting, f.canSubmit]}>
                         {([isSubmitting, canSubmit]) => (
                             <Button type="submit" size="small" loading={isSubmitting} disabled={!canSubmit}>
@@ -409,31 +402,10 @@ const OppgaveForm = ({
                             </Button>
                         )}
                     </form.Subscribe>
+                    <Button variant="secondary" onClick={onSuccess}>
+                        Avbryt
+                    </Button>
                 </HStack>
-                <form.Subscribe selector={(f) => (f.errorMap.onBlur ? f.errorMap.onBlur : f.errorMap.onSubmit)}>
-                    {(errors) =>
-                        errors && (
-                            <ErrorSummary
-                                ref={errorSummaryRef}
-                                heading="Du må rette disse feilene før du kan opprette oppgaven:"
-                            >
-                                {Object.values(errors)
-                                    .flat()
-                                    .map((e) => (
-                                        <ErrorSummary.Item href={getHrefToField(e.path)} key={e.message}>
-                                            {e.message}
-                                        </ErrorSummary.Item>
-                                    ))}
-                            </ErrorSummary>
-                        )
-                    }
-                </form.Subscribe>
-
-                {isError && (
-                    <Alert variant="error" title="Kunne ikke opprette oppgave">
-                        {error}
-                    </Alert>
-                )}
             </VStack>
         </form>
     );

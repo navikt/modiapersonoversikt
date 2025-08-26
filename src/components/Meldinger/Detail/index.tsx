@@ -4,14 +4,14 @@ import { useSetAtom } from 'jotai';
 import { Suspense, useCallback, useState } from 'react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
+import { TraadOppgaver } from 'src/components/Meldinger/Detail/TraadOppgaver';
 import usePrinter from 'src/components/Print/usePrinter';
-import { useOppgaveForTraad, useTraadById } from 'src/lib/clients/modiapersonoversikt-api';
+import { useTraadById } from 'src/lib/clients/modiapersonoversikt-api';
 import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
 import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { formatterDatoTid } from 'src/utils/date-utils';
 import { formaterDato } from 'src/utils/string-utils';
-import { AvsluttOppgaveModal } from '../AvsluttOppgave';
 import { JournalForingModal } from '../Journalforing';
 import { nyesteMelding, saksbehandlerTekst, traadKanBesvares, traadstittel } from '../List/utils';
 import MeldingerPrint from '../MeldingerPrint';
@@ -59,31 +59,15 @@ const TraadMeta = ({ traad }: { traad: Traad }) => (
     </HStack>
 );
 
-export const TraadDetail = ({ traadId }: { traadId: string }) => (
+export const TraadDetail = ({ traadId, valgtOppgaveId }: { traadId: string; valgtOppgaveId?: string }) => (
     <ErrorBoundary boundaryName="traaddetail">
         <Suspense fallback={<Skeleton variant="rounded" height="200" />}>
-            <TraadDetailContent traadId={traadId} />
+            <TraadDetailContent traadId={traadId} valgtOppgaveId={valgtOppgaveId} />
         </Suspense>
     </ErrorBoundary>
 );
 
-const AvsluttOppgaveButton = ({ traadId }: { traadId: string }) => {
-    const [open, setOpen] = useState(false);
-    const { oppgave } = useOppgaveForTraad(traadId);
-
-    if (!oppgave) return null;
-
-    return (
-        <>
-            <Button size="small" variant="primary" onClick={() => setOpen(true)}>
-                Avslutt oppgave
-            </Button>
-            <AvsluttOppgaveModal oppgave={oppgave} open={open} onClose={() => setOpen(false)} />
-        </>
-    );
-};
-
-const TraadDetailContent = ({ traadId }: { traadId: string }) => {
+const TraadDetailContent = ({ traadId, valgtOppgaveId }: { traadId: string; valgtOppgaveId?: string }) => {
     const setDialogUnderArbeid = useSetAtom(dialogUnderArbeidAtom);
     const [journalforingOpen, setJournalforingOpen] = useState(false);
     const [oppgaveOpen, setOppgaveOpen] = useState(false);
@@ -105,7 +89,7 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
 
     return (
         <Card as={VStack} padding="2" minHeight={{ xs: '100%', md: '0' }} overflow="auto">
-            <VStack minHeight={{ xs: '100%', md: '0' }} gap="2" as="section" aria-label="Dialogdetaljer">
+            <VStack minHeight={{ xs: '100%', md: '0' }} gap="4" as="section" aria-label="Dialogdetaljer">
                 <TraadMeta traad={traad} />
                 <HStack gap="4">
                     <Button variant="secondary" size="small" onClick={() => setJournalforingOpen(true)}>
@@ -115,7 +99,6 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
                         Ny oppgave
                     </Button>
                     <DialogMerkMeny traadId={traadId} />
-                    <AvsluttOppgaveButton traadId={traadId} />
                 </HStack>
 
                 {avsluttetDato && !kanBesvares && (
@@ -142,7 +125,7 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
                 )}
 
                 <Journalposter journalposter={traad.journalposter} />
-
+                <TraadOppgaver traadId={traadId} valgtOppgaveId={valgtOppgaveId} />
                 <Meldinger meldinger={traad.meldinger} />
                 {kanBesvares && (
                     <Box.New marginBlock="space-8">

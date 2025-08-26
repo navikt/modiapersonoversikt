@@ -8,13 +8,7 @@ import ErrorBoundary from 'src/components/ErrorBoundary';
 import JournalPoster from 'src/components/saker/Detail/JournalPoster';
 import ViktigAaVite from 'src/components/saker/Detail/viktigavite/ViktigAaVite';
 import { sakerFilterAtom, sakerFilterAvsenderAtom } from 'src/components/saker/List/Filter';
-import {
-    constructNorg2FrontendLink,
-    getSakId,
-    hentBrukerNavn,
-    sakerAvsender,
-    useFilterSaker
-} from 'src/components/saker/utils';
+import { constructNorg2FrontendLink, hentBrukerNavn, sakerAvsender, useFilterSaker } from 'src/components/saker/utils';
 import { TitleValuePairsComponent } from 'src/components/ytelser/Detail';
 import type { Dokumentmetadata, DokumentmetadataAvsender, SaksDokumenter } from 'src/generated/modiapersonoversikt-api';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
@@ -79,21 +73,37 @@ const NorgLenke = ({
         </HStack>
     );
 };
-
-const SakDetails = () => {
-    const {
-        data: { person }
-    } = usePersonData();
-    const brukersNavn = hentBrukerNavn(person);
-    const geografiskTilknytning = person?.geografiskTilknytning;
+const SakContent = () => {
     const { id } = routeApi.useSearch();
-    const saker = useFilterSaker();
-    const { avsender } = useAtomValue(sakerFilterAtom);
-    const valgtSak = saker.find((item) => getSakId(item) === id);
-    if (!valgtSak) {
+    if (!id) {
         return (
             <VStack flexGrow="1" minHeight="0" className="mt-6">
                 <Alert variant="info">Ingen valgte sak.</Alert>
+            </VStack>
+        );
+    }
+
+    return <SakDetails valgtSakId={id} />;
+};
+
+export const SakDetails = ({
+    valgtSakId
+}: {
+    valgtSakId: string;
+}) => {
+    const {
+        data: { person }
+    } = usePersonData();
+    const saker = useFilterSaker();
+    const valgtSak = saker.find((sak) => sak.saksid === valgtSakId || sak.fagsaksnummer === valgtSakId);
+    const brukersNavn = hentBrukerNavn(person);
+    const geografiskTilknytning = person?.geografiskTilknytning;
+    const { avsender } = useAtomValue(sakerFilterAtom);
+
+    if (!valgtSak) {
+        return (
+            <VStack flexGrow="1" minHeight="0" className="mt-6">
+                <Alert variant="error">Den valgte saken kunne ikke finnes.</Alert>
             </VStack>
         );
     }
@@ -169,7 +179,7 @@ export const SakDetailPage = () => {
     return (
         <ErrorBoundary boundaryName="sakDetaljer">
             <Suspense fallback={<Skeleton variant="rounded" height="200" />}>
-                <SakDetails />
+                <SakContent />
             </Suspense>
         </ErrorBoundary>
     );
