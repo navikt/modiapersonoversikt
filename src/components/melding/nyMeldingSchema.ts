@@ -45,6 +45,7 @@ const nyMeldingSchema = z
         }),
         z.object({
             meldingsType: z.literal(MeldingsType.Infomelding),
+            oppgaveliste: z.nativeEnum(Oppgaveliste),
             sak: sakSchema
         })
     ])
