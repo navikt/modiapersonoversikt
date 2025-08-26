@@ -1,5 +1,6 @@
 import { Box, Button, Heading, Table } from '@navikt/ds-react';
 import { useState } from 'react';
+import { SakDetails } from 'src/components/saker/Detail';
 import type { Journalpost } from 'src/generated/modiapersonoversikt-api';
 import { formaterDato } from 'src/utils/string-utils';
 import { twMerge } from 'tailwind-merge';
@@ -26,6 +27,7 @@ export const Journalposter = ({ journalposter }: Props) => {
                 <Table size="small" data-testid="journalposter-table">
                     <Table.Header>
                         <Table.Row>
+                            <Table.HeaderCell />
                             <Table.HeaderCell scope="col" textSize="small">
                                 Saks-Id
                             </Table.HeaderCell>
@@ -36,7 +38,13 @@ export const Journalposter = ({ journalposter }: Props) => {
                                 Journalført av
                             </Table.HeaderCell>
                             <Table.HeaderCell scope="col" textSize="small">
-                                Dato
+                                Journalført dato
+                            </Table.HeaderCell>
+                            <Table.HeaderCell scope="col" textSize="small">
+                                Enhet
+                            </Table.HeaderCell>
+                            <Table.HeaderCell scope="col" textSize="small">
+                                Fagsaksystem
                             </Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
@@ -45,14 +53,19 @@ export const Journalposter = ({ journalposter }: Props) => {
                             const navn = p.journalfortAv?.navn ?? 'ukjent';
                             const dato = formaterDato(p.journalfortDato);
                             const tema = p.journalfortTemanavn;
-                            const saksid = p.journalfortSaksid ? p.journalfortSaksid : 'ukjent saksid';
+                            const saksid = p.journalfortSaksid;
                             return (
-                                <Table.Row key={`${p.journalfortDato}-${p.journalfortSaksid}`}>
-                                    <Table.DataCell textSize="small">{saksid}</Table.DataCell>
+                                <Table.ExpandableRow
+                                    key={`${p.journalfortDato}-${saksid}`}
+                                    content={saksid ? <SakDetails valgtSakId={saksid} /> : 'Ukjent saksid'}
+                                >
+                                    <Table.DataCell textSize="small">{saksid ?? 'Ukjent saksid'}</Table.DataCell>
                                     <Table.DataCell textSize="small">{tema}</Table.DataCell>
                                     <Table.DataCell textSize="small">{navn}</Table.DataCell>
                                     <Table.DataCell textSize="small">{dato}</Table.DataCell>
-                                </Table.Row>
+                                    <Table.DataCell textSize="small">{p.journalforendeEnhet}</Table.DataCell>
+                                    <Table.DataCell textSize="small">{p.journalfortFagsaksystem}</Table.DataCell>
+                                </Table.ExpandableRow>
                             );
                         })}
                     </Table.Body>
