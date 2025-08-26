@@ -31,12 +31,12 @@ export const TraadOppgaver = ({ traadId, valgtOppgaveId }: { traadId: string; va
         return null;
     }
 
-    const traadOppgaverToShow = showAll || valgtOppgaveId ? traadOppgaver : traadOppgaver.slice(0, 3);
+    const traadOppgaverToShow = showAll || valgtOppgaveId ? traadOppgaver : traadOppgaver.slice(0, 2);
 
     return (
         <Box.New>
             <Heading level="4" size="xsmall">
-                Oppgaver
+                Har {traadOppgaver.length} åpne oppgaver
             </Heading>
             <Box.New paddingInline="4" paddingBlock="2">
                 <Table size="small" data-testid="journalposter-table">
@@ -94,7 +94,7 @@ export const TraadOppgaver = ({ traadId, valgtOppgaveId }: { traadId: string; va
                     <Button
                         variant="secondary"
                         size="xsmall"
-                        className={twMerge(traadOppgaver.length <= 3 && 'hidden')}
+                        className={twMerge(traadOppgaver.length <= 2 && 'hidden')}
                         onClick={() => setShowAll((v) => !v)}
                     >
                         {showAll ? 'Skjul' : 'Se alle'}
