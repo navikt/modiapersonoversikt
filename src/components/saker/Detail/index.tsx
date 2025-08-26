@@ -89,11 +89,7 @@ const SakContent = () => {
         );
     }
 
-    return (
-        <VStack gap="2" flexGrow="1" minHeight="0" className="overflow-scroll">
-            <SakDetails valgtSakId={id} pageView={true} />
-        </VStack>
-    );
+    return <SakDetails valgtSakId={id} pageView={true} />;
 };
 
 export const SakDetails = ({
