@@ -19,7 +19,7 @@ RUN --mount=type=secret,id=node_auth_token \
   NODE_AUTH_TOKEN=$(cat /run/secrets/node_auth_token) \
   pnpm run build
 
-FROM europe-north1-docker.pkg.dev/nais-management-233d/personoversikt/modia-frontend:1.11
+FROM europe-north1-docker.pkg.dev/nais-management-233d/personoversikt/modia-frontend:1.6
 
 ADD proxy-config-dev.json proxy-config-dev.json
 ADD proxy-config-prod.json proxy-config-prod.json
