@@ -61,7 +61,9 @@ export const SakItem = ({
                         }
                     />
                 ) : (
-                    <CircleSlashIcon title="Du har ikke tema tilgang" fontSize="1rem" />
+                    <div className="h-4">
+                        <CircleSlashIcon title="Du har ikke tema tilgang" fontSize="1rem" />
+                    </div>
                 )}
             </HStack>
         </Card>
