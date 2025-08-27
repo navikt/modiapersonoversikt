@@ -78,6 +78,7 @@ test('Journalfore dialog', async ({ page }) => {
 
     await submitButton.click();
     await expect(modal).not.toBeVisible();
+    await page.getByRole('button', { name: 'Se alle' }).click();
 
     await expect(journalposter).toHaveCount(existingRows + 1);
     await expect(journalposterTable.getByText(saksId)).toBeVisible();
