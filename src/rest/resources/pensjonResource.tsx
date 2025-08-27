@@ -7,7 +7,7 @@ export const usePensjon = (fnr: string, fom: string, tom: string): UseQueryResul
     return useQuery({
         queryKey: ['pensjon', fnr, fom, tom],
         queryFn: () =>
-            post(`${apiBaseUri}/v2/ytelse/pensjon`, {
+            post(`${apiBaseUri}/ytelse/pensjon`, {
                 fnr,
                 fom,
                 tom

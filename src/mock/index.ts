@@ -208,7 +208,7 @@ const ytelseHandler = http.post(
 );
 
 const pensjonMock = http.post(
-    `${apiBaseUri}/v2/ytelse/pensjon`,
+    `${apiBaseUri}/ytelse/pensjon`,
     withDelayedResponse(
         randomDelay(),
         fodselsNummerErGyldigStatus,
