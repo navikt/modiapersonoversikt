@@ -71,9 +71,8 @@ function useBrukersYtelser(periode: FraTilDato): Returns {
         const pleiepenger = pleiepengerResponse.data?.pleiepenger ?? [];
         const sykepenger = sykepengerResponse.data?.sykepenger ?? [];
         const tiltakspenger = tiltakspengerResponse.data ?? [];
-        const pensjon = [];
 
-        const ytelser = [...foreldrepenger, ...pleiepenger, ...sykepenger, ...tiltakspenger, ...pensjon];
+        const ytelser = [...foreldrepenger, ...pleiepenger, ...sykepenger, ...tiltakspenger];
         const ytelserSortert = ytelser.sort(datoSynkende((ytelse: Ytelse) => getYtelseIdDato(ytelse)));
 
         const placeholders = [
