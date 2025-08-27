@@ -965,21 +965,21 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <p
                     class="typo-normal"
                   >
-                    ID dato: 10.01.2020
+                    ID dato: 06.02.2019
                   </p>
                   <p
                     class="typo-element"
                   >
-                    Pensjon
+                    Sykepenger
                   </p>
                   <p
                     class="typo-normal"
                   >
-                    10.01.2020 - 21.02.2020: Type: AFP
+                    100% sykemeldt - Dokumentet Sykepenger behandlet i ny løsning inneholder maksdato
                   </p>
                 </div>
                 <button
-                  aria-label="Vis pensjon"
+                  aria-label="Vis sykepenger"
                   aria-selected="false"
                   class="c10"
                 >

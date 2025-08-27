@@ -2,7 +2,6 @@ import type { UseQueryResult } from '@tanstack/react-query';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { type ReactNode, useMemo } from 'react';
 import { usePersonAtomValue } from 'src/lib/state/context';
-import { usePensjon } from 'src/rest/resources/pensjonResource';
 import type { FetchError } from '../../../../api/api';
 import { type Ytelse, getYtelseIdDato } from '../../../../models/ytelse/ytelse-utils';
 import type { FraTilDato } from '../../../../redux/utbetalinger/types';
@@ -38,11 +37,6 @@ const tiltakspengerPlaceholder = {
     returnOnNotFound: 'Kunne finne tiltakspenger',
     returnOnForbidden: 'Du har ikke tilgang til tiltakspenger'
 };
-const pensjonPlaceholder = {
-    returnOnError: 'Kunne ikke laste pensjon',
-    returnOnNotFound: 'Kunne finne pensjon',
-    returnOnForbidden: 'Du har ikke tilgang til pensjon'
-};
 
 type Placeholder = { returnOnForbidden: string; returnOnError: string; returnOnNotFound: string };
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -66,40 +60,35 @@ function useBrukersYtelser(periode: FraTilDato): Returns {
     const pleiepengerResponse = usePleiepenger(fnr, periode.fra, periode.til);
     const sykepengerResponse = useSykepenger(fnr, periode.fra, periode.til);
     const tiltakspengerResponse = useTiltakspenger(fnr, periode.fra, periode.til);
-    const pensjonResponse = usePensjon(fnr, periode.fra, periode.til);
 
     return useMemo(() => {
         const pending =
             pleiepengerResponse.isLoading ||
             foreldrepengerResponse.isLoading ||
             sykepengerResponse.isLoading ||
-            tiltakspengerResponse.isLoading ||
-            pensjonResponse.isLoading;
+            tiltakspengerResponse.isLoading;
         const foreldrepenger = foreldrepengerResponse.data?.foreldrepenger ?? [];
         const pleiepenger = pleiepengerResponse.data?.pleiepenger ?? [];
         const sykepenger = sykepengerResponse.data?.sykepenger ?? [];
         const tiltakspenger = tiltakspengerResponse.data ?? [];
-        const pensjon = pensjonResponse.data ?? [];
 
-        const ytelser = [...foreldrepenger, ...pleiepenger, ...sykepenger, ...tiltakspenger, ...pensjon];
+        const ytelser = [...foreldrepenger, ...pleiepenger, ...sykepenger, ...tiltakspenger];
         const ytelserSortert = ytelser.sort(datoSynkende((ytelse: Ytelse) => getYtelseIdDato(ytelse)));
 
         const placeholders = [
             placeholder(foreldrepengerResponse, foreldrepengerPlaceholder),
             placeholder(pleiepengerResponse, pleiepengerPlaceholder),
             placeholder(sykepengerResponse, sykepengerPlaceholder),
-            placeholder(tiltakspengerResponse, tiltakspengerPlaceholder),
-            placeholder(pensjonResponse, pensjonPlaceholder)
+            placeholder(tiltakspengerResponse, tiltakspengerPlaceholder)
         ];
 
         const harFeil =
             foreldrepengerResponse.isError ||
             pleiepengerResponse.isError ||
             sykepengerResponse.isError ||
-            tiltakspengerResponse.isError ||
-            pensjonResponse.isError;
+            tiltakspengerResponse.isError;
         return { ytelser: ytelserSortert, pending: pending, placeholders: placeholders, harFeil: harFeil };
-    }, [foreldrepengerResponse, pleiepengerResponse, sykepengerResponse, tiltakspengerResponse, pensjonResponse]);
+    }, [foreldrepengerResponse, pleiepengerResponse, sykepengerResponse, tiltakspengerResponse]);
 }
 
 export default useBrukersYtelser;
