@@ -16,7 +16,7 @@ export const Journalposter = ({ journalposter }: Props) => {
         return null;
     }
 
-    const journalposterToShow = showAll ? journalposter : journalposter.slice(0, 3);
+    const journalposterToShow = showAll ? journalposter : journalposter.slice(0, 2);
 
     return (
         <Box.New>
@@ -74,7 +74,7 @@ export const Journalposter = ({ journalposter }: Props) => {
                     <Button
                         variant="secondary"
                         size="xsmall"
-                        className={twMerge(journalposter.length <= 3 && 'hidden')}
+                        className={twMerge(journalposter.length <= 2 && 'hidden')}
                         onClick={() => setShowAll((v) => !v)}
                     >
                         {showAll ? 'Skjul' : 'Se alle'}

@@ -8,7 +8,13 @@ import ErrorBoundary from 'src/components/ErrorBoundary';
 import JournalPoster from 'src/components/saker/Detail/JournalPoster';
 import ViktigAaVite from 'src/components/saker/Detail/viktigavite/ViktigAaVite';
 import { sakerFilterAtom, sakerFilterAvsenderAtom } from 'src/components/saker/List/Filter';
-import { constructNorg2FrontendLink, hentBrukerNavn, sakerAvsender, useFilterSaker } from 'src/components/saker/utils';
+import {
+    constructNorg2FrontendLink,
+    getSakId,
+    hentBrukerNavn,
+    sakerAvsender,
+    useFilterSaker
+} from 'src/components/saker/utils';
 import { TitleValuePairsComponent } from 'src/components/ytelser/Detail';
 import type { Dokumentmetadata, DokumentmetadataAvsender, SaksDokumenter } from 'src/generated/modiapersonoversikt-api';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
@@ -83,19 +89,23 @@ const SakContent = () => {
         );
     }
 
-    return <SakDetails valgtSakId={id} />;
+    return <SakDetails valgtSakId={id} pageView={true} />;
 };
 
 export const SakDetails = ({
-    valgtSakId
+    valgtSakId,
+    pageView
 }: {
     valgtSakId: string;
+    pageView?: boolean;
 }) => {
     const {
         data: { person }
     } = usePersonData();
     const saker = useFilterSaker();
-    const valgtSak = saker.find((sak) => sak.saksid === valgtSakId || sak.fagsaksnummer === valgtSakId);
+    const valgtSak = saker.find(
+        (sak) => getSakId(sak) === valgtSakId || sak.saksid === valgtSakId || sak.fagsaksnummer === valgtSakId
+    );
     const brukersNavn = hentBrukerNavn(person);
     const geografiskTilknytning = person?.geografiskTilknytning;
     const { avsender } = useAtomValue(sakerFilterAtom);
@@ -145,8 +155,12 @@ export const SakDetails = ({
 
     return (
         <VStack gap="2" flexGrow="1" minHeight="0" className="overflow-scroll">
-            <NorgLenke valgtSak={valgtSak} geografiskTilknytning={geografiskTilknytning} />
-            <ViktigAaVite valgtSak={valgtSak} />
+            {pageView && (
+                <>
+                    <NorgLenke valgtSak={valgtSak} geografiskTilknytning={geografiskTilknytning} />
+                    <ViktigAaVite valgtSak={valgtSak} />
+                </>
+            )}
             <Box.New>
                 <Card padding="4">
                     <Heading as="h4" size="small">
@@ -166,10 +180,12 @@ export const SakDetails = ({
                     </HStack>
                     <JournalPoster journalPoster={journalPoster} brukersNavn={brukersNavn} columns={4} />
                 </Card>
-                <Alert variant="info">
-                    Modia viser elektroniske dokumenter brukeren har sendt inn via nav.no etter 9. desember 2014.
-                    Dokumenter som er journalført vises fra og med 4.juni 2016
-                </Alert>
+                {pageView && (
+                    <Alert variant="info">
+                        Modia viser elektroniske dokumenter brukeren har sendt inn via nav.no etter 9. desember 2014.
+                        Dokumenter som er journalført vises fra og med 4.juni 2016
+                    </Alert>
+                )}
             </Box.New>
         </VStack>
     );
