@@ -1,6 +1,7 @@
 import { ChevronDownIcon, ChevronUpIcon, PersonIcon } from '@navikt/aksel-icons';
 import { BodyShort, Box, Button, CopyButton, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
-import { Suspense, useState } from 'react';
+import { useLocation } from '@tanstack/react-router';
+import { Suspense, useEffect, useState } from 'react';
 import config from 'src/config';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { Kjonn, type KodeBeskrivelseKjonn } from 'src/lib/types/modiapersonoversikt-api';
@@ -66,8 +67,10 @@ const PersonlinjeHeader = ({ isExpanded }: { isExpanded: boolean }) => {
 };
 
 const PersonLinjeContent = () => {
-    const [isExpanded, setIsExpanded] = useState(false);
-    const ref = useClickAway<HTMLDivElement>(() => setIsExpanded(false));
+    const pathname = useLocation().pathname;
+    const erPaaOversikt = pathname.includes('oversikt');
+    const [isExpanded, setIsExpanded] = useState(erPaaOversikt);
+    const ref = useClickAway<HTMLDivElement>(() => setIsExpanded(isExpanded));
 
     const { data } = usePersonData();
 
@@ -80,6 +83,10 @@ const PersonLinjeContent = () => {
         [lenkeNyBrukerprofil],
         'Visittkort'
     );
+
+    useEffect(() => {
+        setIsExpanded(erPaaOversikt);
+    }, [erPaaOversikt]);
 
     return (
         <>
