@@ -1,6 +1,8 @@
 import { InformationSquareFillIcon } from '@navikt/aksel-icons';
 import { ActionMenu, Alert, BodyShort, Button } from '@navikt/ds-react';
 import { useNavigate } from '@tanstack/react-router';
+import { getOppgaveId } from 'src/components/Oppgave/List/utils';
+import type { OppgaveDto } from 'src/generated/modiapersonoversikt-api';
 import { useMeldinger, usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
 import type { Temagruppe } from 'src/lib/types/temagruppe';
 import { temagruppeTekst } from 'src/models/temagrupper';
@@ -31,11 +33,11 @@ export const TildelteOppgaver = () => {
     });
     const navigate = useNavigate();
 
-    const gotoTraad = (traadId: string) => {
+    const goToOppgave = (oppgave: OppgaveDto) => {
         navigate({
-            to: '/new/person/meldinger',
+            to: '/new/person/oppgaver',
             search: {
-                traadId
+                id: getOppgaveId(oppgave)
             }
         });
     };
@@ -62,10 +64,7 @@ export const TildelteOppgaver = () => {
                                         </Alert>
                                     </ActionMenu.Item>
                                 ) : (
-                                    <ActionMenu.Item
-                                        key={oppgave.oppgaveId}
-                                        onSelect={() => gotoTraad(oppgave.traadId)}
-                                    >
+                                    <ActionMenu.Item key={oppgave.oppgaveId} onSelect={() => goToOppgave(oppgave)}>
                                         <div>
                                             <BodyShort weight="semibold" size="small">
                                                 {oppgave.title}

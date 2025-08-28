@@ -1,5 +1,17 @@
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
-import { Alert, BodyLong, Box, Button, HStack, Heading, Skeleton, Spacer, Switch, VStack } from '@navikt/ds-react';
+import {
+    Alert,
+    BodyLong,
+    Box,
+    Button,
+    GuidePanel,
+    HStack,
+    Heading,
+    Skeleton,
+    Spacer,
+    Switch,
+    VStack
+} from '@navikt/ds-react';
 import { Link, getRouteApi } from '@tanstack/react-router';
 import { useAtom, useAtomValue } from 'jotai/index';
 import { Suspense, useCallback } from 'react';
@@ -83,9 +95,9 @@ const SakContent = () => {
     const { id } = routeApi.useSearch();
     if (!id) {
         return (
-            <VStack flexGrow="1" minHeight="0" className="mt-6">
-                <Alert variant="info">Ingen valgte sak.</Alert>
-            </VStack>
+            <HStack align="center" justify="center" className="min-h-60">
+                <GuidePanel>Velg en sak fra menyen på venstre side for å se detaljer.</GuidePanel>
+            </HStack>
         );
     }
 
@@ -113,7 +125,7 @@ export const SakDetails = ({
     if (!valgtSak) {
         return (
             <VStack flexGrow="1" minHeight="0" className="mt-6">
-                <Alert variant="error">Den valgte saken kunne ikke finnes.</Alert>
+                <Alert variant="error">Saken du valgte, ble ikke funnet.</Alert>
             </VStack>
         );
     }
@@ -156,10 +168,10 @@ export const SakDetails = ({
     return (
         <VStack gap="2" flexGrow="1" minHeight="0" className="overflow-scroll">
             {pageView && (
-                <>
+                <VStack>
                     <NorgLenke valgtSak={valgtSak} geografiskTilknytning={geografiskTilknytning} />
                     <ViktigAaVite valgtSak={valgtSak} />
-                </>
+                </VStack>
             )}
             <Box.New>
                 <Card padding="4">
@@ -181,10 +193,10 @@ export const SakDetails = ({
                     <JournalPoster journalPoster={journalPoster} brukersNavn={brukersNavn} columns={4} />
                 </Card>
                 {pageView && (
-                    <Alert variant="info">
+                    <GuidePanel>
                         Modia viser elektroniske dokumenter brukeren har sendt inn via nav.no etter 9. desember 2014.
                         Dokumenter som er journalført vises fra og med 4.juni 2016
-                    </Alert>
+                    </GuidePanel>
                 )}
             </Box.New>
         </VStack>

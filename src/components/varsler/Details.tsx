@@ -1,4 +1,4 @@
-import { BodyLong, ErrorMessage, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, ErrorMessage, GuidePanel, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { Suspense } from 'react';
 import Card from 'src/components/Card';
@@ -122,6 +122,22 @@ const VarselDetailExtractor = () => {
     const { id } = routeApi.useSearch();
     const varlser = useFilterVarsler();
     const varsel = varlser.find((item) => item.eventId === id);
+
+    if (!id) {
+        return (
+            <HStack align="center" justify="center" className="min-h-60">
+                <GuidePanel>Velg et varsel i menyen til venstre for å se detaljer.</GuidePanel>
+            </HStack>
+        );
+    }
+
+    if (!varsel) {
+        return (
+            <VStack flexGrow="1" minHeight="0" className="mt-6">
+                <Alert variant="error">Varselen du valgte, ble ikke funnet.</Alert>
+            </VStack>
+        );
+    }
 
     return (
         <>

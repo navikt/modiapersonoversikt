@@ -1,4 +1,4 @@
-import { Alert, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, GuidePanel, HStack, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { Suspense } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
@@ -13,10 +13,18 @@ const OppgaveOgDialogDetail = () => {
     const oppgaver = useFilterOppgave();
     const oppgave = oppgaver.find((item) => getOppgaveId(item) === id);
 
+    if (!id) {
+        return (
+            <HStack align="center" justify="center" className="min-h-60">
+                <GuidePanel>Velg en oppgave fra menyen på venstre side for å se detaljer.</GuidePanel>
+            </HStack>
+        );
+    }
+
     if (!oppgave) {
         return (
             <VStack flexGrow="1" minHeight="0" className="mt-6">
-                <Alert variant="info">Ingen valgte oppgave.</Alert>
+                <Alert variant="error">Oppgaven du valgte, ble ikke funnet.</Alert>
             </VStack>
         );
     }
@@ -27,7 +35,7 @@ const OppgaveOgDialogDetail = () => {
             {oppgave.traadId ? (
                 <TraadDetail traadId={oppgave.traadId} valgtOppgaveId={oppgave.oppgaveId} />
             ) : (
-                <Alert variant="info">Ingen dialog funnet.</Alert>
+                <GuidePanel>Det er ingen dialog knyttet til oppgaven.</GuidePanel>
             )}
         </VStack>
     );

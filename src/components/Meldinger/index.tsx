@@ -1,5 +1,5 @@
 import { PrinterSmallIcon } from '@navikt/aksel-icons';
-import { Button, HGrid, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { Button, GuidePanel, HGrid, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { Suspense, memo } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
@@ -72,5 +72,13 @@ const routeApi = getRouteApi('/new/person/meldinger');
 const TraadDetailSection = () => {
     const { traadId } = routeApi.useSearch();
 
-    return traadId ? <TraadDetail traadId={traadId} /> : <span>Ingen melding valgt</span>;
+    if (!traadId) {
+        return (
+            <HStack align="center" justify="center" className="min-h-60">
+                <GuidePanel>Velg en tråd fra menyen på venstre side for å se detaljer.</GuidePanel>
+            </HStack>
+        );
+    }
+
+    return <TraadDetail traadId={traadId} />;
 };

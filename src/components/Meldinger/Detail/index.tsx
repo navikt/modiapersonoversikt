@@ -79,7 +79,11 @@ const TraadDetailContent = ({ traadId, valgtOppgaveId }: { traadId: string; valg
     }, [traadId, setDialogUnderArbeid]);
 
     if (!traad) {
-        return <span> fant ikke traaden</span>;
+        return (
+            <VStack flexGrow="1" minHeight="0" className="mt-6">
+                <Alert variant="error">Tråden du valgte, ble ikke funnet.</Alert>
+            </VStack>
+        );
     }
 
     const kanBesvares = traadKanBesvares(traad);

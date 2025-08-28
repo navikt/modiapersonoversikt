@@ -1,5 +1,18 @@
 import { PrinterSmallIcon } from '@navikt/aksel-icons';
-import { BodyLong, BodyShort, Box, Button, HGrid, HStack, Heading, Skeleton, Table, VStack } from '@navikt/ds-react';
+import {
+    Alert,
+    BodyLong,
+    BodyShort,
+    Box,
+    Button,
+    GuidePanel,
+    HGrid,
+    HStack,
+    Heading,
+    Skeleton,
+    Table,
+    VStack
+} from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai';
@@ -380,8 +393,27 @@ const routeApi = getRouteApi('/new/person/utbetaling');
 const UtbetalingDetail = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
     const { id } = routeApi.useSearch();
     const selectedUtbetaling = utbetalinger.find((item) => getUtbetalingId(item) === id);
+    if (!id) {
+        return (
+            <HStack align="center" justify="center" className="min-h-60">
+                <GuidePanel>Velg et utbetaling i menyen til venstre for å se detaljer.</GuidePanel>
+            </HStack>
+        );
+    }
 
-    return <Box.New>{selectedUtbetaling && <UtbetalingDetaljer utbetaling={selectedUtbetaling} />}</Box.New>;
+    if (!selectedUtbetaling) {
+        return (
+            <VStack flexGrow="1" minHeight="0" className="mt-6">
+                <Alert variant="error">Utbetalingen du valgte, ble ikke funnet.</Alert>
+            </VStack>
+        );
+    }
+
+    return (
+        <Box.New>
+            <UtbetalingDetaljer utbetaling={selectedUtbetaling} />
+        </Box.New>
+    );
 };
 
 const UtbetalingerDetail = () => {
