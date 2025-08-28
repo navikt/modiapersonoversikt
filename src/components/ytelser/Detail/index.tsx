@@ -66,7 +66,7 @@ const YtelseDataDetails = () => {
     if (!id) {
         return (
             <HStack align="center" justify="center" className="min-h-60">
-                <GuidePanel>Velg en ytelse fra menyen på venstre side for å se detaljer.</GuidePanel>
+                <GuidePanel>Velg en ytelse fra listen på venstre side for å se detaljer.</GuidePanel>
             </HStack>
         );
     }
@@ -74,7 +74,7 @@ const YtelseDataDetails = () => {
     if (!selectedYtelse) {
         return (
             <VStack flexGrow="1" minHeight="0" className="mt-6">
-                <Alert variant="error">ytelsen du valgte, ble ikke funnet.</Alert>
+                <Alert variant="error">Ytelsen du valgte, ble ikke funnet.</Alert>
             </VStack>
         );
     }

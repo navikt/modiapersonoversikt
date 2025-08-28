@@ -16,7 +16,7 @@ const OppgaveOgDialogDetail = () => {
     if (!id) {
         return (
             <HStack align="center" justify="center" className="min-h-60">
-                <GuidePanel>Velg en oppgave fra menyen på venstre side for å se detaljer.</GuidePanel>
+                <GuidePanel>Velg en oppgave fra listen på venstre side for å se detaljer.</GuidePanel>
             </HStack>
         );
     }

@@ -12,7 +12,7 @@ const OppfolgingDetaljer = () => {
     if (!utvidetOppfolging) {
         return (
             <HStack align="center" justify="center" className="min-h-60">
-                <GuidePanel>Brukerne har ingen oppfølging.</GuidePanel>
+                <GuidePanel>Brukeren har ingen oppfølging.</GuidePanel>
             </HStack>
         );
     }

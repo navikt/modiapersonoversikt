@@ -396,7 +396,7 @@ const UtbetalingDetail = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
     if (!id) {
         return (
             <HStack align="center" justify="center" className="min-h-60">
-                <GuidePanel>Velg et utbetaling i menyen til venstre for å se detaljer.</GuidePanel>
+                <GuidePanel>Velg en utbetaling fra listen til venstre for å se detaljer.</GuidePanel>
             </HStack>
         );
     }

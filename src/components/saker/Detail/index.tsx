@@ -96,7 +96,7 @@ const SakContent = () => {
     if (!id) {
         return (
             <HStack align="center" justify="center" className="min-h-60">
-                <GuidePanel>Velg en sak fra menyen på venstre side for å se detaljer.</GuidePanel>
+                <GuidePanel>Velg en sak fra listen på venstre side for å se detaljer.</GuidePanel>
             </HStack>
         );
     }

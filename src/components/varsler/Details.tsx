@@ -126,7 +126,7 @@ const VarselDetailExtractor = () => {
     if (!id) {
         return (
             <HStack align="center" justify="center" className="min-h-60">
-                <GuidePanel>Velg et varsel i menyen til venstre for å se detaljer.</GuidePanel>
+                <GuidePanel>Velg et varsel fra listen til venstre for å se detaljer.</GuidePanel>
             </HStack>
         );
     }
@@ -134,7 +134,7 @@ const VarselDetailExtractor = () => {
     if (!varsel) {
         return (
             <VStack flexGrow="1" minHeight="0" className="mt-6">
-                <Alert variant="error">Varselen du valgte, ble ikke funnet.</Alert>
+                <Alert variant="error">Varselet du valgte, ble ikke funnet.</Alert>
             </VStack>
         );
     }
