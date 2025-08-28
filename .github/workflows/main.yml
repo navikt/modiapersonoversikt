@@ -2,7 +2,7 @@ name: Build & deploy to GCP
 
 on:
   push:
-    branches: [master]
+    branches: [team-logs-pino]
   workflow_dispatch:
 
 env:
