@@ -74,7 +74,7 @@ function Vergemal() {
 
     return (
         <Group
-            icon={<ExclamationmarkTriangleFillIcon className="text-icon-warning" />}
+            icon={<ExclamationmarkTriangleFillIcon color="var(--a-icon-warning)" />}
             title="Bruker er under vergemål"
         >
             <Vergesakstype vergemal={vergemal} />

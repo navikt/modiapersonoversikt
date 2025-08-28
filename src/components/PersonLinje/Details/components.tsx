@@ -2,6 +2,7 @@ import { BodyShort, Box, HStack, Heading } from '@navikt/ds-react';
 import type { PropsWithChildren, ReactElement } from 'react';
 import type { Adresse, SistEndret } from 'src/lib/types/modiapersonoversikt-api';
 import { formaterDato } from 'src/utils/string-utils';
+import { twMerge } from 'tailwind-merge';
 
 export const Group = ({
     title,
@@ -30,7 +31,8 @@ export const Group = ({
 
 export const InfoElement = ({
     children,
-    title
+    title,
+    icon
 }: PropsWithChildren<{
     title?: string;
     icon?: ReactElement;
@@ -38,9 +40,12 @@ export const InfoElement = ({
     <Box className="mb-6 mt-2">
         <HStack align="center" className="relative">
             {title && (
-                <Heading as="h4" size="xsmall" className="text-medium">
-                    {title}
-                </Heading>
+                <HStack>
+                    {icon}
+                    <Heading as="h4" size="xsmall" className={twMerge('text-medium', icon && 'pl-1')}>
+                        {title}
+                    </Heading>
+                </HStack>
             )}
         </HStack>
         <Box>{children}</Box>

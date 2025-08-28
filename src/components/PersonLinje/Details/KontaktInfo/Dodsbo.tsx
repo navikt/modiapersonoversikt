@@ -1,4 +1,4 @@
-import { LocationPinIcon } from '@navikt/aksel-icons';
+import { LocationPinFillIcon } from '@navikt/aksel-icons';
 import { Alert, BodyShort, Box } from '@navikt/ds-react';
 import type { PersonData } from 'src/lib/types/modiapersonoversikt-api';
 import { formaterDato } from 'src/utils/string-utils';
@@ -109,7 +109,7 @@ function KontaktinformasjonDodsbo({
                     <InfoElement
                         key={`${dodsbo.adresse}-${index}`}
                         title="Kontaktinformasjon for dødsbo"
-                        icon={<LocationPinIcon />}
+                        icon={<LocationPinFillIcon fontSize="1.2rem" color="var(--a-gray-400)" />}
                     >
                         <Adressatinfo harFeilendeSystem={harFeilendeSystem} adressat={dodsbo.adressat} />
                         <Box marginBlock="2">

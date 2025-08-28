@@ -1,4 +1,4 @@
-import { LocationPinIcon } from '@navikt/aksel-icons';
+import { LocationPinFillIcon, LocationPinIcon } from '@navikt/aksel-icons';
 import { BodyShort } from '@navikt/ds-react';
 import type { PersonData } from 'src/lib/types/modiapersonoversikt-api';
 import ValidPeriod from '../../common/ValidPeriod';
@@ -27,7 +27,7 @@ function AdresseElement({ adresse, beskrivelse, erOppholdsadresse }: AdresseElem
         erOppholdsadresse || (!erOppholdsadresse && adresse.gyldighetsPeriode?.gyldigTilOgMed);
 
     return (
-        <InfoElement title={beskrivelse} icon={<LocationPinIcon />}>
+        <InfoElement title={beskrivelse} icon={<LocationPinFillIcon fontSize="1.2rem" color="var(--a-gray-400)" />}>
             {skalViseGyldighetsPeriode && (
                 <ValidPeriod
                     from={adresse.gyldighetsPeriode?.gyldigFraOgMed}
