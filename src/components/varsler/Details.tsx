@@ -125,7 +125,7 @@ const VarselDetailExtractor = () => {
 
     if (!id) {
         return (
-            <HStack align="center" justify="center" className="min-h-60">
+            <HStack margin="4">
                 <GuidePanel>Velg et varsel fra listen til venstre for å se detaljer.</GuidePanel>
             </HStack>
         );

@@ -395,7 +395,7 @@ const UtbetalingDetail = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
     const selectedUtbetaling = utbetalinger.find((item) => getUtbetalingId(item) === id);
     if (!id) {
         return (
-            <HStack align="center" justify="center" className="min-h-60">
+            <HStack margin="4">
                 <GuidePanel>Velg en utbetaling fra listen til venstre for å se detaljer.</GuidePanel>
             </HStack>
         );
