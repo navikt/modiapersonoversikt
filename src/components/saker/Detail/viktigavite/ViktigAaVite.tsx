@@ -1,4 +1,4 @@
-import { ExpansionCard } from '@navikt/ds-react';
+import { GuidePanel, ReadMore } from '@navikt/ds-react';
 import type { SaksDokumenter } from 'src/generated/modiapersonoversikt-api';
 import { ViktigAaViteAapInnhold } from './AapInnhold';
 import { ViktigAaViteDagInnhold } from './DagInnhold';
@@ -27,12 +27,9 @@ const ViktigAaVite = ({ valgtSak }: { valgtSak?: SaksDokumenter }) => {
     const title = `Viktig å vite om ${valgtSak?.temanavn}`;
 
     return (
-        <ExpansionCard size="small" aria-label={title} className="border-1 border-border-subtle border-gray-200">
-            <ExpansionCard.Header>
-                <ExpansionCard.Title size="small">{title}</ExpansionCard.Title>
-            </ExpansionCard.Header>
-            <ExpansionCard.Content>{innhold()}</ExpansionCard.Content>
-        </ExpansionCard>
+        <ReadMore size="small" aria-label={title} header={title} data-color="bg-gray-400">
+            <GuidePanel>{innhold()}</GuidePanel>
+        </ReadMore>
     );
 };
 

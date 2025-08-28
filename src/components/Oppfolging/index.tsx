@@ -1,4 +1,4 @@
-import { BodyShort, HGrid, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { BodyShort, GuidePanel, HGrid, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { Suspense } from 'react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
@@ -9,6 +9,14 @@ import { datoEllerNull } from 'src/utils/string-utils';
 const OppfolgingDetaljer = () => {
     const utvidetOppfolgingResponse = useOppfolging();
     const utvidetOppfolging = utvidetOppfolgingResponse.data;
+    if (!utvidetOppfolging) {
+        return (
+            <HStack align="center" justify="center" className="min-h-60">
+                <GuidePanel>Brukeren har ingen oppfølging.</GuidePanel>
+            </HStack>
+        );
+    }
+
     return (
         <Card padding="4">
             <Heading as="h4" size="small">
@@ -112,9 +120,6 @@ export const OppfolgingPage = () => {
                     <OppfolgingDetaljer />
                 </Suspense>
             </ErrorBoundary>
-            <Heading size="xsmall" className="mt-4">
-                14 a-vedtak
-            </Heading>
             <ErrorBoundary boundaryName="gjeldende14aVedtakDetaljer">
                 <Suspense fallback={<Skeleton variant="rounded" height={166} />}>
                     <Gjeldende14aVedtakDetaljer />

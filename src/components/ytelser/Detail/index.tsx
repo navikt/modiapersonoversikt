@@ -1,4 +1,4 @@
-import { Alert, BodyShort, HGrid, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, GuidePanel, HGrid, HStack, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { Suspense } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
@@ -63,8 +63,20 @@ const YtelseDataDetails = () => {
     const ytelser = useFilterYtelser();
     const { id } = routeApi.useSearch();
     const selectedYtelse = ytelser.find((item) => getUnikYtelseKey(item) === id);
+    if (!id) {
+        return (
+            <HStack align="center" justify="center" className="min-h-60">
+                <GuidePanel>Velg en ytelse fra listen på venstre side for å se detaljer.</GuidePanel>
+            </HStack>
+        );
+    }
+
     if (!selectedYtelse) {
-        return <Alert variant="info">Ingen valgte ytelse.</Alert>;
+        return (
+            <VStack flexGrow="1" minHeight="0" className="mt-6">
+                <Alert variant="error">Ytelsen du valgte, ble ikke funnet.</Alert>
+            </VStack>
+        );
     }
 
     switch (selectedYtelse.ytelseType) {
