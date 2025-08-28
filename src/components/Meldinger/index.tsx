@@ -74,7 +74,7 @@ const TraadDetailSection = () => {
 
     if (!traadId) {
         return (
-            <HStack align="center" justify="center" className="min-h-60">
+            <HStack margin="4">
                 <GuidePanel>Velg en tråd fra listen på venstre side for å se detaljer.</GuidePanel>
             </HStack>
         );

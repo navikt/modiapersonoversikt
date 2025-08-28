@@ -11,7 +11,7 @@ const OppfolgingDetaljer = () => {
     const utvidetOppfolging = utvidetOppfolgingResponse.data;
     if (!utvidetOppfolging) {
         return (
-            <HStack align="center" justify="center" className="min-h-60">
+            <HStack margin="4">
                 <GuidePanel>Brukeren har ingen oppfølging.</GuidePanel>
             </HStack>
         );
