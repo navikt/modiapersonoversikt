@@ -1,4 +1,4 @@
-import { BankNoteIcon } from '@navikt/aksel-icons';
+import { BankNoteFillIcon } from '@navikt/aksel-icons';
 import { Alert, BodyShort, Detail } from '@navikt/ds-react';
 import type { PersonData } from 'src/lib/types/modiapersonoversikt-api';
 import { FormatertKontonummer } from 'src/utils/FormatertKontonummer';
@@ -31,7 +31,7 @@ function BankkontoBody({ harFeilendeSystem, bankkonto }: Props) {
 function Bankkonto({ bankkonto, harFeilendeSystem }: Props) {
     const title = bankkonto?.landkode && bankkonto.landkode.kode !== 'NOR' ? 'Kontonummer utland' : 'Kontonummer';
     return (
-        <InfoElement title={title} icon={<BankNoteIcon />}>
+        <InfoElement title={title} icon={<BankNoteFillIcon fontSize="1.2rem" color="var(--a-green-300)" />}>
             <BankkontoBody bankkonto={bankkonto} harFeilendeSystem={harFeilendeSystem} />
         </InfoElement>
     );

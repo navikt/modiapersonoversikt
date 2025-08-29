@@ -1,4 +1,4 @@
-import { PersonTallShortIcon } from '@navikt/aksel-icons';
+import { PersonTallShortFillIcon, PersonTallShortIcon } from '@navikt/aksel-icons';
 import { Alert, BodyShort } from '@navikt/ds-react';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { type NavnOgIdent, type PersonData, PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
@@ -38,7 +38,10 @@ function ForeldreansvarElement(props: {
     const ansvarsubject = kombinerNavnOgIdent(foreldreansvar.ansvarsubject);
 
     return (
-        <InfoElement title={`Ansvar: ${foreldreansvar.ansvar}`} icon={<PersonTallShortIcon />}>
+        <InfoElement
+            title={`Ansvar: ${foreldreansvar.ansvar}`}
+            icon={<PersonTallShortFillIcon fontSize="1.2rem" color="var(--a-igray-400)" />}
+        >
             {ansvarlig && <BodyShort size="small">Ansvarlig: {ansvarlig}</BodyShort>}
             {ansvarsubject && <BodyShort size="small">Gjelder for: {ansvarsubject}</BodyShort>}
         </InfoElement>

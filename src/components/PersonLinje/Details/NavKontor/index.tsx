@@ -97,7 +97,7 @@ function NavKontor() {
     if (harFeilendeSystemer(feilendeSystemer, PersonDataFeilendeSystemer.NORG_NAVKONTOR)) {
         return (
             <Group title="NAV-kontor">
-                <InfoElement title="Ukjent NAV-kontor" icon={<NavLogo />}>
+                <InfoElement title="Ukjent NAV-kontor" icon={<NavLogo style={{ width: '2.5rem' }} />}>
                     <Alert variant="warning">Feilet ved uthenting av informasjon om NAV-kontor</Alert>
                 </InfoElement>
             </Group>
@@ -111,10 +111,7 @@ function NavKontor() {
     if (!navEnhet) {
         return (
             <Group title="NAV-kontor">
-                <InfoElement
-                    title={mapUgyldigGT(geografiskTilknytning)}
-                    icon={<NavLogo style={{ width: '2.5rem', marginLeft: '-1rem' }} />}
-                >
+                <InfoElement title={mapUgyldigGT(geografiskTilknytning)} icon={<NavLogo style={{ width: '2.5rem' }} />}>
                     <Alert variant="warning">Fant ikke geografisk tilknyttning for bruker</Alert>
                 </InfoElement>
             </Group>
@@ -123,10 +120,7 @@ function NavKontor() {
 
     return (
         <Group title="NAV-kontor">
-            <InfoElement
-                title={`${navEnhet?.id} ${navEnhet.navn}`}
-                icon={<NavLogo style={{ width: '2.5rem', marginLeft: '-1rem' }} />}
-            >
+            <InfoElement title={`${navEnhet?.id} ${navEnhet.navn}`} icon={<NavLogo style={{ width: '2.5rem' }} />}>
                 <Publikumsmottak publikumsmottak={navEnhet.publikumsmottak} />
                 <Box marginBlock="4">
                     <KontorLenke navEnhetId={navEnhet.id} />

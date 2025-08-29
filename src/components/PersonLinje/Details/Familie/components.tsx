@@ -61,16 +61,16 @@ function FamilierelasjonIkon({
     const kjonn = relasjon.kjonn.firstOrNull();
     if (kjonn?.kode === 'M') {
         return erBarn ? (
-            <ChildEyesFillIcon className="text-blue-300" />
+            <ChildEyesFillIcon fontSize="1.2rem" color="#66A5F4" />
         ) : (
-            <FigureInwardFillIcon className="text-blue-300" />
+            <FigureInwardFillIcon fontSize="1.2rem" color="#66A5F4" />
         );
     }
     if (kjonn?.kode === 'K') {
         return erBarn ? (
-            <ChildEyesFillIcon className="text-red-200" />
+            <ChildEyesFillIcon fontSize="1.2rem" color="#F25C5C" />
         ) : (
-            <FigureOutwardFillIcon className="text-red-200" />
+            <FigureOutwardFillIcon fontSize="1.2rem" color="v#F25C5C" />
         );
     }
     return <FigureCombinationIcon />;
