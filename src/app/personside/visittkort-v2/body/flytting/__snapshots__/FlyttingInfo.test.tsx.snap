@@ -1,0 +1,193 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`viser info om flytting 1`] = `
+<DocumentFragment>
+  .c4 {
+  color: #645f5a;
+  margin-top: 3px;
+}
+
+.c4 .typo-etikett-liten {
+  line-height: 1rem;
+}
+
+.c0 {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.c1 {
+  position: absolute;
+  left: -3.125rem;
+  width: 3.125rem;
+  display: flex;
+  justify-content: center;
+}
+
+.c1 >svg {
+  height: 1.5rem;
+  width: auto;
+}
+
+.c3 {
+  margin: 10px 0 20px 0;
+}
+
+.c3:last-child {
+  margin: 10px 0 0 0;
+}
+
+.c2 {
+  margin-bottom: 1rem;
+}
+
+<section>
+    <div
+      class="c0"
+    >
+      <div
+        class="c1"
+      >
+        <svg
+          color="#C6C2BF"
+          fill="none"
+          focusable="false"
+          height="1em"
+          role="img"
+          viewBox="0 0 24 24"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M15.033 2.731a.242.242 0 0 0-.308.29l.008.033c.401 1.723.691 3.367.873 4.973a.25.25 0 0 0 .25.223h4.772c.178 0 .299-.182.224-.343a9.78 9.78 0 0 0-5.819-5.176m-2.197-.446a.25.25 0 0 1 .218.19l.219.92c.369 1.587.64 3.1.817 4.577a.25.25 0 0 1-.248.278h-3.685a.25.25 0 0 1-.247-.278c.176-1.477.448-2.99.817-4.577l.219-.92a.25.25 0 0 1 .217-.19 10 10 0 0 1 1.673 0m-3.87.446a.242.242 0 0 1 .308.29l-.007.03v.003a43 43 0 0 0-.874 4.973.25.25 0 0 1-.249.223H3.372a.243.243 0 0 1-.224-.343A9.78 9.78 0 0 1 8.966 2.73M2.71 9.75a.246.246 0 0 0-.242.193 9.8 9.8 0 0 0 0 4.114.246.246 0 0 0 .242.193h5.264a.25.25 0 0 0 .25-.266 35 35 0 0 1 0-3.968.25.25 0 0 0-.25-.266zm.663 6a.243.243 0 0 0-.224.343 9.78 9.78 0 0 0 5.82 5.176c.184.06.355-.11.305-.296l-.004-.014-.003-.013c-.4-1.716-.69-3.36-.873-4.973a.25.25 0 0 0-.25-.223zm7.606 5.785c.027.1.113.174.217.182a10 10 0 0 0 1.61 0 .25.25 0 0 0 .216-.182l.254-.941c.367-1.577.639-3.087.815-4.566a.25.25 0 0 0-.247-.278h-3.686a.25.25 0 0 0-.248.278c.177 1.48.449 2.989.815 4.566zm3.748-.562a.241.241 0 0 0 .306.296 9.78 9.78 0 0 0 5.82-5.176.243.243 0 0 0-.224-.343h-4.772a.25.25 0 0 0-.25.223 43 43 0 0 1-.873 4.973l-.003.013zm6.565-6.723c.116 0 .217-.08.242-.193a9.8 9.8 0 0 0 0-4.114.246.246 0 0 0-.242-.193h-5.264a.25.25 0 0 0-.25.266c.076 1.33.075 2.644 0 3.968a.25.25 0 0 0 .25.266zm-7.02-.233a.25.25 0 0 1-.248.233H9.976a.25.25 0 0 1-.248-.233 33 33 0 0 1 0-4.034.25.25 0 0 1 .249-.233h4.046c.132 0 .24.102.249.233a33 33 0 0 1 0 4.034"
+            fill="currentColor"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </div>
+      <h3
+        class="typo-undertittel"
+      >
+        Flytting
+      </h3>
+    </div>
+    <div
+      class="c2"
+    />
+    <div
+      class="c3"
+    >
+      <div
+        class="c0"
+      >
+        <h4
+          class="typo-element"
+        >
+          Flyttet fra
+        </h4>
+      </div>
+      <div
+        class="navds-box mb-[0.5rem]"
+      >
+        <p
+          class="typo-normal"
+        >
+          Sverige 
+        </p>
+        <div
+          class="c4"
+        >
+          <p
+            class="typo-undertekst"
+          >
+            Endret 20.02.2010 av folkeregisteret (kilde: bruker)
+          </p>
+        </div>
+        <div
+          class="c4"
+        >
+          <p
+            class="typo-undertekst"
+          >
+            Gyldig: 01.01.2020 – 01.01.2030
+          </p>
+        </div>
+      </div>
+      <div
+        class="navds-box mb-[0.5rem]"
+      >
+        <p
+          class="typo-normal"
+        >
+          Hellas 
+        </p>
+        <div
+          class="c4"
+        >
+          <p
+            class="typo-undertekst"
+          >
+            Endret 20.02.2010 av folkeregisteret (kilde: bruker)
+          </p>
+        </div>
+        <div
+          class="c4"
+        >
+          <p
+            class="typo-undertekst"
+          >
+            Gyldig: 01.01.2020 – 01.01.2030
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      class="c3"
+    >
+      <div
+        class="c0"
+      >
+        <h4
+          class="typo-element"
+        >
+          Flyttet til
+        </h4>
+      </div>
+      <div
+        class="navds-box mb-[0.5rem]"
+      >
+        <p
+          class="typo-normal"
+        >
+          Danmark 
+        </p>
+        <p
+          class="typo-normal"
+        >
+          Utflyttingsdato: 01.01.2025
+        </p>
+        <div
+          class="c4"
+        >
+          <p
+            class="typo-undertekst"
+          >
+            Endret 20.02.2010 av folkeregisteret (kilde: bruker)
+          </p>
+        </div>
+        <div
+          class="c4"
+        >
+          <p
+            class="typo-undertekst"
+          >
+            Gyldig: 01.01.2020 – 01.01.2025
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</DocumentFragment>
+`;

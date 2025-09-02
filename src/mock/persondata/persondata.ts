@@ -481,7 +481,60 @@ export function lagPerson(fnr: string): Person {
             },
             opprettetAv: '1010800 BD03'
         },
-        forelderBarnRelasjon: forelderBarnMock
+        forelderBarnRelasjon: forelderBarnMock,
+        innflyttingTilNorge: [
+            {
+                fraflyttingsland: 'Sverige',
+                gyldighetsPeriode: {
+                    gyldigFraOgMed: '2020-01-01' as LocalDate,
+                    gyldigTilOgMed: '2030-01-01' as LocalDate
+                },
+                sistEndret: {
+                    ident: 'Folkeregisteret',
+                    tidspunkt: '2010-02-20T10:15:30' as LocalDateTime,
+                    system: 'folkeregisteret',
+                    kilde: 'bruker'
+                }
+            },
+            {
+                fraflyttingsland: 'Hellas',
+                gyldighetsPeriode: {
+                    gyldigFraOgMed: '2020-01-01' as LocalDate,
+                    gyldigTilOgMed: '2030-01-01' as LocalDate
+                },
+                sistEndret: {
+                    ident: 'Folkeregisteret',
+                    tidspunkt: '2010-02-20T10:15:30' as LocalDateTime,
+                    system: 'folkeregisteret',
+                    kilde: 'bruker'
+                }
+            }
+        ],
+        utflyttingFraNorge: [
+            {
+                tilflyttingsland: 'Danmark',
+                utflyttingsdato: '2025-01-01' as LocalDate,
+                gyldighetsPeriode: {
+                    gyldigFraOgMed: '2020-01-01' as LocalDate,
+                    gyldigTilOgMed: '2025-01-01' as LocalDate
+                },
+                sistEndret: {
+                    ident: 'Folkeregisteret',
+                    tidspunkt: '2010-02-20T10:15:30' as LocalDateTime,
+                    system: 'folkeregisteret',
+                    kilde: 'bruker'
+                }
+            }
+        ],
+        rettsligHandleevne: [
+            {
+                omfang: 'begrenset',
+                gyldighetsPeriode: {
+                    gyldigFraOgMed: '2020-01-01' as LocalDate,
+                    gyldigTilOgMed: '2025-01-01' as LocalDate
+                }
+            }
+        ]
     };
 }
 

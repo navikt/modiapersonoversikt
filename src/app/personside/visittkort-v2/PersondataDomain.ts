@@ -34,6 +34,27 @@ export interface Person extends PersonMedAlderOgDodsdato {
     kontaktInformasjon: KontaktInformasjon;
     bankkonto: Bankkonto | null;
     forelderBarnRelasjon: Array<ForelderBarnRelasjon>;
+    innflyttingTilNorge: Array<InnflyttingTilNorge>;
+    utflyttingFraNorge: Array<UtflyttingFraNorge>;
+    rettsligHandleevne: Array<RettsligHandleevne>;
+}
+
+export interface RettsligHandleevne {
+    gyldighetsPeriode: GyldighetsPeriode | null;
+    omfang: string | null;
+}
+
+interface InnflyttingTilNorge {
+    fraflyttingsland: string | null;
+    sistEndret: SistEndret | null;
+    gyldighetsPeriode: GyldighetsPeriode | null;
+}
+
+interface UtflyttingFraNorge {
+    tilflyttingsland: string | null;
+    utflyttingsdato: LocalDate | null;
+    sistEndret: SistEndret | null;
+    gyldighetsPeriode: GyldighetsPeriode | null;
 }
 
 export interface Dodsdato {

@@ -1,5 +1,7 @@
 import { HStack, VStack } from '@navikt/ds-react';
 import DodsdatoInfo from 'src/components/PersonLinje/Details/DodsdatoInfo';
+import Flytting from 'src/components/PersonLinje/Details/Flytting';
+import RettsligHandleevne from 'src/components/PersonLinje/Details/RettsligHandleevne';
 import DeltBosted from './DeltBosted';
 import Familie from './Familie';
 import Foreldreansvar from './ForeldreAnsvar';
@@ -25,10 +27,12 @@ export const PersonlinjeDetails = () => {
                 <DeltBosted />
                 <TilrettelagtKommunikasjon />
                 <Vergemal />
+                <RettsligHandleevne />
             </VStack>
             <VStack flexBasis="30%" flexGrow="1">
                 <NavKontor />
                 <Sikkerhetstiltak />
+                <Flytting />
                 <PdlLenke />
             </VStack>
         </HStack>

@@ -1615,6 +1615,11 @@ export interface components {
             /** Format: date */
             gyldigTilOgMed?: string;
         };
+        InnflyttingTilNorge: {
+            fraflyttingsland?: string;
+            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'];
+            sistEndret?: components['schemas']['SistEndret'];
+        };
         KodeBeskrivelseAdresseBeskyttelse: {
             /** @enum {string} */
             kode: KodeBeskrivelseAdresseBeskyttelseKode;
@@ -1696,6 +1701,8 @@ export interface components {
             kontaktInformasjon: components['schemas']['KontaktInformasjon'];
             bankkonto?: components['schemas']['Bankkonto'];
             forelderBarnRelasjon: components['schemas']['ForelderBarnRelasjon'][];
+            innflyttingTilNorge: components['schemas']['InnflyttingTilNorge'][];
+            utflyttingFraNorge: components['schemas']['UtflyttingFraNorge'][];
         };
         PersonDataEnhet: {
             id: string;
@@ -1757,6 +1764,13 @@ export interface components {
         TilrettelagtKommunikasjon: {
             talesprak: components['schemas']['KodeBeskrivelseString'][];
             tegnsprak: components['schemas']['KodeBeskrivelseString'][];
+        };
+        UtflyttingFraNorge: {
+            tilflyttingsland?: string;
+            /** Format: date */
+            utflyttingsdato?: string;
+            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'];
+            sistEndret?: components['schemas']['SistEndret'];
         };
         VerdiBoolean: {
             value?: boolean;
@@ -2298,6 +2312,7 @@ export type ForelderBarnRelasjon = components['schemas']['ForelderBarnRelasjon']
 export type Foreldreansvar = components['schemas']['Foreldreansvar'];
 export type Fullmakt = components['schemas']['Fullmakt'];
 export type GyldighetsPeriode = components['schemas']['GyldighetsPeriode'];
+export type InnflyttingTilNorge = components['schemas']['InnflyttingTilNorge'];
 export type KodeBeskrivelseAdresseBeskyttelse = components['schemas']['KodeBeskrivelseAdresseBeskyttelse'];
 export type KodeBeskrivelseKjonn = components['schemas']['KodeBeskrivelseKjonn'];
 export type KodeBeskrivelsePersonStatus = components['schemas']['KodeBeskrivelsePersonStatus'];
@@ -2320,6 +2335,7 @@ export type SivilstandRelasjon = components['schemas']['SivilstandRelasjon'];
 export type Statsborgerskap = components['schemas']['Statsborgerskap'];
 export type Telefon = components['schemas']['Telefon'];
 export type TilrettelagtKommunikasjon = components['schemas']['TilrettelagtKommunikasjon'];
+export type UtflyttingFraNorge = components['schemas']['UtflyttingFraNorge'];
 export type VerdiBoolean = components['schemas']['VerdiBoolean'];
 export type VerdiString = components['schemas']['VerdiString'];
 export type Verge = components['schemas']['Verge'];
