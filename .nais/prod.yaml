@@ -23,8 +23,6 @@ spec:
     autoInstrumentation:
       enabled: true
       runtime: sdk
-  secureLogs:
-    enabled: true
   resources:
     requests:
       cpu: 100m
