@@ -44,13 +44,13 @@ export interface RettsligHandleevne {
     omfang: string | null;
 }
 
-export interface InnflyttingTilNorge {
+interface InnflyttingTilNorge {
     fraflyttingsland: string | null;
     sistEndret: SistEndret | null;
     gyldighetsPeriode: GyldighetsPeriode | null;
 }
 
-export interface UtflyttingFraNorge {
+interface UtflyttingFraNorge {
     tilflyttingsland: string | null;
     utflyttingsdato: LocalDate | null;
     sistEndret: SistEndret | null;
