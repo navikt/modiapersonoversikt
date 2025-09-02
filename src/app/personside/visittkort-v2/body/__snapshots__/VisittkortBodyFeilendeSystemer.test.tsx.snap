@@ -744,7 +744,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                           type="button"
                         >
                           <svg
-                            aria-labelledby="title-«rh»"
+                            aria-labelledby="title-«ri»"
                             class="navds-help-text__icon"
                             fill="none"
                             focusable="false"
@@ -755,7 +755,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <title
-                              id="title-«rh»"
+                              id="title-«ri»"
                             >
                               Hva betyr lese/innsyn?
                             </title>
@@ -775,7 +775,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                             />
                           </svg>
                           <svg
-                            aria-labelledby="title-«ri»"
+                            aria-labelledby="title-«rj»"
                             class="navds-help-text__icon navds-help-text__icon--filled"
                             fill="none"
                             focusable="false"
@@ -786,7 +786,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <title
-                              id="title-«ri»"
+                              id="title-«rj»"
                             >
                               Hva betyr lese/innsyn?
                             </title>
@@ -839,7 +839,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                           type="button"
                         >
                           <svg
-                            aria-labelledby="title-«rk»"
+                            aria-labelledby="title-«rl»"
                             class="navds-help-text__icon"
                             fill="none"
                             focusable="false"
@@ -850,7 +850,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <title
-                              id="title-«rk»"
+                              id="title-«rl»"
                             >
                               Hva betyr snakke/kommunisere?
                             </title>
@@ -870,7 +870,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                             />
                           </svg>
                           <svg
-                            aria-labelledby="title-«rl»"
+                            aria-labelledby="title-«rm»"
                             class="navds-help-text__icon navds-help-text__icon--filled"
                             fill="none"
                             focusable="false"
@@ -881,7 +881,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <title
-                              id="title-«rl»"
+                              id="title-«rm»"
                             >
                               Hva betyr snakke/kommunisere?
                             </title>
@@ -934,7 +934,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                           type="button"
                         >
                           <svg
-                            aria-labelledby="title-«rn»"
+                            aria-labelledby="title-«ro»"
                             class="navds-help-text__icon"
                             fill="none"
                             focusable="false"
@@ -945,7 +945,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <title
-                              id="title-«rn»"
+                              id="title-«ro»"
                             >
                               Hva betyr Søke/klage?
                             </title>
@@ -965,7 +965,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                             />
                           </svg>
                           <svg
-                            aria-labelledby="title-«ro»"
+                            aria-labelledby="title-«rp»"
                             class="navds-help-text__icon navds-help-text__icon--filled"
                             fill="none"
                             focusable="false"
@@ -976,7 +976,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <title
-                              id="title-«ro»"
+                              id="title-«rp»"
                             >
                               Hva betyr Søke/klage?
                             </title>
@@ -1032,7 +1032,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                       class="navds-table__data-cell navds-body-short navds-body-short--medium"
                     >
                       <svg
-                        aria-labelledby="title-«rq»"
+                        aria-labelledby="title-«rr»"
                         fill="none"
                         focusable="false"
                         height="1em"
@@ -1042,7 +1042,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <title
-                          id="title-«rq»"
+                          id="title-«rr»"
                         >
                           Lese/innsyn
                         </title>
@@ -1058,7 +1058,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                       class="navds-table__data-cell navds-body-short navds-body-short--medium"
                     >
                       <svg
-                        aria-labelledby="title-«rr»"
+                        aria-labelledby="title-«rs»"
                         fill="none"
                         focusable="false"
                         height="1em"
@@ -1068,7 +1068,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <title
-                          id="title-«rr»"
+                          id="title-«rs»"
                         >
                           Snakke/kommunisere
                         </title>
@@ -1096,32 +1096,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                       class="navds-table__data-cell navds-body-short navds-body-short--medium"
                     >
                       <svg
-                        aria-labelledby="title-«rs»"
-                        fill="none"
-                        focusable="false"
-                        height="1em"
-                        role="img"
-                        viewBox="0 0 24 24"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <title
-                          id="title-«rs»"
-                        >
-                          Lese/innsyn
-                        </title>
-                        <path
-                          clip-rule="evenodd"
-                          d="M3.75 6a1.25 1.25 0 1 1 2.5 0v2a.75.75 0 0 0 1.5 0V6a2.75 2.75 0 0 0-5.5 0v12c0 .966.784 1.75 1.75 1.75h5.5A1.75 1.75 0 0 0 11.25 18v-4.25h1.5V18c0 .966.784 1.75 1.75 1.75H20A1.75 1.75 0 0 0 21.75 18V6a2.75 2.75 0 1 0-5.5 0v2a.75.75 0 0 0 1.5 0V6a1.25 1.25 0 1 1 2.5 0v6.25H3.75zM9.5 18.25a.25.25 0 0 0 .25-.25v-4.25h-6V18c0 .138.112.25.25.25zm10.5 0a.25.25 0 0 0 .25-.25v-4.25h-6V18c0 .138.112.25.25.25z"
-                          fill="currentColor"
-                          fill-rule="evenodd"
-                        />
-                      </svg>
-                    </td>
-                    <td
-                      class="navds-table__data-cell navds-body-short navds-body-short--medium"
-                    >
-                      <svg
                         aria-labelledby="title-«rt»"
                         fill="none"
                         focusable="false"
@@ -1134,11 +1108,11 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                         <title
                           id="title-«rt»"
                         >
-                          Snakke/kommunisere
+                          Lese/innsyn
                         </title>
                         <path
                           clip-rule="evenodd"
-                          d="M4.75 5A.25.25 0 0 1 5 4.75h11a.25.25 0 0 1 .25.25v.5a.75.75 0 0 0 1.5 0V5A1.75 1.75 0 0 0 16 3.25H5A1.75 1.75 0 0 0 3.25 5v10a.75.75 0 0 0 1.085.67l1.502-.75a.75.75 0 0 0-.671-1.341l-.416.207zM9 8.75a.25.25 0 0 0-.25.25v8c0 .138.112.25.25.25h7a.75.75 0 0 1 .335.08l2.915 1.457V9a.25.25 0 0 0-.25-.25zM7.25 9c0-.966.784-1.75 1.75-1.75h10c.966 0 1.75.784 1.75 1.75v11a.75.75 0 0 1-1.085.67l-3.842-1.92H9A1.75 1.75 0 0 1 7.25 17zm3 4a.75.75 0 0 1 .75-.75h.01a.75.75 0 0 1 0 1.5H11a.75.75 0 0 1-.75-.75m3.75-.75a.75.75 0 0 0 0 1.5h.01a.75.75 0 0 0 0-1.5zm2.25.75a.75.75 0 0 1 .75-.75h.01a.75.75 0 0 1 0 1.5H17a.75.75 0 0 1-.75-.75"
+                          d="M3.75 6a1.25 1.25 0 1 1 2.5 0v2a.75.75 0 0 0 1.5 0V6a2.75 2.75 0 0 0-5.5 0v12c0 .966.784 1.75 1.75 1.75h5.5A1.75 1.75 0 0 0 11.25 18v-4.25h1.5V18c0 .966.784 1.75 1.75 1.75H20A1.75 1.75 0 0 0 21.75 18V6a2.75 2.75 0 1 0-5.5 0v2a.75.75 0 0 0 1.5 0V6a1.25 1.25 0 1 1 2.5 0v6.25H3.75zM9.5 18.25a.25.25 0 0 0 .25-.25v-4.25h-6V18c0 .138.112.25.25.25zm10.5 0a.25.25 0 0 0 .25-.25v-4.25h-6V18c0 .138.112.25.25.25z"
                           fill="currentColor"
                           fill-rule="evenodd"
                         />
@@ -1159,6 +1133,32 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                       >
                         <title
                           id="title-«ru»"
+                        >
+                          Snakke/kommunisere
+                        </title>
+                        <path
+                          clip-rule="evenodd"
+                          d="M4.75 5A.25.25 0 0 1 5 4.75h11a.25.25 0 0 1 .25.25v.5a.75.75 0 0 0 1.5 0V5A1.75 1.75 0 0 0 16 3.25H5A1.75 1.75 0 0 0 3.25 5v10a.75.75 0 0 0 1.085.67l1.502-.75a.75.75 0 0 0-.671-1.341l-.416.207zM9 8.75a.25.25 0 0 0-.25.25v8c0 .138.112.25.25.25h7a.75.75 0 0 1 .335.08l2.915 1.457V9a.25.25 0 0 0-.25-.25zM7.25 9c0-.966.784-1.75 1.75-1.75h10c.966 0 1.75.784 1.75 1.75v11a.75.75 0 0 1-1.085.67l-3.842-1.92H9A1.75 1.75 0 0 1 7.25 17zm3 4a.75.75 0 0 1 .75-.75h.01a.75.75 0 0 1 0 1.5H11a.75.75 0 0 1-.75-.75m3.75-.75a.75.75 0 0 0 0 1.5h.01a.75.75 0 0 0 0-1.5zm2.25.75a.75.75 0 0 1 .75-.75h.01a.75.75 0 0 1 0 1.5H17a.75.75 0 0 1-.75-.75"
+                          fill="currentColor"
+                          fill-rule="evenodd"
+                        />
+                      </svg>
+                    </td>
+                    <td
+                      class="navds-table__data-cell navds-body-short navds-body-short--medium"
+                    >
+                      <svg
+                        aria-labelledby="title-«rv»"
+                        fill="none"
+                        focusable="false"
+                        height="1em"
+                        role="img"
+                        viewBox="0 0 24 24"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <title
+                          id="title-«rv»"
                         >
                           Søke/klage
                         </title>
@@ -1822,6 +1822,73 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </div>
         </div>
       </section>
+      <section>
+        <div
+          class="c2"
+        >
+          <div
+            class="c5"
+          >
+            <svg
+              viewBox="0 0 100 100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="50"
+                cy="50"
+                fill="#FFB249"
+                r="50"
+              />
+              <line
+                stroke="#3E3832"
+                stroke-linecap="round"
+                stroke-width="4"
+                x1="50"
+                x2="50"
+                y1="25"
+                y2="57"
+              />
+              <circle
+                cx="50"
+                cy="72"
+                fill="#3E3832"
+                r="4.5"
+              />
+            </svg>
+          </div>
+          <h3
+            class="typo-undertittel"
+          >
+            Rettslig handleevne
+          </h3>
+        </div>
+        <div
+          class="c3"
+        />
+        <div
+          class="c4"
+        >
+          <div
+            class="c2"
+          />
+          <div>
+            <p
+              class="typo-normal"
+            >
+              Omfang: begrenset
+            </p>
+            <div
+              class="c7"
+            >
+              <p
+                class="typo-undertekst"
+              >
+                Gyldig: 01.01.2020 – 01.01.2025
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
     <div
       class="c1"
@@ -1966,6 +2033,153 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             >
               Telefonisk utestengelse
             </p>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div
+          class="c2"
+        >
+          <div
+            class="c5"
+          >
+            <svg
+              color="#C6C2BF"
+              fill="none"
+              focusable="false"
+              height="1em"
+              role="img"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M15.033 2.731a.242.242 0 0 0-.308.29l.008.033c.401 1.723.691 3.367.873 4.973a.25.25 0 0 0 .25.223h4.772c.178 0 .299-.182.224-.343a9.78 9.78 0 0 0-5.819-5.176m-2.197-.446a.25.25 0 0 1 .218.19l.219.92c.369 1.587.64 3.1.817 4.577a.25.25 0 0 1-.248.278h-3.685a.25.25 0 0 1-.247-.278c.176-1.477.448-2.99.817-4.577l.219-.92a.25.25 0 0 1 .217-.19 10 10 0 0 1 1.673 0m-3.87.446a.242.242 0 0 1 .308.29l-.007.03v.003a43 43 0 0 0-.874 4.973.25.25 0 0 1-.249.223H3.372a.243.243 0 0 1-.224-.343A9.78 9.78 0 0 1 8.966 2.73M2.71 9.75a.246.246 0 0 0-.242.193 9.8 9.8 0 0 0 0 4.114.246.246 0 0 0 .242.193h5.264a.25.25 0 0 0 .25-.266 35 35 0 0 1 0-3.968.25.25 0 0 0-.25-.266zm.663 6a.243.243 0 0 0-.224.343 9.78 9.78 0 0 0 5.82 5.176c.184.06.355-.11.305-.296l-.004-.014-.003-.013c-.4-1.716-.69-3.36-.873-4.973a.25.25 0 0 0-.25-.223zm7.606 5.785c.027.1.113.174.217.182a10 10 0 0 0 1.61 0 .25.25 0 0 0 .216-.182l.254-.941c.367-1.577.639-3.087.815-4.566a.25.25 0 0 0-.247-.278h-3.686a.25.25 0 0 0-.248.278c.177 1.48.449 2.989.815 4.566zm3.748-.562a.241.241 0 0 0 .306.296 9.78 9.78 0 0 0 5.82-5.176.243.243 0 0 0-.224-.343h-4.772a.25.25 0 0 0-.25.223 43 43 0 0 1-.873 4.973l-.003.013zm6.565-6.723c.116 0 .217-.08.242-.193a9.8 9.8 0 0 0 0-4.114.246.246 0 0 0-.242-.193h-5.264a.25.25 0 0 0-.25.266c.076 1.33.075 2.644 0 3.968a.25.25 0 0 0 .25.266zm-7.02-.233a.25.25 0 0 1-.248.233H9.976a.25.25 0 0 1-.248-.233 33 33 0 0 1 0-4.034.25.25 0 0 1 .249-.233h4.046c.132 0 .24.102.249.233a33 33 0 0 1 0 4.034"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </div>
+          <h3
+            class="typo-undertittel"
+          >
+            Flytting
+          </h3>
+        </div>
+        <div
+          class="c3"
+        />
+        <div
+          class="c4"
+        >
+          <div
+            class="c2"
+          >
+            <h4
+              class="typo-element"
+            >
+              Flyttet fra
+            </h4>
+          </div>
+          <div
+            class="navds-box mb-[0.5rem]"
+          >
+            <p
+              class="typo-normal"
+            >
+              Sverige 
+            </p>
+            <div
+              class="c7"
+            >
+              <p
+                class="typo-undertekst"
+              >
+                Endret 20.02.2010 av folkeregisteret (kilde: bruker)
+              </p>
+            </div>
+            <div
+              class="c7"
+            >
+              <p
+                class="typo-undertekst"
+              >
+                Gyldig: 01.01.2020 – 01.01.2030
+              </p>
+            </div>
+          </div>
+          <div
+            class="navds-box mb-[0.5rem]"
+          >
+            <p
+              class="typo-normal"
+            >
+              Hellas 
+            </p>
+            <div
+              class="c7"
+            >
+              <p
+                class="typo-undertekst"
+              >
+                Endret 20.02.2010 av folkeregisteret (kilde: bruker)
+              </p>
+            </div>
+            <div
+              class="c7"
+            >
+              <p
+                class="typo-undertekst"
+              >
+                Gyldig: 01.01.2020 – 01.01.2030
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="c4"
+        >
+          <div
+            class="c2"
+          >
+            <h4
+              class="typo-element"
+            >
+              Flyttet til
+            </h4>
+          </div>
+          <div
+            class="navds-box mb-[0.5rem]"
+          >
+            <p
+              class="typo-normal"
+            >
+              Danmark 
+            </p>
+            <p
+              class="typo-normal"
+            >
+              Utflyttingsdato: 01.01.2025
+            </p>
+            <div
+              class="c7"
+            >
+              <p
+                class="typo-undertekst"
+              >
+                Endret 20.02.2010 av folkeregisteret (kilde: bruker)
+              </p>
+            </div>
+            <div
+              class="c7"
+            >
+              <p
+                class="typo-undertekst"
+              >
+                Gyldig: 01.01.2020 – 01.01.2025
+              </p>
+            </div>
           </div>
         </div>
       </section>
