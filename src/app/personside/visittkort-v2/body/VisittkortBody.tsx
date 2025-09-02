@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import DodsdatoInfo from 'src/app/personside/visittkort-v2/body/DodsdatoInfo';
+import FlyttingInfo from 'src/app/personside/visittkort-v2/body/FlyttingInfo';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import type { Data as PersonData } from '../PersondataDomain';
@@ -39,6 +40,7 @@ function SingleColumnLayout(persondata: PersonData) {
             <TilrettelagtKommunikasjon tilrettelagtKommunikasjon={persondata.person.tilrettelagtKommunikasjon} />
             <Vergemal feilendeSystemer={persondata.feilendeSystemer} vergemal={persondata.person.vergemal} />
             <Sikkerhetstiltak sikkerhetstiltak={persondata.person.sikkerhetstiltak} />
+            <FlyttingInfo person={persondata.person} />
             <LenkeBrukerprofil />
         </Kolonne>
     );
@@ -67,6 +69,7 @@ function DoubleColumnLayout(persondata: PersonData) {
                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjon={persondata.person.tilrettelagtKommunikasjon} />
                 <Vergemal feilendeSystemer={persondata.feilendeSystemer} vergemal={persondata.person.vergemal} />
                 <Sikkerhetstiltak sikkerhetstiltak={persondata.person.sikkerhetstiltak} />
+                <FlyttingInfo person={persondata.person} />
                 <LenkeBrukerprofil />
             </Kolonne>
         </>
@@ -98,6 +101,7 @@ function TripleColumnLayout(persondata: PersonData) {
                     geografiskTilknytning={persondata.person.geografiskTilknytning}
                 />
                 <Sikkerhetstiltak sikkerhetstiltak={persondata.person.sikkerhetstiltak} />
+                <FlyttingInfo person={persondata.person} />
                 <LenkeBrukerprofil />
             </Kolonne>
         </>
