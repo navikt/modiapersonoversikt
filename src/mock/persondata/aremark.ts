@@ -544,5 +544,14 @@ export const aremark: Person = {
                 kilde: 'bruker'
             }
         }
+    ],
+    rettsligHandleevne: [
+        {
+            omfang: 'begrenset',
+            gyldighetsPeriode: {
+                gyldigFraOgMed: '2020-01-01' as LocalDate,
+                gyldigTilOgMed: '2025-01-01' as LocalDate
+            }
+        }
     ]
 };

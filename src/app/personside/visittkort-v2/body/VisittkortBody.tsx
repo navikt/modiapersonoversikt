@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import DodsdatoInfo from 'src/app/personside/visittkort-v2/body/DodsdatoInfo';
-import FlyttingInfo from 'src/app/personside/visittkort-v2/body/FlyttingInfo';
+import FlyttingInfo from 'src/app/personside/visittkort-v2/body/flytting/FlyttingInfo';
+import RettsligHandleevne from 'src/app/personside/visittkort-v2/body/rettslighandleevne/RettsligHandleevne';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import type { Data as PersonData } from '../PersondataDomain';
@@ -39,6 +40,7 @@ function SingleColumnLayout(persondata: PersonData) {
             />
             <TilrettelagtKommunikasjon tilrettelagtKommunikasjon={persondata.person.tilrettelagtKommunikasjon} />
             <Vergemal feilendeSystemer={persondata.feilendeSystemer} vergemal={persondata.person.vergemal} />
+            <RettsligHandleevne rettsligHandleevne={persondata.person.rettsligHandleevne} />
             <Sikkerhetstiltak sikkerhetstiltak={persondata.person.sikkerhetstiltak} />
             <FlyttingInfo person={persondata.person} />
             <LenkeBrukerprofil />
@@ -68,6 +70,7 @@ function DoubleColumnLayout(persondata: PersonData) {
                 />
                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjon={persondata.person.tilrettelagtKommunikasjon} />
                 <Vergemal feilendeSystemer={persondata.feilendeSystemer} vergemal={persondata.person.vergemal} />
+                <RettsligHandleevne rettsligHandleevne={persondata.person.rettsligHandleevne} />
                 <Sikkerhetstiltak sikkerhetstiltak={persondata.person.sikkerhetstiltak} />
                 <FlyttingInfo person={persondata.person} />
                 <LenkeBrukerprofil />
@@ -93,6 +96,7 @@ function TripleColumnLayout(persondata: PersonData) {
                 <DeltBosted deltBosted={persondata.person.deltBosted} />
                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjon={persondata.person.tilrettelagtKommunikasjon} />
                 <Vergemal feilendeSystemer={persondata.feilendeSystemer} vergemal={persondata.person.vergemal} />
+                <RettsligHandleevne rettsligHandleevne={persondata.person.rettsligHandleevne} />
             </Kolonne>
             <Kolonne>
                 <NavKontor
