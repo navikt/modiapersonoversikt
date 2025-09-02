@@ -1,0 +1,113 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`viser rettslig handlevne 1`] = `
+<DocumentFragment>
+  .c4 {
+  color: #645f5a;
+  margin-top: 3px;
+}
+
+.c4 .typo-etikett-liten {
+  line-height: 1rem;
+}
+
+.c0 {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.c1 {
+  position: absolute;
+  left: -3.125rem;
+  width: 3.125rem;
+  display: flex;
+  justify-content: center;
+}
+
+.c1 >svg {
+  height: 1.5rem;
+  width: auto;
+}
+
+.c3 {
+  margin: 10px 0 20px 0;
+}
+
+.c3:last-child {
+  margin: 10px 0 0 0;
+}
+
+.c2 {
+  margin-bottom: 1rem;
+}
+
+<section>
+    <div
+      class="c0"
+    >
+      <div
+        class="c1"
+      >
+        <svg
+          viewBox="0 0 100 100"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="50"
+            cy="50"
+            fill="#FFB249"
+            r="50"
+          />
+          <line
+            stroke="#3E3832"
+            stroke-linecap="round"
+            stroke-width="4"
+            x1="50"
+            x2="50"
+            y1="25"
+            y2="57"
+          />
+          <circle
+            cx="50"
+            cy="72"
+            fill="#3E3832"
+            r="4.5"
+          />
+        </svg>
+      </div>
+      <h3
+        class="typo-undertittel"
+      >
+        Rettslig handleevne
+      </h3>
+    </div>
+    <div
+      class="c2"
+    />
+    <div
+      class="c3"
+    >
+      <div
+        class="c0"
+      />
+      <div>
+        <p
+          class="typo-normal"
+        >
+          Omfang: begrenset
+        </p>
+        <div
+          class="c4"
+        >
+          <p
+            class="typo-undertekst"
+          >
+            Gyldig: 01.01.2020 – 01.01.2025
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</DocumentFragment>
+`;
