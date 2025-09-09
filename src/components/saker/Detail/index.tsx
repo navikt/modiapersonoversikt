@@ -157,8 +157,7 @@ export const SakDetails = ({
 
     const sakEntries = {
         Tema: valgtSak.temanavn,
-        SakId: valgtSak.saksid,
-        Fagsaksnummer: valgtSak.fagsaksnummer,
+        SakId: valgtSak.fagsaksnummer,
         Opprettet: datoEllerNull(valgtSak.opprettet),
         Status: valgtSak.avsluttet ? `Avsluttet(${formatterDato(valgtSak.avsluttet)})` : 'Åpen',
         Fagsystem: valgtSak.fagsystem,
