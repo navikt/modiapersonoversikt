@@ -23,9 +23,9 @@ const OppgaveOgDialogDetail = () => {
 
     if (!oppgave) {
         return (
-            <VStack flexGrow="1" minHeight="0" className="mt-6">
+            <HStack flexGrow="1" minHeight="0" className="">
                 <Alert variant="error">Oppgaven du valgte, ble ikke funnet.</Alert>
-            </VStack>
+            </HStack>
         );
     }
 
