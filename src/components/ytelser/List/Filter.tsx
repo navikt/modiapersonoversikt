@@ -43,7 +43,7 @@ const filterDateRangeAtom = atom(
 
 const DateFilter = () => {
     const [value, setValue] = useAtom(filterDateRangeAtom);
-    return <DateRangeSelector range={value} onChange={setValue} />;
+    return <DateRangeSelector range={value} onChange={setValue} defaultPeriodType={PeriodType.CUSTOM} />;
 };
 
 const YtelserTypeFilter = () => {
@@ -78,6 +78,8 @@ const YtelserTypeFilter = () => {
 
 const FilterTitle = () => {
     const filters = useAtomValue(ytelseFilterAtom);
+
+    console.log('Filters:', filters);
 
     const activeFilters = useMemo(() => {
         let count = 0;
