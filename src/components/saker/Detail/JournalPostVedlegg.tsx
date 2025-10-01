@@ -1,10 +1,10 @@
-import { Accordion, Alert, VStack } from '@navikt/ds-react';
+import { Alert, Table, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
+import Card from 'src/components/Card';
 import Dokument from 'src/components/saker/Detail/Dokument';
-import { tekstBasertPaRetning } from 'src/components/saker/utils';
 import type { Dokumentmetadata } from 'src/generated/modiapersonoversikt-api';
 
-const JournalPostVedlegg = ({ journalPost, brukersNavn }: { journalPost: Dokumentmetadata; brukersNavn: string }) => {
+const JournalPostVedlegg = ({ journalPost }: { journalPost: Dokumentmetadata }) => {
     const [openMap, setOpenMap] = useState<{
         [key: string]: boolean;
     }>({});
@@ -12,12 +12,12 @@ const JournalPostVedlegg = ({ journalPost, brukersNavn }: { journalPost: Dokumen
     if (journalPost.vedlegg.length === 0) {
         return (
             <Alert variant="info" className="my-4">
-                Valgte sak har ikke vedlegg.
+                Valgte saksdokument har ikke vedlegg.
             </Alert>
         );
     }
 
-    const handleAccordionChange = (id: string, isOpen: boolean) => {
+    const handleOnExpand = (id: string, isOpen: boolean) => {
         setOpenMap({
             ...openMap,
             [id]: isOpen
@@ -25,30 +25,44 @@ const JournalPostVedlegg = ({ journalPost, brukersNavn }: { journalPost: Dokumen
     };
 
     return (
-        <Accordion size="small" headingSize="xsmall">
-            {journalPost.vedlegg.map((vedlegg, index) => {
-                const key = `${index}`;
-                const isOpen = openMap[key] ?? false;
-                return (
-                    <Accordion.Item key={key} open={isOpen} onOpenChange={() => handleAccordionChange(key, !isOpen)}>
-                        <Accordion.Header>
-                            {vedlegg.tittel}({tekstBasertPaRetning(brukersNavn, journalPost)})
-                        </Accordion.Header>
-                        <Accordion.Content>
-                            {isOpen && (
-                                <VStack gap="4" flexGrow="1" overflow="scroll">
-                                    <Dokument
-                                        journalPost={journalPost}
-                                        kanVises={!vedlegg.logiskDokument}
-                                        dokument={vedlegg}
-                                    />
-                                </VStack>
-                            )}
-                        </Accordion.Content>
-                    </Accordion.Item>
-                );
-            })}
-        </Accordion>
+        <VStack gap="2">
+            <Table>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell />
+                        <Table.HeaderCell />
+                    </Table.Row>
+                </Table.Header>
+                <Table.Body>
+                    {journalPost.vedlegg.map((vedlegg, index) => {
+                        const key = `${index}`;
+                        const isOpen = openMap[key] ?? false;
+                        return (
+                            <Table.ExpandableRow
+                                key={key}
+                                onOpenChange={(open) => handleOnExpand(key, open)}
+                                expandOnRowClick={true}
+                                content={
+                                    isOpen ? (
+                                        <Card className="-ml-10 p-4 ">
+                                            <Dokument
+                                                journalPost={journalPost}
+                                                kanVises={!vedlegg.logiskDokument}
+                                                dokument={vedlegg}
+                                            />
+                                        </Card>
+                                    ) : (
+                                        ''
+                                    )
+                                }
+                            >
+                                <Table.DataCell scope="row">{vedlegg.tittel}</Table.DataCell>
+                            </Table.ExpandableRow>
+                        );
+                    })}
+                </Table.Body>
+            </Table>
+        </VStack>
     );
 };
 
