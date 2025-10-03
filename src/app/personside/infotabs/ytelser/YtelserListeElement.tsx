@@ -1,20 +1,25 @@
 import { Element, Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import VisMerKnapp from 'src/components/VisMerKnapp';
+import {
+    getArbeidsavklaringspengerIdDato,
+    getUnikArbeidsavklaringspengerKey
+} from 'src/models/ytelse/arbeidsavklaringspenger';
+import { getForeldepengerIdDato, getUnikForeldrepengerKey } from 'src/models/ytelse/foreldrepenger';
 import { getPensjonIdDato, getUnikPensjonKey } from 'src/models/ytelse/pensjon';
-import VisMerKnapp from '../../../../components/VisMerKnapp';
-import { getForeldepengerIdDato, getUnikForeldrepengerKey } from '../../../../models/ytelse/foreldrepenger';
-import { getUnikPleiepengerKey } from '../../../../models/ytelse/pleiepenger';
-import { getUnikSykepengerKey } from '../../../../models/ytelse/sykepenger';
-import { getTiltakspengerIdDato, getUnikTiltakspengerKey } from '../../../../models/ytelse/tiltakspenger';
+import { getUnikPleiepengerKey } from 'src/models/ytelse/pleiepenger';
+import { getUnikSykepengerKey } from 'src/models/ytelse/sykepenger';
+import { getTiltakspengerIdDato, getUnikTiltakspengerKey } from 'src/models/ytelse/tiltakspenger';
 import {
     type Ytelse,
     getYtelseIdDato,
+    isArbeidsavklaringspenger,
     isForeldrepenger,
     isPensjon,
     isPleiepenger,
     isSykepenger,
     isTiltakspenger
-} from '../../../../models/ytelse/ytelse-utils';
-import { formaterDato } from '../../../../utils/string-utils';
+} from 'src/models/ytelse/ytelse-utils';
+import { formaterDato } from 'src/utils/string-utils';
 import { useInfotabsDyplenker } from '../dyplenker';
 
 interface Props {
@@ -34,7 +39,7 @@ function YtelserListeElement(props: Props) {
                     valgt={props.erValgt}
                     linkTo={dypLenker.ytelser.link(props.ytelse)}
                 >
-                    <Undertittel tag={'h3'}>Pleiepenger sykt barn</Undertittel>
+                    <Undertittel tag="h3">Pleiepenger sykt barn</Undertittel>
                     <Element>ID-dato</Element>
                     <Normaltekst>{formaterDato(getYtelseIdDato(props.ytelse))}</Normaltekst>
                     <Element>Barnets f.nr: </Element>
@@ -53,7 +58,7 @@ function YtelserListeElement(props: Props) {
                     valgt={props.erValgt}
                     linkTo={dypLenker.ytelser.link(props.ytelse)}
                 >
-                    <Undertittel tag={'h3'}>Sykepengerrettighet</Undertittel>
+                    <Undertittel tag="h3">Sykepengerrettighet</Undertittel>
                     <Element>ID-dato</Element>
                     <Normaltekst>{formaterDato(getYtelseIdDato(props.ytelse))}</Normaltekst>
                 </VisMerKnapp>
@@ -70,7 +75,7 @@ function YtelserListeElement(props: Props) {
                     valgt={props.erValgt}
                     linkTo={dypLenker.ytelser.link(props.ytelse)}
                 >
-                    <Undertittel tag={'h3'}>Foreldrepenger</Undertittel>
+                    <Undertittel tag="h3">Foreldrepenger</Undertittel>
                     <Element>ID-dato</Element>
                     <Normaltekst>{formaterDato(getForeldepengerIdDato(props.ytelse))}</Normaltekst>
                 </VisMerKnapp>
@@ -87,7 +92,7 @@ function YtelserListeElement(props: Props) {
                     valgt={props.erValgt}
                     linkTo={dypLenker.ytelser.link(props.ytelse)}
                 >
-                    <Undertittel tag={'h3'}>Tiltakspenger</Undertittel>
+                    <Undertittel tag="h3">Tiltakspenger</Undertittel>
                     <Element>ID-dato</Element>
                     <Normaltekst>{formaterDato(getTiltakspengerIdDato(props.ytelse))}</Normaltekst>
                 </VisMerKnapp>
@@ -105,7 +110,25 @@ function YtelserListeElement(props: Props) {
                     valgt={props.erValgt}
                     linkTo={dypLenker.ytelser.link(props.ytelse)}
                 >
-                    <Undertittel tag={'h3'}>Pensjon</Undertittel>
+                    <Undertittel tag="h3">Pensjon</Undertittel>
+                    <Element>ID-dato</Element>
+                    <Normaltekst>{fom ? formaterDato(fom) : ''}</Normaltekst>
+                </VisMerKnapp>
+            </li>
+        );
+    }
+
+    if (isArbeidsavklaringspenger(props.ytelse)) {
+        const fom = getArbeidsavklaringspengerIdDato(props.ytelse);
+        return (
+            <li key={getUnikArbeidsavklaringspengerKey(props.ytelse)}>
+                <VisMerKnapp
+                    key={getUnikArbeidsavklaringspengerKey(props.ytelse)}
+                    ariaDescription="Vis arbeidsavklaringspenger"
+                    valgt={props.erValgt}
+                    linkTo={dypLenker.ytelser.link(props.ytelse)}
+                >
+                    <Undertittel tag="h3">Arbeidsavklaringspenger</Undertittel>
                     <Element>ID-dato</Element>
                     <Normaltekst>{fom ? formaterDato(fom) : ''}</Normaltekst>
                 </VisMerKnapp>
