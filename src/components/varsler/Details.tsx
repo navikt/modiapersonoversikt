@@ -1,10 +1,13 @@
 import { Alert, BodyLong, ErrorMessage, GuidePanel, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
-import { Suspense } from 'react';
+import { useAtomValue } from 'jotai';
+import { Suspense, useEffect, useRef } from 'react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
+import { varslerFilterAtom } from 'src/components/varsler/List/Filter';
 import { useFilterVarsler } from 'src/components/varsler/List/utils';
 import type { FeiletVarsling, Varsel } from 'src/lib/types/modiapersonoversikt-api';
+import { varslerRouteMiddleware } from 'src/routes/new/person/varsler';
 import { ENDASH, emptyReplacement, formaterDato } from 'src/utils/string-utils';
 
 const routeApi = getRouteApi('/new/person/varsler');
@@ -120,8 +123,19 @@ const DittNavInformasjonsLinjerV2 = ({
 
 const VarselDetailExtractor = () => {
     const { id } = routeApi.useSearch();
-    const varlser = useFilterVarsler();
-    const varsel = varlser.find((item) => item.eventId === id);
+    const varsler = useFilterVarsler();
+    const valgtVarsel = varsler.find((item) => item.eventId === id);
+    const filterAtomValue = useAtomValue(varslerFilterAtom);
+    const prevFilterRef = useRef(varslerFilterAtom);
+
+    // Fjern varselid i URL og cache kun hvis filteret er endret og varselet ikke finnes i filtrerte varsler
+    useEffect(() => {
+        const filterEndret = JSON.stringify(prevFilterRef.current) !== JSON.stringify(filterAtomValue);
+        const varselIkkeIListe = !valgtVarsel || !varsler.includes(valgtVarsel);
+        if (filterEndret && varselIkkeIListe) {
+            varslerRouteMiddleware.clear();
+        }
+    }, [valgtVarsel, varsler, filterAtomValue]);
 
     if (!id) {
         return (
@@ -131,7 +145,7 @@ const VarselDetailExtractor = () => {
         );
     }
 
-    if (!varsel) {
+    if (!valgtVarsel) {
         return (
             <VStack flexGrow="1" minHeight="0" className="mt-6">
                 <Alert variant="error">Varselet du valgte, ble ikke funnet.</Alert>
@@ -141,12 +155,12 @@ const VarselDetailExtractor = () => {
 
     return (
         <>
-            {varsel && (
+            {valgtVarsel && (
                 <Card>
-                    {varsel.erVarslerV2 ? (
-                        <DittNavInformasjonsLinjerV2 varsel={varsel.event} kanaler={varsel.kanaler} />
+                    {valgtVarsel.erVarslerV2 ? (
+                        <DittNavInformasjonsLinjerV2 varsel={valgtVarsel.event} kanaler={valgtVarsel.kanaler} />
                     ) : (
-                        <DittNavInformasjonsLinjer varsel={varsel.event} kanaler={varsel.kanaler} />
+                        <DittNavInformasjonsLinjer varsel={valgtVarsel.event} kanaler={valgtVarsel.kanaler} />
                     )}
                 </Card>
             )}

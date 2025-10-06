@@ -6,9 +6,11 @@ const OppgaveSearchSchema = z.object({
     id: z.string().optional()
 });
 
+export const oppgaveRouteMiddleware = keepQueryParams(['id']);
+
 export const Route = createFileRoute('/new/person/oppgaver')({
     validateSearch: OppgaveSearchSchema,
     search: {
-        middlewares: [keepQueryParams(['id'])]
+        middlewares: [oppgaveRouteMiddleware]
     }
 });

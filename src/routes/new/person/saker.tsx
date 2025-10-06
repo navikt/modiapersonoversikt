@@ -6,9 +6,11 @@ const sakerSearchSchema = z.object({
     id: z.string().optional()
 });
 
+export const sakerRouteMiddleware = keepQueryParams(['id']);
+
 export const Route = createFileRoute('/new/person/saker')({
     validateSearch: sakerSearchSchema,
     search: {
-        middlewares: [keepQueryParams(['id'])]
+        middlewares: [sakerRouteMiddleware]
     }
 });

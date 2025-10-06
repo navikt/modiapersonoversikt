@@ -79,8 +79,6 @@ const YtelserTypeFilter = () => {
 const FilterTitle = () => {
     const filters = useAtomValue(ytelseFilterAtom);
 
-    console.log('Filters:', filters);
-
     const activeFilters = useMemo(() => {
         let count = 0;
         if (filters.ytelseTyper && filters.ytelseTyper.length > 0) {
