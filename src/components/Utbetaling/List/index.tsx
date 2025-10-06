@@ -1,4 +1,4 @@
-import { Alert, Skeleton, VStack } from '@navikt/ds-react';
+import { Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { useNavigate, useSearch } from '@tanstack/react-router';
 import { Suspense, useCallback } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
@@ -45,20 +45,20 @@ const UtbetalingList = () => {
         from: '/new/person/utbetaling',
         select: (p) => p.id
     });
-    if (utbetalinger.length === 0) {
-        return (
-            <Alert className="mr-2" variant="info">
-                Fant ingen utbetalinger
-            </Alert>
-        );
-    }
 
     return (
-        <PaginatedList
-            selectedKey={selectedKey}
-            items={utbetalinger}
-            keyExtractor={getUtbetalingId}
-            renderItem={({ item }) => <UtbetalingItem utbetaling={item} handleClick={handleClick} />}
-        />
+        <>
+            <Heading className="pl-1" size="xsmall" level="2">
+                {utbetalinger.length} {utbetalinger.length === 1 ? 'utbetaling' : 'utbetalinger'}
+            </Heading>
+            {utbetalinger.length > 0 && (
+                <PaginatedList
+                    selectedKey={selectedKey}
+                    items={utbetalinger}
+                    keyExtractor={getUtbetalingId}
+                    renderItem={({ item }) => <UtbetalingItem utbetaling={item} handleClick={handleClick} />}
+                />
+            )}
+        </>
     );
 };

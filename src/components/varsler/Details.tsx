@@ -137,6 +137,14 @@ const VarselDetailExtractor = () => {
         }
     }, [valgtVarsel, varsler, filterAtomValue]);
 
+    if (!varsler.length) {
+        return (
+            <Alert className="mt-2" variant="info">
+                Fant ingen varsler
+            </Alert>
+        );
+    }
+
     if (!id) {
         return (
             <HStack margin="4">

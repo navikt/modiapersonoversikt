@@ -1,4 +1,4 @@
-import { Alert, Skeleton, VStack } from '@navikt/ds-react';
+import { Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { useNavigate, useSearch } from '@tanstack/react-router';
 import { Suspense, useCallback } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
@@ -44,22 +44,19 @@ const OppgaveList = () => {
         select: (p) => p.id
     });
 
-    if (oppgaver.length === 0) {
-        return (
-            <Alert className="mr-2" variant="info">
-                Fant ingen oppgaver
-            </Alert>
-        );
-    }
-
     return (
         <>
-            <PaginatedList
-                selectedKey={selectedKey}
-                items={oppgaver}
-                keyExtractor={getOppgaveId}
-                renderItem={({ item }) => <OppgaveItem oppgave={item} handleClick={handleClick} />}
-            />
+            <Heading className="pl-1" size="xsmall" level="2">
+                {oppgaver.length} {oppgaver.length === 1 ? 'oppgave' : 'oppgaver'}
+            </Heading>
+            {oppgaver.length > 0 && (
+                <PaginatedList
+                    selectedKey={selectedKey}
+                    items={oppgaver}
+                    keyExtractor={getOppgaveId}
+                    renderItem={({ item }) => <OppgaveItem oppgave={item} handleClick={handleClick} />}
+                />
+            )}
         </>
     );
 };

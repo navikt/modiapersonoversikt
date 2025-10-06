@@ -1,8 +1,11 @@
 import { PrinterSmallIcon } from '@navikt/aksel-icons';
-import { Button, GuidePanel, HGrid, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, Button, GuidePanel, HGrid, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
+import { useAtomValue } from 'jotai';
 import { Suspense, memo } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
+import { meldingerFilterAtom } from 'src/components/Meldinger/List/Filter';
+import { useFilterMeldinger } from 'src/components/Meldinger/List/utils';
 import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
 import usePrinter from '../Print/usePrinter';
 import { TraadDetail } from './Detail';
@@ -33,11 +36,6 @@ export const MeldingerPage = () => {
     return (
         <HGrid gap="1" columns={{ xs: 1, md: 'max-content 1fr' }} overflow={{ xs: 'scroll', md: 'hidden' }}>
             <VStack height="100%" maxWidth={{ md: '16em' }} overflow={{ md: 'hidden' }}>
-                <HStack justify="space-between">
-                    <Heading level="2" size="xsmall">
-                        Innboks
-                    </Heading>
-                </HStack>
                 <ErrorBoundary boundaryName="traadlist">
                     <Suspense
                         fallback={
@@ -50,15 +48,14 @@ export const MeldingerPage = () => {
                             </VStack>
                         }
                     >
+                        <Heading size="small">Dialoger</Heading>
+
                         <PrintThreadsMemo />
                     </Suspense>
                 </ErrorBoundary>
                 <TraadList />
             </VStack>
             <VStack flexGrow="1" overflowX="hidden" className="min-h-100 md:min-h-0">
-                <Heading level="2" size="xsmall">
-                    Dialog
-                </Heading>
                 <VStack overflowY={{ md: 'scroll' }}>
                     <TraadDetailSection />
                 </VStack>
@@ -71,6 +68,17 @@ const routeApi = getRouteApi('/new/person/meldinger');
 
 const TraadDetailSection = () => {
     const { traadId } = routeApi.useSearch();
+    const { data: traader } = useMeldinger();
+    const filters = useAtomValue(meldingerFilterAtom);
+    const filteredMeldinger = useFilterMeldinger(traader, filters);
+
+    if (filteredMeldinger.length === 0) {
+        return (
+            <Alert variant="info" className="mt-6">
+                Fant ingen dialoger
+            </Alert>
+        );
+    }
 
     if (!traadId) {
         return (

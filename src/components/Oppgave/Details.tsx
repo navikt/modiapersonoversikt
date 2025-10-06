@@ -27,6 +27,14 @@ const OppgaveOgDialogDetail = () => {
         }
     }, [valgtOppgave, oppgaver, filterAtomValue]);
 
+    if (!oppgaver.length) {
+        return (
+            <Alert className="mt-2" variant="info">
+                Fant ingen oppgaver
+            </Alert>
+        );
+    }
+
     if (!id) {
         return (
             <HStack margin="4">

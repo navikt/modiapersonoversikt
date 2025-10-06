@@ -94,6 +94,15 @@ const NorgLenke = ({
 };
 const SakContent = () => {
     const { id } = routeApi.useSearch();
+    const saker = useFilterSaker();
+    if (saker.length === 0) {
+        return (
+            <Alert className="mt-6" variant="info">
+                Fant ingen saker
+            </Alert>
+        );
+    }
+
     if (!id) {
         return (
             <HStack margin="4">

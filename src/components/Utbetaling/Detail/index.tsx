@@ -407,6 +407,14 @@ const UtbetalingDetail = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
         }
     }, [selectedUtbetaling, utbetalinger, filterAtomValue]);
 
+    if (utbetalinger.length === 0) {
+        return (
+            <Alert className="mt-6" variant="info">
+                Fant ingen utbetalinger
+            </Alert>
+        );
+    }
+
     if (!id) {
         return (
             <HStack margin="4">

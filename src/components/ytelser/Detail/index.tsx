@@ -78,6 +78,14 @@ const YtelseDataDetails = () => {
         }
     }, [selectedYtelse, ytelser, filterAtomValue]);
 
+    if (ytelser.length === 0) {
+        return (
+            <Alert className="mt-6" variant="info">
+                Fant ingen ytelser
+            </Alert>
+        );
+    }
+
     if (!id) {
         return (
             <HStack margin="4">

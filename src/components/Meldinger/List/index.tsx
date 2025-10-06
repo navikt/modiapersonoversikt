@@ -1,4 +1,4 @@
-import { Alert, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { useNavigate, useSearch } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import { Suspense, useCallback, useMemo } from 'react';
@@ -57,24 +57,25 @@ const Traader = () => {
         return <Alert variant="info">Brukeren har ingen dialoger</Alert>;
     }
 
-    if (filteredMeldinger.length === 0) {
-        return <Alert variant="info">Fant ingen dialoger</Alert>;
-    }
-
     return (
         <>
-            <PaginatedList
-                paginationSrHeading={{
-                    tag: 'h3',
-                    text: 'Trådlistepaginering'
-                }}
-                aria-label="Tråder"
-                as="section"
-                selectedKey={traadId}
-                items={filteredMeldinger}
-                keyExtractor={(item) => item.traadId}
-                renderItem={({ item }) => <TraadItem traad={item} handleClick={handleClick} />}
-            />
+            <Heading className="pl-1" size="xsmall" level="2">
+                {filteredMeldinger.length} {filteredMeldinger.length === 1 ? 'dialog' : 'dialoger'}
+            </Heading>
+            {filteredMeldinger.length > 0 && (
+                <PaginatedList
+                    paginationSrHeading={{
+                        tag: 'h3',
+                        text: 'Trådlistepaginering'
+                    }}
+                    aria-label="Tråder"
+                    as="section"
+                    selectedKey={traadId}
+                    items={filteredMeldinger}
+                    keyExtractor={(item) => item.traadId}
+                    renderItem={({ item }) => <TraadItem traad={item} handleClick={handleClick} />}
+                />
+            )}
         </>
     );
 };
