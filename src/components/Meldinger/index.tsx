@@ -2,11 +2,12 @@ import { PrinterSmallIcon } from '@navikt/aksel-icons';
 import { Alert, Button, GuidePanel, HGrid, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
-import { Suspense, memo } from 'react';
+import { Suspense, memo, useEffect, useRef } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { meldingerFilterAtom } from 'src/components/Meldinger/List/Filter';
 import { useFilterMeldinger } from 'src/components/Meldinger/List/utils';
 import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
+import { meldingerRouteMiddleware } from 'src/routes/new/person/meldinger';
 import usePrinter from '../Print/usePrinter';
 import { TraadDetail } from './Detail';
 import { TraadList } from './List';
@@ -71,6 +72,18 @@ const TraadDetailSection = () => {
     const { data: traader } = useMeldinger();
     const filters = useAtomValue(meldingerFilterAtom);
     const filteredMeldinger = useFilterMeldinger(traader, filters);
+    const valgtTraad = filteredMeldinger.find((t) => t.traadId === traadId);
+
+    const prevFilterRef = useRef(meldingerFilterAtom);
+
+    // Fjern traadid i URL og cache kun hvis filteret er endret og tråden ikke finnes i filtrerte tråder
+    useEffect(() => {
+        const filterEndret = JSON.stringify(prevFilterRef.current.init) !== JSON.stringify(filters);
+        const traadIkkeIListe = !valgtTraad || !filteredMeldinger.includes(valgtTraad);
+        if (filterEndret && traadIkkeIListe) {
+            meldingerRouteMiddleware.clear();
+        }
+    }, [valgtTraad, filteredMeldinger, filters]);
 
     if (filteredMeldinger.length === 0) {
         return (
@@ -85,6 +98,14 @@ const TraadDetailSection = () => {
             <HStack margin="4">
                 <GuidePanel>Velg en tråd fra listen på venstre side for å se detaljer.</GuidePanel>
             </HStack>
+        );
+    }
+
+    if (!valgtTraad) {
+        return (
+            <VStack className="mt-6">
+                <Alert variant="error">Tråden du valgte, ble ikke funnet.</Alert>
+            </VStack>
         );
     }
 

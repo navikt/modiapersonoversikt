@@ -6,9 +6,11 @@ const meldingerSearchSchema = z.object({
     traadId: z.string().optional()
 });
 
+export const meldingerRouteMiddleware = keepQueryParams(['traadId']);
+
 export const Route = createFileRoute('/new/person/meldinger')({
     validateSearch: meldingerSearchSchema,
     search: {
-        middlewares: [keepQueryParams(['traadId'])]
+        middlewares: [meldingerRouteMiddleware]
     }
 });
