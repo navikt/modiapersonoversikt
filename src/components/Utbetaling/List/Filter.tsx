@@ -1,8 +1,9 @@
-import { Box, ExpansionCard, Fieldset, Skeleton, Switch, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
+import { Alert, Box, ExpansionCard, Fieldset, Skeleton, Switch, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
 import { atom, useAtom, useAtomValue } from 'jotai';
 import { atomWithReset } from 'jotai/utils';
 import { xor } from 'lodash';
 import { Suspense, useCallback, useMemo, useRef, useState } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import DateRangeSelector, { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
 import { reduceUtbetlingerTilYtelser, utbetalingMottakere } from 'src/components/Utbetaling/List/utils';
@@ -181,7 +182,9 @@ export const UtbetalingListFilter = () => {
                                     </VStack>
                                 }
                             >
-                                <UtbetalingYtelserFilter />
+                                <ErrorBoundary fallback={<Alert variant="info">Kunne ikke hente ytelsetyper</Alert>}>
+                                    <UtbetalingYtelserFilter />
+                                </ErrorBoundary>
                             </Suspense>
                         </Box.New>
                         <Box.New maxWidth="17rem">

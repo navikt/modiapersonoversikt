@@ -154,12 +154,16 @@ const sakerOgDokumenterHandler = http.post(
 
 const utbetalingerHandler = http.post(
     `${apiBaseUri}/utbetaling`,
-    withDelayedResponse(randomDelay(), fodselsNummerErGyldigStatus, async (req, _params, body) => {
-        const reqBody = body ?? (await req.json());
-        const url = new URL(req.url);
-        const query = url.searchParams;
-        return getMockUtbetalinger(reqBody.fnr, query.get('startDato') ?? '', query.get('sluttDato') ?? '');
-    })
+    withDelayedResponse(
+        randomDelay(),
+        () => Promise.resolve(500),
+        async (req, _params, body) => {
+            const reqBody = body ?? (await req.json());
+            const url = new URL(req.url);
+            const query = url.searchParams;
+            return getMockUtbetalinger(reqBody.fnr, query.get('startDato') ?? '', query.get('sluttDato') ?? '');
+        }
+    )
 );
 
 const sykepengerHandler = http.post(
@@ -202,7 +206,7 @@ const ytelseHandler = http.post(
     `${apiBaseUri}/ytelse/alle-ytelser`,
     withDelayedResponse(
         randomDelay(),
-        fodselsNummerErGyldigStatus,
+        () => Promise.resolve(500),
         mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMockYtelserRespons(fodselsnummer))
     )
 );
