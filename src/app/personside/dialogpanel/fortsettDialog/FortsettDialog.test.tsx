@@ -1,8 +1,8 @@
 import { act } from '@testing-library/react';
-import { statiskTraadMock } from '../../../../mock/meldinger/statiskTraadMock';
-import { setValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
-import { renderWithProviders } from '../../../../test/Testprovider';
-import { getTestStore } from '../../../../test/testStore';
+import { statiskTraadMock } from 'src/mock/meldinger/statiskTraadMock';
+import { setValgtTraadDialogpanel } from 'src/redux/oppgave/actions';
+import { renderWithProviders } from 'src/test/Testprovider';
+import { getTestStore } from 'src/test/testStore';
 import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
 import FortsettDialogContainer from './FortsettDialogContainer';
 
