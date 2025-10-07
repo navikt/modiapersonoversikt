@@ -347,9 +347,9 @@ export const useForeslotteEnheter = ({
     );
 };
 
-export const useYtelser = (fom: string, tom: string) => {
+export const useYtelser = () => {
     const fnr = usePersonAtomValue();
     return $api.useSuspenseQuery('post', '/rest/ytelse/alle-ytelser', {
-        body: { fnr, fom, tom }
+        body: { fnr }
     });
 };
