@@ -7,8 +7,7 @@ import { formaterDato } from 'src/utils/string-utils';
 
 const Arbeidsavklaringspenger = ({ aap }: { aap: Arbeidsavklaringspenger }) => {
     const entries = {
-        'Fra og med': aap.periode.fraOgMedDato ? formaterDato(aap.periode.fraOgMedDato) : '',
-        'Til og med': aap.periode.tilOgMedDato ? formaterDato(aap.periode.tilOgMedDato) : '',
+        'Vedtak til og med': aap.periode.tilOgMedDato ? formaterDato(aap.periode.tilOgMedDato) : '',
         VedtaksId: aap.vedtakId,
         Vedtaksdato: aap.vedtaksdato ? formaterDato(aap.vedtaksdato) : '',
         Rettighet: aap.rettighetsType ?? '',
