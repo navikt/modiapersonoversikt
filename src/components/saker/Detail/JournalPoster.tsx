@@ -82,7 +82,10 @@ const JournalPoster = ({
                                             </Tabs.Panel>
                                             {vedleggLength && (
                                                 <Tabs.Panel lazy={true} value="vedlegg">
-                                                    <JournalPostVedlegg journalPost={journalPost} />
+                                                    <JournalPostVedlegg
+                                                        journalPost={journalPost}
+                                                        brukersNavn={brukersNavn}
+                                                    />
                                                 </Tabs.Panel>
                                             )}
                                         </Tabs>

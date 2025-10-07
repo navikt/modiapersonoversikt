@@ -1,4 +1,4 @@
-import { Accordion, Alert } from '@navikt/ds-react';
+import { Accordion, Alert, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import Dokument from 'src/components/saker/Detail/Dokument';
 import { tekstBasertPaRetning } from 'src/components/saker/utils';
