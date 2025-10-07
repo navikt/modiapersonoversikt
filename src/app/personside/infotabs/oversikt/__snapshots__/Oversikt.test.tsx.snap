@@ -958,36 +958,6 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   />
                 </button>
               </div>
-              <div
-                class="c8 test-ytelse-oversikt"
-              >
-                <div>
-                  <p
-                    class="typo-normal"
-                  >
-                    ID dato: 10.01.2020
-                  </p>
-                  <p
-                    class="typo-element"
-                  >
-                    Pensjon
-                  </p>
-                  <p
-                    class="typo-normal"
-                  >
-                    10.01.2020 - 21.02.2020: Type: AFP
-                  </p>
-                </div>
-                <button
-                  aria-label="Vis pensjon"
-                  aria-selected="false"
-                  class="c10"
-                >
-                  <span
-                    class="nav-frontend-chevron chevronboks chevron--hoyre"
-                  />
-                </button>
-              </div>
             </div>
           </div>
         </div>

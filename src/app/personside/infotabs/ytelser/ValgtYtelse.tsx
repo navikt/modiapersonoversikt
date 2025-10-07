@@ -47,9 +47,6 @@ function YtelseMarkup(props: { ytelse: Ytelse }) {
     if (isPensjon(props.ytelse)) {
         return <Pensjon pensjon={props.ytelse} />;
     }
-    if (isPensjon(props.ytelse)) {
-        return <Pensjon pensjon={props.ytelse} />;
-    }
     if (isArbeidsavklaringspenger(props.ytelse)) {
         return <Arbeidsavklaringspenger arbeidsavklaringspenger={props.ytelse} />;
     }
