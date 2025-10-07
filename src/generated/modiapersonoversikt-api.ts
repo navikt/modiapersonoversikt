@@ -900,6 +900,10 @@ export interface components {
             /** @enum {string} */
             kilde: VedtakDTOKilde;
             barnetillegg?: components['schemas']['Barnetillegg'];
+            /** Format: int32 */
+            sats?: number;
+            /** Format: int32 */
+            satsBarnetillegg?: number;
         };
         CommonHistoriskUtbetaling: {
             vedtak?: components['schemas']['CommonPeriode'];
@@ -1419,6 +1423,7 @@ export interface components {
             /** Format: date-time */
             avsluttet?: string;
             fagsystem: string;
+            fagsystemNavn?: string;
             /** @enum {string} */
             baksystem: SakBaksystem;
         };
@@ -1457,6 +1462,7 @@ export interface components {
             /** Format: date-time */
             opprettet?: string;
             fagsystem: string;
+            fagsystemNavn?: string;
             /** @enum {string} */
             baksystem: SaksDokumenterBaksystem;
             harTilgang: boolean;

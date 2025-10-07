@@ -31,7 +31,7 @@ const JournalPoster = ({
         };
     };
 
-    const handleAccordionChange = (id: string, isOpen: boolean) => {
+    const handleOnExpand = (id: string, isOpen: boolean) => {
         setOpenMap({
             ...openMap,
             [id]: isOpen
@@ -43,13 +43,14 @@ const JournalPoster = ({
             <Accordion size="small" headingSize="xsmall">
                 {journalPoster.map((journalPost) => {
                     const hovedDokument = journalPost.hoveddokument;
+                    const vedleggLength = journalPost.vedlegg.length > 0;
                     const tilgangTilHoveddokument = dokumentKanVises(journalPost, hovedDokument);
                     const isOpen = openMap[journalPost.id] ?? false;
                     return (
                         <Accordion.Item
                             key={journalPost.id}
                             open={isOpen}
-                            onOpenChange={() => handleAccordionChange(journalPost.id, !isOpen)}
+                            onOpenChange={() => handleOnExpand(journalPost.id, !isOpen)}
                         >
                             <Accordion.Header>
                                 <VStack gap="2">
@@ -70,7 +71,7 @@ const JournalPoster = ({
                                         <Tabs defaultValue="hoveddokument">
                                             <Tabs.List>
                                                 <Tabs.Tab value="hoveddokument" label="Hoveddokument" />
-                                                <Tabs.Tab value="vedlegg" label="Vedlegg" />
+                                                {vedleggLength && <Tabs.Tab value="vedlegg" label="Vedlegg" />}
                                             </Tabs.List>
                                             <Tabs.Panel lazy={true} value="hoveddokument">
                                                 <Dokument
@@ -79,12 +80,14 @@ const JournalPoster = ({
                                                     kanVises={tilgangTilHoveddokument}
                                                 />
                                             </Tabs.Panel>
-                                            <Tabs.Panel lazy={true} value="vedlegg">
-                                                <JournalPostVedlegg
-                                                    journalPost={journalPost}
-                                                    brukersNavn={brukersNavn}
-                                                />
-                                            </Tabs.Panel>
+                                            {vedleggLength && (
+                                                <Tabs.Panel lazy={true} value="vedlegg">
+                                                    <JournalPostVedlegg
+                                                        journalPost={journalPost}
+                                                        brukersNavn={brukersNavn}
+                                                    />
+                                                </Tabs.Panel>
+                                            )}
                                         </Tabs>
                                     </VStack>
                                 )}

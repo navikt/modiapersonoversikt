@@ -12,12 +12,12 @@ const JournalPostVedlegg = ({ journalPost, brukersNavn }: { journalPost: Dokumen
     if (journalPost.vedlegg.length === 0) {
         return (
             <Alert variant="info" className="my-4">
-                Valgte sak har ikke vedlegg.
+                Valgte saksdokument har ikke vedlegg.
             </Alert>
         );
     }
 
-    const handleAccordionChange = (id: string, isOpen: boolean) => {
+    const handleOnExpand = (id: string, isOpen: boolean) => {
         setOpenMap({
             ...openMap,
             [id]: isOpen
@@ -30,7 +30,7 @@ const JournalPostVedlegg = ({ journalPost, brukersNavn }: { journalPost: Dokumen
                 const key = `${index}`;
                 const isOpen = openMap[key] ?? false;
                 return (
-                    <Accordion.Item key={key} open={isOpen} onOpenChange={() => handleAccordionChange(key, !isOpen)}>
+                    <Accordion.Item key={key} open={isOpen} onOpenChange={() => handleOnExpand(key, !isOpen)}>
                         <Accordion.Header>
                             {vedlegg.tittel}({tekstBasertPaRetning(brukersNavn, journalPost)})
                         </Accordion.Header>
