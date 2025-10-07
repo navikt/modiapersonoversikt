@@ -160,7 +160,7 @@ export const SakDetails = ({
         SakId: valgtSak.fagsaksnummer,
         Opprettet: datoEllerNull(valgtSak.opprettet),
         Status: valgtSak.avsluttet ? `Avsluttet(${formatterDato(valgtSak.avsluttet)})` : 'Åpen',
-        Fagsystem: valgtSak.fagsystem,
+        Fagsystem: valgtSak.fagsystemNavn ?? valgtSak.fagsystem,
         'Har tilgang': valgtSak.harTilgang ? 'Ja' : 'Nei'
     };
 

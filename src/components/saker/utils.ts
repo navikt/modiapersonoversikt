@@ -127,30 +127,24 @@ const harTilgangTilJournalpost = (journalpost: Dokumentmetadata) => {
     return journalpost.feil?.feilmelding !== FeilFeilmelding.SIKKERHETSBEGRENSNING && saksid.length !== 0;
 };
 
-export const avsenderBasertPaRetning = (brukernavn: string, journalpost: Dokumentmetadata) => {
+export const tekstBasertPaRetning = (brukernavn: string, journalpost: Dokumentmetadata) => {
     switch (journalpost.retning) {
         case DokumentmetadataRetning.INN:
-            return journalpost.avsender === DokumentmetadataAvsender.SLUTTBRUKER ? brukernavn : journalpost.navn;
+            return journalpost.avsender === DokumentmetadataAvsender.SLUTTBRUKER
+                ? `Fra ${brukernavn}`
+                : `Fra ${journalpost.navn}`;
         case DokumentmetadataRetning.UT:
-            return journalpost.avsender;
+            return utgaendeTekst(journalpost.mottaker, journalpost.navn);
         case DokumentmetadataRetning.INTERN:
-            return 'NAV (Notat)';
+            return 'Notat';
         default:
-            return 'Ukjent avsender';
+            return 'Ukjent kommunikasjonsretning';
     }
 };
 
-export const mottakerBasertPaRetning = (brukernavn: string, journalpost: Dokumentmetadata) => {
-    switch (journalpost.retning) {
-        case DokumentmetadataRetning.INN:
-            return 'NAV';
-        case DokumentmetadataRetning.UT:
-            return journalpost.mottaker === DokumentmetadataMottaker.SLUTTBRUKER ? brukernavn : journalpost.navn;
-        case DokumentmetadataRetning.INTERN:
-            return 'NAV';
-        default:
-            return 'Ukjent mottaker';
-    }
+const utgaendeTekst = (mottaker: DokumentmetadataMottaker, mottakernavn: string) => {
+    const dokumentmottaker = mottaker === DokumentmetadataMottaker.SLUTTBRUKER ? '' : `(Sendt til ${mottakernavn})`;
+    return `Fra NAV ${dokumentmottaker}`;
 };
 
 export function hentBrukerNavn(person: Person | null): string {
