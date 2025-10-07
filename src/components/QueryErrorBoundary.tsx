@@ -27,7 +27,7 @@ export const FetchErrorRenderer = ({
 }) => {
     const errText = errorText ?? getErrorText(error);
     return (
-        <Alert variant="error">
+        <Alert variant="warning">
             <Heading size="xsmall">{title}</Heading>
             <BodyShort size="small">{errText}</BodyShort>
             {error.traceId && <Detail>ID: {error.traceId}</Detail>}
