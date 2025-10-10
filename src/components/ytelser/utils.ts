@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai/index';
+import { useMemo } from 'react';
 import { type YtelseFilter, ytelseFilterAtom } from 'src/components/ytelser/List/Filter';
 import { useYtelser } from 'src/lib/clients/modiapersonoversikt-api';
 import type {
@@ -19,7 +20,7 @@ import { ascendingDateComparator, backendDatoformat, datoStigende, datoSynkende 
 import { formaterDato } from 'src/utils/string-utils';
 
 const filterYtelser = (ytelser: YtelseVedtak[], filters: YtelseFilter): YtelseVedtak[] => {
-    const { ytelseTyper } = filters;
+    const { ytelseTyper, dateRange } = filters;
 
     if (!ytelser || ytelser.length === 0) {
         return [];
@@ -30,19 +31,25 @@ const filterYtelser = (ytelser: YtelseVedtak[], filters: YtelseFilter): YtelseVe
         filteredList = filteredList.filter((ytelse) => ytelseTyper.includes(ytelse.ytelseType));
     }
 
+    if (dateRange?.from && dateRange?.to) {
+        filteredList = filteredList.filter((ytelse) => {
+            const ytelseDato = getYtelseIdDato(ytelse);
+            const dato = dayjs(ytelseDato);
+            return dato.isSameOrAfter(dateRange.from) && dato.isSameOrBefore(dateRange.to);
+        });
+    }
+
     return filteredList;
 };
 
 export const useFilterYtelser = () => {
     const filters = useAtomValue(ytelseFilterAtom);
-    const startDato = filters.dateRange.from.format('YYYY-MM-DD');
-    const sluttDato = filters.dateRange.to.format('YYYY-MM-DD');
 
-    const ytelseResponse = useYtelser(startDato, sluttDato);
+    const ytelseResponse = useYtelser();
     const ytelser: YtelseVedtak[] = ytelseResponse.data?.ytelser ?? [];
     const ytelserSortert = ytelser.sort(datoSynkende((ytelse: YtelseVedtak) => getYtelseIdDato(ytelse)));
 
-    return filterYtelser(ytelserSortert, filters);
+    return useMemo(() => filterYtelser(ytelserSortert, filters), [ytelserSortert, filters]);
 };
 
 export function getYtelseIdDato(ytelse: YtelseVedtak): string {
