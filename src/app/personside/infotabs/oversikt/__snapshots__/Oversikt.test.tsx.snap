@@ -935,6 +935,36 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <p
                     class="typo-normal"
                   >
+                    ID dato: 01.01.2025
+                  </p>
+                  <p
+                    class="typo-element"
+                  >
+                    Arbeidsavklaringspenger
+                  </p>
+                  <p
+                    class="typo-normal"
+                  >
+                    01.01.2025 - 31.12.2025
+                  </p>
+                </div>
+                <button
+                  aria-label="Vis arbeidsavklaringspenger"
+                  aria-selected="false"
+                  class="c10"
+                >
+                  <span
+                    class="nav-frontend-chevron chevronboks chevron--hoyre"
+                  />
+                </button>
+              </div>
+              <div
+                class="c8 test-ytelse-oversikt"
+              >
+                <div>
+                  <p
+                    class="typo-normal"
+                  >
                     ID dato: 10.01.2020
                   </p>
                   <p

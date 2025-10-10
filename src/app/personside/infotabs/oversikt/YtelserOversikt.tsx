@@ -1,6 +1,8 @@
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { type ReactNode, useEffect } from 'react';
+import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaringspenger';
+import { getArbeidsavklaringspengerIdDato } from 'src/models/ytelse/arbeidsavklaringspenger';
 import { type Pensjon, getPensjonIdDato, getUnikPensjonKey } from 'src/models/ytelse/pensjon';
 import styled from 'styled-components';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
@@ -45,7 +47,8 @@ function YtelserOversikt(props: Props) {
         renderTiltakspenger: (tiltakspenger) => (
             <TiltakspengerKomponent tiltakspenger={tiltakspenger} key={getUnikTiltakspengerKey(tiltakspenger)} />
         ),
-        renderPensjon: (pensjon) => <PensjonKomponent pensjon={pensjon} key={getUnikPensjonKey(pensjon)} />
+        renderPensjon: (pensjon) => <PensjonKomponent pensjon={pensjon} key={getUnikPensjonKey(pensjon)} />,
+        renderArbeidsavklaringspenger: (aap) => <ArbeidsavklaringspengerKomponent aap={aap} />
     });
 
     const ytelserListe = ytelserMarkup.slice(0, 2);
@@ -167,6 +170,27 @@ function PensjonKomponent(props: { pensjon: Pensjon }) {
                 {props.pensjon.tomDato ? formaterDato(props.pensjon.tomDato) : ''}
                 {': '}
                 {`Type: ${props.pensjon.sakType ?? ''}`}
+            </Normaltekst>
+        </VisMerKnapp>
+    );
+}
+
+function ArbeidsavklaringspengerKomponent(props: { aap: Arbeidsavklaringspenger }) {
+    const dyplenker = useInfotabsDyplenker();
+    const fomId = getArbeidsavklaringspengerIdDato(props.aap);
+    const fom = props.aap.periode.fraOgMedDato;
+    const tom = props.aap.periode.tilOgMedDato;
+    return (
+        <VisMerKnapp
+            linkTo={dyplenker.ytelser.link(props.aap)}
+            valgt={false}
+            ariaDescription="Vis arbeidsavklaringspenger"
+            className={ytelserTest.oversikt}
+        >
+            <Normaltekst>ID dato: {formaterDato(fomId)}</Normaltekst>
+            <Element>Arbeidsavklaringspenger</Element>
+            <Normaltekst>
+                {fom ? formaterDato(fom) : ''} - {tom ? formaterDato(tom) : ''}
             </Normaltekst>
         </VisMerKnapp>
     );

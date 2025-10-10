@@ -27,7 +27,7 @@ export function getMockArbeidsavklaringspengerResponse(fnr: string): Arbeidsavkl
 
 function getMockArbeidsavklaringspenger(fnr: string): Arbeidsavklaringspenger {
     faker.seed(Number(fnr));
-    navfaker.seed(`${fnr}pensjon`);
+    navfaker.seed(`${fnr}arbeidsavklaringspenger`);
 
     const fomDato = dayjs(faker.date.past({ years: 2 })).format(backendDatoformat);
     const tomDato = dayjs(fomDato).add(faker.number.int(40), 'days').format(backendDatoformat);

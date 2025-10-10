@@ -1,10 +1,12 @@
 import type { ReactNode } from 'react';
+import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaringspenger';
 import type { Pensjon } from 'src/models/ytelse/pensjon';
 import type { Foreldrepengerettighet } from '../../../../models/ytelse/foreldrepenger';
 import type { Pleiepengerettighet } from '../../../../models/ytelse/pleiepenger';
 import type { Sykepenger } from '../../../../models/ytelse/sykepenger';
 import type { Tiltakspenger } from '../../../../models/ytelse/tiltakspenger';
 import {
+    isArbeidsavklaringspenger,
     isForeldrepenger,
     isPensjon,
     isPleiepenger,
@@ -22,6 +24,7 @@ interface Props {
     renderForeldrepenger: (foreldrepenger: Foreldrepengerettighet) => ReactNode;
     renderTiltakspenger: (tiltakspenger: Tiltakspenger) => ReactNode;
     renderPensjon: (pensjon: Pensjon) => ReactNode;
+    renderArbeidsavklaringspenger: (aap: Arbeidsavklaringspenger) => ReactNode;
 }
 
 interface Returns {
@@ -49,6 +52,9 @@ function useBrukersYtelserMarkup(props: Props): Returns {
         }
         if (isPensjon(ytelse)) {
             return props.renderPensjon(ytelse);
+        }
+        if (isArbeidsavklaringspenger(ytelse)) {
+            return props.renderArbeidsavklaringspenger(ytelse);
         }
         loggError(new Error('Fant ikke rendermetode for ytelsen'));
         return null;

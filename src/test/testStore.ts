@@ -1,6 +1,7 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { type Dispatch, type Store, applyMiddleware, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
+import { statiskArbeidsavklaringspengerMock } from 'src/mock/ytelse/statiskArbeidsavklaringspengerMock';
 import { statiskPensjonMock } from 'src/mock/ytelse/statiskPensjonMock';
 import { type MockInstance, vi } from 'vitest';
 import type { FetchError } from '../api/api';
@@ -20,6 +21,7 @@ import { statiskTiltakspengerMock } from '../mock/ytelse/statiskTiltakspengerMoc
 import setGjeldendeBrukerIRedux from '../redux/gjeldendeBruker/actions';
 import reducers, { type AppState } from '../redux/reducers';
 import aktoridResource from '../rest/resources/aktoridResource';
+import * as arbeidsavklaringspengerReesource from '../rest/resources/arbeidsavklaringspengerResource';
 import baseurlsResource from '../rest/resources/baseurlsResource';
 import dialogResource from '../rest/resources/dialogResource';
 import featuretogglesResource from '../rest/resources/featuretogglesResource';
@@ -71,6 +73,7 @@ export function setupReactQueryMocks() {
     vi.spyOn(sykepengerResource, 'useSykepenger');
     vi.spyOn(tiltakspengerResource, 'useTiltakspenger');
     vi.spyOn(pensjonResource, 'usePensjon');
+    vi.spyOn(arbeidsavklaringspengerReesource, 'useArbeidsavklaringspenger');
     vi.spyOn(gsaktemaResource, 'useFetch');
     vi.spyOn(oppfolgingResource, 'useFetch');
     vi.spyOn(sakstemaResource, 'useFetch');
@@ -105,6 +108,7 @@ export function setupReactQueryMocks() {
     });
     mockReactQuery(tiltakspengerResource.useTiltakspenger, [statiskTiltakspengerMock]);
     mockReactQuery(pensjonResource.usePensjon, [statiskPensjonMock]);
+    mockReactQuery(arbeidsavklaringspengerReesource.useArbeidsavklaringspenger, [statiskArbeidsavklaringspengerMock]);
     mockReactQuery(oppfolgingResource.useFetch, statiskOppfolgingMock);
     mockReactQuery(sakstemaResource.useFetch, getStaticMockSaksoversiktV2());
     mockReactQuery(utbetalingerResource.useFetch, statiskMockUtbetalingRespons);
