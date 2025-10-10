@@ -2,18 +2,20 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { guid } from 'nav-frontend-js-utils';
 import { useRef } from 'react';
 import { useEffect } from 'react';
+import Arbeidsavklaringspenger from 'src/app/personside/infotabs/ytelser/arbeidsavklaringspenger/Arbeidsavklaringspenger';
 import Pensjon from 'src/app/personside/infotabs/ytelser/pensjon/Pensjon';
-import styled from 'styled-components';
 import {
     type Ytelse,
+    isArbeidsavklaringspenger,
     isForeldrepenger,
     isPensjon,
     isPleiepenger,
     isSykepenger,
     isTiltakspenger
-} from '../../../../models/ytelse/ytelse-utils';
-import { usePrevious } from '../../../../utils/customHooks';
-import { loggError } from '../../../../utils/logger/frontendLogger';
+} from 'src/models/ytelse/ytelse-utils';
+import { usePrevious } from 'src/utils/customHooks';
+import { loggError } from 'src/utils/logger/frontendLogger';
+import styled from 'styled-components';
 import Foreldrepenger from './foreldrepenger/ForeldrePenger';
 import Pleiepenger from './pleiepenger/Pleiepenger';
 import Sykepenger from './sykepenger/Sykepenger';
@@ -44,6 +46,9 @@ function YtelseMarkup(props: { ytelse: Ytelse }) {
     }
     if (isPensjon(props.ytelse)) {
         return <Pensjon pensjon={props.ytelse} />;
+    }
+    if (isArbeidsavklaringspenger(props.ytelse)) {
+        return <Arbeidsavklaringspenger arbeidsavklaringspenger={props.ytelse} />;
     }
     loggError(new Error('Ytelse ikke håndtert, kunne ikke finne markup'));
     return null;

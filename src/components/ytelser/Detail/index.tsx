@@ -3,6 +3,7 @@ import { getRouteApi } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import { Suspense, useEffect, useRef } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
+import { ArbeidsavklaringspengerDetails } from 'src/components/ytelser/Detail/arbeidsavklaringspenger';
 import { ForeldrePengerDetails } from 'src/components/ytelser/Detail/foreldrepenger';
 import { PensjonDetails } from 'src/components/ytelser/Detail/pensjon';
 import { PleiePengerDetails } from 'src/components/ytelser/Detail/pleiepenger';
@@ -19,6 +20,7 @@ import {
     YtelseVedtakYtelseType
 } from 'src/generated/modiapersonoversikt-api';
 import { ytelserRouteMiddleware } from 'src/routes/new/person/ytelser';
+import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaringspenger';
 
 const TitleValuePairComponent = ({ title, value }: { title: string; value: string | number | null | undefined }) => {
     return (
@@ -64,6 +66,7 @@ const routeApi = getRouteApi('/new/person/ytelser');
 
 const YtelseDataDetails = () => {
     const ytelser = useFilterYtelser();
+    if (ytelser.length === 0) return;
     const { id } = routeApi.useSearch();
     const selectedYtelse = ytelser.find((item) => getUnikYtelseKey(item) === id);
     const filterAtomValue = useAtomValue(ytelseFilterAtom);
@@ -113,6 +116,8 @@ const YtelseDataDetails = () => {
             return <TiltaksPengerDetails tiltaksPenger={selectedYtelse.ytelseData.data as VedtakDto} />;
         case YtelseVedtakYtelseType.Pensjon:
             return <PensjonDetails pensjon={selectedYtelse.ytelseData.data as PensjonSak} />;
+        case YtelseVedtakYtelseType.Arbeidsavklaringspenger:
+            return <ArbeidsavklaringspengerDetails aap={selectedYtelse.ytelseData.data as Arbeidsavklaringspenger} />;
         default:
             return <Alert variant="info">Ukjent ytelse type {selectedYtelse.ytelseType}</Alert>;
     }

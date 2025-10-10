@@ -441,6 +441,7 @@ const UtbetalingDetail = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
 const UtbetalingerDetail = () => {
     const dateRange = useAtomValue(utbetalingFilterDateRangeAtom);
     const utbetalinger = useFilterUtbetalinger();
+    if (utbetalinger.length === 0) return;
 
     return (
         <VStack flexGrow="1" minHeight="0" maxHeight="100%" className="overflow-scroll">

@@ -1,25 +1,30 @@
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai/index';
+import { useMemo } from 'react';
 import { type YtelseFilter, ytelseFilterAtom } from 'src/components/ytelser/List/Filter';
 import { useYtelser } from 'src/lib/clients/modiapersonoversikt-api';
-import type {
-    CommonPeriode,
-    Foreldrepenger,
-    PensjonSak,
-    Pleiepenger,
-    PleiepengerArbeidsforhold,
-    PleiepengerPeriode,
-    PleiepengerVedtak,
-    Sykepenger,
-    VedtakDto,
-    YtelseVedtak
+import {
+    type CommonPeriode,
+    type Foreldrepenger,
+    type PensjonSak,
+    type Pleiepenger,
+    type PleiepengerArbeidsforhold,
+    type PleiepengerPeriode,
+    type PleiepengerVedtak,
+    type Sykepenger,
+    type VedtakDto,
+    type YtelseVedtak,
+    YtelseVedtakYtelseType
 } from 'src/lib/types/modiapersonoversikt-api';
-import { YtelseVedtakYtelseType } from 'src/lib/types/modiapersonoversikt-api';
+import {
+    type Arbeidsavklaringspenger,
+    getUnikArbeidsavklaringspengerKey
+} from 'src/models/ytelse/arbeidsavklaringspenger';
 import { ascendingDateComparator, backendDatoformat, datoStigende, datoSynkende } from 'src/utils/date-utils';
 import { formaterDato } from 'src/utils/string-utils';
 
 const filterYtelser = (ytelser: YtelseVedtak[], filters: YtelseFilter): YtelseVedtak[] => {
-    const { ytelseTyper } = filters;
+    const { ytelseTyper, dateRange } = filters;
 
     if (!ytelser || ytelser.length === 0) {
         return [];
@@ -30,19 +35,25 @@ const filterYtelser = (ytelser: YtelseVedtak[], filters: YtelseFilter): YtelseVe
         filteredList = filteredList.filter((ytelse) => ytelseTyper.includes(ytelse.ytelseType));
     }
 
+    if (dateRange?.from && dateRange?.to) {
+        filteredList = filteredList.filter((ytelse) => {
+            const ytelseDato = getYtelseIdDato(ytelse);
+            const dato = dayjs(ytelseDato);
+            return dato.isSameOrAfter(dateRange.from) && dato.isSameOrBefore(dateRange.to);
+        });
+    }
+
     return filteredList;
 };
 
 export const useFilterYtelser = () => {
     const filters = useAtomValue(ytelseFilterAtom);
-    const startDato = filters.dateRange.from.format('YYYY-MM-DD');
-    const sluttDato = filters.dateRange.to.format('YYYY-MM-DD');
 
-    const ytelseResponse = useYtelser(startDato, sluttDato);
+    const ytelseResponse = useYtelser();
     const ytelser: YtelseVedtak[] = ytelseResponse.data?.ytelser ?? [];
     const ytelserSortert = ytelser.sort(datoSynkende((ytelse: YtelseVedtak) => getYtelseIdDato(ytelse)));
 
-    return filterYtelser(ytelserSortert, filters);
+    return useMemo(() => filterYtelser(ytelserSortert, filters), [ytelserSortert, filters]);
 };
 
 export function getYtelseIdDato(ytelse: YtelseVedtak): string {
@@ -57,6 +68,8 @@ export function getYtelseIdDato(ytelse: YtelseVedtak): string {
             return getTiltakspengerDato(ytelse.ytelseData.data as VedtakDto);
         case YtelseVedtakYtelseType.Pensjon:
             return getPensjonDato(ytelse.ytelseData.data as PensjonSak);
+        case YtelseVedtakYtelseType.Arbeidsavklaringspenger:
+            return getArbeidsavklaringspengerDato(ytelse.ytelseData.data as Arbeidsavklaringspenger);
         default:
             return '';
     }
@@ -74,6 +87,8 @@ export function getUnikYtelseKey(ytelse: YtelseVedtak) {
             return getUnikTiltakspengerKey(ytelse.ytelseData.data as VedtakDto);
         case YtelseVedtakYtelseType.Pensjon:
             return getPensjonpengerKey(ytelse.ytelseData.data as PensjonSak);
+        case YtelseVedtakYtelseType.Arbeidsavklaringspenger:
+            return getUnikArbeidsavklaringspengerKey(ytelse.ytelseData.data as Arbeidsavklaringspenger);
         default:
             return 'ukjent ytelse';
     }
@@ -118,6 +133,10 @@ function getPleiepengerDato(pleiePenger: Pleiepenger) {
 
 function getPensjonDato(pensjonSak: PensjonSak) {
     return pensjonSak.fomDato ?? dayjs().format(backendDatoformat);
+}
+
+function getArbeidsavklaringspengerDato(arbeidsavklaringspenger: Arbeidsavklaringspenger) {
+    return arbeidsavklaringspenger.periode.fraOgMedDato ?? dayjs().format(backendDatoformat);
 }
 
 function getSistePeriodeForPleiepenger(pleiePenger: Pleiepenger) {

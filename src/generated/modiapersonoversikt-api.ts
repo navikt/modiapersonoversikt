@@ -84,6 +84,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    '/rest/ytelse/arbeidsavklaringspenger': {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations['hentArbeidsavklaringsPenger'];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     '/rest/ytelse/alle-ytelser': {
         parameters: {
             query?: never;
@@ -900,6 +916,10 @@ export interface components {
             /** @enum {string} */
             kilde: VedtakDTOKilde;
             barnetillegg?: components['schemas']['Barnetillegg'];
+            /** Format: int32 */
+            sats?: number;
+            /** Format: int32 */
+            satsBarnetillegg?: number;
         };
         CommonHistoriskUtbetaling: {
             vedtak?: components['schemas']['CommonPeriode'];
@@ -1141,6 +1161,39 @@ export interface components {
         ForeldrepengerResponse: {
             foreldrepenger?: components['schemas']['Foreldrepenger'][];
         };
+        NonavaapapiinternPeriodeDTO: {
+            /** Format: date */
+            fraOgMedDato?: string;
+            /** Format: date */
+            tilOgMedDato?: string;
+        };
+        NonavaapapiinternVedtakUtenUtbetalingDTO: {
+            /** Format: int32 */
+            barnMedStonad: number;
+            /** Format: int32 */
+            barnetillegg: number;
+            /** Format: int32 */
+            beregningsgrunnlag: number;
+            /** Format: int32 */
+            dagsats: number;
+            kildesystem: string;
+            periode: components['schemas']['NonavaapapiinternPeriodeDTO'];
+            rettighetsType: string;
+            saksnummer: string;
+            status: string;
+            vedtakId: string;
+            /** Format: date */
+            vedtaksdato: string;
+            /** Format: int32 */
+            'dagsatsEtterUf\u00F8reReduksjon'?: number;
+            opphorsAarsak?: string;
+            samordningsId?: string;
+            vedtaksTypeKode?: string;
+            vedtaksTypeNavn?: string;
+        };
+        ArbeidsavklaringsPengerYtelse: components['schemas']['YtelseData'] & {
+            data: components['schemas']['NonavaapapiinternVedtakUtenUtbetalingDTO'];
+        };
         ForeldrepengerYtelse: components['schemas']['YtelseData'] & {
             data: components['schemas']['Foreldrepenger'];
         };
@@ -1164,6 +1217,7 @@ export interface components {
             /** @enum {string} */
             ytelseType: YtelseVedtakYtelseType;
             ytelseData:
+                | components['schemas']['ArbeidsavklaringsPengerYtelse']
                 | components['schemas']['ForeldrepengerYtelse']
                 | components['schemas']['PensjonYtelse']
                 | components['schemas']['PleiepengerYtelse']
@@ -1419,6 +1473,7 @@ export interface components {
             /** Format: date-time */
             avsluttet?: string;
             fagsystem: string;
+            fagsystemNavn?: string;
             /** @enum {string} */
             baksystem: SakBaksystem;
         };
@@ -1457,6 +1512,7 @@ export interface components {
             /** Format: date-time */
             opprettet?: string;
             fagsystem: string;
+            fagsystemNavn?: string;
             /** @enum {string} */
             baksystem: SaksDokumenterBaksystem;
             harTilgang: boolean;
@@ -2250,6 +2306,10 @@ export type ForeldrepengePeriode = components['schemas']['ForeldrepengePeriode']
 export type Foreldrepenger = components['schemas']['Foreldrepenger'];
 export type ForeldrepengerArbeidsforhold = components['schemas']['ForeldrepengerArbeidsforhold'];
 export type ForeldrepengerResponse = components['schemas']['ForeldrepengerResponse'];
+export type NonavaapapiinternPeriodeDto = components['schemas']['NonavaapapiinternPeriodeDTO'];
+export type NonavaapapiinternVedtakUtenUtbetalingDto =
+    components['schemas']['NonavaapapiinternVedtakUtenUtbetalingDTO'];
+export type ArbeidsavklaringsPengerYtelse = components['schemas']['ArbeidsavklaringsPengerYtelse'];
 export type ForeldrepengerYtelse = components['schemas']['ForeldrepengerYtelse'];
 export type PensjonYtelse = components['schemas']['PensjonYtelse'];
 export type PleiepengerYtelse = components['schemas']['PleiepengerYtelse'];
@@ -2508,6 +2568,30 @@ export interface operations {
                 };
                 content: {
                     '*/*': components['schemas']['ForeldrepengerResponse'];
+                };
+            };
+        };
+    };
+    hentArbeidsavklaringsPenger: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                'application/json': components['schemas']['FnrDatoRangeRequest'];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    '*/*': components['schemas']['NonavaapapiinternVedtakUtenUtbetalingDTO'][];
                 };
             };
         };
@@ -3706,7 +3790,8 @@ export enum YtelseVedtakYtelseType {
     Foreldrepenger = 'Foreldrepenger',
     Pleiepenger = 'Pleiepenger',
     Tiltakspenge = 'Tiltakspenge',
-    Pensjon = 'Pensjon'
+    Pensjon = 'Pensjon',
+    Arbeidsavklaringspenger = 'Arbeidsavklaringspenger'
 }
 export enum DokumentDokumentStatus {
     UNDER_REDIGERING = 'UNDER_REDIGERING',

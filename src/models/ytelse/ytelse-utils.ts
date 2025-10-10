@@ -1,11 +1,22 @@
+import {
+    type Arbeidsavklaringspenger,
+    getArbeidsavklaringspengerIdDato,
+    getUnikArbeidsavklaringspengerKey
+} from 'src/models/ytelse/arbeidsavklaringspenger';
 import { type Pensjon, getPensjonIdDato, getUnikPensjonKey } from 'src/models/ytelse/pensjon';
-import { loggError } from '../../utils/logger/frontendLogger';
+import { loggError } from 'src/utils/logger/frontendLogger';
 import { type Foreldrepengerettighet, getForeldepengerIdDato, getUnikForeldrepengerKey } from './foreldrepenger';
 import { type Pleiepengerettighet, getPleiepengerIdDato, getUnikPleiepengerKey } from './pleiepenger';
 import { type Sykepenger, getSykepengerIdDato, getUnikSykepengerKey } from './sykepenger';
 import { type Tiltakspenger, getTiltakspengerIdDato, getUnikTiltakspengerKey } from './tiltakspenger';
 
-export type Ytelse = Pleiepengerettighet | Foreldrepengerettighet | Sykepenger | Tiltakspenger | Pensjon;
+export type Ytelse =
+    | Pleiepengerettighet
+    | Foreldrepengerettighet
+    | Sykepenger
+    | Tiltakspenger
+    | Pensjon
+    | Arbeidsavklaringspenger;
 
 export function isPleiepenger(ytelse: Ytelse): ytelse is Pleiepengerettighet {
     return 'pleiepengedager' in ytelse;
@@ -24,6 +35,9 @@ export function isTiltakspenger(ytelse: Ytelse): ytelse is Tiltakspenger {
 export function isPensjon(ytelse: Ytelse): ytelse is Pensjon {
     return 'fomDato' in ytelse;
 }
+export function isArbeidsavklaringspenger(ytelse: Ytelse): ytelse is Arbeidsavklaringspenger {
+    return 'rettighetsType' in ytelse;
+}
 
 export function getYtelseIdDato(ytelse: Ytelse) {
     if (isPleiepenger(ytelse)) {
@@ -40,6 +54,9 @@ export function getYtelseIdDato(ytelse: Ytelse) {
     }
     if (isPensjon(ytelse)) {
         return getPensjonIdDato(ytelse);
+    }
+    if (isArbeidsavklaringspenger(ytelse)) {
+        return getArbeidsavklaringspengerIdDato(ytelse);
     }
     loggError(new Error('Matchet ingen ytelser / kunne ikke finne id-dato'));
     return 'ukjent dato';
@@ -60,6 +77,9 @@ export function getUnikYtelseKey(ytelse: Ytelse) {
     }
     if (isPensjon(ytelse)) {
         return getUnikPensjonKey(ytelse);
+    }
+    if (isArbeidsavklaringspenger(ytelse)) {
+        return getUnikArbeidsavklaringspengerKey(ytelse);
     }
     loggError(new Error('Matchet ingen ytelser / kunne ikke finne ytelse-key'));
     return 'ukjent ytelse';

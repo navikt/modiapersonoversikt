@@ -49,6 +49,7 @@ import type {
 } from 'src/generated/modiapersonoversikt-api';
 import { getMockPensjon } from 'src/mock/ytelse/pensjon-mock';
 
+import { getMockArbeidsavklaringspengerResponse } from 'src/mock/ytelse/arbeidsavklaringspengerMock';
 import { getMockYtelserRespons } from 'src/mock/ytelse/ytelser-mock';
 import type { FeatureTogglesResponse } from 'src/rest/resources/featuretogglesResource';
 import { STATUS_OK, fodselsNummerErGyldigStatus, randomDelay } from './utils-mock';
@@ -216,6 +217,15 @@ const pensjonMock = http.post(
     )
 );
 
+const arbeidsavklaringspengerMock = http.post(
+    `${apiBaseUri}/ytelse/arbeidsavklaringspenger`,
+    withDelayedResponse(
+        randomDelay(),
+        fodselsNummerErGyldigStatus,
+        mockGeneratorMedFodselsnummerV2((fnr) => getMockArbeidsavklaringspengerResponse(fnr))
+    )
+);
+
 const oppfolgingHandler = http.post(
     `${apiBaseUri}/oppfolging`,
     withDelayedResponse(
@@ -380,6 +390,7 @@ export const handlers: (HttpHandler | WebSocketHandler)[] = [
     tiltakspengerMock,
     ytelseHandler,
     pensjonMock,
+    arbeidsavklaringspengerMock,
     tildelteOppgaverHandler,
     baseUrlsHandler,
     ...featureToggleHandler,
