@@ -19,8 +19,8 @@ import {
     type VedtakDto,
     YtelseVedtakYtelseType
 } from 'src/generated/modiapersonoversikt-api';
-import { ytelserRouteMiddleware } from 'src/routes/new/person/ytelser';
 import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaringspenger';
+import { ytelserRouteMiddleware } from 'src/routes/new/person/ytelser';
 
 const TitleValuePairComponent = ({ title, value }: { title: string; value: string | number | null | undefined }) => {
     return (
