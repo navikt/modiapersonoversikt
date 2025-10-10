@@ -2672,18 +2672,6 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       <dt
                         class="typo-normal"
                       >
-                        Vedtak til og med
-                      </dt>
-                      <dd
-                        class="typo-element"
-                      >
-                        31.12.2025
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        class="typo-normal"
-                      >
                         VedtakId
                       </dt>
                       <dd
@@ -2702,6 +2690,30 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                         class="typo-element"
                       >
                         01.02.2023
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        class="typo-normal"
+                      >
+                        Fra og med
+                      </dt>
+                      <dd
+                        class="typo-element"
+                      >
+                        01.01.2025
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        class="typo-normal"
+                      >
+                        Til og med
+                      </dt>
+                      <dd
+                        class="typo-element"
+                      >
+                        31.12.2025
                       </dd>
                     </div>
                     <div>

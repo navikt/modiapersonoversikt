@@ -44,12 +44,15 @@ function Arbeidsavklaringspenger(props: Props) {
     });
 
     const ArbeidsavklaringspengerEntries = {
-        'Vedtak til og med': props.arbeidsavklaringspenger.periode.tilOgMedDato
-            ? formaterDato(props.arbeidsavklaringspenger.periode.tilOgMedDato)
-            : '',
         VedtakId: props.arbeidsavklaringspenger.vedtakId,
         Vedtaksdato: props.arbeidsavklaringspenger.vedtaksdato
             ? formaterDato(props.arbeidsavklaringspenger.vedtaksdato)
+            : '',
+        'Fra og med': props.arbeidsavklaringspenger.periode.fraOgMedDato
+            ? formaterDato(props.arbeidsavklaringspenger.periode.fraOgMedDato)
+            : '',
+        'Til og med': props.arbeidsavklaringspenger.periode.tilOgMedDato
+            ? formaterDato(props.arbeidsavklaringspenger.periode.tilOgMedDato)
             : '',
         Rettighet: props.arbeidsavklaringspenger.rettighetsType ?? '',
         Status: props.arbeidsavklaringspenger.status ?? '',
