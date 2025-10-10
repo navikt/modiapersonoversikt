@@ -122,7 +122,7 @@ const VarselDetailExtractor = () => {
     const { id } = routeApi.useSearch();
     const varlser = useFilterVarsler();
     const varsel = varlser.find((item) => item.eventId === id);
-
+    if (varlser.length === 0) return;
     if (!id) {
         return (
             <HStack margin="4">
