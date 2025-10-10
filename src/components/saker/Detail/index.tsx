@@ -93,8 +93,6 @@ const NorgLenke = ({
 };
 const SakContent = () => {
     const { id } = routeApi.useSearch();
-    const saker = useFilterSaker();
-    if (saker.length === 0) return;
     if (!id) {
         return (
             <HStack margin="4">
@@ -102,21 +100,32 @@ const SakContent = () => {
             </HStack>
         );
     }
-    const valgtSak = saker.find((sak) => getSakId(sak) === id || sak.saksid === id || sak.fagsaksnummer === id);
 
-    return <SakDetails valgtSak={valgtSak} pageView={true} />;
+    return <SakDetails valgtSakId={id} pageView={true} />;
 };
 
 export const SakDetails = ({
-    valgtSak,
+    valgtSakId,
     pageView
 }: {
-    valgtSakId: SaksDokumenter;
+    valgtSakId?: string;
     pageView?: boolean;
 }) => {
     const {
         data: { person }
     } = usePersonData();
+    const saker = useFilterSaker();
+    if (saker.length === 0) return;
+    if (!valgtSakId) {
+        return (
+            <HStack margin="4">
+                <GuidePanel>Velg en sak fra listen på venstre side for å se detaljer.</GuidePanel>
+            </HStack>
+        );
+    }
+    const valgtSak = saker.find(
+        (sak) => getSakId(sak) === valgtSakId || sak.saksid === valgtSakId || sak.fagsaksnummer === valgtSakId
+    );
     const brukersNavn = hentBrukerNavn(person);
     const geografiskTilknytning = person?.geografiskTilknytning;
     const { avsender } = useAtomValue(sakerFilterAtom);
