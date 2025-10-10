@@ -11,8 +11,8 @@ const routeApi = getRouteApi('/new/person/oppgaver');
 const OppgaveOgDialogDetail = () => {
     const { id } = routeApi.useSearch();
     const oppgaver = useFilterOppgave();
+    if (oppgaver.length === 0) return;
     const oppgave = oppgaver.find((item) => getOppgaveId(item) === id);
-
     if (!id) {
         return (
             <HStack margin="4">

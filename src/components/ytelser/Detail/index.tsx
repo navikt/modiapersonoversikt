@@ -63,7 +63,7 @@ const routeApi = getRouteApi('/new/person/ytelser');
 
 const YtelseDataDetails = () => {
     const ytelser = useFilterYtelser();
-    console.log({ ytelser });
+    if (ytelser.length === 0) return;
     const { id } = routeApi.useSearch();
     const selectedYtelse = ytelser.find((item) => getUnikYtelseKey(item) === id);
     if (!id) {

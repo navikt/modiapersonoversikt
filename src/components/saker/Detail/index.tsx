@@ -108,13 +108,21 @@ export const SakDetails = ({
     valgtSakId,
     pageView
 }: {
-    valgtSakId: string;
+    valgtSakId?: string;
     pageView?: boolean;
 }) => {
     const {
         data: { person }
     } = usePersonData();
     const saker = useFilterSaker();
+    if (saker.length === 0) return;
+    if (!valgtSakId) {
+        return (
+            <HStack margin="4">
+                <GuidePanel>Velg en sak fra listen på venstre side for å se detaljer.</GuidePanel>
+            </HStack>
+        );
+    }
     const valgtSak = saker.find(
         (sak) => getSakId(sak) === valgtSakId || sak.saksid === valgtSakId || sak.fagsaksnummer === valgtSakId
     );

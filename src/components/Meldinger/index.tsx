@@ -70,8 +70,9 @@ export const MeldingerPage = () => {
 const routeApi = getRouteApi('/new/person/meldinger');
 
 const TraadDetailSection = () => {
+    const { data: traader } = useMeldinger();
+    if (traader.length === 0) return;
     const { traadId } = routeApi.useSearch();
-
     if (!traadId) {
         return (
             <HStack margin="4">
