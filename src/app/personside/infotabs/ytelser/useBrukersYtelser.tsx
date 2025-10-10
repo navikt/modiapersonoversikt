@@ -1,16 +1,17 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { type ReactNode, useMemo } from 'react';
+import type { FetchError } from 'src/api/api';
 import { usePersonAtomValue } from 'src/lib/state/context';
+import { type Ytelse, getYtelseIdDato } from 'src/models/ytelse/ytelse-utils';
+import type { FraTilDato } from 'src/redux/utbetalinger/types';
+import { useArbeidsavklaringspenger } from 'src/rest/resources/arbeidsavklaringspengerResource';
+import { useForeldrepenger } from 'src/rest/resources/foreldrepengerResource';
 import { usePensjon } from 'src/rest/resources/pensjonResource';
-import type { FetchError } from '../../../../api/api';
-import { type Ytelse, getYtelseIdDato } from '../../../../models/ytelse/ytelse-utils';
-import type { FraTilDato } from '../../../../redux/utbetalinger/types';
-import { useForeldrepenger } from '../../../../rest/resources/foreldrepengerResource';
-import { usePleiepenger } from '../../../../rest/resources/pleiepengerResource';
-import { useSykepenger } from '../../../../rest/resources/sykepengerResource';
-import { useTiltakspenger } from '../../../../rest/resources/tiltakspengerResource';
-import { datoSynkende } from '../../../../utils/date-utils';
+import { usePleiepenger } from 'src/rest/resources/pleiepengerResource';
+import { useSykepenger } from 'src/rest/resources/sykepengerResource';
+import { useTiltakspenger } from 'src/rest/resources/tiltakspengerResource';
+import { datoSynkende } from 'src/utils/date-utils';
 
 interface Returns {
     ytelser: Ytelse[];
@@ -43,6 +44,11 @@ const pensjonPlaceholder = {
     returnOnNotFound: 'Kunne finne pensjon',
     returnOnForbidden: 'Du har ikke tilgang til pensjon'
 };
+const arbeidsavklaringsPengerPlaceholder = {
+    returnOnError: 'Kunne ikke laste arbeidsavklaringspenger',
+    returnOnNotFound: 'Kunne finne arbeidsavklaringspenger',
+    returnOnForbidden: 'Du har ikke tilgang til arbeidsavklaringspenger'
+};
 
 type Placeholder = { returnOnForbidden: string; returnOnError: string; returnOnNotFound: string };
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -67,6 +73,7 @@ function useBrukersYtelser(periode: FraTilDato): Returns {
     const sykepengerResponse = useSykepenger(fnr, periode.fra, periode.til);
     const tiltakspengerResponse = useTiltakspenger(fnr, periode.fra, periode.til);
     const pensjonResponse = usePensjon(fnr, periode.fra, periode.til);
+    const arbeidsavklaringspengerResponse = useArbeidsavklaringspenger(fnr, periode.fra, periode.til);
 
     return useMemo(() => {
         const pending =
@@ -74,14 +81,23 @@ function useBrukersYtelser(periode: FraTilDato): Returns {
             foreldrepengerResponse.isLoading ||
             sykepengerResponse.isLoading ||
             tiltakspengerResponse.isLoading ||
-            pensjonResponse.isLoading;
+            pensjonResponse.isLoading ||
+            arbeidsavklaringspengerResponse.isLoading;
         const foreldrepenger = foreldrepengerResponse.data?.foreldrepenger ?? [];
         const pleiepenger = pleiepengerResponse.data?.pleiepenger ?? [];
         const sykepenger = sykepengerResponse.data?.sykepenger ?? [];
         const tiltakspenger = tiltakspengerResponse.data ?? [];
         const pensjon = pensjonResponse.data ?? [];
+        const arbeidsavklaringspenger = arbeidsavklaringspengerResponse.data ?? [];
 
-        const ytelser = [...foreldrepenger, ...pleiepenger, ...sykepenger, ...tiltakspenger, ...pensjon];
+        const ytelser = [
+            ...foreldrepenger,
+            ...pleiepenger,
+            ...sykepenger,
+            ...tiltakspenger,
+            ...pensjon,
+            ...arbeidsavklaringspenger
+        ];
         const ytelserSortert = ytelser.sort(datoSynkende((ytelse: Ytelse) => getYtelseIdDato(ytelse)));
 
         const placeholders = [
@@ -89,7 +105,8 @@ function useBrukersYtelser(periode: FraTilDato): Returns {
             placeholder(pleiepengerResponse, pleiepengerPlaceholder),
             placeholder(sykepengerResponse, sykepengerPlaceholder),
             placeholder(tiltakspengerResponse, tiltakspengerPlaceholder),
-            placeholder(pensjonResponse, pensjonPlaceholder)
+            placeholder(pensjonResponse, pensjonPlaceholder),
+            placeholder(arbeidsavklaringspengerResponse, arbeidsavklaringsPengerPlaceholder)
         ];
 
         const harFeil =
@@ -97,9 +114,17 @@ function useBrukersYtelser(periode: FraTilDato): Returns {
             pleiepengerResponse.isError ||
             sykepengerResponse.isError ||
             tiltakspengerResponse.isError ||
-            pensjonResponse.isError;
+            pensjonResponse.isError ||
+            arbeidsavklaringspengerResponse.isError;
         return { ytelser: ytelserSortert, pending: pending, placeholders: placeholders, harFeil: harFeil };
-    }, [foreldrepengerResponse, pleiepengerResponse, sykepengerResponse, tiltakspengerResponse, pensjonResponse]);
+    }, [
+        foreldrepengerResponse,
+        pleiepengerResponse,
+        sykepengerResponse,
+        tiltakspengerResponse,
+        pensjonResponse,
+        arbeidsavklaringspengerResponse
+    ]);
 }
 
 export default useBrukersYtelser;

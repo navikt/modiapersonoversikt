@@ -935,21 +935,21 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <p
                     class="typo-normal"
                   >
-                    ID dato: 10.01.2020
+                    ID dato: 01.01.2025
                   </p>
                   <p
                     class="typo-element"
                   >
-                    Tiltakspenger
+                    Arbeidsavklaringspenger
                   </p>
                   <p
                     class="typo-normal"
                   >
-                    10.01.2020 - 21.02.2020: (Antall barn: 1, )
+                    01.01.2025 - 31.12.2025
                   </p>
                 </div>
                 <button
-                  aria-label="Vis tiltakspenger"
+                  aria-label="Vis arbeidsavklaringspenger"
                   aria-selected="false"
                   class="c10"
                 >
@@ -970,16 +970,16 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <p
                     class="typo-element"
                   >
-                    Pensjon
+                    Tiltakspenger
                   </p>
                   <p
                     class="typo-normal"
                   >
-                    10.01.2020 - 21.02.2020: Type: AFP
+                    10.01.2020 - 21.02.2020: (Antall barn: 1, )
                   </p>
                 </div>
                 <button
-                  aria-label="Vis pensjon"
+                  aria-label="Vis tiltakspenger"
                   aria-selected="false"
                   class="c10"
                 >

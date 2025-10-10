@@ -32,6 +32,8 @@ export const YtelseItem = ({
                 return ytelse.ytelseType;
             case YtelseVedtakYtelseType.Pensjon:
                 return ytelse.ytelseType;
+            case YtelseVedtakYtelseType.Arbeidsavklaringspenger:
+                return ytelse.ytelseType;
             default:
                 return `Ukjent ytelse type ${ytelse.ytelseType}`;
         }

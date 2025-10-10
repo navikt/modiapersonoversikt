@@ -2,7 +2,18 @@
 
 exports[`Om foreldrepenger matcher snapshot 1`] = `
 <DocumentFragment>
-  .c5 {
+  .c4 {
+  border-radius: 0.5rem;
+  background-color: #f1f0f0;
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
+  padding: 1.25rem;
+}
+
+.c4 >h3 {
+  margin-bottom: 1rem;
+}
+
+.c5 {
   display: flex;
   flex-wrap: wrap;
 }
@@ -16,17 +27,6 @@ exports[`Om foreldrepenger matcher snapshot 1`] = `
   padding-right: 0.7rem;
   width: 13rem;
   overflow-wrap: break-word;
-}
-
-.c4 {
-  border-radius: 0.5rem;
-  background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
-  padding: 1.25rem;
-}
-
-.c4 >h3 {
-  margin-bottom: 1rem;
 }
 
 .c13 {
@@ -826,7 +826,18 @@ exports[`Om foreldrepenger matcher snapshot 1`] = `
 
 exports[`Om pleiepenger matcher snapshot 1`] = `
 <DocumentFragment>
-  .c4 {
+  .c3 {
+  border-radius: 0.5rem;
+  background-color: #f1f0f0;
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
+  padding: 1.25rem;
+}
+
+.c3 >h3 {
+  margin-bottom: 1rem;
+}
+
+.c4 {
   display: flex;
   flex-wrap: wrap;
 }
@@ -840,17 +851,6 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
   padding-right: 0.7rem;
   width: 13rem;
   overflow-wrap: break-word;
-}
-
-.c3 {
-  border-radius: 0.5rem;
-  background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
-  padding: 1.25rem;
-}
-
-.c3 >h3 {
-  margin-bottom: 1rem;
 }
 
 .c11 {
@@ -1422,7 +1422,18 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
 
 exports[`Om sykepenger matcher snapshot 1`] = `
 <DocumentFragment>
-  .c5 {
+  .c4 {
+  border-radius: 0.5rem;
+  background-color: #f1f0f0;
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
+  padding: 1.25rem;
+}
+
+.c4 >h3 {
+  margin-bottom: 1rem;
+}
+
+.c5 {
   display: flex;
   flex-wrap: wrap;
 }
@@ -1436,17 +1447,6 @@ exports[`Om sykepenger matcher snapshot 1`] = `
   padding-right: 0.7rem;
   width: 13rem;
   overflow-wrap: break-word;
-}
-
-.c4 {
-  border-radius: 0.5rem;
-  background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
-  padding: 1.25rem;
-}
-
-.c4 >h3 {
-  margin-bottom: 1rem;
 }
 
 .c6 {

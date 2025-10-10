@@ -2,10 +2,12 @@ import { pleiepengerTestData } from 'src/app/personside/infotabs/ytelser/pleiepe
 import type { PensjonSak, YtelseResponse } from 'src/generated/modiapersonoversikt-api';
 import { YtelseVedtakYtelseType } from 'src/generated/modiapersonoversikt-api';
 import { aremark } from 'src/mock/persondata/aremark';
+import { statiskArbeidsavklaringspengerMock } from 'src/mock/ytelse/statiskArbeidsavklaringspengerMock';
 import { statiskForeldrepengeMockNy } from 'src/mock/ytelse/statiskForeldrepengeMock';
 import { statiskPensjonMock } from 'src/mock/ytelse/statiskPensjonMock';
 import { statiskSykepengerMock } from 'src/mock/ytelse/statiskSykepengerMock';
 import { statiskTiltakspengerMock } from 'src/mock/ytelse/statiskTiltakspengerMock';
+import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaringspenger';
 
 export function getMockYtelserRespons(fnr: string): YtelseResponse {
     const foreldrePenger = {
@@ -22,10 +24,14 @@ export function getMockYtelserRespons(fnr: string): YtelseResponse {
         ytelseType: YtelseVedtakYtelseType.Pensjon,
         ytelseData: { data: statiskPensjonMock as PensjonSak }
     };
+    const arbeidsavklaringspenger = {
+        ytelseType: YtelseVedtakYtelseType.Arbeidsavklaringspenger,
+        ytelseData: { data: statiskArbeidsavklaringspengerMock as Arbeidsavklaringspenger }
+    };
 
     if (fnr === aremark.personIdent) {
         return {
-            ytelser: [foreldrePenger, sykePenger, pleiePenger, tiltakPenger, pensjon]
+            ytelser: [foreldrePenger, sykePenger, pleiePenger, tiltakPenger, pensjon, arbeidsavklaringspenger]
         };
     }
 

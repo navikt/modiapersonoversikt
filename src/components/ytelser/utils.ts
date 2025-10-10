@@ -3,19 +3,23 @@ import { useAtomValue } from 'jotai/index';
 import { useMemo } from 'react';
 import { type YtelseFilter, ytelseFilterAtom } from 'src/components/ytelser/List/Filter';
 import { useYtelser } from 'src/lib/clients/modiapersonoversikt-api';
-import type {
-    CommonPeriode,
-    Foreldrepenger,
-    PensjonSak,
-    Pleiepenger,
-    PleiepengerArbeidsforhold,
-    PleiepengerPeriode,
-    PleiepengerVedtak,
-    Sykepenger,
-    VedtakDto,
-    YtelseVedtak
+import {
+    type CommonPeriode,
+    type Foreldrepenger,
+    type PensjonSak,
+    type Pleiepenger,
+    type PleiepengerArbeidsforhold,
+    type PleiepengerPeriode,
+    type PleiepengerVedtak,
+    type Sykepenger,
+    type VedtakDto,
+    type YtelseVedtak,
+    YtelseVedtakYtelseType
 } from 'src/lib/types/modiapersonoversikt-api';
-import { YtelseVedtakYtelseType } from 'src/lib/types/modiapersonoversikt-api';
+import {
+    type Arbeidsavklaringspenger,
+    getUnikArbeidsavklaringspengerKey
+} from 'src/models/ytelse/arbeidsavklaringspenger';
 import { ascendingDateComparator, backendDatoformat, datoStigende, datoSynkende } from 'src/utils/date-utils';
 import { formaterDato } from 'src/utils/string-utils';
 
@@ -64,6 +68,8 @@ export function getYtelseIdDato(ytelse: YtelseVedtak): string {
             return getTiltakspengerDato(ytelse.ytelseData.data as VedtakDto);
         case YtelseVedtakYtelseType.Pensjon:
             return getPensjonDato(ytelse.ytelseData.data as PensjonSak);
+        case YtelseVedtakYtelseType.Arbeidsavklaringspenger:
+            return getArbeidsavklaringspengerDato(ytelse.ytelseData.data as Arbeidsavklaringspenger);
         default:
             return '';
     }
@@ -81,6 +87,8 @@ export function getUnikYtelseKey(ytelse: YtelseVedtak) {
             return getUnikTiltakspengerKey(ytelse.ytelseData.data as VedtakDto);
         case YtelseVedtakYtelseType.Pensjon:
             return getPensjonpengerKey(ytelse.ytelseData.data as PensjonSak);
+        case YtelseVedtakYtelseType.Arbeidsavklaringspenger:
+            return getUnikArbeidsavklaringspengerKey(ytelse.ytelseData.data as Arbeidsavklaringspenger);
         default:
             return 'ukjent ytelse';
     }
@@ -125,6 +133,10 @@ function getPleiepengerDato(pleiePenger: Pleiepenger) {
 
 function getPensjonDato(pensjonSak: PensjonSak) {
     return pensjonSak.fomDato ?? dayjs().format(backendDatoformat);
+}
+
+function getArbeidsavklaringspengerDato(arbeidsavklaringspenger: Arbeidsavklaringspenger) {
+    return arbeidsavklaringspenger.periode.fraOgMedDato ?? dayjs().format(backendDatoformat);
 }
 
 function getSistePeriodeForPleiepenger(pleiePenger: Pleiepenger) {
