@@ -2,28 +2,7 @@
 
 exports[`Om Ytelser matcher snapshot 1`] = `
 <DocumentFragment>
-  .c15 {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: edHiKw 0.3s ease-out;
-}
-
-.c15 >* {
-  flex: 0 1 25rem;
-  display: flex;
-  justify-content: center;
-}
-
-.c16 {
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  animation: edHiKw 0.3s ease-out;
-}
-
-.c8 {
+  .c8 {
   display: flex;
   gap: 20px;
 }
@@ -70,35 +49,15 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   padding: .5rem;
 }
 
-.c20 {
+.c18 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
   box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
   padding: 1.25rem;
 }
 
-.c20 >h3 {
+.c18 >h3 {
   margin-bottom: 1rem;
-}
-
-.c21 {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.c21 dt {
-  color: #645f5a;
-}
-
-.c21 >div {
-  margin: 0.5625rem 0;
-  padding-right: 0.7rem;
-  width: 13rem;
-  overflow-wrap: break-word;
-}
-
-.c18 {
-  padding: .5rem;
 }
 
 .c19 {
@@ -106,12 +65,32 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   flex-wrap: wrap;
 }
 
-.c19 >* {
+.c19 dt {
+  color: #645f5a;
+}
+
+.c19 >div {
+  margin: 0.5625rem 0;
+  padding-right: 0.7rem;
+  width: 13rem;
+  overflow-wrap: break-word;
+}
+
+.c16 {
+  padding: .5rem;
+}
+
+.c17 {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.c17 >* {
   flex-basis: 40%;
   flex-grow: 1;
 }
 
-.c17 >* {
+.c15 >* {
   margin-bottom: 0.5rem;
 }
 
@@ -2452,6 +2431,38 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       <h3
                         class="typo-undertittel"
                       >
+                        Arbeidsavklaringspenger
+                      </h3>
+                      <p
+                        class="typo-element"
+                      >
+                        ID-dato
+                      </p>
+                      <p
+                        class="typo-normal"
+                      >
+                        01.01.2025
+                      </p>
+                    </div>
+                    <button
+                      aria-label="Vis arbeidsavklaringspenger"
+                      aria-selected="true"
+                      class="c13"
+                    >
+                      <span
+                        class="nav-frontend-chevron chevronboks chevron--hoyre"
+                      />
+                    </button>
+                  </div>
+                </li>
+                <li>
+                  <div
+                    class="c14"
+                  >
+                    <div>
+                      <h3
+                        class="typo-undertittel"
+                      >
                         Tiltakspenger
                       </h3>
                       <p
@@ -2467,7 +2478,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                     </div>
                     <button
                       aria-label="Vis tiltakspenger"
-                      aria-selected="true"
+                      aria-selected="false"
                       class="c13"
                     >
                       <span
@@ -2615,47 +2626,6 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   </div>
                 </li>
               </ol>
-              <div
-                class="c15"
-              >
-                <span
-                  class="c16"
-                >
-                  <svg
-                    aria-label="Laster innhold"
-                    class="spinner spinner--l"
-                    focusable="false"
-                    height="32"
-                    kind="spinner-negativ"
-                    preserveAspectRatio="xMidYMid"
-                    viewBox="0 0 50 50"
-                    width="32"
-                  >
-                    <title>
-                      Venter...
-                    </title>
-                    <circle
-                      cx="25"
-                      cy="25"
-                      fill="none"
-                      r="20"
-                      stroke="#eee"
-                      stroke-width="5"
-                      xmlns="http://www.w3.org/2000/svg"
-                    />
-                    <circle
-                      cx="25"
-                      cy="25"
-                      fill="none"
-                      r="20"
-                      stroke="#888"
-                      stroke-dasharray="50 155"
-                      stroke-linecap="round"
-                      stroke-width="5"
-                    />
-                  </svg>
-                </span>
-              </div>
             </nav>
           </div>
         </section>
@@ -2664,7 +2634,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
         class="c2"
       >
         <section
-          class="c17"
+          class="c15"
         >
           <h2
             class="sr-only"
@@ -2675,65 +2645,63 @@ exports[`Om Ytelser matcher snapshot 1`] = `
           </h2>
           <article>
             <div
-              aria-labelledby="Helt tilfeldig ID"
-              class="panel c18"
+              class="c16"
             >
               <h2
                 class="sr-only"
-                id="Helt tilfeldig ID"
               >
-                Tiltakspenger
+                Arbeidsavklaringspenger
               </h2>
               <div
-                class="c19"
+                class="c17"
               >
                 <article
                   aria-labelledby="Helt tilfeldig ID"
-                  class="c20"
+                  class="c18"
                 >
                   <h3
                     class="typo-ingress"
                     id="Helt tilfeldig ID"
                   >
-                    Om tiltakspenger
+                    Om Arbeidsavklaringspenger
                   </h3>
                   <dl
-                    class="c21"
+                    class="c19"
                   >
                     <div>
                       <dt
                         class="typo-normal"
                       >
-                        Fra og med
+                        Vedtak til og med
                       </dt>
                       <dd
                         class="typo-element"
                       >
-                        10.01.2020
+                        31.12.2025
                       </dd>
                     </div>
                     <div>
                       <dt
                         class="typo-normal"
                       >
-                        Til og med
+                        VedtakId
                       </dt>
                       <dd
                         class="typo-element"
                       >
-                        21.02.2020
+                        vedtak-001
                       </dd>
                     </div>
                     <div>
                       <dt
                         class="typo-normal"
                       >
-                        Kilde
+                        Vedtaksdato
                       </dt>
                       <dd
                         class="typo-element"
                       >
-                        TPSAK
+                        01.02.2023
                       </dd>
                     </div>
                     <div>
@@ -2745,14 +2713,62 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       <dd
                         class="typo-element"
                       >
-                        TILTAKSPENGER
+                        AAP
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        class="typo-normal"
+                      >
+                        Status
+                      </dt>
+                      <dd
+                        class="typo-element"
+                      >
+                        LØPENDE
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        class="typo-normal"
+                      >
+                        Kilde
+                      </dt>
+                      <dd
+                        class="typo-element"
+                      >
+                        KELVIN
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        class="typo-normal"
+                      >
+                        Dagsats
+                      </dt>
+                      <dd
+                        class="typo-element"
+                      >
+                        500
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        class="typo-normal"
+                      >
+                        Opphørsårsak
+                      </dt>
+                      <dd
+                        class="typo-element"
+                      >
+                        FERDIGBEHANDLET
                       </dd>
                     </div>
                   </dl>
                 </article>
                 <article
                   aria-labelledby="Helt tilfeldig ID"
-                  class="c20"
+                  class="c18"
                 >
                   <h3
                     class="typo-ingress"
@@ -2761,30 +2777,30 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                     Barnetillegg
                   </h3>
                   <dl
-                    class="c21"
+                    class="c19"
                   >
                     <div>
                       <dt
                         class="typo-normal"
                       >
-                        Antall barn
+                        Barn med stønad
                       </dt>
                       <dd
                         class="typo-element"
                       >
-                        1
+                        2
                       </dd>
                     </div>
                     <div>
                       <dt
                         class="typo-normal"
                       >
-                        Periode
+                        Barnetillegg
                       </dt>
                       <dd
                         class="typo-element"
                       >
-                        20.01.2020 - 21.02.2020
+                        1500
                       </dd>
                     </div>
                   </dl>
