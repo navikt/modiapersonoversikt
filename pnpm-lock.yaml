@@ -37,7 +37,7 @@ importers:
         version: 7.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@navikt/tag-input':
         specifier: ^2.0.2
-        version: 2.0.2(7tmcxve3q2crcswam2mdob3u34)
+        version: 2.0.2(abca7f4e1ad9cdbc505686a03e715e40)
       '@navikt/textparser':
         specifier: ^2.5.0
         version: 2.5.0(react@19.1.0)
@@ -319,8 +319,8 @@ importers:
         specifier: 19.0.0-beta-714736e-20250131
         version: 19.0.0-beta-714736e-20250131(eslint@9.31.0(jiti@2.5.1))
       happy-dom:
-        specifier: ^18.0.1
-        version: 18.0.1
+        specifier: ^20.0.0
+        version: 20.0.0
       jest-styled-components:
         specifier: ^7.2.0
         version: 7.2.0(styled-components@6.1.19(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
@@ -368,7 +368,7 @@ importers:
         version: 0.2.3
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/node@24.0.12)(happy-dom@18.0.1)(jiti@2.5.1)(less@4.3.0)(lightningcss@1.30.1)(msw@2.10.5(@types/node@24.0.12)(typescript@5.8.3))(tsx@4.20.3)(yaml@2.8.0)
+        version: 3.2.4(@types/node@24.0.12)(happy-dom@20.0.0)(jiti@2.5.1)(less@4.3.0)(lightningcss@1.30.1)(msw@2.10.5(@types/node@24.0.12)(typescript@5.8.3))(tsx@4.20.3)(yaml@2.8.0)
 
 packages:
 
@@ -1846,8 +1846,8 @@ packages:
   '@types/md5@2.3.5':
     resolution: {integrity: sha512-/i42wjYNgE6wf0j2bcTX6kuowmdL/6PE4IVitMpm2eYKBUuYCprdcWVK+xEF0gcV6ufMCRhtxmReGfc6hIK7Jw==}
 
-  '@types/node@20.19.6':
-    resolution: {integrity: sha512-uYssdp9z5zH5GQ0L4zEJ2ZuavYsJwkozjiUzCRfGtaaQcyjAMJ34aP8idv61QlqTozu6kudyr6JMq9Chf09dfA==}
+  '@types/node@20.19.20':
+    resolution: {integrity: sha512-2Q7WS25j4pS1cS8yw3d6buNCVJukOTeQ39bAnwR6sOJbaxvyCGebzTMypDFN82CxBLnl+lSWVdCCWbRY6y9yZQ==}
 
   '@types/node@24.0.12':
     resolution: {integrity: sha512-LtOrbvDf5ndC9Xi+4QZjVL0woFymF/xSTKZKPgrrl7H7XoeDvnD+E2IclKVDyaK9UM756W/3BXqSU+JEHopA9g==}
@@ -2535,8 +2535,8 @@ packages:
     resolution: {integrity: sha512-mS1lbMsxgQj6hge1XZ6p7GPhbrtFwUFYi3wRzXAC/FmYnyXMTvvI3td3rjmQ2u8ewXueaSvRPWaEcgVVOT9Jnw==}
     engines: {node: ^12.22.0 || ^14.16.0 || ^16.0.0 || >=17.0.0}
 
-  happy-dom@18.0.1:
-    resolution: {integrity: sha512-qn+rKOW7KWpVTtgIUi6RVmTBZJSe2k0Db0vh1f7CWrWclkkc7/Q+FrOfkZIb2eiErLyqu5AXEzE7XthO9JVxRA==}
+  happy-dom@20.0.0:
+    resolution: {integrity: sha512-GkWnwIFxVGCf2raNrxImLo397RdGhLapj5cT3R2PT7FwL62Ze1DROhzmYW7+J3p9105DYMVenEejEbnq5wA37w==}
     engines: {node: '>=20.0.0'}
 
   has-flag@4.0.0:
@@ -4843,7 +4843,7 @@ snapshots:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
-  '@navikt/tag-input@2.0.2(7tmcxve3q2crcswam2mdob3u34)':
+  '@navikt/tag-input@2.0.2(abca7f4e1ad9cdbc505686a03e715e40)':
     dependencies:
       classnames: 2.5.1
       nav-frontend-js-utils: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.1.0)
@@ -5579,7 +5579,7 @@ snapshots:
 
   '@types/md5@2.3.5': {}
 
-  '@types/node@20.19.6':
+  '@types/node@20.19.20':
     dependencies:
       undici-types: 6.21.0
 
@@ -6310,9 +6310,9 @@ snapshots:
 
   graphql@16.11.0: {}
 
-  happy-dom@18.0.1:
+  happy-dom@20.0.0:
     dependencies:
-      '@types/node': 20.19.6
+      '@types/node': 20.19.20
       '@types/whatwg-mimetype': 3.0.2
       whatwg-mimetype: 3.0.0
 
@@ -7652,7 +7652,7 @@ snapshots:
       tsx: 4.20.3
       yaml: 2.8.0
 
-  vitest@3.2.4(@types/node@24.0.12)(happy-dom@18.0.1)(jiti@2.5.1)(less@4.3.0)(lightningcss@1.30.1)(msw@2.10.5(@types/node@24.0.12)(typescript@5.8.3))(tsx@4.20.3)(yaml@2.8.0):
+  vitest@3.2.4(@types/node@24.0.12)(happy-dom@20.0.0)(jiti@2.5.1)(less@4.3.0)(lightningcss@1.30.1)(msw@2.10.5(@types/node@24.0.12)(typescript@5.8.3))(tsx@4.20.3)(yaml@2.8.0):
     dependencies:
       '@types/chai': 5.2.2
       '@vitest/expect': 3.2.4
@@ -7679,7 +7679,7 @@ snapshots:
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 24.0.12
-      happy-dom: 18.0.1
+      happy-dom: 20.0.0
     transitivePeerDependencies:
       - jiti
       - less
