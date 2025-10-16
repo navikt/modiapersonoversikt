@@ -1,9 +1,13 @@
 import { PrinterSmallIcon } from '@navikt/aksel-icons';
-import { Button, GuidePanel, HGrid, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, Button, GuidePanel, HGrid, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
-import { Suspense, memo } from 'react';
+import { useAtomValue } from 'jotai';
+import { Suspense, memo, useEffect, useRef } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
+import { meldingerFilterAtom } from 'src/components/Meldinger/List/Filter';
+import { useFilterMeldinger } from 'src/components/Meldinger/List/utils';
 import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
+import { meldingerRouteMiddleware } from 'src/routes/new/person/meldinger';
 import usePrinter from '../Print/usePrinter';
 import { TraadDetail } from './Detail';
 import { TraadList } from './List';
@@ -33,11 +37,6 @@ export const MeldingerPage = () => {
     return (
         <HGrid gap="1" columns={{ xs: 1, md: 'max-content 1fr' }} overflow={{ xs: 'scroll', md: 'hidden' }}>
             <VStack height="100%" maxWidth={{ md: '16em' }} overflow={{ md: 'hidden' }}>
-                <HStack justify="space-between">
-                    <Heading level="2" size="xsmall">
-                        Innboks
-                    </Heading>
-                </HStack>
                 <ErrorBoundary boundaryName="traadlist">
                     <Suspense
                         fallback={
@@ -50,15 +49,14 @@ export const MeldingerPage = () => {
                             </VStack>
                         }
                     >
+                        <Heading size="small">Dialoger</Heading>
+
                         <PrintThreadsMemo />
                     </Suspense>
                 </ErrorBoundary>
                 <TraadList />
             </VStack>
             <VStack flexGrow="1" overflowX="hidden" className="min-h-100 md:min-h-0">
-                <Heading level="2" size="xsmall">
-                    Dialog
-                </Heading>
                 <VStack overflowY={{ md: 'scroll' }}>
                     <TraadDetailSection />
                 </VStack>
@@ -73,11 +71,42 @@ const TraadDetailSection = () => {
     const { data: traader } = useMeldinger();
     if (traader.length === 0) return;
     const { traadId } = routeApi.useSearch();
+    const filters = useAtomValue(meldingerFilterAtom);
+    const filteredMeldinger = useFilterMeldinger(traader, filters);
+    const valgtTraad = filteredMeldinger.find((t) => t.traadId === traadId);
+
+    const prevFilterRef = useRef(meldingerFilterAtom);
+
+    // Fjern traadid i URL og cache kun hvis filteret er endret og tråden ikke finnes i filtrerte tråder
+    useEffect(() => {
+        const filterEndret = JSON.stringify(prevFilterRef.current.init) !== JSON.stringify(filters);
+        const traadIkkeIListe = !valgtTraad || !filteredMeldinger.includes(valgtTraad);
+        if (filterEndret && traadIkkeIListe) {
+            meldingerRouteMiddleware.clear();
+        }
+    }, [valgtTraad, filteredMeldinger, filters]);
+
+    if (filteredMeldinger.length === 0) {
+        return (
+            <Alert variant="info" className="mt-6">
+                Fant ingen dialoger
+            </Alert>
+        );
+    }
+
     if (!traadId) {
         return (
             <HStack margin="4">
                 <GuidePanel>Velg en tråd fra listen på venstre side for å se detaljer.</GuidePanel>
             </HStack>
+        );
+    }
+
+    if (!valgtTraad) {
+        return (
+            <VStack className="mt-6">
+                <Alert variant="error">Tråden du valgte, ble ikke funnet.</Alert>
+            </VStack>
         );
     }
 

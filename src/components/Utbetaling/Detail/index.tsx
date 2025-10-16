@@ -16,11 +16,12 @@ import {
 import { getRouteApi } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai';
-import { Suspense } from 'react';
+import { Suspense, useRef } from 'react';
+import { useEffect } from 'react';
 import Card from 'src/components/Card';
 import type { DateRange } from 'src/components/DateFilters/types';
 import ErrorBoundary from 'src/components/ErrorBoundary';
-import { utbetalingFilterDateRangeAtom } from 'src/components/Utbetaling/List/Filter';
+import { utbetalingFilterAtom, utbetalingFilterDateRangeAtom } from 'src/components/Utbetaling/List/Filter';
 import {
     filtrerBortUtbetalingerSomIkkeErUtbetalt,
     formaterNOK,
@@ -35,6 +36,7 @@ import {
     useFilterUtbetalinger
 } from 'src/components/Utbetaling/List/utils';
 import type { Utbetaling, Ytelse } from 'src/generated/modiapersonoversikt-api';
+import { utbetalingRouteMiddleware } from 'src/routes/new/person/utbetaling';
 import { formatterDato } from 'src/utils/date-utils';
 import { groupArray } from 'src/utils/groupArray';
 import { loggEvent } from 'src/utils/logger/frontendLogger';
@@ -393,6 +395,26 @@ const routeApi = getRouteApi('/new/person/utbetaling');
 const UtbetalingDetail = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
     const { id } = routeApi.useSearch();
     const selectedUtbetaling = utbetalinger.find((item) => getUtbetalingId(item) === id);
+    const filterAtomValue = useAtomValue(utbetalingFilterAtom);
+    const prevFilterRef = useRef(utbetalingFilterAtom);
+
+    // Fjern utbetalingid i URL og cache hvis filteret er endret og utbetalingen ikke finnes i filtrerte utbetalinger
+    useEffect(() => {
+        const filterEndret = JSON.stringify(prevFilterRef.current.init) !== JSON.stringify(filterAtomValue);
+        const utbetalingIkkeIListe = !selectedUtbetaling || !utbetalinger.includes(selectedUtbetaling);
+        if (filterEndret && utbetalingIkkeIListe) {
+            utbetalingRouteMiddleware.clear();
+        }
+    }, [selectedUtbetaling, utbetalinger, filterAtomValue]);
+
+    if (utbetalinger.length === 0) {
+        return (
+            <Alert className="mt-6" variant="info">
+                Fant ingen utbetalinger
+            </Alert>
+        );
+    }
+
     if (!id) {
         return (
             <HStack margin="4">

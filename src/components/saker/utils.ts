@@ -90,7 +90,7 @@ export const sakerAvsender = [
     { value: DokumentmetadataAvsender.UKJENT, label: 'Ukjent' }
 ];
 const sakStatusAapen = 'åpen';
-const sakStatusAvsluttet = 'avsluttett';
+const sakStatusAvsluttet = 'avsluttet';
 export const sakStatuser = [sakStatusAapen, sakStatusAvsluttet];
 const sakstemakodeAlle = 'ALLE';
 

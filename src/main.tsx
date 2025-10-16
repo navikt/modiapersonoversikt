@@ -21,7 +21,7 @@ if (import.meta.env.DEV) {
 
 initializeObservability();
 
-const router = createRouter();
+export const router = createRouter();
 
 let preRenderPromise: Promise<unknown> = Promise.resolve();
 

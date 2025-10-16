@@ -1,6 +1,7 @@
 import { Alert, BodyShort, GuidePanel, HGrid, HStack, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
-import { Suspense } from 'react';
+import { useAtomValue } from 'jotai';
+import { Suspense, useEffect, useRef } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { ArbeidsavklaringspengerDetails } from 'src/components/ytelser/Detail/arbeidsavklaringspenger';
 import { ForeldrePengerDetails } from 'src/components/ytelser/Detail/foreldrepenger';
@@ -8,6 +9,7 @@ import { PensjonDetails } from 'src/components/ytelser/Detail/pensjon';
 import { PleiePengerDetails } from 'src/components/ytelser/Detail/pleiepenger';
 import { SykepengerDetails } from 'src/components/ytelser/Detail/sykepenger';
 import { TiltaksPengerDetails } from 'src/components/ytelser/Detail/tiltakspenger';
+import { ytelseFilterAtom } from 'src/components/ytelser/List/Filter';
 import { getUnikYtelseKey, useFilterYtelser } from 'src/components/ytelser/utils';
 import {
     type Foreldrepenger,
@@ -18,6 +20,7 @@ import {
     YtelseVedtakYtelseType
 } from 'src/generated/modiapersonoversikt-api';
 import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaringspenger';
+import { ytelserRouteMiddleware } from 'src/routes/new/person/ytelser';
 
 const TitleValuePairComponent = ({ title, value }: { title: string; value: string | number | null | undefined }) => {
     return (
@@ -66,6 +69,26 @@ const YtelseDataDetails = () => {
     if (ytelser.length === 0) return;
     const { id } = routeApi.useSearch();
     const selectedYtelse = ytelser.find((item) => getUnikYtelseKey(item) === id);
+    const filterAtomValue = useAtomValue(ytelseFilterAtom);
+    const prevFilterRef = useRef(ytelseFilterAtom);
+
+    // Fjern ytelseid i URL og cache hvis filteret er endret og ytelsen ikke finnes i filtrerte ytelser
+    useEffect(() => {
+        const filterEndret = JSON.stringify(prevFilterRef.current.init) !== JSON.stringify(filterAtomValue);
+        const ytelseIkkeIListe = !selectedYtelse || !ytelser.includes(selectedYtelse);
+        if (filterEndret && ytelseIkkeIListe) {
+            ytelserRouteMiddleware.clear();
+        }
+    }, [selectedYtelse, ytelser, filterAtomValue]);
+
+    if (ytelser.length === 0) {
+        return (
+            <Alert className="mt-6" variant="info">
+                Fant ingen ytelser
+            </Alert>
+        );
+    }
+
     if (!id) {
         return (
             <HStack margin="4">

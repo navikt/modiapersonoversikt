@@ -1,9 +1,11 @@
-import { saksbehandlerTekst } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
-import { LestStatus, Meldingstype, type Traad } from '../../models/meldinger/meldinger';
-import { Temagruppe } from '../../models/temagrupper';
+import { saksbehandlerTekst } from 'src/app/personside/infotabs/meldinger/utils/meldingerUtils';
+import { LestStatus, Meldingstype, type Traad, TraadType } from 'src/models/meldinger/meldinger';
+import { Temagruppe } from 'src/models/temagrupper';
 
 export const statiskTraadMock: Traad = {
     traadId: 'sg838exr',
+    traadType: TraadType.CHAT,
+    temagruppe: Temagruppe.Arbeid,
     meldinger: [
         {
             id: 'x4k72bwd',

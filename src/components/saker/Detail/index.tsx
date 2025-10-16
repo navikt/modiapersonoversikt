@@ -14,7 +14,7 @@ import {
 } from '@navikt/ds-react';
 import { Link, getRouteApi } from '@tanstack/react-router';
 import { useAtom, useAtomValue } from 'jotai/index';
-import { Suspense, useCallback } from 'react';
+import { Suspense, useCallback, useEffect, useRef } from 'react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import JournalPoster from 'src/components/saker/Detail/JournalPoster';
@@ -31,6 +31,7 @@ import { TitleValuePairsComponent } from 'src/components/ytelser/Detail';
 import type { Dokumentmetadata, DokumentmetadataAvsender, SaksDokumenter } from 'src/generated/modiapersonoversikt-api';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import baseurlsResource from 'src/rest/resources/baseurlsResource';
+import { sakerRouteMiddleware } from 'src/routes/new/person/saker';
 import { formatterDato } from 'src/utils/date-utils';
 import { datoEllerNull } from 'src/utils/string-utils';
 
@@ -93,6 +94,15 @@ const NorgLenke = ({
 };
 const SakContent = () => {
     const { id } = routeApi.useSearch();
+    const saker = useFilterSaker();
+    if (saker.length === 0) {
+        return (
+            <Alert className="mt-6" variant="info">
+                Fant ingen saker
+            </Alert>
+        );
+    }
+
     if (!id) {
         return (
             <HStack margin="4">
@@ -129,6 +139,18 @@ export const SakDetails = ({
     const brukersNavn = hentBrukerNavn(person);
     const geografiskTilknytning = person?.geografiskTilknytning;
     const { avsender } = useAtomValue(sakerFilterAtom);
+    const filterAtomValue = useAtomValue(sakerFilterAtom);
+    const prevFilterRef = useRef(filterAtomValue);
+
+    // Fjern saksid i URL og cache hvis filteret er endret og saken ikke finnes i filtrerte saker
+    useEffect(() => {
+        const filterEndret = JSON.stringify(prevFilterRef.current) !== JSON.stringify(filterAtomValue);
+        const sakIkkeIListe = !valgtSak || !saker.includes(valgtSak);
+        if (filterEndret && sakIkkeIListe) {
+            sakerRouteMiddleware.clear();
+        }
+        prevFilterRef.current = filterAtomValue;
+    }, [valgtSak, saker, filterAtomValue]);
 
     if (!valgtSak) {
         return (

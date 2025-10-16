@@ -1,5 +1,5 @@
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
-import { Button, HGrid, HStack, VStack } from '@navikt/ds-react';
+import { Button, HGrid, HStack, Heading, VStack } from '@navikt/ds-react';
 import { Link } from '@tanstack/react-router';
 import { UtbetalingerDetailPage } from 'src/components/Utbetaling/Detail';
 import { UtbetalingerList } from 'src/components/Utbetaling/List';
@@ -27,6 +27,7 @@ export const UtbetalingPage = () => {
                         Se meldekort i Arena
                     </Button>
                 </HStack>
+                <Heading size="small">Utbetalinger</Heading>
                 <UtbetalingerList />
             </VStack>
             <VStack overflow={{ xs: 'hidden', md: 'scroll' }} className="min-h-100 md:min-h-0">
