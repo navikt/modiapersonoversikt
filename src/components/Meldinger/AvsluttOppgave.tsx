@@ -1,8 +1,8 @@
-import { Button, Modal, Textarea } from '@navikt/ds-react';
+import { BodyShort, Button, HStack, Modal, Textarea, VStack } from '@navikt/ds-react';
 import { useAtomValue } from 'jotai';
 import { useCallback, useState } from 'react';
 import type { OppgaveDto } from 'src/generated/modiapersonoversikt-api';
-import { useAvsluttOppgaveMutation } from 'src/lib/clients/modiapersonoversikt-api';
+import { useAvsluttOppgaveMutation, useGsakTema } from 'src/lib/clients/modiapersonoversikt-api';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 
 type Props = {
@@ -15,6 +15,8 @@ export const AvsluttOppgaveModal = ({ open, onClose, oppgave }: Props) => {
     const [beskrivelse, setBeskrivelse] = useState('');
     const enhet = useAtomValue(aktivEnhetAtom);
     const fnr = usePersonAtomValue();
+    const { data: gsakTema } = useGsakTema();
+    const tema = gsakTema.find((item) => item.kode === oppgave.tema);
 
     const { mutate, isPending } = useAvsluttOppgaveMutation();
 
@@ -48,6 +50,27 @@ export const AvsluttOppgaveModal = ({ open, onClose, oppgave }: Props) => {
             width="small"
             size="small"
         >
+            <VStack justify="space-between" gap="2">
+                <HStack justify="start" gap="2" className="ml-4">
+                    <BodyShort size="small" weight="semibold">
+                        Tema:
+                    </BodyShort>
+                    <BodyShort size="small">{tema?.tekst ?? 'Ukjent tema'}</BodyShort>
+                </HStack>
+                <HStack justify="start" gap="2" className="ml-4">
+                    <BodyShort size="small" weight="semibold">
+                        OppgaveId:
+                    </BodyShort>
+                    <BodyShort size="small">{oppgave.oppgaveId}</BodyShort>
+                </HStack>
+                <HStack justify="start" gap="2" className="ml-4">
+                    <BodyShort size="small" weight="semibold">
+                        TildeltEnhetsnr:
+                    </BodyShort>
+                    <BodyShort size="small">{oppgave.tildeltEnhetsnr}</BodyShort>
+                </HStack>
+            </VStack>
+
             <Modal.Body>
                 <Textarea label="Beskrivelse" value={beskrivelse} onChange={(e) => setBeskrivelse(e.target.value)} />
             </Modal.Body>
