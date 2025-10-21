@@ -14,7 +14,6 @@ const routeApi = getRouteApi('/new/person/oppgaver');
 const OppgaveOgDialogDetail = () => {
     const { id } = routeApi.useSearch();
     const oppgaver = useFilterOppgave();
-    if (oppgaver.length === 0) return;
     const valgtOppgave = oppgaver.find((item) => getOppgaveId(item) === id);
     const filterAtomValue = useAtomValue(oppgaveFilterAtom);
     const prevFilterRef = useRef(filterAtomValue);
@@ -23,7 +22,7 @@ const OppgaveOgDialogDetail = () => {
     useEffect(() => {
         const filterEndret = JSON.stringify(prevFilterRef.current) !== JSON.stringify(filterAtomValue);
         const oppgaveIkkeIListe = !valgtOppgave || !oppgaver.includes(valgtOppgave);
-        if (filterEndret && oppgaveIkkeIListe) {
+        if ((filterEndret && oppgaveIkkeIListe) || oppgaveIkkeIListe) {
             oppgaveRouteMiddleware.clear();
         }
     }, [valgtOppgave, oppgaver, filterAtomValue]);

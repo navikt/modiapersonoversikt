@@ -1,4 +1,4 @@
-import { Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { useNavigate, useSearch } from '@tanstack/react-router';
 import { Suspense, useCallback } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
@@ -29,7 +29,7 @@ export const YtelserList = () => (
 );
 
 const YtelseList = () => {
-    const ytelser = useFilterYtelser();
+    const { ytelser, placeholders } = useFilterYtelser();
     const navigate = useNavigate({ from: '/new/person/ytelser' });
 
     const handleClick = useCallback(
@@ -46,6 +46,11 @@ const YtelseList = () => {
 
     return (
         <>
+            {placeholders.map((placeholder) => (
+                <Alert className="mr-2" variant="info" key={placeholder} size="small">
+                    {placeholder}
+                </Alert>
+            ))}
             <Heading className="pl-1" size="xsmall" level="2">
                 {ytelser.length} {ytelser.length === 1 ? 'ytelse' : 'ytelser'}
             </Heading>

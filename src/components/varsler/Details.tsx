@@ -124,7 +124,6 @@ const DittNavInformasjonsLinjerV2 = ({
 const VarselDetailExtractor = () => {
     const { id } = routeApi.useSearch();
     const varsler = useFilterVarsler();
-    if (varsler.length === 0) return;
     const valgtVarsel = varsler.find((item) => item.eventId === id);
     const filterAtomValue = useAtomValue(varslerFilterAtom);
     const prevFilterRef = useRef(varslerFilterAtom);
