@@ -347,9 +347,44 @@ export const useForeslotteEnheter = ({
     );
 };
 
-export const useYtelser = () => {
+export const useForeldrepenger = (fom: string, tom: string) => {
     const fnr = usePersonAtomValue();
-    return $api.useSuspenseQuery('post', '/rest/ytelse/alle-ytelser', {
-        body: { fnr }
+    return $api.useSuspenseQuery('post', '/rest/ytelse/foreldrepenger', {
+        body: { fnr, fom, tom }
+    });
+};
+
+export const usePleiepenger = (fom: string, tom: string) => {
+    const fnr = usePersonAtomValue();
+    return $api.useSuspenseQuery('post', '/rest/ytelse/pleiepenger', {
+        body: { fnr, fom, tom }
+    });
+};
+
+export const useSykepenger = (fom: string, tom: string) => {
+    const fnr = usePersonAtomValue();
+    return $api.useSuspenseQuery('post', '/rest/ytelse/sykepenger', {
+        body: { fnr, fom, tom }
+    });
+};
+
+export const useTiltakspenger = (fom: string, tom: string) => {
+    const fnr = usePersonAtomValue();
+    return $api.useSuspenseQuery('post', '/rest/ytelse/tiltakspenger', {
+        body: { fnr, fom, tom }
+    });
+};
+
+export const usePensjon = (fom: string, tom: string) => {
+    const fnr = usePersonAtomValue();
+    return $api.useSuspenseQuery('post', '/rest/ytelse/pensjon', {
+        body: { fnr, fom, tom }
+    });
+};
+
+export const useArbeidsavklaringspenger = (fom: string, tom: string) => {
+    const fnr = usePersonAtomValue();
+    return $api.useSuspenseQuery('post', '/rest/ytelse/arbeidsavklaringspenger', {
+        body: { fnr, fom, tom }
     });
 };

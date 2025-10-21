@@ -69,7 +69,6 @@ const routeApi = getRouteApi('/new/person/meldinger');
 
 const TraadDetailSection = () => {
     const { data: traader } = useMeldinger();
-    if (traader.length === 0) return;
     const { traadId } = routeApi.useSearch();
     const filters = useAtomValue(meldingerFilterAtom);
     const filteredMeldinger = useFilterMeldinger(traader, filters);

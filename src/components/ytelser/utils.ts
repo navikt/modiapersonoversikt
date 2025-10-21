@@ -1,8 +1,16 @@
+import type { UseSuspenseQueryResult } from '@tanstack/react-query';
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai/index';
 import { useMemo } from 'react';
 import { type YtelseFilter, ytelseFilterAtom } from 'src/components/ytelser/List/Filter';
-import { useYtelser } from 'src/lib/clients/modiapersonoversikt-api';
+import {
+    useArbeidsavklaringspenger,
+    useForeldrepenger,
+    usePensjon,
+    usePleiepenger,
+    useSykepenger,
+    useTiltakspenger
+} from 'src/lib/clients/modiapersonoversikt-api';
 import {
     type CommonPeriode,
     type Foreldrepenger,
@@ -22,6 +30,15 @@ import {
 } from 'src/models/ytelse/arbeidsavklaringspenger';
 import { ascendingDateComparator, backendDatoformat, datoStigende, datoSynkende } from 'src/utils/date-utils';
 import { formaterDato } from 'src/utils/string-utils';
+
+type Placeholder = { returnOnForbidden: string; returnOnError: string; returnOnNotFound: string };
+
+interface Returns {
+    ytelser: YtelseVedtak[];
+    pending: boolean;
+    placeholders: (string | undefined)[];
+    harFeil: boolean;
+}
 
 const filterYtelser = (ytelser: YtelseVedtak[], filters: YtelseFilter): YtelseVedtak[] => {
     const { ytelseTyper, dateRange } = filters;
@@ -44,16 +61,6 @@ const filterYtelser = (ytelser: YtelseVedtak[], filters: YtelseFilter): YtelseVe
     }
 
     return filteredList;
-};
-
-export const useFilterYtelser = () => {
-    const filters = useAtomValue(ytelseFilterAtom);
-
-    const ytelseResponse = useYtelser();
-    const ytelser: YtelseVedtak[] = ytelseResponse.data?.ytelser ?? [];
-    const ytelserSortert = ytelser.sort(datoSynkende((ytelse: YtelseVedtak) => getYtelseIdDato(ytelse)));
-
-    return useMemo(() => filterYtelser(ytelserSortert, filters), [ytelserSortert, filters]);
 };
 
 export function getYtelseIdDato(ytelse: YtelseVedtak): string {
@@ -214,3 +221,135 @@ export function periodeEllerNull(periode?: CommonPeriode | null): string | null 
     }
     return `${formaterDato(periode.fra)} - ${periode.til ? formaterDato(periode.til) : ''}`;
 }
+
+const foreldrepengerPlaceholder = {
+    returnOnError: 'Kunne ikke laste foreldrepenger',
+    returnOnNotFound: 'Kunne finne foreldrepenger',
+    returnOnForbidden: 'Du har ikke tilgang til foreldrepenger'
+};
+const pleiepengerPlaceholder = {
+    returnOnError: 'Kunne ikke laste pleiepenger',
+    returnOnNotFound: 'Kunne finne pleiepenger',
+    returnOnForbidden: 'Du har ikke tilgang til pleiepenger'
+};
+const sykepengerPlaceholder = {
+    returnOnError: 'Kunne ikke laste sykepenger',
+    returnOnNotFound: 'Kunne finne sykepenger',
+    returnOnForbidden: 'Du har ikke tilgang til sykepenger'
+};
+const tiltakspengerPlaceholder = {
+    returnOnError: 'Kunne ikke laste tiltakspenger',
+    returnOnNotFound: 'Kunne finne tiltakspenger',
+    returnOnForbidden: 'Du har ikke tilgang til tiltakspenger'
+};
+const pensjonPlaceholder = {
+    returnOnError: 'Kunne ikke laste pensjon',
+    returnOnNotFound: 'Kunne finne pensjon',
+    returnOnForbidden: 'Du har ikke tilgang til pensjon'
+};
+const arbeidsavklaringsPengerPlaceholder = {
+    returnOnError: 'Kunne ikke laste arbeidsavklaringspenger',
+    returnOnNotFound: 'Kunne finne arbeidsavklaringspenger',
+    returnOnForbidden: 'Du har ikke tilgang til arbeidsavklaringspenger'
+};
+
+const placeholder = (resource: UseSuspenseQueryResult, tekster: Placeholder) => {
+    if (!resource?.isError) {
+        return;
+    }
+
+    return tekster.returnOnError;
+};
+
+export const useFilterYtelser = (): Returns => {
+    const filters = useAtomValue(ytelseFilterAtom);
+    const periode = filters.dateRange;
+    const startDato = periode.from.format('YYYY-MM-DD');
+    const sluttDato = periode.to.format('YYYY-MM-DD');
+    const foreldrepengerResponse = useForeldrepenger(startDato, sluttDato);
+    const pleiepengerResponse = usePleiepenger(startDato, sluttDato);
+    const sykepengerResponse = useSykepenger(startDato, sluttDato);
+    const tiltakspengerResponse = useTiltakspenger(startDato, sluttDato);
+    const pensjonResponse = usePensjon(startDato, sluttDato);
+    const arbeidsavklaringspengerResponse = useArbeidsavklaringspenger(startDato, sluttDato);
+
+    return useMemo(() => {
+        const pending =
+            pleiepengerResponse.isLoading ||
+            foreldrepengerResponse.isLoading ||
+            sykepengerResponse.isLoading ||
+            tiltakspengerResponse.isLoading ||
+            pensjonResponse.isLoading ||
+            arbeidsavklaringspengerResponse.isLoading;
+        const ytelser: YtelseVedtak[] = [];
+        foreldrepengerResponse.data?.foreldrepenger?.map((ytlse) =>
+            ytelser.push({
+                ytelseData: { data: ytlse },
+                ytelseType: YtelseVedtakYtelseType.Foreldrepenger
+            })
+        );
+        pleiepengerResponse.data?.pleiepenger?.map((ytlse) =>
+            ytelser.push({
+                ytelseData: { data: ytlse },
+                ytelseType: YtelseVedtakYtelseType.Pleiepenger
+            })
+        );
+        sykepengerResponse.data?.sykepenger?.map((ytlse) =>
+            ytelser.push({
+                ytelseData: { data: ytlse },
+                ytelseType: YtelseVedtakYtelseType.Sykepenger
+            })
+        );
+        tiltakspengerResponse?.data?.map((ytlse) =>
+            ytelser.push({
+                ytelseData: { data: ytlse },
+                ytelseType: YtelseVedtakYtelseType.Tiltakspenge
+            })
+        );
+        pensjonResponse.data?.map((ytlse) =>
+            ytelser.push({
+                ytelseData: { data: ytlse },
+                ytelseType: YtelseVedtakYtelseType.Pensjon
+            })
+        );
+        arbeidsavklaringspengerResponse.data?.map((ytlse) =>
+            ytelser.push({
+                ytelseData: { data: ytlse },
+                ytelseType: YtelseVedtakYtelseType.Arbeidsavklaringspenger
+            })
+        );
+
+        const ytelserSortert = ytelser.sort(datoSynkende((ytelse: YtelseVedtak) => getYtelseIdDato(ytelse)));
+
+        const placeholders = [
+            placeholder(foreldrepengerResponse, foreldrepengerPlaceholder),
+            placeholder(pleiepengerResponse, pleiepengerPlaceholder),
+            placeholder(sykepengerResponse, sykepengerPlaceholder),
+            placeholder(tiltakspengerResponse, tiltakspengerPlaceholder),
+            placeholder(pensjonResponse, pensjonPlaceholder),
+            placeholder(arbeidsavklaringspengerResponse, arbeidsavklaringsPengerPlaceholder)
+        ];
+
+        const harFeil =
+            foreldrepengerResponse.isError ||
+            pleiepengerResponse.isError ||
+            sykepengerResponse.isError ||
+            tiltakspengerResponse.isError ||
+            pensjonResponse.isError ||
+            arbeidsavklaringspengerResponse.isError;
+
+        return {
+            ytelser: filterYtelser(ytelserSortert, filters),
+            pending: pending,
+            placeholders: placeholders.filter(Boolean),
+            harFeil: harFeil
+        };
+    }, [
+        foreldrepengerResponse,
+        pleiepengerResponse,
+        sykepengerResponse,
+        tiltakspengerResponse,
+        pensjonResponse,
+        arbeidsavklaringspengerResponse
+    ]);
+};

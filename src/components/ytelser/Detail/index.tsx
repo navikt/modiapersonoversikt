@@ -65,8 +65,7 @@ export const TitleValuePairsComponent = ({
 const routeApi = getRouteApi('/new/person/ytelser');
 
 const YtelseDataDetails = () => {
-    const ytelser = useFilterYtelser();
-    if (ytelser.length === 0) return;
+    const { ytelser } = useFilterYtelser();
     const { id } = routeApi.useSearch();
     const selectedYtelse = ytelser.find((item) => getUnikYtelseKey(item) === id);
     const filterAtomValue = useAtomValue(ytelseFilterAtom);

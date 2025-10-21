@@ -125,7 +125,6 @@ export const SakDetails = ({
         data: { person }
     } = usePersonData();
     const saker = useFilterSaker();
-    if (saker.length === 0) return;
     if (!valgtSakId) {
         return (
             <HStack margin="4">
