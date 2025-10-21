@@ -125,21 +125,15 @@ export const SakDetails = ({
         data: { person }
     } = usePersonData();
     const saker = useFilterSaker();
-    if (!valgtSakId) {
-        return (
-            <HStack margin="4">
-                <GuidePanel>Velg en sak fra listen på venstre side for å se detaljer.</GuidePanel>
-            </HStack>
-        );
-    }
-    const valgtSak = saker.find(
-        (sak) => getSakId(sak) === valgtSakId || sak.saksid === valgtSakId || sak.fagsaksnummer === valgtSakId
-    );
     const brukersNavn = hentBrukerNavn(person);
-    const geografiskTilknytning = person?.geografiskTilknytning;
     const { avsender } = useAtomValue(sakerFilterAtom);
     const filterAtomValue = useAtomValue(sakerFilterAtom);
     const prevFilterRef = useRef(filterAtomValue);
+    const geografiskTilknytning = person?.geografiskTilknytning;
+
+    const valgtSak = saker.find(
+        (sak) => getSakId(sak) === valgtSakId || sak.saksid === valgtSakId || sak.fagsaksnummer === valgtSakId
+    );
 
     // Fjern saksid i URL og cache hvis filteret er endret og saken ikke finnes i filtrerte saker
     useEffect(() => {
@@ -150,6 +144,14 @@ export const SakDetails = ({
         }
         prevFilterRef.current = filterAtomValue;
     }, [valgtSak, saker, filterAtomValue]);
+
+    if (!valgtSakId) {
+        return (
+            <HStack margin="4">
+                <GuidePanel>Velg en sak fra listen på venstre side for å se detaljer.</GuidePanel>
+            </HStack>
+        );
+    }
 
     if (!valgtSak) {
         return (
