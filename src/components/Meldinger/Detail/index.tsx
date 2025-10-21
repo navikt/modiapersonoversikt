@@ -145,7 +145,7 @@ const TraadDetailContent = ({ traadId, valgtOppgaveId }: { traadId: string; valg
                     traad={traad}
                 />
             )}
-            <OppgaveModal open={oppgaveOpen} setOpen={setOppgaveOpen} traad={traad} />
+            {oppgaveOpen && <OppgaveModal open={oppgaveOpen} setOpen={setOppgaveOpen} traad={traad} />}
         </Card>
     );
 };

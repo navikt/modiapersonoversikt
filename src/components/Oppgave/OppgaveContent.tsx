@@ -1,4 +1,4 @@
-import { BodyShort, HGrid, HStack, VStack } from '@navikt/ds-react';
+import { BodyShort, HGrid, HStack, Textarea, VStack } from '@navikt/ds-react';
 import Card from 'src/components/Card';
 import { AvsluttOppgave } from 'src/components/Meldinger/Detail/TraadOppgaver';
 import type { OppgaveDto } from 'src/generated/modiapersonoversikt-api';
@@ -88,12 +88,8 @@ export const OppgaveContent = ({ oppgave }: { oppgave: OppgaveDto }) => {
                     <BodyShort size="small">{datoEllerNull(oppgave?.opprettetTidspunkt)}</BodyShort>
                 </VStack>
             </HGrid>
-
             <VStack justify="space-between" className="mt-6">
-                <BodyShort size="small" weight="semibold">
-                    Beskrivelse:
-                </BodyShort>
-                <BodyShort size="small">{oppgave?.beskrivelse}</BodyShort>
+                <Textarea value={oppgave?.beskrivelse} label="Beskrivelse" minRows={10} resize readOnly />
             </VStack>
             <HStack className="mt-6">
                 <AvsluttOppgave oppgave={oppgave} />
