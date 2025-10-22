@@ -123,7 +123,7 @@
         "@biomejs/biome": "1.9.4",
         "@eslint/js": "^9.34.0",
         "@faker-js/faker": "^9.9.0",
-        "@playwright/test": "^1.55.0",
+        "@playwright/test": "^1.56.1",
         "@tailwindcss/postcss": "^4.1.11",
         "@tanstack/router-cli": "^1.125.4",
         "@tanstack/router-devtools": "^1.124.0",
