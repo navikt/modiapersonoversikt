@@ -4,6 +4,7 @@ import { getRouteApi } from '@tanstack/react-router';
 import Card from 'src/components/Card';
 import { getOppgaveId } from 'src/components/Oppgave/List/utils';
 import type { OppgaveDto } from 'src/generated/modiapersonoversikt-api';
+import { useGsakTema } from 'src/lib/clients/modiapersonoversikt-api';
 import { formatterDato } from 'src/utils/date-utils';
 
 const routeApi = getRouteApi('/new/person/oppgaver');
@@ -15,6 +16,10 @@ export const OppgaveItem = ({
     oppgave: OppgaveDto;
     handleClick: (id: string) => void;
 }) => {
+    const { data: gsakTema } = useGsakTema();
+    const tema = gsakTema.find((item) => item.kode === oppgave.tema);
+    const oppgaveTyper = tema?.oppgavetyper ?? [];
+    const oppgavetype = oppgaveTyper.find((o) => o.kode === oppgave.oppgavetype);
     const aktivOppgaveId = routeApi.useSearch().id;
     const id = getOppgaveId(oppgave);
     return (
@@ -28,13 +33,13 @@ export const OppgaveItem = ({
             <HStack justify="space-between" gap="1" wrap={false}>
                 <VStack justify="center" gap="1">
                     <Heading size="xsmall" as="h3" level="3">
-                        {oppgave.tema}
+                        {tema?.tekst ?? 'Ukjent tema'}
                     </Heading>
                     <HStack gap="2">
                         <BodyShort size="small" weight="semibold">
-                            Temagruppe:
+                            Oppgavetype:
                         </BodyShort>
-                        <BodyShort size="small">{oppgave.temagruppe}</BodyShort>
+                        <BodyShort size="small">{oppgavetype?.tekst ?? 'Ukjent oppgavetype'}</BodyShort>
                     </HStack>
                     <HStack gap="2">
                         <BodyShort size="small" weight="semibold">
