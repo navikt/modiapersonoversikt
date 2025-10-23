@@ -20,6 +20,11 @@ Endring av miljøvariabler for lokal utvikling skal gjøres i `.env.development`
 
 ### Starte appen lokalt
 
+Dette er gunstig for å kunne kjøre ting i `/web` uten å måtte generere mengder
+av tokens for kallene som skjer til `/proxy` og `/modiapersonoversikt-draft`.
+Kun et `LOCAL_TOKEN` er nødvendig. Dette kan hentes fra
+<https://azure-token-generator.intern.dev.nav.no/api/obo?aud=dev-gcp:personoversikt:modiapersonoversikt>.
+
 ```console
 pnpm i
 pnpm run start
