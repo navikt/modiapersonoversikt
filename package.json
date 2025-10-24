@@ -124,7 +124,7 @@
         "@eslint/js": "^9.38.0",
         "@faker-js/faker": "^9.9.0",
         "@playwright/test": "^1.56.1",
-        "@tailwindcss/postcss": "^4.1.11",
+        "@tailwindcss/postcss": "^4.1.16",
         "@tanstack/router-cli": "^1.133.20",
         "@tanstack/router-devtools": "^1.124.0",
         "@tanstack/router-plugin": "^1.124.0",
