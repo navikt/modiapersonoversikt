@@ -146,7 +146,7 @@
         "happy-dom": "^20.0.2",
         "jest-styled-components": "^7.2.0",
         "knip": "^5.63.1",
-        "less": "^4.3.0",
+        "less": "^4.4.2",
         "lint-staged": "^16.2.5",
         "msw": "^2.11.6",
         "nav-faker": "^3.2.4",
