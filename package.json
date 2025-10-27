@@ -143,7 +143,7 @@
         "babel-plugin-react-compiler": "19.0.0-beta-714736e-20250131",
         "eslint": "^9.38.0",
         "eslint-plugin-react-compiler": "19.0.0-beta-714736e-20250131",
-        "happy-dom": "^20.0.2",
+        "happy-dom": "^20.0.8",
         "jest-styled-components": "^7.2.0",
         "knip": "^5.66.3",
         "less": "^4.4.2",
