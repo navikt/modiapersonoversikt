@@ -150,7 +150,7 @@
         "lint-staged": "^16.2.5",
         "msw": "^2.11.6",
         "nav-faker": "^3.2.4",
-        "openapi-typescript": "^7.8.0",
+        "openapi-typescript": "^7.10.1",
         "prop-types": "^15.8.1",
         "react-collapse": "^5.1.1",
         "redux-devtools-extension": "^2.13.9",
