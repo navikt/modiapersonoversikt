@@ -920,6 +920,12 @@ export interface components {
             sats?: number;
             /** Format: int32 */
             satsBarnetillegg?: number;
+            vedtaksperiode?: components['schemas']['Periode'];
+            innvilgelsesperioder?: components['schemas']['Periode'][];
+            omgjortAvRammevedtakId?: string;
+            omgjorRammevedtakId?: string;
+            /** Format: date-time */
+            vedtakstidspunkt?: string;
         };
         CommonHistoriskUtbetaling: {
             vedtak?: components['schemas']['CommonPeriode'];
@@ -1408,10 +1414,10 @@ export interface components {
         LocalDate: {
             /** Format: date */
             value?: string;
-            /** Format: date */
-            value$kotlinx_datetime: string;
             /** Format: int32 */
             monthNumber: number;
+            /** Format: date */
+            value$kotlinx_datetime: string;
             /** Format: int32 */
             year: number;
             /** Format: int32 */
@@ -1426,12 +1432,12 @@ export interface components {
         LocalDateTime: {
             /** Format: date-time */
             value?: string;
-            /** Format: date-time */
-            value$kotlinx_datetime: string;
             /** Format: int32 */
             monthNumber: number;
             /** Format: int32 */
             nanosecond: number;
+            /** Format: date-time */
+            value$kotlinx_datetime: string;
             time: components['schemas']['LocalTime'];
             /** Format: int32 */
             year: number;
@@ -1453,9 +1459,9 @@ export interface components {
         };
         LocalTime: {
             value?: string;
-            value$kotlinx_datetime: string;
             /** Format: int32 */
             nanosecond: number;
+            value$kotlinx_datetime: string;
             /** Format: int32 */
             hour: number;
             /** Format: int32 */
@@ -1868,7 +1874,7 @@ export interface components {
         OppgaveDTO: {
             oppgaveId: string;
             traadId?: string;
-            'f\u00F8dselsnummer'?: string;
+            fnr?: string;
             erSTOOppgave: boolean;
             tildeltEnhetsnr: string;
             tema: string;

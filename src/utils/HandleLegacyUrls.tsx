@@ -5,6 +5,7 @@ import { post } from 'src/api/api';
 import { contextHolderBaseUri } from 'src/api/config';
 import { INFOTABS } from 'src/app/personside/infotabs/InfoTabEnum';
 import { paths } from 'src/app/routes/routing';
+import { useOppgave } from 'src/lib/clients/modiapersonoversikt-api';
 import { useOnMount, useSettAktivBruker } from 'src/utils/customHooks';
 import { erGyldigishFnr } from 'src/utils/fnr-utils';
 import { loggEvent } from 'src/utils/logger/frontendLogger';
@@ -73,6 +74,24 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
                 to: linkTilValgtHenvendelse,
                 search: newQuery,
                 replace: true
+            });
+        } else if (oppgaveId) {
+            loggEvent('Oppgave', 'FraGosys');
+            const { data: oppgaveData } = useOppgave(oppgaveId);
+            post<{
+                aktivBruker: string;
+                aktivEnhet: string;
+            }>(`${contextHolderBaseUri}/context`, {
+                eventType: 'NY_AKTIV_BRUKER',
+                verdiType: 'FNR',
+                verdi: oppgaveData.fnr
+            }).then(() => {
+                const query = { traadId: oppgaveData.traadId };
+                navigate({
+                    to: linkTilValgtHenvendelse,
+                    search: query,
+                    replace: true
+                });
             });
         } else if (fnr) {
             settGjeldendeBruker(fnr);

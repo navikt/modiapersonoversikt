@@ -125,6 +125,12 @@ export const usePersonOppgaver = () => {
     });
 };
 
+export const useOppgave = (oppgaveId: string) => {
+    return $api.useSuspenseQuery('get', '/rest/oppgaver/oppgavedata/{oppgaveId}', {
+        params: { path: { oppgaveId: oppgaveId } }
+    });
+};
+
 export const useOppgaveForTraad = (traadId: string) => {
     const { data: oppgaver } = usePersonOppgaver();
 
