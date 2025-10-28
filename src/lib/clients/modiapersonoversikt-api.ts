@@ -125,7 +125,8 @@ export const usePersonOppgaver = () => {
     });
 };
 
-export const useOppgave = (oppgaveId: string) => {
+export const useOppgave = (oppgaveId?: string) => {
+    if (oppgaveId === undefined) return { data: undefined, isLoading: false, isError: false };
     return $api.useSuspenseQuery('get', '/rest/oppgaver/oppgavedata/{oppgaveId}', {
         params: { path: { oppgaveId: oppgaveId } }
     });

@@ -25,6 +25,7 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
     const settGjeldendeBruker = useSettAktivBruker();
     const navigate = useNavigate();
     const [delayRender, setDelayRender] = useState(!!validFnr);
+    const { data: oppgaveData } = useOppgave(queryParams.oppgaveid);
 
     useOnMount(() => {
         const behandlingsId = queryParams.henvendelseid || queryParams.behandlingsid;
@@ -75,9 +76,8 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
                 search: newQuery,
                 replace: true
             });
-        } else if (oppgaveId) {
+        } else if (oppgaveId && oppgaveData) {
             loggEvent('Oppgave', 'FraGosys');
-            const { data: oppgaveData } = useOppgave(oppgaveId);
             post<{
                 aktivBruker: string;
                 aktivEnhet: string;
