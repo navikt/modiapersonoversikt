@@ -1,3 +1,4 @@
+import Panel from 'nav-frontend-paneler';
 import type { Pensjon as IPensjon } from 'src/models/ytelse/pensjon';
 import { useOnMount } from 'src/utils/customHooks';
 import { loggEvent } from 'src/utils/logger/frontendLogger';
@@ -12,7 +13,7 @@ interface Props {
     pensjon: IPensjon;
 }
 
-const StyledPanel = styled.div`
+const StyledPanel = styled(Panel)`
     padding: ${theme.margin.layout};
 `;
 

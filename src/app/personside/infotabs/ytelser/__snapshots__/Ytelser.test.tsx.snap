@@ -2645,7 +2645,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
           </h2>
           <article>
             <div
-              class="c16"
+              class="panel c16"
             >
               <h2
                 class="sr-only"
@@ -2663,7 +2663,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                     class="typo-ingress"
                     id="Helt tilfeldig ID"
                   >
-                    Om Arbeidsavklaringspenger
+                    Om arbeidsavklaringspenger
                   </h3>
                   <dl
                     class="c19"
