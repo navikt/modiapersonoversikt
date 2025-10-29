@@ -1,3 +1,4 @@
+import Panel from 'nav-frontend-paneler';
 import YtelserInfoGruppe from 'src/app/personside/infotabs/ytelser/felles-styling/YtelserInfoGruppe';
 import DescriptionList from 'src/components/DescriptionList';
 import ErrorBoundary from 'src/components/ErrorBoundary';
@@ -12,7 +13,7 @@ interface Props {
     arbeidsavklaringspenger: Arbeidsavklaringspenger;
 }
 
-const StyledPanel = styled.div`
+const StyledPanel = styled(Panel)`
     padding: ${theme.margin.layout};
 `;
 
@@ -69,7 +70,7 @@ function Arbeidsavklaringspenger(props: Props) {
                 <StyledPanel>
                     <h2 className="sr-only">Arbeidsavklaringspenger</h2>
                     <OversiktStyling>
-                        <YtelserInfoGruppe tittel="Om Arbeidsavklaringspenger">
+                        <YtelserInfoGruppe tittel="Om arbeidsavklaringspenger">
                             <DescriptionList entries={ArbeidsavklaringspengerEntries} />
                         </YtelserInfoGruppe>
                         <BarneTillegg arbeidsavklaringspenger={props.arbeidsavklaringspenger} />
