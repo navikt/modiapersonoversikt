@@ -76,7 +76,7 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
                 search: newQuery,
                 replace: true
             });
-        } else if (oppgaveId && oppgaveData) {
+        } else if (oppgaveData) {
             loggEvent('Oppgave', 'FraGosys');
             post<{
                 aktivBruker: string;
