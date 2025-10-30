@@ -1,5 +1,6 @@
 import { PrinterSmallIcon } from '@navikt/aksel-icons';
 import { Alert, BodyShort, Box, Button, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { useLocation } from '@tanstack/react-router';
 import { useSetAtom } from 'jotai';
 import { Suspense, useCallback, useState } from 'react';
 import Card from 'src/components/Card';
@@ -71,6 +72,8 @@ const TraadDetailContent = ({ traadId, valgtOppgaveId }: { traadId: string; valg
     const setDialogUnderArbeid = useSetAtom(dialogUnderArbeidAtom);
     const [journalforingOpen, setJournalforingOpen] = useState(false);
     const [oppgaveOpen, setOppgaveOpen] = useState(false);
+    const pathname = useLocation().pathname;
+    const erIMeldingerfane = pathname.includes('meldinger');
 
     const traad = useTraadById(traadId);
 
@@ -129,7 +132,7 @@ const TraadDetailContent = ({ traadId, valgtOppgaveId }: { traadId: string; valg
                 )}
 
                 <Journalposter journalposter={traad.journalposter} />
-                <TraadOppgaver traadId={traadId} valgtOppgaveId={valgtOppgaveId} />
+                {erIMeldingerfane && <TraadOppgaver traadId={traadId} valgtOppgaveId={valgtOppgaveId} />}
                 <Meldinger meldinger={traad.meldinger} />
                 {kanBesvares && (
                     <Box.New marginBlock="space-8">
