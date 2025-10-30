@@ -24,7 +24,7 @@ export class OppgaverBackendMock {
             );
             this.tildelteOppgaver.push({
                 oppgaveId: id,
-                fødselsnummer: oppgave.fnr,
+                fnr: oppgave.fnr,
                 erSTOOppgave: false,
                 traadId: traad?.traadId ?? oppgave.behandlingskjedeId
             });

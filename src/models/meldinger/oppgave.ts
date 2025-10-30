@@ -25,7 +25,7 @@ export interface GsakTemaUnderkategori {
 
 export interface Oppgave {
     oppgaveId: string;
-    fødselsnummer: string;
+    fnr: string;
     erSTOOppgave: boolean;
     traadId?: string;
 }
