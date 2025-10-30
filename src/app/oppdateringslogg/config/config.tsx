@@ -1,5 +1,6 @@
 import { Normaltekst } from 'nav-frontend-typografi';
 import type { OppdateringsloggInnslag } from '../OppdateringsloggContainer';
+import AAP from './img/aap-oppdatering.png';
 import AutofullforBarnetrygd from './img/autofullfor-barnetrygd.png';
 import AvansertSokKnappBilde from './img/avansertSok-knapp.jpg';
 import AvansertsokPdlsok from './img/avansertsok-pdlsok.png';
@@ -627,6 +628,21 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                 </>
             ),
             src: Gjeldende14aVedtak
+        },
+        {
+            id: 38,
+            tittel: 'Arbeidsavklaringspenger',
+            dato: new Date('2025-10-31 12:00'),
+            aktiv: true,
+            ingress: null,
+            beskrivelse: (
+                <>
+                    <Normaltekst>
+                        Det er nå mulig å se informasjon om arbeidsavklaringspenger under ytelser.
+                    </Normaltekst>
+                </>
+            ),
+            src: AAP
         }
     ];
 }
