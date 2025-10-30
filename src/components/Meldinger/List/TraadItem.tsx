@@ -16,7 +16,7 @@ import { erFeilsendt, getFormattertMeldingsDato, nyesteMelding, traadstittel } f
 function TildeltSaksbehandler({ traadId }: { traadId: string }) {
     const oppgaver = usePersonOppgaver();
     const fnr = usePersonAtomValue();
-    const tildeltTilBruker = oppgaver.data.filter((oppg) => oppg.fødselsnummer === fnr);
+    const tildeltTilBruker = oppgaver.data.filter((oppg) => oppg.fnr === fnr);
 
     if (tildeltTilBruker.map((oppgave) => oppgave.traadId).includes(traadId)) {
         return (

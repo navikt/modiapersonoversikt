@@ -920,6 +920,12 @@ export interface components {
             sats?: number;
             /** Format: int32 */
             satsBarnetillegg?: number;
+            vedtaksperiode?: components['schemas']['Periode'];
+            innvilgelsesperioder?: components['schemas']['Periode'][];
+            omgjortAvRammevedtakId?: string;
+            omgjorRammevedtakId?: string;
+            /** Format: date-time */
+            vedtakstidspunkt?: string;
         };
         CommonHistoriskUtbetaling: {
             vedtak?: components['schemas']['CommonPeriode'];
@@ -1868,7 +1874,7 @@ export interface components {
         OppgaveDTO: {
             oppgaveId: string;
             traadId?: string;
-            'f\u00F8dselsnummer'?: string;
+            fnr?: string;
             erSTOOppgave: boolean;
             tildeltEnhetsnr: string;
             tema: string;

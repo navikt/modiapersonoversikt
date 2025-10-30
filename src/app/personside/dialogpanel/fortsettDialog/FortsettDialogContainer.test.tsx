@@ -25,7 +25,7 @@ function lagOppgave({ oppgaveId, traadId, erSTOOppgave }: Omit<Oppgave, 'fødsel
         oppgaveId,
         traadId,
         erSTOOppgave,
-        fødselsnummer: 'N/A'
+        fnr: 'N/A'
     };
 }
 
@@ -40,7 +40,7 @@ describe('FortsettDialogContainer', () => {
 
         it('skal returnere undefined/false om ingen oppgaver er tilknyttet tråd', () => {
             const resource = restResource<Oppgave[]>('success', [
-                lagOppgave({ oppgaveId: 'oid1', traadId: 'tid1', erSTOOppgave: false })
+                lagOppgave({ oppgaveId: 'oid1', traadId: 'tid1', erSTOOppgave: false, fnr: 'N/A' })
             ]);
             const { oppgave, erSTOOppgave } = finnPlukketOppgaveForTraad(lagTraad('N/A'), resource);
             expect(oppgave).toBeUndefined();
@@ -49,9 +49,9 @@ describe('FortsettDialogContainer', () => {
 
         it('skal returnere oppgave som er tilknyttet nåværende tråd', () => {
             const resource = restResource<Oppgave[]>('success', [
-                lagOppgave({ oppgaveId: 'oid1', traadId: 'tid1', erSTOOppgave: true }),
-                lagOppgave({ oppgaveId: 'oid2', traadId: 'tid2', erSTOOppgave: true }),
-                lagOppgave({ oppgaveId: 'oid3', traadId: 'tid3', erSTOOppgave: false })
+                lagOppgave({ oppgaveId: 'oid1', traadId: 'tid1', erSTOOppgave: true, fnr: 'N/A' }),
+                lagOppgave({ oppgaveId: 'oid2', traadId: 'tid2', erSTOOppgave: true, fnr: 'N/A' }),
+                lagOppgave({ oppgaveId: 'oid3', traadId: 'tid3', erSTOOppgave: false, fnr: 'N/A' })
             ]);
             const { oppgave, erSTOOppgave } = finnPlukketOppgaveForTraad(lagTraad('tid3'), resource);
             expect(oppgave?.oppgaveId).toBe('oid3');
@@ -60,9 +60,9 @@ describe('FortsettDialogContainer', () => {
 
         it('skal riktig identifisere at oppgave er SPM_OG_SVAR oppgave', () => {
             const resource = restResource<Oppgave[]>('success', [
-                lagOppgave({ oppgaveId: 'oid1', traadId: 'tid1', erSTOOppgave: false }),
-                lagOppgave({ oppgaveId: 'oid2', traadId: 'tid1', erSTOOppgave: false }),
-                lagOppgave({ oppgaveId: 'oid3', traadId: 'tid2', erSTOOppgave: true })
+                lagOppgave({ oppgaveId: 'oid1', traadId: 'tid1', erSTOOppgave: false, fnr: 'N/A' }),
+                lagOppgave({ oppgaveId: 'oid2', traadId: 'tid1', erSTOOppgave: false, fnr: 'N/A' }),
+                lagOppgave({ oppgaveId: 'oid3', traadId: 'tid2', erSTOOppgave: true, fnr: 'N/A' })
             ]);
             const { oppgave, erSTOOppgave } = finnPlukketOppgaveForTraad(lagTraad('tid2'), resource);
             expect(oppgave?.oppgaveId).toBe('oid3');
@@ -72,9 +72,9 @@ describe('FortsettDialogContainer', () => {
 
         it('skal riktig identifisere at oppgave ikke er SPM_OG_SVAR oppgave', () => {
             const resource = restResource<Oppgave[]>('success', [
-                lagOppgave({ oppgaveId: 'oid1', traadId: 'tid1', erSTOOppgave: true }),
-                lagOppgave({ oppgaveId: 'oid2', traadId: 'tid1', erSTOOppgave: true }),
-                lagOppgave({ oppgaveId: 'oid3', traadId: 'tid2', erSTOOppgave: false })
+                lagOppgave({ oppgaveId: 'oid1', traadId: 'tid1', erSTOOppgave: true, fnr: 'N/A' }),
+                lagOppgave({ oppgaveId: 'oid2', traadId: 'tid1', erSTOOppgave: true, fnr: 'N/A' }),
+                lagOppgave({ oppgaveId: 'oid3', traadId: 'tid2', erSTOOppgave: false, fnr: 'N/A' })
             ]);
             const { oppgave, erSTOOppgave } = finnPlukketOppgaveForTraad(lagTraad('tid2'), resource);
             expect(oppgave?.oppgaveId).toBe('oid3');

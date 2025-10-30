@@ -48,7 +48,7 @@ function AvsluttGosysOppgaveSkjema(props: Props) {
         setSubmitting(true);
         if (harOppgaveTilknyttetTrad) {
             const request: AvsluttGosysOppgaveRequest = {
-                fnr: harOppgaveTilknyttetTrad.fødselsnummer,
+                fnr: harOppgaveTilknyttetTrad.fnr,
                 oppgaveid: harOppgaveTilknyttetTrad.oppgaveId,
                 beskrivelse: gosysBeskrivelse,
                 saksbehandlerValgtEnhet: saksbehandlersEnhet
