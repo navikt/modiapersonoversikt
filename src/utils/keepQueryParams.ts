@@ -40,7 +40,8 @@ export const keepQueryParams = <TSearch extends Record<string, unknown>>(searchP
                 );
                 return filtered as TSearch;
             },
-            replace: true
+            // Sørger for at state beholdes ved navigasjon. F.eks umami-event
+            state: router?.state?.location?.state
         });
     };
 

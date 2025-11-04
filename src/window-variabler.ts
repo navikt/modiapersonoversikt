@@ -1,4 +1,5 @@
 import type { Faro } from '@grafana/faro-web-sdk';
+import type { AnyRouter } from '@tanstack/react-router';
 
 declare global {
     interface Window {
@@ -8,6 +9,7 @@ declare global {
         };
         __ENV__: Record<string, string>;
         faro?: Faro;
+        __router: AnyRouter;
     }
 }
 

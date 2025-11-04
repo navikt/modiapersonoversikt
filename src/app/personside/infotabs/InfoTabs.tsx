@@ -1,16 +1,16 @@
 import { Outlet, useLocation, useNavigate } from '@tanstack/react-router';
 import { guid } from 'nav-frontend-js-utils';
 import { useEffect, useRef } from 'react';
+import { MeldingsokProvider } from 'src/context/meldingsok';
+import { useVisittkortState } from 'src/context/visittkort-state';
 import styled from 'styled-components';
 import ErrorBoundary from '../../../components/ErrorBoundary';
-import { MeldingsokProvider } from '../../../context/meldingsok';
-import { useVisittkortState } from '../../../context/visittkort-state';
 import useKeepScroll from '../../../utils/hooks/useKeepScroll';
 import { personPaths } from '../../routes/routing';
 import HandleInfotabsHotkeys from './HandleInfotabsHotkeys';
 import { INFOTABS, type InfotabsType } from './InfoTabEnum';
 import TabKnapper from './TabKnapper';
-import { useOpenTab } from './utils/useOpenTab';
+import { getOpenTabFromRouterPath, useOpenTab } from './utils/useOpenTab';
 
 const StyledArticle = styled.article`
   display: flex;
@@ -32,7 +32,18 @@ function InfoTabs() {
         const path = `${paths.personUri}/${INFOTABS[newTab].path}` as const;
         const newPath = location.pathname !== path;
         if (newPath) {
-            navigate({ to: path });
+            navigate({
+                to: path,
+                state: {
+                    umamiEvent: {
+                        name: 'fane endret',
+                        data: {
+                            nyFane: getOpenTabFromRouterPath(newTab).path,
+                            forrigeFane: openTab.path
+                        }
+                    }
+                }
+            });
         }
         visittkortStatus.setApent(false);
     };
@@ -57,13 +68,7 @@ function InfoTabs() {
             <TabKnapper openTab={openTab} onTabChange={updateRouterPath} />
             <ErrorBoundary boundaryName={`Open tab: ${openTab.tittel}`}>
                 <StyledArticle ref={openTabRef} onScroll={storeCroll} aria-labelledby={articleId.current}>
-                    <h2
-                        id={articleId.current}
-                        ref={headerRef}
-                        tabIndex={-1}
-                        className="sr-only"
-                        aria-live={'assertive'}
-                    >
+                    <h2 id={articleId.current} ref={headerRef} tabIndex={-1} className="sr-only" aria-live="assertive">
                         {openTab.tittel} - Fane
                     </h2>
                     <MeldingsokProvider>
