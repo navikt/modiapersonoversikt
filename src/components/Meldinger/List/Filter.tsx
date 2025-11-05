@@ -19,7 +19,7 @@ import type { DateRange } from 'src/components/DateFilters/types';
 import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
 import { TraadType } from 'src/lib/types/modiapersonoversikt-api';
 import { Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
-import { trackExpansionCardApnet, trackExpansionCardLukket } from 'src/utils/analytics';
+import { filterType, trackExpansionCardApnet, trackExpansionCardLukket, trackFilterEndret } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
 import { traadTypeTekst } from './tekster';
 
@@ -64,6 +64,7 @@ const TemaFilter = () => {
     const onToggleSelected = useCallback(
         (option: string) => {
             setSelectedTema(option as Temagruppe);
+            trackFilterEndret('meldinger', filterType.TEMA);
         },
         [setSelectedTema]
     );
@@ -97,7 +98,12 @@ const SearchField = () => {
         setInternalValue(value ?? '');
     }, [value]);
 
-    const setAtomValue = debounce(setValue, 500);
+    const setValueOgTrackSok = (v: string) => {
+        setValue(v);
+        trackFilterEndret('meldinger', filterType.SOK);
+    };
+
+    const setAtomValue = debounce(setValueOgTrackSok, 500);
     return (
         <Search
             size="small"
@@ -129,7 +135,15 @@ const TraadTypeFilter = () => {
         <Fieldset size="small" legend="Type dialog">
             <HStack wrap gap="2">
                 {Object.values(TraadType).map((t) => (
-                    <Switch key={t} size="small" checked={value?.includes(t)} onChange={() => setValue(t)}>
+                    <Switch
+                        key={t}
+                        size="small"
+                        checked={value?.includes(t)}
+                        onChange={() => {
+                            setValue(t);
+                            trackFilterEndret('meldinger', filterType.TYPE);
+                        }}
+                    >
                         {traadTypeTekst(true, t)}
                     </Switch>
                 ))}

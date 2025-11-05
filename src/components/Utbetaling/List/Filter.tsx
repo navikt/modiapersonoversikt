@@ -8,7 +8,7 @@ import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
 import { reduceUtbetlingerTilYtelser, utbetalingMottakere } from 'src/components/Utbetaling/List/utils';
 import type { Utbetaling, Ytelse } from 'src/generated/modiapersonoversikt-api';
 import { useUtbetalinger } from 'src/lib/clients/modiapersonoversikt-api';
-import { trackExpansionCardApnet, trackExpansionCardLukket } from 'src/utils/analytics';
+import { filterType, trackExpansionCardApnet, trackExpansionCardLukket, trackFilterEndret } from 'src/utils/analytics';
 import { sorterAlfabetisk } from 'src/utils/string-utils';
 import { twMerge } from 'tailwind-merge';
 
@@ -73,6 +73,7 @@ const UtbetalingYtelserFilter = () => {
     const onToggleSelected = useCallback(
         (option: string) => {
             setSelectedYtelse(option);
+            trackFilterEndret('utbetaling', filterType.YTELSE_TYPE);
         },
         [setSelectedYtelse]
     );
@@ -102,6 +103,7 @@ const UtbetaltTilFilter = () => {
     const onToggleSelected = useCallback(
         (option: string) => {
             setSelectedMottakere(option);
+            trackFilterEndret('utbetaling', filterType.TYPE);
         },
         [setSelectedMottakere]
     );

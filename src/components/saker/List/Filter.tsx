@@ -7,7 +7,7 @@ import DateRangeSelector, { getPeriodFromOption } from 'src/components/DateFilte
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
 import { sakStatuser, useTemaer } from 'src/components/saker/utils';
 import type { DokumentmetadataAvsender } from 'src/generated/modiapersonoversikt-api';
-import { trackExpansionCardApnet, trackExpansionCardLukket } from 'src/utils/analytics';
+import { filterType, trackExpansionCardApnet, trackExpansionCardLukket, trackFilterEndret } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
 
 export type SakerFilter = {
@@ -86,7 +86,12 @@ const SaksIdSearchField = () => {
         setInternalValue(value ?? '');
     }, [value]);
 
-    const setAtomValue = debounce(setValue, 500);
+    const setValueOgTrackSok = (v: string) => {
+        setValue(v);
+        trackFilterEndret('saker', filterType.SOK);
+    };
+
+    const setAtomValue = debounce(setValueOgTrackSok, 500);
     return (
         <Search
             size="small"
@@ -114,6 +119,7 @@ const TemaFilter = () => {
     const onToggleSelected = useCallback(
         (option: string) => {
             setSelectedTema(option);
+            trackFilterEndret('saker', filterType.TEMA);
         },
         [selectedTema]
     );
@@ -138,6 +144,7 @@ const StatusFilter = () => {
     const onToggleSelected = useCallback(
         (option: string) => {
             setSelectedStatus(option);
+            trackFilterEndret('saker', filterType.STATUS);
         },
         [setSelectedStatus]
     );

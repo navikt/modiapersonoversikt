@@ -6,7 +6,7 @@ import { useCallback, useMemo, useRef, useState } from 'react';
 import DateRangeSelector, { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
 import { useGsakTema } from 'src/lib/clients/modiapersonoversikt-api';
-import { trackExpansionCardApnet, trackExpansionCardLukket } from 'src/utils/analytics';
+import { filterType, trackExpansionCardApnet, trackExpansionCardLukket, trackFilterEndret } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
 
 export type OppgaveFilter = {
@@ -56,6 +56,7 @@ const TemaFilter = () => {
     const onToggleSelected = useCallback(
         (option: string) => {
             setSelectedTema(option);
+            trackFilterEndret('oppgaver', filterType.TEMA);
         },
         [selectedTema]
     );

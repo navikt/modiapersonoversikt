@@ -1,5 +1,3 @@
-import type { InfotabsType } from 'src/app/personside/infotabs/InfoTabEnum';
-
 interface Umami {
     track(payload: unknown): void;
     track(event_name: string, payload: unknown): void;
@@ -26,21 +24,22 @@ export enum trackingEvents {
 }
 
 export enum filterType {
-    DATO = 'dato',
+    DATO_RADIO = 'dato radio',
+    DATO_EGENDEFINERT = 'dato egendefinert',
     TYPE = 'type',
-    YTELSE_TYPE = 'ytelseType',
+    YTELSE_TYPE = 'ytelsetype',
     STATUS = 'status',
-    SØK = 'søk',
+    SOK = 'søk',
     TEMA = 'tema'
 }
 
-export const trackFilterEndret = (fane: InfotabsType, filterType: filterType) => {
+export const trackFilterEndret = (fane: string, filterType: filterType) => {
     if (!window.umami) {
         console.warn('Umami is not initialized. Ignoring');
         return;
     }
     window.umami.track(trackingEvents.filterEndret, {
-        faneId: fane.toLowerCase(),
+        fane: fane.toLowerCase(),
         filterType: filterType
     });
 };
