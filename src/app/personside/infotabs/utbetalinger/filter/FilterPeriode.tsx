@@ -1,7 +1,9 @@
 import { Radio } from 'nav-frontend-skjema';
 import { Element } from 'nav-frontend-typografi';
 import { useState } from 'react';
+import { useOpenTab } from 'src/app/personside/infotabs/utils/useOpenTab';
 import { type FraTilDato, type PeriodeOptions, PeriodeValg } from 'src/redux/utbetalinger/types';
+import { filterType, trackFilterEndret } from 'src/utils/analytics';
 import styled from 'styled-components';
 import { getFraDateFromPeriod } from '../utils/utbetalinger-utils';
 import EgendefinertDatoInputs from './EgendefinertDatoInputs';
@@ -44,9 +46,11 @@ interface FiltreringPeriodeProps {
 function FiltreringPeriode(props: FiltreringPeriodeProps) {
     const [radioValg, setRadioValg] = useState<PeriodeValg>(props.periode.radioValg);
     const [periode, setPeriode] = useState<FraTilDato>(props.periode.egendefinertPeriode);
+    const fane = useOpenTab().path;
 
     const onPeriodChange = (periodeValg: PeriodeValg) => {
         setRadioValg(periodeValg);
+        trackFilterEndret(fane, filterType.DATO_RADIO);
         const fraTilDato = getFraDateFromPeriod(periodeValg);
         setPeriode(fraTilDato);
         props.updatePeriod({
@@ -58,6 +62,7 @@ function FiltreringPeriode(props: FiltreringPeriodeProps) {
 
     const onFraTilDatoChange = (val: FraTilDato) => {
         setPeriode(val);
+        trackFilterEndret(fane, filterType.DATO_EGENDEFINERT);
         props.updatePeriod({
             ...props.periode,
             radioValg,

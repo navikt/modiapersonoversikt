@@ -5,17 +5,18 @@ import { Input } from 'nav-frontend-skjema';
 import { Normaltekst } from 'nav-frontend-typografi';
 import * as React from 'react';
 import { useEffect, useRef } from 'react';
+import TraadListeElement from 'src/app/personside/infotabs/meldinger/traadliste/TraadListeElement';
+import PrintKnapp from 'src/components/PrintKnapp';
+import { LenkeKnapp } from 'src/components/common-styled-components';
+import { useMeldingsok } from 'src/context/meldingsok';
+import type { Traad } from 'src/models/meldinger/meldinger';
+import theme from 'src/styles/personOversiktTheme';
+import { filterType, trackFilterEndret } from 'src/utils/analytics';
+import usePaginering from 'src/utils/hooks/usePaginering';
+import { loggEvent } from 'src/utils/logger/frontendLogger';
+import MeldingerPrintMarkup from 'src/utils/print/MeldingerPrintMarkup';
+import usePrinter from 'src/utils/print/usePrinter';
 import styled from 'styled-components';
-import PrintKnapp from '../../../../../components/PrintKnapp';
-import { LenkeKnapp } from '../../../../../components/common-styled-components';
-import { useMeldingsok } from '../../../../../context/meldingsok';
-import type { Traad } from '../../../../../models/meldinger/meldinger';
-import theme from '../../../../../styles/personOversiktTheme';
-import usePaginering from '../../../../../utils/hooks/usePaginering';
-import { loggEvent } from '../../../../../utils/logger/frontendLogger';
-import MeldingerPrintMarkup from '../../../../../utils/print/MeldingerPrintMarkup';
-import usePrinter from '../../../../../utils/print/usePrinter';
-import TraadListeElement from './TraadListeElement';
 
 interface Props {
     traader: Traad[];
@@ -142,6 +143,7 @@ function TraadListe(props: Props) {
         const brukerStarterEtNyttSøk = meldingsok.query === '' && value.length > 0;
         if (brukerStarterEtNyttSøk) {
             loggEvent('SøkIMeldinger', 'Meldinger');
+            trackFilterEndret('meldinger', filterType.SOK);
         }
         meldingsok.setQuery(value);
     };
