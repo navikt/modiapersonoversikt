@@ -3,6 +3,7 @@ import { HoyreChevron } from 'nav-frontend-chevron';
 import { guid } from 'nav-frontend-js-utils';
 import * as React from 'react';
 import { type ChangeEvent, type ReactNode, useRef } from 'react';
+import { trackingEvents } from 'src/utils/analytics';
 import styled, { css } from 'styled-components';
 import type { Traad } from '../../../../../models/meldinger/meldinger';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
@@ -68,7 +69,7 @@ function TraadListeElement(props: Props) {
             search: { traadId: props.traad.traadId },
             state: {
                 umamiEvent: {
-                    name: 'detaljvisning klikket',
+                    name: trackingEvents.detaljvisningKlikket,
                     data: {
                         fane: 'meldinger',
                         tekst: 'åpne melding'

@@ -14,6 +14,7 @@ import { Box, Button, Heading, VStack } from '@navikt/ds-react';
 import { Link, useLocation } from '@tanstack/react-router';
 import { type ComponentProps, useState } from 'react';
 import { getOpenTabFromRouterPath } from 'src/app/personside/infotabs/utils/useOpenTab';
+import { trackingEvents } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
 import Card from './Card';
 import { ThemeIconToggle, ThemeToggle } from './theme/ThemeToggle';
@@ -112,7 +113,7 @@ export const PersonSidebarMenu = () => {
                                 to={href}
                                 state={{
                                     umamiEvent: {
-                                        name: 'fane endret',
+                                        name: trackingEvents.faneEndret,
                                         data: {
                                             nyFane: getOpenTabFromRouterPath(href).path,
                                             forrigeFane: getOpenTabFromRouterPath(location.pathname).path

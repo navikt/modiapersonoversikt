@@ -5,6 +5,7 @@ import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import * as React from 'react';
 import { type ReactNode, useRef, useState } from 'react';
 import { getOpenTabFromRouterPath } from 'src/app/personside/infotabs/utils/useOpenTab';
+import { trackingEvents } from 'src/utils/analytics';
 import styled from 'styled-components';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
@@ -95,7 +96,7 @@ function Oversiktskomponent(props: Props) {
                             to={path}
                             state={{
                                 umamiEvent: {
-                                    name: 'detaljvisning klikket',
+                                    name: trackingEvents.detaljvisningKlikket,
                                     data: {
                                         fane: 'oversikt',
                                         tekst: `lenke til ${getOpenTabFromRouterPath(path).path}`

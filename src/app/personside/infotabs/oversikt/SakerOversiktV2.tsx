@@ -1,6 +1,7 @@
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
 import type { ReactNode } from 'react';
+import { trackingEvents } from 'src/utils/analytics';
 import styled from 'styled-components';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import type { SakstemaSoknadsstatus } from '../../../../models/saksoversikt/sakstema';
@@ -33,7 +34,7 @@ function SakerPanel(props: { sakstema: SakstemaSoknadsstatus[] } & Props) {
         .map((sakstema, index) => (
             <SakstemaListeElementKnappV2
                 sakstema={sakstema}
-                umamiEvent={{ name: 'detaljvisning klikket', data: { fane: 'oversikt', tekst: 'vis sak' } }}
+                umamiEvent={{ name: trackingEvents.detaljvisningKlikket, data: { fane: 'oversikt', tekst: 'vis sak' } }}
                 key={index}
                 erValgt={false}
             />

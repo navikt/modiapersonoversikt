@@ -15,6 +15,7 @@ import { type Sykepenger, getSykepengerIdDato } from 'src/models/ytelse/sykepeng
 import { type Tiltakspenger, getTiltakspengerIdDato, getUnikTiltakspengerKey } from 'src/models/ytelse/tiltakspenger';
 import { getUnikYtelseKey } from 'src/models/ytelse/ytelse-utils';
 import theme from 'src/styles/personOversiktTheme';
+import { trackingEvents } from 'src/utils/analytics';
 import { usePrevious } from 'src/utils/customHooks';
 import { formaterDato } from 'src/utils/string-utils';
 import styled from 'styled-components';
@@ -30,7 +31,7 @@ interface Props {
 }
 
 const umamiEvent = {
-    name: 'detaljvisning klikket',
+    name: trackingEvents.detaljvisningKlikket,
     data: {
         fane: 'oversikt',
         tekst: 'vis ytelse'

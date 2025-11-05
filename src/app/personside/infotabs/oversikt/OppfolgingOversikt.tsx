@@ -3,6 +3,7 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { usePaths } from 'src/app/routes/routing';
 import { CenteredLazySpinner } from 'src/components/LazySpinner';
 import type { DetaljertOppfolging } from 'src/models/oppfolging';
+import { trackingEvents } from 'src/utils/analytics';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
 import oppfolgingResource from '../../../../rest/resources/oppfolgingResource';
 import theme from '../../../../styles/personOversiktTheme';
@@ -31,7 +32,7 @@ function OppfolgingPanel(props: Props) {
         <VisMerKnapp
             linkTo={paths.oppfolging}
             umamiEvent={{
-                name: 'detaljvisning klikket',
+                name: trackingEvents.detaljvisningKlikket,
                 data: {
                     fane: 'oversikt',
                     tekst: 'vis mer knapp'
