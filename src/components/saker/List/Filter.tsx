@@ -193,7 +193,9 @@ export const SakerFilter = () => {
             if (!expansionFilterRef.current) return;
             const isOpen = expansionFilterRef.current.classList.contains('aksel-expansioncard--open');
             setOpen(isOpen);
-            isOpen ? trackExpansionCardLukket('sakerfilter') : trackExpansionCardApnet('sakerfilter');
+            if (isOpen !== open) {
+                isOpen ? trackExpansionCardLukket('sakerfilter') : trackExpansionCardApnet('sakerfilter');
+            }
         }, 0);
     };
 

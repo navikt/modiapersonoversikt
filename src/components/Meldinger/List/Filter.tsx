@@ -199,7 +199,9 @@ export const TraadListFilterCard = () => {
             if (!expansionFilterRef.current) return;
             const isOpen = expansionFilterRef.current.classList.contains('aksel-expansioncard--open');
             setOpen(isOpen);
-            isOpen ? trackExpansionCardLukket('meldingerfilter') : trackExpansionCardApnet('meldingerfilter');
+            if (isOpen !== open) {
+                isOpen ? trackExpansionCardLukket('meldingerfilter') : trackExpansionCardApnet('meldingerfilter');
+            }
         }, 0);
     };
 

@@ -154,7 +154,9 @@ export const UtbetalingListFilter = () => {
             if (!expansionFilterRef.current) return;
             const isOpen = expansionFilterRef.current.classList.contains('aksel-expansioncard--open');
             setOpen(isOpen);
-            isOpen ? trackExpansionCardLukket('utbetalingfilter') : trackExpansionCardApnet('utbetalingfilter');
+            if (isOpen !== open) {
+                isOpen ? trackExpansionCardLukket('utbetalingfilter') : trackExpansionCardApnet('utbetalingfilter');
+            }
         }, 0);
     };
     return (

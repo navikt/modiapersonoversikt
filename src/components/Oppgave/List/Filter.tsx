@@ -102,7 +102,9 @@ export const OppgaveListFilter = () => {
             if (!expansionFilterRef.current) return;
             const isOpen = expansionFilterRef.current.classList.contains('aksel-expansioncard--open');
             setOpen(isOpen);
-            isOpen ? trackExpansionCardLukket('oppgavefilter') : trackExpansionCardApnet('oppgavefilter');
+            if (isOpen !== open) {
+                isOpen ? trackExpansionCardLukket('oppgavefilter') : trackExpansionCardApnet('oppgavefilter');
+            }
         }, 0);
     };
     return (
