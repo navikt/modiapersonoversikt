@@ -7,6 +7,7 @@ import DateRangeSelector, { getPeriodFromOption } from 'src/components/DateFilte
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
 import { sakStatuser, useTemaer } from 'src/components/saker/utils';
 import type { DokumentmetadataAvsender } from 'src/generated/modiapersonoversikt-api';
+import { trackExpansionCardApnet, trackExpansionCardLukket } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
 
 export type SakerFilter = {
@@ -190,7 +191,9 @@ export const SakerFilter = () => {
     const handleExpansionChange = () => {
         setTimeout(() => {
             if (!expansionFilterRef.current) return;
-            setOpen(expansionFilterRef.current.classList.contains('aksel-expansioncard--open'));
+            const isOpen = expansionFilterRef.current.classList.contains('aksel-expansioncard--open');
+            setOpen(isOpen);
+            isOpen ? trackExpansionCardLukket('sakerfilter') : trackExpansionCardApnet('sakerfilter');
         }, 0);
     };
 

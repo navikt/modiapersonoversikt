@@ -17,7 +17,10 @@ export enum trackingEvents {
     accordionApnet = 'accordion åpnet',
     accordionLukket = 'accordion lukket',
     filterEndret = 'filter endret',
+    expansionCardApnet = 'expansion card åpnet',
+    expansionCardLukket = 'expansion card lukket',
     faneEndret = 'fane endret',
+
     // denne er i bruk i internflatedekoratøren, ikke bruk her
     lenkeKlikket = 'lenke klikket'
 }
@@ -31,14 +34,34 @@ export enum filterType {
     TEMA = 'tema'
 }
 
-export const trackFilterChange = (faneId: InfotabsType, filterType: filterType) => {
+export const trackFilterEndret = (fane: InfotabsType, filterType: filterType) => {
     if (!window.umami) {
         console.warn('Umami is not initialized. Ignoring');
         return;
     }
-    window.umami.track('filter endret', {
-        faneId: faneId.toLowerCase(),
+    window.umami.track(trackingEvents.filterEndret, {
+        faneId: fane.toLowerCase(),
         filterType: filterType
+    });
+};
+
+export const trackExpansionCardApnet = (name: string) => {
+    if (!window.umami) {
+        console.warn('Umami is not initialized. Ignoring');
+        return;
+    }
+    window.umami.track(trackingEvents.expansionCardApnet, {
+        tittel: name
+    });
+};
+
+export const trackExpansionCardLukket = (name: string) => {
+    if (!window.umami) {
+        console.warn('Umami is not initialized. Ignoring');
+        return;
+    }
+    window.umami.track(trackingEvents.expansionCardLukket, {
+        tittel: name
     });
 };
 

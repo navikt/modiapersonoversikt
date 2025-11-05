@@ -6,6 +6,7 @@ import { useCallback, useMemo, useRef, useState } from 'react';
 import DateRangeSelector, { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
 import { useGsakTema } from 'src/lib/clients/modiapersonoversikt-api';
+import { trackExpansionCardApnet, trackExpansionCardLukket } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
 
 export type OppgaveFilter = {
@@ -99,7 +100,9 @@ export const OppgaveListFilter = () => {
     const handleExpansionChange = () => {
         setTimeout(() => {
             if (!expansionFilterRef.current) return;
-            setOpen(expansionFilterRef.current.classList.contains('aksel-expansioncard--open'));
+            const isOpen = expansionFilterRef.current.classList.contains('aksel-expansioncard--open');
+            setOpen(isOpen);
+            isOpen ? trackExpansionCardLukket('oppgavefilter') : trackExpansionCardApnet('oppgavefilter');
         }, 0);
     };
     return (

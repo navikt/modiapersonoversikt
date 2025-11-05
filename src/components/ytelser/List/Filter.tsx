@@ -6,6 +6,7 @@ import { useCallback, useMemo, useRef, useState } from 'react';
 import DateRangeSelector, { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
 import { YtelseVedtakYtelseType } from 'src/generated/modiapersonoversikt-api';
+import { trackExpansionCardApnet, trackExpansionCardLukket } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
 
 export type YtelseFilter = {
@@ -101,7 +102,9 @@ export const YtelserListFilter = () => {
     const handleExpansionChange = () => {
         setTimeout(() => {
             if (!expansionFilterRef.current) return;
-            setOpen(expansionFilterRef.current.classList.contains('aksel-expansioncard--open'));
+            const isOpen = expansionFilterRef.current.classList.contains('aksel-expansioncard--open');
+            setOpen(isOpen);
+            isOpen ? trackExpansionCardLukket('ytelsefilter') : trackExpansionCardApnet('ytelsefilter');
         }, 0);
     };
     return (

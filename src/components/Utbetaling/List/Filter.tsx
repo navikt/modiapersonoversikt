@@ -8,6 +8,7 @@ import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
 import { reduceUtbetlingerTilYtelser, utbetalingMottakere } from 'src/components/Utbetaling/List/utils';
 import type { Utbetaling, Ytelse } from 'src/generated/modiapersonoversikt-api';
 import { useUtbetalinger } from 'src/lib/clients/modiapersonoversikt-api';
+import { trackExpansionCardApnet, trackExpansionCardLukket } from 'src/utils/analytics';
 import { sorterAlfabetisk } from 'src/utils/string-utils';
 import { twMerge } from 'tailwind-merge';
 
@@ -151,7 +152,9 @@ export const UtbetalingListFilter = () => {
     const handleExpansionChange = () => {
         setTimeout(() => {
             if (!expansionFilterRef.current) return;
-            setOpen(expansionFilterRef.current.classList.contains('aksel-expansioncard--open'));
+            const isOpen = expansionFilterRef.current.classList.contains('aksel-expansioncard--open');
+            setOpen(isOpen);
+            isOpen ? trackExpansionCardLukket('utbetalingfilter') : trackExpansionCardApnet('utbetalingfilter');
         }, 0);
     };
     return (

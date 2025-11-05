@@ -19,6 +19,7 @@ import type { DateRange } from 'src/components/DateFilters/types';
 import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
 import { TraadType } from 'src/lib/types/modiapersonoversikt-api';
 import { Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
+import { trackExpansionCardApnet, trackExpansionCardLukket } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
 import { traadTypeTekst } from './tekster';
 
@@ -196,7 +197,9 @@ export const TraadListFilterCard = () => {
     const handleExpansionChange = () => {
         setTimeout(() => {
             if (!expansionFilterRef.current) return;
-            setOpen(expansionFilterRef.current.classList.contains('aksel-expansioncard--open'));
+            const isOpen = expansionFilterRef.current.classList.contains('aksel-expansioncard--open');
+            setOpen(isOpen);
+            isOpen ? trackExpansionCardLukket('meldingerfilter') : trackExpansionCardApnet('meldingerfilter');
         }, 0);
     };
 
