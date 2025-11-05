@@ -91,7 +91,7 @@ function EnkelUtbetaling(props: Props) {
     const handleClickOnUtbetaling = (event: React.MouseEvent<HTMLElement>) => {
         const printKnappTrykket = eventTagetIsInsideRef(event, printerButtonRef);
         if (!printKnappTrykket) {
-            if (!visDetaljer) trackVisDetaljvisning('utbetalinger', 'vis detaljer 1232');
+            if (!visDetaljer) trackVisDetaljvisning('utbetaling', 'vis enkel utbetaling');
             toggleVisDetaljer();
         }
         ekspanderYtelse(!visDetaljer);

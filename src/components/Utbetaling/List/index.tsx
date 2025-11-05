@@ -4,6 +4,7 @@ import { Suspense, useCallback } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { UtbetalingItem } from 'src/components/Utbetaling/List/UtbetalingItem';
+import { trackingEvents } from 'src/utils/analytics';
 import { UtbetalingListFilter } from './Filter';
 import { getUtbetalingId, useFilterUtbetalinger } from './utils';
 
@@ -36,7 +37,15 @@ const UtbetalingList = () => {
 
     const handleClick = useCallback(
         (id: string) => {
-            navigate({ search: { id } });
+            navigate({
+                search: { id },
+                state: {
+                    umamiEvent: {
+                        name: trackingEvents.detaljvisningKlikket,
+                        data: { fane: 'utbetaling', tekst: 'åpne utbetaling' }
+                    }
+                }
+            });
         },
         [navigate]
     );

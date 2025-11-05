@@ -4,6 +4,7 @@ import { Suspense, useCallback } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { VarslerItem } from 'src/components/varsler/List/VarslerItem';
+import { trackingEvents } from 'src/utils/analytics';
 import { VarslerListFilter } from './Filter';
 import { useFilterVarsler } from './utils';
 
@@ -34,7 +35,15 @@ const VarslerListList = () => {
 
     const handleClick = useCallback(
         (id: string) => {
-            navigate({ search: { id } });
+            navigate({
+                search: { id },
+                state: {
+                    umamiEvent: {
+                        name: trackingEvents.detaljvisningKlikket,
+                        data: { fane: 'varsler', tekst: 'vis varsel' }
+                    }
+                }
+            });
         },
         [navigate]
     );

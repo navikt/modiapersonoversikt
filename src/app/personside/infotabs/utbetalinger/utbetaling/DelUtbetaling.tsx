@@ -57,7 +57,7 @@ class DelUtbetaling extends PureComponent<Props> {
 
     toggleVisDetaljer(klikketFraExpandable = false) {
         if (!this.props.erEkspandert && !klikketFraExpandable)
-            trackVisDetaljvisning('utbetalinger', 'vis detaljer delutbetaling');
+            trackVisDetaljvisning('utbetaling', 'vis detaljer delutbetaling');
         this.props.ekspanderYtelse(!this.props.erEkspandert);
     }
 

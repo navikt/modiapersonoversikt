@@ -5,6 +5,7 @@ import { Suspense, useCallback, useMemo } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
+import { trackingEvents } from 'src/utils/analytics';
 import { datoSynkende } from 'src/utils/date-utils';
 import { TraadListFilterCard, meldingerFilterAtom } from './Filter';
 import { TraadItem } from './TraadItem';
@@ -43,7 +44,15 @@ const Traader = () => {
 
     const handleClick = useCallback(
         (traadId: string) => {
-            navigate({ search: { traadId } });
+            navigate({
+                search: { traadId },
+                state: {
+                    umamiEvent: {
+                        name: trackingEvents.detaljvisningKlikket,
+                        data: { fane: 'meldinger', tekst: 'åpne melding' }
+                    }
+                }
+            });
         },
         [navigate]
     );

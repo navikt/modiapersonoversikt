@@ -5,7 +5,8 @@ export enum InfotabsType {
     UTBETALING = 'UTBETALING',
     SAKER = 'SAKER',
     YTELSER = 'YTELSER',
-    VARSLER = 'VARSLER'
+    VARSLER = 'VARSLER',
+    OPPGAVER = 'OPPGAVER'
 }
 
 export interface InfotabConfig {
@@ -20,5 +21,6 @@ export const INFOTABS = {
     UTBETALING: { tittel: 'Utbetaling', path: 'utbetaling' },
     SAKER: { tittel: 'Saker', path: 'saker' },
     YTELSER: { tittel: 'Ytelser', path: 'ytelser' },
-    VARSLER: { tittel: 'Varsler', path: 'varsler' }
+    VARSLER: { tittel: 'Varsler', path: 'varsler' },
+    OPPGAVER: { tittel: 'Oppgaver', path: 'oppgaver' }
 } as const;
