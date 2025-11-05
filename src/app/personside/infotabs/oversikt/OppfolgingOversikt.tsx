@@ -1,11 +1,11 @@
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import { CenteredLazySpinner } from '../../../../components/LazySpinner';
+import { usePaths } from 'src/app/routes/routing';
+import { CenteredLazySpinner } from 'src/components/LazySpinner';
+import type { DetaljertOppfolging } from 'src/models/oppfolging';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
-import type { DetaljertOppfolging } from '../../../../models/oppfolging';
 import oppfolgingResource from '../../../../rest/resources/oppfolgingResource';
 import theme from '../../../../styles/personOversiktTheme';
-import { usePaths } from '../../../routes/routing';
 import CopyToClipboard from '../../visittkort-v2/header/status/CopyToClipboard';
 import { getOppfolgingEnhet, getVeileder } from '../oppfolging/oppfolging-utils';
 
@@ -28,7 +28,18 @@ function OppfolgingPanel(props: Props) {
     }
 
     return (
-        <VisMerKnapp linkTo={paths.oppfolging} ariaDescription="Gå til oppfølging" valgt={false}>
+        <VisMerKnapp
+            linkTo={paths.oppfolging}
+            umamiEvent={{
+                name: 'detaljvisning klikket',
+                data: {
+                    fane: 'oversikt',
+                    tekst: 'vis mer knapp'
+                }
+            }}
+            ariaDescription="Gå til oppfølging"
+            valgt={false}
+        >
             <OppfolgingVisning detaljertOppfolging={props.detaljertOppfolging} />
         </VisMerKnapp>
     );

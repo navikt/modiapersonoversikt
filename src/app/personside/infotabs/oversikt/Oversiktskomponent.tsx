@@ -4,6 +4,7 @@ import Panel from 'nav-frontend-paneler';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import * as React from 'react';
 import { type ReactNode, useRef, useState } from 'react';
+import { getOpenTabFromRouterPath } from 'src/app/personside/infotabs/utils/useOpenTab';
 import styled from 'styled-components';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
@@ -53,13 +54,24 @@ const CustomContent = styled.div`
 `;
 
 function Oversiktskomponent(props: Props) {
-    const path = `${paths.personUri}/${props.infotabPath.path}/`;
+    const path = `/${paths.personUri}/${props.infotabPath.path}`;
     const [customContent, setCustomContent] = useState<ReactNode>(null);
     const [redirect, setRedirect] = useState(false);
     const headerId = useRef(guid());
 
     if (redirect) {
-        return <Navigate to={path} replace />;
+        return (
+            <Navigate
+                to={path}
+                state={{
+                    umamiEvent: {
+                        name: 'linke klikket fra oversikt',
+                        data: { fane: getOpenTabFromRouterPath(path).path }
+                    }
+                }}
+                replace
+            />
+        );
     }
 
     const handleClick = () => {
@@ -77,7 +89,20 @@ function Oversiktskomponent(props: Props) {
                             {props.tittel}
                         </Undertittel>
                         <CustomContent>{customContent}</CustomContent>
-                        <StyledLink className="lenke" to={path}>
+                        <StyledLink
+                            onClick={(e) => e.stopPropagation()}
+                            className="lenke"
+                            to={path}
+                            state={{
+                                umamiEvent: {
+                                    name: 'detaljvisning klikket',
+                                    data: {
+                                        fane: 'oversikt',
+                                        tekst: `lenke til ${getOpenTabFromRouterPath(path).path}`
+                                    }
+                                }
+                            }}
+                        >
                             <Normaltekst>Gå til {props.tittel.toLowerCase()}</Normaltekst>
                         </StyledLink>
                     </OverskriftStyle>

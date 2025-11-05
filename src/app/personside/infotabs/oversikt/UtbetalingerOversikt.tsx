@@ -63,6 +63,7 @@ function EnkelUtbetaling({ utbetaling }: { utbetaling: Utbetaling }) {
                 valgt={false}
                 ariaDescription={'Vis utbetaling'}
                 linkTo={dyplenkerInfotabs.utbetaling.link(utbetaling)}
+                umamiEvent={{ name: 'detaljvisning klikket', data: { fane: 'oversikt', tekst: 'vis utbetaling' } }}
             >
                 <Normaltekst>
                     {datoVerbose(getGjeldendeDatoForUtbetaling(utbetaling)).sammensatt} / {utbetaling.status}

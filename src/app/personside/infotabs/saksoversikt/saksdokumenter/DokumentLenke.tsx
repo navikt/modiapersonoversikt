@@ -45,8 +45,11 @@ function DokumentLenke(props: Props) {
             {apneDokumentINyttVindu ? (
                 <Link
                     to="/dokument"
+                    data-umami-event="detaljvisning klikket"
+                    data-umami-event-fane="saker"
+                    data-umami-event-tekst="åpnet dokument"
                     search={{ dokument: dokumentReferanse, journalpost: journalpostId }}
-                    target={'_blank'}
+                    target="blank"
                     className="lenke typo-element"
                 >
                     {dokumentTekst(props.dokument)}

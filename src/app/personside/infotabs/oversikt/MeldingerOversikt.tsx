@@ -66,6 +66,7 @@ function Traadelement(props: { traad: Traad }) {
                 valgt={false}
                 ariaDescription={`Vis meldinger for ${tittel}`}
                 className={meldingerTest.oversikt}
+                umamiEvent={{ name: 'detaljvisning klikket', data: { fane: 'oversikt', tekst: 'vis melding' } }}
             >
                 <TraadSammendrag traad={props.traad} />
             </VisMerKnapp>

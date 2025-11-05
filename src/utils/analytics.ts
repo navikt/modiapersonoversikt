@@ -10,6 +10,19 @@ declare global {
     }
 }
 
+// Bruker denne til å tracke klikk på detaljvisning i ulike faner
+// F.eks vise enkelt ytelse, åpne et dokument i sakerfanen, åpner detalj om utbetaling osv
+export const trackVisDetaljvisning = (fane: string, tekst: string) => {
+    if (!window.umami) {
+        console.warn('Umami is not initialized. Ignoring');
+        return;
+    }
+    window.umami.track('detaljvisning klikket', {
+        fane: fane,
+        tekst: tekst
+    });
+};
+
 export const trackAccordionOpened = (name: string) => {
     if (!window.umami) {
         console.warn('Umami is not initialized. Ignoring');

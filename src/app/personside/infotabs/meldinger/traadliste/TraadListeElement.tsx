@@ -64,7 +64,18 @@ function TraadListeElement(props: Props) {
             props.onClick(e);
             return;
         }
-        navigate({ search: { traadId: props.traad.traadId } });
+        navigate({
+            search: { traadId: props.traad.traadId },
+            state: {
+                umamiEvent: {
+                    name: 'detaljvisning klikket',
+                    data: {
+                        fane: 'meldinger',
+                        tekst: 'åpne melding'
+                    }
+                }
+            }
+        });
     };
 
     return (

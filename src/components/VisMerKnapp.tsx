@@ -1,6 +1,7 @@
 import { useNavigate } from '@tanstack/react-router';
 import { HoyreChevron } from 'nav-frontend-chevron';
 import type * as React from 'react';
+import type { UmamiEvent } from 'src/router';
 import styled, { css } from 'styled-components';
 import theme, { pxToRem } from '../styles/personOversiktTheme';
 import { isSelectingText } from '../utils/function-utils';
@@ -51,6 +52,7 @@ interface Props {
     children: React.ReactNode;
     ariaDescription: string;
     className?: string;
+    umamiEvent?: UmamiEvent;
 }
 
 function VisMerKnapp(props: Props) {
@@ -63,7 +65,7 @@ function VisMerKnapp(props: Props) {
         if (props.onClick) {
             props.onClick(event);
         } else if (props.linkTo) {
-            navigate({ to: props.linkTo });
+            navigate({ to: props.linkTo, state: { umamiEvent: props.umamiEvent } });
         } else {
             console.error('VisMerKnapp mangler onclick-funksjon eller router-path');
         }

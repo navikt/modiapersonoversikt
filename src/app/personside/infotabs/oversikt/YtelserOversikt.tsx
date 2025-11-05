@@ -1,27 +1,23 @@
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { type ReactNode, useEffect } from 'react';
+import { ytelserTest } from 'src/app/personside/infotabs/dyplenkeTest/utils-dyplenker-test';
+import { useInfotabsDyplenker } from 'src/app/personside/infotabs/dyplenker';
+import useBrukersYtelserMarkup from 'src/app/personside/infotabs/ytelser/useBrukersYtelserMarkup';
+import { CenteredLazySpinner } from 'src/components/LazySpinner';
+import VisMerKnapp from 'src/components/VisMerKnapp';
 import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaringspenger';
 import { getArbeidsavklaringspengerIdDato } from 'src/models/ytelse/arbeidsavklaringspenger';
+import { type Foreldrepengerettighet, getForeldepengerIdDato } from 'src/models/ytelse/foreldrepenger';
 import { type Pensjon, getPensjonIdDato, getUnikPensjonKey } from 'src/models/ytelse/pensjon';
+import type { Pleiepengerettighet } from 'src/models/ytelse/pleiepenger';
+import { type Sykepenger, getSykepengerIdDato } from 'src/models/ytelse/sykepenger';
+import { type Tiltakspenger, getTiltakspengerIdDato, getUnikTiltakspengerKey } from 'src/models/ytelse/tiltakspenger';
+import { getUnikYtelseKey } from 'src/models/ytelse/ytelse-utils';
+import theme from 'src/styles/personOversiktTheme';
+import { usePrevious } from 'src/utils/customHooks';
+import { formaterDato } from 'src/utils/string-utils';
 import styled from 'styled-components';
-import { CenteredLazySpinner } from '../../../../components/LazySpinner';
-import VisMerKnapp from '../../../../components/VisMerKnapp';
-import { type Foreldrepengerettighet, getForeldepengerIdDato } from '../../../../models/ytelse/foreldrepenger';
-import type { Pleiepengerettighet } from '../../../../models/ytelse/pleiepenger';
-import { type Sykepenger, getSykepengerIdDato } from '../../../../models/ytelse/sykepenger';
-import {
-    type Tiltakspenger,
-    getTiltakspengerIdDato,
-    getUnikTiltakspengerKey
-} from '../../../../models/ytelse/tiltakspenger';
-import { getUnikYtelseKey } from '../../../../models/ytelse/ytelse-utils';
-import theme from '../../../../styles/personOversiktTheme';
-import { usePrevious } from '../../../../utils/customHooks';
-import { formaterDato } from '../../../../utils/string-utils';
-import { ytelserTest } from '../dyplenkeTest/utils-dyplenker-test';
-import { useInfotabsDyplenker } from '../dyplenker';
-import useBrukersYtelserMarkup from '../ytelser/useBrukersYtelserMarkup';
 
 const YtelserStyle = styled.div`
   > *:not(:first-child) {
@@ -32,6 +28,14 @@ const YtelserStyle = styled.div`
 interface Props {
     setHeaderContent: (content: ReactNode) => void;
 }
+
+const umamiEvent = {
+    name: 'detaljvisning klikket',
+    data: {
+        fane: 'oversikt',
+        tekst: 'vis ytelse'
+    }
+};
 
 function YtelserOversikt(props: Props) {
     const { ytelserMarkup, pending, feilmeldinger, harFeil } = useBrukersYtelserMarkup({
@@ -86,6 +90,7 @@ function PleiepengerKomponent(props: { pleiepenger: Pleiepengerettighet }) {
             valgt={false}
             ariaDescription="Vis pleiepenger"
             className={ytelserTest.oversikt}
+            umamiEvent={umamiEvent}
         >
             <Element>Pleiepenger sykt barn</Element>
             <Normaltekst>Barnets f.nr: {props.pleiepenger.barnet}</Normaltekst>
@@ -102,6 +107,7 @@ function SykepengerKomponent(props: { sykepenger: Sykepenger }) {
             valgt={false}
             ariaDescription="Vis sykepenger"
             className={ytelserTest.oversikt}
+            umamiEvent={umamiEvent}
         >
             <Normaltekst>ID dato: {formaterDato(getSykepengerIdDato(props.sykepenger))}</Normaltekst>
             <Element>Sykepenger</Element>
@@ -120,6 +126,7 @@ function ForeldrepengerKomponent(props: {
             valgt={false}
             ariaDescription="Vis foreldrepenger"
             className={ytelserTest.oversikt}
+            umamiEvent={umamiEvent}
         >
             <Normaltekst>ID dato: {formaterDato(getForeldepengerIdDato(props.foreldrepenger))}</Normaltekst>
             <Element>Foreldrepenger</Element>
@@ -139,6 +146,7 @@ function TiltakspengerKomponent(props: { tiltakspenger: Tiltakspenger }) {
             valgt={false}
             ariaDescription="Vis tiltakspenger"
             className={ytelserTest.oversikt}
+            umamiEvent={umamiEvent}
         >
             <Normaltekst>ID dato: {formaterDato(getTiltakspengerIdDato(props.tiltakspenger))}</Normaltekst>
             <Element>Tiltakspenger</Element>
@@ -162,6 +170,7 @@ function PensjonKomponent(props: { pensjon: Pensjon }) {
             valgt={false}
             ariaDescription="Vis pensjon"
             className={ytelserTest.oversikt}
+            umamiEvent={umamiEvent}
         >
             <Normaltekst>ID dato: {formaterDato(fom)}</Normaltekst>
             <Element>Pensjon</Element>
@@ -186,6 +195,7 @@ function ArbeidsavklaringspengerKomponent(props: { aap: Arbeidsavklaringspenger 
             valgt={false}
             ariaDescription="Vis arbeidsavklaringspenger"
             className={ytelserTest.oversikt}
+            umamiEvent={umamiEvent}
         >
             <Normaltekst>ID dato: {formaterDato(fomId)}</Normaltekst>
             <Element>Arbeidsavklaringspenger</Element>

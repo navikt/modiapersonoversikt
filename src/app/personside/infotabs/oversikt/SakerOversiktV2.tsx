@@ -30,7 +30,14 @@ function SakerOversikt(props: Props) {
 function SakerPanel(props: { sakstema: SakstemaSoknadsstatus[] } & Props) {
     const sakstemakomponenter = filtrerSakstemaerUtenDataV2(props.sakstema)
         .slice(0, 2)
-        .map((sakstema, index) => <SakstemaListeElementKnappV2 sakstema={sakstema} key={index} erValgt={false} />);
+        .map((sakstema, index) => (
+            <SakstemaListeElementKnappV2
+                sakstema={sakstema}
+                umamiEvent={{ name: 'detaljvisning klikket', data: { fane: 'oversikt', tekst: 'vis sak' } }}
+                key={index}
+                erValgt={false}
+            />
+        ));
 
     useOnMount(() => {
         props.setHeaderContent(
