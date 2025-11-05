@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import SaksoversiktContainer from 'src/app/personside/infotabs/saksoversikt/SaksoversiktContainerV2';
-import { keepQueryParams } from 'src/utils/keepQueryParams';
+import { keepQueryParamsSimple } from 'src/utils/keepQueryParamsSimple';
 import { z } from 'zod';
 
 export const sakerSearchSchema = z.object({
@@ -13,6 +13,6 @@ export const Route = createFileRoute('/person/saker')({
     component: SaksoversiktContainer,
     validateSearch: sakerSearchSchema,
     search: {
-        middlewares: [keepQueryParams(['sakstema', 'avsender', 'dokument'])]
+        middlewares: [keepQueryParamsSimple(['sakstema', 'avsender', 'dokument'])]
     }
 });
