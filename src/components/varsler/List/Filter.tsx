@@ -138,7 +138,7 @@ export const VarslerListFilter = () => {
             const isOpen = expansionFilterRef.current.classList.contains('aksel-expansioncard--open');
             setOpen(isOpen);
             if (isOpen !== open) {
-                isOpen ? trackExpansionCardLukket('varselfilter') : trackExpansionCardApnet('varselfilter');
+                isOpen ? trackExpansionCardApnet('varselfilter') : trackExpansionCardLukket('varselfilter');
             }
         }, 0);
     };

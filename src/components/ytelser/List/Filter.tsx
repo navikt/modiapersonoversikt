@@ -106,7 +106,7 @@ export const YtelserListFilter = () => {
             const isOpen = expansionFilterRef.current.classList.contains('aksel-expansioncard--open');
             setOpen(isOpen);
             if (isOpen !== open) {
-                isOpen ? trackExpansionCardLukket('ytelsefilter') : trackExpansionCardApnet('ytelsefilter');
+                isOpen ? trackExpansionCardApnet('ytelsefilter') : trackExpansionCardLukket('ytelsefilter');
             }
         }, 0);
     };
