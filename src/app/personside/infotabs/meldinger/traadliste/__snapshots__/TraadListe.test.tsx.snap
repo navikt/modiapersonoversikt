@@ -2,53 +2,7 @@
 
 exports[`Viser Traadliste 1`] = `
 <DocumentFragment>
-  .c3 {
-  border: none;
-  background-color: transparent;
-  padding: 0.1rem 0.2rem;
-  border-radius: .35rem;
-  cursor: pointer;
-  display: flex;
-  color: #0067c5;
-}
-
-.c3 svg {
-  margin-left: 0.5rem;
-  height: 1.2rem;
-  width: 1.2rem;
-}
-
-.c3:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.1875rem #254b6d;
-}
-
-.c3:hover {
-  opacity: 0.8;
-  text-decoration: underline;
-}
-
-.c5 {
-  margin-bottom: 2rem;
-}
-
-.c7 {
-  display: flex;
-  justify-content: space-between;
-  margin: 1rem 0rem;
-}
-
-.c8 >* {
-  margin-bottom: 1rem!important;
-}
-
-.c6 {
-  margin-bottom: 2rem;
-  border-bottom: solid 0.0625rem #78706a;
-  page-break-inside: avoid;
-}
-
-.c15 {
+  .c15 {
   position: relative;
 }
 
@@ -181,6 +135,52 @@ exports[`Viser Traadliste 1`] = `
 
 .c21 .nav-frontend-chevron {
   width: 1.5625rem;
+}
+
+.c3 {
+  border: none;
+  background-color: transparent;
+  padding: 0.1rem 0.2rem;
+  border-radius: .35rem;
+  cursor: pointer;
+  display: flex;
+  color: #0067c5;
+}
+
+.c3 svg {
+  margin-left: 0.5rem;
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+.c3:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c3:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.c5 {
+  margin-bottom: 2rem;
+}
+
+.c7 {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0rem;
+}
+
+.c8 >* {
+  margin-bottom: 1rem!important;
+}
+
+.c6 {
+  margin-bottom: 2rem;
+  border-bottom: solid 0.0625rem #78706a;
+  page-break-inside: avoid;
 }
 
 .c0 {
