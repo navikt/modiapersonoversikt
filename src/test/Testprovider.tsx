@@ -27,7 +27,7 @@ const queryClient = new QueryClient({
     }
 });
 
-export const TestStoreWithoutRouter = ({ customStore, children }: Props) => {
+const TestStoreWithoutRouter = ({ customStore, children }: Props) => {
     const store = customStore || getTestStore();
 
     const jstore = createStore();
