@@ -1,7 +1,7 @@
 import { XMarkIcon } from '@navikt/aksel-icons';
 import { Box, Button, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import dayjs from 'dayjs';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useOpenTab } from 'src/app/personside/infotabs/utils/useOpenTab';
 import CustomDatePickerModal from 'src/components/DateFilters/CustomDatePickerModal';
 import { filterType, trackFilterEndret } from 'src/utils/analytics';
@@ -52,8 +52,14 @@ function DateRangeSelector({
     required,
     defaultPeriodType = PeriodType.LAST_30_DAYS
 }: Props) {
-    const [periodType, setPeriodType] = useState<PeriodType>(defaultPeriodType);
+    const [periodType, setPeriodType] = useState<PeriodType | null>(defaultPeriodType);
     const fane = useOpenTab().path;
+
+    useEffect(() => {
+        if (period === null) {
+            setPeriodType(defaultPeriodType);
+        }
+    });
 
     const onFraTilDatoChange = (val: DateRange) => {
         onChange(val);
