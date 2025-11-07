@@ -3,7 +3,7 @@ import { Box, Button } from '@navikt/ds-react';
 import { useLocation, useNavigate } from '@tanstack/react-router';
 import { useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { FeatureToggles } from './featureToggle/toggleIDs';
 import useFeatureToggle from './featureToggle/useFeatureToggle';
 
@@ -26,12 +26,26 @@ export const NyModia = () => {
         }
     }, [navigate, setNyModia, nyModia, href]);
 
+    useEffect(() => {
+        if (href.includes('/new') && !nyModia) {
+            setNyModia(true);
+        }
+        if (!href.includes('/new') && nyModia) {
+            setNyModia(false);
+        }
+    }, [href, nyModia, setNyModia]);
+
     if (!isOn) return;
 
     return (
-        <Box className="absolute bottom-0 right-0 m-12 overflow-hidden" borderRadius="xlarge">
-            <Button icon={nyModia ? <ArrowUndoIcon /> : <SparklesIcon />} variant="primary" onClick={handleClick}>
-                {nyModia ? 'Gamle modia' : 'Ny!'}
+        <Box className="absolute bottom-0 right-4 mb-12 overflow-hidden z-10" borderRadius="xlarge">
+            <Button
+                icon={nyModia ? <ArrowUndoIcon /> : <SparklesIcon />}
+                variant="primary"
+                size="small"
+                onClick={handleClick}
+            >
+                {nyModia ? 'Gammel Modia' : 'Ny Modia'}
             </Button>
         </Box>
     );
