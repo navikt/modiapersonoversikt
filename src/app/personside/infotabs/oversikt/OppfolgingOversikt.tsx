@@ -35,7 +35,7 @@ function OppfolgingPanel(props: Props) {
                 name: trackingEvents.detaljvisningKlikket,
                 data: {
                     fane: 'oversikt',
-                    tekst: 'vis mer knapp'
+                    tekst: 'vis oppfølging'
                 }
             }}
             ariaDescription="Gå til oppfølging"

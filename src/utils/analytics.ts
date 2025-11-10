@@ -18,6 +18,7 @@ export enum trackingEvents {
     expansionCardApnet = 'expansion card åpnet',
     expansionCardLukket = 'expansion card lukket',
     faneEndret = 'fane endret',
+    lenkeKlikketFraOversikt = 'linke klikket fra oversikt',
 
     // denne er i bruk i internflatedekoratøren, ikke bruk her
     lenkeKlikket = 'lenke klikket'
