@@ -1,6 +1,4 @@
 import WaitForUserLoaded from 'src/components/WaitForUserLoaded';
-import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
-import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 import { DialogpanelStateProvider } from 'src/context/dialogpanel-state';
 import tilgangskontroll from '../../rest/resources/tilgangskontrollResource';
 import LyttPåNyttFnrIReduxOgHentAllPersoninfo from '../PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentAllPersoninfo';
@@ -9,8 +7,7 @@ import MainLayout from './MainLayout';
 import NyIdentModal from './NyIdentModal';
 
 function Personoversikt({ fnr }: { fnr: string }) {
-    const { isOn: enableTilgangsMaskin } = useFeatureToggle(FeatureToggles.TilgangsMaskin);
-    return tilgangskontroll.useRenderer(fnr, !!enableTilgangsMaskin, (data) => {
+    return tilgangskontroll.useRenderer(fnr, (data) => {
         if (!data.harTilgang) {
             return <BegrensetTilgangSide tilgangsData={data} />;
         }
