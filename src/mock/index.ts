@@ -97,15 +97,6 @@ const tilgangsKontrollHandler = [
             () => Promise.resolve(Math.random() > 0.98 ? 400 : 200),
             mockGeneratorMedFodselsnummerV2(tilgangskontrollMock)
         )
-    ),
-
-    http.post(
-        `${apiBaseUri}/tilgang/v2`,
-        withDelayedResponse(
-            randomDelay(),
-            () => Promise.resolve(Math.random() > 0.98 ? 400 : 200),
-            mockGeneratorMedFodselsnummerV2(tilgangskontrollMock)
-        )
     )
 ];
 
