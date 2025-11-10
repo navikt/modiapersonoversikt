@@ -5,6 +5,7 @@ import ErrorBoundary from 'src/components/ErrorBoundary';
 import { OppgaveListFilter } from 'src/components/Oppgave/List/Filter';
 import { OppgaveItem } from 'src/components/Oppgave/List/OppgaveItem';
 import { PaginatedList } from 'src/components/PaginatedList';
+import { trackingEvents } from 'src/utils/analytics';
 import { getOppgaveId, useFilterOppgave } from './utils';
 
 export const OppgaverList = () => (
@@ -34,7 +35,15 @@ const OppgaveList = () => {
 
     const handleClick = useCallback(
         (id: string) => {
-            navigate({ search: { id } });
+            navigate({
+                search: { id },
+                state: {
+                    umamiEvent: {
+                        name: trackingEvents.detaljvisningKlikket,
+                        data: { fane: 'oppgaver', tekst: 'vis oppgave' }
+                    }
+                }
+            });
         },
         [navigate]
     );

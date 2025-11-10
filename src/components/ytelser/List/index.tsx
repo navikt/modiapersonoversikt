@@ -5,6 +5,8 @@ import ErrorBoundary from 'src/components/ErrorBoundary';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { YtelseItem } from 'src/components/ytelser/List/YtelseItem';
 import { getUnikYtelseKey, useFilterYtelser } from 'src/components/ytelser/utils';
+import type { YtelseVedtak } from 'src/generated/modiapersonoversikt-api';
+import { trackingEvents } from 'src/utils/analytics';
 import { YtelserListFilter } from './Filter';
 
 export const YtelserList = () => (
@@ -33,8 +35,16 @@ const YtelseList = () => {
     const navigate = useNavigate({ from: '/new/person/ytelser' });
 
     const handleClick = useCallback(
-        (id: string) => {
-            navigate({ search: { id } });
+        (id: string, ytelse: YtelseVedtak) => {
+            navigate({
+                search: { id },
+                state: {
+                    umamiEvent: {
+                        name: trackingEvents.detaljvisningKlikket,
+                        data: { fane: 'ytelser', tekst: ytelse.ytelseType.toLowerCase() }
+                    }
+                }
+            });
         },
         [navigate]
     );

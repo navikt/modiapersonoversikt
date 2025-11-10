@@ -4,6 +4,7 @@ import { Suspense, useCallback } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { SakItem } from 'src/components/saker/List/SakItem';
+import { trackingEvents } from 'src/utils/analytics';
 import { getSakId, useFilterSaker } from '../utils';
 import { SakerFilter } from './Filter';
 
@@ -34,7 +35,15 @@ const SakList = () => {
 
     const handleClick = useCallback(
         (id: string) => {
-            navigate({ search: { id } });
+            navigate({
+                search: { id },
+                state: {
+                    umamiEvent: {
+                        name: trackingEvents.detaljvisningKlikket,
+                        data: { fane: 'saker', tekst: 'åpne sak' }
+                    }
+                }
+            });
         },
         [navigate]
     );

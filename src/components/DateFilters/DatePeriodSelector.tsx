@@ -2,7 +2,9 @@ import { XMarkIcon } from '@navikt/aksel-icons';
 import { Box, Button, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import dayjs from 'dayjs';
 import { useCallback, useEffect, useState } from 'react';
+import { useOpenTab } from 'src/app/personside/infotabs/utils/useOpenTab';
 import CustomDatePickerModal from 'src/components/DateFilters/CustomDatePickerModal';
+import { filterType, trackFilterEndret } from 'src/utils/analytics';
 import { type DateRange, PeriodType } from './types';
 
 export const getPeriodFromOption = (periodeValg: PeriodType): DateRange => {
@@ -38,6 +40,11 @@ type Props = {
     resettable?: boolean;
 };
 
+const erPerioderLike = (a: DateRange | null, b: DateRange | null) => {
+    if (!a || !b) return a === b;
+    return dayjs(a.from).isSame(b.from, 'day') && dayjs(a.to).isSame(b.to, 'day');
+};
+
 function DateRangeSelector({
     range: period,
     onChange,
@@ -46,6 +53,7 @@ function DateRangeSelector({
     defaultPeriodType = PeriodType.LAST_30_DAYS
 }: Props) {
     const [periodType, setPeriodType] = useState<PeriodType | null>(defaultPeriodType);
+    const fane = useOpenTab().path;
 
     useEffect(() => {
         if (period === null) {
@@ -55,11 +63,15 @@ function DateRangeSelector({
 
     const onFraTilDatoChange = (val: DateRange) => {
         onChange(val);
+        if (!erPerioderLike(period, val)) {
+            trackFilterEndret(fane, filterType.DATO_EGENDEFINERT);
+        }
     };
     const onPeriodTypeChange = useCallback(
         (type: PeriodType) => {
             setPeriodType(type);
             onChange(getPeriodFromOption(type));
+            trackFilterEndret(fane, filterType.DATO_RADIO);
         },
         [onChange]
     );

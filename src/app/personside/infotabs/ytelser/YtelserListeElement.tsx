@@ -19,6 +19,7 @@ import {
     isSykepenger,
     isTiltakspenger
 } from 'src/models/ytelse/ytelse-utils';
+import { trackingEvents } from 'src/utils/analytics';
 import { formaterDato } from 'src/utils/string-utils';
 import { useInfotabsDyplenker } from '../dyplenker';
 
@@ -38,6 +39,10 @@ function YtelserListeElement(props: Props) {
                     ariaDescription="Vis pleiepenger"
                     valgt={props.erValgt}
                     linkTo={dypLenker.ytelser.link(props.ytelse)}
+                    umamiEvent={{
+                        name: trackingEvents.detaljvisningKlikket,
+                        data: { fane: 'ytelser', tekst: 'pleiepenger' }
+                    }}
                 >
                     <Undertittel tag="h3">Pleiepenger sykt barn</Undertittel>
                     <Element>ID-dato</Element>
@@ -57,6 +62,10 @@ function YtelserListeElement(props: Props) {
                     ariaDescription="Vis sykepenger"
                     valgt={props.erValgt}
                     linkTo={dypLenker.ytelser.link(props.ytelse)}
+                    umamiEvent={{
+                        name: trackingEvents.detaljvisningKlikket,
+                        data: { fane: 'ytelser', tekst: 'sykepenger' }
+                    }}
                 >
                     <Undertittel tag="h3">Sykepengerrettighet</Undertittel>
                     <Element>ID-dato</Element>
@@ -74,6 +83,10 @@ function YtelserListeElement(props: Props) {
                     ariaDescription="Vis foreldrepenger"
                     valgt={props.erValgt}
                     linkTo={dypLenker.ytelser.link(props.ytelse)}
+                    umamiEvent={{
+                        name: trackingEvents.detaljvisningKlikket,
+                        data: { fane: 'ytelser', tekst: 'foreldrepenger' }
+                    }}
                 >
                     <Undertittel tag="h3">Foreldrepenger</Undertittel>
                     <Element>ID-dato</Element>
@@ -91,6 +104,10 @@ function YtelserListeElement(props: Props) {
                     ariaDescription="Vis tiltakspenger"
                     valgt={props.erValgt}
                     linkTo={dypLenker.ytelser.link(props.ytelse)}
+                    umamiEvent={{
+                        name: trackingEvents.detaljvisningKlikket,
+                        data: { fane: 'ytelser', tekst: 'tiltakspenger' }
+                    }}
                 >
                     <Undertittel tag="h3">Tiltakspenger</Undertittel>
                     <Element>ID-dato</Element>
@@ -109,6 +126,10 @@ function YtelserListeElement(props: Props) {
                     ariaDescription="Vis pensjon"
                     valgt={props.erValgt}
                     linkTo={dypLenker.ytelser.link(props.ytelse)}
+                    umamiEvent={{
+                        name: trackingEvents.detaljvisningKlikket,
+                        data: { fane: 'ytelser', tekst: 'pensjon' }
+                    }}
                 >
                     <Undertittel tag="h3">Pensjon</Undertittel>
                     <Element>ID-dato</Element>
@@ -127,6 +148,10 @@ function YtelserListeElement(props: Props) {
                     ariaDescription="Vis arbeidsavklaringspenger"
                     valgt={props.erValgt}
                     linkTo={dypLenker.ytelser.link(props.ytelse)}
+                    umamiEvent={{
+                        name: trackingEvents.detaljvisningKlikket,
+                        data: { fane: 'ytelser', tekst: 'arbeidsavklaringspenger' }
+                    }}
                 >
                     <Undertittel tag="h3">Arbeidsavklaringspenger</Undertittel>
                     <Element>ID-dato</Element>

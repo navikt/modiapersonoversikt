@@ -5,6 +5,7 @@ import JournalPostVedlegg from 'src/components/saker/Detail/JournalPostVedlegg';
 import { dokumentKanVises, tekstBasertPaRetning } from 'src/components/saker/utils';
 import { TitleValuePairsComponent } from 'src/components/ytelser/Detail';
 import type { Dokumentmetadata } from 'src/generated/modiapersonoversikt-api';
+import { trackAccordionClosed, trackAccordionOpened } from 'src/utils/analytics';
 import { formatterDatoTid } from 'src/utils/date-utils';
 import { datoEllerNull } from 'src/utils/string-utils';
 
@@ -36,6 +37,7 @@ const JournalPoster = ({
             ...openMap,
             [id]: isOpen
         });
+        isOpen ? trackAccordionOpened('dokumentvisning') : trackAccordionClosed('dokumentvisning');
     };
 
     return (

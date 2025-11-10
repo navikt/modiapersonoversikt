@@ -1,12 +1,15 @@
+import { useLocation } from '@tanstack/react-router';
 import { guid } from 'nav-frontend-js-utils';
 import Panel from 'nav-frontend-paneler';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { useRef } from 'react';
 import * as React from 'react';
 import { UnmountClosed } from 'react-collapse';
+import { getOpenTabFromRouterPath } from 'src/app/personside/infotabs/utils/useOpenTab';
+import type { UnifiedVarsel } from 'src/models/varsel';
+import { trackVisDetaljvisning } from 'src/utils/analytics';
 import styled from 'styled-components';
 import VisMerChevron from '../../../../components/VisMerChevron';
-import type { UnifiedVarsel } from '../../../../models/varsel';
 import theme from '../../../../styles/personOversiktTheme';
 import CompletedIcon from '../../../../svg/CompletedIcon';
 import WarningIcon from '../../../../svg/WarningIcon';
@@ -83,7 +86,11 @@ interface VarselRowProps {
 export function VarselRow(props: VarselRowProps) {
     const tittelId = useRef(guid());
     const [open, setOpen] = React.useState(false);
-    const toggleOpen = () => setOpen(!open);
+    const location = useLocation();
+    const toggleOpen = () => {
+        if (!open) trackVisDetaljvisning(getOpenTabFromRouterPath(location.pathname).path, 'ekspander varsel');
+        setOpen(!open);
+    };
 
     const datoer = props.datoer.map((dato) => <DatoSpan key={dato}>{dato}</DatoSpan>);
 

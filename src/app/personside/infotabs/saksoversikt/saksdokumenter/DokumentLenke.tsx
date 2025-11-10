@@ -1,5 +1,6 @@
 import { Link, useLocation } from '@tanstack/react-router';
 import { Element, Undertekst } from 'nav-frontend-typografi';
+import { trackingEvents } from 'src/utils/analytics';
 import { type Dokument, DokumentStatus, type Journalpost } from '../../../../../models/saksoversikt/journalpost';
 import type { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { erSakerFullscreen } from '../utils/erSakerFullscreen';
@@ -45,8 +46,11 @@ function DokumentLenke(props: Props) {
             {apneDokumentINyttVindu ? (
                 <Link
                     to="/dokument"
+                    data-umami-event={trackingEvents.detaljvisningKlikket}
+                    data-umami-event-fane="saker"
+                    data-umami-event-tekst="åpnet dokument"
                     search={{ dokument: dokumentReferanse, journalpost: journalpostId }}
-                    target={'_blank'}
+                    target="blank"
                     className="lenke typo-element"
                 >
                     {dokumentTekst(props.dokument)}

@@ -1,12 +1,12 @@
 import { useNavigate, useSearch } from '@tanstack/react-router';
 import { useMemo } from 'react';
+import { filterType, trackFilterEndret } from 'src/utils/analytics';
 import type { Dokument, Journalpost } from '../../../../models/saksoversikt/journalpost';
 import type { SakstemaSoknadsstatus } from '../../../../models/saksoversikt/sakstema';
 import sakstemaResource from '../../../../rest/resources/sakstemaResource';
 import { datoSynkende } from '../../../../utils/date-utils';
 import { filtrerSakstemaerUtenDataV2 } from './sakstemaliste/SakstemaListeUtils';
-import { sakstemakodeAlle, sakstemakodeIngen } from './utils/saksoversiktUtilsV2';
-import { hentDatoForSisteHendelseV2 } from './utils/saksoversiktUtilsV2';
+import { hentDatoForSisteHendelseV2, sakstemakodeAlle, sakstemakodeIngen } from './utils/saksoversiktUtilsV2';
 
 interface SakstemaURLStateV2 {
     valgteSakstemaer: SakstemaSoknadsstatus[];
@@ -71,6 +71,7 @@ export function useSakstemaURLStateV2(alleSakstemaer: SakstemaSoknadsstatus[]): 
                     search: { ...query, sakstema: nyURL }
                 });
             }
+            trackFilterEndret('saker', filterType.TEMA);
         };
 
         return {

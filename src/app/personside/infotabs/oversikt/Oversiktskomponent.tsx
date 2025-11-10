@@ -4,11 +4,13 @@ import Panel from 'nav-frontend-paneler';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import * as React from 'react';
 import { type ReactNode, useRef, useState } from 'react';
+import type { InfotabConfig } from 'src/app/personside/infotabs/InfoTabEnum';
+import { getOpenTabFromRouterPath } from 'src/app/personside/infotabs/utils/useOpenTab';
+import { paths } from 'src/app/routes/routing';
+import ErrorBoundary from 'src/components/ErrorBoundary';
+import theme, { pxToRem } from 'src/styles/personOversiktTheme';
+import { trackingEvents } from 'src/utils/analytics';
 import styled from 'styled-components';
-import ErrorBoundary from '../../../../components/ErrorBoundary';
-import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
-import { paths } from '../../../routes/routing';
-import type { InfotabConfig } from '../InfoTabEnum';
 
 interface Props {
     component: React.ComponentType<{ setHeaderContent: (content: ReactNode) => void }>;
@@ -52,14 +54,26 @@ const CustomContent = styled.div`
     padding: 0 1rem;
 `;
 
+function createUmamiEvent(path: string) {
+    return {
+        umamiEvent: {
+            name: trackingEvents.lenkeKlikketFraOversikt,
+            data: {
+                fane: 'oversikt',
+                tekst: `lenke til ${getOpenTabFromRouterPath(path).path}`
+            }
+        }
+    };
+}
+
 function Oversiktskomponent(props: Props) {
-    const path = `${paths.personUri}/${props.infotabPath.path}/`;
+    const path = `/${paths.personUri}/${props.infotabPath.path}`;
     const [customContent, setCustomContent] = useState<ReactNode>(null);
     const [redirect, setRedirect] = useState(false);
     const headerId = useRef(guid());
 
     if (redirect) {
-        return <Navigate to={path} replace />;
+        return <Navigate to={path} state={createUmamiEvent(path)} replace />;
     }
 
     const handleClick = () => {
@@ -77,7 +91,12 @@ function Oversiktskomponent(props: Props) {
                             {props.tittel}
                         </Undertittel>
                         <CustomContent>{customContent}</CustomContent>
-                        <StyledLink className="lenke" to={path}>
+                        <StyledLink
+                            onClick={(e) => e.stopPropagation()}
+                            className="lenke"
+                            to={path}
+                            state={createUmamiEvent(path)}
+                        >
                             <Normaltekst>Gå til {props.tittel.toLowerCase()}</Normaltekst>
                         </StyledLink>
                     </OverskriftStyle>

@@ -335,7 +335,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                     data-placement="bottom-start"
                     id="«r0»"
                     role="dialog"
-                    style="position: fixed; left: 0px; top: 0px; transform: translate(0px, 0px);"
+                    style="position: fixed; left: 0px; top: 0px; transform: translate(12px, 4px);"
                   >
                     <div
                       class="rdp navds-date"
@@ -1315,7 +1315,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                     data-placement="bottom-start"
                     id="«rb»"
                     role="dialog"
-                    style="position: fixed; left: 0px; top: 0px; transform: translate(0px, 0px);"
+                    style="position: fixed; left: 0px; top: 0px; transform: translate(12px, 4px);"
                   >
                     <div
                       class="rdp navds-date"

@@ -15,7 +15,7 @@ export const YtelseItem = ({
     handleClick
 }: {
     ytelse: YtelseVedtak;
-    handleClick: (id: string) => void;
+    handleClick: (id: string, ytelse: YtelseVedtak) => void;
 }) => {
     const aktivYtelse = routeApi.useSearch().id;
     const id = getUnikYtelseKey(ytelse);
@@ -47,7 +47,7 @@ export const YtelseItem = ({
             as="li"
             className={`cursor-pointer hover:hover:bg-ax-bg-neutral-moderate-hover group
                 ${aktivYtelse === id ? 'bg-ax-bg-neutral-moderate ' : ''}`}
-            onClick={() => handleClick(id)}
+            onClick={() => handleClick(id, ytelse)}
         >
             <HStack justify="space-between" gap="1" wrap={false}>
                 <VStack justify="center" gap="1">

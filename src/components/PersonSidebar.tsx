@@ -11,8 +11,10 @@ import {
     TasklistIcon
 } from '@navikt/aksel-icons';
 import { Box, Button, Heading, VStack } from '@navikt/ds-react';
-import { Link } from '@tanstack/react-router';
+import { Link, useLocation } from '@tanstack/react-router';
 import { type ComponentProps, useState } from 'react';
+import { getOpenTabFromRouterPath } from 'src/app/personside/infotabs/utils/useOpenTab';
+import { trackingEvents } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
 import Card from './Card';
 import { ThemeIconToggle, ThemeToggle } from './theme/ThemeToggle';
@@ -68,6 +70,7 @@ const menuItems = [
 
 export const PersonSidebarMenu = () => {
     const [expanded, setExpanded] = useState(true);
+    const location = useLocation();
 
     return (
         <Card className="h-full overflow-auto">
@@ -105,7 +108,20 @@ export const PersonSidebarMenu = () => {
                             Faner
                         </Heading>
                         {menuItems.map(({ title, href, Icon }) => (
-                            <Link key={title} to={href} aria-label={title}>
+                            <Link
+                                key={title}
+                                to={href}
+                                state={{
+                                    umamiEvent: {
+                                        name: trackingEvents.faneEndret,
+                                        data: {
+                                            nyFane: getOpenTabFromRouterPath(href).path,
+                                            forrigeFane: getOpenTabFromRouterPath(location.pathname).path
+                                        }
+                                    }
+                                }}
+                                aria-label={title}
+                            >
                                 {({ isActive }) => (
                                     <Button
                                         aria-hidden
