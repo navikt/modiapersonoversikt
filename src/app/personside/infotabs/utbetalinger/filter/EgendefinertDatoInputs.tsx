@@ -35,7 +35,7 @@ function EgendefinertDatoInputs(props: EgendefinertDatoInputsProps) {
     const [fraDato, setFraDato] = useState(dayjs(props.periode?.fra));
     const [tilDato, setTilDato] = useState(dayjs(props.periode?.til));
     const [periodeFeilmelding, setPeriodeFeilmelding] = useState<string | undefined>();
-    // Use the actual periode object as key to force complete remount
+    // For å oppdatere datepicker komponenten fullstendig når datoene endres utenfra
     const [componentKey, setComponentKey] = useState(0);
 
     useEffect(() => {
@@ -43,11 +43,9 @@ function EgendefinertDatoInputs(props: EgendefinertDatoInputsProps) {
             const newFraDato = dayjs(props.periode.fra);
             const newTilDato = dayjs(props.periode.til);
 
-            // Check if dates actually changed
             if (!newFraDato.isSame(fraDato, 'day') || !newTilDato.isSame(tilDato, 'day')) {
                 setFraDato(newFraDato);
                 setTilDato(newTilDato);
-                // Increment key to force complete remount of the component
                 setComponentKey((prev) => prev + 1);
             }
         }
@@ -104,7 +102,6 @@ function EgendefinertDatoInputs(props: EgendefinertDatoInputsProps) {
     );
 }
 
-// Separate component that will be fully remounted when key changes
 function DatePickerComponent({
     fraDato,
     tilDato,
