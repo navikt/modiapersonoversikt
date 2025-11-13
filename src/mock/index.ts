@@ -13,7 +13,7 @@ import { saker } from './journalforing/journalforing-mock';
 import { getForeslattEnhet, getMockAnsatte, getMockEnheter, getMockGsakTema } from './meldinger/oppgave-mock';
 import { MeldingerBackendMock } from './mockBackend/meldingerBackendMock';
 import { OppgaverBackendMock } from './mockBackend/oppgaverBackendMock';
-import { getMockOppfolging, getMockYtelserOgKontrakter } from './oppfolging-mock';
+import { getMock14aVedtak, getMockOppfolging, getMockYtelserOgKontrakter } from './oppfolging-mock';
 import { hentPersondata } from './persondata/persondata';
 import { mockPersonsokResponse, mockStaticPersonsokRequest } from './personsok/personsokMock';
 import { saksbehandlerInnstillingerHandlers } from './saksbehandlerinnstillinger-mock';
@@ -235,6 +235,15 @@ const ytelserogkontrakterHandler = http.post(
     )
 );
 
+const gjeldende14aVedtakHandler = http.post(
+    `${apiBaseUri}/oppfolging/hent-gjeldende-14a-vedtak`,
+    withDelayedResponse(
+        randomDelay(),
+        fodselsNummerErGyldigStatus,
+        mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMock14aVedtak(fodselsnummer))
+    )
+);
+
 const varslerHandler = http.post<PathParams, { fnr: string }>(`${apiBaseUri}/varsler`, async ({ request }) => {
     const body = await request.json();
     const fnr = body.fnr;
@@ -391,6 +400,7 @@ export const handlers: (HttpHandler | WebSocketHandler)[] = [
     foreslotteEnhetHandler,
     ansattePaaEnhetHandler,
     ytelserogkontrakterHandler,
+    gjeldende14aVedtakHandler,
     varslerHandler,
     opprettOppgaveHandler,
     opprettSkjermetOppgaveHandler,
