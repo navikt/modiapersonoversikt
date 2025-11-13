@@ -50,7 +50,7 @@ function DokumentLenke(props: Props) {
                     data-umami-event-fane="saker"
                     data-umami-event-tekst="åpnet dokument"
                     search={{ dokument: dokumentReferanse, journalpost: journalpostId }}
-                    target="blank"
+                    target="_blank"
                     className="lenke typo-element"
                 >
                     {dokumentTekst(props.dokument)}
