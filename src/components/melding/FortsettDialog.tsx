@@ -168,8 +168,8 @@ export const FortsettDialog = ({ traad }: Props) => {
                         {(field) => (
                             <VelgSak
                                 valgtSak={field.state.value}
-                                setSak={(sak) => field.handleChange(sak)}
-                                //error={<ValidationErrorMessage errors={field.state.meta.errors} />}
+                                setSak={field.handleChange}
+                                error={buildErrorMessage(field.state.meta.errors)}
                             />
                         )}
                     </form.Field>
@@ -255,5 +255,11 @@ function generateRequestBody(
     }
 }
 function buildErrorMessage(errors: ValidationError[]) {
-    return errors.isNotEmpty() ? errors.join(', ') : null;
+    const flatErrors = errors.flatMap((e) => (Array.isArray(e) ? e : [e]));
+    return flatErrors.length > 0
+        ? flatErrors
+              .filter((e) => e.message != null)
+              .map((e) => e.message)
+              .join(', ')
+        : null;
 }

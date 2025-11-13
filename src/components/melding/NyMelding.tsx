@@ -157,7 +157,7 @@ function NyMelding() {
                             {(field) => (
                                 <VelgSak
                                     valgtSak={field.state.value}
-                                    setSak={(sak) => field.handleChange({ ...sak, fnr: sak.fnr ?? '' })}
+                                    setSak={field.handleChange}
                                     error={<ValidationErrorMessage errors={field.state.meta.errors} />}
                                 />
                             )}
