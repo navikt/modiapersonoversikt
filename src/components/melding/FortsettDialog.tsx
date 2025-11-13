@@ -6,7 +6,6 @@ import DraftStatus from 'src/app/personside/dialogpanel/DraftStatus';
 import type { Draft, DraftContext } from 'src/app/personside/dialogpanel/use-draft';
 import useDraft from 'src/app/personside/dialogpanel/use-draft';
 import { Link } from 'src/components/Link';
-import VelgSak from 'src/components/sakVelger/VelgSak';
 import { useOppgaveForTraad, useSendMelding } from 'src/lib/clients/modiapersonoversikt-api';
 import { useEnhetsnavn } from 'src/lib/hooks/useEnhetsnavn';
 import { useSuspendingBrukernavn } from 'src/lib/hooks/useSuspendingBrukernavn';
@@ -21,7 +20,6 @@ import {
 import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { formatterDatoTid } from 'src/utils/date-utils';
 import type { z } from 'zod';
-import { erJournalfort } from '../Meldinger/List/utils';
 import AutocompleteTextarea from './AutoCompleteTextarea';
 import { Oppgaveliste, OppgavelisteRadioKnapper } from './OppgavelisteRadioKnapper';
 import { meldingsTyperTekst, traadTypeToMeldingsType } from './VelgMeldingsType';
@@ -91,8 +89,6 @@ export const FortsettDialog = ({ traad }: Props) => {
     const meldingsType = traadTypeToMeldingsType(traad.traadType);
     const meldingsTypeTekst = meldingsTyperTekst[meldingsType];
     const erSamtalereferat = traad.traadType === TraadType.SAMTALEREFERAT;
-    const erOksosTraad = traad.meldinger.some((it) => it.temagruppe === 'OKSOS');
-    const visVelgSak = !erJournalfort(traad) && !erOksosTraad;
 
     if (henvendelsePending) {
         return <Loader size="medium" />;
@@ -163,17 +159,6 @@ export const FortsettDialog = ({ traad }: Props) => {
                         </div>
                     )}
                 </form.Field>
-                {visVelgSak && (
-                    <form.Field name="sak">
-                        {(field) => (
-                            <VelgSak
-                                valgtSak={field.state.value}
-                                setSak={(sak) => field.handleChange(sak)}
-                                //error={<ValidationErrorMessage errors={field.state.meta.errors} />}
-                            />
-                        )}
-                    </form.Field>
-                )}
                 {!erSamtalereferat && (
                     <>
                         <form.Field name="avsluttet">
@@ -255,5 +240,11 @@ function generateRequestBody(
     }
 }
 function buildErrorMessage(errors: ValidationError[]) {
-    return errors.isNotEmpty() ? errors.join(', ') : null;
+    const flatErrors = errors.flatMap((e) => (Array.isArray(e) ? e : [e]));
+    return flatErrors.length > 0
+        ? flatErrors
+              .filter((e) => e.message != null)
+              .map((e) => e.message)
+              .join(', ')
+        : null;
 }
