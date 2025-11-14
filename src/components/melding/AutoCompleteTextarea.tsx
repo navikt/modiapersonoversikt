@@ -47,12 +47,23 @@ function autoFullfor(autofullforData: AutofullforData, parsedText: string) {
     return autofullfor(parsedText, autofullforMap);
 }
 
-const settInnStandardTekst = (standardTekst: string, textAreaRef: RefObject<HTMLTextAreaElement | null>) => {
+const settInnStandardTekst = (
+    standardTekst: string,
+    textAreaRef: RefObject<HTMLTextAreaElement | null>,
+    onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void
+) => {
     if (!textAreaRef.current) return;
     textAreaRef.current.value =
         !textAreaRef.current.value || textAreaRef.current.value === ''
             ? standardTekst
             : `${textAreaRef.current.value}\n${standardTekst}`;
+
+    const syntheticEvent = {
+        target: textAreaRef.current,
+        currentTarget: textAreaRef.current
+    } as ChangeEvent<HTMLTextAreaElement>;
+
+    onChange?.(syntheticEvent);
 };
 
 function asChangeEvent<T>(event: KeyboardEvent<T>): ChangeEvent<T> {
@@ -142,7 +153,9 @@ function AutocompleteTextarea({ onChange, description, ...rest }: Props) {
                             <AutoCompleteTekstTips />
                             <StandardTekstModal
                                 textAreaRef={textAreaRef}
-                                submitTekst={(standardTekst) => settInnStandardTekst(standardTekst, textAreaRef)}
+                                submitTekst={(standardTekst) =>
+                                    settInnStandardTekst(standardTekst, textAreaRef, onChange)
+                                }
                             />
                         </HStack>
                     </VStack>

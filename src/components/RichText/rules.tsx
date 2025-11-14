@@ -1,16 +1,13 @@
 import { Link } from '@navikt/ds-react';
 import {
-    type AST,
     type ASTNode,
     LinkRule as OriginalLinkRule,
-    ParagraphRule as OriginalParagraphRule,
     type ReactElementDescription,
     type RegexMatch,
     type Rule,
     RuleScope
 } from '@navikt/textparser';
 import { getText } from '@navikt/textparser/dist/utils';
-import { Normaltekst } from 'nav-frontend-typografi';
 
 export const ParagraphRuleOverride: Rule = {
     name: 'Paragraph',
@@ -29,19 +26,6 @@ export const ParagraphRuleOverride: Rule = {
     }
 };
 
-export const ParagraphRule: Rule = {
-    ...OriginalParagraphRule,
-    react(node: ASTNode, ast: AST): ReactElementDescription {
-        const isLastInAST = ast.indexOf(node) === ast.length - 1;
-        const props = isLastInAST ? undefined : { className: 'blokk-xs' };
-
-        return {
-            props,
-            type: Normaltekst
-        };
-    }
-};
-
 export const LinkRule: Rule = {
     ...OriginalLinkRule,
     react(node: ASTNode): ReactElementDescription {
@@ -50,7 +34,12 @@ export const LinkRule: Rule = {
 
         return {
             type: Link,
-            props: { href, target: '_blank', style: { link: { color: '#0000EE' }, hover: { color: '#551A8B' } } }
+            props: {
+                href,
+                target: '_blank',
+                style: { link: { color: '#0000EE' }, hover: { color: '#551A8B' } },
+                className: 'break-all'
+            }
         };
     }
 };

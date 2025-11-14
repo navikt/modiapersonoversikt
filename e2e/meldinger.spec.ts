@@ -51,7 +51,7 @@ test('Send ny melding', async ({ page }) => {
     const meldingerList = page.getByLabel('Dialogdetaljer').getByLabel('Meldinger');
     const meldinger = meldingerList.getByRole('list');
     await expect(meldinger).toHaveCount(1);
-    await expect(meldinger.first().getByRole('paragraph').first()).toHaveText('playwright new melding');
+    await expect(meldinger.first()).toContainText('playwright new melding');
 });
 
 test('Journalfore dialog', async ({ page }) => {
