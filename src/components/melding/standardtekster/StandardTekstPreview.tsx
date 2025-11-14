@@ -1,5 +1,6 @@
-import { BodyShort, Heading } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 import { useAtom } from 'jotai/index';
+import RichText, { defaultRules, HighlightRule, SladdRule } from 'src/components/RichText';
 import { standardTekstSokAtom } from 'src/components/melding/standardtekster/StandardTekster';
 
 function StandardTekstPreview() {
@@ -13,9 +14,9 @@ function StandardTekstPreview() {
             <Heading size="small" level="4">
                 {values.tekst?.overskrift}
             </Heading>
-            <BodyShort size="small" className="wrap-break-word">
+            <RichText rules={[SladdRule, HighlightRule, ...defaultRules]}>
                 {values.tekst?.innhold[values.locale] as string}
-            </BodyShort>
+            </RichText>
         </div>
     );
 }
