@@ -51,7 +51,7 @@ function FiltreringPeriode(props: FiltreringPeriodeProps) {
     useEffect(() => {
         setRadioValg(props.periode.radioValg);
         setPeriode(props.periode.egendefinertPeriode);
-    }, [props.periode.radioValg, props.periode.egendefinertPeriode]);
+    }, [props.periode]);
 
     const onPeriodChange = (periodeValg: PeriodeValg) => {
         setRadioValg(periodeValg);

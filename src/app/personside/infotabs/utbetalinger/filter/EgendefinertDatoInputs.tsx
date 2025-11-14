@@ -35,21 +35,17 @@ function EgendefinertDatoInputs(props: EgendefinertDatoInputsProps) {
     const [fraDato, setFraDato] = useState(dayjs(props.periode?.fra));
     const [tilDato, setTilDato] = useState(dayjs(props.periode?.til));
     const [periodeFeilmelding, setPeriodeFeilmelding] = useState<string | undefined>();
-    // For å oppdatere datepicker komponenten fullstendig når datoene endres utenfra
     const [componentKey, setComponentKey] = useState(0);
 
     useEffect(() => {
-        if (props.periode?.fra && props.periode?.til) {
-            const newFraDato = dayjs(props.periode.fra);
-            const newTilDato = dayjs(props.periode.til);
-
-            if (!newFraDato.isSame(fraDato, 'day') || !newTilDato.isSame(tilDato, 'day')) {
-                setFraDato(newFraDato);
-                setTilDato(newTilDato);
-                setComponentKey((prev) => prev + 1);
-            }
+        if (props.periode?.fra) {
+            setFraDato(dayjs(props.periode?.fra));
         }
-    }, [props.periode?.fra, props.periode?.til]);
+        if (props.periode?.til) {
+            setTilDato(dayjs(props.periode?.til));
+        }
+        setComponentKey((prev) => prev + 1);
+    }, [props.periode]);
 
     const onFraDatoChange = (val?: Date) => {
         const value = dayjs(val);

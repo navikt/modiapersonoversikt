@@ -65,7 +65,7 @@ function Ytelser() {
 
     useEffect(() => {
         setPeriod(initialYtelsePeriode);
-    }, [user, setPeriod]);
+    }, [user]);
 
     return (
         <Styling>
