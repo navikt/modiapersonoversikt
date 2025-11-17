@@ -278,7 +278,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                   >
                     <label
                       class="navds-form-field__label navds-label navds-label--small"
-                      for="datepicker-input-«rn»"
+                      for="datepicker-input-«r1»"
                     >
                       Fra
                     </label>
@@ -288,7 +288,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                       <input
                         autocomplete="off"
                         class="navds-date__field-input navds-text-field__input navds-body-short navds-body-short--small"
-                        id="datepicker-input-«rn»"
+                        id="datepicker-input-«r1»"
                         size="11"
                         value="01.01.1968"
                       />
@@ -298,7 +298,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                         type="button"
                       >
                         <svg
-                          aria-labelledby="title-«ro»"
+                          aria-labelledby="title-«r2»"
                           fill="none"
                           focusable="false"
                           height="1em"
@@ -308,7 +308,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <title
-                            id="title-«ro»"
+                            id="title-«r2»"
                           >
                             Åpne datovelger
                           </title>
@@ -325,7 +325,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                       aria-live="polite"
                       aria-relevant="additions removals"
                       class="navds-form-field__error"
-                      id="datepicker-input-error-«rn»"
+                      id="datepicker-input-error-«r1»"
                     />
                   </div>
                   <div
@@ -333,7 +333,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                     class="navds-popover navds-date__popover navds-popover--hidden"
                     data-index="0"
                     data-placement="bottom-start"
-                    id="«rm»"
+                    id="«r0»"
                     role="dialog"
                     style="position: fixed; left: 0px; top: 0px; transform: translate(12px, 4px);"
                   >
@@ -367,7 +367,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 class="navds-button__icon"
                               >
                                 <svg
-                                  aria-labelledby="title-«rq»"
+                                  aria-labelledby="title-«r4»"
                                   fill="none"
                                   focusable="false"
                                   height="1em"
@@ -377,7 +377,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   xmlns="http://www.w3.org/2000/svg"
                                 >
                                   <title
-                                    id="title-«rq»"
+                                    id="title-«r4»"
                                   >
                                     Gå til forrige måned
                                   </title>
@@ -396,7 +396,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                               >
                                 <label
                                   class="navds-form-field__label navds-sr-only navds-label"
-                                  for="select-«rr»"
+                                  for="select-«r5»"
                                 >
                                   Måned
                                 </label>
@@ -405,7 +405,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 >
                                   <select
                                     class="navds-select__input navds-body-short navds-body-short--medium"
-                                    id="select-«rr»"
+                                    id="select-«r5»"
                                   >
                                     <option
                                       value="0"
@@ -491,7 +491,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   aria-live="polite"
                                   aria-relevant="additions removals"
                                   class="navds-form-field__error"
-                                  id="select-error-«rr»"
+                                  id="select-error-«r5»"
                                 />
                               </div>
                               <div
@@ -499,7 +499,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                               >
                                 <label
                                   class="navds-form-field__label navds-sr-only navds-label"
-                                  for="select-«rt»"
+                                  for="select-«r7»"
                                 >
                                   År
                                 </label>
@@ -508,7 +508,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 >
                                   <select
                                     class="navds-select__input navds-body-short navds-body-short--medium"
-                                    id="select-«rt»"
+                                    id="select-«r7»"
                                   >
                                     <option
                                       value="1960"
@@ -584,7 +584,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   aria-live="polite"
                                   aria-relevant="additions removals"
                                   class="navds-form-field__error"
-                                  id="select-error-«rt»"
+                                  id="select-error-«r7»"
                                 />
                               </div>
                             </div>
@@ -598,7 +598,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 class="navds-button__icon"
                               >
                                 <svg
-                                  aria-labelledby="title-«rv»"
+                                  aria-labelledby="title-«r9»"
                                   fill="none"
                                   focusable="false"
                                   height="1em"
@@ -608,7 +608,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   xmlns="http://www.w3.org/2000/svg"
                                 >
                                   <title
-                                    id="title-«rv»"
+                                    id="title-«r9»"
                                   >
                                     Gå til neste måned
                                   </title>
@@ -1258,7 +1258,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                   >
                     <label
                       class="navds-form-field__label navds-label navds-label--small"
-                      for="datepicker-input-«r12»"
+                      for="datepicker-input-«rc»"
                     >
                       Til
                     </label>
@@ -1268,7 +1268,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                       <input
                         autocomplete="off"
                         class="navds-date__field-input navds-text-field__input navds-body-short navds-body-short--small"
-                        id="datepicker-input-«r12»"
+                        id="datepicker-input-«rc»"
                         size="11"
                         value="01.01.1970"
                       />
@@ -1278,7 +1278,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                         type="button"
                       >
                         <svg
-                          aria-labelledby="title-«r13»"
+                          aria-labelledby="title-«rd»"
                           fill="none"
                           focusable="false"
                           height="1em"
@@ -1288,7 +1288,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <title
-                            id="title-«r13»"
+                            id="title-«rd»"
                           >
                             Åpne datovelger
                           </title>
@@ -1305,7 +1305,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                       aria-live="polite"
                       aria-relevant="additions removals"
                       class="navds-form-field__error"
-                      id="datepicker-input-error-«r12»"
+                      id="datepicker-input-error-«rc»"
                     />
                   </div>
                   <div
@@ -1313,7 +1313,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                     class="navds-popover navds-date__popover navds-popover--hidden"
                     data-index="0"
                     data-placement="bottom-start"
-                    id="«r11»"
+                    id="«rb»"
                     role="dialog"
                     style="position: fixed; left: 0px; top: 0px; transform: translate(12px, 4px);"
                   >
@@ -1347,7 +1347,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 class="navds-button__icon"
                               >
                                 <svg
-                                  aria-labelledby="title-«r15»"
+                                  aria-labelledby="title-«rf»"
                                   fill="none"
                                   focusable="false"
                                   height="1em"
@@ -1357,7 +1357,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   xmlns="http://www.w3.org/2000/svg"
                                 >
                                   <title
-                                    id="title-«r15»"
+                                    id="title-«rf»"
                                   >
                                     Gå til forrige måned
                                   </title>
@@ -1376,7 +1376,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                               >
                                 <label
                                   class="navds-form-field__label navds-sr-only navds-label"
-                                  for="select-«r16»"
+                                  for="select-«rg»"
                                 >
                                   Måned
                                 </label>
@@ -1385,7 +1385,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 >
                                   <select
                                     class="navds-select__input navds-body-short navds-body-short--medium"
-                                    id="select-«r16»"
+                                    id="select-«rg»"
                                   >
                                     <option
                                       value="0"
@@ -1482,7 +1482,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   aria-live="polite"
                                   aria-relevant="additions removals"
                                   class="navds-form-field__error"
-                                  id="select-error-«r16»"
+                                  id="select-error-«rg»"
                                 />
                               </div>
                               <div
@@ -1490,7 +1490,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                               >
                                 <label
                                   class="navds-form-field__label navds-sr-only navds-label"
-                                  for="select-«r18»"
+                                  for="select-«ri»"
                                 >
                                   År
                                 </label>
@@ -1499,7 +1499,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 >
                                   <select
                                     class="navds-select__input navds-body-short navds-body-short--medium"
-                                    id="select-«r18»"
+                                    id="select-«ri»"
                                   >
                                     <option
                                       value="1968"
@@ -1540,7 +1540,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   aria-live="polite"
                                   aria-relevant="additions removals"
                                   class="navds-form-field__error"
-                                  id="select-error-«r18»"
+                                  id="select-error-«ri»"
                                 />
                               </div>
                             </div>
@@ -1555,7 +1555,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 class="navds-button__icon"
                               >
                                 <svg
-                                  aria-labelledby="title-«r1a»"
+                                  aria-labelledby="title-«rk»"
                                   fill="none"
                                   focusable="false"
                                   height="1em"
@@ -1565,7 +1565,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                   xmlns="http://www.w3.org/2000/svg"
                                 >
                                   <title
-                                    id="title-«r1a»"
+                                    id="title-«rk»"
                                   >
                                     Gå til neste måned
                                   </title>
