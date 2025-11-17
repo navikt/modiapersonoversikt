@@ -48,7 +48,7 @@ function EgendefinertDatoInputs(props: EgendefinertDatoInputsProps) {
                 setComponentKey((prev) => prev + 1);
             }
         }
-    }, [props.periode]);
+    }, [props.periode?.fra, props.periode?.til]);
 
     const onFraDatoChange = (val?: Date) => {
         const value = dayjs(val);
