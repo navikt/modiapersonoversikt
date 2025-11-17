@@ -38,13 +38,16 @@ function EgendefinertDatoInputs(props: EgendefinertDatoInputsProps) {
     const [componentKey, setComponentKey] = useState(0);
 
     useEffect(() => {
-        if (props.periode?.fra) {
-            setFraDato(dayjs(props.periode?.fra));
+        if (props.periode?.fra && props.periode?.til) {
+            const newFraDato = dayjs(props.periode.fra);
+            const newTilDato = dayjs(props.periode.til);
+
+            if (!newFraDato.isSame(fraDato, 'day') || !newTilDato.isSame(tilDato, 'day')) {
+                setFraDato(newFraDato);
+                setTilDato(newTilDato);
+                setComponentKey((prev) => prev + 1);
+            }
         }
-        if (props.periode?.til) {
-            setTilDato(dayjs(props.periode?.til));
-        }
-        setComponentKey((prev) => prev + 1);
     }, [props.periode]);
 
     const onFraDatoChange = (val?: Date) => {
