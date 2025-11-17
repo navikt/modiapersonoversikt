@@ -78,7 +78,7 @@ const oppgaveFormValidator = z.object({
         message: 'Prioritet må være valgt'
     }),
     valgtEnhet: z.string().nonempty('Oppgaven må tilegnes en enhet'),
-    valgtAnsatt: z.string().nonempty('Oppgaven må tilegnes en ansatt'),
+    valgtAnsatt: z.string().optional(),
     dagerFrist: z.number().optional()
 });
 
