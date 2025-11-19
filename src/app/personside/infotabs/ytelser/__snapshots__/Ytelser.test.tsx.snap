@@ -77,10 +77,11 @@ exports[`Om Ytelser matcher snapshot 1`] = `
 }
 
 .c16 {
-  padding: .5rem;
+  padding: 0!important;
 }
 
 .c17 {
+  padding: .5rem;
   display: flex;
   flex-wrap: wrap;
 }
@@ -567,6 +568,70 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       <h3
                         class="typo-undertittel"
                       >
+                        Engangstønad
+                      </h3>
+                      <p
+                        class="typo-element"
+                      >
+                        ID-dato
+                      </p>
+                      <p
+                        class="typo-normal"
+                      >
+                        01.08.2025
+                      </p>
+                    </div>
+                    <button
+                      aria-label="Vis engangstønad"
+                      aria-selected="true"
+                      class="c13"
+                    >
+                      <span
+                        class="nav-frontend-chevron chevronboks chevron--hoyre"
+                      />
+                    </button>
+                  </div>
+                </li>
+                <li>
+                  <div
+                    class="c12"
+                  >
+                    <div>
+                      <h3
+                        class="typo-undertittel"
+                      >
+                        Engangstønad
+                      </h3>
+                      <p
+                        class="typo-element"
+                      >
+                        ID-dato
+                      </p>
+                      <p
+                        class="typo-normal"
+                      >
+                        01.08.2025
+                      </p>
+                    </div>
+                    <button
+                      aria-label="Vis engangstønad"
+                      aria-selected="true"
+                      class="c13"
+                    >
+                      <span
+                        class="nav-frontend-chevron chevronboks chevron--hoyre"
+                      />
+                    </button>
+                  </div>
+                </li>
+                <li>
+                  <div
+                    class="c14"
+                  >
+                    <div>
+                      <h3
+                        class="typo-undertittel"
+                      >
                         Arbeidsavklaringspenger
                       </h3>
                       <p
@@ -582,7 +647,39 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                     </div>
                     <button
                       aria-label="Vis arbeidsavklaringspenger"
-                      aria-selected="true"
+                      aria-selected="false"
+                      class="c13"
+                    >
+                      <span
+                        class="nav-frontend-chevron chevronboks chevron--hoyre"
+                      />
+                    </button>
+                  </div>
+                </li>
+                <li>
+                  <div
+                    class="c14"
+                  >
+                    <div>
+                      <h3
+                        class="typo-undertittel"
+                      >
+                        Foreldrepenger
+                      </h3>
+                      <p
+                        class="typo-element"
+                      >
+                        ID-dato
+                      </p>
+                      <p
+                        class="typo-normal"
+                      >
+                        01.12.2024
+                      </p>
+                    </div>
+                    <button
+                      aria-label="Vis foreldrepenger"
+                      aria-selected="false"
                       class="c13"
                     >
                       <span
@@ -786,7 +883,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               <h2
                 class="sr-only"
               >
-                Arbeidsavklaringspenger
+                ENGANGSTØNAD
               </h2>
               <div
                 class="c17"
@@ -799,7 +896,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                     class="typo-ingress"
                     id="Helt tilfeldig ID"
                   >
-                    Om arbeidsavklaringspenger
+                    Om engangstønad
                   </h3>
                   <dl
                     class="c19"
@@ -808,147 +905,36 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       <dt
                         class="typo-normal"
                       >
-                        VedtakId
+                        Saksnummer
                       </dt>
                       <dd
                         class="typo-element"
                       >
-                        vedtak-001
+                        2023123412
                       </dd>
                     </div>
                     <div>
                       <dt
                         class="typo-normal"
                       >
-                        Vedtaksdato
+                        Ytelsetype
                       </dt>
                       <dd
                         class="typo-element"
                       >
-                        01.02.2023
+                        Engangstønad
                       </dd>
                     </div>
                     <div>
                       <dt
                         class="typo-normal"
                       >
-                        Fra og med
+                        Dato
                       </dt>
                       <dd
                         class="typo-element"
                       >
-                        01.01.2025
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        class="typo-normal"
-                      >
-                        Til og med
-                      </dt>
-                      <dd
-                        class="typo-element"
-                      >
-                        31.12.2025
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        class="typo-normal"
-                      >
-                        Rettighet
-                      </dt>
-                      <dd
-                        class="typo-element"
-                      >
-                        AAP
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        class="typo-normal"
-                      >
-                        Status
-                      </dt>
-                      <dd
-                        class="typo-element"
-                      >
-                        LØPENDE
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        class="typo-normal"
-                      >
-                        Kilde
-                      </dt>
-                      <dd
-                        class="typo-element"
-                      >
-                        KELVIN
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        class="typo-normal"
-                      >
-                        Dagsats
-                      </dt>
-                      <dd
-                        class="typo-element"
-                      >
-                        500
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        class="typo-normal"
-                      >
-                        Opphørsårsak
-                      </dt>
-                      <dd
-                        class="typo-element"
-                      >
-                        FERDIGBEHANDLET
-                      </dd>
-                    </div>
-                  </dl>
-                </article>
-                <article
-                  aria-labelledby="Helt tilfeldig ID"
-                  class="c18"
-                >
-                  <h3
-                    class="typo-ingress"
-                    id="Helt tilfeldig ID"
-                  >
-                    Barnetillegg
-                  </h3>
-                  <dl
-                    class="c19"
-                  >
-                    <div>
-                      <dt
-                        class="typo-normal"
-                      >
-                        Barn med stønad
-                      </dt>
-                      <dd
-                        class="typo-element"
-                      >
-                        2
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        class="typo-normal"
-                      >
-                        Barnetillegg
-                      </dt>
-                      <dd
-                        class="typo-element"
-                      >
-                        1500
+                        01.08.2025
                       </dd>
                     </div>
                   </dl>
