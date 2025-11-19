@@ -3,7 +3,7 @@ import { type Dispatch, type Store, applyMiddleware, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { statiskArbeidsavklaringspengerMock } from 'src/mock/ytelse/statiskArbeidsavklaringspengerMock';
 import {
-    statiskEngangsstonadFpSakMock,
+    statiskEngangstonadFpSakMock,
     statiskForeldrepengerFpSakMock
 } from 'src/mock/ytelse/statiskForeldrepengerFpSakMock';
 import { statiskPensjonMock } from 'src/mock/ytelse/statiskPensjonMock';
@@ -118,8 +118,8 @@ export function setupReactQueryMocks() {
     mockReactQuery(arbeidsavklaringspengerReesource.useArbeidsavklaringspenger, [statiskArbeidsavklaringspengerMock]);
     mockReactQuery(foreldrepengerFpSakResource.useForeldrepengerFpSak, [
         statiskForeldrepengerFpSakMock,
-        statiskEngangsstonadFpSakMock,
-        statiskEngangsstonadFpSakMock
+        statiskEngangstonadFpSakMock,
+        statiskEngangstonadFpSakMock
     ]);
     mockReactQuery(oppfolgingResource.useFetch, statiskOppfolgingMock);
     mockReactQuery(sakstemaResource.useFetch, getStaticMockSaksoversiktV2());

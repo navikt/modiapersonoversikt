@@ -5,6 +5,7 @@ import { useEffect, useRef } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { ArbeidsavklaringspengerDetails } from 'src/components/ytelser/Detail/arbeidsavklaringspenger';
 import { ForeldrePengerDetails } from 'src/components/ytelser/Detail/foreldrepenger';
+import { ForeldrePengerFpSakDetails } from 'src/components/ytelser/Detail/foreldrepenger-fpsak';
 import { PensjonDetails } from 'src/components/ytelser/Detail/pensjon';
 import { PleiePengerDetails } from 'src/components/ytelser/Detail/pleiepenger';
 import { SykepengerDetails } from 'src/components/ytelser/Detail/sykepenger';
@@ -12,7 +13,7 @@ import { TiltaksPengerDetails } from 'src/components/ytelser/Detail/tiltakspenge
 import { ytelseFilterAtom } from 'src/components/ytelser/List/Filter';
 import { getUnikYtelseKey, useFilterYtelser } from 'src/components/ytelser/utils';
 import type {
-    Foreldrepenger,
+    Foreldrepenger, ForeldrepengerFpSak,
     PensjonSak,
     Pleiepenger,
     Sykepenger,
@@ -114,6 +115,8 @@ const YtelseDataDetails = () => {
             return <PensjonDetails pensjon={selectedYtelse.ytelseData.data as PensjonSak} />;
         case YtelseVedtakYtelseType.Arbeidsavklaringspenger:
             return <ArbeidsavklaringspengerDetails aap={selectedYtelse.ytelseData.data as Arbeidsavklaringspenger} />;
+        case YtelseVedtakYtelseType.ForeldrepengerFpSak:
+            return <ForeldrePengerFpSakDetails ytelse={selectedYtelse.ytelseData.data as ForeldrepengerFpSak} />;
         default:
             return <Alert variant="info">Ukjent ytelse type {selectedYtelse.ytelseType}</Alert>;
     }
