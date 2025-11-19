@@ -58,7 +58,7 @@ const YtelserTypeFilter = () => {
         [setSelectedYtelseType]
     );
 
-    const ytelseTyper = Object.values(YtelseVedtakYtelseType);
+    const ytelseTyper = Object.values(YtelseVedtakYtelseType).filter(yType => yType !== YtelseVedtakYtelseType.ForeldrepengerFpSak);
 
     return (
         <UNSAFE_Combobox
