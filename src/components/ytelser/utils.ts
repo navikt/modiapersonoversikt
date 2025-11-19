@@ -11,25 +11,37 @@ import {
     useSykepenger,
     useTiltakspenger
 } from 'src/lib/clients/modiapersonoversikt-api';
-import {
-    type CommonPeriode,
-    type Foreldrepenger,
-    type PensjonSak,
-    type Pleiepenger,
-    type PleiepengerArbeidsforhold,
-    type PleiepengerPeriode,
-    type PleiepengerVedtak,
-    type Sykepenger,
-    type VedtakDto,
-    type YtelseVedtak,
-    YtelseVedtakYtelseType
+import type {
+    CommonPeriode,
+    Foreldrepenger,
+    ForeldrepengerFpSak,
+    PensjonSak,
+    Pleiepenger,
+    PleiepengerArbeidsforhold,
+    PleiepengerPeriode,
+    PleiepengerVedtak,
+    Sykepenger,
+    VedtakDto
 } from 'src/lib/types/modiapersonoversikt-api';
 import {
     type Arbeidsavklaringspenger,
     getUnikArbeidsavklaringspengerKey
 } from 'src/models/ytelse/arbeidsavklaringspenger';
+import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
 import { ascendingDateComparator, backendDatoformat, datoStigende, datoSynkende } from 'src/utils/date-utils';
 import { formaterDato } from 'src/utils/string-utils';
+
+import type { Pensjon } from 'src/models/ytelse/pensjon';
+import type { Tiltakspenger } from 'src/models/ytelse/tiltakspenger';
+
+export type Ytelse =
+    | Foreldrepenger
+    | Pleiepenger
+    | Sykepenger
+    | Tiltakspenger
+    | Pensjon
+    | Arbeidsavklaringspenger
+    | ForeldrepengerFpSak;
 
 type Placeholder = { returnOnForbidden: string; returnOnError: string; returnOnNotFound: string };
 
@@ -39,6 +51,13 @@ interface Returns {
     placeholders: (string | undefined)[];
     harFeil: boolean;
 }
+
+export type YtelseVedtak = {
+    ytelseData: {
+        data: Ytelse;
+    };
+    ytelseType: YtelseVedtakYtelseType;
+};
 
 const filterYtelser = (ytelser: YtelseVedtak[], filters: YtelseFilter): YtelseVedtak[] => {
     const { ytelseTyper, dateRange } = filters;
@@ -282,39 +301,39 @@ export const useFilterYtelser = (): Returns => {
             pensjonResponse.isLoading ||
             arbeidsavklaringspengerResponse.isLoading;
         const ytelser: YtelseVedtak[] = [];
-        foreldrepengerResponse.data?.foreldrepenger?.map((ytlse) =>
+        foreldrepengerResponse.data?.foreldrepenger?.map((ytelse) =>
             ytelser.push({
-                ytelseData: { data: ytlse },
+                ytelseData: { data: ytelse },
                 ytelseType: YtelseVedtakYtelseType.Foreldrepenger
             })
         );
-        pleiepengerResponse.data?.pleiepenger?.map((ytlse) =>
+        pleiepengerResponse.data?.pleiepenger?.map((ytelse) =>
             ytelser.push({
-                ytelseData: { data: ytlse },
+                ytelseData: { data: ytelse },
                 ytelseType: YtelseVedtakYtelseType.Pleiepenger
             })
         );
-        sykepengerResponse.data?.sykepenger?.map((ytlse) =>
+        sykepengerResponse.data?.sykepenger?.map((ytelse) =>
             ytelser.push({
-                ytelseData: { data: ytlse },
+                ytelseData: { data: ytelse },
                 ytelseType: YtelseVedtakYtelseType.Sykepenger
             })
         );
-        tiltakspengerResponse?.data?.map((ytlse) =>
+        tiltakspengerResponse?.data?.map((ytelse) =>
             ytelser.push({
-                ytelseData: { data: ytlse },
+                ytelseData: { data: ytelse },
                 ytelseType: YtelseVedtakYtelseType.Tiltakspenge
             })
         );
-        pensjonResponse.data?.map((ytlse) =>
+        pensjonResponse.data?.map((ytelse) =>
             ytelser.push({
-                ytelseData: { data: ytlse },
+                ytelseData: { data: ytelse },
                 ytelseType: YtelseVedtakYtelseType.Pensjon
             })
         );
-        arbeidsavklaringspengerResponse.data?.map((ytlse) =>
+        arbeidsavklaringspengerResponse.data?.map((ytelse) =>
             ytelser.push({
-                ytelseData: { data: ytlse },
+                ytelseData: { data: ytelse },
                 ytelseType: YtelseVedtakYtelseType.Arbeidsavklaringspenger
             })
         );
