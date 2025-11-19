@@ -19,9 +19,9 @@ import { trackingEvents } from 'src/utils/analytics';
 import { usePrevious } from 'src/utils/customHooks';
 import { formaterDato } from 'src/utils/string-utils';
 import styled from 'styled-components';
-import {ForeldrepengerFpSak} from "src/generated/modiapersonoversikt-api";
-import {getForeldrepengerFpSakIdDato} from "src/models/ytelse/foreldrepenger-fpsak";
-import {capitalize} from "lodash";
+import { ForeldrepengerFpSak } from 'src/generated/modiapersonoversikt-api';
+import { getForeldrepengerFpSakIdDato } from 'src/models/ytelse/foreldrepenger-fpsak';
+import { capitalize } from 'lodash';
 
 const YtelserStyle = styled.div`
   > *:not(:first-child) {
@@ -57,7 +57,7 @@ function YtelserOversikt(props: Props) {
         ),
         renderPensjon: (pensjon) => <PensjonKomponent pensjon={pensjon} key={getUnikPensjonKey(pensjon)} />,
         renderArbeidsavklaringspenger: (aap) => <ArbeidsavklaringspengerKomponent aap={aap} />,
-        renderForeldrepengerFpSak: (ytelse) => <ForeldrepengerFpSakKomponent ytelse={ytelse} />,
+        renderForeldrepengerFpSak: (ytelse) => <ForeldrepengerFpSakKomponent ytelse={ytelse} />
     });
 
     const ytelserListe = ytelserMarkup.slice(0, 2);
@@ -210,27 +210,26 @@ function ArbeidsavklaringspengerKomponent(props: { aap: Arbeidsavklaringspenger 
         </VisMerKnapp>
     );
 }
-    function ForeldrepengerFpSakKomponent(props: { ytelse: ForeldrepengerFpSak }) {
-        const dyplenker = useInfotabsDyplenker();
-        const fomId = getForeldrepengerFpSakIdDato(props.ytelse);
-        const fom = props.ytelse.fom;
-        const tom = props.ytelse.tom;
-        return (
-            <VisMerKnapp
-                linkTo={dyplenker.ytelser.link(props.ytelse)}
-                valgt={false}
-                ariaDescription={`Vis ${props.ytelse.ytelse.toLowerCase()}`}
-                className={ytelserTest.oversikt}
-                umamiEvent={umamiEvent}
-            >
-                <Normaltekst>ID dato: {formaterDato(fomId)}</Normaltekst>
-                <Element>{capitalize(props.ytelse.ytelse)}</Element>
-                <Normaltekst>
-                    {fom ? formaterDato(fom) : ''} - {tom ? formaterDato(tom) : ''}
-                </Normaltekst>
-            </VisMerKnapp>
-        );
-    }
-
+function ForeldrepengerFpSakKomponent(props: { ytelse: ForeldrepengerFpSak }) {
+    const dyplenker = useInfotabsDyplenker();
+    const fomId = getForeldrepengerFpSakIdDato(props.ytelse);
+    const fom = props.ytelse.fom;
+    const tom = props.ytelse.tom;
+    return (
+        <VisMerKnapp
+            linkTo={dyplenker.ytelser.link(props.ytelse)}
+            valgt={false}
+            ariaDescription={`Vis ${props.ytelse.ytelse.toLowerCase()}`}
+            className={ytelserTest.oversikt}
+            umamiEvent={umamiEvent}
+        >
+            <Normaltekst>ID dato: {formaterDato(fomId)}</Normaltekst>
+            <Element>{capitalize(props.ytelse.ytelse)}</Element>
+            <Normaltekst>
+                {fom ? formaterDato(fom) : ''} - {tom ? formaterDato(tom) : ''}
+            </Normaltekst>
+        </VisMerKnapp>
+    );
+}
 
 export default YtelserOversikt;
