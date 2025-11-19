@@ -13,7 +13,8 @@ import { TiltaksPengerDetails } from 'src/components/ytelser/Detail/tiltakspenge
 import { ytelseFilterAtom } from 'src/components/ytelser/List/Filter';
 import { getUnikYtelseKey, useFilterYtelser } from 'src/components/ytelser/utils';
 import type {
-    Foreldrepenger, ForeldrepengerFpSak,
+    Foreldrepenger,
+    ForeldrepengerFpSak,
     PensjonSak,
     Pleiepenger,
     Sykepenger,

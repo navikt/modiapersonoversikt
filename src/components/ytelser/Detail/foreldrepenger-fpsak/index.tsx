@@ -1,26 +1,24 @@
-import {Accordion, Heading, VStack} from '@navikt/ds-react';
-import {capitalize} from 'lodash';
+import { Accordion, Heading, VStack } from '@navikt/ds-react';
+import { capitalize } from 'lodash';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
-import {TitleValuePairsComponent} from 'src/components/ytelser/Detail';
-import {ForeldrepengerFpSak, ForeldrepengerFpSakYtelse} from 'src/generated/modiapersonoversikt-api';
-import type {ForeldrepengerFpSakPeriode} from 'src/models/ytelse/foreldrepenger-fpsak';
-import {datoEllerTomString, formaterDato, prosentEllerNull} from 'src/utils/string-utils';
+import { TitleValuePairsComponent } from 'src/components/ytelser/Detail';
+import { ForeldrepengerFpSak, ForeldrepengerFpSakYtelse } from 'src/generated/modiapersonoversikt-api';
+import type { ForeldrepengerFpSakPeriode } from 'src/models/ytelse/foreldrepenger-fpsak';
+import { datoEllerTomString, formaterDato, prosentEllerNull } from 'src/utils/string-utils';
 
 const getForeldrePengerRettenEntries = (ytelse: ForeldrepengerFpSak) => {
-    const perioder = { 'Fra og med': formaterDato(ytelse.fom),
-        'Til og med': formaterDato(ytelse.tom)}
+    const perioder = { 'Fra og med': formaterDato(ytelse.fom), 'Til og med': formaterDato(ytelse.tom) };
 
     return {
         Saksnummer: ytelse.saksnummer,
         Ytelsetype: capitalize(ytelse.ytelse),
-        ...(ytelse.ytelse === ForeldrepengerFpSakYtelse.ENGANGST_NAD ? {'Dato': formaterDato(ytelse.fom)} : perioder),
-
+        ...(ytelse.ytelse === ForeldrepengerFpSakYtelse.ENGANGST_NAD ? { Dato: formaterDato(ytelse.fom) } : perioder)
     };
 };
 
 const ForeldrepengePerioder = ({ ytelse }: { ytelse: ForeldrepengerFpSak }) => {
-    if(ytelse.perioder.length === 0 || ytelse.ytelse === ForeldrepengerFpSakYtelse.ENGANGST_NAD) return <></>
+    if (ytelse.perioder.length === 0 || ytelse.ytelse === ForeldrepengerFpSakYtelse.ENGANGST_NAD) return <></>;
 
     const getEntries = (periode: ForeldrepengerFpSakPeriode) => {
         return {
@@ -41,7 +39,7 @@ const ForeldrepengePerioder = ({ ytelse }: { ytelse: ForeldrepengerFpSak }) => {
                         <Accordion.Item key={index} defaultOpen>
                             <Accordion.Header>{`Periode - ${datoEllerTomString(periode.fom)}`}</Accordion.Header>
                             <Accordion.Content>
-                                <TitleValuePairsComponent entries={getEntries(periode)} columns={{xs: 2, md: 3}}/>
+                                <TitleValuePairsComponent entries={getEntries(periode)} columns={{ xs: 2, md: 3 }} />
                             </Accordion.Content>
                         </Accordion.Item>
                     );

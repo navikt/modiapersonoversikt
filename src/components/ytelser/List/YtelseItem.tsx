@@ -1,11 +1,11 @@
-import {ChevronRightIcon} from '@navikt/aksel-icons';
-import {BodyShort, Button, Heading, HStack, VStack} from '@navikt/ds-react';
-import {getRouteApi} from '@tanstack/react-router';
+import { ChevronRightIcon } from '@navikt/aksel-icons';
+import { BodyShort, Button, Heading, HStack, VStack } from '@navikt/ds-react';
+import { getRouteApi } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import Card from 'src/components/Card';
-import {getUnikYtelseKey, getYtelseIdDato, type YtelseVedtak} from 'src/components/ytelser/utils';
-import {ForeldrepengerFpSak, ForeldrepengerFpSakYtelse, Pleiepenger} from 'src/generated/modiapersonoversikt-api';
-import {YtelseVedtakYtelseType} from 'src/models/ytelse/ytelse-utils';
+import { getUnikYtelseKey, getYtelseIdDato, type YtelseVedtak } from 'src/components/ytelser/utils';
+import { ForeldrepengerFpSak, ForeldrepengerFpSakYtelse, Pleiepenger } from 'src/generated/modiapersonoversikt-api';
+import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
 
 const routeApi = getRouteApi('/new/person/ytelser');
 
@@ -34,7 +34,7 @@ export const YtelseItem = ({
             case YtelseVedtakYtelseType.Arbeidsavklaringspenger:
                 return ytelse.ytelseType;
             case YtelseVedtakYtelseType.ForeldrepengerFpSak:
-                switch ((ytelse.ytelseData.data as ForeldrepengerFpSak).ytelse ){
+                switch ((ytelse.ytelseData.data as ForeldrepengerFpSak).ytelse) {
                     case ForeldrepengerFpSakYtelse.ENGANGST_NAD:
                         return 'Engangstønad';
                     case ForeldrepengerFpSakYtelse.SVANGERSKAPSPENGER:

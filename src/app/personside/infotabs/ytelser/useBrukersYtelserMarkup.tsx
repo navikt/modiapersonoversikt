@@ -7,7 +7,8 @@ import type { Sykepenger } from 'src/models/ytelse/sykepenger';
 import type { Tiltakspenger } from 'src/models/ytelse/tiltakspenger';
 import {
     isArbeidsavklaringspenger,
-    isForeldrepenger, isForeldrePengerFpSak,
+    isForeldrepenger,
+    isForeldrePengerFpSak,
     isPensjon,
     isPleiepenger,
     isSykepenger,
@@ -17,7 +18,7 @@ import { PeriodeValg } from 'src/redux/utbetalinger/types';
 import { loggError } from 'src/utils/logger/frontendLogger';
 import { getFraDateFromPeriod } from '../utbetalinger/utils/utbetalinger-utils';
 import useBrukersYtelser from './useBrukersYtelser';
-import {ForeldrepengerFpSak} from "src/generated/modiapersonoversikt-api";
+import { ForeldrepengerFpSak } from 'src/generated/modiapersonoversikt-api';
 
 interface Props {
     renderPleiepenger: (pleiepenger: Pleiepengerettighet) => ReactNode;
