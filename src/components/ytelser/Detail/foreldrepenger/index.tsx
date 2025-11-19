@@ -5,7 +5,6 @@ import { TitleValuePairsComponent } from 'src/components/ytelser/Detail';
 import ArbeidsForholdListe from 'src/components/ytelser/Detail/ArbeidsforholdListe';
 import { fjernEntriesUtenVerdi, periodeEllerNull, utledFraDatoForForeldrePenger } from 'src/components/ytelser/utils';
 import type { ForeldrepengePeriode, Foreldrepenger } from 'src/generated/modiapersonoversikt-api';
-import { YtelseVedtakYtelseType } from 'src/generated/modiapersonoversikt-api';
 import { convertBoolTilJaNei, datoEllerTomString, formaterDato, prosentEllerNull } from 'src/utils/string-utils';
 
 const omsorgsovertakelseEllerTermin = (foreldrePenger: Foreldrepenger) => {
@@ -139,7 +138,7 @@ const Arbeidssituasjon = ({ foreldrePenger }: { foreldrePenger: Foreldrepenger }
             </Heading>
             <ArbeidsForholdListe
                 arbeidsForholdList={foreldrePenger.arbeidsforhold ?? []}
-                ytelseType={YtelseVedtakYtelseType.Foreldrepenger}
+                ytelseType="ForeldrepengerRettighet"
             />
         </Card>
     );
