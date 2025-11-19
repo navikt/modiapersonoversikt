@@ -61,7 +61,7 @@ function Ytelser() {
     const ytelser = useBrukersYtelser(period.egendefinertPeriode);
     const dypLenker = useInfotabsDyplenker();
     const valgtYtelse = ytelser.ytelser.find((ytelse) => dypLenker.ytelser.erValgt(ytelse)) || ytelser.ytelser[0];
-    const [user] = useAtom(aktivBrukerAtom); // your user atom
+    const [user] = useAtom(aktivBrukerAtom);
 
     useEffect(() => {
         setPeriod(initialYtelsePeriode);

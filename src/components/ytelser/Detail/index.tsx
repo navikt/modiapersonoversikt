@@ -11,15 +11,15 @@ import { SykepengerDetails } from 'src/components/ytelser/Detail/sykepenger';
 import { TiltaksPengerDetails } from 'src/components/ytelser/Detail/tiltakspenger';
 import { ytelseFilterAtom } from 'src/components/ytelser/List/Filter';
 import { getUnikYtelseKey, useFilterYtelser } from 'src/components/ytelser/utils';
-import {
-    type Foreldrepenger,
-    type PensjonSak,
-    type Pleiepenger,
-    type Sykepenger,
-    type VedtakDto,
-    YtelseVedtakYtelseType
+import type {
+    Foreldrepenger,
+    PensjonSak,
+    Pleiepenger,
+    Sykepenger,
+    VedtakDto
 } from 'src/generated/modiapersonoversikt-api';
 import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaringspenger';
+import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
 import { ytelserRouteMiddleware } from 'src/routes/new/person/ytelser';
 
 const TitleValuePairComponent = ({ title, value }: { title: string; value: string | number | null | undefined }) => {
