@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import navfaker from 'nav-faker/dist/index';
 import { type ForeldrepengerFpSak, ForeldrepengerFpSakYtelse } from 'src/generated/modiapersonoversikt-api';
 import {
-    statiskEngangsstonadFpSakMock,
+    statiskEngangstonadFpSakMock,
     statiskForeldrepengerFpSakMock,
     statiskSvangerskapspengerFpSakMock
 } from 'src/mock/ytelse/statiskForeldrepengerFpSakMock';
@@ -13,7 +13,7 @@ import { fyllRandomListe } from '../utils/mock-utils';
 
 export function getMockForeldrepengerFpSakResponse(fnr: string): ForeldrepengerFpSak[] {
     if (fnr === aremark.personIdent) {
-        return [statiskForeldrepengerFpSakMock, statiskSvangerskapspengerFpSakMock, statiskEngangsstonadFpSakMock];
+        return [statiskForeldrepengerFpSakMock, statiskSvangerskapspengerFpSakMock, statiskEngangstonadFpSakMock];
     }
     faker.seed(Number(fnr));
     navfaker.seed(`${fnr}foreldrepengerFpSak`);

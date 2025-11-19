@@ -34,6 +34,7 @@ export type Ytelse =
     | Pensjon
     | Arbeidsavklaringspenger
     | ForeldrepengerFpSak;
+
 export function isPleiepenger(ytelse: Ytelse): ytelse is Pleiepengerettighet {
     return 'pleiepengedager' in ytelse;
 }

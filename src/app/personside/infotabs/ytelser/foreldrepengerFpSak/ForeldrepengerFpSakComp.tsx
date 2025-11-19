@@ -45,7 +45,7 @@ function ForeldrepengerPerioderFpSak({ perioder }: { perioder: ForeldrepengerFpS
 }
 
 function ForeldrepengerFpSakComp(props: Props) {
-    const erEngangsstonad = props.foreldrepenger.ytelse === ForeldrepengerFpSakYtelse.ENGANGST_NAD;
+    const erEngangstonad = props.foreldrepenger.ytelse === ForeldrepengerFpSakYtelse.ENGANGST_NAD;
 
     const perioder = {
         'Fra og med': props.foreldrepenger.fom ? formaterDato(props.foreldrepenger.fom) : '',
@@ -55,7 +55,7 @@ function ForeldrepengerFpSakComp(props: Props) {
     const entries = {
         Saksnummer: props.foreldrepenger.saksnummer,
         Ytelsetype: capitalize(props.foreldrepenger.ytelse),
-        ...(erEngangsstonad ? { Dag: formaterDato(props.foreldrepenger.fom) } : perioder)
+        ...(erEngangstonad ? { Dato: formaterDato(props.foreldrepenger.fom) } : perioder)
     };
 
     return (
@@ -67,7 +67,7 @@ function ForeldrepengerFpSakComp(props: Props) {
                         <YtelserInfoGruppe tittel={`Om ${props.foreldrepenger.ytelse.toLowerCase()}`}>
                             <DescriptionList entries={entries} />
                         </YtelserInfoGruppe>
-                        {!erEngangsstonad && <ForeldrepengerPerioderFpSak perioder={props.foreldrepenger.perioder} />}
+                        {!erEngangstonad && <ForeldrepengerPerioderFpSak perioder={props.foreldrepenger.perioder} />}
                     </OversiktStyling>
                 </StyledPanel>
             </article>

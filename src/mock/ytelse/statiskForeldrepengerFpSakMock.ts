@@ -38,7 +38,7 @@ export const statiskSvangerskapspengerFpSakMock = {
     saksnummer: '2023123445'
 };
 
-export const statiskEngangsstonadFpSakMock = {
+export const statiskEngangstonadFpSakMock = {
     ytelse: ForeldrepengerFpSakYtelse.ENGANGST_NAD,
     fom: '2025-08-01',
     tom: '2025-08-01',
