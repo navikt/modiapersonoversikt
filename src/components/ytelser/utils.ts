@@ -1,8 +1,8 @@
 import type { UseBaseQueryResult, UseSuspenseQueryResult } from '@tanstack/react-query';
 import dayjs from 'dayjs';
-import { useAtomValue } from 'jotai/index';
-import { useMemo } from 'react';
-import { type YtelseFilter, ytelseFilterAtom } from 'src/components/ytelser/List/Filter';
+import {useAtomValue} from 'jotai/index';
+import {useMemo} from 'react';
+import {type YtelseFilter, ytelseFilterAtom} from 'src/components/ytelser/List/Filter';
 import {
     useArbeidsavklaringspenger,
     useForeldrepenger,
@@ -28,13 +28,13 @@ import {
     type Arbeidsavklaringspenger,
     getUnikArbeidsavklaringspengerKey
 } from 'src/models/ytelse/arbeidsavklaringspenger';
-import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
-import { ascendingDateComparator, backendDatoformat, datoStigende, datoSynkende } from 'src/utils/date-utils';
-import { formaterDato } from 'src/utils/string-utils';
+import {YtelseVedtakYtelseType} from 'src/models/ytelse/ytelse-utils';
+import {ascendingDateComparator, backendDatoformat, datoStigende, datoSynkende} from 'src/utils/date-utils';
+import {formaterDato} from 'src/utils/string-utils';
 
-import { getForeldrepengerFpSakIdDato } from 'src/models/ytelse/foreldrepenger-fpsak';
-import type { Pensjon } from 'src/models/ytelse/pensjon';
-import type { Tiltakspenger } from 'src/models/ytelse/tiltakspenger';
+import {getForeldrepengerFpSakIdDato} from 'src/models/ytelse/foreldrepenger-fpsak';
+import type {Pensjon} from 'src/models/ytelse/pensjon';
+import type {Tiltakspenger} from 'src/models/ytelse/tiltakspenger';
 
 export type Ytelse =
     | Foreldrepenger
@@ -61,6 +61,11 @@ export type YtelseVedtak = {
     ytelseType: YtelseVedtakYtelseType;
 };
 
+const filterForeldrepenger = (ytelse: YtelseVedtak, ytelsetyper: string[]): boolean => {
+    return ytelsetyper.includes(YtelseVedtakYtelseType.Foreldrepenger) && ytelse.ytelseType === YtelseVedtakYtelseType.ForeldrepengerFpSak;
+
+}
+
 const filterYtelser = (ytelser: YtelseVedtak[], filters: YtelseFilter): YtelseVedtak[] => {
     const { ytelseTyper, dateRange } = filters;
 
@@ -70,8 +75,9 @@ const filterYtelser = (ytelser: YtelseVedtak[], filters: YtelseFilter): YtelseVe
 
     let filteredList = ytelser;
     if (ytelseTyper?.length) {
-        filteredList = filteredList.filter((ytelse) => ytelseTyper.includes(ytelse.ytelseType));
-    }
+        filteredList = filteredList.filter((ytelse) =>
+         ytelseTyper.includes(ytelse.ytelseType) || filterForeldrepenger(ytelse, ytelseTyper))}
+
 
     if (dateRange?.from && dateRange?.to) {
         filteredList = filteredList.filter((ytelse) => {
