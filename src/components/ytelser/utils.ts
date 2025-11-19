@@ -32,7 +32,7 @@ import {YtelseVedtakYtelseType} from 'src/models/ytelse/ytelse-utils';
 import {ascendingDateComparator, backendDatoformat, datoStigende, datoSynkende} from 'src/utils/date-utils';
 import {formaterDato} from 'src/utils/string-utils';
 
-import {getForeldrepengerFpSakIdDato} from 'src/models/ytelse/foreldrepenger-fpsak';
+import {getForeldrepengerFpSakIdDato, getUnikForeldrepengerFpSakKey} from 'src/models/ytelse/foreldrepenger-fpsak';
 import type {Pensjon} from 'src/models/ytelse/pensjon';
 import type {Tiltakspenger} from 'src/models/ytelse/tiltakspenger';
 
@@ -126,7 +126,7 @@ export function getUnikYtelseKey(ytelse: YtelseVedtak) {
         case YtelseVedtakYtelseType.Arbeidsavklaringspenger:
             return getUnikArbeidsavklaringspengerKey(ytelse.ytelseData.data as Arbeidsavklaringspenger);
         case YtelseVedtakYtelseType.ForeldrepengerFpSak:
-            return getForeldrepengerFpSakIdDato(ytelse.ytelseData.data as ForeldrepengerFpSak);
+            return getUnikForeldrepengerFpSakKey(ytelse.ytelseData.data as ForeldrepengerFpSak);
         default:
             return 'ukjent ytelse';
     }
