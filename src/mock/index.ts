@@ -50,7 +50,7 @@ import type {
 import { getMockPensjon } from 'src/mock/ytelse/pensjon-mock';
 
 import { getMockArbeidsavklaringspengerResponse } from 'src/mock/ytelse/arbeidsavklaringspengerMock';
-import { getMockYtelserRespons } from 'src/mock/ytelse/ytelser-mock';
+import { getMockForeldrepengerFpSakResponse } from 'src/mock/ytelse/foreldrepengerFpSakMock';
 import type { FeatureTogglesResponse } from 'src/rest/resources/featuretogglesResource';
 import { STATUS_OK, fodselsNummerErGyldigStatus, randomDelay } from './utils-mock';
 import { getMockTiltakspenger } from './ytelse/tiltakspenger-mock';
@@ -190,15 +190,6 @@ const tiltakspengerMock = http.post(
     )
 );
 
-const ytelseHandler = http.post(
-    `${apiBaseUri}/ytelse/alle-ytelser`,
-    withDelayedResponse(
-        randomDelay(),
-        fodselsNummerErGyldigStatus,
-        mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMockYtelserRespons(fodselsnummer))
-    )
-);
-
 const pensjonMock = http.post(
     `${apiBaseUri}/ytelse/pensjon`,
     withDelayedResponse(
@@ -214,6 +205,15 @@ const arbeidsavklaringspengerMock = http.post(
         randomDelay(),
         fodselsNummerErGyldigStatus,
         mockGeneratorMedFodselsnummerV2((fnr) => getMockArbeidsavklaringspengerResponse(fnr))
+    )
+);
+
+const foreldrepengerFpSakHandlerMock = http.post(
+    `${apiBaseUri}/ytelse/foreldrepenger_fpsak`,
+    withDelayedResponse(
+        randomDelay(),
+        fodselsNummerErGyldigStatus,
+        mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMockForeldrepengerFpSakResponse(fodselsnummer))
     )
 );
 
@@ -388,7 +388,7 @@ export const handlers: (HttpHandler | WebSocketHandler)[] = [
     foreldrepengerHandler,
     pleiepengerHandler,
     tiltakspengerMock,
-    ytelseHandler,
+    foreldrepengerFpSakHandlerMock,
     pensjonMock,
     arbeidsavklaringspengerMock,
     tildelteOppgaverHandler,
