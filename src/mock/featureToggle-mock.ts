@@ -5,8 +5,6 @@ export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleRespon
     switch (toggleId) {
         case FeatureToggles.JournalforUtenSvar:
             return true;
-        case FeatureToggles.BrukNyTiltakspenger:
-            return true;
         case FeatureToggles.NyModiaKnapp:
             return true;
         default:
