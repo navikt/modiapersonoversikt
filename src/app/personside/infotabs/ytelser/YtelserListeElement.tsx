@@ -1,3 +1,4 @@
+import { capitalize } from 'lodash';
 import { Element, Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import VisMerKnapp from 'src/components/VisMerKnapp';
 import {
@@ -5,6 +6,7 @@ import {
     getUnikArbeidsavklaringspengerKey
 } from 'src/models/ytelse/arbeidsavklaringspenger';
 import { getForeldepengerIdDato, getUnikForeldrepengerKey } from 'src/models/ytelse/foreldrepenger';
+import { getForeldrepengerFpSakIdDato, getUnikForeldrepengerFpSakKey } from 'src/models/ytelse/foreldrepenger-fpsak';
 import { getPensjonIdDato, getUnikPensjonKey } from 'src/models/ytelse/pensjon';
 import { getUnikPleiepengerKey } from 'src/models/ytelse/pleiepenger';
 import { getUnikSykepengerKey } from 'src/models/ytelse/sykepenger';
@@ -13,6 +15,7 @@ import {
     type Ytelse,
     getYtelseIdDato,
     isArbeidsavklaringspenger,
+    isForeldrePengerFpSak,
     isForeldrepenger,
     isPensjon,
     isPleiepenger,
@@ -154,6 +157,29 @@ function YtelserListeElement(props: Props) {
                     }}
                 >
                     <Undertittel tag="h3">Arbeidsavklaringspenger</Undertittel>
+                    <Element>ID-dato</Element>
+                    <Normaltekst>{fom ? formaterDato(fom) : ''}</Normaltekst>
+                </VisMerKnapp>
+            </li>
+        );
+    }
+
+    if (isForeldrePengerFpSak(props.ytelse)) {
+        const fom = getForeldrepengerFpSakIdDato(props.ytelse);
+
+        return (
+            <li key={getUnikForeldrepengerFpSakKey(props.ytelse)}>
+                <VisMerKnapp
+                    key={getUnikForeldrepengerFpSakKey(props.ytelse)}
+                    ariaDescription={`Vis ${props.ytelse.ytelse.toLowerCase()}`}
+                    valgt={props.erValgt}
+                    linkTo={dypLenker.ytelser.link(props.ytelse)}
+                    umamiEvent={{
+                        name: trackingEvents.detaljvisningKlikket,
+                        data: { fane: 'ytelser', tekst: props.ytelse.ytelse.toLowerCase() }
+                    }}
+                >
+                    <Undertittel tag="h3">{capitalize(props.ytelse.ytelse)}</Undertittel>
                     <Element>ID-dato</Element>
                     <Normaltekst>{fom ? formaterDato(fom) : ''}</Normaltekst>
                 </VisMerKnapp>

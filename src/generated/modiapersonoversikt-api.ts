@@ -68,6 +68,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    '/rest/ytelse/foreldrepenger_fpsak': {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations['hentForeldrepengerFpSak'];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     '/rest/ytelse/foreldrepenger': {
         parameters: {
             query?: never;
@@ -94,22 +110,6 @@ export interface paths {
         get?: never;
         put?: never;
         post: operations['hentArbeidsavklaringsPenger'];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/ytelse/alle-ytelser': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations['hentYtelser'];
         delete?: never;
         options?: never;
         head?: never;
@@ -158,22 +158,6 @@ export interface paths {
         get: operations['harTilgang'];
         put?: never;
         post: operations['harTilgang_1'];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/tilgang/v2': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations['harTilgangV2'];
         delete?: never;
         options?: never;
         head?: never;
@@ -1103,6 +1087,23 @@ export interface components {
             tomDato?: string;
             enhetsId: string;
         };
+        ForeldrepengerFpSak: {
+            /** @enum {string} */
+            ytelse: ForeldrepengerFpSakYtelse;
+            saksnummer: string;
+            perioder: components['schemas']['Utbetaling'][];
+            /** Format: date */
+            fom: string;
+            /** Format: date */
+            tom: string;
+        };
+        Utbetaling: {
+            /** Format: date */
+            fom: string;
+            /** Format: date */
+            tom: string;
+            grad: number;
+        };
         ForeldrepengePeriode: {
             fodselsnummer?: string;
             harAleneomsorgFar?: boolean;
@@ -1197,39 +1198,6 @@ export interface components {
             vedtaksTypeKode?: string;
             vedtaksTypeNavn?: string;
         };
-        ArbeidsavklaringsPengerYtelse: components['schemas']['YtelseData'] & {
-            data: components['schemas']['NonavaapapiinternVedtakUtenUtbetalingDTO'];
-        };
-        ForeldrepengerYtelse: components['schemas']['YtelseData'] & {
-            data: components['schemas']['Foreldrepenger'];
-        };
-        PensjonYtelse: components['schemas']['YtelseData'] & {
-            data: components['schemas']['PensjonSak'];
-        };
-        PleiepengerYtelse: components['schemas']['YtelseData'] & {
-            data: components['schemas']['Pleiepenger'];
-        };
-        SykepengerYtelse: components['schemas']['YtelseData'] & {
-            data: components['schemas']['Sykepenger'];
-        };
-        TiltakspengerYtelse: components['schemas']['YtelseData'] & {
-            data: components['schemas']['VedtakDTO'];
-        };
-        YtelseData: unknown;
-        YtelseResponse: {
-            ytelser?: components['schemas']['YtelseVedtak'][];
-        };
-        YtelseVedtak: {
-            /** @enum {string} */
-            ytelseType: YtelseVedtakYtelseType;
-            ytelseData:
-                | components['schemas']['ArbeidsavklaringsPengerYtelse']
-                | components['schemas']['ForeldrepengerYtelse']
-                | components['schemas']['PensjonYtelse']
-                | components['schemas']['PleiepengerYtelse']
-                | components['schemas']['SykepengerYtelse']
-                | components['schemas']['TiltakspengerYtelse'];
-        };
         FnrRequest: {
             fnr: string;
         };
@@ -1293,36 +1261,6 @@ export interface components {
             feilteVarsliner: components['schemas']['FeiletVarsling'][];
             feilteRevarslinger: components['schemas']['FeiletVarsling'][];
         };
-        Arbeidgiver: {
-            orgnr: string;
-            navn?: string;
-        };
-        Skatt: {
-            /** Format: double */
-            skattebelop: number;
-        };
-        Trekk: {
-            trekktype: string;
-            /** Format: double */
-            trekkbelop: number;
-            kreditor?: string;
-        };
-        Utbetaling: {
-            posteringsdato: string;
-            utbetalingsdato?: string;
-            forfallsdato?: string;
-            utbetaltTil?: string;
-            erUtbetaltTilPerson: boolean;
-            erUtbetaltTilOrganisasjon: boolean;
-            erUtbetaltTilSamhandler: boolean;
-            /** Format: double */
-            nettobelop: number;
-            melding?: string;
-            metode: string;
-            status: string;
-            konto?: string;
-            ytelser: components['schemas']['Ytelse'][];
-        };
         UtbetalingerPeriodeDTO: {
             /** Format: date */
             startDato: string;
@@ -1332,37 +1270,6 @@ export interface components {
         UtbetalingerResponseDTO: {
             utbetalinger: components['schemas']['Utbetaling'][];
             periode: components['schemas']['UtbetalingerPeriodeDTO'];
-        };
-        Ytelse: {
-            type?: string;
-            ytelseskomponentListe: components['schemas']['YtelseKomponent'][];
-            /** Format: double */
-            ytelseskomponentersum: number;
-            trekkListe: components['schemas']['Trekk'][];
-            /** Format: double */
-            trekksum: number;
-            skattListe: components['schemas']['Skatt'][];
-            /** Format: double */
-            skattsum: number;
-            periode?: components['schemas']['YtelsePeriode'];
-            /** Format: double */
-            nettobelop: number;
-            bilagsnummer?: string;
-            arbeidsgiver?: components['schemas']['Arbeidgiver'];
-        };
-        YtelseKomponent: {
-            ytelseskomponenttype: string;
-            /** Format: double */
-            satsbelop?: number;
-            satstype?: string;
-            /** Format: double */
-            satsantall?: number;
-            /** Format: double */
-            ytelseskomponentbelop: number;
-        };
-        YtelsePeriode: {
-            start: string;
-            slutt: string;
         };
         DenyCause: unknown;
         TilgangDTO: {
@@ -1414,10 +1321,10 @@ export interface components {
         LocalDate: {
             /** Format: date */
             value?: string;
-            /** Format: int32 */
-            monthNumber: number;
             /** Format: date */
             value$kotlinx_datetime: string;
+            /** Format: int32 */
+            monthNumber: number;
             /** Format: int32 */
             year: number;
             /** Format: int32 */
@@ -1432,12 +1339,12 @@ export interface components {
         LocalDateTime: {
             /** Format: date-time */
             value?: string;
+            /** Format: date-time */
+            value$kotlinx_datetime: string;
             /** Format: int32 */
             monthNumber: number;
             /** Format: int32 */
             nanosecond: number;
-            /** Format: date-time */
-            value$kotlinx_datetime: string;
             time: components['schemas']['LocalTime'];
             /** Format: int32 */
             year: number;
@@ -1459,9 +1366,9 @@ export interface components {
         };
         LocalTime: {
             value?: string;
+            value$kotlinx_datetime: string;
             /** Format: int32 */
             nanosecond: number;
-            value$kotlinx_datetime: string;
             /** Format: int32 */
             hour: number;
             /** Format: int32 */
@@ -2308,6 +2215,8 @@ export type PleiepengerResponse = components['schemas']['PleiepengerResponse'];
 export type PleiepengerVedtak = components['schemas']['PleiepengerVedtak'];
 export type PleiepengerVedtakPeriode = components['schemas']['PleiepengerVedtakPeriode'];
 export type PensjonSak = components['schemas']['PensjonSak'];
+export type ForeldrepengerFpSak = components['schemas']['ForeldrepengerFpSak'];
+export type Utbetaling = components['schemas']['Utbetaling'];
 export type ForeldrepengePeriode = components['schemas']['ForeldrepengePeriode'];
 export type Foreldrepenger = components['schemas']['Foreldrepenger'];
 export type ForeldrepengerArbeidsforhold = components['schemas']['ForeldrepengerArbeidsforhold'];
@@ -2315,15 +2224,6 @@ export type ForeldrepengerResponse = components['schemas']['ForeldrepengerRespon
 export type NonavaapapiinternPeriodeDto = components['schemas']['NonavaapapiinternPeriodeDTO'];
 export type NonavaapapiinternVedtakUtenUtbetalingDto =
     components['schemas']['NonavaapapiinternVedtakUtenUtbetalingDTO'];
-export type ArbeidsavklaringsPengerYtelse = components['schemas']['ArbeidsavklaringsPengerYtelse'];
-export type ForeldrepengerYtelse = components['schemas']['ForeldrepengerYtelse'];
-export type PensjonYtelse = components['schemas']['PensjonYtelse'];
-export type PleiepengerYtelse = components['schemas']['PleiepengerYtelse'];
-export type SykepengerYtelse = components['schemas']['SykepengerYtelse'];
-export type TiltakspengerYtelse = components['schemas']['TiltakspengerYtelse'];
-export type YtelseData = components['schemas']['YtelseData'];
-export type YtelseResponse = components['schemas']['YtelseResponse'];
-export type YtelseVedtak = components['schemas']['YtelseVedtak'];
 export type FnrRequest = components['schemas']['FnrRequest'];
 export type EksternVarslingInfo = components['schemas']['EksternVarslingInfo'];
 export type Event = components['schemas']['Event'];
@@ -2331,15 +2231,8 @@ export type FeiletVarsling = components['schemas']['FeiletVarsling'];
 export type HistorikkEntry = components['schemas']['HistorikkEntry'];
 export type Result = components['schemas']['Result'];
 export type VarslingsTidspunkt = components['schemas']['VarslingsTidspunkt'];
-export type Arbeidgiver = components['schemas']['Arbeidgiver'];
-export type Skatt = components['schemas']['Skatt'];
-export type Trekk = components['schemas']['Trekk'];
-export type Utbetaling = components['schemas']['Utbetaling'];
 export type UtbetalingerPeriodeDto = components['schemas']['UtbetalingerPeriodeDTO'];
 export type UtbetalingerResponseDto = components['schemas']['UtbetalingerResponseDTO'];
-export type Ytelse = components['schemas']['Ytelse'];
-export type YtelseKomponent = components['schemas']['YtelseKomponent'];
-export type YtelsePeriode = components['schemas']['YtelsePeriode'];
 export type DenyCause = components['schemas']['DenyCause'];
 export type TilgangDto = components['schemas']['TilgangDTO'];
 export type Dokument = components['schemas']['Dokument'];
@@ -2554,6 +2447,30 @@ export interface operations {
             };
         };
     };
+    hentForeldrepengerFpSak: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                'application/json': components['schemas']['FnrDatoRangeRequest'];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    '*/*': components['schemas']['ForeldrepengerFpSak'][];
+                };
+            };
+        };
+    };
     hentForeldrepenger: {
         parameters: {
             query?: never;
@@ -2598,30 +2515,6 @@ export interface operations {
                 };
                 content: {
                     '*/*': components['schemas']['NonavaapapiinternVedtakUtenUtbetalingDTO'][];
-                };
-            };
-        };
-    };
-    hentYtelser: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                'application/json': components['schemas']['FnrDatoRangeRequest'];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['YtelseResponse'];
                 };
             };
         };
@@ -2698,32 +2591,6 @@ export interface operations {
         };
     };
     harTilgang_1: {
-        parameters: {
-            query?: {
-                enhet?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                'application/json': components['schemas']['FnrRequest'];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['TilgangDTO'];
-                };
-            };
-        };
-    };
-    harTilgangV2: {
         parameters: {
             query?: {
                 enhet?: string;
@@ -3791,13 +3658,10 @@ export enum VedtakDTOKilde {
     TPSAK = 'TPSAK',
     ARENA = 'ARENA'
 }
-export enum YtelseVedtakYtelseType {
-    Sykepenger = 'Sykepenger',
-    Foreldrepenger = 'Foreldrepenger',
-    Pleiepenger = 'Pleiepenger',
-    Tiltakspenge = 'Tiltakspenge',
-    Pensjon = 'Pensjon',
-    Arbeidsavklaringspenger = 'Arbeidsavklaringspenger'
+export enum ForeldrepengerFpSakYtelse {
+    ENGANGST_NAD = 'ENGANGST\u00D8NAD',
+    FORELDREPENGER = 'FORELDREPENGER',
+    SVANGERSKAPSPENGER = 'SVANGERSKAPSPENGER'
 }
 export enum DokumentDokumentStatus {
     UNDER_REDIGERING = 'UNDER_REDIGERING',
