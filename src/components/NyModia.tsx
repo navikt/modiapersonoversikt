@@ -28,12 +28,12 @@ export const NyModia = () => {
 
     useEffect(() => {
         if (href.includes('/new') && !nyModia) {
-            setNyModia(true);
+            navigate({ to: href.replace('/new', '') });
         }
         if (!href.includes('/new') && nyModia) {
-            setNyModia(false);
+            navigate({ to: `/new/${href}` });
         }
-    }, [href, nyModia, setNyModia]);
+    }, [href, nyModia, navigate]);
 
     if (!isOn) return;
 
