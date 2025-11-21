@@ -10,7 +10,9 @@ const TiltaksPengerRetten = ({ tiltaksPenger }: { tiltaksPenger: VedtakDto }) =>
         'Fra og med': formaterDato(tiltaksPenger.periode.fraOgMed),
         'Til og med': formaterDato(tiltaksPenger.periode.tilOgMed),
         Kilde: tiltaksPenger.kilde,
-        Rettighet: tiltaksPenger.rettighet
+        Rettighet: tiltaksPenger.rettighet,
+        Sats: tiltaksPenger.sats,
+        'Barnetillegg sats': tiltaksPenger.satsBarnetillegg
     };
 
     return (
