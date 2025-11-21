@@ -1,5 +1,11 @@
 import { expect, test } from '@playwright/test';
 
+test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => {
+        window.localStorage.setItem('ny-modia', 'true');
+    });
+});
+
 test('Select melding', async ({ page }) => {
     await page.goto('/new/person/meldinger');
 
