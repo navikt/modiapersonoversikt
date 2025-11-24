@@ -82,6 +82,9 @@ function Publikumsmottak(props: { publikumsmottak: PublikumsmottakInterface[] })
     if (publikumsmottak.length === 0) {
         return <Normaltekst>ingen publikumsmottak</Normaltekst>;
     }
+    if (publikumsmottak.length === 1) {
+        return <PublikumsmottakKontaktInfo publikumsmottak={publikumsmottak[0]} />;
+    }
 
     return (
         <>
