@@ -1,4 +1,5 @@
-import { Accordion, Alert, BodyShort, Box, Heading, Link, Skeleton } from '@navikt/ds-react';
+import { Accordion, Alert, BodyShort, Box, Link, Skeleton } from '@navikt/ds-react';
+import { Normaltekst } from 'nav-frontend-typografi';
 import { Fragment } from 'react';
 import QueryErrorBoundary from 'src/components/QueryErrorBoundary';
 import { useBaseUrls, usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
@@ -42,34 +43,27 @@ function PublikumsmottakKontaktInfo(props: {
 
 function Publikumsmottak(props: { publikumsmottak: Publikumsmottak[] }) {
     const publikumsmottak = props.publikumsmottak;
-    const firstPublikumsmottak = publikumsmottak.firstOrNull();
-    const otherPublikumsmottak = publikumsmottak.slice(1);
-    if (!firstPublikumsmottak) {
+    if (publikumsmottak.length === 0) {
         return <BodyShort>ingen publikumsmottak</BodyShort>;
     }
-    const flerePublikumsmottak =
-        otherPublikumsmottak.length > 0 ? (
-            <>
-                <Heading level="3" spacing size="xsmall">
-                    Det finnes flere publikumsmottak
-                </Heading>
-                <Accordion size="small" headingSize="xsmall" className="max-w-96">
-                    {otherPublikumsmottak.map((mottak) => (
-                        <Accordion.Item key={mottak.besoksadresse.linje1}>
-                            <Accordion.Header>{mottak.besoksadresse.linje1}</Accordion.Header>
-                            <Accordion.Content>
-                                <PublikumsmottakKontaktInfo publikumsmottak={mottak} />
-                            </Accordion.Content>
-                        </Accordion.Item>
-                    ))}
-                </Accordion>
-            </>
-        ) : null;
+
+    if (publikumsmottak.length === 1) {
+        return <PublikumsmottakKontaktInfo publikumsmottak={publikumsmottak[0]} />;
+    }
 
     return (
         <>
-            <PublikumsmottakKontaktInfo publikumsmottak={firstPublikumsmottak} />
-            {flerePublikumsmottak}
+            <Normaltekst className="p-2">Det finnes flere publikumsmottak</Normaltekst>
+            <Accordion size="small" headingSize="xsmall" className="max-w-96">
+                {publikumsmottak.map((mottak, index) => (
+                    <Accordion.Item open={index === 0} key={mottak.besoksadresse.linje1}>
+                        <Accordion.Header>{mottak.besoksadresse.linje1}</Accordion.Header>
+                        <Accordion.Content>
+                            <PublikumsmottakKontaktInfo publikumsmottak={mottak} />
+                        </Accordion.Content>
+                    </Accordion.Item>
+                ))}
+            </Accordion>
         </>
     );
 }

@@ -1,21 +1,21 @@
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import { Fragment } from 'react';
-import styled from 'styled-components';
-import EtikettGraa from '../../../../../components/EtikettGraa';
-import baseurls from '../../../../../rest/resources/baseurlsResource';
-import NavLogo from '../../../../../svg/NavLogo';
-import { capitalizeName } from '../../../../../utils/string-utils';
 import {
     type Enhet,
     InformasjonElement,
     type Publikumsmottak as PublikumsmottakInterface
-} from '../../PersondataDomain';
-import { harFeilendeSystemer } from '../../harFeilendeSystemer';
-import { mapUgyldigGT } from '../../visittkort-utils';
-import AdresseInfo from '../AdresseInfo';
-import VisittkortElement from '../VisittkortElement';
-import { VisittkortGruppe } from '../VisittkortStyles';
+} from 'src/app/personside/visittkort-v2/PersondataDomain';
+import AdresseInfo from 'src/app/personside/visittkort-v2/body/AdresseInfo';
+import VisittkortElement from 'src/app/personside/visittkort-v2/body/VisittkortElement';
+import { VisittkortGruppe } from 'src/app/personside/visittkort-v2/body/VisittkortStyles';
+import { harFeilendeSystemer } from 'src/app/personside/visittkort-v2/harFeilendeSystemer';
+import { mapUgyldigGT } from 'src/app/personside/visittkort-v2/visittkort-utils';
+import EtikettGraa from 'src/components/EtikettGraa';
+import baseurls from 'src/rest/resources/baseurlsResource';
+import NavLogo from 'src/svg/NavLogo';
+import { capitalizeName } from 'src/utils/string-utils';
+import styled from 'styled-components';
 
 const ApningstiderListe = styled.dl`
     margin: initial;
@@ -79,32 +79,24 @@ function PublikumsmottakKontaktInfo(props: { publikumsmottak: PublikumsmottakInt
 
 function Publikumsmottak(props: { publikumsmottak: PublikumsmottakInterface[] }) {
     const publikumsmottak = props.publikumsmottak;
-    const firstPublikumsmottak = publikumsmottak.firstOrNull();
-    const otherPublikumsmottak = publikumsmottak.slice(1);
-    if (!firstPublikumsmottak) {
+    if (publikumsmottak.length === 0) {
         return <Normaltekst>ingen publikumsmottak</Normaltekst>;
     }
-    const flerePublikumsmottak =
-        otherPublikumsmottak.length > 0 ? (
-            <>
-                <Normaltekst>Det finnes flere publikumsmottak</Normaltekst>
-                <MarginTop>
-                    {otherPublikumsmottak.map((mottak) => (
-                        <StyledEkspanderbartPanel
-                            key={mottak.besoksadresse.linje1}
-                            tittel={mottak.besoksadresse.linje1}
-                        >
-                            <PublikumsmottakKontaktInfo publikumsmottak={mottak} />
-                        </StyledEkspanderbartPanel>
-                    ))}
-                </MarginTop>
-            </>
-        ) : null;
 
     return (
         <>
-            <PublikumsmottakKontaktInfo publikumsmottak={firstPublikumsmottak} />
-            {flerePublikumsmottak}
+            <Normaltekst>Det finnes flere publikumsmottak</Normaltekst>
+            <MarginTop>
+                {publikumsmottak.map((mottak, index) => (
+                    <StyledEkspanderbartPanel
+                        apen={index === 0}
+                        key={mottak.besoksadresse.linje1}
+                        tittel={mottak.besoksadresse.linje1}
+                    >
+                        <PublikumsmottakKontaktInfo publikumsmottak={mottak} />
+                    </StyledEkspanderbartPanel>
+                ))}
+            </MarginTop>
         </>
     );
 }
@@ -115,8 +107,8 @@ function NavKontor({ feilendeSystemer, navEnhet, geografiskTilknytning }: Props)
 
     if (harFeilendeSystemer(feilendeSystemer, InformasjonElement.NORG_NAVKONTOR)) {
         return (
-            <VisittkortGruppe tittel={'NAV-kontor'}>
-                <VisittkortElement beskrivelse={'Ukjent NAV-kontor'} ikon={<NavLogo />}>
+            <VisittkortGruppe tittel="NAV-kontor">
+                <VisittkortElement beskrivelse="Ukjent NAV-kontor" ikon={<NavLogo />}>
                     <Feilmelding>Feilet ved uthenting av informasjon om NAV-kontor</Feilmelding>
                 </VisittkortElement>
             </VisittkortGruppe>
@@ -128,7 +120,7 @@ function NavKontor({ feilendeSystemer, navEnhet, geografiskTilknytning }: Props)
     }
     if (navEnhet === null) {
         return (
-            <VisittkortGruppe tittel={'NAV-kontor'}>
+            <VisittkortGruppe tittel="NAV-kontor">
                 <VisittkortElement beskrivelse={mapUgyldigGT(geografiskTilknytning)} ikon={<NavLogo />}>
                     <Feilmelding>Fant ikke geografisk tilknyttning for bruker</Feilmelding>
                 </VisittkortElement>
@@ -138,7 +130,7 @@ function NavKontor({ feilendeSystemer, navEnhet, geografiskTilknytning }: Props)
 
     const beskrivelse = `${navEnhet?.id} ${navEnhet.navn}`;
     return (
-        <VisittkortGruppe tittel={'NAV-kontor'}>
+        <VisittkortGruppe tittel="NAV-kontor">
             <VisittkortElement beskrivelse={beskrivelse} ikon={<NavLogo />}>
                 <Publikumsmottak publikumsmottak={navEnhet.publikumsmottak} />
                 <MarginTop>
