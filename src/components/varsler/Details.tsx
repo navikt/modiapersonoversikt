@@ -179,7 +179,7 @@ const VarselDetailExtractor = () => {
 export const VarselDetail = () => {
     return (
         <ErrorBoundary boundaryName="vaslerDetaljer">
-            <Suspense fallback={<Skeleton variant="rounded" height="200" />}>
+            <Suspense fallback={<Skeleton variant="rounded" height="4rem" />}>
                 <VarselDetailExtractor />
             </Suspense>
         </ErrorBoundary>

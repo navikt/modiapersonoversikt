@@ -66,7 +66,7 @@ const OppgaveOgDialogDetail = () => {
 export const OppgaveDetail = () => {
     return (
         <ErrorBoundary boundaryName="oppgaveDetaljer">
-            <Suspense fallback={<Skeleton variant="rounded" height="200" />}>
+            <Suspense fallback={<Skeleton variant="rounded" height="4rem" />}>
                 <OppgaveOgDialogDetail />
             </Suspense>
         </ErrorBoundary>

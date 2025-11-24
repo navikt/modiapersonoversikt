@@ -5,6 +5,8 @@ import createFetchClient from 'openapi-fetch';
 import createClient from 'openapi-react-query';
 import { FetchError } from 'src/api/api';
 import { apiBaseUriWithoutRest } from 'src/api/config';
+import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
+import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 import { toast } from 'src/components/toasts';
 import type { paths } from 'src/generated/modiapersonoversikt-api';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
@@ -355,43 +357,67 @@ export const useForeslotteEnheter = ({
 };
 
 export const useForeldrepenger = (fom: string, tom: string) => {
+    const enableForeldrepengerInfotrygd = useFeatureToggle(FeatureToggles.InfotrygdForeldrepenger).isOn;
     const fnr = usePersonAtomValue();
-    return $api.useSuspenseQuery('post', '/rest/ytelse/foreldrepenger', {
-        body: { fnr, fom, tom }
-    });
+    return $api.useQuery(
+        'post',
+        '/rest/ytelse/foreldrepenger',
+        {
+            body: { fnr, fom, tom }
+        },
+        {
+            enabled: enableForeldrepengerInfotrygd
+        }
+    );
 };
 
 export const usePleiepenger = (fom: string, tom: string) => {
+    const enablePleiepengerInfotrygd = useFeatureToggle(FeatureToggles.InfotrygdPleiepenger).isOn;
     const fnr = usePersonAtomValue();
-    return $api.useSuspenseQuery('post', '/rest/ytelse/pleiepenger', {
-        body: { fnr, fom, tom }
-    });
+    return $api.useQuery(
+        'post',
+        '/rest/ytelse/pleiepenger',
+        {
+            body: { fnr, fom, tom }
+        },
+        {
+            enabled: enablePleiepengerInfotrygd
+        }
+    );
 };
 
 export const useSykepenger = (fom: string, tom: string) => {
+    const enableSykepengerInfotrygd = useFeatureToggle(FeatureToggles.InfotrygdSykepenger).isOn;
     const fnr = usePersonAtomValue();
-    return $api.useSuspenseQuery('post', '/rest/ytelse/sykepenger', {
-        body: { fnr, fom, tom }
-    });
+    return $api.useQuery(
+        'post',
+        '/rest/ytelse/sykepenger',
+        {
+            body: { fnr, fom, tom }
+        },
+        {
+            enabled: enableSykepengerInfotrygd
+        }
+    );
 };
 
 export const useTiltakspenger = (fom: string, tom: string) => {
     const fnr = usePersonAtomValue();
-    return $api.useSuspenseQuery('post', '/rest/ytelse/tiltakspenger', {
+    return $api.useQuery('post', '/rest/ytelse/tiltakspenger', {
         body: { fnr, fom, tom }
     });
 };
 
 export const usePensjon = (fom: string, tom: string) => {
     const fnr = usePersonAtomValue();
-    return $api.useSuspenseQuery('post', '/rest/ytelse/pensjon', {
+    return $api.useQuery('post', '/rest/ytelse/pensjon', {
         body: { fnr, fom, tom }
     });
 };
 
 export const useArbeidsavklaringspenger = (fom: string, tom: string) => {
     const fnr = usePersonAtomValue();
-    return $api.useSuspenseQuery('post', '/rest/ytelse/arbeidsavklaringspenger', {
+    return $api.useQuery('post', '/rest/ytelse/arbeidsavklaringspenger', {
         body: { fnr, fom, tom }
     });
 };

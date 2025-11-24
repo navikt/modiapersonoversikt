@@ -92,8 +92,10 @@ export function setupReactQueryMocks() {
         [FeatureToggles.JournalforUtenSvar]: true,
         [FeatureToggles.VisPromptMeldingSending]: true,
         [FeatureToggles.VisSiste14aVedtak]: true,
-        [FeatureToggles.BrukNyTiltakspenger]: true,
-        [FeatureToggles.NyModiaKnapp]: true
+        [FeatureToggles.NyModiaKnapp]: true,
+        [FeatureToggles.InfotrygdForeldrepenger]: true,
+        [FeatureToggles.InfotrygdPleiepenger]: true,
+        [FeatureToggles.InfotrygdSykepenger]: true
     });
     mockReactQuery(gsaktemaResource.useFetch, getMockGsakTema());
     mockReactQuery(foreldrepengerResource.useForeldrepenger, {

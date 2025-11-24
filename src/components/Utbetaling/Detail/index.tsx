@@ -455,7 +455,7 @@ const UtbetalingerDetail = () => {
 export const UtbetalingerDetailPage = () => {
     return (
         <ErrorBoundary boundaryName="utbetalingDetaljer">
-            <Suspense fallback={<Skeleton variant="rounded" height="200" />}>
+            <Suspense fallback={<Skeleton variant="rounded" height="4rem" />}>
                 <UtbetalingerDetail />
             </Suspense>
         </ErrorBoundary>
