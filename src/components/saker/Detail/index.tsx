@@ -236,7 +236,7 @@ export const SakDetails = ({
 export const SakDetailPage = () => {
     return (
         <ErrorBoundary boundaryName="sakDetaljer">
-            <Suspense fallback={<Skeleton variant="rounded" height="200" />}>
+            <Suspense fallback={<Skeleton variant="rounded" height="4rem" />}>
                 <SakContent />
             </Suspense>
         </ErrorBoundary>

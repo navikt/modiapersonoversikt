@@ -62,7 +62,7 @@ const TraadMeta = ({ traad }: { traad: Traad }) => (
 
 export const TraadDetail = ({ traadId, valgtOppgaveId }: { traadId: string; valgtOppgaveId?: string }) => (
     <ErrorBoundary boundaryName="traaddetail">
-        <Suspense fallback={<Skeleton variant="rounded" height="200" />}>
+        <Suspense fallback={<Skeleton variant="rounded" height="4rem" />}>
             <TraadDetailContent traadId={traadId} valgtOppgaveId={valgtOppgaveId} />
         </Suspense>
     </ErrorBoundary>
