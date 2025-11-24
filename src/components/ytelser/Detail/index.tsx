@@ -1,7 +1,7 @@
 import { Alert, BodyShort, GuidePanel, HGrid, HStack, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
-import { Suspense, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { ArbeidsavklaringspengerDetails } from 'src/components/ytelser/Detail/arbeidsavklaringspenger';
 import { ForeldrePengerDetails } from 'src/components/ytelser/Detail/foreldrepenger';
@@ -123,13 +123,17 @@ const YtelseDataDetails = () => {
 };
 
 export const ValgteYtelseDetailPage = () => {
+    const { pending } = useFilterYtelser();
+
     return (
         <ErrorBoundary boundaryName="valgteYtelseDetailPage">
-            <Suspense fallback={<Skeleton variant="rounded" height="200" />}>
+            {pending ? (
+                <Skeleton variant="rounded" className="mt-6" height="4rem" />
+            ) : (
                 <VStack flexGrow="1" minHeight="0" maxHeight="100%" className="overflow-scroll">
                     <YtelseDataDetails />
                 </VStack>
-            </Suspense>
+            )}
         </ErrorBoundary>
     );
 };
