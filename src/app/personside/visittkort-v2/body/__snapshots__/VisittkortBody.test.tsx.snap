@@ -97,7 +97,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   flex-grow: 1;
 }
 
-.c11 {
+.c13 {
   margin: initial;
   padding: initial;
   list-style: none;
@@ -105,21 +105,21 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   flex-flow: row wrap;
 }
 
-.c11 dt {
+.c13 dt {
   flex: 1 1 50%;
 }
 
-.c11 dd {
+.c13 dd {
   flex: 2 2 50%;
   margin: 0;
 }
 
-.c13 .ekspanderbartPanel__tittel {
+.c12 .ekspanderbartPanel__tittel {
   font-size: 1rem;
   line-height: 1rem;
 }
 
-.c12 {
+.c11 {
   margin-top: 10px;
 }
 
@@ -2061,98 +2061,143 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               0219 NAV Bærum
             </h4>
           </div>
-          <div>
-            <br />
-            <div
-              class="c7"
-            >
-              <p
-                class="typo-undertekst"
-              >
-                Besøksadresse
-              </p>
-            </div>
-            <p
-              class="typo-normal"
-            >
-              Adressevei 1
-            </p>
-            <p
-              class="typo-normal"
-            >
-              0000 AREMARK
-            </p>
-            <br />
-            <div
-              class="c7"
-            >
-              <p
-                class="typo-undertekst"
-              >
-                Åpningstider
-              </p>
-            </div>
-            <dl
-              class="c11"
-            >
-              <dt>
-                <p
-                  class="typo-normal"
-                >
-                  Mandag
-                </p>
-              </dt>
-              <dd>
-                <p
-                  class="typo-normal"
-                >
-                  09.00 - 15.00
-                </p>
-              </dd>
-              <dt>
-                <p
-                  class="typo-normal"
-                >
-                  Tirsdag
-                </p>
-              </dt>
-              <dd>
-                <p
-                  class="typo-normal"
-                >
-                  09.00 - 15.00
-                </p>
-              </dd>
-              <dt>
-                <p
-                  class="typo-normal"
-                >
-                  Onsdag
-                </p>
-              </dt>
-              <dd>
-                <p
-                  class="typo-normal"
-                >
-                  10.00 - 16.00
-                </p>
-              </dd>
-            </dl>
-            <br />
-          </div>
           <p
             class="typo-normal"
           >
             Det finnes flere publikumsmottak
           </p>
           <div
-            class="c12"
+            class="c11"
           >
             <div
-              class="ekspanderbartPanel c13 ekspanderbartPanel--lukket ekspanderbartPanel--border"
+              class="ekspanderbartPanel c12 ekspanderbartPanel--apen ekspanderbartPanel--border"
             >
               <button
                 aria-controls="Helt tilfeldig ID"
+                aria-expanded="true"
+                class="ekspanderbartPanel__hode"
+                id="Helt tilfeldig ID"
+                type="button"
+              >
+                <div
+                  class="ekspanderbartPanel__flex-wrapper"
+                >
+                  <span
+                    class="ekspanderbartPanel__tittel"
+                  >
+                    Adressevei 1
+                  </span>
+                  <span
+                    class="ekspanderbartPanel__indikator"
+                  />
+                </div>
+              </button>
+              <div
+                aria-labelledby="Helt tilfeldig ID"
+                id="Helt tilfeldig ID"
+                role="region"
+              >
+                <div
+                  aria-hidden="false"
+                  class="ReactCollapse--collapse"
+                  style="height: auto; overflow: initial;"
+                >
+                  <div
+                    class="ReactCollapse--content"
+                  >
+                    <div
+                      class="ekspanderbartPanel__innhold"
+                    >
+                      <div>
+                        <br />
+                        <div
+                          class="c7"
+                        >
+                          <p
+                            class="typo-undertekst"
+                          >
+                            Besøksadresse
+                          </p>
+                        </div>
+                        <p
+                          class="typo-normal"
+                        >
+                          Adressevei 1
+                        </p>
+                        <p
+                          class="typo-normal"
+                        >
+                          0000 AREMARK
+                        </p>
+                        <br />
+                        <div
+                          class="c7"
+                        >
+                          <p
+                            class="typo-undertekst"
+                          >
+                            Åpningstider
+                          </p>
+                        </div>
+                        <dl
+                          class="c13"
+                        >
+                          <dt>
+                            <p
+                              class="typo-normal"
+                            >
+                              Mandag
+                            </p>
+                          </dt>
+                          <dd>
+                            <p
+                              class="typo-normal"
+                            >
+                              09.00 - 15.00
+                            </p>
+                          </dd>
+                          <dt>
+                            <p
+                              class="typo-normal"
+                            >
+                              Tirsdag
+                            </p>
+                          </dt>
+                          <dd>
+                            <p
+                              class="typo-normal"
+                            >
+                              09.00 - 15.00
+                            </p>
+                          </dd>
+                          <dt>
+                            <p
+                              class="typo-normal"
+                            >
+                              Onsdag
+                            </p>
+                          </dt>
+                          <dd>
+                            <p
+                              class="typo-normal"
+                            >
+                              10.00 - 16.00
+                            </p>
+                          </dd>
+                        </dl>
+                        <br />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="ekspanderbartPanel c12 ekspanderbartPanel--lukket ekspanderbartPanel--border"
+            >
+              <button
+                aria-controls="Helt tilfeldig ID"
+                aria-expanded="false"
                 class="ekspanderbartPanel__hode"
                 id="Helt tilfeldig ID"
                 type="button"
@@ -2177,10 +2222,11 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               />
             </div>
             <div
-              class="ekspanderbartPanel c13 ekspanderbartPanel--lukket ekspanderbartPanel--border"
+              class="ekspanderbartPanel c12 ekspanderbartPanel--lukket ekspanderbartPanel--border"
             >
               <button
                 aria-controls="Helt tilfeldig ID"
+                aria-expanded="false"
                 class="ekspanderbartPanel__hode"
                 id="Helt tilfeldig ID"
                 type="button"
@@ -2206,7 +2252,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             </div>
           </div>
           <div
-            class="c12"
+            class="c11"
           >
             <a
               class="lenke"
