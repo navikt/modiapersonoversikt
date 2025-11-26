@@ -17,20 +17,21 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import DateRangeSelector from 'src/components/DateFilters/DatePeriodSelector';
 import type { DateRange } from 'src/components/DateFilters/types';
 import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
-import { TraadType } from 'src/lib/types/modiapersonoversikt-api';
 import { Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { filterType, trackExpansionCardApnet, trackExpansionCardLukket, trackFilterEndret } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
-import { traadTypeTekst } from './tekster';
+
+export const traadTyperFilter = ['Referat', 'Samtale', 'Infomelding', 'Chat'];
 
 export type MeldingerFilter = {
     tema?: Temagruppe[];
     search?: string;
-    traadType?: TraadType[];
+    traadType?: string[];
     dateRange: DateRange | null;
 };
+
 const defaultFilters: MeldingerFilter = {
-    traadType: Object.values(TraadType),
+    traadType: traadTyperFilter,
     dateRange: null
 };
 
@@ -121,7 +122,7 @@ const SearchField = () => {
 
 const meldingerFilterTraadTypeAtom = atom(
     (get) => get(meldingerFilterAtom).traadType,
-    (_get, set, newVal: TraadType) => {
+    (_get, set, newVal: string) => {
         set(meldingerFilterAtom, (filters) => ({
             ...filters,
             traadType: xor(filters.traadType, [newVal])
@@ -134,7 +135,7 @@ const TraadTypeFilter = () => {
     return (
         <Fieldset size="small" legend="Type dialog">
             <HStack wrap gap="2">
-                {Object.values(TraadType).map((t) => (
+                {traadTyperFilter.map((t) => (
                     <Switch
                         key={t}
                         size="small"
@@ -144,7 +145,7 @@ const TraadTypeFilter = () => {
                             trackFilterEndret('meldinger', filterType.TYPE);
                         }}
                     >
-                        {traadTypeTekst(true, t)}
+                        {t}
                     </Switch>
                 ))}
             </HStack>

@@ -173,7 +173,7 @@ export function useFilterMeldinger(traader: Traad[], filters: MeldingerFilter) {
 
     const query = filters.search;
     const temaGrupper = filters.tema;
-    const traadType = filters.traadType;
+    const traadTyper = filters.traadType;
     const dateRange = filters.dateRange;
 
     const searched = useMemo(() => {
@@ -194,8 +194,8 @@ export function useFilterMeldinger(traader: Traad[], filters: MeldingerFilter) {
     }, [searched, temaGrupper]);
 
     const filteredByType = useMemo(() => {
-        return filteredByTema.filter((t) => traadType?.includes(t.traadType));
-    }, [filteredByTema, traadType]);
+        return filteredByTema.filter((t) => traadTyper?.includes(traadTypeTekst(traadErInfoMelding(t), t.traadType)));
+    }, [filteredByTema, traadTyper]);
 
     const filteredByDate = useMemo(() => {
         if (!dateRange) return filteredByType;
