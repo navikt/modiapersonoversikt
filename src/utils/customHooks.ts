@@ -113,3 +113,19 @@ export function useSettAktivBruker() {
         }
     };
 }
+
+export function useAntallListeElementeBasertPaaSkjermStorrelse() {
+    const [antallListeElementer, setAntallListeElementer] = useState(
+        window.matchMedia('(max-width: 767px)').matches ? 5 : 10
+    );
+
+    useEffect(() => {
+        const handler = () => {
+            setAntallListeElementer(window.matchMedia('(max-width: 767px)').matches ? 5 : 10);
+        };
+        window.addEventListener('resize', handler);
+        return () => window.removeEventListener('resize', handler);
+    }, []);
+
+    return antallListeElementer;
+}

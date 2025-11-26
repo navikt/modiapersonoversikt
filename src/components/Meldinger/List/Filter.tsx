@@ -21,7 +21,7 @@ import { Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { filterType, trackExpansionCardApnet, trackExpansionCardLukket, trackFilterEndret } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
 
-export const traadTyperFilter = ['Referat', 'Samtale', 'Infomelding', 'Chat'];
+const traadTyperFilter = ['Referat', 'Samtale', 'Infomelding', 'Chat'];
 
 export type MeldingerFilter = {
     tema?: Temagruppe[];
