@@ -6,6 +6,7 @@ import ErrorBoundary from 'src/components/ErrorBoundary';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
 import { trackingEvents } from 'src/utils/analytics';
+import { useAntallListeElementeBasertPaaSkjermStorrelse } from 'src/utils/customHooks';
 import { datoSynkende } from 'src/utils/date-utils';
 import { TraadListFilterCard, meldingerFilterAtom } from './Filter';
 import { TraadItem } from './TraadItem';
@@ -41,6 +42,7 @@ const Traader = () => {
     );
     const filteredMeldinger = useFilterMeldinger(sortedTraader, filters);
     const navigate = useNavigate({ from: '/new/person/meldinger' });
+    const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
 
     const handleClick = useCallback(
         (traadId: string) => {
@@ -73,6 +75,7 @@ const Traader = () => {
             </Heading>
             {filteredMeldinger.length > 0 && (
                 <PaginatedList
+                    pageSize={antallListeElementer}
                     paginationSrHeading={{
                         tag: 'h3',
                         text: 'Trådlistepaginering'

@@ -7,6 +7,7 @@ import { YtelseItem } from 'src/components/ytelser/List/YtelseItem';
 import { getUnikYtelseKey, useFilterYtelser } from 'src/components/ytelser/utils';
 import type { YtelseVedtak } from 'src/generated/modiapersonoversikt-api';
 import { trackingEvents } from 'src/utils/analytics';
+import { useAntallListeElementeBasertPaaSkjermStorrelse } from 'src/utils/customHooks';
 import { YtelserListFilter } from './Filter';
 
 export const YtelserList = () => {
@@ -35,6 +36,7 @@ export const YtelserList = () => {
 const YtelseList = () => {
     const { ytelser, placeholders } = useFilterYtelser();
     const navigate = useNavigate({ from: '/new/person/ytelser' });
+    const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
 
     const handleClick = useCallback(
         (id: string, ytelse: YtelseVedtak) => {
@@ -68,6 +70,7 @@ const YtelseList = () => {
             ))}
             {ytelser.length > 0 && (
                 <PaginatedList
+                    pageSize={antallListeElementer}
                     selectedKey={selectedKey}
                     items={ytelser}
                     keyExtractor={getUnikYtelseKey}

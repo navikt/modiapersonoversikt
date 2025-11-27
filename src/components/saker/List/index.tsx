@@ -5,6 +5,7 @@ import ErrorBoundary from 'src/components/ErrorBoundary';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { SakItem } from 'src/components/saker/List/SakItem';
 import { trackingEvents } from 'src/utils/analytics';
+import { useAntallListeElementeBasertPaaSkjermStorrelse } from 'src/utils/customHooks';
 import { getSakId, useFilterSaker } from '../utils';
 import { SakerFilter } from './Filter';
 
@@ -32,6 +33,7 @@ export const SakerList = () => (
 const SakList = () => {
     const saker = useFilterSaker();
     const navigate = useNavigate({ from: '/new/person/saker' });
+    const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
 
     const handleClick = useCallback(
         (id: string) => {
@@ -60,6 +62,7 @@ const SakList = () => {
             </Heading>
             {saker.length > 0 && (
                 <PaginatedList
+                    pageSize={antallListeElementer}
                     selectedKey={selectedKey}
                     items={saker}
                     keyExtractor={getSakId}

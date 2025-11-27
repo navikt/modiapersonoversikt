@@ -5,6 +5,7 @@ import ErrorBoundary from 'src/components/ErrorBoundary';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { VarslerItem } from 'src/components/varsler/List/VarslerItem';
 import { trackingEvents } from 'src/utils/analytics';
+import { useAntallListeElementeBasertPaaSkjermStorrelse } from 'src/utils/customHooks';
 import { VarslerListFilter } from './Filter';
 import { useFilterVarsler } from './utils';
 
@@ -32,6 +33,7 @@ export const VarslerList = () => (
 const VarslerListList = () => {
     const varsler = useFilterVarsler();
     const navigate = useNavigate({ from: '/new/person/varsler' });
+    const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
 
     const handleClick = useCallback(
         (id: string) => {
@@ -60,6 +62,7 @@ const VarslerListList = () => {
             </Heading>
             {varsler.length > 0 && (
                 <PaginatedList
+                    pageSize={antallListeElementer}
                     selectedKey={selectedKey}
                     items={varsler}
                     keyExtractor={(item) => item.eventId}

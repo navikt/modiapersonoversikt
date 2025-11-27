@@ -6,6 +6,7 @@ import { OppgaveListFilter } from 'src/components/Oppgave/List/Filter';
 import { OppgaveItem } from 'src/components/Oppgave/List/OppgaveItem';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { trackingEvents } from 'src/utils/analytics';
+import { useAntallListeElementeBasertPaaSkjermStorrelse } from 'src/utils/customHooks';
 import { getOppgaveId, useFilterOppgave } from './utils';
 
 export const OppgaverList = () => (
@@ -32,6 +33,7 @@ export const OppgaverList = () => (
 const OppgaveList = () => {
     const oppgaver = useFilterOppgave();
     const navigate = useNavigate({ from: '/new/person/oppgaver' });
+    const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
 
     const handleClick = useCallback(
         (id: string) => {
@@ -60,6 +62,7 @@ const OppgaveList = () => {
             </Heading>
             {oppgaver.length > 0 && (
                 <PaginatedList
+                    pageSize={antallListeElementer}
                     selectedKey={selectedKey}
                     items={oppgaver}
                     keyExtractor={getOppgaveId}

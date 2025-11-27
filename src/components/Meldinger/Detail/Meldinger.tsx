@@ -1,7 +1,7 @@
 import { EnvelopeClosedIcon, EnvelopeOpenIcon, PersonIcon } from '@navikt/aksel-icons';
 import { BodyShort, Box, Chat, HStack, VStack } from '@navikt/ds-react';
 import { useAtomValue } from 'jotai';
-import { type ElementType, type ReactNode, useMemo } from 'react';
+import { type ElementType, type ReactNode, useLayoutEffect, useMemo, useRef } from 'react';
 import RichText, {
     createDynamicHighlightingRule,
     defaultRules,
@@ -28,8 +28,25 @@ const DefaultWrapper: Props['wrapper'] = ({ children }) => {
 export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Props) => {
     const { search } = useAtomValue(meldingerFilterAtom);
     const highlightRule = useMemo(() => createDynamicHighlightingRule((search ?? '').split(' ')), [search]);
+
+    const chatAreaRef = useRef<HTMLDivElement>(null);
+    const setChatAreaRef = (node: HTMLDivElement | null) => {
+        if (node) {
+            node.scrollTop = node.scrollHeight;
+        }
+        chatAreaRef.current = node;
+    };
+
+    // Scroll til siste melding
+    useLayoutEffect(() => {
+        if (chatAreaRef.current) {
+            chatAreaRef.current.scrollTop = chatAreaRef.current.scrollHeight;
+        }
+    }, [meldinger]);
+
     return (
         <Box.New
+            ref={setChatAreaRef}
             minHeight="0"
             overflowY={{ xs: 'hidden', md: 'scroll' }}
             background="sunken"
@@ -42,6 +59,7 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
             <VStack gap="10" align="baseline" paddingBlock="0 16" as="section" aria-label="Meldinger">
                 {meldinger.map((m) => {
                     const erFraNav = erMeldingFraNav(m.meldingstype);
+
                     return (
                         <Wrapper key={m.id} melding={m}>
                             <Chat
