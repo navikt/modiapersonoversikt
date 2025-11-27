@@ -160,6 +160,11 @@ function getHotkeys(): Hotkey[] {
             documentationOnly: true
         },
         {
+            key: { char: 'P', altKey: true },
+            description: 'Vis oppgaver',
+            documentationOnly: true
+        },
+        {
             key: { char: 'Y', altKey: true },
             description: 'Vis ytelser',
             documentationOnly: true

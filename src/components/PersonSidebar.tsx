@@ -14,6 +14,7 @@ import { Box, Button, Heading, VStack } from '@navikt/ds-react';
 import { Link, useLocation } from '@tanstack/react-router';
 import { type ComponentProps, useState } from 'react';
 import { getOpenTabFromRouterPath } from 'src/app/personside/infotabs/utils/useOpenTab';
+import { usePersonSideBarKotkeys } from 'src/components/usePersonSidebarHotkeys';
 import { trackingEvents } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
 import Card from './Card';
@@ -25,7 +26,7 @@ type MenuItem = {
     Icon: React.ExoticComponent;
 };
 
-const menuItems = [
+export const menuItems = [
     {
         title: 'Oversikt',
         href: '/new/person/oversikt',
@@ -71,6 +72,7 @@ const menuItems = [
 export const PersonSidebarMenu = () => {
     const [expanded, setExpanded] = useState(true);
     const location = useLocation();
+    usePersonSideBarKotkeys();
 
     return (
         <Card className="h-full overflow-auto">

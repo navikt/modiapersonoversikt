@@ -2,12 +2,15 @@ import { FileTextFillIcon } from '@navikt/aksel-icons';
 import { Button, Modal } from '@navikt/ds-react';
 import { type RefObject, useRef } from 'react';
 import StandardTekster from 'src/components/melding/standardtekster/StandardTekster';
+import useHotkey from 'src/utils/hooks/use-hotkey';
 
 function StandardTekstModal({
     submitTekst,
     textAreaRef
 }: { submitTekst: (event: string) => void; textAreaRef?: RefObject<HTMLTextAreaElement | null> }) {
     const modalRef = useRef<HTMLDialogElement>(null);
+
+    useHotkey({ char: 'c', altKey: true }, () => modalRef.current?.showModal(), [], 'Standardtekster');
 
     const setTekst = (nyTekst: string) => {
         submitTekst(nyTekst);
