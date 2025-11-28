@@ -25,7 +25,7 @@ export const YtelserPage = () => {
                     overflow={{ xs: 'scroll', md: 'hidden' }}
                 >
                     <VStack height="100%" maxWidth={{ md: '16em' }} overflow={{ md: 'hidden' }}>
-                        <Heading size="xsmall">Ytelser</Heading>
+                        <Heading size="small">Ytelser</Heading>
                         <YtelserList />
                     </VStack>
                     <VStack className="min-h-100 md:min-h-0" overflow={{ xs: 'hidden', md: 'scroll' }}>

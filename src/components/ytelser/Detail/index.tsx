@@ -1,4 +1,4 @@
-import { Alert, BodyShort, GuidePanel, HGrid, HStack, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, HGrid, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import { useEffect, useRef } from 'react';
@@ -67,10 +67,10 @@ const routeApi = getRouteApi('/new/person/ytelser');
 const YtelseDataDetails = () => {
     const { ytelser } = useFilterYtelser();
     const { id } = routeApi.useSearch();
-    const selectedYtelse = ytelser.find((item) => getUnikYtelseKey(item) === id);
+    let selectedYtelse = ytelser.find((item) => getUnikYtelseKey(item) === id);
     const filterAtomValue = useAtomValue(ytelseFilterAtom);
     const prevFilterRef = useRef(ytelseFilterAtom);
-
+    const navigate = routeApi.useNavigate()
     // Fjern ytelseid i URL og cache hvis filteret er endret og ytelsen ikke finnes i filtrerte ytelser
     useEffect(() => {
         const filterEndret = JSON.stringify(prevFilterRef.current.init) !== JSON.stringify(filterAtomValue);
@@ -88,20 +88,21 @@ const YtelseDataDetails = () => {
         );
     }
 
-    if (!id) {
-        return (
-            <HStack margin="4">
-                <GuidePanel>Velg en ytelse fra listen på venstre side for å se detaljer.</GuidePanel>
-            </HStack>
-        );
-    }
-
-    if (!selectedYtelse) {
+    if (!selectedYtelse && id) {
         return (
             <VStack flexGrow="1" minHeight="0" className="mt-6">
                 <Alert variant="error">Ytelsen du valgte, ble ikke funnet.</Alert>
             </VStack>
         );
+    }
+
+    if(!selectedYtelse && !id){
+        selectedYtelse = ytelser[0];
+        navigate({search: {id: getUnikYtelseKey(ytelser[0])}})
+    }
+
+    if(!selectedYtelse){
+        return <></>
     }
 
     switch (selectedYtelse.ytelseType) {
