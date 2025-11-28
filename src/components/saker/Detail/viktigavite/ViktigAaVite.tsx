@@ -1,4 +1,4 @@
-import { GuidePanel, ReadMore } from '@navikt/ds-react';
+import { ReadMore } from '@navikt/ds-react';
 import type { SaksDokumenter } from 'src/generated/modiapersonoversikt-api';
 import { ViktigAaViteAapInnhold } from './AapInnhold';
 import { ViktigAaViteDagInnhold } from './DagInnhold';
@@ -28,7 +28,7 @@ const ViktigAaVite = ({ valgtSak }: { valgtSak?: SaksDokumenter }) => {
 
     return (
         <ReadMore size="small" aria-label={title} header={title} data-color="bg-gray-400">
-            <GuidePanel>{innhold()}</GuidePanel>
+            {innhold()}
         </ReadMore>
     );
 };
