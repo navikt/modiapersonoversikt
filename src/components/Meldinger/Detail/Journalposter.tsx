@@ -1,12 +1,38 @@
-import { Box, Button, Heading, Table } from '@navikt/ds-react';
+import { Box, Button, Heading, InlineMessage, Table } from '@navikt/ds-react';
 import { useState } from 'react';
 import { SakDetails } from 'src/components/saker/Detail';
+import { getSakId, useFilterSaker } from 'src/components/saker/utils';
 import type { Journalpost } from 'src/generated/modiapersonoversikt-api';
 import { formaterDato } from 'src/utils/string-utils';
 import { twMerge } from 'tailwind-merge';
 
 type Props = {
     journalposter: Journalpost[];
+};
+
+const JournalForingSaksDetail = ({ valgtSakId }: { valgtSakId: string }) => {
+    const saker = useFilterSaker();
+    const valgtSak = saker.find(
+        (sak) => getSakId(sak) === valgtSakId || sak.saksid === valgtSakId || sak.fagsaksnummer === valgtSakId
+    );
+
+    if (!valgtSak) {
+        return (
+            <InlineMessage status="error" size="small">
+                Saken du valgte, ble ikke funnet.
+            </InlineMessage>
+        );
+    }
+
+    if (valgtSak.harTilgang) {
+        return (
+            <InlineMessage  status="error">
+                Du kan ikke se innholdet i denne saken fordi du ikke har tilgang til tema {valgtSak.temanavn}.
+            </InlineMessage>
+        );
+    }
+
+    return <SakDetails valgtSak={valgtSak} />;
 };
 
 export const Journalposter = ({ journalposter }: Props) => {
@@ -57,7 +83,7 @@ export const Journalposter = ({ journalposter }: Props) => {
                             return (
                                 <Table.ExpandableRow
                                     key={`${p.journalfortDato}-${saksid}`}
-                                    content={saksid ? <SakDetails valgtSakId={saksid} /> : 'Ukjent saksid'}
+                                    content={saksid ? <JournalForingSaksDetail valgtSakId={saksid} /> : 'Ukjent saksid'}
                                 >
                                     <Table.DataCell textSize="small">{saksid ?? 'Ukjent saksid'}</Table.DataCell>
                                     <Table.DataCell textSize="small">{tema}</Table.DataCell>
