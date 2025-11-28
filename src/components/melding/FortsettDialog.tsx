@@ -1,7 +1,7 @@
 import { Alert, BodyShort, Box, Button, Checkbox, HStack, Loader, VStack } from '@navikt/ds-react';
 import { type ValidationError, useForm } from '@tanstack/react-form';
 import { useAtom, useAtomValue } from 'jotai';
-import { useCallback, useMemo, useState } from 'react';
+import {useCallback, useMemo, useState} from 'react';
 import DraftStatus from 'src/app/personside/dialogpanel/DraftStatus';
 import type { Draft, DraftContext } from 'src/app/personside/dialogpanel/use-draft';
 import useDraft from 'src/app/personside/dialogpanel/use-draft';
@@ -234,7 +234,7 @@ function generateRequestBody(
             return {
                 ...common,
                 erOppgaveTilknyttetAnsatt: value.avsluttet ? false : value.oppgaveliste === Oppgaveliste.MinListe,
-                avsluttet: true,
+                avsluttet: value.avsluttet,
                 sak: value.sak
             };
     }
