@@ -1,16 +1,15 @@
 import { Alert, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { useNavigate, useSearch } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
-import { Suspense, useCallback, useMemo } from 'react';
+import { Suspense, useCallback } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
 import { trackingEvents } from 'src/utils/analytics';
 import { useAntallListeElementeBasertPaaSkjermStorrelse } from 'src/utils/customHooks';
-import { datoSynkende } from 'src/utils/date-utils';
 import { TraadListFilterCard, meldingerFilterAtom } from './Filter';
 import { TraadItem } from './TraadItem';
-import { nyesteMelding, useFilterMeldinger } from './utils';
+import { useFilterMeldinger } from './utils';
 
 export const TraadList = () => (
     <VStack minHeight="0" gap="2">
@@ -36,11 +35,7 @@ export const TraadList = () => (
 const Traader = () => {
     const { data: traader } = useMeldinger();
     const filters = useAtomValue(meldingerFilterAtom);
-    const sortedTraader = useMemo(
-        () => traader.toSorted(datoSynkende((t) => nyesteMelding(t).opprettetDato)),
-        [traader]
-    );
-    const filteredMeldinger = useFilterMeldinger(sortedTraader, filters);
+    const filteredMeldinger = useFilterMeldinger(traader, filters);
     const navigate = useNavigate({ from: '/new/person/meldinger' });
     const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
 

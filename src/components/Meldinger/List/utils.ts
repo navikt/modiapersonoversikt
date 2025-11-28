@@ -155,8 +155,12 @@ interface TraadSearchDb {
     searchable: string;
 }
 export function useFilterMeldinger(traader: Traad[], filters: MeldingerFilter) {
+    const sortedTraader = useMemo(
+        () => traader.toSorted(datoSynkende((t) => nyesteMelding(t).opprettetDato)),
+        [traader]
+    );
     const database: Array<TraadSearchDb> = useMemo(() => {
-        return traader.map((traad) => {
+        return sortedTraader.map((traad) => {
             const searchable = traad.meldinger
                 .map((melding) => {
                     const fritekst = melding.fritekst;
@@ -169,7 +173,7 @@ export function useFilterMeldinger(traader: Traad[], filters: MeldingerFilter) {
 
             return { traad, searchable };
         });
-    }, [traader]);
+    }, [sortedTraader]);
 
     const query = filters.search;
     const temaGrupper = filters.tema;

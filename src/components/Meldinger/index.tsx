@@ -1,6 +1,6 @@
 import { PrinterSmallIcon } from '@navikt/aksel-icons';
-import { Alert, Button, GuidePanel, HGrid, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
-import { getRouteApi } from '@tanstack/react-router';
+import { Alert, Button, HGrid, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import {getRouteApi} from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import { Suspense, memo, useEffect, useRef } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
@@ -72,6 +72,7 @@ const TraadDetailSection = () => {
     const { traadId } = routeApi.useSearch();
     const filters = useAtomValue(meldingerFilterAtom);
     const filteredMeldinger = useFilterMeldinger(traader, filters);
+    const navigate = routeApi.useNavigate()
     const valgtTraad = filteredMeldinger.find((t) => t.traadId === traadId);
 
     const prevFilterRef = useRef(meldingerFilterAtom);
@@ -93,15 +94,8 @@ const TraadDetailSection = () => {
         );
     }
 
-    if (!traadId) {
-        return (
-            <HStack margin="4">
-                <GuidePanel>Velg en tråd fra listen på venstre side for å se detaljer.</GuidePanel>
-            </HStack>
-        );
-    }
 
-    if (!valgtTraad) {
+    if (!valgtTraad && traadId) {
         return (
             <VStack className="mt-6">
                 <Alert variant="error">Tråden du valgte, ble ikke funnet.</Alert>
@@ -109,5 +103,10 @@ const TraadDetailSection = () => {
         );
     }
 
-    return <TraadDetail traadId={traadId} />;
+    if(!traadId && !valgtTraad){
+        const traadId = filteredMeldinger[0]?.traadId;
+        navigate({search: {traadId}})
+    }
+
+    return <TraadDetail traadId={traadId ?? filteredMeldinger[0]?.traadId} />;
 };
