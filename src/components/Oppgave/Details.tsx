@@ -1,4 +1,4 @@
-import { Alert, GuidePanel, HStack, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, HStack, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import { Suspense, useEffect, useRef } from 'react';
@@ -14,9 +14,10 @@ const routeApi = getRouteApi('/new/person/oppgaver');
 const OppgaveOgDialogDetail = () => {
     const { id } = routeApi.useSearch();
     const oppgaver = useFilterOppgave();
-    const valgtOppgave = oppgaver.find((item) => getOppgaveId(item) === id);
+    let valgtOppgave = oppgaver.find((item) => getOppgaveId(item) === id);
     const filterAtomValue = useAtomValue(oppgaveFilterAtom);
     const prevFilterRef = useRef(filterAtomValue);
+    const navigate = routeApi.useNavigate()
 
     // Fjern oppgave i URL og cache hvis filteret er endret og oppgaven ikke finnes i filtrerte oppgaver
     useEffect(() => {
@@ -35,20 +36,22 @@ const OppgaveOgDialogDetail = () => {
         );
     }
 
-    if (!id) {
-        return (
-            <HStack margin="4">
-                <GuidePanel>Velg en oppgave fra listen på venstre side for å se detaljer.</GuidePanel>
-            </HStack>
-        );
-    }
 
-    if (!valgtOppgave) {
+    if (!valgtOppgave && id) {
         return (
             <HStack flexGrow="1" minHeight="0" className="">
                 <Alert variant="error">Oppgaven du valgte, ble ikke funnet.</Alert>
             </HStack>
         );
+    }
+
+    if (!valgtOppgave && !id) {
+        valgtOppgave = oppgaver[0]
+        navigate({ search: { id: getOppgaveId(valgtOppgave) } });
+    }
+
+    if(!valgtOppgave){
+        return <></>
     }
 
     return (
@@ -57,7 +60,7 @@ const OppgaveOgDialogDetail = () => {
             {valgtOppgave.traadId ? (
                 <TraadDetail traadId={valgtOppgave.traadId} valgtOppgaveId={valgtOppgave.oppgaveId} />
             ) : (
-                <GuidePanel>Det er ingen dialog knyttet til oppgaven.</GuidePanel>
+                <Alert variant="info">Det er ingen dialog knyttet til oppgaven.</Alert>
             )}
         </VStack>
     );
