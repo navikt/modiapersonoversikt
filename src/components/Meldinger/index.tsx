@@ -36,8 +36,9 @@ const PrintThreadsMemo = memo(PrintThreads);
 export const MeldingerPage = () => {
     return (
         <HGrid gap="1" columns={{ xs: 1, md: 'max-content 1fr' }} overflow={{ xs: 'scroll', md: 'hidden' }}>
+            <ErrorBoundary boundaryName="traadlist">
+
             <VStack height="100%" maxWidth={{ md: '16em' }} overflow={{ md: 'hidden' }}>
-                <ErrorBoundary boundaryName="traadlist">
                     <Suspense
                         fallback={
                             <VStack gap="2" marginInline="0 2">
@@ -53,7 +54,6 @@ export const MeldingerPage = () => {
 
                         <PrintThreadsMemo />
                     </Suspense>
-                </ErrorBoundary>
                 <TraadList />
             </VStack>
             <VStack flexGrow="1" overflowX="hidden" className="min-h-100 md:min-h-0">
@@ -61,6 +61,7 @@ export const MeldingerPage = () => {
                     <TraadDetailSection />
                 </VStack>
             </VStack>
+            </ErrorBoundary>
         </HGrid>
     );
 };
