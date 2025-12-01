@@ -59,8 +59,8 @@ const Traader = () => {
         select: (p) => p.traadId
     });
 
-    if (traader.length === 0) {
-        return <Alert variant="info">Brukeren har ingen dialoger</Alert>;
+    if (filteredMeldinger.length === 0) {
+        return <Alert variant="info" className="mr-2">Brukeren har ingen dialoger</Alert>;
     }
 
     return (

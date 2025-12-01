@@ -88,9 +88,7 @@ const TraadDetailSection = () => {
 
     if (filteredMeldinger.length === 0) {
         return (
-            <Alert variant="info" className="mt-6">
-                Fant ingen dialoger
-            </Alert>
+            <></>
         );
     }
 
