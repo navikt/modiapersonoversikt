@@ -51,7 +51,7 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
                 <Modal.Body className="overflow-y-hidden">
                     <SakVelger.Root
                         setSak={(sak) => {
-                            setSak({ ...sak, fnr: undefined });
+                            setSak({ ...sak, fnr: undefined, fagsystemSaksId: sak.fagsystemSaksId ?? undefined });
                             setVelgSakModalOpen(false);
                         }}
                     >
