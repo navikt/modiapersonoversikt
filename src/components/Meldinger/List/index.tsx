@@ -60,7 +60,11 @@ const Traader = () => {
     });
 
     if (filteredMeldinger.length === 0) {
-        return <Alert variant="info" className="mr-2">Brukeren har ingen dialoger</Alert>;
+        return (
+            <Alert variant="info" className="mr-2">
+                ingen dialoger funnet
+            </Alert>
+        );
     }
 
     return (
@@ -68,21 +72,19 @@ const Traader = () => {
             <Heading className="pl-1" size="xsmall" level="2">
                 {filteredMeldinger.length} {filteredMeldinger.length === 1 ? 'dialog' : 'dialoger'}
             </Heading>
-            {filteredMeldinger.length > 0 && (
-                <PaginatedList
-                    pageSize={antallListeElementer}
-                    paginationSrHeading={{
-                        tag: 'h3',
-                        text: 'Trådlistepaginering'
-                    }}
-                    aria-label="Tråder"
-                    as="section"
-                    selectedKey={traadId}
-                    items={filteredMeldinger}
-                    keyExtractor={(item) => item.traadId}
-                    renderItem={({ item }) => <TraadItem traad={item} handleClick={handleClick} />}
-                />
-            )}
+            <PaginatedList
+                pageSize={antallListeElementer}
+                paginationSrHeading={{
+                    tag: 'h3',
+                    text: 'Trådlistepaginering'
+                }}
+                aria-label="Tråder"
+                as="section"
+                selectedKey={traadId}
+                items={filteredMeldinger}
+                keyExtractor={(item) => item.traadId}
+                renderItem={({ item }) => <TraadItem traad={item} handleClick={handleClick} />}
+            />
         </>
     );
 };

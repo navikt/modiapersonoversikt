@@ -17,7 +17,7 @@ const OppgaveOgDialogDetail = () => {
     let valgtOppgave = oppgaver.find((item) => getOppgaveId(item) === id);
     const filterAtomValue = useAtomValue(oppgaveFilterAtom);
     const prevFilterRef = useRef(filterAtomValue);
-    const navigate = routeApi.useNavigate()
+    const navigate = routeApi.useNavigate();
 
     // Fjern oppgave i URL og cache hvis filteret er endret og oppgaven ikke finnes i filtrerte oppgaver
     useEffect(() => {
@@ -29,13 +29,8 @@ const OppgaveOgDialogDetail = () => {
     }, [valgtOppgave, oppgaver, filterAtomValue]);
 
     if (!oppgaver.length) {
-        return (
-            <Alert className="mt-2" variant="info">
-                Fant ingen oppgaver
-            </Alert>
-        );
+        return <></>;
     }
-
 
     if (!valgtOppgave && id) {
         return (
@@ -46,12 +41,12 @@ const OppgaveOgDialogDetail = () => {
     }
 
     if (!valgtOppgave && !id) {
-        valgtOppgave = oppgaver[0]
+        valgtOppgave = oppgaver[0];
         navigate({ search: { id: getOppgaveId(valgtOppgave) } });
     }
 
-    if(!valgtOppgave){
-        return <></>
+    if (!valgtOppgave) {
+        return <></>;
     }
 
     return (

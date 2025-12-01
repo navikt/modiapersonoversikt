@@ -1,4 +1,4 @@
-import {BodyLong, Heading, Link, List, VStack} from '@navikt/ds-react';
+import { BodyLong, Heading, Link, List, VStack } from '@navikt/ds-react';
 
 export const ViktigAaViteDagInnhold = () => {
     return (

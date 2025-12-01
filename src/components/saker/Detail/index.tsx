@@ -9,7 +9,8 @@ import {
     Skeleton,
     Spacer,
     Switch,
-    VStack, InlineMessage
+    VStack,
+    InlineMessage
 } from '@navikt/ds-react';
 import { Link, getRouteApi } from '@tanstack/react-router';
 import { useAtom, useAtomValue } from 'jotai/index';
@@ -114,11 +115,7 @@ const SakContent = () => {
     }, [valgtSak, saker, filterAtomValue]);
 
     if (saker.length === 0) {
-        return (
-            <Alert className="mt-6" variant="info">
-                Fant ingen saker
-            </Alert>
-        );
+        return <></>;
     }
 
     if (id && !valgtSak) {
@@ -129,9 +126,8 @@ const SakContent = () => {
         );
     }
 
-    if(!valgtSak && !id){
-        navigate({search: {id: getSakId(saker[0])}})
-
+    if (!valgtSak && !id) {
+        navigate({ search: { id: getSakId(saker[0]) } });
     }
 
     return <SakDetails valgtSak={valgtSak ?? saker[0]} pageView={true} />;

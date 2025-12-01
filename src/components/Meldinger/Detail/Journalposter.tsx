@@ -26,7 +26,7 @@ const JournalForingSaksDetail = ({ valgtSakId }: { valgtSakId: string }) => {
 
     if (valgtSak.harTilgang) {
         return (
-            <InlineMessage  status="error">
+            <InlineMessage status="error">
                 Du kan ikke se innholdet i denne saken fordi du ikke har tilgang til tema {valgtSak.temanavn}.
             </InlineMessage>
         );

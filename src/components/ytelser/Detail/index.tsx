@@ -70,7 +70,7 @@ const YtelseDataDetails = () => {
     let selectedYtelse = ytelser.find((item) => getUnikYtelseKey(item) === id);
     const filterAtomValue = useAtomValue(ytelseFilterAtom);
     const prevFilterRef = useRef(ytelseFilterAtom);
-    const navigate = routeApi.useNavigate()
+    const navigate = routeApi.useNavigate();
     // Fjern ytelseid i URL og cache hvis filteret er endret og ytelsen ikke finnes i filtrerte ytelser
     useEffect(() => {
         const filterEndret = JSON.stringify(prevFilterRef.current.init) !== JSON.stringify(filterAtomValue);
@@ -81,11 +81,7 @@ const YtelseDataDetails = () => {
     }, [selectedYtelse, ytelser, filterAtomValue]);
 
     if (ytelser.length === 0) {
-        return (
-            <Alert className="mt-6" variant="info">
-                Fant ingen ytelser
-            </Alert>
-        );
+        return <></>;
     }
 
     if (!selectedYtelse && id) {
@@ -96,13 +92,13 @@ const YtelseDataDetails = () => {
         );
     }
 
-    if(!selectedYtelse && !id){
+    if (!selectedYtelse && !id) {
         selectedYtelse = ytelser[0];
-        navigate({search: {id: getUnikYtelseKey(ytelser[0])}})
+        navigate({ search: { id: getUnikYtelseKey(ytelser[0]) } });
     }
 
-    if(!selectedYtelse){
-        return <></>
+    if (!selectedYtelse) {
+        return <></>;
     }
 
     switch (selectedYtelse.ytelseType) {

@@ -1,4 +1,4 @@
-import { Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { useNavigate, useSearch } from '@tanstack/react-router';
 import { Suspense, useCallback } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
@@ -54,21 +54,26 @@ const SakList = () => {
         from: '/new/person/saker',
         select: (p) => p.id
     });
+    if (saker.length === 0) {
+        return (
+            <Alert className="mr-2" variant="info">
+                Ingen saker funnet
+            </Alert>
+        );
+    }
 
     return (
         <>
             <Heading className="pl-1" size="xsmall" level="2">
                 {saker.length} {saker.length === 1 ? 'sak' : 'saker'} funnet
             </Heading>
-            {saker.length > 0 && (
-                <PaginatedList
-                    pageSize={antallListeElementer}
-                    selectedKey={selectedKey}
-                    items={saker}
-                    keyExtractor={getSakId}
-                    renderItem={({ item }) => <SakItem sak={item} handleClick={handleClick} />}
-                />
-            )}
+            <PaginatedList
+                pageSize={antallListeElementer}
+                selectedKey={selectedKey}
+                items={saker}
+                keyExtractor={getSakId}
+                renderItem={({ item }) => <SakItem sak={item} handleClick={handleClick} />}
+            />
         </>
     );
 };

@@ -1,4 +1,4 @@
-import {BodyLong, Heading, Link, List, VStack} from '@navikt/ds-react';
+import { BodyLong, Heading, Link, List, VStack } from '@navikt/ds-react';
 
 export const ViktigAaViteAapInnhold = () => {
     return (
@@ -33,7 +33,11 @@ export const ViktigAaViteAapInnhold = () => {
                 </List.Item>
 
                 <List.Item>
-                    <Link href="https\://tjenester.nav.no/akademia/startside?1" target="_blank" rel="noopener noreferrer">
+                    <Link
+                        href="https\://tjenester.nav.no/akademia/startside?1"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
                         Interessetesten Akademia
                     </Link>
                     &nbsp;er et arbeidsverktøy til å finne ut mer om stillinger, arbeidsområder og arbeidslivet generelt
