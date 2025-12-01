@@ -234,7 +234,7 @@ function generateRequestBody(
             return {
                 ...common,
                 erOppgaveTilknyttetAnsatt: value.avsluttet ? false : value.oppgaveliste === Oppgaveliste.MinListe,
-                avsluttet: true,
+                avsluttet: value.avsluttet,
                 sak: value.sak
             };
     }
