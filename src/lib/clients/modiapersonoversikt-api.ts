@@ -81,7 +81,8 @@ export const useSendMelding = () => {
         },
         onError: () => {
             toast.error('Kunne ikke sende melding');
-        }
+        },
+        throwOnError: false
     });
 };
 

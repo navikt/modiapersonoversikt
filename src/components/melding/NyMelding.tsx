@@ -183,7 +183,7 @@ function NyMelding() {
                     </Button>
                 </HStack>
                 {isSuccess && <Alert variant="success">Meldingen ble sendt</Alert>}
-                {error && <Alert variant="error">{error}</Alert>}
+                {error && <Alert variant="error">Det skjedde en feil. Meldingen ble ikke sendt</Alert>}
             </VStack>
         </form>
     );
