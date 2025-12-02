@@ -6,11 +6,11 @@ import {
     Button,
     HStack,
     Heading,
+    InlineMessage,
     Skeleton,
     Spacer,
     Switch,
-    VStack,
-    InlineMessage
+    VStack
 } from '@navikt/ds-react';
 import { Link, getRouteApi } from '@tanstack/react-router';
 import { useAtom, useAtomValue } from 'jotai/index';

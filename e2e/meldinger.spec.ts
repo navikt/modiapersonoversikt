@@ -55,9 +55,8 @@ test('Send ny melding', async ({ page }) => {
     await expect(meldingerDetails.getByRole('heading').first()).toHaveText('Referat - Pensjon');
 
     const meldingerList = page.getByLabel('Dialogdetaljer').getByLabel('Meldinger');
-    const meldinger = meldingerList.getByRole('list');
-    await expect(meldinger).toHaveCount(1);
-    await expect(meldinger.first()).toContainText('playwright new melding');
+    await expect(meldingerList).toHaveCount(1);
+    await expect(meldingerList.first()).toContainText('playwright new melding');
 });
 
 test('Journalfore dialog', async ({ page }) => {

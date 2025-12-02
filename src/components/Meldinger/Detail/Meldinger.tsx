@@ -56,12 +56,11 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
             borderWidth="1"
             padding="2"
         >
-            <VStack gap="10" align="baseline" paddingBlock="0 16" as="section" aria-label="Meldinger">
+            <VStack gap="10" align="baseline" paddingBlock="0 16" as="ol" aria-label="Meldinger">
                 {meldinger.map((m) => {
                     const erFraNav = erMeldingFraNav(m.meldingstype);
-
                     return (
-                        <Wrapper key={m.id} melding={m}>
+                        <Wrapper key={m.id} as="li" melding={m}>
                             <Chat
                                 size="small"
                                 avatar={erFraNav ? 'nav' : <PersonIcon />}
