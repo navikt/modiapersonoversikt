@@ -36,7 +36,7 @@ import { getForeldrepengerFpSakIdDato, getUnikForeldrepengerFpSakKey } from 'src
 import type { Pensjon } from 'src/models/ytelse/pensjon';
 import type { Tiltakspenger } from 'src/models/ytelse/tiltakspenger';
 
-export type Ytelse =
+type Ytelse =
     | Foreldrepenger
     | Pleiepenger
     | Sykepenger
