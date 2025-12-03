@@ -18,7 +18,7 @@ import { PeriodeValg } from 'src/redux/utbetalinger/types';
 import { loggError } from 'src/utils/logger/frontendLogger';
 import { getFraDateFromPeriod } from '../utbetalinger/utils/utbetalinger-utils';
 import useBrukersYtelser from './useBrukersYtelser';
-import { ForeldrepengerFpSak } from 'src/generated/modiapersonoversikt-api';
+import type { ForeldrepengerFpSak } from 'src/generated/modiapersonoversikt-api';
 
 interface Props {
     renderPleiepenger: (pleiepenger: Pleiepengerettighet) => ReactNode;

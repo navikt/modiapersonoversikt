@@ -4,7 +4,7 @@ import { getRouteApi } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import Card from 'src/components/Card';
 import { getUnikYtelseKey, getYtelseIdDato, type YtelseVedtak } from 'src/components/ytelser/utils';
-import { ForeldrepengerFpSak, ForeldrepengerFpSakYtelse, Pleiepenger } from 'src/generated/modiapersonoversikt-api';
+import { type ForeldrepengerFpSak, ForeldrepengerFpSakYtelse, type Pleiepenger } from 'src/generated/modiapersonoversikt-api';
 import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
 
 const routeApi = getRouteApi('/new/person/ytelser');

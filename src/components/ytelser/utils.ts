@@ -1,4 +1,4 @@
-import type {UseSuspenseQueryResult} from '@tanstack/react-query';
+import type { UseBaseQueryResult, UseSuspenseQueryResult } from '@tanstack/react-query';
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai/index';
 import { useMemo } from 'react';

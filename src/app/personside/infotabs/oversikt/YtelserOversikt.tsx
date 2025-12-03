@@ -19,7 +19,7 @@ import { trackingEvents } from 'src/utils/analytics';
 import { usePrevious } from 'src/utils/customHooks';
 import { formaterDato } from 'src/utils/string-utils';
 import styled from 'styled-components';
-import { ForeldrepengerFpSak } from 'src/generated/modiapersonoversikt-api';
+import type { ForeldrepengerFpSak } from 'src/generated/modiapersonoversikt-api';
 import { getForeldrepengerFpSakIdDato } from 'src/models/ytelse/foreldrepenger-fpsak';
 import { capitalize } from 'lodash';
 
