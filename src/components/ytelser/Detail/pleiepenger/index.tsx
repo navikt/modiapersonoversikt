@@ -13,7 +13,6 @@ import {
     sorterPleiepengerPerioder
 } from 'src/components/ytelser/utils';
 import type { Pleiepenger, PleiepengerPeriode } from 'src/generated/modiapersonoversikt-api';
-import { YtelseVedtakYtelseType } from 'src/generated/modiapersonoversikt-api';
 import persondataResource from 'src/rest/resources/persondataResource';
 import { NOKellerNull, datoEllerTomString, prosentEllerNull } from 'src/utils/string-utils';
 
@@ -152,7 +151,7 @@ const Arbeidssituasjon = ({ pleiePenger }: { pleiePenger: Pleiepenger }) => {
             <Heading as="h4" size="small">
                 Arbeidssituasjon
             </Heading>
-            <ArbeidsForholdListe arbeidsForholdList={arbeidsforhold} ytelseType={YtelseVedtakYtelseType.Pleiepenger} />
+            <ArbeidsForholdListe arbeidsForholdList={arbeidsforhold} ytelseType="Pleiepenger" />
         </Card>
     );
 };

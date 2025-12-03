@@ -2,11 +2,14 @@ import { ChevronRightIcon } from '@navikt/aksel-icons';
 import { BodyShort, Button, HStack, Heading, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import dayjs from 'dayjs';
-import {} from 'nav-frontend-typografi';
 import Card from 'src/components/Card';
-import { getUnikYtelseKey, getYtelseIdDato } from 'src/components/ytelser/utils';
-import type { Pleiepenger, YtelseVedtak } from 'src/generated/modiapersonoversikt-api';
-import { YtelseVedtakYtelseType } from 'src/generated/modiapersonoversikt-api';
+import { type YtelseVedtak, getUnikYtelseKey, getYtelseIdDato } from 'src/components/ytelser/utils';
+import {
+    type ForeldrepengerFpSak,
+    ForeldrepengerFpSakYtelse,
+    type Pleiepenger
+} from 'src/generated/modiapersonoversikt-api';
+import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
 
 const routeApi = getRouteApi('/new/person/ytelser');
 
@@ -34,6 +37,15 @@ export const YtelseItem = ({
                 return ytelse.ytelseType;
             case YtelseVedtakYtelseType.Arbeidsavklaringspenger:
                 return ytelse.ytelseType;
+            case YtelseVedtakYtelseType.ForeldrepengerFpSak:
+                switch ((ytelse.ytelseData.data as ForeldrepengerFpSak).ytelse) {
+                    case ForeldrepengerFpSakYtelse.ENGANGST_NAD:
+                        return 'Engangstønad';
+                    case ForeldrepengerFpSakYtelse.SVANGERSKAPSPENGER:
+                        return 'Svangerskapspenger';
+                    default:
+                        return 'Foreldrepenger';
+                }
             default:
                 return `Ukjent ytelse type ${ytelse.ytelseType}`;
         }

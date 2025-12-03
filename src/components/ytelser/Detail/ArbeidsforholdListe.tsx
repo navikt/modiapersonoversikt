@@ -5,7 +5,6 @@ import type {
     PleiepengerArbeidsforhold,
     SykmeldingArbeidsforhold
 } from 'src/generated/modiapersonoversikt-api';
-import { YtelseVedtakYtelseType } from 'src/generated/modiapersonoversikt-api';
 import { FormatertKontonummer } from 'src/utils/FormatertKontonummer';
 import { NOKellerNull, datoEllerNull } from 'src/utils/string-utils';
 
@@ -14,7 +13,7 @@ function ArbeidsForholdListe({
     ytelseType
 }: {
     arbeidsForholdList: (ForeldrepengerArbeidsforhold | PleiepengerArbeidsforhold | SykmeldingArbeidsforhold)[];
-    ytelseType: YtelseVedtakYtelseType;
+    ytelseType: 'ForeldrepengerRettighet' | 'Pleiepenger' | 'Sykepenger';
 }) {
     if (!arbeidsForholdList || arbeidsForholdList.length === 0) {
         return <Alert variant="info">Ingen arbeidsgiver er registrert.</Alert>;
@@ -52,16 +51,12 @@ function ArbeidsForholdListe({
         arbeidsforhold: ForeldrepengerArbeidsforhold | PleiepengerArbeidsforhold | SykmeldingArbeidsforhold
     ) => {
         switch (ytelseType) {
-            case YtelseVedtakYtelseType.Foreldrepenger:
+            case 'ForeldrepengerRettighet':
                 return getArbeidsforholdEntries(arbeidsforhold);
-            case YtelseVedtakYtelseType.Sykepenger:
+            case 'Sykepenger':
                 return getArbeidsforholdEntries(arbeidsforhold);
-            case YtelseVedtakYtelseType.Pleiepenger:
+            case 'Pleiepenger':
                 return getPleiepengerArbeidsforholdEntries(arbeidsforhold);
-            case YtelseVedtakYtelseType.Tiltakspenge:
-                return {};
-            case YtelseVedtakYtelseType.Pensjon:
-                return {};
             default:
                 return {};
         }

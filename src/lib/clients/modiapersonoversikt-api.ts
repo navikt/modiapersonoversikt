@@ -422,3 +422,10 @@ export const useArbeidsavklaringspenger = (fom: string, tom: string) => {
         body: { fnr, fom, tom }
     });
 };
+
+export const useForeldrepengerFpSak = (fom: string, tom: string) => {
+    const fnr = usePersonAtomValue();
+    return $api.useSuspenseQuery('post', '/rest/ytelse/foreldrepenger_fpsak', {
+        body: { fnr, fom, tom }
+    });
+};

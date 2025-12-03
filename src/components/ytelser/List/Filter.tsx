@@ -5,7 +5,7 @@ import { xor } from 'lodash';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import DateRangeSelector, { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
-import { YtelseVedtakYtelseType } from 'src/generated/modiapersonoversikt-api';
+import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
 import { filterType, trackExpansionCardApnet, trackExpansionCardLukket, trackFilterEndret } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
 
@@ -58,13 +58,9 @@ const YtelserTypeFilter = () => {
         [setSelectedYtelseType]
     );
 
-    const ytelseTyper = [
-        YtelseVedtakYtelseType.Foreldrepenger,
-        YtelseVedtakYtelseType.Sykepenger,
-        YtelseVedtakYtelseType.Pleiepenger,
-        YtelseVedtakYtelseType.Tiltakspenge,
-        YtelseVedtakYtelseType.Pensjon
-    ];
+    const ytelseTyper = Object.values(YtelseVedtakYtelseType).filter(
+        (yType) => yType !== YtelseVedtakYtelseType.ForeldrepengerFpSak
+    );
 
     return (
         <UNSAFE_Combobox

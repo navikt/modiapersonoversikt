@@ -1,3 +1,4 @@
+import { capitalize } from 'lodash';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { type ReactNode, useEffect } from 'react';
@@ -6,9 +7,11 @@ import { useInfotabsDyplenker } from 'src/app/personside/infotabs/dyplenker';
 import useBrukersYtelserMarkup from 'src/app/personside/infotabs/ytelser/useBrukersYtelserMarkup';
 import { CenteredLazySpinner } from 'src/components/LazySpinner';
 import VisMerKnapp from 'src/components/VisMerKnapp';
+import type { ForeldrepengerFpSak } from 'src/generated/modiapersonoversikt-api';
 import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaringspenger';
 import { getArbeidsavklaringspengerIdDato } from 'src/models/ytelse/arbeidsavklaringspenger';
 import { type Foreldrepengerettighet, getForeldepengerIdDato } from 'src/models/ytelse/foreldrepenger';
+import { getForeldrepengerFpSakIdDato } from 'src/models/ytelse/foreldrepenger-fpsak';
 import { type Pensjon, getPensjonIdDato, getUnikPensjonKey } from 'src/models/ytelse/pensjon';
 import type { Pleiepengerettighet } from 'src/models/ytelse/pleiepenger';
 import { type Sykepenger, getSykepengerIdDato } from 'src/models/ytelse/sykepenger';
@@ -53,7 +56,8 @@ function YtelserOversikt(props: Props) {
             <TiltakspengerKomponent tiltakspenger={tiltakspenger} key={getUnikTiltakspengerKey(tiltakspenger)} />
         ),
         renderPensjon: (pensjon) => <PensjonKomponent pensjon={pensjon} key={getUnikPensjonKey(pensjon)} />,
-        renderArbeidsavklaringspenger: (aap) => <ArbeidsavklaringspengerKomponent aap={aap} />
+        renderArbeidsavklaringspenger: (aap) => <ArbeidsavklaringspengerKomponent aap={aap} />,
+        renderForeldrepengerFpSak: (ytelse) => <ForeldrepengerFpSakKomponent ytelse={ytelse} />
     });
 
     const ytelserListe = ytelserMarkup.slice(0, 2);
@@ -200,6 +204,27 @@ function ArbeidsavklaringspengerKomponent(props: { aap: Arbeidsavklaringspenger 
         >
             <Normaltekst>ID dato: {formaterDato(fomId)}</Normaltekst>
             <Element>Arbeidsavklaringspenger</Element>
+            <Normaltekst>
+                {fom ? formaterDato(fom) : ''} - {tom ? formaterDato(tom) : ''}
+            </Normaltekst>
+        </VisMerKnapp>
+    );
+}
+function ForeldrepengerFpSakKomponent(props: { ytelse: ForeldrepengerFpSak }) {
+    const dyplenker = useInfotabsDyplenker();
+    const fomId = getForeldrepengerFpSakIdDato(props.ytelse);
+    const fom = props.ytelse.fom;
+    const tom = props.ytelse.tom;
+    return (
+        <VisMerKnapp
+            linkTo={dyplenker.ytelser.link(props.ytelse)}
+            valgt={false}
+            ariaDescription={`Vis ${props.ytelse.ytelse.toLowerCase()}`}
+            className={ytelserTest.oversikt}
+            umamiEvent={umamiEvent}
+        >
+            <Normaltekst>ID dato: {formaterDato(fomId)}</Normaltekst>
+            <Element>{capitalize(props.ytelse.ytelse)}</Element>
             <Normaltekst>
                 {fom ? formaterDato(fom) : ''} - {tom ? formaterDato(tom) : ''}
             </Normaltekst>

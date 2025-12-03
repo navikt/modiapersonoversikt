@@ -5,21 +5,23 @@ import { useEffect, useRef } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { ArbeidsavklaringspengerDetails } from 'src/components/ytelser/Detail/arbeidsavklaringspenger';
 import { ForeldrePengerDetails } from 'src/components/ytelser/Detail/foreldrepenger';
+import { ForeldrePengerFpSakDetails } from 'src/components/ytelser/Detail/foreldrepenger-fpsak';
 import { PensjonDetails } from 'src/components/ytelser/Detail/pensjon';
 import { PleiePengerDetails } from 'src/components/ytelser/Detail/pleiepenger';
 import { SykepengerDetails } from 'src/components/ytelser/Detail/sykepenger';
 import { TiltaksPengerDetails } from 'src/components/ytelser/Detail/tiltakspenger';
 import { ytelseFilterAtom } from 'src/components/ytelser/List/Filter';
 import { getUnikYtelseKey, useFilterYtelser } from 'src/components/ytelser/utils';
-import {
-    type Foreldrepenger,
-    type PensjonSak,
-    type Pleiepenger,
-    type Sykepenger,
-    type VedtakDto,
-    YtelseVedtakYtelseType
+import type {
+    Foreldrepenger,
+    ForeldrepengerFpSak,
+    PensjonSak,
+    Pleiepenger,
+    Sykepenger,
+    VedtakDto
 } from 'src/generated/modiapersonoversikt-api';
 import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaringspenger';
+import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
 import { ytelserRouteMiddleware } from 'src/routes/new/person/ytelser';
 
 const TitleValuePairComponent = ({ title, value }: { title: string; value: string | number | null | undefined }) => {
@@ -114,6 +116,8 @@ const YtelseDataDetails = () => {
             return <PensjonDetails pensjon={selectedYtelse.ytelseData.data as PensjonSak} />;
         case YtelseVedtakYtelseType.Arbeidsavklaringspenger:
             return <ArbeidsavklaringspengerDetails aap={selectedYtelse.ytelseData.data as Arbeidsavklaringspenger} />;
+        case YtelseVedtakYtelseType.ForeldrepengerFpSak:
+            return <ForeldrePengerFpSakDetails ytelse={selectedYtelse.ytelseData.data as ForeldrepengerFpSak} />;
         default:
             return <Alert variant="info">Ukjent ytelse type {selectedYtelse.ytelseType}</Alert>;
     }
