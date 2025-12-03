@@ -1,3 +1,4 @@
+import { capitalize } from 'lodash';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { type ReactNode, useEffect } from 'react';
@@ -6,9 +7,11 @@ import { useInfotabsDyplenker } from 'src/app/personside/infotabs/dyplenker';
 import useBrukersYtelserMarkup from 'src/app/personside/infotabs/ytelser/useBrukersYtelserMarkup';
 import { CenteredLazySpinner } from 'src/components/LazySpinner';
 import VisMerKnapp from 'src/components/VisMerKnapp';
+import type { ForeldrepengerFpSak } from 'src/generated/modiapersonoversikt-api';
 import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaringspenger';
 import { getArbeidsavklaringspengerIdDato } from 'src/models/ytelse/arbeidsavklaringspenger';
 import { type Foreldrepengerettighet, getForeldepengerIdDato } from 'src/models/ytelse/foreldrepenger';
+import { getForeldrepengerFpSakIdDato } from 'src/models/ytelse/foreldrepenger-fpsak';
 import { type Pensjon, getPensjonIdDato, getUnikPensjonKey } from 'src/models/ytelse/pensjon';
 import type { Pleiepengerettighet } from 'src/models/ytelse/pleiepenger';
 import { type Sykepenger, getSykepengerIdDato } from 'src/models/ytelse/sykepenger';
@@ -19,9 +22,6 @@ import { trackingEvents } from 'src/utils/analytics';
 import { usePrevious } from 'src/utils/customHooks';
 import { formaterDato } from 'src/utils/string-utils';
 import styled from 'styled-components';
-import type { ForeldrepengerFpSak } from 'src/generated/modiapersonoversikt-api';
-import { getForeldrepengerFpSakIdDato } from 'src/models/ytelse/foreldrepenger-fpsak';
-import { capitalize } from 'lodash';
 
 const YtelserStyle = styled.div`
   > *:not(:first-child) {
