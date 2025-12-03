@@ -58,6 +58,14 @@ const YtelseList = () => {
         select: (p) => p.id
     });
 
+    if (ytelser.length === 0) {
+        return (
+            <Alert className="mr-2" variant="info">
+                Ingen ytelser funner
+            </Alert>
+        );
+    }
+
     return (
         <>
             <Heading className="pl-1" size="xsmall" level="2">
@@ -68,15 +76,14 @@ const YtelseList = () => {
                     {placeholder}
                 </Alert>
             ))}
-            {ytelser.length > 0 && (
-                <PaginatedList
-                    pageSize={antallListeElementer}
-                    selectedKey={selectedKey}
-                    items={ytelser}
-                    keyExtractor={getUnikYtelseKey}
-                    renderItem={({ item }) => <YtelseItem ytelse={item} handleClick={handleClick} />}
-                />
-            )}
+            <PaginatedList
+                pageSize={antallListeElementer}
+                selectedKey={selectedKey}
+                items={ytelser}
+                keyExtractor={getUnikYtelseKey}
+                renderItem={({ item }) => <YtelseItem ytelse={item} handleClick={handleClick} />}
+            />
+            
         </>
     );
 };

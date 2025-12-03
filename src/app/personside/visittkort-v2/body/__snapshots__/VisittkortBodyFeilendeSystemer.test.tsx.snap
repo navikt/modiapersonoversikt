@@ -711,9 +711,9 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               </span>
             </button>
             <div
-              aria-hidden="true"
               class="navds-read-more__content navds-read-more__content--closed navds-body-long navds-body-long--medium"
               data-state="closed"
+              tabindex="0"
             >
               <table
                 class="navds-table navds-table--small"
@@ -723,6 +723,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                 >
                   <tr
                     class="navds-table__row navds-table__row--shade-on-hover"
+                    data-interactive="false"
                   >
                     <th
                       class="navds-table__header-cell navds-label"
@@ -740,11 +741,12 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                       >
                         <button
                           aria-expanded="false"
+                          aria-label="Hva betyr lese/innsyn?"
                           class="navds-help-text__button"
                           type="button"
                         >
                           <svg
-                            aria-labelledby="title-«ri»"
+                            aria-hidden="true"
                             class="navds-help-text__icon"
                             fill="none"
                             focusable="false"
@@ -754,11 +756,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                             width="1em"
                             xmlns="http://www.w3.org/2000/svg"
                           >
-                            <title
-                              id="title-«ri»"
-                            >
-                              Hva betyr lese/innsyn?
-                            </title>
                             <circle
                               cx="12"
                               cy="12"
@@ -775,7 +772,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                             />
                           </svg>
                           <svg
-                            aria-labelledby="title-«rj»"
+                            aria-hidden="true"
                             class="navds-help-text__icon navds-help-text__icon--filled"
                             fill="none"
                             focusable="false"
@@ -785,11 +782,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                             width="1em"
                             xmlns="http://www.w3.org/2000/svg"
                           >
-                            <title
-                              id="title-«rj»"
-                            >
-                              Hva betyr lese/innsyn?
-                            </title>
                             <circle
                               cx="12"
                               cy="12"
@@ -809,7 +801,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                         <div
                           aria-hidden="true"
                           class="navds-popover navds-help-text__popover navds-popover--hidden"
-                          data-index="0"
                           data-placement="top"
                           style="position: absolute; left: 0px; top: 0px; transform: translate(0px, 0px);"
                         >
@@ -835,11 +826,12 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                       >
                         <button
                           aria-expanded="false"
+                          aria-label="Hva betyr snakke/kommunisere?"
                           class="navds-help-text__button"
                           type="button"
                         >
                           <svg
-                            aria-labelledby="title-«rl»"
+                            aria-hidden="true"
                             class="navds-help-text__icon"
                             fill="none"
                             focusable="false"
@@ -849,11 +841,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                             width="1em"
                             xmlns="http://www.w3.org/2000/svg"
                           >
-                            <title
-                              id="title-«rl»"
-                            >
-                              Hva betyr snakke/kommunisere?
-                            </title>
                             <circle
                               cx="12"
                               cy="12"
@@ -870,7 +857,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                             />
                           </svg>
                           <svg
-                            aria-labelledby="title-«rm»"
+                            aria-hidden="true"
                             class="navds-help-text__icon navds-help-text__icon--filled"
                             fill="none"
                             focusable="false"
@@ -880,11 +867,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                             width="1em"
                             xmlns="http://www.w3.org/2000/svg"
                           >
-                            <title
-                              id="title-«rm»"
-                            >
-                              Hva betyr snakke/kommunisere?
-                            </title>
                             <circle
                               cx="12"
                               cy="12"
@@ -904,7 +886,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                         <div
                           aria-hidden="true"
                           class="navds-popover navds-help-text__popover navds-popover--hidden"
-                          data-index="0"
                           data-placement="top"
                           style="position: absolute; left: 0px; top: 0px; transform: translate(0px, 0px);"
                         >
@@ -930,11 +911,12 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                       >
                         <button
                           aria-expanded="false"
+                          aria-label="Hva betyr Søke/klage?"
                           class="navds-help-text__button"
                           type="button"
                         >
                           <svg
-                            aria-labelledby="title-«ro»"
+                            aria-hidden="true"
                             class="navds-help-text__icon"
                             fill="none"
                             focusable="false"
@@ -944,11 +926,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                             width="1em"
                             xmlns="http://www.w3.org/2000/svg"
                           >
-                            <title
-                              id="title-«ro»"
-                            >
-                              Hva betyr Søke/klage?
-                            </title>
                             <circle
                               cx="12"
                               cy="12"
@@ -965,7 +942,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                             />
                           </svg>
                           <svg
-                            aria-labelledby="title-«rp»"
+                            aria-hidden="true"
                             class="navds-help-text__icon navds-help-text__icon--filled"
                             fill="none"
                             focusable="false"
@@ -975,11 +952,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                             width="1em"
                             xmlns="http://www.w3.org/2000/svg"
                           >
-                            <title
-                              id="title-«rp»"
-                            >
-                              Hva betyr Søke/klage?
-                            </title>
                             <circle
                               cx="12"
                               cy="12"
@@ -999,7 +971,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                         <div
                           aria-hidden="true"
                           class="navds-popover navds-help-text__popover navds-popover--hidden"
-                          data-index="0"
                           data-placement="top"
                           style="position: absolute; left: 0px; top: 0px; transform: translate(0px, 0px);"
                         >
@@ -1022,6 +993,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                 >
                   <tr
                     class="navds-table__row navds-table__row--shade-on-hover"
+                    data-interactive="false"
                   >
                     <td
                       class="navds-table__data-cell navds-body-short navds-body-short--medium"
@@ -1032,7 +1004,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                       class="navds-table__data-cell navds-body-short navds-body-short--medium"
                     >
                       <svg
-                        aria-labelledby="title-«rr»"
+                        aria-labelledby="title-«rf»"
                         fill="none"
                         focusable="false"
                         height="1em"
@@ -1042,7 +1014,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <title
-                          id="title-«rr»"
+                          id="title-«rf»"
                         >
                           Lese/innsyn
                         </title>
@@ -1058,7 +1030,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                       class="navds-table__data-cell navds-body-short navds-body-short--medium"
                     >
                       <svg
-                        aria-labelledby="title-«rs»"
+                        aria-labelledby="title-«rg»"
                         fill="none"
                         focusable="false"
                         height="1em"
@@ -1068,7 +1040,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <title
-                          id="title-«rs»"
+                          id="title-«rg»"
                         >
                           Snakke/kommunisere
                         </title>
@@ -1086,6 +1058,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                   </tr>
                   <tr
                     class="navds-table__row navds-table__row--shade-on-hover"
+                    data-interactive="false"
                   >
                     <td
                       class="navds-table__data-cell navds-body-short navds-body-short--medium"
@@ -1096,7 +1069,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                       class="navds-table__data-cell navds-body-short navds-body-short--medium"
                     >
                       <svg
-                        aria-labelledby="title-«rt»"
+                        aria-labelledby="title-«rh»"
                         fill="none"
                         focusable="false"
                         height="1em"
@@ -1106,7 +1079,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <title
-                          id="title-«rt»"
+                          id="title-«rh»"
                         >
                           Lese/innsyn
                         </title>
@@ -1122,7 +1095,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                       class="navds-table__data-cell navds-body-short navds-body-short--medium"
                     >
                       <svg
-                        aria-labelledby="title-«ru»"
+                        aria-labelledby="title-«ri»"
                         fill="none"
                         focusable="false"
                         height="1em"
@@ -1132,7 +1105,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <title
-                          id="title-«ru»"
+                          id="title-«ri»"
                         >
                           Snakke/kommunisere
                         </title>
@@ -1148,7 +1121,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                       class="navds-table__data-cell navds-body-short navds-body-short--medium"
                     >
                       <svg
-                        aria-labelledby="title-«rv»"
+                        aria-labelledby="title-«rj»"
                         fill="none"
                         focusable="false"
                         height="1em"
@@ -1158,7 +1131,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <title
-                          id="title-«rv»"
+                          id="title-«rj»"
                         >
                           Søke/klage
                         </title>
@@ -1254,9 +1227,9 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               </span>
             </button>
             <div
-              aria-hidden="true"
               class="navds-read-more__content navds-read-more__content--closed navds-body-long navds-body-long--medium"
               data-state="closed"
+              tabindex="0"
             >
               Gjelder alle statlige ytelser
             </div>

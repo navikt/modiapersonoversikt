@@ -1,4 +1,4 @@
-import { Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { useNavigate, useSearch } from '@tanstack/react-router';
 import { Suspense, useCallback } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
@@ -55,20 +55,26 @@ const VarslerListList = () => {
         select: (p) => p.id
     });
 
+    if (!varsler.length) {
+        return (
+            <Alert className="mr-2" variant="info">
+                Ingen varsler funnet
+            </Alert>
+        );
+    }
+
     return (
         <>
             <Heading className="pl-1" size="xsmall" level="2">
                 {varsler.length} {varsler.length === 1 ? 'varsel' : 'varsler'}
             </Heading>
-            {varsler.length > 0 && (
-                <PaginatedList
-                    pageSize={antallListeElementer}
-                    selectedKey={selectedKey}
-                    items={varsler}
-                    keyExtractor={(item) => item.eventId}
-                    renderItem={({ item }) => <VarslerItem varsel={item} handleClick={handleClick} />}
-                />
-            )}
+            <PaginatedList
+                pageSize={antallListeElementer}
+                selectedKey={selectedKey}
+                items={varsler}
+                keyExtractor={(item) => item.eventId}
+                renderItem={({ item }) => <VarslerItem varsel={item} handleClick={handleClick} />}
+            />
         </>
     );
 };

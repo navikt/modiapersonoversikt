@@ -5,7 +5,6 @@ import {
     BodyShort,
     Box,
     Button,
-    GuidePanel,
     HGrid,
     HStack,
     Heading,
@@ -397,6 +396,7 @@ const UtbetalingDetail = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
     const selectedUtbetaling = utbetalinger.find((item) => getUtbetalingId(item) === id);
     const filterAtomValue = useAtomValue(utbetalingFilterAtom);
     const prevFilterRef = useRef(utbetalingFilterAtom);
+    const navigate = routeApi.useNavigate();
 
     // Fjern utbetalingid i URL og cache hvis filteret er endret og utbetalingen ikke finnes i filtrerte utbetalinger
     useEffect(() => {
@@ -408,22 +408,10 @@ const UtbetalingDetail = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
     }, [selectedUtbetaling, utbetalinger, filterAtomValue]);
 
     if (utbetalinger.length === 0) {
-        return (
-            <Alert className="mt-6" variant="info">
-                Fant ingen utbetalinger
-            </Alert>
-        );
+        return <></>;
     }
 
-    if (!id) {
-        return (
-            <HStack margin="4">
-                <GuidePanel>Velg en utbetaling fra listen til venstre for å se detaljer.</GuidePanel>
-            </HStack>
-        );
-    }
-
-    if (!selectedUtbetaling) {
+    if (!selectedUtbetaling && id) {
         return (
             <VStack flexGrow="1" minHeight="0" className="mt-6">
                 <Alert variant="error">Utbetalingen du valgte, ble ikke funnet.</Alert>
@@ -431,9 +419,13 @@ const UtbetalingDetail = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
         );
     }
 
+    if (!id && !selectedUtbetaling) {
+        navigate({ search: { id: getUtbetalingId(utbetalinger[0]) } });
+    }
+
     return (
         <Box.New>
-            <UtbetalingDetaljer utbetaling={selectedUtbetaling} />
+            <UtbetalingDetaljer utbetaling={selectedUtbetaling ?? utbetalinger[0]} />
         </Box.New>
     );
 };
