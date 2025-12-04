@@ -118,10 +118,10 @@ export const JournalForingModal = ({ traad, close, isOpen }: Props) => {
                     ))}
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={journalFor} disabled={!valgtSak} loading={isPending}>
+                <Button onClick={journalFor} disabled={!valgtSak} loading={isPending} size="small">
                     Journalfør
                 </Button>
-                <Button onClick={close} variant="secondary">
+                <Button onClick={close} variant="secondary" size="small">
                     Avbryt
                 </Button>
             </Modal.Footer>

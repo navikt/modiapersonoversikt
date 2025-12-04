@@ -147,10 +147,10 @@ const AvsluttDialogModal = ({ traad, open, onClose }: ModalProps) => {
                 </Alert>
             </Modal.Body>
             <Modal.Footer>
-                <Button type="button" variant="primary" onClick={avsluttDialog} loading={isPending}>
+                <Button type="button" variant="primary" onClick={avsluttDialog} loading={isPending} size="small">
                     Avslutt
                 </Button>
-                <Button type="button" variant="secondary" onClick={onClose}>
+                <Button type="button" variant="secondary" onClick={onClose} size="small">
                     Avbryt
                 </Button>
             </Modal.Footer>
@@ -193,10 +193,10 @@ const MarkerFeilsendtModal = ({ traad, open, onClose }: ModalProps) => {
             size="small"
         >
             <Modal.Footer>
-                <Button type="button" variant="primary" onClick={merkFeilsendt} loading={isPending}>
+                <Button type="button" variant="primary" onClick={merkFeilsendt} loading={isPending} size="small">
                     Marker som feilsendt
                 </Button>
-                <Button type="button" variant="secondary" onClick={onClose}>
+                <Button type="button" variant="secondary" onClick={onClose} size="small">
                     Avbryt
                 </Button>
             </Modal.Footer>
@@ -305,10 +305,10 @@ const SladdTraadModal = ({ traad, onClose, open }: ModalProps) => {
                             .
                         </Alert>
                         <HStack justify="end" gap="4">
-                            <Button variant="secondary" onClick={onClose}>
+                            <Button variant="secondary" onClick={onClose} size="small">
                                 Avbryt
                             </Button>
-                            <Button onClick={submit} loading={isPending}>
+                            <Button onClick={submit} loading={isPending} size="small">
                                 Send til sladding
                             </Button>
                         </HStack>
