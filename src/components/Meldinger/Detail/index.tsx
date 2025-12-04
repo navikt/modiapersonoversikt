@@ -129,8 +129,8 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
     const avsluttetAv = traad.avsluttetAv || melding.skrevetAvTekst;
 
     return (
-        <Card as={VStack} padding="2" minHeight={{ xs: '100%', md: '0' }} overflow="auto">
-            <VStack minHeight={{ xs: '100%', md: '0' }} as="section" gap="1" padding="2" aria-label="Dialogdetaljer">
+        <Card as={VStack} padding="2" overflow="auto">
+            <VStack as="section" gap="1" padding="2" height="100%" aria-label="Dialogdetaljer">
                 <TraadMeta traad={traad} />
                 <Journalposter journalposter={traad.journalposter} />
                 {erIMeldingerfane && <TraadOppgaver traadId={traadId} />}
