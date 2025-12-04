@@ -5,6 +5,7 @@ import Card from 'src/components/Card';
 import { getSakId } from 'src/components/saker/utils';
 import type { SaksDokumenter } from 'src/generated/modiapersonoversikt-api';
 import { formatterDato } from 'src/utils/date-utils';
+import { twMerge } from 'tailwind-merge';
 
 const routeApi = getRouteApi('/new/person/saker');
 
@@ -20,8 +21,10 @@ export const SakItem = ({
     return (
         <Card
             padding="2"
-            className={`cursor-pointer hover:hover:bg-ax-bg-neutral-moderate-hover group
-                ${aktivSakId === id ? 'bg-ax-bg-neutral-moderate ' : ''}`}
+            className={twMerge(
+                'cursor-pointer hover:bg-[var(--ax-bg-accent-moderate-hover)] group',
+                aktivSakId === id && 'bg-ax-bg-accent-moderate-pressed border-ax-bg-accent-moderate-pressed'
+            )}
             onClick={() => handleClick(id)}
         >
             <HStack justify="space-between" gap="1" wrap={false}>

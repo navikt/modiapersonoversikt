@@ -10,6 +10,7 @@ import {
     type Pleiepenger
 } from 'src/generated/modiapersonoversikt-api';
 import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
+import { twMerge } from 'tailwind-merge';
 
 const routeApi = getRouteApi('/new/person/ytelser');
 
@@ -57,8 +58,10 @@ export const YtelseItem = ({
         <Card
             padding="2"
             as="li"
-            className={`cursor-pointer hover:hover:bg-ax-bg-neutral-moderate-hover group
-                ${aktivYtelse === id ? 'bg-ax-bg-neutral-moderate ' : ''}`}
+            className={twMerge(
+                'cursor-pointer hover:bg-[var(--ax-bg-accent-moderate-hover)] group',
+                aktivYtelse === id && 'bg-ax-bg-accent-moderate-pressed border-ax-bg-accent-moderate-pressed'
+            )}
             onClick={() => handleClick(id, ytelse)}
         >
             <HStack justify="space-between" gap="1" wrap={false}>
