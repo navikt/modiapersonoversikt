@@ -10,7 +10,7 @@
 }
 
 .aksel-theme[data-background="true"].light {
-    background-color: var(--ax-bg-neutral-soft);
+    background-color: var(--ax-bg-sunken);
 }
 
 .dekorator {
