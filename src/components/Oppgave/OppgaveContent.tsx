@@ -1,9 +1,23 @@
-import { BodyShort, HGrid, HStack, Textarea, VStack } from '@navikt/ds-react';
+import { BodyShort, Button, HGrid, HStack, Textarea, VStack } from '@navikt/ds-react';
+import { useState } from 'react';
 import Card from 'src/components/Card';
-import { AvsluttOppgave } from 'src/components/Meldinger/Detail/TraadOppgaver';
+import { AvsluttOppgaveModal } from 'src/components/Meldinger/AvsluttOppgave';
 import type { OppgaveDto } from 'src/generated/modiapersonoversikt-api';
 import { useGsakTema } from 'src/lib/clients/modiapersonoversikt-api';
 import { datoEllerNull } from 'src/utils/string-utils';
+
+const AvsluttOppgave = ({ oppgave }: { oppgave: OppgaveDto }) => {
+    const [open, setOpen] = useState(false);
+
+    return (
+        <>
+            <Button size="small" variant="secondary" onClick={() => setOpen(true)}>
+                Avslutt oppgave
+            </Button>
+            <AvsluttOppgaveModal oppgave={oppgave} open={open} onClose={() => setOpen(false)} />
+        </>
+    );
+};
 
 export const OppgaveContent = ({ oppgave }: { oppgave: OppgaveDto }) => {
     const { data: gsakTema } = useGsakTema();

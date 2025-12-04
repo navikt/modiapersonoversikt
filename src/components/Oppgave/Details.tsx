@@ -53,7 +53,7 @@ const OppgaveOgDialogDetail = () => {
         <VStack gap="4">
             <OppgaveContent oppgave={valgtOppgave} />
             {valgtOppgave.traadId ? (
-                <TraadDetail traadId={valgtOppgave.traadId} valgtOppgaveId={valgtOppgave.oppgaveId} />
+                <TraadDetail traadId={valgtOppgave.traadId} />
             ) : (
                 <Alert variant="info">Det er ingen dialog knyttet til oppgaven.</Alert>
             )}
