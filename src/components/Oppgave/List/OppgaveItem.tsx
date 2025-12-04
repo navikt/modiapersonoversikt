@@ -6,6 +6,7 @@ import { getOppgaveId } from 'src/components/Oppgave/List/utils';
 import type { OppgaveDto } from 'src/generated/modiapersonoversikt-api';
 import { useGsakTema } from 'src/lib/clients/modiapersonoversikt-api';
 import { formatterDato } from 'src/utils/date-utils';
+import { twMerge } from 'tailwind-merge';
 
 const routeApi = getRouteApi('/new/person/oppgaver');
 
@@ -25,8 +26,10 @@ export const OppgaveItem = ({
     return (
         <Card
             padding="2"
-            className={`cursor-pointer hover:hover:bg-ax-bg-neutral-moderate-hover group
-                ${aktivOppgaveId === id ? 'bg-ax-bg-neutral-moderate ' : ''}`}
+            className={twMerge(
+                'cursor-pointer hover:bg-[var(--ax-bg-accent-moderate-hover)] group',
+                aktivOppgaveId === id && 'bg-ax-bg-accent-moderate-pressed border-ax-bg-accent-moderate-pressed'
+            )}
             onClick={() => handleClick(id)}
             as="li"
         >

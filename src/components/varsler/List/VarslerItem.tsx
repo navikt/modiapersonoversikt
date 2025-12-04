@@ -4,6 +4,7 @@ import { getRouteApi } from '@tanstack/react-router';
 import Card from 'src/components/Card';
 import type { VarselData } from 'src/components/varsler/List/utils';
 import { formaterDato } from 'src/utils/string-utils';
+import { twMerge } from 'tailwind-merge';
 
 const routeApi = getRouteApi('/new/person/varsler');
 
@@ -18,8 +19,11 @@ export const VarslerItem = ({
     return (
         <Card
             padding="2"
-            className={`cursor-pointer hover:hover:bg-ax-bg-neutral-moderate-hover group
-                ${aktivVarsel === varsel.eventId ? 'bg-ax-bg-neutral-moderate ' : ''}`}
+            className={twMerge(
+                'cursor-pointer hover:bg-[var(--ax-bg-accent-moderate-hover)] group',
+                aktivVarsel === varsel.eventId &&
+                    'bg-ax-bg-accent-moderate-pressed border-ax-bg-accent-moderate-pressed'
+            )}
             onClick={() => handleClick(varsel.eventId)}
             as="li"
         >
