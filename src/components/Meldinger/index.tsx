@@ -1,14 +1,13 @@
-import { PrinterSmallIcon } from '@navikt/aksel-icons';
-import { Alert, Button, HGrid, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, Button, HGrid, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import { Suspense, memo, useEffect, useRef } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { meldingerFilterAtom } from 'src/components/Meldinger/List/Filter';
 import { useFilterMeldinger } from 'src/components/Meldinger/List/utils';
+import usePrinter from 'src/components/Print/usePrinter';
 import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
 import { meldingerRouteMiddleware } from 'src/routes/new/person/meldinger';
-import usePrinter from '../Print/usePrinter';
 import { TraadDetail } from './Detail';
 import { TraadList } from './List';
 import MeldingerPrint from './MeldingerPrint';
@@ -19,19 +18,25 @@ const PrintThreads = () => {
     const { data: traader } = useMeldinger();
 
     return (
-        <HStack justify="end">
-            <Button variant="tertiary" size="xsmall" icon={<PrinterSmallIcon />} onClick={() => printer.triggerPrint()}>
-                Skriv ut alle
+        <>
+            <Button
+                className="justify-start"
+                role="menuitem"
+                variant="tertiary"
+                size="small"
+                onClick={() => printer.triggerPrint()}
+            >
+                <span className="text-ax-text-neutral font-light">Skriv ut alle</span>
             </Button>
             <PrinterWrapper>
                 {traader.map((traad) => (
                     <MeldingerPrint key={traad.traadId} traad={traad} />
                 ))}
             </PrinterWrapper>
-        </HStack>
+        </>
     );
 };
-const PrintThreadsMemo = memo(PrintThreads);
+export const PrintThreadsMemo = memo(PrintThreads);
 
 export const MeldingerPage = () => {
     return (
@@ -49,8 +54,9 @@ export const MeldingerPage = () => {
                             </VStack>
                         }
                     >
-                        <Heading size="small">Dialoger</Heading>
-
+                        <Heading level="1" size="small" visuallyHidden>
+                            Dialoger
+                        </Heading>
                         <PrintThreadsMemo />
                     </Suspense>
                     <TraadList />

@@ -1,4 +1,10 @@
-import { CheckmarkIcon, ExternalLinkIcon, NotePencilDashIcon, XMarkOctagonIcon } from '@navikt/aksel-icons';
+import {
+    CheckmarkIcon,
+    ChevronDownIcon,
+    ExternalLinkIcon,
+    NotePencilDashIcon,
+    XMarkOctagonIcon
+} from '@navikt/aksel-icons';
 import { ActionMenu, Alert, Button, Checkbox, HStack, Link, Modal, Select, Skeleton, VStack } from '@navikt/ds-react';
 import { useAtomValue } from 'jotai';
 import { Suspense, useCallback, useState } from 'react';
@@ -55,7 +61,12 @@ export const DialogMerkMeny = ({ traadId }: Props) => {
         <>
             <ActionMenu>
                 <ActionMenu.Trigger>
-                    <Button variant="secondary" size="small">
+                    <Button
+                        variant="secondary"
+                        icon={<ChevronDownIcon aria-hidden />}
+                        iconPosition="right"
+                        size="small"
+                    >
                         Merk
                     </Button>
                 </ActionMenu.Trigger>
