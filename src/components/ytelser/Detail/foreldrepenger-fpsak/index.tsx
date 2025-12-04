@@ -33,10 +33,10 @@ const ForeldrepengePerioder = ({ ytelse }: { ytelse: ForeldrepengerFpSak }) => {
             <Heading as="h4" size="small">
                 Perioder
             </Heading>
-            <Accordion size="small" headingSize="xsmall">
+            <Accordion size="small">
                 {ytelse.perioder.map((periode, index) => {
                     return (
-                        <Accordion.Item key={index} defaultOpen>
+                        <Accordion.Item key={`${index}-${periode.fom}`}>
                             <Accordion.Header>{`Periode - ${datoEllerTomString(periode.fom)}`}</Accordion.Header>
                             <Accordion.Content>
                                 <TitleValuePairsComponent entries={getEntries(periode)} columns={{ xs: 2, md: 3 }} />
