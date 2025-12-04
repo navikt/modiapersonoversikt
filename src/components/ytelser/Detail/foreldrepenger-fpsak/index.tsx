@@ -13,12 +13,12 @@ const getForeldrePengerRettenEntries = (ytelse: ForeldrepengerFpSak) => {
     return {
         Saksnummer: ytelse.saksnummer,
         Ytelsetype: capitalize(ytelse.ytelse),
-        ...(ytelse.ytelse === ForeldrepengerFpSakYtelse.ENGANGST_NAD ? { Dato: formaterDato(ytelse.fom) } : perioder)
+        ...(ytelse.ytelse === ForeldrepengerFpSakYtelse.ENGANGSST_NAD ? { Dato: formaterDato(ytelse.fom) } : perioder)
     };
 };
 
 const ForeldrepengePerioder = ({ ytelse }: { ytelse: ForeldrepengerFpSak }) => {
-    if (ytelse.perioder.length === 0 || ytelse.ytelse === ForeldrepengerFpSakYtelse.ENGANGST_NAD) return <></>;
+    if (ytelse.perioder.length === 0 || ytelse.ytelse === ForeldrepengerFpSakYtelse.ENGANGSST_NAD) return <></>;
 
     const getEntries = (periode: ForeldrepengerFpSakPeriode) => {
         return {

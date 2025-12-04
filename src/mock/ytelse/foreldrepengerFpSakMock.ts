@@ -37,7 +37,7 @@ function getMockForeldrepengerFpSak(fnr: string): ForeldrepengerFpSak {
 
     const ytelseType = navfaker.random.arrayElement([
         ForeldrepengerFpSakYtelse.FORELDREPENGER,
-        ForeldrepengerFpSakYtelse.ENGANGST_NAD,
+        ForeldrepengerFpSakYtelse.ENGANGSST_NAD,
         ForeldrepengerFpSakYtelse.SVANGERSKAPSPENGER
     ]);
 

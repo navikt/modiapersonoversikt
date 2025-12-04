@@ -45,7 +45,7 @@ function ForeldrepengerPerioderFpSak({ perioder }: { perioder: ForeldrepengerFpS
 }
 
 function ForeldrepengerFpSakComp(props: Props) {
-    const erEngangstonad = props.foreldrepenger.ytelse === ForeldrepengerFpSakYtelse.ENGANGST_NAD;
+    const erEngangstonad = props.foreldrepenger.ytelse === ForeldrepengerFpSakYtelse.ENGANGSST_NAD;
 
     const perioder = {
         'Fra og med': props.foreldrepenger.fom ? formaterDato(props.foreldrepenger.fom) : '',

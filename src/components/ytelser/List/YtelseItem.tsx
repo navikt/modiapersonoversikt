@@ -39,8 +39,8 @@ export const YtelseItem = ({
                 return ytelse.ytelseType;
             case YtelseVedtakYtelseType.ForeldrepengerFpSak:
                 switch ((ytelse.ytelseData.data as ForeldrepengerFpSak).ytelse) {
-                    case ForeldrepengerFpSakYtelse.ENGANGST_NAD:
-                        return 'Engangstønad';
+                    case ForeldrepengerFpSakYtelse.ENGANGSST_NAD:
+                        return 'Engangsstønad';
                     case ForeldrepengerFpSakYtelse.SVANGERSKAPSPENGER:
                         return 'Svangerskapspenger';
                     default:

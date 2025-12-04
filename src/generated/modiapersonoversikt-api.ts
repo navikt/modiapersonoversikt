@@ -3828,7 +3828,7 @@ export enum LocalDateTimeDayOfWeek {
     SUNDAY = 'SUNDAY'
 }
 export enum ForeldrepengerFpSakYtelse {
-    ENGANGST_NAD = 'ENGANGST\u00D8NAD',
+    ENGANGSST_NAD = 'ENGANGSST\u00D8NAD',
     FORELDREPENGER = 'FORELDREPENGER',
     SVANGERSKAPSPENGER = 'SVANGERSKAPSPENGER'
 }

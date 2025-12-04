@@ -568,7 +568,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       <h3
                         class="typo-undertittel"
                       >
-                        Engangstønad
+                        Engangsstønad
                       </h3>
                       <p
                         class="typo-element"
@@ -582,7 +582,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       </p>
                     </div>
                     <button
-                      aria-label="Vis engangstønad"
+                      aria-label="Vis engangsstønad"
                       aria-selected="true"
                       class="c13"
                     >
@@ -600,7 +600,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       <h3
                         class="typo-undertittel"
                       >
-                        Engangstønad
+                        Engangsstønad
                       </h3>
                       <p
                         class="typo-element"
@@ -614,7 +614,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       </p>
                     </div>
                     <button
-                      aria-label="Vis engangstønad"
+                      aria-label="Vis engangsstønad"
                       aria-selected="true"
                       class="c13"
                     >
@@ -883,7 +883,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               <h2
                 class="sr-only"
               >
-                ENGANGSTØNAD
+                ENGANGSSTØNAD
               </h2>
               <div
                 class="c17"
@@ -896,7 +896,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                     class="typo-ingress"
                     id="Helt tilfeldig ID"
                   >
-                    Om engangstønad
+                    Om engangsstønad
                   </h3>
                   <dl
                     class="c19"
@@ -922,7 +922,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       <dd
                         class="typo-element"
                       >
-                        Engangstønad
+                        Engangsstønad
                       </dd>
                     </div>
                     <div>

@@ -10,6 +10,6 @@ export function getForeldrepengerFpSakIdDato(ytelse: ForeldrepengerFpSak) {
 
 export function getUnikForeldrepengerFpSakKey(ytelse: ForeldrepengerFpSak) {
     // ø fungerer ikke som deep link i urlen
-    const ytelsetype = ytelse.ytelse === ForeldrepengerFpSakYtelse.ENGANGST_NAD ? 'ENGANGSTONAD' : ytelse.ytelse;
+    const ytelsetype = ytelse.ytelse === ForeldrepengerFpSakYtelse.ENGANGSST_NAD ? 'ENGANGSSTONAD' : ytelse.ytelse;
     return `${ytelsetype.toLowerCase()}-${ytelse.saksnummer}`;
 }
