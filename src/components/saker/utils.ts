@@ -81,7 +81,7 @@ export const byggDokumentVisningUrl = (url: string): string => {
     return `${apiBaseUri}/saker/dokument/${journalpost}/${dokument}`;
 };
 
-export const getSakId = (sak: SaksDokumenter) => `${sak.temakode}-${sak.saksid}`;
+export const getSakId = (sak: SaksDokumenter) => `${sak.temakode}-${sak.fagsaksnummer}`;
 
 export const sakerAvsender = [
     { value: DokumentmetadataAvsender.NAV, label: 'Nav' },
