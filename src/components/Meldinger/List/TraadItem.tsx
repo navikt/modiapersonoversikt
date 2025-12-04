@@ -82,8 +82,8 @@ export const TraadItem = ({
             data-testid="traaditem"
             padding="2"
             className={twMerge(
-                'cursor-pointer hover:bg-[var(--ax-bg-neutral-moderate-hover)] group',
-                aktivTraad === traad.traadId && 'bg-ax-bg-neutral-moderate border-ax-border-neutral-strong'
+                'cursor-pointer hover:bg-[var(--ax-bg-accent-moderate-hover)] group',
+                aktivTraad === traad.traadId && 'bg-ax-bg-accent-moderate-pressed border-ax-bg-accent-moderate-pressed'
             )}
             onClick={() => handleClick(traad.traadId)}
             as="li"
