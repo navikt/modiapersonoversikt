@@ -2054,9 +2054,9 @@ export interface components {
         };
         GraphQLClientSourceLocation: {
             /** Format: int32 */
-            column: number;
-            /** Format: int32 */
             line: number;
+            /** Format: int32 */
+            column: number;
         };
         BehandlendeEnhetRequest: {
             fnr: string;
