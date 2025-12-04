@@ -47,8 +47,7 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
     return (
         <Box.New
             ref={setChatAreaRef}
-            minHeight="0"
-            overflowY={{ xs: 'hidden', md: 'scroll' }}
+            height="100%"
             overflowX="scroll"
             borderColor="neutral-subtle"
             borderWidth="2 0 2 0"
