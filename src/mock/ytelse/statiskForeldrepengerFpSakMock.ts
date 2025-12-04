@@ -39,7 +39,7 @@ export const statiskSvangerskapspengerFpSakMock = {
 };
 
 export const statiskEngangstonadFpSakMock = {
-    ytelse: ForeldrepengerFpSakYtelse.ENGANGST_NAD,
+    ytelse: ForeldrepengerFpSakYtelse.ENGANGSST_NAD,
     fom: '2025-08-01',
     tom: '2025-08-01',
     perioder: [

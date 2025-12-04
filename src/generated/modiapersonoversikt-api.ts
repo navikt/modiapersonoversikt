@@ -2054,9 +2054,9 @@ export interface components {
         };
         GraphQLClientSourceLocation: {
             /** Format: int32 */
-            column: number;
-            /** Format: int32 */
             line: number;
+            /** Format: int32 */
+            column: number;
         };
         BehandlendeEnhetRequest: {
             fnr: string;
@@ -3828,7 +3828,7 @@ export enum LocalDateTimeDayOfWeek {
     SUNDAY = 'SUNDAY'
 }
 export enum ForeldrepengerFpSakYtelse {
-    ENGANGST_NAD = 'ENGANGST\u00D8NAD',
+    ENGANGSST_NAD = 'ENGANGSST\u00D8NAD',
     FORELDREPENGER = 'FORELDREPENGER',
     SVANGERSKAPSPENGER = 'SVANGERSKAPSPENGER'
 }

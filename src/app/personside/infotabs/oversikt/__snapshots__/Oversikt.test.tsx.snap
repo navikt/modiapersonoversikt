@@ -940,7 +940,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <p
                     class="typo-element"
                   >
-                    Engangstønad
+                    Engangsstønad
                   </p>
                   <p
                     class="typo-normal"
@@ -949,7 +949,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   </p>
                 </div>
                 <button
-                  aria-label="Vis engangstønad"
+                  aria-label="Vis engangsstønad"
                   aria-selected="false"
                   class="c10"
                 >
@@ -970,7 +970,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <p
                     class="typo-element"
                   >
-                    Engangstønad
+                    Engangsstønad
                   </p>
                   <p
                     class="typo-normal"
@@ -979,7 +979,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   </p>
                 </div>
                 <button
-                  aria-label="Vis engangstønad"
+                  aria-label="Vis engangsstønad"
                   aria-selected="false"
                   class="c10"
                 >
