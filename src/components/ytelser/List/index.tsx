@@ -82,7 +82,6 @@ const YtelseList = () => {
                 keyExtractor={getUnikYtelseKey}
                 renderItem={({ item }) => <YtelseItem ytelse={item} handleClick={handleClick} />}
             />
-            
         </>
     );
 };
