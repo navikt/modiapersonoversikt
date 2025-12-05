@@ -22,7 +22,7 @@ export const SakerList = () => (
                 </VStack>
             }
         >
-            <VStack minHeight="0" gap="2">
+            <VStack height="100%" gap="2">
                 <SakerFilter />
                 <SakList />
             </VStack>

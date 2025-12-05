@@ -99,13 +99,12 @@ const SakContent = () => {
     const prevFilterRef = useRef(filterAtomValue);
     const navigate = routeApi.useNavigate();
 
-    const valgtSak = id
+    let valgtSak = id
         ? saker.find((sak) => getSakId(sak) === id || sak.saksid === id || sak.fagsaksnummer === id)
         : null;
 
     // Fjern saksid i URL og cache hvis filteret er endret og saken ikke finnes i filtrerte saker
     useEffect(() => {
-        if (!valgtSak) return;
         const filterEndret = JSON.stringify(prevFilterRef.current) !== JSON.stringify(filterAtomValue);
         const sakIkkeIListe = !valgtSak || !saker.includes(valgtSak);
         if (filterEndret && sakIkkeIListe) {
@@ -119,14 +118,11 @@ const SakContent = () => {
     }
 
     if (id && !valgtSak) {
-        return (
-            <VStack flexGrow="1" minHeight="0" className="mt-6">
-                <Alert variant="error">Saken du valgte, ble ikke funnet.</Alert>
-            </VStack>
-        );
+        return <Alert variant="error">Saken du valgte, ble ikke funnet.</Alert>;
     }
 
     if (!valgtSak && !id) {
+        valgtSak = saker[0];
         navigate({ search: { id: getSakId(saker[0]) } });
     }
 

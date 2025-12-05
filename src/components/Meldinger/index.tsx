@@ -99,11 +99,7 @@ const TraadDetailSection = () => {
     }
 
     if (!valgtTraad && traadId) {
-        return (
-            <VStack className="mt-6">
-                <Alert variant="error">Tråden du valgte, ble ikke funnet.</Alert>
-            </VStack>
-        );
+        return <Alert variant="error">Tråden du valgte, ble ikke funnet.</Alert>;
     }
 
     if (!traadId && !valgtTraad) {

@@ -13,7 +13,7 @@ export const YtelserList = () => {
     const { pending } = useFilterYtelser();
 
     return (
-        <VStack minHeight="0" gap="2">
+        <VStack height="100%" gap="2">
             <YtelserListFilter />
             <ErrorBoundary boundaryName="YtelserList">
                 {pending ? (

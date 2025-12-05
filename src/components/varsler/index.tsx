@@ -18,7 +18,7 @@ export const VarslerPage = () => {
                 <VarslerList />
             </VStack>
             <VStack className="min-h-100 md:min-h-0" overflow={{ xs: 'hidden', md: 'scroll' }}>
-                <VStack minHeight="0" className="mt-6">
+                <VStack minHeight="0">
                     <VarselDetail />
                 </VStack>
             </VStack>

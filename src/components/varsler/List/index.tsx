@@ -10,7 +10,7 @@ import { VarslerListFilter } from './Filter';
 import { useFilterVarsler } from './utils';
 
 export const VarslerList = () => (
-    <VStack minHeight="0" gap="2">
+    <VStack height="100%" gap="2">
         <VarslerListFilter />
         <ErrorBoundary boundaryName="varslerList">
             <Suspense
