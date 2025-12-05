@@ -12,7 +12,9 @@ export const OppgaverPage = () => {
             overflow={{ xs: 'scroll', md: 'hidden' }}
         >
             <VStack height="100%" gap="1" width="100%" maxWidth={{ md: '16em' }} overflow={{ md: 'hidden' }}>
-                <Heading size="small">Oppgaver</Heading>
+                <Heading size="small" visuallyHidden>
+                    Oppgaver
+                </Heading>
                 <OppgaverList />
             </VStack>
             <VStack className="min-h-100 md:min-h-0" overflow={{ xs: 'hidden', md: 'scroll' }}>

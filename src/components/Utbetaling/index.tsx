@@ -27,7 +27,9 @@ export const UtbetalingPage = () => {
                         Se meldekort i Arena
                     </Button>
                 </HStack>
-                <Heading size="small">Utbetalinger</Heading>
+                <Heading size="small" visuallyHidden>
+                    Utbetalinger
+                </Heading>
                 <UtbetalingerList />
             </VStack>
             <VStack overflow={{ xs: 'hidden', md: 'scroll' }} className="min-h-100 md:min-h-0">
