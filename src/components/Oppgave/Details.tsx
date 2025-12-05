@@ -1,9 +1,8 @@
-import { Alert, HStack, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, HStack, Skeleton } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import { Suspense, useEffect, useRef } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
-import { TraadDetail } from 'src/components/Meldinger/Detail';
 import { oppgaveFilterAtom } from 'src/components/Oppgave/List/Filter';
 import { getOppgaveId, useFilterOppgave } from 'src/components/Oppgave/List/utils';
 import { OppgaveContent } from 'src/components/Oppgave/OppgaveContent';
@@ -49,16 +48,7 @@ const OppgaveOgDialogDetail = () => {
         return <></>;
     }
 
-    return (
-        <VStack gap="4">
-            <OppgaveContent oppgave={valgtOppgave} />
-            {valgtOppgave.traadId ? (
-                <TraadDetail traadId={valgtOppgave.traadId} />
-            ) : (
-                <Alert variant="info">Det er ingen dialog knyttet til oppgaven.</Alert>
-            )}
-        </VStack>
-    );
+    return <OppgaveContent oppgave={valgtOppgave} />;
 };
 
 export const OppgaveDetail = () => {
