@@ -76,6 +76,10 @@ const YtelseList = () => {
                 </Alert>
             ))}
             <PaginatedList
+                paginationSrHeading={{
+                    tag: 'h3',
+                    text: 'Ytelsepaginering'
+                }}
                 pageSize={antallListeElementer}
                 selectedKey={selectedKey}
                 items={ytelser}

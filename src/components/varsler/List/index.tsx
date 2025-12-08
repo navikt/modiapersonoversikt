@@ -69,6 +69,10 @@ const VarslerListList = () => {
                 {varsler.length} {varsler.length === 1 ? 'varsel' : 'varsler'}
             </Heading>
             <PaginatedList
+                paginationSrHeading={{
+                    tag: 'h3',
+                    text: 'Varslerpaginering'
+                }}
                 pageSize={antallListeElementer}
                 selectedKey={selectedKey}
                 items={varsler}

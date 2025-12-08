@@ -68,6 +68,10 @@ const UtbetalingList = () => {
                 {utbetalinger.length} {utbetalinger.length === 1 ? 'utbetaling' : 'utbetalinger'}
             </Heading>
             <PaginatedList
+                paginationSrHeading={{
+                    tag: 'h3',
+                    text: 'Utbetalingpaginering'
+                }}
                 pageSize={antallListeElementer}
                 selectedKey={selectedKey}
                 items={utbetalinger}

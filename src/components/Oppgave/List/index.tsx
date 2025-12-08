@@ -69,6 +69,10 @@ const OppgaveList = () => {
                 {oppgaver.length} {oppgaver.length === 1 ? 'oppgave' : 'oppgaver'}
             </Heading>
             <PaginatedList
+                paginationSrHeading={{
+                    tag: 'h3',
+                    text: 'Oppgavepaginering'
+                }}
                 pageSize={antallListeElementer}
                 selectedKey={selectedKey}
                 items={oppgaver}

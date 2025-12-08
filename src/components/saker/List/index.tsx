@@ -68,6 +68,10 @@ const SakList = () => {
                 {saker.length} {saker.length === 1 ? 'sak' : 'saker'} funnet
             </Heading>
             <PaginatedList
+                paginationSrHeading={{
+                    tag: 'h3',
+                    text: 'Sakerpaginerg'
+                }}
                 pageSize={antallListeElementer}
                 selectedKey={selectedKey}
                 items={saker}

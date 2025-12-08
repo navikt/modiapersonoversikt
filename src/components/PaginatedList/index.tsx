@@ -45,15 +45,17 @@ export const PaginatedList = <T, KeyType extends string | number>({
                     <RenderComp item={item} key={keyExtractor(item)} />
                 ))}
             </VStack>
-            <Pagination
-                srHeading={paginationSrHeading}
-                size="small"
-                page={page + 1}
-                siblingCount={0}
-                count={pageCount}
-                onPageChange={(page) => setPage(page - 1)}
-                prevNextTexts={false}
-            />
+            {pages.length > 1 && (
+                <Pagination
+                    srHeading={paginationSrHeading}
+                    size="small"
+                    page={page + 1}
+                    siblingCount={0}
+                    count={pageCount}
+                    onPageChange={(page) => setPage(page - 1)}
+                    prevNextTexts={false}
+                />
+            )}
         </VStack>
     );
 };
