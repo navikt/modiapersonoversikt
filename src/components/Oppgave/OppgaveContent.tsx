@@ -133,7 +133,7 @@ export const OppgaveContent = ({ oppgave }: { oppgave: OppgaveDto }) => {
                 </VStack>
                 <VStack justify="space-between">
                     <BodyShort size="small" weight="semibold">
-                        Tilhørende tråd:
+                        Opprettet av enhet:
                     </BodyShort>
                     <BodyShort size="small">{oppgave.opprettetAvEnhetsnr}</BodyShort>
                 </VStack>
