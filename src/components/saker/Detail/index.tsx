@@ -99,7 +99,7 @@ const SakContent = () => {
     const prevFilterRef = useRef(filterAtomValue);
     const navigate = routeApi.useNavigate();
 
-    let valgtSak = id
+    const valgtSak = id
         ? saker.find((sak) => getSakId(sak) === id || sak.saksid === id || sak.fagsaksnummer === id)
         : null;
 
@@ -122,7 +122,6 @@ const SakContent = () => {
     }
 
     if (!valgtSak && !id) {
-        valgtSak = saker[0];
         navigate({ search: { id: getSakId(saker[0]) } });
     }
 
