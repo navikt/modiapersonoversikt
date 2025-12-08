@@ -1,11 +1,10 @@
 import { Alert, Heading, Skeleton, VStack } from '@navikt/ds-react';
-import { useNavigate, useSearch } from '@tanstack/react-router';
+import { useSearch } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
-import { Suspense, useCallback } from 'react';
+import { Suspense } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
-import { trackingEvents } from 'src/utils/analytics';
 import { useAntallListeElementeBasertPaaSkjermStorrelse } from 'src/utils/customHooks';
 import { TraadListFilterCard, meldingerFilterAtom } from './Filter';
 import { TraadItem } from './TraadItem';
@@ -36,23 +35,7 @@ const Traader = () => {
     const { data: traader } = useMeldinger();
     const filters = useAtomValue(meldingerFilterAtom);
     const filteredMeldinger = useFilterMeldinger(traader, filters);
-    const navigate = useNavigate({ from: '/new/person/meldinger' });
     const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
-
-    const handleClick = useCallback(
-        (traadId: string) => {
-            navigate({
-                search: { traadId },
-                state: {
-                    umamiEvent: {
-                        name: trackingEvents.detaljvisningKlikket,
-                        data: { fane: 'meldinger', tekst: 'åpne melding' }
-                    }
-                }
-            });
-        },
-        [navigate]
-    );
 
     const traadId = useSearch({
         from: '/new/person/meldinger',
@@ -83,7 +66,7 @@ const Traader = () => {
                 selectedKey={traadId}
                 items={filteredMeldinger}
                 keyExtractor={(item) => item.traadId}
-                renderItem={({ item }) => <TraadItem traad={item} handleClick={handleClick} />}
+                renderItem={({ item }) => <TraadItem traad={item} />}
             />
         </>
     );

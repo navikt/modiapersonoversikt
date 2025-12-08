@@ -161,7 +161,7 @@ const VarselDetailExtractor = () => {
     return (
         <>
             {valgtVarsel && (
-                <Card>
+                <Card padding="2">
                     {valgtVarsel.erVarslerV2 ? (
                         <DittNavInformasjonsLinjerV2 varsel={valgtVarsel.event} kanaler={valgtVarsel.kanaler} />
                     ) : (
