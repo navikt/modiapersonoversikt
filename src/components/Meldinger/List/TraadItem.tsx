@@ -78,6 +78,7 @@ export const TraadItem = ({
 
     return (
         <Link
+            data-testid="traaditem"
             to="/new/person/meldinger"
             search={{ traadId: traad.traadId }}
             state={{
@@ -88,7 +89,6 @@ export const TraadItem = ({
             }}
         >
             <Card
-                data-testid="traaditem"
                 padding="2"
                 className={twMerge(
                     'cursor-pointer hover:bg-[var(--ax-bg-accent-moderate-hover)] group',
