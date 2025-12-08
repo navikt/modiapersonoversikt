@@ -75,7 +75,12 @@ const TraadMeta = ({ traad }: { traad: Traad }) => {
                         </VStack>
                     </ActionMenu.Content>
                 </ActionMenu>
-                <Button variant="secondary" size="small" onClick={() => setJournalforingOpen(true)}>
+                <Button
+                    variant="secondary"
+                    size="small"
+                    data-testid="journalfør-knapp"
+                    onClick={() => setJournalforingOpen(true)}
+                >
                     Journalfør
                 </Button>
                 <Button variant="secondary" size="small" onClick={() => setOppgaveOpen(true)}>
