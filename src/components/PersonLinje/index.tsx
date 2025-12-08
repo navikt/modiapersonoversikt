@@ -35,24 +35,26 @@ const PersonlinjeHeader = ({ isExpanded }: { isExpanded: boolean }) => {
 
     return (
         <>
-            <HStack gap="4" paddingBlock="2">
-                <Personalia
-                    navn={navn ? `${navn.fornavn} ${navn.mellomnavn ?? ''} ${navn.etternavn}` : 'UKJENT'}
-                    kjonn={kjonn}
-                    alder={data.person.alder}
-                />
-                <HStack align="center" className="cursor-[initial]" onClick={(e) => e.stopPropagation()}>
-                    <BodyShort size="small">F.nr: {data.person.personIdent}</BodyShort>
-                    <CopyButton size="xsmall" copyText={data.person.personIdent} />
-                </HStack>
-                {data.person.kontaktInformasjon.mobil?.value && (
+            <VStack gap="1" paddingBlock="2">
+                <HStack gap="4">
+                    <Personalia
+                        navn={navn ? `${navn.fornavn} ${navn.mellomnavn ?? ''} ${navn.etternavn}` : 'UKJENT'}
+                        kjonn={kjonn}
+                        alder={data.person.alder}
+                    />
                     <HStack align="center" className="cursor-[initial]" onClick={(e) => e.stopPropagation()}>
-                        <BodyShort size="small">Tlf.nr: {data.person.kontaktInformasjon.mobil.value}</BodyShort>
-                        <CopyButton size="xsmall" copyText={data.person.kontaktInformasjon.mobil.value} />
+                        <BodyShort size="small">F.nr: {data.person.personIdent}</BodyShort>
+                        <CopyButton size="xsmall" copyText={data.person.personIdent} />
                     </HStack>
-                )}
+                    {data.person.kontaktInformasjon.mobil?.value && (
+                        <HStack align="center" className="cursor-[initial]" onClick={(e) => e.stopPropagation()}>
+                            <BodyShort size="small">Tlf.nr: {data.person.kontaktInformasjon.mobil.value}</BodyShort>
+                            <CopyButton size="xsmall" copyText={data.person.kontaktInformasjon.mobil.value} />
+                        </HStack>
+                    )}
+                </HStack>
                 <PersonBadges />
-            </HStack>
+            </VStack>
             <VStack justify="center">
                 <Button
                     className="grow-0"

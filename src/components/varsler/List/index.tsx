@@ -10,7 +10,7 @@ import { VarslerListFilter } from './Filter';
 import { useFilterVarsler } from './utils';
 
 export const VarslerList = () => (
-    <VStack minHeight="0" gap="2">
+    <VStack height="100%" gap="2">
         <VarslerListFilter />
         <ErrorBoundary boundaryName="varslerList">
             <Suspense
@@ -69,6 +69,10 @@ const VarslerListList = () => {
                 {varsler.length} {varsler.length === 1 ? 'varsel' : 'varsler'}
             </Heading>
             <PaginatedList
+                paginationSrHeading={{
+                    tag: 'h3',
+                    text: 'Varslerpaginering'
+                }}
                 pageSize={antallListeElementer}
                 selectedKey={selectedKey}
                 items={varsler}

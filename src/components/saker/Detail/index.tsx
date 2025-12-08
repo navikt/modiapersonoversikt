@@ -105,7 +105,6 @@ const SakContent = () => {
 
     // Fjern saksid i URL og cache hvis filteret er endret og saken ikke finnes i filtrerte saker
     useEffect(() => {
-        if (!valgtSak) return;
         const filterEndret = JSON.stringify(prevFilterRef.current) !== JSON.stringify(filterAtomValue);
         const sakIkkeIListe = !valgtSak || !saker.includes(valgtSak);
         if (filterEndret && sakIkkeIListe) {
@@ -119,11 +118,7 @@ const SakContent = () => {
     }
 
     if (id && !valgtSak) {
-        return (
-            <VStack flexGrow="1" minHeight="0" className="mt-6">
-                <Alert variant="error">Saken du valgte, ble ikke funnet.</Alert>
-            </VStack>
-        );
+        return <Alert variant="error">Saken du valgte, ble ikke funnet.</Alert>;
     }
 
     if (!valgtSak && !id) {
@@ -133,7 +128,7 @@ const SakContent = () => {
     return <SakDetails valgtSak={valgtSak ?? saker[0]} pageView={true} />;
 };
 
-export const SakDetails = ({
+const SakDetails = ({
     valgtSak,
     pageView
 }: {

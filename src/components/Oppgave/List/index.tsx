@@ -10,7 +10,7 @@ import { useAntallListeElementeBasertPaaSkjermStorrelse } from 'src/utils/custom
 import { getOppgaveId, useFilterOppgave } from './utils';
 
 export const OppgaverList = () => (
-    <VStack minHeight="0" gap="2">
+    <VStack height="100%" gap="2">
         <OppgaveListFilter />
         <ErrorBoundary boundaryName="oppgaverList">
             <Suspense
@@ -69,6 +69,10 @@ const OppgaveList = () => {
                 {oppgaver.length} {oppgaver.length === 1 ? 'oppgave' : 'oppgaver'}
             </Heading>
             <PaginatedList
+                paginationSrHeading={{
+                    tag: 'h3',
+                    text: 'Oppgavepaginering'
+                }}
                 pageSize={antallListeElementer}
                 selectedKey={selectedKey}
                 items={oppgaver}

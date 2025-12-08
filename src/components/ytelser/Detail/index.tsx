@@ -87,11 +87,7 @@ const YtelseDataDetails = () => {
     }
 
     if (!selectedYtelse && id) {
-        return (
-            <VStack flexGrow="1" minHeight="0" className="mt-6">
-                <Alert variant="error">Ytelsen du valgte, ble ikke funnet.</Alert>
-            </VStack>
-        );
+        return <Alert variant="error">Ytelsen du valgte, ble ikke funnet.</Alert>;
     }
 
     if (!selectedYtelse && !id) {

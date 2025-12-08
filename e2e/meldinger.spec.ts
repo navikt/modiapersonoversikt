@@ -62,12 +62,14 @@ test('Send ny melding', async ({ page }) => {
 test('Journalfore dialog', async ({ page }) => {
     // traadId from statiskTraadMock
     await page.goto('/new/person/meldinger?traadId=sg838exr');
+    await page.getByTestId('journalposter-readmore').click();
+
     const journalposterTable = page.getByTestId('journalposter-table');
     const journalposter = journalposterTable.getByRole('row');
     await expect(journalposterTable).toBeVisible();
     const existingRows = await journalposter.count();
 
-    await page.getByRole('button', { name: 'Journalfør' }).click();
+    await page.getByTestId('journalfør-knapp').click();
 
     const modal = page.getByRole('dialog', { name: 'Journalfør dialog' });
     const submitButton = modal.getByRole('button', { name: 'Journalfør' });
@@ -83,8 +85,6 @@ test('Journalfore dialog', async ({ page }) => {
 
     await submitButton.click();
     await expect(modal).not.toBeVisible();
-    await page.getByRole('button', { name: 'Se alle' }).click();
-
     await expect(journalposter).toHaveCount(existingRows + 1);
     await expect(journalposterTable.getByText(saksId)).toBeVisible();
 });

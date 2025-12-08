@@ -1,5 +1,5 @@
 import { EnvelopeClosedIcon, EnvelopeOpenIcon, PersonIcon } from '@navikt/aksel-icons';
-import { BodyShort, Box, Chat, HStack, VStack } from '@navikt/ds-react';
+import { Box, Chat, Detail, HStack, VStack } from '@navikt/ds-react';
 import { useAtomValue } from 'jotai';
 import { type ElementType, type ReactNode, useLayoutEffect, useMemo, useRef } from 'react';
 import RichText, {
@@ -47,16 +47,14 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
     return (
         <Box.New
             ref={setChatAreaRef}
-            minHeight="0"
-            overflowY={{ xs: 'hidden', md: 'scroll' }}
-            background="sunken"
+            height="100%"
             overflowX="scroll"
             borderColor="neutral-subtle"
-            borderRadius="medium"
-            borderWidth="1"
-            padding="2"
+            borderWidth="2 0 2 0"
+            marginBlock="2"
+            padding="4"
         >
-            <VStack gap="10" align="baseline" paddingBlock="0 16" as="ol" aria-label="Meldinger">
+            <VStack gap="8" align="baseline" paddingBlock="8 8" as="ol" aria-label="Meldinger">
                 {meldinger.map((m) => {
                     const erFraNav = erMeldingFraNav(m.meldingstype);
                     return (
@@ -71,17 +69,18 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
                                 variant={erFraNav ? 'info' : 'neutral'}
                             >
                                 <Chat.Bubble className="text-wrap">
-                                    <RichText rules={[SladdRule, HighlightRule, highlightRule, ...defaultRules]}>
+                                    <RichText
+                                        className="wrap-anywhere"
+                                        rules={[SladdRule, HighlightRule, highlightRule, ...defaultRules]}
+                                    >
                                         {m.fritekst}
                                     </RichText>
-                                    {erFraNav && (
-                                        <Box.New borderColor="neutral-subtleA" borderWidth="1 0 0 0">
-                                            <HStack gap="2" align="center" justify="end">
-                                                <ReadStatus date={m.lestDato} />
-                                            </HStack>
-                                        </Box.New>
-                                    )}
                                 </Chat.Bubble>
+                                {erFraNav && (
+                                    <HStack align="center" justify="end">
+                                        <ReadStatus date={m.lestDato} />
+                                    </HStack>
+                                )}
                             </Chat>
                         </Wrapper>
                     );
@@ -93,16 +92,14 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
 
 const ReadStatus = ({ date }: { date?: string }) =>
     date ? (
-        <>
-            <BodyShort size="small">Lest</BodyShort>
+        <HStack gap="1">
             <EnvelopeOpenIcon color="var(--ax-text-success-icon)" />
-            <BodyShort size="small" textColor="subtle">
-                ({formatterDatoTid(date)})
-            </BodyShort>
-        </>
+            <Detail>Lest</Detail>
+            <Detail textColor="subtle">({formatterDatoTid(date)})</Detail>
+        </HStack>
     ) : (
-        <>
-            <BodyShort size="small">Ikke lest</BodyShort>
+        <HStack gap="1">
             <EnvelopeClosedIcon color="var(--ax-text-warning-icon)" />
-        </>
+            <Detail>Ikke lest</Detail>
+        </HStack>
     );

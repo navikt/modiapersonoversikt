@@ -10,7 +10,7 @@ import { UtbetalingListFilter } from './Filter';
 import { getUtbetalingId, useFilterUtbetalinger } from './utils';
 
 export const UtbetalingerList = () => (
-    <VStack minHeight="0" gap="2">
+    <VStack height="100%" gap="2">
         <UtbetalingListFilter />
         <ErrorBoundary boundaryName="UtbetalingerList">
             <Suspense
@@ -24,9 +24,7 @@ export const UtbetalingerList = () => (
                     </VStack>
                 }
             >
-                <VStack minHeight="0" gap="2">
-                    <UtbetalingList />
-                </VStack>
+                <UtbetalingList />
             </Suspense>
         </ErrorBoundary>
     </VStack>
@@ -70,6 +68,10 @@ const UtbetalingList = () => {
                 {utbetalinger.length} {utbetalinger.length === 1 ? 'utbetaling' : 'utbetalinger'}
             </Heading>
             <PaginatedList
+                paginationSrHeading={{
+                    tag: 'h3',
+                    text: 'Utbetalingpaginering'
+                }}
                 pageSize={antallListeElementer}
                 selectedKey={selectedKey}
                 items={utbetalinger}
