@@ -61,11 +61,13 @@ test('Send ny melding', async ({ page }) => {
 
 test('Journalfore dialog', async ({ page }) => {
     // traadId from statiskTraadMock
-    await page.goto('/new/person/meldinger?tgetByTestIdraadId=sg838exr');
+    await page.goto('/new/person/meldinger?traadId=sg838exr');
     await page.getByTestId('journalposter-readmore').click();
 
     const journalposterTable = page.getByTestId('journalposter-table');
-    const existingRows = await journalposterTable.locator('> *').count();
+    const journalposter = journalposterTable.getByRole('row');
+    await expect(journalposterTable).toBeVisible();
+    const existingRows = await journalposter.count();
 
     await page.getByTestId('journalfør-knapp').click();
 
@@ -83,12 +85,8 @@ test('Journalfore dialog', async ({ page }) => {
 
     await submitButton.click();
     await expect(modal).not.toBeVisible();
-
-    await page.getByTestId('journalposter-readmore').click();
-    const nyeRows = journalposterTable.locator('> *');
-    await expect(nyeRows).toHaveCount(existingRows + 1);
-    const tabellInnhold = await journalposterTable.innerText();
-    expect(tabellInnhold).toContain(saksId);
+    await expect(journalposter).toHaveCount(existingRows + 1);
+    await expect(journalposterTable.getByText(saksId)).toBeVisible();
 });
 test('Autocomplete textarea', async ({ page }) => {
     await page.goto('/new/person');

@@ -41,35 +41,38 @@ export const TraadOppgaver = ({ traadId }: { traadId: string }) => {
                             </Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
-                    {traadOppgaver.map((p) => {
-                        const tema = gsakTema.find((item) => item.kode === p.tema);
-                        const oppgaveTyper = tema?.oppgavetyper ?? [];
-                        const oppgavetype = oppgaveTyper.find((o) => o.kode === p.oppgavetype);
-                        const prioritering = tema?.prioriteter.find((o) => o.kode === p.prioritet);
-                        return (
-                            <Table.Body key={`${p.oppgaveId}`}>
-                                <Table.DataCell textSize="small">
-                                    <Link
-                                        to="/new/person/oppgaver"
-                                        className="aksel-link"
-                                        search={{ id: `Oppgave${p.oppgaveId}` }}
-                                    >
-                                        <HStack gap="1" align="center">
-                                            <ExternalLinkIcon aria-hidden fontSize="1rem" /> <span>{p.oppgaveId}</span>
-                                        </HStack>
-                                    </Link>
-                                </Table.DataCell>
-                                <Table.DataCell textSize="small">
-                                    {oppgavetype?.tekst ?? 'Ukjent oppgavetype'}
-                                </Table.DataCell>
-                                <Table.DataCell textSize="small">{tema?.tekst ?? 'Ukjent tema'}</Table.DataCell>
-                                <Table.DataCell textSize="small">{prioritering?.tekst ?? ''}</Table.DataCell>
-                                <Table.DataCell textSize="small">
-                                    {datoEllerNull(p?.fristFerdigstillelse)}
-                                </Table.DataCell>
-                            </Table.Body>
-                        );
-                    })}
+                    <Table.Body>
+                        {traadOppgaver.map((p) => {
+                            const tema = gsakTema.find((item) => item.kode === p.tema);
+                            const oppgaveTyper = tema?.oppgavetyper ?? [];
+                            const oppgavetype = oppgaveTyper.find((o) => o.kode === p.oppgavetype);
+                            const prioritering = tema?.prioriteter.find((o) => o.kode === p.prioritet);
+                            return (
+                                <Table.Row key={p.oppgaveId}>
+                                    <Table.DataCell textSize="small">
+                                        <Link
+                                            to="/new/person/oppgaver"
+                                            className="aksel-link"
+                                            search={{ id: `Oppgave${p.oppgaveId}` }}
+                                        >
+                                            <HStack gap="1" align="center">
+                                                <ExternalLinkIcon aria-hidden fontSize="1rem" />{' '}
+                                                <span>{p.oppgaveId}</span>
+                                            </HStack>
+                                        </Link>
+                                    </Table.DataCell>
+                                    <Table.DataCell textSize="small">
+                                        {oppgavetype?.tekst ?? 'Ukjent oppgavetype'}
+                                    </Table.DataCell>
+                                    <Table.DataCell textSize="small">{tema?.tekst ?? 'Ukjent tema'}</Table.DataCell>
+                                    <Table.DataCell textSize="small">{prioritering?.tekst ?? ''}</Table.DataCell>
+                                    <Table.DataCell textSize="small">
+                                        {datoEllerNull(p?.fristFerdigstillelse)}
+                                    </Table.DataCell>
+                                </Table.Row>
+                            );
+                        })}
+                    </Table.Body>
                 </Table>
             </Box.New>
         </ReadMore>
