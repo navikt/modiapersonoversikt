@@ -54,9 +54,9 @@ function Publikumsmottak(props: { publikumsmottak: Publikumsmottak[] }) {
     return (
         <>
             <Normaltekst className="p-2">Det finnes flere publikumsmottak</Normaltekst>
-            <Accordion size="small" headingSize="xsmall" className="max-w-96">
+            <Accordion size="small" className="max-w-96">
                 {publikumsmottak.map((mottak, index) => (
-                    <Accordion.Item open={index === 0} key={mottak.besoksadresse.linje1}>
+                    <Accordion.Item defaultOpen={index === 0} key={mottak.besoksadresse.linje1}>
                         <Accordion.Header>{mottak.besoksadresse.linje1}</Accordion.Header>
                         <Accordion.Content>
                             <PublikumsmottakKontaktInfo publikumsmottak={mottak} />
