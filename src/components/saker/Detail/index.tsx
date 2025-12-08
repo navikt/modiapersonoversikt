@@ -129,7 +129,7 @@ const SakContent = () => {
     return <SakDetails valgtSak={valgtSak ?? saker[0]} pageView={true} />;
 };
 
-export const SakDetails = ({
+const SakDetails = ({
     valgtSak,
     pageView
 }: {
