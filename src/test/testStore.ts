@@ -78,6 +78,7 @@ export function setupReactQueryMocks() {
     vi.spyOn(foreldrepengerResource, 'useForeldrepenger');
     vi.spyOn(pleiepengerResource, 'usePleiepenger');
     vi.spyOn(sykepengerResource, 'useSykepenger');
+    vi.spyOn(sykepengerSpokelseResource, 'useSykepengerSpokelse');
     vi.spyOn(tiltakspengerResource, 'useTiltakspenger');
     vi.spyOn(pensjonResource, 'usePensjon');
     vi.spyOn(arbeidsavklaringspengerReesource, 'useArbeidsavklaringspenger');

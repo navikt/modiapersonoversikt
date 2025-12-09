@@ -10,6 +10,7 @@ import {
     usePensjon,
     usePleiepenger,
     useSykepenger,
+    useSykepengerSpokelse,
     useTiltakspenger
 } from 'src/lib/clients/modiapersonoversikt-api';
 import type {
@@ -271,6 +272,11 @@ const sykepengerPlaceholder = {
     returnOnNotFound: 'Kunne finne sykepenger',
     returnOnForbidden: 'Du har ikke tilgang til sykepenger'
 };
+const sykepengerSpokelsePlaceholder = {
+    returnOnError: 'Kunne ikke laste sykepenger fra spokelse',
+    returnOnNotFound: 'Kunne finne sykepenger fra spokelse',
+    returnOnForbidden: 'Du har ikke tilgang til sykepenger fra spokelse'
+};
 const tiltakspengerPlaceholder = {
     returnOnError: 'Kunne ikke laste tiltakspenger',
     returnOnNotFound: 'Kunne finne tiltakspenger',
@@ -313,12 +319,14 @@ export const useFilterYtelser = (): Returns => {
     const pensjonResponse = usePensjon(startDato, sluttDato);
     const arbeidsavklaringspengerResponse = useArbeidsavklaringspenger(startDato, sluttDato);
     const foreldrepengerFpSakResponse = useForeldrepengerFpSak(startDato, sluttDato);
+    const sykepengerSpokelseResponse = useSykepengerSpokelse();
 
     return useMemo(() => {
         const pending =
             pleiepengerResponse.isLoading ||
             foreldrepengerResponse.isLoading ||
             sykepengerResponse.isLoading ||
+            sykepengerSpokelseResponse.isLoading ||
             tiltakspengerResponse.isLoading ||
             pensjonResponse.isLoading ||
             arbeidsavklaringspengerResponse.isLoading ||
@@ -341,6 +349,12 @@ export const useFilterYtelser = (): Returns => {
             ytelser.push({
                 ytelseData: { data: ytelse },
                 ytelseType: YtelseVedtakYtelseType.Sykepenger
+            })
+        );
+        sykepengerSpokelseResponse.data?.map((ytelse) =>
+            ytelser.push({
+                ytelseData: { data: ytelse },
+                ytelseType: YtelseVedtakYtelseType.SykepengerSpokelse
             })
         );
         tiltakspengerResponse?.data?.map((ytelse) =>
@@ -375,6 +389,7 @@ export const useFilterYtelser = (): Returns => {
             placeholder(foreldrepengerResponse, foreldrepengerPlaceholder),
             placeholder(pleiepengerResponse, pleiepengerPlaceholder),
             placeholder(sykepengerResponse, sykepengerPlaceholder),
+            placeholder(sykepengerSpokelseResponse, sykepengerSpokelsePlaceholder),
             placeholder(tiltakspengerResponse, tiltakspengerPlaceholder),
             placeholder(pensjonResponse, pensjonPlaceholder),
             placeholder(arbeidsavklaringspengerResponse, arbeidsavklaringsPengerPlaceholder),
@@ -385,6 +400,7 @@ export const useFilterYtelser = (): Returns => {
             foreldrepengerResponse.isError ||
             pleiepengerResponse.isError ||
             sykepengerResponse.isError ||
+            sykepengerSpokelseResponse.isError ||
             tiltakspengerResponse.isError ||
             pensjonResponse.isError ||
             arbeidsavklaringspengerResponse.isError ||
@@ -400,6 +416,7 @@ export const useFilterYtelser = (): Returns => {
         foreldrepengerResponse,
         pleiepengerResponse,
         sykepengerResponse,
+        sykepengerSpokelseResponse,
         tiltakspengerResponse,
         pensjonResponse,
         arbeidsavklaringspengerResponse,
