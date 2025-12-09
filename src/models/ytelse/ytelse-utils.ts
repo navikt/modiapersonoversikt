@@ -1,4 +1,4 @@
-import type { ForeldrepengerFpSak } from 'src/generated/modiapersonoversikt-api';
+import type { ForeldrepengerFpSak, SykpengerVedtak } from 'src/generated/modiapersonoversikt-api';
 import {
     type Arbeidsavklaringspenger,
     getArbeidsavklaringspengerIdDato,
@@ -11,6 +11,7 @@ import {
 } from 'src/models/ytelse/foreldrepenger';
 import { getForeldrepengerFpSakIdDato, getUnikForeldrepengerFpSakKey } from 'src/models/ytelse/foreldrepenger-fpsak';
 import { type Pensjon, getPensjonIdDato, getUnikPensjonKey } from 'src/models/ytelse/pensjon';
+import { getSykepengerSpokelseIdDato, getUnikSykepengerSpokelseKey } from 'src/models/ytelse/sykepenger-spokelse';
 import { loggError } from 'src/utils/logger/frontendLogger';
 import { type Pleiepengerettighet, getPleiepengerIdDato, getUnikPleiepengerKey } from './pleiepenger';
 import { type Sykepenger, getSykepengerIdDato, getUnikSykepengerKey } from './sykepenger';
@@ -23,7 +24,8 @@ export enum YtelseVedtakYtelseType {
     Tiltakspenge = 'Tiltakspenger',
     Pensjon = 'Pensjon',
     Arbeidsavklaringspenger = 'Arbeidsavklaringspenger',
-    ForeldrepengerFpSak = 'ForeldrepengerFpSak'
+    ForeldrepengerFpSak = 'ForeldrepengerFpSak',
+    SykepengerSpokelse = 'SykepengerSpokelse'
 }
 
 export type Ytelse =
@@ -33,7 +35,12 @@ export type Ytelse =
     | Tiltakspenger
     | Pensjon
     | Arbeidsavklaringspenger
-    | ForeldrepengerFpSak;
+    | ForeldrepengerFpSak
+    | SykpengerVedtak;
+
+export function isSykepengerSpokelse(ytelse: Ytelse): ytelse is SykpengerVedtak {
+    return 'ytelse' in ytelse;
+}
 
 export function isPleiepenger(ytelse: Ytelse): ytelse is Pleiepengerettighet {
     return 'pleiepengedager' in ytelse;
@@ -60,6 +67,9 @@ export function isForeldrePengerFpSak(ytelse: Ytelse): ytelse is ForeldrepengerF
 }
 
 export function getYtelseIdDato(ytelse: Ytelse) {
+    if (isSykepengerSpokelse(ytelse)) {
+        return getSykepengerSpokelseIdDato(ytelse);
+    }
     if (isPleiepenger(ytelse)) {
         return getPleiepengerIdDato(ytelse);
     }
@@ -86,6 +96,9 @@ export function getYtelseIdDato(ytelse: Ytelse) {
 }
 
 export function getUnikYtelseKey(ytelse: Ytelse) {
+    if (isSykepengerSpokelse(ytelse)) {
+        return getUnikSykepengerSpokelseKey(ytelse);
+    }
     if (isPleiepenger(ytelse)) {
         return getUnikPleiepengerKey(ytelse);
     }

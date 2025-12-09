@@ -1042,68 +1042,11 @@ export interface components {
             sanksjon?: components['schemas']['CommonPeriode'];
             sykmeldt?: components['schemas']['CommonPeriode'];
         };
-        LocalDate: {
-            /** Format: date */
-            value?: string;
-            /** Format: date */
-            value$kotlinx_datetime: string;
-            /** Format: int32 */
-            monthNumber: number;
-            /** Format: int32 */
-            year: number;
-            /** Format: int32 */
-            dayOfMonth: number;
-            /** @enum {string} */
-            month: LocalDateMonth;
-            /** @enum {string} */
-            dayOfWeek: LocalDateDayOfWeek;
-            /** Format: int32 */
-            dayOfYear: number;
-        };
-        LocalDateTime: {
-            /** Format: date-time */
-            value?: string;
-            /** Format: date-time */
-            value$kotlinx_datetime: string;
-            /** Format: int32 */
-            monthNumber: number;
-            /** Format: int32 */
-            nanosecond: number;
-            time: components['schemas']['LocalTime'];
-            /** Format: int32 */
-            year: number;
-            /** Format: int32 */
-            dayOfMonth: number;
-            /** Format: int32 */
-            hour: number;
-            /** Format: int32 */
-            minute: number;
-            /** Format: int32 */
-            second: number;
-            /** @enum {string} */
-            month: LocalDateTimeMonth;
-            /** @enum {string} */
-            dayOfWeek: LocalDateTimeDayOfWeek;
-            /** Format: int32 */
-            dayOfYear: number;
-            date: components['schemas']['LocalDate'];
-        };
-        LocalTime: {
-            value?: string;
-            value$kotlinx_datetime: string;
-            /** Format: int32 */
-            nanosecond: number;
-            /** Format: int32 */
-            hour: number;
-            /** Format: int32 */
-            minute: number;
-            /** Format: int32 */
-            second: number;
-        };
         SykpengerVedtak: {
             vedtaksreferanse: string;
             utbetalinger: components['schemas']['Utbetalingsperiode'][];
-            vedtattTidspunkt: components['schemas']['LocalDateTime'];
+            /** Format: date */
+            vedtattTidspunkt: string;
         };
         Utbetalingsperiode: {
             /** Format: date */
@@ -1465,6 +1408,64 @@ export interface components {
             inneholderFeil: boolean;
             /** @enum {string} */
             feilmelding?: FeilFeilmelding;
+        };
+        LocalDate: {
+            /** Format: date */
+            value?: string;
+            /** Format: int32 */
+            monthNumber: number;
+            /** Format: date */
+            value$kotlinx_datetime: string;
+            /** Format: int32 */
+            year: number;
+            /** Format: int32 */
+            dayOfMonth: number;
+            /** @enum {string} */
+            month: LocalDateMonth;
+            /** @enum {string} */
+            dayOfWeek: LocalDateDayOfWeek;
+            /** Format: int32 */
+            dayOfYear: number;
+        };
+        LocalDateTime: {
+            /** Format: date-time */
+            value?: string;
+            /** Format: int32 */
+            monthNumber: number;
+            /** Format: date-time */
+            value$kotlinx_datetime: string;
+            /** Format: int32 */
+            nanosecond: number;
+            time: components['schemas']['LocalTime'];
+            /** Format: int32 */
+            year: number;
+            /** Format: int32 */
+            dayOfMonth: number;
+            /** Format: int32 */
+            hour: number;
+            /** Format: int32 */
+            minute: number;
+            /** Format: int32 */
+            second: number;
+            /** @enum {string} */
+            month: LocalDateTimeMonth;
+            /** @enum {string} */
+            dayOfWeek: LocalDateTimeDayOfWeek;
+            /** Format: int32 */
+            dayOfYear: number;
+            date: components['schemas']['LocalDate'];
+        };
+        LocalTime: {
+            value?: string;
+            value$kotlinx_datetime: string;
+            /** Format: int32 */
+            nanosecond: number;
+            /** Format: int32 */
+            hour: number;
+            /** Format: int32 */
+            minute: number;
+            /** Format: int32 */
+            second: number;
         };
         ResultatSoknadsstatus: {
             resultat: components['schemas']['SoknadsstatusSakstema'][];
@@ -2298,9 +2299,6 @@ export type SykepengerResponse = components['schemas']['SykepengerResponse'];
 export type SykmeldingArbeidsforhold = components['schemas']['SykmeldingArbeidsforhold'];
 export type SykmeldingItem = components['schemas']['SykmeldingItem'];
 export type SykmeldingUtbetalingPaVent = components['schemas']['SykmeldingUtbetalingPaVent'];
-export type LocalDate = components['schemas']['LocalDate'];
-export type LocalDateTime = components['schemas']['LocalDateTime'];
-export type LocalTime = components['schemas']['LocalTime'];
 export type SykpengerVedtak = components['schemas']['SykpengerVedtak'];
 export type Utbetalingsperiode = components['schemas']['Utbetalingsperiode'];
 export type Pleiepenger = components['schemas']['Pleiepenger'];
@@ -2340,6 +2338,9 @@ export type TilgangDto = components['schemas']['TilgangDTO'];
 export type Dokument = components['schemas']['Dokument'];
 export type Dokumentmetadata = components['schemas']['Dokumentmetadata'];
 export type Feil = components['schemas']['Feil'];
+export type LocalDate = components['schemas']['LocalDate'];
+export type LocalDateTime = components['schemas']['LocalDateTime'];
+export type LocalTime = components['schemas']['LocalTime'];
 export type ResultatSoknadsstatus = components['schemas']['ResultatSoknadsstatus'];
 export type Sak = components['schemas']['Sak'];
 export type Soknadsstatus = components['schemas']['Soknadsstatus'];
@@ -3781,52 +3782,6 @@ export enum VedtakDTOKilde {
     TPSAK = 'TPSAK',
     ARENA = 'ARENA'
 }
-export enum LocalDateMonth {
-    JANUARY = 'JANUARY',
-    FEBRUARY = 'FEBRUARY',
-    MARCH = 'MARCH',
-    APRIL = 'APRIL',
-    MAY = 'MAY',
-    JUNE = 'JUNE',
-    JULY = 'JULY',
-    AUGUST = 'AUGUST',
-    SEPTEMBER = 'SEPTEMBER',
-    OCTOBER = 'OCTOBER',
-    NOVEMBER = 'NOVEMBER',
-    DECEMBER = 'DECEMBER'
-}
-export enum LocalDateDayOfWeek {
-    MONDAY = 'MONDAY',
-    TUESDAY = 'TUESDAY',
-    WEDNESDAY = 'WEDNESDAY',
-    THURSDAY = 'THURSDAY',
-    FRIDAY = 'FRIDAY',
-    SATURDAY = 'SATURDAY',
-    SUNDAY = 'SUNDAY'
-}
-export enum LocalDateTimeMonth {
-    JANUARY = 'JANUARY',
-    FEBRUARY = 'FEBRUARY',
-    MARCH = 'MARCH',
-    APRIL = 'APRIL',
-    MAY = 'MAY',
-    JUNE = 'JUNE',
-    JULY = 'JULY',
-    AUGUST = 'AUGUST',
-    SEPTEMBER = 'SEPTEMBER',
-    OCTOBER = 'OCTOBER',
-    NOVEMBER = 'NOVEMBER',
-    DECEMBER = 'DECEMBER'
-}
-export enum LocalDateTimeDayOfWeek {
-    MONDAY = 'MONDAY',
-    TUESDAY = 'TUESDAY',
-    WEDNESDAY = 'WEDNESDAY',
-    THURSDAY = 'THURSDAY',
-    FRIDAY = 'FRIDAY',
-    SATURDAY = 'SATURDAY',
-    SUNDAY = 'SUNDAY'
-}
 export enum ForeldrepengerFpSakYtelse {
     ENGANGSST_NAD = 'ENGANGSST\u00D8NAD',
     FORELDREPENGER = 'FORELDREPENGER',
@@ -3881,6 +3836,52 @@ export enum FeilFeilmelding {
     TEMAKODE_ER_BIDRAG = 'TEMAKODE_ER_BIDRAG',
     KORRUPT_PDF = 'KORRUPT_PDF',
     TEKNISK_FEIL = 'TEKNISK_FEIL'
+}
+export enum LocalDateMonth {
+    JANUARY = 'JANUARY',
+    FEBRUARY = 'FEBRUARY',
+    MARCH = 'MARCH',
+    APRIL = 'APRIL',
+    MAY = 'MAY',
+    JUNE = 'JUNE',
+    JULY = 'JULY',
+    AUGUST = 'AUGUST',
+    SEPTEMBER = 'SEPTEMBER',
+    OCTOBER = 'OCTOBER',
+    NOVEMBER = 'NOVEMBER',
+    DECEMBER = 'DECEMBER'
+}
+export enum LocalDateDayOfWeek {
+    MONDAY = 'MONDAY',
+    TUESDAY = 'TUESDAY',
+    WEDNESDAY = 'WEDNESDAY',
+    THURSDAY = 'THURSDAY',
+    FRIDAY = 'FRIDAY',
+    SATURDAY = 'SATURDAY',
+    SUNDAY = 'SUNDAY'
+}
+export enum LocalDateTimeMonth {
+    JANUARY = 'JANUARY',
+    FEBRUARY = 'FEBRUARY',
+    MARCH = 'MARCH',
+    APRIL = 'APRIL',
+    MAY = 'MAY',
+    JUNE = 'JUNE',
+    JULY = 'JULY',
+    AUGUST = 'AUGUST',
+    SEPTEMBER = 'SEPTEMBER',
+    OCTOBER = 'OCTOBER',
+    NOVEMBER = 'NOVEMBER',
+    DECEMBER = 'DECEMBER'
+}
+export enum LocalDateTimeDayOfWeek {
+    MONDAY = 'MONDAY',
+    TUESDAY = 'TUESDAY',
+    WEDNESDAY = 'WEDNESDAY',
+    THURSDAY = 'THURSDAY',
+    FRIDAY = 'FRIDAY',
+    SATURDAY = 'SATURDAY',
+    SUNDAY = 'SUNDAY'
 }
 export enum SakBaksystem {
     GSAK = 'GSAK',

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { ForeldrepengerFpSak } from 'src/generated/modiapersonoversikt-api';
+import type { ForeldrepengerFpSak, SykpengerVedtak } from 'src/generated/modiapersonoversikt-api';
 import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaringspenger';
 import type { Foreldrepengerettighet } from 'src/models/ytelse/foreldrepenger';
 import type { Pensjon } from 'src/models/ytelse/pensjon';
@@ -13,6 +13,7 @@ import {
     isPensjon,
     isPleiepenger,
     isSykepenger,
+    isSykepengerSpokelse,
     isTiltakspenger
 } from 'src/models/ytelse/ytelse-utils';
 import { PeriodeValg } from 'src/redux/utbetalinger/types';
@@ -28,6 +29,7 @@ interface Props {
     renderPensjon: (pensjon: Pensjon) => ReactNode;
     renderArbeidsavklaringspenger: (aap: Arbeidsavklaringspenger) => ReactNode;
     renderForeldrepengerFpSak: (ytelse: ForeldrepengerFpSak) => ReactNode;
+    renderSykepengerSpokelse: (ytelse: SykpengerVedtak) => ReactNode;
 }
 
 interface Returns {
@@ -46,6 +48,9 @@ function useBrukersYtelserMarkup(props: Props): Returns {
         }
         if (isSykepenger(ytelse)) {
             return props.renderSykepenger(ytelse);
+        }
+        if (isSykepengerSpokelse(ytelse)) {
+            return props.renderSykepengerSpokelse(ytelse);
         }
         if (isPleiepenger(ytelse)) {
             return props.renderPleiepenger(ytelse);

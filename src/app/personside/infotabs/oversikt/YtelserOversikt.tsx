@@ -7,7 +7,7 @@ import { useInfotabsDyplenker } from 'src/app/personside/infotabs/dyplenker';
 import useBrukersYtelserMarkup from 'src/app/personside/infotabs/ytelser/useBrukersYtelserMarkup';
 import { CenteredLazySpinner } from 'src/components/LazySpinner';
 import VisMerKnapp from 'src/components/VisMerKnapp';
-import type { ForeldrepengerFpSak } from 'src/generated/modiapersonoversikt-api';
+import type { ForeldrepengerFpSak, SykpengerVedtak } from 'src/generated/modiapersonoversikt-api';
 import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaringspenger';
 import { getArbeidsavklaringspengerIdDato } from 'src/models/ytelse/arbeidsavklaringspenger';
 import { type Foreldrepengerettighet, getForeldepengerIdDato } from 'src/models/ytelse/foreldrepenger';
@@ -15,6 +15,7 @@ import { getForeldrepengerFpSakIdDato } from 'src/models/ytelse/foreldrepenger-f
 import { type Pensjon, getPensjonIdDato, getUnikPensjonKey } from 'src/models/ytelse/pensjon';
 import type { Pleiepengerettighet } from 'src/models/ytelse/pleiepenger';
 import { type Sykepenger, getSykepengerIdDato } from 'src/models/ytelse/sykepenger';
+import { getSykepengerSpokelseIdDato } from 'src/models/ytelse/sykepenger-spokelse';
 import { type Tiltakspenger, getTiltakspengerIdDato, getUnikTiltakspengerKey } from 'src/models/ytelse/tiltakspenger';
 import { getUnikYtelseKey } from 'src/models/ytelse/ytelse-utils';
 import theme from 'src/styles/personOversiktTheme';
@@ -52,6 +53,7 @@ function YtelserOversikt(props: Props) {
         renderSykepenger: (sykepenger) => (
             <SykepengerKomponent sykepenger={sykepenger} key={getUnikYtelseKey(sykepenger)} />
         ),
+        renderSykepengerSpokelse: (ytelse) => <SykepengerSpokelseKomponent sykepenger={ytelse} />,
         renderTiltakspenger: (tiltakspenger) => (
             <TiltakspengerKomponent tiltakspenger={tiltakspenger} key={getUnikTiltakspengerKey(tiltakspenger)} />
         ),
@@ -117,6 +119,23 @@ function SykepengerKomponent(props: { sykepenger: Sykepenger }) {
             <Normaltekst>ID dato: {formaterDato(getSykepengerIdDato(props.sykepenger))}</Normaltekst>
             <Element>Sykepenger</Element>
             <Normaltekst>100% sykemeldt - Dokumentet Sykepenger behandlet i ny løsning inneholder maksdato</Normaltekst>
+        </VisMerKnapp>
+    );
+}
+
+function SykepengerSpokelseKomponent(props: { sykepenger: SykpengerVedtak }) {
+    const dyplenker = useInfotabsDyplenker();
+
+    return (
+        <VisMerKnapp
+            linkTo={dyplenker.ytelser.link(props.sykepenger)}
+            valgt={false}
+            ariaDescription="Vis sykepenger fra spokelse"
+            className={ytelserTest.oversikt}
+            umamiEvent={umamiEvent}
+        >
+            <Normaltekst>ID dato: {formaterDato(getSykepengerSpokelseIdDato(props.sykepenger))}</Normaltekst>
+            <Element>Sykepenger fra spokelse</Element>
         </VisMerKnapp>
     );
 }

@@ -11,6 +11,7 @@ import { useForeldrepenger } from 'src/rest/resources/foreldrepengerResource';
 import { usePensjon } from 'src/rest/resources/pensjonResource';
 import { usePleiepenger } from 'src/rest/resources/pleiepengerResource';
 import { useSykepenger } from 'src/rest/resources/sykepengerResource';
+import { useSykepengerSpokelse } from 'src/rest/resources/sykepengerSpokelseResource';
 import { useTiltakspenger } from 'src/rest/resources/tiltakspengerResource';
 import { datoSynkende } from 'src/utils/date-utils';
 
@@ -34,6 +35,11 @@ const sykepengerPlaceholder = {
     returnOnError: 'Kunne ikke laste sykepenger',
     returnOnNotFound: 'Kunne finne sykepenger',
     returnOnForbidden: 'Du har ikke tilgang til sykepenger'
+};
+const sykepengerSpokelsePlaceholder = {
+    returnOnError: 'Kunne ikke laste sykepenger fra spokelse',
+    returnOnNotFound: 'Kunne finne sykepenger fra spokelse',
+    returnOnForbidden: 'Du har ikke tilgang til sykepenger fra spokelse'
 };
 const tiltakspengerPlaceholder = {
     returnOnError: 'Kunne ikke laste tiltakspenger',
@@ -78,6 +84,7 @@ function useBrukersYtelser(periode: FraTilDato): Returns {
     const foreldrepengerResponse = useForeldrepenger(fnr, periode.fra, periode.til);
     const pleiepengerResponse = usePleiepenger(fnr, periode.fra, periode.til);
     const sykepengerResponse = useSykepenger(fnr, periode.fra, periode.til);
+    const sykepengerSpokelseResponse = useSykepengerSpokelse(fnr);
     const tiltakspengerResponse = useTiltakspenger(fnr, periode.fra, periode.til);
     const pensjonResponse = usePensjon(fnr, periode.fra, periode.til);
     const arbeidsavklaringspengerResponse = useArbeidsavklaringspenger(fnr, periode.fra, periode.til);
@@ -88,6 +95,7 @@ function useBrukersYtelser(periode: FraTilDato): Returns {
             pleiepengerResponse.isLoading ||
             foreldrepengerResponse.isLoading ||
             sykepengerResponse.isLoading ||
+            sykepengerSpokelseResponse.isLoading ||
             tiltakspengerResponse.isLoading ||
             pensjonResponse.isLoading ||
             arbeidsavklaringspengerResponse.isLoading ||
@@ -95,6 +103,7 @@ function useBrukersYtelser(periode: FraTilDato): Returns {
         const foreldrepenger = foreldrepengerResponse.data?.foreldrepenger ?? [];
         const pleiepenger = pleiepengerResponse.data?.pleiepenger ?? [];
         const sykepenger = sykepengerResponse.data?.sykepenger ?? [];
+        const sykepengerSpokelse = sykepengerSpokelseResponse.data ?? [];
         const tiltakspenger = tiltakspengerResponse.data ?? [];
         const pensjon = pensjonResponse.data ?? [];
         const arbeidsavklaringspenger = arbeidsavklaringspengerResponse.data ?? [];
@@ -104,6 +113,7 @@ function useBrukersYtelser(periode: FraTilDato): Returns {
             ...foreldrepenger,
             ...pleiepenger,
             ...sykepenger,
+            ...sykepengerSpokelse,
             ...tiltakspenger,
             ...pensjon,
             ...arbeidsavklaringspenger,
@@ -115,6 +125,7 @@ function useBrukersYtelser(periode: FraTilDato): Returns {
             placeholder(foreldrepengerResponse, foreldrepengerPlaceholder),
             placeholder(pleiepengerResponse, pleiepengerPlaceholder),
             placeholder(sykepengerResponse, sykepengerPlaceholder),
+            placeholder(sykepengerSpokelseResponse, sykepengerSpokelsePlaceholder),
             placeholder(tiltakspengerResponse, tiltakspengerPlaceholder),
             placeholder(pensjonResponse, pensjonPlaceholder),
             placeholder(arbeidsavklaringspengerResponse, arbeidsavklaringsPengerPlaceholder),
@@ -125,6 +136,7 @@ function useBrukersYtelser(periode: FraTilDato): Returns {
             foreldrepengerResponse.isError ||
             pleiepengerResponse.isError ||
             sykepengerResponse.isError ||
+            sykepengerSpokelseResponse.isError ||
             tiltakspengerResponse.isError ||
             pensjonResponse.isError ||
             arbeidsavklaringspengerResponse.isError ||
@@ -134,6 +146,7 @@ function useBrukersYtelser(periode: FraTilDato): Returns {
         foreldrepengerResponse,
         pleiepengerResponse,
         sykepengerResponse,
+        sykepengerSpokelseResponse,
         tiltakspengerResponse,
         pensjonResponse,
         arbeidsavklaringspengerResponse,
