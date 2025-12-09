@@ -22,7 +22,9 @@ export enum trackingEvents {
     hotkeyBrukt = 'hotkey brukt',
 
     // denne er i bruk i internflatedekoratøren, ikke bruk her
-    lenkeKlikket = 'lenke klikket'
+    lenkeKlikket = 'lenke klikket',
+    dialogApnet = 'dialog åpnet',
+    dialogLukket = 'dialog lukket'
 }
 
 export enum filterType {
@@ -106,4 +108,20 @@ export const updateUserEnhet = (enhet: string) => {
     }
 
     window.umami.identify({ enhet });
+};
+
+export const trackOpenDialog = () => {
+    if (!window.umami) {
+        console.warn('Umami is not initialized. Ignoring');
+        return;
+    }
+    window.umami.track(trackingEvents.dialogApnet);
+};
+
+export const trackCloseDialog = () => {
+    if (!window.umami) {
+        console.warn('Umami is not initialized. Ignoring');
+        return;
+    }
+    window.umami.track(trackingEvents.dialogLukket);
 };
