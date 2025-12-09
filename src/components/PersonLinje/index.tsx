@@ -44,13 +44,26 @@ const PersonlinjeHeader = ({ isExpanded }: { isExpanded: boolean }) => {
                         alder={data.person.alder}
                     />
                     <HStack align="center" className="cursor-[initial]" onClick={(e) => e.stopPropagation()}>
-                        <BodyShort size="small">F.nr: {data.person.personIdent}</BodyShort>
-                        <CopyButton size="xsmall" copyText={data.person.personIdent} />
+                        <BodyShort size="small">
+                            <CopyButton
+                                aria-label={`Kopier f.nr: ${data.person.personIdent}`}
+                                size="xsmall"
+                                copyText={data.person.personIdent}
+                                activeText="Kopiert f.nr"
+                                text={`F.nr: ${data.person.personIdent}`}
+                            />
+                        </BodyShort>
                     </HStack>
                     {data.person.kontaktInformasjon.mobil?.value && (
                         <HStack align="center" className="cursor-[initial]" onClick={(e) => e.stopPropagation()}>
-                            <BodyShort size="small">Tlf.nr: {data.person.kontaktInformasjon.mobil.value}</BodyShort>
-                            <CopyButton size="xsmall" copyText={data.person.kontaktInformasjon.mobil.value} />
+                            <CopyButton
+                                className="font-light"
+                                activeText="Kopiert tlf.nr"
+                                aria-label={`Kopier tlf.nr: ${data.person.kontaktInformasjon.mobil.value}`}
+                                text={`Tlf.nr: ${data.person.kontaktInformasjon.mobil.value}`}
+                                size="xsmall"
+                                copyText={data.person.kontaktInformasjon.mobil.value}
+                            />
                         </HStack>
                     )}
                 </HStack>
@@ -98,11 +111,10 @@ const PersonLinjeContent = () => {
             <Card
                 ref={ref}
                 as="section"
-                aria-label="personlinje"
                 className="has-[:focus]:border-ax-border-neutral-strong overflow-scroll max-h-[90vh]"
             >
                 <Heading visuallyHidden size="xsmall" level="2">
-                    Personlinje
+                    Personinformasjon
                 </Heading>
                 <HStack
                     onClick={() => setIsExpanded((v) => !v)}
