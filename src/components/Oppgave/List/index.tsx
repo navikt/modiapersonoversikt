@@ -1,11 +1,10 @@
 import { Alert, Heading, Skeleton, VStack } from '@navikt/ds-react';
-import { useNavigate, useSearch } from '@tanstack/react-router';
-import { Suspense, useCallback } from 'react';
+import { useSearch } from '@tanstack/react-router';
+import { Suspense } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { OppgaveListFilter } from 'src/components/Oppgave/List/Filter';
 import { OppgaveItem } from 'src/components/Oppgave/List/OppgaveItem';
 import { PaginatedList } from 'src/components/PaginatedList';
-import { trackingEvents } from 'src/utils/analytics';
 import { useAntallListeElementeBasertPaaSkjermStorrelse } from 'src/utils/customHooks';
 import { getOppgaveId, useFilterOppgave } from './utils';
 
@@ -32,23 +31,7 @@ export const OppgaverList = () => (
 
 const OppgaveList = () => {
     const oppgaver = useFilterOppgave();
-    const navigate = useNavigate({ from: '/new/person/oppgaver' });
     const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
-
-    const handleClick = useCallback(
-        (id: string) => {
-            navigate({
-                search: { id },
-                state: {
-                    umamiEvent: {
-                        name: trackingEvents.detaljvisningKlikket,
-                        data: { fane: 'oppgaver', tekst: 'vis oppgave' }
-                    }
-                }
-            });
-        },
-        [navigate]
-    );
 
     const selectedKey = useSearch({
         from: '/new/person/oppgaver',
@@ -77,7 +60,7 @@ const OppgaveList = () => {
                 selectedKey={selectedKey}
                 items={oppgaver}
                 keyExtractor={getOppgaveId}
-                renderItem={({ item }) => <OppgaveItem oppgave={item} handleClick={handleClick} />}
+                renderItem={({ item }) => <OppgaveItem oppgave={item} />}
             />
         </>
     );

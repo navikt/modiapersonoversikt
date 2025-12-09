@@ -1,11 +1,9 @@
 import { Alert, Heading, Skeleton, VStack } from '@navikt/ds-react';
-import { useNavigate, useSearch } from '@tanstack/react-router';
-import { useCallback } from 'react';
+import { useSearch } from '@tanstack/react-router';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { YtelseItem } from 'src/components/ytelser/List/YtelseItem';
-import { type YtelseVedtak, getUnikYtelseKey, useFilterYtelser } from 'src/components/ytelser/utils';
-import { trackingEvents } from 'src/utils/analytics';
+import { getUnikYtelseKey, useFilterYtelser } from 'src/components/ytelser/utils';
 import { useAntallListeElementeBasertPaaSkjermStorrelse } from 'src/utils/customHooks';
 import { YtelserListFilter } from './Filter';
 
@@ -34,23 +32,7 @@ export const YtelserList = () => {
 
 const YtelseList = () => {
     const { ytelser, placeholders } = useFilterYtelser();
-    const navigate = useNavigate({ from: '/new/person/ytelser' });
     const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
-
-    const handleClick = useCallback(
-        (id: string, ytelse: YtelseVedtak) => {
-            navigate({
-                search: { id },
-                state: {
-                    umamiEvent: {
-                        name: trackingEvents.detaljvisningKlikket,
-                        data: { fane: 'ytelser', tekst: ytelse.ytelseType.toLowerCase() }
-                    }
-                }
-            });
-        },
-        [navigate]
-    );
 
     const selectedKey = useSearch({
         from: '/new/person/ytelser',
@@ -84,7 +66,7 @@ const YtelseList = () => {
                 selectedKey={selectedKey}
                 items={ytelser}
                 keyExtractor={getUnikYtelseKey}
-                renderItem={({ item }) => <YtelseItem ytelse={item} handleClick={handleClick} />}
+                renderItem={({ item }) => <YtelseItem ytelse={item} />}
             />
         </>
     );

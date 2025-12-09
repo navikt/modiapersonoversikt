@@ -1,10 +1,9 @@
 import { Alert, Heading, Skeleton, VStack } from '@navikt/ds-react';
-import { useNavigate, useSearch } from '@tanstack/react-router';
-import { Suspense, useCallback } from 'react';
+import { useSearch } from '@tanstack/react-router';
+import { Suspense } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { VarslerItem } from 'src/components/varsler/List/VarslerItem';
-import { trackingEvents } from 'src/utils/analytics';
 import { useAntallListeElementeBasertPaaSkjermStorrelse } from 'src/utils/customHooks';
 import { VarslerListFilter } from './Filter';
 import { useFilterVarsler } from './utils';
@@ -32,23 +31,7 @@ export const VarslerList = () => (
 
 const VarslerListList = () => {
     const varsler = useFilterVarsler();
-    const navigate = useNavigate({ from: '/new/person/varsler' });
     const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
-
-    const handleClick = useCallback(
-        (id: string) => {
-            navigate({
-                search: { id },
-                state: {
-                    umamiEvent: {
-                        name: trackingEvents.detaljvisningKlikket,
-                        data: { fane: 'varsler', tekst: 'vis varsel' }
-                    }
-                }
-            });
-        },
-        [navigate]
-    );
 
     const selectedKey = useSearch({
         from: '/new/person/varsler',
@@ -77,7 +60,7 @@ const VarslerListList = () => {
                 selectedKey={selectedKey}
                 items={varsler}
                 keyExtractor={(item) => item.eventId}
-                renderItem={({ item }) => <VarslerItem varsel={item} handleClick={handleClick} />}
+                renderItem={({ item }) => <VarslerItem varsel={item} />}
             />
         </>
     );

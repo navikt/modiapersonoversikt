@@ -1,10 +1,9 @@
 import { Alert, Heading, Skeleton, VStack } from '@navikt/ds-react';
-import { useNavigate, useSearch } from '@tanstack/react-router';
-import { Suspense, useCallback } from 'react';
+import { useSearch } from '@tanstack/react-router';
+import { Suspense } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { UtbetalingItem } from 'src/components/Utbetaling/List/UtbetalingItem';
-import { trackingEvents } from 'src/utils/analytics';
 import { useAntallListeElementeBasertPaaSkjermStorrelse } from 'src/utils/customHooks';
 import { UtbetalingListFilter } from './Filter';
 import { getUtbetalingId, useFilterUtbetalinger } from './utils';
@@ -32,22 +31,7 @@ export const UtbetalingerList = () => (
 
 const UtbetalingList = () => {
     const utbetalinger = useFilterUtbetalinger();
-    const navigate = useNavigate({ from: '/new/person/utbetaling' });
     const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
-    const handleClick = useCallback(
-        (id: string) => {
-            navigate({
-                search: { id },
-                state: {
-                    umamiEvent: {
-                        name: trackingEvents.detaljvisningKlikket,
-                        data: { fane: 'utbetaling', tekst: 'åpne utbetaling' }
-                    }
-                }
-            });
-        },
-        [navigate]
-    );
 
     const selectedKey = useSearch({
         from: '/new/person/utbetaling',
@@ -76,7 +60,7 @@ const UtbetalingList = () => {
                 selectedKey={selectedKey}
                 items={utbetalinger}
                 keyExtractor={getUtbetalingId}
-                renderItem={({ item }) => <UtbetalingItem utbetaling={item} handleClick={handleClick} />}
+                renderItem={({ item }) => <UtbetalingItem utbetaling={item} />}
             />
         </>
     );

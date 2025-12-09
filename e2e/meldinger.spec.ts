@@ -14,7 +14,7 @@ test('Select melding', async ({ page }) => {
     const meldingerCards = meldingerList.getByTestId('traaditem');
     expect((await meldingerCards.all()).length).toBeGreaterThan(5);
 
-    await meldingerCards.first().getByRole('button').click();
+    await meldingerCards.first().click();
 
     const meldingerDetails = page.getByRole('region', { name: 'Dialogdetaljer' });
 
@@ -25,7 +25,7 @@ test('Send melding i tråd', async ({ page }) => {
     await page.goto('/new/person/meldinger');
     const traadToClick = page.getByTestId('traaditem').nth(4);
     await expect(traadToClick).toBeVisible();
-    await traadToClick.getByRole('button').click();
+    await traadToClick.click();
 
     await page.getByRole('button', { name: 'Svar' }).click();
 
@@ -49,7 +49,7 @@ test('Send ny melding', async ({ page }) => {
     await expect(newTraad).toContainText('Referat');
     await expect(newTraad).toContainText('Tema:Pensjon');
 
-    await newTraad.getByRole('button').click();
+    await newTraad.click();
 
     const meldingerDetails = page.getByRole('region', { name: 'Dialogdetaljer' });
     await expect(meldingerDetails.getByRole('heading').first()).toHaveText('Referat - Pensjon');
