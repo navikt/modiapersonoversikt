@@ -2,14 +2,13 @@ import { ChevronDownIcon } from '@navikt/aksel-icons';
 import { ActionMenu, Alert, Box, Button, HStack, Heading, InlineMessage, Skeleton, VStack } from '@navikt/ds-react';
 import { useLocation } from '@tanstack/react-router';
 import { useSetAtom } from 'jotai';
-import { Suspense, memo, useCallback, useState } from 'react';
+import { Suspense, useCallback, useState } from 'react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
-import { PrintThreadsMemo } from 'src/components/Meldinger';
 import { TraadOppgaver } from 'src/components/Meldinger/Detail/TraadOppgaver';
 import MeldingerPrint from 'src/components/Meldinger/MeldingerPrint';
 import usePrinter from 'src/components/Print/usePrinter';
-import { useTraadById } from 'src/lib/clients/modiapersonoversikt-api';
+import { useMeldinger, useTraadById } from 'src/lib/clients/modiapersonoversikt-api';
 import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
 import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
@@ -22,42 +21,27 @@ import { OppgaveModal } from '../Oppgave';
 import { Journalposter } from './Journalposter';
 import { Meldinger } from './Meldinger';
 
-const PrintThread = ({ traad }: { traad: Traad }) => {
-    const printer = usePrinter();
-    const PrinterWrapper = printer.printerWrapper;
-
-    return (
-        <>
-            <Button
-                className="justify-start"
-                role="menuitem"
-                variant="tertiary"
-                size="small"
-                onClick={() => {
-                    printer.triggerPrint();
-                }}
-            >
-                <span className="text-ax-text-neutral font-light">Skriv ut dialog</span>
-            </Button>
-            <PrinterWrapper>
-                <MeldingerPrint traad={traad} />
-            </PrinterWrapper>
-        </>
-    );
-};
-
-const PrintThreadMemo = memo(PrintThread);
-
 const TraadMeta = ({ traad }: { traad: Traad }) => {
     const [journalforingOpen, setJournalforingOpen] = useState(false);
     const [oppgaveOpen, setOppgaveOpen] = useState(false);
+    const [actionMenuOpen, setActionMenuOpen] = useState(false);
+    const [printAllThreads, setPrintAllThreads] = useState(false);
+    const printer = usePrinter();
+    const PrinterWrapper = printer.printerWrapper;
+    const { data: traader } = useMeldinger();
+
+    const triggerPrinting = (printAllThreads = false) => {
+        setPrintAllThreads(printAllThreads);
+        printer.triggerPrint();
+    };
+
     return (
         <HStack justify="space-between" gap="2">
             <Heading size="xsmall" level="3">
                 {traadstittel(traad)} - {temagruppeTekst(traad.temagruppe as Temagruppe)}
             </Heading>
             <HStack gap="2" justify="end" align="start">
-                <ActionMenu>
+                <ActionMenu open={actionMenuOpen} onOpenChange={setActionMenuOpen}>
                     <ActionMenu.Trigger>
                         <Button
                             variant="secondary"
@@ -69,10 +53,8 @@ const TraadMeta = ({ traad }: { traad: Traad }) => {
                         </Button>
                     </ActionMenu.Trigger>
                     <ActionMenu.Content>
-                        <VStack gap="2">
-                            <PrintThreadMemo traad={traad} />
-                            <PrintThreadsMemo />
-                        </VStack>
+                        <ActionMenu.Item onSelect={() => triggerPrinting()}>Skriv ut dialog</ActionMenu.Item>
+                        <ActionMenu.Item onSelect={() => triggerPrinting(true)}>Skriv ut alle dialoger</ActionMenu.Item>
                     </ActionMenu.Content>
                 </ActionMenu>
                 <Button
@@ -96,6 +78,13 @@ const TraadMeta = ({ traad }: { traad: Traad }) => {
                 />
             )}
             {oppgaveOpen && <OppgaveModal open={oppgaveOpen} setOpen={setOppgaveOpen} traad={traad} />}
+            <PrinterWrapper>
+                {printAllThreads ? (
+                    traader.map((traad) => <MeldingerPrint key={traad.traadId} traad={traad} />)
+                ) : (
+                    <MeldingerPrint traad={traad} />
+                )}
+            </PrinterWrapper>
         </HStack>
     );
 };
