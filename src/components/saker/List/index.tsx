@@ -47,7 +47,7 @@ const SakList = () => {
 
     return (
         <>
-            <Heading className="pl-1" size="xsmall" level="2">
+            <Heading className="pl-1" size="xsmall" level="3">
                 {saker.length} {saker.length === 1 ? 'sak' : 'saker'} funnet
             </Heading>
             <PaginatedList

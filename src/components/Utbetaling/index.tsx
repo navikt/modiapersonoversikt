@@ -27,7 +27,7 @@ export const UtbetalingPage = () => {
                         Se meldekort i Arena
                     </Button>
                 </HStack>
-                <Heading size="small" visuallyHidden>
+                <Heading size="small" visuallyHidden level="2">
                     Utbetalinger
                 </Heading>
                 <UtbetalingerList />

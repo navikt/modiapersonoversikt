@@ -52,7 +52,7 @@ const Traader = () => {
 
     return (
         <>
-            <Heading className="pl-1" size="xsmall" level="2">
+            <Heading className="pl-1" size="xsmall" level="3">
                 {filteredMeldinger.length} {filteredMeldinger.length === 1 ? 'dialog' : 'dialoger'}
             </Heading>
             <PaginatedList

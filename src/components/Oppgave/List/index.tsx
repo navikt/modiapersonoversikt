@@ -48,7 +48,7 @@ const OppgaveList = () => {
 
     return (
         <>
-            <Heading className="pl-1" size="xsmall" level="2">
+            <Heading className="pl-1" size="xsmall" level="3">
                 {oppgaver.length} {oppgaver.length === 1 ? 'oppgave' : 'oppgaver'}
             </Heading>
             <PaginatedList
