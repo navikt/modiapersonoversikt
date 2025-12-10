@@ -26,6 +26,14 @@ function lagAdvarselOmDodtBarn(barn: ForelderBarnRelasjon[]): React.ReactNode {
     return null;
 }
 
+function omDodtBarn(barn: ForelderBarnRelasjon[]) {
+    const dode = barn.filter((barn) => erDod(barn.dodsdato));
+    if (dode.length > 0) {
+        return ` (Hvorav ${dode.length} død)`;
+    }
+    return null;
+}
+
 export function AntallBarn({ forelderBarnRelasjon }: Props) {
     const barn = hentBarn(forelderBarnRelasjon);
     if (barn.isEmpty()) {
@@ -36,10 +44,12 @@ export function AntallBarn({ forelderBarnRelasjon }: Props) {
         return <li title="Barn under 22 år">Ingen barn under 22 år</li>;
     }
     const advarselOmDodtBarn = lagAdvarselOmDodtBarn(barnUnder22);
+    const dodtBarn = omDodtBarn(barnUnder22);
     return (
         <ListElementMedIkon title="Barn under 22 år">
             {advarselOmDodtBarn}
             {barnUnder22.length} barn under 22 år
+            {dodtBarn}
         </ListElementMedIkon>
     );
 }
