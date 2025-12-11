@@ -29,7 +29,7 @@ function lagAdvarselOmDodtBarn(barn: ForelderBarnRelasjon[]): React.ReactNode {
 function omDodtBarn(barn: ForelderBarnRelasjon[]) {
     const dode = barn.filter((barn) => erDod(barn.dodsdato));
     if (dode.length > 0) {
-        return ` (Hvorav ${dode.length} død)`;
+        return ` (Hvorav ${dode.length} død${dode.length > 1 ? 'e' : ''})`;
     }
     return null;
 }
