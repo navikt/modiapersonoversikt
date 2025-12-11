@@ -212,7 +212,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   border-top: solid 0.0625rem #78706a;
 }
 
-.c31 {
+.c30 {
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -220,17 +220,17 @@ exports[`Viser oversikt med alt innhold 1`] = `
   border-radius: 0.5em;
 }
 
-.c31:focus {
+.c30:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c31:focus {
+.c30:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c31:focus::after {
+.c30:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -241,11 +241,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
   pointer-events: none;
 }
 
-.c25 {
+.c24 {
   padding: 0rem;
 }
 
-.c26 {
+.c25 {
   position: relative;
   display: -ms-grid;
   display: grid;
@@ -256,64 +256,64 @@ exports[`Viser oversikt med alt innhold 1`] = `
   cursor: pointer;
 }
 
-.c26 >*:nth-child(1) {
+.c25 >*:nth-child(1) {
   -ms-grid-column: 1;
 }
 
-.c26 >*:nth-child(2) {
+.c25 >*:nth-child(2) {
   -ms-grid-column: 2;
 }
 
-.c26 >*:nth-child(3) {
+.c25 >*:nth-child(3) {
   -ms-grid-column: 3;
 }
 
-.c26 >*:nth-child(4) {
+.c25 >*:nth-child(4) {
   -ms-grid-column: 4;
 }
 
-.c26:hover {
+.c25:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
 }
 
-.c26 >* {
+.c25 >* {
   padding: 0.7rem;
 }
 
-.c30 li {
+.c29 li {
   display: inline-block;
 }
 
-.c30 li:not(:last-child):after {
+.c29 li:not(:last-child):after {
   content: ',';
   margin-right: 0.5em;
 }
 
-.c27 {
+.c26 {
   display: flex;
 }
 
-.c29 {
+.c28 {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
 
-.c28 {
+.c27 {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.c32 {
+.c31 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
   box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
   padding: 1.25rem;
 }
 
-.c32 dt {
+.c31 dt {
   float: left;
   clear: left;
   font-weight: bold;
@@ -321,26 +321,22 @@ exports[`Viser oversikt med alt innhold 1`] = `
   width: 7rem;
 }
 
-.c32 dd {
+.c31 dd {
   margin-bottom: 0.5rem;
   margin-left: 7.125rem;
 }
 
-.c34 {
+.c33 {
   font-weight: bold;
 }
 
-.c35 {
+.c34 {
   margin-top: 0.5rem;
 }
 
-.c33 {
+.c32 {
   margin-top: 1rem;
   margin-bottom: 1rem;
-}
-
-.c24 >*:not(:first-child) {
-  border-top: solid 0.0625rem #78706a;
 }
 
 .c23 >*:not(:first-child) {
@@ -893,105 +889,40 @@ exports[`Viser oversikt med alt innhold 1`] = `
           </div>
         </div>
       </article>
-      <article>
-        <div
-          aria-labelledby="Helt tilfeldig ID"
-          class="panel c2"
+      <div
+        class="navds-alert navds-alert--error navds-alert--medium"
+        data-color="danger"
+        data-variant="error"
+      >
+        <svg
+          aria-labelledby="title-«r1»"
+          class="navds-alert__icon"
+          fill="none"
+          focusable="false"
+          height="1em"
+          role="img"
+          viewBox="0 0 24 24"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <div
-            class="c3"
-            title="Alt + Y"
+          <title
+            id="title-«r1»"
           >
-            <h3
-              class="typo-undertittel"
-              id="Helt tilfeldig ID"
-            >
-              Ytelser
-            </h3>
-            <div
-              class="c4"
-            />
-            <a
-              class="c5 lenke"
-              href="/person/ytelser"
-            >
-              <p
-                class="typo-normal"
-              >
-                Gå til ytelser
-              </p>
-            </a>
-          </div>
-          <div
-            class="c6"
-          >
-            <div
-              class="c23"
-            >
-              <div
-                class="c8 test-ytelse-oversikt"
-              >
-                <div>
-                  <p
-                    class="typo-normal"
-                  >
-                    ID dato: 01.01.2025
-                  </p>
-                  <p
-                    class="typo-element"
-                  >
-                    Arbeidsavklaringspenger
-                  </p>
-                  <p
-                    class="typo-normal"
-                  >
-                    01.01.2025 - 31.12.2025
-                  </p>
-                </div>
-                <button
-                  aria-label="Vis arbeidsavklaringspenger"
-                  aria-selected="false"
-                  class="c10"
-                >
-                  <span
-                    class="nav-frontend-chevron chevronboks chevron--hoyre"
-                  />
-                </button>
-              </div>
-              <div
-                class="c8 test-ytelse-oversikt"
-              >
-                <div>
-                  <p
-                    class="typo-normal"
-                  >
-                    ID dato: 10.01.2020
-                  </p>
-                  <p
-                    class="typo-element"
-                  >
-                    Tiltakspenger
-                  </p>
-                  <p
-                    class="typo-normal"
-                  >
-                    10.01.2020 - 21.02.2020: (Antall barn: 1, )
-                  </p>
-                </div>
-                <button
-                  aria-label="Vis tiltakspenger"
-                  aria-selected="false"
-                  class="c10"
-                >
-                  <span
-                    class="nav-frontend-chevron chevronboks chevron--hoyre"
-                  />
-                </button>
-              </div>
-            </div>
-          </div>
+            Feil
+          </title>
+          <path
+            clip-rule="evenodd"
+            d="M7.742 2.47a.75.75 0 0 1 .53-.22h7.456a.75.75 0 0 1 .53.22l5.272 5.272c.141.14.22.331.22.53v7.456a.75.75 0 0 1-.22.53l-5.272 5.272a.75.75 0 0 1-.53.22H8.272a.75.75 0 0 1-.53-.22L2.47 16.258a.75.75 0 0 1-.22-.53V8.272a.75.75 0 0 1 .22-.53zm1.288 5.5a.75.75 0 0 0-1.06 1.06L10.94 12l-2.97 2.97a.75.75 0 1 0 1.06 1.06L12 13.06l2.97 2.97a.75.75 0 1 0 1.06-1.06L13.06 12l2.97-2.97a.75.75 0 0 0-1.06-1.06L12 10.94z"
+            fill="currentColor"
+            fill-rule="evenodd"
+          />
+        </svg>
+        <div
+          class="navds-alert__wrapper navds-alert__wrapper--maxwidth navds-body-long navds-body-long--medium"
+        >
+          Det skjedde en feil
         </div>
-      </article>
+      </div>
       <article>
         <div
           aria-labelledby="Helt tilfeldig ID"
@@ -1031,34 +962,34 @@ exports[`Viser oversikt med alt innhold 1`] = `
             class="c6"
           >
             <ol
-              class="c24"
+              class="c23"
             >
               <li>
                 <div
-                  class="panel c25"
+                  class="panel c24"
                 >
                   <article
                     aria-labelledby="Helt tilfeldig ID"
                   >
                     <div
-                      class="c26"
+                      class="c25"
                     >
                       <p
                         class="typo-normal"
                       >
                         <span
-                          class="c27"
+                          class="c26"
                         >
                           11.01.2023
                         </span>
                         <span
-                          class="c27"
+                          class="c26"
                         >
                           01.08.2023
                         </span>
                       </p>
                       <div
-                        class="c28"
+                        class="c27"
                       >
                         <svg
                           focusable="false"
@@ -1077,14 +1008,14 @@ exports[`Viser oversikt med alt innhold 1`] = `
                         </svg>
                       </div>
                       <h4
-                        class="typo-element c29"
+                        class="typo-element c28"
                         id="Helt tilfeldig ID"
                       >
                         Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
                       </h4>
                       <ul
                         aria-label="Kommunikasjonskanaler"
-                        class="c30"
+                        class="c29"
                       >
                         <li
                           class="typo-normal"
@@ -1105,7 +1036,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       <button
                         aria-expanded="false"
                         aria-label="Vis mer informasjon om varsel/notifikasjon"
-                        class="c31"
+                        class="c30"
                         title="Vis mer informasjon om varsel/notifikasjon"
                       >
                         <span
@@ -1114,7 +1045,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </button>
                     </div>
                     <dl
-                      class="c32"
+                      class="c31"
                     >
                       <div>
                         <dt>
@@ -1149,15 +1080,15 @@ exports[`Viser oversikt med alt innhold 1`] = `
                         </dd>
                         <hr />
                         <div
-                          class="c33"
+                          class="c32"
                         >
                           <span
-                            class="c34"
+                            class="c33"
                           >
                             Varslingsfeil
                           </span>
                           <div
-                            class="c35"
+                            class="c34"
                           >
                             <li>
                               01.01.2023 - SMS: Feil telefonummer
@@ -1166,15 +1097,15 @@ exports[`Viser oversikt med alt innhold 1`] = `
                         </div>
                         <hr />
                         <div
-                          class="c33"
+                          class="c32"
                         >
                           <span
-                            class="c34"
+                            class="c33"
                           >
                             Revarslingsfeil
                           </span>
                           <div
-                            class="c35"
+                            class="c34"
                           >
                             <li>
                               11.08.2023 - EPOST: Feil epost
@@ -1188,30 +1119,30 @@ exports[`Viser oversikt med alt innhold 1`] = `
               </li>
               <li>
                 <div
-                  class="panel c25"
+                  class="panel c24"
                 >
                   <article
                     aria-labelledby="Helt tilfeldig ID"
                   >
                     <div
-                      class="c26"
+                      class="c25"
                     >
                       <p
                         class="typo-normal"
                       >
                         <span
-                          class="c27"
+                          class="c26"
                         >
                           11.01.2023
                         </span>
                         <span
-                          class="c27"
+                          class="c26"
                         >
                           01.08.2023
                         </span>
                       </p>
                       <div
-                        class="c28"
+                        class="c27"
                       >
                         <svg
                           focusable="false"
@@ -1230,14 +1161,14 @@ exports[`Viser oversikt med alt innhold 1`] = `
                         </svg>
                       </div>
                       <h4
-                        class="typo-element c29"
+                        class="typo-element c28"
                         id="Helt tilfeldig ID"
                       >
                         Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
                       </h4>
                       <ul
                         aria-label="Kommunikasjonskanaler"
-                        class="c30"
+                        class="c29"
                       >
                         <li
                           class="typo-normal"
@@ -1258,7 +1189,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       <button
                         aria-expanded="false"
                         aria-label="Vis mer informasjon om varsel/notifikasjon"
-                        class="c31"
+                        class="c30"
                         title="Vis mer informasjon om varsel/notifikasjon"
                       >
                         <span
@@ -1267,7 +1198,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </button>
                     </div>
                     <dl
-                      class="c32"
+                      class="c31"
                     >
                       <div>
                         <dt>
@@ -1302,15 +1233,15 @@ exports[`Viser oversikt med alt innhold 1`] = `
                         </dd>
                         <hr />
                         <div
-                          class="c33"
+                          class="c32"
                         >
                           <span
-                            class="c34"
+                            class="c33"
                           >
                             Varslingsfeil
                           </span>
                           <div
-                            class="c35"
+                            class="c34"
                           >
                             <li>
                               01.01.2023 - SMS: Feil telefonummer
@@ -1319,15 +1250,15 @@ exports[`Viser oversikt med alt innhold 1`] = `
                         </div>
                         <hr />
                         <div
-                          class="c33"
+                          class="c32"
                         >
                           <span
-                            class="c34"
+                            class="c33"
                           >
                             Revarslingsfeil
                           </span>
                           <div
-                            class="c35"
+                            class="c34"
                           >
                             <li>
                               11.08.2023 - EPOST: Feil epost
