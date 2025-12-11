@@ -2,6 +2,7 @@ import { ChevronDownIcon, ChevronUpIcon, PersonIcon } from '@navikt/aksel-icons'
 import { BodyShort, Box, Button, CopyButton, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { useLocation } from '@tanstack/react-router';
 import { Suspense, useEffect, useState } from 'react';
+import Statsborgerskap from 'src/components/PersonLinje/Details/Familie/Statsborgerskap';
 import config from 'src/config';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { Kjonn, type KodeBeskrivelseKjonn } from 'src/lib/types/modiapersonoversikt-api';
@@ -53,6 +54,7 @@ const PersonlinjeHeader = ({ isExpanded }: { isExpanded: boolean }) => {
                         </HStack>
                     )}
                 </HStack>
+                <Statsborgerskap />
                 <PersonBadges />
             </VStack>
             <VStack justify="center">
