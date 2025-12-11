@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { type ImperativePanelHandle, Panel } from 'react-resizable-panels';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
+import { trackCloseDialog, trackOpenDialog } from 'src/utils/analytics';
 import { SendMelding } from './SendMelding';
 import { TildelteOppgaver } from './TildelteOppgaver';
 import { UbesvarteMeldinger } from './UbesvarteMeldinger';
@@ -88,7 +89,7 @@ export function LukkbarNyMelding() {
                                     size="small"
                                     onClick={() => {
                                         if (!panelRef.current) return;
-
+                                        isLarge ? trackOpenDialog() : trackCloseDialog();
                                         const newSize = isLarge ? PANEL_SIZE : LARGE_SIZE;
                                         panelRef.current.resize(newSize);
                                     }}
