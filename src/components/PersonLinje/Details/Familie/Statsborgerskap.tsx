@@ -27,7 +27,7 @@ const Statsborgerskap = () => {
     );
 
     return (
-        <div className={'ml-2'}>
+        <>
             {statsborgerskap.length > 1 ? (
                 <BodyShort title="Statsborgerskap" size="small">
                     Flere statsborgerskap: {statsborgerskap.join(', ')}
@@ -37,7 +37,7 @@ const Statsborgerskap = () => {
                     Statsborgerskap: {statsborgerskap}
                 </BodyShort>
             )}
-        </div>
+        </>
     );
 };
 

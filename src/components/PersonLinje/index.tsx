@@ -46,7 +46,6 @@ const PersonlinjeHeader = ({ isExpanded }: { isExpanded: boolean }) => {
                     <HStack align="center" className="cursor-[initial]" onClick={(e) => e.stopPropagation()}>
                         <BodyShort size="small">F.nr: {data.person.personIdent}</BodyShort>
                         <CopyButton size="xsmall" copyText={data.person.personIdent} />
-                        <Statsborgerskap />
                     </HStack>
                     {data.person.kontaktInformasjon.mobil?.value && (
                         <HStack align="center" className="cursor-[initial]" onClick={(e) => e.stopPropagation()}>
@@ -55,6 +54,7 @@ const PersonlinjeHeader = ({ isExpanded }: { isExpanded: boolean }) => {
                         </HStack>
                     )}
                 </HStack>
+                <Statsborgerskap />
                 <PersonBadges />
             </VStack>
             <VStack justify="center">
