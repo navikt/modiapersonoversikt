@@ -127,7 +127,7 @@ export const ValgteYtelseDetailPage = () => {
             {pending ? (
                 <Skeleton variant="rounded" className="mt-6" height="4rem" />
             ) : (
-                <VStack flexGrow="1" minHeight="0" maxHeight="100%" className="overflow-scroll">
+                <VStack flexGrow="1" minHeight="0" maxHeight="100%" className="overflow-auto">
                     <YtelseDataDetails />
                 </VStack>
             )}

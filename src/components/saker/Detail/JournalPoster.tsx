@@ -42,7 +42,7 @@ const JournalPoster = ({
 
     return (
         <VStack gap="2">
-            <Accordion size="small" headingSize="xsmall">
+            <Accordion size="small">
                 {journalPoster.map((journalPost) => {
                     const hovedDokument = journalPost.hoveddokument;
                     const vedleggLength = journalPost.vedlegg.length > 0;
@@ -65,7 +65,7 @@ const JournalPoster = ({
                             </Accordion.Header>
                             <Accordion.Content>
                                 {isOpen && (
-                                    <VStack gap="4" flexGrow="1" overflow="scroll">
+                                    <VStack gap="4" flexGrow="1" overflow="auto">
                                         <TitleValuePairsComponent
                                             entries={getDokumentEntries(journalPost, hovedDokument)}
                                             columns={columns}

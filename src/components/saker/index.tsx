@@ -16,7 +16,7 @@ export const SakerPage = () => {
                 </Heading>
                 <SakerList />
             </VStack>
-            <VStack overflow={{ xs: 'hidden', md: 'scroll' }} className="min-h-100 md:min-h-0">
+            <VStack className="min-h-100 md:min-h-0">
                 <SakDetailPage />
             </VStack>
         </HGrid>

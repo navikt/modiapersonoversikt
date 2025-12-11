@@ -19,7 +19,7 @@ export const VarslerItem = ({
     return (
         <Link
             to="/new/person/varsler"
-            search={{ id: aktivVarsel }}
+            search={{ id: varsel.eventId }}
             state={{
                 umamiEvent: {
                     name: trackingEvents.detaljvisningKlikket,
