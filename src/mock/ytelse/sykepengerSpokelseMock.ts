@@ -1,27 +1,22 @@
 import { fakerNB_NO as faker } from '@faker-js/faker';
 import dayjs from 'dayjs';
 import navfaker from 'nav-faker/dist/index';
-import type { SykpengerVedtak } from 'src/generated/modiapersonoversikt-api';
+import type { Utbetalingsperioder } from 'src/generated/modiapersonoversikt-api';
 import { statiskSykepengerSpokelseMock } from 'src/mock/ytelse/statiskSykepengerSpokelseMock';
 import { backendDatoformat } from 'src/utils/date-utils';
 import { aremark } from '../persondata/aremark';
-import { fyllRandomListe } from '../utils/mock-utils';
 
-export function getMockSykpengerSpokelseResponse(fnr: string): SykpengerVedtak[] {
+export function getMockSykpengerSpokelseResponse(fnr: string): Utbetalingsperioder {
     if (fnr === aremark.personIdent) {
-        return [statiskSykepengerSpokelseMock];
+        return statiskSykepengerSpokelseMock;
     }
     faker.seed(Number(fnr));
     navfaker.seed(`${fnr}SykpengerSpokelse`);
 
     if (navfaker.random.vektetSjanse(0.3)) {
-        return [];
+        return { utbetaltePerioder: [] };
     }
 
-    return fyllRandomListe<SykpengerVedtak>(() => getMockSykpengerSpokelse(fnr), 3);
-}
-
-function getMockSykpengerSpokelse(fnr: string): SykpengerVedtak {
     faker.seed(Number(fnr));
     navfaker.seed(`${fnr}SykpengerSpokelse`);
 
@@ -32,7 +27,7 @@ function getMockSykpengerSpokelse(fnr: string): SykpengerVedtak {
     const tomDato = dayjs(fomDatoAndrePeriode).add(faker.number.int(40), 'days').format(backendDatoformat);
 
     return {
-        utbetalinger: [
+        utbetaltePerioder: [
             {
                 fom: fomDatoAndrePeriode,
                 tom: tomDato,
@@ -43,8 +38,6 @@ function getMockSykpengerSpokelse(fnr: string): SykpengerVedtak {
                 tom: tomDatoForstePeriode,
                 grad: 100
             }
-        ],
-        vedtattTidspunkt: dayjs(faker.date.past({ years: 2 })).format(backendDatoformat),
-        vedtaksreferanse: '2023123456'
+        ]
     };
 }

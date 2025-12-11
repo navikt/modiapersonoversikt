@@ -1042,12 +1042,6 @@ export interface components {
             sanksjon?: components['schemas']['CommonPeriode'];
             sykmeldt?: components['schemas']['CommonPeriode'];
         };
-        SykpengerVedtak: {
-            vedtaksreferanse: string;
-            utbetalinger: components['schemas']['Utbetalingsperiode'][];
-            /** Format: date */
-            vedtattTidspunkt: string;
-        };
         Utbetalingsperiode: {
             /** Format: date */
             fom: string;
@@ -1055,6 +1049,9 @@ export interface components {
             tom: string;
             /** Format: double */
             grad: number;
+        };
+        Utbetalingsperioder: {
+            utbetaltePerioder: components['schemas']['Utbetalingsperiode'][];
         };
         Pleiepenger: {
             barnet?: string;
@@ -1412,10 +1409,10 @@ export interface components {
         LocalDate: {
             /** Format: date */
             value?: string;
-            /** Format: int32 */
-            monthNumber: number;
             /** Format: date */
             value$kotlinx_datetime: string;
+            /** Format: int32 */
+            monthNumber: number;
             /** Format: int32 */
             year: number;
             /** Format: int32 */
@@ -1430,10 +1427,10 @@ export interface components {
         LocalDateTime: {
             /** Format: date-time */
             value?: string;
-            /** Format: int32 */
-            monthNumber: number;
             /** Format: date-time */
             value$kotlinx_datetime: string;
+            /** Format: int32 */
+            monthNumber: number;
             /** Format: int32 */
             nanosecond: number;
             time: components['schemas']['LocalTime'];
@@ -2055,9 +2052,9 @@ export interface components {
         };
         GraphQLClientSourceLocation: {
             /** Format: int32 */
-            line: number;
-            /** Format: int32 */
             column: number;
+            /** Format: int32 */
+            line: number;
         };
         BehandlendeEnhetRequest: {
             fnr: string;
@@ -2299,8 +2296,8 @@ export type SykepengerResponse = components['schemas']['SykepengerResponse'];
 export type SykmeldingArbeidsforhold = components['schemas']['SykmeldingArbeidsforhold'];
 export type SykmeldingItem = components['schemas']['SykmeldingItem'];
 export type SykmeldingUtbetalingPaVent = components['schemas']['SykmeldingUtbetalingPaVent'];
-export type SykpengerVedtak = components['schemas']['SykpengerVedtak'];
 export type Utbetalingsperiode = components['schemas']['Utbetalingsperiode'];
+export type Utbetalingsperioder = components['schemas']['Utbetalingsperioder'];
 export type Pleiepenger = components['schemas']['Pleiepenger'];
 export type PleiepengerArbeidsforhold = components['schemas']['PleiepengerArbeidsforhold'];
 export type PleiepengerPeriode = components['schemas']['PleiepengerPeriode'];
@@ -2518,7 +2515,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    '*/*': components['schemas']['SykpengerVedtak'][];
+                    '*/*': components['schemas']['Utbetalingsperioder'];
                 };
             };
         };

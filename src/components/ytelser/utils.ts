@@ -272,11 +272,6 @@ const sykepengerPlaceholder = {
     returnOnNotFound: 'Kunne finne sykepenger',
     returnOnForbidden: 'Du har ikke tilgang til sykepenger'
 };
-const sykepengerSpokelsePlaceholder = {
-    returnOnError: 'Kunne ikke laste sykepenger fra spokelse',
-    returnOnNotFound: 'Kunne finne sykepenger fra spokelse',
-    returnOnForbidden: 'Du har ikke tilgang til sykepenger fra spokelse'
-};
 const tiltakspengerPlaceholder = {
     returnOnError: 'Kunne ikke laste tiltakspenger',
     returnOnNotFound: 'Kunne finne tiltakspenger',
@@ -319,7 +314,7 @@ export const useFilterYtelser = (): Returns => {
     const pensjonResponse = usePensjon(startDato, sluttDato);
     const arbeidsavklaringspengerResponse = useArbeidsavklaringspenger(startDato, sluttDato);
     const foreldrepengerFpSakResponse = useForeldrepengerFpSak(startDato, sluttDato);
-    const sykepengerSpokelseResponse = useSykepengerSpokelse();
+    const sykepengerSpokelseResponse = useSykepengerSpokelse(startDato, sluttDato);
 
     return useMemo(() => {
         const pending =
@@ -389,7 +384,7 @@ export const useFilterYtelser = (): Returns => {
             placeholder(foreldrepengerResponse, foreldrepengerPlaceholder),
             placeholder(pleiepengerResponse, pleiepengerPlaceholder),
             placeholder(sykepengerResponse, sykepengerPlaceholder),
-            placeholder(sykepengerSpokelseResponse, sykepengerSpokelsePlaceholder),
+            placeholder(sykepengerSpokelseResponse, sykepengerPlaceholder),
             placeholder(tiltakspengerResponse, tiltakspengerPlaceholder),
             placeholder(pensjonResponse, pensjonPlaceholder),
             placeholder(arbeidsavklaringspengerResponse, arbeidsavklaringsPengerPlaceholder),

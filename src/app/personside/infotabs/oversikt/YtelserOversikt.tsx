@@ -7,7 +7,7 @@ import { useInfotabsDyplenker } from 'src/app/personside/infotabs/dyplenker';
 import useBrukersYtelserMarkup from 'src/app/personside/infotabs/ytelser/useBrukersYtelserMarkup';
 import { CenteredLazySpinner } from 'src/components/LazySpinner';
 import VisMerKnapp from 'src/components/VisMerKnapp';
-import type { ForeldrepengerFpSak, SykpengerVedtak } from 'src/generated/modiapersonoversikt-api';
+import type { ForeldrepengerFpSak, Utbetalingsperioder } from 'src/generated/modiapersonoversikt-api';
 import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaringspenger';
 import { getArbeidsavklaringspengerIdDato } from 'src/models/ytelse/arbeidsavklaringspenger';
 import { type Foreldrepengerettighet, getForeldepengerIdDato } from 'src/models/ytelse/foreldrepenger';
@@ -123,19 +123,19 @@ function SykepengerKomponent(props: { sykepenger: Sykepenger }) {
     );
 }
 
-function SykepengerSpokelseKomponent(props: { sykepenger: SykpengerVedtak }) {
+function SykepengerSpokelseKomponent(props: { sykepenger: Utbetalingsperioder }) {
     const dyplenker = useInfotabsDyplenker();
 
     return (
         <VisMerKnapp
             linkTo={dyplenker.ytelser.link(props.sykepenger)}
             valgt={false}
-            ariaDescription="Vis sykepenger fra spokelse"
+            ariaDescription="Vis sykepenger"
             className={ytelserTest.oversikt}
             umamiEvent={umamiEvent}
         >
             <Normaltekst>ID dato: {formaterDato(getSykepengerSpokelseIdDato(props.sykepenger))}</Normaltekst>
-            <Element>Sykepenger fra spokelse</Element>
+            <Element>Sykepenger</Element>
         </VisMerKnapp>
     );
 }

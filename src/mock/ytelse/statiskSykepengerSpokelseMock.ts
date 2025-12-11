@@ -1,7 +1,7 @@
-export const statiskSykepengerSpokelseMock = {
-    vedtaksreferanse: '2023123456',
-    vedtattTidspunkt: '2025-02-31',
-    utbetalinger: [
+import type { Utbetalingsperioder } from 'src/generated/modiapersonoversikt-api';
+
+export const statiskSykepengerSpokelseMock: Utbetalingsperioder = {
+    utbetaltePerioder: [
         {
             fom: '2025-07-01',
             tom: '2025-09-31',

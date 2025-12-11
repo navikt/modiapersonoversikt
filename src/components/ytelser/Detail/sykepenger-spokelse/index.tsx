@@ -2,18 +2,11 @@ import { Accordion, Heading, VStack } from '@navikt/ds-react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { TitleValuePairsComponent } from 'src/components/ytelser/Detail';
-import type { SykpengerVedtak, Utbetalingsperiode } from 'src/generated/modiapersonoversikt-api';
+import type { Utbetalingsperiode, Utbetalingsperioder } from 'src/generated/modiapersonoversikt-api';
 import { datoEllerTomString, formaterDato, prosentEllerNull } from 'src/utils/string-utils';
 
-const getSykpengerVedtakEntries = (ytelse: SykpengerVedtak) => {
-    return {
-        Vedtaksreferanse: ytelse.vedtaksreferanse,
-        Vedtaksdato: ytelse.vedtattTidspunkt ? formaterDato(ytelse.vedtattTidspunkt) : 'Ukjent vedtaksdato'
-    };
-};
-
-const SykpengerPerioder = ({ ytelse }: { ytelse: SykpengerVedtak }) => {
-    if (ytelse.utbetalinger.length === 0) return <></>;
+const SykpengerPerioder = ({ ytelse }: { ytelse: Utbetalingsperioder }) => {
+    if (ytelse.utbetaltePerioder.length === 0) return <></>;
 
     const getEntries = (periode: Utbetalingsperiode) => {
         return {
@@ -29,7 +22,7 @@ const SykpengerPerioder = ({ ytelse }: { ytelse: SykpengerVedtak }) => {
                 Perioder
             </Heading>
             <Accordion size="small">
-                {ytelse.utbetalinger.map((periode, index) => {
+                {ytelse.utbetaltePerioder.map((periode, index) => {
                     return (
                         <Accordion.Item key={`${index}-${periode.fom}`}>
                             <Accordion.Header>{`Periode - ${datoEllerTomString(periode.fom)}`}</Accordion.Header>
@@ -44,15 +37,14 @@ const SykpengerPerioder = ({ ytelse }: { ytelse: SykpengerVedtak }) => {
     );
 };
 
-export const SykePengerSpokelseDetails = ({ ytelse }: { ytelse: SykpengerVedtak }) => {
+export const SykePengerSpokelseDetails = ({ ytelse }: { ytelse: Utbetalingsperioder }) => {
     return (
         <VStack gap="2" minHeight="0">
             <ErrorBoundary boundaryName="sykePengerDetails">
                 <Card padding="4">
                     <Heading as="h4" size="small">
-                        Om sykpenger fra spokelse
+                        Om sykpenger
                     </Heading>
-                    <TitleValuePairsComponent entries={getSykpengerVedtakEntries(ytelse)} />
                 </Card>
                 <SykpengerPerioder ytelse={ytelse} />
             </ErrorBoundary>

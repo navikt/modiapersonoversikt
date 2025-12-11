@@ -36,11 +36,6 @@ const sykepengerPlaceholder = {
     returnOnNotFound: 'Kunne finne sykepenger',
     returnOnForbidden: 'Du har ikke tilgang til sykepenger'
 };
-const sykepengerSpokelsePlaceholder = {
-    returnOnError: 'Kunne ikke laste sykepenger fra spokelse',
-    returnOnNotFound: 'Kunne finne sykepenger fra spokelse',
-    returnOnForbidden: 'Du har ikke tilgang til sykepenger fra spokelse'
-};
 const tiltakspengerPlaceholder = {
     returnOnError: 'Kunne ikke laste tiltakspenger',
     returnOnNotFound: 'Kunne finne tiltakspenger',
@@ -84,7 +79,7 @@ function useBrukersYtelser(periode: FraTilDato): Returns {
     const foreldrepengerResponse = useForeldrepenger(fnr, periode.fra, periode.til);
     const pleiepengerResponse = usePleiepenger(fnr, periode.fra, periode.til);
     const sykepengerResponse = useSykepenger(fnr, periode.fra, periode.til);
-    const sykepengerSpokelseResponse = useSykepengerSpokelse(fnr);
+    const sykepengerSpokelseResponse = useSykepengerSpokelse(fnr, periode.fra, periode.til);
     const tiltakspengerResponse = useTiltakspenger(fnr, periode.fra, periode.til);
     const pensjonResponse = usePensjon(fnr, periode.fra, periode.til);
     const arbeidsavklaringspengerResponse = useArbeidsavklaringspenger(fnr, periode.fra, periode.til);
@@ -103,7 +98,7 @@ function useBrukersYtelser(periode: FraTilDato): Returns {
         const foreldrepenger = foreldrepengerResponse.data?.foreldrepenger ?? [];
         const pleiepenger = pleiepengerResponse.data?.pleiepenger ?? [];
         const sykepenger = sykepengerResponse.data?.sykepenger ?? [];
-        const sykepengerSpokelse = sykepengerSpokelseResponse.data ?? [];
+        const sykepengerSpokelse = sykepengerSpokelseResponse.data ? [sykepengerSpokelseResponse.data] : [];
         const tiltakspenger = tiltakspengerResponse.data ?? [];
         const pensjon = pensjonResponse.data ?? [];
         const arbeidsavklaringspenger = arbeidsavklaringspengerResponse.data ?? [];
@@ -125,7 +120,7 @@ function useBrukersYtelser(periode: FraTilDato): Returns {
             placeholder(foreldrepengerResponse, foreldrepengerPlaceholder),
             placeholder(pleiepengerResponse, pleiepengerPlaceholder),
             placeholder(sykepengerResponse, sykepengerPlaceholder),
-            placeholder(sykepengerSpokelseResponse, sykepengerSpokelsePlaceholder),
+            placeholder(sykepengerSpokelseResponse, sykepengerPlaceholder),
             placeholder(tiltakspengerResponse, tiltakspengerPlaceholder),
             placeholder(pensjonResponse, pensjonPlaceholder),
             placeholder(arbeidsavklaringspengerResponse, arbeidsavklaringsPengerPlaceholder),

@@ -19,7 +19,7 @@ import type {
     PensjonSak,
     Pleiepenger,
     Sykepenger,
-    SykpengerVedtak,
+    Utbetalingsperioder,
     VedtakDto
 } from 'src/generated/modiapersonoversikt-api';
 import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaringspenger';
@@ -117,7 +117,7 @@ const YtelseDataDetails = () => {
         case YtelseVedtakYtelseType.ForeldrepengerFpSak:
             return <ForeldrePengerFpSakDetails ytelse={selectedYtelse.ytelseData.data as ForeldrepengerFpSak} />;
         case YtelseVedtakYtelseType.SykepengerSpokelse:
-            return <SykePengerSpokelseDetails ytelse={selectedYtelse.ytelseData.data as SykpengerVedtak} />;
+            return <SykePengerSpokelseDetails ytelse={selectedYtelse.ytelseData.data as Utbetalingsperioder} />;
         default:
             return <Alert variant="info">Ukjent ytelse type {selectedYtelse.ytelseType}</Alert>;
     }

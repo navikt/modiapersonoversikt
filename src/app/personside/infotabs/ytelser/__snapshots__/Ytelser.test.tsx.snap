@@ -769,7 +769,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       <h3
                         class="typo-undertittel"
                       >
-                        Sykepenger fra spokelse
+                        Sykepenger
                       </h3>
                       <p
                         class="typo-element"
@@ -783,7 +783,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       </p>
                     </div>
                     <button
-                      aria-label="Vis sykepenger fra spokelse"
+                      aria-label="Vis sykepenger"
                       aria-selected="false"
                       class="c13"
                     >
@@ -801,7 +801,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       <h3
                         class="typo-undertittel"
                       >
-                        Sykepenger fra spokelse
+                        Sykepenger
                       </h3>
                       <p
                         class="typo-element"
@@ -815,7 +815,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       </p>
                     </div>
                     <button
-                      aria-label="Vis sykepenger fra spokelse"
+                      aria-label="Vis sykepenger"
                       aria-selected="false"
                       class="c13"
                     >
@@ -833,7 +833,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       <h3
                         class="typo-undertittel"
                       >
-                        Sykepenger fra spokelse
+                        Sykepenger
                       </h3>
                       <p
                         class="typo-element"
@@ -847,7 +847,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       </p>
                     </div>
                     <button
-                      aria-label="Vis sykepenger fra spokelse"
+                      aria-label="Vis sykepenger"
                       aria-selected="false"
                       class="c13"
                     >

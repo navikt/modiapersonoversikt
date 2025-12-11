@@ -430,9 +430,9 @@ export const useForeldrepengerFpSak = (fom: string, tom: string) => {
     });
 };
 
-export const useSykepengerSpokelse = () => {
+export const useSykepengerSpokelse = (fom: string, tom: string) => {
     const fnr = usePersonAtomValue();
     return $api.useSuspenseQuery('post', '/rest/ytelse/foreldrepenger_fpsak', {
-        body: { fnr }
+        body: { fnr, fom, tom }
     });
 };

@@ -1,15 +1,14 @@
 import Panel from 'nav-frontend-paneler';
 import YtelserInfoGruppe from 'src/app/personside/infotabs/ytelser/felles-styling/YtelserInfoGruppe';
-import DescriptionList from 'src/components/DescriptionList';
 import ErrorBoundary from 'src/components/ErrorBoundary';
-import type { SykpengerVedtak, Utbetalingsperiode } from 'src/generated/modiapersonoversikt-api';
+import type { Utbetalingsperiode, Utbetalingsperioder } from 'src/generated/modiapersonoversikt-api';
 import theme from 'src/styles/personOversiktTheme';
-import { formaterDato, periodeEllerNull, prosentEllerNull } from 'src/utils/string-utils';
+import { periodeEllerNull, prosentEllerNull } from 'src/utils/string-utils';
 import { StyledTable } from 'src/utils/table/StyledTable';
 import styled from 'styled-components';
 
 interface Props {
-    sykepenger: SykpengerVedtak;
+    sykepenger: Utbetalingsperioder;
 }
 
 const StyledPanel = styled(Panel)`
@@ -43,23 +42,13 @@ function SykepengerPerioder({ perioder }: { perioder: Utbetalingsperiode[] }) {
 }
 
 function SykepengerPerioderSpokelse(props: Props) {
-    const entries = {
-        Vedtaksreferanse: props.sykepenger.vedtaksreferanse,
-        Vedtaksdato: props.sykepenger.vedtattTidspunkt
-            ? formaterDato(props.sykepenger.vedtattTidspunkt)
-            : 'Ukjent vedtaksdato'
-    };
-
     return (
-        <ErrorBoundary boundaryName="FpYtelse">
+        <ErrorBoundary boundaryName="SykepengerSpokelse">
             <article>
                 <StyledPanel>
-                    <h2 className="sr-only">Sykepenger fra spokelse</h2>
+                    <h2 className="sr-only">Sykepenger</h2>
                     <OversiktStyling>
-                        <YtelserInfoGruppe tittel="Om sykepenger fra spokelse">
-                            <DescriptionList entries={entries} />
-                        </YtelserInfoGruppe>
-                        <SykepengerPerioder perioder={props.sykepenger.utbetalinger} />
+                        <SykepengerPerioder perioder={props.sykepenger.utbetaltePerioder} />
                     </OversiktStyling>
                 </StyledPanel>
             </article>

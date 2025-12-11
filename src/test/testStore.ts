@@ -136,5 +136,5 @@ export function setupReactQueryMocks() {
         feil: [],
         varsler: [...statiskDittnavEventVarselMock, ...statiskDittnavEventVarselMock, ...statiskDittnavEventVarselMock]
     });
-    mockReactQuery(sykepengerSpokelseResource.useSykepengerSpokelse, [statiskSykepengerSpokelseMock]);
+    mockReactQuery(sykepengerSpokelseResource.useSykepengerSpokelse, statiskSykepengerSpokelseMock);
 }

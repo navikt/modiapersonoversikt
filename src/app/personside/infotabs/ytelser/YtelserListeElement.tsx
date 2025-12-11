@@ -87,15 +87,15 @@ function YtelserListeElement(props: Props) {
             <li key={getUnikSykepengerSpokelseKey(props.ytelse)}>
                 <VisMerKnapp
                     key={getUnikSykepengerSpokelseKey(props.ytelse)}
-                    ariaDescription="Vis sykepenger fra spokelse"
+                    ariaDescription="Vis sykepenger"
                     valgt={props.erValgt}
                     linkTo={dypLenker.ytelser.link(props.ytelse)}
                     umamiEvent={{
                         name: trackingEvents.detaljvisningKlikket,
-                        data: { fane: 'ytelser', tekst: 'sykepenger fra spokelse' }
+                        data: { fane: 'ytelser', tekst: 'sykepenger' }
                     }}
                 >
-                    <Undertittel tag="h3">Sykepenger fra spokelse</Undertittel>
+                    <Undertittel tag="h3">Sykepenger</Undertittel>
                     <Element>ID-dato</Element>
                     <Normaltekst>{fom ? formaterDato(fom) : ''}</Normaltekst>
                 </VisMerKnapp>
