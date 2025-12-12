@@ -10,6 +10,7 @@ import { getForeldrepengerFpSakIdDato, getUnikForeldrepengerFpSakKey } from 'src
 import { getPensjonIdDato, getUnikPensjonKey } from 'src/models/ytelse/pensjon';
 import { getUnikPleiepengerKey } from 'src/models/ytelse/pleiepenger';
 import { getUnikSykepengerKey } from 'src/models/ytelse/sykepenger';
+import { getSykepengerSpokelseIdDato, getUnikSykepengerSpokelseKey } from 'src/models/ytelse/sykepenger-spokelse';
 import { getTiltakspengerIdDato, getUnikTiltakspengerKey } from 'src/models/ytelse/tiltakspenger';
 import {
     type Ytelse,
@@ -20,6 +21,7 @@ import {
     isPensjon,
     isPleiepenger,
     isSykepenger,
+    isSykepengerSpokelse,
     isTiltakspenger
 } from 'src/models/ytelse/ytelse-utils';
 import { trackingEvents } from 'src/utils/analytics';
@@ -73,6 +75,29 @@ function YtelserListeElement(props: Props) {
                     <Undertittel tag="h3">Sykepengerrettighet</Undertittel>
                     <Element>ID-dato</Element>
                     <Normaltekst>{formaterDato(getYtelseIdDato(props.ytelse))}</Normaltekst>
+                </VisMerKnapp>
+            </li>
+        );
+    }
+
+    if (isSykepengerSpokelse(props.ytelse)) {
+        const fom = getSykepengerSpokelseIdDato(props.ytelse);
+
+        return (
+            <li key={getUnikSykepengerSpokelseKey(props.ytelse)}>
+                <VisMerKnapp
+                    key={getUnikSykepengerSpokelseKey(props.ytelse)}
+                    ariaDescription="Vis sykepenger"
+                    valgt={props.erValgt}
+                    linkTo={dypLenker.ytelser.link(props.ytelse)}
+                    umamiEvent={{
+                        name: trackingEvents.detaljvisningKlikket,
+                        data: { fane: 'ytelser', tekst: 'sykepenger' }
+                    }}
+                >
+                    <Undertittel tag="h3">Sykepenger</Undertittel>
+                    <Element>ID-dato</Element>
+                    <Normaltekst>{fom ? formaterDato(fom) : ''}</Normaltekst>
                 </VisMerKnapp>
             </li>
         );

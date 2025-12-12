@@ -51,6 +51,7 @@ import { getMockPensjon } from 'src/mock/ytelse/pensjon-mock';
 
 import { getMockArbeidsavklaringspengerResponse } from 'src/mock/ytelse/arbeidsavklaringspengerMock';
 import { getMockForeldrepengerFpSakResponse } from 'src/mock/ytelse/foreldrepengerFpSakMock';
+import { getMockSykpengerSpokelseResponse } from 'src/mock/ytelse/sykepengerSpokelseMock';
 import type { FeatureTogglesResponse } from 'src/rest/resources/featuretogglesResource';
 import { STATUS_OK, fodselsNummerErGyldigStatus, randomDelay } from './utils-mock';
 import { getMockTiltakspenger } from './ytelse/tiltakspenger-mock';
@@ -152,6 +153,15 @@ const utbetalingerHandler = http.post(
         const query = url.searchParams;
         return getMockUtbetalinger(reqBody.fnr, query.get('startDato') ?? '', query.get('sluttDato') ?? '');
     })
+);
+
+const sykepengerSpokelseHandler = http.post(
+    `${apiBaseUri}/ytelse/spokelse_sykepenger`,
+    withDelayedResponse(
+        randomDelay(),
+        fodselsNummerErGyldigStatus,
+        mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMockSykpengerSpokelseResponse(fodselsnummer))
+    )
 );
 
 const sykepengerHandler = http.post(
@@ -385,6 +395,7 @@ export const handlers: (HttpHandler | WebSocketHandler)[] = [
     sakerOgDokumenterHandler,
     utbetalingerHandler,
     sykepengerHandler,
+    sykepengerSpokelseHandler,
     foreldrepengerHandler,
     pleiepengerHandler,
     tiltakspengerMock,

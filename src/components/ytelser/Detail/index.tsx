@@ -9,6 +9,7 @@ import { ForeldrePengerFpSakDetails } from 'src/components/ytelser/Detail/foreld
 import { PensjonDetails } from 'src/components/ytelser/Detail/pensjon';
 import { PleiePengerDetails } from 'src/components/ytelser/Detail/pleiepenger';
 import { SykepengerDetails } from 'src/components/ytelser/Detail/sykepenger';
+import { SykePengerSpokelseDetails } from 'src/components/ytelser/Detail/sykepenger-spokelse';
 import { TiltaksPengerDetails } from 'src/components/ytelser/Detail/tiltakspenger';
 import { ytelseFilterAtom } from 'src/components/ytelser/List/Filter';
 import { getUnikYtelseKey, useFilterYtelser } from 'src/components/ytelser/utils';
@@ -18,6 +19,7 @@ import type {
     PensjonSak,
     Pleiepenger,
     Sykepenger,
+    Utbetalingsperioder,
     VedtakDto
 } from 'src/generated/modiapersonoversikt-api';
 import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaringspenger';
@@ -114,6 +116,8 @@ const YtelseDataDetails = () => {
             return <ArbeidsavklaringspengerDetails aap={selectedYtelse.ytelseData.data as Arbeidsavklaringspenger} />;
         case YtelseVedtakYtelseType.ForeldrepengerFpSak:
             return <ForeldrePengerFpSakDetails ytelse={selectedYtelse.ytelseData.data as ForeldrepengerFpSak} />;
+        case YtelseVedtakYtelseType.SykepengerSpokelse:
+            return <SykePengerSpokelseDetails ytelse={selectedYtelse.ytelseData.data as Utbetalingsperioder} />;
         default:
             return <Alert variant="info">Ukjent ytelse type {selectedYtelse.ytelseType}</Alert>;
     }

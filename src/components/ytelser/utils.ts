@@ -10,6 +10,7 @@ import {
     usePensjon,
     usePleiepenger,
     useSykepenger,
+    useSykepengerSpokelse,
     useTiltakspenger
 } from 'src/lib/clients/modiapersonoversikt-api';
 import type {
@@ -313,12 +314,14 @@ export const useFilterYtelser = (): Returns => {
     const pensjonResponse = usePensjon(startDato, sluttDato);
     const arbeidsavklaringspengerResponse = useArbeidsavklaringspenger(startDato, sluttDato);
     const foreldrepengerFpSakResponse = useForeldrepengerFpSak(startDato, sluttDato);
+    const sykepengerSpokelseResponse = useSykepengerSpokelse(startDato, sluttDato);
 
     return useMemo(() => {
         const pending =
             pleiepengerResponse.isLoading ||
             foreldrepengerResponse.isLoading ||
             sykepengerResponse.isLoading ||
+            sykepengerSpokelseResponse.isLoading ||
             tiltakspengerResponse.isLoading ||
             pensjonResponse.isLoading ||
             arbeidsavklaringspengerResponse.isLoading ||
@@ -341,6 +344,12 @@ export const useFilterYtelser = (): Returns => {
             ytelser.push({
                 ytelseData: { data: ytelse },
                 ytelseType: YtelseVedtakYtelseType.Sykepenger
+            })
+        );
+        sykepengerSpokelseResponse.data?.map((ytelse) =>
+            ytelser.push({
+                ytelseData: { data: ytelse },
+                ytelseType: YtelseVedtakYtelseType.SykepengerSpokelse
             })
         );
         tiltakspengerResponse?.data?.map((ytelse) =>
@@ -375,6 +384,7 @@ export const useFilterYtelser = (): Returns => {
             placeholder(foreldrepengerResponse, foreldrepengerPlaceholder),
             placeholder(pleiepengerResponse, pleiepengerPlaceholder),
             placeholder(sykepengerResponse, sykepengerPlaceholder),
+            placeholder(sykepengerSpokelseResponse, sykepengerPlaceholder),
             placeholder(tiltakspengerResponse, tiltakspengerPlaceholder),
             placeholder(pensjonResponse, pensjonPlaceholder),
             placeholder(arbeidsavklaringspengerResponse, arbeidsavklaringsPengerPlaceholder),
@@ -385,6 +395,7 @@ export const useFilterYtelser = (): Returns => {
             foreldrepengerResponse.isError ||
             pleiepengerResponse.isError ||
             sykepengerResponse.isError ||
+            sykepengerSpokelseResponse.isError ||
             tiltakspengerResponse.isError ||
             pensjonResponse.isError ||
             arbeidsavklaringspengerResponse.isError ||
@@ -400,6 +411,7 @@ export const useFilterYtelser = (): Returns => {
         foreldrepengerResponse,
         pleiepengerResponse,
         sykepengerResponse,
+        sykepengerSpokelseResponse,
         tiltakspengerResponse,
         pensjonResponse,
         arbeidsavklaringspengerResponse,
