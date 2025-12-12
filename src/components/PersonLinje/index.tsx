@@ -150,7 +150,7 @@ const Personalia = ({ navn, alder, kjonn }: PersonaliaProps) => {
         <HStack align="center" gap="1">
             <PersonIcon fontSize="1.2rem" aria-hidden />
             <Heading id="personinformasjon-heading" size="xsmall" as="h2" className="capitalize font-medium">
-                {navn.toLowerCase()}
+                <BodyShort visuallyHidden>Personinformasjon:</BodyShort> {navn.toLowerCase()}
             </Heading>
             <BodyShort>
                 ({kjonn.beskrivelse}, {alder ?? 'Unkjent alder'})
