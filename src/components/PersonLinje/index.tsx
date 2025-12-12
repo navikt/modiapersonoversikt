@@ -37,7 +37,7 @@ const PersonlinjeHeader = ({ isExpanded }: { isExpanded: boolean }) => {
     return (
         <>
             <VStack gap="2" paddingBlock="2">
-                <HStack gap="1">
+                <HStack gap="1" align="center">
                     <Personalia
                         navn={navn ? `${navn.fornavn} ${navn.mellomnavn ?? ''} ${navn.etternavn}` : 'UKJENT'}
                         kjonn={kjonn}
@@ -65,8 +65,8 @@ const PersonlinjeHeader = ({ isExpanded }: { isExpanded: boolean }) => {
                             />
                         </HStack>
                     )}
+                    <Statsborgerskap />
                 </HStack>
-                <Statsborgerskap />
                 <PersonBadges />
             </VStack>
             <VStack justify="center">
