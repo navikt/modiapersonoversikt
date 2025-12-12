@@ -7,12 +7,7 @@ import { arenaURL } from 'src/components/Utbetaling/List/utils';
 
 export const UtbetalingPage = () => {
     return (
-        <HGrid
-            gap="1"
-            columns={{ xs: 1, md: 'max-content 1fr' }}
-            height="100%"
-            overflow={{ xs: 'scroll', md: 'hidden' }}
-        >
+        <HGrid gap="1" columns={{ xs: 1, md: 'max-content 1fr' }} height="100%" overflow={{ xs: 'auto', md: 'hidden' }}>
             <VStack height="100%" maxWidth={{ md: '16em' }} overflow={{ md: 'hidden' }}>
                 <HStack>
                     <Button
@@ -27,12 +22,12 @@ export const UtbetalingPage = () => {
                         Se meldekort i Arena
                     </Button>
                 </HStack>
-                <Heading size="small" visuallyHidden>
+                <Heading size="small" visuallyHidden level="2">
                     Utbetalinger
                 </Heading>
                 <UtbetalingerList />
             </VStack>
-            <VStack overflow={{ xs: 'hidden', md: 'scroll' }} className="min-h-100 md:min-h-0">
+            <VStack className="min-h-100 md:min-h-0">
                 <UtbetalingerDetailPage />
             </VStack>
         </HGrid>

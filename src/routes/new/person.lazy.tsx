@@ -32,9 +32,8 @@ function PersonLayout() {
                 <Panel order={1} className="mr-2 overflow-scroll">
                     <Box as="main" id="main-content" height="100%">
                         <VStack gap="2" height="100%">
-                            <Box flexGrow="0">
-                                <PersonLinje />
-                            </Box>
+                            <PersonLinje />
+
                             <Suspense>
                                 <Outlet />
                             </Suspense>

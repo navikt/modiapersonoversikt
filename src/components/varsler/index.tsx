@@ -9,15 +9,15 @@ export const VarslerPage = () => {
             columns={{ xs: 1, md: 'max-content 1fr' }}
             height="100%"
             width="100%"
-            overflow={{ xs: 'scroll', md: 'hidden' }}
+            overflow={{ xs: 'auto', md: 'hidden' }}
         >
             <VStack height="100%" gap="1" width="100%" maxWidth={{ md: '16em' }} overflow={{ md: 'hidden' }}>
-                <Heading size="small" visuallyHidden>
+                <Heading size="small" visuallyHidden level="2">
                     Varsler
                 </Heading>
                 <VarslerList />
             </VStack>
-            <VStack className="min-h-100 md:min-h-0" overflow={{ xs: 'hidden', md: 'scroll' }}>
+            <VStack className="min-h-100 md:min-h-0">
                 <VStack minHeight="0">
                     <VarselDetail />
                 </VStack>

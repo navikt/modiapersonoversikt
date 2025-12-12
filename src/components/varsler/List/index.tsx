@@ -48,7 +48,7 @@ const VarslerListList = () => {
 
     return (
         <>
-            <Heading className="pl-1" size="xsmall" level="2">
+            <Heading className="pl-1" size="xsmall" level="3">
                 {varsler.length} {varsler.length === 1 ? 'varsel' : 'varsler'}
             </Heading>
             <PaginatedList

@@ -167,7 +167,7 @@ const SakDetails = ({
     };
 
     return (
-        <VStack gap="2" flexGrow="1" minHeight="0" className="overflow-scroll">
+        <VStack gap="2" flexGrow="1" minHeight="0" className="overflow-auto">
             {pageView && (
                 <VStack>
                     <NorgLenke valgtSak={valgtSak} geografiskTilknytning={geografiskTilknytning} />

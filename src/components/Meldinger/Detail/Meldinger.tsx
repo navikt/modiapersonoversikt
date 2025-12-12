@@ -48,7 +48,7 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
         <Box.New
             ref={setChatAreaRef}
             height="100%"
-            overflowX="scroll"
+            overflowX="auto"
             borderColor="neutral-subtle"
             borderWidth="2 0 2 0"
             marginBlock="2"

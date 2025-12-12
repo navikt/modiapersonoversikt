@@ -7,7 +7,6 @@ import ErrorBoundary from 'src/components/ErrorBoundary';
 import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
 import { trackCloseDialog, trackOpenDialog } from 'src/utils/analytics';
 import { SendMelding } from './SendMelding';
-import { TildelteOppgaver } from './TildelteOppgaver';
 import { UbesvarteMeldinger } from './UbesvarteMeldinger';
 
 const PANEL_SIZE = 30;
@@ -78,7 +77,6 @@ export function LukkbarNyMelding() {
             <VStack height="100%" gap="2" overflow="auto">
                 <ErrorBoundary boundaryName="sendmelding">
                     <UbesvarteMeldinger />
-                    <TildelteOppgaver />
                     <SendMelding
                         lukkeKnapp={
                             <HStack gap="2">

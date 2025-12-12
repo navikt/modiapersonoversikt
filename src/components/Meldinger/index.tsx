@@ -31,7 +31,7 @@ export const MeldingerPage = () => {
                             </VStack>
                         }
                     >
-                        <Heading level="1" size="small" visuallyHidden>
+                        <Heading level="2" size="small" visuallyHidden>
                             Dialoger
                         </Heading>
                     </Suspense>

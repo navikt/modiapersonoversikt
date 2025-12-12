@@ -435,7 +435,7 @@ const UtbetalingerDetail = () => {
     const utbetalinger = useFilterUtbetalinger();
 
     return (
-        <VStack flexGrow="1" minHeight="0" maxHeight="100%" className="overflow-scroll">
+        <VStack flexGrow="1" minHeight="0" maxHeight="100%" overflow="auto">
             <Box.New>
                 <UtbetalingerSammendrag utbetalinger={utbetalinger} periode={dateRange} />
             </Box.New>

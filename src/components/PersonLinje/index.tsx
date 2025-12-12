@@ -36,32 +36,44 @@ const PersonlinjeHeader = ({ isExpanded }: { isExpanded: boolean }) => {
 
     return (
         <>
-            <VStack gap="1" paddingBlock="2">
-                <HStack gap="4">
+            <VStack gap="2" paddingBlock="2">
+                <HStack gap="1" align="center">
                     <Personalia
                         navn={navn ? `${navn.fornavn} ${navn.mellomnavn ?? ''} ${navn.etternavn}` : 'UKJENT'}
                         kjonn={kjonn}
                         alder={data.person.alder}
                     />
                     <HStack align="center" className="cursor-[initial]" onClick={(e) => e.stopPropagation()}>
-                        <BodyShort size="small">F.nr: {data.person.personIdent}</BodyShort>
-                        <CopyButton size="xsmall" copyText={data.person.personIdent} />
+                        <BodyShort size="small">
+                            <CopyButton
+                                aria-label={`Kopier f.nr: ${data.person.personIdent}`}
+                                size="xsmall"
+                                copyText={data.person.personIdent}
+                                activeText="Kopiert f.nr"
+                                text={`F.nr: ${data.person.personIdent}`}
+                            />
+                        </BodyShort>
                     </HStack>
                     {data.person.kontaktInformasjon.mobil?.value && (
                         <HStack align="center" className="cursor-[initial]" onClick={(e) => e.stopPropagation()}>
-                            <BodyShort size="small">Tlf.nr: {data.person.kontaktInformasjon.mobil.value}</BodyShort>
-                            <CopyButton size="xsmall" copyText={data.person.kontaktInformasjon.mobil.value} />
+                            <CopyButton
+                                activeText="Kopiert tlf.nr"
+                                aria-label={`Kopier tlf.nr: ${data.person.kontaktInformasjon.mobil.value}`}
+                                text={`Tlf.nr: ${data.person.kontaktInformasjon.mobil.value}`}
+                                size="xsmall"
+                                copyText={data.person.kontaktInformasjon.mobil.value}
+                            />
                         </HStack>
                     )}
+                    <Statsborgerskap />
                 </HStack>
-                <Statsborgerskap />
                 <PersonBadges />
             </VStack>
             <VStack justify="center">
                 <Button
                     className="grow-0"
                     size="small"
-                    title="Åpne personlinje"
+                    title={isExpanded ? 'Skjul personinformasjon' : 'Vis personinformasjon'}
                     icon={isExpanded ? <ChevronUpIcon aria-hidden /> : <ChevronDownIcon aria-hidden />}
                     variant="tertiary-neutral"
                 />
@@ -96,14 +108,14 @@ const PersonLinjeContent = () => {
         <>
             <Sikkerhetstiltak sikkerhetstiltak={data.person.sikkerhetstiltak} />
             <Card
+                aria-labelledby="personinformasjon-heading"
                 ref={ref}
                 as="section"
-                aria-label="personlinje"
-                className="has-[:focus]:border-ax-border-neutral-strong overflow-scroll max-h-[90vh]"
+                className={twMerge(
+                    'has-[:focus]:border-ax-border-neutral-strong',
+                    isExpanded ? 'h-full flex flex-col' : 'h-100 flex-0'
+                )}
             >
-                <Heading visuallyHidden size="xsmall" level="2">
-                    Personlinje
-                </Heading>
                 <HStack
                     onClick={() => setIsExpanded((v) => !v)}
                     paddingInline="4"
@@ -116,7 +128,8 @@ const PersonLinjeContent = () => {
                 <Box
                     className={twMerge(
                         'border-t border-ax-border-neutral-subtle transition-all duration-75',
-                        !isExpanded && 'h-0 invisible overflow-hidden'
+                        isExpanded && 'flex-1 overflow-y-auto',
+                        !isExpanded && 'h-0 invisible overflow-hidden flex-0'
                     )}
                 >
                     <PersonlinjeDetails />
@@ -136,7 +149,9 @@ const Personalia = ({ navn, alder, kjonn }: PersonaliaProps) => {
     return (
         <HStack align="center" gap="1">
             <PersonIcon fontSize="1.2rem" aria-hidden />
-            <p className="capitalize font-medium">{navn.toLowerCase()}</p>
+            <Heading id="personinformasjon-heading" size="xsmall" as="h2" className="capitalize font-medium">
+                <BodyShort visuallyHidden>Personinformasjon:</BodyShort> {navn.toLowerCase()}
+            </Heading>
             <BodyShort>
                 ({kjonn.beskrivelse}, {alder ?? 'Unkjent alder'})
             </BodyShort>
