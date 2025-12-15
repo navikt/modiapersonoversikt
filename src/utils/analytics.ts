@@ -24,7 +24,8 @@ export enum trackingEvents {
     // denne er i bruk i internflatedekoratøren, ikke bruk her
     lenkeKlikket = 'lenke klikket',
     dialogApnet = 'dialog åpnet',
-    dialogLukket = 'dialog lukket'
+    dialogLukket = 'dialog lukket',
+    brukerEndret = 'bruker endret'
 }
 
 export enum filterType {
@@ -36,6 +37,14 @@ export enum filterType {
     SOK = 'søk',
     TEMA = 'tema'
 }
+
+export const trackBrukerEndret = () => {
+    if (!window.umami) {
+        console.warn('Umami is not initialized. Ignoring');
+        return;
+    }
+    window.umami.track(trackingEvents.brukerEndret);
+};
 
 export const trackFilterEndret = (fane: string, filterType: filterType) => {
     if (!window.umami) {

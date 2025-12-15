@@ -15,6 +15,7 @@ import {
 import { useSelector } from 'react-redux';
 import { nyModiaAtom } from 'src/components/NyModia';
 import { aktivBrukerAtom } from 'src/lib/state/context';
+import { trackBrukerEndret } from 'src/utils/analytics';
 import { paths } from '../app/routes/routing';
 import type { AppState } from '../redux/reducers';
 import { type EventListener, runIfEventIsNotInsideRef } from './reactRef-utils';
@@ -89,6 +90,7 @@ export function useSettAktivBruker() {
     const setBruker = useSetAtom(aktivBrukerAtom);
     const nyModia = useAtomValue(nyModiaAtom);
     const navigate = useNavigate();
+    trackBrukerEndret();
 
     return (fnr: string | null, redirect = true) => {
         if (!fnr) {
