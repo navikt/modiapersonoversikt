@@ -360,12 +360,12 @@ export const useFilterYtelser = (): Returns => {
                 ytelseType: YtelseVedtakYtelseType.Sykepenger
             })
         );
-        sykepengerSpokelseResponse.data?.map((ytelse) =>
+        if (sykepengerSpokelseResponse.data) {
             ytelser.push({
-                ytelseData: { data: ytelse },
+                ytelseData: { data: sykepengerSpokelseResponse.data },
                 ytelseType: YtelseVedtakYtelseType.SykepengerSpokelse
-            })
-        );
+            });
+        }
         tiltakspengerResponse?.data?.map((ytelse) =>
             ytelser.push({
                 ytelseData: { data: ytelse },
