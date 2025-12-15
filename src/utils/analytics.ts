@@ -25,7 +25,8 @@ export enum trackingEvents {
     lenkeKlikket = 'lenke klikket',
     dialogApnet = 'dialog åpnet',
     dialogLukket = 'dialog lukket',
-    brukerEndret = 'bruker endret'
+    brukerEndret = 'bruker endret',
+    enhetEndret = 'enhet endret'
 }
 
 export enum filterType {
@@ -115,7 +116,7 @@ export const updateUserEnhet = (enhet: string) => {
         console.warn('Umami is not initialized. Ignoring');
         return;
     }
-
+    window.umami.track(trackingEvents.enhetEndret);
     window.umami.identify({ enhet });
 };
 
