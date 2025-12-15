@@ -20,7 +20,7 @@ jobs:
         outputs:
             image: ${{ steps.docker-build-push.outputs.image }}
         steps:
-            - uses: actions/checkout@v5
+            - uses: actions/checkout@v6
             - uses: pnpm/action-setup@v4
               with:
                 version: 9
@@ -60,7 +60,7 @@ jobs:
           contents: read
           id-token: write
         steps:
-            - uses: actions/checkout@v5
+            - uses: actions/checkout@v6
             - uses: nais/deploy/actions/deploy@v2
               env:
                   PRINT_PAYLOAD: true
@@ -78,7 +78,7 @@ jobs:
           contents: read
           id-token: write
         steps:
-            - uses: actions/checkout@v5
+            - uses: actions/checkout@v6
             - uses: nais/deploy/actions/deploy@v2
               env:
                   PRINT_PAYLOAD: true
