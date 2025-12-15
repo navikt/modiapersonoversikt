@@ -6,6 +6,7 @@ import Statsborgerskap from 'src/components/PersonLinje/Details/Familie/Statsbor
 import config from 'src/config';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { Kjonn, type KodeBeskrivelseKjonn } from 'src/lib/types/modiapersonoversikt-api';
+import { trackAccordionClosed, trackAccordionOpened } from 'src/utils/analytics';
 import useHotkey from 'src/utils/hooks/use-hotkey';
 import { useClickAway } from 'src/utils/hooks/useClickAway';
 import { twMerge } from 'tailwind-merge';
@@ -92,13 +93,22 @@ const PersonLinjeContent = () => {
 
     const lenkeNyBrukerprofil = config.isProd ? 'https://pdl-web.intern.nav.no' : 'https://pdl-web.intern.dev.nav.no';
 
-    useHotkey({ char: 'n', altKey: true }, () => setIsExpanded((v) => !v), [setIsExpanded], 'Visittkort');
+    useHotkey({ char: 'n', altKey: true }, () => setIsExpanded((v) => toggleExpand(!v)), [setIsExpanded], 'Visittkort');
     useHotkey(
         { char: 'b', altKey: true },
         () => window.open(lenkeNyBrukerprofil, '_blank', 'noopener noreferrer'),
         [lenkeNyBrukerprofil],
         'Visittkort'
     );
+
+    const toggleExpand = (expand: boolean) => {
+        if (expand) {
+            trackAccordionOpened('Visittkort');
+        } else {
+            trackAccordionClosed('Visittkort');
+        }
+        return expand;
+    };
 
     useEffect(() => {
         setIsExpanded(erPaaOversikt);
@@ -117,7 +127,7 @@ const PersonLinjeContent = () => {
                 )}
             >
                 <HStack
-                    onClick={() => setIsExpanded((v) => !v)}
+                    onClick={() => setIsExpanded((v) => toggleExpand(!v))}
                     paddingInline="4"
                     justify="space-between"
                     className="hover:bg-ax-bg-neutral-moderate-hover cursor-pointer"
