@@ -22,7 +22,7 @@ import type {
     PleiepengerArbeidsforhold,
     PleiepengerPeriode,
     PleiepengerVedtak,
-    Sykepenger,
+    Sykepenger, Utbetalingsperioder,
     VedtakDto
 } from 'src/lib/types/modiapersonoversikt-api';
 import {
@@ -44,7 +44,8 @@ type Ytelse =
     | Tiltakspenger
     | Pensjon
     | Arbeidsavklaringspenger
-    | ForeldrepengerFpSak;
+    | ForeldrepengerFpSak
+    | Utbetalingsperioder;
 
 type Placeholder = { returnOnForbidden: string; returnOnError: string; returnOnNotFound: string };
 
@@ -100,6 +101,8 @@ export function getYtelseIdDato(ytelse: YtelseVedtak): string {
             return getForeldepengerDato(ytelse.ytelseData.data as Foreldrepenger);
         case YtelseVedtakYtelseType.Sykepenger:
             return getSykepengerDato(ytelse.ytelseData.data as Sykepenger);
+        case YtelseVedtakYtelseType.SykepengerSpokelse:
+            return getSykepengerSpokelseIdDato(ytelse.ytelseData.data as Utbetalingsperioder);
         case YtelseVedtakYtelseType.Pleiepenger:
             return getPleiepengerDato(ytelse.ytelseData.data as Pleiepenger);
         case YtelseVedtakYtelseType.Tiltakspenge:
@@ -121,6 +124,8 @@ export function getUnikYtelseKey(ytelse: YtelseVedtak) {
             return getUnikForeldrepengerKey(ytelse.ytelseData.data as Foreldrepenger);
         case YtelseVedtakYtelseType.Sykepenger:
             return getUnikSykepengerKey(ytelse.ytelseData.data as Sykepenger);
+        case YtelseVedtakYtelseType.SykepengerSpokelse:
+            return getUnikSykepengerSpokelseKey(ytelse.ytelseData.data as Utbetalingsperioder);
         case YtelseVedtakYtelseType.Pleiepenger:
             return getUnikPleiepengerKey(ytelse.ytelseData.data as Pleiepenger);
         case YtelseVedtakYtelseType.Tiltakspenge:
@@ -148,6 +153,10 @@ function getUnikSykepengerKey(sykepenger: Sykepenger): string {
     return `sykepenger${getSykepengerDato(sykepenger)}`;
 }
 
+function getUnikSykepengerSpokelseKey(ytelse: Utbetalingsperioder) {
+    return `spokelse-${ytelse.utbetaltePerioder.firstOrNull()?.fom}`;
+}
+
 function getUnikTiltakspengerKey(ytelse: VedtakDto) {
     return `tiltakspenger${ytelse.vedtakId}`;
 }
@@ -162,6 +171,10 @@ function getForeldepengerDato(foreldrepenger: Foreldrepenger) {
 
 function getSykepengerDato(sykepenger: Sykepenger) {
     return sykepenger.sykmeldtFom ?? dayjs().format(backendDatoformat);
+}
+
+function getSykepengerSpokelseIdDato(ytelse: Utbetalingsperioder) {
+    return ytelse.utbetaltePerioder.firstOrNull()?.fom ?? dayjs().format(backendDatoformat);
 }
 
 function getTiltakspengerDato(ytelse: VedtakDto) {
