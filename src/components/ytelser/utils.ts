@@ -22,7 +22,8 @@ import type {
     PleiepengerArbeidsforhold,
     PleiepengerPeriode,
     PleiepengerVedtak,
-    Sykepenger, Utbetalingsperioder,
+    Sykepenger,
+    Utbetalingsperioder,
     VedtakDto
 } from 'src/lib/types/modiapersonoversikt-api';
 import {
