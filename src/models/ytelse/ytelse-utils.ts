@@ -39,7 +39,7 @@ export type Ytelse =
     | Utbetalingsperioder;
 
 export function isSykepengerSpokelse(ytelse: Ytelse): ytelse is Utbetalingsperioder {
-    return 'ytelse' in ytelse;
+    return 'utbetaltePerioder' in ytelse;
 }
 
 export function isPleiepenger(ytelse: Ytelse): ytelse is Pleiepengerettighet {
