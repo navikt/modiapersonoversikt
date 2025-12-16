@@ -98,11 +98,14 @@ function useBrukersYtelser(periode: FraTilDato): Returns {
         const foreldrepenger = foreldrepengerResponse.data?.foreldrepenger ?? [];
         const pleiepenger = pleiepengerResponse.data?.pleiepenger ?? [];
         const sykepenger = sykepengerResponse.data?.sykepenger ?? [];
-        const sykepengerSpokelse = sykepengerSpokelseResponse.data ? [sykepengerSpokelseResponse.data] : [];
         const tiltakspenger = tiltakspengerResponse.data ?? [];
         const pensjon = pensjonResponse.data ?? [];
         const arbeidsavklaringspenger = arbeidsavklaringspengerResponse.data ?? [];
         const foreldrePengerFpSak = foreldrepengerFpSakResponse.data ?? [];
+        const sykepengerSpokelse =
+            sykepengerSpokelseResponse.data && sykepengerSpokelseResponse.data.utbetaltePerioder.length > 0
+                ? [sykepengerSpokelseResponse.data]
+                : [];
 
         const ytelser = [
             ...foreldrepenger,

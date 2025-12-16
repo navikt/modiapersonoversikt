@@ -9,7 +9,7 @@ export const useSykepengerSpokelse = (
     tom: string
 ): UseQueryResult<Utbetalingsperioder, FetchError> => {
     return useQuery({
-        queryKey: ['spokelse_sykepenger', fnr],
+        queryKey: ['spokelse_sykepenger', fnr, fom, tom],
         queryFn: () =>
             post(`${apiBaseUri}/ytelse/spokelse_sykepenger`, {
                 fnr,

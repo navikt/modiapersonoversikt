@@ -360,7 +360,7 @@ export const useFilterYtelser = (): Returns => {
                 ytelseType: YtelseVedtakYtelseType.Sykepenger
             })
         );
-        if (sykepengerSpokelseResponse.data) {
+        if (sykepengerSpokelseResponse.data && sykepengerSpokelseResponse.data.utbetaltePerioder.length > 0) {
             ytelser.push({
                 ytelseData: { data: sykepengerSpokelseResponse.data },
                 ytelseType: YtelseVedtakYtelseType.SykepengerSpokelse
