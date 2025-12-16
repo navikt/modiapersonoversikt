@@ -26,7 +26,8 @@ export enum trackingEvents {
     dialogApnet = 'dialog åpnet',
     dialogLukket = 'dialog lukket',
     brukerEndret = 'bruker endret',
-    enhetEndret = 'enhet endret'
+    enhetEndret = 'enhet endret',
+    toggleNyModia = 'toggle ny modia'
 }
 
 export enum filterType {
@@ -38,6 +39,14 @@ export enum filterType {
     SOK = 'søk',
     TEMA = 'tema'
 }
+
+export const trackToggleNyModia = (erPaaNyModia: boolean) => {
+    if (!window.umami) {
+        console.warn('Umami is not initialized. Ignoring');
+        return;
+    }
+    window.umami.track(trackingEvents.toggleNyModia, { tekst: erPaaNyModia ? 'på' : 'av' });
+};
 
 export const trackBrukerEndret = () => {
     if (!window.umami) {
