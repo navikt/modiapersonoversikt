@@ -48,7 +48,7 @@ export const PaginatedList = <T, KeyType extends string | number>({
             {pages.length > 1 && (
                 <Pagination
                     srHeading={paginationSrHeading}
-                    size="small"
+                    size="xsmall"
                     page={page + 1}
                     siblingCount={0}
                     count={pageCount}
