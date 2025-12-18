@@ -131,7 +131,7 @@ function toJournalpost(req: JournalforingSak): Traad['journalposter'][number] {
         journalfortDato: dayjs().format(backendDatoTidformat),
         journalfortTema: req.temaKode as string,
         journalfortTemanavn: req.temaNavn as string,
-        journalfortSaksid: req.saksId as string
+        journalfortSaksid: req.saksIdVisning as string
     };
 }
 
