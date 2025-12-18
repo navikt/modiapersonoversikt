@@ -54,7 +54,7 @@ export const ForeldrePengerFpSakDetails = ({ ytelse }: { ytelse: ForeldrepengerF
         <VStack gap="2" minHeight="0">
             <ErrorBoundary boundaryName="foreldrePengerDetails">
                 <Card padding="4">
-                    <Heading as="h4" size="small">
+                    <Heading as="h3" size="small">
                         Om {ytelse.ytelse.toLowerCase()}
                     </Heading>
                     <TitleValuePairsComponent entries={getForeldrePengerRettenEntries(ytelse)} />

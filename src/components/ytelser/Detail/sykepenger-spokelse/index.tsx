@@ -17,8 +17,8 @@ const SykpengerPerioder = ({ ytelse }: { ytelse: Utbetalingsperioder }) => {
     };
 
     return (
-        <Card padding="4">
-            <Heading as="h4" size="small">
+        <>
+            <Heading as="h3" size="xsmall">
                 Perioder
             </Heading>
             <Accordion size="small">
@@ -33,7 +33,7 @@ const SykpengerPerioder = ({ ytelse }: { ytelse: Utbetalingsperioder }) => {
                     );
                 })}
             </Accordion>
-        </Card>
+        </>
     );
 };
 
@@ -42,11 +42,11 @@ export const SykePengerSpokelseDetails = ({ ytelse }: { ytelse: Utbetalingsperio
         <VStack gap="2" minHeight="0">
             <ErrorBoundary boundaryName="sykePengerDetails">
                 <Card padding="4">
-                    <Heading as="h4" size="small">
-                        Om sykpenger
+                    <Heading level="4" size="small" spacing>
+                        Om sykepenger
                     </Heading>
+                    <SykpengerPerioder ytelse={ytelse} />
                 </Card>
-                <SykpengerPerioder ytelse={ytelse} />
             </ErrorBoundary>
         </VStack>
     );
