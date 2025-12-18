@@ -30,3 +30,7 @@
         display: none !important;
     }
 }
+
+.aksel-pagination--invisible {
+    visibility: visible;
+}
