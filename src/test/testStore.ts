@@ -7,6 +7,7 @@ import {
     statiskForeldrepengerFpSakMock
 } from 'src/mock/ytelse/statiskForeldrepengerFpSakMock';
 import { statiskPensjonMock } from 'src/mock/ytelse/statiskPensjonMock';
+import { statiskSykepengerSpokelseMock } from 'src/mock/ytelse/statiskSykepengerSpokelseMock';
 import { type MockInstance, vi } from 'vitest';
 import type { FetchError } from '../api/api';
 import { pleiepengerTestData } from '../app/personside/infotabs/ytelser/pleiepenger/pleiepengerTestData';
@@ -39,6 +40,7 @@ import persondataResource from '../rest/resources/persondataResource';
 import * as pleiepengerResource from '../rest/resources/pleiepengerResource';
 import sakstemaResource from '../rest/resources/sakstemaResource';
 import * as sykepengerResource from '../rest/resources/sykepengerResource';
+import * as sykepengerSpokelseResource from '../rest/resources/sykepengerSpokelseResource';
 import * as tiltakspengerResource from '../rest/resources/tiltakspengerResource';
 import utbetalingerResource from '../rest/resources/utbetalingerResource';
 import varselResource from '../rest/resources/varselResource';
@@ -76,6 +78,7 @@ export function setupReactQueryMocks() {
     vi.spyOn(foreldrepengerResource, 'useForeldrepenger');
     vi.spyOn(pleiepengerResource, 'usePleiepenger');
     vi.spyOn(sykepengerResource, 'useSykepenger');
+    vi.spyOn(sykepengerSpokelseResource, 'useSykepengerSpokelse');
     vi.spyOn(tiltakspengerResource, 'useTiltakspenger');
     vi.spyOn(pensjonResource, 'usePensjon');
     vi.spyOn(arbeidsavklaringspengerReesource, 'useArbeidsavklaringspenger');
@@ -101,7 +104,8 @@ export function setupReactQueryMocks() {
         [FeatureToggles.NyModiaKnapp]: true,
         [FeatureToggles.InfotrygdForeldrepenger]: true,
         [FeatureToggles.InfotrygdPleiepenger]: true,
-        [FeatureToggles.InfotrygdSykepenger]: true
+        [FeatureToggles.InfotrygdSykepenger]: true,
+        [FeatureToggles.SpokelseSykepenger]: true
     });
     mockReactQuery(gsaktemaResource.useFetch, getMockGsakTema());
     mockReactQuery(foreldrepengerResource.useForeldrepenger, {
@@ -133,4 +137,5 @@ export function setupReactQueryMocks() {
         feil: [],
         varsler: [...statiskDittnavEventVarselMock, ...statiskDittnavEventVarselMock, ...statiskDittnavEventVarselMock]
     });
+    mockReactQuery(sykepengerSpokelseResource.useSykepengerSpokelse, statiskSykepengerSpokelseMock);
 }

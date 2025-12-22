@@ -632,6 +632,38 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       <h3
                         class="typo-undertittel"
                       >
+                        Sykepenger
+                      </h3>
+                      <p
+                        class="typo-element"
+                      >
+                        ID-dato
+                      </p>
+                      <p
+                        class="typo-normal"
+                      >
+                        01.07.2025
+                      </p>
+                    </div>
+                    <button
+                      aria-label="Vis sykepenger"
+                      aria-selected="false"
+                      class="c13"
+                    >
+                      <span
+                        class="nav-frontend-chevron chevronboks chevron--hoyre"
+                      />
+                    </button>
+                  </div>
+                </li>
+                <li>
+                  <div
+                    class="c14"
+                  >
+                    <div>
+                      <h3
+                        class="typo-undertittel"
+                      >
                         Arbeidsavklaringspenger
                       </h3>
                       <p

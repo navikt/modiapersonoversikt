@@ -10,6 +10,7 @@ import {
     usePensjon,
     usePleiepenger,
     useSykepenger,
+    useSykepengerSpokelse,
     useTiltakspenger
 } from 'src/lib/clients/modiapersonoversikt-api';
 import type {
@@ -22,19 +23,19 @@ import type {
     PleiepengerPeriode,
     PleiepengerVedtak,
     Sykepenger,
+    Utbetalingsperioder,
     VedtakDto
 } from 'src/lib/types/modiapersonoversikt-api';
 import {
     type Arbeidsavklaringspenger,
     getUnikArbeidsavklaringspengerKey
 } from 'src/models/ytelse/arbeidsavklaringspenger';
-import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
-import { ascendingDateComparator, backendDatoformat, datoStigende, datoSynkende } from 'src/utils/date-utils';
-import { formaterDato } from 'src/utils/string-utils';
-
 import { getForeldrepengerFpSakIdDato, getUnikForeldrepengerFpSakKey } from 'src/models/ytelse/foreldrepenger-fpsak';
 import type { Pensjon } from 'src/models/ytelse/pensjon';
 import type { Tiltakspenger } from 'src/models/ytelse/tiltakspenger';
+import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
+import { ascendingDateComparator, backendDatoformat, datoStigende, datoSynkende } from 'src/utils/date-utils';
+import { formaterDato } from 'src/utils/string-utils';
 
 type Ytelse =
     | Foreldrepenger
@@ -43,7 +44,8 @@ type Ytelse =
     | Tiltakspenger
     | Pensjon
     | Arbeidsavklaringspenger
-    | ForeldrepengerFpSak;
+    | ForeldrepengerFpSak
+    | Utbetalingsperioder;
 
 type Placeholder = { returnOnForbidden: string; returnOnError: string; returnOnNotFound: string };
 
@@ -99,6 +101,8 @@ export function getYtelseIdDato(ytelse: YtelseVedtak): string {
             return getForeldepengerDato(ytelse.ytelseData.data as Foreldrepenger);
         case YtelseVedtakYtelseType.Sykepenger:
             return getSykepengerDato(ytelse.ytelseData.data as Sykepenger);
+        case YtelseVedtakYtelseType.SykepengerSpokelse:
+            return getSykepengerSpokelseIdDato(ytelse.ytelseData.data as Utbetalingsperioder);
         case YtelseVedtakYtelseType.Pleiepenger:
             return getPleiepengerDato(ytelse.ytelseData.data as Pleiepenger);
         case YtelseVedtakYtelseType.Tiltakspenge:
@@ -120,6 +124,8 @@ export function getUnikYtelseKey(ytelse: YtelseVedtak) {
             return getUnikForeldrepengerKey(ytelse.ytelseData.data as Foreldrepenger);
         case YtelseVedtakYtelseType.Sykepenger:
             return getUnikSykepengerKey(ytelse.ytelseData.data as Sykepenger);
+        case YtelseVedtakYtelseType.SykepengerSpokelse:
+            return getUnikSykepengerSpokelseKey(ytelse.ytelseData.data as Utbetalingsperioder);
         case YtelseVedtakYtelseType.Pleiepenger:
             return getUnikPleiepengerKey(ytelse.ytelseData.data as Pleiepenger);
         case YtelseVedtakYtelseType.Tiltakspenge:
@@ -147,6 +153,10 @@ function getUnikSykepengerKey(sykepenger: Sykepenger): string {
     return `sykepenger${getSykepengerDato(sykepenger)}`;
 }
 
+function getUnikSykepengerSpokelseKey(ytelse: Utbetalingsperioder) {
+    return `spokelse-${ytelse.utbetaltePerioder.firstOrNull()?.fom}`;
+}
+
 function getUnikTiltakspengerKey(ytelse: VedtakDto) {
     return `tiltakspenger${ytelse.vedtakId}`;
 }
@@ -161,6 +171,10 @@ function getForeldepengerDato(foreldrepenger: Foreldrepenger) {
 
 function getSykepengerDato(sykepenger: Sykepenger) {
     return sykepenger.sykmeldtFom ?? dayjs().format(backendDatoformat);
+}
+
+function getSykepengerSpokelseIdDato(ytelse: Utbetalingsperioder) {
+    return ytelse.utbetaltePerioder.firstOrNull()?.fom ?? dayjs().format(backendDatoformat);
 }
 
 function getTiltakspengerDato(ytelse: VedtakDto) {
@@ -313,12 +327,14 @@ export const useFilterYtelser = (): Returns => {
     const pensjonResponse = usePensjon(startDato, sluttDato);
     const arbeidsavklaringspengerResponse = useArbeidsavklaringspenger(startDato, sluttDato);
     const foreldrepengerFpSakResponse = useForeldrepengerFpSak(startDato, sluttDato);
+    const sykepengerSpokelseResponse = useSykepengerSpokelse(startDato, sluttDato);
 
     return useMemo(() => {
         const pending =
             pleiepengerResponse.isLoading ||
             foreldrepengerResponse.isLoading ||
             sykepengerResponse.isLoading ||
+            sykepengerSpokelseResponse.isLoading ||
             tiltakspengerResponse.isLoading ||
             pensjonResponse.isLoading ||
             arbeidsavklaringspengerResponse.isLoading ||
@@ -343,6 +359,12 @@ export const useFilterYtelser = (): Returns => {
                 ytelseType: YtelseVedtakYtelseType.Sykepenger
             })
         );
+        if (sykepengerSpokelseResponse.data && sykepengerSpokelseResponse.data.utbetaltePerioder.length > 0) {
+            ytelser.push({
+                ytelseData: { data: sykepengerSpokelseResponse.data },
+                ytelseType: YtelseVedtakYtelseType.SykepengerSpokelse
+            });
+        }
         tiltakspengerResponse?.data?.map((ytelse) =>
             ytelser.push({
                 ytelseData: { data: ytelse },
@@ -375,6 +397,7 @@ export const useFilterYtelser = (): Returns => {
             placeholder(foreldrepengerResponse, foreldrepengerPlaceholder),
             placeholder(pleiepengerResponse, pleiepengerPlaceholder),
             placeholder(sykepengerResponse, sykepengerPlaceholder),
+            placeholder(sykepengerSpokelseResponse, sykepengerPlaceholder),
             placeholder(tiltakspengerResponse, tiltakspengerPlaceholder),
             placeholder(pensjonResponse, pensjonPlaceholder),
             placeholder(arbeidsavklaringspengerResponse, arbeidsavklaringsPengerPlaceholder),
@@ -385,6 +408,7 @@ export const useFilterYtelser = (): Returns => {
             foreldrepengerResponse.isError ||
             pleiepengerResponse.isError ||
             sykepengerResponse.isError ||
+            sykepengerSpokelseResponse.isError ||
             tiltakspengerResponse.isError ||
             pensjonResponse.isError ||
             arbeidsavklaringspengerResponse.isError ||
@@ -400,6 +424,7 @@ export const useFilterYtelser = (): Returns => {
         foreldrepengerResponse,
         pleiepengerResponse,
         sykepengerResponse,
+        sykepengerSpokelseResponse,
         tiltakspengerResponse,
         pensjonResponse,
         arbeidsavklaringspengerResponse,

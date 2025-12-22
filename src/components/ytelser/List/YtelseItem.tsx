@@ -29,6 +29,8 @@ export const YtelseItem = ({
                 return ytelse.ytelseType;
             case YtelseVedtakYtelseType.Sykepenger:
                 return ytelse.ytelseType;
+            case YtelseVedtakYtelseType.SykepengerSpokelse:
+                return YtelseVedtakYtelseType.Sykepenger;
             case YtelseVedtakYtelseType.Pleiepenger:
                 return 'Pleiepenger sykt barn';
             case YtelseVedtakYtelseType.Tiltakspenge:

@@ -5,5 +5,6 @@ export enum FeatureToggles {
     NyModiaKnapp = 'modiapersonoversikt.ny-modia-knapp',
     InfotrygdForeldrepenger = 'modiapersonoversikt.infotrygd-foreldrepenger',
     InfotrygdSykepenger = 'modiapersonoversikt.infotrygd-sykepenger',
-    InfotrygdPleiepenger = 'modiapersonoversikt.infotrygd-pleiepenger'
+    InfotrygdPleiepenger = 'modiapersonoversikt.infotrygd-pleiepenger',
+    SpokelseSykepenger = 'modiapersonoversikt.spokelse-sykepenger'
 }
