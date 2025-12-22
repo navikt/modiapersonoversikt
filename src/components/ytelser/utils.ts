@@ -30,15 +30,12 @@ import {
     type Arbeidsavklaringspenger,
     getUnikArbeidsavklaringspengerKey
 } from 'src/models/ytelse/arbeidsavklaringspenger';
-import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
-import { ascendingDateComparator, backendDatoformat, datoStigende, datoSynkende } from 'src/utils/date-utils';
-import { formaterDato } from 'src/utils/string-utils';
-
-import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
-import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 import { getForeldrepengerFpSakIdDato, getUnikForeldrepengerFpSakKey } from 'src/models/ytelse/foreldrepenger-fpsak';
 import type { Pensjon } from 'src/models/ytelse/pensjon';
 import type { Tiltakspenger } from 'src/models/ytelse/tiltakspenger';
+import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
+import { ascendingDateComparator, backendDatoformat, datoStigende, datoSynkende } from 'src/utils/date-utils';
+import { formaterDato } from 'src/utils/string-utils';
 
 type Ytelse =
     | Foreldrepenger
@@ -319,7 +316,6 @@ const placeholder = (resource: UseSuspenseQueryResult | UseBaseQueryResult, teks
 };
 
 export const useFilterYtelser = (): Returns => {
-    const { isOn } = useFeatureToggle(FeatureToggles.SpokelseSykepenger);
     const filters = useAtomValue(ytelseFilterAtom);
     const periode = filters.dateRange;
     const startDato = periode.from.format('YYYY-MM-DD');
@@ -331,13 +327,7 @@ export const useFilterYtelser = (): Returns => {
     const pensjonResponse = usePensjon(startDato, sluttDato);
     const arbeidsavklaringspengerResponse = useArbeidsavklaringspenger(startDato, sluttDato);
     const foreldrepengerFpSakResponse = useForeldrepengerFpSak(startDato, sluttDato);
-    const sykepengerSpokelseResponse = isOn
-        ? useSykepengerSpokelse(startDato, sluttDato)
-        : ({
-              isLoading: false,
-              data: undefined,
-              isError: false
-          } as unknown as UseSuspenseQueryResult<Utbetalingsperioder>);
+    const sykepengerSpokelseResponse = useSykepengerSpokelse(startDato, sluttDato);
 
     return useMemo(() => {
         const pending =
@@ -369,7 +359,7 @@ export const useFilterYtelser = (): Returns => {
                 ytelseType: YtelseVedtakYtelseType.Sykepenger
             })
         );
-        if (isOn && sykepengerSpokelseResponse.data && sykepengerSpokelseResponse.data.utbetaltePerioder.length > 0) {
+        if (sykepengerSpokelseResponse.data && sykepengerSpokelseResponse.data.utbetaltePerioder.length > 0) {
             ytelser.push({
                 ytelseData: { data: sykepengerSpokelseResponse.data },
                 ytelseType: YtelseVedtakYtelseType.SykepengerSpokelse
