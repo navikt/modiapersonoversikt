@@ -11,9 +11,9 @@ import {
     TasklistIcon
 } from '@navikt/aksel-icons';
 import { Box, Button, Heading, VStack } from '@navikt/ds-react';
-import { Link, useLocation } from '@tanstack/react-router';
+import { Link } from '@tanstack/react-router';
 import { type ComponentProps, useState } from 'react';
-import { getOpenTabFromRouterPath } from 'src/app/personside/infotabs/utils/useOpenTab';
+import { getOpenTabFromRouterPath, useOpenTab } from 'src/app/personside/infotabs/utils/useOpenTab';
 import { usePersonSideBarKotkeys } from 'src/components/usePersonSidebarHotkeys';
 import { trackingEvents } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
@@ -71,7 +71,7 @@ export const menuItems = [
 
 export const PersonSidebarMenu = () => {
     const [expanded, setExpanded] = useState(true);
-    const location = useLocation();
+    const openTab = useOpenTab();
     usePersonSideBarKotkeys();
 
     return (
@@ -118,7 +118,7 @@ export const PersonSidebarMenu = () => {
                                         name: trackingEvents.faneEndret,
                                         data: {
                                             nyFane: getOpenTabFromRouterPath(href).path,
-                                            forrigeFane: getOpenTabFromRouterPath(location.pathname).path
+                                            forrigeFane: openTab.path
                                         }
                                     }
                                 }}
