@@ -104,7 +104,8 @@ export function setupReactQueryMocks() {
         [FeatureToggles.NyModiaKnapp]: true,
         [FeatureToggles.InfotrygdForeldrepenger]: true,
         [FeatureToggles.InfotrygdPleiepenger]: true,
-        [FeatureToggles.InfotrygdSykepenger]: true
+        [FeatureToggles.InfotrygdSykepenger]: true,
+        [FeatureToggles.SpokelseSykepenger]: true
     });
     mockReactQuery(gsaktemaResource.useFetch, getMockGsakTema());
     mockReactQuery(foreldrepengerResource.useForeldrepenger, {

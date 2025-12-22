@@ -2,6 +2,9 @@ import type { UseQueryResult } from '@tanstack/react-query';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { type ReactNode, useMemo } from 'react';
 import type { FetchError } from 'src/api/api';
+import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
+import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
+import type { Utbetalingsperioder } from 'src/generated/modiapersonoversikt-api';
 import { usePersonAtomValue } from 'src/lib/state/context';
 import { type Ytelse, getYtelseIdDato } from 'src/models/ytelse/ytelse-utils';
 import type { FraTilDato } from 'src/redux/utbetalinger/types';
@@ -75,11 +78,18 @@ function placeholder(resource: UseQueryResult<any, FetchError>, tekster: Placeho
 }
 
 function useBrukersYtelser(periode: FraTilDato): Returns {
+    const { isOn } = useFeatureToggle(FeatureToggles.SpokelseSykepenger);
     const fnr = usePersonAtomValue();
     const foreldrepengerResponse = useForeldrepenger(fnr, periode.fra, periode.til);
     const pleiepengerResponse = usePleiepenger(fnr, periode.fra, periode.til);
     const sykepengerResponse = useSykepenger(fnr, periode.fra, periode.til);
-    const sykepengerSpokelseResponse = useSykepengerSpokelse(fnr, periode.fra, periode.til);
+    const sykepengerSpokelseResponse = isOn
+        ? useSykepengerSpokelse(fnr, periode.fra, periode.til)
+        : ({
+              isLoading: false,
+              data: undefined,
+              isError: false
+          } as unknown as UseQueryResult<Utbetalingsperioder, FetchError>);
     const tiltakspengerResponse = useTiltakspenger(fnr, periode.fra, periode.til);
     const pensjonResponse = usePensjon(fnr, periode.fra, periode.til);
     const arbeidsavklaringspengerResponse = useArbeidsavklaringspenger(fnr, periode.fra, periode.til);
