@@ -51,6 +51,6 @@ export function temagruppeTekst(temagruppe: Temagruppe | null) {
         case null:
             return 'Ingen temagruppe';
         default:
-            return `Ukjent temagruppe: ${temagruppe}`;
+            return `Ukjent temagruppe: ${temagruppe ?? ''}`;
     }
 }

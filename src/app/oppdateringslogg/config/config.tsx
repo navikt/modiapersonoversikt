@@ -647,8 +647,8 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                             <Heading level="3" size="xsmall" id="header-underliste-1">
                                 Nye ytelser inn i Modia personoversikt:
                             </Heading>
-                            <li>Arbeidsavklaringspenger: fra fra Kelvin og Arena</li>
-                            <li>Tiltakspenger: fra TPSAK og Arena</li>
+                            <li>Arbeidsavklaringspenger: fra Kelvin og Arena</li>
+                            <li>Tiltakspenger: fra TP-SAK og Arena</li>
                             <li>Pensjon: fra Pesys</li>
                         </ul>
                         <ul className="!list-disc" aria-labelledby="header-underliste-2">
@@ -657,10 +657,10 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                             </Heading>
 
                             <li>
-                                Foreldrepenger (foreldrepenger, engangsstøand, svangerskapspenger): fra Infotrygd og
-                                FPSAK
+                                Foreldrepenger (foreldrepenger, engangsstønad, svangerskapspenger): fra Infotrygd og
+                                FP-SAK
                             </li>
-                            <li>Sykepenger: Infotrygd og Speil</li>
+                            <li>Sykepenger: fra Infotrygd og Speil</li>
                         </ul>
                     </ul>
                 </VStack>

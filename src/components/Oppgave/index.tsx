@@ -18,7 +18,7 @@ export const OppgaverPage = () => {
                 <OppgaverList />
             </VStack>
             <VStack className="min-h-100 md:min-h-0">
-                <VStack minHeight="0" className="mt-6">
+                <VStack minHeight="0">
                     <OppgaveDetail />
                 </VStack>
             </VStack>
