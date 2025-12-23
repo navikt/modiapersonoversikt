@@ -11,7 +11,7 @@ export const PersonBadges = () => {
         <HStack align="center" gap="1" as="section" className="flex-1">
             <DodBadge dodsdato={person.dodsdato} />
             <Heading visuallyHidden size="xsmall" level="3">
-                Etiketter
+                Viktig informasjon
             </Heading>
             <DiskresjonskodeBadges adressebeskyttelser={person.adressebeskyttelse} />
             <EgenAnsattBadge erEgenansatt={person.erEgenAnsatt} />

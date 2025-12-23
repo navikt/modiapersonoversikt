@@ -37,7 +37,13 @@ const PersonlinjeHeader = ({ isExpanded }: { isExpanded: boolean }) => {
 
     return (
         <>
-            <VStack gap="2" paddingBlock="2">
+            <VStack
+                gap="2"
+                paddingBlock="2"
+                id="personlinje-header"
+                className="focus:outline-1 focus-visible:outline-0"
+                tabIndex={-1}
+            >
                 <HStack gap="1" align="center">
                     <Personalia
                         navn={navn ? `${navn.fornavn} ${navn.mellomnavn ?? ''} ${navn.etternavn}` : 'UKJENT'}
@@ -160,7 +166,7 @@ const Personalia = ({ navn, alder, kjonn }: PersonaliaProps) => {
         <HStack align="center" gap="1">
             <PersonIcon fontSize="1.2rem" aria-hidden />
             <Heading id="personinformasjon-heading" size="xsmall" as="h2" className="capitalize font-medium">
-                <BodyShort visuallyHidden>Personinformasjon:</BodyShort> {navn.toLowerCase()}
+                {navn.toLowerCase()}
             </Heading>
             <BodyShort>
                 ({kjonn.beskrivelse}, {alder ?? 'Unkjent alder'})
