@@ -1,4 +1,4 @@
-import { Alert, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { useSearch } from '@tanstack/react-router';
 import { Suspense } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
@@ -40,7 +40,7 @@ const VarslerListList = () => {
 
     if (!varsler.length) {
         return (
-            <Alert className="mr-2" variant="info">
+            <Alert className="mr-2" variant="info" role="alert">
                 Ingen varsler funnet
             </Alert>
         );
@@ -48,8 +48,9 @@ const VarslerListList = () => {
 
     return (
         <>
-            <Heading className="pl-1" size="xsmall" level="3">
+            <Heading className="pl-1" size="xsmall" level="3" aria-live="polite">
                 {varsler.length} {varsler.length === 1 ? 'varsel' : 'varsler'}
+                <BodyShort visuallyHidden>funnet</BodyShort>
             </Heading>
             <PaginatedList
                 paginationSrHeading={{

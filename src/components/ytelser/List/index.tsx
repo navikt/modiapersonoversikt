@@ -1,4 +1,4 @@
-import { Alert, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { useSearch } from '@tanstack/react-router';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { PaginatedList } from 'src/components/PaginatedList';
@@ -41,7 +41,7 @@ const YtelseList = () => {
 
     if (ytelser.length === 0) {
         return (
-            <Alert className="mr-2" variant="info">
+            <Alert className="mr-2" variant="info" role="alert">
                 Ingen ytelser funner
             </Alert>
         );
@@ -49,8 +49,9 @@ const YtelseList = () => {
 
     return (
         <>
-            <Heading className="pl-1" size="xsmall" level="3">
+            <Heading className="pl-1" size="xsmall" level="3" aria-live="polite">
                 {ytelser.length} {ytelser.length === 1 ? 'ytelse' : 'ytelser'}
+                <BodyShort visuallyHidden>funnet</BodyShort>
             </Heading>
             {placeholders.map((placeholder) => (
                 <Alert className="mr-2" variant="info" key={placeholder} size="small">

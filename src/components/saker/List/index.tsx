@@ -1,4 +1,4 @@
-import { Alert, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { useSearch } from '@tanstack/react-router';
 import { Suspense } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
@@ -39,7 +39,7 @@ const SakList = () => {
     });
     if (saker.length === 0) {
         return (
-            <Alert className="mr-2" variant="info">
+            <Alert className="mr-2" variant="info" role="alert">
                 Ingen saker funnet
             </Alert>
         );
@@ -47,8 +47,9 @@ const SakList = () => {
 
     return (
         <>
-            <Heading className="pl-1" size="xsmall" level="3">
+            <Heading className="pl-1" size="xsmall" level="3" aria-live="polite">
                 {saker.length} {saker.length === 1 ? 'sak' : 'saker'} funnet
+                <BodyShort visuallyHidden>funnet</BodyShort>
             </Heading>
             <PaginatedList
                 paginationSrHeading={{
