@@ -126,7 +126,7 @@ export const updateUserEnhet = (enhet: string) => {
         return;
     }
     window.umami.track(trackingEvents.enhetEndret);
-    window.umami.identify({ enhet });
+    window.umami.identify({ enhet: enhet.toLowerCase() });
 };
 
 export const trackOpenDialog = () => {
