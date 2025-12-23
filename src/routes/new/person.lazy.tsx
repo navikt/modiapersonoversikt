@@ -40,7 +40,11 @@ function PersonLayout() {
                         </VStack>
                     </Box>
                 </Panel>
-                <PanelResizeHandle className="hover:bg-ax-bg-neutral-moderate-hover w-1 focus:bg-ax-brand-blue-100" />
+                <PanelResizeHandle
+                    aria-hidden
+                    tabIndex={-1}
+                    className="hover:bg-ax-bg-neutral-moderate-hover w-1 focus:bg-ax-brand-blue-100"
+                />
                 <LukkbarNyMelding />
             </PanelGroup>
         </HStack>

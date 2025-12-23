@@ -1,4 +1,4 @@
-import { Alert, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { useSearch } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import { Suspense } from 'react';
@@ -44,7 +44,7 @@ const Traader = () => {
 
     if (filteredMeldinger.length === 0) {
         return (
-            <Alert variant="info" className="mr-2">
+            <Alert variant="info" className="mr-2" role="alert">
                 ingen dialoger funnet
             </Alert>
         );
@@ -52,8 +52,9 @@ const Traader = () => {
 
     return (
         <>
-            <Heading className="pl-1" size="xsmall" level="3">
+            <Heading className="pl-1" size="xsmall" level="3" role="alert">
                 {filteredMeldinger.length} {filteredMeldinger.length === 1 ? 'dialog' : 'dialoger'}
+                <BodyShort visuallyHidden>funnet</BodyShort>
             </Heading>
             <PaginatedList
                 pageSize={antallListeElementer}

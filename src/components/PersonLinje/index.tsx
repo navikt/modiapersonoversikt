@@ -2,9 +2,10 @@ import { ChevronDownIcon, ChevronUpIcon, PersonIcon } from '@navikt/aksel-icons'
 import { BodyShort, Box, Button, CopyButton, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { useLocation } from '@tanstack/react-router';
 import { Suspense, useEffect, useState } from 'react';
+import { erUbesvartHenvendelseFraBruker } from 'src/components/Meldinger/List/utils';
 import Statsborgerskap from 'src/components/PersonLinje/Details/Familie/Statsborgerskap';
 import config from 'src/config';
-import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
+import { useMeldinger, usePersonData, usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
 import { Kjonn, type KodeBeskrivelseKjonn } from 'src/lib/types/modiapersonoversikt-api';
 import { trackAccordionClosed, trackAccordionOpened } from 'src/utils/analytics';
 import useHotkey from 'src/utils/hooks/use-hotkey';
@@ -31,13 +32,17 @@ export const PersonLinje = () => (
 
 const PersonlinjeHeader = ({ isExpanded }: { isExpanded: boolean }) => {
     const { data } = usePersonData();
+    const { data: traader } = useMeldinger();
+    const { data: oppgaver } = usePersonOppgaver();
+
+    const antallUbesvarteTraader = traader?.filter((traad) => erUbesvartHenvendelseFraBruker(traad))?.length;
 
     const kjonn = data.person.kjonn.firstOrNull() ?? ukjentKjonn;
     const navn = data.person.navn.firstOrNull();
 
     return (
         <>
-            <VStack gap="2" paddingBlock="2">
+            <VStack gap="2" paddingBlock="2" id="personlinje-header" className="focus:outline-0" tabIndex={-1}>
                 <HStack gap="1" align="center">
                     <Personalia
                         navn={navn ? `${navn.fornavn} ${navn.mellomnavn ?? ''} ${navn.etternavn}` : 'UKJENT'}
@@ -69,6 +74,12 @@ const PersonlinjeHeader = ({ isExpanded }: { isExpanded: boolean }) => {
                     <Statsborgerskap />
                 </HStack>
                 <PersonBadges />
+                {oppgaver.length > 0 && (
+                    <BodyShort visuallyHidden>{`Bruker har ${oppgaver.length} åpne oppgaver`}</BodyShort>
+                )}
+                {antallUbesvarteTraader > 0 && (
+                    <BodyShort visuallyHidden>{`Bruker har ${antallUbesvarteTraader} ubesvart hendelse`}</BodyShort>
+                )}
             </VStack>
             <VStack justify="center">
                 <Button
@@ -160,7 +171,7 @@ const Personalia = ({ navn, alder, kjonn }: PersonaliaProps) => {
         <HStack align="center" gap="1">
             <PersonIcon fontSize="1.2rem" aria-hidden />
             <Heading id="personinformasjon-heading" size="xsmall" as="h2" className="capitalize font-medium">
-                <BodyShort visuallyHidden>Personinformasjon:</BodyShort> {navn.toLowerCase()}
+                {navn.toLowerCase()}
             </Heading>
             <BodyShort>
                 ({kjonn.beskrivelse}, {alder ?? 'Unkjent alder'})

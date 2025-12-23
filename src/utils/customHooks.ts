@@ -90,8 +90,6 @@ export function useSettAktivBruker() {
     const setBruker = useSetAtom(aktivBrukerAtom);
     const nyModia = useAtomValue(nyModiaAtom);
     const navigate = useNavigate();
-    trackBrukerEndret();
-
     return (fnr: string | null, redirect = true) => {
         if (!fnr) {
             navigate({ to: '/' });
@@ -100,6 +98,8 @@ export function useSettAktivBruker() {
         }
 
         setBruker(fnr);
+        trackBrukerEndret();
+
         if (
             redirect &&
             ![
@@ -111,7 +111,10 @@ export function useSettAktivBruker() {
                 paths.landingPage
             ].some((path) => location.pathname.startsWith(path))
         ) {
-            navigate({ to: nyModia ? '/new/person' : paths.personUri });
+            navigate({ to: nyModia ? '/new/person' : paths.personUri }).finally(() => {
+                // Set fokus til personlinje med viktig informasjon (for skjermlesere og tastaturbrukere)
+                document.getElementById('personlinje-header')?.focus();
+            });
         }
     };
 }
