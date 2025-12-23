@@ -48,7 +48,7 @@ const VarslerListList = () => {
 
     return (
         <>
-            <Heading className="pl-1" size="xsmall" level="3" aria-live="polite">
+            <Heading className="pl-1" size="xsmall" level="3" role="alert">
                 {varsler.length} {varsler.length === 1 ? 'varsel' : 'varsler'}
                 <BodyShort visuallyHidden>funnet</BodyShort>
             </Heading>

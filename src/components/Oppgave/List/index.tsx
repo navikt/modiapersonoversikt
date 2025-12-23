@@ -48,7 +48,7 @@ const OppgaveList = () => {
 
     return (
         <>
-            <Heading className="pl-1" size="xsmall" level="3" aria-live="polite">
+            <Heading className="pl-1" size="xsmall" level="3" role="alert">
                 {oppgaver.length} {oppgaver.length === 1 ? 'oppgave' : 'oppgaver'}
                 <BodyShort visuallyHidden>funnet</BodyShort>
             </Heading>

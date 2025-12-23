@@ -49,7 +49,7 @@ const YtelseList = () => {
 
     return (
         <>
-            <Heading className="pl-1" size="xsmall" level="3" aria-live="polite">
+            <Heading className="pl-1" size="xsmall" level="3" role="alert">
                 {ytelser.length} {ytelser.length === 1 ? 'ytelse' : 'ytelser'}
                 <BodyShort visuallyHidden>funnet</BodyShort>
             </Heading>

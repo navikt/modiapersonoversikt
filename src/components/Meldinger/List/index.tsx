@@ -52,7 +52,7 @@ const Traader = () => {
 
     return (
         <>
-            <Heading className="pl-1" size="xsmall" level="3" aria-live="polite">
+            <Heading className="pl-1" size="xsmall" level="3" role="alert">
                 {filteredMeldinger.length} {filteredMeldinger.length === 1 ? 'dialog' : 'dialoger'}
                 <BodyShort visuallyHidden>funnet</BodyShort>
             </Heading>

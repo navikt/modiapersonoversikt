@@ -47,7 +47,7 @@ const SakList = () => {
 
     return (
         <>
-            <Heading className="pl-1" size="xsmall" level="3" aria-live="polite">
+            <Heading className="pl-1" size="xsmall" level="3" role="alert">
                 {saker.length} {saker.length === 1 ? 'sak' : 'saker'} funnet
                 <BodyShort visuallyHidden>funnet</BodyShort>
             </Heading>
