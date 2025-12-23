@@ -1,5 +1,5 @@
-import { CheckmarkCircleFillIcon, ChevronRightIcon, ExclamationmarkTriangleFillIcon } from '@navikt/aksel-icons';
-import { BodyShort, HStack, Heading, VStack } from '@navikt/ds-react';
+import { CheckmarkCircleIcon, ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
+import { Detail, HStack, Label, Tag, VStack } from '@navikt/ds-react';
 import { Link, getRouteApi } from '@tanstack/react-router';
 import Card from 'src/components/Card';
 import type { VarselData } from 'src/components/varsler/List/utils';
@@ -8,6 +8,21 @@ import { formaterDato } from 'src/utils/string-utils';
 import { twMerge } from 'tailwind-merge';
 
 const routeApi = getRouteApi('/new/person/varsler');
+
+const Status = ({ varsel }: { varsel: VarselData }) => {
+    if (varsel.harFeilteVarsel) {
+        return (
+            <Tag title="Varsling feilet" variant="error-moderate" size="xsmall">
+                <ExclamationmarkTriangleIcon aria-hidden />
+            </Tag>
+        );
+    }
+    return (
+        <Tag title="Varsling vellykket" variant="success-moderate" size="xsmall">
+            <CheckmarkCircleIcon aria-hidden />
+        </Tag>
+    );
+};
 
 export const VarslerItem = ({
     varsel
@@ -36,36 +51,18 @@ export const VarslerItem = ({
                 )}
                 as="li"
             >
-                <HStack justify="space-between" gap="1" wrap={false}>
-                    <VStack justify="center" gap="1">
-                        <Heading size="xsmall" as="h3" level="3">
+                <VStack justify="center" gap="1">
+                    <HStack wrap={false} justify="space-between" align="start" gap="2">
+                        <Label size="small" as="h3">
                             {varsel.tittel}
-                        </Heading>
-                        <HStack gap="2">
-                            <BodyShort size="small" weight="semibold">
-                                Varsel datoer:
-                            </BodyShort>
-                            <BodyShort size="small">{varsel.datoer.map(formaterDato).join(', ')}</BodyShort>
-                        </HStack>
-                        <HStack gap="2">
-                            <BodyShort size="small" weight="semibold">
-                                Status:
-                            </BodyShort>
-                            {varsel.harFeilteVarsel ? (
-                                <ExclamationmarkTriangleFillIcon fontSize="1.5rem" title="Har feil" />
-                            ) : (
-                                <CheckmarkCircleFillIcon fontSize="1.5rem" title="Ok" />
-                            )}
-                        </HStack>
-                    </VStack>
-                    <VStack justify="center">
-                        <ChevronRightIcon
-                            aria-hidden
-                            fontSize="1.5rem"
-                            className="translate-x-0 group-hover:translate-x-1 transition-transform"
-                        />
-                    </VStack>
-                </HStack>
+                        </Label>
+                        <Status varsel={varsel} />
+                    </HStack>
+                    <HStack gap="2">
+                        <Detail>Varsel datoer:</Detail>
+                        <Detail>{varsel.datoer.map(formaterDato).join(', ')}</Detail>
+                    </HStack>
+                </VStack>
             </Card>
         </Link>
     );

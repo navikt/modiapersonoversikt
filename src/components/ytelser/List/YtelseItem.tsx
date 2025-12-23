@@ -1,5 +1,4 @@
-import { ChevronRightIcon } from '@navikt/aksel-icons';
-import { BodyShort, HStack, Heading, VStack } from '@navikt/ds-react';
+import { BodyShort, Detail, HStack, Label, VStack } from '@navikt/ds-react';
 import { Link, getRouteApi } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import Card from 'src/components/Card';
@@ -74,36 +73,22 @@ export const YtelseItem = ({
                     aktivYtelse === id && 'bg-ax-bg-accent-moderate-pressed border-ax-bg-accent-moderate-pressed'
                 )}
             >
-                <HStack justify="space-between" gap="1" wrap={false}>
-                    <VStack justify="center" gap="1">
-                        <Heading size="xsmall" as="h3" level="3">
-                            {getYtelseTtile()}
-                        </Heading>
+                <VStack justify="center">
+                    <Label size="small" as="h3">
+                        {getYtelseTtile()}
+                    </Label>
+                    <HStack gap="2">
+                        <Detail>{dayjs(getYtelseIdDato(ytelse)).format('DD.MM.YYYY')}</Detail>
+                    </HStack>
+                    {ytelse.ytelseType === YtelseVedtakYtelseType.Pleiepenger && (
                         <HStack gap="2">
                             <BodyShort size="small" weight="semibold">
-                                Dato:
+                                Barnets f.nr:
                             </BodyShort>
-                            <BodyShort size="small">{dayjs(getYtelseIdDato(ytelse)).format('DD.MM.YYYY')}</BodyShort>
+                            <BodyShort size="small">{getBarnetFnr(ytelse.ytelseData.data as Pleiepenger)}</BodyShort>
                         </HStack>
-                        {ytelse.ytelseType === YtelseVedtakYtelseType.Pleiepenger && (
-                            <HStack gap="2">
-                                <BodyShort size="small" weight="semibold">
-                                    Barnets f.nr:
-                                </BodyShort>
-                                <BodyShort size="small">
-                                    {getBarnetFnr(ytelse.ytelseData.data as Pleiepenger)}
-                                </BodyShort>
-                            </HStack>
-                        )}
-                    </VStack>
-                    <VStack justify="center">
-                        <ChevronRightIcon
-                            aria-hidden
-                            fontSize="1.5rem"
-                            className="translate-x-0 group-hover:translate-x-1 transition-transform"
-                        />
-                    </VStack>
-                </HStack>
+                    )}
+                </VStack>
             </Card>
         </Link>
     );

@@ -364,7 +364,7 @@ const UtbetalingerSammendrag = ({ utbetalinger, periode }: { utbetalinger: Utbet
         <Card padding="4">
             <PrinterWrapper>
                 <HStack justify="space-between">
-                    <Heading as="h3" size="small">
+                    <Heading as="h3" size="xsmall">
                         Totalt utbetalt ({utbetalingsPeriode})
                     </Heading>
                     <Button

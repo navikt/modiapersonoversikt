@@ -1,5 +1,5 @@
 import { BellIcon, ChatElipsisIcon } from '@navikt/aksel-icons';
-import { Detail, HStack, Tag, VStack } from '@navikt/ds-react';
+import { Detail, HStack, Label, Tag, VStack } from '@navikt/ds-react';
 import { Link, getRouteApi } from '@tanstack/react-router';
 import { atom, useAtomValue } from 'jotai';
 import { useMemo } from 'react';
@@ -122,12 +122,12 @@ export const TraadItem = ({
                 as="li"
             >
                 <VStack>
-                    <HStack justify="space-between" gap="1">
-                        <Detail weight="semibold" as="h3">
+                    <HStack justify="space-between" gap="1" wrap={false}>
+                        <Label size="small" as="h3">
                             <Detail visuallyHidden>Tema:</Detail>
                             {temagruppeTekst(traad.temagruppe as Temagruppe)} ({tittel})
-                        </Detail>
-                        <HStack gap="1">
+                        </Label>
+                        <HStack gap="1" align="start" justify="end" wrap={false}>
                             <UbesvartMelding traad={traad} />
                             <Antallmeldinger traad={traad} />
                         </HStack>

@@ -1,5 +1,4 @@
-import { ChevronRightIcon } from '@navikt/aksel-icons';
-import { BodyShort, HStack, Heading, VStack } from '@navikt/ds-react';
+import { Detail, HStack, Label, VStack } from '@navikt/ds-react';
 import { Link, getRouteApi } from '@tanstack/react-router';
 import Card from 'src/components/Card';
 import { formaterNOK, getUtbetalingId } from 'src/components/Utbetaling/List/utils';
@@ -37,35 +36,22 @@ export const UtbetalingItem = ({
                     aktivUtbetaling === id && 'bg-ax-bg-accent-moderate-pressed border-ax-bg-accent-moderate-pressed'
                 )}
             >
-                <HStack justify="space-between" gap="1" wrap={false}>
-                    <VStack justify="center" gap="1">
-                        <Heading size="xsmall" as="h3" level="3">
-                            {utbetaling.ytelser
-                                ?.map((item) => item.type)
-                                ?.unique()
-                                .join(', ')}
-                        </Heading>
-                        <BodyShort size="small">{formaterNOK(utbetaling.nettobelop)}</BodyShort>
-                        <HStack gap="2">
-                            <BodyShort size="small" weight="semibold">
-                                Forfallsdato:
-                            </BodyShort>
-                            <BodyShort size="small">
-                                {utbetaling.forfallsdato ? formatterDato(utbetaling.forfallsdato) : ''}
-                            </BodyShort>
-                        </HStack>
-                        <BodyShort size="small" textColor="subtle">
-                            {utbetaling.status}
-                        </BodyShort>
-                    </VStack>
-                    <VStack justify="center">
-                        <ChevronRightIcon
-                            aria-hidden
-                            fontSize="1.5rem"
-                            className="translate-x-0 group-hover:translate-x-1 transition-transform"
-                        />
-                    </VStack>
-                </HStack>
+                <VStack justify="center">
+                    <Label size="small" as="h3">
+                        {utbetaling.ytelser
+                            ?.map((item) => item.type)
+                            ?.unique()
+                            .join(', ')}
+                    </Label>
+                    <Detail weight="semibold" title="Kroner utbetalt">
+                        {formaterNOK(utbetaling.nettobelop)}
+                    </Detail>
+                    <HStack gap="1">
+                        <Detail>Forfallsdato:</Detail>
+                        <Detail>{utbetaling.forfallsdato ? formatterDato(utbetaling.forfallsdato) : ''}</Detail>
+                    </HStack>
+                    <Detail textColor="subtle">{utbetaling.status}</Detail>
+                </VStack>
             </Card>
         </Link>
     );

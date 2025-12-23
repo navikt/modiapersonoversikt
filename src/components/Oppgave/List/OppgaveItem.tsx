@@ -1,5 +1,4 @@
-import { ChevronRightIcon } from '@navikt/aksel-icons';
-import { BodyShort, HStack, Heading, VStack } from '@navikt/ds-react';
+import { Detail, HStack, Label, VStack } from '@navikt/ds-react';
 import { Link, getRouteApi } from '@tanstack/react-router';
 import Card from 'src/components/Card';
 import { getOppgaveId } from 'src/components/Oppgave/List/utils';
@@ -42,34 +41,21 @@ export const OppgaveItem = ({
                 )}
                 as="li"
             >
-                <HStack justify="space-between" gap="1" wrap={false}>
-                    <VStack justify="center" gap="1">
-                        <Heading size="xsmall" as="h3" level="3">
-                            {tema?.tekst ?? 'Ukjent tema'}
-                        </Heading>
-                        <HStack gap="2">
-                            <BodyShort size="small" weight="semibold">
-                                Oppgavetype:
-                            </BodyShort>
-                            <BodyShort size="small">{oppgavetype?.tekst ?? 'Ukjent oppgavetype'}</BodyShort>
-                        </HStack>
-                        <HStack gap="2">
-                            <BodyShort size="small" weight="semibold">
-                                Forfallsdato:
-                            </BodyShort>
-                            <BodyShort size="small">
-                                {oppgave.fristFerdigstillelse ? formatterDato(oppgave.fristFerdigstillelse) : ''}
-                            </BodyShort>
-                        </HStack>
-                    </VStack>
-                    <VStack justify="center">
-                        <ChevronRightIcon
-                            aria-hidden
-                            fontSize="1.5rem"
-                            className="translate-x-0 group-hover:translate-x-1 transition-transform"
-                        />
-                    </VStack>
-                </HStack>
+                <VStack justify="center">
+                    <Label size="small" as="h3">
+                        {tema?.tekst ?? 'Ukjent tema'}
+                    </Label>
+                    <HStack gap="1">
+                        <Detail>Oppgavetype:</Detail>
+                        <Detail>{oppgavetype?.tekst ?? 'Ukjent oppgavetype'}</Detail>
+                    </HStack>
+                    <HStack gap="1">
+                        <Detail>Forfallsdato:</Detail>
+                        <Detail>
+                            {oppgave.fristFerdigstillelse ? formatterDato(oppgave.fristFerdigstillelse) : ''}
+                        </Detail>
+                    </HStack>
+                </VStack>
             </Card>
         </Link>
     );

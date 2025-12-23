@@ -1,5 +1,6 @@
-import { ChevronRightIcon, CircleSlashIcon } from '@navikt/aksel-icons';
-import { BodyShort, HStack, Heading, VStack } from '@navikt/ds-react';
+import { CircleSlashIcon } from '@navikt/aksel-icons';
+import { FilesIcon } from '@navikt/aksel-icons';
+import { Detail, HStack, Label, Tag, VStack } from '@navikt/ds-react';
 import { Link, getRouteApi } from '@tanstack/react-router';
 import Card from 'src/components/Card';
 import { getSakId } from 'src/components/saker/utils';
@@ -7,8 +8,30 @@ import type { SaksDokumenter } from 'src/generated/modiapersonoversikt-api';
 import { trackingEvents } from 'src/utils/analytics';
 import { formatterDato } from 'src/utils/date-utils';
 import { twMerge } from 'tailwind-merge';
-
 const routeApi = getRouteApi('/new/person/saker');
+
+const AntallDokumenterBadge = ({ sak }: { sak: SaksDokumenter }) => {
+    if (!sak.tilhorendeDokumenter.length) return null;
+    return (
+        <Tag
+            title="Antall tilhørene dokumenter"
+            variant="neutral-moderate"
+            size="xsmall"
+            icon={<FilesIcon aria-hidden />}
+        >
+            {sak.tilhorendeDokumenter.length}
+        </Tag>
+    );
+};
+
+const HarIkkeTilgangBadge = ({ sak }: { sak: SaksDokumenter }) => {
+    if (sak.harTilgang) return null;
+    return (
+        <Tag title="Ikke tilgang til tema" variant="error-moderate" size="xsmall">
+            <CircleSlashIcon aria-hidden />
+        </Tag>
+    );
+};
 
 export const SakItem = ({
     sak
@@ -36,43 +59,29 @@ export const SakItem = ({
                     aktivSakId === id && 'bg-ax-bg-accent-moderate-pressed border-ax-bg-accent-moderate-pressed'
                 )}
             >
-                <HStack justify="space-between" gap="1" wrap={false}>
-                    <VStack justify="center" gap="1">
-                        <Heading size="xsmall" as="h3" level="3">
-                            {sak.temanavn}
-                        </Heading>
-                        <HStack gap="2">
-                            <BodyShort size="small" weight="semibold">
-                                SakID:
-                            </BodyShort>
-                            <BodyShort size="small">{sak.fagsaksnummer}</BodyShort>
-                        </HStack>
-                        <HStack gap="2">
-                            <BodyShort size="small" weight="semibold">
-                                Opprettet:
-                            </BodyShort>
-                            <BodyShort size="small">{sak.opprettet ? formatterDato(sak.opprettet) : ''}</BodyShort>
-                        </HStack>
-                        <HStack gap="2">
-                            <BodyShort size="small" weight="semibold">
-                                Status:
-                            </BodyShort>
-                            <BodyShort size="small">
-                                {sak.avsluttet ? `Avsluttet(${formatterDato(sak.avsluttet)})` : 'Åpen'}
-                            </BodyShort>
-                        </HStack>
-                    </VStack>
+                <HStack justify="space-between" wrap={false} gap="2">
                     <VStack justify="center">
-                        {sak.harTilgang ? (
-                            <ChevronRightIcon
-                                aria-hidden
-                                fontSize="1.5rem"
-                                className="translate-x-0 group-hover:translate-x-1 transition-transform"
-                            />
-                        ) : (
-                            <CircleSlashIcon title="Du har ikke tema tilgang" fontSize="1rem" />
-                        )}
+                        <Label as="h3" size="small">
+                            {sak.temanavn}
+                        </Label>
+
+                        <HStack gap="2">
+                            <Detail>SakID:</Detail>
+                            <Detail>{sak.fagsaksnummer}</Detail>
+                        </HStack>
+                        <HStack gap="2">
+                            <Detail>Opprettet:</Detail>
+                            <Detail>{sak.opprettet ? formatterDato(sak.opprettet) : ''}</Detail>
+                        </HStack>
+                        <HStack gap="2">
+                            <Detail>Status:</Detail>
+                            <Detail>{sak.avsluttet ? `Avsluttet(${formatterDato(sak.avsluttet)})` : 'Åpen'}</Detail>
+                        </HStack>
                     </VStack>
+                    <HStack gap="1" align="start" wrap={false}>
+                        <AntallDokumenterBadge sak={sak} />
+                        <HarIkkeTilgangBadge sak={sak} />
+                    </HStack>
                 </HStack>
             </Card>
         </Link>
