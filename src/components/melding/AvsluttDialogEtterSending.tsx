@@ -9,14 +9,16 @@ interface AvsluttDialogEtterSendingProps {
 export default function AvsluttDialogEtterSending({ meldingsType, setMeldingsType }: AvsluttDialogEtterSendingProps) {
     return (
         <VStack gap="1">
-            <CheckboxGroup legend="Avslutt dialog etter sending">
+            <CheckboxGroup size="small" legend="Avslutt dialog etter sending">
                 <Checkbox
                     value={MeldingsType.Infomelding}
                     checked={meldingsType === MeldingsType.Infomelding}
                     onChange={() => setMeldingsType(MeldingsType.Infomelding)}
                     size="small"
                 >
-                    <Label>Gjør om til infomelding</Label>
+                    <Label size="small" className="font-light">
+                        Gjør om til infomelding
+                    </Label>
                 </Checkbox>
             </CheckboxGroup>
         </VStack>
