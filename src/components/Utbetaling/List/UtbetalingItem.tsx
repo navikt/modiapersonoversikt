@@ -1,5 +1,5 @@
-import { Detail, HStack, Label, VStack } from '@navikt/ds-react';
-import { Link, getRouteApi } from '@tanstack/react-router';
+import { Detail, HStack, Label, Link, VStack } from '@navikt/ds-react';
+import { getRouteApi } from '@tanstack/react-router';
 import Card from 'src/components/Card';
 import { formaterNOK, getUtbetalingId } from 'src/components/Utbetaling/List/utils';
 import type { Utbetaling } from 'src/generated/modiapersonoversikt-api';
@@ -15,19 +15,23 @@ export const UtbetalingItem = ({
     utbetaling: Utbetaling;
 }) => {
     const aktivUtbetaling = routeApi.useSearch().id;
+    const navigate = routeApi.useNavigate();
     const id = getUtbetalingId(utbetaling);
 
-    return (
-        <Link
-            to="/new/person/utbetaling"
-            search={{ id: id }}
-            state={{
+    const onClick = () => {
+        navigate({
+            search: { id },
+            state: {
                 umamiEvent: {
                     name: trackingEvents.detaljvisningKlikket,
                     data: { fane: 'utbetaling', tekst: 'åpne utbetaling' }
                 }
-            }}
-        >
+            }
+        });
+    };
+
+    return (
+        <Link variant="neutral" className="hover:no-underline block" underline={false} onClick={onClick}>
             <Card
                 padding="2"
                 as="li"

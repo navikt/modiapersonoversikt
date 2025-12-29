@@ -1,6 +1,6 @@
 import { CheckmarkCircleIcon, ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
-import { Detail, HStack, Label, Tag, VStack } from '@navikt/ds-react';
-import { Link, getRouteApi } from '@tanstack/react-router';
+import { Detail, HStack, Label, Link, Tag, VStack } from '@navikt/ds-react';
+import { getRouteApi } from '@tanstack/react-router';
 import Card from 'src/components/Card';
 import type { VarselData } from 'src/components/varsler/List/utils';
 import { trackingEvents } from 'src/utils/analytics';
@@ -30,18 +30,22 @@ export const VarslerItem = ({
     varsel: VarselData;
 }) => {
     const aktivVarsel = routeApi.useSearch().id;
+    const navigate = routeApi.useNavigate();
 
-    return (
-        <Link
-            to="/new/person/varsler"
-            search={{ id: varsel.eventId }}
-            state={{
+    const onClick = () => {
+        navigate({
+            search: { id: varsel.eventId },
+            state: {
                 umamiEvent: {
                     name: trackingEvents.detaljvisningKlikket,
                     data: { fane: 'varsler', tekst: 'vis varsel' }
                 }
-            }}
-        >
+            }
+        });
+    };
+
+    return (
+        <Link variant="neutral" className="hover:no-underline block" underline={false} onClick={onClick}>
             <Card
                 padding="2"
                 className={twMerge(
