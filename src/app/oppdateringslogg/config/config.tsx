@@ -1,4 +1,3 @@
-import { Heading, VStack } from '@navikt/ds-react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import type { OppdateringsloggInnslag } from '../OppdateringsloggContainer';
 import AutofullforBarnetrygd from './img/autofullfor-barnetrygd.png';
@@ -24,7 +23,6 @@ import LestDatoSak from './img/lest-dato-sak.png';
 import MarkeringDodeBarnBilde from './img/markering-dode-barn.png';
 import MeldingsVisning from './img/meldinger.png';
 import NotifikasjonKanal from './img/notifikasjon-kanal.png';
-import NyeYtelser from './img/nye_ytelser.png';
 import OppdateringsloggKnappBilde from './img/oppdateringslogg-knapp.jpg';
 import OppgaveDestinasjon from './img/oppgave-destinasjon.png';
 import OppslagPaaInaktivIdent from './img/oppslag-paa-inaktiv-ident.png';
@@ -629,43 +627,6 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                 </>
             ),
             src: Gjeldende14aVedtak
-        },
-        {
-            id: 38,
-            tittel: 'Oppdatering ytelser',
-            dato: new Date('2025-12-23 12:00'),
-            aktiv: true,
-            ingress: null,
-            beskrivelse: (
-                <VStack justify="start" gap="4">
-                    <p className="font-ax-bold">
-                        Vi har de siste månedene gjort noen endringer på dataen som er tilgjengelig i Modia
-                        personoversikt:
-                    </p>
-                    <ul className="!list-disc mb-4" aria-labelledby="header-underliste-1">
-                        <ul className="!list-disc mb-4">
-                            <Heading level="3" size="xsmall" id="header-underliste-1">
-                                Nye ytelser inn i Modia personoversikt:
-                            </Heading>
-                            <li>Arbeidsavklaringspenger: fra Kelvin og Arena</li>
-                            <li>Tiltakspenger: fra TP-SAK og Arena</li>
-                            <li>Pensjon: fra Pesys</li>
-                        </ul>
-                        <ul className="!list-disc" aria-labelledby="header-underliste-2">
-                            <Heading level="3" size="xsmall" id="header-underliste-2">
-                                Ytelser vi viser alle vedtak på, men datainnholdet er mer begrenset enn før:
-                            </Heading>
-
-                            <li>
-                                Foreldrepenger (foreldrepenger, engangsstønad, svangerskapspenger): fra Infotrygd og
-                                FP-SAK
-                            </li>
-                            <li>Sykepenger: fra Infotrygd og Speil</li>
-                        </ul>
-                    </ul>
-                </VStack>
-            ),
-            src: NyeYtelser
         }
     ];
 }
