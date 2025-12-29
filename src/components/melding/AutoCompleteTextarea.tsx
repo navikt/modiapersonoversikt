@@ -1,16 +1,13 @@
-import { Alert, HStack, Textarea, VStack } from '@navikt/ds-react';
+import { Alert, Textarea } from '@navikt/ds-react';
 import {
     type ChangeEvent,
     type ComponentProps,
     type KeyboardEvent,
     type RefObject,
     useCallback,
-    useRef,
     useState
 } from 'react';
 import { rapporterBruk } from 'src/app/personside/dialogpanel/sendMelding/standardTekster/sokUtils';
-import AutoCompleteTekstTips from 'src/components/melding/standardtekster/AutoCompleteTekstTips';
-import StandardTekstModal from 'src/components/melding/standardtekster/StandardTeksterModal';
 import { useStandardTekster } from 'src/lib/clients/skrivestotte';
 import { Locale, type Tekst } from 'src/lib/types/skrivestotte';
 import { loggEvent } from 'src/utils/logger/frontendLogger';
@@ -47,25 +44,6 @@ function autoFullfor(autofullforData: AutofullforData, parsedText: string) {
     return autofullfor(parsedText, autofullforMap);
 }
 
-const settInnStandardTekst = (
-    standardTekst: string,
-    textAreaRef: RefObject<HTMLTextAreaElement | null>,
-    onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void
-) => {
-    if (!textAreaRef.current) return;
-    textAreaRef.current.value =
-        !textAreaRef.current.value || textAreaRef.current.value === ''
-            ? standardTekst
-            : `${textAreaRef.current.value}\n${standardTekst}`;
-
-    const syntheticEvent = {
-        target: textAreaRef.current,
-        currentTarget: textAreaRef.current
-    } as ChangeEvent<HTMLTextAreaElement>;
-
-    onChange?.(syntheticEvent);
-};
-
 function asChangeEvent<T>(event: KeyboardEvent<T>): ChangeEvent<T> {
     if (event.target && event.target === event.currentTarget) {
         return event as unknown as ChangeEvent<T>;
@@ -73,9 +51,9 @@ function asChangeEvent<T>(event: KeyboardEvent<T>): ChangeEvent<T> {
     throw new Error('Not equals at all');
 }
 
-type Props = ComponentProps<typeof Textarea>;
+type Props = ComponentProps<typeof Textarea> & { ref?: RefObject<HTMLTextAreaElement | null> };
 
-function AutocompleteTextarea({ onChange, description, ...rest }: Props) {
+function AutocompleteTextarea({ onChange, description, ref, ...rest }: Props) {
     const autofullforData = useAutoFullforData();
     const [feilmelding, settFeilmelding] = useState<string>();
     const standardtekster = useStandardTekster();
@@ -140,29 +118,9 @@ function AutocompleteTextarea({ onChange, description, ...rest }: Props) {
         [autofullforData, onChange, standardtekster]
     );
 
-    const textAreaRef = useRef<HTMLTextAreaElement>(null);
     return (
         <>
-            <Textarea
-                ref={textAreaRef}
-                onKeyDown={onKeyDown}
-                description={
-                    <VStack gap="2">
-                        {description}
-                        <HStack gap="1">
-                            <AutoCompleteTekstTips />
-                            <StandardTekstModal
-                                textAreaRef={textAreaRef}
-                                submitTekst={(standardTekst) =>
-                                    settInnStandardTekst(standardTekst, textAreaRef, onChange)
-                                }
-                            />
-                        </HStack>
-                    </VStack>
-                }
-                onChange={onChange}
-                {...rest}
-            />
+            <Textarea ref={ref} onKeyDown={onKeyDown} description={description} onChange={onChange} {...rest} />
             {feilmelding && (
                 <Alert variant="error" inline size="small">
                     {feilmelding}

@@ -37,8 +37,8 @@ const SendMeldingContent = ({ lukkeKnapp }: Props) => {
     return (
         <Card padding="2" as="section" aria-label="Dialogpanel">
             <HStack justify="space-between">
-                <Heading level="2" size="medium">
-                    {oppgave ? continueText : 'Send ny dialog'}
+                <Heading level="2" size="small">
+                    {oppgave ? continueText : 'Ny dialog'}
                 </Heading>
                 {lukkeKnapp}
             </HStack>
@@ -49,7 +49,7 @@ const SendMeldingContent = ({ lukkeKnapp }: Props) => {
                     ) : (
                         <Alert variant="warning">Fant ikke dialogen under arbeid</Alert>
                     )}
-                    <HStack justify="center" marginBlock="4">
+                    <HStack justify="center" marginBlock="1">
                         <Button variant="tertiary" size="small" onClick={cancelOppgave}>
                             Avbryt
                         </Button>

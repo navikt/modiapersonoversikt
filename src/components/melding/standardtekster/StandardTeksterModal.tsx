@@ -1,4 +1,4 @@
-import { FileTextFillIcon } from '@navikt/aksel-icons';
+import { FileTextIcon } from '@navikt/aksel-icons';
 import { Button, Modal } from '@navikt/ds-react';
 import { type RefObject, useRef } from 'react';
 import StandardTekster from 'src/components/melding/standardtekster/StandardTekster';
@@ -21,9 +21,9 @@ function StandardTekstModal({
     return (
         <div>
             <Button
-                variant="secondary"
+                variant="tertiary"
                 size="small"
-                icon={<FileTextFillIcon fill="" title="Åpne og velg standardtekst modal" fontSize="1.5rem" />}
+                icon={<FileTextIcon title="Vis standardtekster" />}
                 onClick={(e) => {
                     e.preventDefault();
                     modalRef.current?.showModal();

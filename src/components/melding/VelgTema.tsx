@@ -13,6 +13,7 @@ export default function VelgTema({ valgtTema, setValgtTema, error }: VelgTemaPro
         <VStack gap="1">
             <Select
                 label="Temagruppe"
+                hideLabel
                 onChange={(e) => {
                     setValgtTema(e.target.value as Temagruppe);
                 }}

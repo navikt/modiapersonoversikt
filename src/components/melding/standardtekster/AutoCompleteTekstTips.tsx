@@ -1,4 +1,4 @@
-import { InformationIcon } from '@navikt/aksel-icons';
+import { SparklesIcon } from '@navikt/aksel-icons';
 import { Button, Modal } from '@navikt/ds-react';
 import { useRef } from 'react';
 
@@ -7,9 +7,9 @@ function AutoCompleteTekstTips() {
     return (
         <div>
             <Button
-                variant="secondary"
+                variant="tertiary"
                 size="small"
-                icon={<InformationIcon title="Åpne modal med autofullfør tips" />}
+                icon={<SparklesIcon title="Hurtigtast-tips" />}
                 onClick={(e) => {
                     e.preventDefault();
                     modalRef?.current?.showModal();
