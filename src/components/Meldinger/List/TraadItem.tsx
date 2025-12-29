@@ -1,6 +1,6 @@
 import { BellIcon, ChatElipsisIcon } from '@navikt/aksel-icons';
-import { Detail, HStack, Label, Tag, VStack } from '@navikt/ds-react';
-import { Link, getRouteApi } from '@tanstack/react-router';
+import { Detail, HStack, Label, Link, Tag, VStack } from '@navikt/ds-react';
+import { getRouteApi } from '@tanstack/react-router';
 import { atom, useAtomValue } from 'jotai';
 import { useMemo } from 'react';
 import Card from 'src/components/Card';
@@ -99,18 +99,27 @@ export const TraadItem = ({
     const datoTekst = getFormattertMeldingsDato(sisteMelding);
     const tittel = traadstittel(traad);
     const aktivTraad = routeApi.useSearch().traadId;
+    const navigate = routeApi.useNavigate();
 
-    return (
-        <Link
-            data-testid="traaditem"
-            to="/new/person/meldinger"
-            search={{ traadId: traad.traadId }}
-            state={{
+    const onClick = () => {
+        navigate({
+            search: { traadId: traad.traadId },
+            state: {
                 umamiEvent: {
                     name: trackingEvents.detaljvisningKlikket,
                     data: { fane: 'meldinger', tekst: 'åpne melding' }
                 }
-            }}
+            }
+        });
+    };
+
+    return (
+        <Link
+            data-testid="traaditem"
+            variant="neutral"
+            className="hover:no-underline block"
+            underline={false}
+            onClick={onClick}
         >
             <Card
                 padding="2"

@@ -1,5 +1,5 @@
-import { BodyShort, Detail, HStack, Label, VStack } from '@navikt/ds-react';
-import { Link, getRouteApi } from '@tanstack/react-router';
+import { BodyShort, Detail, HStack, Label, Link, VStack } from '@navikt/ds-react';
+import { getRouteApi } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import Card from 'src/components/Card';
 import { type YtelseVedtak, getUnikYtelseKey, getYtelseIdDato } from 'src/components/ytelser/utils';
@@ -20,6 +20,7 @@ export const YtelseItem = ({
     ytelse: YtelseVedtak;
 }) => {
     const aktivYtelse = routeApi.useSearch().id;
+    const navigate = routeApi.useNavigate();
     const id = getUnikYtelseKey(ytelse);
 
     const getYtelseTtile = () => {
@@ -54,17 +55,20 @@ export const YtelseItem = ({
 
     const getBarnetFnr = (pleiepenger: Pleiepenger) => pleiepenger.barnet;
 
-    return (
-        <Link
-            to="/new/person/ytelser"
-            search={{ id }}
-            state={{
+    const onClick = () => {
+        navigate({
+            search: { id },
+            state: {
                 umamiEvent: {
                     name: trackingEvents.detaljvisningKlikket,
                     data: { fane: 'ytelser', tekst: ytelse.ytelseType.toLowerCase() }
                 }
-            }}
-        >
+            }
+        });
+    };
+
+    return (
+        <Link variant="neutral" className="hover:no-underline block" underline={false} onClick={onClick}>
             <Card
                 padding="2"
                 as="li"

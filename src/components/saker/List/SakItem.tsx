@@ -1,7 +1,7 @@
 import { CircleSlashIcon } from '@navikt/aksel-icons';
 import { FilesIcon } from '@navikt/aksel-icons';
-import { Detail, HStack, Label, Tag, VStack } from '@navikt/ds-react';
-import { Link, getRouteApi } from '@tanstack/react-router';
+import { Detail, HStack, Label, Link, Tag, VStack } from '@navikt/ds-react';
+import { getRouteApi } from '@tanstack/react-router';
 import Card from 'src/components/Card';
 import { getSakId } from 'src/components/saker/utils';
 import type { SaksDokumenter } from 'src/generated/modiapersonoversikt-api';
@@ -39,19 +39,23 @@ export const SakItem = ({
     sak: SaksDokumenter;
 }) => {
     const aktivSakId = routeApi.useSearch().id;
+    const navigate = routeApi.useNavigate();
     const id = getSakId(sak);
 
-    return (
-        <Link
-            to="/new/person/saker"
-            search={{ id }}
-            state={{
+    const onClick = () => {
+        navigate({
+            search: { id },
+            state: {
                 umamiEvent: {
                     name: trackingEvents.detaljvisningKlikket,
                     data: { fane: 'saker', tekst: 'åpne sak' }
                 }
-            }}
-        >
+            }
+        });
+    };
+
+    return (
+        <Link variant="neutral" className="hover:no-underline block" underline={false} onClick={onClick}>
             <Card
                 padding="2"
                 className={twMerge(
