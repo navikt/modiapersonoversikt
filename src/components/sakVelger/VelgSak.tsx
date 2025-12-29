@@ -1,4 +1,3 @@
-import { PlusIcon } from '@navikt/aksel-icons';
 import { Alert, Button, HGrid, Label, Modal, Tag, VStack } from '@navikt/ds-react';
 import { type ReactNode, useState } from 'react';
 import SakVelger from 'src/components/sakVelger/SakVelger';
@@ -16,7 +15,9 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
 
     return (
         <VStack gap="1">
-            <Label htmlFor="knytt-dialog-til-sak">Knytt dialogen til en sak</Label>
+            <Label size="small" htmlFor="knytt-dialog-til-sak">
+                Knytt dialogen til en sak
+            </Label>
             <VStack gap="2">
                 <div className="max-w-30">
                     <Button
@@ -25,7 +26,6 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
                         variant="secondary"
                         size="small"
                         onClick={() => setVelgSakModalOpen(true)}
-                        icon={<PlusIcon aria-hidden />}
                         iconPosition="left"
                     >
                         Velg sak
