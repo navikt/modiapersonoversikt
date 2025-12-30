@@ -1,4 +1,4 @@
-import { ChevronDownIcon, ChevronUpIcon, PersonIcon } from '@navikt/aksel-icons';
+import { ChevronDownIcon, ChevronUpIcon, FigureInwardIcon, FigureOutwardIcon } from '@navikt/aksel-icons';
 import { BodyShort, Box, Button, CopyButton, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { useLocation } from '@tanstack/react-router';
 import { Suspense, useEffect, useState } from 'react';
@@ -6,7 +6,7 @@ import { erUbesvartHenvendelseFraBruker } from 'src/components/Meldinger/List/ut
 import Statsborgerskap from 'src/components/PersonLinje/Details/Familie/Statsborgerskap';
 import config from 'src/config';
 import { useMeldinger, usePersonData, usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
-import { Kjonn, type KodeBeskrivelseKjonn } from 'src/lib/types/modiapersonoversikt-api';
+import { type Dodsdato, Kjonn, type KodeBeskrivelseKjonn } from 'src/lib/types/modiapersonoversikt-api';
 import { trackAccordionClosed, trackAccordionOpened } from 'src/utils/analytics';
 import useHotkey from 'src/utils/hooks/use-hotkey';
 import { useClickAway } from 'src/utils/hooks/useClickAway';
@@ -48,6 +48,7 @@ const PersonlinjeHeader = ({ isExpanded }: { isExpanded: boolean }) => {
                         navn={navn ? `${navn.fornavn} ${navn.mellomnavn ?? ''} ${navn.etternavn}` : 'UKJENT'}
                         kjonn={kjonn}
                         alder={data.person.alder}
+                        dodsDato={data.person.dodsdato}
                     />
                     <HStack align="center" className="cursor-[initial]" onClick={(e) => e.stopPropagation()}>
                         <BodyShort size="small">
@@ -164,17 +165,44 @@ type PersonaliaProps = {
     navn: string;
     alder?: number;
     kjonn: KodeBeskrivelseKjonn;
+    dodsDato?: Dodsdato[];
 };
 
-const Personalia = ({ navn, alder, kjonn }: PersonaliaProps) => {
+const Personalia = ({ navn, alder, kjonn, dodsDato }: PersonaliaProps) => {
+    const dato = dodsDato?.firstOrNull();
+    const erDod = !!dato?.dodsdato;
+
+    const farge = erDod
+        ? 'var(--ax-text-neutral-subtle)'
+        : kjonn.kode === Kjonn.K
+          ? 'var(--ax-bg-meta-purple-strong-pressed)'
+          : kjonn.kode === Kjonn.M
+            ? 'var(--ax-text-accent-decoration)'
+            : 'var(--ax-text-neutral-subtle)';
+
     return (
         <HStack align="center" gap="1">
-            <PersonIcon fontSize="1.2rem" aria-hidden />
-            <Heading id="personinformasjon-heading" size="xsmall" as="h2" className="capitalize font-medium">
-                {navn.toLowerCase()}
-            </Heading>
-            <BodyShort>
-                ({kjonn.beskrivelse}, {alder ?? 'Unkjent alder'})
+            <HStack gap="3" align="center">
+                <Box.New borderRadius="full" borderWidth="2" style={{ borderColor: farge }}>
+                    {kjonn.kode === Kjonn.K ? (
+                        <FigureOutwardIcon aria-hidden color={farge} fontSize="2rem" />
+                    ) : (
+                        <FigureInwardIcon aria-hidden color={farge} fontSize="2rem" />
+                    )}
+                </Box.New>
+
+                <Heading
+                    id="personinformasjon-heading"
+                    size="xsmall"
+                    as="h2"
+                    style={{ color: farge }}
+                    className="capitalize font-medium"
+                >
+                    {navn.toLowerCase()}
+                </Heading>
+            </HStack>
+            <BodyShort style={{ color: farge }}>
+                ({kjonn.beskrivelse}, {erDod ? 'død' : (alder ?? 'Ukjent alder')})
             </BodyShort>
         </HStack>
     );
