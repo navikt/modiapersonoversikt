@@ -99,6 +99,8 @@ export function useSettAktivBruker() {
 
         setBruker(fnr);
         trackBrukerEndret();
+        // Set fokus til personlinje med viktig informasjon (for skjermlesere og tastaturbrukere)
+        document.getElementById('personlinje-header')?.focus();
 
         if (
             redirect &&
@@ -112,7 +114,6 @@ export function useSettAktivBruker() {
             ].some((path) => location.pathname.startsWith(path))
         ) {
             navigate({ to: nyModia ? '/new/person' : paths.personUri }).finally(() => {
-                // Set fokus til personlinje med viktig informasjon (for skjermlesere og tastaturbrukere)
                 document.getElementById('personlinje-header')?.focus();
             });
         }
