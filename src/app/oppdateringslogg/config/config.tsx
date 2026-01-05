@@ -33,6 +33,7 @@ import Samtalemaler from './img/samtalemaler.png';
 import VisningSikkerhetstiltak from './img/sikkerhetstiltakt-popup.png';
 import SladdEnkeltmelding from './img/sladdEnkeltmelding.png';
 import SladdeArsak from './img/sladde-arsak.png';
+import Speil from './img/speil.png';
 import SvarAvslutterDialog from './img/svar-avslutter-dialog.png';
 import TemaHelseBilde from './img/temaHelse.jpg';
 import UtenlandskIDBilde from './img/utenlandskID.jpg';
@@ -633,7 +634,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
         {
             id: 38,
             tittel: 'Oppdatering ytelser',
-            dato: new Date('2025-12-23 12:00'),
+            dato: new Date('2025-01-06 12:00'),
             aktiv: true,
             ingress: null,
             beskrivelse: (
@@ -666,6 +667,25 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                 </VStack>
             ),
             src: NyeYtelser
+        },
+        {
+            id: 39,
+            tittel: 'Oppdatering sykepenger',
+            dato: new Date('2025-01-06 12:00'),
+            aktiv: true,
+            ingress: null,
+            beskrivelse: (
+                <>
+                    <Normaltekst>
+                        Ytelsen sykepenger vil ikke lenger inneholde informasjon om sykemelding og arbeidssituasjon. Det
+                        er kun utbetalingsperioder og grad for periodene som vil bli synlig i Modia personoversikt. Mer
+                        informasjon finnes i andre fagsystem angående sykepenger og sykefravær. Denne endringen skjer
+                        grunnet overgang fra Infotrygd til Speil. Vi jobber med å få på plass mer informasjon om ytelsen
+                        på sikt.
+                    </Normaltekst>
+                </>
+            ),
+            src: Speil
         }
     ];
 }
