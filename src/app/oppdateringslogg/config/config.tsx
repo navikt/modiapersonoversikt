@@ -647,7 +647,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                             <Heading level="3" size="xsmall" id="header-underliste-1">
                                 Nye ytelser inn i Modia personoversikt:
                             </Heading>
-                            <li>Arbeidsavklaringspenger: fra fra Kelvin og Arena</li>
+                            <li>Arbeidsavklaringspenger: fra Kelvin og Arena</li>
                             <li>Tiltakspenger: fra TPSAK og Arena</li>
                             <li>Pensjon: fra Pesys</li>
                         </ul>
