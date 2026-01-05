@@ -1,10 +1,11 @@
 import { Box, ExpansionCard, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
-import { atom, useAtom, useAtomValue } from 'jotai';
-import { atomWithReset } from 'jotai/utils';
+import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { RESET, atomWithReset } from 'jotai/utils';
 import { xor } from 'lodash';
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import DateRangeSelector, { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
+import { usePersonAtomValue } from 'src/lib/state/context';
 import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
 import { filterType, trackExpansionCardApnet, trackExpansionCardLukket, trackFilterEndret } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
@@ -93,8 +94,14 @@ const FilterTitle = () => {
 };
 
 export const YtelserListFilter = () => {
+    const setFilter = useSetAtom(ytelseFilterAtom);
     const [open, setOpen] = useState(false);
+    const fnr = usePersonAtomValue();
     const expansionFilterRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        setFilter(RESET);
+    }, [fnr]);
 
     const handleExpansionChange = () => {
         setTimeout(() => {

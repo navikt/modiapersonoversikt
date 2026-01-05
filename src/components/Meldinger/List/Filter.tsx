@@ -10,13 +10,14 @@ import {
     UNSAFE_Combobox,
     VStack
 } from '@navikt/ds-react';
-import { atom, useAtom, useAtomValue } from 'jotai';
-import { atomWithReset, useResetAtom } from 'jotai/utils';
+import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { RESET, atomWithReset, useResetAtom } from 'jotai/utils';
 import { debounce, isEqual, xor } from 'lodash';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import DateRangeSelector from 'src/components/DateFilters/DatePeriodSelector';
 import type { DateRange } from 'src/components/DateFilters/types';
 import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
+import { usePersonAtomValue } from 'src/lib/state/context';
 import { Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { filterType, trackExpansionCardApnet, trackExpansionCardLukket, trackFilterEndret } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
@@ -206,8 +207,14 @@ const ResetFilters = () => {
 };
 
 export const TraadListFilterCard = () => {
+    const setFilter = useSetAtom(meldingerFilterAtom);
     const [open, setOpen] = useState(false);
+    const fnr = usePersonAtomValue();
     const expansionFilterRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        setFilter(RESET);
+    }, [fnr]);
 
     const handleExpansionChange = () => {
         setTimeout(() => {

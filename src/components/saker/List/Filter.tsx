@@ -1,12 +1,13 @@
 import { Box, ExpansionCard, Fieldset, Search, Skeleton, Switch, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
-import { atom, useAtom, useAtomValue } from 'jotai';
-import { atomWithReset } from 'jotai/utils';
+import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { RESET, atomWithReset } from 'jotai/utils';
 import { debounce, xor } from 'lodash';
 import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import DateRangeSelector, { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
 import { sakStatuser, useTemaer } from 'src/components/saker/utils';
 import type { DokumentmetadataAvsender } from 'src/generated/modiapersonoversikt-api';
+import { usePersonAtomValue } from 'src/lib/state/context';
 import { filterType, trackExpansionCardApnet, trackExpansionCardLukket, trackFilterEndret } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
 
@@ -192,8 +193,14 @@ const FilterTitle = () => {
 };
 
 export const SakerFilter = () => {
+    const setFilter = useSetAtom(sakerFilterAtom);
     const [open, setOpen] = useState(false);
+    const fnr = usePersonAtomValue();
     const expansionFilterRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        setFilter(RESET);
+    }, [fnr]);
 
     const handleExpansionChange = () => {
         setTimeout(() => {
