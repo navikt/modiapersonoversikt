@@ -1,3 +1,4 @@
+import { Heading, VStack } from '@navikt/ds-react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import type { OppdateringsloggInnslag } from '../OppdateringsloggContainer';
 import AutofullforBarnetrygd from './img/autofullfor-barnetrygd.png';
@@ -23,6 +24,7 @@ import LestDatoSak from './img/lest-dato-sak.png';
 import MarkeringDodeBarnBilde from './img/markering-dode-barn.png';
 import MeldingsVisning from './img/meldinger.png';
 import NotifikasjonKanal from './img/notifikasjon-kanal.png';
+import NyeYtelser from './img/nye_ytelser.png';
 import OppdateringsloggKnappBilde from './img/oppdateringslogg-knapp.jpg';
 import OppgaveDestinasjon from './img/oppgave-destinasjon.png';
 import OppslagPaaInaktivIdent from './img/oppslag-paa-inaktiv-ident.png';
@@ -31,6 +33,7 @@ import Samtalemaler from './img/samtalemaler.png';
 import VisningSikkerhetstiltak from './img/sikkerhetstiltakt-popup.png';
 import SladdEnkeltmelding from './img/sladdEnkeltmelding.png';
 import SladdeArsak from './img/sladde-arsak.png';
+import Speil from './img/speil.png';
 import SvarAvslutterDialog from './img/svar-avslutter-dialog.png';
 import TemaHelseBilde from './img/temaHelse.jpg';
 import UtenlandskIDBilde from './img/utenlandskID.jpg';
@@ -627,6 +630,62 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                 </>
             ),
             src: Gjeldende14aVedtak
+        },
+        {
+            id: 38,
+            tittel: 'Oppdatering ytelser',
+            dato: new Date('2025-01-06 12:00'),
+            aktiv: true,
+            ingress: null,
+            beskrivelse: (
+                <VStack justify="start" gap="4">
+                    <p className="font-ax-bold">
+                        Vi har de siste månedene gjort noen endringer på dataen som er tilgjengelig i Modia
+                        personoversikt:
+                    </p>
+                    <ul className="!list-disc mb-4" aria-labelledby="header-underliste-1">
+                        <ul className="!list-disc mb-4">
+                            <Heading level="3" size="xsmall" id="header-underliste-1">
+                                Nye ytelser inn i Modia personoversikt:
+                            </Heading>
+                            <li>Arbeidsavklaringspenger: fra Kelvin og Arena</li>
+                            <li>Tiltakspenger: fra TPSAK og Arena</li>
+                            <li>Pensjon: fra Pesys</li>
+                        </ul>
+                        <ul className="!list-disc" aria-labelledby="header-underliste-2">
+                            <Heading level="3" size="xsmall" id="header-underliste-2">
+                                Ytelser vi viser alle vedtak på, men datainnholdet er mer begrenset enn før:
+                            </Heading>
+
+                            <li>
+                                Foreldrepenger (foreldrepenger, engangsstøand, svangerskapspenger): fra Infotrygd og
+                                FPSAK
+                            </li>
+                            <li>Sykepenger: Infotrygd og Speil</li>
+                        </ul>
+                    </ul>
+                </VStack>
+            ),
+            src: NyeYtelser
+        },
+        {
+            id: 39,
+            tittel: 'Oppdatering sykepenger',
+            dato: new Date('2025-01-06 12:00'),
+            aktiv: true,
+            ingress: null,
+            beskrivelse: (
+                <>
+                    <Normaltekst>
+                        Ytelsen sykepenger vil ikke lenger inneholde informasjon om sykemelding og arbeidssituasjon. Det
+                        er kun utbetalingsperioder og grad for periodene som vil bli synlig i Modia personoversikt. Mer
+                        informasjon finnes i andre fagsystem angående sykepenger og sykefravær. Denne endringen skjer
+                        grunnet overgang fra Infotrygd til Speil. Vi jobber med å få på plass mer informasjon om ytelsen
+                        på sikt.
+                    </Normaltekst>
+                </>
+            ),
+            src: Speil
         }
     ];
 }
