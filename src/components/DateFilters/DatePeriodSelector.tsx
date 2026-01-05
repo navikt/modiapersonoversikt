@@ -32,6 +32,27 @@ export const getPeriodFromOption = (periodeValg: PeriodType): DateRange => {
     }
 };
 
+export const getOptionFromPeriod = (range: DateRange): PeriodType => {
+    const { from, to } = range;
+    const now = dayjs();
+
+    const isSameDay = (d1: dayjs.Dayjs, d2: dayjs.Dayjs) => d1.isSame(d2, 'day');
+
+    switch (true) {
+        case isSameDay(from, now.subtract(30, 'day')) && isSameDay(to, now):
+            return PeriodType.LAST_30_DAYS;
+        case isSameDay(from, now.startOf('year')) && isSameDay(to, now.endOf('year')):
+            return PeriodType.THIS_YEAR;
+        case isSameDay(from, now.subtract(1, 'year').startOf('year')) &&
+            isSameDay(to, now.subtract(1, 'year').endOf('year')):
+            return PeriodType.LAST_YEAR;
+        case isSameDay(from, now.subtract(2, 'year')) && isSameDay(to, now):
+            return PeriodType.CUSTOM;
+        default:
+            return PeriodType.CUSTOM;
+    }
+};
+
 type Props = {
     range: DateRange | null;
     onChange: (period: DateRange | null) => void;
@@ -58,8 +79,10 @@ function DateRangeSelector({
     useEffect(() => {
         if (period === null) {
             setPeriodType(defaultPeriodType);
+        } else {
+            setPeriodType(getOptionFromPeriod(period));
         }
-    });
+    }, [period]);
 
     const onFraTilDatoChange = (val: DateRange) => {
         onChange(val);
@@ -90,8 +113,8 @@ function DateRangeSelector({
                     </Radio>
                 ))}
             </RadioGroup>
-            {periodType === PeriodType.CUSTOM && (
-                <CustomDatePickerModal period={period ?? undefined} onUpdate={onFraTilDatoChange} />
+            {periodType === PeriodType.CUSTOM && period && (
+                <CustomDatePickerModal period={period} onUpdate={onFraTilDatoChange} />
             )}
             {periodType && !required && resettable && (
                 <Box.New>
