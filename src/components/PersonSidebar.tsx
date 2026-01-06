@@ -13,6 +13,9 @@ import {
 import { Box, Button, Heading, VStack } from '@navikt/ds-react';
 import { Link } from '@tanstack/react-router';
 import { type ComponentProps, useState } from 'react';
+import { getOpenTabFromRouterPath, useOpenTab } from 'src/app/personside/infotabs/utils/useOpenTab';
+import { usePersonSideBarKotkeys } from 'src/components/usePersonSidebarHotkeys';
+import { trackingEvents } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
 import Card from './Card';
 import { ThemeIconToggle, ThemeToggle } from './theme/ThemeToggle';
@@ -23,7 +26,7 @@ type MenuItem = {
     Icon: React.ExoticComponent;
 };
 
-const menuItems = [
+export const menuItems = [
     {
         title: 'Oversikt',
         href: '/new/person/oversikt',
@@ -68,6 +71,8 @@ const menuItems = [
 
 export const PersonSidebarMenu = () => {
     const [expanded, setExpanded] = useState(true);
+    const openTab = useOpenTab();
+    usePersonSideBarKotkeys();
 
     return (
         <Card className="h-full overflow-auto">
@@ -105,7 +110,20 @@ export const PersonSidebarMenu = () => {
                             Faner
                         </Heading>
                         {menuItems.map(({ title, href, Icon }) => (
-                            <Link key={title} to={href} aria-label={title}>
+                            <Link
+                                key={title}
+                                to={href}
+                                state={{
+                                    umamiEvent: {
+                                        name: trackingEvents.faneEndret,
+                                        data: {
+                                            nyFane: getOpenTabFromRouterPath(href).path,
+                                            forrigeFane: openTab.path
+                                        }
+                                    }
+                                }}
+                                aria-label={title}
+                            >
                                 {({ isActive }) => (
                                     <Button
                                         aria-hidden

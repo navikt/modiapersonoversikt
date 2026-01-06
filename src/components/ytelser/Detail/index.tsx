@@ -1,25 +1,29 @@
-import { Alert, BodyShort, GuidePanel, HGrid, HStack, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, HGrid, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
-import { Suspense, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { ArbeidsavklaringspengerDetails } from 'src/components/ytelser/Detail/arbeidsavklaringspenger';
 import { ForeldrePengerDetails } from 'src/components/ytelser/Detail/foreldrepenger';
+import { ForeldrePengerFpSakDetails } from 'src/components/ytelser/Detail/foreldrepenger-fpsak';
 import { PensjonDetails } from 'src/components/ytelser/Detail/pensjon';
 import { PleiePengerDetails } from 'src/components/ytelser/Detail/pleiepenger';
 import { SykepengerDetails } from 'src/components/ytelser/Detail/sykepenger';
+import { SykePengerSpokelseDetails } from 'src/components/ytelser/Detail/sykepenger-spokelse';
 import { TiltaksPengerDetails } from 'src/components/ytelser/Detail/tiltakspenger';
 import { ytelseFilterAtom } from 'src/components/ytelser/List/Filter';
 import { getUnikYtelseKey, useFilterYtelser } from 'src/components/ytelser/utils';
-import {
-    type Foreldrepenger,
-    type PensjonSak,
-    type Pleiepenger,
-    type Sykepenger,
-    type VedtakDto,
-    YtelseVedtakYtelseType
+import type {
+    Foreldrepenger,
+    ForeldrepengerFpSak,
+    PensjonSak,
+    Pleiepenger,
+    Sykepenger,
+    Utbetalingsperioder,
+    VedtakDto
 } from 'src/generated/modiapersonoversikt-api';
 import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaringspenger';
+import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
 import { ytelserRouteMiddleware } from 'src/routes/new/person/ytelser';
 
 const TitleValuePairComponent = ({ title, value }: { title: string; value: string | number | null | undefined }) => {
@@ -67,10 +71,10 @@ const routeApi = getRouteApi('/new/person/ytelser');
 const YtelseDataDetails = () => {
     const { ytelser } = useFilterYtelser();
     const { id } = routeApi.useSearch();
-    const selectedYtelse = ytelser.find((item) => getUnikYtelseKey(item) === id);
+    let selectedYtelse = ytelser.find((item) => getUnikYtelseKey(item) === id);
     const filterAtomValue = useAtomValue(ytelseFilterAtom);
     const prevFilterRef = useRef(ytelseFilterAtom);
-
+    const navigate = routeApi.useNavigate();
     // Fjern ytelseid i URL og cache hvis filteret er endret og ytelsen ikke finnes i filtrerte ytelser
     useEffect(() => {
         const filterEndret = JSON.stringify(prevFilterRef.current.init) !== JSON.stringify(filterAtomValue);
@@ -81,27 +85,20 @@ const YtelseDataDetails = () => {
     }, [selectedYtelse, ytelser, filterAtomValue]);
 
     if (ytelser.length === 0) {
-        return (
-            <Alert className="mt-6" variant="info">
-                Fant ingen ytelser
-            </Alert>
-        );
+        return <></>;
     }
 
-    if (!id) {
-        return (
-            <HStack margin="4">
-                <GuidePanel>Velg en ytelse fra listen på venstre side for å se detaljer.</GuidePanel>
-            </HStack>
-        );
+    if (!selectedYtelse && id) {
+        return <Alert variant="error">Ytelsen du valgte, ble ikke funnet.</Alert>;
+    }
+
+    if (!selectedYtelse && !id) {
+        selectedYtelse = ytelser[0];
+        navigate({ search: { id: getUnikYtelseKey(ytelser[0]) } });
     }
 
     if (!selectedYtelse) {
-        return (
-            <VStack flexGrow="1" minHeight="0" className="mt-6">
-                <Alert variant="error">Ytelsen du valgte, ble ikke funnet.</Alert>
-            </VStack>
-        );
+        return <></>;
     }
 
     switch (selectedYtelse.ytelseType) {
@@ -117,19 +114,27 @@ const YtelseDataDetails = () => {
             return <PensjonDetails pensjon={selectedYtelse.ytelseData.data as PensjonSak} />;
         case YtelseVedtakYtelseType.Arbeidsavklaringspenger:
             return <ArbeidsavklaringspengerDetails aap={selectedYtelse.ytelseData.data as Arbeidsavklaringspenger} />;
+        case YtelseVedtakYtelseType.ForeldrepengerFpSak:
+            return <ForeldrePengerFpSakDetails ytelse={selectedYtelse.ytelseData.data as ForeldrepengerFpSak} />;
+        case YtelseVedtakYtelseType.SykepengerSpokelse:
+            return <SykePengerSpokelseDetails ytelse={selectedYtelse.ytelseData.data as Utbetalingsperioder} />;
         default:
             return <Alert variant="info">Ukjent ytelse type {selectedYtelse.ytelseType}</Alert>;
     }
 };
 
 export const ValgteYtelseDetailPage = () => {
+    const { pending } = useFilterYtelser();
+
     return (
         <ErrorBoundary boundaryName="valgteYtelseDetailPage">
-            <Suspense fallback={<Skeleton variant="rounded" height="200" />}>
-                <VStack flexGrow="1" minHeight="0" maxHeight="100%" className="overflow-scroll">
+            {pending ? (
+                <Skeleton variant="rounded" className="mt-6" height="4rem" />
+            ) : (
+                <VStack flexGrow="1" minHeight="0" maxHeight="100%" className="overflow-auto">
                     <YtelseDataDetails />
                 </VStack>
-            </Suspense>
+            )}
         </ErrorBoundary>
     );
 };

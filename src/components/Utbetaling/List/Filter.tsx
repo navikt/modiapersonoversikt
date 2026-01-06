@@ -1,13 +1,15 @@
 import { Box, ExpansionCard, Fieldset, Skeleton, Switch, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
-import { atom, useAtom, useAtomValue } from 'jotai';
-import { atomWithReset } from 'jotai/utils';
+import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { RESET, atomWithReset } from 'jotai/utils';
 import { xor } from 'lodash';
-import { Suspense, useCallback, useMemo, useRef, useState } from 'react';
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import DateRangeSelector, { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
 import { reduceUtbetlingerTilYtelser, utbetalingMottakere } from 'src/components/Utbetaling/List/utils';
 import type { Utbetaling, Ytelse } from 'src/generated/modiapersonoversikt-api';
 import { useUtbetalinger } from 'src/lib/clients/modiapersonoversikt-api';
+import { usePersonAtomValue } from 'src/lib/state/context';
+import { filterType, trackExpansionCardApnet, trackExpansionCardLukket, trackFilterEndret } from 'src/utils/analytics';
 import { sorterAlfabetisk } from 'src/utils/string-utils';
 import { twMerge } from 'tailwind-merge';
 
@@ -72,6 +74,7 @@ const UtbetalingYtelserFilter = () => {
     const onToggleSelected = useCallback(
         (option: string) => {
             setSelectedYtelse(option);
+            trackFilterEndret('utbetaling', filterType.YTELSE_TYPE);
         },
         [setSelectedYtelse]
     );
@@ -101,6 +104,7 @@ const UtbetaltTilFilter = () => {
     const onToggleSelected = useCallback(
         (option: string) => {
             setSelectedMottakere(option);
+            trackFilterEndret('utbetaling', filterType.TYPE);
         },
         [setSelectedMottakere]
     );
@@ -145,13 +149,23 @@ const FilterTitle = () => {
 };
 
 export const UtbetalingListFilter = () => {
+    const setFilter = useSetAtom(utbetalingFilterAtom);
     const [open, setOpen] = useState(false);
+    const fnr = usePersonAtomValue();
     const expansionFilterRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        setFilter(RESET);
+    }, [fnr]);
 
     const handleExpansionChange = () => {
         setTimeout(() => {
             if (!expansionFilterRef.current) return;
-            setOpen(expansionFilterRef.current.classList.contains('aksel-expansioncard--open'));
+            const isOpen = expansionFilterRef.current.classList.contains('aksel-expansioncard--open');
+            setOpen(isOpen);
+            if (isOpen !== open) {
+                isOpen ? trackExpansionCardApnet('utbetalingfilter') : trackExpansionCardLukket('utbetalingfilter');
+            }
         }, 0);
     };
     return (

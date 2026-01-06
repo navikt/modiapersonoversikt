@@ -78,7 +78,7 @@ const oppgaveFormValidator = z.object({
         message: 'Prioritet må være valgt'
     }),
     valgtEnhet: z.string().nonempty('Oppgaven må tilegnes en enhet'),
-    valgtAnsatt: z.string().nonempty('Oppgaven må tilegnes en ansatt'),
+    valgtAnsatt: z.string().optional(),
     dagerFrist: z.number().optional()
 });
 
@@ -394,7 +394,7 @@ const OppgaveForm = ({
                         {error}
                     </Alert>
                 )}
-                <HStack gap="4" marginBlock="4">
+                <HStack gap="4" align="center" marginBlock="2">
                     <form.Subscribe selector={(f) => [f.isSubmitting, f.canSubmit]}>
                         {([isSubmitting, canSubmit]) => (
                             <Button type="submit" size="small" loading={isSubmitting} disabled={!canSubmit}>
@@ -402,7 +402,7 @@ const OppgaveForm = ({
                             </Button>
                         )}
                     </form.Subscribe>
-                    <Button variant="secondary" onClick={onSuccess}>
+                    <Button variant="secondary" size="small" onClick={onSuccess}>
                         Avbryt
                     </Button>
                 </HStack>

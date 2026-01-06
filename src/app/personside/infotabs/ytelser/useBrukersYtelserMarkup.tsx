@@ -1,20 +1,23 @@
 import type { ReactNode } from 'react';
+import type { ForeldrepengerFpSak, Utbetalingsperioder } from 'src/generated/modiapersonoversikt-api';
 import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaringspenger';
+import type { Foreldrepengerettighet } from 'src/models/ytelse/foreldrepenger';
 import type { Pensjon } from 'src/models/ytelse/pensjon';
-import type { Foreldrepengerettighet } from '../../../../models/ytelse/foreldrepenger';
-import type { Pleiepengerettighet } from '../../../../models/ytelse/pleiepenger';
-import type { Sykepenger } from '../../../../models/ytelse/sykepenger';
-import type { Tiltakspenger } from '../../../../models/ytelse/tiltakspenger';
+import type { Pleiepengerettighet } from 'src/models/ytelse/pleiepenger';
+import type { Sykepenger } from 'src/models/ytelse/sykepenger';
+import type { Tiltakspenger } from 'src/models/ytelse/tiltakspenger';
 import {
     isArbeidsavklaringspenger,
+    isForeldrePengerFpSak,
     isForeldrepenger,
     isPensjon,
     isPleiepenger,
     isSykepenger,
+    isSykepengerSpokelse,
     isTiltakspenger
-} from '../../../../models/ytelse/ytelse-utils';
-import { PeriodeValg } from '../../../../redux/utbetalinger/types';
-import { loggError } from '../../../../utils/logger/frontendLogger';
+} from 'src/models/ytelse/ytelse-utils';
+import { PeriodeValg } from 'src/redux/utbetalinger/types';
+import { loggError } from 'src/utils/logger/frontendLogger';
 import { getFraDateFromPeriod } from '../utbetalinger/utils/utbetalinger-utils';
 import useBrukersYtelser from './useBrukersYtelser';
 
@@ -25,6 +28,8 @@ interface Props {
     renderTiltakspenger: (tiltakspenger: Tiltakspenger) => ReactNode;
     renderPensjon: (pensjon: Pensjon) => ReactNode;
     renderArbeidsavklaringspenger: (aap: Arbeidsavklaringspenger) => ReactNode;
+    renderForeldrepengerFpSak: (ytelse: ForeldrepengerFpSak) => ReactNode;
+    renderSykepengerSpokelse: (ytelse: Utbetalingsperioder) => ReactNode;
 }
 
 interface Returns {
@@ -44,6 +49,9 @@ function useBrukersYtelserMarkup(props: Props): Returns {
         if (isSykepenger(ytelse)) {
             return props.renderSykepenger(ytelse);
         }
+        if (isSykepengerSpokelse(ytelse)) {
+            return props.renderSykepengerSpokelse(ytelse);
+        }
         if (isPleiepenger(ytelse)) {
             return props.renderPleiepenger(ytelse);
         }
@@ -55,6 +63,9 @@ function useBrukersYtelserMarkup(props: Props): Returns {
         }
         if (isArbeidsavklaringspenger(ytelse)) {
             return props.renderArbeidsavklaringspenger(ytelse);
+        }
+        if (isForeldrePengerFpSak(ytelse)) {
+            return props.renderForeldrepengerFpSak(ytelse);
         }
         loggError(new Error('Fant ikke rendermetode for ytelsen'));
         return null;

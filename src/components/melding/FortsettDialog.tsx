@@ -1,12 +1,14 @@
-import { Alert, BodyShort, Box, Button, Checkbox, HStack, Loader, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Box, Button, Checkbox, HStack, InlineMessage, Loader, VStack } from '@navikt/ds-react';
 import { type ValidationError, useForm } from '@tanstack/react-form';
 import { useAtom, useAtomValue } from 'jotai';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import DraftStatus from 'src/app/personside/dialogpanel/DraftStatus';
 import type { Draft, DraftContext } from 'src/app/personside/dialogpanel/use-draft';
 import useDraft from 'src/app/personside/dialogpanel/use-draft';
 import { Link } from 'src/components/Link';
-import VelgSak from 'src/components/sakVelger/VelgSak';
+import AutoCompleteTekstTips from 'src/components/melding/standardtekster/AutoCompleteTekstTips';
+import StandardTekstModal from 'src/components/melding/standardtekster/StandardTeksterModal';
+import { settInnStandardTekst } from 'src/components/melding/standardtekster/settInnStandardTekst';
 import { useOppgaveForTraad, useSendMelding } from 'src/lib/clients/modiapersonoversikt-api';
 import { useEnhetsnavn } from 'src/lib/hooks/useEnhetsnavn';
 import { useSuspendingBrukernavn } from 'src/lib/hooks/useSuspendingBrukernavn';
@@ -21,7 +23,6 @@ import {
 import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { formatterDatoTid } from 'src/utils/date-utils';
 import type { z } from 'zod';
-import { erJournalfort } from '../Meldinger/List/utils';
 import AutocompleteTextarea from './AutoCompleteTextarea';
 import { Oppgaveliste, OppgavelisteRadioKnapper } from './OppgavelisteRadioKnapper';
 import { meldingsTyperTekst, traadTypeToMeldingsType } from './VelgMeldingsType';
@@ -91,8 +92,7 @@ export const FortsettDialog = ({ traad }: Props) => {
     const meldingsType = traadTypeToMeldingsType(traad.traadType);
     const meldingsTypeTekst = meldingsTyperTekst[meldingsType];
     const erSamtalereferat = traad.traadType === TraadType.SAMTALEREFERAT;
-    const erOksosTraad = traad.meldinger.some((it) => it.temagruppe === 'OKSOS');
-    const visVelgSak = !erJournalfort(traad) && !erOksosTraad;
+    const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
     if (henvendelsePending) {
         return <Loader size="medium" />;
@@ -106,7 +106,7 @@ export const FortsettDialog = ({ traad }: Props) => {
                 await form.handleSubmit();
             }}
         >
-            <VStack gap="2">
+            <VStack gap="4">
                 <Box.New
                     padding="2"
                     background="sunken"
@@ -130,56 +130,13 @@ export const FortsettDialog = ({ traad }: Props) => {
                         </Link>
                     </VStack>
                 </Box.New>
-                <form.Field
-                    name="melding"
-                    listeners={{
-                        onChange: ({ value }) => {
-                            if (value.length === 0) {
-                                removeDraft();
-                            }
-                            if (value.length > 0) {
-                                updateDraft(value);
-                            }
-                        }
-                    }}
-                >
-                    {(field) => (
-                        <div>
-                            <AutocompleteTextarea
-                                autoFocus
-                                label="Ny melding i dialog"
-                                description={meldingsTypeTekst.beskrivelse}
-                                value={field.state.value}
-                                onChange={(e) => field.handleChange(e.target.value)}
-                                error={buildErrorMessage(field.state.meta.errors)}
-                                maxLength={maksLengdeMelding}
-                                resize="vertical"
-                                minRows={10}
-                                maxRows={15}
-                            />
-                            {draftStatus && field.state.value.length > 0 && field.state.meta.isDirty && (
-                                <DraftStatus state={draftStatus} />
-                            )}
-                        </div>
-                    )}
-                </form.Field>
-                {visVelgSak && (
-                    <form.Field name="sak">
-                        {(field) => (
-                            <VelgSak
-                                valgtSak={field.state.value}
-                                setSak={(sak) => field.handleChange(sak)}
-                                //error={<ValidationErrorMessage errors={field.state.meta.errors} />}
-                            />
-                        )}
-                    </form.Field>
-                )}
                 {!erSamtalereferat && (
                     <>
                         <form.Field name="avsluttet">
                             {(field) => (
                                 <Checkbox
                                     checked={field.state.value}
+                                    size="small"
                                     onChange={(e) => field.handleChange(e.target.checked)}
                                 >
                                     Avslutt samtale etter sending
@@ -203,19 +160,70 @@ export const FortsettDialog = ({ traad }: Props) => {
                                         )}
                                     </form.Field>
                                 ) : (
-                                    <Alert variant="info">Bruker kan ikke skrive mer i denne samtalen</Alert>
+                                    <InlineMessage status="warning" size="small">
+                                        Bruker kan ikke skrive mer i denne samtalen
+                                    </InlineMessage>
                                 )
                             }
                         </form.Subscribe>
                     </>
                 )}
-                <HStack gap="2" justify="center">
-                    <Button type="submit" loading={isPending}>
-                        Send til {brukerNavn} {oppgaveId ? 'og avslutt oppgave' : ''}
-                    </Button>
-                </HStack>
+                <form.Field
+                    name="melding"
+                    listeners={{
+                        onChange: ({ value }) => {
+                            if (value.length === 0) {
+                                removeDraft();
+                            }
+                            if (value.length > 0) {
+                                updateDraft(value);
+                            }
+                        }
+                    }}
+                >
+                    {(field) => (
+                        <div>
+                            <AutocompleteTextarea
+                                autoFocus
+                                hideLabel
+                                ref={textAreaRef}
+                                size="small"
+                                label="Ny melding i dialog"
+                                description={meldingsTypeTekst.beskrivelse}
+                                value={field.state.value}
+                                onChange={(e) => field.handleChange(e.target.value)}
+                                error={buildErrorMessage(field.state.meta.errors)}
+                                maxLength={maksLengdeMelding}
+                                resize="vertical"
+                                minRows={10}
+                                maxRows={15}
+                            />
+                            {draftStatus && field.state.value.length > 0 && field.state.meta.isDirty && (
+                                <DraftStatus state={draftStatus} />
+                            )}
+                        </div>
+                    )}
+                </form.Field>
+                <VStack gap="1">
+                    <HStack gap="1" justify="center">
+                        <AutoCompleteTekstTips />
+                        <StandardTekstModal
+                            textAreaRef={textAreaRef}
+                            submitTekst={(standardTekst) =>
+                                settInnStandardTekst(standardTekst, textAreaRef, (e) =>
+                                    form.setFieldValue('melding', e.target.value)
+                                )
+                            }
+                        />
+                    </HStack>
+                    <HStack gap="2" justify="center">
+                        <Button type="submit" size="small" loading={isPending}>
+                            Send til {brukerNavn} {oppgaveId ? 'og avslutt oppgave' : ''}
+                        </Button>
+                    </HStack>
+                </VStack>
                 {isSuccess && <Alert variant="success">Meldingen ble sendt</Alert>}
-                {error && <Alert variant="error">{error}</Alert>}
+                {error && <Alert variant="error">Det skjedde en feil. Meldingen ble ikke sendt</Alert>}
             </VStack>
         </form>
     );
@@ -249,11 +257,17 @@ function generateRequestBody(
             return {
                 ...common,
                 erOppgaveTilknyttetAnsatt: value.avsluttet ? false : value.oppgaveliste === Oppgaveliste.MinListe,
-                avsluttet: true,
+                avsluttet: value.avsluttet,
                 sak: value.sak
             };
     }
 }
 function buildErrorMessage(errors: ValidationError[]) {
-    return errors.isNotEmpty() ? errors.join(', ') : null;
+    const flatErrors = errors.flatMap((e) => (Array.isArray(e) ? e : [e]));
+    return flatErrors.length > 0
+        ? flatErrors
+              .filter((e) => e.message != null)
+              .map((e) => e.message)
+              .join(', ')
+        : null;
 }

@@ -75,10 +75,10 @@ export const AvsluttOppgaveModal = ({ open, onClose, oppgave }: Props) => {
                 <Textarea label="Beskrivelse" value={beskrivelse} onChange={(e) => setBeskrivelse(e.target.value)} />
             </Modal.Body>
             <Modal.Footer>
-                <Button type="button" variant="primary" onClick={avsluttOppgave} loading={isPending}>
+                <Button type="button" variant="primary" size="small" onClick={avsluttOppgave} loading={isPending}>
                     Avslutt oppgave
                 </Button>
-                <Button type="button" variant="secondary" onClick={onClose}>
+                <Button type="button" variant="secondary" size="small" onClick={onClose}>
                     Avbryt
                 </Button>
             </Modal.Footer>

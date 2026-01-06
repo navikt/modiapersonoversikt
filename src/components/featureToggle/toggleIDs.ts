@@ -2,7 +2,9 @@ export enum FeatureToggles {
     VisPromptMeldingSending = 'modiapersonoversikt.vis-promt-naar-melding-sendes',
     VisSiste14aVedtak = 'modiapersonoversikt.vis-siste-14a-vedtak',
     JournalforUtenSvar = 'modiapersonoversikt.meldinger-uten-svar-kan-journalfores',
-    BrukNyTiltakspenger = 'modiapersonoversikt.bruk-ny-tiltakspenger',
     NyModiaKnapp = 'modiapersonoversikt.ny-modia-knapp',
-    TilgangsMaskin = 'modiapersonoversikt.tilgangsmaskin'
+    InfotrygdForeldrepenger = 'modiapersonoversikt.infotrygd-foreldrepenger',
+    InfotrygdSykepenger = 'modiapersonoversikt.infotrygd-sykepenger',
+    InfotrygdPleiepenger = 'modiapersonoversikt.infotrygd-pleiepenger',
+    SpokelseSykepenger = 'modiapersonoversikt.spokelse-sykepenger'
 }

@@ -1,11 +1,13 @@
 import { Box, ExpansionCard, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
-import { atom, useAtom, useAtomValue } from 'jotai';
-import { atomWithReset } from 'jotai/utils';
+import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { RESET, atomWithReset } from 'jotai/utils';
 import { xor } from 'lodash';
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import DateRangeSelector, { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
 import { useGsakTema } from 'src/lib/clients/modiapersonoversikt-api';
+import { usePersonAtomValue } from 'src/lib/state/context';
+import { filterType, trackExpansionCardApnet, trackExpansionCardLukket, trackFilterEndret } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
 
 export type OppgaveFilter = {
@@ -55,6 +57,7 @@ const TemaFilter = () => {
     const onToggleSelected = useCallback(
         (option: string) => {
             setSelectedTema(option);
+            trackFilterEndret('oppgaver', filterType.TEMA);
         },
         [selectedTema]
     );
@@ -93,13 +96,23 @@ const FilterTitle = () => {
 };
 
 export const OppgaveListFilter = () => {
+    const setFilter = useSetAtom(oppgaveFilterAtom);
     const [open, setOpen] = useState(false);
+    const fnr = usePersonAtomValue();
     const expansionFilterRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        setFilter(RESET);
+    }, [fnr]);
 
     const handleExpansionChange = () => {
         setTimeout(() => {
             if (!expansionFilterRef.current) return;
-            setOpen(expansionFilterRef.current.classList.contains('aksel-expansioncard--open'));
+            const isOpen = expansionFilterRef.current.classList.contains('aksel-expansioncard--open');
+            setOpen(isOpen);
+            if (isOpen !== open) {
+                isOpen ? trackExpansionCardApnet('oppgavefilter') : trackExpansionCardLukket('oppgavefilter');
+            }
         }, 0);
     };
     return (

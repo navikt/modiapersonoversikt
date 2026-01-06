@@ -1,4 +1,4 @@
-import { Alert, BodyLong, ErrorMessage, GuidePanel, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, ErrorMessage, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import { Suspense, useEffect, useRef } from 'react';
@@ -124,10 +124,10 @@ const DittNavInformasjonsLinjerV2 = ({
 const VarselDetailExtractor = () => {
     const { id } = routeApi.useSearch();
     const varsler = useFilterVarsler();
-    const valgtVarsel = varsler.find((item) => item.eventId === id);
+    let valgtVarsel = varsler.find((item) => item.eventId === id);
     const filterAtomValue = useAtomValue(varslerFilterAtom);
     const prevFilterRef = useRef(varslerFilterAtom);
-
+    const navigate = routeApi.useNavigate();
     // Fjern varselid i URL og cache kun hvis filteret er endret og varselet ikke finnes i filtrerte varsler
     useEffect(() => {
         const filterEndret = JSON.stringify(prevFilterRef.current) !== JSON.stringify(filterAtomValue);
@@ -138,22 +138,10 @@ const VarselDetailExtractor = () => {
     }, [valgtVarsel, varsler, filterAtomValue]);
 
     if (!varsler.length) {
-        return (
-            <Alert className="mt-2" variant="info">
-                Fant ingen varsler
-            </Alert>
-        );
+        return <></>;
     }
 
-    if (!id) {
-        return (
-            <HStack margin="4">
-                <GuidePanel>Velg et varsel fra listen til venstre for å se detaljer.</GuidePanel>
-            </HStack>
-        );
-    }
-
-    if (!valgtVarsel) {
+    if (id && !valgtVarsel) {
         return (
             <VStack flexGrow="1" minHeight="0" className="mt-6">
                 <Alert variant="error">Varselet du valgte, ble ikke funnet.</Alert>
@@ -161,10 +149,19 @@ const VarselDetailExtractor = () => {
         );
     }
 
+    if (!valgtVarsel && !id) {
+        valgtVarsel = varsler[0];
+        navigate({ search: { id: valgtVarsel.eventId } });
+    }
+
+    if (!valgtVarsel) {
+        return <></>;
+    }
+
     return (
         <>
             {valgtVarsel && (
-                <Card>
+                <Card padding="2">
                     {valgtVarsel.erVarslerV2 ? (
                         <DittNavInformasjonsLinjerV2 varsel={valgtVarsel.event} kanaler={valgtVarsel.kanaler} />
                     ) : (
@@ -179,7 +176,7 @@ const VarselDetailExtractor = () => {
 export const VarselDetail = () => {
     return (
         <ErrorBoundary boundaryName="vaslerDetaljer">
-            <Suspense fallback={<Skeleton variant="rounded" height="200" />}>
+            <Suspense fallback={<Skeleton variant="rounded" height="4rem" />}>
                 <VarselDetailExtractor />
             </Suspense>
         </ErrorBoundary>

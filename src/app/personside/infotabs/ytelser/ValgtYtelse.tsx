@@ -3,14 +3,18 @@ import { guid } from 'nav-frontend-js-utils';
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import Arbeidsavklaringspenger from 'src/app/personside/infotabs/ytelser/arbeidsavklaringspenger/Arbeidsavklaringspenger';
+import ForeldrepengerFpSakComp from 'src/app/personside/infotabs/ytelser/foreldrepengerFpSak/ForeldrepengerFpSakComp';
 import Pensjon from 'src/app/personside/infotabs/ytelser/pensjon/Pensjon';
+import SykepengerPerioderSpokelse from 'src/app/personside/infotabs/ytelser/sykepengerSpokelse/SykepengerSpokelseComp';
 import {
     type Ytelse,
     isArbeidsavklaringspenger,
+    isForeldrePengerFpSak,
     isForeldrepenger,
     isPensjon,
     isPleiepenger,
     isSykepenger,
+    isSykepengerSpokelse,
     isTiltakspenger
 } from 'src/models/ytelse/ytelse-utils';
 import { usePrevious } from 'src/utils/customHooks';
@@ -41,6 +45,9 @@ function YtelseMarkup(props: { ytelse: Ytelse }) {
     if (isSykepenger(props.ytelse)) {
         return <Sykepenger sykepenger={props.ytelse} />;
     }
+    if (isSykepengerSpokelse(props.ytelse)) {
+        return <SykepengerPerioderSpokelse sykepenger={props.ytelse} />;
+    }
     if (isTiltakspenger(props.ytelse)) {
         return <Tiltakspenger tiltakspenger={props.ytelse} />;
     }
@@ -49,6 +56,9 @@ function YtelseMarkup(props: { ytelse: Ytelse }) {
     }
     if (isArbeidsavklaringspenger(props.ytelse)) {
         return <Arbeidsavklaringspenger arbeidsavklaringspenger={props.ytelse} />;
+    }
+    if (isForeldrePengerFpSak(props.ytelse)) {
+        return <ForeldrepengerFpSakComp foreldrepenger={props.ytelse} />;
     }
     loggError(new Error('Ytelse ikke håndtert, kunne ikke finne markup'));
     return null;

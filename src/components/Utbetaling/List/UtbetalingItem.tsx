@@ -1,59 +1,62 @@
-import { ChevronRightIcon } from '@navikt/aksel-icons';
-import { BodyShort, Button, HStack, Heading, VStack } from '@navikt/ds-react';
+import { Detail, HStack, Label, Link, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import Card from 'src/components/Card';
 import { formaterNOK, getUtbetalingId } from 'src/components/Utbetaling/List/utils';
 import type { Utbetaling } from 'src/generated/modiapersonoversikt-api';
+import { trackingEvents } from 'src/utils/analytics';
 import { formatterDato } from 'src/utils/date-utils';
+import { twMerge } from 'tailwind-merge';
 
 const routeApi = getRouteApi('/new/person/utbetaling');
 
 export const UtbetalingItem = ({
-    utbetaling,
-    handleClick
+    utbetaling
 }: {
     utbetaling: Utbetaling;
-    handleClick: (id: string) => void;
 }) => {
     const aktivUtbetaling = routeApi.useSearch().id;
+    const navigate = routeApi.useNavigate();
     const id = getUtbetalingId(utbetaling);
+
+    const onClick = () => {
+        navigate({
+            search: { id },
+            state: {
+                umamiEvent: {
+                    name: trackingEvents.detaljvisningKlikket,
+                    data: { fane: 'utbetaling', tekst: 'åpne utbetaling' }
+                }
+            }
+        });
+    };
+
     return (
-        <Card
-            padding="2"
-            as="li"
-            className={`cursor-pointer hover:hover:bg-ax-bg-neutral-moderate-hover group
-                ${aktivUtbetaling === id ? 'bg-ax-bg-neutral-moderate ' : ''}`}
-            onClick={() => handleClick(id)}
-        >
-            <HStack justify="space-between" gap="1" wrap={false}>
-                <VStack justify="center" gap="1">
-                    <Heading size="xsmall" as="h3" level="3">
+        <Link variant="neutral" className="hover:no-underline block" underline={false} onClick={onClick}>
+            <Card
+                padding="2"
+                as="li"
+                className={twMerge(
+                    'cursor-pointer hover:bg-[var(--ax-bg-accent-moderate-hover)] group',
+                    aktivUtbetaling === id && 'bg-ax-bg-accent-moderate-pressed border-ax-bg-accent-moderate-pressed'
+                )}
+            >
+                <VStack justify="center">
+                    <Label size="small" as="h3">
                         {utbetaling.ytelser
                             ?.map((item) => item.type)
                             ?.unique()
                             .join(', ')}
-                    </Heading>
-                    <BodyShort size="small">{formaterNOK(utbetaling.nettobelop)}</BodyShort>
-                    <HStack gap="2">
-                        <BodyShort size="small" weight="semibold">
-                            Forfallsdato:
-                        </BodyShort>
-                        <BodyShort size="small">
-                            {utbetaling.forfallsdato ? formatterDato(utbetaling.forfallsdato) : ''}
-                        </BodyShort>
+                    </Label>
+                    <Detail weight="semibold" title="Kroner utbetalt">
+                        {formaterNOK(utbetaling.nettobelop)}
+                    </Detail>
+                    <HStack gap="1">
+                        <Detail>Forfallsdato:</Detail>
+                        <Detail>{utbetaling.forfallsdato ? formatterDato(utbetaling.forfallsdato) : ''}</Detail>
                     </HStack>
-                    <BodyShort size="small" textColor="subtle">
-                        {utbetaling.status}
-                    </BodyShort>
+                    <Detail textColor="subtle">{utbetaling.status}</Detail>
                 </VStack>
-                <Button
-                    variant="tertiary-neutral"
-                    size="small"
-                    name="Åpne"
-                    aria-label="Åpne"
-                    icon={<ChevronRightIcon className="translate-x-0 group-hover:translate-x-1 transition-transform" />}
-                />
-            </HStack>
-        </Card>
+            </Card>
+        </Link>
     );
 };

@@ -1,11 +1,13 @@
 import { Box, ExpansionCard, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
-import { atom, useAtom, useAtomValue } from 'jotai';
-import { atomWithReset } from 'jotai/utils';
+import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { RESET, atomWithReset } from 'jotai/utils';
 import { xor } from 'lodash';
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import DateRangeSelector, { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
-import { YtelseVedtakYtelseType } from 'src/generated/modiapersonoversikt-api';
+import { usePersonAtomValue } from 'src/lib/state/context';
+import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
+import { filterType, trackExpansionCardApnet, trackExpansionCardLukket, trackFilterEndret } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
 
 export type YtelseFilter = {
@@ -52,17 +54,14 @@ const YtelserTypeFilter = () => {
     const onToggleSelected = useCallback(
         (option: string) => {
             setSelectedYtelseType(option);
+            trackFilterEndret('ytelser', filterType.TYPE);
         },
         [setSelectedYtelseType]
     );
 
-    const ytelseTyper = [
-        YtelseVedtakYtelseType.Foreldrepenger,
-        YtelseVedtakYtelseType.Sykepenger,
-        YtelseVedtakYtelseType.Pleiepenger,
-        YtelseVedtakYtelseType.Tiltakspenge,
-        YtelseVedtakYtelseType.Pensjon
-    ];
+    const ytelseTyper = Object.values(YtelseVedtakYtelseType).filter(
+        (yType) => yType !== YtelseVedtakYtelseType.ForeldrepengerFpSak
+    );
 
     return (
         <UNSAFE_Combobox
@@ -95,13 +94,23 @@ const FilterTitle = () => {
 };
 
 export const YtelserListFilter = () => {
+    const setFilter = useSetAtom(ytelseFilterAtom);
     const [open, setOpen] = useState(false);
+    const fnr = usePersonAtomValue();
     const expansionFilterRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        setFilter(RESET);
+    }, [fnr]);
 
     const handleExpansionChange = () => {
         setTimeout(() => {
             if (!expansionFilterRef.current) return;
-            setOpen(expansionFilterRef.current.classList.contains('aksel-expansioncard--open'));
+            const isOpen = expansionFilterRef.current.classList.contains('aksel-expansioncard--open');
+            setOpen(isOpen);
+            if (isOpen !== open) {
+                isOpen ? trackExpansionCardApnet('ytelsefilter') : trackExpansionCardLukket('ytelsefilter');
+            }
         }, 0);
     };
     return (

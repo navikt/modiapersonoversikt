@@ -38,7 +38,9 @@ function Tiltakspenger(props: Props) {
         'Fra og med': formaterDato(props.tiltakspenger.periode.fraOgMed),
         'Til og med': formaterDato(props.tiltakspenger.periode.tilOgMed),
         Kilde: props.tiltakspenger.kilde,
-        Rettighet: props.tiltakspenger.rettighet
+        Rettighet: props.tiltakspenger.rettighet,
+        Sats: props.tiltakspenger.sats,
+        'Barnetillegg sats': props.tiltakspenger.satsBarnetillegg
     };
 
     return (

@@ -40,20 +40,22 @@ export const PaginatedList = <T, KeyType extends string | number>({
 
     return (
         <VStack as={as ?? 'div'} gap="2" justify="space-between" flexGrow="1" minHeight="0" {...rest}>
-            <VStack as="ul" gap="2" paddingInline="0 2" overflowY="scroll">
+            <VStack as="ul" gap="2" paddingInline="0 2" overflowY="auto">
                 {renderItems?.map((item) => (
                     <RenderComp item={item} key={keyExtractor(item)} />
                 ))}
             </VStack>
-            <Pagination
-                srHeading={paginationSrHeading}
-                size="small"
-                page={page + 1}
-                siblingCount={0}
-                count={pageCount}
-                onPageChange={(page) => setPage(page - 1)}
-                prevNextTexts={false}
-            />
+            {pages.length > 1 && (
+                <Pagination
+                    srHeading={paginationSrHeading}
+                    size="xsmall"
+                    page={page + 1}
+                    siblingCount={0}
+                    count={pageCount}
+                    onPageChange={(page) => setPage(page - 1)}
+                    prevNextTexts={false}
+                />
+            )}
         </VStack>
     );
 };

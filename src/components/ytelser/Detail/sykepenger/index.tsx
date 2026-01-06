@@ -11,7 +11,6 @@ import {
     periodeEllerNull
 } from 'src/components/ytelser/utils';
 import type { GjeldendeForsikring, Sykepenger, SykmeldingItem } from 'src/generated/modiapersonoversikt-api';
-import { YtelseVedtakYtelseType } from 'src/generated/modiapersonoversikt-api';
 import { datoSynkende } from 'src/utils/date-utils';
 import { NOKellerNull, datoEllerNull } from 'src/utils/string-utils';
 
@@ -86,10 +85,7 @@ const Arbeidssituasjon = ({ sykepenger }: { sykepenger: Sykepenger }) => {
                 Arbeidssituasjon
             </Heading>
             <TitleValuePairsComponent entries={arbeidssituasjonEntries} columns={{ xs: 2, lg: 4 }} />
-            <ArbeidsForholdListe
-                arbeidsForholdList={sykepenger.arbeidsforholdListe ?? []}
-                ytelseType={YtelseVedtakYtelseType.Sykepenger}
-            />
+            <ArbeidsForholdListe arbeidsForholdList={sykepenger.arbeidsforholdListe ?? []} ytelseType="Sykepenger" />
         </Card>
     );
 };

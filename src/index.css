@@ -7,14 +7,10 @@
 
 .new-modia {
     color: var(--ax-text-neutral);
-
-    h1 {
-        font-size: var(--a-font-size-xlarge);
-    }
 }
 
 .aksel-theme[data-background="true"].light {
-    background-color: var(--ax-bg-neutral-soft);
+    background-color: var(--ax-bg-sunken);
 }
 
 .dekorator {
@@ -33,4 +29,8 @@
     .print-only {
         display: none !important;
     }
+}
+
+.aksel-pagination--invisible {
+    visibility: visible;
 }

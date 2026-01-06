@@ -1,5 +1,5 @@
-import { ChevronRightIcon } from '@navikt/aksel-icons';
-import { BodyShort, Box, Button, HStack, Heading, Tag, VStack } from '@navikt/ds-react';
+import { BellIcon, ChatElipsisIcon } from '@navikt/aksel-icons';
+import { Detail, HStack, Label, Link, Tag, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { atom, useAtomValue } from 'jotai';
 import { useMemo } from 'react';
@@ -10,8 +10,15 @@ import { usePersonAtomValue } from 'src/lib/state/context';
 import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
 import type { Melding } from 'src/lib/types/modiapersonoversikt-api';
 import { Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
+import { trackingEvents } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
-import { erFeilsendt, getFormattertMeldingsDato, nyesteMelding, traadstittel } from './utils';
+import {
+    erFeilsendt,
+    erUbesvartHenvendelseFraBruker,
+    getFormattertMeldingsDato,
+    nyesteMelding,
+    traadstittel
+} from './utils';
 
 function TildeltSaksbehandler({ traadId }: { traadId: string }) {
     const oppgaver = usePersonOppgaver();
@@ -20,7 +27,7 @@ function TildeltSaksbehandler({ traadId }: { traadId: string }) {
 
     if (tildeltTilBruker.map((oppgave) => oppgave.traadId).includes(traadId)) {
         return (
-            <Tag size="xsmall" variant="info">
+            <Tag size="xsmall" variant="info-moderate">
                 Tildelt meg
             </Tag>
         );
@@ -33,7 +40,7 @@ function UnderArbeid({ traadId }: { traadId: string }) {
 
     if (isUnderArbeid)
         return (
-            <Tag size="xsmall" variant="info">
+            <Tag size="xsmall" variant="info-moderate">
                 Under arbeid
             </Tag>
         );
@@ -44,7 +51,7 @@ function UnderArbeid({ traadId }: { traadId: string }) {
 function Feilsendt({ traad }: { traad: TraadDto }) {
     if (erFeilsendt(traad)) {
         return (
-            <Tag size="xsmall" variant="warning">
+            <Tag size="xsmall" variant="warning-moderate">
                 Feilsendt
             </Tag>
         );
@@ -55,7 +62,7 @@ function Feilsendt({ traad }: { traad: TraadDto }) {
 function Slettet({ melding }: { melding: Melding }) {
     if (melding.temagruppe === Temagruppe.InnholdSlettet) {
         return (
-            <Tag size="xsmall" variant="error">
+            <Tag size="xsmall" variant="error-moderate">
                 Slettet
             </Tag>
         );
@@ -63,67 +70,87 @@ function Slettet({ melding }: { melding: Melding }) {
 
     return null;
 }
+
+function Antallmeldinger({ traad }: { traad: TraadDto }) {
+    return (
+        <Tag size="xsmall" variant="neutral-moderate" title="Antall meldinger" icon={<ChatElipsisIcon aria-hidden />}>
+            {traad.meldinger.length}
+        </Tag>
+    );
+}
+
+function UbesvartMelding({ traad }: { traad: TraadDto }) {
+    const ubesvart = erUbesvartHenvendelseFraBruker(traad);
+    if (!ubesvart) return null;
+    return (
+        <Tag size="xsmall" variant="alt2-moderate" title="Traad er ubesvart" icon={<BellIcon aria-hidden />}>
+            Ny
+        </Tag>
+    );
+}
 const routeApi = getRouteApi('/new/person/meldinger');
 
 export const TraadItem = ({
-    traad,
-    handleClick
+    traad
 }: {
     traad: TraadDto;
-    handleClick: (traadId: string) => void;
 }) => {
     const sisteMelding = nyesteMelding(traad);
     const datoTekst = getFormattertMeldingsDato(sisteMelding);
     const tittel = traadstittel(traad);
     const aktivTraad = routeApi.useSearch().traadId;
+    const navigate = routeApi.useNavigate();
+
+    const onClick = () => {
+        navigate({
+            search: { traadId: traad.traadId },
+            state: {
+                umamiEvent: {
+                    name: trackingEvents.detaljvisningKlikket,
+                    data: { fane: 'meldinger', tekst: 'åpne melding' }
+                }
+            }
+        });
+    };
 
     return (
-        <Card
+        <Link
             data-testid="traaditem"
-            padding="2"
-            className={twMerge(
-                'cursor-pointer hover:bg-[var(--ax-bg-neutral-moderate-hover)] group',
-                aktivTraad === traad.traadId && 'bg-ax-bg-neutral-moderate border-ax-border-neutral-strong'
-            )}
-            onClick={() => handleClick(traad.traadId)}
-            as="li"
+            variant="neutral"
+            className="hover:no-underline block"
+            underline={false}
+            onClick={onClick}
         >
-            <HStack justify="space-between" gap="2">
-                <Box.New>
-                    <Heading size="xsmall" as="h3" level="3">
-                        {tittel}
-                    </Heading>
-                    <HStack gap="2">
-                        <BodyShort size="small" weight="semibold">
-                            Tema:
-                        </BodyShort>
-                        <BodyShort size="small">{temagruppeTekst(traad.temagruppe as Temagruppe)}</BodyShort>
+            <Card
+                padding="2"
+                className={twMerge(
+                    'cursor-pointer hover:bg-[var(--ax-bg-accent-moderate-hover)] group',
+                    aktivTraad === traad.traadId &&
+                        'bg-ax-bg-accent-moderate-pressed border-ax-bg-accent-moderate-pressed'
+                )}
+                as="li"
+            >
+                <VStack>
+                    <HStack justify="space-between" gap="1" wrap={false}>
+                        <Label size="small" as="h3">
+                            <Detail visuallyHidden>Tema:</Detail>
+                            {temagruppeTekst(traad.temagruppe as Temagruppe)} ({tittel})
+                        </Label>
+                        <HStack gap="1" align="start" justify="end" wrap={false}>
+                            <UbesvartMelding traad={traad} />
+                            <Antallmeldinger traad={traad} />
+                        </HStack>
                     </HStack>
-                    <BodyShort size="small" textColor="subtle">
-                        {datoTekst}
-                    </BodyShort>
+                    <Detail>{datoTekst}</Detail>
+                    <Detail truncate>{sisteMelding.fritekst}</Detail>
                     <HStack gap="1" wrap>
                         <UnderArbeid traadId={traad.traadId} />
                         <Feilsendt traad={traad} />
                         <Slettet melding={sisteMelding} />
                         <TildeltSaksbehandler traadId={traad.traadId} />
                     </HStack>
-                </Box.New>
-                <VStack justify="center">
-                    <Button
-                        variant="tertiary-neutral"
-                        size="small"
-                        name="Åpne"
-                        aria-label="Åpne"
-                        icon={
-                            <ChevronRightIcon
-                                aria-hidden
-                                className="translate-x-0 group-hover:translate-x-1 transition-transform"
-                            />
-                        }
-                    />
                 </VStack>
-            </HStack>
-        </Card>
+            </Card>
+        </Link>
     );
 };

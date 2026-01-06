@@ -15,6 +15,7 @@ import {
 import { useSelector } from 'react-redux';
 import { nyModiaAtom } from 'src/components/NyModia';
 import { aktivBrukerAtom } from 'src/lib/state/context';
+import { trackBrukerEndret } from 'src/utils/analytics';
 import { paths } from '../app/routes/routing';
 import type { AppState } from '../redux/reducers';
 import { type EventListener, runIfEventIsNotInsideRef } from './reactRef-utils';
@@ -89,7 +90,6 @@ export function useSettAktivBruker() {
     const setBruker = useSetAtom(aktivBrukerAtom);
     const nyModia = useAtomValue(nyModiaAtom);
     const navigate = useNavigate();
-
     return (fnr: string | null, redirect = true) => {
         if (!fnr) {
             navigate({ to: '/' });
@@ -98,6 +98,10 @@ export function useSettAktivBruker() {
         }
 
         setBruker(fnr);
+        trackBrukerEndret();
+        // Set fokus til personlinje med viktig informasjon (for skjermlesere og tastaturbrukere)
+        document.getElementById('personlinje-header')?.focus();
+
         if (
             redirect &&
             ![
@@ -109,7 +113,25 @@ export function useSettAktivBruker() {
                 paths.landingPage
             ].some((path) => location.pathname.startsWith(path))
         ) {
-            navigate({ to: nyModia ? '/new/person' : paths.personUri });
+            navigate({ to: nyModia ? '/new/person' : paths.personUri }).finally(() => {
+                document.getElementById('personlinje-header')?.focus();
+            });
         }
     };
+}
+
+export function useAntallListeElementeBasertPaaSkjermStorrelse() {
+    const [antallListeElementer, setAntallListeElementer] = useState(
+        window.matchMedia('(max-width: 767px)').matches ? 5 : 10
+    );
+
+    useEffect(() => {
+        const handler = () => {
+            setAntallListeElementer(window.matchMedia('(max-width: 767px)').matches ? 5 : 10);
+        };
+        window.addEventListener('resize', handler);
+        return () => window.removeEventListener('resize', handler);
+    }, []);
+
+    return antallListeElementer;
 }

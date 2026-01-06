@@ -1,63 +1,73 @@
-import { CheckmarkCircleFillIcon, ChevronRightIcon, ExclamationmarkTriangleFillIcon } from '@navikt/aksel-icons';
-import { BodyShort, Button, HStack, Heading, VStack } from '@navikt/ds-react';
+import { CheckmarkCircleIcon, ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
+import { Detail, HStack, Label, Link, Tag, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import Card from 'src/components/Card';
 import type { VarselData } from 'src/components/varsler/List/utils';
+import { trackingEvents } from 'src/utils/analytics';
 import { formaterDato } from 'src/utils/string-utils';
+import { twMerge } from 'tailwind-merge';
 
 const routeApi = getRouteApi('/new/person/varsler');
 
+const Status = ({ varsel }: { varsel: VarselData }) => {
+    if (varsel.harFeilteVarsel) {
+        return (
+            <Tag title="Varsling feilet" variant="error-moderate" size="xsmall">
+                <ExclamationmarkTriangleIcon aria-hidden />
+            </Tag>
+        );
+    }
+    return (
+        <Tag title="Varsling vellykket" variant="success-moderate" size="xsmall">
+            <CheckmarkCircleIcon aria-hidden />
+        </Tag>
+    );
+};
+
 export const VarslerItem = ({
-    varsel,
-    handleClick
+    varsel
 }: {
     varsel: VarselData;
-    handleClick: (id: string) => void;
 }) => {
     const aktivVarsel = routeApi.useSearch().id;
+    const navigate = routeApi.useNavigate();
+
+    const onClick = () => {
+        navigate({
+            search: { id: varsel.eventId },
+            state: {
+                umamiEvent: {
+                    name: trackingEvents.detaljvisningKlikket,
+                    data: { fane: 'varsler', tekst: 'vis varsel' }
+                }
+            }
+        });
+    };
+
     return (
-        <Card
-            padding="2"
-            className={`cursor-pointer hover:hover:bg-ax-bg-neutral-moderate-hover group
-                ${aktivVarsel === varsel.eventId ? 'bg-ax-bg-neutral-moderate ' : ''}`}
-            onClick={() => handleClick(varsel.eventId)}
-            as="li"
-        >
-            <HStack justify="space-between" gap="1" wrap={false}>
+        <Link variant="neutral" className="hover:no-underline block" underline={false} onClick={onClick}>
+            <Card
+                padding="2"
+                className={twMerge(
+                    'cursor-pointer hover:bg-[var(--ax-bg-accent-moderate-hover)] group',
+                    aktivVarsel === varsel.eventId &&
+                        'bg-ax-bg-accent-moderate-pressed border-ax-bg-accent-moderate-pressed'
+                )}
+                as="li"
+            >
                 <VStack justify="center" gap="1">
-                    <Heading size="xsmall" as="h3" level="3">
-                        {varsel.tittel}
-                    </Heading>
-                    <HStack gap="2">
-                        <BodyShort size="small" weight="semibold">
-                            Varsel datoer:
-                        </BodyShort>
-                        <BodyShort size="small">{varsel.datoer.map(formaterDato).join(', ')}</BodyShort>
+                    <HStack wrap={false} justify="space-between" align="start" gap="2">
+                        <Label size="small" as="h3">
+                            {varsel.tittel}
+                        </Label>
+                        <Status varsel={varsel} />
                     </HStack>
                     <HStack gap="2">
-                        <BodyShort size="small" weight="semibold">
-                            Status:
-                        </BodyShort>
-                        {varsel.harFeilteVarsel ? (
-                            <ExclamationmarkTriangleFillIcon fontSize="1.5rem" title="Har feil" />
-                        ) : (
-                            <CheckmarkCircleFillIcon fontSize="1.5rem" title="Ok" />
-                        )}
+                        <Detail>Varsel datoer:</Detail>
+                        <Detail>{varsel.datoer.map(formaterDato).join(', ')}</Detail>
                     </HStack>
                 </VStack>
-                <Button
-                    variant="tertiary-neutral"
-                    size="small"
-                    name="Åpne"
-                    aria-label="Åpne"
-                    icon={
-                        <ChevronRightIcon
-                            aria-hidden
-                            className="translate-x-0 group-hover:translate-x-1 transition-transform"
-                        />
-                    }
-                />
-            </HStack>
-        </Card>
+            </Card>
+        </Link>
     );
 };

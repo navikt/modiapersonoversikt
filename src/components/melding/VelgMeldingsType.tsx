@@ -8,7 +8,7 @@ interface VelgMeldingsTypeProps {
 
 export function VelgMeldingsType({ meldingsType, setMeldingsType }: VelgMeldingsTypeProps) {
     return (
-        <RadioGroup legend="Type dialog" onChange={setMeldingsType} value={meldingsType} size="small">
+        <RadioGroup legend="Type dialog" hideLegend onChange={setMeldingsType} value={meldingsType} size="small">
             <MeldingsTypeRadioKnapper />
         </RadioGroup>
     );

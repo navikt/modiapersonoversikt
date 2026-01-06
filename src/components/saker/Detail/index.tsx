@@ -4,9 +4,9 @@ import {
     BodyLong,
     Box,
     Button,
-    GuidePanel,
     HStack,
     Heading,
+    InlineMessage,
     Skeleton,
     Spacer,
     Switch,
@@ -95,45 +95,13 @@ const NorgLenke = ({
 const SakContent = () => {
     const { id } = routeApi.useSearch();
     const saker = useFilterSaker();
-    if (saker.length === 0) {
-        return (
-            <Alert className="mt-6" variant="info">
-                Fant ingen saker
-            </Alert>
-        );
-    }
-
-    if (!id) {
-        return (
-            <HStack margin="4">
-                <GuidePanel>Velg en sak fra listen på venstre side for å se detaljer.</GuidePanel>
-            </HStack>
-        );
-    }
-
-    return <SakDetails valgtSakId={id} pageView={true} />;
-};
-
-export const SakDetails = ({
-    valgtSakId,
-    pageView
-}: {
-    valgtSakId?: string;
-    pageView?: boolean;
-}) => {
-    const {
-        data: { person }
-    } = usePersonData();
-    const saker = useFilterSaker();
-    const brukersNavn = hentBrukerNavn(person);
-    const { avsender } = useAtomValue(sakerFilterAtom);
     const filterAtomValue = useAtomValue(sakerFilterAtom);
     const prevFilterRef = useRef(filterAtomValue);
-    const geografiskTilknytning = person?.geografiskTilknytning;
+    const navigate = routeApi.useNavigate();
 
-    const valgtSak = saker.find(
-        (sak) => getSakId(sak) === valgtSakId || sak.saksid === valgtSakId || sak.fagsaksnummer === valgtSakId
-    );
+    const valgtSak = id
+        ? saker.find((sak) => getSakId(sak) === id || sak.saksid === id || sak.fagsaksnummer === id)
+        : null;
 
     // Fjern saksid i URL og cache hvis filteret er endret og saken ikke finnes i filtrerte saker
     useEffect(() => {
@@ -145,31 +113,34 @@ export const SakDetails = ({
         prevFilterRef.current = filterAtomValue;
     }, [valgtSak, saker, filterAtomValue]);
 
-    if (!valgtSakId) {
-        return (
-            <HStack margin="4">
-                <GuidePanel>Velg en sak fra listen på venstre side for å se detaljer.</GuidePanel>
-            </HStack>
-        );
+    if (saker.length === 0) {
+        return <></>;
     }
 
-    if (!valgtSak) {
-        return (
-            <VStack flexGrow="1" minHeight="0" className="mt-6">
-                <Alert variant="error">Saken du valgte, ble ikke funnet.</Alert>
-            </VStack>
-        );
+    if (id && !valgtSak) {
+        return <Alert variant="error">Saken du valgte, ble ikke funnet.</Alert>;
     }
 
-    if (!valgtSak.harTilgang) {
-        return (
-            <VStack flexGrow="1" minHeight="0" className="mt-6">
-                <Alert variant="warning">
-                    Du kan ikke se innholdet i denne saken fordi du ikke har tilgang til tema {valgtSak.temanavn}.
-                </Alert>
-            </VStack>
-        );
+    if (!valgtSak && !id) {
+        navigate({ search: { id: getSakId(saker[0]) } });
     }
+
+    return <SakDetails valgtSak={valgtSak ?? saker[0]} pageView={true} />;
+};
+
+const SakDetails = ({
+    valgtSak,
+    pageView
+}: {
+    valgtSak: SaksDokumenter;
+    pageView?: boolean;
+}) => {
+    const {
+        data: { person }
+    } = usePersonData();
+    const brukersNavn = hentBrukerNavn(person);
+    const { avsender } = useAtomValue(sakerFilterAtom);
+    const geografiskTilknytning = person?.geografiskTilknytning;
 
     const filterDokumenter = (dokumenter: Dokumentmetadata[]): Dokumentmetadata[] => {
         if (!dokumenter || dokumenter.length === 0) {
@@ -196,7 +167,7 @@ export const SakDetails = ({
     };
 
     return (
-        <VStack gap="2" flexGrow="1" minHeight="0" className="overflow-scroll">
+        <VStack gap="2" flexGrow="1" minHeight="0" className="overflow-auto">
             {pageView && (
                 <VStack>
                     <NorgLenke valgtSak={valgtSak} geografiskTilknytning={geografiskTilknytning} />
@@ -223,10 +194,10 @@ export const SakDetails = ({
                     <JournalPoster journalPoster={journalPoster} brukersNavn={brukersNavn} columns={4} />
                 </Card>
                 {pageView && (
-                    <GuidePanel>
+                    <InlineMessage status="info" size="medium">
                         Modia viser elektroniske dokumenter brukeren har sendt inn via nav.no etter 9. desember 2014.
                         Dokumenter som er journalført vises fra og med 4.juni 2016
-                    </GuidePanel>
+                    </InlineMessage>
                 )}
             </Box.New>
         </VStack>
@@ -236,7 +207,7 @@ export const SakDetails = ({
 export const SakDetailPage = () => {
     return (
         <ErrorBoundary boundaryName="sakDetaljer">
-            <Suspense fallback={<Skeleton variant="rounded" height="200" />}>
+            <Suspense fallback={<Skeleton variant="rounded" height="4rem" />}>
                 <SakContent />
             </Suspense>
         </ErrorBoundary>

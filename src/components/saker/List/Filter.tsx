@@ -1,12 +1,14 @@
 import { Box, ExpansionCard, Fieldset, Search, Skeleton, Switch, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
-import { atom, useAtom, useAtomValue } from 'jotai';
-import { atomWithReset } from 'jotai/utils';
+import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { RESET, atomWithReset } from 'jotai/utils';
 import { debounce, xor } from 'lodash';
 import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import DateRangeSelector, { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
 import { sakStatuser, useTemaer } from 'src/components/saker/utils';
 import type { DokumentmetadataAvsender } from 'src/generated/modiapersonoversikt-api';
+import { usePersonAtomValue } from 'src/lib/state/context';
+import { filterType, trackExpansionCardApnet, trackExpansionCardLukket, trackFilterEndret } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
 
 export type SakerFilter = {
@@ -85,7 +87,12 @@ const SaksIdSearchField = () => {
         setInternalValue(value ?? '');
     }, [value]);
 
-    const setAtomValue = debounce(setValue, 500);
+    const setValueOgTrackSok = (v: string) => {
+        setValue(v);
+        trackFilterEndret('saker', filterType.SOK);
+    };
+
+    const setAtomValue = debounce(setValueOgTrackSok, 500);
     return (
         <Search
             size="small"
@@ -113,6 +120,7 @@ const TemaFilter = () => {
     const onToggleSelected = useCallback(
         (option: string) => {
             setSelectedTema(option);
+            trackFilterEndret('saker', filterType.TEMA);
         },
         [selectedTema]
     );
@@ -137,6 +145,7 @@ const StatusFilter = () => {
     const onToggleSelected = useCallback(
         (option: string) => {
             setSelectedStatus(option);
+            trackFilterEndret('saker', filterType.STATUS);
         },
         [setSelectedStatus]
     );
@@ -184,13 +193,23 @@ const FilterTitle = () => {
 };
 
 export const SakerFilter = () => {
+    const setFilter = useSetAtom(sakerFilterAtom);
     const [open, setOpen] = useState(false);
+    const fnr = usePersonAtomValue();
     const expansionFilterRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        setFilter(RESET);
+    }, [fnr]);
 
     const handleExpansionChange = () => {
         setTimeout(() => {
             if (!expansionFilterRef.current) return;
-            setOpen(expansionFilterRef.current.classList.contains('aksel-expansioncard--open'));
+            const isOpen = expansionFilterRef.current.classList.contains('aksel-expansioncard--open');
+            setOpen(isOpen);
+            if (isOpen !== open) {
+                isOpen ? trackExpansionCardApnet('sakerfilter') : trackExpansionCardLukket('sakerfilter');
+            }
         }, 0);
     };
 

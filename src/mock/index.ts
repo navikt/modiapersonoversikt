@@ -13,7 +13,7 @@ import { saker } from './journalforing/journalforing-mock';
 import { getForeslattEnhet, getMockAnsatte, getMockEnheter, getMockGsakTema } from './meldinger/oppgave-mock';
 import { MeldingerBackendMock } from './mockBackend/meldingerBackendMock';
 import { OppgaverBackendMock } from './mockBackend/oppgaverBackendMock';
-import { getMockOppfolging, getMockYtelserOgKontrakter } from './oppfolging-mock';
+import { getMock14aVedtak, getMockOppfolging, getMockYtelserOgKontrakter } from './oppfolging-mock';
 import { hentPersondata } from './persondata/persondata';
 import { mockPersonsokResponse, mockStaticPersonsokRequest } from './personsok/personsokMock';
 import { saksbehandlerInnstillingerHandlers } from './saksbehandlerinnstillinger-mock';
@@ -50,7 +50,8 @@ import type {
 import { getMockPensjon } from 'src/mock/ytelse/pensjon-mock';
 
 import { getMockArbeidsavklaringspengerResponse } from 'src/mock/ytelse/arbeidsavklaringspengerMock';
-import { getMockYtelserRespons } from 'src/mock/ytelse/ytelser-mock';
+import { getMockForeldrepengerFpSakResponse } from 'src/mock/ytelse/foreldrepengerFpSakMock';
+import { getMockSykpengerSpokelseResponse } from 'src/mock/ytelse/sykepengerSpokelseMock';
 import type { FeatureTogglesResponse } from 'src/rest/resources/featuretogglesResource';
 import { STATUS_OK, fodselsNummerErGyldigStatus, randomDelay } from './utils-mock';
 import { getMockTiltakspenger } from './ytelse/tiltakspenger-mock';
@@ -92,15 +93,6 @@ const tilgangsKontrollHandler = [
 
     http.post(
         `${apiBaseUri}/tilgang`,
-        withDelayedResponse(
-            randomDelay(),
-            () => Promise.resolve(Math.random() > 0.98 ? 400 : 200),
-            mockGeneratorMedFodselsnummerV2(tilgangskontrollMock)
-        )
-    ),
-
-    http.post(
-        `${apiBaseUri}/tilgang/v2`,
         withDelayedResponse(
             randomDelay(),
             () => Promise.resolve(Math.random() > 0.98 ? 400 : 200),
@@ -163,6 +155,15 @@ const utbetalingerHandler = http.post(
     })
 );
 
+const sykepengerSpokelseHandler = http.post(
+    `${apiBaseUri}/ytelse/spokelse_sykepenger`,
+    withDelayedResponse(
+        randomDelay(),
+        fodselsNummerErGyldigStatus,
+        mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMockSykpengerSpokelseResponse(fodselsnummer))
+    )
+);
+
 const sykepengerHandler = http.post(
     `${apiBaseUri}/ytelse/sykepenger`,
     withDelayedResponse(
@@ -199,15 +200,6 @@ const tiltakspengerMock = http.post(
     )
 );
 
-const ytelseHandler = http.post(
-    `${apiBaseUri}/ytelse/alle-ytelser`,
-    withDelayedResponse(
-        randomDelay(),
-        fodselsNummerErGyldigStatus,
-        mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMockYtelserRespons(fodselsnummer))
-    )
-);
-
 const pensjonMock = http.post(
     `${apiBaseUri}/ytelse/pensjon`,
     withDelayedResponse(
@@ -226,6 +218,15 @@ const arbeidsavklaringspengerMock = http.post(
     )
 );
 
+const foreldrepengerFpSakHandlerMock = http.post(
+    `${apiBaseUri}/ytelse/foreldrepenger_fpsak`,
+    withDelayedResponse(
+        randomDelay(),
+        fodselsNummerErGyldigStatus,
+        mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMockForeldrepengerFpSakResponse(fodselsnummer))
+    )
+);
+
 const oppfolgingHandler = http.post(
     `${apiBaseUri}/oppfolging`,
     withDelayedResponse(
@@ -241,6 +242,15 @@ const ytelserogkontrakterHandler = http.post(
         randomDelay(),
         fodselsNummerErGyldigStatus,
         mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMockYtelserOgKontrakter(fodselsnummer))
+    )
+);
+
+const gjeldende14aVedtakHandler = http.post(
+    `${apiBaseUri}/oppfolging/hent-gjeldende-14a-vedtak`,
+    withDelayedResponse(
+        randomDelay(),
+        fodselsNummerErGyldigStatus,
+        mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMock14aVedtak(fodselsnummer))
     )
 );
 
@@ -385,10 +395,11 @@ export const handlers: (HttpHandler | WebSocketHandler)[] = [
     sakerOgDokumenterHandler,
     utbetalingerHandler,
     sykepengerHandler,
+    sykepengerSpokelseHandler,
     foreldrepengerHandler,
     pleiepengerHandler,
     tiltakspengerMock,
-    ytelseHandler,
+    foreldrepengerFpSakHandlerMock,
     pensjonMock,
     arbeidsavklaringspengerMock,
     tildelteOppgaverHandler,
@@ -400,6 +411,7 @@ export const handlers: (HttpHandler | WebSocketHandler)[] = [
     foreslotteEnhetHandler,
     ansattePaaEnhetHandler,
     ytelserogkontrakterHandler,
+    gjeldende14aVedtakHandler,
     varslerHandler,
     opprettOppgaveHandler,
     opprettSkjermetOppgaveHandler,

@@ -32,16 +32,19 @@ function PersonLayout() {
                 <Panel order={1} className="mr-2 overflow-scroll">
                     <Box as="main" id="main-content" height="100%">
                         <VStack gap="2" height="100%">
-                            <Box flexGrow="0">
-                                <PersonLinje />
-                            </Box>
+                            <PersonLinje />
+
                             <Suspense>
                                 <Outlet />
                             </Suspense>
                         </VStack>
                     </Box>
                 </Panel>
-                <PanelResizeHandle className="hover:bg-ax-bg-neutral-moderate-hover w-1 focus:bg-ax-brand-blue-100" />
+                <PanelResizeHandle
+                    aria-hidden
+                    tabIndex={-1}
+                    className="hover:bg-ax-bg-neutral-moderate-hover w-1 focus:bg-ax-brand-blue-100"
+                />
                 <LukkbarNyMelding />
             </PanelGroup>
         </HStack>

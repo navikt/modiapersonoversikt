@@ -1,6 +1,7 @@
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
+import { trackVisDetaljvisning } from 'src/utils/analytics';
 import styled from 'styled-components';
 import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
 import PrintKnapp from '../../../../../components/PrintKnapp';
@@ -90,8 +91,10 @@ function EnkelUtbetaling(props: Props) {
     const handleClickOnUtbetaling = (event: React.MouseEvent<HTMLElement>) => {
         const printKnappTrykket = eventTagetIsInsideRef(event, printerButtonRef);
         if (!printKnappTrykket) {
+            if (!visDetaljer) trackVisDetaljvisning('utbetaling', 'vis enkel utbetaling');
             toggleVisDetaljer();
         }
+        ekspanderYtelse(!visDetaljer);
     };
 
     const dato = datoVerbose(getGjeldendeDatoForUtbetaling(props.utbetaling)).sammensatt;

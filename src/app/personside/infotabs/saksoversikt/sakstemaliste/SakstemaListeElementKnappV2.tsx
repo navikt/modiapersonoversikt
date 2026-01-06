@@ -1,5 +1,6 @@
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { memo } from 'react';
+import type { UmamiEvent } from 'src/router';
 import styled from 'styled-components';
 import VisMerKnapp from '../../../../../components/VisMerKnapp';
 import { Behandlingsstatus, type SakstemaSoknadsstatus } from '../../../../../models/saksoversikt/sakstema';
@@ -11,6 +12,7 @@ import { SVGStyling, saksikon, visAntallSakerSomHarbehandlingsstatusV2 } from '.
 interface Props {
     sakstema: SakstemaSoknadsstatus;
     erValgt: boolean;
+    umamiEvent?: UmamiEvent;
 }
 
 const UUcustomOrder = styled.div`
@@ -51,6 +53,7 @@ function SakstemaListeElementKnapp(props: Props) {
                 valgt={props.erValgt}
                 linkTo={dyplenker.saker.link(props.sakstema)}
                 ariaDescription={`Vis ${props.sakstema.temanavn}`}
+                umamiEvent={props.umamiEvent}
             >
                 <Flex>
                     <div>

@@ -1,18 +1,20 @@
-import { Alert, Heading, Skeleton, VStack } from '@navikt/ds-react';
-import { useNavigate, useSearch } from '@tanstack/react-router';
-import { Suspense, useCallback } from 'react';
+import { Alert, BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { useSearch } from '@tanstack/react-router';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { YtelseItem } from 'src/components/ytelser/List/YtelseItem';
 import { getUnikYtelseKey, useFilterYtelser } from 'src/components/ytelser/utils';
+import { useAntallListeElementeBasertPaaSkjermStorrelse } from 'src/utils/customHooks';
 import { YtelserListFilter } from './Filter';
 
-export const YtelserList = () => (
-    <VStack minHeight="0" gap="2">
-        <YtelserListFilter />
-        <ErrorBoundary boundaryName="YtelserList">
-            <Suspense
-                fallback={
+export const YtelserList = () => {
+    const { pending } = useFilterYtelser();
+
+    return (
+        <VStack height="100%" gap="2">
+            <YtelserListFilter />
+            <ErrorBoundary boundaryName="YtelserList">
+                {pending ? (
                     <VStack gap="2" marginInline="0 2">
                         {Array(8)
                             .keys()
@@ -20,48 +22,53 @@ export const YtelserList = () => (
                                 <Skeleton key={i} variant="rounded" height={68} />
                             ))}
                     </VStack>
-                }
-            >
-                <YtelseList />
-            </Suspense>
-        </ErrorBoundary>
-    </VStack>
-);
+                ) : (
+                    <YtelseList />
+                )}
+            </ErrorBoundary>
+        </VStack>
+    );
+};
 
 const YtelseList = () => {
     const { ytelser, placeholders } = useFilterYtelser();
-    const navigate = useNavigate({ from: '/new/person/ytelser' });
-
-    const handleClick = useCallback(
-        (id: string) => {
-            navigate({ search: { id } });
-        },
-        [navigate]
-    );
+    const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
 
     const selectedKey = useSearch({
         from: '/new/person/ytelser',
         select: (p) => p.id
     });
 
+    if (ytelser.length === 0) {
+        return (
+            <Alert className="mr-2" variant="info" role="alert">
+                Ingen ytelser funner
+            </Alert>
+        );
+    }
+
     return (
         <>
+            <Heading className="pl-1" size="xsmall" level="3" role="alert">
+                {ytelser.length} {ytelser.length === 1 ? 'ytelse' : 'ytelser'}
+                <BodyShort visuallyHidden>funnet</BodyShort>
+            </Heading>
             {placeholders.map((placeholder) => (
                 <Alert className="mr-2" variant="info" key={placeholder} size="small">
                     {placeholder}
                 </Alert>
             ))}
-            <Heading className="pl-1" size="xsmall" level="2">
-                {ytelser.length} {ytelser.length === 1 ? 'ytelse' : 'ytelser'}
-            </Heading>
-            {ytelser.length > 0 && (
-                <PaginatedList
-                    selectedKey={selectedKey}
-                    items={ytelser}
-                    keyExtractor={getUnikYtelseKey}
-                    renderItem={({ item }) => <YtelseItem ytelse={item} handleClick={handleClick} />}
-                />
-            )}
+            <PaginatedList
+                paginationSrHeading={{
+                    tag: 'h3',
+                    text: 'Ytelsepaginering'
+                }}
+                pageSize={antallListeElementer}
+                selectedKey={selectedKey}
+                items={ytelser}
+                keyExtractor={getUnikYtelseKey}
+                renderItem={({ item }) => <YtelseItem ytelse={item} />}
+            />
         </>
     );
 };

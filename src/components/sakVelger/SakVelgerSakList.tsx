@@ -52,11 +52,11 @@ const SakVelgerSakList: React.FC<SakVelgerSakListProps> = ({
                 role="listbox"
                 aria-labelledby="heading-listbox2"
                 ref={saksListeRef}
-                aria-activedescendant={sakIFokus?.saksId}
+                aria-activedescendant={sakIFokus?.saksIdVisning}
             >
                 {saker.map((sak) => (
                     <SakListeElement
-                        key={sak.saksId}
+                        key={sak.saksIdVisning}
                         sak={sak}
                         onClick={() => setSak(sak, valgtKategori, valgtTema)}
                         valgtSak={valgtSak}
@@ -85,18 +85,18 @@ const SakListeElement = ({
     return (
         <div
             ref={sakRef}
-            id={sak.saksId}
+            id={sak.saksIdVisning}
             tabIndex={-1}
             // biome-ignore lint/a11y/useSemanticElements: <Custom tabindex og tastaturnavigasjon gir bedre ux enn select/option>
             role="option"
             onClick={onClick}
             className={twMerge(
-                valgtSak?.saksId === sak.saksId
+                valgtSak?.saksIdVisning === sak.saksIdVisning
                     ? 'bg-ax-bg-accent-moderate-pressed outline-ax-border-accent-strong outline-2'
                     : 'border-b-2 focus:border-0 hover:bg-ax-bg-accent-moderate-hover focus:bg-ax-bg-accent-moderate-hover focus:outline-2 focus:outline-ax-border-accent-strong',
                 'cursor-pointer py-1'
             )}
-            aria-selected={valgtSak?.saksId === sak.saksId}
+            aria-selected={valgtSak?.saksIdVisning === sak.saksIdVisning}
             onSelect={onClick}
             onKeyDown={(e) => {
                 if (e.key !== 'Enter' && e.key !== 'space') return;
@@ -104,7 +104,7 @@ const SakListeElement = ({
             }}
         >
             <HStack justify="space-between">
-                <span>{sak.saksId}</span>
+                <span>{sak.saksIdVisning}</span>
                 <span className="w-50">{formatterDatoMedMaanedsnavnOrNull(sak.opprettetDato)}</span>
             </HStack>
         </div>

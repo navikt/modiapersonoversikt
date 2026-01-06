@@ -10,26 +10,29 @@ import {
     UNSAFE_Combobox,
     VStack
 } from '@navikt/ds-react';
-import { atom, useAtom, useAtomValue } from 'jotai';
-import { atomWithReset, useResetAtom } from 'jotai/utils';
+import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { RESET, atomWithReset, useResetAtom } from 'jotai/utils';
 import { debounce, isEqual, xor } from 'lodash';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import DateRangeSelector from 'src/components/DateFilters/DatePeriodSelector';
 import type { DateRange } from 'src/components/DateFilters/types';
 import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
-import { TraadType } from 'src/lib/types/modiapersonoversikt-api';
+import { usePersonAtomValue } from 'src/lib/state/context';
 import { Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
+import { filterType, trackExpansionCardApnet, trackExpansionCardLukket, trackFilterEndret } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
-import { traadTypeTekst } from './tekster';
+
+const traadTyperFilter = ['Referat', 'Samtale', 'Infomelding', 'Chat'];
 
 export type MeldingerFilter = {
     tema?: Temagruppe[];
     search?: string;
-    traadType?: TraadType[];
+    traadType?: string[];
     dateRange: DateRange | null;
 };
+
 const defaultFilters: MeldingerFilter = {
-    traadType: Object.values(TraadType),
+    traadType: traadTyperFilter,
     dateRange: null
 };
 
@@ -63,6 +66,7 @@ const TemaFilter = () => {
     const onToggleSelected = useCallback(
         (option: string) => {
             setSelectedTema(option as Temagruppe);
+            trackFilterEndret('meldinger', filterType.TEMA);
         },
         [setSelectedTema]
     );
@@ -96,7 +100,12 @@ const SearchField = () => {
         setInternalValue(value ?? '');
     }, [value]);
 
-    const setAtomValue = debounce(setValue, 500);
+    const setValueOgTrackSok = (v: string) => {
+        setValue(v);
+        trackFilterEndret('meldinger', filterType.SOK);
+    };
+
+    const setAtomValue = debounce(setValueOgTrackSok, 500);
     return (
         <Search
             size="small"
@@ -114,7 +123,7 @@ const SearchField = () => {
 
 const meldingerFilterTraadTypeAtom = atom(
     (get) => get(meldingerFilterAtom).traadType,
-    (_get, set, newVal: TraadType) => {
+    (_get, set, newVal: string) => {
         set(meldingerFilterAtom, (filters) => ({
             ...filters,
             traadType: xor(filters.traadType, [newVal])
@@ -127,9 +136,17 @@ const TraadTypeFilter = () => {
     return (
         <Fieldset size="small" legend="Type dialog">
             <HStack wrap gap="2">
-                {Object.values(TraadType).map((t) => (
-                    <Switch key={t} size="small" checked={value?.includes(t)} onChange={() => setValue(t)}>
-                        {traadTypeTekst(true, t)}
+                {traadTyperFilter.map((t) => (
+                    <Switch
+                        key={t}
+                        size="small"
+                        checked={value?.includes(t)}
+                        onChange={() => {
+                            setValue(t);
+                            trackFilterEndret('meldinger', filterType.TYPE);
+                        }}
+                    >
+                        {t}
                     </Switch>
                 ))}
             </HStack>
@@ -190,13 +207,23 @@ const ResetFilters = () => {
 };
 
 export const TraadListFilterCard = () => {
+    const setFilter = useSetAtom(meldingerFilterAtom);
     const [open, setOpen] = useState(false);
+    const fnr = usePersonAtomValue();
     const expansionFilterRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        setFilter(RESET);
+    }, [fnr]);
 
     const handleExpansionChange = () => {
         setTimeout(() => {
             if (!expansionFilterRef.current) return;
-            setOpen(expansionFilterRef.current.classList.contains('aksel-expansioncard--open'));
+            const isOpen = expansionFilterRef.current.classList.contains('aksel-expansioncard--open');
+            setOpen(isOpen);
+            if (isOpen !== open) {
+                isOpen ? trackExpansionCardApnet('meldingerfilter') : trackExpansionCardLukket('meldingerfilter');
+            }
         }, 0);
     };
 

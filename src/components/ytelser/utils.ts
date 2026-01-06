@@ -1,4 +1,4 @@
-import type { UseSuspenseQueryResult } from '@tanstack/react-query';
+import type { UseBaseQueryResult, UseSuspenseQueryResult } from '@tanstack/react-query';
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai/index';
 import { useMemo } from 'react';
@@ -6,30 +6,46 @@ import { type YtelseFilter, ytelseFilterAtom } from 'src/components/ytelser/List
 import {
     useArbeidsavklaringspenger,
     useForeldrepenger,
+    useForeldrepengerFpSak,
     usePensjon,
     usePleiepenger,
     useSykepenger,
+    useSykepengerSpokelse,
     useTiltakspenger
 } from 'src/lib/clients/modiapersonoversikt-api';
-import {
-    type CommonPeriode,
-    type Foreldrepenger,
-    type PensjonSak,
-    type Pleiepenger,
-    type PleiepengerArbeidsforhold,
-    type PleiepengerPeriode,
-    type PleiepengerVedtak,
-    type Sykepenger,
-    type VedtakDto,
-    type YtelseVedtak,
-    YtelseVedtakYtelseType
+import type {
+    CommonPeriode,
+    Foreldrepenger,
+    ForeldrepengerFpSak,
+    PensjonSak,
+    Pleiepenger,
+    PleiepengerArbeidsforhold,
+    PleiepengerPeriode,
+    PleiepengerVedtak,
+    Sykepenger,
+    Utbetalingsperioder,
+    VedtakDto
 } from 'src/lib/types/modiapersonoversikt-api';
 import {
     type Arbeidsavklaringspenger,
     getUnikArbeidsavklaringspengerKey
 } from 'src/models/ytelse/arbeidsavklaringspenger';
+import { getForeldrepengerFpSakIdDato, getUnikForeldrepengerFpSakKey } from 'src/models/ytelse/foreldrepenger-fpsak';
+import type { Pensjon } from 'src/models/ytelse/pensjon';
+import type { Tiltakspenger } from 'src/models/ytelse/tiltakspenger';
+import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
 import { ascendingDateComparator, backendDatoformat, datoStigende, datoSynkende } from 'src/utils/date-utils';
 import { formaterDato } from 'src/utils/string-utils';
+
+type Ytelse =
+    | Foreldrepenger
+    | Pleiepenger
+    | Sykepenger
+    | Tiltakspenger
+    | Pensjon
+    | Arbeidsavklaringspenger
+    | ForeldrepengerFpSak
+    | Utbetalingsperioder;
 
 type Placeholder = { returnOnForbidden: string; returnOnError: string; returnOnNotFound: string };
 
@@ -40,6 +56,20 @@ interface Returns {
     harFeil: boolean;
 }
 
+export type YtelseVedtak = {
+    ytelseData: {
+        data: Ytelse;
+    };
+    ytelseType: YtelseVedtakYtelseType;
+};
+
+const filterForeldrepenger = (ytelse: YtelseVedtak, ytelsetyper: string[]): boolean => {
+    return (
+        ytelsetyper.includes(YtelseVedtakYtelseType.Foreldrepenger) &&
+        ytelse.ytelseType === YtelseVedtakYtelseType.ForeldrepengerFpSak
+    );
+};
+
 const filterYtelser = (ytelser: YtelseVedtak[], filters: YtelseFilter): YtelseVedtak[] => {
     const { ytelseTyper, dateRange } = filters;
 
@@ -49,7 +79,9 @@ const filterYtelser = (ytelser: YtelseVedtak[], filters: YtelseFilter): YtelseVe
 
     let filteredList = ytelser;
     if (ytelseTyper?.length) {
-        filteredList = filteredList.filter((ytelse) => ytelseTyper.includes(ytelse.ytelseType));
+        filteredList = filteredList.filter(
+            (ytelse) => ytelseTyper.includes(ytelse.ytelseType) || filterForeldrepenger(ytelse, ytelseTyper)
+        );
     }
 
     if (dateRange?.from && dateRange?.to) {
@@ -69,6 +101,8 @@ export function getYtelseIdDato(ytelse: YtelseVedtak): string {
             return getForeldepengerDato(ytelse.ytelseData.data as Foreldrepenger);
         case YtelseVedtakYtelseType.Sykepenger:
             return getSykepengerDato(ytelse.ytelseData.data as Sykepenger);
+        case YtelseVedtakYtelseType.SykepengerSpokelse:
+            return getSykepengerSpokelseIdDato(ytelse.ytelseData.data as Utbetalingsperioder);
         case YtelseVedtakYtelseType.Pleiepenger:
             return getPleiepengerDato(ytelse.ytelseData.data as Pleiepenger);
         case YtelseVedtakYtelseType.Tiltakspenge:
@@ -77,6 +111,8 @@ export function getYtelseIdDato(ytelse: YtelseVedtak): string {
             return getPensjonDato(ytelse.ytelseData.data as PensjonSak);
         case YtelseVedtakYtelseType.Arbeidsavklaringspenger:
             return getArbeidsavklaringspengerDato(ytelse.ytelseData.data as Arbeidsavklaringspenger);
+        case YtelseVedtakYtelseType.ForeldrepengerFpSak:
+            return getForeldrepengerFpSakIdDato(ytelse.ytelseData.data as ForeldrepengerFpSak);
         default:
             return '';
     }
@@ -88,6 +124,8 @@ export function getUnikYtelseKey(ytelse: YtelseVedtak) {
             return getUnikForeldrepengerKey(ytelse.ytelseData.data as Foreldrepenger);
         case YtelseVedtakYtelseType.Sykepenger:
             return getUnikSykepengerKey(ytelse.ytelseData.data as Sykepenger);
+        case YtelseVedtakYtelseType.SykepengerSpokelse:
+            return getUnikSykepengerSpokelseKey(ytelse.ytelseData.data as Utbetalingsperioder);
         case YtelseVedtakYtelseType.Pleiepenger:
             return getUnikPleiepengerKey(ytelse.ytelseData.data as Pleiepenger);
         case YtelseVedtakYtelseType.Tiltakspenge:
@@ -96,6 +134,8 @@ export function getUnikYtelseKey(ytelse: YtelseVedtak) {
             return getPensjonpengerKey(ytelse.ytelseData.data as PensjonSak);
         case YtelseVedtakYtelseType.Arbeidsavklaringspenger:
             return getUnikArbeidsavklaringspengerKey(ytelse.ytelseData.data as Arbeidsavklaringspenger);
+        case YtelseVedtakYtelseType.ForeldrepengerFpSak:
+            return getUnikForeldrepengerFpSakKey(ytelse.ytelseData.data as ForeldrepengerFpSak);
         default:
             return 'ukjent ytelse';
     }
@@ -113,6 +153,10 @@ function getUnikSykepengerKey(sykepenger: Sykepenger): string {
     return `sykepenger${getSykepengerDato(sykepenger)}`;
 }
 
+function getUnikSykepengerSpokelseKey(ytelse: Utbetalingsperioder) {
+    return `spokelse-${ytelse.utbetaltePerioder.firstOrNull()?.fom}`;
+}
+
 function getUnikTiltakspengerKey(ytelse: VedtakDto) {
     return `tiltakspenger${ytelse.vedtakId}`;
 }
@@ -127,6 +171,10 @@ function getForeldepengerDato(foreldrepenger: Foreldrepenger) {
 
 function getSykepengerDato(sykepenger: Sykepenger) {
     return sykepenger.sykmeldtFom ?? dayjs().format(backendDatoformat);
+}
+
+function getSykepengerSpokelseIdDato(ytelse: Utbetalingsperioder) {
+    return ytelse.utbetaltePerioder.firstOrNull()?.fom ?? dayjs().format(backendDatoformat);
 }
 
 function getTiltakspengerDato(ytelse: VedtakDto) {
@@ -253,7 +301,13 @@ const arbeidsavklaringsPengerPlaceholder = {
     returnOnForbidden: 'Du har ikke tilgang til arbeidsavklaringspenger'
 };
 
-const placeholder = (resource: UseSuspenseQueryResult, tekster: Placeholder) => {
+const foreldrepengerFpSakPlaceholder = {
+    returnOnError: 'Kunne ikke laste foreldrepenger',
+    returnOnNotFound: 'Kunne finne foreldrepenger',
+    returnOnForbidden: 'Du har ikke tilgang til foreldrepenger'
+};
+
+const placeholder = (resource: UseSuspenseQueryResult | UseBaseQueryResult, tekster: Placeholder) => {
     if (!resource?.isError) {
         return;
     }
@@ -272,50 +326,68 @@ export const useFilterYtelser = (): Returns => {
     const tiltakspengerResponse = useTiltakspenger(startDato, sluttDato);
     const pensjonResponse = usePensjon(startDato, sluttDato);
     const arbeidsavklaringspengerResponse = useArbeidsavklaringspenger(startDato, sluttDato);
+    const foreldrepengerFpSakResponse = useForeldrepengerFpSak(startDato, sluttDato);
+    const sykepengerSpokelseResponse = useSykepengerSpokelse(startDato, sluttDato);
 
     return useMemo(() => {
         const pending =
             pleiepengerResponse.isLoading ||
             foreldrepengerResponse.isLoading ||
             sykepengerResponse.isLoading ||
+            sykepengerSpokelseResponse.isLoading ||
             tiltakspengerResponse.isLoading ||
             pensjonResponse.isLoading ||
-            arbeidsavklaringspengerResponse.isLoading;
+            arbeidsavklaringspengerResponse.isLoading ||
+            foreldrepengerResponse.isLoading;
+
         const ytelser: YtelseVedtak[] = [];
-        foreldrepengerResponse.data?.foreldrepenger?.map((ytlse) =>
+        foreldrepengerResponse.data?.foreldrepenger?.map((ytelse) =>
             ytelser.push({
-                ytelseData: { data: ytlse },
+                ytelseData: { data: ytelse },
                 ytelseType: YtelseVedtakYtelseType.Foreldrepenger
             })
         );
-        pleiepengerResponse.data?.pleiepenger?.map((ytlse) =>
+        pleiepengerResponse.data?.pleiepenger?.map((ytelse) =>
             ytelser.push({
-                ytelseData: { data: ytlse },
+                ytelseData: { data: ytelse },
                 ytelseType: YtelseVedtakYtelseType.Pleiepenger
             })
         );
-        sykepengerResponse.data?.sykepenger?.map((ytlse) =>
+        sykepengerResponse.data?.sykepenger?.map((ytelse) =>
             ytelser.push({
-                ytelseData: { data: ytlse },
+                ytelseData: { data: ytelse },
                 ytelseType: YtelseVedtakYtelseType.Sykepenger
             })
         );
-        tiltakspengerResponse?.data?.map((ytlse) =>
+        if (sykepengerSpokelseResponse.data && sykepengerSpokelseResponse.data.utbetaltePerioder.length > 0) {
             ytelser.push({
-                ytelseData: { data: ytlse },
+                ytelseData: { data: sykepengerSpokelseResponse.data },
+                ytelseType: YtelseVedtakYtelseType.SykepengerSpokelse
+            });
+        }
+        tiltakspengerResponse?.data?.map((ytelse) =>
+            ytelser.push({
+                ytelseData: { data: ytelse },
                 ytelseType: YtelseVedtakYtelseType.Tiltakspenge
             })
         );
-        pensjonResponse.data?.map((ytlse) =>
+        pensjonResponse.data?.map((ytelse) =>
             ytelser.push({
-                ytelseData: { data: ytlse },
+                ytelseData: { data: ytelse },
                 ytelseType: YtelseVedtakYtelseType.Pensjon
             })
         );
-        arbeidsavklaringspengerResponse.data?.map((ytlse) =>
+        arbeidsavklaringspengerResponse.data?.map((ytelse) =>
             ytelser.push({
-                ytelseData: { data: ytlse },
+                ytelseData: { data: ytelse },
                 ytelseType: YtelseVedtakYtelseType.Arbeidsavklaringspenger
+            })
+        );
+
+        foreldrepengerFpSakResponse.data?.map((ytelse) =>
+            ytelser.push({
+                ytelseData: { data: ytelse },
+                ytelseType: YtelseVedtakYtelseType.ForeldrepengerFpSak
             })
         );
 
@@ -325,18 +397,22 @@ export const useFilterYtelser = (): Returns => {
             placeholder(foreldrepengerResponse, foreldrepengerPlaceholder),
             placeholder(pleiepengerResponse, pleiepengerPlaceholder),
             placeholder(sykepengerResponse, sykepengerPlaceholder),
+            placeholder(sykepengerSpokelseResponse, sykepengerPlaceholder),
             placeholder(tiltakspengerResponse, tiltakspengerPlaceholder),
             placeholder(pensjonResponse, pensjonPlaceholder),
-            placeholder(arbeidsavklaringspengerResponse, arbeidsavklaringsPengerPlaceholder)
+            placeholder(arbeidsavklaringspengerResponse, arbeidsavklaringsPengerPlaceholder),
+            placeholder(foreldrepengerFpSakResponse, foreldrepengerFpSakPlaceholder)
         ];
 
         const harFeil =
             foreldrepengerResponse.isError ||
             pleiepengerResponse.isError ||
             sykepengerResponse.isError ||
+            sykepengerSpokelseResponse.isError ||
             tiltakspengerResponse.isError ||
             pensjonResponse.isError ||
-            arbeidsavklaringspengerResponse.isError;
+            arbeidsavklaringspengerResponse.isError ||
+            foreldrepengerFpSakResponse.isError;
 
         return {
             ytelser: filterYtelser(ytelserSortert, filters),
@@ -348,8 +424,10 @@ export const useFilterYtelser = (): Returns => {
         foreldrepengerResponse,
         pleiepengerResponse,
         sykepengerResponse,
+        sykepengerSpokelseResponse,
         tiltakspengerResponse,
         pensjonResponse,
-        arbeidsavklaringspengerResponse
+        arbeidsavklaringspengerResponse,
+        foreldrepengerFpSakResponse
     ]);
 };

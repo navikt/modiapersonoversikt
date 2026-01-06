@@ -1,5 +1,11 @@
 import { expect, test } from '@playwright/test';
 
+test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => {
+        window.localStorage.setItem('ny-modia', 'true');
+    });
+});
+
 test('Select melding', async ({ page }) => {
     await page.goto('/new/person/meldinger');
 
@@ -8,7 +14,7 @@ test('Select melding', async ({ page }) => {
     const meldingerCards = meldingerList.getByTestId('traaditem');
     expect((await meldingerCards.all()).length).toBeGreaterThan(5);
 
-    await meldingerCards.first().getByRole('button').click();
+    await meldingerCards.first().click();
 
     const meldingerDetails = page.getByRole('region', { name: 'Dialogdetaljer' });
 
@@ -19,7 +25,7 @@ test('Send melding i tråd', async ({ page }) => {
     await page.goto('/new/person/meldinger');
     const traadToClick = page.getByTestId('traaditem').nth(4);
     await expect(traadToClick).toBeVisible();
-    await traadToClick.getByRole('button').click();
+    await traadToClick.click();
 
     await page.getByRole('button', { name: 'Svar' }).click();
 
@@ -43,26 +49,27 @@ test('Send ny melding', async ({ page }) => {
     await expect(newTraad).toContainText('Referat');
     await expect(newTraad).toContainText('Tema:Pensjon');
 
-    await newTraad.getByRole('button').click();
+    await newTraad.click();
 
     const meldingerDetails = page.getByRole('region', { name: 'Dialogdetaljer' });
     await expect(meldingerDetails.getByRole('heading').first()).toHaveText('Referat - Pensjon');
 
     const meldingerList = page.getByLabel('Dialogdetaljer').getByLabel('Meldinger');
-    const meldinger = meldingerList.getByRole('list');
-    await expect(meldinger).toHaveCount(1);
-    await expect(meldinger.first().getByRole('paragraph').first()).toHaveText('playwright new melding');
+    await expect(meldingerList).toHaveCount(1);
+    await expect(meldingerList.first()).toContainText('playwright new melding');
 });
 
 test('Journalfore dialog', async ({ page }) => {
     // traadId from statiskTraadMock
     await page.goto('/new/person/meldinger?traadId=sg838exr');
+    await page.getByTestId('journalposter-readmore').click();
+
     const journalposterTable = page.getByTestId('journalposter-table');
     const journalposter = journalposterTable.getByRole('row');
     await expect(journalposterTable).toBeVisible();
     const existingRows = await journalposter.count();
 
-    await page.getByRole('button', { name: 'Journalfør' }).click();
+    await page.getByTestId('journalfør-knapp').click();
 
     const modal = page.getByRole('dialog', { name: 'Journalfør dialog' });
     const submitButton = modal.getByRole('button', { name: 'Journalfør' });
@@ -78,8 +85,6 @@ test('Journalfore dialog', async ({ page }) => {
 
     await submitButton.click();
     await expect(modal).not.toBeVisible();
-    await page.getByRole('button', { name: 'Se alle' }).click();
-
     await expect(journalposter).toHaveCount(existingRows + 1);
     await expect(journalposterTable.getByText(saksId)).toBeVisible();
 });

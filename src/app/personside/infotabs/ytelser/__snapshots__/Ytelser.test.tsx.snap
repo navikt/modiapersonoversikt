@@ -77,10 +77,11 @@ exports[`Om Ytelser matcher snapshot 1`] = `
 }
 
 .c16 {
-  padding: .5rem;
+  padding: 0!important;
 }
 
 .c17 {
+  padding: .5rem;
   display: flex;
   flex-wrap: wrap;
 }
@@ -417,927 +418,6 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       id="datepicker-input-error-«r1»"
                     />
                   </div>
-                  <div
-                    aria-hidden="true"
-                    class="navds-popover navds-date__popover navds-popover--hidden"
-                    data-index="0"
-                    data-placement="bottom-start"
-                    id="«r0»"
-                    role="dialog"
-                    style="position: fixed; left: 0px; top: 0px; transform: translate(12px, 4px);"
-                  >
-                    <div
-                      class="rdp navds-date"
-                      data-mode="single"
-                    >
-                      <div
-                        class="rdp-months"
-                      >
-                        <div
-                          class="rdp-month"
-                        >
-                          <div
-                            class="navds-date__caption"
-                          >
-                            <span
-                              aria-atomic="true"
-                              aria-live="polite"
-                              class="navds-sr-only"
-                            >
-                              januar 1968
-                            </span>
-                            <button
-                              class="navds-date__caption-button navds-button navds-button--tertiary-neutral navds-button--medium navds-button--icon-only"
-                              data-color="neutral"
-                              data-variant="tertiary"
-                              type="button"
-                            >
-                              <span
-                                class="navds-button__icon"
-                              >
-                                <svg
-                                  aria-labelledby="title-«r4»"
-                                  fill="none"
-                                  focusable="false"
-                                  height="1em"
-                                  role="img"
-                                  viewBox="0 0 24 24"
-                                  width="1em"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <title
-                                    id="title-«r4»"
-                                  >
-                                    Gå til forrige måned
-                                  </title>
-                                  <path
-                                    d="M4.47 11.47a.75.75 0 0 0 0 1.06l4.5 4.5a.75.75 0 0 0 1.06-1.06l-3.22-3.22H19a.75.75 0 0 0 0-1.5H6.81l3.22-3.22a.75.75 0 1 0-1.06-1.06z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </span>
-                            </button>
-                            <div
-                              class="navds-date__caption"
-                            >
-                              <div
-                                class="navds-date__caption__month navds-form-field navds-form-field--medium"
-                              >
-                                <label
-                                  class="navds-form-field__label navds-sr-only navds-label"
-                                  for="select-«r5»"
-                                >
-                                  Måned
-                                </label>
-                                <div
-                                  class="navds-select__container"
-                                >
-                                  <select
-                                    class="navds-select__input navds-body-short navds-body-short--medium"
-                                    id="select-«r5»"
-                                  >
-                                    <option
-                                      value="0"
-                                    >
-                                      januar
-                                    </option>
-                                    <option
-                                      value="1"
-                                    >
-                                      februar
-                                    </option>
-                                    <option
-                                      value="2"
-                                    >
-                                      mars
-                                    </option>
-                                    <option
-                                      value="3"
-                                    >
-                                      april
-                                    </option>
-                                    <option
-                                      value="4"
-                                    >
-                                      mai
-                                    </option>
-                                    <option
-                                      value="5"
-                                    >
-                                      juni
-                                    </option>
-                                    <option
-                                      value="6"
-                                    >
-                                      juli
-                                    </option>
-                                    <option
-                                      value="7"
-                                    >
-                                      august
-                                    </option>
-                                    <option
-                                      value="8"
-                                    >
-                                      september
-                                    </option>
-                                    <option
-                                      value="9"
-                                    >
-                                      oktober
-                                    </option>
-                                    <option
-                                      value="10"
-                                    >
-                                      november
-                                    </option>
-                                    <option
-                                      value="11"
-                                    >
-                                      desember
-                                    </option>
-                                  </select>
-                                  <svg
-                                    aria-hidden="true"
-                                    class="navds-select__chevron"
-                                    fill="none"
-                                    focusable="false"
-                                    height="1em"
-                                    role="img"
-                                    viewBox="0 0 24 24"
-                                    width="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      clip-rule="evenodd"
-                                      d="M5.97 9.47a.75.75 0 0 1 1.06 0L12 14.44l4.97-4.97a.75.75 0 1 1 1.06 1.06l-5.5 5.5a.75.75 0 0 1-1.06 0l-5.5-5.5a.75.75 0 0 1 0-1.06"
-                                      fill="currentColor"
-                                      fill-rule="evenodd"
-                                    />
-                                  </svg>
-                                </div>
-                                <div
-                                  aria-live="polite"
-                                  aria-relevant="additions removals"
-                                  class="navds-form-field__error"
-                                  id="select-error-«r5»"
-                                />
-                              </div>
-                              <div
-                                class="navds-date__caption__year navds-form-field navds-form-field--medium"
-                              >
-                                <label
-                                  class="navds-form-field__label navds-sr-only navds-label"
-                                  for="select-«r7»"
-                                >
-                                  År
-                                </label>
-                                <div
-                                  class="navds-select__container"
-                                >
-                                  <select
-                                    class="navds-select__input navds-body-short navds-body-short--medium"
-                                    id="select-«r7»"
-                                  >
-                                    <option
-                                      value="1960"
-                                    >
-                                      1960
-                                    </option>
-                                    <option
-                                      value="1961"
-                                    >
-                                      1961
-                                    </option>
-                                    <option
-                                      value="1962"
-                                    >
-                                      1962
-                                    </option>
-                                    <option
-                                      value="1963"
-                                    >
-                                      1963
-                                    </option>
-                                    <option
-                                      value="1964"
-                                    >
-                                      1964
-                                    </option>
-                                    <option
-                                      value="1965"
-                                    >
-                                      1965
-                                    </option>
-                                    <option
-                                      value="1966"
-                                    >
-                                      1966
-                                    </option>
-                                    <option
-                                      value="1967"
-                                    >
-                                      1967
-                                    </option>
-                                    <option
-                                      value="1968"
-                                    >
-                                      1968
-                                    </option>
-                                    <option
-                                      value="1969"
-                                    >
-                                      1969
-                                    </option>
-                                  </select>
-                                  <svg
-                                    aria-hidden="true"
-                                    class="navds-select__chevron"
-                                    fill="none"
-                                    focusable="false"
-                                    height="1em"
-                                    role="img"
-                                    viewBox="0 0 24 24"
-                                    width="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      clip-rule="evenodd"
-                                      d="M5.97 9.47a.75.75 0 0 1 1.06 0L12 14.44l4.97-4.97a.75.75 0 1 1 1.06 1.06l-5.5 5.5a.75.75 0 0 1-1.06 0l-5.5-5.5a.75.75 0 0 1 0-1.06"
-                                      fill="currentColor"
-                                      fill-rule="evenodd"
-                                    />
-                                  </svg>
-                                </div>
-                                <div
-                                  aria-live="polite"
-                                  aria-relevant="additions removals"
-                                  class="navds-form-field__error"
-                                  id="select-error-«r7»"
-                                />
-                              </div>
-                            </div>
-                            <button
-                              class="navds-date__caption-button navds-button navds-button--tertiary-neutral navds-button--medium navds-button--icon-only"
-                              data-color="neutral"
-                              data-variant="tertiary"
-                              type="button"
-                            >
-                              <span
-                                class="navds-button__icon"
-                              >
-                                <svg
-                                  aria-labelledby="title-«r9»"
-                                  fill="none"
-                                  focusable="false"
-                                  height="1em"
-                                  role="img"
-                                  viewBox="0 0 24 24"
-                                  width="1em"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <title
-                                    id="title-«r9»"
-                                  >
-                                    Gå til neste måned
-                                  </title>
-                                  <path
-                                    d="M14.087 6.874a.752.752 0 0 0-.117 1.156l3.22 3.22H5a.75.75 0 0 0 0 1.5h12.19l-3.22 3.22a.75.75 0 0 0 1.06 1.06l4.5-4.5a.75.75 0 0 0 0-1.06l-4.5-4.5a.75.75 0 0 0-.943-.096"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </span>
-                            </button>
-                          </div>
-                          <table
-                            aria-label="januar 1968"
-                            aria-multiselectable="false"
-                            class="rdp-table"
-                            role="grid"
-                          >
-                            <thead
-                              aria-hidden="true"
-                              class="rdp-head"
-                            >
-                              <tr
-                                class="rdp-head_row"
-                              >
-                                <th
-                                  aria-label="mandag"
-                                  class="rdp-head_cell"
-                                  scope="col"
-                                >
-                                  ma
-                                </th>
-                                <th
-                                  aria-label="tirsdag"
-                                  class="rdp-head_cell"
-                                  scope="col"
-                                >
-                                  ti
-                                </th>
-                                <th
-                                  aria-label="onsdag"
-                                  class="rdp-head_cell"
-                                  scope="col"
-                                >
-                                  on
-                                </th>
-                                <th
-                                  aria-label="torsdag"
-                                  class="rdp-head_cell"
-                                  scope="col"
-                                >
-                                  to
-                                </th>
-                                <th
-                                  aria-label="fredag"
-                                  class="rdp-head_cell"
-                                  scope="col"
-                                >
-                                  fr
-                                </th>
-                                <th
-                                  aria-label="lørdag"
-                                  class="rdp-head_cell"
-                                  scope="col"
-                                >
-                                  lø
-                                </th>
-                                <th
-                                  aria-label="søndag"
-                                  class="rdp-head_cell"
-                                  scope="col"
-                                >
-                                  sø
-                                </th>
-                              </tr>
-                            </thead>
-                            <tbody
-                              class="rdp-tbody"
-                            >
-                              <tr
-                                class="rdp-row"
-                              >
-                                <td
-                                  aria-selected="true"
-                                  class="rdp-cell"
-                                  data-day="1968-01-01"
-                                  data-selected="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="mandag 1"
-                                    aria-pressed="true"
-                                    class="rdp-day rdp-button rdp-day_selected"
-                                    data-pressed="true"
-                                    tabindex="0"
-                                    type="button"
-                                  >
-                                    1
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-02"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="tirsdag 2"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    2
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-03"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="onsdag 3"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    3
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-04"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="torsdag 4"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    4
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-05"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="fredag 5"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    5
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-06"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="lørdag 6"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    6
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-07"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="søndag 7"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    7
-                                  </button>
-                                </td>
-                              </tr>
-                              <tr
-                                class="rdp-row"
-                              >
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-08"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="mandag 8"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    8
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-09"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="tirsdag 9"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    9
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-10"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="onsdag 10"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    10
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-11"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="torsdag 11"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    11
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-12"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="fredag 12"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    12
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-13"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="lørdag 13"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    13
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-14"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="søndag 14"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    14
-                                  </button>
-                                </td>
-                              </tr>
-                              <tr
-                                class="rdp-row"
-                              >
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-15"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="mandag 15"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    15
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-16"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="tirsdag 16"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    16
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-17"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="onsdag 17"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    17
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-18"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="torsdag 18"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    18
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-19"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="fredag 19"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    19
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-20"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="lørdag 20"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    20
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-21"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="søndag 21"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    21
-                                  </button>
-                                </td>
-                              </tr>
-                              <tr
-                                class="rdp-row"
-                              >
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-22"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="mandag 22"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    22
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-23"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="tirsdag 23"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    23
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-24"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="onsdag 24"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    24
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-25"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="torsdag 25"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    25
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-26"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="fredag 26"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    26
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-27"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="lørdag 27"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    27
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-28"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="søndag 28"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    28
-                                  </button>
-                                </td>
-                              </tr>
-                              <tr
-                                class="rdp-row"
-                              >
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-29"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="mandag 29"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    29
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-30"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="tirsdag 30"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    30
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-01-31"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="onsdag 31"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    31
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-02-01"
-                                  data-month="1968-02"
-                                  data-outside="true"
-                                >
-                                  <button
-                                    aria-hidden="true"
-                                    aria-label="torsdag 1"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_outside"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    1
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-02-02"
-                                  data-month="1968-02"
-                                  data-outside="true"
-                                >
-                                  <button
-                                    aria-hidden="true"
-                                    aria-label="fredag 2"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_outside"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    2
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-02-03"
-                                  data-month="1968-02"
-                                  data-outside="true"
-                                >
-                                  <button
-                                    aria-hidden="true"
-                                    aria-label="lørdag 3"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_outside"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    3
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1968-02-04"
-                                  data-month="1968-02"
-                                  data-outside="true"
-                                >
-                                  <button
-                                    aria-hidden="true"
-                                    aria-label="søndag 4"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_outside"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    4
-                                  </button>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
                 <div
                   class="navds-date__wrapper"
@@ -1347,7 +427,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   >
                     <label
                       class="navds-form-field__label navds-label navds-label--small"
-                      for="datepicker-input-«rc»"
+                      for="datepicker-input-«r4»"
                     >
                       Til
                     </label>
@@ -1357,7 +437,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       <input
                         autocomplete="off"
                         class="navds-date__field-input navds-text-field__input navds-body-short navds-body-short--small"
-                        id="datepicker-input-«rc»"
+                        id="datepicker-input-«r4»"
                         size="11"
                         value="01.01.1970"
                       />
@@ -1367,7 +447,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                         type="button"
                       >
                         <svg
-                          aria-labelledby="title-«rd»"
+                          aria-labelledby="title-«r5»"
                           fill="none"
                           focusable="false"
                           height="1em"
@@ -1377,7 +457,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <title
-                            id="title-«rd»"
+                            id="title-«r5»"
                           >
                             Åpne datovelger
                           </title>
@@ -1394,951 +474,8 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       aria-live="polite"
                       aria-relevant="additions removals"
                       class="navds-form-field__error"
-                      id="datepicker-input-error-«rc»"
+                      id="datepicker-input-error-«r4»"
                     />
-                  </div>
-                  <div
-                    aria-hidden="true"
-                    class="navds-popover navds-date__popover navds-popover--hidden"
-                    data-index="0"
-                    data-placement="bottom-start"
-                    id="«rb»"
-                    role="dialog"
-                    style="position: fixed; left: 0px; top: 0px; transform: translate(12px, 4px);"
-                  >
-                    <div
-                      class="rdp navds-date"
-                      data-mode="single"
-                    >
-                      <div
-                        class="rdp-months"
-                      >
-                        <div
-                          class="rdp-month"
-                        >
-                          <div
-                            class="navds-date__caption"
-                          >
-                            <span
-                              aria-atomic="true"
-                              aria-live="polite"
-                              class="navds-sr-only"
-                            >
-                              januar 1970
-                            </span>
-                            <button
-                              class="navds-date__caption-button navds-button navds-button--tertiary-neutral navds-button--medium navds-button--icon-only"
-                              data-color="neutral"
-                              data-variant="tertiary"
-                              type="button"
-                            >
-                              <span
-                                class="navds-button__icon"
-                              >
-                                <svg
-                                  aria-labelledby="title-«rf»"
-                                  fill="none"
-                                  focusable="false"
-                                  height="1em"
-                                  role="img"
-                                  viewBox="0 0 24 24"
-                                  width="1em"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <title
-                                    id="title-«rf»"
-                                  >
-                                    Gå til forrige måned
-                                  </title>
-                                  <path
-                                    d="M4.47 11.47a.75.75 0 0 0 0 1.06l4.5 4.5a.75.75 0 0 0 1.06-1.06l-3.22-3.22H19a.75.75 0 0 0 0-1.5H6.81l3.22-3.22a.75.75 0 1 0-1.06-1.06z"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </span>
-                            </button>
-                            <div
-                              class="navds-date__caption"
-                            >
-                              <div
-                                class="navds-date__caption__month navds-form-field navds-form-field--medium"
-                              >
-                                <label
-                                  class="navds-form-field__label navds-sr-only navds-label"
-                                  for="select-«rg»"
-                                >
-                                  Måned
-                                </label>
-                                <div
-                                  class="navds-select__container"
-                                >
-                                  <select
-                                    class="navds-select__input navds-body-short navds-body-short--medium"
-                                    id="select-«rg»"
-                                  >
-                                    <option
-                                      value="0"
-                                    >
-                                      januar
-                                    </option>
-                                    <option
-                                      disabled=""
-                                      value="1"
-                                    >
-                                      februar
-                                    </option>
-                                    <option
-                                      disabled=""
-                                      value="2"
-                                    >
-                                      mars
-                                    </option>
-                                    <option
-                                      disabled=""
-                                      value="3"
-                                    >
-                                      april
-                                    </option>
-                                    <option
-                                      disabled=""
-                                      value="4"
-                                    >
-                                      mai
-                                    </option>
-                                    <option
-                                      disabled=""
-                                      value="5"
-                                    >
-                                      juni
-                                    </option>
-                                    <option
-                                      disabled=""
-                                      value="6"
-                                    >
-                                      juli
-                                    </option>
-                                    <option
-                                      disabled=""
-                                      value="7"
-                                    >
-                                      august
-                                    </option>
-                                    <option
-                                      disabled=""
-                                      value="8"
-                                    >
-                                      september
-                                    </option>
-                                    <option
-                                      disabled=""
-                                      value="9"
-                                    >
-                                      oktober
-                                    </option>
-                                    <option
-                                      disabled=""
-                                      value="10"
-                                    >
-                                      november
-                                    </option>
-                                    <option
-                                      disabled=""
-                                      value="11"
-                                    >
-                                      desember
-                                    </option>
-                                  </select>
-                                  <svg
-                                    aria-hidden="true"
-                                    class="navds-select__chevron"
-                                    fill="none"
-                                    focusable="false"
-                                    height="1em"
-                                    role="img"
-                                    viewBox="0 0 24 24"
-                                    width="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      clip-rule="evenodd"
-                                      d="M5.97 9.47a.75.75 0 0 1 1.06 0L12 14.44l4.97-4.97a.75.75 0 1 1 1.06 1.06l-5.5 5.5a.75.75 0 0 1-1.06 0l-5.5-5.5a.75.75 0 0 1 0-1.06"
-                                      fill="currentColor"
-                                      fill-rule="evenodd"
-                                    />
-                                  </svg>
-                                </div>
-                                <div
-                                  aria-live="polite"
-                                  aria-relevant="additions removals"
-                                  class="navds-form-field__error"
-                                  id="select-error-«rg»"
-                                />
-                              </div>
-                              <div
-                                class="navds-date__caption__year navds-form-field navds-form-field--medium"
-                              >
-                                <label
-                                  class="navds-form-field__label navds-sr-only navds-label"
-                                  for="select-«ri»"
-                                >
-                                  År
-                                </label>
-                                <div
-                                  class="navds-select__container"
-                                >
-                                  <select
-                                    class="navds-select__input navds-body-short navds-body-short--medium"
-                                    id="select-«ri»"
-                                  >
-                                    <option
-                                      value="1968"
-                                    >
-                                      1968
-                                    </option>
-                                    <option
-                                      value="1969"
-                                    >
-                                      1969
-                                    </option>
-                                    <option
-                                      value="1970"
-                                    >
-                                      1970
-                                    </option>
-                                  </select>
-                                  <svg
-                                    aria-hidden="true"
-                                    class="navds-select__chevron"
-                                    fill="none"
-                                    focusable="false"
-                                    height="1em"
-                                    role="img"
-                                    viewBox="0 0 24 24"
-                                    width="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      clip-rule="evenodd"
-                                      d="M5.97 9.47a.75.75 0 0 1 1.06 0L12 14.44l4.97-4.97a.75.75 0 1 1 1.06 1.06l-5.5 5.5a.75.75 0 0 1-1.06 0l-5.5-5.5a.75.75 0 0 1 0-1.06"
-                                      fill="currentColor"
-                                      fill-rule="evenodd"
-                                    />
-                                  </svg>
-                                </div>
-                                <div
-                                  aria-live="polite"
-                                  aria-relevant="additions removals"
-                                  class="navds-form-field__error"
-                                  id="select-error-«ri»"
-                                />
-                              </div>
-                            </div>
-                            <button
-                              class="navds-date__caption-button navds-button navds-button--tertiary-neutral navds-button--medium navds-button--icon-only navds-button--disabled"
-                              data-color="neutral"
-                              data-variant="tertiary"
-                              disabled=""
-                              type="button"
-                            >
-                              <span
-                                class="navds-button__icon"
-                              >
-                                <svg
-                                  aria-labelledby="title-«rk»"
-                                  fill="none"
-                                  focusable="false"
-                                  height="1em"
-                                  role="img"
-                                  viewBox="0 0 24 24"
-                                  width="1em"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <title
-                                    id="title-«rk»"
-                                  >
-                                    Gå til neste måned
-                                  </title>
-                                  <path
-                                    d="M14.087 6.874a.752.752 0 0 0-.117 1.156l3.22 3.22H5a.75.75 0 0 0 0 1.5h12.19l-3.22 3.22a.75.75 0 0 0 1.06 1.06l4.5-4.5a.75.75 0 0 0 0-1.06l-4.5-4.5a.75.75 0 0 0-.943-.096"
-                                    fill="currentColor"
-                                  />
-                                </svg>
-                              </span>
-                            </button>
-                          </div>
-                          <table
-                            aria-label="januar 1970"
-                            aria-multiselectable="false"
-                            class="rdp-table"
-                            role="grid"
-                          >
-                            <thead
-                              aria-hidden="true"
-                              class="rdp-head"
-                            >
-                              <tr
-                                class="rdp-head_row"
-                              >
-                                <th
-                                  aria-label="mandag"
-                                  class="rdp-head_cell"
-                                  scope="col"
-                                >
-                                  ma
-                                </th>
-                                <th
-                                  aria-label="tirsdag"
-                                  class="rdp-head_cell"
-                                  scope="col"
-                                >
-                                  ti
-                                </th>
-                                <th
-                                  aria-label="onsdag"
-                                  class="rdp-head_cell"
-                                  scope="col"
-                                >
-                                  on
-                                </th>
-                                <th
-                                  aria-label="torsdag"
-                                  class="rdp-head_cell"
-                                  scope="col"
-                                >
-                                  to
-                                </th>
-                                <th
-                                  aria-label="fredag"
-                                  class="rdp-head_cell"
-                                  scope="col"
-                                >
-                                  fr
-                                </th>
-                                <th
-                                  aria-label="lørdag"
-                                  class="rdp-head_cell"
-                                  scope="col"
-                                >
-                                  lø
-                                </th>
-                                <th
-                                  aria-label="søndag"
-                                  class="rdp-head_cell"
-                                  scope="col"
-                                >
-                                  sø
-                                </th>
-                              </tr>
-                            </thead>
-                            <tbody
-                              class="rdp-tbody"
-                            >
-                              <tr
-                                class="rdp-row"
-                              >
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1969-12-29"
-                                  data-month="1969-12"
-                                  data-outside="true"
-                                >
-                                  <button
-                                    aria-hidden="true"
-                                    aria-label="mandag 29"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_outside"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    29
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1969-12-30"
-                                  data-month="1969-12"
-                                  data-outside="true"
-                                >
-                                  <button
-                                    aria-hidden="true"
-                                    aria-label="tirsdag 30"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_outside"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    30
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1969-12-31"
-                                  data-month="1969-12"
-                                  data-outside="true"
-                                >
-                                  <button
-                                    aria-hidden="true"
-                                    aria-label="onsdag 31"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_outside"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    31
-                                  </button>
-                                </td>
-                                <td
-                                  aria-selected="true"
-                                  class="rdp-cell"
-                                  data-day="1970-01-01"
-                                  data-selected="true"
-                                  data-today="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="torsdag 1"
-                                    aria-pressed="true"
-                                    class="rdp-day rdp-button rdp-day_selected rdp-day_today"
-                                    data-pressed="true"
-                                    data-today="true"
-                                    tabindex="0"
-                                    type="button"
-                                  >
-                                    1
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-02"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="fredag 2"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    2
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-03"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="lørdag 3"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    3
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-04"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="søndag 4"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    4
-                                  </button>
-                                </td>
-                              </tr>
-                              <tr
-                                class="rdp-row"
-                              >
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-05"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="mandag 5"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    5
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-06"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="tirsdag 6"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    6
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-07"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="onsdag 7"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    7
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-08"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="torsdag 8"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    8
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-09"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="fredag 9"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    9
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-10"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="lørdag 10"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    10
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-11"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="søndag 11"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    11
-                                  </button>
-                                </td>
-                              </tr>
-                              <tr
-                                class="rdp-row"
-                              >
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-12"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="mandag 12"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    12
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-13"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="tirsdag 13"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    13
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-14"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="onsdag 14"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    14
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-15"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="torsdag 15"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    15
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-16"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="fredag 16"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    16
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-17"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="lørdag 17"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    17
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-18"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="søndag 18"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    18
-                                  </button>
-                                </td>
-                              </tr>
-                              <tr
-                                class="rdp-row"
-                              >
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-19"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="mandag 19"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    19
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-20"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="tirsdag 20"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    20
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-21"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="onsdag 21"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    21
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-22"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="torsdag 22"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    22
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-23"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="fredag 23"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    23
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-24"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="lørdag 24"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    24
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-25"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="søndag 25"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    25
-                                  </button>
-                                </td>
-                              </tr>
-                              <tr
-                                class="rdp-row"
-                              >
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-26"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="mandag 26"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    26
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-27"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="tirsdag 27"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    27
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-28"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="onsdag 28"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    28
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-29"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="torsdag 29"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    29
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-30"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="fredag 30"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    30
-                                  </button>
-                                </td>
-                                <td
-                                  class="rdp-cell"
-                                  data-day="1970-01-31"
-                                  data-disabled="true"
-                                >
-                                  <button
-                                    aria-hidden="false"
-                                    aria-label="lørdag 31"
-                                    aria-pressed="false"
-                                    class="rdp-day rdp-button rdp-day_disabled"
-                                    disabled=""
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    31
-                                  </button>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -2431,6 +568,102 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       <h3
                         class="typo-undertittel"
                       >
+                        Engangsstønad
+                      </h3>
+                      <p
+                        class="typo-element"
+                      >
+                        ID-dato
+                      </p>
+                      <p
+                        class="typo-normal"
+                      >
+                        01.08.2025
+                      </p>
+                    </div>
+                    <button
+                      aria-label="Vis engangsstønad"
+                      aria-selected="true"
+                      class="c13"
+                    >
+                      <span
+                        class="nav-frontend-chevron chevronboks chevron--hoyre"
+                      />
+                    </button>
+                  </div>
+                </li>
+                <li>
+                  <div
+                    class="c12"
+                  >
+                    <div>
+                      <h3
+                        class="typo-undertittel"
+                      >
+                        Engangsstønad
+                      </h3>
+                      <p
+                        class="typo-element"
+                      >
+                        ID-dato
+                      </p>
+                      <p
+                        class="typo-normal"
+                      >
+                        01.08.2025
+                      </p>
+                    </div>
+                    <button
+                      aria-label="Vis engangsstønad"
+                      aria-selected="true"
+                      class="c13"
+                    >
+                      <span
+                        class="nav-frontend-chevron chevronboks chevron--hoyre"
+                      />
+                    </button>
+                  </div>
+                </li>
+                <li>
+                  <div
+                    class="c14"
+                  >
+                    <div>
+                      <h3
+                        class="typo-undertittel"
+                      >
+                        Sykepenger
+                      </h3>
+                      <p
+                        class="typo-element"
+                      >
+                        ID-dato
+                      </p>
+                      <p
+                        class="typo-normal"
+                      >
+                        01.07.2025
+                      </p>
+                    </div>
+                    <button
+                      aria-label="Vis sykepenger"
+                      aria-selected="false"
+                      class="c13"
+                    >
+                      <span
+                        class="nav-frontend-chevron chevronboks chevron--hoyre"
+                      />
+                    </button>
+                  </div>
+                </li>
+                <li>
+                  <div
+                    class="c14"
+                  >
+                    <div>
+                      <h3
+                        class="typo-undertittel"
+                      >
                         Arbeidsavklaringspenger
                       </h3>
                       <p
@@ -2446,7 +679,39 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                     </div>
                     <button
                       aria-label="Vis arbeidsavklaringspenger"
-                      aria-selected="true"
+                      aria-selected="false"
+                      class="c13"
+                    >
+                      <span
+                        class="nav-frontend-chevron chevronboks chevron--hoyre"
+                      />
+                    </button>
+                  </div>
+                </li>
+                <li>
+                  <div
+                    class="c14"
+                  >
+                    <div>
+                      <h3
+                        class="typo-undertittel"
+                      >
+                        Foreldrepenger
+                      </h3>
+                      <p
+                        class="typo-element"
+                      >
+                        ID-dato
+                      </p>
+                      <p
+                        class="typo-normal"
+                      >
+                        01.12.2024
+                      </p>
+                    </div>
+                    <button
+                      aria-label="Vis foreldrepenger"
+                      aria-selected="false"
                       class="c13"
                     >
                       <span
@@ -2650,7 +915,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               <h2
                 class="sr-only"
               >
-                Arbeidsavklaringspenger
+                ENGANGSSTØNAD
               </h2>
               <div
                 class="c17"
@@ -2663,7 +928,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                     class="typo-ingress"
                     id="Helt tilfeldig ID"
                   >
-                    Om arbeidsavklaringspenger
+                    Om engangsstønad
                   </h3>
                   <dl
                     class="c19"
@@ -2672,147 +937,36 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       <dt
                         class="typo-normal"
                       >
-                        VedtakId
+                        Saksnummer
                       </dt>
                       <dd
                         class="typo-element"
                       >
-                        vedtak-001
+                        2023123412
                       </dd>
                     </div>
                     <div>
                       <dt
                         class="typo-normal"
                       >
-                        Vedtaksdato
+                        Ytelsetype
                       </dt>
                       <dd
                         class="typo-element"
                       >
-                        01.02.2023
+                        Engangsstønad
                       </dd>
                     </div>
                     <div>
                       <dt
                         class="typo-normal"
                       >
-                        Fra og med
+                        Dato
                       </dt>
                       <dd
                         class="typo-element"
                       >
-                        01.01.2025
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        class="typo-normal"
-                      >
-                        Til og med
-                      </dt>
-                      <dd
-                        class="typo-element"
-                      >
-                        31.12.2025
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        class="typo-normal"
-                      >
-                        Rettighet
-                      </dt>
-                      <dd
-                        class="typo-element"
-                      >
-                        AAP
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        class="typo-normal"
-                      >
-                        Status
-                      </dt>
-                      <dd
-                        class="typo-element"
-                      >
-                        LØPENDE
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        class="typo-normal"
-                      >
-                        Kilde
-                      </dt>
-                      <dd
-                        class="typo-element"
-                      >
-                        KELVIN
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        class="typo-normal"
-                      >
-                        Dagsats
-                      </dt>
-                      <dd
-                        class="typo-element"
-                      >
-                        500
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        class="typo-normal"
-                      >
-                        Opphørsårsak
-                      </dt>
-                      <dd
-                        class="typo-element"
-                      >
-                        FERDIGBEHANDLET
-                      </dd>
-                    </div>
-                  </dl>
-                </article>
-                <article
-                  aria-labelledby="Helt tilfeldig ID"
-                  class="c18"
-                >
-                  <h3
-                    class="typo-ingress"
-                    id="Helt tilfeldig ID"
-                  >
-                    Barnetillegg
-                  </h3>
-                  <dl
-                    class="c19"
-                  >
-                    <div>
-                      <dt
-                        class="typo-normal"
-                      >
-                        Barn med stønad
-                      </dt>
-                      <dd
-                        class="typo-element"
-                      >
-                        2
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        class="typo-normal"
-                      >
-                        Barnetillegg
-                      </dt>
-                      <dd
-                        class="typo-element"
-                      >
-                        1500
+                        01.08.2025
                       </dd>
                     </div>
                   </dl>

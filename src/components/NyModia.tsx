@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from '@tanstack/react-router';
 import { useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import { useCallback, useEffect } from 'react';
+import { trackToggleNyModia } from 'src/utils/analytics';
 import { FeatureToggles } from './featureToggle/toggleIDs';
 import useFeatureToggle from './featureToggle/useFeatureToggle';
 
@@ -18,7 +19,7 @@ export const NyModia = () => {
 
     const handleClick = useCallback(() => {
         setNyModia((v) => !v);
-
+        trackToggleNyModia(!nyModia);
         if (!nyModia) {
             navigate({ to: `/new/${href}` });
         } else {
@@ -28,12 +29,12 @@ export const NyModia = () => {
 
     useEffect(() => {
         if (href.includes('/new') && !nyModia) {
-            setNyModia(true);
+            navigate({ to: href.replace('/new', '') });
         }
         if (!href.includes('/new') && nyModia) {
-            setNyModia(false);
+            navigate({ to: `/new/${href}` });
         }
-    }, [href, nyModia, setNyModia]);
+    }, [href, nyModia, navigate]);
 
     if (!isOn) return;
 

@@ -1,23 +1,26 @@
-import { ChevronRightIcon } from '@navikt/aksel-icons';
-import { BodyShort, Button, HStack, Heading, VStack } from '@navikt/ds-react';
+import { BodyShort, Detail, HStack, Label, Link, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import dayjs from 'dayjs';
-import {} from 'nav-frontend-typografi';
 import Card from 'src/components/Card';
-import { getUnikYtelseKey, getYtelseIdDato } from 'src/components/ytelser/utils';
-import type { Pleiepenger, YtelseVedtak } from 'src/generated/modiapersonoversikt-api';
-import { YtelseVedtakYtelseType } from 'src/generated/modiapersonoversikt-api';
+import { type YtelseVedtak, getUnikYtelseKey, getYtelseIdDato } from 'src/components/ytelser/utils';
+import {
+    type ForeldrepengerFpSak,
+    ForeldrepengerFpSakYtelse,
+    type Pleiepenger
+} from 'src/generated/modiapersonoversikt-api';
+import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
+import { trackingEvents } from 'src/utils/analytics';
+import { twMerge } from 'tailwind-merge';
 
 const routeApi = getRouteApi('/new/person/ytelser');
 
 export const YtelseItem = ({
-    ytelse,
-    handleClick
+    ytelse
 }: {
     ytelse: YtelseVedtak;
-    handleClick: (id: string) => void;
 }) => {
     const aktivYtelse = routeApi.useSearch().id;
+    const navigate = routeApi.useNavigate();
     const id = getUnikYtelseKey(ytelse);
 
     const getYtelseTtile = () => {
@@ -26,6 +29,8 @@ export const YtelseItem = ({
                 return ytelse.ytelseType;
             case YtelseVedtakYtelseType.Sykepenger:
                 return ytelse.ytelseType;
+            case YtelseVedtakYtelseType.SykepengerSpokelse:
+                return YtelseVedtakYtelseType.Sykepenger;
             case YtelseVedtakYtelseType.Pleiepenger:
                 return 'Pleiepenger sykt barn';
             case YtelseVedtakYtelseType.Tiltakspenge:
@@ -34,6 +39,15 @@ export const YtelseItem = ({
                 return ytelse.ytelseType;
             case YtelseVedtakYtelseType.Arbeidsavklaringspenger:
                 return ytelse.ytelseType;
+            case YtelseVedtakYtelseType.ForeldrepengerFpSak:
+                switch ((ytelse.ytelseData.data as ForeldrepengerFpSak).ytelse) {
+                    case ForeldrepengerFpSakYtelse.ENGANGSST_NAD:
+                        return 'Engangsstønad';
+                    case ForeldrepengerFpSakYtelse.SVANGERSKAPSPENGER:
+                        return 'Svangerskapspenger';
+                    default:
+                        return 'Foreldrepenger';
+                }
             default:
                 return `Ukjent ytelse type ${ytelse.ytelseType}`;
         }
@@ -41,24 +55,34 @@ export const YtelseItem = ({
 
     const getBarnetFnr = (pleiepenger: Pleiepenger) => pleiepenger.barnet;
 
+    const onClick = () => {
+        navigate({
+            search: { id },
+            state: {
+                umamiEvent: {
+                    name: trackingEvents.detaljvisningKlikket,
+                    data: { fane: 'ytelser', tekst: ytelse.ytelseType.toLowerCase() }
+                }
+            }
+        });
+    };
+
     return (
-        <Card
-            padding="2"
-            as="li"
-            className={`cursor-pointer hover:hover:bg-ax-bg-neutral-moderate-hover group
-                ${aktivYtelse === id ? 'bg-ax-bg-neutral-moderate ' : ''}`}
-            onClick={() => handleClick(id)}
-        >
-            <HStack justify="space-between" gap="1" wrap={false}>
-                <VStack justify="center" gap="1">
-                    <Heading size="xsmall" as="h3" level="3">
+        <Link variant="neutral" className="hover:no-underline block" underline={false} onClick={onClick}>
+            <Card
+                padding="2"
+                as="li"
+                className={twMerge(
+                    'cursor-pointer hover:bg-[var(--ax-bg-accent-moderate-hover)] group',
+                    aktivYtelse === id && 'bg-ax-bg-accent-moderate-pressed border-ax-bg-accent-moderate-pressed'
+                )}
+            >
+                <VStack justify="center">
+                    <Label size="small" as="h3">
                         {getYtelseTtile()}
-                    </Heading>
+                    </Label>
                     <HStack gap="2">
-                        <BodyShort size="small" weight="semibold">
-                            Dato:
-                        </BodyShort>
-                        <BodyShort size="small">{dayjs(getYtelseIdDato(ytelse)).format('DD.MM.YYYY')}</BodyShort>
+                        <Detail>{dayjs(getYtelseIdDato(ytelse)).format('DD.MM.YYYY')}</Detail>
                     </HStack>
                     {ytelse.ytelseType === YtelseVedtakYtelseType.Pleiepenger && (
                         <HStack gap="2">
@@ -69,14 +93,7 @@ export const YtelseItem = ({
                         </HStack>
                     )}
                 </VStack>
-                <Button
-                    variant="tertiary-neutral"
-                    size="small"
-                    name="Åpne"
-                    aria-label="Åpne"
-                    icon={<ChevronRightIcon className="translate-x-0 group-hover:translate-x-1 transition-transform" />}
-                />
-            </HStack>
-        </Card>
+            </Card>
+        </Link>
     );
 };

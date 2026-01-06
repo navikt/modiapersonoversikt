@@ -1,7 +1,7 @@
 import { EnvelopeClosedIcon, EnvelopeOpenIcon, PersonIcon } from '@navikt/aksel-icons';
-import { BodyShort, Box, Chat, HStack, VStack } from '@navikt/ds-react';
+import { Box, Chat, Detail, HStack, VStack } from '@navikt/ds-react';
 import { useAtomValue } from 'jotai';
-import { type ElementType, type ReactNode, useMemo } from 'react';
+import { type ElementType, type ReactNode, useLayoutEffect, useMemo, useRef } from 'react';
 import RichText, {
     createDynamicHighlightingRule,
     defaultRules,
@@ -28,22 +28,37 @@ const DefaultWrapper: Props['wrapper'] = ({ children }) => {
 export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Props) => {
     const { search } = useAtomValue(meldingerFilterAtom);
     const highlightRule = useMemo(() => createDynamicHighlightingRule((search ?? '').split(' ')), [search]);
+
+    const chatAreaRef = useRef<HTMLDivElement>(null);
+    const setChatAreaRef = (node: HTMLDivElement | null) => {
+        if (node) {
+            node.scrollTop = node.scrollHeight;
+        }
+        chatAreaRef.current = node;
+    };
+
+    // Scroll til siste melding
+    useLayoutEffect(() => {
+        if (chatAreaRef.current) {
+            chatAreaRef.current.scrollTop = chatAreaRef.current.scrollHeight;
+        }
+    }, [meldinger]);
+
     return (
         <Box.New
-            minHeight="0"
-            overflowY={{ xs: 'hidden', md: 'scroll' }}
-            background="sunken"
-            overflowX="scroll"
+            ref={setChatAreaRef}
+            height="100%"
+            overflowX="auto"
             borderColor="neutral-subtle"
-            borderRadius="medium"
-            borderWidth="1"
-            padding="2"
+            borderWidth="2 0 2 0"
+            marginBlock="2"
+            padding="4"
         >
-            <VStack gap="10" align="baseline" paddingBlock="0 16" as="section" aria-label="Meldinger">
+            <VStack gap="8" align="baseline" paddingBlock="8 8" as="ol" aria-label="Meldinger">
                 {meldinger.map((m) => {
                     const erFraNav = erMeldingFraNav(m.meldingstype);
                     return (
-                        <Wrapper key={m.id} melding={m}>
+                        <Wrapper key={m.id} as="li" melding={m}>
                             <Chat
                                 size="small"
                                 avatar={erFraNav ? 'nav' : <PersonIcon />}
@@ -54,17 +69,18 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
                                 variant={erFraNav ? 'info' : 'neutral'}
                             >
                                 <Chat.Bubble className="text-wrap">
-                                    <RichText rules={[SladdRule, HighlightRule, highlightRule, ...defaultRules]}>
+                                    <RichText
+                                        className="wrap-anywhere"
+                                        rules={[SladdRule, HighlightRule, highlightRule, ...defaultRules]}
+                                    >
                                         {m.fritekst}
                                     </RichText>
-                                    {erFraNav && (
-                                        <Box.New borderColor="neutral-subtleA" borderWidth="1 0 0 0">
-                                            <HStack gap="2" align="center" justify="end">
-                                                <ReadStatus date={m.lestDato} />
-                                            </HStack>
-                                        </Box.New>
-                                    )}
                                 </Chat.Bubble>
+                                {erFraNav && (
+                                    <HStack align="center" justify="end">
+                                        <ReadStatus date={m.lestDato} />
+                                    </HStack>
+                                )}
                             </Chat>
                         </Wrapper>
                     );
@@ -76,16 +92,14 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
 
 const ReadStatus = ({ date }: { date?: string }) =>
     date ? (
-        <>
-            <BodyShort size="small">Lest</BodyShort>
+        <HStack gap="1">
             <EnvelopeOpenIcon color="var(--ax-text-success-icon)" />
-            <BodyShort size="small" textColor="subtle">
-                ({formatterDatoTid(date)})
-            </BodyShort>
-        </>
+            <Detail>Lest</Detail>
+            <Detail textColor="subtle">({formatterDatoTid(date)})</Detail>
+        </HStack>
     ) : (
-        <>
-            <BodyShort size="small">Ikke lest</BodyShort>
+        <HStack gap="1">
             <EnvelopeClosedIcon color="var(--ax-text-warning-icon)" />
-        </>
+            <Detail>Ikke lest</Detail>
+        </HStack>
     );

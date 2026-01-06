@@ -1,6 +1,7 @@
 import { fakerNB_NO as faker } from '@faker-js/faker';
 import dayjs from 'dayjs';
 import navfaker from 'nav-faker';
+import type { Gjeldende14aVedtak } from 'src/generated/modiapersonoversikt-api';
 import type {
     AnsattEnhet,
     Dagpenger,
@@ -54,6 +55,19 @@ export function getMockYtelserOgKontrakter(fodselsnummer: string): DetaljertOppf
         vedtaksdato: dayjs(faker.date.recent({ days: 10 })).format(backendDatoformat),
         sykefravaersoppfolging: fyllRandomListe(getSyfoPunkt, 5),
         ytelser: fyllRandomListe(() => faker.helpers.arrayElement([getYtelse(), getDagpenger()]), 4)
+    };
+}
+
+export function getMock14aVedtak(fodselsnummer: string): Gjeldende14aVedtak {
+    faker.seed(Number(fodselsnummer));
+    navfaker.seed(`${fodselsnummer}oppf`);
+
+    return {
+        fattetDato: '2023-01-15',
+        innsatsgruppe: {
+            kode: 'INGRP3',
+            beskrivelse: 'Innsatsgruppe 3'
+        }
     };
 }
 

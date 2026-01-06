@@ -22,6 +22,7 @@ if (import.meta.env.DEV) {
 initializeObservability();
 
 export const router = createRouter();
+window.__router = router;
 
 let preRenderPromise: Promise<unknown> = Promise.resolve();
 

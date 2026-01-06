@@ -167,9 +167,9 @@ exports[`viser fullmakt 1`] = `
           </span>
         </button>
         <div
-          aria-hidden="true"
           class="navds-read-more__content navds-read-more__content--closed navds-body-long navds-body-long--medium"
           data-state="closed"
+          tabindex="0"
         >
           <table
             class="navds-table navds-table--small"
@@ -179,6 +179,7 @@ exports[`viser fullmakt 1`] = `
             >
               <tr
                 class="navds-table__row navds-table__row--shade-on-hover"
+                data-interactive="false"
               >
                 <th
                   class="navds-table__header-cell navds-label"
@@ -196,11 +197,12 @@ exports[`viser fullmakt 1`] = `
                   >
                     <button
                       aria-expanded="false"
+                      aria-label="Hva betyr lese/innsyn?"
                       class="navds-help-text__button"
                       type="button"
                     >
                       <svg
-                        aria-labelledby="title-«r1»"
+                        aria-hidden="true"
                         class="navds-help-text__icon"
                         fill="none"
                         focusable="false"
@@ -210,11 +212,6 @@ exports[`viser fullmakt 1`] = `
                         width="1em"
                         xmlns="http://www.w3.org/2000/svg"
                       >
-                        <title
-                          id="title-«r1»"
-                        >
-                          Hva betyr lese/innsyn?
-                        </title>
                         <circle
                           cx="12"
                           cy="12"
@@ -231,7 +228,7 @@ exports[`viser fullmakt 1`] = `
                         />
                       </svg>
                       <svg
-                        aria-labelledby="title-«r2»"
+                        aria-hidden="true"
                         class="navds-help-text__icon navds-help-text__icon--filled"
                         fill="none"
                         focusable="false"
@@ -241,11 +238,6 @@ exports[`viser fullmakt 1`] = `
                         width="1em"
                         xmlns="http://www.w3.org/2000/svg"
                       >
-                        <title
-                          id="title-«r2»"
-                        >
-                          Hva betyr lese/innsyn?
-                        </title>
                         <circle
                           cx="12"
                           cy="12"
@@ -265,7 +257,6 @@ exports[`viser fullmakt 1`] = `
                     <div
                       aria-hidden="true"
                       class="navds-popover navds-help-text__popover navds-popover--hidden"
-                      data-index="0"
                       data-placement="top"
                       style="position: absolute; left: 0px; top: 0px; transform: translate(0px, 0px);"
                     >
@@ -291,11 +282,12 @@ exports[`viser fullmakt 1`] = `
                   >
                     <button
                       aria-expanded="false"
+                      aria-label="Hva betyr snakke/kommunisere?"
                       class="navds-help-text__button"
                       type="button"
                     >
                       <svg
-                        aria-labelledby="title-«r4»"
+                        aria-hidden="true"
                         class="navds-help-text__icon"
                         fill="none"
                         focusable="false"
@@ -305,11 +297,6 @@ exports[`viser fullmakt 1`] = `
                         width="1em"
                         xmlns="http://www.w3.org/2000/svg"
                       >
-                        <title
-                          id="title-«r4»"
-                        >
-                          Hva betyr snakke/kommunisere?
-                        </title>
                         <circle
                           cx="12"
                           cy="12"
@@ -326,7 +313,7 @@ exports[`viser fullmakt 1`] = `
                         />
                       </svg>
                       <svg
-                        aria-labelledby="title-«r5»"
+                        aria-hidden="true"
                         class="navds-help-text__icon navds-help-text__icon--filled"
                         fill="none"
                         focusable="false"
@@ -336,11 +323,6 @@ exports[`viser fullmakt 1`] = `
                         width="1em"
                         xmlns="http://www.w3.org/2000/svg"
                       >
-                        <title
-                          id="title-«r5»"
-                        >
-                          Hva betyr snakke/kommunisere?
-                        </title>
                         <circle
                           cx="12"
                           cy="12"
@@ -360,7 +342,6 @@ exports[`viser fullmakt 1`] = `
                     <div
                       aria-hidden="true"
                       class="navds-popover navds-help-text__popover navds-popover--hidden"
-                      data-index="0"
                       data-placement="top"
                       style="position: absolute; left: 0px; top: 0px; transform: translate(0px, 0px);"
                     >
@@ -386,11 +367,12 @@ exports[`viser fullmakt 1`] = `
                   >
                     <button
                       aria-expanded="false"
+                      aria-label="Hva betyr Søke/klage?"
                       class="navds-help-text__button"
                       type="button"
                     >
                       <svg
-                        aria-labelledby="title-«r7»"
+                        aria-hidden="true"
                         class="navds-help-text__icon"
                         fill="none"
                         focusable="false"
@@ -400,11 +382,6 @@ exports[`viser fullmakt 1`] = `
                         width="1em"
                         xmlns="http://www.w3.org/2000/svg"
                       >
-                        <title
-                          id="title-«r7»"
-                        >
-                          Hva betyr Søke/klage?
-                        </title>
                         <circle
                           cx="12"
                           cy="12"
@@ -421,7 +398,7 @@ exports[`viser fullmakt 1`] = `
                         />
                       </svg>
                       <svg
-                        aria-labelledby="title-«r8»"
+                        aria-hidden="true"
                         class="navds-help-text__icon navds-help-text__icon--filled"
                         fill="none"
                         focusable="false"
@@ -431,11 +408,6 @@ exports[`viser fullmakt 1`] = `
                         width="1em"
                         xmlns="http://www.w3.org/2000/svg"
                       >
-                        <title
-                          id="title-«r8»"
-                        >
-                          Hva betyr Søke/klage?
-                        </title>
                         <circle
                           cx="12"
                           cy="12"
@@ -455,7 +427,6 @@ exports[`viser fullmakt 1`] = `
                     <div
                       aria-hidden="true"
                       class="navds-popover navds-help-text__popover navds-popover--hidden"
-                      data-index="0"
                       data-placement="top"
                       style="position: absolute; left: 0px; top: 0px; transform: translate(0px, 0px);"
                     >
@@ -478,6 +449,7 @@ exports[`viser fullmakt 1`] = `
             >
               <tr
                 class="navds-table__row navds-table__row--shade-on-hover"
+                data-interactive="false"
               >
                 <td
                   class="navds-table__data-cell navds-body-short navds-body-short--medium"
@@ -488,7 +460,7 @@ exports[`viser fullmakt 1`] = `
                   class="navds-table__data-cell navds-body-short navds-body-short--medium"
                 >
                   <svg
-                    aria-labelledby="title-«ra»"
+                    aria-labelledby="title-«r4»"
                     fill="none"
                     focusable="false"
                     height="1em"
@@ -498,7 +470,7 @@ exports[`viser fullmakt 1`] = `
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <title
-                      id="title-«ra»"
+                      id="title-«r4»"
                     >
                       Lese/innsyn
                     </title>
@@ -514,7 +486,7 @@ exports[`viser fullmakt 1`] = `
                   class="navds-table__data-cell navds-body-short navds-body-short--medium"
                 >
                   <svg
-                    aria-labelledby="title-«rb»"
+                    aria-labelledby="title-«r5»"
                     fill="none"
                     focusable="false"
                     height="1em"
@@ -524,7 +496,7 @@ exports[`viser fullmakt 1`] = `
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <title
-                      id="title-«rb»"
+                      id="title-«r5»"
                     >
                       Snakke/kommunisere
                     </title>
@@ -542,6 +514,7 @@ exports[`viser fullmakt 1`] = `
               </tr>
               <tr
                 class="navds-table__row navds-table__row--shade-on-hover"
+                data-interactive="false"
               >
                 <td
                   class="navds-table__data-cell navds-body-short navds-body-short--medium"
@@ -552,7 +525,7 @@ exports[`viser fullmakt 1`] = `
                   class="navds-table__data-cell navds-body-short navds-body-short--medium"
                 >
                   <svg
-                    aria-labelledby="title-«rc»"
+                    aria-labelledby="title-«r6»"
                     fill="none"
                     focusable="false"
                     height="1em"
@@ -562,7 +535,7 @@ exports[`viser fullmakt 1`] = `
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <title
-                      id="title-«rc»"
+                      id="title-«r6»"
                     >
                       Lese/innsyn
                     </title>
@@ -578,7 +551,7 @@ exports[`viser fullmakt 1`] = `
                   class="navds-table__data-cell navds-body-short navds-body-short--medium"
                 >
                   <svg
-                    aria-labelledby="title-«rd»"
+                    aria-labelledby="title-«r7»"
                     fill="none"
                     focusable="false"
                     height="1em"
@@ -588,7 +561,7 @@ exports[`viser fullmakt 1`] = `
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <title
-                      id="title-«rd»"
+                      id="title-«r7»"
                     >
                       Snakke/kommunisere
                     </title>
@@ -604,7 +577,7 @@ exports[`viser fullmakt 1`] = `
                   class="navds-table__data-cell navds-body-short navds-body-short--medium"
                 >
                   <svg
-                    aria-labelledby="title-«re»"
+                    aria-labelledby="title-«r8»"
                     fill="none"
                     focusable="false"
                     height="1em"
@@ -614,7 +587,7 @@ exports[`viser fullmakt 1`] = `
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <title
-                      id="title-«re»"
+                      id="title-«r8»"
                     >
                       Søke/klage
                     </title>
@@ -705,9 +678,9 @@ exports[`viser fullmakt 1`] = `
           </span>
         </button>
         <div
-          aria-hidden="true"
           class="navds-read-more__content navds-read-more__content--closed navds-body-long navds-body-long--medium"
           data-state="closed"
+          tabindex="0"
         >
           Gjelder alle statlige ytelser
         </div>

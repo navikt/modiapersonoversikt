@@ -1,9 +1,10 @@
-import { Heading, Skeleton, VStack } from '@navikt/ds-react';
-import { useNavigate, useSearch } from '@tanstack/react-router';
-import { Suspense, useCallback } from 'react';
+import { Alert, BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { useSearch } from '@tanstack/react-router';
+import { Suspense } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { SakItem } from 'src/components/saker/List/SakItem';
+import { useAntallListeElementeBasertPaaSkjermStorrelse } from 'src/utils/customHooks';
 import { getSakId, useFilterSaker } from '../utils';
 import { SakerFilter } from './Filter';
 
@@ -20,7 +21,7 @@ export const SakerList = () => (
                 </VStack>
             }
         >
-            <VStack minHeight="0" gap="2">
+            <VStack height="100%" gap="2">
                 <SakerFilter />
                 <SakList />
             </VStack>
@@ -30,33 +31,37 @@ export const SakerList = () => (
 
 const SakList = () => {
     const saker = useFilterSaker();
-    const navigate = useNavigate({ from: '/new/person/saker' });
-
-    const handleClick = useCallback(
-        (id: string) => {
-            navigate({ search: { id } });
-        },
-        [navigate]
-    );
+    const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
 
     const selectedKey = useSearch({
         from: '/new/person/saker',
         select: (p) => p.id
     });
+    if (saker.length === 0) {
+        return (
+            <Alert className="mr-2" variant="info" role="alert">
+                Ingen saker funnet
+            </Alert>
+        );
+    }
 
     return (
         <>
-            <Heading className="pl-1" size="xsmall" level="2">
+            <Heading className="pl-1" size="xsmall" level="3" role="alert">
                 {saker.length} {saker.length === 1 ? 'sak' : 'saker'} funnet
+                <BodyShort visuallyHidden>funnet</BodyShort>
             </Heading>
-            {saker.length > 0 && (
-                <PaginatedList
-                    selectedKey={selectedKey}
-                    items={saker}
-                    keyExtractor={getSakId}
-                    renderItem={({ item }) => <SakItem sak={item} handleClick={handleClick} />}
-                />
-            )}
+            <PaginatedList
+                paginationSrHeading={{
+                    tag: 'h3',
+                    text: 'Sakerpaginerg'
+                }}
+                pageSize={antallListeElementer}
+                selectedKey={selectedKey}
+                items={saker}
+                keyExtractor={getSakId}
+                renderItem={({ item }) => <SakItem sak={item} />}
+            />
         </>
     );
 };

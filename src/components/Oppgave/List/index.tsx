@@ -1,14 +1,15 @@
-import { Heading, Skeleton, VStack } from '@navikt/ds-react';
-import { useNavigate, useSearch } from '@tanstack/react-router';
-import { Suspense, useCallback } from 'react';
+import { Alert, BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { useSearch } from '@tanstack/react-router';
+import { Suspense } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { OppgaveListFilter } from 'src/components/Oppgave/List/Filter';
 import { OppgaveItem } from 'src/components/Oppgave/List/OppgaveItem';
 import { PaginatedList } from 'src/components/PaginatedList';
+import { useAntallListeElementeBasertPaaSkjermStorrelse } from 'src/utils/customHooks';
 import { getOppgaveId, useFilterOppgave } from './utils';
 
 export const OppgaverList = () => (
-    <VStack minHeight="0" gap="2">
+    <VStack height="100%" gap="2">
         <OppgaveListFilter />
         <ErrorBoundary boundaryName="oppgaverList">
             <Suspense
@@ -30,33 +31,38 @@ export const OppgaverList = () => (
 
 const OppgaveList = () => {
     const oppgaver = useFilterOppgave();
-    const navigate = useNavigate({ from: '/new/person/oppgaver' });
-
-    const handleClick = useCallback(
-        (id: string) => {
-            navigate({ search: { id } });
-        },
-        [navigate]
-    );
+    const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
 
     const selectedKey = useSearch({
         from: '/new/person/oppgaver',
         select: (p) => p.id
     });
 
+    if (!oppgaver.length) {
+        return (
+            <Alert className="mr-2" variant="info" role="alert">
+                Ingen oppgaver funnet
+            </Alert>
+        );
+    }
+
     return (
         <>
-            <Heading className="pl-1" size="xsmall" level="2">
+            <Heading className="pl-1" size="xsmall" level="3" role="alert">
                 {oppgaver.length} {oppgaver.length === 1 ? 'oppgave' : 'oppgaver'}
+                <BodyShort visuallyHidden>funnet</BodyShort>
             </Heading>
-            {oppgaver.length > 0 && (
-                <PaginatedList
-                    selectedKey={selectedKey}
-                    items={oppgaver}
-                    keyExtractor={getOppgaveId}
-                    renderItem={({ item }) => <OppgaveItem oppgave={item} handleClick={handleClick} />}
-                />
-            )}
+            <PaginatedList
+                paginationSrHeading={{
+                    tag: 'h3',
+                    text: 'Oppgavepaginering'
+                }}
+                pageSize={antallListeElementer}
+                selectedKey={selectedKey}
+                items={oppgaver}
+                keyExtractor={getOppgaveId}
+                renderItem={({ item }) => <OppgaveItem oppgave={item} />}
+            />
         </>
     );
 };

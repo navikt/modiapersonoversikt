@@ -27,28 +27,6 @@ const queryClient = new QueryClient({
     }
 });
 
-export const TestStoreWithoutRouter = ({ customStore, children }: Props) => {
-    const store = customStore || getTestStore();
-
-    const jstore = createStore();
-    jstore.set(aktivBrukerAtom, store.getState().gjeldendeBruker.fødselsnummer);
-    return (
-        <Provider store={store}>
-            <JProvider store={jstore}>
-                <QueryClientProvider client={queryClient}>
-                    <DialogpanelStateProvider>
-                        <VisittkortStateProvider>
-                            <MeldingsokProvider>
-                                <ValgtEnhetProvider>{children}</ValgtEnhetProvider>
-                            </MeldingsokProvider>
-                        </VisittkortStateProvider>
-                    </DialogpanelStateProvider>
-                </QueryClientProvider>
-            </JProvider>
-        </Provider>
-    );
-};
-
 const setupTestRouter = (customStore: Props['customStore'], children: Props['children']) => {
     const rootRoute = createRootRoute();
     const store = customStore || getTestStore();
