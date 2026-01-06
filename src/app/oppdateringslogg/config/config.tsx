@@ -634,7 +634,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
         {
             id: 38,
             tittel: 'Oppdatering ytelser',
-            dato: new Date('2026-01-06 12:00'),
+            dato: new Date('2026-01-05 12:00'),
             aktiv: true,
             ingress: null,
             beskrivelse: (
@@ -671,7 +671,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
         {
             id: 39,
             tittel: 'Oppdatering sykepenger',
-            dato: new Date('2026-01-05 12:00'),
+            dato: new Date('2026-01-06 12:00'),
             aktiv: true,
             ingress: null,
             beskrivelse: (
