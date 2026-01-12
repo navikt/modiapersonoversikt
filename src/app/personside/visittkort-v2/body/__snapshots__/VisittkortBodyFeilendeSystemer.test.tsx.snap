@@ -1004,7 +1004,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                       class="navds-table__data-cell navds-body-short navds-body-short--medium"
                     >
                       <svg
-                        aria-labelledby="title-«rf»"
+                        aria-labelledby="title-_r_f_"
                         fill="none"
                         focusable="false"
                         height="1em"
@@ -1014,7 +1014,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <title
-                          id="title-«rf»"
+                          id="title-_r_f_"
                         >
                           Lese/innsyn
                         </title>
@@ -1030,7 +1030,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                       class="navds-table__data-cell navds-body-short navds-body-short--medium"
                     >
                       <svg
-                        aria-labelledby="title-«rg»"
+                        aria-labelledby="title-_r_g_"
                         fill="none"
                         focusable="false"
                         height="1em"
@@ -1040,7 +1040,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <title
-                          id="title-«rg»"
+                          id="title-_r_g_"
                         >
                           Snakke/kommunisere
                         </title>
@@ -1069,7 +1069,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                       class="navds-table__data-cell navds-body-short navds-body-short--medium"
                     >
                       <svg
-                        aria-labelledby="title-«rh»"
+                        aria-labelledby="title-_r_h_"
                         fill="none"
                         focusable="false"
                         height="1em"
@@ -1079,7 +1079,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <title
-                          id="title-«rh»"
+                          id="title-_r_h_"
                         >
                           Lese/innsyn
                         </title>
@@ -1095,7 +1095,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                       class="navds-table__data-cell navds-body-short navds-body-short--medium"
                     >
                       <svg
-                        aria-labelledby="title-«ri»"
+                        aria-labelledby="title-_r_i_"
                         fill="none"
                         focusable="false"
                         height="1em"
@@ -1105,7 +1105,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <title
-                          id="title-«ri»"
+                          id="title-_r_i_"
                         >
                           Snakke/kommunisere
                         </title>
@@ -1121,7 +1121,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                       class="navds-table__data-cell navds-body-short navds-body-short--medium"
                     >
                       <svg
-                        aria-labelledby="title-«rj»"
+                        aria-labelledby="title-_r_j_"
                         fill="none"
                         focusable="false"
                         height="1em"
@@ -1131,7 +1131,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <title
-                          id="title-«rj»"
+                          id="title-_r_j_"
                         >
                           Søke/klage
                         </title>

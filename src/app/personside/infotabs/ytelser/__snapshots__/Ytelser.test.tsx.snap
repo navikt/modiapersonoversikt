@@ -368,7 +368,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   >
                     <label
                       class="navds-form-field__label navds-label navds-label--small"
-                      for="datepicker-input-«r1»"
+                      for="datepicker-input-_r_1_"
                     >
                       Fra
                     </label>
@@ -378,7 +378,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       <input
                         autocomplete="off"
                         class="navds-date__field-input navds-text-field__input navds-body-short navds-body-short--small"
-                        id="datepicker-input-«r1»"
+                        id="datepicker-input-_r_1_"
                         size="11"
                         value="01.01.1968"
                       />
@@ -388,7 +388,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                         type="button"
                       >
                         <svg
-                          aria-labelledby="title-«r2»"
+                          aria-labelledby="title-_r_2_"
                           fill="none"
                           focusable="false"
                           height="1em"
@@ -398,7 +398,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <title
-                            id="title-«r2»"
+                            id="title-_r_2_"
                           >
                             Åpne datovelger
                           </title>
@@ -415,7 +415,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       aria-live="polite"
                       aria-relevant="additions removals"
                       class="navds-form-field__error"
-                      id="datepicker-input-error-«r1»"
+                      id="datepicker-input-error-_r_1_"
                     />
                   </div>
                 </div>
@@ -427,7 +427,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   >
                     <label
                       class="navds-form-field__label navds-label navds-label--small"
-                      for="datepicker-input-«r4»"
+                      for="datepicker-input-_r_4_"
                     >
                       Til
                     </label>
@@ -437,7 +437,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       <input
                         autocomplete="off"
                         class="navds-date__field-input navds-text-field__input navds-body-short navds-body-short--small"
-                        id="datepicker-input-«r4»"
+                        id="datepicker-input-_r_4_"
                         size="11"
                         value="01.01.1970"
                       />
@@ -447,7 +447,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                         type="button"
                       >
                         <svg
-                          aria-labelledby="title-«r5»"
+                          aria-labelledby="title-_r_5_"
                           fill="none"
                           focusable="false"
                           height="1em"
@@ -457,7 +457,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <title
-                            id="title-«r5»"
+                            id="title-_r_5_"
                           >
                             Åpne datovelger
                           </title>
@@ -474,7 +474,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       aria-live="polite"
                       aria-relevant="additions removals"
                       class="navds-form-field__error"
-                      id="datepicker-input-error-«r4»"
+                      id="datepicker-input-error-_r_4_"
                     />
                   </div>
                 </div>
