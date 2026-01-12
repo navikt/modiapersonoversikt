@@ -661,7 +661,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                                 Foreldrepenger (foreldrepenger, engangsstøand, svangerskapspenger): fra Infotrygd og
                                 FPSAK
                             </li>
-                            <li>Sykepenger: Infotrygd og Speil</li>
+                            <li>Sykepenger: Infotrygd og Speil. Oppdateres 1. mars</li>
                         </ul>
                     </ul>
                 </VStack>
@@ -669,19 +669,21 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             src: NyeYtelser
         },
         {
-            id: 39,
-            tittel: 'Oppdatering sykepenger',
-            dato: new Date('2026-01-06 12:00'),
+            id: 40,
+            tittel: 'Informasjon om sykepenger beholdes til 1. mars',
+            dato: new Date('2026-01-13 12:00'),
             aktiv: true,
             ingress: null,
             beskrivelse: (
                 <>
                     <Normaltekst>
-                        Ytelsen sykepenger vil ikke lenger inneholde informasjon om sykemelding og arbeidssituasjon. Det
-                        er kun utbetalingsperioder og grad for periodene som vil bli synlig i Modia personoversikt. Mer
-                        informasjon finnes i andre fagsystem angående sykepenger og sykefravær. Denne endringen skjer
-                        grunnet overgang fra Infotrygd til Speil. Vi jobber med å få på plass mer informasjon om ytelsen
-                        på sikt.
+                        Det er bestemt at sykepenger under ytelser vil være likt som i dag fram til 1. mars 2026.
+                        <br />
+                        Etter 1. mars vil ikke sykepenger lenger inneholde informasjon om sykemelding og
+                        arbeidssituasjon. Det er kun utbetalingsperioder og grad for periodene som vil bli synlig i
+                        Modia personoversikt. Mer informasjon finnes i andre fagsystem angående sykepenger og
+                        sykefravær. Denne endringen skjer grunnet overgang fra Infotrygd til Speil. Vi jobber med å få
+                        på plass mer informasjon om ytelsen på sikt.
                     </Normaltekst>
                 </>
             ),
