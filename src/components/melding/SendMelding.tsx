@@ -49,7 +49,7 @@ const SendMeldingContent = ({ lukkeKnapp }: Props) => {
                     ) : (
                         <Alert variant="warning">Fant ikke dialogen under arbeid</Alert>
                     )}
-                    <HStack justify="center" marginBlock="1">
+                    <HStack justify="end" marginBlock="1">
                         <Button variant="tertiary" size="small" onClick={cancelOppgave}>
                             Avbryt
                         </Button>

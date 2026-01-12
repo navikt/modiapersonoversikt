@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Button, ErrorMessage, HStack, VStack } from '@navikt/ds-react';
+import { Alert, Button, ErrorMessage, HStack, VStack } from '@navikt/ds-react';
 import { type ValidationError, useForm, useStore } from '@tanstack/react-form';
 import { useAtomValue } from 'jotai';
 import { useCallback, useMemo, useRef, useState } from 'react';
@@ -145,57 +145,58 @@ function NyMelding() {
                         </form.Field>
                     }
                 />
-                <BodyShort size="small">{meldingsTypeTekst.beskrivelse}</BodyShort>
-                <form.Field
-                    name="melding"
-                    listeners={{
-                        onChange: ({ value }) => {
-                            if (value.length === 0) {
-                                removeDraft();
-                            }
-                            if (value.length > 0) {
-                                updateDraft(value);
-                            }
-                        }
-                    }}
-                >
-                    {(field) => (
-                        <div>
-                            <AutocompleteTextarea
-                                ref={textAreaRef}
-                                label={meldingsTypeTekst.tittel}
-                                hideLabel
-                                size="small"
-                                value={field.state.value}
-                                onChange={(e) => field.handleChange(e.target.value)}
-                                error={buildErrorMessage(field.state.meta.errors)}
-                                maxLength={maksLengdeMelding}
-                                resize="vertical"
-                                minRows={10}
-                                maxRows={15}
-                            />
-                            {draftStatus && field.state.value.length > 0 && field.state.meta.isDirty && (
-                                <DraftStatus state={draftStatus} />
-                            )}
-                        </div>
-                    )}
-                </form.Field>
                 <VStack gap="1">
-                    <HStack gap="1" justify="center">
-                        <AutoCompleteTekstTips />
-                        <StandardTekstModal
-                            textAreaRef={textAreaRef}
-                            submitTekst={(standardTekst) =>
-                                settInnStandardTekst(standardTekst, textAreaRef, (e) =>
-                                    form.setFieldValue('melding', e.target.value)
-                                )
+                    <form.Field
+                        name="melding"
+                        listeners={{
+                            onChange: ({ value }) => {
+                                if (value.length === 0) {
+                                    removeDraft();
+                                }
+                                if (value.length > 0) {
+                                    updateDraft(value);
+                                }
                             }
-                        />
-                    </HStack>
-                    <HStack justify="center">
-                        <Button type="submit" size="small" loading={isPending}>
-                            Send til {brukerNavn}
-                        </Button>
+                        }}
+                    >
+                        {(field) => (
+                            <div>
+                                <AutocompleteTextarea
+                                    ref={textAreaRef}
+                                    label={meldingsTypeTekst.tittel}
+                                    hideLabel
+                                    size="small"
+                                    value={field.state.value}
+                                    onChange={(e) => field.handleChange(e.target.value)}
+                                    error={buildErrorMessage(field.state.meta.errors)}
+                                    maxLength={maksLengdeMelding}
+                                    resize="vertical"
+                                    minRows={10}
+                                    maxRows={15}
+                                />
+                                {draftStatus && field.state.value.length > 0 && field.state.meta.isDirty && (
+                                    <DraftStatus state={draftStatus} />
+                                )}
+                            </div>
+                        )}
+                    </form.Field>
+                    <HStack gap="1" justify="end">
+                        <HStack justify="center">
+                            <AutoCompleteTekstTips />
+                            <StandardTekstModal
+                                textAreaRef={textAreaRef}
+                                submitTekst={(standardTekst) =>
+                                    settInnStandardTekst(standardTekst, textAreaRef, (e) =>
+                                        form.setFieldValue('melding', e.target.value)
+                                    )
+                                }
+                            />
+                        </HStack>
+                        <HStack justify="center">
+                            <Button type="submit" size="small" loading={isPending}>
+                                Send til {brukerNavn}
+                            </Button>
+                        </HStack>
                     </HStack>
                 </VStack>
                 {isSuccess && <Alert variant="success">Meldingen ble sendt</Alert>}

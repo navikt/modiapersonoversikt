@@ -168,58 +168,60 @@ export const FortsettDialog = ({ traad }: Props) => {
                         </form.Subscribe>
                     </>
                 )}
-                <form.Field
-                    name="melding"
-                    listeners={{
-                        onChange: ({ value }) => {
-                            if (value.length === 0) {
-                                removeDraft();
-                            }
-                            if (value.length > 0) {
-                                updateDraft(value);
-                            }
-                        }
-                    }}
-                >
-                    {(field) => (
-                        <div>
-                            <AutocompleteTextarea
-                                autoFocus
-                                hideLabel
-                                ref={textAreaRef}
-                                size="small"
-                                label="Ny melding i dialog"
-                                description={meldingsTypeTekst.beskrivelse}
-                                value={field.state.value}
-                                onChange={(e) => field.handleChange(e.target.value)}
-                                error={buildErrorMessage(field.state.meta.errors)}
-                                maxLength={maksLengdeMelding}
-                                resize="vertical"
-                                minRows={10}
-                                maxRows={15}
-                            />
-                            {draftStatus && field.state.value.length > 0 && field.state.meta.isDirty && (
-                                <DraftStatus state={draftStatus} />
-                            )}
-                        </div>
-                    )}
-                </form.Field>
                 <VStack gap="1">
-                    <HStack gap="1" justify="center">
-                        <AutoCompleteTekstTips />
-                        <StandardTekstModal
-                            textAreaRef={textAreaRef}
-                            submitTekst={(standardTekst) =>
-                                settInnStandardTekst(standardTekst, textAreaRef, (e) =>
-                                    form.setFieldValue('melding', e.target.value)
-                                )
+                    <form.Field
+                        name="melding"
+                        listeners={{
+                            onChange: ({ value }) => {
+                                if (value.length === 0) {
+                                    removeDraft();
+                                }
+                                if (value.length > 0) {
+                                    updateDraft(value);
+                                }
                             }
-                        />
-                    </HStack>
-                    <HStack gap="2" justify="center">
-                        <Button type="submit" size="small" loading={isPending}>
-                            Send til {brukerNavn} {oppgaveId ? 'og avslutt oppgave' : ''}
-                        </Button>
+                        }}
+                    >
+                        {(field) => (
+                            <div>
+                                <AutocompleteTextarea
+                                    autoFocus
+                                    hideLabel
+                                    ref={textAreaRef}
+                                    size="small"
+                                    label="Ny melding i dialog"
+                                    description={meldingsTypeTekst.beskrivelse}
+                                    value={field.state.value}
+                                    onChange={(e) => field.handleChange(e.target.value)}
+                                    error={buildErrorMessage(field.state.meta.errors)}
+                                    maxLength={maksLengdeMelding}
+                                    resize="vertical"
+                                    minRows={10}
+                                    maxRows={15}
+                                />
+                                {draftStatus && field.state.value.length > 0 && field.state.meta.isDirty && (
+                                    <DraftStatus state={draftStatus} />
+                                )}
+                            </div>
+                        )}
+                    </form.Field>
+                    <HStack gap="1" justify="end">
+                        <HStack justify="center">
+                            <AutoCompleteTekstTips />
+                            <StandardTekstModal
+                                textAreaRef={textAreaRef}
+                                submitTekst={(standardTekst) =>
+                                    settInnStandardTekst(standardTekst, textAreaRef, (e) =>
+                                        form.setFieldValue('melding', e.target.value)
+                                    )
+                                }
+                            />
+                        </HStack>
+                        <HStack justify="center">
+                            <Button type="submit" size="small" loading={isPending}>
+                                Send til {brukerNavn} {oppgaveId ? 'og avslutt oppgave' : ''}
+                            </Button>
+                        </HStack>
                     </HStack>
                 </VStack>
                 {isSuccess && <Alert variant="success">Meldingen ble sendt</Alert>}
