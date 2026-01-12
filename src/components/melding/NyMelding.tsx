@@ -5,7 +5,7 @@ import { useCallback, useMemo, useRef, useState } from 'react';
 import DraftStatus from 'src/app/personside/dialogpanel/DraftStatus';
 import useDraft, { type Draft, type DraftContext } from 'src/app/personside/dialogpanel/use-draft';
 import AvsluttDialogEtterSending from 'src/components/melding/AvsluttDialogEtterSending';
-import { Oppgaveliste, OppgavelisteRadioKnapper } from 'src/components/melding/OppgavelisteRadioKnapper';
+import { Oppgaveliste } from 'src/components/melding/OppgavelisteOptions';
 import { ValgForMeldingstype } from 'src/components/melding/ValgForMeldingstype';
 import { MeldingsType, VelgMeldingsType, meldingsTyperTekst } from 'src/components/melding/VelgMeldingsType';
 import VelgOppgaveliste from 'src/components/melding/VelgOppgaveliste';
@@ -21,7 +21,6 @@ import {
     SendMeldingRequestV2TraadType
 } from 'src/generated/modiapersonoversikt-api';
 import { useSendMelding } from 'src/lib/clients/modiapersonoversikt-api';
-import { useEnhetsnavn } from 'src/lib/hooks/useEnhetsnavn';
 import { useSuspendingBrukernavn } from 'src/lib/hooks/useSuspendingBrukernavn';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import type { Temagruppe } from 'src/models/temagrupper';
@@ -31,7 +30,6 @@ import AutocompleteTextarea from './AutoCompleteTextarea';
 function NyMelding() {
     const fnr = usePersonAtomValue();
     const enhetsId = useAtomValue(aktivEnhetAtom);
-    const enhetsNavn = useEnhetsnavn(enhetsId);
     const brukerNavn = useSuspendingBrukernavn();
 
     const { error, mutate, isPending, isSuccess } = useSendMelding();
@@ -118,7 +116,6 @@ function NyMelding() {
                                 <VelgOppgaveliste
                                     valgtOppgaveliste={field.state.value}
                                     setValgtOppgaveliste={(oppgaveliste) => field.handleChange(oppgaveliste)}
-                                    oppgavelisteRadioKnapper={<OppgavelisteRadioKnapper enhet={enhetsNavn} />}
                                 />
                             )}
                         </form.Field>

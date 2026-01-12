@@ -10,7 +10,6 @@ import AutoCompleteTekstTips from 'src/components/melding/standardtekster/AutoCo
 import StandardTekstModal from 'src/components/melding/standardtekster/StandardTeksterModal';
 import { settInnStandardTekst } from 'src/components/melding/standardtekster/settInnStandardTekst';
 import { useOppgaveForTraad, useSendMelding } from 'src/lib/clients/modiapersonoversikt-api';
-import { useEnhetsnavn } from 'src/lib/hooks/useEnhetsnavn';
 import { useSuspendingBrukernavn } from 'src/lib/hooks/useSuspendingBrukernavn';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
@@ -24,7 +23,7 @@ import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { formatterDatoTid } from 'src/utils/date-utils';
 import type { z } from 'zod';
 import AutocompleteTextarea from './AutoCompleteTextarea';
-import { Oppgaveliste, OppgavelisteRadioKnapper } from './OppgavelisteRadioKnapper';
+import { Oppgaveliste } from './OppgavelisteOptions';
 import { meldingsTyperTekst, traadTypeToMeldingsType } from './VelgMeldingsType';
 import VelgOppgaveliste from './VelgOppgaveliste';
 import { fortsettDialogSchema, maksLengdeMelding } from './nyMeldingSchema';
@@ -39,7 +38,6 @@ export const FortsettDialog = ({ traad }: Props) => {
     const fnr = usePersonAtomValue();
     const enhetsId = useAtomValue(aktivEnhetAtom);
     const [, setDialogUnderArbeid] = useAtom(dialogUnderArbeidAtom);
-    const enhetsNavn = useEnhetsnavn(enhetsId);
     const brukerNavn = useSuspendingBrukernavn();
     const { oppgave } = useOppgaveForTraad(traad.traadId);
 
@@ -152,9 +150,6 @@ export const FortsettDialog = ({ traad }: Props) => {
                                                 valgtOppgaveliste={field.state.value}
                                                 setValgtOppgaveliste={(oppgaveliste) =>
                                                     field.handleChange(oppgaveliste)
-                                                }
-                                                oppgavelisteRadioKnapper={
-                                                    <OppgavelisteRadioKnapper enhet={enhetsNavn} />
                                                 }
                                             />
                                         )}
