@@ -1,4 +1,4 @@
-import { Radio, RadioGroup } from '@navikt/ds-react';
+import { Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import { TraadType } from 'src/lib/types/modiapersonoversikt-api';
 
 interface VelgMeldingsTypeProps {
@@ -9,14 +9,20 @@ interface VelgMeldingsTypeProps {
 export function VelgMeldingsType({ meldingsType, setMeldingsType }: VelgMeldingsTypeProps) {
     return (
         <RadioGroup legend="Type dialog" hideLegend onChange={setMeldingsType} value={meldingsType} size="small">
-            <MeldingsTypeRadioKnapper />
+            <VStack gap="1">
+                <MeldingsTypeRadioKnapper valgtMeldingsType={meldingsType} />
+            </VStack>
         </RadioGroup>
     );
 }
 
-function MeldingsTypeRadioKnapper() {
+function MeldingsTypeRadioKnapper({ valgtMeldingsType }: { valgtMeldingsType: MeldingsType }) {
     return Object.entries(MeldingsType).map(([key, value]) => (
-        <Radio key={key} value={value}>
+        <Radio
+            key={key}
+            value={value}
+            description={valgtMeldingsType === value ? meldingsTyperTekst[value].beskrivelse : ''}
+        >
             {value}
         </Radio>
     ));
@@ -35,16 +41,16 @@ interface MeldingsTypeTekst {
 
 export const meldingsTyperTekst: Record<MeldingsType, MeldingsTypeTekst> = {
     Referat: {
-        tittel: 'Nytt referat',
-        beskrivelse: 'Brukeren kan se referatet, men mottar ikke varsel.'
+        tittel: 'Referat',
+        beskrivelse: 'Bruker får ikke varsel, og kan ikke svare'
     },
     Samtale: {
-        tittel: 'Ny samtale',
-        beskrivelse: 'Brukeren mottar varsel og kan svare.'
+        tittel: 'Samtale',
+        beskrivelse: 'Brukeren mottar varsel, og kan svare.'
     },
     Infomelding: {
-        tittel: 'Ny infomelding',
-        beskrivelse: 'Brukeren mottar varsel, men kan ikke svare.'
+        tittel: 'Infomelding',
+        beskrivelse: 'Bruker mottar varsel, men kan ikke svare.'
     }
 } as const;
 
