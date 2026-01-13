@@ -4,7 +4,6 @@ import { useAtomValue } from 'jotai';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import DraftStatus from 'src/app/personside/dialogpanel/DraftStatus';
 import useDraft, { type Draft, type DraftContext } from 'src/app/personside/dialogpanel/use-draft';
-import AvsluttDialogEtterSending from 'src/components/melding/AvsluttDialogEtterSending';
 import { Oppgaveliste } from 'src/components/melding/OppgavelisteOptions';
 import { ValgForMeldingstype } from 'src/components/melding/ValgForMeldingstype';
 import { MeldingsType, VelgMeldingsType, meldingsTyperTekst } from 'src/components/melding/VelgMeldingsType';
@@ -127,16 +126,6 @@ function NyMelding() {
                                     valgtSak={field.state.value}
                                     setSak={field.handleChange}
                                     error={<ValidationErrorMessage errors={field.state.meta.errors} />}
-                                />
-                            )}
-                        </form.Field>
-                    }
-                    avsluttDialogEtterSending={
-                        <form.Field name="meldingsType">
-                            {(field) => (
-                                <AvsluttDialogEtterSending
-                                    meldingsType={field.state.value}
-                                    setMeldingsType={(meldingsType) => field.handleChange(meldingsType)}
                                 />
                             )}
                         </form.Field>
