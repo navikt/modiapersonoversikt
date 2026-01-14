@@ -120,13 +120,13 @@ export const trackAccordionClosed = (name: string) => {
     });
 };
 
-export const updateUserEnhet = (enhet: string) => {
+export const updateUserEnhet = (enhet: string, type: string) => {
     if (!window.umami) {
         console.warn('Umami is not initialized. Ignoring');
         return;
     }
     window.umami.track(trackingEvents.enhetEndret);
-    window.umami.identify({ enhet: enhet.toLowerCase() });
+    window.umami.identify({ enhet: enhet.toLowerCase(), type: type.toLowerCase() });
 };
 
 export const trackOpenDialog = () => {

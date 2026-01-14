@@ -1,8 +1,8 @@
 import { type UseQueryResult, useQuery, useQueryClient } from '@tanstack/react-query';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { type FetchError, get } from '../../api/api';
-import { apiBaseUri } from '../../api/config';
-import { CenteredLazySpinner } from '../../components/LazySpinner';
+import { type FetchError, get } from 'src/api/api';
+import { apiBaseUri } from 'src/api/config';
+import { CenteredLazySpinner } from 'src/components/LazySpinner';
 import { type DefaultConfig, type RendererOrConfig, applyDefaults, useRest } from '../useRest';
 
 /**
@@ -18,6 +18,7 @@ const defaults: DefaultConfig = {
 export interface Enhet {
     navn: string;
     enhetId: string;
+    type: string;
 }
 
 export interface SaksbehandlersEnheter {
