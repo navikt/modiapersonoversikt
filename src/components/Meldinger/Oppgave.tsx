@@ -427,13 +427,17 @@ const EnhetSelect = ({
     setValue: (value: string) => void;
 } & Omit<ComboboxProps, 'options' | 'onToggleSelected' | 'selectedOption' | 'size'>) => {
     const { data: enheter } = useOppgaveBehandlerEnheter();
-    const { data: foreslotteEnheter } = useForeslotteEnheter({
+    const { data: foreslotteEnheter = [] } = useForeslotteEnheter({
         temakode,
         typekode,
         underkategori
     });
 
-    const suggestedEnheter = foreslotteEnheter ?? [];
+    const suggestedEnheter = foreslotteEnheter.map((enhet) => ({
+        ...enhet,
+        enhetNavn: `Foreslått: ${enhet.enhetNavn}`
+    }));
+
     const otherEnheter = enheter.filter((e) => !suggestedEnheter.some((s) => s.enhetId === e.enhetId));
 
     const enhetOptions = [...suggestedEnheter, ...otherEnheter].map((e) => ({
