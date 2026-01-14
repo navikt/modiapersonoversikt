@@ -28,14 +28,14 @@ export function useAutoCompleteSuggestions({
         if (topSuggestions) {
             for (const suggestion of topSuggestions) {
                 if (shouldShowItemBasedOnInput(value, suggestion, input)) {
-                    filteredSuggestions.push(suggestion);
+                    filteredTopSuggestions.push(suggestion);
                 }
             }
         }
 
         for (const suggestion of suggestions) {
             if (shouldShowItemBasedOnInput(value, suggestion, input) && !topSuggestions?.includes(suggestion)) {
-                filteredTopSuggestions.push(suggestion);
+                filteredSuggestions.push(suggestion);
             }
         }
 
