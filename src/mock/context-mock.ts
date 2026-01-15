@@ -20,11 +20,11 @@ class ContextStorage {
 const context = new ContextStorage();
 
 export const enheter = [
-    { enhetId: '0219', navn: 'NAV Bærum' },
-    { enhetId: '4100', navn: 'NKS' },
-    { enhetId: '0118', navn: 'NAV Aremark' },
-    { enhetId: '0604', navn: 'NAV Kongsberg' },
-    { enhetId: '0602', navn: 'NAV Drammer' }
+    { enhetId: '0219', navn: 'NAV Bærum', type: 'LOKAL' },
+    { enhetId: '4100', navn: 'NKS', type: 'OKONOMI' },
+    { enhetId: '0118', navn: 'NAV Aremark', type: 'KO' },
+    { enhetId: '0604', navn: 'NAV Kongsberg', type: 'DIR' },
+    { enhetId: '0602', navn: 'NAV Drammer', type: 'IT' }
 ];
 
 type ContextRequest = {
