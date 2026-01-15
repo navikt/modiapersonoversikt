@@ -30,7 +30,7 @@ export function useDecoratorConfig() {
 
     const handleSetEnhet = (enhet: string, enhetValue?: Enhet) => {
         if (enhetValue) {
-            updateUserEnhet(enhetValue.navn, enhetValue.type);
+            updateUserEnhet(enhetValue.navn, enhetValue.type ?? 'Ingen type');
         }
         setAktivEnhet(enhet);
     };
