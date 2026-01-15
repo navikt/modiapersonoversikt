@@ -45,15 +45,17 @@ const SendMeldingContent = ({ lukkeKnapp }: Props) => {
             {oppgave ? (
                 <>
                     {traad ? (
-                        <FortsettDialog traad={traad} key={traad.traadId} />
+                        <FortsettDialog traad={traad} key={traad.traadId} lukkOppgave={cancelOppgave} />
                     ) : (
-                        <Alert variant="warning">Fant ikke dialogen under arbeid</Alert>
+                        <>
+                            <Alert variant="warning">Fant ikke dialogen under arbeid</Alert>
+                            <HStack justify="end" marginBlock="1">
+                                <Button variant="tertiary" size="small" onClick={cancelOppgave}>
+                                    Avbryt
+                                </Button>
+                            </HStack>
+                        </>
                     )}
-                    <HStack justify="end" marginBlock="1">
-                        <Button variant="tertiary" size="small" onClick={cancelOppgave}>
-                            Avbryt
-                        </Button>
-                    </HStack>
                 </>
             ) : (
                 <NyMelding />

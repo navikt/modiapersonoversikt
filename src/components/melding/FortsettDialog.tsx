@@ -45,8 +45,9 @@ type FortsettDialogForm = z.infer<typeof fortsettDialogSchema>;
 
 type Props = {
     traad: Traad;
+    lukkOppgave: () => void;
 };
-export const FortsettDialog = ({ traad }: Props) => {
+export const FortsettDialog = ({ traad, lukkOppgave }: Props) => {
     const fnr = usePersonAtomValue();
     const enhetsId = useAtomValue(aktivEnhetAtom);
     const [, setDialogUnderArbeid] = useAtom(dialogUnderArbeidAtom);
@@ -206,37 +207,44 @@ export const FortsettDialog = ({ traad }: Props) => {
                                     minRows={10}
                                     maxRows={15}
                                 />
-                                {draftStatus && field.state.value.length > 0 && field.state.meta.isDirty && (
-                                    <DraftStatus state={draftStatus} />
-                                )}
                             </div>
                         )}
                     </form.Field>
-                    <VStack paddingBlock="2">
-                        <HGrid gap="2" columns={{ xs: 1, md: '1fr 2fr' }}>
-                            <Box.New flexGrow="1" />
-                            <Bleed marginBlock={{ xs: '0 0', md: 'space-28 space-0' }} asChild>
-                                <HStack gap="1" justify="end">
-                                    <HStack justify="center">
-                                        <AutoCompleteTekstTips />
-                                        <StandardTekstModal
-                                            textAreaRef={textAreaRef}
-                                            submitTekst={(standardTekst) =>
-                                                settInnStandardTekst(standardTekst, textAreaRef, (e) =>
-                                                    form.setFieldValue('melding', e.target.value)
-                                                )
-                                            }
-                                        />
-                                    </HStack>
-                                    <HStack justify="center">
-                                        <Button type="submit" size="small" loading={isPending}>
-                                            Send til {brukerNavn} {oppgaveId ? 'og avslutt oppgave' : ''}
-                                        </Button>
-                                    </HStack>
+                    <HGrid gap="2" columns={{ xs: 1, md: '2fr 3fr' }}>
+                        <Box.New flexGrow="1">
+                            {draftStatus &&
+                                form.getFieldValue('melding').length > 0 &&
+                                form.getFieldMeta('melding')?.isDirty && <DraftStatus state={draftStatus} />}
+                        </Box.New>
+                        <Bleed marginBlock={{ xs: '0 0', md: 'space-20 space-0' }} asChild>
+                            <HStack gap="1" justify="end">
+                                <HStack justify="center">
+                                    <AutoCompleteTekstTips />
+                                    <StandardTekstModal
+                                        textAreaRef={textAreaRef}
+                                        submitTekst={(standardTekst) =>
+                                            settInnStandardTekst(standardTekst, textAreaRef, (e) =>
+                                                form.setFieldValue('melding', e.target.value)
+                                            )
+                                        }
+                                    />
                                 </HStack>
-                            </Bleed>
-                        </HGrid>
-                    </VStack>
+                                <VStack justify="center" align="end" gap="1">
+                                    <Button
+                                        type="submit"
+                                        data-testid="svar-knapp-fortsett-dialog"
+                                        size="small"
+                                        loading={isPending}
+                                    >
+                                        Send til {brukerNavn} {oppgaveId ? 'og avslutt oppgave' : ''}
+                                    </Button>
+                                    <Button variant="tertiary" size="small" onClick={lukkOppgave}>
+                                        Avbryt
+                                    </Button>
+                                </VStack>
+                            </HStack>
+                        </Bleed>
+                    </HGrid>
                 </VStack>
                 {isSuccess && <Alert variant="success">Meldingen ble sendt</Alert>}
                 {error && <Alert variant="error">Det skjedde en feil. Meldingen ble ikke sendt</Alert>}
