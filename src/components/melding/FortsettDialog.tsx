@@ -1,4 +1,16 @@
-import { Alert, BodyShort, Box, Button, Checkbox, HStack, InlineMessage, Loader, VStack } from '@navikt/ds-react';
+import {
+    Alert,
+    Bleed,
+    BodyShort,
+    Box,
+    Button,
+    Checkbox,
+    HGrid,
+    HStack,
+    InlineMessage,
+    Loader,
+    VStack
+} from '@navikt/ds-react';
 import { type ValidationError, useForm } from '@tanstack/react-form';
 import { useAtom, useAtomValue } from 'jotai';
 import { useCallback, useMemo, useRef, useState } from 'react';
@@ -200,24 +212,31 @@ export const FortsettDialog = ({ traad }: Props) => {
                             </div>
                         )}
                     </form.Field>
-                    <HStack gap="1" justify="end">
-                        <HStack justify="center">
-                            <AutoCompleteTekstTips />
-                            <StandardTekstModal
-                                textAreaRef={textAreaRef}
-                                submitTekst={(standardTekst) =>
-                                    settInnStandardTekst(standardTekst, textAreaRef, (e) =>
-                                        form.setFieldValue('melding', e.target.value)
-                                    )
-                                }
-                            />
-                        </HStack>
-                        <HStack justify="center">
-                            <Button type="submit" size="small" loading={isPending}>
-                                Send til {brukerNavn} {oppgaveId ? 'og avslutt oppgave' : ''}
-                            </Button>
-                        </HStack>
-                    </HStack>
+                    <VStack paddingBlock="2">
+                        <HGrid gap="2" columns={{ xs: 1, md: '1fr 2fr' }}>
+                            <Box.New flexGrow="1" />
+                            <Bleed marginBlock={{ xs: '0 0', md: 'space-28 space-0' }} asChild>
+                                <HStack gap="1" justify="end">
+                                    <HStack justify="center">
+                                        <AutoCompleteTekstTips />
+                                        <StandardTekstModal
+                                            textAreaRef={textAreaRef}
+                                            submitTekst={(standardTekst) =>
+                                                settInnStandardTekst(standardTekst, textAreaRef, (e) =>
+                                                    form.setFieldValue('melding', e.target.value)
+                                                )
+                                            }
+                                        />
+                                    </HStack>
+                                    <HStack justify="center">
+                                        <Button type="submit" size="small" loading={isPending}>
+                                            Send til {brukerNavn} {oppgaveId ? 'og avslutt oppgave' : ''}
+                                        </Button>
+                                    </HStack>
+                                </HStack>
+                            </Bleed>
+                        </HGrid>
+                    </VStack>
                 </VStack>
                 {isSuccess && <Alert variant="success">Meldingen ble sendt</Alert>}
                 {error && <Alert variant="error">Det skjedde en feil. Meldingen ble ikke sendt</Alert>}
