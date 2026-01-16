@@ -4,6 +4,15 @@ test.beforeEach(async ({ page }) => {
     await page.addInitScript(() => {
         window.localStorage.setItem('ny-modia', 'true');
     });
+
+    page.on('load', async () => {
+        await page.evaluate(() => {
+            const element = document.getElementById('ny-modia-knapp-wrapper');
+            if (element) {
+                element.remove();
+            }
+        });
+    });
 });
 
 test('Select melding', async ({ page }) => {

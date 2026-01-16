@@ -39,7 +39,11 @@ export const NyModia = () => {
     if (!isOn) return;
 
     return (
-        <Box className="absolute bottom-0 right-4 mb-12 overflow-hidden z-10" borderRadius="xlarge">
+        <Box
+            className="absolute bottom-0 right-4 mb-12 overflow-hidden z-10"
+            borderRadius="xlarge"
+            id="ny-modia-knapp-wrapper"
+        >
             <Button
                 icon={nyModia ? <ArrowUndoIcon /> : <SparklesIcon />}
                 variant="primary"
