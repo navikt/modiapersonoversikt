@@ -1,4 +1,4 @@
-import { Oppgaveliste } from 'src/components/melding/OppgavelisteRadioKnapper';
+import { Oppgaveliste } from 'src/components/melding/OppgavelisteOptions';
 import { MeldingsType } from 'src/components/melding/VelgMeldingsType';
 import { Temagruppe } from 'src/models/temagrupper';
 import { z } from 'zod';

@@ -4,6 +4,15 @@ test.beforeEach(async ({ page }) => {
     await page.addInitScript(() => {
         window.localStorage.setItem('ny-modia', 'true');
     });
+
+    page.on('load', async () => {
+        await page.evaluate(() => {
+            const element = document.getElementById('ny-modia-knapp-wrapper');
+            if (element) {
+                element.remove();
+            }
+        });
+    });
 });
 
 test('Select melding', async ({ page }) => {
@@ -43,7 +52,7 @@ test('Send ny melding', async ({ page }) => {
 
     await page.getByRole('textbox').fill('playwright new melding');
     await page.getByLabel('Temagruppe').selectOption('Pensjon');
-    await page.getByRole('button', { name: 'Send til Aremark' }).click();
+    await page.getByTestId('svar-knapp').click();
 
     const newTraad = page.getByTestId('traaditem').first();
     await expect(newTraad).toContainText('Referat');

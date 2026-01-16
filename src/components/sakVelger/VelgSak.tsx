@@ -1,4 +1,4 @@
-import { Alert, Button, HGrid, Label, Modal, Tag, VStack } from '@navikt/ds-react';
+import { Alert, Button, HGrid, Modal, Tag, VStack } from '@navikt/ds-react';
 import { type ReactNode, useState } from 'react';
 import SakVelger from 'src/components/sakVelger/SakVelger';
 import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
@@ -15,16 +15,13 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
 
     return (
         <VStack gap="1">
-            <Label size="small" htmlFor="knytt-dialog-til-sak">
-                Knytt dialogen til en sak
-            </Label>
             <VStack gap="2">
                 <div className="max-w-30">
                     <Button
                         type="button"
                         id="knytt-dialog-til-sak"
                         variant="secondary"
-                        size="small"
+                        size="xsmall"
                         onClick={() => setVelgSakModalOpen(true)}
                         iconPosition="left"
                     >
