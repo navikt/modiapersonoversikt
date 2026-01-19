@@ -1,5 +1,4 @@
 import type { ReactElement } from 'react';
-import type AvsluttDialogEtterSending from 'src/components/melding/AvsluttDialogEtterSending';
 import { MeldingsType } from 'src/components/melding/VelgMeldingsType';
 import type VelgOppgaveliste from 'src/components/melding/VelgOppgaveliste';
 import type VelgTema from 'src/components/melding/VelgTema';
@@ -10,16 +9,9 @@ interface ValgForMeldingstypeProps {
     velgTema: ReactElement<typeof VelgTema>;
     velgOppgaveliste: ReactElement<typeof VelgOppgaveliste>;
     velgSak: ReactElement<typeof VelgSak>;
-    avsluttDialogEtterSending: ReactElement<typeof AvsluttDialogEtterSending>;
 }
 
-export function ValgForMeldingstype({
-    meldingsType,
-    velgTema,
-    velgOppgaveliste,
-    velgSak,
-    avsluttDialogEtterSending
-}: ValgForMeldingstypeProps) {
+export function ValgForMeldingstype({ meldingsType, velgTema, velgOppgaveliste, velgSak }: ValgForMeldingstypeProps) {
     switch (meldingsType) {
         case MeldingsType.Referat:
             return velgTema;
@@ -28,7 +20,6 @@ export function ValgForMeldingstype({
                 <>
                     {velgSak}
                     {velgOppgaveliste}
-                    {avsluttDialogEtterSending}
                 </>
             );
         case MeldingsType.Infomelding:
