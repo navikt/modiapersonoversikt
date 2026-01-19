@@ -45,6 +45,7 @@ export const NyModia = () => {
                 variant="primary"
                 size="small"
                 onClick={handleClick}
+                id="ny-modia-knapp-wrapper"
             >
                 {nyModia ? 'Gammel Modia' : 'Ny Modia'}
             </Button>
