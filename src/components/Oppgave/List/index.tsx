@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, Skeleton, VStack } from '@navikt/ds-react';
 import { useSearch } from '@tanstack/react-router';
 import { Suspense } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
@@ -47,22 +47,16 @@ const OppgaveList = () => {
     }
 
     return (
-        <>
-            <Heading className="pl-1" size="xsmall" level="3" role="alert">
-                {oppgaver.length} {oppgaver.length === 1 ? 'oppgave' : 'oppgaver'}
-                <BodyShort visuallyHidden>funnet</BodyShort>
-            </Heading>
-            <PaginatedList
-                paginationSrHeading={{
-                    tag: 'h3',
-                    text: 'Oppgavepaginering'
-                }}
-                pageSize={antallListeElementer}
-                selectedKey={selectedKey}
-                items={oppgaver}
-                keyExtractor={getOppgaveId}
-                renderItem={({ item }) => <OppgaveItem oppgave={item} />}
-            />
-        </>
+        <PaginatedList
+            paginationSrHeading={{
+                tag: 'h3',
+                text: 'Oppgavepaginering'
+            }}
+            pageSize={antallListeElementer}
+            selectedKey={selectedKey}
+            items={oppgaver}
+            keyExtractor={getOppgaveId}
+            renderItem={({ item }) => <OppgaveItem oppgave={item} />}
+        />
     );
 };

@@ -1,10 +1,11 @@
-import { Box, ExpansionCard, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
-import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { BodyShort, Box, ExpansionCard, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
+import { atom, useAtom, useSetAtom } from 'jotai';
 import { RESET, atomWithReset } from 'jotai/utils';
 import { xor } from 'lodash';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import DateRangeSelector, { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
+import { useFilterOppgave } from 'src/components/Oppgave/List/utils';
 import { useGsakTema } from 'src/lib/clients/modiapersonoversikt-api';
 import { usePersonAtomValue } from 'src/lib/state/context';
 import { filterType, trackExpansionCardApnet, trackExpansionCardLukket, trackFilterEndret } from 'src/utils/analytics';
@@ -78,21 +79,14 @@ const TemaFilter = () => {
 };
 
 const FilterTitle = () => {
-    const filters = useAtomValue(oppgaveFilterAtom);
+    const oppgaver = useFilterOppgave();
 
-    const activeFilters = useMemo(() => {
-        let count = 0;
-        if (filters.tema && filters.tema.length > 0) {
-            count++;
-        }
-        if (filters.dateRange) {
-            count++;
-        }
-
-        return count ? `(${count})` : null;
-    }, [filters]);
-
-    return <>Filter {activeFilters}</>;
+    return (
+        <>
+            Filter ({oppgaver.length} {oppgaver.length === 1 ? 'oppgave' : 'oppgaver'})
+            <BodyShort visuallyHidden>funnet</BodyShort>
+        </>
+    );
 };
 
 export const OppgaveListFilter = () => {
@@ -124,12 +118,10 @@ export const OppgaveListFilter = () => {
                 onClick={handleExpansionChange}
                 className={twMerge(open && 'max-h-full overflow-auto')}
             >
-                <ExpansionCard.Header className="p-1">
-                    <Box.New paddingInline="4">
-                        <ExpansionCard.Title size="small">
-                            <FilterTitle />
-                        </ExpansionCard.Title>
-                    </Box.New>
+                <ExpansionCard.Header className="py-0 pl-2">
+                    <ExpansionCard.Title size="small" as="h3" className="text-ax-medium" role="alert">
+                        <FilterTitle />
+                    </ExpansionCard.Title>
                 </ExpansionCard.Header>
                 <ExpansionCard.Content className="overflow-visible">
                     <VStack gap="2">
