@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import {
+    isDittNavEvent,
     type UnifiedVarsel as UnifiedVarselModell,
-    type Varsel as VarselModell,
-    isDittNavEvent
+    type Varsel as VarselModell
 } from '../../../../models/varsel';
 import { datoSynkende } from '../../../../utils/date-utils';
 import { formaterDato } from '../../../../utils/string-utils';

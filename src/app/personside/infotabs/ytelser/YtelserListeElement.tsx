@@ -13,7 +13,6 @@ import { getUnikSykepengerKey } from 'src/models/ytelse/sykepenger';
 import { getSykepengerSpokelseIdDato, getUnikSykepengerSpokelseKey } from 'src/models/ytelse/sykepenger-spokelse';
 import { getTiltakspengerIdDato, getUnikTiltakspengerKey } from 'src/models/ytelse/tiltakspenger';
 import {
-    type Ytelse,
     getYtelseIdDato,
     isArbeidsavklaringspenger,
     isForeldrePengerFpSak,
@@ -22,7 +21,8 @@ import {
     isPleiepenger,
     isSykepenger,
     isSykepengerSpokelse,
-    isTiltakspenger
+    isTiltakspenger,
+    type Ytelse
 } from 'src/models/ytelse/ytelse-utils';
 import { trackingEvents } from 'src/utils/analytics';
 import { formaterDato } from 'src/utils/string-utils';

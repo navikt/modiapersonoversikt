@@ -12,7 +12,7 @@ import {
 } from 'src/components/ytelser/utils';
 import type { GjeldendeForsikring, Sykepenger, SykmeldingItem } from 'src/generated/modiapersonoversikt-api';
 import { datoSynkende } from 'src/utils/date-utils';
-import { NOKellerNull, datoEllerNull } from 'src/utils/string-utils';
+import { datoEllerNull, NOKellerNull } from 'src/utils/string-utils';
 
 const getForsikringEntries = (forsikring?: GjeldendeForsikring | null) => {
     if (!forsikring) {

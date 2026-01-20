@@ -13,8 +13,8 @@ import { getFormattertMeldingsDato, meldingstittel } from '../../../../utils/mel
 import EnkeltMelding from '../../../Enkeltmelding';
 import { feilmeldingReactHookForm } from '../../oppgave/feilmeldingReactHookForm';
 import MeldIPortenAdvarsel from './MeldIPortenAdvarsel';
-import css from './SladdMeldingerMedArsak.module.css';
 import type { SladdeComponentProps } from './Sladdevalg';
+import css from './SladdMeldingerMedArsak.module.css';
 
 const PreviewStyle = styled(Normaltekst)`
     width: 100%;

@@ -1,6 +1,6 @@
-import type { Person } from 'src/app/personside/visittkort-v2/PersondataDomain';
 import Endringstekst from 'src/app/personside/visittkort-v2/body/Endringstekst';
 import VisittkortElement from 'src/app/personside/visittkort-v2/body/VisittkortElement';
+import type { Person } from 'src/app/personside/visittkort-v2/PersondataDomain';
 import WarningIcon from 'src/svg/WarningIcon';
 import { formaterDato } from 'src/utils/string-utils';
 

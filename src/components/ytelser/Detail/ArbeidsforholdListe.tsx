@@ -6,7 +6,7 @@ import type {
     SykmeldingArbeidsforhold
 } from 'src/generated/modiapersonoversikt-api';
 import { FormatertKontonummer } from 'src/utils/FormatertKontonummer';
-import { NOKellerNull, datoEllerNull } from 'src/utils/string-utils';
+import { datoEllerNull, NOKellerNull } from 'src/utils/string-utils';
 
 function ArbeidsForholdListe({
     arbeidsForholdList,

@@ -34,13 +34,7 @@ const PreviewStyle = styled.div`
   border-bottom: 1px solid ${theme.color.navGra20};
 `;
 
-function Tags({
-    valgtTekst,
-    sokefelt
-}: {
-    valgtTekst?: StandardTekster.Tekst;
-    sokefelt: FieldState;
-}) {
+function Tags({ valgtTekst, sokefelt }: { valgtTekst?: StandardTekster.Tekst; sokefelt: FieldState }) {
     const tittelId = useRef(guid());
 
     if (!valgtTekst) {

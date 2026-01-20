@@ -8,16 +8,16 @@ import { Undertittel } from 'nav-frontend-typografi';
 import { createRef } from 'react';
 import { usePersonAtomValue } from 'src/lib/state/context';
 import styled from 'styled-components';
-import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import { TilbakePil } from '../../../../../components/common-styled-components';
+import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import type { Dokument, Journalpost } from '../../../../../models/saksoversikt/journalpost';
 import type { SakstemaSoknadsstatus } from '../../../../../models/saksoversikt/sakstema';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { useFocusOnMount } from '../../../../../utils/customHooks';
 import { useHentAlleSakstemaFraResourceV2 } from '../useSakstemaURLState';
 import { aggregertSakstemaV2 } from '../utils/saksoversiktUtilsV2';
-import DokumentVisning from './SaksDokumentVisning';
 import { getSaksdokumentUrl } from './getSaksdokumentUrl';
+import DokumentVisning from './SaksDokumentVisning';
 
 const Content = styled(Panel)`
   flex-grow: 1;

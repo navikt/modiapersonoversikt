@@ -1,11 +1,11 @@
-import { InformasjonElement, type Data as PersonData } from '../../PersondataDomain';
 import { harFeilendeSystemer } from '../../harFeilendeSystemer';
+import { InformasjonElement, type Data as PersonData } from '../../PersondataDomain';
 import { VisittkortGruppe } from '../VisittkortStyles';
-import NavKontaktinformasjon from './NavKontaktinformasjon';
 import Adresse from './adresse/Adresse';
 import Bankkonto from './bankkonto/Bankkonto';
 import KontaktinformasjonDodsbo from './dodsbo/Dodsbo';
 import Epost from './epost/Epost';
+import NavKontaktinformasjon from './NavKontaktinformasjon';
 import Telefon from './telefon/Telefon';
 
 interface Props {

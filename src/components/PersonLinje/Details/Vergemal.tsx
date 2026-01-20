@@ -1,5 +1,5 @@
 import { ExclamationmarkTriangleFillIcon } from '@navikt/aksel-icons';
-import { Alert, BodyShort, Box, Detail, HStack, HelpText } from '@navikt/ds-react';
+import { Alert, BodyShort, Box, Detail, HelpText, HStack } from '@navikt/ds-react';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { type PersonData, PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
 import ValidPeriod from '../common/ValidPeriod';
@@ -8,10 +8,7 @@ import { Group, InfoElement } from './components';
 
 type Verge = PersonData['vergemal'][0];
 
-function Verge(props: {
-    feilendeSystemer: PersonDataFeilendeSystemer[];
-    verge: Verge;
-}) {
+function Verge(props: { feilendeSystemer: PersonDataFeilendeSystemer[]; verge: Verge }) {
     const { verge } = props;
     const harFeilendeSystemOgIngenNavn =
         harFeilendeSystemer(props.feilendeSystemer, PersonDataFeilendeSystemer.PDL_TREDJEPARTSPERSONER) &&

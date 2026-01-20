@@ -4,8 +4,8 @@ import ErrorBoundary from '../../../components/ErrorBoundary';
 import { useErKontaktsenter } from '../../../utils/enheter-utils';
 import Nisselue from './nisselue/Nisselue';
 import Partyhatt from './partyhatt/Partyhatt';
-import PaaskeEgg from './paskeegg/PaaskeEgg';
 import { erPaaske } from './paskeegg/erPaaske';
+import PaaskeEgg from './paskeegg/PaaskeEgg';
 import { easterEggs, useListenForEasterEgg } from './useListenForEasterEgg';
 
 function useDefaultEasterEgg() {

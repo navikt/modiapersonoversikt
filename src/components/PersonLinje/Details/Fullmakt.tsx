@@ -8,16 +8,13 @@ import {
 } from 'src/lib/types/modiapersonoversikt-api';
 import { formaterMobiltelefonnummer } from 'src/utils/telefon-utils';
 import ValidPeriod from '../common/ValidPeriod';
-import { hentNavn } from '../utils';
-import { harFeilendeSystemer } from '../utils';
+import { harFeilendeSystemer, hentNavn } from '../utils';
 import { Group, InfoElement } from './components';
 
 type Fullmakt = PersonData['fullmakt'][number];
 type DigitalKontaktTredjepart = PersonData['fullmakt'][0]['digitalKontaktinformasjonTredjepartsperson'];
 
-function KontaktinformasjonFullmakt(props: {
-    kontaktinformasjon?: DigitalKontaktTredjepart;
-}) {
+function KontaktinformasjonFullmakt(props: { kontaktinformasjon?: DigitalKontaktTredjepart }) {
     if (!props.kontaktinformasjon) {
         return null;
     }
@@ -34,11 +31,7 @@ function KontaktinformasjonFullmakt(props: {
         </>
     );
 }
-const FullmaktTilgangerTabell = ({
-    omraader
-}: {
-    omraader: OmraadeMedHandling[];
-}) => {
+const FullmaktTilgangerTabell = ({ omraader }: { omraader: OmraadeMedHandling[] }) => {
     if (omraader.map((omrade) => omrade.omraade.kode).includes('*')) {
         return 'Gjelder alle statlige ytelser';
     }

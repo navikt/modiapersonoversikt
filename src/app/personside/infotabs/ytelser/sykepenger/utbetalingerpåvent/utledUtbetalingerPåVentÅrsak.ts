@@ -3,6 +3,7 @@ import isSameOrAfterPlugin from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBeforePlugin from 'dayjs/plugin/isSameOrBefore';
 import type { Periode } from 'src/models/tid';
 import type { UtbetalingPaaVent } from 'src/models/ytelse/ytelse-utbetalinger';
+
 dayjs.extend(isSameOrBeforePlugin);
 dayjs.extend(isSameOrAfterPlugin);
 

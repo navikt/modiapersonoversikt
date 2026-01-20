@@ -1,13 +1,11 @@
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { guid } from 'nav-frontend-js-utils';
-import { useRef } from 'react';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import Arbeidsavklaringspenger from 'src/app/personside/infotabs/ytelser/arbeidsavklaringspenger/Arbeidsavklaringspenger';
 import ForeldrepengerFpSakComp from 'src/app/personside/infotabs/ytelser/foreldrepengerFpSak/ForeldrepengerFpSakComp';
 import Pensjon from 'src/app/personside/infotabs/ytelser/pensjon/Pensjon';
 import SykepengerPerioderSpokelse from 'src/app/personside/infotabs/ytelser/sykepengerSpokelse/SykepengerSpokelseComp';
 import {
-    type Ytelse,
     isArbeidsavklaringspenger,
     isForeldrePengerFpSak,
     isForeldrepenger,
@@ -15,7 +13,8 @@ import {
     isPleiepenger,
     isSykepenger,
     isSykepengerSpokelse,
-    isTiltakspenger
+    isTiltakspenger,
+    type Ytelse
 } from 'src/models/ytelse/ytelse-utils';
 import { usePrevious } from 'src/utils/customHooks';
 import { loggError } from 'src/utils/logger/frontendLogger';

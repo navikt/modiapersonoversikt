@@ -29,6 +29,64 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   margin-bottom: .5rem;
 }
 
+.c8 {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+}
+
+.c8 >*:first-child {
+  margin-bottom: 0.5rem;
+}
+
+.c8 >* {
+  margin-top: 0.5rem;
+}
+
+.c8 .skjemaelement--horisontal {
+  margin-bottom: 0.4rem;
+}
+
+.c10 {
+  margin-bottom: 0.5rem;
+}
+
+.c9 {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.c9 >*:first-child {
+  margin-bottom: 0.8rem;
+}
+
+.c9 >*:last-child {
+  margin-bottom: 0;
+}
+
+.c5 {
+  padding: 0.9375rem;
+}
+
+.c7 {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+}
+
+.c7 >*:first-child {
+  margin-bottom: 0.5rem;
+}
+
+.c7 >* {
+  margin-top: 0.5rem;
+}
+
+.c7 .skjemaelement--horisontal {
+  margin-bottom: 0.4rem;
+}
+
 .c26:focus {
   outline: none;
 }
@@ -121,6 +179,20 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   padding: 0.2rem 0.9375rem;
 }
 
+.c23 {
+  transition: 0.5s;
+  padding: 0 1.25rem 1.25rem;
+}
+
+.c24 {
+  transition: 0.5s;
+  padding: 0 1.25rem;
+}
+
+.c19 {
+  margin-right: 1.25rem;
+}
+
 .c14 table {
   width: 100%;
   text-align: right;
@@ -143,20 +215,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 
 .c14 table tr >*:not(:first-child) {
   width: 6rem;
-}
-
-.c23 {
-  transition: 0.5s;
-  padding: 0 1.25rem 1.25rem;
-}
-
-.c24 {
-  transition: 0.5s;
-  padding: 0 1.25rem;
-}
-
-.c19 {
-  margin-right: 1.25rem;
 }
 
 .c37 th:not(:first-child) {
@@ -360,64 +418,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   margin-left: 1rem;
 }
 
-.c8 {
-  display: flex;
-  flex-direction: column;
-  margin-top: 1.5rem;
-}
-
-.c8 >*:first-child {
-  margin-bottom: 0.5rem;
-}
-
-.c8 >* {
-  margin-top: 0.5rem;
-}
-
-.c8 .skjemaelement--horisontal {
-  margin-bottom: 0.4rem;
-}
-
-.c10 {
-  margin-bottom: 0.5rem;
-}
-
-.c9 {
-  border: none;
-  margin: 0;
-  padding: 0;
-}
-
-.c9 >*:first-child {
-  margin-bottom: 0.8rem;
-}
-
-.c9 >*:last-child {
-  margin-bottom: 0;
-}
-
-.c5 {
-  padding: 0.9375rem;
-}
-
-.c7 {
-  display: flex;
-  flex-direction: column;
-  margin-top: 1.5rem;
-}
-
-.c7 >*:first-child {
-  margin-bottom: 0.5rem;
-}
-
-.c7 >* {
-  margin-top: 0.5rem;
-}
-
-.c7 .skjemaelement--horisontal {
-  margin-bottom: 0.4rem;
-}
-
 .c0 {
   overflow: hidden;
   position: relative;
@@ -431,6 +431,22 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 .c11 {
   position: relative;
   min-width: 35rem;
+}
+
+@media (max-width: 1327px) {
+  .c6 {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .c6 >* {
+    flex-grow: 1;
+    flex-basis: 30%;
+  }
+
+  .c6 >*:not(:last-child) {
+    margin-right: 1rem;
+  }
 }
 
 @media print {
@@ -458,22 +474,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 
   .c25 tbody {
     page-break-inside: auto;
-  }
-}
-
-@media (max-width: 1327px) {
-  .c6 {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .c6 >* {
-    flex-grow: 1;
-    flex-basis: 30%;
-  }
-
-  .c6 >*:not(:last-child) {
-    margin-right: 1rem;
   }
 }
 
@@ -875,42 +875,36 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                           <thead>
                             <tr>
                               <th
-                                role="columnheader"
                                 scope="col"
                               >
                                 Ytelse
                               </th>
                               <th
                                 class="sumBrutto"
-                                role="columnheader"
                                 scope="col"
                               >
                                 Brutto
                               </th>
                               <th
                                 class="sumTrekk"
-                                role="columnheader"
                                 scope="col"
                               >
                                 Trekk
                               </th>
                               <th
                                 class="sumNetto"
-                                role="columnheader"
                                 scope="col"
                               >
                                 Utbetalt
                               </th>
                               <th
                                 class="visually-hidden"
-                                role="columnheader"
                                 scope="col"
                               >
                                 Periode
                               </th>
                               <th
                                 class="visually-hidden"
-                                role="columnheader"
                                 scope="col"
                               >
                                 Detaljer

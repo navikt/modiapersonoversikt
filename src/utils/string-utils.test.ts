@@ -1,12 +1,12 @@
 import {
-    NOKellerNull,
     capitalizeAfterPunctuation,
     capitalizeName,
     convertBoolTilJaNei,
     datoEllerNull,
     erTall,
-    formatNumber,
     formaterDato,
+    formatNumber,
+    NOKellerNull,
     prosentEllerNull
 } from './string-utils';
 

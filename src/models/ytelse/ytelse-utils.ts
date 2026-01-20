@@ -10,12 +10,12 @@ import {
     getUnikForeldrepengerKey
 } from 'src/models/ytelse/foreldrepenger';
 import { getForeldrepengerFpSakIdDato, getUnikForeldrepengerFpSakKey } from 'src/models/ytelse/foreldrepenger-fpsak';
-import { type Pensjon, getPensjonIdDato, getUnikPensjonKey } from 'src/models/ytelse/pensjon';
+import { getPensjonIdDato, getUnikPensjonKey, type Pensjon } from 'src/models/ytelse/pensjon';
 import { getSykepengerSpokelseIdDato, getUnikSykepengerSpokelseKey } from 'src/models/ytelse/sykepenger-spokelse';
 import { loggError } from 'src/utils/logger/frontendLogger';
-import { type Pleiepengerettighet, getPleiepengerIdDato, getUnikPleiepengerKey } from './pleiepenger';
-import { type Sykepenger, getSykepengerIdDato, getUnikSykepengerKey } from './sykepenger';
-import { type Tiltakspenger, getTiltakspengerIdDato, getUnikTiltakspengerKey } from './tiltakspenger';
+import { getPleiepengerIdDato, getUnikPleiepengerKey, type Pleiepengerettighet } from './pleiepenger';
+import { getSykepengerIdDato, getUnikSykepengerKey, type Sykepenger } from './sykepenger';
+import { getTiltakspengerIdDato, getUnikTiltakspengerKey, type Tiltakspenger } from './tiltakspenger';
 
 export enum YtelseVedtakYtelseType {
     Sykepenger = 'Sykepenger',

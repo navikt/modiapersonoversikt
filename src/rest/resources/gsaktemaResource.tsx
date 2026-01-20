@@ -4,7 +4,7 @@ import { type FetchError, get } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import type { GsakTema } from '../../models/meldinger/oppgave';
-import { type DefaultConfig, type RendererOrConfig, applyDefaults, useRest } from '../useRest';
+import { applyDefaults, type DefaultConfig, type RendererOrConfig, useRest } from '../useRest';
 
 const queryKey = ['gsaktema'];
 const url = `${apiBaseUri}/dialogoppgave/tema`;

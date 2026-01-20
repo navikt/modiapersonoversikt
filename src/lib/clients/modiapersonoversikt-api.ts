@@ -30,7 +30,7 @@ type APIError = {
 personoversiktApiClient.use({
     onResponse: async ({ response }) => {
         if (!response.ok) {
-            let errText = undefined;
+            let errText: string | undefined;
             try {
                 const apiErr = (await response.json()) as APIError;
                 if (apiErr.message) {
@@ -130,6 +130,7 @@ export const usePersonOppgaver = () => {
 
 export const useOppgave = (oppgaveId?: string) => {
     if (oppgaveId === undefined) return { data: undefined, isLoading: false, isError: false };
+    // biome-ignore lint/correctness/useHookAtTopLevel:Biome migration - bør fikses
     return $api.useSuspenseQuery('get', '/rest/oppgaver/oppgavedata/{oppgaveId}', {
         params: { path: { oppgaveId: oppgaveId } }
     });

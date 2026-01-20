@@ -4,8 +4,8 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import useFieldState from '../../../../../utils/hooks/use-field-state';
 import useHotkey from '../../../../../utils/hooks/use-hotkey';
-import SvgIkon from './StandardTekstIkon';
 import StandardTekster from './StandardTekster';
+import SvgIkon from './StandardTekstIkon';
 
 interface Props {
     appendTekst(tekst: string): void;

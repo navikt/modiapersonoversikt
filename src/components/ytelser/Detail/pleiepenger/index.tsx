@@ -14,7 +14,7 @@ import {
 } from 'src/components/ytelser/utils';
 import type { Pleiepenger, PleiepengerPeriode } from 'src/generated/modiapersonoversikt-api';
 import persondataResource from 'src/rest/resources/persondataResource';
-import { NOKellerNull, datoEllerTomString, prosentEllerNull } from 'src/utils/string-utils';
+import { datoEllerTomString, NOKellerNull, prosentEllerNull } from 'src/utils/string-utils';
 
 const getKjonnString = (kjonn?: Kjonn) => {
     switch (kjonn) {

@@ -6,7 +6,7 @@ import { CenteredLazySpinner } from '../../components/LazySpinner';
 import { useValgtenhet } from '../../context/valgtenhet-state';
 import type { Traad } from '../../models/meldinger/meldinger';
 import { useAppState } from '../../utils/customHooks';
-import { type DefaultConfig, type RendererOrConfig, applyDefaults, useRest } from '../useRest';
+import { applyDefaults, type DefaultConfig, type RendererOrConfig, useRest } from '../useRest';
 
 function urlUtenFnrIPath(enhet?: string) {
     const header = enhet ? `?enhet=${enhet}` : '';

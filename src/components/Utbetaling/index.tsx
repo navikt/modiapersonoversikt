@@ -1,5 +1,5 @@
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
-import { Button, HGrid, HStack, Heading, VStack } from '@navikt/ds-react';
+import { Button, Heading, HGrid, HStack, VStack } from '@navikt/ds-react';
 import { Link } from '@tanstack/react-router';
 import { UtbetalingerDetailPage } from 'src/components/Utbetaling/Detail';
 import { UtbetalingerList } from 'src/components/Utbetaling/List';

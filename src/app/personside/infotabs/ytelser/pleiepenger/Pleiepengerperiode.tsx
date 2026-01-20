@@ -1,6 +1,6 @@
 import { Ingress } from 'nav-frontend-typografi';
 import type { Pleiepengeperiode } from 'src/models/ytelse/pleiepenger';
-import { NOKellerNull, formaterDato, prosentEllerNull } from 'src/utils/string-utils';
+import { formaterDato, NOKellerNull, prosentEllerNull } from 'src/utils/string-utils';
 import { StyledTable } from 'src/utils/table/StyledTable';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';

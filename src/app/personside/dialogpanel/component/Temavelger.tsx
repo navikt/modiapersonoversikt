@@ -42,7 +42,7 @@ function Temavelger(props: Props) {
         >
             <StyledSelect
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
+                // @ts-expect-error
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-assignment
                 //biome-ignore lint/suspicious/noAssignInExpressions: biome migration
                 selectRef={(ref) => (selectRef = ref)}

@@ -4,15 +4,15 @@ import {
     BodyLong,
     Box,
     Button,
-    HStack,
     Heading,
+    HStack,
     InlineMessage,
     Skeleton,
     Spacer,
     Switch,
     VStack
 } from '@navikt/ds-react';
-import { Link, getRouteApi } from '@tanstack/react-router';
+import { getRouteApi, Link } from '@tanstack/react-router';
 import { useAtom, useAtomValue } from 'jotai/index';
 import { Suspense, useCallback, useEffect, useRef } from 'react';
 import Card from 'src/components/Card';
@@ -128,13 +128,7 @@ const SakContent = () => {
     return <SakDetails valgtSak={valgtSak ?? saker[0]} pageView={true} />;
 };
 
-const SakDetails = ({
-    valgtSak,
-    pageView
-}: {
-    valgtSak: SaksDokumenter;
-    pageView?: boolean;
-}) => {
+const SakDetails = ({ valgtSak, pageView }: { valgtSak: SaksDokumenter; pageView?: boolean }) => {
     const {
         data: { person }
     } = usePersonData();

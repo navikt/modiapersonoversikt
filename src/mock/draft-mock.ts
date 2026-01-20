@@ -1,4 +1,4 @@
-import { http, HttpResponse, type HttpResponseResolver, type WebSocketData, ws } from 'msw';
+import { HttpResponse, type HttpResponseResolver, http, type WebSocketData, ws } from 'msw';
 import { delayed, randomDelay } from 'src/mock/utils-mock';
 import type { Draft, DraftContext, WsConfirmation, WsEvent } from '../app/personside/dialogpanel/use-draft';
 import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';

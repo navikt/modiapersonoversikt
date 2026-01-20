@@ -1,7 +1,7 @@
 import { ExclamationmarkTriangleFillIcon } from '@navikt/aksel-icons';
 import { BodyShort, Box } from '@navikt/ds-react';
-import { Group } from 'src/components/PersonLinje/Details/components';
 import ValidPeriod from 'src/components/PersonLinje/common/ValidPeriod';
+import { Group } from 'src/components/PersonLinje/Details/components';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 
 export default function RettsligHandleevne() {

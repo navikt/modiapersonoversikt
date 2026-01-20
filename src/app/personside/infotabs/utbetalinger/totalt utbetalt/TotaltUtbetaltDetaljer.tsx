@@ -7,8 +7,7 @@ import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import type { Utbetaling, Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
 import theme from '../../../../../styles/personOversiktTheme';
 import { groupArray } from '../../../../../utils/groupArray';
-import { formaterDato } from '../../../../../utils/string-utils';
-import { sorterAlfabetisk } from '../../../../../utils/string-utils';
+import { formaterDato, sorterAlfabetisk } from '../../../../../utils/string-utils';
 import {
     filtrerBortUtbetalingerSomIkkeErUtbetalt,
     formaterNOK,
@@ -188,28 +187,20 @@ function TotaltUtbetaltDetaljer(props: Props) {
                         <table>
                             <thead>
                                 <tr>
-                                    {/*biome-ignore lint/a11y/useSemanticElements: biome migration*/}
-                                    <th role="columnheader" scope="col">
-                                        Ytelse
-                                    </th>
-                                    {/*biome-ignore lint/a11y/useSemanticElements: biome migration*/}
-                                    <th role="columnheader" scope="col" className="sumBrutto">
+                                    <th scope="col">Ytelse</th>
+                                    <th scope="col" className="sumBrutto">
                                         Brutto
                                     </th>
-                                    {/*biome-ignore lint/a11y/useSemanticElements: biome migration*/}
-                                    <th role="columnheader" scope="col" className="sumTrekk">
+                                    <th scope="col" className="sumTrekk">
                                         Trekk
                                     </th>
-                                    {/*biome-ignore lint/a11y/useSemanticElements: biome migration*/}
-                                    <th role="columnheader" scope="col" className="sumNetto">
+                                    <th scope="col" className="sumNetto">
                                         Utbetalt
                                     </th>
-                                    {/*biome-ignore lint/a11y/useSemanticElements: biome migration*/}
-                                    <th role="columnheader" scope="col" className="visually-hidden">
+                                    <th scope="col" className="visually-hidden">
                                         Periode
                                     </th>
-                                    {/*biome-ignore lint/a11y/useSemanticElements: biome migration*/}
-                                    <th role="columnheader" scope="col" className="visually-hidden">
+                                    <th scope="col" className="visually-hidden">
                                         Detaljer
                                     </th>
                                 </tr>

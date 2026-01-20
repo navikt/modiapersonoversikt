@@ -7,10 +7,12 @@ import '@testing-library/jest-dom/vitest';
 import { setGlobalOrigin } from 'undici';
 import { vi } from 'vitest';
 import { server } from './mock/node';
+
 dayjs.locale('nb');
 
 // Mocker funksjoner som returnerer dynamisk data
 import JSutils from 'nav-frontend-js-utils';
+
 JSutils.guid = () => 'Helt tilfeldig ID';
 JSutils.getScrollParents = () => [];
 

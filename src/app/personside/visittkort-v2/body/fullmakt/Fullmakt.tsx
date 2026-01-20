@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import Fullmaktlogo from '../../../../../svg/Utropstegn';
 import { formaterMobiltelefonnummer } from '../../../../../utils/telefon-utils';
+import { harFeilendeSystemer } from '../../harFeilendeSystemer';
 import {
     type DigitalKontaktinformasjonTredjepartsperson,
     type Fullmakt as FullmaktInterface,
@@ -12,11 +13,11 @@ import {
     InformasjonElement,
     type OmraadeMedHandling
 } from '../../PersondataDomain';
-import { harFeilendeSystemer } from '../../harFeilendeSystemer';
 import { hentNavn } from '../../visittkort-utils';
 import GyldighetsPeriode from '../GyldighetsPeriode';
 import VisittkortElement from '../VisittkortElement';
 import { VisittkortGruppe } from '../VisittkortStyles';
+
 interface Props {
     feilendeSystemer: Array<InformasjonElement>;
     fullmakter: FullmaktInterface[];

@@ -1,5 +1,5 @@
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import { PureComponent, createRef } from 'react';
+import { createRef, PureComponent } from 'react';
 import { connect } from 'react-redux';
 import type { AnyAction, Dispatch } from 'redux';
 import { BulletPoint, SpaceBetween } from 'src/components/common-styled-components';
@@ -81,6 +81,7 @@ class DelUtbetaling extends PureComponent<Props> {
                 tabIndex={0}
                 onFocus={this.props.settYtelseIFokus}
             >
+                {/** biome-ignore lint/a11y/useAriaPropsSupportedByRole: Biome migration */}
                 <article aria-expanded={this.props.erEkspandert} aria-label={`Delutbetaling ${ytelse.type}`}>
                     <DetaljerCollapse
                         open={this.props.erEkspandert}

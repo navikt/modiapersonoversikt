@@ -1,4 +1,5 @@
 import { useNavigate } from '@tanstack/react-router';
+import type { JSX } from 'react';
 import { useDispatch } from 'react-redux';
 import LazySpinner from '../../../../components/LazySpinner';
 import type { Traad } from '../../../../models/meldinger/meldinger';
@@ -9,8 +10,6 @@ import useTildelteOppgaver from '../../../../utils/hooks/useTildelteOppgaver';
 import { loggError } from '../../../../utils/logger/frontendLogger';
 import { useInfotabsDyplenker } from '../../infotabs/dyplenker';
 import { eldsteMelding, kanBesvares } from '../../infotabs/meldinger/utils/meldingerUtils';
-
-import type { JSX } from 'react';
 
 interface Pending {
     pending: true;

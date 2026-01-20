@@ -1,7 +1,7 @@
 import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import Infotegn from '../../../../../svg/Info';
-import { type Foreldreansvar, InformasjonElement, type NavnOgIdent } from '../../PersondataDomain';
 import { harFeilendeSystemer } from '../../harFeilendeSystemer';
+import { type Foreldreansvar, InformasjonElement, type NavnOgIdent } from '../../PersondataDomain';
 import { hentNavn } from '../../visittkort-utils';
 import VisittkortElement from '../VisittkortElement';
 import { VisittkortGruppe } from '../VisittkortStyles';

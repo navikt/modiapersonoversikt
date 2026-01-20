@@ -3,8 +3,8 @@ import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
 import { useOnMount } from '../../../../utils/customHooks';
 import { loggEvent } from '../../../../utils/logger/frontendLogger';
-import DokumentVisning from './dokumentvisning/SaksDokumentVisning';
 import { getSaksdokumentUrl } from './dokumentvisning/getSaksdokumentUrl';
+import DokumentVisning from './dokumentvisning/SaksDokumentVisning';
 
 interface Props {
     fnr: string;

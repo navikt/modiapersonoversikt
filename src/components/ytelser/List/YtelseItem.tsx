@@ -2,7 +2,7 @@ import { BodyShort, Detail, HStack, Label, Link, VStack } from '@navikt/ds-react
 import { getRouteApi } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import Card from 'src/components/Card';
-import { type YtelseVedtak, getUnikYtelseKey, getYtelseIdDato } from 'src/components/ytelser/utils';
+import { getUnikYtelseKey, getYtelseIdDato, type YtelseVedtak } from 'src/components/ytelser/utils';
 import {
     type ForeldrepengerFpSak,
     ForeldrepengerFpSakYtelse,
@@ -14,11 +14,7 @@ import { twMerge } from 'tailwind-merge';
 
 const routeApi = getRouteApi('/new/person/ytelser');
 
-export const YtelseItem = ({
-    ytelse
-}: {
-    ytelse: YtelseVedtak;
-}) => {
+export const YtelseItem = ({ ytelse }: { ytelse: YtelseVedtak }) => {
     const aktivYtelse = routeApi.useSearch().id;
     const navigate = routeApi.useNavigate();
     const id = getUnikYtelseKey(ytelse);

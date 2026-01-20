@@ -1,4 +1,4 @@
-import { http, type DefaultBodyType } from 'msw';
+import { type DefaultBodyType, http } from 'msw';
 import type { AvsluttGosysOppgaveRequest, LukkTraadRequest } from 'src/generated/modiapersonoversikt-api';
 import { apiBaseUri } from '../../api/config';
 import {
@@ -16,8 +16,8 @@ import {
 } from '../../models/meldinger/meldinger';
 import type { MeldingerBackendMock } from '../mockBackend/meldingerBackendMock';
 import type { OppgaverBackendMock } from '../mockBackend/oppgaverBackendMock';
-import { fodselsNummerErGyldigStatus, randomDelay } from '../utils-mock';
 import { mockGeneratorMedFodselsnummerV2, verify, withDelayedResponse } from '../utils/fetch-utils';
+import { fodselsNummerErGyldigStatus, randomDelay } from '../utils-mock';
 
 const STATUS_OK = () => Promise.resolve(200);
 let meldingerBackendMock: MeldingerBackendMock = null as unknown as MeldingerBackendMock;

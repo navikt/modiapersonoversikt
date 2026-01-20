@@ -13,7 +13,7 @@ function FormTextarea<
 >(props: Props<TFieldValues, TFieldName>) {
     const { ref, input, error } = useFieldState(props.name, props.form);
 
-    const { form, name, ...inputProps } = props;
+    const { form, ...inputProps } = props;
 
     const value = form.watch(props.name);
 

@@ -5,7 +5,9 @@
     "license": "MIT",
     "main": "build/dist/index.js",
     "type": "module",
-    "files": ["build/dist/"],
+    "files": [
+        "build/dist/"
+    ],
     "engines": {
         "node": "^20.0 || ^22.0"
     },
@@ -35,7 +37,9 @@
         }
     },
     "lint-staged": {
-        "*.{js,ts,tsx,json,less,css,md}": ["biome format --write"]
+        "*.{js,ts,tsx,json,less,css,md}": [
+            "biome format --write"
+        ]
     },
     "dependencies": {
         "@grafana/faro-react": "^1.19.0",
@@ -120,7 +124,7 @@
         "zod": "^3.25.76"
     },
     "devDependencies": {
-        "@biomejs/biome": "1.9.4",
+        "@biomejs/biome": "2.3.8",
         "@eslint/js": "^9.38.0",
         "@faker-js/faker": "^9.9.0",
         "@playwright/test": "^1.56.1",
@@ -171,14 +175,29 @@
         }
     },
     "browserslist": {
-        "production": [">0.2%", "not dead", "not op_mini all", "IE 11"],
-        "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version", "IE 11"]
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all",
+            "IE 11"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version",
+            "IE 11"
+        ]
     },
     "msw": {
         "workerDirectory": "./public"
     },
     "pnpm": {
-        "ignoredBuiltDependencies": ["esbuild", "msw"],
-        "onlyBuiltDependencies": ["msw"]
+        "ignoredBuiltDependencies": [
+            "esbuild",
+            "msw"
+        ],
+        "onlyBuiltDependencies": [
+            "msw"
+        ]
     }
 }

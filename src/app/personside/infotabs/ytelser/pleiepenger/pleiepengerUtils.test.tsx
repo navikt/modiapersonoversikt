@@ -65,7 +65,7 @@ test('get siste periode fra pleiepengerettighet returner', () => {
     const pleiepengePeriode = getSistePeriodeForPleiepengerettighet(testRettighet);
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+    // @ts-expect-error
     expect(pleiepengePeriode.fom).toEqual('2010-01-01');
 });
 
@@ -73,7 +73,7 @@ test('get siste vedtak fra pleiepengerettighet', () => {
     const vedtak = getSisteVedtakForPleiepengerettighet(testRettighet);
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+    // @ts-expect-error
     expect(vedtak.periode).toEqual({ fom: '2010-01-01', tom: '2011-01-01' });
 });
 

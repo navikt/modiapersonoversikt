@@ -10,11 +10,7 @@ import { twMerge } from 'tailwind-merge';
 
 const routeApi = getRouteApi('/new/person/oppgaver');
 
-export const OppgaveItem = ({
-    oppgave
-}: {
-    oppgave: OppgaveDto;
-}) => {
+export const OppgaveItem = ({ oppgave }: { oppgave: OppgaveDto }) => {
     const { data: gsakTema } = useGsakTema();
     const tema = gsakTema.find((item) => item.kode === oppgave.tema);
     const oppgaveTyper = tema?.oppgavetyper ?? [];

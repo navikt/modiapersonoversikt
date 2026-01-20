@@ -1,6 +1,5 @@
-import { Box, HStack, ReadMore, Table } from '@navikt/ds-react';
-
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
+import { Box, HStack, ReadMore, Table } from '@navikt/ds-react';
 import { Link } from '@tanstack/react-router';
 import type { OppgaveDto } from 'src/generated/modiapersonoversikt-api';
 import { useGsakTema, usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';

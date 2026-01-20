@@ -1,4 +1,4 @@
-import { http, HttpResponse, type PathParams } from 'msw';
+import { HttpResponse, http, type PathParams } from 'msw';
 
 const AREMARK = '10108000398';
 

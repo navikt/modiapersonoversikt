@@ -7,7 +7,10 @@ import useHotkey from 'src/utils/hooks/use-hotkey';
 function StandardTekstModal({
     submitTekst,
     textAreaRef
-}: { submitTekst: (event: string) => void; textAreaRef?: RefObject<HTMLTextAreaElement | null> }) {
+}: {
+    submitTekst: (event: string) => void;
+    textAreaRef?: RefObject<HTMLTextAreaElement | null>;
+}) {
     const modalRef = useRef<HTMLDialogElement>(null);
 
     useHotkey({ char: 'c', altKey: true }, () => modalRef.current?.showModal(), [], 'Standardtekster');

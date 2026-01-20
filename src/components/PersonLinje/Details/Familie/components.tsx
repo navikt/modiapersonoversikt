@@ -48,13 +48,7 @@ export function ForelderBarnRelasjonVisning({
     );
 }
 
-function FamilierelasjonIkon({
-    relasjon,
-    erBarn
-}: {
-    relasjon: ForelderBarnRelasjon;
-    erBarn: boolean;
-}) {
+function FamilierelasjonIkon({ relasjon, erBarn }: { relasjon: ForelderBarnRelasjon; erBarn: boolean }) {
     if (harDiskresjonskode(relasjon.adressebeskyttelse)) {
         return <PersonCrossFillIcon title="Kjønn skult av diskresjonskode" />;
     }

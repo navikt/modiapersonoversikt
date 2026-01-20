@@ -2,8 +2,8 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { createRef } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import PrintKnapp from '../../../../../components/PrintKnapp';
 import { Bold, FlexEnd, SpaceBetween } from '../../../../../components/common-styled-components';
+import PrintKnapp from '../../../../../components/PrintKnapp';
 import type { Utbetaling, Ytelse } from '../../../../../models/utbetalinger';
 import { setEkspanderYtelse } from '../../../../../redux/utbetalinger/actions';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
@@ -70,7 +70,7 @@ function SammensattUtbetaling(props: Props) {
         if (!ytelser) {
             return;
         }
-        //biome-ignore lint/complexity/noForEach: biome migration
+        // biome-ignore lint/suspicious/useIterableCallbackReturn: Biome migration
         ytelser.forEach((ytelse) => ekspanderYtelse(ytelse));
         print();
         loggEvent('Print', 'SammensattUtbetaling');

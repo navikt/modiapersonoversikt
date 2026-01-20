@@ -2,17 +2,7 @@
 
 exports[`viser fortsett dialog 1`] = `
 <DocumentFragment>
-  .c1 {
-  position: relative;
-}
-
-.c2 {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.c9 {
+  .c9 {
   font-size: 0.85rem;
 }
 
@@ -75,6 +65,16 @@ exports[`viser fortsett dialog 1`] = `
 
 .c3 >* {
   margin-bottom: 1rem;
+}
+
+.c1 {
+  position: relative;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 
 .c16 {

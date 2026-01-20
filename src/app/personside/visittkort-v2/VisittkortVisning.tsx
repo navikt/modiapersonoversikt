@@ -5,12 +5,12 @@ import { useVisittkortState } from '../../../context/visittkort-state';
 import { trackAccordionClosed, trackAccordionOpened } from '../../../utils/analytics';
 import useHotkey from '../../../utils/hooks/use-hotkey';
 import useUrlNyPersonforvalter from '../../brukerprofil/useUrlNyPersonforvalter';
-import { InformasjonElement, type Data as Persondata } from './PersondataDomain';
 import VisittkortBody from './body/VisittkortBody';
 import { harFeilendeSystemer } from './harFeilendeSystemer';
 import EgenAnsattFeilendeSystemModal from './header/EgenAnsattFeilendeSystemModal';
 import SikkerhetstiltakModal from './header/SikkerhetstiltakModal';
 import VisittkortHeader from './header/VisittkortHeader';
+import { InformasjonElement, type Data as Persondata } from './PersondataDomain';
 
 interface Props {
     persondata: Persondata;
@@ -46,7 +46,8 @@ function VisittkortVisning(props: Props) {
                 beskjed={`Visittkortet ble ${erApen ? 'åpnet' : 'lukket'}`}
                 dontShowOnFirstRender={true}
             />
-            {/*biome-ignore lint/a11y/useSemanticElements: biome migration*/}
+            {/** biome-ignore lint/a11y/useAriaPropsSupportedByRole:biome migration */}
+            {/** biome-ignore lint/a11y/useSemanticElements: biome migration */}
             <article role="region" aria-label="Visittkort" aria-expanded={erApen}>
                 <VisittkortHeader persondata={props.persondata} erApen={erApen} toggleApen={toggleApen} />
                 <SikkerhetstiltakModal sikkerhetstiltak={props.persondata.person.sikkerhetstiltak} />

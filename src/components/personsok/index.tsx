@@ -2,8 +2,8 @@ import { BodyShort, Box, Heading, Modal } from '@navikt/ds-react';
 import { useCallback, useRef, useState } from 'react';
 import type { PersonsokRequest } from 'src/lib/types/modiapersonoversikt-api';
 import useListener from 'src/utils/hooks/use-listener';
-import { PersonsokResult } from './PersonsokResult';
 import { PersonsokForm } from './form';
+import { PersonsokResult } from './PersonsokResult';
 
 const Personsok = () => {
     const ref = useRef<HTMLDialogElement>(null);

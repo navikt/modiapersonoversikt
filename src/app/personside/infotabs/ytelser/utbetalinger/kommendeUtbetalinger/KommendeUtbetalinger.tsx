@@ -4,7 +4,7 @@ import { Ingress } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import type { KommendeUtbetaling } from '../../../../../../models/ytelse/ytelse-utbetalinger';
 import theme from '../../../../../../styles/personOversiktTheme';
-import { NOKellerNull, datoEllerNull, periodeEllerNull, prosentEllerNull } from '../../../../../../utils/string-utils';
+import { datoEllerNull, NOKellerNull, periodeEllerNull, prosentEllerNull } from '../../../../../../utils/string-utils';
 import { StyledTable } from '../../../../../../utils/table/StyledTable';
 import { usePaths } from '../../../../../routes/routing';
 

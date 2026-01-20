@@ -2,9 +2,9 @@ import { type UseQueryResult, useQuery } from '@tanstack/react-query';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { type FetchError, get } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
-import { CenteredLazySpinner } from '../../components/LazySpinner';
 import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
-import { type DefaultConfig, type RendererOrConfig, applyDefaults, useRest } from '../useRest';
+import { CenteredLazySpinner } from '../../components/LazySpinner';
+import { applyDefaults, type DefaultConfig, type RendererOrConfig, useRest } from '../useRest';
 
 export type FeatureTogglesResponse = {
     [key in FeatureToggles]: boolean;

@@ -1,4 +1,23 @@
+import {
+    type DefaultBodyType,
+    type HttpHandler,
+    HttpResponse,
+    http,
+    type PathParams,
+    type StrictRequest,
+    type WebSocketHandler
+} from 'msw';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
+import type {
+    JournalforingSak,
+    OpprettOppgaveRequestDto,
+    OpprettOppgaveResponseDto
+} from 'src/generated/modiapersonoversikt-api';
+import { getMockArbeidsavklaringspengerResponse } from 'src/mock/ytelse/arbeidsavklaringspengerMock';
+import { getMockForeldrepengerFpSakResponse } from 'src/mock/ytelse/foreldrepengerFpSakMock';
+import { getMockPensjon } from 'src/mock/ytelse/pensjon-mock';
+import { getMockSykpengerSpokelseResponse } from 'src/mock/ytelse/sykepengerSpokelseMock';
+import type { FeatureTogglesResponse } from 'src/rest/resources/featuretogglesResource';
 import { apiBaseUri } from '../api/config';
 import type { FeatureToggles } from '../components/featureToggle/toggleIDs';
 import { getAktorId } from './aktorid-mock';
@@ -28,32 +47,11 @@ import {
     verify,
     withDelayedResponse
 } from './utils/fetch-utils';
+import { fodselsNummerErGyldigStatus, randomDelay, STATUS_OK } from './utils-mock';
 import { getMockVarsler } from './varsler/varsel-mock';
 import { getMockForeldrepenger } from './ytelse/foreldrepenger-mock';
 import { getMockPleiepenger } from './ytelse/pleiepenger-mock';
 import { getMockSykepengerRespons } from './ytelse/sykepenger-mock';
-
-import {
-    http,
-    type DefaultBodyType,
-    type HttpHandler,
-    HttpResponse,
-    type PathParams,
-    type StrictRequest,
-    type WebSocketHandler
-} from 'msw';
-import type {
-    JournalforingSak,
-    OpprettOppgaveRequestDto,
-    OpprettOppgaveResponseDto
-} from 'src/generated/modiapersonoversikt-api';
-import { getMockPensjon } from 'src/mock/ytelse/pensjon-mock';
-
-import { getMockArbeidsavklaringspengerResponse } from 'src/mock/ytelse/arbeidsavklaringspengerMock';
-import { getMockForeldrepengerFpSakResponse } from 'src/mock/ytelse/foreldrepengerFpSakMock';
-import { getMockSykpengerSpokelseResponse } from 'src/mock/ytelse/sykepengerSpokelseMock';
-import type { FeatureTogglesResponse } from 'src/rest/resources/featuretogglesResource';
-import { STATUS_OK, fodselsNummerErGyldigStatus, randomDelay } from './utils-mock';
 import { getMockTiltakspenger } from './ytelse/tiltakspenger-mock';
 
 const oppgaveBackendMock = new OppgaverBackendMock();

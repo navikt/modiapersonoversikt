@@ -8,9 +8,7 @@ import NavLogo from 'src/svg/NavLogo';
 import { harFeilendeSystemer, mapUgyldigGT } from '../../utils';
 import { Adresseinfo, Group, InfoElement } from '../components';
 
-function PublikumsmottakKontaktInfo(props: {
-    publikumsmottak: Publikumsmottak;
-}) {
+function PublikumsmottakKontaktInfo(props: { publikumsmottak: Publikumsmottak }) {
     const apningstider = props.publikumsmottak.apningstider.map((apningstid) => {
         return (
             <Fragment key={apningstid.ukedag}>

@@ -4,8 +4,8 @@ import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { useState } from 'react';
 import styled from 'styled-components';
 import ErrorIkon from '../../../../svg/alvorlig-advarsel.svg';
-import type { Sikkerhetstiltak } from '../PersondataDomain';
 import GyldighetsPeriode from '../body/GyldighetsPeriode';
+import type { Sikkerhetstiltak } from '../PersondataDomain';
 
 const Modal = styled(RawModal)`
     text-align: center;

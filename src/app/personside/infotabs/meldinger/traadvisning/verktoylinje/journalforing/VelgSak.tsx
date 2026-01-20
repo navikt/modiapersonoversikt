@@ -30,7 +30,7 @@ const MiniRadio = styled(Radio)`
 `;
 
 function SakgruppeRadio(props: FieldState & RadioProps & { label: SakKategori }) {
-    const { input, setValue, isPristine, ...rest } = props;
+    const { input, ...rest } = props;
     return <MiniRadio onChange={input.onChange} checked={input.value === props.label} {...rest} />;
 }
 

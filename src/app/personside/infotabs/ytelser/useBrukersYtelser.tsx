@@ -3,7 +3,7 @@ import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { type ReactNode, useMemo } from 'react';
 import type { FetchError } from 'src/api/api';
 import { usePersonAtomValue } from 'src/lib/state/context';
-import { type Ytelse, getYtelseIdDato } from 'src/models/ytelse/ytelse-utils';
+import { getYtelseIdDato, type Ytelse } from 'src/models/ytelse/ytelse-utils';
 import type { FraTilDato } from 'src/redux/utbetalinger/types';
 import { useArbeidsavklaringspenger } from 'src/rest/resources/arbeidsavklaringspengerResource';
 import { useForeldrepengerFpSak } from 'src/rest/resources/foreldrepengerFpSakResource';

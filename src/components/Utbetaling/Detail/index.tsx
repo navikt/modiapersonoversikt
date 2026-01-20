@@ -5,9 +5,9 @@ import {
     BodyShort,
     Box,
     Button,
+    Heading,
     HGrid,
     HStack,
-    Heading,
     Skeleton,
     Table,
     VStack
@@ -15,8 +15,7 @@ import {
 import { getRouteApi } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai';
-import { Suspense, useRef } from 'react';
-import { useEffect } from 'react';
+import { Suspense, useEffect, useRef } from 'react';
 import Card from 'src/components/Card';
 import type { DateRange } from 'src/components/DateFilters/types';
 import ErrorBoundary from 'src/components/ErrorBoundary';

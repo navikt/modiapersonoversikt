@@ -6,8 +6,8 @@ import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import { useOnMount } from '../../../../utils/customHooks';
 import { Kjonn, type KodeBeskrivelse, type Data as Persondata } from '../PersondataDomain';
 import { hentAlderEllerDod, hentNavn } from '../visittkort-utils';
-import KjonnIkon from './KjonnIkon';
 import Etiketter from './etiketter/Etiketter';
+import KjonnIkon from './KjonnIkon';
 import NavKontorContainer from './navkontor/NavKontorContainer';
 import PersonStatus from './status/PersonStatus';
 

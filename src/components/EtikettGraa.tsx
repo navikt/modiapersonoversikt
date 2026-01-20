@@ -1,5 +1,5 @@
-import { Undertekst } from 'nav-frontend-typografi';
 import type { TypografiProps } from 'nav-frontend-typografi';
+import { Undertekst } from 'nav-frontend-typografi';
 import type { ReactNode } from 'react';
 import styled from 'styled-components';
 import theme from '../styles/personOversiktTheme';

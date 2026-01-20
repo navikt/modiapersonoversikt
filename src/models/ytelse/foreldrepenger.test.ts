@@ -12,7 +12,7 @@ test('typeguard isFodsel funker', () => {
 });
 
 test('typeguard isAdopsjon funker', () => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // biome-ignore lint/correctness/noUnusedVariables: Biome migration
     const { termin, ...resten } = statiskForeldrepengeMock;
     const foreldrepengeRettighet: Adopsjon = {
         ...resten,
@@ -24,12 +24,12 @@ test('typeguard isAdopsjon funker', () => {
 });
 
 test('Hvis omsorgsovertakelse og termin er satt til null blir det ikke gjennkjent som adopsjon eller fødsel', () => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // biome-ignore lint/correctness/noUnusedVariables: Biome migration
     const { termin, ...resten } = statiskForeldrepengeMock;
     const foreldrepengeRettighet: Foreldrepengerettighet = {
         ...resten,
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
+        // @ts-expect-error
         omsorgsovertakelse: null,
         termin: null
     };

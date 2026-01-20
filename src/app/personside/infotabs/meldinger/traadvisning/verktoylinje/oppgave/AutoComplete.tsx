@@ -2,8 +2,8 @@ import Downshift, { type ControllerStateAndHelpers, type StateChangeOptions } fr
 import { Input, type InputProps } from 'nav-frontend-skjema';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { type ChangeEvent, useEffect, useState } from 'react';
 import type * as React from 'react';
+import { type ChangeEvent, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import EtikettGraa from '../../../../../../../components/EtikettGraa';
 import theme from '../../../../../../../styles/personOversiktTheme';
@@ -62,10 +62,7 @@ interface Props {
     feil?: React.ReactNode;
 }
 
-function SuggestionMarkup<Item>(props: {
-    item: Item;
-    helpers: ControllerStateAndHelpers<Item>;
-}) {
+function SuggestionMarkup<Item>(props: { item: Item; helpers: ControllerStateAndHelpers<Item> }) {
     return (
         <li
             {...props.helpers.getItemProps({

@@ -1,8 +1,8 @@
-import { BodyShort, HStack, Heading, VStack } from '@navikt/ds-react';
+import { BodyShort, Heading, HStack, VStack } from '@navikt/ds-react';
 import { useEffect, useRef } from 'react';
 import type { SakKategori } from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
-import type { Kategorier, Tema } from 'src/components/sakVelger/SakVelger';
 import { usePiltasterIListe } from 'src/components/sakVelger/keyboardHooks';
+import type { Kategorier, Tema } from 'src/components/sakVelger/SakVelger';
 import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
 import { formatterDatoMedMaanedsnavnOrNull } from 'src/utils/date-utils';
 import { twMerge } from 'tailwind-merge';
@@ -73,7 +73,12 @@ const SakListeElement = ({
     onClick,
     valgtSak,
     sakIFokus
-}: { sak: JournalforingSak; onClick: () => void; valgtSak?: JournalforingSak; sakIFokus?: JournalforingSak }) => {
+}: {
+    sak: JournalforingSak;
+    onClick: () => void;
+    valgtSak?: JournalforingSak;
+    sakIFokus?: JournalforingSak;
+}) => {
     const sakRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {

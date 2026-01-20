@@ -4,7 +4,7 @@ import { guid } from 'nav-frontend-js-utils';
 import Panel from 'nav-frontend-paneler';
 import { Checkbox } from 'nav-frontend-skjema';
 import { Element, Normaltekst, Undertittel } from 'nav-frontend-typografi';
-import { type JSX, createRef, useEffect, useRef, useState } from 'react';
+import { createRef, type JSX, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
 import { Entitet, type Journalpost } from '../../../../../models/saksoversikt/journalpost';

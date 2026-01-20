@@ -22,8 +22,10 @@ function useMatchMediaListeners(mediaQueries: Array<string>): Array<boolean> {
             });
         });
 
+        // biome-ignore lint/suspicious/useIterableCallbackReturn: Biome migration
         listeners.forEach((it, i) => it.addEventListener('change', changeHandlers[i]));
 
+        // biome-ignore lint/suspicious/useIterableCallbackReturn: Biome migration
         return () => listeners.forEach((it, i) => it.removeEventListener('change', changeHandlers[i]));
     }, [listeners]);
 

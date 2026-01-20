@@ -6,7 +6,7 @@ import DescriptionList, {
     type DescriptionListEntries,
     fjernEntriesUtenVerdi
 } from '../../../../components/DescriptionList';
-import { type OppfolgingsYtelse, isDagpenger } from '../../../../models/oppfolging';
+import { isDagpenger, type OppfolgingsYtelse } from '../../../../models/oppfolging';
 import theme from '../../../../styles/personOversiktTheme';
 import { datoSynkende } from '../../../../utils/date-utils';
 import { datoEllerNull } from '../../../../utils/string-utils';

@@ -18,10 +18,7 @@ function kombinerNavnOgIdent(personInfo?: NavnOgIdent): string | null {
     return personInfo.navn ? `${navn} (${ident})` : navn;
 }
 
-function ForeldreansvarElement(props: {
-    harFeilendeSystem: boolean;
-    foreldreansvar: Foreldreansvar;
-}) {
+function ForeldreansvarElement(props: { harFeilendeSystem: boolean; foreldreansvar: Foreldreansvar }) {
     const { foreldreansvar } = props;
 
     if (props.harFeilendeSystem) {

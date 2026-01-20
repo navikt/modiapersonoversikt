@@ -1,9 +1,7 @@
-import { Feiloppsummering, type FeiloppsummeringFeil } from 'nav-frontend-skjema';
 import type { FeiloppsummeringProps } from 'nav-frontend-skjema';
+import { Feiloppsummering, type FeiloppsummeringFeil } from 'nav-frontend-skjema';
 import { type RefObject, useEffect, useRef } from 'react';
-import type { FieldValues } from 'react-hook-form';
-import type { UseFormReturn } from 'react-hook-form';
-import type { FieldErrors } from 'react-hook-form';
+import type { FieldErrors, FieldValues, UseFormReturn } from 'react-hook-form';
 
 function buildErrorFields<TFieldValues extends FieldValues>(errors: FieldErrors<TFieldValues>) {
     const res: FeiloppsummeringFeil[] = [];

@@ -5,7 +5,7 @@ import type { Traad } from '../../../models/meldinger/meldinger';
 import type { Dokument } from '../../../models/saksoversikt/journalpost';
 import type { Sakstema } from '../../../models/saksoversikt/sakstema';
 import type { Utbetaling } from '../../../models/utbetalinger';
-import { type Ytelse, getUnikYtelseKey } from '../../../models/ytelse/ytelse-utils';
+import { getUnikYtelseKey, type Ytelse } from '../../../models/ytelse/ytelse-utils';
 import { useQueryParams } from '../../../utils/url-utils';
 import { personPaths } from '../../routes/routing';
 import { erSakerFullscreen } from './saksoversikt/utils/erSakerFullscreen';

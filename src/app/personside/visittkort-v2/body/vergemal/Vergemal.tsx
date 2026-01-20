@@ -4,8 +4,8 @@ import { Fragment } from 'react';
 import styled from 'styled-components';
 import EtikettGraa from '../../../../../components/EtikettGraa';
 import VergemalLogo from '../../../../../svg/Utropstegn';
-import { InformasjonElement, type Verge as VergeInterface } from '../../PersondataDomain';
 import { harFeilendeSystemer } from '../../harFeilendeSystemer';
+import { InformasjonElement, type Verge as VergeInterface } from '../../PersondataDomain';
 import { hentNavn } from '../../visittkort-utils';
 import GyldighetsPeriode from '../GyldighetsPeriode';
 import VisittkortElement from '../VisittkortElement';
@@ -20,10 +20,7 @@ interface Props {
     vergemal: VergeInterface[];
 }
 
-function Verge(props: {
-    feilendeSystemer: Array<InformasjonElement>;
-    verge: VergeInterface;
-}) {
+function Verge(props: { feilendeSystemer: Array<InformasjonElement>; verge: VergeInterface }) {
     const { verge } = props;
     const harFeilendeSystemOgIngenNavn =
         harFeilendeSystemer(props.feilendeSystemer, InformasjonElement.PDL_TREDJEPARTSPERSONER) && !verge.navn ? (

@@ -1,4 +1,4 @@
-import { BodyShort, Box, HStack, Heading, VStack } from '@navikt/ds-react';
+import { BodyShort, Box, Heading, HStack, VStack } from '@navikt/ds-react';
 import type { PropsWithChildren } from 'react';
 import { usePersonAtomValue } from 'src/lib/state/context';
 import type { Journalpost, Melding, Traad } from 'src/lib/types/modiapersonoversikt-api';

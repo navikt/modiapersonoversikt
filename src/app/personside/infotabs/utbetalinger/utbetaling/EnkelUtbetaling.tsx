@@ -3,9 +3,9 @@ import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { trackVisDetaljvisning } from 'src/utils/analytics';
 import styled from 'styled-components';
+import { Bold, SpaceBetween } from '../../../../../components/common-styled-components';
 import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
 import PrintKnapp from '../../../../../components/PrintKnapp';
-import { Bold, SpaceBetween } from '../../../../../components/common-styled-components';
 import type { Utbetaling as UtbetalingInterface, Ytelse } from '../../../../../models/utbetalinger';
 import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../../redux/utbetalinger/actions';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
@@ -116,6 +116,7 @@ function EnkelUtbetaling(props: Props) {
                 onFocus={setYtelseIFokus}
                 className={utbetalingerTest.utbetaling}
             >
+                {/** biome-ignore lint/a11y/useAriaPropsSupportedByRole: Biome migration */}
                 <article aria-expanded={visDetaljer} aria-label={`Utbetaling ${props.ytelse.type}`}>
                     <UtbetalingTabellStyling>
                         <UtbetalingHeaderStyle>

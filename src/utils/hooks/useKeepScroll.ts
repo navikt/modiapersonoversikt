@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
 import type * as React from 'react';
+import { useEffect, useRef } from 'react';
 import { isTest } from '../environment';
 
 let scrollStore: ScrollValue = {};
