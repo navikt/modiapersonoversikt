@@ -1,11 +1,21 @@
-import { Box, ExpansionCard, Fieldset, Search, Skeleton, Switch, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
-import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai';
+import {
+    BodyShort,
+    Box,
+    ExpansionCard,
+    Fieldset,
+    Search,
+    Skeleton,
+    Switch,
+    UNSAFE_Combobox,
+    VStack
+} from '@navikt/ds-react';
+import { atom, useAtom, useSetAtom } from 'jotai';
 import { RESET, atomWithReset } from 'jotai/utils';
 import { debounce, xor } from 'lodash';
-import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import DateRangeSelector, { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
-import { sakStatuser, useTemaer } from 'src/components/saker/utils';
+import { sakStatuser, useFilterSaker, useTemaer } from 'src/components/saker/utils';
 import type { DokumentmetadataAvsender } from 'src/generated/modiapersonoversikt-api';
 import { usePersonAtomValue } from 'src/lib/state/context';
 import { filterType, trackExpansionCardApnet, trackExpansionCardLukket, trackFilterEndret } from 'src/utils/analytics';
@@ -169,27 +179,13 @@ const StatusFilter = () => {
 };
 
 const FilterTitle = () => {
-    const filters = useAtomValue(sakerFilterAtom);
+    const saker = useFilterSaker();
 
-    const activeFilters = useMemo(() => {
-        let count = 0;
-        if (filters.saksId) {
-            count++;
-        }
-        if (filters.temaer && filters.temaer.length > 0) {
-            count++;
-        }
-        if (filters.status && filters.status.length > 0) {
-            count++;
-        }
-        if (filters.dateRange) {
-            count++;
-        }
-
-        return count ? `(${count})` : null;
-    }, [filters]);
-
-    return <>Filter {activeFilters}</>;
+    return (
+        <>
+            Filter ({saker.length} {saker.length === 1 ? 'sak' : 'saker'})<BodyShort visuallyHidden>funnet</BodyShort>
+        </>
+    );
 };
 
 export const SakerFilter = () => {
@@ -222,12 +218,10 @@ export const SakerFilter = () => {
                 size="small"
                 aria-label="Filtrer saker"
             >
-                <ExpansionCard.Header className="p-1">
-                    <Box.New paddingInline="4">
-                        <ExpansionCard.Title size="small">
-                            <FilterTitle />
-                        </ExpansionCard.Title>
-                    </Box.New>
+                <ExpansionCard.Header className="py-0 pl-2">
+                    <ExpansionCard.Title size="small" as="h3" className="text-ax-medium" role="alert">
+                        <FilterTitle />
+                    </ExpansionCard.Title>
                 </ExpansionCard.Header>
                 <ExpansionCard.Content className="overflow-visible">
                     <VStack gap="2">
