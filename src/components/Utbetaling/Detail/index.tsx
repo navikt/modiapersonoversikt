@@ -15,7 +15,8 @@ import {
 import { getRouteApi } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai';
-import { Suspense, useEffect, useRef } from 'react';
+import { useRef } from 'react';
+import { useEffect } from 'react';
 import Card from 'src/components/Card';
 import type { DateRange } from 'src/components/DateFilters/types';
 import ErrorBoundary from 'src/components/ErrorBoundary';
@@ -395,7 +396,7 @@ const UtbetalingDetail = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
     const selectedUtbetaling = utbetalinger.find((item) => getUtbetalingId(item) === id);
     const filterAtomValue = useAtomValue(utbetalingFilterAtom);
     const prevFilterRef = useRef(utbetalingFilterAtom);
-    const navigate = routeApi.useNavigate();
+    // const navigate = routeApi.useNavigate();
 
     // Fjern utbetalingid i URL og cache hvis filteret er endret og utbetalingen ikke finnes i filtrerte utbetalinger
     useEffect(() => {
@@ -419,7 +420,7 @@ const UtbetalingDetail = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
     }
 
     if (!id && !selectedUtbetaling) {
-        navigate({ search: { id: getUtbetalingId(utbetalinger[0]) } });
+        //navigate({ search: { id: getUtbetalingId(utbetalinger[0]) } });
     }
 
     return (
@@ -429,9 +430,8 @@ const UtbetalingDetail = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
     );
 };
 
-const UtbetalingerDetail = () => {
+const UtbetalingerDetail = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
     const dateRange = useAtomValue(utbetalingFilterDateRangeAtom);
-    const utbetalinger = useFilterUtbetalinger();
 
     return (
         <VStack flexGrow="1" minHeight="0" maxHeight="100%" overflow="auto">
@@ -444,11 +444,20 @@ const UtbetalingerDetail = () => {
 };
 
 export const UtbetalingerDetailPage = () => {
+    const { utbetalinger, pending } = useFilterUtbetalinger();
+
     return (
-        <ErrorBoundary boundaryName="utbetalingDetaljer">
-            <Suspense fallback={<Skeleton variant="rounded" height="4rem" />}>
-                <UtbetalingerDetail />
-            </Suspense>
+        <ErrorBoundary
+            boundaryName="utbetalingerDetailPage"
+            errorText="Det oppstod en feil under visning av utbetalinger detailjer"
+        >
+            <VStack flexGrow="1" minHeight="0" maxHeight="100%" className="overflow-auto">
+                {pending ? (
+                    <Skeleton variant="rounded" height="4rem" />
+                ) : (
+                    <UtbetalingerDetail utbetalinger={utbetalinger} />
+                )}
+            </VStack>
         </ErrorBoundary>
     );
 };

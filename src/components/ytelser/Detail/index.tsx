@@ -12,7 +12,7 @@ import { SykepengerDetails } from 'src/components/ytelser/Detail/sykepenger';
 import { SykePengerSpokelseDetails } from 'src/components/ytelser/Detail/sykepenger-spokelse';
 import { TiltaksPengerDetails } from 'src/components/ytelser/Detail/tiltakspenger';
 import { ytelseFilterAtom } from 'src/components/ytelser/List/Filter';
-import { getUnikYtelseKey, useFilterYtelser } from 'src/components/ytelser/utils';
+import { type YtelseVedtak, getUnikYtelseKey, useFilterYtelser } from 'src/components/ytelser/utils';
 import type {
     Foreldrepenger,
     ForeldrepengerFpSak,
@@ -68,8 +68,7 @@ export const TitleValuePairsComponent = ({
 
 const routeApi = getRouteApi('/new/person/ytelser');
 
-const YtelseDataDetails = () => {
-    const { ytelser } = useFilterYtelser();
+const YtelseDataDetails = ({ ytelser }: { ytelser: YtelseVedtak[] }) => {
     const { id } = routeApi.useSearch();
     let selectedYtelse = ytelser.find((item) => getUnikYtelseKey(item) === id);
     const filterAtomValue = useAtomValue(ytelseFilterAtom);
@@ -89,7 +88,11 @@ const YtelseDataDetails = () => {
     }
 
     if (!selectedYtelse && id) {
-        return <Alert variant="error">Ytelsen du valgte, ble ikke funnet.</Alert>;
+        return (
+            <Alert variant="warning" size="small">
+                Ytelsen du valgte, ble ikke funnet.
+            </Alert>
+        );
     }
 
     if (!selectedYtelse && !id) {
@@ -124,15 +127,17 @@ const YtelseDataDetails = () => {
 };
 
 export const ValgteYtelseDetailPage = () => {
-    const { pending } = useFilterYtelser();
-
+    const { ytelser, pending } = useFilterYtelser();
     return (
-        <ErrorBoundary boundaryName="valgteYtelseDetailPage">
+        <ErrorBoundary
+            boundaryName="valgteYtelseDetailPage"
+            errorText="Det oppstod en feil under visning av ytelse detailjer"
+        >
             {pending ? (
-                <Skeleton variant="rounded" className="mt-6" height="4rem" />
+                <Skeleton variant="rounded" height="4rem" />
             ) : (
                 <VStack flexGrow="1" minHeight="0" maxHeight="100%" className="overflow-auto">
-                    <YtelseDataDetails />
+                    <YtelseDataDetails ytelser={ytelser} />
                 </VStack>
             )}
         </ErrorBoundary>

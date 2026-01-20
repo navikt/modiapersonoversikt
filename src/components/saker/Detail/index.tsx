@@ -14,7 +14,7 @@ import {
 } from '@navikt/ds-react';
 import { getRouteApi, Link } from '@tanstack/react-router';
 import { useAtom, useAtomValue } from 'jotai/index';
-import { Suspense, useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import JournalPoster from 'src/components/saker/Detail/JournalPoster';
@@ -92,9 +92,8 @@ const NorgLenke = ({
         </HStack>
     );
 };
-const SakContent = () => {
+const SakContent = ({ saker }: { saker: SaksDokumenter[] }) => {
     const { id } = routeApi.useSearch();
-    const saker = useFilterSaker();
     const filterAtomValue = useAtomValue(sakerFilterAtom);
     const prevFilterRef = useRef(filterAtomValue);
     const navigate = routeApi.useNavigate();
@@ -199,11 +198,10 @@ const SakDetails = ({ valgtSak, pageView }: { valgtSak: SaksDokumenter; pageView
 };
 
 export const SakDetailPage = () => {
+    const { saker, pending } = useFilterSaker();
     return (
-        <ErrorBoundary boundaryName="sakDetaljer">
-            <Suspense fallback={<Skeleton variant="rounded" height="4rem" />}>
-                <SakContent />
-            </Suspense>
+        <ErrorBoundary boundaryName="SakDetailPage" errorText="Det oppstod en feil under visning en sak detailjer">
+            {pending ? <Skeleton variant="rounded" height="4rem" /> : <SakContent saker={saker} />}
         </ErrorBoundary>
     );
 };

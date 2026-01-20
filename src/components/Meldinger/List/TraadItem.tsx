@@ -4,8 +4,8 @@ import { getRouteApi } from '@tanstack/react-router';
 import { atom, useAtomValue } from 'jotai';
 import { useMemo } from 'react';
 import Card from 'src/components/Card';
+import { useFilterOppgave } from 'src/components/Oppgave/List/utils';
 import type { TraadDto } from 'src/generated/modiapersonoversikt-api';
-import { usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
 import { usePersonAtomValue } from 'src/lib/state/context';
 import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
 import type { Melding } from 'src/lib/types/modiapersonoversikt-api';
@@ -21,9 +21,9 @@ import {
 } from './utils';
 
 function TildeltSaksbehandler({ traadId }: { traadId: string }) {
-    const oppgaver = usePersonOppgaver();
+    const { oppgaver } = useFilterOppgave();
     const fnr = usePersonAtomValue();
-    const tildeltTilBruker = oppgaver.data.filter((oppg) => oppg.fnr === fnr);
+    const tildeltTilBruker = oppgaver.filter((oppg) => oppg.fnr === fnr);
 
     if (tildeltTilBruker.map((oppgave) => oppgave.traadId).includes(traadId)) {
         return (

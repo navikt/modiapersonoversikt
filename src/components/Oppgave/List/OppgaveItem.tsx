@@ -1,9 +1,9 @@
 import { Detail, HStack, Label, Link, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import Card from 'src/components/Card';
+import { useGsakTemaer } from 'src/components/Meldinger/List/utils';
 import { getOppgaveId } from 'src/components/Oppgave/List/utils';
 import type { OppgaveDto } from 'src/generated/modiapersonoversikt-api';
-import { useGsakTema } from 'src/lib/clients/modiapersonoversikt-api';
 import { trackingEvents } from 'src/utils/analytics';
 import { formatterDato } from 'src/utils/date-utils';
 import { twMerge } from 'tailwind-merge';
@@ -11,7 +11,7 @@ import { twMerge } from 'tailwind-merge';
 const routeApi = getRouteApi('/new/person/oppgaver');
 
 export const OppgaveItem = ({ oppgave }: { oppgave: OppgaveDto }) => {
-    const { data: gsakTema } = useGsakTema();
+    const { temaer: gsakTema } = useGsakTemaer();
     const tema = gsakTema.find((item) => item.kode === oppgave.tema);
     const oppgaveTyper = tema?.oppgavetyper ?? [];
     const oppgavetype = oppgaveTyper.find((o) => o.kode === oppgave.oppgavetype);

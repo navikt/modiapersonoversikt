@@ -1,8 +1,21 @@
-import { Heading, HGrid, VStack } from '@navikt/ds-react';
+import { HGrid, Heading, VStack } from '@navikt/ds-react';
+import { AlertBanner } from 'src/components/AlertBanner';
+import ErrorBoundary from 'src/components/ErrorBoundary';
 import { SakDetailPage } from 'src/components/saker/Detail';
 import { SakerList } from 'src/components/saker/List';
+import { useFilterSaker } from 'src/components/saker/utils';
 
 export const SakerPage = () => {
+    return (
+        <ErrorBoundary boundaryName="SakerPage" errorText="Det oppstod en feil under lasting av saker og dokumenter.">
+            <SakerPageContent />
+        </ErrorBoundary>
+    );
+};
+
+const SakerPageContent = () => {
+    const { errorMessages } = useFilterSaker();
+
     return (
         <HGrid
             gap="1"
@@ -14,9 +27,12 @@ export const SakerPage = () => {
                 <Heading size="small" visuallyHidden level="2">
                     Saker og dokumenter
                 </Heading>
-                <SakerList />
+                <ErrorBoundary boundaryName="SakerList" errorText="Det oppstod en feil under visning av saker liste">
+                    <SakerList />
+                </ErrorBoundary>
             </VStack>
             <VStack className="min-h-100 md:min-h-0">
+                <AlertBanner alerts={errorMessages} />
                 <SakDetailPage />
             </VStack>
         </HGrid>

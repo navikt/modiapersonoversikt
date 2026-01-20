@@ -1,8 +1,11 @@
 import dayjs from 'dayjs';
 import { useMemo } from 'react';
+import { errorPlaceholder, responseErrorMessage } from 'src/components/ytelser/utils';
+import { useGsakTema, useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
 import {
     type Melding,
     Meldingstype,
+    type Tema,
     type Traad,
     TraadDTOTraadType,
     type Veileder
@@ -211,3 +214,51 @@ export function useFilterMeldinger(traader: Traad[], filters: MeldingerFilter) {
 
     return filteredByDate;
 }
+
+interface Returns {
+    traader: Traad[];
+    pending: boolean;
+    errorMessages: (string | undefined)[];
+    hasError: boolean;
+}
+
+interface ReturnsTema {
+    temaer: Tema[];
+    pending: boolean;
+    errorMessages: (string | undefined)[];
+    hasError: boolean;
+}
+
+export const useTraader = (): Returns => {
+    const traaderResponse = useMeldinger();
+
+    return useMemo(() => {
+        const traader = traaderResponse?.data ?? [];
+
+        const errorMessages = [errorPlaceholder(traaderResponse, responseErrorMessage('meldinger'))];
+
+        return {
+            traader: traader ?? [],
+            pending: traaderResponse.isLoading,
+            errorMessages: errorMessages.filter(Boolean),
+            hasError: traaderResponse.isError
+        };
+    }, [traaderResponse]);
+};
+
+export const useGsakTemaer = (): ReturnsTema => {
+    const temaerResponse = useGsakTema();
+
+    return useMemo(() => {
+        const temaer = temaerResponse?.data ?? [];
+
+        const errorMessages = [errorPlaceholder(temaerResponse, responseErrorMessage('temaer for meldinger'))];
+
+        return {
+            temaer: temaer ?? [],
+            pending: temaerResponse.isLoading,
+            errorMessages: errorMessages.filter(Boolean),
+            hasError: temaerResponse.isError
+        };
+    }, [temaerResponse]);
+};

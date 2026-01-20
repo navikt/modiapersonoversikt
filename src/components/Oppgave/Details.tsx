@@ -1,18 +1,18 @@
-import { Alert, HStack, Skeleton } from '@navikt/ds-react';
+import { Alert, HStack, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
-import { Suspense, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { oppgaveFilterAtom } from 'src/components/Oppgave/List/Filter';
 import { getOppgaveId, useFilterOppgave } from 'src/components/Oppgave/List/utils';
 import { OppgaveContent } from 'src/components/Oppgave/OppgaveContent';
+import type { OppgaveDto } from 'src/generated/modiapersonoversikt-api';
 import { oppgaveRouteMiddleware } from 'src/routes/new/person/oppgaver';
 
 const routeApi = getRouteApi('/new/person/oppgaver');
 
-const OppgaveOgDialogDetail = () => {
+const OppgaveOgDialogDetail = ({ oppgaver }: { oppgaver: OppgaveDto[] }) => {
     const { id } = routeApi.useSearch();
-    const oppgaver = useFilterOppgave();
     let valgtOppgave = oppgaver.find((item) => getOppgaveId(item) === id);
     const filterAtomValue = useAtomValue(oppgaveFilterAtom);
     const prevFilterRef = useRef(filterAtomValue);
@@ -52,11 +52,15 @@ const OppgaveOgDialogDetail = () => {
 };
 
 export const OppgaveDetail = () => {
+    const { oppgaver, pending } = useFilterOppgave();
     return (
-        <ErrorBoundary boundaryName="oppgaveDetaljer">
-            <Suspense fallback={<Skeleton variant="rounded" height="4rem" />}>
-                <OppgaveOgDialogDetail />
-            </Suspense>
+        <ErrorBoundary
+            boundaryName="oppgaveDetaljer"
+            errorText="Det oppstod en feil under visning av oppgave detailjer"
+        >
+            <VStack flexGrow="1" minHeight="0" maxHeight="100%" className="overflow-auto">
+                {pending ? <Skeleton variant="rounded" height="4rem" /> : <OppgaveOgDialogDetail oppgaver={oppgaver} />}
+            </VStack>
         </ErrorBoundary>
     );
 };

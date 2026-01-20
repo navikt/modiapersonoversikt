@@ -1,36 +1,13 @@
-import { Alert, Skeleton, VStack } from '@navikt/ds-react';
+import {Alert, BodyShort, Heading, Skeleton, VStack} from '@navikt/ds-react';
 import { useSearch } from '@tanstack/react-router';
-import { Suspense } from 'react';
-import ErrorBoundary from 'src/components/ErrorBoundary';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { UtbetalingItem } from 'src/components/Utbetaling/List/UtbetalingItem';
 import { useAntallListeElementeBasertPaaSkjermStorrelse } from 'src/utils/customHooks';
 import { UtbetalingListFilter } from './Filter';
 import { getUtbetalingId, useFilterUtbetalinger } from './utils';
 
-export const UtbetalingerList = () => (
-    <VStack height="100%" gap="2">
-        <UtbetalingListFilter />
-        <ErrorBoundary boundaryName="UtbetalingerList">
-            <Suspense
-                fallback={
-                    <VStack gap="2" marginInline="0 2">
-                        {Array(8)
-                            .keys()
-                            .map((i) => (
-                                <Skeleton key={i} variant="rounded" height={68} />
-                            ))}
-                    </VStack>
-                }
-            >
-                <UtbetalingList />
-            </Suspense>
-        </ErrorBoundary>
-    </VStack>
-);
-
-const UtbetalingList = () => {
-    const utbetalinger = useFilterUtbetalinger();
+export const UtbetalingList = () => {
+    const { utbetalinger, pending } = useFilterUtbetalinger();
     const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
 
     const selectedKey = useSearch({
@@ -38,7 +15,7 @@ const UtbetalingList = () => {
         select: (p) => p.id
     });
 
-    if (utbetalinger.length === 0) {
+    if (!pending && utbetalinger.length === 0) {
         return (
             <Alert className="mr-2" variant="info" role="alert">
                 Ingen utbetalinger funnet
@@ -47,16 +24,35 @@ const UtbetalingList = () => {
     }
 
     return (
-        <PaginatedList
-            paginationSrHeading={{
-                tag: 'h3',
-                text: 'Utbetalingpaginering'
-            }}
-            pageSize={antallListeElementer}
-            selectedKey={selectedKey}
-            items={utbetalinger}
-            keyExtractor={getUtbetalingId}
-            renderItem={({ item }) => <UtbetalingItem utbetaling={item} />}
-        />
+        <VStack height="100%" gap="2">
+            <UtbetalingListFilter />
+            {pending ? (
+                <VStack gap="2" marginInline="0 2">
+                    {Array(8)
+                        .keys()
+                        .map((i) => (
+                            <Skeleton key={i} variant="rounded" height={68} />
+                        ))}
+                </VStack>
+            ) : (
+                <>
+                    <Heading className="pl-1" size="xsmall" level="3" role="alert">
+                        {utbetalinger.length} {utbetalinger.length === 1 ? 'utbetaling' : 'utbetalinger'}
+                        <BodyShort visuallyHidden>funnet</BodyShort>
+                    </Heading>
+                    <PaginatedList
+                        paginationSrHeading={{
+                            tag: 'h3',
+                            text: 'Utbetalingpaginering'
+                        }}
+                        pageSize={antallListeElementer}
+                        selectedKey={selectedKey}
+                        items={utbetalinger}
+                        keyExtractor={getUtbetalingId}
+                        renderItem={({ item }) => <UtbetalingItem utbetaling={item} />}
+                    />
+                </>
+            )}
+        </VStack>
     );
 };

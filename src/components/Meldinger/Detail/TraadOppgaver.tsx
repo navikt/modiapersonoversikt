@@ -1,13 +1,14 @@
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { Box, HStack, ReadMore, Table } from '@navikt/ds-react';
 import { Link } from '@tanstack/react-router';
+import { useGsakTemaer } from 'src/components/Meldinger/List/utils';
+import { useFilterOppgave } from 'src/components/Oppgave/List/utils';
 import type { OppgaveDto } from 'src/generated/modiapersonoversikt-api';
-import { useGsakTema, usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
 import { datoEllerNull } from 'src/utils/string-utils';
 
 export const TraadOppgaver = ({ traadId }: { traadId: string }) => {
-    const { data: oppgaver } = usePersonOppgaver();
-    const { data: gsakTema } = useGsakTema();
+    const { oppgaver } = useFilterOppgave();
+    const { temaer: gsakTema } = useGsakTemaer();
 
     const traadOppgaver = oppgaver?.filter((oppagve: OppgaveDto) => oppagve.traadId === traadId);
 

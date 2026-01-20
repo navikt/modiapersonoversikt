@@ -17,8 +17,7 @@ import { debounce, isEqual, xor } from 'lodash';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import DateRangeSelector from 'src/components/DateFilters/DatePeriodSelector';
 import type { DateRange } from 'src/components/DateFilters/types';
-import { useFilterMeldinger } from 'src/components/Meldinger/List/utils';
-import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
+import {useFilterMeldinger, useTraader} from 'src/components/Meldinger/List/utils';
 import { usePersonAtomValue } from 'src/lib/state/context';
 import { Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { filterType, trackExpansionCardApnet, trackExpansionCardLukket, trackFilterEndret } from 'src/utils/analytics';
@@ -50,7 +49,7 @@ const meldingerFilterTemaAtom = atom(
 );
 
 const TemaFilter = () => {
-    const { data: traader } = useMeldinger();
+    const { traader } = useTraader();
     const temaOptions = useMemo(() => {
         const allTema = Object.entries(Temagruppe).map(([, t]) => ({
             label: temagruppeTekst(t),
@@ -172,9 +171,8 @@ const DateFilter = () => {
 
 const FilterTitle = () => {
     const filters = useAtomValue(meldingerFilterAtom);
-    const { data: traader } = useMeldinger();
+    const { traader } = useTraader();
     const filteredMeldinger = useFilterMeldinger(traader, filters);
-
     return (
         <>
             Filter ({filteredMeldinger.length} {filteredMeldinger.length === 1 ? 'dialog' : 'dialoger'})

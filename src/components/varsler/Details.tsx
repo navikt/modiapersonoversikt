@@ -1,11 +1,11 @@
 import { Alert, BodyLong, ErrorMessage, Heading, HStack, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
-import { Suspense, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { varslerFilterAtom } from 'src/components/varsler/List/Filter';
-import { useFilterVarsler } from 'src/components/varsler/List/utils';
+import { type VarselData, useFilterVarsler } from 'src/components/varsler/List/utils';
 import type { FeiletVarsling, Varsel } from 'src/lib/types/modiapersonoversikt-api';
 import { varslerRouteMiddleware } from 'src/routes/new/person/varsler';
 import { ENDASH, emptyReplacement, formaterDato } from 'src/utils/string-utils';
@@ -102,9 +102,8 @@ const DittNavInformasjonsLinjerV2 = ({ varsel, kanaler }: { varsel: Varsel; kana
     );
 };
 
-const VarselDetailExtractor = () => {
+const VarselDetailExtractor = ({ varsler }: { varsler: VarselData[] }) => {
     const { id } = routeApi.useSearch();
-    const varsler = useFilterVarsler();
     let valgtVarsel = varsler.find((item) => item.eventId === id);
     const filterAtomValue = useAtomValue(varslerFilterAtom);
     const prevFilterRef = useRef(varslerFilterAtom);
@@ -155,11 +154,10 @@ const VarselDetailExtractor = () => {
 };
 
 export const VarselDetail = () => {
+    const { varsler, pending } = useFilterVarsler();
     return (
-        <ErrorBoundary boundaryName="vaslerDetaljer">
-            <Suspense fallback={<Skeleton variant="rounded" height="4rem" />}>
-                <VarselDetailExtractor />
-            </Suspense>
+        <ErrorBoundary boundaryName="vaslerDetaljer" errorText="Det oppstod en feil under visning av varsel detailjer">
+            {pending ? <Skeleton variant="rounded" height="4rem" /> : <VarselDetailExtractor varsler={varsler} />}
         </ErrorBoundary>
     );
 };

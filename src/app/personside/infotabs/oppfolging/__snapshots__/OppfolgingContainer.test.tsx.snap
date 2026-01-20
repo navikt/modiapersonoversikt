@@ -278,7 +278,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                   >
                     <label
                       class="navds-form-field__label navds-label navds-label--small"
-                      for="datepicker-input-_r_1_"
+                      for="datepicker-input-«r1»"
                     >
                       Fra
                     </label>
@@ -288,7 +288,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                       <input
                         autocomplete="off"
                         class="navds-date__field-input navds-text-field__input navds-body-short navds-body-short--small"
-                        id="datepicker-input-_r_1_"
+                        id="datepicker-input-«r1»"
                         size="11"
                         value="01.01.1968"
                       />
@@ -298,7 +298,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                         type="button"
                       >
                         <svg
-                          aria-labelledby="title-_r_2_"
+                          aria-labelledby="title-«r2»"
                           fill="none"
                           focusable="false"
                           height="1em"
@@ -308,7 +308,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <title
-                            id="title-_r_2_"
+                            id="title-«r2»"
                           >
                             Åpne datovelger
                           </title>
@@ -325,7 +325,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                       aria-live="polite"
                       aria-relevant="additions removals"
                       class="navds-form-field__error"
-                      id="datepicker-input-error-_r_1_"
+                      id="datepicker-input-error-«r1»"
                     />
                   </div>
                 </div>
@@ -337,7 +337,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                   >
                     <label
                       class="navds-form-field__label navds-label navds-label--small"
-                      for="datepicker-input-_r_4_"
+                      for="datepicker-input-«r4»"
                     >
                       Til
                     </label>
@@ -347,7 +347,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                       <input
                         autocomplete="off"
                         class="navds-date__field-input navds-text-field__input navds-body-short navds-body-short--small"
-                        id="datepicker-input-_r_4_"
+                        id="datepicker-input-«r4»"
                         size="11"
                         value="01.01.1970"
                       />
@@ -357,7 +357,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                         type="button"
                       >
                         <svg
-                          aria-labelledby="title-_r_5_"
+                          aria-labelledby="title-«r5»"
                           fill="none"
                           focusable="false"
                           height="1em"
@@ -367,7 +367,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <title
-                            id="title-_r_5_"
+                            id="title-«r5»"
                           >
                             Åpne datovelger
                           </title>
@@ -384,7 +384,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                       aria-live="polite"
                       aria-relevant="additions removals"
                       class="navds-form-field__error"
-                      id="datepicker-input-error-_r_4_"
+                      id="datepicker-input-error-«r4»"
                     />
                   </div>
                 </div>

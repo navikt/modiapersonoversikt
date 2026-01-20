@@ -667,7 +667,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
       data-variant="info"
     >
       <svg
-        aria-labelledby="title-_r_0_"
+        aria-labelledby="title-«r0»"
         class="navds-alert__icon"
         fill="none"
         focusable="false"
@@ -678,7 +678,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
         xmlns="http://www.w3.org/2000/svg"
       >
         <title
-          id="title-_r_0_"
+          id="title-«r0»"
         >
           Informasjon
         </title>

@@ -1,16 +1,29 @@
 import { Alert, Heading, HGrid, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
-import { Suspense, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
+import { AlertBanner } from 'src/components/AlertBanner';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { meldingerFilterAtom } from 'src/components/Meldinger/List/Filter';
 import { useFilterMeldinger } from 'src/components/Meldinger/List/utils';
-import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
+import { useGsakTemaer, useTraader } from 'src/components/Meldinger/List/utils';
+import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
 import { meldingerRouteMiddleware } from 'src/routes/new/person/meldinger';
-import { TraadDetail } from './Detail';
+import { TraadDetailContent } from './Detail';
 import { TraadList } from './List';
 
 export const MeldingerPage = () => {
+    return (
+        <ErrorBoundary boundaryName="MeldingerPage" errorText="Det oppstod en feil under lasting av meldinger.">
+            <MeldingerPageContent />
+        </ErrorBoundary>
+    );
+};
+
+const MeldingerPageContent = () => {
+    const { traader, errorMessages: traadErrorMessages, pending } = useTraader();
+    const { errorMessages: temaErrorMessages } = useGsakTemaer();
+
     return (
         <HGrid
             gap="1"
@@ -18,37 +31,30 @@ export const MeldingerPage = () => {
             overflow={{ xs: 'scroll', md: 'hidden' }}
             height="100%"
         >
-            <ErrorBoundary boundaryName="traadlist">
-                <VStack height="100%" maxWidth={{ md: '16em' }} overflow={{ md: 'hidden' }}>
-                    <Suspense
-                        fallback={
-                            <VStack gap="2" marginInline="0 2">
-                                {Array(8)
-                                    .keys()
-                                    .map((i) => (
-                                        <Skeleton key={i} variant="rounded" height={68} />
-                                    ))}
-                            </VStack>
-                        }
-                    >
-                        <Heading level="2" size="small" visuallyHidden>
-                            Dialoger
-                        </Heading>
-                    </Suspense>
+            <VStack height="100%" maxWidth={{ md: '16em' }} overflow={{ md: 'hidden' }}>
+                <Heading level="2" size="small" visuallyHidden>
+                    Dialoger
+                </Heading>
+                <ErrorBoundary boundaryName="TraadList" errorText="Det oppstod en feil under visning av melding liste">
                     <TraadList />
-                </VStack>
-                <VStack flexGrow="1" overflowX={{ md: 'hidden' }}>
-                    <TraadDetailSection />
-                </VStack>
-            </ErrorBoundary>
+                </ErrorBoundary>
+            </VStack>
+            <VStack flexGrow="1" overflowX={{ md: 'hidden' }}>
+                <AlertBanner alerts={[...traadErrorMessages, ...temaErrorMessages]} />
+                <ErrorBoundary
+                    boundaryName="TraadDetailSection"
+                    errorText="Det oppstod en feil under visning av melding detailjer"
+                >
+                    {pending ? <Skeleton variant="rounded" height="4rem" /> : <TraadDetailSection traader={traader} />}
+                </ErrorBoundary>
+            </VStack>
         </HGrid>
     );
 };
 
 const routeApi = getRouteApi('/new/person/meldinger');
 
-const TraadDetailSection = () => {
-    const { data: traader } = useMeldinger();
+const TraadDetailSection = ({ traader }: { traader: Traad[] }) => {
     const { traadId } = routeApi.useSearch();
     const filters = useAtomValue(meldingerFilterAtom);
     const filteredMeldinger = useFilterMeldinger(traader, filters);
@@ -79,5 +85,5 @@ const TraadDetailSection = () => {
         navigate({ search: { traadId } });
     }
 
-    return <TraadDetail traadId={traadId ?? filteredMeldinger[0]?.traadId} />;
+    return <TraadDetailContent traad={valgtTraad ?? filteredMeldinger[0]} />;
 };

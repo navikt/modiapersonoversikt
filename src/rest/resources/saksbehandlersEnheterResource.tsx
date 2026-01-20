@@ -3,7 +3,7 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import { type FetchError, get } from 'src/api/api';
 import { apiBaseUri } from 'src/api/config';
 import { CenteredLazySpinner } from 'src/components/LazySpinner';
-import { applyDefaults, type DefaultConfig, type RendererOrConfig, useRest } from '../useRest';
+import { type DefaultConfig, type RendererOrConfig, applyDefaults, useRest } from '../useRest';
 
 /**
  * Kan denne kanskje erstattes av kall til modiacontextholder, og bør den evt gjøre det?
