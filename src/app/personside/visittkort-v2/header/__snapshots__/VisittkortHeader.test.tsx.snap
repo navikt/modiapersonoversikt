@@ -31,6 +31,17 @@ exports[`Tester visittkort-header sin funksjonalitet > viser info om bruker i vi
   pointer-events: none;
 }
 
+.c12 {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.c12 >* {
+  margin: 6px 0 0 6px;
+  white-space: nowrap;
+}
+
 .c3 {
   display: flex;
   justify-content: center;
@@ -41,17 +52,6 @@ exports[`Tester visittkort-header sin funksjonalitet > viser info om bruker i vi
 .c3 svg {
   height: 2.5rem;
   width: auto;
-}
-
-.c12 {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.c12 >* {
-  margin: 6px 0 0 6px;
-  white-space: nowrap;
 }
 
 .c13 {

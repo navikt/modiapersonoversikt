@@ -2,17 +2,7 @@
 
 exports[`viser send ny melding 1`] = `
 <DocumentFragment>
-  .c1 {
-  position: relative;
-}
-
-.c2 {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.c12 label {
+  .c12 label {
   position: absolute!important;
   height: 1px;
   width: 1px;
@@ -47,6 +37,16 @@ exports[`viser send ny melding 1`] = `
 
 .c11 >*:not(:last-child) {
   margin-right: 1rem;
+}
+
+.c1 {
+  position: relative;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 
 .c14 {

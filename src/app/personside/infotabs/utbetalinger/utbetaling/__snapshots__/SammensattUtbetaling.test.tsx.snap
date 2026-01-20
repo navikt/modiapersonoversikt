@@ -2,33 +2,7 @@
 
 exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
 <DocumentFragment>
-  .c5 {
-  border: none;
-  background-color: transparent;
-  padding: 0.1rem 0.2rem;
-  border-radius: .35rem;
-  cursor: pointer;
-  display: flex;
-  color: #0067c5;
-}
-
-.c5 svg {
-  margin-left: 0.5rem;
-  height: 1.2rem;
-  width: 1.2rem;
-}
-
-.c5:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.1875rem #254b6d;
-}
-
-.c5:hover {
-  opacity: 0.8;
-  text-decoration: underline;
-}
-
-.c3 {
+  .c3 {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -91,6 +65,32 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
 .c12:hover:after {
   content: '';
   border-color: #0067c5;
+}
+
+.c5 {
+  border: none;
+  background-color: transparent;
+  padding: 0.1rem 0.2rem;
+  border-radius: .35rem;
+  cursor: pointer;
+  display: flex;
+  color: #0067c5;
+}
+
+.c5 svg {
+  margin-left: 0.5rem;
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+.c5:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c5:hover {
+  opacity: 0.8;
+  text-decoration: underline;
 }
 
 .c1 table {

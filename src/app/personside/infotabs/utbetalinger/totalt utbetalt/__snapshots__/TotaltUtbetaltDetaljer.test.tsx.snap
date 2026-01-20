@@ -270,42 +270,36 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
             <thead>
               <tr>
                 <th
-                  role="columnheader"
                   scope="col"
                 >
                   Ytelse
                 </th>
                 <th
                   class="sumBrutto"
-                  role="columnheader"
                   scope="col"
                 >
                   Brutto
                 </th>
                 <th
                   class="sumTrekk"
-                  role="columnheader"
                   scope="col"
                 >
                   Trekk
                 </th>
                 <th
                   class="sumNetto"
-                  role="columnheader"
                   scope="col"
                 >
                   Utbetalt
                 </th>
                 <th
                   class="visually-hidden"
-                  role="columnheader"
                   scope="col"
                 >
                   Periode
                 </th>
                 <th
                   class="visually-hidden"
-                  role="columnheader"
                   scope="col"
                 >
                   Detaljer
