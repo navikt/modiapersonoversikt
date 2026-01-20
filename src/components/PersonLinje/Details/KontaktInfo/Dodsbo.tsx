@@ -8,13 +8,7 @@ import { Adresseinfo, InfoElement, LastChanged } from '../components';
 type Dodsbo = PersonData['dodsbo'][number];
 type Adressat = Dodsbo['adressat'];
 
-function Adressatinfo({
-    harFeilendeSystem,
-    adressat
-}: {
-    harFeilendeSystem: boolean;
-    adressat: Adressat;
-}) {
+function Adressatinfo({ harFeilendeSystem, adressat }: { harFeilendeSystem: boolean; adressat: Adressat }) {
     if (adressat.advokatSomAdressat) {
         return <AdvokatSomAdressatInfo adressat={adressat.advokatSomAdressat} />;
     }
@@ -27,11 +21,7 @@ function Adressatinfo({
     return <Alert variant="warning">Ingen adressat funnet</Alert>;
 }
 
-function AdvokatSomAdressatInfo({
-    adressat
-}: {
-    adressat: NonNullable<Adressat['advokatSomAdressat']>;
-}) {
+function AdvokatSomAdressatInfo({ adressat }: { adressat: NonNullable<Adressat['advokatSomAdressat']> }) {
     const firma = adressat.organisasjonsnavn ? (
         <BodyShort size="small">Advokatfirma {adressat.organisasjonsnavn}</BodyShort>
     ) : null;
@@ -48,11 +38,7 @@ function AdvokatSomAdressatInfo({
     );
 }
 
-function OrganisasjonSomAdressatInfo({
-    adressat
-}: {
-    adressat: NonNullable<Adressat['organisasjonSomAdressat']>;
-}) {
+function OrganisasjonSomAdressatInfo({ adressat }: { adressat: NonNullable<Adressat['organisasjonSomAdressat']> }) {
     const orgnr = adressat.organisasjonsnummer ? (
         <BodyShort size="small">Org. nr: {adressat.organisasjonsnummer}</BodyShort>
     ) : null;
@@ -95,13 +81,7 @@ function PersonSomAdressatInfo({
     );
 }
 
-function KontaktinformasjonDodsbo({
-    harFeilendeSystem,
-    dodsbo
-}: {
-    dodsbo: Dodsbo[];
-    harFeilendeSystem: boolean;
-}) {
+function KontaktinformasjonDodsbo({ harFeilendeSystem, dodsbo }: { dodsbo: Dodsbo[]; harFeilendeSystem: boolean }) {
     return (
         <>
             {dodsbo.map((dodsbo, index) => {

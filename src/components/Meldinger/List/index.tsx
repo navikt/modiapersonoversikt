@@ -6,7 +6,7 @@ import ErrorBoundary from 'src/components/ErrorBoundary';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
 import { useAntallListeElementeBasertPaaSkjermStorrelse } from 'src/utils/customHooks';
-import { TraadListFilterCard, meldingerFilterAtom } from './Filter';
+import { meldingerFilterAtom, TraadListFilterCard } from './Filter';
 import { TraadItem } from './TraadItem';
 import { useFilterMeldinger } from './utils';
 

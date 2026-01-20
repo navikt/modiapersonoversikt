@@ -3,13 +3,13 @@ import { useRef } from 'react';
 import styled from 'styled-components';
 import { useDialogpanelState } from '../../context/dialogpanel-state';
 import { VisittkortStateProvider } from '../../context/visittkort-state';
-import EkspanderDilaogpanelKnapp from './EkspanderDilaogpanelKnapp';
-import { LayoutWrapper } from './MainLayoutStyles';
-import { HoyreKolonne, SmallScreenToggleButton, VenstreKolonne } from './ResponsiveMainLayoutStyles';
 import BrukerHarUbesvarteMeldinger from './dialogpanel/BrukerHarUbesvarteMeldinger';
 import DialogPanel from './dialogpanel/DialogPanel';
 import TildelteOppgaver from './dialogpanel/TildelteOppgaver';
+import EkspanderDilaogpanelKnapp from './EkspanderDilaogpanelKnapp';
 import InfoTabs from './infotabs/InfoTabs';
+import { LayoutWrapper } from './MainLayoutStyles';
+import { HoyreKolonne, SmallScreenToggleButton, VenstreKolonne } from './ResponsiveMainLayoutStyles';
 import Visittkort from './visittkort-v2/Visittkort';
 
 const Scrollbar = styled.div`

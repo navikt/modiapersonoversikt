@@ -7,7 +7,7 @@ import { apiBaseUri } from '../../api/config';
 import { getUtbetalingerForSiste30DagerDatoer } from '../../app/personside/infotabs/utbetalinger/utils/utbetalinger-utils';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import type { UtbetalingerResponse } from '../../models/utbetalinger';
-import { type DefaultConfig, type RendererOrConfig, applyDefaults, useRest } from '../useRest';
+import { applyDefaults, type DefaultConfig, type RendererOrConfig, useRest } from '../useRest';
 
 function urlV2(fom: string, tom: string): string {
     return `${apiBaseUri}/utbetaling?startDato=${fom}&sluttDato=${tom}`;

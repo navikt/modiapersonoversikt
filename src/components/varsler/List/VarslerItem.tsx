@@ -24,11 +24,7 @@ const Status = ({ varsel }: { varsel: VarselData }) => {
     );
 };
 
-export const VarslerItem = ({
-    varsel
-}: {
-    varsel: VarselData;
-}) => {
+export const VarslerItem = ({ varsel }: { varsel: VarselData }) => {
     const aktivVarsel = routeApi.useSearch().id;
     const navigate = routeApi.useNavigate();
 

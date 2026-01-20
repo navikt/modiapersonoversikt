@@ -84,13 +84,7 @@ const oppgaveFormValidator = z.object({
 
 type OppgaveFormValue = z.infer<typeof oppgaveFormValidator>;
 
-const OppgaveForm = ({
-    traad,
-    onSuccess
-}: {
-    traad: Traad;
-    onSuccess: () => void;
-}) => {
+const OppgaveForm = ({ traad, onSuccess }: { traad: Traad; onSuccess: () => void }) => {
     const errorSummaryRef = useRef<HTMLDivElement>(null);
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const fnr = usePersonAtomValue();

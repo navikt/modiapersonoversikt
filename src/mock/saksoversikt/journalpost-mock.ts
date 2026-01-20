@@ -4,8 +4,8 @@ import {
     type Dokument,
     DokumentStatus,
     Entitet,
-    type FeilWrapper,
     Feilmelding,
+    type FeilWrapper,
     type Journalpost,
     Kommunikasjonsretning
 } from '../../models/saksoversikt/journalpost';

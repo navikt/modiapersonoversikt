@@ -7,8 +7,8 @@ import type { Arbeidsforhold } from 'src/models/ytelse/arbeidsforhold';
 import type {
     Periode,
     Pleiepengeperiode,
-    PleiepengerResponse,
     Pleiepengerettighet,
+    PleiepengerResponse,
     Vedtak
 } from 'src/models/ytelse/pleiepenger';
 import { backendDatoformat } from 'src/utils/date-utils';

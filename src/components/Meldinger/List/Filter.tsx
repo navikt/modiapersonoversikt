@@ -12,7 +12,7 @@ import {
     VStack
 } from '@navikt/ds-react';
 import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai';
-import { RESET, atomWithReset, useResetAtom } from 'jotai/utils';
+import { atomWithReset, RESET, useResetAtom } from 'jotai/utils';
 import { debounce, isEqual, xor } from 'lodash';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import DateRangeSelector from 'src/components/DateFilters/DatePeriodSelector';

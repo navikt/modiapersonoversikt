@@ -1,4 +1,4 @@
-import { Alert, HGrid, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, Heading, HGrid, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import { Suspense, useEffect, useRef } from 'react';

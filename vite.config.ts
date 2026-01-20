@@ -1,13 +1,11 @@
 import path from 'node:path';
-import type { IndexHtmlTransform, Plugin } from 'vite';
-import { configDefaults } from 'vitest/config';
-import { defineConfig } from 'vitest/config';
-
 import { fileURLToPath } from 'node:url';
 import { TanStackRouterVite } from '@tanstack/router-plugin/vite';
 import react from '@vitejs/plugin-react';
+import type { IndexHtmlTransform, Plugin } from 'vite';
 import vitePluginSvgr from 'vite-plugin-svgr';
 import { viteRequire } from 'vite-require';
+import { configDefaults, defineConfig } from 'vitest/config';
 import { reactCompilerIgnore, reactCompilerSources } from './reactCompiler';
 
 const reactCompilerConfig = {

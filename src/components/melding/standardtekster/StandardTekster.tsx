@@ -70,7 +70,10 @@ const useSubmitTekstByEnter = (ref: RefObject<HTMLDivElement | null>, submitTeks
 function StandardTekster({
     velgTekst,
     modalRef
-}: { velgTekst: (tekst: string) => void; modalRef?: React.RefObject<HTMLDialogElement | null> }) {
+}: {
+    velgTekst: (tekst: string) => void;
+    modalRef?: React.RefObject<HTMLDialogElement | null>;
+}) {
     const { data } = useStandardTekster();
     useSetDefaultAtomVerdier(data);
     const [values] = useAtom(standardTekstSokAtom);

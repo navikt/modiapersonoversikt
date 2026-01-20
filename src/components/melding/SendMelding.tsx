@@ -1,4 +1,4 @@
-import { Alert, Button, HStack, Heading, Skeleton } from '@navikt/ds-react';
+import { Alert, Button, Heading, HStack, Skeleton } from '@navikt/ds-react';
 import { useAtom } from 'jotai';
 import { type ReactElement, Suspense, useCallback, useMemo } from 'react';
 import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';

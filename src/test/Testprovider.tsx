@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { RouterProvider, createRootRoute, createRoute, createRouter } from '@tanstack/react-router';
+import { createRootRoute, createRoute, createRouter, RouterProvider } from '@tanstack/react-router';
 import { render } from '@testing-library/react';
-import { Provider as JProvider, createStore } from 'jotai';
+import { createStore, Provider as JProvider } from 'jotai';
 import type { ReactElement, ReactNode } from 'react';
 import { Provider } from 'react-redux';
 import type { Store } from 'redux';

@@ -1,5 +1,5 @@
 import type { UseQueryResult } from '@tanstack/react-query';
-import { type Dispatch, type Store, applyMiddleware, createStore } from 'redux';
+import { applyMiddleware, createStore, type Dispatch, type Store } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { statiskArbeidsavklaringspengerMock } from 'src/mock/ytelse/statiskArbeidsavklaringspengerMock';
 import {

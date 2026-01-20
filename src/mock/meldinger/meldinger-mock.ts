@@ -12,7 +12,7 @@ import {
     type Traad,
     TraadType
 } from 'src/models/meldinger/meldinger';
-import { TemaSamtalereferat, Temagruppe } from 'src/models/temagrupper';
+import { Temagruppe, TemaSamtalereferat } from 'src/models/temagrupper';
 import { backendDatoTidformat } from 'src/utils/date-utils';
 import standardTeksterMock from '../standardTeksterMock';
 import { fyllRandomListe } from '../utils/mock-utils';

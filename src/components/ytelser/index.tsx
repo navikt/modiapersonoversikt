@@ -1,4 +1,4 @@
-import { HGrid, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { Heading, HGrid, Skeleton, VStack } from '@navikt/ds-react';
 import { Suspense } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { ValgteYtelseDetailPage } from 'src/components/ytelser/Detail';

@@ -4,8 +4,8 @@ import navfaker from 'nav-faker';
 import type { DittNavEvent, VarslerResult } from '../../models/varsel';
 import { backendDatoformat } from '../../utils/date-utils';
 import { aremark } from '../persondata/aremark';
-import { nArrayElement } from '../utils-mock';
 import { fyllRandomListe } from '../utils/mock-utils';
+import { nArrayElement } from '../utils-mock';
 import { statiskDittnavEventVarselMock } from './statiskVarselMock';
 
 export function getMockVarsler(fnr: string): VarslerResult {

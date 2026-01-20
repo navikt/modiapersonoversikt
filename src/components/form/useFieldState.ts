@@ -1,5 +1,4 @@
-import type { FieldValues } from 'react-hook-form';
-import type { UseFormReturn } from 'react-hook-form';
+import type { FieldValues, UseFormReturn } from 'react-hook-form';
 import type { FieldPath } from 'react-hook-form/';
 import type { UseFieldStateReturn } from './formTypes';
 

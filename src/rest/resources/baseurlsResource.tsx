@@ -4,7 +4,7 @@ import { type FetchError, get } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import type { BaseUrls } from '../../models/baseurls';
-import { type DefaultConfig, type RendererOrConfig, applyDefaults, useRest } from '../useRest';
+import { applyDefaults, type DefaultConfig, type RendererOrConfig, useRest } from '../useRest';
 
 const queryKey = ['baseurls'];
 const url = `${apiBaseUri}/baseurls`;

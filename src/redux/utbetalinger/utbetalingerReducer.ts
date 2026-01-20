@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import type { AppState } from 'src/redux/reducers';
 import { ISO_DATE_FORMAT } from 'src/utils/date-utils';
 import { type Actions, actionKeys } from './actions';
-import { PeriodeValg, type UtbetalingFilterState, type UtbetalingerState } from './types';
+import { PeriodeValg, type UtbetalingerState, type UtbetalingFilterState } from './types';
 
 const initialState: UtbetalingerState = {
     ytelseIFokus: null,

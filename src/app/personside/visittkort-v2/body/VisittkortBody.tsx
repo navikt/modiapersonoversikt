@@ -5,7 +5,6 @@ import RettsligHandleevne from 'src/app/personside/visittkort-v2/body/rettsligha
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import type { Data as PersonData } from '../PersondataDomain';
-import { Kolonne, VisittkortBodyWrapper } from './VisittkortStyles';
 import DeltBosted from './deltBosted/DeltBosted';
 import Familie from './familie/Familie';
 import Foreldreansvar from './foreldreansvar/Foreldreansvar';
@@ -15,6 +14,7 @@ import LenkeBrukerprofil from './lenkebrukerprofil/LenkeBrukerprofil';
 import NavKontor from './navkontor/NavKontor';
 import Sikkerhetstiltak from './sikkerhetstiltak/Sikkerhetstiltak';
 import TilrettelagtKommunikasjon from './tilrettelagtkommunikasjon/TilrettelagtKommunikasjon';
+import { Kolonne, VisittkortBodyWrapper } from './VisittkortStyles';
 import Vergemal from './vergemal/Vergemal';
 
 interface Props {

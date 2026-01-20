@@ -14,8 +14,8 @@ import {
     byggAutofullforMap,
     useAutoFullforData
 } from '../../app/personside/dialogpanel/sendMelding/autofullforUtils';
-import { Locale } from '../../app/personside/dialogpanel/sendMelding/standardTekster/domain';
 import type * as StandardTeksterModels from '../../app/personside/dialogpanel/sendMelding/standardTekster/domain';
+import { Locale } from '../../app/personside/dialogpanel/sendMelding/standardTekster/domain';
 import { rapporterBruk } from '../../app/personside/dialogpanel/sendMelding/standardTekster/sokUtils';
 import skrivestotteResource from '../../rest/resources/skrivestotteResource';
 import { loggEvent } from '../../utils/logger/frontendLogger';

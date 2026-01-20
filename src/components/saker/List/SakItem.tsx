@@ -1,5 +1,4 @@
-import { CircleSlashIcon } from '@navikt/aksel-icons';
-import { FilesIcon } from '@navikt/aksel-icons';
+import { CircleSlashIcon, FilesIcon } from '@navikt/aksel-icons';
 import { Detail, HStack, Label, Link, Tag, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import Card from 'src/components/Card';
@@ -8,6 +7,7 @@ import type { SaksDokumenter } from 'src/generated/modiapersonoversikt-api';
 import { trackingEvents } from 'src/utils/analytics';
 import { formatterDato } from 'src/utils/date-utils';
 import { twMerge } from 'tailwind-merge';
+
 const routeApi = getRouteApi('/new/person/saker');
 
 const AntallDokumenterBadge = ({ sak }: { sak: SaksDokumenter }) => {
@@ -33,11 +33,7 @@ const HarIkkeTilgangBadge = ({ sak }: { sak: SaksDokumenter }) => {
     );
 };
 
-export const SakItem = ({
-    sak
-}: {
-    sak: SaksDokumenter;
-}) => {
+export const SakItem = ({ sak }: { sak: SaksDokumenter }) => {
     const aktivSakId = routeApi.useSearch().id;
     const navigate = routeApi.useNavigate();
     const id = getSakId(sak);

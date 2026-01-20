@@ -2,9 +2,9 @@ import {
     type Action,
     type AnyAction,
     type CombinedState,
+    combineReducers,
     type Reducer,
-    type ReducersMapObject,
-    combineReducers
+    type ReducersMapObject
 } from 'redux';
 
 type Keyof<S> = string & keyof S;

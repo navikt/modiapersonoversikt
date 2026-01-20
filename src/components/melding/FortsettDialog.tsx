@@ -11,7 +11,7 @@ import {
     Loader,
     VStack
 } from '@navikt/ds-react';
-import { type ValidationError, useForm } from '@tanstack/react-form';
+import { useForm, type ValidationError } from '@tanstack/react-form';
 import { useAtom, useAtomValue } from 'jotai';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import DraftStatus from 'src/app/personside/dialogpanel/DraftStatus';
@@ -35,11 +35,11 @@ import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { formatterDatoTid } from 'src/utils/date-utils';
 import type { z } from 'zod';
 import AutocompleteTextarea from './AutoCompleteTextarea';
+import { fortsettDialogSchema, maksLengdeMelding } from './nyMeldingSchema';
 import { Oppgaveliste } from './OppgavelisteOptions';
+import { useTraadHenvendelse } from './useHenvendelse';
 import { meldingsTyperTekst, traadTypeToMeldingsType } from './VelgMeldingsType';
 import VelgOppgaveliste from './VelgOppgaveliste';
-import { fortsettDialogSchema, maksLengdeMelding } from './nyMeldingSchema';
-import { useTraadHenvendelse } from './useHenvendelse';
 
 type FortsettDialogForm = z.infer<typeof fortsettDialogSchema>;
 

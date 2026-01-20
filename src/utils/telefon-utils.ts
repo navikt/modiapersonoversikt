@@ -1,5 +1,4 @@
-import { removeWhitespace } from './string-utils';
-import { formatNumber } from './string-utils';
+import { formatNumber, removeWhitespace } from './string-utils';
 
 export function formaterMobiltelefonnummer(telefonnummer: string) {
     if (telefonnummer.startsWith('+') && telefonnummer.length === 11) {

@@ -2,8 +2,7 @@ import dayjs, { type Dayjs } from 'dayjs';
 import type { Periode } from 'src/models/tid';
 import type { Skatt, Trekk, Utbetaling, Ytelse, Ytelseskomponent } from 'src/models/utbetalinger';
 import { type FraTilDato, type PeriodeOptions, PeriodeValg } from 'src/redux/utbetalinger/types';
-import { datoVerbose } from 'src/utils/date-utils';
-import { ISO_DATE_FORMAT } from 'src/utils/date-utils';
+import { datoVerbose, ISO_DATE_FORMAT } from 'src/utils/date-utils';
 import { loggError } from 'src/utils/logger/frontendLogger';
 import { formaterDato } from 'src/utils/string-utils';
 

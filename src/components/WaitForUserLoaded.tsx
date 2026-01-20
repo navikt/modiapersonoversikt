@@ -6,11 +6,7 @@ import { aktivBrukerAtom, aktivBrukerLastetAtom } from 'src/lib/state/context';
 import { erGyldigishFnr } from 'src/utils/fnr-utils';
 import useTimeout from 'src/utils/hooks/use-timeout';
 
-const WaitForUserLoaded = ({
-    children
-}: {
-    children: ({ fnr }: { fnr: string }) => JSX.Element;
-}) => {
+const WaitForUserLoaded = ({ children }: { children: ({ fnr }: { fnr: string }) => JSX.Element }) => {
     const aktivBruker = useAtomValue(aktivBrukerAtom);
     const aktivBrukerLastet = useAtomValue(aktivBrukerLastetAtom);
 

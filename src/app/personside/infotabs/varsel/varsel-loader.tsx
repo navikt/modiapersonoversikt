@@ -1,7 +1,7 @@
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import * as React from 'react';
 import LazySpinner from '../../../../components/LazySpinner';
-import { type UnifiedVarsel, type VarslerResult, isDittNavEvent } from '../../../../models/varsel';
+import { isDittNavEvent, type UnifiedVarsel, type VarslerResult } from '../../../../models/varsel';
 import varselResource from '../../../../rest/resources/varselResource';
 import { datoSynkende } from '../../../../utils/date-utils';
 

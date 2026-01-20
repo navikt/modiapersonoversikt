@@ -1,4 +1,4 @@
-import { HStack, Heading, Tag } from '@navikt/ds-react';
+import { Heading, HStack, Tag } from '@navikt/ds-react';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { AdresseBeskyttelseKode, type PersonData } from 'src/lib/types/modiapersonoversikt-api';
 
@@ -26,11 +26,7 @@ export const PersonBadges = () => {
     );
 };
 
-function DiskresjonskodeBadges({
-    adressebeskyttelser
-}: {
-    adressebeskyttelser: PersonData['adressebeskyttelse'];
-}) {
+function DiskresjonskodeBadges({ adressebeskyttelser }: { adressebeskyttelser: PersonData['adressebeskyttelse'] }) {
     const adressebeskyttelse = adressebeskyttelser.firstOrNull();
     if (
         !adressebeskyttelse?.kode ||
@@ -46,11 +42,7 @@ function DiskresjonskodeBadges({
     );
 }
 
-function EgenAnsattBadge({
-    erEgenansatt
-}: {
-    erEgenansatt: PersonData['erEgenAnsatt'];
-}) {
+function EgenAnsattBadge({ erEgenansatt }: { erEgenansatt: PersonData['erEgenAnsatt'] }) {
     if (erEgenansatt === 'JA') {
         return (
             <Tag size="small" variant="error">
@@ -61,11 +53,7 @@ function EgenAnsattBadge({
     return null;
 }
 
-function SikkerhetstiltakBadge({
-    sikkerhetstiltak
-}: {
-    sikkerhetstiltak: PersonData['sikkerhetstiltak'];
-}) {
+function SikkerhetstiltakBadge({ sikkerhetstiltak }: { sikkerhetstiltak: PersonData['sikkerhetstiltak'] }) {
     if (sikkerhetstiltak.isEmpty()) {
         return null;
     }
@@ -77,11 +65,7 @@ function SikkerhetstiltakBadge({
     );
 }
 
-function ReservertIKRRBadge({
-    kontaktInfo
-}: {
-    kontaktInfo: PersonData['kontaktInformasjon'];
-}) {
+function ReservertIKRRBadge({ kontaktInfo }: { kontaktInfo: PersonData['kontaktInformasjon'] }) {
     if (kontaktInfo?.erReservert?.value) {
         return (
             <Tag size="small" variant="warning">
@@ -99,11 +83,7 @@ function ReservertIKRRBadge({
     return null;
 }
 
-function ManuellStatusBadge({
-    kontaktInfo
-}: {
-    kontaktInfo: PersonData['kontaktInformasjon'];
-}) {
+function ManuellStatusBadge({ kontaktInfo }: { kontaktInfo: PersonData['kontaktInformasjon'] }) {
     const erManuell = kontaktInfo?.erManuell || kontaktInfo?.erReservert?.value;
 
     if (erManuell) {

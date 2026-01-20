@@ -1,11 +1,11 @@
 import { Box, HStack, VStack } from '@navikt/ds-react';
-import { Navigate, Outlet, createLazyFileRoute } from '@tanstack/react-router';
+import { createLazyFileRoute, Navigate, Outlet } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import { Suspense } from 'react';
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
+import { LukkbarNyMelding } from 'src/components/melding/LukkbarNyMelding';
 import { PersonLinje } from 'src/components/PersonLinje';
 import { PersonSidebarMenu } from 'src/components/PersonSidebar';
-import { LukkbarNyMelding } from 'src/components/melding/LukkbarNyMelding';
 import { aktivBrukerAtom } from 'src/lib/state/context';
 
 export const Route = createLazyFileRoute('/new/person')({

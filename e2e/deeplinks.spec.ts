@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
-import { INFOTABS } from 'src/app/personside/infotabs/InfoTabEnum';
 import { meldingerTest, sakerTest, ytelserTest } from 'src/app/personside/infotabs/dyplenkeTest/utils-dyplenker-test';
+import { INFOTABS } from 'src/app/personside/infotabs/InfoTabEnum';
 
 test('Utbetalinger', async ({ page }) => {
     await page.clock.setFixedTime(new Date(0));

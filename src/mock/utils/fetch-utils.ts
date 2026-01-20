@@ -1,10 +1,10 @@
 import {
     type DefaultBodyType,
+    delay,
     HttpResponse,
     type HttpResponseResolver,
     type PathParams,
-    type StrictRequest,
-    delay
+    type StrictRequest
 } from 'msw';
 
 export function withDelayedResponse<R extends DefaultBodyType, T extends DefaultBodyType = { fnr: string }>(

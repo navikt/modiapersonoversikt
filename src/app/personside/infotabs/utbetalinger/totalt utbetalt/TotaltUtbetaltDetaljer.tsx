@@ -7,8 +7,7 @@ import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import type { Utbetaling, Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
 import theme from '../../../../../styles/personOversiktTheme';
 import { groupArray } from '../../../../../utils/groupArray';
-import { formaterDato } from '../../../../../utils/string-utils';
-import { sorterAlfabetisk } from '../../../../../utils/string-utils';
+import { formaterDato, sorterAlfabetisk } from '../../../../../utils/string-utils';
 import {
     filtrerBortUtbetalingerSomIkkeErUtbetalt,
     formaterNOK,

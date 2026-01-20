@@ -1,5 +1,4 @@
-import { render } from '@testing-library/react';
-import { renderHook, screen } from '@testing-library/react';
+import { render, renderHook, screen } from '@testing-library/react';
 import navfaker from 'nav-faker';
 import usePaginering from './usePaginering';
 

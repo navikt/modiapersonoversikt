@@ -1,7 +1,7 @@
 import { GlobeFillIcon } from '@navikt/aksel-icons';
 import { BodyShort, Box } from '@navikt/ds-react';
-import { Group, InfoElement, LastChanged } from 'src/components/PersonLinje/Details/components';
 import ValidPeriod from 'src/components/PersonLinje/common/ValidPeriod';
+import { Group, InfoElement, LastChanged } from 'src/components/PersonLinje/Details/components';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { formaterDato } from 'src/utils/string-utils';
 

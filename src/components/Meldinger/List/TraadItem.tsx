@@ -90,11 +90,7 @@ function UbesvartMelding({ traad }: { traad: TraadDto }) {
 }
 const routeApi = getRouteApi('/new/person/meldinger');
 
-export const TraadItem = ({
-    traad
-}: {
-    traad: TraadDto;
-}) => {
+export const TraadItem = ({ traad }: { traad: TraadDto }) => {
     const sisteMelding = nyesteMelding(traad);
     const datoTekst = getFormattertMeldingsDato(sisteMelding);
     const tittel = traadstittel(traad);

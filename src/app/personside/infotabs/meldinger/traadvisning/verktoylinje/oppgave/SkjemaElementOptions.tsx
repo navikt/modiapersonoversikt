@@ -1,6 +1,5 @@
-import type { GsakTema } from '../../../../../../../models/meldinger/oppgave';
-
 import type { JSX } from 'react';
+import type { GsakTema } from '../../../../../../../models/meldinger/oppgave';
 
 export function TemaOptions({ gsakTema }: { gsakTema: GsakTema[] }) {
     const options: JSX.Element[] = [

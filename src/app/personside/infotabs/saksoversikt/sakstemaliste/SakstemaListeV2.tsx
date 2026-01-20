@@ -8,8 +8,7 @@ import styled from 'styled-components';
 import type { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { useHentAlleSakstemaFraResourceV2, useSakstemaURLStateV2 } from '../useSakstemaURLState';
-import { sakstemakodeAlle } from '../utils/saksoversiktUtilsV2';
-import { aggregertSakstemaV2 } from '../utils/saksoversiktUtilsV2';
+import { aggregertSakstemaV2, sakstemakodeAlle } from '../utils/saksoversiktUtilsV2';
 import SakstemaListeElementCheckboksV2 from './SakstemaListeElementCheckboksV2';
 import { filtrerSakstemaerUtenDataV2 } from './SakstemaListeUtils';
 

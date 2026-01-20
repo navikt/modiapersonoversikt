@@ -1,5 +1,5 @@
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import { PureComponent, createRef } from 'react';
+import { createRef, PureComponent } from 'react';
 import { connect } from 'react-redux';
 import type { AnyAction, Dispatch } from 'redux';
 import { BulletPoint, SpaceBetween } from 'src/components/common-styled-components';

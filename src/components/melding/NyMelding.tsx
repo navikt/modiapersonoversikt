@@ -1,18 +1,18 @@
 import { Alert, Bleed, Box, Button, ErrorMessage, HGrid, HStack, VStack } from '@navikt/ds-react';
-import { type ValidationError, useForm, useStore } from '@tanstack/react-form';
+import { useForm, useStore, type ValidationError } from '@tanstack/react-form';
 import { useAtomValue } from 'jotai';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import DraftStatus from 'src/app/personside/dialogpanel/DraftStatus';
 import useDraft, { type Draft, type DraftContext } from 'src/app/personside/dialogpanel/use-draft';
-import { Oppgaveliste } from 'src/components/melding/OppgavelisteOptions';
-import { ValgForMeldingstype } from 'src/components/melding/ValgForMeldingstype';
-import { MeldingsType, VelgMeldingsType, meldingsTyperTekst } from 'src/components/melding/VelgMeldingsType';
-import VelgOppgaveliste from 'src/components/melding/VelgOppgaveliste';
-import VelgTema from 'src/components/melding/VelgTema';
 import nyMeldingSchema, { maksLengdeMelding } from 'src/components/melding/nyMeldingSchema';
+import { Oppgaveliste } from 'src/components/melding/OppgavelisteOptions';
 import AutoCompleteTekstTips from 'src/components/melding/standardtekster/AutoCompleteTekstTips';
 import StandardTekstModal from 'src/components/melding/standardtekster/StandardTeksterModal';
 import { settInnStandardTekst } from 'src/components/melding/standardtekster/settInnStandardTekst';
+import { ValgForMeldingstype } from 'src/components/melding/ValgForMeldingstype';
+import { MeldingsType, meldingsTyperTekst, VelgMeldingsType } from 'src/components/melding/VelgMeldingsType';
+import VelgOppgaveliste from 'src/components/melding/VelgOppgaveliste';
+import VelgTema from 'src/components/melding/VelgTema';
 import VelgSak from 'src/components/sakVelger/VelgSak';
 import {
     type JournalforingSak,

@@ -1,4 +1,4 @@
-import { Alert, BodyLong, ErrorMessage, HStack, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, ErrorMessage, Heading, HStack, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import { Suspense, useEffect, useRef } from 'react';
@@ -37,14 +37,7 @@ const FeilteVarslingerListe = ({
     );
 };
 
-const DittNavInformasjonsLinje = ({
-    tittel,
-    tekst
-}: {
-    tittel: string;
-    tekst: string;
-    className?: string;
-}) => {
+const DittNavInformasjonsLinje = ({ tittel, tekst }: { tittel: string; tekst: string; className?: string }) => {
     return (
         <HStack gap="1">
             <HStack width="8rem">
@@ -57,13 +50,7 @@ const DittNavInformasjonsLinje = ({
     );
 };
 
-const DittNavInformasjonsLinjer = ({
-    varsel,
-    kanaler
-}: {
-    varsel: Varsel;
-    kanaler: string[];
-}) => {
+const DittNavInformasjonsLinjer = ({ varsel, kanaler }: { varsel: Varsel; kanaler: string[] }) => {
     return (
         <VStack gap="1" className="p-2">
             <Heading level="3" size="xsmall" className="mb-4">
@@ -75,13 +62,7 @@ const DittNavInformasjonsLinjer = ({
     );
 };
 
-const DittNavInformasjonsLinjerV2 = ({
-    varsel,
-    kanaler
-}: {
-    varsel: Varsel;
-    kanaler: string[];
-}) => {
+const DittNavInformasjonsLinjerV2 = ({ varsel, kanaler }: { varsel: Varsel; kanaler: string[] }) => {
     const varslingsTidspunkt = varsel.varslingsTidspunkt;
 
     return (

@@ -1,11 +1,11 @@
 import { GlobeFillIcon } from '@navikt/aksel-icons';
 import { Box } from '@navikt/ds-react';
 import { Normaltekst } from 'nav-frontend-typografi';
-import type { Person } from 'src/app/personside/visittkort-v2/PersondataDomain';
 import Endringstekst from 'src/app/personside/visittkort-v2/body/Endringstekst';
 import GyldighetsPeriode from 'src/app/personside/visittkort-v2/body/GyldighetsPeriode';
 import VisittkortElement from 'src/app/personside/visittkort-v2/body/VisittkortElement';
 import { VisittkortGruppe } from 'src/app/personside/visittkort-v2/body/VisittkortStyles';
+import type { Person } from 'src/app/personside/visittkort-v2/PersondataDomain';
 import { formaterDato } from 'src/utils/string-utils';
 
 interface Props {

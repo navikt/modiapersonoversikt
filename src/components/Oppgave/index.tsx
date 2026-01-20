@@ -1,4 +1,4 @@
-import { HGrid, Heading, VStack } from '@navikt/ds-react';
+import { Heading, HGrid, VStack } from '@navikt/ds-react';
 import { OppgaveDetail } from 'src/components/Oppgave/Details';
 import { OppgaverList } from 'src/components/Oppgave/List';
 

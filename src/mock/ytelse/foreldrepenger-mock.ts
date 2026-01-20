@@ -3,9 +3,9 @@ import dayjs from 'dayjs';
 import navfaker from 'nav-faker/dist/index';
 import type { Arbeidsforhold } from '../../models/ytelse/arbeidsforhold';
 import type {
-    ForeldrepengerResponse,
     Foreldrepengerettighet,
-    Foreldrepengerperiode
+    Foreldrepengerperiode,
+    ForeldrepengerResponse
 } from '../../models/ytelse/foreldrepenger';
 import type { KommendeUtbetaling } from '../../models/ytelse/ytelse-utbetalinger';
 import { backendDatoformat } from '../../utils/date-utils';

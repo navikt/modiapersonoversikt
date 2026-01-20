@@ -33,13 +33,7 @@ const FeilteVarslingerListeWrapper = styled.div`
   margin-bottom: 1rem;
 `;
 
-function DittNavInformasjonsLinje({
-    tittel,
-    tekst
-}: {
-    tittel: string;
-    tekst: string;
-}) {
+function DittNavInformasjonsLinje({ tittel, tekst }: { tittel: string; tekst: string }) {
     return (
         <>
             <dt>{tittel}</dt>
@@ -48,11 +42,7 @@ function DittNavInformasjonsLinje({
     );
 }
 
-function DittNavInformasjonsLinjer(varsel: {
-    produsent: string;
-    tekst: string;
-    link: string;
-}) {
+function DittNavInformasjonsLinjer(varsel: { produsent: string; tekst: string; link: string }) {
     return (
         <>
             <DittNavInformasjonsLinje tittel="Produsert av:" tekst={emptyReplacement(varsel.produsent, ENDASH)} />
@@ -77,13 +67,7 @@ function DittNavEventVarsel({ varsel }: { varsel: DittNavEvent }) {
     );
 }
 
-function FeilteVarslingerListe({
-    tittel,
-    feilteVarslinger
-}: {
-    tittel: string;
-    feilteVarslinger: FeiletVarsling[];
-}) {
+function FeilteVarslingerListe({ tittel, feilteVarslinger }: { tittel: string; feilteVarslinger: FeiletVarsling[] }) {
     return (
         <FeilteVarslingerListeWrapper>
             <BoldTekst>{tittel}</BoldTekst>

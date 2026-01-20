@@ -4,16 +4,16 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import type { ReactNode } from 'react';
 import { trackingEvents } from 'src/utils/analytics';
 import styled from 'styled-components';
+import { Bold } from '../../../../components/common-styled-components';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
-import { Bold } from '../../../../components/common-styled-components';
 import type { Utbetaling, UtbetalingerResponse } from '../../../../models/utbetalinger';
 import utbetalinger from '../../../../rest/resources/utbetalingerResource';
 import theme from '../../../../styles/personOversiktTheme';
 import { datoStigende, datoSynkende, datoVerbose } from '../../../../utils/date-utils';
 import { formaterDato } from '../../../../utils/string-utils';
-import { utbetalingerTest } from '../dyplenkeTest/utils-dyplenker-test';
 import { useInfotabsDyplenker } from '../dyplenker';
+import { utbetalingerTest } from '../dyplenkeTest/utils-dyplenker-test';
 import { getGjeldendeDatoForUtbetaling, utbetalingDatoComparator } from '../utbetalinger/utils/utbetalinger-utils';
 
 const ListStyle = styled.ol`

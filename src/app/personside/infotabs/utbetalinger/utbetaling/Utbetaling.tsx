@@ -1,10 +1,9 @@
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { memo } from 'react';
 import type { Utbetaling as UtbetalingInterface } from '../../../../../models/utbetalinger';
-import SammensattUtbetaling from './SammensattUtbetaling';
-
 import { useInfotabsDyplenker } from '../../dyplenker';
 import EnkelUtbetaling from './EnkelUtbetaling';
+import SammensattUtbetaling from './SammensattUtbetaling';
 
 interface Props {
     utbetaling: UtbetalingInterface;

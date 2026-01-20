@@ -1,13 +1,13 @@
 import { Alert, Button, HStack, Link, Loader, Theme } from '@navikt/ds-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Outlet, createRootRoute, useMatchRoute } from '@tanstack/react-router';
+import { createRootRoute, Outlet, useMatchRoute } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
-import { type PropsWithChildren, lazy, useEffect, useState } from 'react';
+import { lazy, type PropsWithChildren, useEffect, useState } from 'react';
 import { Toaster } from 'sonner';
 import HentGlobaleVerdier from 'src/app/FetchSessionInfoOgLeggIRedux';
+import Decorator from 'src/app/internarbeidsflatedecorator/Decorator';
 import LoggetUtModal from 'src/app/LoggetUtModal';
 import VelgEnhet from 'src/app/VelgEnhet';
-import Decorator from 'src/app/internarbeidsflatedecorator/Decorator';
 import DemoBanner from 'src/components/DemoBanner';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import NotFound from 'src/components/NotFound';

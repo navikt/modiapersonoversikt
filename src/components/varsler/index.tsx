@@ -1,4 +1,4 @@
-import { HGrid, Heading, VStack } from '@navikt/ds-react';
+import { Heading, HGrid, VStack } from '@navikt/ds-react';
 import { VarselDetail } from 'src/components/varsler/Details';
 import { VarslerList } from 'src/components/varsler/List';
 

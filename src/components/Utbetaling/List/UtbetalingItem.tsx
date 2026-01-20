@@ -9,11 +9,7 @@ import { twMerge } from 'tailwind-merge';
 
 const routeApi = getRouteApi('/new/person/utbetaling');
 
-export const UtbetalingItem = ({
-    utbetaling
-}: {
-    utbetaling: Utbetaling;
-}) => {
+export const UtbetalingItem = ({ utbetaling }: { utbetaling: Utbetaling }) => {
     const aktivUtbetaling = routeApi.useSearch().id;
     const navigate = routeApi.useNavigate();
     const id = getUtbetalingId(utbetaling);

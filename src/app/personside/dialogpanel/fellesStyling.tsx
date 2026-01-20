@@ -10,9 +10,9 @@ import type { Traad } from '../../../models/meldinger/meldinger';
 import theme, { pxToRem } from '../../../styles/personOversiktTheme';
 import Verktoylinje from '../infotabs/meldinger/traadvisning/verktoylinje/Verktoylinje';
 import { traadstittel } from '../infotabs/meldinger/utils/meldingerUtils';
+import TidligereMeldinger from './fortsettDialog/tidligereMeldinger/TidligereMeldinger';
 import GaaTilNesteOppgaveKnapp from './GaaTilNesteOppgaveKnapp';
 import Preview from './Preview';
-import TidligereMeldinger from './fortsettDialog/tidligereMeldinger/TidligereMeldinger';
 import { SendNyMeldingStatus } from './sendMelding/SendNyMeldingTypes';
 import { useSendtMelding } from './useSendtMelding';
 

@@ -1,8 +1,8 @@
 import { Heading, VStack } from '@navikt/ds-react';
 import type { SakKategori } from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import TemaListeElement from 'src/components/melding/TemaListeElement';
-import type { Kategorier, Tema } from 'src/components/sakVelger/SakVelger';
 import { usePiltasterIListe } from 'src/components/sakVelger/keyboardHooks';
+import type { Kategorier, Tema } from 'src/components/sakVelger/SakVelger';
 
 interface SakVelgerTemaListProps {
     kategorier: Kategorier;

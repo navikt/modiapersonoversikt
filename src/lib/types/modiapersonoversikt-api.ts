@@ -1,4 +1,5 @@
 import {
+    type components,
     DataFeilendeSystemer,
     type KodeBeskrivelseAdresseBeskyttelse,
     KodeBeskrivelseAdresseBeskyttelseKode,
@@ -7,10 +8,10 @@ import {
     MeldingDTOMeldingstype,
     type MeldingDto,
     TraadDTOTraadType,
-    type TraadDto,
-    type components
+    type TraadDto
 } from 'src/generated/modiapersonoversikt-api';
 import type { ModiapersonoversiktAPI } from 'src/lib/clients/modiapersonoversikt-api';
+
 export * from 'src/generated/modiapersonoversikt-api';
 
 /*

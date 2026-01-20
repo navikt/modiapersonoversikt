@@ -9,7 +9,11 @@ const Dokument = ({
     journalPost,
     dokument,
     kanVises
-}: { journalPost: Dokumentmetadata; dokument: Dokument; kanVises: boolean }) => {
+}: {
+    journalPost: Dokumentmetadata;
+    dokument: Dokument;
+    kanVises: boolean;
+}) => {
     const fnr = usePersonAtomValue();
     const journalpostId = journalPost.journalpostId;
     const dokumentReferanse = dokument.dokumentreferanse;

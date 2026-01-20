@@ -4,9 +4,9 @@ import DescriptionList, {
 } from '../../../../../../components/DescriptionList';
 import type { Forsikring, Sykepenger, Sykmelding } from '../../../../../../models/ytelse/sykepenger';
 import {
-    NOKellerNull,
     convertBoolTilJaNei,
     datoEllerNull,
+    NOKellerNull,
     periodeEllerNull
 } from '../../../../../../utils/string-utils';
 import YtelserInfoGruppe from '../../felles-styling/YtelserInfoGruppe';

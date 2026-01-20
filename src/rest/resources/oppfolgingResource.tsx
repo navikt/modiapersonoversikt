@@ -7,7 +7,7 @@ import { apiBaseUri } from '../../api/config';
 import { getUtbetalingerForSiste30DagerDatoer } from '../../app/personside/infotabs/utbetalinger/utils/utbetalinger-utils';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import type { DetaljertOppfolging } from '../../models/oppfolging';
-import { type DefaultConfig, type RendererOrConfig, applyDefaults, useRest } from '../useRest';
+import { applyDefaults, type DefaultConfig, type RendererOrConfig, useRest } from '../useRest';
 
 const defaults: DefaultConfig = {
     ifPending: <CenteredLazySpinner />,

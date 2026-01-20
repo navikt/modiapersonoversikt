@@ -1,6 +1,5 @@
 import { Select, type SelectProps } from 'nav-frontend-skjema';
-import type { FieldValues } from 'react-hook-form';
-import type { FieldPath } from 'react-hook-form';
+import type { FieldPath, FieldValues } from 'react-hook-form';
 import type { FormElementProps } from './formTypes';
 import { useFieldState } from './useFieldState';
 

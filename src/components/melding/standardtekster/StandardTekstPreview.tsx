@@ -1,7 +1,7 @@
 import { Heading } from '@navikt/ds-react';
 import { useAtom } from 'jotai/index';
-import RichText, { defaultRules, HighlightRule, SladdRule } from 'src/components/RichText';
 import { standardTekstSokAtom } from 'src/components/melding/standardtekster/StandardTekster';
+import RichText, { defaultRules, HighlightRule, SladdRule } from 'src/components/RichText';
 
 function StandardTekstPreview() {
     const [values] = useAtom(standardTekstSokAtom);

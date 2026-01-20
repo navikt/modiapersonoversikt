@@ -2,8 +2,8 @@ import { capitalize } from 'lodash';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { type ReactNode, useEffect } from 'react';
-import { ytelserTest } from 'src/app/personside/infotabs/dyplenkeTest/utils-dyplenker-test';
 import { useInfotabsDyplenker } from 'src/app/personside/infotabs/dyplenker';
+import { ytelserTest } from 'src/app/personside/infotabs/dyplenkeTest/utils-dyplenker-test';
 import useBrukersYtelserMarkup from 'src/app/personside/infotabs/ytelser/useBrukersYtelserMarkup';
 import { CenteredLazySpinner } from 'src/components/LazySpinner';
 import VisMerKnapp from 'src/components/VisMerKnapp';
@@ -12,11 +12,11 @@ import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaring
 import { getArbeidsavklaringspengerIdDato } from 'src/models/ytelse/arbeidsavklaringspenger';
 import { type Foreldrepengerettighet, getForeldepengerIdDato } from 'src/models/ytelse/foreldrepenger';
 import { getForeldrepengerFpSakIdDato } from 'src/models/ytelse/foreldrepenger-fpsak';
-import { type Pensjon, getPensjonIdDato, getUnikPensjonKey } from 'src/models/ytelse/pensjon';
+import { getPensjonIdDato, getUnikPensjonKey, type Pensjon } from 'src/models/ytelse/pensjon';
 import type { Pleiepengerettighet } from 'src/models/ytelse/pleiepenger';
-import { type Sykepenger, getSykepengerIdDato } from 'src/models/ytelse/sykepenger';
+import { getSykepengerIdDato, type Sykepenger } from 'src/models/ytelse/sykepenger';
 import { getSykepengerSpokelseIdDato } from 'src/models/ytelse/sykepenger-spokelse';
-import { type Tiltakspenger, getTiltakspengerIdDato, getUnikTiltakspengerKey } from 'src/models/ytelse/tiltakspenger';
+import { getTiltakspengerIdDato, getUnikTiltakspengerKey, type Tiltakspenger } from 'src/models/ytelse/tiltakspenger';
 import { getUnikYtelseKey } from 'src/models/ytelse/ytelse-utils';
 import theme from 'src/styles/personOversiktTheme';
 import { trackingEvents } from 'src/utils/analytics';
@@ -140,9 +140,7 @@ function SykepengerSpokelseKomponent(props: { sykepenger: Utbetalingsperioder })
     );
 }
 
-function ForeldrepengerKomponent(props: {
-    foreldrepenger: Foreldrepengerettighet;
-}) {
+function ForeldrepengerKomponent(props: { foreldrepenger: Foreldrepengerettighet }) {
     const dyplenker = useInfotabsDyplenker();
     return (
         <VisMerKnapp

@@ -4,8 +4,8 @@ import type { UmamiEvent } from 'src/router';
 import styled from 'styled-components';
 import VisMerKnapp from '../../../../../components/VisMerKnapp';
 import { Behandlingsstatus, type SakstemaSoknadsstatus } from '../../../../../models/saksoversikt/sakstema';
-import { sakerTest } from '../../dyplenkeTest/utils-dyplenker-test';
 import { useInfotabsDyplenker } from '../../dyplenker';
+import { sakerTest } from '../../dyplenkeTest/utils-dyplenker-test';
 import { hentFormattertDatoForSisteHendelseV2 } from '../utils/saksoversiktUtilsV2';
 import { SVGStyling, saksikon, visAntallSakerSomHarbehandlingsstatusV2 } from './SakstemaListeUtils';
 

@@ -1,9 +1,9 @@
 import {
-    type Instrumentation,
-    type Meta,
-    ReactIntegration,
     getWebInstrumentations,
-    initializeFaro
+    type Instrumentation,
+    initializeFaro,
+    type Meta,
+    ReactIntegration
 } from '@grafana/faro-react';
 import { getEnvFromHost } from './environment';
 

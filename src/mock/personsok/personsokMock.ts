@@ -1,4 +1,8 @@
 import { type Faker, fakerNB_NO as faker } from '@faker-js/faker';
+import md5 from 'md5';
+import navfaker from 'nav-faker/dist/index';
+import type { Person } from '../../app/personside/visittkort-v2/PersondataDomain';
+import type { Kodeverk } from '../../models/kodeverk';
 import type {
     Brukerinfo,
     Navn,
@@ -7,11 +11,6 @@ import type {
     PersonsokResponse,
     UtenlandskID
 } from '../../models/person/personsok';
-
-import md5 from 'md5';
-import navfaker from 'nav-faker/dist/index';
-import type { Person } from '../../app/personside/visittkort-v2/PersondataDomain';
-import type { Kodeverk } from '../../models/kodeverk';
 import { aremark } from '../persondata/aremark';
 import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
 

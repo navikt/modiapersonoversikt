@@ -1,6 +1,6 @@
 import { act } from '@testing-library/react';
-import { renderWithProviders } from '../../../../../test/Testprovider';
 import { aremark } from './../../../../../mock/persondata/aremark';
+import { renderWithProviders } from '../../../../../test/Testprovider';
 import Fullmakter from './Fullmakt';
 
 test('viser fullmakt', async () => {

@@ -1,5 +1,5 @@
-import { InformasjonElement, type Person } from '../../PersondataDomain';
 import { harFeilendeSystemer } from '../../harFeilendeSystemer';
+import { InformasjonElement, type Person } from '../../PersondataDomain';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import Foreldre from './Foreldre';
 import ListeAvBarn from './ListeAvBarn';

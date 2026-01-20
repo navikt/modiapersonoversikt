@@ -6,13 +6,7 @@ import type { PersonsokRequest, PersonsokResponse } from 'src/lib/types/modiaper
 import type { Kodeverk } from 'src/models/kodeverk';
 import { useSettAktivBruker } from 'src/utils/customHooks';
 
-export function PersonsokResult({
-    query,
-    onClick
-}: {
-    query: PersonsokRequest;
-    onClick: () => void;
-}) {
+export function PersonsokResult({ query, onClick }: { query: PersonsokRequest; onClick: () => void }) {
     const enhet = useAtomValue(aktivEnhetAtom);
     const settAktivBruker = useSettAktivBruker();
 
@@ -105,9 +99,7 @@ function Address({ person }: { person: PersonsokResponse }) {
     );
 }
 
-function MidlertidigAdresseCelle(props: {
-    brukerinfo: PersonsokResponse['brukerinfo'];
-}) {
+function MidlertidigAdresseCelle(props: { brukerinfo: PersonsokResponse['brukerinfo'] }) {
     if (props.brukerinfo?.midlertidigPostadresse) {
         const celletekst = `(M) ${props.brukerinfo.midlertidigPostadresse}`;
         return <BodyShort size="small">{celletekst}</BodyShort>;
@@ -131,9 +123,7 @@ function BostedsadresseCelle(props: { bostedsadresse?: string }) {
     return null;
 }
 
-function UtenlandskIDCelle(props: {
-    utenlandskID?: PersonsokResponse['utenlandskID'];
-}) {
+function UtenlandskIDCelle(props: { utenlandskID?: PersonsokResponse['utenlandskID'] }) {
     const harUtenlandskID = props.utenlandskID?.some(
         (utenlandskID) => utenlandskID.identifikasjonsnummer !== undefined
     );

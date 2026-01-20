@@ -1,5 +1,4 @@
-import { act } from '@testing-library/react';
-import { screen } from '@testing-library/react';
+import { act, screen } from '@testing-library/react';
 import { getStaticMockSaksoversiktV2 } from '../../../../../../mock/saksoversikt/saksoversikt-mock';
 import { Feilmelding, type Journalpost } from '../../../../../../models/saksoversikt/journalpost';
 import { renderWithProviders } from '../../../../../../test/Testprovider';

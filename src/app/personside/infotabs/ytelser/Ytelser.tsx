@@ -8,9 +8,9 @@ import styled from 'styled-components';
 import { useInfotabsDyplenker } from '../dyplenker';
 import FiltreringPeriode from '../utbetalinger/filter/FilterPeriode';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
+import useBrukersYtelser from './useBrukersYtelser';
 import ValgtYtelse from './ValgtYtelse';
 import YtelseListe from './YtelserListe';
-import useBrukersYtelser from './useBrukersYtelser';
 
 const ytelserMediaTreshold = '45rem';
 

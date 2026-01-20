@@ -5,7 +5,7 @@ import { apiBaseUri } from '../../api/config';
 import { BigCenteredLazySpinner } from '../../components/BigCenteredLazySpinner';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import { useValgtenhet } from '../../context/valgtenhet-state';
-import { type DefaultConfig, type RendererOrConfig, applyDefaults, useRest } from '../useRest';
+import { applyDefaults, type DefaultConfig, type RendererOrConfig, useRest } from '../useRest';
 
 const defaults: DefaultConfig = {
     ifPending: BigCenteredLazySpinner,

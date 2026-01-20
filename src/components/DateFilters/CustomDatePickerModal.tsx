@@ -1,5 +1,5 @@
 import { CalendarIcon } from '@navikt/aksel-icons';
-import { Button, DatePicker, ErrorMessage, HStack, Modal, TextField, VStack, useDatepicker } from '@navikt/ds-react';
+import { Button, DatePicker, ErrorMessage, HStack, Modal, TextField, useDatepicker, VStack } from '@navikt/ds-react';
 import dayjs, { type Dayjs } from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { type ChangeEvent, useEffect, useMemo, useState } from 'react';

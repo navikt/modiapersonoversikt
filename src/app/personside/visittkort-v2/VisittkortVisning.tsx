@@ -5,12 +5,12 @@ import { useVisittkortState } from '../../../context/visittkort-state';
 import { trackAccordionClosed, trackAccordionOpened } from '../../../utils/analytics';
 import useHotkey from '../../../utils/hooks/use-hotkey';
 import useUrlNyPersonforvalter from '../../brukerprofil/useUrlNyPersonforvalter';
-import { InformasjonElement, type Data as Persondata } from './PersondataDomain';
 import VisittkortBody from './body/VisittkortBody';
 import { harFeilendeSystemer } from './harFeilendeSystemer';
 import EgenAnsattFeilendeSystemModal from './header/EgenAnsattFeilendeSystemModal';
 import SikkerhetstiltakModal from './header/SikkerhetstiltakModal';
 import VisittkortHeader from './header/VisittkortHeader';
+import { InformasjonElement, type Data as Persondata } from './PersondataDomain';
 
 interface Props {
     persondata: Persondata;

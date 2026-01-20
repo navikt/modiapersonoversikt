@@ -1,4 +1,4 @@
-import { BodyShort, Box, HStack, Heading } from '@navikt/ds-react';
+import { BodyShort, Box, Heading, HStack } from '@navikt/ds-react';
 import type { PropsWithChildren, ReactElement } from 'react';
 import type { Adresse, SistEndret } from 'src/lib/types/modiapersonoversikt-api';
 import { formaterDato } from 'src/utils/string-utils';

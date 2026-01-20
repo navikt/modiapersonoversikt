@@ -1,15 +1,15 @@
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import { Fragment } from 'react';
+import AdresseInfo from 'src/app/personside/visittkort-v2/body/AdresseInfo';
+import VisittkortElement from 'src/app/personside/visittkort-v2/body/VisittkortElement';
+import { VisittkortGruppe } from 'src/app/personside/visittkort-v2/body/VisittkortStyles';
+import { harFeilendeSystemer } from 'src/app/personside/visittkort-v2/harFeilendeSystemer';
 import {
     type Enhet,
     InformasjonElement,
     type Publikumsmottak as PublikumsmottakInterface
 } from 'src/app/personside/visittkort-v2/PersondataDomain';
-import AdresseInfo from 'src/app/personside/visittkort-v2/body/AdresseInfo';
-import VisittkortElement from 'src/app/personside/visittkort-v2/body/VisittkortElement';
-import { VisittkortGruppe } from 'src/app/personside/visittkort-v2/body/VisittkortStyles';
-import { harFeilendeSystemer } from 'src/app/personside/visittkort-v2/harFeilendeSystemer';
 import { mapUgyldigGT } from 'src/app/personside/visittkort-v2/visittkort-utils';
 import EtikettGraa from 'src/components/EtikettGraa';
 import baseurls from 'src/rest/resources/baseurlsResource';

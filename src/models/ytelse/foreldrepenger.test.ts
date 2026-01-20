@@ -29,7 +29,7 @@ test('Hvis omsorgsovertakelse og termin er satt til null blir det ikke gjennkjen
     const foreldrepengeRettighet: Foreldrepengerettighet = {
         ...resten,
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
+        // @ts-expect-error
         omsorgsovertakelse: null,
         termin: null
     };

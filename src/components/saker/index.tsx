@@ -1,4 +1,4 @@
-import { HGrid, Heading, VStack } from '@navikt/ds-react';
+import { Heading, HGrid, VStack } from '@navikt/ds-react';
 import { SakDetailPage } from 'src/components/saker/Detail';
 import { SakerList } from 'src/components/saker/List';
 

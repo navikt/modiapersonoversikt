@@ -7,8 +7,8 @@ import utbetalingerResource from '../../../../rest/resources/utbetalingerResourc
 import theme from '../../../../styles/personOversiktTheme';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 import Arenalenke from './Arenalenke/Arenalenke';
-import Utbetalinger from './Utbetalinger';
 import UtbetalingFiltrering from './filter/UtbetalingFilter';
+import Utbetalinger from './Utbetalinger';
 
 const UtbetalingerStyle = styled.div`
     ${scrollBarContainerStyle(theme.media.utbetalinger.minWidth)};

@@ -1,4 +1,4 @@
-import { OppgaveActionTypes, type OppgaveActions, type OppgaveState, initialState } from './types';
+import { initialState, type OppgaveActions, OppgaveActionTypes, type OppgaveState } from './types';
 
 // biome-ignore lint/style/useDefaultParameterLast: biome migration
 export function oppgaverReducer(state: OppgaveState = initialState, action: OppgaveActions): OppgaveState {

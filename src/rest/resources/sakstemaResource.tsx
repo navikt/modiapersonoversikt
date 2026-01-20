@@ -6,7 +6,7 @@ import { type FetchError, post } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import type { SakstemaSoknadsstatusResponse } from '../../models/saksoversikt/sakstema';
-import { type DefaultConfig, type RendererOrConfig, applyDefaults, useRest } from '../useRest';
+import { applyDefaults, type DefaultConfig, type RendererOrConfig, useRest } from '../useRest';
 
 const defaults: DefaultConfig = {
     ifPending: <CenteredLazySpinner />,

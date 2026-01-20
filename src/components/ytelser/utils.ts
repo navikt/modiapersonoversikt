@@ -199,9 +199,7 @@ function getSistePeriodeForPleiepenger(pleiePenger: Pleiepenger) {
     return perioder?.sort(datoStigende((p) => new Date(p.fom ?? 0))).reverse()[0];
 }
 
-export function fjernEntriesUtenVerdi(obj: {
-    [name: string]: string | number | null | undefined;
-}) {
+export function fjernEntriesUtenVerdi(obj: { [name: string]: string | number | null | undefined }) {
     return Object.fromEntries(
         Object.entries(obj).filter(([_, v]) => v !== null && v !== undefined && !Number.isNaN(v))
     );

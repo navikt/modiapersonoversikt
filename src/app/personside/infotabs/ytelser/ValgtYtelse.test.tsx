@@ -3,8 +3,8 @@ import { statiskForeldrepengeMock } from '../../../../mock/ytelse/statiskForeldr
 import { statiskSykepengerMock } from '../../../../mock/ytelse/statiskSykepengerMock';
 import { renderWithProviders } from '../../../../test/Testprovider';
 import { setupReactQueryMocks } from '../../../../test/testStore';
-import ValgtYtelse from './ValgtYtelse';
 import { pleiepengerTestData } from './pleiepenger/pleiepengerTestData';
+import ValgtYtelse from './ValgtYtelse';
 
 test('Om foreldrepenger matcher snapshot', async () => {
     setupReactQueryMocks();

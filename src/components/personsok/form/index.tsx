@@ -8,8 +8,8 @@ import {
     Link,
     Select,
     TextField,
-    VStack,
-    useDatepicker
+    useDatepicker,
+    VStack
 } from '@navikt/ds-react';
 import { useForm } from '@tanstack/react-form';
 import dayjs from 'dayjs';
@@ -291,15 +291,7 @@ export function PersonsokForm({ onSubmit, onReset }: Props) {
     );
 }
 
-const DateInput = ({
-    onChange,
-    value,
-    label
-}: {
-    onChange: (val?: Date) => void;
-    value?: Date;
-    label: string;
-}) => {
+const DateInput = ({ onChange, value, label }: { onChange: (val?: Date) => void; value?: Date; label: string }) => {
     const { inputProps, datepickerProps, reset } = useDatepicker({
         onDateChange: onChange,
         defaultSelected: value,

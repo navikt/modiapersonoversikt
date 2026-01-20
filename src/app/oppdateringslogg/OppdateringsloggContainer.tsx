@@ -1,12 +1,12 @@
 import ModalWrapper from 'nav-frontend-modal';
 import { Systemtittel } from 'nav-frontend-typografi';
-import { useCallback, useEffect, useState } from 'react';
 import type * as React from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import useListener from '../../utils/hooks/use-listener';
 import useWaitForElement from '../../utils/hooks/use-wait-for-element';
-import Oppdateringslogg from './Oppdateringslogg';
 import { lagOppdateringsloggConfig } from './config/config';
+import Oppdateringslogg from './Oppdateringslogg';
 import useSisteLestOppdateringLogg from './useSisteLestOppdateringLogg';
 import './oppdateringsloggKnapp.less';
 

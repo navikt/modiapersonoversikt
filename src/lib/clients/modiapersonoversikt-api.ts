@@ -30,7 +30,7 @@ type APIError = {
 personoversiktApiClient.use({
     onResponse: async ({ response }) => {
         if (!response.ok) {
-            let errText = undefined;
+            let errText;
             try {
                 const apiErr = (await response.json()) as APIError;
                 if (apiErr.message) {
