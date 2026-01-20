@@ -116,6 +116,7 @@ function EnkelUtbetaling(props: Props) {
                 onFocus={setYtelseIFokus}
                 className={utbetalingerTest.utbetaling}
             >
+                {/** biome-ignore lint/a11y/useAriaPropsSupportedByRole: Biome migration */}
                 <article aria-expanded={visDetaljer} aria-label={`Utbetaling ${props.ytelse.type}`}>
                     <UtbetalingTabellStyling>
                         <UtbetalingHeaderStyle>

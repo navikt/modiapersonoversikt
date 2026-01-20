@@ -41,7 +41,7 @@ export function resolverOppgaveSkjema(values: OppgaveSkjemaForm) {
         }
     ];
 
-    //biome-ignore lint/complexity/noForEach: biome migration
+    // biome-ignore lint/suspicious/useIterableCallbackReturn: ""
     fieldsToValidate.forEach((field) => validatePartialField(field.key, values[field.key], field.errorMessage, errors));
 
     return {
@@ -71,7 +71,8 @@ export function resolverOppgaveSkjemaBegrensetTilgang(values: OppgaveSkjemaBegre
             errorMessage: 'Du må skrive beskrivelse'
         }
     ];
-    //biome-ignore lint/complexity/noForEach: biome migration
+
+    // biome-ignore lint/suspicious/useIterableCallbackReturn: ""
     fieldsToValidate.forEach((field) => validatePartialField(field.key, values[field.key], field.errorMessage, errors));
 
     return {

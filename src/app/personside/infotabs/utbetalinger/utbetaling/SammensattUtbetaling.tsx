@@ -70,7 +70,7 @@ function SammensattUtbetaling(props: Props) {
         if (!ytelser) {
             return;
         }
-        //biome-ignore lint/complexity/noForEach: biome migration
+        // biome-ignore lint/suspicious/useIterableCallbackReturn: Biome migration
         ytelser.forEach((ytelse) => ekspanderYtelse(ytelse));
         print();
         loggEvent('Print', 'SammensattUtbetaling');

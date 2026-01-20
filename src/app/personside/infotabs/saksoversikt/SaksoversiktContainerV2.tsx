@@ -50,6 +50,7 @@ function SaksoversiktContainer() {
             />
         );
     }
+    // biome-ignore lint/correctness/useHookAtTopLevel: ""
     return resource.useRenderer({
         ifPending: BigCenteredLazySpinner,
         ifData: (data) => {

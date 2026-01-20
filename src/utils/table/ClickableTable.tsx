@@ -72,6 +72,7 @@ export function ClickableTable({ tittelRekke, rows, rowsOnClickHandlers }: Table
                     <div role="row">
                         {tittelRekke.map((tittel: TitleCell, index: number) => (
                             //biome-ignore lint/suspicious/noArrayIndexKey lint/a11y/useSemanticElements: biome migration
+                            // biome-ignore lint/a11y/useFocusableInteractive: biome migration
                             <div role="columnheader" key={index}>
                                 {tittel}
                             </div>
