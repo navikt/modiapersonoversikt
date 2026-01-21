@@ -1,4 +1,4 @@
-import {Alert, BodyShort, Heading, Skeleton, VStack} from '@navikt/ds-react';
+import { Alert, BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { useSearch } from '@tanstack/react-router';
 import { OppgaveListFilter } from 'src/components/Oppgave/List/Filter';
 import { OppgaveItem } from 'src/components/Oppgave/List/OppgaveItem';

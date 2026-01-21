@@ -15,8 +15,7 @@ import {
 import { getRouteApi } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai';
-import { useRef } from 'react';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import Card from 'src/components/Card';
 import type { DateRange } from 'src/components/DateFilters/types';
 import ErrorBoundary from 'src/components/ErrorBoundary';

@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { varslerFilterAtom } from 'src/components/varsler/List/Filter';
-import { type VarselData, useFilterVarsler } from 'src/components/varsler/List/utils';
+import { useFilterVarsler, type VarselData } from 'src/components/varsler/List/utils';
 import type { FeiletVarsling, Varsel } from 'src/lib/types/modiapersonoversikt-api';
 import { varslerRouteMiddleware } from 'src/routes/new/person/varsler';
 import { ENDASH, emptyReplacement, formaterDato } from 'src/utils/string-utils';

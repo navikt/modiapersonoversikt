@@ -110,7 +110,7 @@ const VarslerStatusFilter = () => {
 };
 
 const FilterTitle = () => {
-    const {varsler} = useFilterVarsler();
+    const { varsler } = useFilterVarsler();
 
     return (
         <>

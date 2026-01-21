@@ -1,4 +1,4 @@
-import {Alert, BodyShort, Heading, Skeleton, VStack} from '@navikt/ds-react';
+import { Alert, BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { useSearch } from '@tanstack/react-router';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { SakItem } from 'src/components/saker/List/SakItem';

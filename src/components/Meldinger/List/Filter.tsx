@@ -17,7 +17,7 @@ import { debounce, isEqual, xor } from 'lodash';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import DateRangeSelector from 'src/components/DateFilters/DatePeriodSelector';
 import type { DateRange } from 'src/components/DateFilters/types';
-import {useFilterMeldinger, useTraader} from 'src/components/Meldinger/List/utils';
+import { useFilterMeldinger, useTraader } from 'src/components/Meldinger/List/utils';
 import { usePersonAtomValue } from 'src/lib/state/context';
 import { Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { filterType, trackExpansionCardApnet, trackExpansionCardLukket, trackFilterEndret } from 'src/utils/analytics';

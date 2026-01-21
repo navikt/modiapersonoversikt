@@ -2,8 +2,7 @@ import { ChevronDownIcon, ChevronUpIcon, FigureInwardIcon, FigureOutwardIcon } f
 import { BodyShort, Box, Button, CopyButton, Heading, HStack, Skeleton, VStack } from '@navikt/ds-react';
 import { useLocation } from '@tanstack/react-router';
 import { Suspense, useEffect, useState } from 'react';
-import { erUbesvartHenvendelseFraBruker } from 'src/components/Meldinger/List/utils';
-import { useTraader } from 'src/components/Meldinger/List/utils';
+import { erUbesvartHenvendelseFraBruker, useTraader } from 'src/components/Meldinger/List/utils';
 import { useFilterOppgave } from 'src/components/Oppgave/List/utils';
 import Statsborgerskap from 'src/components/PersonLinje/Details/Familie/Statsborgerskap';
 import config from 'src/config';

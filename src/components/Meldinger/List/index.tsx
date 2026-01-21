@@ -1,10 +1,10 @@
-import {Alert, BodyShort, Heading, Skeleton, VStack} from '@navikt/ds-react';
+import { Alert, BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { useSearch } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import { useTraader } from 'src/components/Meldinger/List/utils';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { useAntallListeElementeBasertPaaSkjermStorrelse } from 'src/utils/customHooks';
-import { TraadListFilterCard, meldingerFilterAtom } from './Filter';
+import { meldingerFilterAtom, TraadListFilterCard } from './Filter';
 import { TraadItem } from './TraadItem';
 import { useFilterMeldinger } from './utils';
 

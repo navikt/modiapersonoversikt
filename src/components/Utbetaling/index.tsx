@@ -1,4 +1,4 @@
-import { HGrid, Heading, VStack } from '@navikt/ds-react';
+import { Heading, HGrid, VStack } from '@navikt/ds-react';
 import { AlertBanner } from 'src/components/AlertBanner';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { UtbetalingerDetailPage } from 'src/components/Utbetaling/Detail';

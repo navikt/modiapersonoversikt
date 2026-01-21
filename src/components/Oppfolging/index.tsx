@@ -1,4 +1,4 @@
-import { Alert, BodyShort, HGrid, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Heading, HGrid, Skeleton, VStack } from '@navikt/ds-react';
 import { AlertBanner } from 'src/components/AlertBanner';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';

@@ -12,7 +12,7 @@ import { SykepengerDetails } from 'src/components/ytelser/Detail/sykepenger';
 import { SykePengerSpokelseDetails } from 'src/components/ytelser/Detail/sykepenger-spokelse';
 import { TiltaksPengerDetails } from 'src/components/ytelser/Detail/tiltakspenger';
 import { ytelseFilterAtom } from 'src/components/ytelser/List/Filter';
-import { type YtelseVedtak, getUnikYtelseKey, useFilterYtelser } from 'src/components/ytelser/utils';
+import { getUnikYtelseKey, useFilterYtelser, type YtelseVedtak } from 'src/components/ytelser/utils';
 import type {
     Foreldrepenger,
     ForeldrepengerFpSak,

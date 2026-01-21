@@ -127,7 +127,7 @@ const UtbetaltTilFilter = () => {
 };
 
 const FilterTitle = () => {
-    const {utbetalinger} = useFilterUtbetalinger();
+    const { utbetalinger } = useFilterUtbetalinger();
 
     return (
         <>

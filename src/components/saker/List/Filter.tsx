@@ -1,6 +1,6 @@
 import { BodyShort, Box, ExpansionCard, Fieldset, Search, Switch, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
 import { atom, useAtom, useSetAtom } from 'jotai';
-import { RESET, atomWithReset } from 'jotai/utils';
+import { atomWithReset, RESET } from 'jotai/utils';
 import { debounce, xor } from 'lodash';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import DateRangeSelector, { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
@@ -169,7 +169,7 @@ const StatusFilter = () => {
 };
 
 const FilterTitle = () => {
-    const {saker} = useFilterSaker();
+    const { saker } = useFilterSaker();
 
     return (
         <>

@@ -1,5 +1,5 @@
 import { ChevronDownIcon } from '@navikt/aksel-icons';
-import { ActionMenu, Alert, Box, Button, HStack, Heading, InlineMessage, VStack } from '@navikt/ds-react';
+import { ActionMenu, Alert, Box, Button, Heading, HStack, InlineMessage, VStack } from '@navikt/ds-react';
 import { useLocation } from '@tanstack/react-router';
 import { useSetAtom } from 'jotai';
 import { useCallback, useState } from 'react';
