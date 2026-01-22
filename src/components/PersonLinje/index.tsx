@@ -6,7 +6,7 @@ import { erUbesvartHenvendelseFraBruker } from 'src/components/Meldinger/List/ut
 import Statsborgerskap from 'src/components/PersonLinje/Details/Familie/Statsborgerskap';
 import config from 'src/config';
 import { useMeldinger, usePersonData, usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
-import { type Dodsdato, Kjonn, type KodeBeskrivelseKjonn } from 'src/lib/types/modiapersonoversikt-api';
+import { Kjonn, type KodeBeskrivelseKjonn } from 'src/lib/types/modiapersonoversikt-api';
 import { trackAccordionClosed, trackAccordionOpened } from 'src/utils/analytics';
 import useHotkey from 'src/utils/hooks/use-hotkey';
 import { useClickAway } from 'src/utils/hooks/useClickAway';
@@ -40,48 +40,77 @@ const PersonlinjeHeader = ({ isExpanded }: { isExpanded: boolean }) => {
     const kjonn = data.person.kjonn.firstOrNull() ?? ukjentKjonn;
     const navn = data.person.navn.firstOrNull();
 
+    const dato = data.person.dodsdato?.firstOrNull();
+    const erDod = !!dato?.dodsdato;
+
+    const farge = erDod
+        ? 'var(--ax-text-neutral-subtle)'
+        : kjonn.kode === Kjonn.K
+          ? 'var(--ax-bg-meta-purple-strong-pressed)'
+          : kjonn.kode === Kjonn.M
+            ? 'var(--ax-text-accent-decoration)'
+            : 'var(--ax-text-neutral-subtle)';
+
     return (
-        <>
-            <VStack gap="2" paddingBlock="2" id="personlinje-header" className="focus:outline-0" tabIndex={-1}>
-                <HStack gap="1" align="center">
-                    <Personalia
-                        navn={navn ? `${navn.fornavn} ${navn.mellomnavn ?? ''} ${navn.etternavn}` : 'UKJENT'}
-                        kjonn={kjonn}
-                        alder={data.person.alder}
-                        dodsDato={data.person.dodsdato}
-                    />
-                    <HStack align="center" className="cursor-[initial]" onClick={(e) => e.stopPropagation()}>
-                        <BodyShort size="small">
+        <HStack
+            gap="2"
+            wrap={false}
+            justify="space-between"
+            padding="3"
+            id="personlinje-header"
+            className="focus:outline-0"
+            tabIndex={-1}
+        >
+            <HStack gap="2" wrap={false} align="start">
+                <Box.New borderRadius="full" borderWidth="2" style={{ borderColor: farge }}>
+                    {kjonn.kode === Kjonn.K ? (
+                        <FigureOutwardIcon aria-hidden color={farge} fontSize="2rem" />
+                    ) : (
+                        <FigureInwardIcon aria-hidden color={farge} fontSize="2rem" />
+                    )}
+                </Box.New>
+                <VStack gap="2" className="pt-1.5">
+                    <HStack gap="2" align="center">
+                        <Personalia
+                            navn={navn ? `${navn.fornavn} ${navn.mellomnavn ?? ''} ${navn.etternavn}` : 'UKJENT'}
+                            kjonn={kjonn}
+                            alder={data.person.alder}
+                            erDod={erDod}
+                            farge={farge}
+                        />
+                        <HStack className="cursor-[initial]" onClick={(e) => e.stopPropagation()}>
                             <CopyButton
                                 aria-label={`Kopier f.nr: ${data.person.personIdent}`}
                                 size="xsmall"
+                                className="p-0"
                                 copyText={data.person.personIdent}
                                 activeText="Kopiert f.nr"
                                 text={`F.nr: ${data.person.personIdent}`}
                             />
-                        </BodyShort>
-                    </HStack>
-                    {data.person.kontaktInformasjon.mobil?.value && (
-                        <HStack align="center" className="cursor-[initial]" onClick={(e) => e.stopPropagation()}>
-                            <CopyButton
-                                activeText="Kopiert tlf.nr"
-                                aria-label={`Kopier tlf.nr: ${data.person.kontaktInformasjon.mobil.value}`}
-                                text={`Tlf.nr: ${data.person.kontaktInformasjon.mobil.value}`}
-                                size="xsmall"
-                                copyText={data.person.kontaktInformasjon.mobil.value}
-                            />
                         </HStack>
+                        {data.person.kontaktInformasjon.mobil?.value && (
+                            <HStack align="center" className="cursor-[initial]" onClick={(e) => e.stopPropagation()}>
+                                <CopyButton
+                                    className="p-0"
+                                    activeText="Kopiert tlf.nr"
+                                    aria-label={`Kopier tlf.nr: ${data.person.kontaktInformasjon.mobil.value}`}
+                                    text={`Tlf.nr: ${data.person.kontaktInformasjon.mobil.value}`}
+                                    size="xsmall"
+                                    copyText={data.person.kontaktInformasjon.mobil.value}
+                                />
+                            </HStack>
+                        )}
+                        <Statsborgerskap />
+                    </HStack>
+                    <PersonBadges />
+                    {oppgaver.length > 0 && (
+                        <BodyShort visuallyHidden>{`Bruker har ${oppgaver.length} åpne oppgaver`}</BodyShort>
                     )}
-                    <Statsborgerskap />
-                </HStack>
-                <PersonBadges />
-                {oppgaver.length > 0 && (
-                    <BodyShort visuallyHidden>{`Bruker har ${oppgaver.length} åpne oppgaver`}</BodyShort>
-                )}
-                {antallUbesvarteTraader > 0 && (
-                    <BodyShort visuallyHidden>{`Bruker har ${antallUbesvarteTraader} ubesvart hendelse`}</BodyShort>
-                )}
-            </VStack>
+                    {antallUbesvarteTraader > 0 && (
+                        <BodyShort visuallyHidden>{`Bruker har ${antallUbesvarteTraader} ubesvart hendelse`}</BodyShort>
+                    )}
+                </VStack>
+            </HStack>
             <VStack justify="center">
                 <Button
                     className="grow-0"
@@ -91,7 +120,7 @@ const PersonlinjeHeader = ({ isExpanded }: { isExpanded: boolean }) => {
                     variant="tertiary-neutral"
                 />
             </VStack>
-        </>
+        </HStack>
     );
 };
 
@@ -138,15 +167,12 @@ const PersonLinjeContent = () => {
                     isExpanded ? 'h-full flex flex-col' : 'h-100 flex-0'
                 )}
             >
-                <HStack
+                <VStack
                     onClick={() => setIsExpanded((v) => toggleExpand(!v))}
-                    paddingInline="4"
-                    justify="space-between"
                     className="hover:bg-ax-bg-neutral-moderate-hover cursor-pointer"
-                    wrap={false}
                 >
                     <PersonlinjeHeader isExpanded={isExpanded} />
-                </HStack>
+                </VStack>
                 <Box
                     className={twMerge(
                         'border-t border-ax-border-neutral-subtle transition-all duration-75',
@@ -163,44 +189,24 @@ const PersonLinjeContent = () => {
 
 type PersonaliaProps = {
     navn: string;
-    alder?: number;
+    farge: string;
     kjonn: KodeBeskrivelseKjonn;
-    dodsDato?: Dodsdato[];
+    erDod: boolean;
+    alder?: number;
 };
 
-const Personalia = ({ navn, alder, kjonn, dodsDato }: PersonaliaProps) => {
-    const dato = dodsDato?.firstOrNull();
-    const erDod = !!dato?.dodsdato;
-
-    const farge = erDod
-        ? 'var(--ax-text-neutral-subtle)'
-        : kjonn.kode === Kjonn.K
-          ? 'var(--ax-bg-meta-purple-strong-pressed)'
-          : kjonn.kode === Kjonn.M
-            ? 'var(--ax-text-accent-decoration)'
-            : 'var(--ax-text-neutral-subtle)';
-
+const Personalia = ({ navn, alder, kjonn, erDod, farge }: PersonaliaProps) => {
     return (
-        <HStack align="center" gap="1">
-            <HStack gap="3" align="center">
-                <Box.New borderRadius="full" borderWidth="2" style={{ borderColor: farge }}>
-                    {kjonn.kode === Kjonn.K ? (
-                        <FigureOutwardIcon aria-hidden color={farge} fontSize="2rem" />
-                    ) : (
-                        <FigureInwardIcon aria-hidden color={farge} fontSize="2rem" />
-                    )}
-                </Box.New>
-
-                <Heading
-                    id="personinformasjon-heading"
-                    size="xsmall"
-                    as="h2"
-                    style={{ color: farge }}
-                    className="capitalize font-medium"
-                >
-                    {navn.toLowerCase()}
-                </Heading>
-            </HStack>
+        <HStack gap="1">
+            <Heading
+                id="personinformasjon-heading"
+                size="xsmall"
+                as="h2"
+                style={{ color: farge }}
+                className="capitalize font-medium"
+            >
+                {navn.toLowerCase()}
+            </Heading>
             <BodyShort style={{ color: farge }}>
                 ({kjonn.beskrivelse}, {erDod ? 'død' : (alder ?? 'Ukjent alder')})
             </BodyShort>
