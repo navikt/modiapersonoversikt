@@ -11,7 +11,7 @@ import PrintKnapp from 'src/components/PrintKnapp';
 import { useMeldingsok } from 'src/context/meldingsok';
 import type { Traad } from 'src/models/meldinger/meldinger';
 import theme from 'src/styles/personOversiktTheme';
-import { filterType, trackFilterEndret } from 'src/utils/analytics';
+import { filterType, trackFilterEndret, trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import usePaginering from 'src/utils/hooks/usePaginering';
 import { loggEvent } from 'src/utils/logger/frontendLogger';
 import MeldingerPrintMarkup from 'src/utils/print/MeldingerPrintMarkup';
@@ -83,7 +83,13 @@ function PrintAlleMeldinger({ traader }: { traader: Traad[] }) {
 
     return (
         <>
-            <PrintKnapp tittel={'Skriv ut all kommunikasjon'} onClick={() => printer?.triggerPrint()} />
+            <PrintKnapp
+                tittel="Skriv ut all kommunikasjon"
+                onClick={() => {
+                    printer?.triggerPrint();
+                    trackGenereltUmamiEvent(trackingEvents.skrivUt, { tekst: 'alle dialoger' });
+                }}
+            />
             <PrinterWrapper>
                 {traader.map((traad) => (
                     <MeldingerPrintMarkup key={traad.traadId} valgtTraad={traad} />

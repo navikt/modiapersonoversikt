@@ -4,6 +4,7 @@ import { Flatknapp, Hovedknapp } from 'nav-frontend-knapper';
 import { Ingress, Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { useState } from 'react';
 import { usePersonAtomValue } from 'src/lib/state/context';
+import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import styled from 'styled-components';
 import { post } from '../../../../../../../api/api';
 import { apiBaseUri } from '../../../../../../../api/config';
@@ -56,6 +57,7 @@ export function JournalforSak(props: Props) {
     const [journalforingSuksess, setJournalforingSuksess] = useState(false);
 
     const journalfor = () => {
+        trackGenereltUmamiEvent(trackingEvents.journalfor);
         if (submitting) {
             return;
         }

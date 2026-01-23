@@ -27,7 +27,13 @@ export enum trackingEvents {
     dialogLukket = 'dialog lukket',
     brukerEndret = 'bruker endret',
     enhetEndret = 'enhet endret',
-    toggleNyModia = 'toggle ny modia'
+    toggleNyModia = 'toggle ny modia',
+    journalfor = 'journalfør',
+    opprettOppgave = 'opprett oppgave',
+    merkDialog = 'merk dialog',
+    skrivUt = 'skriv ut',
+    sendNyMelding = 'send ny melding',
+    fortsettDialog = 'fortsett dialog'
 }
 
 export enum filterType {
@@ -39,6 +45,30 @@ export enum filterType {
     SOK = 'søk',
     TEMA = 'tema'
 }
+
+export const trackFortsettDialog = (traadType: string) => {
+    if (!window.umami) {
+        console.warn('Umami is not initialized. Ignoring');
+        return;
+    }
+    window.umami.track(trackingEvents.fortsettDialog, { traadType });
+};
+
+export const trackSendNyMelding = (traadType: string) => {
+    if (!window.umami) {
+        console.warn('Umami is not initialized. Ignoring');
+        return;
+    }
+    window.umami.track(trackingEvents.sendNyMelding, { traadType });
+};
+
+export const trackGenereltUmamiEvent = (eventNavn: trackingEvents, payload?: unknown) => {
+    if (!window.umami) {
+        console.warn('Umami is not initialized. Ignoring');
+        return;
+    }
+    window.umami.track(eventNavn, payload);
+};
 
 export const trackToggleNyModia = (erPaaNyModia: boolean) => {
     if (!window.umami) {
