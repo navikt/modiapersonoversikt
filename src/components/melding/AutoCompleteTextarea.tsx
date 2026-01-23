@@ -10,6 +10,7 @@ import {
 import { rapporterBruk } from 'src/app/personside/dialogpanel/sendMelding/standardTekster/sokUtils';
 import { useStandardTekster } from 'src/lib/clients/skrivestotte';
 import { Locale, type Tekst } from 'src/lib/types/skrivestotte';
+import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import { loggEvent } from 'src/utils/logger/frontendLogger';
 import { rules } from './autocompleteRules';
 import { type AutofullforData, autofullfor, byggAutofullforMap, useAutoFullforData } from './autocompleteUtils';
@@ -77,6 +78,7 @@ function AutocompleteTextarea({ onChange, description, ref, ...rest }: Props) {
                             loggEvent('Autocomplete', 'Textarea', {
                                 type: acc.toLowerCase()
                             });
+                            trackGenereltUmamiEvent(trackingEvents.brukAutofullfor, { tekst: acc.toLowerCase() });
                             if (rule.type === 'internal') {
                                 settFeilmelding(undefined);
                                 return rule.replacement();

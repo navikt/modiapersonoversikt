@@ -2,6 +2,7 @@ import { FileTextIcon } from '@navikt/aksel-icons';
 import { Button, Modal } from '@navikt/ds-react';
 import { type RefObject, useRef } from 'react';
 import StandardTekster from 'src/components/melding/standardtekster/StandardTekster';
+import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import useHotkey from 'src/utils/hooks/use-hotkey';
 
 function StandardTekstModal({
@@ -16,6 +17,7 @@ function StandardTekstModal({
     useHotkey({ char: 'c', altKey: true }, () => modalRef.current?.showModal(), [], 'Standardtekster');
 
     const setTekst = (nyTekst: string) => {
+        trackGenereltUmamiEvent(trackingEvents.brukStandardtekst);
         submitTekst(nyTekst);
         modalRef.current?.close();
         textAreaRef?.current?.focus();

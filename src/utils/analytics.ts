@@ -33,7 +33,9 @@ export enum trackingEvents {
     merkDialog = 'merk dialog',
     skrivUt = 'skriv ut',
     sendNyMelding = 'send ny melding',
-    fortsettDialog = 'fortsett dialog'
+    fortsettDialog = 'fortsett dialog',
+    brukStandardtekst = 'bruk standardtekst',
+    brukAutofullfor = 'bruk autofullfør'
 }
 
 export enum filterType {
