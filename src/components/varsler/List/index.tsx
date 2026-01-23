@@ -7,14 +7,14 @@ import { VarslerListFilter } from './Filter';
 import { useFilterVarsler } from './utils';
 
 export const VarslerList = () => {
-    const { varsler, pending } = useFilterVarsler();
+    const { varsler, isLoading } = useFilterVarsler();
     const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
     const selectedKey = useSearch({
         from: '/new/person/varsler',
         select: (p) => p.id
     });
 
-    if (!pending && !varsler.length) {
+    if (!isLoading && !varsler.length) {
         return (
             <Alert className="mr-2" variant="info" role="alert">
                 Ingen varsler funnet
@@ -25,7 +25,7 @@ export const VarslerList = () => {
     return (
         <VStack height="100%" gap="2">
             <VarslerListFilter />
-            {pending ? (
+            {isLoading ? (
                 <VStack gap="2" marginInline="0 2">
                     {Array(8)
                         .keys()

@@ -7,8 +7,8 @@ import type { OppgaveDto } from 'src/generated/modiapersonoversikt-api';
 import { datoEllerNull } from 'src/utils/string-utils';
 
 export const TraadOppgaver = ({ traadId }: { traadId: string }) => {
-    const { oppgaver } = useFilterOppgave();
-    const { temaer: gsakTema } = useGsakTemaer();
+    const { data: oppgaver } = useFilterOppgave();
+    const { data: gsakTema } = useGsakTemaer();
 
     const traadOppgaver = oppgaver?.filter((oppagve: OppgaveDto) => oppagve.traadId === traadId);
 

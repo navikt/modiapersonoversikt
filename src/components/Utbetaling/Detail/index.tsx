@@ -443,7 +443,10 @@ const UtbetalingerDetail = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) =>
 };
 
 export const UtbetalingerDetailPage = () => {
-    const { utbetalinger, pending } = useFilterUtbetalinger();
+    const {
+        data: { utbetalinger },
+        isLoading
+    } = useFilterUtbetalinger();
 
     return (
         <ErrorBoundary
@@ -451,7 +454,7 @@ export const UtbetalingerDetailPage = () => {
             errorText="Det oppstod en feil under visning av utbetalinger detailjer"
         >
             <VStack flexGrow="1" minHeight="0" maxHeight="100%" className="overflow-auto">
-                {pending ? (
+                {isLoading ? (
                     <Skeleton variant="rounded" height="4rem" />
                 ) : (
                     <UtbetalingerDetail utbetalinger={utbetalinger} />

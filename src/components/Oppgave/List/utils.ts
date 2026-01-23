@@ -1,18 +1,10 @@
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai/index';
-import { useMemo } from 'react';
 import { type OppgaveFilter, oppgaveFilterAtom } from 'src/components/Oppgave/List/Filter';
-import { errorPlaceholder, responseErrorMessage } from 'src/components/ytelser/utils';
+import { errorPlaceholder, type QueryResult, responseErrorMessage } from 'src/components/ytelser/utils';
 import { useTildeltOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
 import type { OppgaveDto } from 'src/lib/types/modiapersonoversikt-api';
 import { datoSynkende } from 'src/utils/date-utils';
-
-interface Returns {
-    oppgaver: OppgaveDto[];
-    pending: boolean;
-    errorMessages: (string | undefined)[];
-    hasError: boolean;
-}
 
 const filterOppdave = (oppgaver: OppgaveDto[], filters: OppgaveFilter): OppgaveDto[] => {
     const { tema, dateRange } = filters;
@@ -36,22 +28,19 @@ const filterOppdave = (oppgaver: OppgaveDto[], filters: OppgaveFilter): OppgaveD
     return filteredList ?? [];
 };
 
-export const useFilterOppgave = (): Returns => {
+export const useFilterOppgave = (): QueryResult<OppgaveDto[]> => {
     const filters = useAtomValue(oppgaveFilterAtom);
     const oppgaverResponse = useTildeltOppgaver();
 
-    return useMemo(() => {
-        const oppgaver = oppgaverResponse?.data ?? [];
-        const errorMessages = [errorPlaceholder(oppgaverResponse, responseErrorMessage('oppgaver'))];
-        const sortedOppgaver = oppgaver.sort(datoSynkende((v) => v.aktivDato));
+    const oppgaver = oppgaverResponse?.data ?? [];
+    const errorMessages = [errorPlaceholder(oppgaverResponse, responseErrorMessage('oppgaver'))];
+    const sortedOppgaver = oppgaver.sort(datoSynkende((v) => v.aktivDato));
 
-        return {
-            oppgaver: filterOppdave(sortedOppgaver, filters) ?? [],
-            pending: oppgaverResponse.isLoading,
-            errorMessages: errorMessages.filter(Boolean),
-            hasError: oppgaverResponse.isError
-        };
-    }, [oppgaverResponse, filters]);
+    return {
+        ...oppgaverResponse,
+        data: filterOppdave(sortedOppgaver, filters) ?? [],
+        errorMessages
+    } as QueryResult<OppgaveDto[]>;
 };
 
 export const getOppgaveId = (oppgave: OppgaveDto) => {

@@ -3,7 +3,7 @@ import { useTraader } from 'src/components/Meldinger/List/utils';
 import { erUbesvartHenvendelseFraBruker } from '../Meldinger/List/utils';
 
 export const UbesvarteMeldinger = () => {
-    const { traader } = useTraader();
+    const { data: traader } = useTraader();
 
     const antallUbesvarteTraader = traader?.filter((traad) => erUbesvartHenvendelseFraBruker(traad))?.length;
 

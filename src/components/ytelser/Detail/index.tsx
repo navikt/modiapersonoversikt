@@ -127,13 +127,13 @@ const YtelseDataDetails = ({ ytelser }: { ytelser: YtelseVedtak[] }) => {
 };
 
 export const ValgteYtelseDetailPage = () => {
-    const { ytelser, pending } = useFilterYtelser();
+    const { data: ytelser, isLoading } = useFilterYtelser();
     return (
         <ErrorBoundary
             boundaryName="valgteYtelseDetailPage"
             errorText="Det oppstod en feil under visning av ytelse detailjer"
         >
-            {pending ? (
+            {isLoading ? (
                 <Skeleton variant="rounded" height="4rem" />
             ) : (
                 <VStack flexGrow="1" minHeight="0" maxHeight="100%" className="overflow-auto">

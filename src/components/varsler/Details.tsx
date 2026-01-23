@@ -154,10 +154,10 @@ const VarselDetailExtractor = ({ varsler }: { varsler: VarselData[] }) => {
 };
 
 export const VarselDetail = () => {
-    const { varsler, pending } = useFilterVarsler();
+    const { varsler, isLoading } = useFilterVarsler();
     return (
-        <ErrorBoundary boundaryName="vaslerDetaljer" errorText="Det oppstod en feil under visning av varsel detailjer">
-            {pending ? <Skeleton variant="rounded" height="4rem" /> : <VarselDetailExtractor varsler={varsler} />}
+        <ErrorBoundary boundaryName="vaslerDetaljer" errorText="Det oppstod en feil under visning av varsel">
+            {isLoading ? <Skeleton variant="rounded" height="4rem" /> : <VarselDetailExtractor varsler={varsler} />}
         </ErrorBoundary>
     );
 };

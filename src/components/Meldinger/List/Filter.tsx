@@ -49,7 +49,7 @@ const meldingerFilterTemaAtom = atom(
 );
 
 const TemaFilter = () => {
-    const { traader } = useTraader();
+    const { data: traader } = useTraader();
     const temaOptions = useMemo(() => {
         const allTema = Object.entries(Temagruppe).map(([, t]) => ({
             label: temagruppeTekst(t),
@@ -171,7 +171,7 @@ const DateFilter = () => {
 
 const FilterTitle = () => {
     const filters = useAtomValue(meldingerFilterAtom);
-    const { traader } = useTraader();
+    const { data: traader } = useTraader();
     const filteredMeldinger = useFilterMeldinger(traader, filters);
     return (
         <>

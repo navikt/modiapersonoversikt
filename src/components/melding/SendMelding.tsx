@@ -9,11 +9,11 @@ import { FortsettDialog } from './FortsettDialog';
 import NyMelding from './NyMelding';
 
 export const SendMelding = ({ lukkeKnapp }: { lukkeKnapp?: ReactElement<typeof Button> }) => {
-    const { traader, pending } = useTraader();
+    const { data: traader, isLoading } = useTraader();
 
     return (
         <>
-            {pending ? (
+            {isLoading ? (
                 <Skeleton variant="rounded" height="100%" />
             ) : (
                 <SendMeldingContent traader={traader} lukkeKnapp={lukkeKnapp} />

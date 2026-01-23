@@ -7,7 +7,7 @@ import { useAntallListeElementeBasertPaaSkjermStorrelse } from 'src/utils/custom
 import { YtelserListFilter } from './Filter';
 
 export const YtelserList = () => {
-    const { ytelser, pending } = useFilterYtelser();
+    const { data: ytelser, isLoading } = useFilterYtelser();
     const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
 
     const selectedKey = useSearch({
@@ -15,7 +15,7 @@ export const YtelserList = () => {
         select: (p) => p.id
     });
 
-    if (!pending && ytelser.length === 0) {
+    if (!isLoading && ytelser.length === 0) {
         return (
             <Alert className="mr-2" variant="info" role="alert">
                 Ingen ytelser funner
@@ -26,7 +26,7 @@ export const YtelserList = () => {
     return (
         <VStack height="100%" gap="2">
             <YtelserListFilter />
-            {pending ? (
+            {isLoading ? (
                 <VStack gap="2" marginInline="0 2">
                     {Array(8)
                         .keys()

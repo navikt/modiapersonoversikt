@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import { useMemo } from 'react';
-import { errorPlaceholder, responseErrorMessage } from 'src/components/ytelser/utils';
+import { errorPlaceholder, type QueryResult, responseErrorMessage } from 'src/components/ytelser/utils';
 import { useGsakTema, useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
 import {
     type Melding,
@@ -215,50 +215,23 @@ export function useFilterMeldinger(traader: Traad[], filters: MeldingerFilter) {
     return filteredByDate;
 }
 
-interface Returns {
-    traader: Traad[];
-    pending: boolean;
-    errorMessages: (string | undefined)[];
-    hasError: boolean;
-}
-
-interface ReturnsTema {
-    temaer: Tema[];
-    pending: boolean;
-    errorMessages: (string | undefined)[];
-    hasError: boolean;
-}
-
-export const useTraader = (): Returns => {
+export const useTraader = (): QueryResult<Traad[]> => {
     const traaderResponse = useMeldinger();
+    const errorMessages = [errorPlaceholder(traaderResponse, responseErrorMessage('meldinger'))];
 
-    return useMemo(() => {
-        const traader = traaderResponse?.data ?? [];
-
-        const errorMessages = [errorPlaceholder(traaderResponse, responseErrorMessage('meldinger'))];
-
-        return {
-            traader: traader ?? [],
-            pending: traaderResponse.isLoading,
-            errorMessages: errorMessages.filter(Boolean),
-            hasError: traaderResponse.isError
-        };
-    }, [traaderResponse]);
+    return {
+        ...traaderResponse,
+        data: traaderResponse?.data ?? [],
+        errorMessages
+    } as QueryResult<Traad[]>;
 };
 
-export const useGsakTemaer = (): ReturnsTema => {
+export const useGsakTemaer = (): QueryResult<Tema[]> => {
     const temaerResponse = useGsakTema();
-
-    return useMemo(() => {
-        const temaer = temaerResponse?.data ?? [];
-
-        const errorMessages = [errorPlaceholder(temaerResponse, responseErrorMessage('temaer for meldinger'))];
-
-        return {
-            temaer: temaer ?? [],
-            pending: temaerResponse.isLoading,
-            errorMessages: errorMessages.filter(Boolean),
-            hasError: temaerResponse.isError
-        };
-    }, [temaerResponse]);
+    const errorMessages = [errorPlaceholder(temaerResponse, responseErrorMessage('temaer for meldinger'))];
+    return {
+        ...temaerResponse,
+        data: temaerResponse?.data ?? [],
+        errorMessages
+    } as QueryResult<Tema[]>;
 };

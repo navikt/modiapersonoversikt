@@ -52,14 +52,18 @@ const OppgaveOgDialogDetail = ({ oppgaver }: { oppgaver: OppgaveDto[] }) => {
 };
 
 export const OppgaveDetail = () => {
-    const { oppgaver, pending } = useFilterOppgave();
+    const { data: oppgaver, isLoading } = useFilterOppgave();
     return (
         <ErrorBoundary
             boundaryName="oppgaveDetaljer"
             errorText="Det oppstod en feil under visning av oppgave detailjer"
         >
             <VStack flexGrow="1" minHeight="0" maxHeight="100%" className="overflow-auto">
-                {pending ? <Skeleton variant="rounded" height="4rem" /> : <OppgaveOgDialogDetail oppgaver={oppgaver} />}
+                {isLoading ? (
+                    <Skeleton variant="rounded" height="4rem" />
+                ) : (
+                    <OppgaveOgDialogDetail oppgaver={oppgaver} />
+                )}
             </VStack>
         </ErrorBoundary>
     );

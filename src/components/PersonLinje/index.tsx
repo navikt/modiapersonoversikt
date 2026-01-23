@@ -33,8 +33,8 @@ export const PersonLinje = () => (
 
 const PersonlinjeHeader = ({ isExpanded }: { isExpanded: boolean }) => {
     const { data } = usePersonData();
-    const { traader } = useTraader();
-    const { oppgaver } = useFilterOppgave();
+    const { data: traader } = useTraader();
+    const { data: oppgaver } = useFilterOppgave();
 
     const antallUbesvarteTraader = traader?.filter((traad) => erUbesvartHenvendelseFraBruker(traad))?.length;
 

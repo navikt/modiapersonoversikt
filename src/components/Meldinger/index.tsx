@@ -20,7 +20,7 @@ export const MeldingerPage = () => {
 };
 
 const MeldingerPageContent = () => {
-    const { traader, errorMessages: traadErrorMessages, pending } = useTraader();
+    const { data: traader, errorMessages: traadErrorMessages, isLoading } = useTraader();
     const { errorMessages: temaErrorMessages } = useGsakTemaer();
 
     return (
@@ -44,7 +44,11 @@ const MeldingerPageContent = () => {
                     boundaryName="TraadDetailSection"
                     errorText="Det oppstod en feil under visning av melding detailjer"
                 >
-                    {pending ? <Skeleton variant="rounded" height="4rem" /> : <TraadDetailSection traader={traader} />}
+                    {isLoading ? (
+                        <Skeleton variant="rounded" height="4rem" />
+                    ) : (
+                        <TraadDetailSection traader={traader} />
+                    )}
                 </ErrorBoundary>
             </VStack>
         </HGrid>

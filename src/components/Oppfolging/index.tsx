@@ -12,11 +12,11 @@ import {
 import { datoEllerNull } from 'src/utils/string-utils';
 
 const OppfolgingDetaljer = () => {
-    const { utvidetOppfolging, pending } = useOppfolging();
+    const { data: utvidetOppfolging, isLoading } = useOppfolging();
 
     return (
         <ErrorBoundary boundaryName="oppfolgingDetaljer">
-            {pending ? (
+            {isLoading ? (
                 <Skeleton variant="rounded" height={166} />
             ) : utvidetOppfolging ? (
                 <Card padding="4">
@@ -80,11 +80,14 @@ const OppfolgingDetaljer = () => {
 };
 
 const Gjeldende14aVedtakDetaljer = () => {
-    const { gjeldende14aVedtak, pending } = use14aVedtak();
+    const {
+        data: { gjeldende14aVedtak },
+        isLoading
+    } = use14aVedtak();
 
     return (
         <ErrorBoundary boundaryName="gjeldende14aVedtakDetaljer">
-            {pending ? (
+            {isLoading ? (
                 <Skeleton variant="rounded" height={166} />
             ) : (
                 <Card padding="4">

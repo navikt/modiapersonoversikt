@@ -7,7 +7,10 @@ import { getSakId, useFilterSaker } from '../utils';
 import { SakerFilter } from './Filter';
 
 export const SakerList = () => {
-    const { saker, pending } = useFilterSaker();
+    const {
+        data: { saker },
+        isLoading
+    } = useFilterSaker();
     const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
 
     const selectedKey = useSearch({
@@ -15,7 +18,7 @@ export const SakerList = () => {
         select: (p) => p.id
     });
 
-    if (!pending && saker.length === 0) {
+    if (!isLoading && saker.length === 0) {
         return (
             <Alert className="mr-2" variant="info" role="alert">
                 Ingen saker funnet
@@ -26,7 +29,7 @@ export const SakerList = () => {
     return (
         <VStack height="100%" gap="2">
             <SakerFilter />
-            {pending ? (
+            {isLoading ? (
                 <VStack gap="2" marginInline="0 2">
                     {Array(8)
                         .keys()

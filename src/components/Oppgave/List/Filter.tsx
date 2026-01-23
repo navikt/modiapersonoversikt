@@ -53,7 +53,7 @@ const DateFilter = () => {
 
 const TemaFilter = () => {
     const [selectedTema, setSelectedTema] = useAtom(oppgaveFilterTemaAtom);
-    const { temaer } = useGsakTemaer();
+    const { data: temaer } = useGsakTemaer();
 
     const onToggleSelected = useCallback(
         (option: string) => {
@@ -79,7 +79,7 @@ const TemaFilter = () => {
 };
 
 const FilterTitle = () => {
-    const { oppgaver } = useFilterOppgave();
+    const { data: oppgaver } = useFilterOppgave();
 
     return (
         <>

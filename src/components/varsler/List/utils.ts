@@ -1,6 +1,5 @@
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai/index';
-import { useMemo } from 'react';
 import type { VarslerFilter, VarslerKanal } from 'src/components/varsler/List/Filter';
 import { varslerFilterAtom } from 'src/components/varsler/List/Filter';
 import { errorPlaceholder, responseErrorMessage } from 'src/components/ytelser/utils';
@@ -21,9 +20,9 @@ export interface VarselData {
 
 interface Returns {
     varsler: VarselData[];
-    pending: boolean;
+    isLoading: boolean;
     errorMessages: (string | undefined)[];
-    hasError: boolean;
+    isError: boolean;
 }
 
 const filterVarsler = (varsler: VarselData[], filters: VarslerFilter): VarselData[] => {
@@ -57,24 +56,22 @@ export const useFilterVarsler = (): Returns => {
     const filters = useAtomValue(varslerFilterAtom);
     const varselResponse = useVarslerData();
 
-    return useMemo(() => {
-        const varslerResult = varselResponse?.data ?? {
-            feil: [],
-            varsler: []
-        };
-        const varselElementer = varslerResult.varsler
-            .sort(datoSynkende((v) => v.forstBehandlet))
-            .map((item) => dataExtractor(item));
+    const varslerResult = varselResponse?.data ?? {
+        feil: [],
+        varsler: []
+    };
+    const varselElementer = varslerResult.varsler
+        .sort(datoSynkende((v) => v.forstBehandlet))
+        .map((item) => dataExtractor(item));
 
-        const errorMessages = [errorPlaceholder(varselResponse, responseErrorMessage('varsler'))];
+    const errorMessages = [errorPlaceholder(varselResponse, responseErrorMessage('varsler'))];
 
-        return {
-            varsler: filterVarsler(varselElementer, filters),
-            pending: varselResponse.isLoading,
-            errorMessages: errorMessages.filter(Boolean),
-            hasError: varselResponse.isError
-        };
-    }, [varselResponse, filters]);
+    return {
+        varsler: filterVarsler(varselElementer, filters) ?? [],
+        isLoading: varselResponse.isLoading,
+        errorMessages: errorMessages.filter(Boolean),
+        isError: varselResponse.isError
+    };
 };
 
 const dataExtractor = (varsel: Varsel): VarselData => {

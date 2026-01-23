@@ -14,7 +14,7 @@ export const YtelserPage = () => {
 };
 
 const YtelserPageContent = () => {
-    const { placeholders: alerts } = useFilterYtelser();
+    const { errorMessages } = useFilterYtelser();
 
     return (
         <HGrid gap="1" columns={{ xs: 1, md: 'max-content 1fr' }} height="100%" overflow={{ xs: 'auto', md: 'hidden' }}>
@@ -30,7 +30,7 @@ const YtelserPageContent = () => {
                 </ErrorBoundary>
             </VStack>
             <VStack className="min-h-100 md:min-h-0">
-                <AlertBanner alerts={alerts} />
+                <AlertBanner alerts={errorMessages} />
                 <ValgteYtelseDetailPage />
             </VStack>
         </HGrid>

@@ -27,7 +27,7 @@ const TraadMeta = ({ traad }: { traad: Traad }) => {
     const [printAllThreads, setPrintAllThreads] = useState(false);
     const printer = usePrinter();
     const PrinterWrapper = printer.printerWrapper;
-    const { traader } = useTraader();
+    const { data: traader } = useTraader();
     const triggerPrinting = (printAllThreads = false) => {
         setPrintAllThreads(printAllThreads);
         printer.triggerPrint();

@@ -16,7 +16,7 @@ export const AvsluttOppgaveModal = ({ open, onClose, oppgave }: Props) => {
     const [beskrivelse, setBeskrivelse] = useState('');
     const enhet = useAtomValue(aktivEnhetAtom);
     const fnr = usePersonAtomValue();
-    const { temaer: gsakTema } = useGsakTemaer();
+    const { data: gsakTema } = useGsakTemaer();
     const tema = gsakTema.find((item) => item.kode === oppgave.tema);
 
     const { mutate, isPending } = useAvsluttOppgaveMutation();

@@ -21,7 +21,7 @@ import {
 } from './utils';
 
 function TildeltSaksbehandler({ traadId }: { traadId: string }) {
-    const { oppgaver } = useFilterOppgave();
+    const { data: oppgaver } = useFilterOppgave();
     const fnr = usePersonAtomValue();
     const tildeltTilBruker = oppgaver.filter((oppg) => oppg.fnr === fnr);
 

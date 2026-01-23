@@ -136,7 +136,7 @@ const OppgaveForm = ({ traad, onSuccess }: { traad: Traad; onSuccess: () => void
         }
     });
 
-    const { temaer: gsakTema } = useGsakTemaer();
+    const { data: gsakTema } = useGsakTemaer();
     return (
         <form
             onSubmit={async (e) => {

@@ -1,26 +1,11 @@
-import { useMemo } from 'react';
-import { errorPlaceholder, responseErrorMessage } from 'src/components/ytelser/utils';
+import { errorPlaceholder, type QueryResult, responseErrorMessage } from 'src/components/ytelser/utils';
 import type {
-    Gjeldende14aVedtak,
+    Gjeldende14aVedtakResponse,
     OppfolgingDto,
     UtvidetOppfolgingDto,
     Veileder
 } from 'src/generated/modiapersonoversikt-api';
 import { useGjeldende14aVedtak, useYtelserogkontrakter } from 'src/lib/clients/modiapersonoversikt-api';
-
-interface Returns14aVedtak {
-    gjeldende14aVedtak?: Gjeldende14aVedtak;
-    pending: boolean;
-    errorMessages: (string | undefined)[];
-    hasError: boolean;
-}
-
-interface ReturnsOppfolging {
-    utvidetOppfolging?: UtvidetOppfolgingDto;
-    pending: boolean;
-    errorMessages: (string | undefined)[];
-    hasError: boolean;
-}
 
 export function getOppfolgingEnhet(oppfolging?: OppfolgingDto): string {
     return oppfolging
@@ -38,36 +23,20 @@ export function getMeldeplikt(meldeplikt?: boolean): string {
     return meldeplikt ? 'Ja' : meldeplikt === false ? 'Nei' : 'Meldeplikt Ukjent';
 }
 
-export const use14aVedtak = (): Returns14aVedtak => {
+export const use14aVedtak = (): QueryResult<Gjeldende14aVedtakResponse> => {
     const gjeldende14aVedtakResponse = useGjeldende14aVedtak();
-
-    return useMemo(() => {
-        const gjeldende14aVedtak = gjeldende14aVedtakResponse?.data?.gjeldende14aVedtak;
-
-        const errorMessages = [errorPlaceholder(gjeldende14aVedtakResponse, responseErrorMessage('14a vedtak'))];
-
-        return {
-            gjeldende14aVedtak: gjeldende14aVedtak,
-            pending: gjeldende14aVedtakResponse.isLoading,
-            errorMessages: errorMessages.filter(Boolean),
-            hasError: gjeldende14aVedtakResponse.isError
-        };
-    }, [gjeldende14aVedtakResponse]);
+    const errorMessages = [errorPlaceholder(gjeldende14aVedtakResponse, responseErrorMessage('14a vedtak'))];
+    return {
+        ...gjeldende14aVedtakResponse,
+        errorMessages
+    } as QueryResult<Gjeldende14aVedtakResponse>;
 };
 
-export const useOppfolging = (): ReturnsOppfolging => {
+export const useOppfolging = (): QueryResult<UtvidetOppfolgingDto> => {
     const oppfolgingResponse = useYtelserogkontrakter();
-
-    return useMemo(() => {
-        const oppfolging = oppfolgingResponse?.data;
-
-        const errorMessages = [errorPlaceholder(oppfolgingResponse, responseErrorMessage('oppfølging'))];
-
-        return {
-            utvidetOppfolging: oppfolging,
-            pending: oppfolgingResponse.isLoading,
-            errorMessages: errorMessages.filter(Boolean),
-            hasError: oppfolgingResponse.isError
-        };
-    }, [oppfolgingResponse]);
+    const errorMessages = [errorPlaceholder(oppfolgingResponse, responseErrorMessage('oppfølging'))];
+    return {
+        ...oppfolgingResponse,
+        errorMessages
+    } as QueryResult<UtvidetOppfolgingDto>;
 };

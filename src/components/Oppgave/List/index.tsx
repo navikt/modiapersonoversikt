@@ -7,7 +7,7 @@ import { useAntallListeElementeBasertPaaSkjermStorrelse } from 'src/utils/custom
 import { getOppgaveId, useFilterOppgave } from './utils';
 
 export const OppgaverList = () => {
-    const { oppgaver, pending } = useFilterOppgave();
+    const { data: oppgaver, isLoading } = useFilterOppgave();
     const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
 
     const selectedKey = useSearch({
@@ -15,7 +15,7 @@ export const OppgaverList = () => {
         select: (p) => p.id
     });
 
-    if (!pending && !oppgaver.length) {
+    if (!isLoading && !oppgaver.length) {
         return (
             <Alert className="mr-2" variant="info" role="alert">
                 Ingen oppgaver funnet
@@ -26,7 +26,7 @@ export const OppgaverList = () => {
     return (
         <VStack height="100%" gap="2">
             <OppgaveListFilter />
-            {pending ? (
+            {isLoading ? (
                 <VStack gap="2" marginInline="0 2">
                     {Array(8)
                         .keys()

@@ -9,7 +9,7 @@ import { TraadItem } from './TraadItem';
 import { useFilterMeldinger } from './utils';
 
 export const TraadList = () => {
-    const { traader, pending } = useTraader();
+    const { data: traader, isLoading } = useTraader();
     const filters = useAtomValue(meldingerFilterAtom);
     const filteredMeldinger = useFilterMeldinger(traader, filters);
     const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
@@ -19,7 +19,7 @@ export const TraadList = () => {
         select: (p) => p.traadId
     });
 
-    if (!pending && filteredMeldinger.length === 0) {
+    if (!isLoading && filteredMeldinger.length === 0) {
         return (
             <Alert variant="info" className="mr-2" role="alert">
                 ingen dialoger funnet
@@ -30,7 +30,7 @@ export const TraadList = () => {
     return (
         <VStack height="100%" gap="2">
             <TraadListFilterCard />
-            {pending ? (
+            {isLoading ? (
                 <VStack gap="2" marginInline="0 2">
                     {Array(8)
                         .keys()

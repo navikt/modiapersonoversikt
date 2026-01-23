@@ -43,9 +43,12 @@ test('Send ny melding', async ({ page }) => {
 
     await page.getByRole('textbox').fill('playwright new melding');
     await page.getByLabel('Temagruppe').selectOption('Pensjon');
-    await page.getByRole('button', { name: 'Send til Aremark' }).click();
+
+    await page.addStyleTag({ content: '#ny-modia-knapp-wrapper { display: none !important; }' });
+    await page.getByTestId('svar-knapp').click();
 
     const newTraad = page.getByTestId('traaditem').first();
+    await expect(newTraad).toBeVisible();
     await expect(newTraad).toContainText('Referat');
     await expect(newTraad).toContainText('Tema:Pensjon');
 

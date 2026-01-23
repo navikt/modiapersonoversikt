@@ -4,9 +4,15 @@ import { useMemo } from 'react';
 import { apiBaseUri } from 'src/api/config';
 import type { SakerFilter } from 'src/components/saker/List/Filter';
 import { sakerFilterAtom } from 'src/components/saker/List/Filter';
-import { errorPlaceholder, responseErrorMessage } from 'src/components/ytelser/utils';
+import { errorPlaceholder, type QueryResult, responseErrorMessage } from 'src/components/ytelser/utils';
 import { useSakerDokumenter } from 'src/lib/clients/modiapersonoversikt-api';
-import type { Dokument, Dokumentmetadata, Person, SaksDokumenter } from 'src/lib/types/modiapersonoversikt-api';
+import type {
+    Dokument,
+    Dokumentmetadata,
+    Person,
+    ResultatSaksDokumenter,
+    SaksDokumenter
+} from 'src/lib/types/modiapersonoversikt-api';
 import {
     DokumentmetadataAvsender,
     DokumentmetadataMottaker,
@@ -15,13 +21,6 @@ import {
 } from 'src/lib/types/modiapersonoversikt-api';
 import { datoSynkende } from 'src/utils/date-utils';
 import { parseQueryString } from 'src/utils/url-utils';
-
-interface Returns {
-    saker: SaksDokumenter[];
-    pending: boolean;
-    errorMessages: (string | undefined)[];
-    hasError: boolean;
-}
 
 const filterSaker = (saker: SaksDokumenter[], filters: SakerFilter): SaksDokumenter[] => {
     const { saksId, temaer, status, dateRange } = filters;
@@ -55,22 +54,22 @@ const filterSaker = (saker: SaksDokumenter[], filters: SakerFilter): SaksDokumen
     return filteredList;
 };
 
-export const useFilterSaker = (): Returns => {
+export const useFilterSaker = (): QueryResult<ResultatSaksDokumenter> => {
     const filters = useAtomValue(sakerFilterAtom);
     const sakerDokumenterResponse = useSakerDokumenter();
 
-    return useMemo(() => {
-        const saker = sakerDokumenterResponse?.data?.saker ?? [];
-        const errorMessages = [errorPlaceholder(sakerDokumenterResponse, responseErrorMessage('saker og dokumenter'))];
-        const sortedSaker = saker.toSorted(datoSynkende((t) => t.opprettet || new Date(0)));
+    const saker = sakerDokumenterResponse?.data?.saker ?? [];
+    const errorMessages = [errorPlaceholder(sakerDokumenterResponse, responseErrorMessage('saker og dokumenter'))];
+    const sortedSaker = saker.toSorted(datoSynkende((t) => t.opprettet || new Date(0)));
 
-        return {
-            saker: filterSaker(sortedSaker, filters) ?? [],
-            pending: sakerDokumenterResponse.isLoading,
-            errorMessages: errorMessages.filter(Boolean),
-            hasError: sakerDokumenterResponse.isError
-        };
-    }, [sakerDokumenterResponse, filters]);
+    return {
+        ...sakerDokumenterResponse,
+        data: {
+            ...sakerDokumenterResponse?.data,
+            saker: filterSaker(sortedSaker, filters) ?? []
+        },
+        errorMessages
+    } as QueryResult<ResultatSaksDokumenter>;
 };
 
 export const useTemaer = () => {

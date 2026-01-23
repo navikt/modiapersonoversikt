@@ -7,7 +7,11 @@ import { UtbetalingListFilter } from './Filter';
 import { getUtbetalingId, useFilterUtbetalinger } from './utils';
 
 export const UtbetalingList = () => {
-    const { utbetalinger, pending } = useFilterUtbetalinger();
+    const {
+        data: { utbetalinger },
+        isLoading
+    } = useFilterUtbetalinger();
+
     const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
 
     const selectedKey = useSearch({
@@ -15,7 +19,7 @@ export const UtbetalingList = () => {
         select: (p) => p.id
     });
 
-    if (!pending && utbetalinger.length === 0) {
+    if (!isLoading && utbetalinger.length === 0) {
         return (
             <Alert className="mr-2" variant="info" role="alert">
                 Ingen utbetalinger funnet
@@ -26,7 +30,7 @@ export const UtbetalingList = () => {
     return (
         <VStack height="100%" gap="2">
             <UtbetalingListFilter />
-            {pending ? (
+            {isLoading ? (
                 <VStack gap="2" marginInline="0 2">
                     {Array(8)
                         .keys()
