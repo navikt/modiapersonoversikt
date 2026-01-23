@@ -1,6 +1,7 @@
 import { Hovedknapp } from 'nav-frontend-knapper';
 import NavFrontendModal from 'nav-frontend-modal';
 import { useState } from 'react';
+import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import styled from 'styled-components';
 import useFieldState from '../../../../../utils/hooks/use-field-state';
 import useHotkey from '../../../../../utils/hooks/use-hotkey';
@@ -69,12 +70,13 @@ function StandardTekstModal(props: Props) {
                 contentLabel="Velg standardtekst"
                 isOpen={isOpen}
                 onRequestClose={() => setOpen(false)}
-                className={'standardtekst__modal'}
+                className="standardtekst__modal"
             >
                 <StandardTekster
                     sokefelt={sokefelt}
                     appendTekst={(tekst) => {
                         props.appendTekst(tekst);
+                        trackGenereltUmamiEvent(trackingEvents.brukStandardtekst);
                         setOpen(false);
                     }}
                 />

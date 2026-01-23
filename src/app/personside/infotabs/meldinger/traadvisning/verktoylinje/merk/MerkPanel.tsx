@@ -19,6 +19,7 @@ import { setIngenValgtTraadDialogpanel } from 'src/redux/oppgave/actions';
 import type { AppState } from 'src/redux/reducers';
 import dialogResource from 'src/rest/resources/dialogResource';
 import tildelteoppgaver from 'src/rest/resources/tildelteoppgaverResource';
+import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import { useFocusOnFirstFocusable } from 'src/utils/hooks/use-focus-on-first-focusable';
 import styled from 'styled-components';
 import {
@@ -119,6 +120,7 @@ function MerkPanel(props: Props) {
     // biome-ignore lint/suspicious/noExplicitAny: old types
     const merkPost = (url: string, object: any, name: string) => {
         setSubmitting(true);
+        trackGenereltUmamiEvent(trackingEvents.merkDialog, { tekst: valgtOperasjon?.toLowerCase() });
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         post(url, object, `MerkPanel-${name}`)
             .then(() => {

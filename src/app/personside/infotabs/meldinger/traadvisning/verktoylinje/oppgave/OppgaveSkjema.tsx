@@ -9,6 +9,7 @@ import { LenkeKnapp } from 'src/components/common-styled-components';
 import FormErrorSummary from 'src/components/form/FormErrorSummary';
 import { useValgtenhet } from 'src/context/valgtenhet-state';
 import type { AppState } from 'src/redux/reducers';
+import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import styled from 'styled-components';
 import { erBehandlet } from '../../../utils/meldingerUtils';
 import { Resultat } from '../utils/VisPostResultat';
@@ -68,6 +69,7 @@ function OppgaveSkjema(props: OppgaveProps) {
 
     //biome-ignore lint/suspicious/noExplicitAny: init biome
     function submitHandler(values: OppgaveSkjemaForm): Promise<any> {
+        trackGenereltUmamiEvent(trackingEvents.opprettOppgave);
         const request = lagOppgaveRequest(
             values,
             valgtBrukersFnr,

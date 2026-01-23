@@ -26,6 +26,7 @@ import {
 } from 'src/lib/clients/modiapersonoversikt-api';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
+import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import { z } from 'zod';
 import ErrorBoundary from '../ErrorBoundary';
 import { eldsteMelding } from './List/utils';
@@ -112,6 +113,7 @@ const OppgaveForm = ({ traad, onSuccess }: { traad: Traad; onSuccess: () => void
         },
         canSubmitWhenInvalid: true,
         onSubmit: async ({ value }) => {
+            trackGenereltUmamiEvent(trackingEvents.opprettOppgave);
             await mutateAsync(
                 {
                     body: {

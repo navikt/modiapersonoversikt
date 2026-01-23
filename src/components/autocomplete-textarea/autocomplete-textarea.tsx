@@ -7,6 +7,7 @@ import { Textarea, type TextareaProps } from 'nav-frontend-skjema';
 import { Undertittel } from 'nav-frontend-typografi';
 import type * as React from 'react';
 import { useCallback, useState } from 'react';
+import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import styled from 'styled-components';
 import {
     type AutofullforData,
@@ -283,6 +284,7 @@ function AutocompleteTextarea(props: TextareaProps) {
                             event.preventDefault();
                             event.stopPropagation();
                             loggEvent('Autocomplete', 'Textarea', { type: acc.toLowerCase() });
+                            trackGenereltUmamiEvent(trackingEvents.brukAutofullfor, { tekst: acc.toLowerCase() });
                             if (rule.type === 'internal') {
                                 settFeilmelding(undefined);
                                 return rule.replacement();

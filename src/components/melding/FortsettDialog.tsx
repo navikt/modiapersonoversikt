@@ -32,6 +32,7 @@ import {
     TraadType
 } from 'src/lib/types/modiapersonoversikt-api';
 import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
+import { trackFortsettDialog } from 'src/utils/analytics';
 import { formatterDatoTid } from 'src/utils/date-utils';
 import type { z } from 'zod';
 import AutocompleteTextarea from './AutoCompleteTextarea';
@@ -80,6 +81,7 @@ export const FortsettDialog = ({ traad, lukkOppgave }: Props) => {
             onSubmit: fortsettDialogSchema
         },
         onSubmit: ({ value }) => {
+            trackFortsettDialog(meldingsTyperTekst[meldingsType].tittel.toLowerCase());
             const body = generateRequestBody(value as FortsettDialogForm, traad, oppgaveId, henvendelse?.behandlingsId);
             mutate(
                 { body: body },

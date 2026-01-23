@@ -1,21 +1,33 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { Block } from '@tanstack/react-router';
 import { type FormEvent, useCallback, useMemo, useState } from 'react';
+import { post } from 'src/api/api';
+import { apiBaseUri } from 'src/api/config';
+import SendNyMelding, {
+    OppgavelisteValg,
+    type SendNyMeldingState
+} from 'src/app/personside/dialogpanel/sendMelding/SendNyMelding';
+import {
+    MeldingSendtFeilet,
+    ReferatSendtKvittering,
+    SamtaleSendtKvittering
+} from 'src/app/personside/dialogpanel/sendMelding/SendNyMeldingKvittering';
+import {
+    type KvitteringNyMelding,
+    type SendNyMeldingPanelState,
+    SendNyMeldingStatus
+} from 'src/app/personside/dialogpanel/sendMelding/SendNyMeldingTypes';
+import { MeldingValidator } from 'src/app/personside/dialogpanel/sendMelding/validatorer';
+import useDraft, { type Draft } from 'src/app/personside/dialogpanel/use-draft';
+import { useAlertOnNavigation } from 'src/app/personside/dialogpanel/useAlertOnNavigation';
+import IfFeatureToggleOn from 'src/components/featureToggle/IfFeatureToggleOn';
+import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
+import { useValgtenhet } from 'src/context/valgtenhet-state';
 import { usePersonAtomValue } from 'src/lib/state/context';
-import { post } from '../../../../api/api';
-import { apiBaseUri } from '../../../../api/config';
-import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureToggleOn';
-import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
-import { useValgtenhet } from '../../../../context/valgtenhet-state';
-import { Meldingstype, type SendMeldingRequestV2, type Traad, TraadType } from '../../../../models/meldinger/meldinger';
-import dialogResource from '../../../../rest/resources/dialogResource';
-import journalsakResource from '../../../../rest/resources/journalsakResource';
-import useDraft, { type Draft } from '../use-draft';
-import { useAlertOnNavigation } from '../useAlertOnNavigation';
-import SendNyMelding, { OppgavelisteValg, type SendNyMeldingState } from './SendNyMelding';
-import { MeldingSendtFeilet, ReferatSendtKvittering, SamtaleSendtKvittering } from './SendNyMeldingKvittering';
-import { type KvitteringNyMelding, type SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
-import { MeldingValidator } from './validatorer';
+import { Meldingstype, type SendMeldingRequestV2, type Traad, TraadType } from 'src/models/meldinger/meldinger';
+import dialogResource from 'src/rest/resources/dialogResource';
+import journalsakResource from 'src/rest/resources/journalsakResource';
+import { trackSendNyMelding } from 'src/utils/analytics';
 
 interface Props {
     defaultOppgaveDestinasjon: OppgavelisteValg;
@@ -120,8 +132,17 @@ function SendNyMeldingContainer(props: Props) {
         setSendNyMeldingStatus({ type: SendNyMeldingStatus.UNDER_ARBEID });
     };
 
+    const getLabelTraadType = () => {
+        if (state.traadType === TraadType.SAMTALEREFERAT) {
+            return 'referat';
+        }
+        if (state.avsluttet) return 'infomelding';
+        return 'samtale';
+    };
+
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
+        trackSendNyMelding(getLabelTraadType());
         if (sendNyMeldingStatus.type === SendNyMeldingStatus.POSTING) {
             return;
         }
