@@ -284,7 +284,7 @@ export const errorPlaceholder = <T = unknown>(resource: UseQueryResult<T, FetchE
 
 export type QueryResult<T> = UseQueryResult<T, FetchError> & {
     data: T;
-    errorMessages: (string | undefined)[];
+    errorMessages: string[];
 };
 
 export const useFilterYtelser = (): QueryResult<YtelseVedtak[]> => {

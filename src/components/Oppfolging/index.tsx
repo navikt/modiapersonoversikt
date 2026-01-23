@@ -80,11 +80,9 @@ const OppfolgingDetaljer = () => {
 };
 
 const Gjeldende14aVedtakDetaljer = () => {
-    const {
-        data: { gjeldende14aVedtak },
-        isLoading
-    } = use14aVedtak();
+    const { data, isLoading } = use14aVedtak();
 
+    const gjeldende14aVedtak = data?.gjeldende14aVedtak;
     return (
         <ErrorBoundary boundaryName="gjeldende14aVedtakDetaljer">
             {isLoading ? (
@@ -107,7 +105,7 @@ const Gjeldende14aVedtakDetaljer = () => {
                             <BodyShort size="small" weight="semibold">
                                 Innsatsgruppe:
                             </BodyShort>
-                            <BodyShort size="small">{gjeldende14aVedtak?.innsatsgruppe.beskrivelse}</BodyShort>
+                            <BodyShort size="small">{gjeldende14aVedtak?.innsatsgruppe?.beskrivelse}</BodyShort>
                         </VStack>
                         <VStack justify="space-between">
                             <BodyShort size="small" weight="semibold">

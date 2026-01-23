@@ -443,11 +443,8 @@ const UtbetalingerDetail = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) =>
 };
 
 export const UtbetalingerDetailPage = () => {
-    const {
-        data: { utbetalinger },
-        isLoading
-    } = useFilterUtbetalinger();
-
+    const { data, isLoading } = useFilterUtbetalinger();
+    const utbetalinger = data?.utbetalinger ?? [];
     return (
         <ErrorBoundary
             boundaryName="utbetalingerDetailPage"

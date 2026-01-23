@@ -28,7 +28,7 @@ export const use14aVedtak = (): QueryResult<Gjeldende14aVedtakResponse> => {
     const errorMessages = [errorPlaceholder(gjeldende14aVedtakResponse, responseErrorMessage('14a vedtak'))];
     return {
         ...gjeldende14aVedtakResponse,
-        errorMessages
+        errorMessages: errorMessages.filter(Boolean)
     } as QueryResult<Gjeldende14aVedtakResponse>;
 };
 
@@ -37,6 +37,6 @@ export const useOppfolging = (): QueryResult<UtvidetOppfolgingDto> => {
     const errorMessages = [errorPlaceholder(oppfolgingResponse, responseErrorMessage('oppfølging'))];
     return {
         ...oppfolgingResponse,
-        errorMessages
+        errorMessages: errorMessages.filter(Boolean)
     } as QueryResult<UtvidetOppfolgingDto>;
 };

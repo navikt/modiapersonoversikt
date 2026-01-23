@@ -7,10 +7,8 @@ import { getSakId, useFilterSaker } from '../utils';
 import { SakerFilter } from './Filter';
 
 export const SakerList = () => {
-    const {
-        data: { saker },
-        isLoading
-    } = useFilterSaker();
+    const { data, isLoading } = useFilterSaker();
+    const saker = data?.saker ?? [];
     const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
 
     const selectedKey = useSearch({

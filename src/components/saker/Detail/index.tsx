@@ -198,10 +198,8 @@ const SakDetails = ({ valgtSak, pageView }: { valgtSak: SaksDokumenter; pageView
 };
 
 export const SakDetailPage = () => {
-    const {
-        data: { saker },
-        isLoading
-    } = useFilterSaker();
+    const { data, isLoading } = useFilterSaker();
+    const saker = data?.saker ?? [];
     return (
         <ErrorBoundary boundaryName="SakDetailPage" errorText="Det oppstod en feil under visning en sakdetailjer">
             {isLoading ? <Skeleton variant="rounded" height="4rem" /> : <SakContent saker={saker} />}

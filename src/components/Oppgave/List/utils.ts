@@ -39,7 +39,7 @@ export const useFilterOppgave = (): QueryResult<OppgaveDto[]> => {
     return {
         ...oppgaverResponse,
         data: filterOppdave(sortedOppgaver, filters) ?? [],
-        errorMessages
+        errorMessages: errorMessages.filter(Boolean)
     } as QueryResult<OppgaveDto[]>;
 };
 

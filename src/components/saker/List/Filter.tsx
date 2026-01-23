@@ -169,10 +169,8 @@ const StatusFilter = () => {
 };
 
 const FilterTitle = () => {
-    const {
-        data: { saker }
-    } = useFilterSaker();
-
+    const { data } = useFilterSaker();
+    const saker = data?.saker ?? [];
     return (
         <>
             Filter ({saker.length} {saker.length === 1 ? 'sak' : 'saker'})<BodyShort visuallyHidden>funnet</BodyShort>

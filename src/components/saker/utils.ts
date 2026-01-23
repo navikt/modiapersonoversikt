@@ -68,7 +68,7 @@ export const useFilterSaker = (): QueryResult<ResultatSaksDokumenter> => {
             ...sakerDokumenterResponse?.data,
             saker: filterSaker(sortedSaker, filters) ?? []
         },
-        errorMessages
+        errorMessages: errorMessages.filter(Boolean)
     } as QueryResult<ResultatSaksDokumenter>;
 };
 

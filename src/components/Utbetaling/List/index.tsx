@@ -7,10 +7,8 @@ import { UtbetalingListFilter } from './Filter';
 import { getUtbetalingId, useFilterUtbetalinger } from './utils';
 
 export const UtbetalingList = () => {
-    const {
-        data: { utbetalinger },
-        isLoading
-    } = useFilterUtbetalinger();
+    const { data, isLoading } = useFilterUtbetalinger();
+    const utbetalinger = data?.utbetalinger ?? [];
 
     const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
 

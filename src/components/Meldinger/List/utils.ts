@@ -222,7 +222,7 @@ export const useTraader = (): QueryResult<Traad[]> => {
     return {
         ...traaderResponse,
         data: traaderResponse?.data ?? [],
-        errorMessages
+        errorMessages: errorMessages.filter(Boolean)
     } as QueryResult<Traad[]>;
 };
 
@@ -232,6 +232,6 @@ export const useGsakTemaer = (): QueryResult<Tema[]> => {
     return {
         ...temaerResponse,
         data: temaerResponse?.data ?? [],
-        errorMessages
+        errorMessages: errorMessages.filter(Boolean)
     } as QueryResult<Tema[]>;
 };

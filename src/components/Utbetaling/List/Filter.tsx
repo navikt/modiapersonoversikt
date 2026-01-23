@@ -67,9 +67,8 @@ const DateFilter = () => {
 };
 
 const UtbetalingYtelserFilter = () => {
-    const {
-        data: { utbetalinger }
-    } = useFilterUtbetalinger();
+    const { data } = useFilterUtbetalinger();
+    const utbetalinger = data?.utbetalinger ?? [];
     const [selectedYtelse, setSelectedYtelse] = useAtom(utbetalingFilterYtelseTypeAtom);
 
     const onToggleSelected = useCallback(
@@ -129,9 +128,8 @@ const UtbetaltTilFilter = () => {
 };
 
 const FilterTitle = () => {
-    const {
-        data: { utbetalinger }
-    } = useFilterUtbetalinger();
+    const { data } = useFilterUtbetalinger();
+    const utbetalinger = data?.utbetalinger ?? [];
 
     return (
         <>

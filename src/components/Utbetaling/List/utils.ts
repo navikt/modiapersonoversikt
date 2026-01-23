@@ -55,7 +55,7 @@ export const useFilterUtbetalinger = (): QueryResult<UtbetalingerResponseDto> =>
             ...utbetalingerResponse.data,
             utbetalinger: filterUtbetalinger(sortedUtbetalinger, filters) ?? []
         },
-        errorMessages
+        errorMessages: errorMessages.filter(Boolean)
     } as QueryResult<UtbetalingerResponseDto>;
 };
 
