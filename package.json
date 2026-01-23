@@ -9,7 +9,7 @@
         "build/dist/"
     ],
     "engines": {
-        "node": "^20.0 || ^22.0"
+        "node": "^22.0 || ^24.0"
     },
     "repository": {
         "type": "git",
