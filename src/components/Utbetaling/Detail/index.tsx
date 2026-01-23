@@ -395,7 +395,7 @@ const UtbetalingDetail = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
     const selectedUtbetaling = utbetalinger.find((item) => getUtbetalingId(item) === id);
     const filterAtomValue = useAtomValue(utbetalingFilterAtom);
     const prevFilterRef = useRef(utbetalingFilterAtom);
-    // const navigate = routeApi.useNavigate();
+    const navigate = routeApi.useNavigate();
 
     // Fjern utbetalingid i URL og cache hvis filteret er endret og utbetalingen ikke finnes i filtrerte utbetalinger
     useEffect(() => {
@@ -419,7 +419,7 @@ const UtbetalingDetail = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
     }
 
     if (!id && !selectedUtbetaling) {
-        //navigate({ search: { id: getUtbetalingId(utbetalinger[0]) } });
+        navigate({ search: { id: getUtbetalingId(utbetalinger[0]) } });
     }
 
     return (
