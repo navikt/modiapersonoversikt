@@ -44,7 +44,7 @@ const MeldingerPageContent = () => {
             <VStack flexGrow="1" overflowX={{ md: 'hidden' }}>
                 <AlertBanner alerts={[...traadErrorMessages, ...temaErrorMessages]} />
                 <ErrorBoundary
-                    boundaryName="TraadDetailSection"
+                    boundaryName="traaddetail"
                     errorText="Det oppstod en feil under visning av melding detailjer"
                 >
                     {isLoading ? (
@@ -83,7 +83,7 @@ const TraadDetailSection = ({ traader }: { traader: Traad[] }) => {
     }
 
     if (!valgtTraad && traadId) {
-        return <Alert variant="error">Tråden du valgte, ble ikke funnet.</Alert>;
+        return <Alert variant="warning">Tråden du valgte, ble ikke funnet.</Alert>;
     }
 
     if (!traadId && !valgtTraad) {

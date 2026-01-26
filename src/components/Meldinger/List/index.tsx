@@ -1,4 +1,4 @@
-import { BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { Skeleton, VStack } from '@navikt/ds-react';
 import { useSearch } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import { useTraader } from 'src/components/Meldinger/List/utils';
@@ -31,25 +31,19 @@ export const TraadList = () => {
                         ))}
                 </VStack>
             ) : (
-                <>
-                    <Heading className="pl-1" size="xsmall" level="3" role="alert">
-                        {filteredMeldinger.length} {filteredMeldinger.length === 1 ? 'dialog' : 'dialoger'}
-                        <BodyShort visuallyHidden>funnet</BodyShort>
-                    </Heading>
-                    <PaginatedList
-                        pageSize={antallListeElementer}
-                        paginationSrHeading={{
-                            tag: 'h3',
-                            text: 'Trådlistepaginering'
-                        }}
-                        aria-label="Tråder"
-                        as="section"
-                        selectedKey={traadId}
-                        items={filteredMeldinger}
-                        keyExtractor={(item) => item.traadId}
-                        renderItem={({ item }) => <TraadItem traad={item} />}
-                    />
-                </>
+                <PaginatedList
+                    pageSize={antallListeElementer}
+                    paginationSrHeading={{
+                        tag: 'h3',
+                        text: 'Trådlistepaginering'
+                    }}
+                    aria-label="Tråder"
+                    as="section"
+                    selectedKey={traadId}
+                    items={filteredMeldinger}
+                    keyExtractor={(item) => item.traadId}
+                    renderItem={({ item }) => <TraadItem traad={item} />}
+                />
             )}
         </VStack>
     );

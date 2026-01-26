@@ -1,4 +1,4 @@
-import { BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { Skeleton, VStack } from '@navikt/ds-react';
 import { useSearch } from '@tanstack/react-router';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { YtelseItem } from 'src/components/ytelser/List/YtelseItem';
@@ -27,23 +27,17 @@ export const YtelserList = () => {
                         ))}
                 </VStack>
             ) : (
-                <>
-                    <Heading className="pl-1" size="xsmall" level="3" role="alert">
-                        {ytelser.length} {ytelser.length === 1 ? 'ytelse' : 'ytelser'}
-                        <BodyShort visuallyHidden>funnet</BodyShort>
-                    </Heading>
-                    <PaginatedList
-                        paginationSrHeading={{
-                            tag: 'h3',
-                            text: 'Ytelsepaginering'
-                        }}
-                        pageSize={antallListeElementer}
-                        selectedKey={selectedKey}
-                        items={ytelser}
-                        keyExtractor={getUnikYtelseKey}
-                        renderItem={({ item }) => <YtelseItem ytelse={item} />}
-                    />
-                </>
+                <PaginatedList
+                    paginationSrHeading={{
+                        tag: 'h3',
+                        text: 'Ytelsepaginering'
+                    }}
+                    pageSize={antallListeElementer}
+                    selectedKey={selectedKey}
+                    items={ytelser}
+                    keyExtractor={getUnikYtelseKey}
+                    renderItem={({ item }) => <YtelseItem ytelse={item} />}
+                />
             )}
         </VStack>
     );

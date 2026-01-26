@@ -1,4 +1,4 @@
-import { BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { Skeleton, VStack } from '@navikt/ds-react';
 import { useSearch } from '@tanstack/react-router';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { VarslerItem } from 'src/components/varsler/List/VarslerItem';
@@ -26,23 +26,17 @@ export const VarslerList = () => {
                         ))}
                 </VStack>
             ) : (
-                <>
-                    <Heading className="pl-1" size="xsmall" level="3" role="alert">
-                        {varsler.length} {varsler.length === 1 ? 'varsel' : 'varsler'}
-                        <BodyShort visuallyHidden>funnet</BodyShort>
-                    </Heading>
-                    <PaginatedList
-                        paginationSrHeading={{
-                            tag: 'h3',
-                            text: 'Varslerpaginering'
-                        }}
-                        pageSize={antallListeElementer}
-                        selectedKey={selectedKey}
-                        items={varsler}
-                        keyExtractor={(item) => item.eventId}
-                        renderItem={({ item }) => <VarslerItem varsel={item} />}
-                    />
-                </>
+                <PaginatedList
+                    paginationSrHeading={{
+                        tag: 'h3',
+                        text: 'Varslerpaginering'
+                    }}
+                    pageSize={antallListeElementer}
+                    selectedKey={selectedKey}
+                    items={varsler}
+                    keyExtractor={(item) => item.eventId}
+                    renderItem={({ item }) => <VarslerItem varsel={item} />}
+                />
             )}
         </VStack>
     );

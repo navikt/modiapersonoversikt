@@ -1,4 +1,4 @@
-import { BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { Skeleton, VStack } from '@navikt/ds-react';
 import { useSearch } from '@tanstack/react-router';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { UtbetalingItem } from 'src/components/Utbetaling/List/UtbetalingItem';
@@ -29,23 +29,17 @@ export const UtbetalingList = () => {
                         ))}
                 </VStack>
             ) : (
-                <>
-                    <Heading className="pl-1" size="xsmall" level="3" role="alert">
-                        {utbetalinger.length} {utbetalinger.length === 1 ? 'utbetaling' : 'utbetalinger'}
-                        <BodyShort visuallyHidden>funnet</BodyShort>
-                    </Heading>
-                    <PaginatedList
-                        paginationSrHeading={{
-                            tag: 'h3',
-                            text: 'Utbetalingpaginering'
-                        }}
-                        pageSize={antallListeElementer}
-                        selectedKey={selectedKey}
-                        items={utbetalinger}
-                        keyExtractor={getUtbetalingId}
-                        renderItem={({ item }) => <UtbetalingItem utbetaling={item} />}
-                    />
-                </>
+                <PaginatedList
+                    paginationSrHeading={{
+                        tag: 'h3',
+                        text: 'Utbetalingpaginering'
+                    }}
+                    pageSize={antallListeElementer}
+                    selectedKey={selectedKey}
+                    items={utbetalinger}
+                    keyExtractor={getUtbetalingId}
+                    renderItem={({ item }) => <UtbetalingItem utbetaling={item} />}
+                />
             )}
         </VStack>
     );

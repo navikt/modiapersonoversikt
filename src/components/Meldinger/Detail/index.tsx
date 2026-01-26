@@ -98,7 +98,7 @@ export const TraadDetailContent = ({ traad }: { traad: Traad }) => {
     }, [traad, setDialogUnderArbeid]);
 
     if (!traad) {
-        return <Alert variant="error">Tråden du valgte, ble ikke funnet.</Alert>;
+        return <Alert variant="warning">Tråden du valgte, ble ikke funnet.</Alert>;
     }
 
     const kanBesvares = traadKanBesvares(traad);
