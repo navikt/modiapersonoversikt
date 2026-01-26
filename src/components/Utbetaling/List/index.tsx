@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { useSearch } from '@tanstack/react-router';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { UtbetalingItem } from 'src/components/Utbetaling/List/UtbetalingItem';
@@ -16,14 +16,6 @@ export const UtbetalingList = () => {
         from: '/new/person/utbetaling',
         select: (p) => p.id
     });
-
-    if (!isLoading && utbetalinger.length === 0) {
-        return (
-            <Alert className="mr-2" variant="info" role="alert">
-                Ingen utbetalinger funnet
-            </Alert>
-        );
-    }
 
     return (
         <VStack height="100%" gap="2">

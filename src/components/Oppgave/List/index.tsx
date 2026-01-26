@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { useSearch } from '@tanstack/react-router';
 import { OppgaveListFilter } from 'src/components/Oppgave/List/Filter';
 import { OppgaveItem } from 'src/components/Oppgave/List/OppgaveItem';
@@ -14,14 +14,6 @@ export const OppgaverList = () => {
         from: '/new/person/oppgaver',
         select: (p) => p.id
     });
-
-    if (!isLoading && !oppgaver.length) {
-        return (
-            <Alert className="mr-2" variant="info" role="alert">
-                Ingen oppgaver funnet
-            </Alert>
-        );
-    }
 
     return (
         <VStack height="100%" gap="2">

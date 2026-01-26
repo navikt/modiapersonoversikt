@@ -13,7 +13,7 @@ import { TraadList } from './List';
 
 export const MeldingerPage = () => {
     return (
-        <ErrorBoundary boundaryName="MeldingerPage" errorText="Det oppstod en feil under lasting av meldinger.">
+        <ErrorBoundary boundaryName="traadlist" errorText="Det oppstod en feil under lasting av meldinger.">
             <MeldingerPageContent />
         </ErrorBoundary>
     );
@@ -34,7 +34,10 @@ const MeldingerPageContent = () => {
                 <Heading level="2" size="small" visuallyHidden>
                     Dialoger
                 </Heading>
-                <ErrorBoundary boundaryName="TraadList" errorText="Det oppstod en feil under visning av melding liste">
+                <ErrorBoundary
+                    boundaryName="MeldingerList"
+                    errorText="Det oppstod en feil under visning av melding liste"
+                >
                     <TraadList />
                 </ErrorBoundary>
             </VStack>

@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { useSearch } from '@tanstack/react-router';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { YtelseItem } from 'src/components/ytelser/List/YtelseItem';
@@ -14,14 +14,6 @@ export const YtelserList = () => {
         from: '/new/person/ytelser',
         select: (p) => p.id
     });
-
-    if (!isLoading && ytelser.length === 0) {
-        return (
-            <Alert className="mr-2" variant="info" role="alert">
-                Ingen ytelser funner
-            </Alert>
-        );
-    }
 
     return (
         <VStack height="100%" gap="2">

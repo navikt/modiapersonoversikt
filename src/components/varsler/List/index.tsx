@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { useSearch } from '@tanstack/react-router';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { VarslerItem } from 'src/components/varsler/List/VarslerItem';
@@ -13,14 +13,6 @@ export const VarslerList = () => {
         from: '/new/person/varsler',
         select: (p) => p.id
     });
-
-    if (!isLoading && !varsler.length) {
-        return (
-            <Alert className="mr-2" variant="info" role="alert">
-                Ingen varsler funnet
-            </Alert>
-        );
-    }
 
     return (
         <VStack height="100%" gap="2">

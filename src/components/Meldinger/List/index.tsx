@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { useSearch } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import { useTraader } from 'src/components/Meldinger/List/utils';
@@ -18,14 +18,6 @@ export const TraadList = () => {
         from: '/new/person/meldinger',
         select: (p) => p.traadId
     });
-
-    if (!isLoading && filteredMeldinger.length === 0) {
-        return (
-            <Alert variant="info" className="mr-2" role="alert">
-                ingen dialoger funnet
-            </Alert>
-        );
-    }
 
     return (
         <VStack height="100%" gap="2">

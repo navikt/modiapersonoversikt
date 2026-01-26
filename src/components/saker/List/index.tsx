@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { useSearch } from '@tanstack/react-router';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { SakItem } from 'src/components/saker/List/SakItem';
@@ -15,14 +15,6 @@ export const SakerList = () => {
         from: '/new/person/saker',
         select: (p) => p.id
     });
-
-    if (!isLoading && saker.length === 0) {
-        return (
-            <Alert className="mr-2" variant="info" role="alert">
-                Ingen saker funnet
-            </Alert>
-        );
-    }
 
     return (
         <VStack height="100%" gap="2">
