@@ -1,14 +1,13 @@
 import { ChevronDownIcon } from '@navikt/aksel-icons';
-import { ActionMenu, Alert, Box, Button, Heading, HStack, InlineMessage, Skeleton, VStack } from '@navikt/ds-react';
+import { ActionMenu, Alert, Box, Button, Heading, HStack, InlineMessage, VStack } from '@navikt/ds-react';
 import { useLocation } from '@tanstack/react-router';
 import { useSetAtom } from 'jotai';
-import { Suspense, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import Card from 'src/components/Card';
-import ErrorBoundary from 'src/components/ErrorBoundary';
 import { TraadOppgaver } from 'src/components/Meldinger/Detail/TraadOppgaver';
+import { useTraader } from 'src/components/Meldinger/List/utils';
 import MeldingerPrint from 'src/components/Meldinger/MeldingerPrint';
 import usePrinter from 'src/components/Print/usePrinter';
-import { useMeldinger, useTraadById } from 'src/lib/clients/modiapersonoversikt-api';
 import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
 import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
@@ -29,8 +28,7 @@ const TraadMeta = ({ traad }: { traad: Traad }) => {
     const [printAllThreads, setPrintAllThreads] = useState(false);
     const printer = usePrinter();
     const PrinterWrapper = printer.printerWrapper;
-    const { data: traader } = useMeldinger();
-
+    const { data: traader } = useTraader();
     const triggerPrinting = (printAllThreads = false) => {
         setPrintAllThreads(printAllThreads);
         printer.triggerPrint();
@@ -104,28 +102,18 @@ const TraadMeta = ({ traad }: { traad: Traad }) => {
     );
 };
 
-export const TraadDetail = ({ traadId }: { traadId: string }) => (
-    <ErrorBoundary boundaryName="traaddetail">
-        <Suspense fallback={<Skeleton variant="rounded" height="4rem" />}>
-            <TraadDetailContent traadId={traadId} />
-        </Suspense>
-    </ErrorBoundary>
-);
-
-const TraadDetailContent = ({ traadId }: { traadId: string }) => {
+export const TraadDetailContent = ({ traad }: { traad: Traad }) => {
     const setDialogUnderArbeid = useSetAtom(dialogUnderArbeidAtom);
 
     const pathname = useLocation().pathname;
     const erIMeldingerfane = pathname.includes('meldinger');
 
-    const traad = useTraadById(traadId);
-
     const svarSamtale = useCallback(() => {
-        setDialogUnderArbeid(traadId);
-    }, [traadId, setDialogUnderArbeid]);
+        setDialogUnderArbeid(traad.traadId);
+    }, [traad, setDialogUnderArbeid]);
 
     if (!traad) {
-        return <Alert variant="error">Tråden du valgte, ble ikke funnet.</Alert>;
+        return <Alert variant="warning">Tråden du valgte, ble ikke funnet.</Alert>;
     }
 
     const kanBesvares = traadKanBesvares(traad);
@@ -138,7 +126,7 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
             <VStack as="section" gap="1" padding="2" height="100%" aria-label="Dialogdetaljer">
                 <TraadMeta traad={traad} />
                 <Journalposter journalposter={traad.journalposter} />
-                {erIMeldingerfane && <TraadOppgaver traadId={traadId} />}
+                {erIMeldingerfane && <TraadOppgaver traadId={traad.traadId} />}
                 <Meldinger meldinger={traad.meldinger} />
                 <Box.New>
                     <HStack justify="end">

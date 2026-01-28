@@ -1,7 +1,6 @@
 import { Accordion, Heading, VStack } from '@navikt/ds-react';
 import { capitalize } from 'lodash';
 import Card from 'src/components/Card';
-import ErrorBoundary from 'src/components/ErrorBoundary';
 import { TitleValuePairsComponent } from 'src/components/ytelser/Detail';
 import { type ForeldrepengerFpSak, ForeldrepengerFpSakYtelse } from 'src/generated/modiapersonoversikt-api';
 import type { ForeldrepengerFpSakPeriode } from 'src/models/ytelse/foreldrepenger-fpsak';
@@ -52,15 +51,13 @@ const ForeldrepengePerioder = ({ ytelse }: { ytelse: ForeldrepengerFpSak }) => {
 export const ForeldrePengerFpSakDetails = ({ ytelse }: { ytelse: ForeldrepengerFpSak }) => {
     return (
         <VStack gap="2" minHeight="0">
-            <ErrorBoundary boundaryName="foreldrePengerDetails">
-                <Card padding="4">
-                    <Heading as="h3" size="small">
-                        Om {ytelse.ytelse.toLowerCase()}
-                    </Heading>
-                    <TitleValuePairsComponent entries={getForeldrePengerRettenEntries(ytelse)} />
-                </Card>
-                <ForeldrepengePerioder ytelse={ytelse} />
-            </ErrorBoundary>
+            <Card padding="4">
+                <Heading as="h3" size="small">
+                    Om {ytelse.ytelse.toLowerCase()}
+                </Heading>
+                <TitleValuePairsComponent entries={getForeldrePengerRettenEntries(ytelse)} />
+            </Card>
+            <ForeldrepengePerioder ytelse={ytelse} />
         </VStack>
     );
 };

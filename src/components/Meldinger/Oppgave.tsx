@@ -15,11 +15,11 @@ import {
 import { useForm } from '@tanstack/react-form';
 import { useAtomValue } from 'jotai';
 import { Suspense, useEffect, useRef, useState } from 'react';
+import { useGsakTemaer } from 'src/components/Meldinger/List/utils';
 import { OpprettOppgaveRequestDTOPrioritetKode, PrioritetKode } from 'src/generated/modiapersonoversikt-api';
 import {
     useAnsattePaaEnhet,
     useForeslotteEnheter,
-    useGsakTema,
     useInnloggetSaksbehandler,
     useOppgaveBehandlerEnheter,
     useOppgaveMutation
@@ -138,8 +138,7 @@ const OppgaveForm = ({ traad, onSuccess }: { traad: Traad; onSuccess: () => void
         }
     });
 
-    const { data: gsakTema } = useGsakTema();
-
+    const { data: gsakTema } = useGsakTemaer();
     return (
         <form
             onSubmit={async (e) => {

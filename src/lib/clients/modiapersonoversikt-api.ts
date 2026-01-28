@@ -55,7 +55,7 @@ export const usePersonData = () => {
 
 export const useVarslerData = () => {
     const aktivBruker = usePersonAtomValue();
-    return $api.useSuspenseQuery('post', '/rest/varsler', {
+    return $api.useQuery('post', '/rest/varsler', {
         body: { fnr: aktivBruker }
     });
 };
@@ -128,6 +128,16 @@ export const usePersonOppgaver = () => {
     });
 };
 
+export const useTildeltOppgaver = () => {
+    const aktivBruker = usePersonAtomValue();
+
+    return $api.useQuery('post', '/rest/oppgaver/tildelt', {
+        body: {
+            fnr: aktivBruker
+        }
+    });
+};
+
 export const useOppgave = (oppgaveId?: string) => {
     if (oppgaveId === undefined) return { data: undefined, isLoading: false, isError: false };
     // biome-ignore lint/correctness/useHookAtTopLevel:Biome migration - bør fikses
@@ -164,7 +174,7 @@ export const useMeldinger = () => {
     const fnr = usePersonAtomValue();
     const enhet = useAtomValue(aktivEnhetAtom) as string;
 
-    return $api.useSuspenseQuery('post', '/rest/dialog/meldinger', {
+    return $api.useQuery('post', '/rest/dialog/meldinger', {
         body: { fnr },
         params: { query: { enhet } }
     });
@@ -259,7 +269,7 @@ export const useAvsluttDialogMutation = () => {
 export const useSakerDokumenter = () => {
     const fnr = usePersonAtomValue();
     const enhet = useAtomValue(aktivEnhetAtom) as string;
-    return $api.useSuspenseQuery('post', '/rest/saker/saker_og_dokumenter', {
+    return $api.useQuery('post', '/rest/saker/saker_og_dokumenter', {
         body: { fnr },
         params: { query: { enhet } }
     });
@@ -267,31 +277,31 @@ export const useSakerDokumenter = () => {
 
 export const useUtbetalinger = (startDato: string, sluttDato: string) => {
     const fnr = usePersonAtomValue();
-    return $api.useSuspenseQuery('post', '/rest/utbetaling', {
+    return $api.useQuery('post', '/rest/utbetaling', {
         body: { fnr },
         params: { query: { startDato, sluttDato } }
     });
 };
 
-export const useOppfolging = () => {
+export const useYtelserogkontrakter = () => {
     const start = dayjs().subtract(3, 'months').format('YYYY-MM-DD');
     const slutt = dayjs().format('YYYY-MM-DD');
 
     const fnr = usePersonAtomValue();
-    return $api.useSuspenseQuery('post', '/rest/oppfolging/ytelserogkontrakter', {
+    return $api.useQuery('post', '/rest/oppfolging/ytelserogkontrakter', {
         body: { fnr, start, slutt }
     });
 };
 
 export const useGjeldende14aVedtak = () => {
     const fnr = usePersonAtomValue();
-    return $api.useSuspenseQuery('post', '/rest/oppfolging/hent-gjeldende-14a-vedtak', {
+    return $api.useQuery('post', '/rest/oppfolging/hent-gjeldende-14a-vedtak', {
         body: { fnr }
     });
 };
 
 export const useGsakTema = () => {
-    return $api.useSuspenseQuery('get', '/rest/dialogoppgave/tema');
+    return $api.useQuery('get', '/rest/dialogoppgave/tema');
 };
 
 export const useOppgaveMutation = () => {
@@ -426,7 +436,7 @@ export const useArbeidsavklaringspenger = (fom: string, tom: string) => {
 
 export const useForeldrepengerFpSak = (fom: string, tom: string) => {
     const fnr = usePersonAtomValue();
-    return $api.useSuspenseQuery('post', '/rest/ytelse/foreldrepenger_fpsak', {
+    return $api.useQuery('post', '/rest/ytelse/foreldrepenger_fpsak', {
         body: { fnr, fom, tom }
     });
 };

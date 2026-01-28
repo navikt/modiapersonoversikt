@@ -77,7 +77,7 @@ const YtelserTypeFilter = () => {
 };
 
 const FilterTitle = () => {
-    const { ytelser } = useFilterYtelser();
+    const { data: ytelser } = useFilterYtelser();
 
     return (
         <>

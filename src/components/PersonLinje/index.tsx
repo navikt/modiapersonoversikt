@@ -2,10 +2,11 @@ import { ChevronDownIcon, ChevronUpIcon, FigureInwardIcon, FigureOutwardIcon } f
 import { BodyShort, Box, Button, CopyButton, Heading, HStack, Skeleton, VStack } from '@navikt/ds-react';
 import { useLocation } from '@tanstack/react-router';
 import { Suspense, useEffect, useState } from 'react';
-import { erUbesvartHenvendelseFraBruker } from 'src/components/Meldinger/List/utils';
+import { erUbesvartHenvendelseFraBruker, useTraader } from 'src/components/Meldinger/List/utils';
+import { useFilterOppgave } from 'src/components/Oppgave/List/utils';
 import Statsborgerskap from 'src/components/PersonLinje/Details/Familie/Statsborgerskap';
 import config from 'src/config';
-import { useMeldinger, usePersonData, usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
+import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { Kjonn, type KodeBeskrivelseKjonn } from 'src/lib/types/modiapersonoversikt-api';
 import { trackAccordionClosed, trackAccordionOpened } from 'src/utils/analytics';
 import useHotkey from 'src/utils/hooks/use-hotkey';
@@ -32,8 +33,8 @@ export const PersonLinje = () => (
 
 const PersonlinjeHeader = ({ isExpanded }: { isExpanded: boolean }) => {
     const { data } = usePersonData();
-    const { data: traader } = useMeldinger();
-    const { data: oppgaver } = usePersonOppgaver();
+    const { data: traader } = useTraader();
+    const { data: oppgaver } = useFilterOppgave();
 
     const antallUbesvarteTraader = traader?.filter((traad) => erUbesvartHenvendelseFraBruker(traad))?.length;
 
