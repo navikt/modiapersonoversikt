@@ -74,3 +74,11 @@ interface Gjeldende14aVedtak {
 export interface Gjeldende14aVedtakResponse {
     gjeldende14aVedtak?: Gjeldende14aVedtak;
 }
+
+export interface Arbeidsoppfolging {
+    oppfolging: Oppfolging;
+    meldeplikt: boolean;
+    formidlingsgruppe: string;
+    vedtaksdato: string;
+    rettighetsgruppe: string;
+}
