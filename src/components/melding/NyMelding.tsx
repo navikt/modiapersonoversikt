@@ -23,6 +23,7 @@ import { useSendMelding } from 'src/lib/clients/modiapersonoversikt-api';
 import { useSuspendingBrukernavn } from 'src/lib/hooks/useSuspendingBrukernavn';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import type { Temagruppe } from 'src/models/temagrupper';
+import { trackSendNyMelding } from 'src/utils/analytics';
 import type { z } from 'zod';
 import AutocompleteTextarea from './AutoCompleteTextarea';
 
@@ -56,6 +57,7 @@ function NyMelding() {
         },
         onSubmit: ({ value }) => {
             const body = generateRequestBody(value as NyMeldingSchema);
+            trackSendNyMelding(meldingsTyperTekst[meldingsType].tittel.toLowerCase());
             mutate(
                 { body: body },
                 {

@@ -18,6 +18,7 @@ import {
 } from 'src/lib/clients/modiapersonoversikt-api';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
+import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import { Meldinger } from './Detail/Meldinger';
 import {
     eldsteMelding,
@@ -112,6 +113,7 @@ const AvsluttDialogModal = ({ traad, open, onClose }: ModalProps) => {
     const { mutate, isPending } = useAvsluttDialogMutation();
 
     const avsluttDialog = useCallback(() => {
+        trackGenereltUmamiEvent(trackingEvents.merkDialog, { tekst: 'lukk' });
         mutate(
             {
                 body: {
@@ -163,6 +165,7 @@ const MarkerFeilsendtModal = ({ traad, open, onClose }: ModalProps) => {
     const { mutate, isPending } = useMarkerFeilsendtMutation();
 
     const merkFeilsendt = useCallback(() => {
+        trackGenereltUmamiEvent(trackingEvents.merkDialog, { tekst: 'feilsendt' });
         if (!traad) {
             onClose();
             return;
@@ -229,6 +232,7 @@ const SladdTraadModal = ({ traad, onClose, open }: ModalProps) => {
         return;
     }
     const submit = () => {
+        trackGenereltUmamiEvent(trackingEvents.merkDialog, { tekst: 'sladding' });
         mutate(
             {
                 body: {

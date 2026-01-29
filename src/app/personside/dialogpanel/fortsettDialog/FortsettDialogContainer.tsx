@@ -4,29 +4,30 @@ import { guid } from 'nav-frontend-js-utils';
 import { Undertittel } from 'nav-frontend-typografi';
 import { type FormEvent, useCallback, useMemo, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { type FetchError, post } from 'src/api/api';
+import { apiBaseUri } from 'src/api/config';
+import FortsettDialog from 'src/app/personside/dialogpanel/fortsettDialog/FortsettDialog';
+import { SvarSendtKvittering } from 'src/app/personside/dialogpanel/fortsettDialog/FortsettDialogKvittering';
+import ReflowBoundry from 'src/app/personside/dialogpanel/ReflowBoundry';
+import { OppgavelisteValg } from 'src/app/personside/dialogpanel/sendMelding/SendNyMelding';
+import useDraft, { type Draft } from 'src/app/personside/dialogpanel/use-draft';
+import { useAlertOnNavigation } from 'src/app/personside/dialogpanel/useAlertOnNavigation';
+import { erJournalfort } from 'src/app/personside/infotabs/meldinger/utils/meldingerUtils';
+import IfFeatureToggleOn from 'src/components/featureToggle/IfFeatureToggleOn';
+import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
+import { useValgtenhet } from 'src/context/valgtenhet-state';
 import { usePersonAtomValue } from 'src/lib/state/context';
+import { type SendMeldingRequestV2, type Traad, TraadType } from 'src/models/meldinger/meldinger';
+import type { Oppgave } from 'src/models/meldinger/oppgave';
+import { Temagruppe } from 'src/models/temagrupper';
+import { setIngenValgtTraadDialogpanel } from 'src/redux/oppgave/actions';
+import dialogResource from 'src/rest/resources/dialogResource';
+import journalsakResource from 'src/rest/resources/journalsakResource';
+import tildelteoppgaver from 'src/rest/resources/tildelteoppgaverResource';
+import theme from 'src/styles/personOversiktTheme';
+import { trackFortsettDialog } from 'src/utils/analytics';
+import { loggError } from 'src/utils/logger/frontendLogger';
 import styled from 'styled-components';
-import { type FetchError, post } from '../../../../api/api';
-import { apiBaseUri } from '../../../../api/config';
-import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureToggleOn';
-import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
-import { useValgtenhet } from '../../../../context/valgtenhet-state';
-import { type SendMeldingRequestV2, type Traad, TraadType } from '../../../../models/meldinger/meldinger';
-import type { Oppgave } from '../../../../models/meldinger/oppgave';
-import { Temagruppe } from '../../../../models/temagrupper';
-import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
-import dialogResource from '../../../../rest/resources/dialogResource';
-import journalsakResource from '../../../../rest/resources/journalsakResource';
-import tildelteoppgaver from '../../../../rest/resources/tildelteoppgaverResource';
-import theme from '../../../../styles/personOversiktTheme';
-import { loggError } from '../../../../utils/logger/frontendLogger';
-import { erJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
-import ReflowBoundry from '../ReflowBoundry';
-import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
-import useDraft, { type Draft } from '../use-draft';
-import { useAlertOnNavigation } from '../useAlertOnNavigation';
-import FortsettDialog from './FortsettDialog';
-import { SvarSendtKvittering } from './FortsettDialogKvittering';
 import {
     DialogPanelStatus,
     type FortsettDialogPanelState,
@@ -121,6 +122,7 @@ function FortsettDialogContainer(props: Props) {
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
+        trackFortsettDialog(traadTittel(state.traadType));
         if (dialogStatus.type === DialogPanelStatus.POSTING) {
             return;
         }
@@ -212,11 +214,11 @@ function FortsettDialogContainer(props: Props) {
     function traadTittel(traadType?: TraadType) {
         switch (traadType) {
             case TraadType.CHAT:
-                return 'Fortsett chat';
+                return 'chat';
             case TraadType.MELDINGSKJEDE:
-                return 'Fortsett samtale';
+                return 'samtale';
             case TraadType.SAMTALEREFERAT:
-                return 'Påfølgende referat';
+                return 'referat';
             default:
                 return '';
         }
@@ -225,7 +227,7 @@ function FortsettDialogContainer(props: Props) {
     return (
         <StyledArticle aria-labelledby={tittelId.current}>
             <ReflowBoundry>
-                <Undertittel id={tittelId.current}>{traadTittel(props.traad.traadType)}</Undertittel>
+                <Undertittel id={tittelId.current}>Fortsett {traadTittel(props.traad.traadType)}</Undertittel>
                 <IfFeatureToggleOn toggleID={FeatureToggles.VisPromptMeldingSending}>
                     <Block
                         condition={!!state.errors?.length}

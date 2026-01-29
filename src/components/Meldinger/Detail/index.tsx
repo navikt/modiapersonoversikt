@@ -11,6 +11,7 @@ import usePrinter from 'src/components/Print/usePrinter';
 import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
 import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
+import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import { formatterDatoTid } from 'src/utils/date-utils';
 import { formaterDato } from 'src/utils/string-utils';
 import { JournalForingModal } from '../Journalforing';
@@ -51,8 +52,22 @@ const TraadMeta = ({ traad }: { traad: Traad }) => {
                         </Button>
                     </ActionMenu.Trigger>
                     <ActionMenu.Content>
-                        <ActionMenu.Item onSelect={() => triggerPrinting()}>Skriv ut dialog</ActionMenu.Item>
-                        <ActionMenu.Item onSelect={() => triggerPrinting(true)}>Skriv ut alle dialoger</ActionMenu.Item>
+                        <ActionMenu.Item
+                            onSelect={() => {
+                                trackGenereltUmamiEvent(trackingEvents.skrivUt, { tekst: 'enkel dialog' });
+                                triggerPrinting();
+                            }}
+                        >
+                            Skriv ut dialog
+                        </ActionMenu.Item>
+                        <ActionMenu.Item
+                            onSelect={() => {
+                                trackGenereltUmamiEvent(trackingEvents.skrivUt, { tekst: 'alle dialoger' });
+                                triggerPrinting(true);
+                            }}
+                        >
+                            Skriv ut alle dialoger
+                        </ActionMenu.Item>
                     </ActionMenu.Content>
                 </ActionMenu>
                 <Button

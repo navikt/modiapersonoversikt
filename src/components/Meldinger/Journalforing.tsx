@@ -7,6 +7,7 @@ import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
 import { useJournalforMutation } from 'src/lib/clients/modiapersonoversikt-api';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
+import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
 import { FetchErrorRenderer } from '../QueryErrorBoundary';
 import { kanTraadJournalforesV2 } from './List/utils';
@@ -27,6 +28,7 @@ export const JournalForingModal = ({ traad, close, isOpen }: Props) => {
     const { mutate, isPending, error, isError } = useJournalforMutation();
 
     const journalFor = () => {
+        trackGenereltUmamiEvent(trackingEvents.journalfor);
         if (!valgtSak) {
             return;
         }

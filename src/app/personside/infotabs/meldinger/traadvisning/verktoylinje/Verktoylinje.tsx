@@ -2,6 +2,7 @@ import { guid } from 'nav-frontend-js-utils';
 import Panel from 'nav-frontend-paneler';
 import { createRef, useCallback, useEffect, useRef, useState } from 'react';
 import { UnmountClosed } from 'react-collapse';
+import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import styled from 'styled-components';
 import EkspanderKnapp from '../../../../../../components/EkspanderKnapp';
 import ErrorBoundary from '../../../../../../components/ErrorBoundary';
@@ -63,7 +64,12 @@ function Print(props: Props) {
 
     return (
         <>
-            <PrintKnapp onClick={() => printer?.triggerPrint()} />
+            <PrintKnapp
+                onClick={() => {
+                    printer?.triggerPrint();
+                    trackGenereltUmamiEvent(trackingEvents.skrivUt, { tekst: 'enkel dialog' });
+                }}
+            />
             <PrinterWrapper>
                 <MeldingerPrintMarkup valgtTraad={props.valgtTraad} />
             </PrinterWrapper>
