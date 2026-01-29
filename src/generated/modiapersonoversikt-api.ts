@@ -373,6 +373,38 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    '/rest/oppfolging/sykefravaeroppfolging': {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations['hentSykefravaersoppfolging'];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    }
+    '/rest/oppfolging/arbeidsoppfolging': {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations['hentArbeidsoppfolging'];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    }
     '/rest/journalforing/{traadId}': {
         parameters: {
             query?: never;
@@ -1903,6 +1935,13 @@ export interface components {
             ident: string;
             navn: string;
         };
+        ArbeidsOppfolgingDTO: {
+            oppfolging?: components['schemas']['OppfolgingDTO'];
+            meldeplikt?: boolean;
+            formidlingsgruppe?: string;
+            vedtaksdato?: string;
+            rettighetsgruppe?: string;
+        };
         DagpengeytelseDTO: {
             type: 'DagpengeytelseDTO';
         } & (Omit<components['schemas']['YtelseDTO'], 'type'> & {
@@ -3051,6 +3090,60 @@ export interface operations {
                 };
                 content: {
                     '*/*': components['schemas']['Gjeldende14aVedtakResponse'];
+                };
+            };
+        };
+    };
+    hentSykefravaersoppfolging: {
+        parameters: {
+            query?: {
+                startDato?: string;
+                sluttDato?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                'application/json': components['schemas']['FnrRequest'];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    '*/*': components['schemas']['SyfoPunktDTO'][];
+                };
+            };
+        };
+    };
+    hentArbeidsoppfolging: {
+        parameters: {
+            query?: {
+                startDato?: string;
+                sluttDato?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                'application/json': components['schemas']['FnrRequest'];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    '*/*': components['schemas']['ArbeidsOppfolgingDTO'];
                 };
             };
         };

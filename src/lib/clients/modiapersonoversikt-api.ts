@@ -290,6 +290,20 @@ export const useGjeldende14aVedtak = () => {
     });
 };
 
+export const useArbeidsoppfolging = () => {
+    const fnr = usePersonAtomValue();
+    return $api.useSuspenseQuery('post', '/rest/oppfolging/arbeidsoppfolging', {
+        body: { fnr }
+    });
+};
+
+export const useSykefravaersoppfolging = () => {
+    const fnr = usePersonAtomValue();
+    return $api.useSuspenseQuery('post', '/rest/oppfolging/sykefravaeroppfolging', {
+        body: { fnr }
+    });
+};
+
 export const useGsakTema = () => {
     return $api.useSuspenseQuery('get', '/rest/dialogoppgave/tema');
 };

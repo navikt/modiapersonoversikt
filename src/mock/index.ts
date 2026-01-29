@@ -32,7 +32,12 @@ import { saker } from './journalforing/journalforing-mock';
 import { getForeslattEnhet, getMockAnsatte, getMockEnheter, getMockGsakTema } from './meldinger/oppgave-mock';
 import { MeldingerBackendMock } from './mockBackend/meldingerBackendMock';
 import { OppgaverBackendMock } from './mockBackend/oppgaverBackendMock';
-import { getMock14aVedtak, getMockOppfolging, getMockYtelserOgKontrakter } from './oppfolging-mock';
+import {
+    getMock14aVedtak, getMockArbeidsoppfolging,
+    getMockOppfolging,
+    getMockSykefravaersoppfolging,
+    getMockYtelserOgKontrakter
+} from './oppfolging-mock';
 import { hentPersondata } from './persondata/persondata';
 import { mockPersonsokResponse, mockStaticPersonsokRequest } from './personsok/personsokMock';
 import { saksbehandlerInnstillingerHandlers } from './saksbehandlerinnstillinger-mock';
@@ -252,6 +257,24 @@ const gjeldende14aVedtakHandler = http.post(
     )
 );
 
+const sykefravaeroppfolgingHandler = http.post(
+    `${apiBaseUri}/oppfolging/sykefravaeroppfolging`,
+    withDelayedResponse(
+        randomDelay(),
+        fodselsNummerErGyldigStatus,
+        mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMockSykefravaersoppfolging(fodselsnummer))
+    )
+)
+
+const arbeidsoppfolgingHandler = http.post(
+    `${apiBaseUri}/oppfolging/arbeidsoppfolging`,
+    withDelayedResponse(
+        randomDelay(),
+        fodselsNummerErGyldigStatus,
+        mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMockArbeidsoppfolging(fodselsnummer))
+    )
+)
+
 const varslerHandler = http.post<PathParams, { fnr: string }>(`${apiBaseUri}/varsler`, async ({ request }) => {
     const body = await request.json();
     const fnr = body.fnr;
@@ -410,6 +433,8 @@ export const handlers: (HttpHandler | WebSocketHandler)[] = [
     ansattePaaEnhetHandler,
     ytelserogkontrakterHandler,
     gjeldende14aVedtakHandler,
+    sykefravaeroppfolgingHandler,
+    arbeidsoppfolgingHandler,
     varslerHandler,
     opprettOppgaveHandler,
     opprettSkjermetOppgaveHandler,

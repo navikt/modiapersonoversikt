@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import navfaker from 'nav-faker';
 import type { Gjeldende14aVedtak } from 'src/generated/modiapersonoversikt-api';
 import type {
-    AnsattEnhet,
+    AnsattEnhet, Arbeidsoppfolging,
     Dagpenger,
     DetaljertOppfolging,
     Oppfolging,
@@ -71,6 +71,20 @@ export function getMock14aVedtak(fodselsnummer: string): Gjeldende14aVedtak {
     };
 }
 
+export function getMockSykefravaersoppfolging(fodselsnummer: string): SyfoPunkt[] {
+    faker.seed(Number(fodselsnummer));
+    navfaker.seed(`${fodselsnummer}sykefrav`);
+
+    return fyllRandomListe(getSyfoPunkt, 5);
+}
+
+export function getMockArbeidsoppfolging(fodselsnummer: string): Arbeidsoppfolging {
+    faker.seed(Number(fodselsnummer));
+    navfaker.seed(`${fodselsnummer}arbeidsopp`);
+
+    return getArbeidsoppfolging(fodselsnummer);
+}
+
 function getSyfoPunkt(): SyfoPunkt {
     return {
         dato: dayjs(faker.date.recent({ days: 100 })).format(backendDatoformat),
@@ -113,5 +127,15 @@ function getVedtak(): OppfolgingsVedtak {
         aktivitetsfase: 'Ikke spesif. aktivitetsfase',
         vedtakstatus: faker.helpers.arrayElement(['Iverksatt', 'Avsluttet']),
         vedtakstype: 'Ordinære dagpenger'
+    };
+}
+
+function getArbeidsoppfolging(fodselsnummer : string): Arbeidsoppfolging {
+    return {
+        oppfolging: getMockOppfolging(fodselsnummer),
+        meldeplikt: faker.datatype.boolean(),
+        formidlingsgruppe: `FMGRP${faker.number.int(5)}`,
+        vedtaksdato: dayjs(faker.date.recent({ days: 10 })).format(backendDatoformat),
+        rettighetsgruppe: `RGRP${faker.number.int(10)}`
     };
 }
