@@ -27,9 +27,7 @@ const SakerPageContent = () => {
                 <Heading size="small" visuallyHidden level="2">
                     Saker og dokumenter
                 </Heading>
-                <ErrorBoundary boundaryName="SakerList" errorText="Det oppstod en feil under visning av saker liste">
-                    <SakerList />
-                </ErrorBoundary>
+                <SakerList />
             </VStack>
             <VStack className="min-h-100 md:min-h-0">
                 <AlertBanner alerts={errorMessages} />

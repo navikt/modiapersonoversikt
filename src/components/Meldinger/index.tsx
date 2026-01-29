@@ -34,12 +34,7 @@ const MeldingerPageContent = () => {
                 <Heading level="2" size="small" visuallyHidden>
                     Dialoger
                 </Heading>
-                <ErrorBoundary
-                    boundaryName="MeldingerList"
-                    errorText="Det oppstod en feil under visning av melding liste"
-                >
-                    <TraadList />
-                </ErrorBoundary>
+                <TraadList />
             </VStack>
             <VStack flexGrow="1" overflowX={{ md: 'hidden' }}>
                 <AlertBanner alerts={[...traadErrorMessages, ...temaErrorMessages]} />

@@ -28,12 +28,8 @@ const VarslerPageContent = () => {
                 <Heading size="small" visuallyHidden level="2">
                     Varsler
                 </Heading>
-                <ErrorBoundary
-                    boundaryName="VarslerList"
-                    errorText="Det oppstod en feil under visning av varsler liste"
-                >
-                    <VarslerList />
-                </ErrorBoundary>
+
+                <VarslerList />
             </VStack>
             <VStack className="min-h-100 md:min-h-0">
                 <AlertBanner alerts={errorMessages} />

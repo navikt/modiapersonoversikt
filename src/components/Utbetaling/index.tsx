@@ -2,7 +2,7 @@ import { Heading, HGrid, VStack } from '@navikt/ds-react';
 import { AlertBanner } from 'src/components/AlertBanner';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { UtbetalingerDetailPage } from 'src/components/Utbetaling/Detail';
-import { UtbetalingList } from 'src/components/Utbetaling/List';
+import { UtbetalingerList } from 'src/components/Utbetaling/List';
 import { useFilterUtbetalinger } from 'src/components/Utbetaling/List/utils';
 
 export const UtbetalingPage = () => {
@@ -22,12 +22,8 @@ const UtbetalingPageContent = () => {
                 <Heading size="small" visuallyHidden level="2">
                     Utbetalinger
                 </Heading>
-                <ErrorBoundary
-                    boundaryName="UtbetalingerList"
-                    errorText="Det oppstod en feil under visning av utbetalinger liste"
-                >
-                    <UtbetalingList />
-                </ErrorBoundary>
+
+                <UtbetalingerList />
             </VStack>
             <VStack className="min-h-100 md:min-h-0">
                 <AlertBanner alerts={errorMessages} />

@@ -1,12 +1,22 @@
-import { Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { useSearch } from '@tanstack/react-router';
+import ErrorBoundary from 'src/components/ErrorBoundary';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { SakItem } from 'src/components/saker/List/SakItem';
 import { useAntallListeElementeBasertPaaSkjermStorrelse } from 'src/utils/customHooks';
 import { getSakId, useFilterSaker } from '../utils';
 import { SakerFilter } from './Filter';
 
-export const SakerList = () => {
+export const SakerList = () => (
+    <ErrorBoundary boundaryName="SakerList" errorText="Det oppstod en feil under visning av saker liste">
+        <VStack height="100%" gap="2">
+            <SakerFilter />
+            <SakList />
+        </VStack>
+    </ErrorBoundary>
+);
+
+const SakList = () => {
     const { data, isLoading } = useFilterSaker();
     const saker = data?.saker ?? [];
     const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
@@ -15,10 +25,16 @@ export const SakerList = () => {
         from: '/new/person/saker',
         select: (p) => p.id
     });
+    if (!isLoading && saker.length === 0) {
+        return (
+            <Alert className="mr-2" variant="info" role="alert">
+                Ingen saker funnet
+            </Alert>
+        );
+    }
 
     return (
-        <VStack height="100%" gap="2">
-            <SakerFilter />
+        <>
             {isLoading ? (
                 <VStack gap="2" marginInline="0 2">
                     {Array(8)
@@ -28,18 +44,24 @@ export const SakerList = () => {
                         ))}
                 </VStack>
             ) : (
-                <PaginatedList
-                    paginationSrHeading={{
-                        tag: 'h3',
-                        text: 'Sakerpaginerg'
-                    }}
-                    pageSize={antallListeElementer}
-                    selectedKey={selectedKey}
-                    items={saker}
-                    keyExtractor={getSakId}
-                    renderItem={({ item }) => <SakItem sak={item} />}
-                />
+                <>
+                    <Heading className="pl-1" size="xsmall" level="3" role="alert">
+                        {saker.length} {saker.length === 1 ? 'sak' : 'saker'} funnet
+                        <BodyShort visuallyHidden>funnet</BodyShort>
+                    </Heading>
+                    <PaginatedList
+                        paginationSrHeading={{
+                            tag: 'h3',
+                            text: 'Sakerpaginerg'
+                        }}
+                        pageSize={antallListeElementer}
+                        selectedKey={selectedKey}
+                        items={saker}
+                        keyExtractor={getSakId}
+                        renderItem={({ item }) => <SakItem sak={item} />}
+                    />
+                </>
             )}
-        </VStack>
+        </>
     );
 };

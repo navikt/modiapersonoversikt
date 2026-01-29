@@ -1,22 +1,40 @@
-import { Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { useSearch } from '@tanstack/react-router';
+import ErrorBoundary from 'src/components/ErrorBoundary';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { VarslerItem } from 'src/components/varsler/List/VarslerItem';
 import { useAntallListeElementeBasertPaaSkjermStorrelse } from 'src/utils/customHooks';
 import { VarslerListFilter } from './Filter';
 import { useFilterVarsler } from './utils';
 
-export const VarslerList = () => {
+export const VarslerList = () => (
+    <ErrorBoundary boundaryName="VarslerList" errorText="Det oppstod en feil under visning av varsler liste">
+        <VStack height="100%" gap="2">
+            <VarslerListFilter />
+            <VarslerListList />
+        </VStack>
+    </ErrorBoundary>
+);
+
+const VarslerListList = () => {
     const { varsler, isLoading } = useFilterVarsler();
     const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
+
     const selectedKey = useSearch({
         from: '/new/person/varsler',
         select: (p) => p.id
     });
 
+    if (!isLoading && !varsler.length) {
+        return (
+            <Alert className="mr-2" variant="info" role="alert">
+                Ingen varsler funnet
+            </Alert>
+        );
+    }
+
     return (
-        <VStack height="100%" gap="2">
-            <VarslerListFilter />
+        <>
             {isLoading ? (
                 <VStack gap="2" marginInline="0 2">
                     {Array(8)
@@ -26,18 +44,24 @@ export const VarslerList = () => {
                         ))}
                 </VStack>
             ) : (
-                <PaginatedList
-                    paginationSrHeading={{
-                        tag: 'h3',
-                        text: 'Varslerpaginering'
-                    }}
-                    pageSize={antallListeElementer}
-                    selectedKey={selectedKey}
-                    items={varsler}
-                    keyExtractor={(item) => item.eventId}
-                    renderItem={({ item }) => <VarslerItem varsel={item} />}
-                />
+                <>
+                    <Heading className="pl-1" size="xsmall" level="3" role="alert">
+                        {varsler.length} {varsler.length === 1 ? 'varsel' : 'varsler'}
+                        <BodyShort visuallyHidden>funnet</BodyShort>
+                    </Heading>
+                    <PaginatedList
+                        paginationSrHeading={{
+                            tag: 'h3',
+                            text: 'Varslerpaginering'
+                        }}
+                        pageSize={antallListeElementer}
+                        selectedKey={selectedKey}
+                        items={varsler}
+                        keyExtractor={(item) => item.eventId}
+                        renderItem={({ item }) => <VarslerItem varsel={item} />}
+                    />
+                </>
             )}
-        </VStack>
+        </>
     );
 };

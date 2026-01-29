@@ -22,12 +22,7 @@ const YtelserPageContent = () => {
                 <Heading size="small" visuallyHidden level="2">
                     Ytelser
                 </Heading>
-                <ErrorBoundary
-                    boundaryName="YtelserList"
-                    errorText="Det oppstod en feil under visning av ytelser liste"
-                >
-                    <YtelserList />
-                </ErrorBoundary>
+                <YtelserList />
             </VStack>
             <VStack className="min-h-100 md:min-h-0">
                 <AlertBanner alerts={errorMessages} />

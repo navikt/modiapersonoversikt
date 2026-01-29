@@ -29,12 +29,7 @@ const OppgaverPageContent = () => {
                 <Heading size="small" visuallyHidden level="2">
                     Oppgaver
                 </Heading>
-                <ErrorBoundary
-                    boundaryName="OppgaverList"
-                    errorText="Det oppstod en feil under visning av oppgave liste"
-                >
-                    <OppgaverList />
-                </ErrorBoundary>
+                <OppgaverList />
             </VStack>
             <VStack className="min-h-100 md:min-h-0">
                 <AlertBanner alerts={[...oppgaveErrorMessages, ...temaErrorMessages]} />
