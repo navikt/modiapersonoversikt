@@ -1,11 +1,21 @@
-import { Alert, BodyShort, Heading, HGrid, Pagination, Skeleton, SortState, Table, VStack } from '@navikt/ds-react';
+import {
+    Alert,
+    BodyShort,
+    Heading,
+    HGrid,
+    Pagination,
+    Skeleton,
+    type SortState,
+    Table,
+    VStack
+} from '@navikt/ds-react';
 import { Suspense, useState } from 'react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { getMeldeplikt, getOppfolgingEnhet, getVeileder } from 'src/components/Oppfolging/utils';
 import {
-    useGjeldende14aVedtak,
     useArbeidsoppfolging,
+    useGjeldende14aVedtak,
     useSykefravaersoppfolging
 } from 'src/lib/clients/modiapersonoversikt-api';
 import { datoEllerNull } from 'src/utils/string-utils';
