@@ -1,5 +1,4 @@
 import { useQueryClient } from '@tanstack/react-query';
-import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai';
 import createFetchClient from 'openapi-fetch';
 import createClient from 'openapi-react-query';
@@ -270,16 +269,6 @@ export const useUtbetalinger = (startDato: string, sluttDato: string) => {
     return $api.useSuspenseQuery('post', '/rest/utbetaling', {
         body: { fnr },
         params: { query: { startDato, sluttDato } }
-    });
-};
-
-export const useOppfolging = () => {
-    const start = dayjs().subtract(3, 'months').format('YYYY-MM-DD');
-    const slutt = dayjs().format('YYYY-MM-DD');
-
-    const fnr = usePersonAtomValue();
-    return $api.useSuspenseQuery('post', '/rest/oppfolging/ytelserogkontrakter', {
-        body: { fnr, start, slutt }
     });
 };
 
