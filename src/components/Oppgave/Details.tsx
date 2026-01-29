@@ -1,4 +1,4 @@
-import { Alert, HStack, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, HStack, Skeleton } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import { useEffect, useRef } from 'react';
@@ -58,13 +58,7 @@ export const OppgaveDetail = () => {
             boundaryName="oppgaveDetaljer"
             errorText="Det oppstod en feil under visning av oppgave detailjer"
         >
-            <VStack flexGrow="1" minHeight="0" maxHeight="100%" className="overflow-auto">
-                {isLoading ? (
-                    <Skeleton variant="rounded" height="4rem" />
-                ) : (
-                    <OppgaveOgDialogDetail oppgaver={oppgaver} />
-                )}
-            </VStack>
+            {isLoading ? <Skeleton variant="rounded" height="4rem" /> : <OppgaveOgDialogDetail oppgaver={oppgaver} />}
         </ErrorBoundary>
     );
 };

@@ -450,13 +450,11 @@ export const UtbetalingerDetailPage = () => {
             boundaryName="utbetalingerDetailPage"
             errorText="Det oppstod en feil under visning av utbetalinger detailjer"
         >
-            <VStack flexGrow="1" minHeight="0" maxHeight="100%" className="overflow-auto">
-                {isLoading ? (
-                    <Skeleton variant="rounded" height="4rem" />
-                ) : (
-                    <UtbetalingerDetail utbetalinger={utbetalinger} />
-                )}
-            </VStack>
+            {isLoading ? (
+                <Skeleton variant="rounded" height="4rem" />
+            ) : (
+                <UtbetalingerDetail utbetalinger={utbetalinger} />
+            )}
         </ErrorBoundary>
     );
 };

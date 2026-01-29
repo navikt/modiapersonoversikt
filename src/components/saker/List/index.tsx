@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Heading, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, Skeleton, VStack } from '@navikt/ds-react';
 import { useSearch } from '@tanstack/react-router';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { PaginatedList } from 'src/components/PaginatedList';
@@ -44,23 +44,17 @@ const SakList = () => {
                         ))}
                 </VStack>
             ) : (
-                <>
-                    <Heading className="pl-1" size="xsmall" level="3" role="alert">
-                        {saker.length} {saker.length === 1 ? 'sak' : 'saker'} funnet
-                        <BodyShort visuallyHidden>funnet</BodyShort>
-                    </Heading>
-                    <PaginatedList
-                        paginationSrHeading={{
-                            tag: 'h3',
-                            text: 'Sakerpaginerg'
-                        }}
-                        pageSize={antallListeElementer}
-                        selectedKey={selectedKey}
-                        items={saker}
-                        keyExtractor={getSakId}
-                        renderItem={({ item }) => <SakItem sak={item} />}
-                    />
-                </>
+                <PaginatedList
+                    paginationSrHeading={{
+                        tag: 'h3',
+                        text: 'Sakerpaginerg'
+                    }}
+                    pageSize={antallListeElementer}
+                    selectedKey={selectedKey}
+                    items={saker}
+                    keyExtractor={getSakId}
+                    renderItem={({ item }) => <SakItem sak={item} />}
+                />
             )}
         </>
     );

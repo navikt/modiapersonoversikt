@@ -22,7 +22,6 @@ const UtbetalingPageContent = () => {
                 <Heading size="small" visuallyHidden level="2">
                     Utbetalinger
                 </Heading>
-
                 <UtbetalingerList />
             </VStack>
             <VStack className="min-h-100 md:min-h-0">

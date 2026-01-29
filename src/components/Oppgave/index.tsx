@@ -33,7 +33,9 @@ const OppgaverPageContent = () => {
             </VStack>
             <VStack className="min-h-100 md:min-h-0">
                 <AlertBanner alerts={[...oppgaveErrorMessages, ...temaErrorMessages]} />
-                <OppgaveDetail />
+                <VStack minHeight="0">
+                    <OppgaveDetail />
+                </VStack>
             </VStack>
         </HGrid>
     );

@@ -88,11 +88,7 @@ const YtelseDataDetails = ({ ytelser }: { ytelser: YtelseVedtak[] }) => {
     }
 
     if (!selectedYtelse && id) {
-        return (
-            <Alert variant="warning" size="small">
-                Ytelsen du valgte, ble ikke funnet.
-            </Alert>
-        );
+        return <Alert variant="error">Ytelsen du valgte, ble ikke funnet.</Alert>;
     }
 
     if (!selectedYtelse && !id) {
@@ -134,7 +130,7 @@ export const ValgteYtelseDetailPage = () => {
             errorText="Det oppstod en feil under visning av ytelse detailjer"
         >
             {isLoading ? (
-                <Skeleton variant="rounded" height="4rem" />
+                <Skeleton variant="rounded" className="mt-6" height="4rem" />
             ) : (
                 <VStack flexGrow="1" minHeight="0" maxHeight="100%" className="overflow-auto">
                     <YtelseDataDetails ytelser={ytelser} />

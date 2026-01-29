@@ -28,12 +28,13 @@ const VarslerPageContent = () => {
                 <Heading size="small" visuallyHidden level="2">
                     Varsler
                 </Heading>
-
                 <VarslerList />
             </VStack>
             <VStack className="min-h-100 md:min-h-0">
                 <AlertBanner alerts={errorMessages} />
-                <VarselDetail />
+                <VStack minHeight="0">
+                    <VarselDetail />
+                </VStack>
             </VStack>
         </HGrid>
     );
