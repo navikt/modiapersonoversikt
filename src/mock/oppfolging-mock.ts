@@ -3,7 +3,8 @@ import dayjs from 'dayjs';
 import navfaker from 'nav-faker';
 import type { Gjeldende14aVedtak } from 'src/generated/modiapersonoversikt-api';
 import type {
-    AnsattEnhet, Arbeidsoppfolging,
+    AnsattEnhet,
+    Arbeidsoppfolging,
     Dagpenger,
     DetaljertOppfolging,
     Oppfolging,
@@ -130,7 +131,7 @@ function getVedtak(): OppfolgingsVedtak {
     };
 }
 
-function getArbeidsoppfolging(fodselsnummer : string): Arbeidsoppfolging {
+function getArbeidsoppfolging(fodselsnummer: string): Arbeidsoppfolging {
     return {
         oppfolging: getMockOppfolging(fodselsnummer),
         meldeplikt: faker.datatype.boolean(),

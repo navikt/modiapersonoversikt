@@ -388,7 +388,7 @@ export interface paths {
         head?: never;
         patch?: never;
         trace?: never;
-    }
+    };
     '/rest/oppfolging/arbeidsoppfolging': {
         parameters: {
             query?: never;
@@ -404,7 +404,7 @@ export interface paths {
         head?: never;
         patch?: never;
         trace?: never;
-    }
+    };
     '/rest/journalforing/{traadId}': {
         parameters: {
             query?: never;

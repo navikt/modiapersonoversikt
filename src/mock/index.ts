@@ -33,7 +33,8 @@ import { getForeslattEnhet, getMockAnsatte, getMockEnheter, getMockGsakTema } fr
 import { MeldingerBackendMock } from './mockBackend/meldingerBackendMock';
 import { OppgaverBackendMock } from './mockBackend/oppgaverBackendMock';
 import {
-    getMock14aVedtak, getMockArbeidsoppfolging,
+    getMock14aVedtak,
+    getMockArbeidsoppfolging,
     getMockOppfolging,
     getMockSykefravaersoppfolging,
     getMockYtelserOgKontrakter
@@ -264,7 +265,7 @@ const sykefravaeroppfolgingHandler = http.post(
         fodselsNummerErGyldigStatus,
         mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMockSykefravaersoppfolging(fodselsnummer))
     )
-)
+);
 
 const arbeidsoppfolgingHandler = http.post(
     `${apiBaseUri}/oppfolging/arbeidsoppfolging`,
@@ -273,7 +274,7 @@ const arbeidsoppfolgingHandler = http.post(
         fodselsNummerErGyldigStatus,
         mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMockArbeidsoppfolging(fodselsnummer))
     )
-)
+);
 
 const varslerHandler = http.post<PathParams, { fnr: string }>(`${apiBaseUri}/varsler`, async ({ request }) => {
     const body = await request.json();

@@ -1,14 +1,14 @@
-import {Alert, BodyShort, Heading, HGrid, Pagination, Skeleton, SortState, Table, VStack} from '@navikt/ds-react';
-import {Suspense, useState} from 'react';
+import { Alert, BodyShort, Heading, HGrid, Pagination, Skeleton, SortState, Table, VStack } from '@navikt/ds-react';
+import { Suspense, useState } from 'react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
-import {getMeldeplikt, getOppfolgingEnhet, getVeileder} from 'src/components/Oppfolging/utils';
+import { getMeldeplikt, getOppfolgingEnhet, getVeileder } from 'src/components/Oppfolging/utils';
 import {
     useGjeldende14aVedtak,
     useArbeidsoppfolging,
     useSykefravaersoppfolging
 } from 'src/lib/clients/modiapersonoversikt-api';
-import {datoEllerNull} from 'src/utils/string-utils';
+import { datoEllerNull } from 'src/utils/string-utils';
 
 const OppfolgingDetaljer = () => {
     const arbeidsOppfolgingResponse = useArbeidsoppfolging();
@@ -22,7 +22,7 @@ const OppfolgingDetaljer = () => {
             <Heading as="h4" size="small">
                 Arbeidsoppfølging
             </Heading>
-            <HGrid gap="4" columns={{sm: 1, md: 2, lg: 4}} className="mt-2">
+            <HGrid gap="4" columns={{ sm: 1, md: 2, lg: 4 }} className="mt-2">
                 <VStack justify="space-between">
                     <BodyShort size="small" weight="semibold">
                         Status:
@@ -114,19 +114,18 @@ const Gjeldende14aVedtakDetaljer = () => {
 const SykefravaersoppfolgingDetaljer = () => {
     const sykefravaersoppfolgingResponse = useSykefravaersoppfolging();
     const sykefravaersoppfolging = sykefravaersoppfolgingResponse.data;
-    const [sort, setSort] = useState<SortState | undefined>({orderBy: 'dato', direction: 'descending'});
+    const [sort, setSort] = useState<SortState | undefined>({ orderBy: 'dato', direction: 'descending' });
     const [page, setPage] = useState(1);
 
     if (!sykefravaersoppfolging) {
         return <Alert variant="info">Brukeren har ingen sykefraværs-oppfølging.</Alert>;
     }
 
-
     const handleSort = (sortKey: string) => {
         setSort((prevSort) =>
             prevSort?.orderBy === sortKey && prevSort.direction === 'ascending'
-                ? {orderBy: sortKey, direction: 'descending'}
-                : {orderBy: sortKey, direction: 'ascending'}
+                ? { orderBy: sortKey, direction: 'descending' }
+                : { orderBy: sortKey, direction: 'ascending' }
         );
     };
 
@@ -151,7 +150,9 @@ const SykefravaersoppfolgingDetaljer = () => {
                 <Table zebraStripes={true} sort={sort} onSortChange={handleSort}>
                     <Table.Header>
                         <Table.Row>
-                            <Table.ColumnHeader sortKey="dato" sortable>Innen</Table.ColumnHeader>
+                            <Table.ColumnHeader sortKey="dato" sortable>
+                                Innen
+                            </Table.ColumnHeader>
                             <Table.HeaderCell scope="col">Hendelse</Table.HeaderCell>
                             <Table.HeaderCell scope="col">Status</Table.HeaderCell>
                         </Table.Row>
@@ -189,21 +190,21 @@ export const OppfolgingPage = () => {
             </Heading>
             <Card padding="4">
                 <ErrorBoundary boundaryName="oppfolgingDetaljer">
-                    <Suspense fallback={<Skeleton variant="rounded" height={166}/>}>
-                        <OppfolgingDetaljer/>
+                    <Suspense fallback={<Skeleton variant="rounded" height={166} />}>
+                        <OppfolgingDetaljer />
                     </Suspense>
                 </ErrorBoundary>
-                <div className="my-4 border-t border-border-subtle"/>
+                <div className="my-4 border-t border-border-subtle" />
                 <ErrorBoundary boundaryName="gjeldende14aVedtakDetaljer">
-                    <Suspense fallback={<Skeleton variant="rounded" height={166}/>}>
-                        <Gjeldende14aVedtakDetaljer/>
+                    <Suspense fallback={<Skeleton variant="rounded" height={166} />}>
+                        <Gjeldende14aVedtakDetaljer />
                     </Suspense>
                 </ErrorBoundary>
             </Card>
             <Card padding="4">
                 <ErrorBoundary boundaryName="sykefraversoppfolgingDetaljer">
-                    <Suspense fallback={<Skeleton variant="rounded" height={166}/>}>
-                        <SykefravaersoppfolgingDetaljer/>
+                    <Suspense fallback={<Skeleton variant="rounded" height={166} />}>
+                        <SykefravaersoppfolgingDetaljer />
                     </Suspense>
                 </ErrorBoundary>
             </Card>
