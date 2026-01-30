@@ -32,7 +32,7 @@ export function nArrayElement<T>(list: Array<T>, n: number, allowDuplicates = tr
 
 export function randomDelay() {
     if (navfaker.random.vektetSjanse(0.05)) {
-        return faker.number.int(5000);
+        return faker.number.int(3000);
     }
     return faker.number.int(750);
 }

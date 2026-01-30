@@ -1,6 +1,5 @@
 import { Accordion, Heading, VStack } from '@navikt/ds-react';
 import Card from 'src/components/Card';
-import ErrorBoundary from 'src/components/ErrorBoundary';
 import { TitleValuePairsComponent } from 'src/components/ytelser/Detail';
 import ArbeidsForholdListe from 'src/components/ytelser/Detail/ArbeidsforholdListe';
 import { fjernEntriesUtenVerdi, periodeEllerNull, utledFraDatoForForeldrePenger } from 'src/components/ytelser/utils';
@@ -147,12 +146,10 @@ const Arbeidssituasjon = ({ foreldrePenger }: { foreldrePenger: Foreldrepenger }
 export const ForeldrePengerDetails = ({ foreldrePenger }: { foreldrePenger: Foreldrepenger }) => {
     return (
         <VStack gap="2" minHeight="0">
-            <ErrorBoundary boundaryName="foreldrePengerDetails">
-                <ForeldrePengerRetten foreldrePenger={foreldrePenger} />
-                <ForeldrePengerRettenBarnet foreldrePenger={foreldrePenger} />
-                <ForeldrepengePerioder foreldrePenger={foreldrePenger} />
-                <Arbeidssituasjon foreldrePenger={foreldrePenger} />
-            </ErrorBoundary>
+            <ForeldrePengerRetten foreldrePenger={foreldrePenger} />
+            <ForeldrePengerRettenBarnet foreldrePenger={foreldrePenger} />
+            <ForeldrepengePerioder foreldrePenger={foreldrePenger} />
+            <Arbeidssituasjon foreldrePenger={foreldrePenger} />
         </VStack>
     );
 };

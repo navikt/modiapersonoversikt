@@ -1,17 +1,19 @@
 import { ChevronDownIcon } from '@navikt/aksel-icons';
 import { ActionMenu, Alert, Box, Button, Heading, HStack, InlineMessage, Skeleton, VStack } from '@navikt/ds-react';
-import { useLocation } from '@tanstack/react-router';
-import { useSetAtom } from 'jotai';
-import { Suspense, useCallback, useState } from 'react';
+import { getRouteApi, useLocation } from '@tanstack/react-router';
+import { useAtomValue, useSetAtom } from 'jotai';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { TraadOppgaver } from 'src/components/Meldinger/Detail/TraadOppgaver';
+import { meldingerFilterAtom } from 'src/components/Meldinger/List/Filter';
+import { useFilterMeldinger, useTraader } from 'src/components/Meldinger/List/utils';
 import MeldingerPrint from 'src/components/Meldinger/MeldingerPrint';
 import usePrinter from 'src/components/Print/usePrinter';
-import { useMeldinger, useTraadById } from 'src/lib/clients/modiapersonoversikt-api';
 import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
 import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
+import { meldingerRouteMiddleware } from 'src/routes/new/person/meldinger';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import { formatterDatoTid } from 'src/utils/date-utils';
 import { formaterDato } from 'src/utils/string-utils';
@@ -29,8 +31,7 @@ const TraadMeta = ({ traad }: { traad: Traad }) => {
     const [printAllThreads, setPrintAllThreads] = useState(false);
     const printer = usePrinter();
     const PrinterWrapper = printer.printerWrapper;
-    const { data: traader } = useMeldinger();
-
+    const { data: traader } = useTraader();
     const triggerPrinting = (printAllThreads = false) => {
         setPrintAllThreads(printAllThreads);
         printer.triggerPrint();
@@ -104,28 +105,18 @@ const TraadMeta = ({ traad }: { traad: Traad }) => {
     );
 };
 
-export const TraadDetail = ({ traadId }: { traadId: string }) => (
-    <ErrorBoundary boundaryName="traaddetail">
-        <Suspense fallback={<Skeleton variant="rounded" height="4rem" />}>
-            <TraadDetailContent traadId={traadId} />
-        </Suspense>
-    </ErrorBoundary>
-);
-
-const TraadDetailContent = ({ traadId }: { traadId: string }) => {
+const TraadDetailContent = ({ traad }: { traad: Traad }) => {
     const setDialogUnderArbeid = useSetAtom(dialogUnderArbeidAtom);
 
     const pathname = useLocation().pathname;
     const erIMeldingerfane = pathname.includes('meldinger');
 
-    const traad = useTraadById(traadId);
-
     const svarSamtale = useCallback(() => {
-        setDialogUnderArbeid(traadId);
-    }, [traadId, setDialogUnderArbeid]);
+        setDialogUnderArbeid(traad.traadId);
+    }, [traad.traadId, setDialogUnderArbeid]);
 
     if (!traad) {
-        return <Alert variant="error">Tråden du valgte, ble ikke funnet.</Alert>;
+        return <Alert variant="warning">Tråden du valgte, ble ikke funnet.</Alert>;
     }
 
     const kanBesvares = traadKanBesvares(traad);
@@ -138,7 +129,7 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
             <VStack as="section" gap="1" padding="2" height="100%" aria-label="Dialogdetaljer">
                 <TraadMeta traad={traad} />
                 <Journalposter journalposter={traad.journalposter} />
-                {erIMeldingerfane && <TraadOppgaver traadId={traadId} />}
+                {erIMeldingerfane && <TraadOppgaver traadId={traad.traadId} />}
                 <Meldinger meldinger={traad.meldinger} />
                 <Box.New>
                     <HStack justify="end">
@@ -177,5 +168,58 @@ const TraadDetailContent = ({ traadId }: { traadId: string }) => {
                 </Box.New>
             </VStack>
         </Card>
+    );
+};
+
+const routeApi = getRouteApi('/new/person/meldinger');
+
+const TraadDetailSection = ({ traader }: { traader: Traad[] }) => {
+    const { traadId } = routeApi.useSearch();
+    const navigate = routeApi.useNavigate();
+    const filters = useAtomValue(meldingerFilterAtom);
+    const filteredTraader = useFilterMeldinger(traader, filters);
+    const firstTraadId = filteredTraader[0]?.traadId;
+    const selectedTraad = traadId ? filteredTraader.find((t) => t.traadId === traadId) : undefined;
+    const prevFiltersRef = useRef(filters);
+
+    useEffect(() => {
+        const filterEndret = JSON.stringify(prevFiltersRef.current) !== JSON.stringify(filters);
+        prevFiltersRef.current = filters;
+
+        const traadFinnesIkkeEtterFilter = !!traadId && !selectedTraad;
+
+        if (filterEndret && traadFinnesIkkeEtterFilter) {
+            meldingerRouteMiddleware.clear();
+        }
+    }, [filters, traadId, selectedTraad]);
+
+    useEffect(() => {
+        if (!filteredTraader.length) return;
+        if (!traadId && firstTraadId) {
+            navigate({
+                search: (prev) => ({ ...prev, traadId: firstTraadId }),
+                replace: true
+            });
+            return;
+        }
+    }, [filteredTraader.length, traadId, firstTraadId, navigate]);
+
+    if (!filteredTraader.length) return null;
+
+    if (traadId && !selectedTraad) {
+        return <Alert variant="warning">Tråden du valgte, ble ikke funnet.</Alert>;
+    }
+
+    if (!selectedTraad) return null;
+
+    return <TraadDetailContent traad={selectedTraad} />;
+};
+
+export const TraadDetail = () => {
+    const { data: traader, isLoading } = useTraader();
+    return (
+        <ErrorBoundary boundaryName="traaddetail" errorText="Det oppstod en feil under visning av melding detailjer">
+            {isLoading ? <Skeleton variant="rounded" height="4rem" /> : <TraadDetailSection traader={traader} />}
+        </ErrorBoundary>
     );
 };

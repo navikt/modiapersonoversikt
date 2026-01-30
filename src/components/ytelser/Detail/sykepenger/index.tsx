@@ -1,6 +1,5 @@
 import { Heading, Table, VStack } from '@navikt/ds-react';
 import Card from 'src/components/Card';
-import ErrorBoundary from 'src/components/ErrorBoundary';
 import { TitleValuePairsComponent } from 'src/components/ytelser/Detail';
 import ArbeidsForholdListe from 'src/components/ytelser/Detail/ArbeidsforholdListe';
 import {
@@ -147,11 +146,9 @@ export const SykepengerDetails = ({ sykepenger }: { sykepenger: Sykepenger }) =>
 
     return (
         <VStack gap="2" minHeight="0">
-            <ErrorBoundary boundaryName="sykepengerDetails">
-                <Sykepengertilfellet sykepenger={sykepenger} />
-                {aktuellSykmelding && <Sykemelding sykmelding={aktuellSykmelding} />}
-                <Arbeidssituasjon sykepenger={sykepenger} />
-            </ErrorBoundary>
+            <Sykepengertilfellet sykepenger={sykepenger} />
+            {aktuellSykmelding && <Sykemelding sykmelding={aktuellSykmelding} />}
+            <Arbeidssituasjon sykepenger={sykepenger} />
         </VStack>
     );
 };

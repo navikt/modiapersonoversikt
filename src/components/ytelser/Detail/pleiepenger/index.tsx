@@ -4,7 +4,6 @@ import type { FetchError } from 'src/api/api';
 import type { Data as Persondata } from 'src/app/personside/visittkort-v2/PersondataDomain';
 import { Kjonn } from 'src/app/personside/visittkort-v2/PersondataDomain';
 import Card from 'src/components/Card';
-import ErrorBoundary from 'src/components/ErrorBoundary';
 import { TitleValuePairsComponent } from 'src/components/ytelser/Detail';
 import ArbeidsForholdListe from 'src/components/ytelser/Detail/ArbeidsforholdListe';
 import {
@@ -159,11 +158,9 @@ const Arbeidssituasjon = ({ pleiePenger }: { pleiePenger: Pleiepenger }) => {
 export const PleiePengerDetails = ({ pleiePenger }: { pleiePenger: Pleiepenger }) => {
     return (
         <VStack gap="2" minHeight="0">
-            <ErrorBoundary boundaryName="pleiePengerDetails">
-                <PleiePengerRetten pleiePenger={pleiePenger} />
-                <PleiePengerPerioder pleiePenger={pleiePenger} />
-                <Arbeidssituasjon pleiePenger={pleiePenger} />
-            </ErrorBoundary>
+            <PleiePengerRetten pleiePenger={pleiePenger} />
+            <PleiePengerPerioder pleiePenger={pleiePenger} />
+            <Arbeidssituasjon pleiePenger={pleiePenger} />
         </VStack>
     );
 };

@@ -1,29 +1,36 @@
 import { Alert, Button, Heading, HStack, Skeleton } from '@navikt/ds-react';
 import { useAtom } from 'jotai';
-import { type ReactElement, Suspense, useCallback, useMemo } from 'react';
-import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
+import { type ReactElement, useCallback, useMemo } from 'react';
+import { useTraader } from 'src/components/Meldinger/List/utils';
 import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
-import { TraadType } from 'src/lib/types/modiapersonoversikt-api';
+import { type Traad, TraadType } from 'src/lib/types/modiapersonoversikt-api';
 import Card from '../Card';
 import { FortsettDialog } from './FortsettDialog';
 import NyMelding from './NyMelding';
 
-type Props = {
-    lukkeKnapp?: ReactElement<typeof Button>;
-};
+export const SendMelding = ({ lukkeKnapp }: { lukkeKnapp?: ReactElement<typeof Button> }) => {
+    const { data: traader, isLoading } = useTraader();
 
-export const SendMelding = ({ lukkeKnapp }: Props) => {
     return (
-        <Suspense fallback={<Skeleton variant="rounded" height="100%" />}>
-            <SendMeldingContent lukkeKnapp={lukkeKnapp} />
-        </Suspense>
+        <>
+            {isLoading ? (
+                <Skeleton variant="rounded" height="100%" />
+            ) : (
+                <SendMeldingContent traader={traader} lukkeKnapp={lukkeKnapp} />
+            )}
+        </>
     );
 };
 
-const SendMeldingContent = ({ lukkeKnapp }: Props) => {
+const SendMeldingContent = ({
+    traader,
+    lukkeKnapp
+}: {
+    lukkeKnapp?: ReactElement<typeof Button>;
+    traader: Traad[];
+}) => {
     const [oppgave, setOppgave] = useAtom(dialogUnderArbeidAtom);
-    const { data: meldinger } = useMeldinger();
-    const traad = useMemo(() => meldinger.find((m) => m.traadId === oppgave), [meldinger, oppgave]);
+    const traad = useMemo(() => traader.find((m) => m.traadId === oppgave), [traader, oppgave]);
 
     const cancelOppgave = useCallback(() => {
         setOppgave(undefined);

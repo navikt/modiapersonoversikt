@@ -1,8 +1,11 @@
 import dayjs from 'dayjs';
 import { useMemo } from 'react';
+import { errorPlaceholder, type QueryResult, responseErrorMessage } from 'src/components/ytelser/utils';
+import { useGsakTema, useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
 import {
     type Melding,
     Meldingstype,
+    type Tema,
     type Traad,
     TraadDTOTraadType,
     type Veileder
@@ -211,3 +214,24 @@ export function useFilterMeldinger(traader: Traad[], filters: MeldingerFilter) {
 
     return filteredByDate;
 }
+
+export const useTraader = (): QueryResult<Traad[]> => {
+    const traaderResponse = useMeldinger();
+    const errorMessages = [errorPlaceholder(traaderResponse, responseErrorMessage('meldinger'))];
+
+    return {
+        ...traaderResponse,
+        data: traaderResponse?.data ?? [],
+        errorMessages: errorMessages.filter(Boolean)
+    } as QueryResult<Traad[]>;
+};
+
+export const useGsakTemaer = (): QueryResult<Tema[]> => {
+    const temaerResponse = useGsakTema();
+    const errorMessages = [errorPlaceholder(temaerResponse, responseErrorMessage('temaer for meldinger'))];
+    return {
+        ...temaerResponse,
+        data: temaerResponse?.data ?? [],
+        errorMessages: errorMessages.filter(Boolean)
+    } as QueryResult<Tema[]>;
+};
