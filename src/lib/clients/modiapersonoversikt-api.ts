@@ -8,6 +8,7 @@ import { apiBaseUriWithoutRest } from 'src/api/config';
 import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
 import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 import { toast } from 'src/components/toasts';
+import { errorPlaceholder, responseErrorMessage } from 'src/components/ytelser/utils';
 import type { paths } from 'src/generated/modiapersonoversikt-api';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 
@@ -48,9 +49,15 @@ export const $api = createClient(personoversiktApiClient);
 
 export const usePersonData = () => {
     const aktivBruker = usePersonAtomValue();
-    return $api.useSuspenseQuery('post', '/rest/person', {
+    const response = $api.useQuery('post', '/rest/person', {
         body: { fnr: aktivBruker }
     });
+    const errorMessages = [errorPlaceholder(response, responseErrorMessage('informasjon om bruker'))];
+
+    return {
+        ...response,
+        errorMessages: errorMessages.filter(Boolean)
+    };
 };
 
 export const useVarslerData = () => {
@@ -121,16 +128,6 @@ export const useJournalforingSaker = () => {
 export const usePersonOppgaver = () => {
     const aktivBruker = usePersonAtomValue();
 
-    return $api.useSuspenseQuery('post', '/rest/oppgaver/tildelt', {
-        body: {
-            fnr: aktivBruker
-        }
-    });
-};
-
-export const useTildeltOppgaver = () => {
-    const aktivBruker = usePersonAtomValue();
-
     return $api.useQuery('post', '/rest/oppgaver/tildelt', {
         body: {
             fnr: aktivBruker
@@ -141,13 +138,13 @@ export const useTildeltOppgaver = () => {
 export const useOppgave = (oppgaveId?: string) => {
     if (oppgaveId === undefined) return { data: undefined, isLoading: false, isError: false };
     // biome-ignore lint/correctness/useHookAtTopLevel:Biome migration - bør fikses
-    return $api.useSuspenseQuery('get', '/rest/oppgaver/oppgavedata/{oppgaveId}', {
+    return $api.useQuery('get', '/rest/oppgaver/oppgavedata/{oppgaveId}', {
         params: { path: { oppgaveId: oppgaveId } }
     });
 };
 
 export const useOppgaveForTraad = (traadId: string) => {
-    const { data: oppgaver } = usePersonOppgaver();
+    const { data: oppgaver = [] } = usePersonOppgaver();
 
     const oppgave = oppgaver.find((oppgave) => oppgave.traadId === traadId);
     const erSTOOppgave = !!oppgave?.erSTOOppgave;
@@ -183,24 +180,35 @@ export const useMeldinger = () => {
 export const useTraadById = (traadId: string) => {
     const fnr = usePersonAtomValue();
     const enhet = useAtomValue(aktivEnhetAtom) ?? '';
-    const { data: traader } = $api.useSuspenseQuery('post', '/rest/dialog/meldinger', {
+    const { data: traader } = $api.useQuery('post', '/rest/dialog/meldinger', {
         body: { fnr },
         params: { query: { enhet } }
     });
 
-    const traad = traader.find((t) => t.traadId === traadId);
+    const traad = traader?.find((t) => t.traadId === traadId);
 
     return traad;
 };
 
 export const useInnloggetSaksbehandler = () => {
-    return $api.useSuspenseQuery('get', '/rest/hode/me');
+    const response = $api.useQuery('get', '/rest/hode/me');
+    const errorMessages = [errorPlaceholder(response, responseErrorMessage('info om innlogget saksbehandler'))];
+    return {
+        ...response,
+        errorMessages: errorMessages.filter(Boolean)
+    };
 };
 
 export const useSladdeAarsaker = (traadId: string) => {
-    return $api.useSuspenseQuery('get', '/rest/dialogmerking/sladdearsaker/{kjedeid}', {
+    const response = $api.useQuery('get', '/rest/dialogmerking/sladdearsaker/{kjedeid}', {
         params: { path: { kjedeid: traadId } }
     });
+    const errorMessages = [errorPlaceholder(response, responseErrorMessage('sladde årsaker'))];
+    return {
+        ...response,
+        data: response?.data ?? [],
+        errorMessages: errorMessages.filter(Boolean)
+    };
 };
 
 export const useSendTilSladdingMutation = () => {
@@ -288,16 +296,28 @@ export const useYtelserogkontrakter = () => {
     const slutt = dayjs().format('YYYY-MM-DD');
 
     const fnr = usePersonAtomValue();
-    return $api.useQuery('post', '/rest/oppfolging/ytelserogkontrakter', {
+    const response = $api.useQuery('post', '/rest/oppfolging/ytelserogkontrakter', {
         body: { fnr, start, slutt }
     });
+
+    const errorMessages = [errorPlaceholder(response, responseErrorMessage('oppfølging'))];
+    return {
+        ...response,
+        errorMessages: errorMessages.filter(Boolean)
+    };
 };
 
 export const useGjeldende14aVedtak = () => {
     const fnr = usePersonAtomValue();
-    return $api.useQuery('post', '/rest/oppfolging/hent-gjeldende-14a-vedtak', {
+    const response = $api.useQuery('post', '/rest/oppfolging/hent-gjeldende-14a-vedtak', {
         body: { fnr }
     });
+
+    const errorMessages = [errorPlaceholder(response, responseErrorMessage('14a vedtak'))];
+    return {
+        ...response,
+        errorMessages: errorMessages.filter(Boolean)
+    };
 };
 
 export const useGsakTema = () => {
@@ -324,7 +344,7 @@ export const useOppgaveMutation = () => {
 };
 
 export const useOppgaveBehandlerEnheter = () => {
-    return $api.useSuspenseQuery('get', '/rest/enheter/oppgavebehandlere/alle');
+    return $api.useQuery('get', '/rest/enheter/oppgavebehandlere/alle');
 };
 
 export const useAnsattePaaEnhet = (enhetId: string) => {

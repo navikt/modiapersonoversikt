@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai/index';
 import { type OppgaveFilter, oppgaveFilterAtom } from 'src/components/Oppgave/List/Filter';
 import { errorPlaceholder, type QueryResult, responseErrorMessage } from 'src/components/ytelser/utils';
-import { useTildeltOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
+import { usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
 import type { OppgaveDto } from 'src/lib/types/modiapersonoversikt-api';
 import { datoSynkende } from 'src/utils/date-utils';
 
@@ -30,7 +30,7 @@ const filterOppdave = (oppgaver: OppgaveDto[], filters: OppgaveFilter): OppgaveD
 
 export const useFilterOppgave = (): QueryResult<OppgaveDto[]> => {
     const filters = useAtomValue(oppgaveFilterAtom);
-    const oppgaverResponse = useTildeltOppgaver();
+    const oppgaverResponse = usePersonOppgaver();
 
     const oppgaver = oppgaverResponse?.data ?? [];
     const errorMessages = [errorPlaceholder(oppgaverResponse, responseErrorMessage('oppgaver'))];

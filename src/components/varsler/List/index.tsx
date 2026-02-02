@@ -17,13 +17,15 @@ export const VarslerList = () => (
 );
 
 const VarslerListList = () => {
-    const { varsler, isLoading } = useFilterVarsler();
+    const { varsler, isLoading, isError } = useFilterVarsler();
     const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
 
     const selectedKey = useSearch({
         from: '/new/person/varsler',
         select: (p) => p.id
     });
+
+    if (isError) return;
 
     if (!isLoading && !varsler.length) {
         return (

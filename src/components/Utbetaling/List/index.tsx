@@ -17,7 +17,7 @@ export const UtbetalingerList = () => (
 );
 
 const UtbetalingList = () => {
-    const { data, isLoading } = useFilterUtbetalinger();
+    const { data, isLoading, isError } = useFilterUtbetalinger();
     const utbetalinger = data?.utbetalinger ?? [];
     const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
 
@@ -25,6 +25,8 @@ const UtbetalingList = () => {
         from: '/new/person/utbetaling',
         select: (p) => p.id
     });
+
+    if (isError) return;
 
     if (!isLoading && utbetalinger.length === 0) {
         return (

@@ -7,12 +7,19 @@ import Foreldre from './Foreldre';
 import Sivilstand from './Sivilstand';
 
 function Familie() {
-    const {
-        data: { person, feilendeSystemer }
-    } = usePersonData();
+    const { data } = usePersonData();
 
-    const erUnder22 = person.alder && person.alder <= 21;
-    const harFeilendeSystem = harFeilendeSystemer(feilendeSystemer, PersonDataFeilendeSystemer.PDL_TREDJEPARTSPERSONER);
+    const person = data?.person;
+    const feilendeSystemer = data?.feilendeSystemer;
+    const erUnder22 = person?.alder && person.alder <= 21;
+    const harFeilendeSystem = harFeilendeSystemer(
+        feilendeSystemer ?? [],
+        PersonDataFeilendeSystemer.PDL_TREDJEPARTSPERSONER
+    );
+
+    if (!person) {
+        return <></>;
+    }
 
     return (
         <Group title="Familie">

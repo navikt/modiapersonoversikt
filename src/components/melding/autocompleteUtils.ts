@@ -130,7 +130,7 @@ export function useAutoFullforData() {
 
     return {
         enhet: valgtEnhet,
-        person: personData.person,
+        person: personData?.person,
         saksbehandler: veilederData
     };
 }

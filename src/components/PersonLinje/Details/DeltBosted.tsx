@@ -22,13 +22,11 @@ function DeltBostedElement({ deltBosted }: { deltBosted: DeltBosted }) {
 }
 
 function DeltBosted() {
-    const {
-        data: { person }
-    } = usePersonData();
+    const { data } = usePersonData();
+    const person = data?.person;
+    const deltBosted = person?.deltBosted;
 
-    const deltBosted = person.deltBosted;
-
-    if (deltBosted.isEmpty()) {
+    if (!deltBosted || deltBosted.isEmpty()) {
         return null;
     }
 

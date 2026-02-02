@@ -18,7 +18,7 @@ export const TraadList = () => (
 );
 
 const Traader = () => {
-    const { data: traader, isLoading } = useTraader();
+    const { data: traader, isLoading, isError } = useTraader();
     const filters = useAtomValue(meldingerFilterAtom);
     const filteredMeldinger = useFilterMeldinger(traader, filters);
     const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
@@ -27,6 +27,8 @@ const Traader = () => {
         from: '/new/person/meldinger',
         select: (p) => p.traadId
     });
+
+    if (isError) return;
 
     if (!isLoading && filteredMeldinger.length === 0) {
         return (

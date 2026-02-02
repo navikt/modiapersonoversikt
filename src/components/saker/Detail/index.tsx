@@ -128,10 +128,9 @@ const SakContent = ({ saker }: { saker: SaksDokumenter[] }) => {
 };
 
 const SakDetails = ({ valgtSak, pageView }: { valgtSak: SaksDokumenter; pageView?: boolean }) => {
-    const {
-        data: { person }
-    } = usePersonData();
-    const brukersNavn = hentBrukerNavn(person);
+    const { data } = usePersonData();
+    const person = data?.person;
+    const brukersNavn = person ? hentBrukerNavn(person) : '';
     const { avsender } = useAtomValue(sakerFilterAtom);
     const geografiskTilknytning = person?.geografiskTilknytning;
 

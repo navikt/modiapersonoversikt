@@ -17,13 +17,15 @@ export const YtelserList = () => (
 );
 
 const YtelseList = () => {
-    const { data: ytelser, isLoading } = useFilterYtelser();
+    const { data: ytelser, isLoading, isError } = useFilterYtelser();
     const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
 
     const selectedKey = useSearch({
         from: '/new/person/ytelser',
         select: (p) => p.id
     });
+
+    if (isError) return;
 
     if (!isLoading && ytelser.length === 0) {
         return (

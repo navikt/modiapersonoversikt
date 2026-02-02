@@ -8,6 +8,7 @@ import {
 import { ActionMenu, Alert, Button, Checkbox, HStack, Link, Modal, Select, Skeleton, VStack } from '@navikt/ds-react';
 import { useAtomValue } from 'jotai';
 import { Suspense, useCallback, useState } from 'react';
+import { AlertBanner } from 'src/components/AlertBanner';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import {
     useAvsluttDialogMutation,
@@ -208,7 +209,12 @@ const MarkerFeilsendtModal = ({ traad, open, onClose }: ModalProps) => {
 };
 
 const SladdeAarsaker = ({ traadId }: { traadId: string }) => {
-    const { data: sladdAarsaker } = useSladdeAarsaker(traadId);
+    const { data: sladdAarsaker, errorMessages, isPending } = useSladdeAarsaker(traadId);
+
+    if (isPending) {
+        return <Skeleton variant="text" width="200px" />;
+    }
+    if (errorMessages.length > 0) return <AlertBanner alerts={errorMessages} />;
 
     return sladdAarsaker.map((opt) => (
         <option key={opt} value={opt}>

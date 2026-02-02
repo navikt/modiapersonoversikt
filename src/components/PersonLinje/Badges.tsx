@@ -3,9 +3,12 @@ import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { AdresseBeskyttelseKode, type PersonData } from 'src/lib/types/modiapersonoversikt-api';
 
 export const PersonBadges = () => {
-    const {
-        data: { person }
-    } = usePersonData();
+    const { data } = usePersonData();
+    const person = data?.person;
+
+    if (!person) {
+        return <></>;
+    }
 
     return (
         <HStack align="center" gap="1" as="section" className="flex-1">

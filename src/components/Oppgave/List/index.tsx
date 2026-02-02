@@ -17,13 +17,15 @@ export const OppgaverList = () => (
 );
 
 const OppgaveList = () => {
-    const { data: oppgaver, isLoading } = useFilterOppgave();
+    const { data: oppgaver, isLoading, isError } = useFilterOppgave();
     const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
 
     const selectedKey = useSearch({
         from: '/new/person/oppgaver',
         select: (p) => p.id
     });
+
+    if (isError) return;
 
     if (!isLoading && !oppgaver.length) {
         return (

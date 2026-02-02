@@ -17,7 +17,7 @@ export const SakerList = () => (
 );
 
 const SakList = () => {
-    const { data, isLoading } = useFilterSaker();
+    const { data, isLoading, isError } = useFilterSaker();
     const saker = data?.saker ?? [];
     const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
 
@@ -25,6 +25,9 @@ const SakList = () => {
         from: '/new/person/saker',
         select: (p) => p.id
     });
+
+    if (isError) return;
+
     if (!isLoading && saker.length === 0) {
         return (
             <Alert className="mr-2" variant="info" role="alert">

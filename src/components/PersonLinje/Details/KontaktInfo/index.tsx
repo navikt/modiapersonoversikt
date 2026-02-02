@@ -11,24 +11,29 @@ import Telefon from './Telefon';
 
 export default function KontaktInfo() {
     const { data } = usePersonData();
-    const { person } = data;
+    const person = data?.person;
+    const feilendeSystemer = data?.feilendeSystemer ?? [];
+
+    if (!person) {
+        return <></>;
+    }
 
     return (
         <Group title="Kontaktinformasjon">
             <KontaktinformasjonDodsbo
                 harFeilendeSystem={harFeilendeSystemer(
-                    data.feilendeSystemer,
+                    feilendeSystemer,
                     PersonDataFeilendeSystemer.PDL_TREDJEPARTSPERSONER
                 )}
                 dodsbo={person.dodsbo}
             />
             <Adresse person={person} />
             <Epost
-                harFeilendeSystem={harFeilendeSystemer(data.feilendeSystemer, PersonDataFeilendeSystemer.DKIF)}
+                harFeilendeSystem={harFeilendeSystemer(feilendeSystemer, PersonDataFeilendeSystemer.DKIF)}
                 kontaktinformasjon={person.kontaktInformasjon}
             />
             <Telefon
-                harFeilendeSystem={harFeilendeSystemer(data.feilendeSystemer, PersonDataFeilendeSystemer.DKIF)}
+                harFeilendeSystem={harFeilendeSystemer(feilendeSystemer, PersonDataFeilendeSystemer.DKIF)}
                 kontaktinformasjon={person.kontaktInformasjon}
             />
             <NavKontaktinfo
@@ -39,7 +44,7 @@ export default function KontaktInfo() {
                 telefonnummer={person.telefonnummer}
             />
             <Bankkonto
-                harFeilendeSystem={harFeilendeSystemer(data.feilendeSystemer, PersonDataFeilendeSystemer.BANKKONTO)}
+                harFeilendeSystem={harFeilendeSystemer(feilendeSystemer, PersonDataFeilendeSystemer.BANKKONTO)}
                 bankkonto={person.bankkonto}
             />
         </Group>

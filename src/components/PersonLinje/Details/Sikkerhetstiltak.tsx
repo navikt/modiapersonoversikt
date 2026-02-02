@@ -6,9 +6,9 @@ import { Group, InfoElement } from './components';
 
 function Sikkerhetstiltak() {
     const { data } = usePersonData();
-    const { sikkerhetstiltak } = data.person;
+    const sikkerhetstiltak = data?.person?.sikkerhetstiltak;
 
-    if (sikkerhetstiltak.isEmpty()) {
+    if (!sikkerhetstiltak || sikkerhetstiltak.isEmpty()) {
         return null;
     }
 

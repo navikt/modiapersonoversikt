@@ -263,7 +263,7 @@ export function periodeEllerNull(periode?: CommonPeriode | null): string | null 
 
 export const responseErrorMessage = (type: string) => ({
     returnOnError: `Kunne ikke laste ${type}`,
-    returnOnNotFound: `Kunne finne ${type}`,
+    returnOnNotFound: `Kunne ikke finne ${type}`,
     returnOnForbidden: `Du har ikke tilgang til ${type}`
 });
 

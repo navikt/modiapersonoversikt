@@ -2,17 +2,14 @@ import { Alert, BodyShort, Heading, HGrid, Skeleton, VStack } from '@navikt/ds-r
 import { AlertBanner } from 'src/components/AlertBanner';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
-import {
-    getMeldeplikt,
-    getOppfolgingEnhet,
-    getVeileder,
-    use14aVedtak,
-    useOppfolging
-} from 'src/components/Oppfolging/utils';
+import { getMeldeplikt, getOppfolgingEnhet, getVeileder } from 'src/components/Oppfolging/utils';
+import { useGjeldende14aVedtak, useYtelserogkontrakter } from 'src/lib/clients/modiapersonoversikt-api';
 import { datoEllerNull } from 'src/utils/string-utils';
 
 const OppfolgingDetaljer = () => {
-    const { data: utvidetOppfolging, isLoading } = useOppfolging();
+    const { data: utvidetOppfolging, isLoading, isError } = useYtelserogkontrakter();
+
+    if (isError) return;
 
     return (
         <ErrorBoundary boundaryName="oppfolgingDetaljer">
@@ -80,7 +77,9 @@ const OppfolgingDetaljer = () => {
 };
 
 const Gjeldende14aVedtakDetaljer = () => {
-    const { data, isLoading } = use14aVedtak();
+    const { data, isLoading, isError } = useGjeldende14aVedtak();
+
+    if (isError) return;
 
     const gjeldende14aVedtak = data?.gjeldende14aVedtak;
     return (
@@ -127,8 +126,8 @@ const Gjeldende14aVedtakDetaljer = () => {
 };
 
 const OppfolgingPageContent = () => {
-    const { errorMessages: gjeldende14aVedtakErrorMessage } = use14aVedtak();
-    const { errorMessages: utvidetOppfolgingErrorMessage } = useOppfolging();
+    const { errorMessages: gjeldende14aVedtakErrorMessage } = useGjeldende14aVedtak();
+    const { errorMessages: utvidetOppfolgingErrorMessage } = useYtelserogkontrakter();
 
     return (
         <VStack gap="2" minHeight="0" overflow="auto">

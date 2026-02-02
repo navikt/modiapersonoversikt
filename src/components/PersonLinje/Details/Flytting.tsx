@@ -7,9 +7,9 @@ import { formaterDato } from 'src/utils/string-utils';
 
 export default function Flytting() {
     const { data } = usePersonData();
-    const { person } = data;
+    const person = data?.person;
 
-    if (person.innflyttingTilNorge.isEmpty() && person.utflyttingFraNorge.isEmpty()) {
+    if (!person || (person.innflyttingTilNorge.isEmpty() && person.utflyttingFraNorge.isEmpty())) {
         return <></>;
     }
 

@@ -80,11 +80,11 @@ function KontorLenke({ navEnhetId }: { navEnhetId: string }) {
 }
 
 function NavKontor() {
-    const {
-        data: { feilendeSystemer, person }
-    } = usePersonData();
-
-    const { geografiskTilknytning, navEnhet } = person;
+    const { data } = usePersonData();
+    const person = data?.person;
+    const feilendeSystemer = data?.feilendeSystemer ?? [];
+    const geografiskTilknytning = person?.geografiskTilknytning;
+    const navEnhet = person?.navEnhet;
 
     if (harFeilendeSystemer(feilendeSystemer, PersonDataFeilendeSystemer.NORG_NAVKONTOR)) {
         return (

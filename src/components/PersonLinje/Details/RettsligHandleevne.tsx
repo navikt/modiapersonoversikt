@@ -6,9 +6,9 @@ import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 
 export default function RettsligHandleevne() {
     const { data } = usePersonData();
-    const { person } = data;
+    const person = data?.person;
 
-    if (person.rettsligHandleevne.isEmpty()) {
+    if (!person || person.rettsligHandleevne.isEmpty()) {
         return <></>;
     }
 

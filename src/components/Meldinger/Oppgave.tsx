@@ -15,6 +15,7 @@ import {
 import { useForm } from '@tanstack/react-form';
 import { useAtomValue } from 'jotai';
 import { Suspense, useEffect, useRef, useState } from 'react';
+import { AlertBanner } from 'src/components/AlertBanner';
 import { useGsakTemaer } from 'src/components/Meldinger/List/utils';
 import { OpprettOppgaveRequestDTOPrioritetKode, PrioritetKode } from 'src/generated/modiapersonoversikt-api';
 import {
@@ -90,10 +91,10 @@ const OppgaveForm = ({ traad, onSuccess }: { traad: Traad; onSuccess: () => void
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const fnr = usePersonAtomValue();
     const enhet = useAtomValue(aktivEnhetAtom);
-    const { data: veileder } = useInnloggetSaksbehandler();
+    const { data: veileder, errorMessages } = useInnloggetSaksbehandler();
     const { mutateAsync, error, isError } = useOppgaveMutation();
     const brukersEnhet = enhet ?? '-';
-    const brukerIdent = veileder.ident;
+    const brukerIdent = veileder?.ident;
 
     const form = useForm({
         defaultValues: {
@@ -151,6 +152,7 @@ const OppgaveForm = ({ traad, onSuccess }: { traad: Traad; onSuccess: () => void
             }}
         >
             <VStack gap="4">
+                <AlertBanner alerts={errorMessages} />
                 <VStack gap="4" justify="space-between">
                     <form.Field name="valgtTema">
                         {(field) => (
@@ -421,7 +423,7 @@ const EnhetSelect = ({
     value?: string;
     setValue: (value: string) => void;
 } & Omit<ComboboxProps, 'options' | 'onToggleSelected' | 'selectedOption' | 'size'>) => {
-    const { data: enheter } = useOppgaveBehandlerEnheter();
+    const { data: enheter = [] } = useOppgaveBehandlerEnheter();
     const { data: foreslotteEnheter = [] } = useForeslotteEnheter({
         temakode,
         typekode,
