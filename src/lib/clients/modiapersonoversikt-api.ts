@@ -1,5 +1,4 @@
 import { useQueryClient } from '@tanstack/react-query';
-import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai';
 import createFetchClient from 'openapi-fetch';
 import createClient from 'openapi-react-query';
@@ -291,22 +290,6 @@ export const useUtbetalinger = (startDato: string, sluttDato: string) => {
     });
 };
 
-export const useYtelserogkontrakter = () => {
-    const start = dayjs().subtract(3, 'months').format('YYYY-MM-DD');
-    const slutt = dayjs().format('YYYY-MM-DD');
-
-    const fnr = usePersonAtomValue();
-    const response = $api.useQuery('post', '/rest/oppfolging/ytelserogkontrakter', {
-        body: { fnr, start, slutt }
-    });
-
-    const errorMessages = [errorPlaceholder(response, responseErrorMessage('oppfølging'))];
-    return {
-        ...response,
-        errorMessages: errorMessages.filter(Boolean)
-    };
-};
-
 export const useGjeldende14aVedtak = () => {
     const fnr = usePersonAtomValue();
     const response = $api.useQuery('post', '/rest/oppfolging/hent-gjeldende-14a-vedtak', {
@@ -318,6 +301,26 @@ export const useGjeldende14aVedtak = () => {
         ...response,
         errorMessages: errorMessages.filter(Boolean)
     };
+};
+
+export const useArbeidsoppfolging = () => {
+    const fnr = usePersonAtomValue();
+    const response = $api.useQuery('post', '/rest/oppfolging/ytelserogkontrakter', {
+        body: { fnr }
+    });
+
+    const errorMessages = [errorPlaceholder(response, responseErrorMessage('oppfølging'))];
+    return {
+        ...response,
+        errorMessages: errorMessages.filter(Boolean)
+    };
+};
+
+export const useSykefravaersoppfolging = () => {
+    const fnr = usePersonAtomValue();
+    return $api.useSuspenseQuery('post', '/rest/oppfolging/sykefravaeroppfolging', {
+        body: { fnr }
+    });
 };
 
 export const useGsakTema = () => {

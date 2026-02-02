@@ -1,22 +1,26 @@
-import { Alert, BodyShort, Heading, HGrid, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Heading, HGrid, Pagination, Table, Skeleton, type SortState, VStack } from '@navikt/ds-react';
 import { AlertBanner } from 'src/components/AlertBanner';
+import { useState } from 'react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { getMeldeplikt, getOppfolgingEnhet, getVeileder } from 'src/components/Oppfolging/utils';
-import { useGjeldende14aVedtak, useYtelserogkontrakter } from 'src/lib/clients/modiapersonoversikt-api';
+import { useGjeldende14aVedtak, useArbeidsoppfolging, useSykefravaersoppfolging } from 'src/lib/clients/modiapersonoversikt-api';
 import { datoEllerNull } from 'src/utils/string-utils';
 
 const OppfolgingDetaljer = () => {
-    const { data: utvidetOppfolging, isLoading, isError } = useYtelserogkontrakter();
+    const { data: arbeidsOppfolging, isLoading, isError } = useArbeidsoppfolging();
 
     if (isError) return;
 
+    if(isLoading) return <Skeleton variant="rounded" height={166} />
+
+    if (!arbeidsOppfolging) {
+        return <Alert variant="info">Brukeren har ingen oppfølging.</Alert>;
+    }
+
     return (
         <ErrorBoundary boundaryName="oppfolgingDetaljer">
-            {isLoading ? (
-                <Skeleton variant="rounded" height={166} />
-            ) : utvidetOppfolging ? (
-                <Card padding="4">
+            <Card padding="4">
                     <Heading as="h4" size="small">
                         Arbeidsoppfølging
                     </Heading>
@@ -26,7 +30,7 @@ const OppfolgingDetaljer = () => {
                                 Status:
                             </BodyShort>
                             <BodyShort size="small">
-                                {utvidetOppfolging.oppfolging?.erUnderOppfolging
+                                {arbeidsOppfolging.oppfolging?.erUnderOppfolging
                                     ? 'Under oppfølging'
                                     : 'Ikke under oppfølging'}
                             </BodyShort>
@@ -35,58 +39,58 @@ const OppfolgingDetaljer = () => {
                             <BodyShort size="small" weight="semibold">
                                 Oppfølgingsenhet:
                             </BodyShort>
-                            <BodyShort size="small">{getOppfolgingEnhet(utvidetOppfolging.oppfolging)}</BodyShort>
+                            <BodyShort size="small">{getOppfolgingEnhet(arbeidsOppfolging.oppfolging)}</BodyShort>
                         </VStack>
                         <VStack justify="space-between">
                             <BodyShort size="small" weight="semibold">
                                 Rettighetsgruppe:
                             </BodyShort>
-                            <BodyShort size="small">{utvidetOppfolging.rettighetsgruppe}</BodyShort>
+                            <BodyShort size="small">{arbeidsOppfolging.rettighetsgruppe}</BodyShort>
                         </VStack>
                         <VStack justify="space-between">
                             <BodyShort size="small" weight="semibold">
                                 Veileder:
                             </BodyShort>
-                            <BodyShort size="small">{getVeileder(utvidetOppfolging.oppfolging?.veileder)}</BodyShort>
+                            <BodyShort size="small">{getVeileder(arbeidsOppfolging.oppfolging?.veileder)}</BodyShort>
                         </VStack>
                         <VStack justify="space-between">
                             <BodyShort size="small" weight="semibold">
                                 Meldeplikt:
                             </BodyShort>
-                            <BodyShort size="small">{getMeldeplikt(utvidetOppfolging.meldeplikt)}</BodyShort>
+                            <BodyShort size="small">{getMeldeplikt(arbeidsOppfolging.meldeplikt)}</BodyShort>
                         </VStack>
                         <VStack justify="space-between">
                             <BodyShort size="small" weight="semibold">
                                 Formidlingsgruppe:
                             </BodyShort>
-                            <BodyShort size="small">{utvidetOppfolging.formidlingsgruppe}</BodyShort>
+                            <BodyShort size="small">{arbeidsOppfolging.formidlingsgruppe}</BodyShort>
                         </VStack>
                         <VStack justify="space-between">
                             <BodyShort size="small" weight="semibold">
                                 Oppfølgingsvedtak:
                             </BodyShort>
-                            <BodyShort size="small">{utvidetOppfolging.vedtaksdato}</BodyShort>
+                            <BodyShort size="small">{arbeidsOppfolging.vedtaksdato}</BodyShort>
                         </VStack>
                     </HGrid>
                 </Card>
-            ) : (
-                <Alert variant="info">Brukeren har ingen oppfølging.</Alert>
-            )}
         </ErrorBoundary>
     );
 };
 
 const Gjeldende14aVedtakDetaljer = () => {
     const { data, isLoading, isError } = useGjeldende14aVedtak();
+    const gjeldende14aVedtak = data?.gjeldende14aVedtak;
 
     if (isError) return;
 
-    const gjeldende14aVedtak = data?.gjeldende14aVedtak;
+    if(isLoading) return <Skeleton variant="rounded" height={166} />
+
+    if (!gjeldende14aVedtak) {
+        return <Alert variant="info">Brukeren har ingen 14a vedtak.</Alert>;
+    }
+
     return (
         <ErrorBoundary boundaryName="gjeldende14aVedtakDetaljer">
-            {isLoading ? (
-                <Skeleton variant="rounded" height={166} />
-            ) : (
                 <Card padding="4">
                     <Heading as="h4" size="small">
                         14 a-vedtak
@@ -120,30 +124,120 @@ const Gjeldende14aVedtakDetaljer = () => {
                         </VStack>
                     </HGrid>
                 </Card>
-            )}
         </ErrorBoundary>
+    );
+};
+
+const SykefravaersoppfolgingDetaljer = () => {
+    const sykefravaersoppfolgingResponse = useSykefravaersoppfolging();
+    const sykefravaersoppfolging = sykefravaersoppfolgingResponse.data?.sykefravaersoppfolging;
+    const [sort, setSort] = useState<SortState | undefined>({ orderBy: 'dato', direction: 'descending' });
+    const [page, setPage] = useState(1);
+
+    if (!sykefravaersoppfolging || sykefravaersoppfolging.length === 0) {
+        return <Alert variant="info">Brukeren har ingen sykefraværs-oppfølging.</Alert>;
+    }
+
+    const handleSort = (sortKey: string) => {
+        setSort((prevSort) =>
+            prevSort?.orderBy === sortKey && prevSort.direction === 'ascending'
+                ? { orderBy: sortKey, direction: 'descending' }
+                : { orderBy: sortKey, direction: 'ascending' }
+        );
+    };
+
+    const sortedData = [...sykefravaersoppfolging].sort((a, b) => {
+        if (!sort) return 0;
+
+        const dateA = a.dato ? new Date(a.dato).getTime() : 0;
+        const dateB = b.dato ? new Date(b.dato).getTime() : 0;
+
+        return sort.direction === 'ascending' ? dateA - dateB : dateB - dateA;
+    });
+
+    const rowsPerPage = 10;
+    const data = sortedData.slice((page - 1) * rowsPerPage, page * rowsPerPage);
+
+    return (
+        <div>
+            <VStack gap="space-16">
+                <Heading as="h4" size="small">
+                    Sykefraværsoppfølging
+                </Heading>
+                <Table zebraStripes={true} sort={sort} onSortChange={handleSort} size="small">
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.ColumnHeader sortKey="dato" sortable>
+                                Innen
+                            </Table.ColumnHeader>
+                            <Table.HeaderCell scope="col">Hendelse</Table.HeaderCell>
+                            <Table.HeaderCell scope="col">Status</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
+                    <Table.Body>
+                        {data.map((element, index) => {
+                            return (
+                                <Table.Row shadeOnHover={true} key={index}>
+                                    <Table.DataCell>{datoEllerNull(element.dato) ?? 'Ikke angitt'}</Table.DataCell>
+                                    <Table.DataCell>{element.syfoHendelse ?? 'Ikke angitt'}</Table.DataCell>
+                                    <Table.DataCell>{element.status ?? 'Ikke angitt'}</Table.DataCell>
+                                </Table.Row>
+                            );
+                        })}
+                    </Table.Body>
+                </Table>
+                {sortedData.length > rowsPerPage && (
+                    <Pagination
+                        page={page}
+                        onPageChange={setPage}
+                        count={Math.ceil(sortedData.length / rowsPerPage)}
+                        size="xsmall"
+                    />
+                )}
+            </VStack>
+        </div>
+    );
+};
+
+export const Sykefravaersoppfolging = () => {
+    const {isError, isLoading} = useSykefravaersoppfolging();
+
+    if (isError) return;
+
+    if (isLoading) return <Skeleton variant="rounded" height={166}/>
+
+
+    return (
+        <Card padding="4">
+            <ErrorBoundary boundaryName="sykefraversoppfolgingDetaljer" errorText="Det oppstod en feil under lasting av sykefraversoppfolging.">
+                <SykefravaersoppfolgingDetaljer/>
+            </ErrorBoundary>
+        </Card>
     );
 };
 
 const OppfolgingPageContent = () => {
     const { errorMessages: gjeldende14aVedtakErrorMessage } = useGjeldende14aVedtak();
-    const { errorMessages: utvidetOppfolgingErrorMessage } = useYtelserogkontrakter();
+    const { errorMessages: arbeidsoppfolgingErrorMessage } = useArbeidsoppfolging();
+    const { errorMessages: syfoErrorMessage } = useSykefravaersoppfolging();
+
 
     return (
         <VStack gap="2" minHeight="0" overflow="auto">
             <Heading visuallyHidden size="small">
                 Oppfølging
             </Heading>
-            <AlertBanner alerts={[...gjeldende14aVedtakErrorMessage, ...utvidetOppfolgingErrorMessage]} />
+            <AlertBanner alerts={[...arbeidsoppfolgingErrorMessage, ...gjeldende14aVedtakErrorMessage, ...syfoErrorMessage]} />
             <OppfolgingDetaljer />
             <Gjeldende14aVedtakDetaljer />
+            <Sykefravaersoppfolging />
         </VStack>
     );
 };
 
 export const OppfolgingPage = () => {
     return (
-        <ErrorBoundary boundaryName="OppgaverPage" errorText="Det oppstod en feil under lasting av oppgaver.">
+        <ErrorBoundary boundaryName="OppfolgingPage" errorText="Det oppstod en feil under lasting av Oppfolging.">
             <OppfolgingPageContent />
         </ErrorBoundary>
     );

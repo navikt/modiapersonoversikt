@@ -152,7 +152,7 @@
         "knip": "^5.66.3",
         "less": "^4.4.2",
         "lint-staged": "^16.2.7",
-        "msw": "^2.11.6",
+        "msw": "^2.12.7",
         "nav-faker": "^3.2.4",
         "openapi-typescript": "^7.10.1",
         "prop-types": "^15.8.1",
