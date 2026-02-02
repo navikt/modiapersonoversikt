@@ -10,6 +10,7 @@ import {
     VStack
 } from '@navikt/ds-react';
 import { useState } from 'react';
+import { AlertBanner } from 'src/components/AlertBanner';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { getMeldeplikt, getOppfolgingEnhet, getVeileder } from 'src/components/Oppfolging/utils';
@@ -164,7 +165,7 @@ const SykefravaersoppfolgingDetaljer = () => {
     const tabellData = sortedData.slice((page - 1) * rowsPerPage, page * rowsPerPage);
 
     return (
-        <div>
+        <Card padding="4">
             <VStack gap="space-16">
                 <Heading as="h4" size="small">
                     Sykefraværsoppfølging
@@ -200,16 +201,23 @@ const SykefravaersoppfolgingDetaljer = () => {
                     />
                 )}
             </VStack>
-        </div>
+        </Card>
     );
 };
 
-export const OppfolgingPage = () => {
+const OppfolgingPageContent = () => {
+    const { errorMessages: gjeldende14aVedtakErrorMessage } = useGjeldende14aVedtak();
+    const { errorMessages: arbeidsoppfolgingErrorMessage } = useArbeidsoppfolging();
+    const { errorMessages: syfoErrorMessage } = useSykefravaersoppfolging();
+
     return (
         <VStack gap="2" minHeight="0" overflow="auto">
             <Heading visuallyHidden size="small">
                 Oppfølging
             </Heading>
+            <AlertBanner
+                alerts={[...arbeidsoppfolgingErrorMessage, ...gjeldende14aVedtakErrorMessage, ...syfoErrorMessage]}
+            />
             <Card padding="4">
                 <ErrorBoundary boundaryName="oppfolgingDetaljer">
                     <OppfolgingDetaljer />
@@ -219,11 +227,17 @@ export const OppfolgingPage = () => {
                     <Gjeldende14aVedtakDetaljer />
                 </ErrorBoundary>
             </Card>
-            <Card padding="4">
-                <ErrorBoundary boundaryName="sykefraversoppfolgingDetaljer">
-                    <SykefravaersoppfolgingDetaljer />
-                </ErrorBoundary>
-            </Card>
+            <ErrorBoundary boundaryName="sykefraversoppfolgingDetaljer">
+                <SykefravaersoppfolgingDetaljer />
+            </ErrorBoundary>
         </VStack>
+    );
+};
+
+export const OppfolgingPage = () => {
+    return (
+        <ErrorBoundary boundaryName="OppfolgingPage" errorText="Det oppstod en feil under lasting av Oppfolging.">
+            <OppfolgingPageContent />
+        </ErrorBoundary>
     );
 };

@@ -309,7 +309,7 @@ export const useArbeidsoppfolging = () => {
         body: { fnr }
     });
 
-    const errorMessages = [errorPlaceholder(response, responseErrorMessage('oppfølging'))];
+    const errorMessages = [errorPlaceholder(response, responseErrorMessage('arbeidsoppfølging'))];
     return {
         ...response,
         errorMessages: errorMessages.filter(Boolean)
@@ -321,7 +321,7 @@ export const useSykefravaersoppfolging = () => {
     const response = $api.useQuery('post', '/rest/oppfolging/sykefravaeroppfolging', {
         body: { fnr }
     });
-    const errorMessages = [errorPlaceholder(response, responseErrorMessage('oppfølging'))];
+    const errorMessages = [errorPlaceholder(response, responseErrorMessage('sykefraværoppfølging'))];
     return {
         ...response,
         errorMessages: errorMessages.filter(Boolean)
