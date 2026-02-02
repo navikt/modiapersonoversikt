@@ -123,11 +123,11 @@ const Gjeldende14aVedtakDetaljer = () => {
 
 const SykefravaersoppfolgingDetaljer = () => {
     const sykefravaersoppfolgingResponse = useSykefravaersoppfolging();
-    const sykefravaersoppfolging = sykefravaersoppfolgingResponse.data;
+    const sykefravaersoppfolging = sykefravaersoppfolgingResponse.data?.sykefravaersoppfolging;
     const [sort, setSort] = useState<SortState | undefined>({ orderBy: 'dato', direction: 'descending' });
     const [page, setPage] = useState(1);
 
-    if (!sykefravaersoppfolging) {
+    if (!sykefravaersoppfolging || sykefravaersoppfolging.length === 0) {
         return <Alert variant="info">Brukeren har ingen sykefraværs-oppfølging.</Alert>;
     }
 

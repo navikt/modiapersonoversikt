@@ -1,7 +1,7 @@
 import { fakerNB_NO as faker } from '@faker-js/faker';
 import dayjs from 'dayjs';
 import navfaker from 'nav-faker';
-import type { Gjeldende14aVedtak } from 'src/generated/modiapersonoversikt-api';
+import type { Gjeldende14aVedtak, SykefravaerOppfolgingDto } from 'src/generated/modiapersonoversikt-api';
 import type {
     AnsattEnhet,
     Arbeidsoppfolging,
@@ -72,11 +72,13 @@ export function getMock14aVedtak(fodselsnummer: string): Gjeldende14aVedtak {
     };
 }
 
-export function getMockSykefravaersoppfolging(fodselsnummer: string): SyfoPunkt[] {
+export function getMockSykefravaersoppfolging(fodselsnummer: string): SykefravaerOppfolgingDto {
     faker.seed(Number(fodselsnummer));
     navfaker.seed(`${fodselsnummer}sykefrav`);
 
-    return fyllRandomListe(getSyfoPunkt, 5);
+    return {
+        sykefravaersoppfolging: fyllRandomListe(getSyfoPunkt, 5)
+    };
 }
 
 export function getMockArbeidsoppfolging(fodselsnummer: string): Arbeidsoppfolging {

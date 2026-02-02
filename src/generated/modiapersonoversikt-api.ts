@@ -315,10 +315,9 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** @deprecated */
-        get: operations['finnTildelte'];
+        get?: never;
         put?: never;
-        post: operations['finnTildelte_1'];
+        post: operations['finnTildelte'];
         delete?: never;
         options?: never;
         head?: never;
@@ -357,6 +356,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    '/rest/oppfolging/sykefravaeroppfolging': {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations['hentSykefravaerOppfolging'];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     '/rest/oppfolging/hent-gjeldende-14a-vedtak': {
         parameters: {
             query?: never;
@@ -373,22 +388,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/oppfolging/sykefravaeroppfolging': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations['hentSykefravaersoppfolging'];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     '/rest/oppfolging/arbeidsoppfolging': {
         parameters: {
             query?: never;
@@ -398,7 +397,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations['hentArbeidsoppfolging'];
+        post: operations['hentArbeidsOppfolging'];
         delete?: never;
         options?: never;
         head?: never;
@@ -1441,10 +1440,10 @@ export interface components {
         LocalDate: {
             /** Format: date */
             value?: string;
-            /** Format: date */
-            value$kotlinx_datetime: string;
             /** Format: int32 */
             monthNumber: number;
+            /** Format: date */
+            value$kotlinx_datetime: string;
             /** Format: int32 */
             year: number;
             /** Format: int32 */
@@ -1459,10 +1458,10 @@ export interface components {
         LocalDateTime: {
             /** Format: date-time */
             value?: string;
-            /** Format: date-time */
-            value$kotlinx_datetime: string;
             /** Format: int32 */
             monthNumber: number;
+            /** Format: date-time */
+            value$kotlinx_datetime: string;
             /** Format: int32 */
             nanosecond: number;
             time: components['schemas']['LocalTime'];
@@ -1935,13 +1934,6 @@ export interface components {
             ident: string;
             navn: string;
         };
-        ArbeidsOppfolgingDTO: {
-            oppfolging?: components['schemas']['OppfolgingDTO'];
-            meldeplikt?: boolean;
-            formidlingsgruppe?: string;
-            vedtaksdato?: string;
-            rettighetsgruppe?: string;
-        };
         DagpengeytelseDTO: {
             type: 'DagpengeytelseDTO';
         } & (Omit<components['schemas']['YtelseDTO'], 'type'> & {
@@ -2005,6 +1997,9 @@ export interface components {
         YtelseDTO: {
             type: string;
         };
+        SykefravaerOppfolgingDTO: {
+            sykefravaersoppfolging?: components['schemas']['SyfoPunktDTO'][];
+        };
         Gjeldende14aVedtak: {
             innsatsgruppe: components['schemas']['Innsatsgruppe'];
             hovedmal?: components['schemas']['Hovedmal'];
@@ -2021,6 +2016,13 @@ export interface components {
         Innsatsgruppe: {
             kode: string;
             beskrivelse: string;
+        };
+        ArbeidsOppfolgingDTO: {
+            oppfolging?: components['schemas']['OppfolgingDTO'];
+            meldeplikt?: boolean;
+            formidlingsgruppe?: string;
+            vedtaksdato?: string;
+            rettighetsgruppe?: string;
         };
         JournalforingSak: {
             fnr?: string;
@@ -2091,9 +2093,9 @@ export interface components {
         };
         GraphQLClientSourceLocation: {
             /** Format: int32 */
-            column: number;
-            /** Format: int32 */
             line: number;
+            /** Format: int32 */
+            column: number;
         };
         BehandlendeEnhetRequest: {
             fnr: string;
@@ -2447,10 +2449,12 @@ export type OppfolgingsYtelseDto = components['schemas']['OppfolgingsYtelseDTO']
 export type SyfoPunktDto = components['schemas']['SyfoPunktDTO'];
 export type UtvidetOppfolgingDto = components['schemas']['UtvidetOppfolgingDTO'];
 export type YtelseDto = components['schemas']['YtelseDTO'];
+export type SykefravaerOppfolgingDto = components['schemas']['SykefravaerOppfolgingDTO'];
 export type Gjeldende14aVedtak = components['schemas']['Gjeldende14aVedtak'];
 export type Gjeldende14aVedtakResponse = components['schemas']['Gjeldende14aVedtakResponse'];
 export type Hovedmal = components['schemas']['Hovedmal'];
 export type Innsatsgruppe = components['schemas']['Innsatsgruppe'];
+export type ArbeidsOppfolgingDto = components['schemas']['ArbeidsOppfolgingDTO'];
 export type JournalforingSak = components['schemas']['JournalforingSak'];
 export type Resultat = components['schemas']['Resultat'];
 export type Criterion = components['schemas']['Criterion'];
@@ -2982,26 +2986,6 @@ export interface operations {
             path?: never;
             cookie?: never;
         };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['OppgaveDTO'][];
-                };
-            };
-        };
-    };
-    finnTildelte_1: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
         requestBody: {
             content: {
                 'application/json': components['schemas']['FnrRequest'];
@@ -3070,6 +3054,33 @@ export interface operations {
             };
         };
     };
+    hentSykefravaerOppfolging: {
+        parameters: {
+            query?: {
+                startDato?: string;
+                sluttDato?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                'application/json': components['schemas']['FnrRequest'];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    '*/*': components['schemas']['SykefravaerOppfolgingDTO'];
+                };
+            };
+        };
+    };
     hentGjeldende14aVedtak: {
         parameters: {
             query?: never;
@@ -3094,34 +3105,7 @@ export interface operations {
             };
         };
     };
-    hentSykefravaersoppfolging: {
-        parameters: {
-            query?: {
-                startDato?: string;
-                sluttDato?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                'application/json': components['schemas']['FnrRequest'];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['SyfoPunktDTO'][];
-                };
-            };
-        };
-    };
-    hentArbeidsoppfolging: {
+    hentArbeidsOppfolging: {
         parameters: {
             query?: {
                 startDato?: string;
