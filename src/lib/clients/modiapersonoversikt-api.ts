@@ -318,9 +318,14 @@ export const useArbeidsoppfolging = () => {
 
 export const useSykefravaersoppfolging = () => {
     const fnr = usePersonAtomValue();
-    return $api.useSuspenseQuery('post', '/rest/oppfolging/sykefravaeroppfolging', {
+    const response = $api.useQuery('post', '/rest/oppfolging/sykefravaeroppfolging', {
         body: { fnr }
     });
+    const errorMessages = [errorPlaceholder(response, responseErrorMessage('oppfølging'))];
+    return {
+        ...response,
+        errorMessages: errorMessages.filter(Boolean)
+    };
 };
 
 export const useGsakTema = () => {

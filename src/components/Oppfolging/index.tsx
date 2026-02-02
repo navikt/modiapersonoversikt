@@ -1,10 +1,24 @@
-import { Alert, BodyShort, Heading, HGrid, Pagination, Table, Skeleton, type SortState, VStack } from '@navikt/ds-react';
-import { AlertBanner } from 'src/components/AlertBanner';
+import {
+    Alert,
+    BodyShort,
+    Heading,
+    HGrid,
+    Pagination,
+    Skeleton,
+    type SortState,
+    Table,
+    VStack
+} from '@navikt/ds-react';
 import { useState } from 'react';
+import { AlertBanner } from 'src/components/AlertBanner';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { getMeldeplikt, getOppfolgingEnhet, getVeileder } from 'src/components/Oppfolging/utils';
-import { useGjeldende14aVedtak, useArbeidsoppfolging, useSykefravaersoppfolging } from 'src/lib/clients/modiapersonoversikt-api';
+import {
+    useArbeidsoppfolging,
+    useGjeldende14aVedtak,
+    useSykefravaersoppfolging
+} from 'src/lib/clients/modiapersonoversikt-api';
 import { datoEllerNull } from 'src/utils/string-utils';
 
 const OppfolgingDetaljer = () => {
@@ -12,67 +26,67 @@ const OppfolgingDetaljer = () => {
 
     if (isError) return;
 
-    if(isLoading) return <Skeleton variant="rounded" height={166} />
+    if (isLoading) return <Skeleton variant="rounded" height={166} />;
 
     if (!arbeidsOppfolging) {
-        return <Alert variant="info">Brukeren har ingen oppfølging.</Alert>;
+        return <Alert variant="info">Brukeren har ingen arbeidsoppfolging.</Alert>;
     }
 
     return (
         <ErrorBoundary boundaryName="oppfolgingDetaljer">
             <Card padding="4">
-                    <Heading as="h4" size="small">
-                        Arbeidsoppfølging
-                    </Heading>
-                    <HGrid gap="4" columns={{ sm: 1, md: 2, lg: 4 }} className="mt-2">
-                        <VStack justify="space-between">
-                            <BodyShort size="small" weight="semibold">
-                                Status:
-                            </BodyShort>
-                            <BodyShort size="small">
-                                {arbeidsOppfolging.oppfolging?.erUnderOppfolging
-                                    ? 'Under oppfølging'
-                                    : 'Ikke under oppfølging'}
-                            </BodyShort>
-                        </VStack>
-                        <VStack justify="space-between">
-                            <BodyShort size="small" weight="semibold">
-                                Oppfølgingsenhet:
-                            </BodyShort>
-                            <BodyShort size="small">{getOppfolgingEnhet(arbeidsOppfolging.oppfolging)}</BodyShort>
-                        </VStack>
-                        <VStack justify="space-between">
-                            <BodyShort size="small" weight="semibold">
-                                Rettighetsgruppe:
-                            </BodyShort>
-                            <BodyShort size="small">{arbeidsOppfolging.rettighetsgruppe}</BodyShort>
-                        </VStack>
-                        <VStack justify="space-between">
-                            <BodyShort size="small" weight="semibold">
-                                Veileder:
-                            </BodyShort>
-                            <BodyShort size="small">{getVeileder(arbeidsOppfolging.oppfolging?.veileder)}</BodyShort>
-                        </VStack>
-                        <VStack justify="space-between">
-                            <BodyShort size="small" weight="semibold">
-                                Meldeplikt:
-                            </BodyShort>
-                            <BodyShort size="small">{getMeldeplikt(arbeidsOppfolging.meldeplikt)}</BodyShort>
-                        </VStack>
-                        <VStack justify="space-between">
-                            <BodyShort size="small" weight="semibold">
-                                Formidlingsgruppe:
-                            </BodyShort>
-                            <BodyShort size="small">{arbeidsOppfolging.formidlingsgruppe}</BodyShort>
-                        </VStack>
-                        <VStack justify="space-between">
-                            <BodyShort size="small" weight="semibold">
-                                Oppfølgingsvedtak:
-                            </BodyShort>
-                            <BodyShort size="small">{arbeidsOppfolging.vedtaksdato}</BodyShort>
-                        </VStack>
-                    </HGrid>
-                </Card>
+                <Heading as="h4" size="small">
+                    Arbeidsoppfølging
+                </Heading>
+                <HGrid gap="4" columns={{ sm: 1, md: 2, lg: 4 }} className="mt-2">
+                    <VStack justify="space-between">
+                        <BodyShort size="small" weight="semibold">
+                            Status:
+                        </BodyShort>
+                        <BodyShort size="small">
+                            {arbeidsOppfolging.oppfolging?.erUnderOppfolging
+                                ? 'Under oppfølging'
+                                : 'Ikke under oppfølging'}
+                        </BodyShort>
+                    </VStack>
+                    <VStack justify="space-between">
+                        <BodyShort size="small" weight="semibold">
+                            Oppfølgingsenhet:
+                        </BodyShort>
+                        <BodyShort size="small">{getOppfolgingEnhet(arbeidsOppfolging.oppfolging)}</BodyShort>
+                    </VStack>
+                    <VStack justify="space-between">
+                        <BodyShort size="small" weight="semibold">
+                            Rettighetsgruppe:
+                        </BodyShort>
+                        <BodyShort size="small">{arbeidsOppfolging.rettighetsgruppe}</BodyShort>
+                    </VStack>
+                    <VStack justify="space-between">
+                        <BodyShort size="small" weight="semibold">
+                            Veileder:
+                        </BodyShort>
+                        <BodyShort size="small">{getVeileder(arbeidsOppfolging.oppfolging?.veileder)}</BodyShort>
+                    </VStack>
+                    <VStack justify="space-between">
+                        <BodyShort size="small" weight="semibold">
+                            Meldeplikt:
+                        </BodyShort>
+                        <BodyShort size="small">{getMeldeplikt(arbeidsOppfolging.meldeplikt)}</BodyShort>
+                    </VStack>
+                    <VStack justify="space-between">
+                        <BodyShort size="small" weight="semibold">
+                            Formidlingsgruppe:
+                        </BodyShort>
+                        <BodyShort size="small">{arbeidsOppfolging.formidlingsgruppe}</BodyShort>
+                    </VStack>
+                    <VStack justify="space-between">
+                        <BodyShort size="small" weight="semibold">
+                            Oppfølgingsvedtak:
+                        </BodyShort>
+                        <BodyShort size="small">{arbeidsOppfolging.vedtaksdato}</BodyShort>
+                    </VStack>
+                </HGrid>
+            </Card>
         </ErrorBoundary>
     );
 };
@@ -83,7 +97,7 @@ const Gjeldende14aVedtakDetaljer = () => {
 
     if (isError) return;
 
-    if(isLoading) return <Skeleton variant="rounded" height={166} />
+    if (isLoading) return <Skeleton variant="rounded" height={166} />;
 
     if (!gjeldende14aVedtak) {
         return <Alert variant="info">Brukeren har ingen 14a vedtak.</Alert>;
@@ -91,39 +105,39 @@ const Gjeldende14aVedtakDetaljer = () => {
 
     return (
         <ErrorBoundary boundaryName="gjeldende14aVedtakDetaljer">
-                <Card padding="4">
-                    <Heading as="h4" size="small">
-                        14 a-vedtak
-                    </Heading>
-                    <HGrid gap="4" columns={{ sm: 1, md: 2 }} className="mt-4">
-                        <VStack justify="space-between">
-                            <BodyShort size="small" weight="semibold">
-                                Status:
-                            </BodyShort>
-                            <BodyShort size="small">
-                                {gjeldende14aVedtak ? 'Har 14a vedtak' : 'Har ikke 14a vedtak'}
-                            </BodyShort>
-                        </VStack>
-                        <VStack justify="space-between">
-                            <BodyShort size="small" weight="semibold">
-                                Innsatsgruppe:
-                            </BodyShort>
-                            <BodyShort size="small">{gjeldende14aVedtak?.innsatsgruppe?.beskrivelse}</BodyShort>
-                        </VStack>
-                        <VStack justify="space-between">
-                            <BodyShort size="small" weight="semibold">
-                                Hovedmål:
-                            </BodyShort>
-                            <BodyShort size="small">{gjeldende14aVedtak?.hovedmal?.beskrivelse}</BodyShort>
-                        </VStack>
-                        <VStack justify="space-between">
-                            <BodyShort size="small" weight="semibold">
-                                Vedtaksdato:
-                            </BodyShort>
-                            <BodyShort size="small">{datoEllerNull(gjeldende14aVedtak?.fattetDato)}</BodyShort>
-                        </VStack>
-                    </HGrid>
-                </Card>
+            <Card padding="4">
+                <Heading as="h4" size="small">
+                    14 a-vedtak
+                </Heading>
+                <HGrid gap="4" columns={{ sm: 1, md: 2 }} className="mt-4">
+                    <VStack justify="space-between">
+                        <BodyShort size="small" weight="semibold">
+                            Status:
+                        </BodyShort>
+                        <BodyShort size="small">
+                            {gjeldende14aVedtak ? 'Har 14a vedtak' : 'Har ikke 14a vedtak'}
+                        </BodyShort>
+                    </VStack>
+                    <VStack justify="space-between">
+                        <BodyShort size="small" weight="semibold">
+                            Innsatsgruppe:
+                        </BodyShort>
+                        <BodyShort size="small">{gjeldende14aVedtak?.innsatsgruppe?.beskrivelse}</BodyShort>
+                    </VStack>
+                    <VStack justify="space-between">
+                        <BodyShort size="small" weight="semibold">
+                            Hovedmål:
+                        </BodyShort>
+                        <BodyShort size="small">{gjeldende14aVedtak?.hovedmal?.beskrivelse}</BodyShort>
+                    </VStack>
+                    <VStack justify="space-between">
+                        <BodyShort size="small" weight="semibold">
+                            Vedtaksdato:
+                        </BodyShort>
+                        <BodyShort size="small">{datoEllerNull(gjeldende14aVedtak?.fattetDato)}</BodyShort>
+                    </VStack>
+                </HGrid>
+            </Card>
         </ErrorBoundary>
     );
 };
@@ -199,20 +213,22 @@ const SykefravaersoppfolgingDetaljer = () => {
     );
 };
 
-export const Sykefravaersoppfolging = () => {
-    const {isError, isLoading} = useSykefravaersoppfolging();
+const Sykefravaersoppfolging = () => {
+    const { isError, isLoading } = useSykefravaersoppfolging();
 
     if (isError) return;
 
-    if (isLoading) return <Skeleton variant="rounded" height={166}/>
-
+    if (isLoading) return <Skeleton variant="rounded" height={166} />;
 
     return (
-        <Card padding="4">
-            <ErrorBoundary boundaryName="sykefraversoppfolgingDetaljer" errorText="Det oppstod en feil under lasting av sykefraversoppfolging.">
-                <SykefravaersoppfolgingDetaljer/>
-            </ErrorBoundary>
-        </Card>
+        <ErrorBoundary
+            boundaryName="sykefraversoppfolgingDetaljer"
+            errorText="Det oppstod en feil under lasting av sykefraversoppfolging."
+        >
+            <Card padding="4">
+                <SykefravaersoppfolgingDetaljer />
+            </Card>
+        </ErrorBoundary>
     );
 };
 
@@ -221,13 +237,14 @@ const OppfolgingPageContent = () => {
     const { errorMessages: arbeidsoppfolgingErrorMessage } = useArbeidsoppfolging();
     const { errorMessages: syfoErrorMessage } = useSykefravaersoppfolging();
 
-
     return (
         <VStack gap="2" minHeight="0" overflow="auto">
             <Heading visuallyHidden size="small">
                 Oppfølging
             </Heading>
-            <AlertBanner alerts={[...arbeidsoppfolgingErrorMessage, ...gjeldende14aVedtakErrorMessage, ...syfoErrorMessage]} />
+            <AlertBanner
+                alerts={[...arbeidsoppfolgingErrorMessage, ...gjeldende14aVedtakErrorMessage, ...syfoErrorMessage]}
+            />
             <OppfolgingDetaljer />
             <Gjeldende14aVedtakDetaljer />
             <Sykefravaersoppfolging />
