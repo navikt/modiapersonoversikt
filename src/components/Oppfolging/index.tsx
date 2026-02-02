@@ -28,7 +28,7 @@ const OppfolgingDetaljer = () => {
     }
 
     return (
-        <div>
+        <>
             <Heading as="h4" size="small">
                 Arbeidsoppfølging
             </Heading>
@@ -78,7 +78,7 @@ const OppfolgingDetaljer = () => {
                     <BodyShort size="small">{datoEllerNull(arbeidsOppfolging.vedtaksdato)}</BodyShort>
                 </VStack>
             </HGrid>
-        </div>
+        </>
     );
 };
 
@@ -87,7 +87,7 @@ const Gjeldende14aVedtakDetaljer = () => {
     const gjeldende14aVedtak = gjeldende14aVedtakResponse.data.gjeldende14aVedtak;
 
     return (
-        <div>
+        <>
             <Heading as="h4" size="small">
                 14 a-vedtak
             </Heading>
@@ -117,7 +117,7 @@ const Gjeldende14aVedtakDetaljer = () => {
                     <BodyShort size="small">{datoEllerNull(gjeldende14aVedtak?.fattetDato)}</BodyShort>
                 </VStack>
             </HGrid>
-        </div>
+        </>
     );
 };
 
@@ -157,7 +157,7 @@ const SykefravaersoppfolgingDetaljer = () => {
                 <Heading as="h4" size="small">
                     Sykefraværsoppfølging
                 </Heading>
-                <Table zebraStripes={true} sort={sort} onSortChange={handleSort}>
+                <Table zebraStripes={true} sort={sort} onSortChange={handleSort} size="small">
                     <Table.Header>
                         <Table.Row>
                             <Table.ColumnHeader sortKey="dato" sortable>
@@ -184,7 +184,7 @@ const SykefravaersoppfolgingDetaljer = () => {
                         page={page}
                         onPageChange={setPage}
                         count={Math.ceil(sortedData.length / rowsPerPage)}
-                        size="small"
+                        size="xsmall"
                     />
                 )}
             </VStack>
@@ -204,7 +204,7 @@ export const OppfolgingPage = () => {
                         <OppfolgingDetaljer />
                     </Suspense>
                 </ErrorBoundary>
-                <div className="my-4 border-t border-border-subtle" />
+                <div className="my-4 border border-ax-border-neutral-subtle" />
                 <ErrorBoundary boundaryName="gjeldende14aVedtakDetaljer">
                     <Suspense fallback={<Skeleton variant="rounded" height={166} />}>
                         <Gjeldende14aVedtakDetaljer />
