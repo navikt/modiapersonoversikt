@@ -1,0 +1,2 @@
+import{_ as t,$ as o,Y as r,a0 as s}from"./main-e3kjUw26.js";const c=t("/new/person/landing")({component:a});function a(){const n=o.c(1);let e;return n[0]===Symbol.for("react.memo_cache_sentinel")?(e=r.jsx("div",{className:"flex-1",children:r.jsx(s,{variant:"info",children:"Ingen aktiv bruker. Bruk menyen over for å søke etter person."})}),n[0]=e):e=n[0],e}export{c as Route};
+//# sourceMappingURL=landing.lazy-bvJ3QdQU.js.map
