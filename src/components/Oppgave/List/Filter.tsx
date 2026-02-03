@@ -5,8 +5,8 @@ import { xor } from 'lodash';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import DateRangeSelector, { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
-import { useGsakTemaer } from 'src/components/Meldinger/List/utils';
 import { useFilterOppgave } from 'src/components/Oppgave/List/utils';
+import { useGsakTema } from 'src/lib/clients/modiapersonoversikt-api';
 import { usePersonAtomValue } from 'src/lib/state/context';
 import { filterType, trackExpansionCardApnet, trackExpansionCardLukket, trackFilterEndret } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
@@ -53,7 +53,7 @@ const DateFilter = () => {
 
 const TemaFilter = () => {
     const [selectedTema, setSelectedTema] = useAtom(oppgaveFilterTemaAtom);
-    const { data: temaer } = useGsakTemaer();
+    const { data: temaer } = useGsakTema();
 
     const onToggleSelected = useCallback(
         (option: string) => {

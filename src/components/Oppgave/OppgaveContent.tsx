@@ -5,8 +5,9 @@ import { useSetAtom } from 'jotai';
 import { useCallback, useState } from 'react';
 import Card from 'src/components/Card';
 import { AvsluttOppgaveModal } from 'src/components/Meldinger/AvsluttOppgave';
-import { traadstittel, useGsakTemaer, useTraader } from 'src/components/Meldinger/List/utils';
+import { traadstittel, useTraader } from 'src/components/Meldinger/List/utils';
 import type { OppgaveDto } from 'src/generated/modiapersonoversikt-api';
+import { useGsakTema } from 'src/lib/clients/modiapersonoversikt-api';
 import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
 import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { datoEllerNull } from 'src/utils/string-utils';
@@ -58,7 +59,7 @@ const AvsluttOppgave = ({ oppgave }: { oppgave: OppgaveDto }) => {
 };
 
 export const OppgaveContent = ({ oppgave }: { oppgave: OppgaveDto }) => {
-    const { data: gsakTema } = useGsakTemaer();
+    const { data: gsakTema } = useGsakTema();
     const tema = gsakTema.find((item) => item.kode === oppgave.tema);
     const oppgaveTyper = tema?.oppgavetyper ?? [];
     const oppgavetype = oppgaveTyper.find((o) => o.kode === oppgave.oppgavetype);

@@ -206,10 +206,12 @@ const SykefravaersoppfolgingDetaljer = () => {
 };
 
 const OppfolgingPageContent = () => {
-    const { errorMessages: gjeldende14aVedtakErrorMessage } = useGjeldende14aVedtak();
-    const { errorMessages: arbeidsoppfolgingErrorMessage } = useArbeidsoppfolging();
+    const { errorMessages: gjeldende14aVedtakErrorMessage, isError: gjeldende14aVedtakErro } = useGjeldende14aVedtak();
+    const { errorMessages: arbeidsoppfolgingErrorMessage, isError: arbeidsoppfolgingError } = useArbeidsoppfolging();
     const { errorMessages: syfoErrorMessage } = useSykefravaersoppfolging();
 
+    const doubleErrors = arbeidsoppfolgingError && gjeldende14aVedtakErro;
+    const hasErrors = arbeidsoppfolgingError || gjeldende14aVedtakErro;
     return (
         <VStack gap="2" minHeight="0" overflow="auto">
             <Heading visuallyHidden size="small">
@@ -218,15 +220,17 @@ const OppfolgingPageContent = () => {
             <AlertBanner
                 alerts={[...arbeidsoppfolgingErrorMessage, ...gjeldende14aVedtakErrorMessage, ...syfoErrorMessage]}
             />
-            <Card padding="4">
-                <ErrorBoundary boundaryName="oppfolgingDetaljer">
-                    <OppfolgingDetaljer />
-                </ErrorBoundary>
-                <div className="my-4 border border-ax-border-neutral-subtle" />
-                <ErrorBoundary boundaryName="gjeldende14aVedtakDetaljer">
-                    <Gjeldende14aVedtakDetaljer />
-                </ErrorBoundary>
-            </Card>
+            {!doubleErrors && (
+                <Card padding="4">
+                    <ErrorBoundary boundaryName="oppfolgingDetaljer">
+                        <OppfolgingDetaljer />
+                    </ErrorBoundary>
+                    {!hasErrors && <div className="my-4 border border-ax-border-neutral-subtle" />}
+                    <ErrorBoundary boundaryName="gjeldende14aVedtakDetaljer">
+                        <Gjeldende14aVedtakDetaljer />
+                    </ErrorBoundary>
+                </Card>
+            )}
             <ErrorBoundary boundaryName="sykefraversoppfolgingDetaljer">
                 <SykefravaersoppfolgingDetaljer />
             </ErrorBoundary>

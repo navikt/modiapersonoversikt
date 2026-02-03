@@ -1,7 +1,8 @@
 import { Heading, HGrid, VStack } from '@navikt/ds-react';
 import { AlertBanner } from 'src/components/AlertBanner';
 import ErrorBoundary from 'src/components/ErrorBoundary';
-import { useGsakTemaer, useTraader } from 'src/components/Meldinger/List/utils';
+import { useTraader } from 'src/components/Meldinger/List/utils';
+import { useGsakTema } from 'src/lib/clients/modiapersonoversikt-api';
 import { TraadDetail } from './Detail';
 import { TraadList } from './List';
 
@@ -15,7 +16,7 @@ export const MeldingerPage = () => {
 
 const MeldingerPageContent = () => {
     const { errorMessages: traadErrorMessages } = useTraader();
-    const { errorMessages: temaErrorMessages } = useGsakTemaer();
+    const { errorMessages: temaErrorMessages } = useGsakTema();
 
     return (
         <HGrid

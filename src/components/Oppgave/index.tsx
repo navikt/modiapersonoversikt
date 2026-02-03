@@ -1,10 +1,10 @@
 import { Heading, HGrid, VStack } from '@navikt/ds-react';
 import { AlertBanner } from 'src/components/AlertBanner';
 import ErrorBoundary from 'src/components/ErrorBoundary';
-import { useGsakTemaer } from 'src/components/Meldinger/List/utils';
 import { OppgaveDetail } from 'src/components/Oppgave/Details';
 import { OppgaverList } from 'src/components/Oppgave/List';
 import { useFilterOppgave } from 'src/components/Oppgave/List/utils';
+import { useGsakTema } from 'src/lib/clients/modiapersonoversikt-api';
 
 export const OppgaverPage = () => {
     return (
@@ -16,7 +16,7 @@ export const OppgaverPage = () => {
 
 const OppgaverPageContent = () => {
     const { errorMessages: oppgaveErrorMessages } = useFilterOppgave();
-    const { errorMessages: temaErrorMessages } = useGsakTemaer();
+    const { errorMessages: temaErrorMessages } = useGsakTema();
     return (
         <HGrid
             gap="1"

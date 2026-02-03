@@ -179,12 +179,12 @@ export const useMeldinger = () => {
 export const useTraadById = (traadId: string) => {
     const fnr = usePersonAtomValue();
     const enhet = useAtomValue(aktivEnhetAtom) ?? '';
-    const { data: traader } = $api.useQuery('post', '/rest/dialog/meldinger', {
+    const { data: traader = [] } = $api.useQuery('post', '/rest/dialog/meldinger', {
         body: { fnr },
         params: { query: { enhet } }
     });
 
-    const traad = traader?.find((t) => t.traadId === traadId);
+    const traad = traader.find((t) => t.traadId === traadId);
 
     return traad;
 };
@@ -305,7 +305,7 @@ export const useGjeldende14aVedtak = () => {
 
 export const useArbeidsoppfolging = () => {
     const fnr = usePersonAtomValue();
-    const response = $api.useQuery('post', '/rest/oppfolging/ytelserogkontrakter', {
+    const response = $api.useQuery('post', '/rest/oppfolging/arbeidsoppfolging', {
         body: { fnr }
     });
 
@@ -329,7 +329,13 @@ export const useSykefravaersoppfolging = () => {
 };
 
 export const useGsakTema = () => {
-    return $api.useQuery('get', '/rest/dialogoppgave/tema');
+    const response = $api.useQuery('get', '/rest/dialogoppgave/tema');
+    const errorMessages = [errorPlaceholder(response, responseErrorMessage('temaer for meldinger'))];
+    return {
+        ...response,
+        data: response?.data ?? [],
+        errorMessages: errorMessages.filter(Boolean)
+    };
 };
 
 export const useOppgaveMutation = () => {
