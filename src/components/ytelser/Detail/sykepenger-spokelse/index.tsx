@@ -1,6 +1,5 @@
 import { Accordion, Heading, VStack } from '@navikt/ds-react';
 import Card from 'src/components/Card';
-import ErrorBoundary from 'src/components/ErrorBoundary';
 import { TitleValuePairsComponent } from 'src/components/ytelser/Detail';
 import type { Utbetalingsperiode, Utbetalingsperioder } from 'src/generated/modiapersonoversikt-api';
 import { datoEllerTomString, formaterDato, prosentEllerNull } from 'src/utils/string-utils';
@@ -40,14 +39,12 @@ const SykpengerPerioder = ({ ytelse }: { ytelse: Utbetalingsperioder }) => {
 export const SykePengerSpokelseDetails = ({ ytelse }: { ytelse: Utbetalingsperioder }) => {
     return (
         <VStack gap="2" minHeight="0">
-            <ErrorBoundary boundaryName="sykePengerDetails">
-                <Card padding="4">
-                    <Heading level="4" size="small" spacing>
-                        Om sykepenger
-                    </Heading>
-                    <SykpengerPerioder ytelse={ytelse} />
-                </Card>
-            </ErrorBoundary>
+            <Card padding="4">
+                <Heading level="4" size="small" spacing>
+                    Om sykepenger
+                </Heading>
+                <SykpengerPerioder ytelse={ytelse} />
+            </Card>
         </VStack>
     );
 };

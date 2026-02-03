@@ -1,12 +1,10 @@
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai';
-import { useMemo } from 'react';
 import { type UtbetalingFilter, utbetalingFilterAtom } from 'src/components/Utbetaling/List/Filter';
+import { errorPlaceholder, type QueryResult, responseErrorMessage } from 'src/components/ytelser/utils';
 import { useUtbetalinger } from 'src/lib/clients/modiapersonoversikt-api';
-import { usePersonAtomValue } from 'src/lib/state/context';
-import type { Utbetaling, Ytelse, YtelsePeriode } from 'src/lib/types/modiapersonoversikt-api';
+import type { Utbetaling, UtbetalingerResponseDto, Ytelse, YtelsePeriode } from 'src/lib/types/modiapersonoversikt-api';
 import { datoSynkende } from 'src/utils/date-utils';
-import { finnMiljoStreng } from 'src/utils/url-utils';
 
 const filterUtbetalinger = (utbetalinger: Utbetaling[], filters: UtbetalingFilter): Utbetaling[] => {
     const { ytelseTyper, utbetaltTil, dateRange } = filters;
@@ -41,16 +39,24 @@ const filterUtbetalinger = (utbetalinger: Utbetaling[], filters: UtbetalingFilte
     return filteredList;
 };
 
-export const useFilterUtbetalinger = () => {
+export const useFilterUtbetalinger = (): QueryResult<UtbetalingerResponseDto> => {
     const filters = useAtomValue(utbetalingFilterAtom);
     const startDato = filters.dateRange.from.format('YYYY-MM-DD');
     const sluttDato = filters.dateRange.to.format('YYYY-MM-DD');
-    const { data } = useUtbetalinger(startDato, sluttDato);
-    const utbetalinger = data?.utbetalinger ?? [];
+    const utbetalingerResponse = useUtbetalinger(startDato, sluttDato);
 
+    const utbetalinger = utbetalingerResponse?.data?.utbetalinger ?? [];
+    const errorMessages = [errorPlaceholder(utbetalingerResponse, responseErrorMessage('utbetalinger'))];
     const sortedUtbetalinger = utbetalinger.toSorted(datoSynkende((t) => t.posteringsdato));
 
-    return useMemo(() => filterUtbetalinger(sortedUtbetalinger, filters), [utbetalinger, filters]);
+    return {
+        ...utbetalingerResponse,
+        data: {
+            ...utbetalingerResponse.data,
+            utbetalinger: filterUtbetalinger(sortedUtbetalinger, filters) ?? []
+        },
+        errorMessages: errorMessages.filter(Boolean)
+    } as QueryResult<UtbetalingerResponseDto>;
 };
 
 export const getNettoSumYtelser = (ytelser: Ytelse[]): number => {
@@ -107,15 +113,6 @@ export const getPeriodeFromYtelser = (ytelser: Ytelse[]): YtelsePeriode => {
             slutt: dayjs(0).format()
         }
     );
-};
-
-export const arenaURL = () => {
-    const utbetalingUrlPart = '?oppstart_skj=UB_22_MELDEHISTORIKK&fodselsnr=';
-    const fnr = usePersonAtomValue();
-    const domainUrlPart = `http://arena${finnMiljoStreng()}.adeo.no/`;
-    const standardArenaUrlPart = `forms/arenaMod${finnMiljoStreng().replace('-', '_')}.html`;
-
-    return domainUrlPart + standardArenaUrlPart + utbetalingUrlPart + fnr;
 };
 
 export const getUtbetalingId = (utbetaling: Utbetaling) =>

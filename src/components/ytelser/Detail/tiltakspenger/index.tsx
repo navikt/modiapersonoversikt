@@ -1,6 +1,5 @@
 import { Heading, VStack } from '@navikt/ds-react';
 import Card from 'src/components/Card';
-import ErrorBoundary from 'src/components/ErrorBoundary';
 import { TitleValuePairsComponent } from 'src/components/ytelser/Detail';
 import type { BarnetilleggPeriode, VedtakDto } from 'src/generated/modiapersonoversikt-api';
 import { formaterDato } from 'src/utils/string-utils';
@@ -48,10 +47,8 @@ const TiltaksPengerBarneTillegg = ({ tiltaksPenger }: { tiltaksPenger: VedtakDto
 export const TiltaksPengerDetails = ({ tiltaksPenger }: { tiltaksPenger: VedtakDto }) => {
     return (
         <VStack gap="2" minHeight="0">
-            <ErrorBoundary boundaryName="tiltaksPengerDetails">
-                <TiltaksPengerRetten tiltaksPenger={tiltaksPenger} />
-                <TiltaksPengerBarneTillegg tiltaksPenger={tiltaksPenger} />
-            </ErrorBoundary>
+            <TiltaksPengerRetten tiltaksPenger={tiltaksPenger} />
+            <TiltaksPengerBarneTillegg tiltaksPenger={tiltaksPenger} />
         </VStack>
     );
 };

@@ -14,7 +14,7 @@ import {
 } from '@navikt/ds-react';
 import { getRouteApi, Link } from '@tanstack/react-router';
 import { useAtom, useAtomValue } from 'jotai/index';
-import { Suspense, useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import JournalPoster from 'src/components/saker/Detail/JournalPoster';
@@ -92,9 +92,8 @@ const NorgLenke = ({
         </HStack>
     );
 };
-const SakContent = () => {
+const SakContent = ({ saker }: { saker: SaksDokumenter[] }) => {
     const { id } = routeApi.useSearch();
-    const saker = useFilterSaker();
     const filterAtomValue = useAtomValue(sakerFilterAtom);
     const prevFilterRef = useRef(filterAtomValue);
     const navigate = routeApi.useNavigate();
@@ -129,10 +128,9 @@ const SakContent = () => {
 };
 
 const SakDetails = ({ valgtSak, pageView }: { valgtSak: SaksDokumenter; pageView?: boolean }) => {
-    const {
-        data: { person }
-    } = usePersonData();
-    const brukersNavn = hentBrukerNavn(person);
+    const { data } = usePersonData();
+    const person = data?.person;
+    const brukersNavn = person ? hentBrukerNavn(person) : '';
     const { avsender } = useAtomValue(sakerFilterAtom);
     const geografiskTilknytning = person?.geografiskTilknytning;
 
@@ -199,11 +197,11 @@ const SakDetails = ({ valgtSak, pageView }: { valgtSak: SaksDokumenter; pageView
 };
 
 export const SakDetailPage = () => {
+    const { data, isLoading } = useFilterSaker();
+    const saker = data?.saker ?? [];
     return (
-        <ErrorBoundary boundaryName="sakDetaljer">
-            <Suspense fallback={<Skeleton variant="rounded" height="4rem" />}>
-                <SakContent />
-            </Suspense>
+        <ErrorBoundary boundaryName="SakDetailPage" errorText="Det oppstod en feil under visning en sakdetailjer">
+            {isLoading ? <Skeleton variant="rounded" height="4rem" /> : <SakContent saker={saker} />}
         </ErrorBoundary>
     );
 };

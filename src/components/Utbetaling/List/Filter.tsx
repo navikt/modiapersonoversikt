@@ -1,8 +1,8 @@
-import { BodyShort, Box, ExpansionCard, Fieldset, Skeleton, Switch, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
-import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { BodyShort, Box, ExpansionCard, Fieldset, Switch, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
+import { atom, useAtom, useSetAtom } from 'jotai';
 import { atomWithReset, RESET } from 'jotai/utils';
 import { xor } from 'lodash';
-import { Suspense, useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import DateRangeSelector, { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
 import {
@@ -11,7 +11,6 @@ import {
     utbetalingMottakere
 } from 'src/components/Utbetaling/List/utils';
 import type { Utbetaling, Ytelse } from 'src/generated/modiapersonoversikt-api';
-import { useUtbetalinger } from 'src/lib/clients/modiapersonoversikt-api';
 import { usePersonAtomValue } from 'src/lib/state/context';
 import { filterType, trackExpansionCardApnet, trackExpansionCardLukket, trackFilterEndret } from 'src/utils/analytics';
 import { sorterAlfabetisk } from 'src/utils/string-utils';
@@ -64,16 +63,13 @@ export const utbetalingFilterDateRangeAtom = atom(
 
 const DateFilter = () => {
     const [value, setValue] = useAtom(utbetalingFilterDateRangeAtom);
-    return <DateRangeSelector range={value} onChange={setValue} />;
+    return <DateRangeSelector range={value} onChange={setValue} defaultPeriodType={PeriodType.CUSTOM} />;
 };
 
 const UtbetalingYtelserFilter = () => {
-    const [selectedYtelse, setSelectedYtelse] = useAtom(utbetalingFilterYtelseTypeAtom);
-    const dateRange = useAtomValue(utbetalingFilterDateRangeAtom);
-    const startDato = dateRange.from.format('YYYY-MM-DD');
-    const sluttDato = dateRange.to.format('YYYY-MM-DD');
-    const { data } = useUtbetalinger(startDato, sluttDato);
+    const { data } = useFilterUtbetalinger();
     const utbetalinger = data?.utbetalinger ?? [];
+    const [selectedYtelse, setSelectedYtelse] = useAtom(utbetalingFilterYtelseTypeAtom);
 
     const onToggleSelected = useCallback(
         (option: string) => {
@@ -132,7 +128,8 @@ const UtbetaltTilFilter = () => {
 };
 
 const FilterTitle = () => {
-    const utbetalinger = useFilterUtbetalinger();
+    const { data } = useFilterUtbetalinger();
+    const utbetalinger = data?.utbetalinger ?? [];
 
     return (
         <>
@@ -179,16 +176,7 @@ export const UtbetalingListFilter = () => {
                 <ExpansionCard.Content className="overflow-visible">
                     <VStack gap="2">
                         <Box.New maxWidth="17rem">
-                            <Suspense
-                                fallback={
-                                    <VStack gap="2">
-                                        <span className="font-ax-bold">Ytelse</span>
-                                        <Skeleton width="100%" variant="rounded" height="2rem" />
-                                    </VStack>
-                                }
-                            >
-                                <UtbetalingYtelserFilter />
-                            </Suspense>
+                            <UtbetalingYtelserFilter />
                         </Box.New>
                         <Box.New maxWidth="17rem">
                             <UtbetaltTilFilter />

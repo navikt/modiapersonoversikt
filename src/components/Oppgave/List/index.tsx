@@ -1,6 +1,5 @@
 import { Alert, Skeleton, VStack } from '@navikt/ds-react';
 import { useSearch } from '@tanstack/react-router';
-import { Suspense } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { OppgaveListFilter } from 'src/components/Oppgave/List/Filter';
 import { OppgaveItem } from 'src/components/Oppgave/List/OppgaveItem';
@@ -9,28 +8,16 @@ import { useAntallListeElementeBasertPaaSkjermStorrelse } from 'src/utils/custom
 import { getOppgaveId, useFilterOppgave } from './utils';
 
 export const OppgaverList = () => (
-    <VStack height="100%" gap="2">
-        <OppgaveListFilter />
-        <ErrorBoundary boundaryName="oppgaverList">
-            <Suspense
-                fallback={
-                    <VStack gap="2" marginInline="0 2">
-                        {Array(8)
-                            .keys()
-                            .map((i) => (
-                                <Skeleton key={i} variant="rounded" height={68} width="100%" />
-                            ))}
-                    </VStack>
-                }
-            >
-                <OppgaveList />
-            </Suspense>
-        </ErrorBoundary>
-    </VStack>
+    <ErrorBoundary boundaryName="OppgaverList" errorText="Det oppstod en feil under visning av oppgave liste">
+        <VStack height="100%" gap="2">
+            <OppgaveListFilter />
+            <OppgaveList />
+        </VStack>
+    </ErrorBoundary>
 );
 
 const OppgaveList = () => {
-    const oppgaver = useFilterOppgave();
+    const { data: oppgaver, isLoading, isError } = useFilterOppgave();
     const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
 
     const selectedKey = useSearch({
@@ -38,7 +25,9 @@ const OppgaveList = () => {
         select: (p) => p.id
     });
 
-    if (!oppgaver.length) {
+    if (isError) return;
+
+    if (!isLoading && !oppgaver.length) {
         return (
             <Alert className="mr-2" variant="info" role="alert">
                 Ingen oppgaver funnet
@@ -47,16 +36,28 @@ const OppgaveList = () => {
     }
 
     return (
-        <PaginatedList
-            paginationSrHeading={{
-                tag: 'h3',
-                text: 'Oppgavepaginering'
-            }}
-            pageSize={antallListeElementer}
-            selectedKey={selectedKey}
-            items={oppgaver}
-            keyExtractor={getOppgaveId}
-            renderItem={({ item }) => <OppgaveItem oppgave={item} />}
-        />
+        <>
+            {isLoading ? (
+                <VStack gap="2" marginInline="0 2">
+                    {Array(8)
+                        .keys()
+                        .map((i) => (
+                            <Skeleton key={i} variant="rounded" height={68} />
+                        ))}
+                </VStack>
+            ) : (
+                <PaginatedList
+                    paginationSrHeading={{
+                        tag: 'h3',
+                        text: 'Oppgavepaginering'
+                    }}
+                    pageSize={antallListeElementer}
+                    selectedKey={selectedKey}
+                    items={oppgaver}
+                    keyExtractor={getOppgaveId}
+                    renderItem={({ item }) => <OppgaveItem oppgave={item} />}
+                />
+            )}
+        </>
     );
 };

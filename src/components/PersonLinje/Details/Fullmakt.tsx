@@ -107,12 +107,12 @@ function Fullmakt(props: { fullmakt: Fullmakt; harFeilendeSystem: boolean }) {
 }
 
 function Fullmakter() {
-    const {
-        data: { person, feilendeSystemer }
-    } = usePersonData();
-    const fullmakter = person.fullmakt;
+    const { data } = usePersonData();
+    const person = data?.person;
+    const feilendeSystemer = data?.feilendeSystemer ?? [];
+    const fullmakter = person?.fullmakt;
 
-    if (fullmakter.isEmpty()) {
+    if (!fullmakter || fullmakter.isEmpty()) {
         return null;
     }
 

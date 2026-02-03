@@ -5,8 +5,7 @@ import { formaterDato } from 'src/utils/string-utils';
 
 function DodsdatoInfo() {
     const { data } = usePersonData();
-    const { person } = data;
-    const dato = person.dodsdato.firstOrNull();
+    const dato = data?.person?.dodsdato?.firstOrNull();
     if (dato?.dodsdato) {
         const formatertDodsdato = formaterDato(dato.dodsdato);
 

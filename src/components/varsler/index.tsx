@@ -1,8 +1,21 @@
 import { Heading, HGrid, VStack } from '@navikt/ds-react';
+import { AlertBanner } from 'src/components/AlertBanner';
+import ErrorBoundary from 'src/components/ErrorBoundary';
 import { VarselDetail } from 'src/components/varsler/Details';
 import { VarslerList } from 'src/components/varsler/List';
+import { useFilterVarsler } from 'src/components/varsler/List/utils';
 
 export const VarslerPage = () => {
+    return (
+        <ErrorBoundary boundaryName="varslerList" errorText="Det oppstod en feil under lasting av varsler">
+            <VarslerPageContent />
+        </ErrorBoundary>
+    );
+};
+
+const VarslerPageContent = () => {
+    const { errorMessages } = useFilterVarsler();
+
     return (
         <HGrid
             gap="1"
@@ -18,6 +31,7 @@ export const VarslerPage = () => {
                 <VarslerList />
             </VStack>
             <VStack className="min-h-100 md:min-h-0">
+                <AlertBanner alerts={errorMessages} />
                 <VStack minHeight="0">
                     <VarselDetail />
                 </VStack>

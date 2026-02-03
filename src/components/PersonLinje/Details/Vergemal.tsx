@@ -60,12 +60,11 @@ function Vergesakstype(props: { vergemal: Verge[] }) {
 
 function Vergemal() {
     const { data } = usePersonData();
-    const {
-        feilendeSystemer,
-        person: { vergemal }
-    } = data;
+    const person = data?.person;
+    const vergemal = person?.vergemal;
+    const feilendeSystemer = data?.feilendeSystemer ?? [];
 
-    if (vergemal.isEmpty()) {
+    if (!vergemal || vergemal.isEmpty()) {
         return null;
     }
 

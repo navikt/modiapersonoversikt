@@ -15,7 +15,7 @@ import {
 import { getRouteApi } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai';
-import { Suspense, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import Card from 'src/components/Card';
 import type { DateRange } from 'src/components/DateFilters/types';
 import ErrorBoundary from 'src/components/ErrorBoundary';
@@ -429,9 +429,8 @@ const UtbetalingDetail = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
     );
 };
 
-const UtbetalingerDetail = () => {
+const UtbetalingerDetail = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
     const dateRange = useAtomValue(utbetalingFilterDateRangeAtom);
-    const utbetalinger = useFilterUtbetalinger();
 
     return (
         <VStack flexGrow="1" minHeight="0" maxHeight="100%" overflow="auto">
@@ -444,11 +443,20 @@ const UtbetalingerDetail = () => {
 };
 
 export const UtbetalingerDetailPage = () => {
+    const { data, isLoading, isError } = useFilterUtbetalinger();
+    const utbetalinger = data?.utbetalinger ?? [];
+
+    if (isError) return;
     return (
-        <ErrorBoundary boundaryName="utbetalingDetaljer">
-            <Suspense fallback={<Skeleton variant="rounded" height="4rem" />}>
-                <UtbetalingerDetail />
-            </Suspense>
+        <ErrorBoundary
+            boundaryName="utbetalingerDetailPage"
+            errorText="Det oppstod en feil under visning av utbetalinger detailjer"
+        >
+            {isLoading ? (
+                <Skeleton variant="rounded" height="4rem" />
+            ) : (
+                <UtbetalingerDetail utbetalinger={utbetalinger} />
+            )}
         </ErrorBoundary>
     );
 };

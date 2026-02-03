@@ -1,9 +1,9 @@
 import { Alert } from '@navikt/ds-react';
-import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
+import { useTraader } from 'src/components/Meldinger/List/utils';
 import { erUbesvartHenvendelseFraBruker } from '../Meldinger/List/utils';
 
 export const UbesvarteMeldinger = () => {
-    const { data: traader } = useMeldinger();
+    const { data: traader } = useTraader();
 
     const antallUbesvarteTraader = traader?.filter((traad) => erUbesvartHenvendelseFraBruker(traad))?.length;
 

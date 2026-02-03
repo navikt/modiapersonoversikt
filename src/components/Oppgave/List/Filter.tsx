@@ -79,7 +79,7 @@ const TemaFilter = () => {
 };
 
 const FilterTitle = () => {
-    const oppgaver = useFilterOppgave();
+    const { data: oppgaver } = useFilterOppgave();
 
     return (
         <>

@@ -1,18 +1,8 @@
-import {
-    BodyShort,
-    Box,
-    ExpansionCard,
-    Fieldset,
-    Search,
-    Skeleton,
-    Switch,
-    UNSAFE_Combobox,
-    VStack
-} from '@navikt/ds-react';
+import { BodyShort, Box, ExpansionCard, Fieldset, Search, Switch, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
 import { atom, useAtom, useSetAtom } from 'jotai';
 import { atomWithReset, RESET } from 'jotai/utils';
 import { debounce, xor } from 'lodash';
-import { Suspense, useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import DateRangeSelector, { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
 import { sakStatuser, useFilterSaker, useTemaer } from 'src/components/saker/utils';
@@ -179,8 +169,8 @@ const StatusFilter = () => {
 };
 
 const FilterTitle = () => {
-    const saker = useFilterSaker();
-
+    const { data } = useFilterSaker();
+    const saker = data?.saker ?? [];
     return (
         <>
             Filter ({saker.length} {saker.length === 1 ? 'sak' : 'saker'})<BodyShort visuallyHidden>funnet</BodyShort>
@@ -229,16 +219,7 @@ export const SakerFilter = () => {
                             <SaksIdSearchField />
                         </Box.New>
                         <Box.New maxWidth="15rem">
-                            <Suspense
-                                fallback={
-                                    <VStack gap="2">
-                                        <span className="font-ax-bold">Tema</span>
-                                        <Skeleton width="100%" variant="rounded" height="2rem" />
-                                    </VStack>
-                                }
-                            >
-                                <TemaFilter />
-                            </Suspense>
+                            <TemaFilter />
                         </Box.New>
                         <Box.New maxWidth="15rem">
                             <StatusFilter />

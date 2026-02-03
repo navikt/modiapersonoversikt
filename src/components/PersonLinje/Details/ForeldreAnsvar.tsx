@@ -46,13 +46,12 @@ function ForeldreansvarElement(props: { harFeilendeSystem: boolean; foreldreansv
 }
 
 function Foreldreansvar() {
-    const {
-        data: { feilendeSystemer, person }
-    } = usePersonData();
+    const { data } = usePersonData();
+    const person = data?.person;
+    const feilendeSystemer = data?.feilendeSystemer ?? [];
+    const foreldreansvar = person?.foreldreansvar;
 
-    const foreldreansvar = person.foreldreansvar;
-
-    if (foreldreansvar.isEmpty()) {
+    if (!foreldreansvar || foreldreansvar.isEmpty()) {
         return null;
     }
 

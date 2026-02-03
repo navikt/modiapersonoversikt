@@ -14,11 +14,10 @@ const capitalizeStatsborgerskap = (statsborgerskap: string): string => {
 };
 
 const Statsborgerskap = () => {
-    const {
-        data: { person }
-    } = usePersonData();
+    const { data } = usePersonData();
 
-    if (person.statsborgerskap.isEmpty()) {
+    const person = data?.person;
+    if (!person || person.statsborgerskap.isEmpty()) {
         return null;
     }
 

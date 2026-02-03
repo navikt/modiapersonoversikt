@@ -1,7 +1,7 @@
-import type { UseBaseQueryResult, UseSuspenseQueryResult } from '@tanstack/react-query';
+import type { UseQueryResult } from '@tanstack/react-query';
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai/index';
-import { useMemo } from 'react';
+import type { FetchError } from 'src/api/api';
 import { type YtelseFilter, ytelseFilterAtom } from 'src/components/ytelser/List/Filter';
 import {
     useArbeidsavklaringspenger,
@@ -48,13 +48,6 @@ type Ytelse =
     | Utbetalingsperioder;
 
 type Placeholder = { returnOnForbidden: string; returnOnError: string; returnOnNotFound: string };
-
-interface Returns {
-    ytelser: YtelseVedtak[];
-    pending: boolean;
-    placeholders: (string | undefined)[];
-    harFeil: boolean;
-}
 
 export type YtelseVedtak = {
     ytelseData: {
@@ -268,52 +261,33 @@ export function periodeEllerNull(periode?: CommonPeriode | null): string | null 
     return `${formaterDato(periode.fra)} - ${periode.til ? formaterDato(periode.til) : ''}`;
 }
 
-const foreldrepengerPlaceholder = {
-    returnOnError: 'Kunne ikke laste foreldrepenger',
-    returnOnNotFound: 'Kunne finne foreldrepenger',
-    returnOnForbidden: 'Du har ikke tilgang til foreldrepenger'
-};
-const pleiepengerPlaceholder = {
-    returnOnError: 'Kunne ikke laste pleiepenger',
-    returnOnNotFound: 'Kunne finne pleiepenger',
-    returnOnForbidden: 'Du har ikke tilgang til pleiepenger'
-};
-const sykepengerPlaceholder = {
-    returnOnError: 'Kunne ikke laste sykepenger',
-    returnOnNotFound: 'Kunne finne sykepenger',
-    returnOnForbidden: 'Du har ikke tilgang til sykepenger'
-};
-const tiltakspengerPlaceholder = {
-    returnOnError: 'Kunne ikke laste tiltakspenger',
-    returnOnNotFound: 'Kunne finne tiltakspenger',
-    returnOnForbidden: 'Du har ikke tilgang til tiltakspenger'
-};
-const pensjonPlaceholder = {
-    returnOnError: 'Kunne ikke laste pensjon',
-    returnOnNotFound: 'Kunne finne pensjon',
-    returnOnForbidden: 'Du har ikke tilgang til pensjon'
-};
-const arbeidsavklaringsPengerPlaceholder = {
-    returnOnError: 'Kunne ikke laste arbeidsavklaringspenger',
-    returnOnNotFound: 'Kunne finne arbeidsavklaringspenger',
-    returnOnForbidden: 'Du har ikke tilgang til arbeidsavklaringspenger'
-};
+export const responseErrorMessage = (type: string) => ({
+    returnOnError: `Kunne ikke laste ${type}`,
+    returnOnNotFound: `Kunne ikke finne ${type}`,
+    returnOnForbidden: `Du har ikke tilgang til ${type}`
+});
 
-const foreldrepengerFpSakPlaceholder = {
-    returnOnError: 'Kunne ikke laste foreldrepenger',
-    returnOnNotFound: 'Kunne finne foreldrepenger',
-    returnOnForbidden: 'Du har ikke tilgang til foreldrepenger'
-};
-
-const placeholder = (resource: UseSuspenseQueryResult | UseBaseQueryResult, tekster: Placeholder) => {
+export const errorPlaceholder = <T = unknown>(resource: UseQueryResult<T, FetchError>, tekster: Placeholder) => {
     if (!resource?.isError) {
         return;
+    }
+
+    if (resource?.error?.response?.status === 404) {
+        return tekster.returnOnNotFound;
+    }
+    if (resource?.error?.response?.status === 403) {
+        return tekster.returnOnForbidden;
     }
 
     return tekster.returnOnError;
 };
 
-export const useFilterYtelser = (): Returns => {
+export type QueryResult<T> = UseQueryResult<T, FetchError> & {
+    data: T;
+    errorMessages: string[];
+};
+
+export const useFilterYtelser = (): QueryResult<YtelseVedtak[]> => {
     const filters = useAtomValue(ytelseFilterAtom);
     const periode = filters.dateRange;
     const startDato = periode.from.format('YYYY-MM-DD');
@@ -327,105 +301,83 @@ export const useFilterYtelser = (): Returns => {
     const foreldrepengerFpSakResponse = useForeldrepengerFpSak(startDato, sluttDato);
     const sykepengerSpokelseResponse = useSykepengerSpokelse(startDato, sluttDato);
 
-    return useMemo(() => {
-        const pending =
-            pleiepengerResponse.isLoading ||
-            foreldrepengerResponse.isLoading ||
-            sykepengerResponse.isLoading ||
-            sykepengerSpokelseResponse.isLoading ||
-            tiltakspengerResponse.isLoading ||
-            pensjonResponse.isLoading ||
-            arbeidsavklaringspengerResponse.isLoading ||
-            foreldrepengerResponse.isLoading;
+    const ytelser: YtelseVedtak[] = [];
+    foreldrepengerResponse.data?.foreldrepenger?.map((ytelse) =>
+        ytelser.push({
+            ytelseData: { data: ytelse },
+            ytelseType: YtelseVedtakYtelseType.Foreldrepenger
+        })
+    );
+    pleiepengerResponse.data?.pleiepenger?.map((ytelse) =>
+        ytelser.push({
+            ytelseData: { data: ytelse },
+            ytelseType: YtelseVedtakYtelseType.Pleiepenger
+        })
+    );
+    sykepengerResponse.data?.sykepenger?.map((ytelse) =>
+        ytelser.push({
+            ytelseData: { data: ytelse },
+            ytelseType: YtelseVedtakYtelseType.Sykepenger
+        })
+    );
+    if (sykepengerSpokelseResponse.data && sykepengerSpokelseResponse.data.utbetaltePerioder.length > 0) {
+        ytelser.push({
+            ytelseData: { data: sykepengerSpokelseResponse.data },
+            ytelseType: YtelseVedtakYtelseType.SykepengerSpokelse
+        });
+    }
+    tiltakspengerResponse?.data?.map((ytelse) =>
+        ytelser.push({
+            ytelseData: { data: ytelse },
+            ytelseType: YtelseVedtakYtelseType.Tiltakspenge
+        })
+    );
+    pensjonResponse.data?.map((ytelse) =>
+        ytelser.push({
+            ytelseData: { data: ytelse },
+            ytelseType: YtelseVedtakYtelseType.Pensjon
+        })
+    );
+    arbeidsavklaringspengerResponse.data?.map((ytelse) =>
+        ytelser.push({
+            ytelseData: { data: ytelse },
+            ytelseType: YtelseVedtakYtelseType.Arbeidsavklaringspenger
+        })
+    );
 
-        const ytelser: YtelseVedtak[] = [];
-        foreldrepengerResponse.data?.foreldrepenger?.map((ytelse) =>
-            ytelser.push({
-                ytelseData: { data: ytelse },
-                ytelseType: YtelseVedtakYtelseType.Foreldrepenger
-            })
-        );
-        pleiepengerResponse.data?.pleiepenger?.map((ytelse) =>
-            ytelser.push({
-                ytelseData: { data: ytelse },
-                ytelseType: YtelseVedtakYtelseType.Pleiepenger
-            })
-        );
-        sykepengerResponse.data?.sykepenger?.map((ytelse) =>
-            ytelser.push({
-                ytelseData: { data: ytelse },
-                ytelseType: YtelseVedtakYtelseType.Sykepenger
-            })
-        );
-        if (sykepengerSpokelseResponse.data && sykepengerSpokelseResponse.data.utbetaltePerioder.length > 0) {
-            ytelser.push({
-                ytelseData: { data: sykepengerSpokelseResponse.data },
-                ytelseType: YtelseVedtakYtelseType.SykepengerSpokelse
-            });
-        }
-        tiltakspengerResponse?.data?.map((ytelse) =>
-            ytelser.push({
-                ytelseData: { data: ytelse },
-                ytelseType: YtelseVedtakYtelseType.Tiltakspenge
-            })
-        );
-        pensjonResponse.data?.map((ytelse) =>
-            ytelser.push({
-                ytelseData: { data: ytelse },
-                ytelseType: YtelseVedtakYtelseType.Pensjon
-            })
-        );
-        arbeidsavklaringspengerResponse.data?.map((ytelse) =>
-            ytelser.push({
-                ytelseData: { data: ytelse },
-                ytelseType: YtelseVedtakYtelseType.Arbeidsavklaringspenger
-            })
-        );
+    foreldrepengerFpSakResponse.data?.map((ytelse) =>
+        ytelser.push({
+            ytelseData: { data: ytelse },
+            ytelseType: YtelseVedtakYtelseType.ForeldrepengerFpSak
+        })
+    );
 
-        foreldrepengerFpSakResponse.data?.map((ytelse) =>
-            ytelser.push({
-                ytelseData: { data: ytelse },
-                ytelseType: YtelseVedtakYtelseType.ForeldrepengerFpSak
-            })
-        );
+    const ytelserSortert = ytelser.sort(datoSynkende((ytelse: YtelseVedtak) => getYtelseIdDato(ytelse)));
 
-        const ytelserSortert = ytelser.sort(datoSynkende((ytelse: YtelseVedtak) => getYtelseIdDato(ytelse)));
+    const placeholders = [
+        errorPlaceholder(foreldrepengerResponse, responseErrorMessage('foreldrepenger')),
+        errorPlaceholder(pleiepengerResponse, responseErrorMessage('pleiepenger')),
+        errorPlaceholder(sykepengerResponse, responseErrorMessage('sykepenger')),
+        errorPlaceholder(sykepengerSpokelseResponse, responseErrorMessage('sykepenger')),
+        errorPlaceholder(tiltakspengerResponse, responseErrorMessage('tiltakspenger')),
+        errorPlaceholder(pensjonResponse, responseErrorMessage('pensjon')),
+        errorPlaceholder(arbeidsavklaringspengerResponse, responseErrorMessage('arbeidsavklaringspenger')),
+        errorPlaceholder(foreldrepengerFpSakResponse, responseErrorMessage('foreldrepenger'))
+    ];
 
-        const placeholders = [
-            placeholder(foreldrepengerResponse, foreldrepengerPlaceholder),
-            placeholder(pleiepengerResponse, pleiepengerPlaceholder),
-            placeholder(sykepengerResponse, sykepengerPlaceholder),
-            placeholder(sykepengerSpokelseResponse, sykepengerPlaceholder),
-            placeholder(tiltakspengerResponse, tiltakspengerPlaceholder),
-            placeholder(pensjonResponse, pensjonPlaceholder),
-            placeholder(arbeidsavklaringspengerResponse, arbeidsavklaringsPengerPlaceholder),
-            placeholder(foreldrepengerFpSakResponse, foreldrepengerFpSakPlaceholder)
-        ];
+    const response =
+        foreldrepengerResponse ||
+        pleiepengerResponse ||
+        sykepengerResponse ||
+        sykepengerSpokelseResponse ||
+        tiltakspengerResponse ||
+        pensjonResponse ||
+        arbeidsavklaringspengerResponse ||
+        foreldrepengerFpSakResponse;
 
-        const harFeil =
-            foreldrepengerResponse.isError ||
-            pleiepengerResponse.isError ||
-            sykepengerResponse.isError ||
-            sykepengerSpokelseResponse.isError ||
-            tiltakspengerResponse.isError ||
-            pensjonResponse.isError ||
-            arbeidsavklaringspengerResponse.isError ||
-            foreldrepengerFpSakResponse.isError;
-
-        return {
-            ytelser: filterYtelser(ytelserSortert, filters),
-            pending: pending,
-            placeholders: placeholders.filter(Boolean),
-            harFeil: harFeil
-        };
-    }, [
-        foreldrepengerResponse,
-        pleiepengerResponse,
-        sykepengerResponse,
-        sykepengerSpokelseResponse,
-        tiltakspengerResponse,
-        pensjonResponse,
-        arbeidsavklaringspengerResponse,
-        foreldrepengerFpSakResponse
-    ]);
+    return {
+        ...response,
+        data: filterYtelser(ytelserSortert, filters) ?? [],
+        errorMessages: placeholders.filter(Boolean)
+    } as QueryResult<YtelseVedtak[]>;
 };

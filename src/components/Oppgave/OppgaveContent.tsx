@@ -5,9 +5,9 @@ import { useSetAtom } from 'jotai';
 import { useCallback, useState } from 'react';
 import Card from 'src/components/Card';
 import { AvsluttOppgaveModal } from 'src/components/Meldinger/AvsluttOppgave';
-import { traadstittel } from 'src/components/Meldinger/List/utils';
+import { traadstittel, useTraader } from 'src/components/Meldinger/List/utils';
 import type { OppgaveDto } from 'src/generated/modiapersonoversikt-api';
-import { useGsakTema, useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
+import { useGsakTema } from 'src/lib/clients/modiapersonoversikt-api';
 import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
 import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { datoEllerNull } from 'src/utils/string-utils';
@@ -65,8 +65,8 @@ export const OppgaveContent = ({ oppgave }: { oppgave: OppgaveDto }) => {
     const oppgavetype = oppgaveTyper.find((o) => o.kode === oppgave.oppgavetype);
     const prioritering = tema?.prioriteter.find((o) => o.kode === oppgave.prioritet);
 
-    const { data: meldinger } = useMeldinger();
-    const tilhorendeTraad = meldinger?.find((m) => m.traadId === oppgave.traadId);
+    const { data: traader } = useTraader();
+    const tilhorendeTraad = traader?.find((m) => m.traadId === oppgave.traadId);
 
     return (
         <Card padding="4">

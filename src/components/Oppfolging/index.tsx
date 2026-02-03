@@ -9,7 +9,8 @@ import {
     Table,
     VStack
 } from '@navikt/ds-react';
-import { Suspense, useState } from 'react';
+import { useState } from 'react';
+import { AlertBanner } from 'src/components/AlertBanner';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { getMeldeplikt, getOppfolgingEnhet, getVeileder } from 'src/components/Oppfolging/utils';
@@ -21,8 +22,12 @@ import {
 import { datoEllerNull } from 'src/utils/string-utils';
 
 const OppfolgingDetaljer = () => {
-    const arbeidsOppfolgingResponse = useArbeidsoppfolging();
-    const arbeidsOppfolging = arbeidsOppfolgingResponse.data;
+    const { data: arbeidsOppfolging, isLoading, isError } = useArbeidsoppfolging();
+
+    if (isError) return;
+
+    if (isLoading) return <Skeleton variant="rounded" height={166} />;
+
     if (!arbeidsOppfolging) {
         return <Alert variant="info">Brukeren har ingen oppfølging.</Alert>;
     }
@@ -83,8 +88,12 @@ const OppfolgingDetaljer = () => {
 };
 
 const Gjeldende14aVedtakDetaljer = () => {
-    const gjeldende14aVedtakResponse = useGjeldende14aVedtak();
-    const gjeldende14aVedtak = gjeldende14aVedtakResponse.data.gjeldende14aVedtak;
+    const { data, isLoading, isError } = useGjeldende14aVedtak();
+    const gjeldende14aVedtak = data?.gjeldende14aVedtak;
+
+    if (isError) return;
+
+    if (isLoading) return <Skeleton variant="rounded" height={166} />;
 
     return (
         <>
@@ -122,10 +131,14 @@ const Gjeldende14aVedtakDetaljer = () => {
 };
 
 const SykefravaersoppfolgingDetaljer = () => {
-    const sykefravaersoppfolgingResponse = useSykefravaersoppfolging();
-    const sykefravaersoppfolging = sykefravaersoppfolgingResponse.data?.sykefravaersoppfolging;
+    const { data, isError, isLoading } = useSykefravaersoppfolging();
+    const sykefravaersoppfolging = data?.sykefravaersoppfolging;
     const [sort, setSort] = useState<SortState | undefined>({ orderBy: 'dato', direction: 'descending' });
     const [page, setPage] = useState(1);
+
+    if (isError) return;
+
+    if (isLoading) return <Skeleton variant="rounded" height={166} />;
 
     if (!sykefravaersoppfolging || sykefravaersoppfolging.length === 0) {
         return <Alert variant="info">Brukeren har ingen sykefraværs-oppfølging.</Alert>;
@@ -149,10 +162,10 @@ const SykefravaersoppfolgingDetaljer = () => {
     });
 
     const rowsPerPage = 10;
-    const data = sortedData.slice((page - 1) * rowsPerPage, page * rowsPerPage);
+    const tabellData = sortedData.slice((page - 1) * rowsPerPage, page * rowsPerPage);
 
     return (
-        <div>
+        <Card padding="4">
             <VStack gap="space-16">
                 <Heading as="h4" size="small">
                     Sykefraværsoppfølging
@@ -168,7 +181,7 @@ const SykefravaersoppfolgingDetaljer = () => {
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
-                        {data.map((element, index) => {
+                        {tabellData.map((element, index) => {
                             return (
                                 <Table.Row shadeOnHover={true} key={index}>
                                     <Table.DataCell>{datoEllerNull(element.dato) ?? 'Ikke angitt'}</Table.DataCell>
@@ -188,36 +201,47 @@ const SykefravaersoppfolgingDetaljer = () => {
                     />
                 )}
             </VStack>
-        </div>
+        </Card>
     );
 };
 
-export const OppfolgingPage = () => {
+const OppfolgingPageContent = () => {
+    const { errorMessages: gjeldende14aVedtakErrorMessage, isError: gjeldende14aVedtakErro } = useGjeldende14aVedtak();
+    const { errorMessages: arbeidsoppfolgingErrorMessage, isError: arbeidsoppfolgingError } = useArbeidsoppfolging();
+    const { errorMessages: syfoErrorMessage } = useSykefravaersoppfolging();
+
+    const doubleErrors = arbeidsoppfolgingError && gjeldende14aVedtakErro;
+    const hasErrors = arbeidsoppfolgingError || gjeldende14aVedtakErro;
     return (
         <VStack gap="2" minHeight="0" overflow="auto">
             <Heading visuallyHidden size="small">
                 Oppfølging
             </Heading>
-            <Card padding="4">
-                <ErrorBoundary boundaryName="oppfolgingDetaljer">
-                    <Suspense fallback={<Skeleton variant="rounded" height={166} />}>
+            <AlertBanner
+                alerts={[...arbeidsoppfolgingErrorMessage, ...gjeldende14aVedtakErrorMessage, ...syfoErrorMessage]}
+            />
+            {!doubleErrors && (
+                <Card padding="4">
+                    <ErrorBoundary boundaryName="oppfolgingDetaljer">
                         <OppfolgingDetaljer />
-                    </Suspense>
-                </ErrorBoundary>
-                <div className="my-4 border border-ax-border-neutral-subtle" />
-                <ErrorBoundary boundaryName="gjeldende14aVedtakDetaljer">
-                    <Suspense fallback={<Skeleton variant="rounded" height={166} />}>
+                    </ErrorBoundary>
+                    {!hasErrors && <div className="my-4 border border-ax-border-neutral-subtle" />}
+                    <ErrorBoundary boundaryName="gjeldende14aVedtakDetaljer">
                         <Gjeldende14aVedtakDetaljer />
-                    </Suspense>
-                </ErrorBoundary>
-            </Card>
-            <Card padding="4">
-                <ErrorBoundary boundaryName="sykefraversoppfolgingDetaljer">
-                    <Suspense fallback={<Skeleton variant="rounded" height={166} />}>
-                        <SykefravaersoppfolgingDetaljer />
-                    </Suspense>
-                </ErrorBoundary>
-            </Card>
+                    </ErrorBoundary>
+                </Card>
+            )}
+            <ErrorBoundary boundaryName="sykefraversoppfolgingDetaljer">
+                <SykefravaersoppfolgingDetaljer />
+            </ErrorBoundary>
         </VStack>
+    );
+};
+
+export const OppfolgingPage = () => {
+    return (
+        <ErrorBoundary boundaryName="OppfolgingPage" errorText="Det oppstod en feil under lasting av Oppfolging.">
+            <OppfolgingPageContent />
+        </ErrorBoundary>
     );
 };

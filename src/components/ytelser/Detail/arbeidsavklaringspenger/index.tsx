@@ -1,6 +1,5 @@
 import { Heading, VStack } from '@navikt/ds-react';
 import Card from 'src/components/Card';
-import ErrorBoundary from 'src/components/ErrorBoundary';
 import { TitleValuePairsComponent } from 'src/components/ytelser/Detail';
 import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaringspenger';
 import { formaterDato } from 'src/utils/string-utils';
@@ -49,10 +48,8 @@ const BarneTillegg = ({ aap }: { aap: Arbeidsavklaringspenger }) => {
 export const ArbeidsavklaringspengerDetails = ({ aap }: { aap: Arbeidsavklaringspenger }) => {
     return (
         <VStack gap="2" minHeight="0">
-            <ErrorBoundary boundaryName="arbreidsavklaringspengerBoundary">
-                <Arbeidsavklaringspenger aap={aap} />
-                <BarneTillegg aap={aap} />
-            </ErrorBoundary>
+            <Arbeidsavklaringspenger aap={aap} />
+            <BarneTillegg aap={aap} />
         </VStack>
     );
 };

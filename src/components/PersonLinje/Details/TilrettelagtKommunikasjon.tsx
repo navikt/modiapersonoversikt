@@ -16,9 +16,12 @@ function tilrettelagtKommunikasjonTekst(beskrivelse: string, tilrettelagtKommuni
 
 function TilrettelagtKommunikasjon() {
     const { data } = usePersonData();
-    const tilrettelagtKommunikasjon = data.person.tilrettelagtKommunikasjon;
+    const tilrettelagtKommunikasjon = data?.person?.tilrettelagtKommunikasjon;
 
-    if (tilrettelagtKommunikasjon.tegnsprak.isEmpty() && tilrettelagtKommunikasjon.talesprak.isEmpty()) {
+    if (
+        !tilrettelagtKommunikasjon ||
+        (tilrettelagtKommunikasjon.tegnsprak.isEmpty() && tilrettelagtKommunikasjon.talesprak.isEmpty())
+    ) {
         return null;
     }
 

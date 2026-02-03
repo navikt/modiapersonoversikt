@@ -1,11 +1,13 @@
 import { ChevronDownIcon, ChevronUpIcon, FigureInwardIcon, FigureOutwardIcon } from '@navikt/aksel-icons';
 import { BodyShort, Box, Button, CopyButton, Heading, HStack, Skeleton, VStack } from '@navikt/ds-react';
 import { useLocation } from '@tanstack/react-router';
-import { Suspense, useEffect, useState } from 'react';
-import { erUbesvartHenvendelseFraBruker } from 'src/components/Meldinger/List/utils';
+import { useEffect, useState } from 'react';
+import { AlertBanner } from 'src/components/AlertBanner';
+import { erUbesvartHenvendelseFraBruker, useTraader } from 'src/components/Meldinger/List/utils';
+import { useFilterOppgave } from 'src/components/Oppgave/List/utils';
 import Statsborgerskap from 'src/components/PersonLinje/Details/Familie/Statsborgerskap';
 import config from 'src/config';
-import { useMeldinger, usePersonData, usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
+import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { Kjonn, type KodeBeskrivelseKjonn } from 'src/lib/types/modiapersonoversikt-api';
 import { trackAccordionClosed, trackAccordionOpened } from 'src/utils/analytics';
 import useHotkey from 'src/utils/hooks/use-hotkey';
@@ -22,25 +24,32 @@ const ukjentKjonn: KodeBeskrivelseKjonn = {
     beskrivelse: 'Ukjent kjønn'
 };
 
-export const PersonLinje = () => (
-    <Suspense fallback={<Skeleton variant="rounded" height={40} />}>
+export const PersonLinje = () => {
+    const { errorMessages, isLoading, isError } = usePersonData();
+
+    return (
         <ErrorBoundary boundaryName="personlinje">
-            <PersonLinjeContent />
+            {isLoading ? (
+                <Skeleton variant="rounded" height={40} />
+            ) : (
+                <>{isError ? <AlertBanner alerts={errorMessages} /> : <PersonLinjeContent />}</>
+            )}
         </ErrorBoundary>
-    </Suspense>
-);
+    );
+};
 
 const PersonlinjeHeader = ({ isExpanded }: { isExpanded: boolean }) => {
     const { data } = usePersonData();
-    const { data: traader } = useMeldinger();
-    const { data: oppgaver } = usePersonOppgaver();
+    const { data: traader } = useTraader();
+    const { data: oppgaver } = useFilterOppgave();
 
+    const person = data?.person;
     const antallUbesvarteTraader = traader?.filter((traad) => erUbesvartHenvendelseFraBruker(traad))?.length;
 
-    const kjonn = data.person.kjonn.firstOrNull() ?? ukjentKjonn;
-    const navn = data.person.navn.firstOrNull();
+    const kjonn = person?.kjonn.firstOrNull() ?? ukjentKjonn;
+    const navn = person?.navn.firstOrNull();
 
-    const dato = data.person.dodsdato?.firstOrNull();
+    const dato = person?.dodsdato?.firstOrNull();
     const erDod = !!dato?.dodsdato;
 
     const farge = erDod
@@ -50,6 +59,10 @@ const PersonlinjeHeader = ({ isExpanded }: { isExpanded: boolean }) => {
           : kjonn.kode === Kjonn.M
             ? 'var(--ax-text-accent-decoration)'
             : 'var(--ax-text-neutral-subtle)';
+
+    if (!person) {
+        return <></>;
+    }
 
     return (
         <HStack
@@ -74,7 +87,7 @@ const PersonlinjeHeader = ({ isExpanded }: { isExpanded: boolean }) => {
                         <Personalia
                             navn={navn ? `${navn.fornavn} ${navn.mellomnavn ?? ''} ${navn.etternavn}` : 'UKJENT'}
                             kjonn={kjonn}
-                            alder={data.person.alder}
+                            alder={person.alder}
                             erDod={erDod}
                             farge={farge}
                         />
@@ -131,6 +144,7 @@ const PersonLinjeContent = () => {
     const ref = useClickAway<HTMLDivElement>(() => setIsExpanded(isExpanded));
 
     const { data } = usePersonData();
+    const person = data?.person;
 
     const lenkeNyBrukerprofil = config.isProd ? 'https://pdl-web.intern.nav.no' : 'https://pdl-web.intern.dev.nav.no';
 
@@ -155,9 +169,13 @@ const PersonLinjeContent = () => {
         setIsExpanded(erPaaOversikt);
     }, [erPaaOversikt]);
 
+    if (!person) {
+        return <></>;
+    }
+
     return (
         <>
-            <Sikkerhetstiltak sikkerhetstiltak={data.person.sikkerhetstiltak} />
+            <Sikkerhetstiltak sikkerhetstiltak={person.sikkerhetstiltak} />
             <Card
                 aria-labelledby="personinformasjon-heading"
                 ref={ref}
