@@ -58,7 +58,7 @@ export const OppgaveDetail = () => {
             boundaryName="oppgaveDetaljer"
             errorText="Det oppstod en feil under visning av oppgave detailjer"
         >
-            {isLoading ? <Skeleton variant="rounded" height="4rem" /> : <OppgaveOgDialogDetail oppgaver={oppgaver} />}
+            {isLoading ? <Skeleton variant="rectangle" height="4rem" /> : <OppgaveOgDialogDetail oppgaver={oppgaver} />}
         </ErrorBoundary>
     );
 };

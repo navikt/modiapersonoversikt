@@ -14,7 +14,7 @@ export const SendMelding = ({ lukkeKnapp }: { lukkeKnapp?: ReactElement<typeof B
     return (
         <>
             {isLoading ? (
-                <Skeleton variant="rounded" height="100%" />
+                <Skeleton variant="rectangle" height="100%" />
             ) : (
                 <SendMeldingContent traader={traader} lukkeKnapp={lukkeKnapp} />
             )}

@@ -204,11 +204,11 @@ export const SakerFilter = () => {
             <ExpansionCard
                 onClick={handleExpansionChange}
                 ref={expansionFilterRef}
-                className={twMerge(open && 'max-h-full overflow-auto')}
+                className={twMerge('rounded-sm', open && 'max-h-full overflow-auto')}
                 size="small"
                 aria-label="Filtrer saker"
             >
-                <ExpansionCard.Header className="py-0 pl-2">
+                <ExpansionCard.Header className="py-0 pr-0 hover:rounded-sm">
                     <ExpansionCard.Title size="small" as="h3" className="text-ax-medium" role="alert">
                         <FilterTitle />
                     </ExpansionCard.Title>

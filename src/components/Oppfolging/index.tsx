@@ -26,7 +26,7 @@ const OppfolgingDetaljer = () => {
 
     if (isError) return;
 
-    if (isLoading) return <Skeleton variant="rounded" height={166} />;
+    if (isLoading) return <Skeleton variant="rectangle" height={166} />;
 
     if (!arbeidsOppfolging) {
         return <Alert variant="info">Brukeren har ingen oppfølging.</Alert>;
@@ -93,7 +93,7 @@ const Gjeldende14aVedtakDetaljer = () => {
 
     if (isError) return;
 
-    if (isLoading) return <Skeleton variant="rounded" height={166} />;
+    if (isLoading) return <Skeleton variant="rectangle" height={166} />;
 
     return (
         <>
@@ -138,7 +138,7 @@ const SykefravaersoppfolgingDetaljer = () => {
 
     if (isError) return;
 
-    if (isLoading) return <Skeleton variant="rounded" height={166} />;
+    if (isLoading) return <Skeleton variant="rectangle" height={166} />;
 
     if (!sykefravaersoppfolging || sykefravaersoppfolging.length === 0) {
         return <Alert variant="info">Brukeren har ingen sykefraværs-oppfølging.</Alert>;

@@ -453,7 +453,7 @@ export const UtbetalingerDetailPage = () => {
             errorText="Det oppstod en feil under visning av utbetalinger detailjer"
         >
             {isLoading ? (
-                <Skeleton variant="rounded" height="4rem" />
+                <Skeleton variant="rectangle" height="4rem" />
             ) : (
                 <UtbetalingerDetail utbetalinger={utbetalinger} />
             )}

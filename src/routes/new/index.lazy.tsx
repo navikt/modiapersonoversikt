@@ -1,7 +1,7 @@
 import { Alert } from '@navikt/ds-react';
 import { createLazyFileRoute } from '@tanstack/react-router';
 
-export const Route = createLazyFileRoute('/new/person/landing')({
+export const Route = createLazyFileRoute('/new/')({
     component: Index
 });
 
