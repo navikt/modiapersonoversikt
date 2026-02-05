@@ -6,11 +6,11 @@ const varselSearchSchema = z.object({
     id: z.string().optional()
 });
 
-export const varslerRouteMiddleware = keepQueryParams(['id']);
+export const varslerRouteMiddleware = () => keepQueryParams(['id']);
 
 export const Route = createFileRoute('/new/person/varsler')({
     validateSearch: varselSearchSchema,
     search: {
-        middlewares: [varslerRouteMiddleware]
+        middlewares: [varslerRouteMiddleware()]
     }
 });

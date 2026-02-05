@@ -6,11 +6,11 @@ const utbetalingSearchSchema = z.object({
     id: z.string().optional()
 });
 
-export const utbetalingRouteMiddleware = keepQueryParams(['id']);
+export const utbetalingRouteMiddleware = () => keepQueryParams(['id']);
 
 export const Route = createFileRoute('/new/person/utbetaling')({
     validateSearch: utbetalingSearchSchema,
     search: {
-        middlewares: [utbetalingRouteMiddleware]
+        middlewares: [utbetalingRouteMiddleware()]
     }
 });
