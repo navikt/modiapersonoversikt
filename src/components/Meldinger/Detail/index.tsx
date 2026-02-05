@@ -219,7 +219,7 @@ export const TraadDetail = () => {
     const { data: traader, isLoading } = useTraader();
     return (
         <ErrorBoundary boundaryName="traaddetail" errorText="Det oppstod en feil under visning av melding detailjer">
-            {isLoading ? <Skeleton variant="rounded" height="4rem" /> : <TraadDetailSection traader={traader} />}
+            {isLoading ? <Skeleton variant="rectangle" height="4rem" /> : <TraadDetailSection traader={traader} />}
         </ErrorBoundary>
     );
 };

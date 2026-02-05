@@ -10,7 +10,7 @@ const Card = ({ children, as, ...rest }: PropsWithChildren<Props>) => {
         <Box.New
             className="shadow-md"
             background="raised"
-            borderRadius="large"
+            borderRadius="small"
             borderColor="neutral-subtle"
             borderWidth="1"
             flexGrow="1"

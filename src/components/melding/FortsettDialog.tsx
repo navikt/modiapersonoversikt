@@ -125,7 +125,7 @@ export const FortsettDialog = ({ traad, lukkOppgave }: Props) => {
                     background="sunken"
                     borderColor="neutral-subtle"
                     borderWidth="1"
-                    borderRadius="medium"
+                    borderRadius="small"
                 >
                     <VStack gap="2">
                         <BodyShort>

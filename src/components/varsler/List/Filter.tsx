@@ -147,9 +147,9 @@ export const VarslerListFilter = () => {
                 aria-label="Filtrer varsler"
                 ref={expansionFilterRef}
                 onClick={handleExpansionChange}
-                className={twMerge(open && 'max-h-full overflow-auto')}
+                className={twMerge('rounded-sm', open && 'max-h-full overflow-auto')}
             >
-                <ExpansionCard.Header className="py-0 pl-2">
+                <ExpansionCard.Header className="py-0 pr-0 hover:rounded-sm">
                     <ExpansionCard.Title size="small" as="h3" className="text-ax-medium" role="alert">
                         <FilterTitle />
                     </ExpansionCard.Title>
