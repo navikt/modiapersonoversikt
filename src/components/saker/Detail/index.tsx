@@ -107,7 +107,7 @@ const SakContent = ({ saker }: { saker: SaksDokumenter[] }) => {
         const filterEndret = JSON.stringify(prevFilterRef.current) !== JSON.stringify(filterAtomValue);
         const sakIkkeIListe = !valgtSak || !saker.includes(valgtSak);
         if (filterEndret && sakIkkeIListe) {
-            sakerRouteMiddleware.clear();
+            sakerRouteMiddleware().clear();
         }
         prevFilterRef.current = filterAtomValue;
     }, [valgtSak, saker, filterAtomValue]);
