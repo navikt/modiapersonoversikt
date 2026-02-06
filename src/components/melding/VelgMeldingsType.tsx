@@ -46,11 +46,11 @@ export const meldingsTyperTekst: Record<MeldingsType, MeldingsTypeTekst> = {
     },
     Samtale: {
         tittel: 'Samtale',
-        beskrivelse: 'Brukeren mottar varsel, og kan svare.'
+        beskrivelse: 'Brukeren mottar varsel, og kan svare'
     },
     Infomelding: {
         tittel: 'Infomelding',
-        beskrivelse: 'Bruker mottar varsel, men kan ikke svare.'
+        beskrivelse: 'Bruker mottar varsel, men kan ikke svare'
     }
 } as const;
 
