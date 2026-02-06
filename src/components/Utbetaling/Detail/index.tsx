@@ -402,7 +402,7 @@ const UtbetalingDetail = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
         const filterEndret = JSON.stringify(prevFilterRef.current.init) !== JSON.stringify(filterAtomValue);
         const utbetalingIkkeIListe = !selectedUtbetaling || !utbetalinger.includes(selectedUtbetaling);
         if (filterEndret && utbetalingIkkeIListe) {
-            utbetalingRouteMiddleware.clear();
+            utbetalingRouteMiddleware().clear();
         }
     }, [selectedUtbetaling, utbetalinger, filterAtomValue]);
 
