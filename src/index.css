@@ -31,6 +31,13 @@
     }
 }
 
+/* Aksel overrides */
 .aksel-pagination--invisible {
     visibility: visible;
+}
+.aksel-table__expanded-row-content {
+    padding-top: 0;
+}
+.aksel-tabs__scroll-button {
+    display: none;
 }
