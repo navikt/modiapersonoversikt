@@ -189,7 +189,7 @@ const TraadDetailSection = ({ traader }: { traader: Traad[] }) => {
         const traadFinnesIkkeEtterFilter = !!traadId && !selectedTraad;
 
         if (filterEndret && traadFinnesIkkeEtterFilter) {
-            meldingerRouteMiddleware.clear();
+            meldingerRouteMiddleware().clear();
         }
     }, [filters, traadId, selectedTraad]);
 
