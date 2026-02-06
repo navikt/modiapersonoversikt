@@ -113,7 +113,7 @@ const VarselDetailExtractor = ({ varsler }: { varsler: VarselData[] }) => {
         const filterEndret = JSON.stringify(prevFilterRef.current) !== JSON.stringify(filterAtomValue);
         const varselIkkeIListe = !valgtVarsel || !varsler.includes(valgtVarsel);
         if (filterEndret && varselIkkeIListe) {
-            varslerRouteMiddleware.clear();
+            varslerRouteMiddleware().clear();
         }
     }, [valgtVarsel, varsler, filterAtomValue]);
 

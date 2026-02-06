@@ -79,7 +79,7 @@ const YtelseDataDetails = ({ ytelser }: { ytelser: YtelseVedtak[] }) => {
         const filterEndret = JSON.stringify(prevFilterRef.current.init) !== JSON.stringify(filterAtomValue);
         const ytelseIkkeIListe = !selectedYtelse || !ytelser.includes(selectedYtelse);
         if (filterEndret && ytelseIkkeIListe) {
-            ytelserRouteMiddleware.clear();
+            ytelserRouteMiddleware().clear();
         }
     }, [selectedYtelse, ytelser, filterAtomValue]);
 
