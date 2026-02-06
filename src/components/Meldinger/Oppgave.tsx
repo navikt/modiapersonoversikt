@@ -70,19 +70,29 @@ export const OppgaveModal = ({ open, setOpen, traad }: Props) => {
     );
 };
 
-const oppgaveFormValidator = z.object({
-    valgtTema: z.string().nonempty('Tema er påkrevd'),
-    valgtUnderkategori: z.string(),
-    valgtOppgavetype: z.string().nonempty('Oppgavetype er påkrevd'),
-    minListe: z.boolean().optional(),
-    beskrivelse: z.string().nonempty('Oppgaven må ha en beskrivelse'),
-    valgtPrioritet: z.nativeEnum(PrioritetKode, {
-        message: 'Prioritet må være valgt'
-    }),
-    valgtEnhet: z.string().nonempty('Oppgaven må tilegnes en enhet'),
-    valgtAnsatt: z.string().optional(),
-    dagerFrist: z.number().optional()
-});
+const oppgaveFormValidator = z
+    .object({
+        valgtTema: z.string().nonempty('Tema er påkrevd'),
+        valgtUnderkategori: z.string(),
+        valgtOppgavetype: z.string().nonempty('Oppgavetype er påkrevd'),
+        minListe: z.boolean().optional(),
+        beskrivelse: z.string().nonempty('Oppgaven må ha en beskrivelse'),
+        valgtPrioritet: z.nativeEnum(PrioritetKode, {
+            message: 'Prioritet må være valgt'
+        }),
+        valgtEnhet: z.string().nonempty('Oppgaven må tilegnes en enhet'),
+        valgtAnsatt: z.string().optional(),
+        dagerFrist: z.number().optional()
+    })
+    .superRefine((data, ctx) => {
+        if (data.valgtTema === 'AAP' && !data.valgtUnderkategori) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: 'Gjelder er påkrevd for Arbeidsavklaringspenger',
+                path: ['valgtUnderkategori']
+            });
+        }
+    });
 
 type OppgaveFormValue = z.infer<typeof oppgaveFormValidator>;
 
@@ -181,6 +191,7 @@ const OppgaveForm = ({ traad, onSuccess }: { traad: Traad; onSuccess: () => void
                     <form.Subscribe selector={(f) => [f.values.valgtTema]}>
                         {([valgtTema]) => {
                             const underKategorier = gsakTema.find((t) => t.kode === valgtTema)?.underkategorier ?? [];
+                            const isRequired = valgtTema === 'AAP';
 
                             return (
                                 <form.Field name="valgtUnderkategori">
@@ -189,14 +200,18 @@ const OppgaveForm = ({ traad, onSuccess }: { traad: Traad; onSuccess: () => void
                                             id={field.name}
                                             className="flex-1"
                                             size="small"
-                                            label="Gjelder"
+                                            label={isRequired ? 'Gjelder *' : 'Gjelder'}
                                             value={field.state.value}
                                             onChange={(e) => field.handleChange(e.target.value)}
                                             onBlur={field.handleBlur}
                                             error={field.state.meta.errors.firstOrNull()?.message}
                                         >
                                             <option value="" disabled={underKategorier.length === 0}>
-                                                {underKategorier.length ? 'Ingen underkategori' : '-- Velg et tema --'}
+                                                {underKategorier.length
+                                                    ? isRequired
+                                                        ? '-- Velg gjelder --'
+                                                        : 'Ingen underkategori'
+                                                    : '-- Velg et tema --'}
                                             </option>
                                             {underKategorier.map((tema) => (
                                                 <option value={tema.kode} key={tema.kode}>
@@ -238,7 +253,7 @@ const OppgaveForm = ({ traad, onSuccess }: { traad: Traad; onSuccess: () => void
                                             error={field.state.meta.errors.firstOrNull()?.message}
                                         >
                                             <option value="" disabled>
-                                                {oppgaveTyper.length ? '-- Veg oppgavetype --' : '-- Velg et tema --'}
+                                                {oppgaveTyper.length ? '-- Velg oppgavetype --' : '-- Velg et tema --'}
                                             </option>
                                             {oppgaveTyper.map((oppgave) => (
                                                 <option value={oppgave.kode} key={oppgave.kode}>
