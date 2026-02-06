@@ -53,6 +53,11 @@ export const menuItems = [
         Icon: HandShakeHeartIcon
     },
     {
+        title: 'Dokumenter',
+        href: '/new/person/dokumenter',
+        Icon: FileIcon
+    },
+    {
         title: 'Saker',
         href: '/new/person/saker',
         Icon: FileIcon

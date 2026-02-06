@@ -23,7 +23,7 @@ const OppgaveOgDialogDetail = ({ oppgaver }: { oppgaver: OppgaveDto[] }) => {
         const filterEndret = JSON.stringify(prevFilterRef.current) !== JSON.stringify(filterAtomValue);
         const oppgaveIkkeIListe = !valgtOppgave || !oppgaver.includes(valgtOppgave);
         if ((filterEndret && oppgaveIkkeIListe) || oppgaveIkkeIListe) {
-            oppgaveRouteMiddleware.clear();
+            oppgaveRouteMiddleware().clear();
         }
     }, [valgtOppgave, oppgaver, filterAtomValue]);
 
