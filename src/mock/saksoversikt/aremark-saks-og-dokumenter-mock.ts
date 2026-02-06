@@ -10,8 +10,8 @@ import {
 } from 'src/generated/modiapersonoversikt-api';
 
 export const getAremarkSaksOgDokumenterListe = () => {
-    return {
-        saker: [
+
+const saker  =  [
             {
                 temakode: 'MED',
                 temanavn: 'Medlemskap',
@@ -28,11 +28,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454381764',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -58,11 +59,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454031676',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -88,11 +90,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '453885932',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -145,11 +148,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454253334',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -175,11 +179,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454203319',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -205,11 +210,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454203270',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -275,11 +281,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454280980',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -345,11 +352,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454405933',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -375,11 +383,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454404032',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -405,30 +414,33 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454302214',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [
                             {
                                 tittel: '*****',
                                 dokumentreferanse: '454302215',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: false
                             },
                             {
                                 tittel: '*****',
                                 dokumentreferanse: '454302216',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: false
                             }
                         ],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -454,20 +466,22 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454017473',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [
                             {
                                 tittel: '*****',
 
-                                kanVises: true,
+                                saksbehandlerHarTilgang: false,
+
                                 logiskDokument: true,
 
-                                erKassert: false
+                               
                             }
                         ],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -507,11 +521,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454022972',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -551,11 +566,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454314343',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -581,11 +597,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454011060',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -611,11 +628,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454009014',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -694,11 +712,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454304779',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -724,11 +743,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454008915',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -768,11 +788,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454033019',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -798,11 +819,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454032169',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -828,21 +850,23 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '453874058',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [
                             {
                                 tittel: '*****',
                                 dokumentreferanse: '453874057',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: false
                             }
                         ],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -882,28 +906,29 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454038626',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [
                             {
                                 tittel: '*****',
-
-                                kanVises: true,
+                                saksbehandlerHarTilgang: false,
+                                
                                 logiskDokument: true,
 
-                                erKassert: false
+                               
                             },
                             {
                                 tittel: '*****',
-
-                                kanVises: true,
+                                saksbehandlerHarTilgang: false,
+                                
                                 logiskDokument: true,
 
-                                erKassert: false
+                               
                             }
                         ],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -929,11 +954,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454031054',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -973,11 +999,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454033482',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -1003,11 +1030,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454033481',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -1033,11 +1061,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454031929',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -1063,11 +1092,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454031927',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -1093,11 +1123,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454008886',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -1123,11 +1154,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454008885',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -1167,11 +1199,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454036832',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -1197,11 +1230,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454032833',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -1227,11 +1261,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454032827',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -1271,11 +1306,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Pågående samtale med NAV - 21.07.2025 - Barnetrygd',
                             dokumentreferanse: '454410352',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -1301,11 +1337,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 18.07.2025 - Barnetrygd',
                             dokumentreferanse: '454410303',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -1331,11 +1368,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Pågående samtale med NAV - 18.07.2025 - Barnetrygd',
                             dokumentreferanse: '454410211',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -1361,11 +1399,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'To dager til juleferie',
                             dokumentreferanse: '454382931',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -1391,11 +1430,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Barn fikk ikke penger',
                             dokumentreferanse: '454289869',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -1421,11 +1461,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'vedlegg: 1',
                             dokumentreferanse: '454231282',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -1451,11 +1492,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'tekst2',
                             dokumentreferanse: '454225040',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -1481,11 +1523,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Svar på anmodning om informasjon',
                             dokumentreferanse: '454212390',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -1511,11 +1554,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'H001',
                             dokumentreferanse: '454212384',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -1541,11 +1585,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV 33-00.09 Søknad om utvidet barnetrygd',
                             dokumentreferanse: '454040182',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -1585,11 +1630,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Nytt testnotat',
                             dokumentreferanse: '454393336',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -1615,11 +1661,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'test pakker 2',
                             dokumentreferanse: '454392562',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -1645,11 +1692,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Ny tittel',
                             dokumentreferanse: '454313278',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -1675,11 +1723,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Ny støtte',
                             dokumentreferanse: '454310042',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -1705,11 +1754,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'test',
                             dokumentreferanse: '454306823',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -1735,11 +1785,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'test',
                             dokumentreferanse: '454305989',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -1765,11 +1816,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'test',
                             dokumentreferanse: '454302476',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -1795,11 +1847,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Test',
                             dokumentreferanse: '454297916',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -1825,11 +1878,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'ggg',
                             dokumentreferanse: '454283601',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -1855,11 +1909,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Test',
                             dokumentreferanse: '454203322',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -1912,11 +1967,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454392599',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -1956,11 +2012,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 16.07.2025 - Arbeidsavklaringspenger',
                             dokumentreferanse: '454410056',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -1986,11 +2043,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 16.07.2025 - Arbeidsavklaringspenger',
                             dokumentreferanse: '454410055',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -2016,11 +2074,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Vurdering av beregningstidspunkt og yrkesskade',
                             dokumentreferanse: '454309792',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -2046,11 +2105,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV-kontorets innstilling § 11-12',
                             dokumentreferanse: '454309854',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -2076,11 +2136,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Vurdering av beregningstidspunkt og yrkesskade',
                             dokumentreferanse: '454302642',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -2106,11 +2167,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Førstegangsnotat AAP',
                             dokumentreferanse: '454302480',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -2136,11 +2198,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'fff',
                             dokumentreferanse: '454300642',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -2166,11 +2229,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV-kontorets innstilling § 11-12',
                             dokumentreferanse: '454233209',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -2196,11 +2260,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Førstegangsnotat AAP',
                             dokumentreferanse: '454233208',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -2226,11 +2291,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV 11-13.05 Søknad om arbeidsavklaringspenger',
                             dokumentreferanse: '454220298',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -2256,11 +2322,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Ref. tiltaksvariant 00/00000',
                             dokumentreferanse: '454220296',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -2286,30 +2353,33 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV 11-13.05 Søknad om arbeidsavklaringspenger',
                             dokumentreferanse: '454220242',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'vedlegg: 1',
                                 dokumentreferanse: '454220243',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'vedlegg: 2',
                                 dokumentreferanse: '454220244',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             }
                         ],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -2335,11 +2405,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Søknad om arbeidsavklaringspenger',
                             dokumentreferanse: '454163628',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -2365,11 +2436,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV 11-13.05 Søknad om arbeidsavklaringspenger',
                             dokumentreferanse: '454142225',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -2409,11 +2481,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 22.05.2025 - Dagpenger',
                             dokumentreferanse: '454397568',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -2439,11 +2512,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 08.04.2025 - Dagpenger',
                             dokumentreferanse: '454397566',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -2469,11 +2543,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 22.05.2025 - Dagpenger',
                             dokumentreferanse: '454397565',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -2499,11 +2574,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 24.04.2025 - Dagpenger',
                             dokumentreferanse: '454389284',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -2529,11 +2605,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 15.04.2025 - Dagpenger',
                             dokumentreferanse: '454388056',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -2559,11 +2636,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 15.04.2025 - Dagpenger',
                             dokumentreferanse: '454388055',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -2589,11 +2667,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 14.04.2025 - Dagpenger',
                             dokumentreferanse: '454387928',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -2619,11 +2698,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 14.04.2025 - Dagpenger',
                             dokumentreferanse: '454387925',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -2649,11 +2729,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Pågående samtale med NAV - 21.03.2025 - Dagpenger',
                             dokumentreferanse: '454381143',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -2679,11 +2760,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV 95-20.00 Melding om bankkontonummer',
                             dokumentreferanse: '454186687',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -2709,11 +2791,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Forespørsel om forsikringsperioder',
                             dokumentreferanse: '454030494',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -2753,11 +2836,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454238110',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -2783,20 +2867,21 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454212335',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [
                             {
                                 tittel: '*****',
 
-                                kanVises: true,
+                                saksbehandlerHarTilgang: false,
                                 logiskDokument: true,
 
-                                erKassert: false
+                               
                             }
                         ],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -2836,11 +2921,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'ff',
                             dokumentreferanse: '454376089',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -2866,11 +2952,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'THIS IS A NOTAT',
                             dokumentreferanse: '454191115',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -2896,11 +2983,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Søknad om dagpenger ved permittering',
                             dokumentreferanse: '454164013',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -2926,11 +3014,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Arbeidsavtale',
                             dokumentreferanse: '454036531',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -2956,11 +3045,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Forespørsel om forsikringsperioder',
                             dokumentreferanse: '454030445',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -3000,11 +3090,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 18.03.2025 - ',
                             dokumentreferanse: '454385360',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -3030,11 +3121,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 18.02.2025 - ',
                             dokumentreferanse: '454377339',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -3060,11 +3152,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 17.03.2025 - ',
                             dokumentreferanse: '454377338',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -3090,11 +3183,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Forespørsel om forsikringsperioder',
                             dokumentreferanse: '454030499',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -3120,11 +3214,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Forespørsel om forsikringsperioder',
                             dokumentreferanse: '454030496',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -3150,11 +3245,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Forespørsel om forsikringsperioder',
                             dokumentreferanse: '454030495',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -3180,11 +3276,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Forespørsel om forsikringsperioder',
                             dokumentreferanse: '454030452',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -3210,11 +3307,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Forespørsel om forsikringsperioder',
                             dokumentreferanse: '454030449',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -3240,11 +3338,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Forespørsel om forsikringsperioder',
                             dokumentreferanse: '454030444',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -3284,11 +3383,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454410057',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -3341,11 +3441,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454306561',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -3371,11 +3472,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454031839',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -3415,11 +3517,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454208376',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -3459,11 +3562,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454399271',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -3489,11 +3593,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454260636',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -3519,11 +3624,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454260667',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -3576,11 +3682,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454310356',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -3606,11 +3713,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454310049',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -3636,11 +3744,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454304906',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -3666,11 +3775,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454302569',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -3696,11 +3806,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454300789',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -3726,11 +3837,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454266485',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -3783,11 +3895,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Test mottaker',
                             dokumentreferanse: '454288013',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -3813,11 +3926,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Husk å tilby psykologitest til Aremark. Det å stenge bilvaskesentrene hans kan ha gått hardt inn på han. ',
                             dokumentreferanse: '454226407',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -3857,11 +3971,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'juletest fsdfdsfsdfsdfsdf',
                             dokumentreferanse: '454408573',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -3887,11 +4002,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'julaften er på en tirsdag',
                             dokumentreferanse: '454408572',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -3917,11 +4033,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 22.05.2025 - ',
                             dokumentreferanse: '454405293',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -3947,11 +4064,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Vedtak om ytelse',
                             dokumentreferanse: '454390896',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -3977,57 +4095,63 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'gg',
                             dokumentreferanse: '454380862',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'Førstegangsnotat AAP',
                                 dokumentreferanse: '454313336',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'ff',
                                 dokumentreferanse: '454343710',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'Førstesideark',
                                 dokumentreferanse: '454343740',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'o-brev',
                                 dokumentreferanse: '454347075',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'testing',
                                 dokumentreferanse: '454351118',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             }
                         ],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -4053,21 +4177,23 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'fldkf',
                             dokumentreferanse: '454352620',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'Førstegangsnotat AAP',
                                 dokumentreferanse: '454313336',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             }
                         ],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -4093,21 +4219,23 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'ccxc',
                             dokumentreferanse: '454332794',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'NAV - Førsteside (5)',
                                 dokumentreferanse: '454332795',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             }
                         ],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -4133,11 +4261,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Bedre tittel',
                             dokumentreferanse: '454311723',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -4163,11 +4292,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Testing',
                             dokumentreferanse: '454306848',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -4193,11 +4323,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Bruker fikk 1 million ekstra, følg opp',
                             dokumentreferanse: '454302643',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -4223,11 +4354,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: ' cvcvcvcxv',
                             dokumentreferanse: '454302484',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -4253,11 +4385,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'test',
                             dokumentreferanse: '454302421',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -4283,11 +4416,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Adresseendring for bruker bosatt i utlandet',
                             dokumentreferanse: '454302238',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -4313,20 +4447,21 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Kontonummer bidragsgjeld',
                             dokumentreferanse: '454302236',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'Adresseendring for bruker bosatt i utlandet',
 
-                                kanVises: true,
+                                saksbehandlerHarTilgang: false,
                                 logiskDokument: true,
 
-                                erKassert: false
+                               
                             }
                         ],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -4352,20 +4487,21 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Adresseendring for bruker bosatt i utlandet',
                             dokumentreferanse: '454302235',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'Ny avsender valgt org',
 
-                                kanVises: true,
+                                saksbehandlerHarTilgang: false,
                                 logiskDokument: true,
 
-                                erKassert: false
+                               
                             }
                         ],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -4391,11 +4527,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Adresseendring for bruker bosatt i utlandet',
                             dokumentreferanse: '454302234',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -4421,11 +4558,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Adresseendring for bruker bosatt i utlandet',
                             dokumentreferanse: '454302194',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -4451,11 +4589,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'fdfd',
                             dokumentreferanse: '454300820',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -4481,11 +4620,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'fdfdf',
                             dokumentreferanse: '454296888',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -4511,21 +4651,23 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Test ',
                             dokumentreferanse: '454293918',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'NAV 14-04.10 Søknad om svangerskapspenger til selvstendig næringsdrivende og frilanser',
                                 dokumentreferanse: '454292952',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             }
                         ],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -4551,11 +4693,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'fdfdf',
                             dokumentreferanse: '454292496',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -4581,11 +4724,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'test10',
                             dokumentreferanse: '454291559',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -4611,39 +4755,43 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'test',
                             dokumentreferanse: '454291558',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'skdgbjdkfbgjk',
                                 dokumentreferanse: '454288496',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'test',
                                 dokumentreferanse: '454289684',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'Barn fikk ikke penger',
                                 dokumentreferanse: '454289869',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             }
                         ],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -4669,57 +4817,63 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'test',
                             dokumentreferanse: '454290781',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'GEN NOT!!',
                                 dokumentreferanse: '454192839',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'Serviceklage',
                                 dokumentreferanse: '454280980',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'Test av Hest&Fest',
                                 dokumentreferanse: '454287981',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'okeiiii',
                                 dokumentreferanse: '454288012',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'Test status 1',
                                 dokumentreferanse: '454289962',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             }
                         ],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -4745,21 +4899,23 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'test19',
                             dokumentreferanse: '454290106',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'Barn fikk ikke penger',
                                 dokumentreferanse: '454289869',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             }
                         ],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -4785,39 +4941,43 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'fff',
                             dokumentreferanse: '454289927',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'Labels min versjon',
                                 dokumentreferanse: '454289928',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'Labels min versjon',
                                 dokumentreferanse: '454289929',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'Labels min versjon',
                                 dokumentreferanse: '454289930',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             }
                         ],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -4843,11 +5003,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'test',
                             dokumentreferanse: '454289684',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -4873,39 +5034,43 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'test',
                             dokumentreferanse: '454283962',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'Beregninger',
                                 dokumentreferanse: '454282265',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'Metr',
                                 dokumentreferanse: '454283647',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'ccxccd',
                                 dokumentreferanse: '454283651',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             }
                         ],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -4931,30 +5096,33 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'test2',
                             dokumentreferanse: '454283355',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'Vedtak om mye penger',
                                 dokumentreferanse: '454278376',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'Innhenting av kontoopplysninger',
                                 dokumentreferanse: '454282807',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             }
                         ],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -4980,11 +5148,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Vedtak om mye penger',
                             dokumentreferanse: '454278376',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -5010,11 +5179,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV 11-13.05 Søknad om arbeidsavklaringspenger',
                             dokumentreferanse: '454272615',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -5040,11 +5210,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'vedlegg: 2',
                             dokumentreferanse: '454231283',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -5070,11 +5241,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV 95-00.06 Skjema for bankopplysninger - USA',
                             dokumentreferanse: '454220220',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -5100,21 +5272,23 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV 90-00.08 K Klage',
                             dokumentreferanse: '454163637',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'vedlegg: 1',
                                 dokumentreferanse: '454163636',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             }
                         ],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -5140,11 +5314,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV 95-20.00 Melding om bankkontonummer',
                             dokumentreferanse: '454135872',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -5170,11 +5345,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV 95-20.00 Melding om bankkontonummer',
                             dokumentreferanse: '454135869',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -5200,11 +5376,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV 95-20.00 Melding om bankkontonummer',
                             dokumentreferanse: '454037602',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -5244,11 +5421,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454266485',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -5301,11 +5479,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'vedlegg: 2',
                             dokumentreferanse: '454231283',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -5331,11 +5510,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Min nye fine tittel :)',
                             dokumentreferanse: '454223205',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -5361,11 +5541,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'EØS-dokument',
                             dokumentreferanse: '454122134',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -5391,11 +5572,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV 33-00.07 Søknad om ordinær barnetrygd',
                             dokumentreferanse: '454116060',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -5421,11 +5603,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV 33-00.07 Søknad om ordinær barnetrygd',
                             dokumentreferanse: '454026277',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -5451,11 +5634,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV 33-00.07 Søknad om ordinær barnetrygd',
                             dokumentreferanse: '454008783',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -5534,11 +5718,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'vedlegg: 1',
                             dokumentreferanse: '454249480',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -5564,11 +5749,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV 10-07.03 Søknad om hjelpemidler',
                             dokumentreferanse: '454032645',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -5594,11 +5780,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV 08-20.12 Krav fra arbeidsgiveren om refusjon av sykepenger utbetalt til en arbeidstaker som er unntatt fra bestemmelsene om arbeidsgiveransvar',
                             dokumentreferanse: '454031727',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -5664,11 +5851,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'runetest2',
                             dokumentreferanse: '454249375',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -5694,11 +5882,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'runetest2',
                             dokumentreferanse: '454249373',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -5724,11 +5913,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'runetest2',
                             dokumentreferanse: '454249370',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -5754,11 +5944,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV-kontorets innstilling § 11-12',
                             dokumentreferanse: '454233220',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -5784,11 +5975,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Orientering om rett til tilsvar i ankesak',
                             dokumentreferanse: '454227923',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -5814,11 +6006,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Vedtak cc',
                             dokumentreferanse: '454225168',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -5844,11 +6037,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'UTL Brev - utland',
                             dokumentreferanse: '454223197',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -5874,11 +6068,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV 11-12.05 Søknad om reisestønad',
                             dokumentreferanse: '454036919',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -5904,11 +6099,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV 11-12.05 Søknad om reisestønad',
                             dokumentreferanse: '454036547',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -5934,11 +6130,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV 11-12.05 Søknad om reisestønad',
                             dokumentreferanse: '454036545',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -5964,11 +6161,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV 95-00.05 Skjema for bankopplysninger Europa',
                             dokumentreferanse: '454032824',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -5994,11 +6192,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV 11-13.05 Søknad om arbeidsavklaringspenger',
                             dokumentreferanse: '454032644',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -6024,11 +6223,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV 11-03.08 Egenerklæring AAP-EØS',
                             dokumentreferanse: '454031768',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -6054,11 +6254,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV 08-47.05 Søknad om sykepenger - midlertidig ute av inntektsgivende arbeid',
                             dokumentreferanse: '454031728',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -6098,11 +6299,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454037610',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -6142,11 +6344,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454228425',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -6172,11 +6375,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454228424',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -6202,28 +6406,29 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454036926',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [
                             {
                                 tittel: '*****',
-
-                                kanVises: true,
+                                saksbehandlerHarTilgang: false,
+                                
                                 logiskDokument: true,
 
-                                erKassert: false
+                               
                             },
                             {
                                 tittel: '*****',
 
-                                kanVises: true,
+                                saksbehandlerHarTilgang: false,
                                 logiskDokument: true,
 
-                                erKassert: false
+                               
                             }
                         ],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -6249,11 +6454,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454033017',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -6279,11 +6485,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454033016',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -6309,11 +6516,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454033014',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -6379,30 +6587,33 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454249479',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [
                             {
                                 tittel: '*****',
                                 dokumentreferanse: '454249480',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: false
                             },
                             {
                                 tittel: '*****',
                                 dokumentreferanse: '454249481',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: false
                             }
                         ],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -6428,30 +6639,33 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454249476',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [
                             {
                                 tittel: '*****',
                                 dokumentreferanse: '454249477',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: false
                             },
                             {
                                 tittel: '*****',
                                 dokumentreferanse: '454249478',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: false
                             }
                         ],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -6477,30 +6691,33 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454231281',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [
                             {
                                 tittel: '*****',
                                 dokumentreferanse: '454231282',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: false
                             },
                             {
                                 tittel: '*****',
                                 dokumentreferanse: '454231283',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: false
                             }
                         ],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -6526,39 +6743,43 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454231248',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [
                             {
                                 tittel: '*****',
                                 dokumentreferanse: '454231249',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: false
                             },
                             {
                                 tittel: '*****',
                                 dokumentreferanse: '454231250',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: false
                             },
                             {
                                 tittel: '*****',
                                 dokumentreferanse: '454231251',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: false
                             }
                         ],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -6584,30 +6805,33 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454231243',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [
                             {
                                 tittel: '*****',
                                 dokumentreferanse: '454231244',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: false
                             },
                             {
                                 tittel: '*****',
                                 dokumentreferanse: '454231245',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: false
                             }
                         ],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -6633,11 +6857,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454037608',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -6663,11 +6888,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454032823',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -6707,11 +6933,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454203322',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -6777,11 +7004,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454032677',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -6847,11 +7075,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454226158',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -6891,11 +7120,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454008884',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -6935,11 +7165,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454236382',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -7057,11 +7288,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454008788',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -7179,11 +7411,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Anmodning om avgjørelse av kompetanse',
                             dokumentreferanse: '454373882',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -7223,11 +7456,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454122544',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -7267,11 +7501,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454122556',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -7311,11 +7546,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454032758',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -7355,39 +7591,43 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454264969',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [
                             {
                                 tittel: '*****',
                                 dokumentreferanse: '454249479',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: false
                             },
                             {
                                 tittel: '*****',
                                 dokumentreferanse: '454255619',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: false
                             },
                             {
                                 tittel: '*****',
                                 dokumentreferanse: '454255620',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: false
                             }
                         ],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -7440,20 +7680,21 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454186679',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [
                             {
                                 tittel: '*****',
-
-                                kanVises: true,
+                                saksbehandlerHarTilgang: false,
+                                
                                 logiskDokument: true,
 
-                                erKassert: false
+                               
                             }
                         ],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -7493,11 +7734,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454033018',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -7537,11 +7779,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454407980',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -7567,11 +7810,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454393280',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -7597,11 +7841,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454392585',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -7627,11 +7872,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454302191',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -7657,38 +7903,41 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454302187',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [
                             {
                                 tittel: '*****',
                                 dokumentreferanse: '454302188',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: false
                             },
                             {
                                 tittel: '*****',
                                 dokumentreferanse: '454302189',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: false
                             },
                             {
                                 tittel: '*****',
 
-                                kanVises: true,
+                                
                                 logiskDokument: true,
 
-                                erKassert: false
+                               
                             }
                         ],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -7714,11 +7963,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454238112',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -7744,11 +7994,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454238109',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -7774,11 +8025,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454238108',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -7818,11 +8070,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454387578',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -7848,11 +8101,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454387524',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -7878,11 +8132,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454296889',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -7908,11 +8163,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454296831',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -7938,11 +8194,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454238111',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -7982,11 +8239,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454245288',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -8026,11 +8284,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454245289',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -8070,11 +8329,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Pågående samtale med NAV - 21.07.2025 - Barnetrygd',
                             dokumentreferanse: '454410353',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -8100,11 +8360,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 21.07.2025 - ',
                             dokumentreferanse: '454410322',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -8130,11 +8391,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Serviceklage',
                             dokumentreferanse: '454280980',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -8160,11 +8422,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'fdfdf',
                             dokumentreferanse: '454280395',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -8190,11 +8453,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'tttrt',
                             dokumentreferanse: '454280345',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -8220,11 +8484,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'VANL Brev',
                             dokumentreferanse: '454249479',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -8277,30 +8542,33 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Søknad om gjenopptak av arbeidsavklaringspenger',
                             dokumentreferanse: '454302211',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'vedlegg: 1',
                                 dokumentreferanse: '454302212',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'vedlegg: 2',
                                 dokumentreferanse: '454302213',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             }
                         ],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -8326,11 +8594,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Aktivitetsplan',
                             dokumentreferanse: '454295636',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -8383,30 +8652,33 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454220254',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [
                             {
                                 tittel: '*****',
                                 dokumentreferanse: '454220255',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: false
                             },
                             {
                                 tittel: '*****',
                                 dokumentreferanse: '454220256',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: false
                             }
                         ],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -8446,11 +8718,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454410082',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -8476,11 +8749,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454410081',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -8506,29 +8780,31 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454255619',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [
                             {
                                 tittel: '*****',
                                 dokumentreferanse: '454255620',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: false
                             },
                             {
                                 tittel: '*****',
 
-                                kanVises: true,
+                                
                                 logiskDokument: true,
 
-                                erKassert: false
+                               
                             }
                         ],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -8568,11 +8844,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454220293',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -8612,11 +8889,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454287622',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -8642,11 +8920,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454280980',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -8672,11 +8951,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454266485',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -8702,11 +8982,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454265560',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -8732,11 +9013,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454265551',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -8762,11 +9044,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454265543',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -8819,11 +9102,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454298737',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -8849,11 +9133,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454266485',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -8893,11 +9178,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 12.08.2025 - ',
                             dokumentreferanse: '454414636',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -8923,11 +9209,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 12.08.2025 - ',
                             dokumentreferanse: '454414635',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -8953,11 +9240,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 21.07.2025 - ',
                             dokumentreferanse: '454410321',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -8983,11 +9271,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 16.07.2025 - ',
                             dokumentreferanse: '454410080',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -9013,11 +9302,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 16.07.2025 - ',
                             dokumentreferanse: '454410079',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -9043,11 +9333,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 01.07.2025 - Arbeidsavklaringspenger',
                             dokumentreferanse: '454408207',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -9073,11 +9364,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Førstegangsnotat AAP',
                             dokumentreferanse: '454407969',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -9103,11 +9395,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 01.07.2025 - Arbeidsavklaringspenger',
                             dokumentreferanse: '454407927',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -9133,11 +9426,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 01.07.2025 - Arbeidsavklaringspenger',
                             dokumentreferanse: '454407926',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -9163,11 +9457,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Pågående samtale med NAV - 01.07.2025 - Arbeidsavklaringspenger',
                             dokumentreferanse: '454407923',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -9193,21 +9488,23 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'ff',
                             dokumentreferanse: '454343710',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'Førstesideark',
                                 dokumentreferanse: '454343740',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             }
                         ],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -9233,39 +9530,43 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'fff',
                             dokumentreferanse: '454334521',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'Anmodning om avgjørelse av kompetanse',
                                 dokumentreferanse: '453846356',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'Søknad om inkluderingstilskudd',
                                 dokumentreferanse: '453874168',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'Uttalelse tilbakekreving',
                                 dokumentreferanse: '453874169',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             }
                         ],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -9291,11 +9592,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Vurdering av barnets beste',
                             dokumentreferanse: '454313072',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -9321,11 +9623,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Vurdering av barnets beste',
                             dokumentreferanse: '454306824',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -9351,11 +9654,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'test 2811 ',
                             dokumentreferanse: '454302481',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -9381,30 +9685,33 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Søknad om gjenopptak av arbeidsavklaringspenger',
                             dokumentreferanse: '454302184',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'vedlegg: 1',
                                 dokumentreferanse: '454302185',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'vedlegg: 2',
                                 dokumentreferanse: '454302186',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             }
                         ],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -9430,11 +9737,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'O-brev',
                             dokumentreferanse: '454300639',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -9460,21 +9768,23 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Melding om vedtak',
                             dokumentreferanse: '454299207',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'Førstegangsnotat AAP',
                                 dokumentreferanse: '454296891',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             }
                         ],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -9500,11 +9810,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Førstegangsnotat AAP',
                             dokumentreferanse: '454296891',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -9530,38 +9841,41 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Søknad om gjenopptak av arbeidsavklaringspenger',
                             dokumentreferanse: '454296502',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'vedlegg: 1',
                                 dokumentreferanse: '454296503',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'vedlegg: 2',
                                 dokumentreferanse: '454296504',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'Inntektsopplysninger',
 
-                                kanVises: true,
+                                
                                 logiskDokument: true,
 
-                                erKassert: false
+                               
                             }
                         ],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -9587,21 +9901,23 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Foreleggelse ROL',
                             dokumentreferanse: '454295411',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'Vedtak test',
                                 dokumentreferanse: '454293563',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             }
                         ],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -9627,11 +9943,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Vedtak test',
                             dokumentreferanse: '454293563',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -9657,11 +9974,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Test',
                             dokumentreferanse: '454292492',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -9687,30 +10005,33 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'okeiiii',
                             dokumentreferanse: '454288012',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'Serviceklage',
                                 dokumentreferanse: '454280980',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'Test av Hest&Fest',
                                 dokumentreferanse: '454287981',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             }
                         ],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -9736,192 +10057,213 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'jhgf',
                             dokumentreferanse: '454287955',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'Vedtak om mye penger',
                                 dokumentreferanse: '454278376',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'test',
                                 dokumentreferanse: '454282256',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'Beregninger',
                                 dokumentreferanse: '454282265',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'test dist',
                                 dokumentreferanse: '454282266',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'jajaja så er vi her igjen Aremark',
                                 dokumentreferanse: '454282301',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'test send',
                                 dokumentreferanse: '454282407',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'sender brev!',
                                 dokumentreferanse: '454282410',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'Se pao PDF',
                                 dokumentreferanse: '454282445',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'Innhenting av kontoopplysninger',
                                 dokumentreferanse: '454282807',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'tester editor feilmelding',
                                 dokumentreferanse: '454283333',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'test2',
                                 dokumentreferanse: '454283355',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'ggg',
                                 dokumentreferanse: '454283601',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'Metr',
                                 dokumentreferanse: '454283647',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'ccxccd',
                                 dokumentreferanse: '454283651',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'tittel test',
                                 dokumentreferanse: '454283942',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'test',
                                 dokumentreferanse: '454283962',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: '   vvv',
                                 dokumentreferanse: '454284232',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'test notat abcde',
                                 dokumentreferanse: '454284364',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'ldkfldkflkd',
                                 dokumentreferanse: '454284677',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'TEST av vedtak',
                                 dokumentreferanse: '454287954',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             }
                         ],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -9947,30 +10289,33 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'ldkfldkflkd',
                             dokumentreferanse: '454284677',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'Serviceklage',
                                 dokumentreferanse: '454280980',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'test notat abcde',
                                 dokumentreferanse: '454284364',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             }
                         ],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -9996,11 +10341,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '   vvv',
                             dokumentreferanse: '454284232',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -10026,11 +10372,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Vedtak',
                             dokumentreferanse: '454280269',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -10056,11 +10403,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Vedtak',
                             dokumentreferanse: '454279391',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -10086,11 +10434,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Test3',
                             dokumentreferanse: '454278949',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -10116,11 +10465,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Søknad om parykk',
                             dokumentreferanse: '454250771',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -10146,11 +10496,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Rettsavgjørelse',
                             dokumentreferanse: '454249988',
-                            kanVises: true,
+                            
                             logiskDokument: false,
                             skjerming: 'POL',
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -10176,11 +10527,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Medisinske opplysninger',
                             dokumentreferanse: '454142227',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -10206,11 +10558,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Faktura',
                             dokumentreferanse: '454036938',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -10263,11 +10616,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Vurdering av barnets beste',
                             dokumentreferanse: '454392604',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -10307,11 +10661,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Søknad om arbeidsavklaringspenger (AAP)',
                             dokumentreferanse: '454401258',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -10337,11 +10692,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Overføring av opplysninger om arbeidsavklaringspenger fra NAV til offentlig tjenestepensjonsordning',
                             dokumentreferanse: '454375233',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -10367,21 +10723,23 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'test',
                             dokumentreferanse: '454311412',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'Førstegangsnotat AAP',
                                 dokumentreferanse: '454310323',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             }
                         ],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -10407,11 +10765,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'bb',
                             dokumentreferanse: '454306744',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -10437,11 +10796,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'test 612',
                             dokumentreferanse: '454306558',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -10467,11 +10827,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Ettersendelse til Søknad om reisestønad (Arbeidsavklaringspenger)',
                             dokumentreferanse: '454305953',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -10497,11 +10858,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'test 2811 2',
                             dokumentreferanse: '454302524',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -10527,30 +10889,33 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Søknad om gjenopptak av arbeidsavklaringspenger',
                             dokumentreferanse: '454302208',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'vedlegg: 1',
                                 dokumentreferanse: '454302209',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'vedlegg: 2',
                                 dokumentreferanse: '454302210',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             }
                         ],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -10576,30 +10941,33 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Søknad om gjenopptak av arbeidsavklaringspenger',
                             dokumentreferanse: '454302205',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'vedlegg: 1',
                                 dokumentreferanse: '454302206',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'vedlegg: 2',
                                 dokumentreferanse: '454302207',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             }
                         ],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -10625,30 +10993,33 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Søknad om gjenopptak av arbeidsavklaringspenger',
                             dokumentreferanse: '454302181',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'vedlegg: 1',
                                 dokumentreferanse: '454302182',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'vedlegg: 2',
                                 dokumentreferanse: '454302183',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             }
                         ],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -10674,11 +11045,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'TITTEL',
                             dokumentreferanse: '454300781',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -10704,11 +11076,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Vurdering av barnets beste',
                             dokumentreferanse: '454298601',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -10734,11 +11107,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Test status 1',
                             dokumentreferanse: '454289962',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -10764,11 +11138,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Kontoopplysninger',
                             dokumentreferanse: '454282258',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -10821,11 +11196,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Vurdering av barnets beste',
                             dokumentreferanse: '454306559',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -10851,11 +11227,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Vurdering av barnets beste',
                             dokumentreferanse: '454298649',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -10881,11 +11258,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV 90-00.08 K Klage',
                             dokumentreferanse: '454220214',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -10911,65 +11289,71 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV 11-13.06 Søknad om gjenopptak av arbeidsavklaringspenger',
                             dokumentreferanse: '454017193',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'vedlegg: 3',
                                 dokumentreferanse: '454017192',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'vedlegg: 4',
                                 dokumentreferanse: '454017194',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'vedlegg: 1',
                                 dokumentreferanse: '454017195',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'vedlegg: 5',
                                 dokumentreferanse: '454017196',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'vedlegg: 2',
                                 dokumentreferanse: '454017197',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: true
                             },
                             {
                                 tittel: 'Bekreftelse på utenlandsopphold',
 
-                                kanVises: true,
+                                
                                 logiskDokument: true,
 
-                                erKassert: false
+                               
                             }
                         ],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -11009,11 +11393,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292953',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11039,11 +11424,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292952',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11069,11 +11455,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292951',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11099,11 +11486,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292950',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11129,11 +11517,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292949',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11159,11 +11548,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292947',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11189,11 +11579,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292946',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11219,11 +11610,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292945',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11249,11 +11641,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292944',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11279,11 +11672,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292903',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11309,11 +11703,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292902',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11339,11 +11734,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292701',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11369,11 +11765,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292700',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11399,11 +11796,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292699',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11429,11 +11827,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292698',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11459,11 +11858,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292697',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11489,11 +11889,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292696',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11519,11 +11920,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292695',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11549,11 +11951,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292694',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11579,11 +11982,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292693',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11609,11 +12013,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292692',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11639,11 +12044,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292691',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11669,11 +12075,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292690',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11699,11 +12106,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292689',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11729,11 +12137,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292688',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11759,11 +12168,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292687',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11789,11 +12199,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292686',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11819,11 +12230,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292633',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11849,11 +12261,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292632',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11879,11 +12292,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292631',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11909,11 +12323,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292648',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11939,11 +12354,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292647',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11969,11 +12385,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292645',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -11999,11 +12416,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454292644',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -12043,11 +12461,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'U1 Perioder av betydning for retten til dagpenger',
                             dokumentreferanse: '454409130',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -12073,11 +12492,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Vurdering av barnets beste',
                             dokumentreferanse: '454400819',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -12117,11 +12537,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454414778',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -12147,11 +12568,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454414833',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -12177,11 +12599,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454413615',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -12207,11 +12630,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454410210',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -12237,11 +12661,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454410209',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -12267,11 +12692,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454407928',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -12297,11 +12723,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454405964',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -12327,11 +12754,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454405869',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -12357,11 +12785,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454377334',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -12401,11 +12830,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454381761',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -12445,11 +12875,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 14.04.2025 - Barnetrygd',
                             dokumentreferanse: '454387919',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -12489,11 +12920,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 20.06.2025 - Arbeidsavklaringspenger',
                             dokumentreferanse: '454405932',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -12519,11 +12951,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Pågående samtale med NAV - 22.05.2025 - Arbeidsavklaringspenger',
                             dokumentreferanse: '454397572',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -12549,11 +12982,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 14.04.2025 - Arbeidsavklaringspenger',
                             dokumentreferanse: '454387923',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -12579,11 +13013,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 14.04.2025 - Arbeidsavklaringspenger',
                             dokumentreferanse: '454387920',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -12609,11 +13044,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'VANL Annet skjema (ikke NAV-skjema)',
                             dokumentreferanse: '454018679',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -12639,11 +13075,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV 10-07.17 Søknad om refusjon av reiseutgifter - bil',
                             dokumentreferanse: '454017574',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -12683,11 +13120,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454387921',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -12727,11 +13165,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'U1 Perioder av betydning for retten til dagpenger',
                             dokumentreferanse: '454409099',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -12757,11 +13196,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 22.05.2025 - ',
                             dokumentreferanse: '454397567',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -12787,11 +13227,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 22.05.2025 - ',
                             dokumentreferanse: '454397564',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -12817,11 +13258,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 08.04.2025 - ',
                             dokumentreferanse: '454390134',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -12847,11 +13289,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 14.04.2025 - Dagpenger',
                             dokumentreferanse: '454387926',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -12891,11 +13334,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV 33-00.09 Søknad om utvidet barnetrygd',
                             dokumentreferanse: '454040176',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -12935,11 +13379,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV 33-00.07 Søknad om ordinær barnetrygd',
                             dokumentreferanse: '454116008',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -12979,11 +13424,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454295674',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -13023,11 +13469,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Melding/anmodning om informasjon',
                             dokumentreferanse: '454392922',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -13053,11 +13500,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Melding/anmodning om informasjon',
                             dokumentreferanse: '454392885',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -13083,11 +13531,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'NAV 33-00.15 Norsk sokkel - Årlig differanseutbetaling av barnetrygd',
                             dokumentreferanse: '454291948',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -13127,11 +13576,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Pågående samtale med NAV - 21.07.2025 - Arbeidsavklaringspenger',
                             dokumentreferanse: '454414877',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -13157,11 +13607,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Pågående samtale med NAV - 25.07.2025 - Arbeidsavklaringspenger',
                             dokumentreferanse: '454411604',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -13187,11 +13638,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 20.06.2025 - Arbeidsavklaringspenger',
                             dokumentreferanse: '454406478',
-                            kanVises: true,
+                            
                             logiskDokument: false,
                             skjerming: 'POL',
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -13217,11 +13669,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 19.06.2025 - Arbeidsavklaringspenger',
                             dokumentreferanse: '454405576',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -13247,36 +13700,37 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Kontonummer',
                             dokumentreferanse: '454018370',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [
                             {
                                 tittel: 'Midlertidig adresse',
 
-                                kanVises: true,
+                                saksbehandlerHarTilgang: true,
                                 logiskDokument: true,
 
-                                erKassert: false
+                               
                             },
                             {
                                 tittel: 'Skifteattest',
 
-                                kanVises: true,
+                                
                                 logiskDokument: true,
 
-                                erKassert: false
+                               
                             },
                             {
                                 tittel: 'Legitimasjon',
-
-                                kanVises: true,
+                                saksbehandlerHarTilgang: true,
+                                
                                 logiskDokument: true,
 
-                                erKassert: false
+                               
                             }
                         ],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -13316,11 +13770,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 12.08.2025 - Barnepensjon',
                             dokumentreferanse: '454414779',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -13346,11 +13801,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 12.08.2025 - Barnepensjon',
                             dokumentreferanse: '454414834',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -13376,11 +13832,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: 'Samtale med NAV - 23.05.2025 - Barnepensjon',
                             dokumentreferanse: '454413616',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: true
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -13433,11 +13890,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454406078',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -13477,11 +13935,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454407963',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -13521,21 +13980,23 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454311419',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [
                             {
                                 tittel: '*****',
                                 dokumentreferanse: '454222760',
-                                kanVises: true,
+                                
                                 logiskDokument: false,
 
-                                erKassert: false,
-                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                               
+                                dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                                saksbehandlerHarTilgang: false
                             }
                         ],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -13561,11 +14022,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454222760',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -13591,11 +14053,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454221093',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.EKSTERN_PART,
@@ -13621,11 +14084,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '454031193',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -13651,11 +14115,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         hoveddokument: {
                             tittel: '*****',
                             dokumentreferanse: '453882632',
-                            kanVises: true,
+                            
                             logiskDokument: false,
 
-                            erKassert: false,
-                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT
+                           
+                            dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
+                            saksbehandlerHarTilgang: false
                         },
                         vedlegg: [],
                         avsender: DokumentmetadataAvsender.NAV,
@@ -13679,8 +14144,9 @@ export const getAremarkSaksOgDokumenterListe = () => {
                 harTilgang: false,
                 feilendeSystemer: []
             }
-        ],
-        temaer: [
+        ]
+
+    const temaer =  [
             {
                 temakode: 'MED',
                 temanavn: 'Medlemskap'
@@ -13897,7 +14363,12 @@ export const getAremarkSaksOgDokumenterListe = () => {
                 temakode: 'PAI',
                 temanavn: 'PAI'
             }
-        ],
-        feilendeSystemer: [ResultatSaksDokumenterFeilendeSystemer.KODEVERK]
-    };
+        ]
+
+    const dokumenter = saker.flatMap((sak) => sak.tilhorendeDokumenter);
+
+
+return  { saker, temaer,   dokumenter,     feilendeSystemer: [ResultatSaksDokumenterFeilendeSystemer.KODEVERK]}
+
+
 };
