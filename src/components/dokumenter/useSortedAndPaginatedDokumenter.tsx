@@ -1,7 +1,7 @@
 import { orderBy } from 'lodash';
-import type { DokumenterSortState } from 'src/components/dokumenter/index';
-import { type Dokument, DokumentDokumentStatus, type Dokumentmetadata } from 'src/generated/modiapersonoversikt-api';
-import sakstemaResource from 'src/rest/resources/sakstemaResource';
+import type { DokumenterSortState } from 'src/components/Dokumenter/index';
+import { useFilterDokumenter } from 'src/components/Dokumenter/utils';
+import { type Dokument, DokumentDokumentStatus } from 'src/generated/modiapersonoversikt-api';
 
 export const dokumentTekst = (dokument: Dokument, ikkeTilgjengelig: boolean) => {
     return (
@@ -21,29 +21,27 @@ export const useSortedAndPaginatedDokumenter = ({
     rowsPerPage: number;
     page: number;
 }) => {
-    const resource = sakstemaResource.useFetch();
+    const filtrertDokumentmetadata = useFilterDokumenter();
 
-    const dokumenterMetadata = resource.data?.resultat.flatMap((sakstema) => sakstema.dokumentMetadata) as
-        | Dokumentmetadata[]
-        | undefined;
+    const dokumenter = filtrertDokumentmetadata?.map((journalpost) => {
+        const alleTilhorendeDokumenter = [...journalpost.vedlegg, journalpost.hoveddokument];
+        const harTilgangTilNoenDokumenter = alleTilhorendeDokumenter.some((dok) => dok.saksbehandlerHarTilgang);
 
-    const dokumenter = dokumenterMetadata?.map((dokument) => ({
-        ...dokument,
-        beskrivelse:
-            dokument.vedlegg.length > 0
-                ? '1har vedlegg'
-                : dokument.hoveddokument.tittel === '*****'
-                  ? 'Kan ikke vises'
-                  : dokumentTekst(
-                        dokument.hoveddokument,
-                        dokument.id === null || dokument.hoveddokument.dokumentreferanse === null
-                    )
-    }));
+        return {
+            ...journalpost,
+            beskrivelse: dokumentTekst(
+                journalpost.hoveddokument,
+                journalpost.id === null || journalpost.hoveddokument.dokumentreferanse === null
+            ),
+            harTilgang: harTilgangTilNoenDokumenter,
+            antallVedlegg: journalpost.vedlegg.length
+        };
+    });
     const sortedData = sort
         ? orderBy(dokumenter, [sort.orderBy], [sort.direction === 'ascending' ? 'asc' : 'desc'])
         : dokumenter;
 
     const paginertData = sortedData?.slice((page - 1) * rowsPerPage, page * rowsPerPage);
 
-    return { dokumenter: paginertData, antallDokumenter: dokumenter?.length || 0 };
+    return { dokumenter: paginertData, antallDokumenter: filtrertDokumentmetadata?.length || 0 };
 };
