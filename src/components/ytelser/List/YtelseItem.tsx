@@ -30,19 +30,15 @@ export const YtelseItem = ({ ytelse }: { ytelse: YtelseVedtak }) => {
     const getYtelseTtile = () => {
         switch (ytelse.ytelseType) {
             case YtelseVedtakYtelseType.Foreldrepenger:
-                return ytelse.ytelseType;
             case YtelseVedtakYtelseType.Sykepenger:
+            case YtelseVedtakYtelseType.Tiltakspenge:
+            case YtelseVedtakYtelseType.Pensjon:
+            case YtelseVedtakYtelseType.Arbeidsavklaringspenger:
                 return ytelse.ytelseType;
             case YtelseVedtakYtelseType.SykepengerSpokelse:
                 return YtelseVedtakYtelseType.Sykepenger;
             case YtelseVedtakYtelseType.Pleiepenger:
                 return 'Pleiepenger sykt barn';
-            case YtelseVedtakYtelseType.Tiltakspenge:
-                return ytelse.ytelseType;
-            case YtelseVedtakYtelseType.Pensjon:
-                return ytelse.ytelseType;
-            case YtelseVedtakYtelseType.Arbeidsavklaringspenger:
-                return ytelse.ytelseType;
             case YtelseVedtakYtelseType.ForeldrepengerFpSak:
                 switch ((ytelse.ytelseData.data as ForeldrepengerFpSak).ytelse) {
                     case ForeldrepengerFpSakYtelse.ENGANGSST_NAD:
@@ -53,7 +49,7 @@ export const YtelseItem = ({ ytelse }: { ytelse: YtelseVedtak }) => {
                         return 'Foreldrepenger';
                 }
             default:
-                return `Ukjent ytelse type ${ytelse.ytelseType}`;
+                return `Ukjent ytelsetype ${ytelse.ytelseType}`;
         }
     };
 
