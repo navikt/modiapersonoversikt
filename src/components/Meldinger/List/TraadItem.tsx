@@ -116,6 +116,12 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
             className="hover:no-underline block"
             underline={false}
             onClick={onClick}
+            tabIndex={0}
+            role="link"
+            onKeyDown={(e) => {
+                if (e.key !== 'Enter' && e.key !== 'space') return;
+                onClick();
+            }}
         >
             <Card
                 padding="2"

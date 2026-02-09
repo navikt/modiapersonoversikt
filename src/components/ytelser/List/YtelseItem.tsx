@@ -64,7 +64,19 @@ export const YtelseItem = ({ ytelse }: { ytelse: YtelseVedtak }) => {
     };
 
     return (
-        <Link variant="neutral" className="hover:no-underline block" underline={false} onClick={onClick}>
+        <Link
+            data-testid="ytelseitem"
+            variant="neutral"
+            className="hover:no-underline block"
+            underline={false}
+            onClick={onClick}
+            tabIndex={0}
+            role="link"
+            onKeyDown={(e) => {
+                if (e.key !== 'Enter' && e.key !== 'space') return;
+                onClick();
+            }}
+        >
             <Card
                 padding="2"
                 as="li"

@@ -52,6 +52,8 @@ const SakList = () => {
                         tag: 'h3',
                         text: 'Sakerpaginerg'
                     }}
+                    aria-label="saker"
+                    as="section"
                     pageSize={antallListeElementer}
                     selectedKey={selectedKey}
                     items={saker}

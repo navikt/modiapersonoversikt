@@ -51,6 +51,8 @@ const VarslerListList = () => {
                         tag: 'h3',
                         text: 'Varslerpaginering'
                     }}
+                    as="section"
+                    aria-label="varsler"
                     pageSize={antallListeElementer}
                     selectedKey={selectedKey}
                     items={varsler}

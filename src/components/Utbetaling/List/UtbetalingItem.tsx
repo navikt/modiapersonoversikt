@@ -27,7 +27,18 @@ export const UtbetalingItem = ({ utbetaling }: { utbetaling: Utbetaling }) => {
     };
 
     return (
-        <Link variant="neutral" className="hover:no-underline block" underline={false} onClick={onClick}>
+        <Link
+            variant="neutral"
+            className="hover:no-underline block"
+            underline={false}
+            onClick={onClick}
+            tabIndex={0}
+            role="link"
+            onKeyDown={(e) => {
+                if (e.key !== 'Enter' && e.key !== 'space') return;
+                onClick();
+            }}
+        >
             <Card
                 padding="2"
                 as="li"
