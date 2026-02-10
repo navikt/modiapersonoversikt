@@ -16,7 +16,7 @@ import { useForm } from '@tanstack/react-form';
 import { useAtomValue } from 'jotai';
 import { Suspense, useEffect, useRef, useState } from 'react';
 import { AlertBanner } from 'src/components/AlertBanner';
-import { OpprettOppgaveRequestDTOPrioritetKode, PrioritetKode } from 'src/generated/modiapersonoversikt-api';
+import { OpprettOppgaveRequestDTOPrioritetKode, type PrioritetKode } from 'src/generated/modiapersonoversikt-api';
 import {
     useAnsattePaaEnhet,
     useForeslotteEnheter,
@@ -72,23 +72,56 @@ export const OppgaveModal = ({ open, setOpen, traad }: Props) => {
 
 const oppgaveFormValidator = z
     .object({
-        valgtTema: z.string().nonempty('Tema er påkrevd'),
+        valgtTema: z.string(),
         valgtUnderkategori: z.string(),
-        valgtOppgavetype: z.string().nonempty('Oppgavetype er påkrevd'),
+        valgtOppgavetype: z.string(),
         minListe: z.boolean().optional(),
-        beskrivelse: z.string().nonempty('Oppgaven må ha en beskrivelse'),
-        valgtPrioritet: z.nativeEnum(PrioritetKode, {
-            message: 'Prioritet må være valgt'
-        }),
-        valgtEnhet: z.string().nonempty('Oppgaven må tilegnes en enhet'),
+        beskrivelse: z.string(),
+        valgtPrioritet: z.string(),
+        valgtEnhet: z.string(),
         valgtAnsatt: z.string().optional(),
         dagerFrist: z.number().optional()
     })
     .superRefine((data, ctx) => {
+        if (!data.valgtTema) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: 'Tema er påkrevd',
+                path: ['valgtTema']
+            });
+        }
+        if (!data.valgtOppgavetype) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: 'Oppgavetype er påkrevd',
+                path: ['valgtOppgavetype']
+            });
+        }
+        if (!data.beskrivelse) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: 'Oppgaven må ha en beskrivelse',
+                path: ['beskrivelse']
+            });
+        }
+        if (!data.valgtPrioritet) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: 'Prioritet må være valgt',
+                path: ['valgtPrioritet']
+            });
+        }
+        if (!data.valgtEnhet) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: 'Oppgaven må tilegnes en enhet',
+                path: ['valgtEnhet']
+            });
+        }
         if (data.valgtTema === 'AAP' && !data.valgtUnderkategori) {
             ctx.addIssue({
                 code: z.ZodIssueCode.custom,
-                message: 'Gjelder er påkrevd for Arbeidsavklaringspenger',
+                message: 'Gjelder er påkrevd for arbeidsavklaringspenger',
                 path: ['valgtUnderkategori']
             });
         }
@@ -138,7 +171,7 @@ const OppgaveForm = ({ traad, onSuccess }: { traad: Traad; onSuccess: () => void
                         temaKode: value.valgtTema,
                         underkategoriKode: value.valgtUnderkategori,
                         oppgaveTypeKode: value.valgtOppgavetype,
-                        prioritetKode: OpprettOppgaveRequestDTOPrioritetKode[value.valgtPrioritet],
+                        prioritetKode: OpprettOppgaveRequestDTOPrioritetKode[value.valgtPrioritet as PrioritetKode],
                         beskrivelse: value.beskrivelse
                     }
                 },
@@ -200,7 +233,7 @@ const OppgaveForm = ({ traad, onSuccess }: { traad: Traad; onSuccess: () => void
                                             id={field.name}
                                             className="flex-1"
                                             size="small"
-                                            label={isRequired ? 'Gjelder *' : 'Gjelder'}
+                                            label="Gjelder"
                                             value={field.state.value}
                                             onChange={(e) => field.handleChange(e.target.value)}
                                             onBlur={field.handleBlur}
