@@ -201,7 +201,7 @@ export const SakDetailPage = () => {
     const saker = data?.saker ?? [];
     return (
         <ErrorBoundary boundaryName="SakDetailPage" errorText="Det oppstod en feil under visning en sakdetailjer">
-            {isLoading ? <Skeleton variant="rounded" height="4rem" /> : <SakContent saker={saker} />}
+            {isLoading ? <Skeleton variant="rectangle" height="4rem" /> : <SakContent saker={saker} />}
         </ErrorBoundary>
     );
 };

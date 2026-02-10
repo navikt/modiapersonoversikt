@@ -157,7 +157,7 @@ export const VarselDetail = () => {
     const { varsler, isLoading } = useFilterVarsler();
     return (
         <ErrorBoundary boundaryName="vaslerDetaljer" errorText="Det oppstod en feil under visning av varsel">
-            {isLoading ? <Skeleton variant="rounded" height="4rem" /> : <VarselDetailExtractor varsler={varsler} />}
+            {isLoading ? <Skeleton variant="rectangle" height="4rem" /> : <VarselDetailExtractor varsler={varsler} />}
         </ErrorBoundary>
     );
 };

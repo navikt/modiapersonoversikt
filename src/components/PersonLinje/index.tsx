@@ -30,7 +30,7 @@ export const PersonLinje = () => {
     return (
         <ErrorBoundary boundaryName="personlinje">
             {isLoading ? (
-                <Skeleton variant="rounded" height={40} />
+                <Skeleton variant="rectangle" height={40} />
             ) : (
                 <>{isError ? <AlertBanner alerts={errorMessages} /> : <PersonLinjeContent />}</>
             )}

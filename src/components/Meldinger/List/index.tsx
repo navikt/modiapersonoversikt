@@ -45,7 +45,7 @@ const Traader = () => {
                     {Array(8)
                         .keys()
                         .map((i) => (
-                            <Skeleton key={i} variant="rounded" height={68} />
+                            <Skeleton key={i} variant="rectangle" height={68} />
                         ))}
                 </VStack>
             ) : (
