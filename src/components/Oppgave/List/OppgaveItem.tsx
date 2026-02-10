@@ -32,7 +32,19 @@ export const OppgaveItem = ({ oppgave }: { oppgave: OppgaveDto }) => {
     };
 
     return (
-        <Link variant="neutral" className="hover:no-underline block" underline={false} onClick={onClick}>
+        <Link
+            data-testid="askitem"
+            variant="neutral"
+            className="hover:no-underline block"
+            underline={false}
+            onClick={onClick}
+            tabIndex={0}
+            role="link"
+            onKeyDown={(e) => {
+                if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+                onClick();
+            }}
+        >
             <Card
                 padding="2"
                 className={twMerge(

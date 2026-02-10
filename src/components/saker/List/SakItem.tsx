@@ -60,7 +60,7 @@ export const SakItem = ({ sak }: { sak: SaksDokumenter }) => {
             tabIndex={0}
             role="link"
             onKeyDown={(e) => {
-                if (e.key !== 'Enter' && e.key !== 'space') return;
+                if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
                 onClick();
             }}
         >

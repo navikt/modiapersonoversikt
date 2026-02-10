@@ -104,7 +104,7 @@ const SakListeElement = ({
             aria-selected={valgtSak?.saksIdVisning === sak.saksIdVisning}
             onSelect={onClick}
             onKeyDown={(e) => {
-                if (e.key !== 'Enter' && e.key !== 'space') return;
+                if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
                 onClick();
             }}
         >

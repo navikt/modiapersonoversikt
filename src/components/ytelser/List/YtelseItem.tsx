@@ -73,7 +73,7 @@ export const YtelseItem = ({ ytelse }: { ytelse: YtelseVedtak }) => {
             tabIndex={0}
             role="link"
             onKeyDown={(e) => {
-                if (e.key !== 'Enter' && e.key !== 'space') return;
+                if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
                 onClick();
             }}
         >
