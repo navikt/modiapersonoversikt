@@ -16,7 +16,7 @@ import { useForm } from '@tanstack/react-form';
 import { useAtomValue } from 'jotai';
 import { Suspense, useEffect, useRef, useState } from 'react';
 import { AlertBanner } from 'src/components/AlertBanner';
-import { OpprettOppgaveRequestDTOPrioritetKode, PrioritetKode } from 'src/generated/modiapersonoversikt-api';
+import { OpprettOppgaveRequestDTOPrioritetKode, type PrioritetKode } from 'src/generated/modiapersonoversikt-api';
 import {
     useAnsattePaaEnhet,
     useForeslotteEnheter,
@@ -70,19 +70,62 @@ export const OppgaveModal = ({ open, setOpen, traad }: Props) => {
     );
 };
 
-const oppgaveFormValidator = z.object({
-    valgtTema: z.string().nonempty('Tema er påkrevd'),
-    valgtUnderkategori: z.string(),
-    valgtOppgavetype: z.string().nonempty('Oppgavetype er påkrevd'),
-    minListe: z.boolean().optional(),
-    beskrivelse: z.string().nonempty('Oppgaven må ha en beskrivelse'),
-    valgtPrioritet: z.nativeEnum(PrioritetKode, {
-        message: 'Prioritet må være valgt'
-    }),
-    valgtEnhet: z.string().nonempty('Oppgaven må tilegnes en enhet'),
-    valgtAnsatt: z.string().optional(),
-    dagerFrist: z.number().optional()
-});
+const oppgaveFormValidator = z
+    .object({
+        valgtTema: z.string(),
+        valgtUnderkategori: z.string(),
+        valgtOppgavetype: z.string(),
+        minListe: z.boolean().optional(),
+        beskrivelse: z.string(),
+        valgtPrioritet: z.string(),
+        valgtEnhet: z.string(),
+        valgtAnsatt: z.string().optional(),
+        dagerFrist: z.number().optional()
+    })
+    .superRefine((data, ctx) => {
+        if (!data.valgtTema) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: 'Tema er påkrevd',
+                path: ['valgtTema']
+            });
+        }
+        if (!data.valgtOppgavetype) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: 'Oppgavetype er påkrevd',
+                path: ['valgtOppgavetype']
+            });
+        }
+        if (!data.beskrivelse) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: 'Oppgaven må ha en beskrivelse',
+                path: ['beskrivelse']
+            });
+        }
+        if (!data.valgtPrioritet) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: 'Prioritet må være valgt',
+                path: ['valgtPrioritet']
+            });
+        }
+        if (!data.valgtEnhet) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: 'Oppgaven må tilegnes en enhet',
+                path: ['valgtEnhet']
+            });
+        }
+        if (data.valgtTema === 'AAP' && !data.valgtUnderkategori) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: 'Gjelder er påkrevd for arbeidsavklaringspenger',
+                path: ['valgtUnderkategori']
+            });
+        }
+    });
 
 type OppgaveFormValue = z.infer<typeof oppgaveFormValidator>;
 
@@ -128,7 +171,7 @@ const OppgaveForm = ({ traad, onSuccess }: { traad: Traad; onSuccess: () => void
                         temaKode: value.valgtTema,
                         underkategoriKode: value.valgtUnderkategori,
                         oppgaveTypeKode: value.valgtOppgavetype,
-                        prioritetKode: OpprettOppgaveRequestDTOPrioritetKode[value.valgtPrioritet],
+                        prioritetKode: OpprettOppgaveRequestDTOPrioritetKode[value.valgtPrioritet as PrioritetKode],
                         beskrivelse: value.beskrivelse
                     }
                 },
@@ -181,6 +224,7 @@ const OppgaveForm = ({ traad, onSuccess }: { traad: Traad; onSuccess: () => void
                     <form.Subscribe selector={(f) => [f.values.valgtTema]}>
                         {([valgtTema]) => {
                             const underKategorier = gsakTema.find((t) => t.kode === valgtTema)?.underkategorier ?? [];
+                            const isRequired = valgtTema === 'AAP';
 
                             return (
                                 <form.Field name="valgtUnderkategori">
@@ -196,7 +240,11 @@ const OppgaveForm = ({ traad, onSuccess }: { traad: Traad; onSuccess: () => void
                                             error={field.state.meta.errors.firstOrNull()?.message}
                                         >
                                             <option value="" disabled={underKategorier.length === 0}>
-                                                {underKategorier.length ? 'Ingen underkategori' : '-- Velg et tema --'}
+                                                {underKategorier.length
+                                                    ? isRequired
+                                                        ? '-- Velg gjelder --'
+                                                        : 'Ingen underkategori'
+                                                    : '-- Velg et tema --'}
                                             </option>
                                             {underKategorier.map((tema) => (
                                                 <option value={tema.kode} key={tema.kode}>
@@ -238,7 +286,7 @@ const OppgaveForm = ({ traad, onSuccess }: { traad: Traad; onSuccess: () => void
                                             error={field.state.meta.errors.firstOrNull()?.message}
                                         >
                                             <option value="" disabled>
-                                                {oppgaveTyper.length ? '-- Veg oppgavetype --' : '-- Velg et tema --'}
+                                                {oppgaveTyper.length ? '-- Velg oppgavetype --' : '-- Velg et tema --'}
                                             </option>
                                             {oppgaveTyper.map((oppgave) => (
                                                 <option value={oppgave.kode} key={oppgave.kode}>
