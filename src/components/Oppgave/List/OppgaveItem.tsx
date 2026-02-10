@@ -1,5 +1,6 @@
 import { Detail, HStack, Label, Link, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
+import { useEffect, useRef } from 'react';
 import Card from 'src/components/Card';
 import { getOppgaveId } from 'src/components/Oppgave/List/utils';
 import type { OppgaveDto } from 'src/generated/modiapersonoversikt-api';
@@ -18,6 +19,13 @@ export const OppgaveItem = ({ oppgave }: { oppgave: OppgaveDto }) => {
     const aktivOppgaveId = routeApi.useSearch().id;
     const navigate = routeApi.useNavigate();
     const id = getOppgaveId(oppgave);
+    const linkRef = useRef<HTMLAnchorElement | null>(null);
+
+    useEffect(() => {
+        if (aktivOppgaveId === id) {
+            linkRef.current?.focus();
+        }
+    }, [aktivOppgaveId, oppgave.oppgaveId]);
 
     const onClick = () => {
         navigate({
@@ -33,15 +41,20 @@ export const OppgaveItem = ({ oppgave }: { oppgave: OppgaveDto }) => {
 
     return (
         <Link
-            data-testid="askitem"
+            ref={linkRef}
+            data-sakid={id}
             variant="neutral"
             className="hover:no-underline block"
             underline={false}
-            onClick={onClick}
+            onClick={(e) => {
+                e.preventDefault();
+                onClick();
+            }}
             tabIndex={0}
             role="link"
             onKeyDown={(e) => {
                 if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+                e.preventDefault();
                 onClick();
             }}
         >

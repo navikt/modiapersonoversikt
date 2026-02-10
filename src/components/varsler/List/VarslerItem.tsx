@@ -1,6 +1,7 @@
 import { CheckmarkCircleIcon, ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
 import { Detail, HStack, Label, Link, Tag, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
+import { useEffect, useRef } from 'react';
 import Card from 'src/components/Card';
 import type { VarselData } from 'src/components/varsler/List/utils';
 import { trackingEvents } from 'src/utils/analytics';
@@ -27,6 +28,13 @@ const Status = ({ varsel }: { varsel: VarselData }) => {
 export const VarslerItem = ({ varsel }: { varsel: VarselData }) => {
     const aktivVarsel = routeApi.useSearch().id;
     const navigate = routeApi.useNavigate();
+    const linkRef = useRef<HTMLAnchorElement | null>(null);
+
+    useEffect(() => {
+        if (aktivVarsel === varsel.eventId) {
+            linkRef.current?.focus();
+        }
+    }, [aktivVarsel, varsel.eventId]);
 
     const onClick = () => {
         navigate({
@@ -42,15 +50,20 @@ export const VarslerItem = ({ varsel }: { varsel: VarselData }) => {
 
     return (
         <Link
-            data-testid="varselitem"
+            ref={linkRef}
+            data-varselid={varsel.eventId}
             variant="neutral"
             className="hover:no-underline block"
             underline={false}
-            onClick={onClick}
+            onClick={(e) => {
+                e.preventDefault();
+                onClick();
+            }}
             tabIndex={0}
             role="link"
             onKeyDown={(e) => {
                 if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+                e.preventDefault();
                 onClick();
             }}
         >

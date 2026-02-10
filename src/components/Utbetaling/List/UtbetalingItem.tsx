@@ -1,5 +1,6 @@
 import { Detail, HStack, Label, Link, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
+import { useEffect, useRef } from 'react';
 import Card from 'src/components/Card';
 import { formaterNOK, getUtbetalingId } from 'src/components/Utbetaling/List/utils';
 import type { Utbetaling } from 'src/generated/modiapersonoversikt-api';
@@ -13,6 +14,13 @@ export const UtbetalingItem = ({ utbetaling }: { utbetaling: Utbetaling }) => {
     const aktivUtbetaling = routeApi.useSearch().id;
     const navigate = routeApi.useNavigate();
     const id = getUtbetalingId(utbetaling);
+    const linkRef = useRef<HTMLAnchorElement | null>(null);
+
+    useEffect(() => {
+        if (aktivUtbetaling === id) {
+            linkRef.current?.focus();
+        }
+    }, [aktivUtbetaling, id]);
 
     const onClick = () => {
         navigate({
@@ -28,14 +36,20 @@ export const UtbetalingItem = ({ utbetaling }: { utbetaling: Utbetaling }) => {
 
     return (
         <Link
+            ref={linkRef}
+            data-utbetalingid={id}
             variant="neutral"
             className="hover:no-underline block"
             underline={false}
-            onClick={onClick}
+            onClick={(e) => {
+                e.preventDefault();
+                onClick();
+            }}
             tabIndex={0}
             role="link"
             onKeyDown={(e) => {
                 if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+                e.preventDefault();
                 onClick();
             }}
         >
