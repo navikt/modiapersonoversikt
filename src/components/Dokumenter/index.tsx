@@ -4,6 +4,7 @@ import Card from 'src/components/Card';
 import { DokumenterTabell } from 'src/components/Dokumenter/DokumenterTabell';
 import { DokumenterFilter } from 'src/components/Dokumenter/Filter';
 import { useFilterDokumenter } from 'src/components/Dokumenter/utils';
+import ErrorBoundary from 'src/components/ErrorBoundary';
 import type { Dokumentmetadata } from 'src/generated/modiapersonoversikt-api';
 
 export interface DokumenterSortState extends SortState {
@@ -32,19 +33,21 @@ export const DokumenterPage = () => {
     }
 
     return (
-        <Card padding="4" className="h-full overflow-auto">
-            <AlertBanner alerts={errorMessages} />
-            <VStack gap="8">
-                <HStack align="center" gap="2">
-                    <Heading level="2" size="medium">
-                        Dokumenter
-                    </Heading>
-                </HStack>
-                <VStack gap="4">
-                    <DokumenterFilter />
-                    <DokumenterTabell />
+        <ErrorBoundary boundaryName="Dokumentertabell" errorText="Det oppstod en feil under visning av dokumenter">
+            <Card padding="4" className="h-full overflow-auto">
+                <AlertBanner alerts={errorMessages} />
+                <VStack gap="8">
+                    <HStack align="center" gap="2">
+                        <Heading level="2" size="medium">
+                            Dokumenter
+                        </Heading>
+                    </HStack>
+                    <VStack gap="4">
+                        <DokumenterFilter />
+                        <DokumenterTabell />
+                    </VStack>
                 </VStack>
-            </VStack>
-        </Card>
+            </Card>
+        </ErrorBoundary>
     );
 };
