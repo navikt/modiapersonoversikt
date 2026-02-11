@@ -51,6 +51,8 @@ const YtelseList = () => {
                         tag: 'h3',
                         text: 'Ytelsepaginering'
                     }}
+                    as="section"
+                    aria-label="ytelser"
                     pageSize={antallListeElementer}
                     selectedKey={selectedKey}
                     items={ytelser}

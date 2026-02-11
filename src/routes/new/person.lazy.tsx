@@ -24,7 +24,7 @@ function PersonRoute() {
 
 function PersonLayout() {
     return (
-        <HStack className="new-modia" gap="2" padding="2" flexGrow="1" wrap={false}>
+        <HStack className="new-modia" gap="1" padding="2" flexGrow="1" wrap={false}>
             <VStack>
                 <PersonSidebarMenu />
             </VStack>
@@ -32,8 +32,9 @@ function PersonLayout() {
                 <Panel order={1} className="mr-2 overflow-scroll">
                     <Box as="main" id="main-content" height="100%">
                         <VStack gap="2" height="100%">
-                            <PersonLinje />
-
+                            <VStack className="ml-2">
+                                <PersonLinje />
+                            </VStack>
                             <Suspense>
                                 <Outlet />
                             </Suspense>

@@ -52,6 +52,8 @@ const UtbetalingList = () => {
                         tag: 'h3',
                         text: 'Utbetalingpaginering'
                     }}
+                    as="section"
+                    aria-label="utbetalinger"
                     pageSize={antallListeElementer}
                     selectedKey={selectedKey}
                     items={utbetalinger}

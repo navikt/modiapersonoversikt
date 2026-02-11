@@ -2,7 +2,7 @@ import { BellIcon, ChatElipsisIcon } from '@navikt/aksel-icons';
 import { Detail, HStack, Label, Link, Tag, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { atom, useAtomValue } from 'jotai';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import Card from 'src/components/Card';
 import { useFilterOppgave } from 'src/components/Oppgave/List/utils';
 import type { TraadDto } from 'src/generated/modiapersonoversikt-api';
@@ -96,6 +96,13 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
     const tittel = traadstittel(traad);
     const aktivTraad = routeApi.useSearch().traadId;
     const navigate = routeApi.useNavigate();
+    const linkRef = useRef<HTMLAnchorElement | null>(null);
+
+    useEffect(() => {
+        if (aktivTraad === traad.traadId) {
+            linkRef.current?.focus();
+        }
+    }, [aktivTraad, traad.traadId]);
 
     const onClick = () => {
         navigate({
@@ -111,11 +118,22 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
 
     return (
         <Link
+            ref={linkRef}
             data-testid="traaditem"
             variant="neutral"
             className="hover:no-underline block"
             underline={false}
-            onClick={onClick}
+            onClick={(e) => {
+                e.preventDefault();
+                onClick();
+            }}
+            tabIndex={0}
+            role="link"
+            onKeyDown={(e) => {
+                if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+                e.preventDefault();
+                onClick();
+            }}
         >
             <Card
                 padding="2"

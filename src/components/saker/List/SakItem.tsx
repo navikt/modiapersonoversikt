@@ -1,6 +1,7 @@
 import { CircleSlashIcon, FilesIcon } from '@navikt/aksel-icons';
 import { Detail, HStack, Label, Link, Tag, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
+import { useEffect, useRef } from 'react';
 import Card from 'src/components/Card';
 import { getSakId } from 'src/components/saker/utils';
 import type { SaksDokumenter } from 'src/generated/modiapersonoversikt-api';
@@ -37,6 +38,13 @@ export const SakItem = ({ sak }: { sak: SaksDokumenter }) => {
     const aktivSakId = routeApi.useSearch().id;
     const navigate = routeApi.useNavigate();
     const id = getSakId(sak);
+    const linkRef = useRef<HTMLAnchorElement | null>(null);
+
+    useEffect(() => {
+        if (aktivSakId === id) {
+            linkRef.current?.focus();
+        }
+    }, [aktivSakId, id]);
 
     const onClick = () => {
         navigate({
@@ -51,7 +59,23 @@ export const SakItem = ({ sak }: { sak: SaksDokumenter }) => {
     };
 
     return (
-        <Link variant="neutral" className="hover:no-underline block" underline={false} onClick={onClick}>
+        <Link
+            ref={linkRef}
+            variant="neutral"
+            className="hover:no-underline block"
+            underline={false}
+            onClick={(e) => {
+                e.preventDefault();
+                onClick();
+            }}
+            tabIndex={0}
+            role="link"
+            onKeyDown={(e) => {
+                if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+                e.preventDefault();
+                onClick();
+            }}
+        >
             <Card
                 padding="2"
                 className={twMerge(

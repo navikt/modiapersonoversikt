@@ -51,6 +51,8 @@ const OppgaveList = () => {
                         tag: 'h3',
                         text: 'Oppgavepaginering'
                     }}
+                    aria-label="oppgaver"
+                    as="section"
                     pageSize={antallListeElementer}
                     selectedKey={selectedKey}
                     items={oppgaver}

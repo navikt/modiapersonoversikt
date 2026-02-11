@@ -1,6 +1,7 @@
 import { BodyShort, Detail, HStack, Label, Link, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import dayjs from 'dayjs';
+import { useEffect, useRef } from 'react';
 import Card from 'src/components/Card';
 import { getUnikYtelseKey, getYtelseIdDato, type YtelseVedtak } from 'src/components/ytelser/utils';
 import {
@@ -18,6 +19,13 @@ export const YtelseItem = ({ ytelse }: { ytelse: YtelseVedtak }) => {
     const aktivYtelse = routeApi.useSearch().id;
     const navigate = routeApi.useNavigate();
     const id = getUnikYtelseKey(ytelse);
+    const linkRef = useRef<HTMLAnchorElement | null>(null);
+
+    useEffect(() => {
+        if (aktivYtelse === id) {
+            linkRef.current?.focus();
+        }
+    }, [aktivYtelse, id]);
 
     const getYtelseTtile = () => {
         switch (ytelse.ytelseType) {
@@ -64,7 +72,23 @@ export const YtelseItem = ({ ytelse }: { ytelse: YtelseVedtak }) => {
     };
 
     return (
-        <Link variant="neutral" className="hover:no-underline block" underline={false} onClick={onClick}>
+        <Link
+            ref={linkRef}
+            variant="neutral"
+            className="hover:no-underline block"
+            underline={false}
+            onClick={(e) => {
+                e.preventDefault();
+                onClick();
+            }}
+            tabIndex={0}
+            role="link"
+            onKeyDown={(e) => {
+                if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+                e.preventDefault();
+                onClick();
+            }}
+        >
             <Card
                 padding="2"
                 as="li"

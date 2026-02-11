@@ -108,7 +108,7 @@ export const YtelserListFilter = () => {
         }, 0);
     };
     return (
-        <Box.New marginInline="0 2" className={twMerge(open && 'max-h-full')}>
+        <Box.New marginInline="2 2" className={twMerge(open && 'max-h-full')}>
             <ExpansionCard
                 onClick={handleExpansionChange}
                 ref={expansionFilterRef}
