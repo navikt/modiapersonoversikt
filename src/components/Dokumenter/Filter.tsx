@@ -139,13 +139,14 @@ const ResetFilter = () => {
     const [filter, setFilter] = useAtom(dokumenterFilterAtom);
     const [isChecked, setChecked] = useAtom(dokFilterVisAlleAtom);
 
-    const isDirty = !filter.temaer.isEmpty() || filter.saksId !== '' || filter.dateRange !== defaultDate;
+    const datoErlik = filter.dateRange.from.isSame(defaultDate.from) && filter.dateRange.to.isSame(defaultDate.to);
+    const isDirty = !filter.temaer.isEmpty() || filter.saksId !== '' || !datoErlik;
 
     useEffect(() => {
         if (isDirty && isChecked) {
             setChecked(false);
         }
-    }, [isDirty, isChecked, setChecked]);
+    }, [isDirty, isChecked, setChecked, filter]);
 
     const setCheckedOgResetFilter = (checked: boolean) => {
         setChecked(checked);
@@ -156,6 +157,7 @@ const ResetFilter = () => {
 
     return (
         <Switch
+            className="mt-7"
             size="small"
             checked={isChecked}
             onChange={(e) => {
@@ -176,7 +178,7 @@ export const DokumenterFilter = () => {
     }, [fnr]);
 
     return (
-        <HStack gap="2" justify={{ xs: 'space-evenly', lg: 'space-between' }} align="end">
+        <HStack gap="2" justify="start">
             <Box.New>
                 <DateFilter />
             </Box.New>
@@ -186,9 +188,9 @@ export const DokumenterFilter = () => {
             <Box.New>
                 <SaksIdSearchField />
             </Box.New>
-            <Box.New>
+            <HStack align="start">
                 <ResetFilter />
-            </Box.New>
+            </HStack>
         </HStack>
     );
 };

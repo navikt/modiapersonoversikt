@@ -17,7 +17,7 @@ export const DokumenterPage = () => {
                         Dokumenter
                     </Heading>
                 </HStack>
-                <VStack gap="2">
+                <VStack gap="4">
                     <DokumenterFilter />
                     <DokumenterTabell />
                 </VStack>

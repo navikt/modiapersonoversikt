@@ -42,13 +42,11 @@ export const DateRangePickerWithDebounce = ({
                     minDate={dateRange.from.toDate()}
                 />
             </HStack>
-            <VStack height="30px" justify="center">
-                {error && (
-                    <InlineMessage size="small" status="error" className="pt-2">
-                        {error}
-                    </InlineMessage>
-                )}
-            </VStack>
+            {error && (
+                <InlineMessage size="small" status="error" aria-live="polite" className="mt-1">
+                    {error}
+                </InlineMessage>
+            )}
         </VStack>
     );
 };

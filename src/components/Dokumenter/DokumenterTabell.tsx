@@ -71,8 +71,8 @@ export const DokumenterTabell = () => {
 
     if (antallDokumenter === 0) {
         return (
-            <Box.New>
-                <InlineMessage status="info" role="alert">
+            <Box.New paddingBlock="4">
+                <InlineMessage status="info" aria-live="polite">
                     Ingen resultat
                 </InlineMessage>
             </Box.New>
