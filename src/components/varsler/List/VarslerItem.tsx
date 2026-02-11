@@ -51,7 +51,6 @@ export const VarslerItem = ({ varsel }: { varsel: VarselData }) => {
     return (
         <Link
             ref={linkRef}
-            data-varselid={varsel.eventId}
             variant="neutral"
             className="hover:no-underline block"
             underline={false}

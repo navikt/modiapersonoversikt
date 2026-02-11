@@ -74,7 +74,6 @@ export const YtelseItem = ({ ytelse }: { ytelse: YtelseVedtak }) => {
     return (
         <Link
             ref={linkRef}
-            data-ytelseid={id}
             variant="neutral"
             className="hover:no-underline block"
             underline={false}

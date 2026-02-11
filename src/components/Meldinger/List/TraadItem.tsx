@@ -119,7 +119,7 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
     return (
         <Link
             ref={linkRef}
-            data-traadid={traad.traadId}
+            data-testid="traaditem"
             variant="neutral"
             className="hover:no-underline block"
             underline={false}

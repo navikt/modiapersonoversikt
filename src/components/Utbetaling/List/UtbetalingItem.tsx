@@ -37,7 +37,6 @@ export const UtbetalingItem = ({ utbetaling }: { utbetaling: Utbetaling }) => {
     return (
         <Link
             ref={linkRef}
-            data-utbetalingid={id}
             variant="neutral"
             className="hover:no-underline block"
             underline={false}

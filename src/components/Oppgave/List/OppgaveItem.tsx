@@ -42,7 +42,6 @@ export const OppgaveItem = ({ oppgave }: { oppgave: OppgaveDto }) => {
     return (
         <Link
             ref={linkRef}
-            data-sakid={id}
             variant="neutral"
             className="hover:no-underline block"
             underline={false}

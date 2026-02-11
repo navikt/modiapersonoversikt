@@ -61,7 +61,6 @@ export const SakItem = ({ sak }: { sak: SaksDokumenter }) => {
     return (
         <Link
             ref={linkRef}
-            data-sakid={id}
             variant="neutral"
             className="hover:no-underline block"
             underline={false}
