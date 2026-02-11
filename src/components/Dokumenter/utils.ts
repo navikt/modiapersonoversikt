@@ -1,19 +1,27 @@
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai';
-import { useMemo } from 'react';
 import { type DokumenterFilter, dokumenterFilterAtom } from 'src/components/Dokumenter/Filter';
-import type { Dokumentmetadata } from 'src/generated/modiapersonoversikt-api';
+import { errorPlaceholder, type QueryResult, responseErrorMessage } from 'src/components/ytelser/utils';
+import type { Dokumentmetadata, ResultatSaksDokumenter } from 'src/generated/modiapersonoversikt-api';
 import { useSakerDokumenter } from 'src/lib/clients/modiapersonoversikt-api';
 import { datoSynkende } from 'src/utils/date-utils';
 
-export const useFilterDokumenter = (): Dokumentmetadata[] => {
+export const useFilterDokumenter = (): QueryResult<ResultatSaksDokumenter> => {
     const filters = useAtomValue(dokumenterFilterAtom);
-    const { data } = useSakerDokumenter();
-    const dokumenter = data?.dokumenter ?? [];
+    const sakerDokumenterResponse = useSakerDokumenter();
+    const dokumenter = sakerDokumenterResponse?.data?.dokumenter ?? [];
 
     const sortedDokumenter = dokumenter.toSorted(datoSynkende((t) => t.dato || new Date(0)));
+    const errorMessages = [errorPlaceholder(sakerDokumenterResponse, responseErrorMessage('saker og dokumenter'))];
 
-    return useMemo(() => filterDokumenter(sortedDokumenter, filters), [sortedDokumenter, filters]);
+    return {
+        ...sakerDokumenterResponse,
+        data: {
+            ...sakerDokumenterResponse?.data,
+            dokumenter: filterDokumenter(sortedDokumenter, filters) ?? []
+        },
+        errorMessages: errorMessages.filter(Boolean)
+    } as QueryResult<ResultatSaksDokumenter>;
 };
 
 const filterDokumenter = (dokumenter: Dokumentmetadata[], filters: DokumenterFilter): Dokumentmetadata[] => {
