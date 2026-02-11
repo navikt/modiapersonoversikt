@@ -21,7 +21,8 @@ export const useSortedAndPaginatedDokumenter = ({
     rowsPerPage: number;
     page: number;
 }) => {
-    const filtrertDokumentmetadata = useFilterDokumenter();
+    const { data } = useFilterDokumenter();
+    const filtrertDokumentmetadata = data.dokumenter;
 
     const dokumenter = filtrertDokumentmetadata?.map((journalpost) => {
         const alleTilhorendeDokumenter = [...journalpost.vedlegg, journalpost.hoveddokument];
