@@ -1,4 +1,4 @@
-import { Box, HStack, InlineMessage, VStack } from '@navikt/ds-react';
+import { HStack, InlineMessage, VStack } from '@navikt/ds-react';
 import dayjs from 'dayjs';
 import { debounce } from 'lodash';
 import { useState } from 'react';
@@ -21,35 +21,34 @@ export const DateRangePickerWithDebounce = ({
 
     const debouncedValidate = debounce((validation) => {
         if (!validation.isValidDate) setError('Feil datoformat: dd.mm.yyyy');
+        if (validation.isBefore || validation.isBefore) setError('Fra dato kan ikke være senere enn til dato');
     }, 500);
 
     return (
         <VStack>
             <HStack gap="2" wrap={false}>
                 <SingleDatePicker
-                    key={dateRange.from.valueOf()}
                     date={dateRange.from.toDate()}
                     label="Fra"
                     onDateChange={(date) => debounceSetDate({ from: dayjs(date), to: dateRange.to })}
                     onValidate={debouncedValidate}
+                    maxDate={dateRange.to.toDate()}
                 />
                 <SingleDatePicker
-                    key={dateRange.to.valueOf()}
                     date={dateRange.to.toDate()}
                     label="Til"
                     onDateChange={(date) => debounceSetDate({ from: dateRange.from, to: dayjs(date) })}
                     onValidate={debouncedValidate}
+                    minDate={dateRange.from.toDate()}
                 />
             </HStack>
-            <Box.New>
-                {error ? (
-                    <InlineMessage size="small" status="error">
+            <VStack height="30px" justify="center">
+                {error && (
+                    <InlineMessage size="small" status="error" className="pt-2">
                         {error}
                     </InlineMessage>
-                ) : (
-                    <Box.New height="10"></Box.New>
                 )}
-            </Box.New>
+            </VStack>
         </VStack>
     );
 };

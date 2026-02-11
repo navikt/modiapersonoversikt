@@ -1,23 +1,39 @@
 import { DatePicker, type DateValidationT, useDatepicker } from '@navikt/ds-react';
+import dayjs from 'dayjs';
+import { useEffect } from 'react';
 
-// Ekstraherer Aksel datepicker for gjenbruk og å kunne re-rendre ved ekstern datoendring
-// For å få datoen til å endre seg ved re-rendering, bruk key prop ved bruk av komponenten
 export const SingleDatePicker = ({
     date,
     label,
     onDateChange,
-    onValidate
+    onValidate,
+    maxDate,
+    minDate
 }: {
     date: Date;
     label: string;
     onDateChange: (val?: Date) => void;
     onValidate: (val: DateValidationT) => void;
+    maxDate?: Date;
+    minDate?: Date;
 }) => {
     const { datepickerProps, inputProps } = useDatepicker({
         defaultSelected: date,
         onDateChange,
-        onValidate
+        onValidate,
+        toDate: maxDate,
+        fromDate: minDate
     });
+
+    useEffect(() => {
+        const validDate = dayjs(datepickerProps.selected as Date).isValid();
+        if (datepickerProps.selected?.toString() !== date.toString() && validDate) {
+            console.log('setter');
+            inputProps?.onChange?.({
+                target: { value: dayjs(date).format('DD.MM.YYYY') }
+            } as React.ChangeEvent<HTMLInputElement>);
+        }
+    }, [date]);
 
     return (
         <DatePicker {...datepickerProps} dropdownCaption>
