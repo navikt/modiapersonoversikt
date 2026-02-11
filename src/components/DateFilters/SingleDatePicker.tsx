@@ -28,7 +28,6 @@ export const SingleDatePicker = ({
     useEffect(() => {
         const validDate = dayjs(datepickerProps.selected as Date).isValid();
         if (datepickerProps.selected?.toString() !== date.toString() && validDate) {
-            console.log('setter');
             inputProps?.onChange?.({
                 target: { value: dayjs(date).format('DD.MM.YYYY') }
             } as React.ChangeEvent<HTMLInputElement>);
