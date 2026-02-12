@@ -677,6 +677,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             beskrivelse: (
                 <>
                     <Normaltekst>
+                        <p className="mb-2 font-ax-bold">Dette er ikke gyldig lenger. Se ny oppdatering.</p>
                         Det er bestemt at sykepenger under ytelser vil være likt som i dag fram til 1. mars 2026.
                         <br />
                         Etter 1. mars vil ikke sykepenger lenger inneholde informasjon om sykemelding og
@@ -688,6 +689,24 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                 </>
             ),
             src: Speil
+        },
+        {
+            id: 41,
+            tittel: 'Rettelse: Sykepenger fra Infotrygd beholdes',
+            dato: new Date('2026-02-12 12:00'),
+            aktiv: true,
+            ingress: null,
+            beskrivelse: (
+                <>
+                    Oppdatering fra 13.januar er <span className="font-ax-bold">ikke</span> lenger gjeldene. Sykepenger
+                    fra Infotrygd vil fortsette å eksistere i Modia Personoversikt.
+                    <p className="mt-4">
+                        Det er ikke satt bestemt dato når dette skal fases ut, men sykepenger fra Infotrygd forblir i
+                        hvert fall ut året. Vi jobber med å få inn vedtak frå Speil også, men datagrunnlaget fra Speil
+                        vil være mer begrenset.
+                    </p>
+                </>
+            )
         }
     ];
 }
