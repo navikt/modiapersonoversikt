@@ -213,7 +213,7 @@ const OppfolgingPageContent = () => {
     const doubleErrors = arbeidsoppfolgingError && gjeldende14aVedtakErro;
     const hasErrors = arbeidsoppfolgingError || gjeldende14aVedtakErro;
     return (
-        <VStack gap="2" minHeight="0" overflow="auto">
+        <VStack gap="1" minHeight="0" overflow="auto">
             <Heading visuallyHidden size="small">
                 Oppfølging
             </Heading>
@@ -221,7 +221,7 @@ const OppfolgingPageContent = () => {
                 alerts={[...arbeidsoppfolgingErrorMessage, ...gjeldende14aVedtakErrorMessage, ...syfoErrorMessage]}
             />
             {!doubleErrors && (
-                <Card padding="4">
+                <Card padding="4" className="shadow-none">
                     <ErrorBoundary boundaryName="oppfolgingDetaljer">
                         <OppfolgingDetaljer />
                     </ErrorBoundary>

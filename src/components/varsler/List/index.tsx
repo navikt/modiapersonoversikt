@@ -9,7 +9,7 @@ import { useFilterVarsler } from './utils';
 
 export const VarslerList = () => (
     <ErrorBoundary boundaryName="VarslerList" errorText="Det oppstod en feil under visning av varsler liste">
-        <VStack height="100%" gap="2">
+        <VStack height="100%" gap="1">
             <VarslerListFilter />
             <VarslerListList />
         </VStack>
@@ -29,7 +29,7 @@ const VarslerListList = () => {
 
     if (!isLoading && !varsler.length) {
         return (
-            <Alert className="mr-2" variant="info" role="alert">
+            <Alert variant="info" role="alert">
                 Ingen varsler funnet
             </Alert>
         );

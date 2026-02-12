@@ -9,7 +9,7 @@ import { SakerFilter } from './Filter';
 
 export const SakerList = () => (
     <ErrorBoundary boundaryName="SakerList" errorText="Det oppstod en feil under visning av saker liste">
-        <VStack height="100%" gap="2">
+        <VStack height="100%" gap="1">
             <SakerFilter />
             <SakList />
         </VStack>
@@ -30,7 +30,7 @@ const SakList = () => {
 
     if (!isLoading && saker.length === 0) {
         return (
-            <Alert className="mr-2" variant="info" role="alert">
+            <Alert variant="info" role="alert">
                 Ingen saker funnet
             </Alert>
         );

@@ -10,7 +10,7 @@ import { useFilterMeldinger, useTraader } from './utils';
 
 export const TraadList = () => (
     <ErrorBoundary boundaryName="MeldingerList" errorText="Det oppstod en feil under visning av melding liste">
-        <VStack height="100%" gap="2">
+        <VStack height="100%" gap="1">
             <TraadListFilterCard />
             <Traader />
         </VStack>
@@ -32,7 +32,7 @@ const Traader = () => {
 
     if (!isLoading && filteredMeldinger.length === 0) {
         return (
-            <Alert variant="info" className="mr-2" role="alert">
+            <Alert variant="info" role="alert">
                 ingen dialoger funnet
             </Alert>
         );
@@ -41,7 +41,7 @@ const Traader = () => {
     return (
         <>
             {isLoading ? (
-                <VStack gap="2" marginInline="0 2">
+                <VStack gap="2">
                     {Array(8)
                         .keys()
                         .map((i) => (
