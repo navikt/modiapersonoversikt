@@ -160,7 +160,7 @@ export const UtbetalingListFilter = () => {
         }, 0);
     };
     return (
-        <Box.New marginInline="2 2" className={twMerge(open && 'max-h-full')}>
+        <Box.New className={twMerge(open && 'max-h-full')}>
             <ExpansionCard
                 onClick={handleExpansionChange}
                 ref={expansionFilterRef}

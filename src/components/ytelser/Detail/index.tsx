@@ -130,7 +130,7 @@ export const ValgteYtelseDetailPage = () => {
             errorText="Det oppstod en feil under visning av ytelse detailjer"
         >
             {isLoading ? (
-                <Skeleton variant="rectangle" className="mt-6" height="4rem" />
+                <Skeleton variant="rectangle" height="4rem" />
             ) : (
                 <VStack flexGrow="1" minHeight="0" maxHeight="100%" className="overflow-auto">
                     <YtelseDataDetails ytelser={ytelser} />

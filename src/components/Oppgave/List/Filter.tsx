@@ -110,7 +110,7 @@ export const OppgaveListFilter = () => {
         }, 0);
     };
     return (
-        <Box.New marginInline="2 2" maxHeight={open ? '100%' : {}}>
+        <Box.New maxHeight={open ? '100%' : {}}>
             <ExpansionCard
                 size="small"
                 aria-label="Filtrer oppgaver"

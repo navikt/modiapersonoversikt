@@ -265,7 +265,7 @@ const UtbetalingDetaljer = ({ utbetaling }: { utbetaling: Utbetaling }) => {
     const PrinterWrapper = printer.printerWrapper;
 
     return (
-        <Card padding="4" className="mt-4">
+        <Card padding="4" className="mt-2 shadow-none">
             <PrinterWrapper>
                 <HStack justify="space-between">
                     <Heading as="h4" size="small">
@@ -360,7 +360,7 @@ const UtbetalingerSammendrag = ({ utbetalinger, periode }: { utbetalinger: Utbet
     const PrinterWrapper = printer.printerWrapper;
 
     return (
-        <Card padding="4">
+        <Card padding="4" className="shadow-none">
             <PrinterWrapper>
                 <HStack justify="space-between">
                     <Heading as="h3" size="xsmall">
@@ -412,7 +412,7 @@ const UtbetalingDetail = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
 
     if (!selectedUtbetaling && id) {
         return (
-            <VStack flexGrow="1" minHeight="0" className="mt-6">
+            <VStack flexGrow="1" minHeight="0" className="mt-2">
                 <Alert variant="error">Utbetalingen du valgte, ble ikke funnet.</Alert>
             </VStack>
         );

@@ -40,7 +40,7 @@ export const PaginatedList = <T, KeyType extends string | number>({
 
     return (
         <VStack as={as ?? 'div'} gap="2" justify="space-between" flexGrow="1" minHeight="0" {...rest}>
-            <VStack as="ul" gap="2" padding="2" overflowY="auto">
+            <VStack as="ul" gap="2" paddingBlock="1" overflowY="auto">
                 {renderItems?.map((item) => (
                     <RenderComp item={item} key={keyExtractor(item)} />
                 ))}

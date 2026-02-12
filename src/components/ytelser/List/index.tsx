@@ -9,7 +9,7 @@ import { YtelserListFilter } from './Filter';
 
 export const YtelserList = () => (
     <ErrorBoundary boundaryName="YtelserList" errorText="Det oppstod en feil under visning av ytelser liste">
-        <VStack height="100%" gap="2">
+        <VStack height="100%" gap="1">
             <YtelserListFilter />
             <YtelseList />
         </VStack>
@@ -29,7 +29,7 @@ const YtelseList = () => {
 
     if (!isLoading && ytelser.length === 0) {
         return (
-            <Alert className="mr-2" variant="info" role="alert">
+            <Alert variant="info" role="alert">
                 Ingen ytelser funner
             </Alert>
         );

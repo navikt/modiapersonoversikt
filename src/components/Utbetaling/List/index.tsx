@@ -9,7 +9,7 @@ import { getUtbetalingId, useFilterUtbetalinger } from './utils';
 
 export const UtbetalingerList = () => (
     <ErrorBoundary boundaryName="UtbetalingerList" errorText="Det oppstod en feil under visning av utbetalinger liste">
-        <VStack height="100%" gap="2">
+        <VStack height="100%" gap="1">
             <UtbetalingListFilter />
             <UtbetalingList />
         </VStack>
@@ -30,7 +30,7 @@ const UtbetalingList = () => {
 
     if (!isLoading && utbetalinger.length === 0) {
         return (
-            <Alert className="mr-2" variant="info" role="alert">
+            <Alert variant="info" role="alert">
                 Ingen utbetalinger funnet
             </Alert>
         );

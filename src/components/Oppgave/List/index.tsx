@@ -9,7 +9,7 @@ import { getOppgaveId, useFilterOppgave } from './utils';
 
 export const OppgaverList = () => (
     <ErrorBoundary boundaryName="OppgaverList" errorText="Det oppstod en feil under visning av oppgave liste">
-        <VStack height="100%" gap="2">
+        <VStack height="100%" gap="1">
             <OppgaveListFilter />
             <OppgaveList />
         </VStack>
@@ -29,7 +29,7 @@ const OppgaveList = () => {
 
     if (!isLoading && !oppgaver.length) {
         return (
-            <Alert className="mr-2" variant="info" role="alert">
+            <Alert variant="info" role="alert">
                 Ingen oppgaver funnet
             </Alert>
         );
