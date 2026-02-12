@@ -1,14 +1,16 @@
 import { Box, HStack, Search, Switch, UNSAFE_Combobox } from '@navikt/ds-react';
-import { getRouteApi, useSearch } from '@tanstack/react-router';
-import { atom, useAtom, useSetAtom } from 'jotai';
-import { atomWithReset, RESET } from 'jotai/utils';
+import { getRouteApi } from '@tanstack/react-router';
+import dayjs from 'dayjs';
+import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { atomWithReset, RESET, useHydrateAtoms } from 'jotai/utils';
 import { debounce, xor } from 'lodash';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
 import { DateRangePickerWithDebounce } from 'src/components/DateFilters/DateRangePickerWithDebounce';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
 import { useTemaer } from 'src/components/saker/utils';
-import { usePersonAtomValue } from 'src/lib/state/context';
+import { aktivBrukerLastetAtom, usePersonAtomValue } from 'src/lib/state/context';
+import { dokumenterRouteMiddleware } from 'src/routes/new/person/dokumenter';
 import { filterType, trackFilterEndret } from 'src/utils/analytics';
 
 const routeApi = getRouteApi('/new/person/dokumenter');
@@ -73,6 +75,7 @@ const dokFilterVisAlleAtom = atom(
 const SaksIdSearchField = () => {
     const [internalValue, setInternalValue] = useState('');
     const [value, setValue] = useAtom(dokFilterSaksIdAtom);
+    const navigate = routeApi.useNavigate();
 
     useEffect(() => {
         setInternalValue(value ?? '');
@@ -80,6 +83,7 @@ const SaksIdSearchField = () => {
 
     const setValueOgTrackSok = (v: string) => {
         setValue(v);
+        navigate({ search: { saksid: v } });
         trackFilterEndret('dokumenter', filterType.SOK);
     };
 
@@ -101,21 +105,27 @@ const SaksIdSearchField = () => {
 
 const DateFilter = () => {
     const [value, setValue] = useAtom(dokFilterDateRangeAtom);
-    return <DateRangePickerWithDebounce dateRange={value} onRangeChange={(range) => setValue(range ?? null)} />;
+    const navigate = routeApi.useNavigate();
+
+    const onChange = (range?: DateRange) => {
+        setValue(range ?? null);
+        navigate({
+            search: { fra: range?.from.format('DD.MM.YYYY').toString(), til: range?.to.format('DD.MM.YYYY').toString() }
+        });
+    };
+    return <DateRangePickerWithDebounce dateRange={value} onRangeChange={onChange} />;
 };
 
 const TemaFilter = () => {
     const navigate = routeApi.useNavigate();
     const alleTemaer = useTemaer();
-    const query = useSearch({ strict: false });
-
     const [selectedTemaer, setSelectedTemaer] = useAtom(dokFilterTemaAtom);
 
     const onToggleSelected = useCallback(
         (option: string) => {
             setSelectedTemaer(option);
             trackFilterEndret('dokumenter', filterType.TEMA);
-            navigate({ search: { ...query, tema: selectedTemaer } });
+            navigate({ search: { tema: selectedTemaer } });
         },
         [selectedTemaer]
     );
@@ -138,6 +148,7 @@ const TemaFilter = () => {
 const ResetFilter = () => {
     const [filter, setFilter] = useAtom(dokumenterFilterAtom);
     const [isChecked, setChecked] = useAtom(dokFilterVisAlleAtom);
+    const navigate = routeApi.useNavigate();
 
     const datoErlik = filter.dateRange.from.isSame(defaultDate.from) && filter.dateRange.to.isSame(defaultDate.to);
     const isDirty = !filter.temaer.isEmpty() || filter.saksId !== '' || !datoErlik;
@@ -146,12 +157,13 @@ const ResetFilter = () => {
         if (isDirty && isChecked) {
             setChecked(false);
         }
-    }, [isDirty, isChecked, setChecked, filter]);
+    }, [isDirty, isChecked]);
 
     const setCheckedOgResetFilter = (checked: boolean) => {
         setChecked(checked);
         if (checked) {
             setFilter(RESET);
+            navigate({ search: { tema: [], saksid: '', fra: '', til: '' }, replace: true });
         }
     };
 
@@ -171,11 +183,37 @@ const ResetFilter = () => {
 
 export const DokumenterFilter = () => {
     const setFilter = useSetAtom(dokumenterFilterAtom);
+    const queries = routeApi.useSearch();
     const fnr = usePersonAtomValue();
+    const aktivBrukerLastet = useAtomValue(aktivBrukerLastetAtom);
+    const prevFnrRef = useRef<string | undefined>(undefined);
+
+    useHydrateAtoms([
+        [
+            dokumenterFilterAtom,
+            {
+                dateRange: {
+                    from: queries.fra ? dayjs(queries.fra, 'DD.MM.YYYY') : defaultDate.from,
+                    to: queries.til ? dayjs(queries.til, 'DD.MM.YYYY') : defaultDate.to
+                },
+                temaer: queries.tema ?? [],
+                saksId: queries.saksid ?? '',
+                visAlle: true
+            }
+        ]
+    ]);
 
     useEffect(() => {
-        setFilter(RESET);
-    }, [fnr]);
+        if (!aktivBrukerLastet) return;
+        const prev = prevFnrRef.current;
+        if (prev !== fnr) {
+            prevFnrRef.current = fnr;
+            if (prev !== undefined) {
+                setFilter(RESET);
+                dokumenterRouteMiddleware().clear();
+            }
+        }
+    }, [fnr, aktivBrukerLastet, setFilter]);
 
     return (
         <HStack gap="2" justify="start">
