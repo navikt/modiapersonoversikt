@@ -1,5 +1,5 @@
 import { createLazyFileRoute } from '@tanstack/react-router';
-import SaksDokumentEgetVindu from 'src/app/personside/infotabs/saksoversikt/SaksDokumentIEgetVindu';
+import DokumentEgetVindu from 'src/components/Dokumenter/DokmentEgetVindu';
 import WaitForUserLoaded from 'src/components/WaitForUserLoaded';
 
 export const Route = createLazyFileRoute('/new/dokument')({
@@ -7,5 +7,5 @@ export const Route = createLazyFileRoute('/new/dokument')({
 });
 
 function DokumentRoute() {
-    return <WaitForUserLoaded>{({ fnr }) => <SaksDokumentEgetVindu fnr={fnr} />}</WaitForUserLoaded>;
+    return <WaitForUserLoaded>{({ fnr }) => <DokumentEgetVindu fnr={fnr} />}</WaitForUserLoaded>;
 }
