@@ -106,6 +106,7 @@ export function useSettAktivBruker() {
             redirect &&
             ![
                 '/new/person',
+                paths.dokument,
                 paths.personUri,
                 paths.sakerFullscreen,
                 paths.saksdokumentEgetVindu,
