@@ -698,9 +698,9 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             ingress: null,
             beskrivelse: (
                 <>
-                    Oppdatering fra 13.januar er <span className="font-ax-bold">ikke</span> lenger gjeldene. Sykepenger
-                    fra Infotrygd vil fortsette å eksistere i Modia Personoversikt.
-                    <p className="mt-4">
+                    <p className="font-ax-bold my-2">Oppdatering fra 13.januar er ikke lenger gjeldende.</p>
+                    Sykepenger fra Infotrygd vil fortsette å eksistere i Modia Personoversikt.
+                    <p>
                         Det er ikke satt bestemt dato når dette skal fases ut, men sykepenger fra Infotrygd forblir i
                         hvert fall ut året. Vi jobber med å få inn vedtak frå Speil også, men datagrunnlaget fra Speil
                         vil være mer begrenset.
