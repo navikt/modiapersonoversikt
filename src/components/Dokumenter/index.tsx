@@ -14,20 +14,6 @@ export interface DokumenterSortState extends SortState {
 export const DokumenterPage = () => {
     const { errorMessages, isError, isLoading } = useFilterDokumenter();
 
-    if (isLoading) {
-        return (
-            <Card padding="4">
-                <VStack gap="2" marginInline="0 2">
-                    {Array(12)
-                        .keys()
-                        .map((i) => (
-                            <Skeleton key={i} variant="rectangle" height={68} />
-                        ))}
-                </VStack>
-            </Card>
-        );
-    }
-
     if (isError) {
         return <AlertBanner alerts={errorMessages} />;
     }
@@ -44,7 +30,17 @@ export const DokumenterPage = () => {
                     </HStack>
                     <VStack gap="4">
                         <DokumenterFilter />
-                        <DokumenterTabell />
+                        {isLoading ? (
+                            <VStack gap="2" marginInline="0 2">
+                                {Array(12)
+                                    .keys()
+                                    .map((i) => (
+                                        <Skeleton key={i} variant="rectangle" height={68} />
+                                    ))}
+                            </VStack>
+                        ) : (
+                            <DokumenterTabell />
+                        )}
                     </VStack>
                 </VStack>
             </Card>
