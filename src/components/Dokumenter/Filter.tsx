@@ -125,7 +125,7 @@ const TemaFilter = () => {
         (option: string) => {
             setSelectedTemaer(option);
             trackFilterEndret('dokumenter', filterType.TEMA);
-            navigate({ search: { tema: selectedTemaer } });
+            navigate({ search: { tema: selectedTemaer ? xor(selectedTemaer, [option]) : [option] } });
         },
         [selectedTemaer]
     );
