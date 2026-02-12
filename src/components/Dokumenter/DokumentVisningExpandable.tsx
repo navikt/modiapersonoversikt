@@ -47,7 +47,8 @@ const DokumentTab = ({
                         {value ? capitalize(value) : `Vedlegg ${index + 1}`}
                     </BodyShort>
                     <Link
-                        to="/dokument"
+                        to="/new/dokument"
+                        target="_blank"
                         data-umami-event={trackingEvents.detaljvisningKlikket}
                         data-umami-event-fane="dokumenter"
                         data-umami-event-tekst="åpnet dokument i ny fane"
@@ -55,7 +56,6 @@ const DokumentTab = ({
                             dokument: dokument.dokumentreferanse,
                             journalpost: journalpost.id
                         }}
-                        target="_blank"
                         className="typo-element align-middle pl-2"
                     >
                         <ExternalLinkIcon
