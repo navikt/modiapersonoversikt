@@ -3,9 +3,9 @@ import { PersonlinjeDetails } from 'src/components/PersonLinje/Details';
 
 function OversiktNy() {
     return (
-            <Card className="overflow-scroll">
-                <PersonlinjeDetails />
-            </Card>
+        <Card className="overflow-scroll">
+            <PersonlinjeDetails />
+        </Card>
     );
 }
 
