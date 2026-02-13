@@ -54,7 +54,7 @@ const DokumentTab = ({
                         data-umami-event-tekst="åpnet dokument i ny fane"
                         search={{
                             dokument: dokument.dokumentreferanse,
-                            journalpost: journalpost.id
+                            journalpost: journalpost.journalpostId
                         }}
                         className="typo-element align-middle pl-2"
                     >
@@ -98,7 +98,7 @@ export const DokumentVisningExpandable = ({
                     );
                 })}
             </Tabs.List>
-            <Box.New className="relative top-14">
+            <Box.New className="mt-12">
                 <DokumentTabInnhold value="hoveddokument" journalpost={journalpost} dokument={hovedDokument} />
                 {journalpost.vedlegg.map((vedlegg, i) => {
                     return (
