@@ -13,11 +13,11 @@ import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { trackVisDetaljvisning } from 'src/utils/analytics';
 import { capitalizeName, formaterDato } from 'src/utils/string-utils';
 
-export interface DokumenterSortState extends SortState {
+interface DokumenterSortState extends SortState {
     orderBy: keyof Dokumentmetadata;
 }
 
-export const avsenderMottaker = (
+const avsenderMottaker = (
     brukernavn: string,
     avsenderMottaker: DokumentmetadataAvsender | DokumentmetadataMottaker
 ) => {
