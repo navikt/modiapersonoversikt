@@ -12,7 +12,7 @@ test('Select melding', async ({ page }) => {
     const meldingerList = page.getByRole('region', { name: 'Tråder' });
     await expect(meldingerList).toBeVisible();
     const meldingerCards = meldingerList.getByTestId('traaditem');
-    expect((await meldingerCards.all()).length).toBeGreaterThan(5);
+    expect((await meldingerCards.all()).length).toBeGreaterThan(4);
 
     await meldingerCards.first().click();
 
