@@ -122,7 +122,7 @@ const YtelseDataDetails = ({ ytelser }: { ytelser: YtelseVedtak[] }) => {
         case YtelseVedtakYtelseType.SykepengerSpokelse:
             return <SykePengerSpokelseDetails ytelse={selectedYtelse.ytelseData.data as Utbetalingsperioder} />;
         default:
-            return <Alert variant="info">Ukjent ytelse type {selectedYtelse.ytelseType}</Alert>;
+            return <Alert variant="info">Ukjent ytelsestype {selectedYtelse.ytelseType}</Alert>;
     }
 };
 

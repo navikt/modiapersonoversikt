@@ -266,7 +266,7 @@ export function periodeEllerNull(periode?: CommonPeriode | null): string | null 
     if (!periode || !periode.fra) {
         return null;
     }
-    return `${formaterDato(periode.fra)} - ${periode.til ? formaterDato(periode.til) : ''}`;
+    return `${formaterDato(periode.fra)} – ${periode.til ? formaterDato(periode.til) : ''}`;
 }
 
 export const responseErrorMessage = (type: string) => ({
