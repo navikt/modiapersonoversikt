@@ -2,6 +2,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { TanStackRouterVite } from '@tanstack/router-plugin/vite';
 import react from '@vitejs/plugin-react';
+import fs from 'fs';
 import type { IndexHtmlTransform, Plugin } from 'vite';
 import vitePluginSvgr from 'vite-plugin-svgr';
 import { viteRequire } from 'vite-require';
@@ -41,6 +42,11 @@ const modiaFrontendCompat = (): {
         }
     };
 };
+
+let localConfig = {};
+if (fs.existsSync('./vite.config.local.ts')) {
+    localConfig = (await import('./vite.config.local.ts')).default;
+}
 
 export default defineConfig({
     base: process.env.VITE_APP_BASE_PATH || '/',
@@ -135,5 +141,6 @@ export default defineConfig({
                 classNameStrategy: 'non-scoped'
             }
         }
-    }
+    },
+    ...localConfig
 });
