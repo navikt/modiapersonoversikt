@@ -24,28 +24,33 @@ function PersonRoute() {
 
 function PersonLayout() {
     return (
-        <HStack className="new-modia" gap="1" padding="2" flexGrow="1" wrap={false}>
-            <VStack>
-                <PersonSidebarMenu />
+        <VStack className="new-modia h-dvh overflow-hidden">
+            <VStack className="shrink-0 px-1 mt-1 overflow-show">
+                <PersonLinje />
             </VStack>
-            <PanelGroup direction="horizontal" autoSaveId="person-content">
-                <Panel order={1} className="overflow-scroll">
-                    <Box as="main" id="main-content" height="100%">
-                        <VStack gap="1" height="100%">
-                            <PersonLinje />
-                            <Suspense>
-                                <Outlet />
-                            </Suspense>
-                        </VStack>
-                    </Box>
-                </Panel>
-                <PanelResizeHandle
-                    aria-hidden
-                    tabIndex={-1}
-                    className="hover:bg-ax-bg-neutral-moderate-hover w-1 focus:bg-ax-brand-blue-100"
-                />
-                <LukkbarNyMelding />
-            </PanelGroup>
-        </HStack>
+            <HStack minHeight="0" gap="1" padding="1" wrap={false} className="h-full">
+                <VStack>
+                    <PersonSidebarMenu />
+                </VStack>
+                <PanelGroup direction="horizontal" autoSaveId="person-content">
+                    <Panel order={1} className="overflow-scroll">
+                        <Box as="main" id="main-content" height="100%">
+                            <VStack gap="1" height="100%">
+                                <Suspense>
+                                    <Outlet />
+                                </Suspense>
+                            </VStack>
+                        </Box>
+                    </Panel>
+                    <PanelResizeHandle
+                        aria-hidden
+                        tabIndex={-1}
+                        className="hover:bg-ax-bg-neutral-moderate-hover w-1 focus:bg-ax-brand-blue-100"
+                    />
+                    <LukkbarNyMelding />
+                </PanelGroup>
+            </HStack>
+            <HStack className="h-14" />
+        </VStack>
     );
 }

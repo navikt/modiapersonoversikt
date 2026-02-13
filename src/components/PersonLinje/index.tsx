@@ -1,7 +1,5 @@
-import { ChevronDownIcon, ChevronUpIcon, FigureInwardIcon, FigureOutwardIcon } from '@navikt/aksel-icons';
-import { BodyShort, Box, Button, CopyButton, Heading, HStack, Skeleton, VStack } from '@navikt/ds-react';
-import { useLocation } from '@tanstack/react-router';
-import { useEffect, useState } from 'react';
+import { FigureInwardIcon, FigureOutwardIcon } from '@navikt/aksel-icons';
+import { BodyShort, Box, CopyButton, Heading, HStack, Skeleton, VStack } from '@navikt/ds-react';
 import { AlertBanner } from 'src/components/AlertBanner';
 import { erUbesvartHenvendelseFraBruker, useTraader } from 'src/components/Meldinger/List/utils';
 import { useFilterOppgave } from 'src/components/Oppgave/List/utils';
@@ -9,14 +7,10 @@ import Statsborgerskap from 'src/components/PersonLinje/Details/Familie/Statsbor
 import config from 'src/config';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { Kjonn, type KodeBeskrivelseKjonn } from 'src/lib/types/modiapersonoversikt-api';
-import { trackAccordionClosed, trackAccordionOpened } from 'src/utils/analytics';
 import useHotkey from 'src/utils/hooks/use-hotkey';
-import { useClickAway } from 'src/utils/hooks/useClickAway';
-import { twMerge } from 'tailwind-merge';
 import Card from '../Card';
 import ErrorBoundary from '../ErrorBoundary';
 import { PersonBadges } from './Badges';
-import { PersonlinjeDetails } from './Details';
 import { Sikkerhetstiltak } from './Sikkerhetstiltak';
 
 const ukjentKjonn: KodeBeskrivelseKjonn = {
@@ -38,7 +32,7 @@ export const PersonLinje = () => {
     );
 };
 
-const PersonlinjeHeader = ({ isExpanded }: { isExpanded: boolean }) => {
+const PersonlinjeHeader = () => {
     const { data } = usePersonData();
     const { data: traader } = useTraader();
     const { data: oppgaver } = useFilterOppgave();
@@ -124,50 +118,22 @@ const PersonlinjeHeader = ({ isExpanded }: { isExpanded: boolean }) => {
                     )}
                 </VStack>
             </HStack>
-            <VStack justify="center">
-                <Button
-                    className="grow-0"
-                    size="small"
-                    title={isExpanded ? 'Skjul personinformasjon' : 'Vis personinformasjon'}
-                    icon={isExpanded ? <ChevronUpIcon aria-hidden /> : <ChevronDownIcon aria-hidden />}
-                    variant="tertiary-neutral"
-                />
-            </VStack>
         </HStack>
     );
 };
 
 const PersonLinjeContent = () => {
-    const pathname = useLocation().pathname;
-    const erPaaOversikt = pathname.includes('oversikt');
-    const [isExpanded, setIsExpanded] = useState(erPaaOversikt);
-    const ref = useClickAway<HTMLDivElement>(() => setIsExpanded(isExpanded));
-
     const { data } = usePersonData();
     const person = data?.person;
 
     const lenkeNyBrukerprofil = config.isProd ? 'https://pdl-web.intern.nav.no' : 'https://pdl-web.intern.dev.nav.no';
 
-    useHotkey({ char: 'n', altKey: true }, () => setIsExpanded((v) => toggleExpand(!v)), [setIsExpanded], 'Visittkort');
     useHotkey(
         { char: 'b', altKey: true },
         () => window.open(lenkeNyBrukerprofil, '_blank', 'noopener noreferrer'),
         [lenkeNyBrukerprofil],
         'Visittkort'
     );
-
-    const toggleExpand = (expand: boolean) => {
-        if (expand) {
-            trackAccordionOpened('Visittkort');
-        } else {
-            trackAccordionClosed('Visittkort');
-        }
-        return expand;
-    };
-
-    useEffect(() => {
-        setIsExpanded(erPaaOversikt);
-    }, [erPaaOversikt]);
 
     if (!person) {
         return <></>;
@@ -176,30 +142,8 @@ const PersonLinjeContent = () => {
     return (
         <>
             <Sikkerhetstiltak sikkerhetstiltak={person.sikkerhetstiltak} />
-            <Card
-                aria-labelledby="personinformasjon-heading"
-                ref={ref}
-                as="section"
-                className={twMerge(
-                    'has-[:focus]:border-ax-border-neutral-strong',
-                    isExpanded ? 'h-full flex flex-col' : 'h-100 flex-0'
-                )}
-            >
-                <VStack
-                    onClick={() => setIsExpanded((v) => toggleExpand(!v))}
-                    className="hover:bg-ax-bg-neutral-moderate-hover cursor-pointer"
-                >
-                    <PersonlinjeHeader isExpanded={isExpanded} />
-                </VStack>
-                <Box
-                    className={twMerge(
-                        'border-t border-ax-border-neutral-subtle transition-all duration-75',
-                        isExpanded && 'flex-1 overflow-y-auto',
-                        !isExpanded && 'h-0 invisible overflow-hidden flex-0'
-                    )}
-                >
-                    <PersonlinjeDetails />
-                </Box>
+            <Card aria-labelledby="personinformasjon-heading" as="section">
+                <PersonlinjeHeader />
             </Card>
         </>
     );
