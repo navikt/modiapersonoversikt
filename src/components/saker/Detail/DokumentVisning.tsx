@@ -1,4 +1,4 @@
-import { Alert } from '@navikt/ds-react';
+import { Alert, VStack } from '@navikt/ds-react';
 import { useCallback, useState } from 'react';
 import { getMockableUrl } from 'src/app/personside/infotabs/saksoversikt/dokumentvisning/mockable-dokument-url';
 import { DokumentEmbeder } from 'src/components/saker/Detail/DokumentEmbeder ';
@@ -17,9 +17,9 @@ const DokumentVisning = ({ fnr, url }: { url: string; fnr: string }) => {
 
     return (
         <DokumentEmbeder url={urlV2} fnr={fnr} onError={onError}>
-            <Alert variant="warning" className={'my-4'}>
-                {errMsg}
-            </Alert>
+            <VStack align="stretch" width="100%">
+                <Alert variant="warning">{errMsg}</Alert>
+            </VStack>
         </DokumentEmbeder>
     );
 };

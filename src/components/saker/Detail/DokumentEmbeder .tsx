@@ -1,6 +1,6 @@
 import { BodyShort, HStack } from '@navikt/ds-react';
-import type * as React from 'react';
-import { type ReactNode, useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import type { ReactNode } from 'react';
 import { postConfig } from 'src/api/config';
 import { CenteredLazySpinner } from 'src/components/LazySpinner';
 
@@ -17,59 +17,38 @@ interface DokumentViewerProps
     children: ReactNode;
 }
 
-export const DokumentEmbeder = ({ url, fnr, onError, children }: DokumentViewerProps) => {
-    const [state, setState] = useState<{
-        blobUrl: string;
-        contentType: string;
-        isError: boolean;
-        isLoading: boolean;
-    }>({
-        blobUrl: '',
-        contentType: '',
-        isError: false,
-        isLoading: true
-    });
+const useDownloadDocument = (url: string, fnr: string, onError: (status: number) => void) => {
+    return useQuery({
+        queryKey: ['document-blob', url, fnr],
+        queryFn: async () => {
+            const response = await fetch(url, postConfig({ fnr }));
 
-    useEffect(() => {
-        let objectUrl = '';
-        const fetchFile = async () => {
-            try {
-                setState((prev) => ({ ...prev, isLoading: true }));
-
-                const response = await fetch(url, postConfig({ fnr }));
-                if (!response.ok) {
-                    setState({ blobUrl: '', contentType: '', isError: true, isLoading: false });
-                    onError(response.status);
-                    return;
-                }
-
-                const contentType = response.headers.get('Content-Type') || 'application/pdf';
-                const blob = await response.blob();
-                objectUrl = URL.createObjectURL(blob);
-
-                setState({ blobUrl: objectUrl, contentType, isError: false, isLoading: false });
-            } catch {
-                setState({ blobUrl: '', contentType: '', isError: true, isLoading: false });
-                onError(500);
+            if (!response.ok) {
+                onError(response.status);
+                return;
             }
-        };
 
-        fetchFile();
+            const contentType = response.headers.get('Content-Type') || 'application/pdf';
+            const blob = await response.blob();
+            const blobUrl = URL.createObjectURL(blob);
 
-        return () => {
-            window.URL.revokeObjectURL(objectUrl);
-        };
-    }, [url, fnr, onError]);
+            return { blobUrl, contentType };
+        }
+    });
+};
 
-    const { blobUrl, contentType, isError, isLoading } = state;
+export const DokumentEmbeder = ({ url, fnr, onError, children }: DokumentViewerProps) => {
+    const { data, isLoading, isError } = useDownloadDocument(url, fnr, onError);
 
     if (isLoading) {
         return <CenteredLazySpinner />;
     }
 
-    if (isError) {
+    if (isError || !data) {
         return <>{children}</>;
     }
+
+    const { blobUrl, contentType } = data;
 
     if (!canEmbedFileType(contentType)) {
         return (
