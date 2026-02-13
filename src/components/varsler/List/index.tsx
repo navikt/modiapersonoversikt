@@ -18,7 +18,7 @@ export const VarslerList = () => (
 
 const VarslerListList = () => {
     const { varsler, isLoading, isError } = useFilterVarsler();
-    const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
+    const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse(106);
 
     const selectedKey = useSearch({
         from: '/new/person/varsler',
