@@ -70,7 +70,7 @@ function getDokument(faker: Faker, navFaker: NavFaker): Dokument {
     return {
         tittel: faker.helpers.arrayElement(fakeDokumentNavn),
         dokumentreferanse: faker.string.alphanumeric(8),
-        kanVises: navFaker.random.vektetSjanse(0.9),
+        saksbehandlerHarTilgang: navFaker.random.vektetSjanse(0.9),
         logiskDokument: faker.datatype.boolean(),
         skjerming: navFaker.random.vektetSjanse(0.1) ? 'POL' : null,
         dokumentStatus: navFaker.random.vektetSjanse(0.1) ? DokumentStatus.KASSERT : null
