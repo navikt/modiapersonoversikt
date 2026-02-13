@@ -1,4 +1,4 @@
-import { type PeriodeDagpengerDto } from 'src/generated/modiapersonoversikt-api';
+import type { PeriodeDagpengerDto } from 'src/generated/modiapersonoversikt-api';
 
 /**
  * "Id Dato" = date formatted date string, used as an id

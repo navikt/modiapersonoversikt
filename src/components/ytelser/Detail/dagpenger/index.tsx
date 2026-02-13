@@ -2,7 +2,7 @@ import { Heading } from '@navikt/ds-react';
 import Card from 'src/components/Card';
 import { TitleValuePairsComponent } from 'src/components/ytelser/Detail';
 import { periodeEllerNull } from 'src/components/ytelser/utils';
-import { type PeriodeDagpengerDto } from 'src/generated/modiapersonoversikt-api';
+import type { PeriodeDagpengerDto } from 'src/generated/modiapersonoversikt-api';
 
 /* ugly hack for lack of a pretty name */
 function prettyYtelseType(ytelseType: string) {
@@ -15,7 +15,7 @@ function prettyYtelseType(ytelseType: string) {
         .replace(/\b./, (initial: string) => initial.toUpperCase());
 }
 
-export const PeriodeDagpengerDtoDetails = ({ ytelse }: { _: PeriodeDagpengerDto }) => {
+export const PeriodeDagpengerDtoDetails = ({ ytelse }: { ytelse: PeriodeDagpengerDto }) => {
     const per = periodeEllerNull({ fra: ytelse.fraOgMedDato, til: ytelse.tilOgMedDato });
     const entries = {
         Periode: per,

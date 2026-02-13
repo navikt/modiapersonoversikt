@@ -111,7 +111,7 @@ export function getYtelseIdDato(ytelse: YtelseVedtak): string {
         case YtelseVedtakYtelseType.ForeldrepengerFpSak:
             return getForeldrepengerFpSakIdDato(ytelse.ytelseData.data as ForeldrepengerFpSak);
         case YtelseVedtakYtelseType.PeriodeDagpengerDto:
-            return getPeriodeDagpengerDtoIdDato(ytelse.ytelseData.data as ForeldrepengerFpSak);
+            return getPeriodeDagpengerDtoIdDato(ytelse.ytelseData.data as PeriodeDagpengerDto);
         default:
             return '';
     }

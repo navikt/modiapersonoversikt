@@ -18,6 +18,7 @@ import type {
     Foreldrepenger,
     ForeldrepengerFpSak,
     PensjonSak,
+    PeriodeDagpengerDto,
     Pleiepenger,
     Sykepenger,
     Utbetalingsperioder,
