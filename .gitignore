@@ -40,3 +40,10 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 .secret
+
+# misc
+.*.sw?
+*.vim
+TAGS
+tags
+vite.config.local.ts
