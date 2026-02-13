@@ -19,7 +19,7 @@ export const SakerList = () => (
 const SakList = () => {
     const { data, isLoading, isError } = useFilterSaker();
     const saker = data?.saker ?? [];
-    const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
+    const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse(104);
 
     const selectedKey = useSearch({
         from: '/new/person/saker',
