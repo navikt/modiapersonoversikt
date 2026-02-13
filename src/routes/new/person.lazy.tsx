@@ -24,7 +24,7 @@ function PersonRoute() {
 
 function PersonLayout() {
     return (
-        <VStack className="new-modia h-dvh overflow-hidden">
+        <VStack className="new-modia h-dvh overflow-hidden" flexGrow="1">
             <VStack className="shrink-0 px-1 mt-1 overflow-show">
                 <PersonLinje />
             </VStack>
