@@ -4,6 +4,7 @@ import { useAtomValue } from 'jotai';
 import { useEffect, useRef } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { ArbeidsavklaringspengerDetails } from 'src/components/ytelser/Detail/arbeidsavklaringspenger';
+import { PeriodeDagpengerDtoDetails } from 'src/components/ytelser/Detail/dagpenger';
 import { ForeldrePengerDetails } from 'src/components/ytelser/Detail/foreldrepenger';
 import { ForeldrePengerFpSakDetails } from 'src/components/ytelser/Detail/foreldrepenger-fpsak';
 import { PensjonDetails } from 'src/components/ytelser/Detail/pensjon';
@@ -115,6 +116,8 @@ const YtelseDataDetails = ({ ytelser }: { ytelser: YtelseVedtak[] }) => {
             return <ArbeidsavklaringspengerDetails aap={selectedYtelse.ytelseData.data as Arbeidsavklaringspenger} />;
         case YtelseVedtakYtelseType.ForeldrepengerFpSak:
             return <ForeldrePengerFpSakDetails ytelse={selectedYtelse.ytelseData.data as ForeldrepengerFpSak} />;
+        case YtelseVedtakYtelseType.PeriodeDagpengerDto:
+            return <PeriodeDagpengerDtoDetails ytelse={selectedYtelse.ytelseData.data as PeriodeDagpengerDto} />;
         case YtelseVedtakYtelseType.SykepengerSpokelse:
             return <SykePengerSpokelseDetails ytelse={selectedYtelse.ytelseData.data as Utbetalingsperioder} />;
         default:
