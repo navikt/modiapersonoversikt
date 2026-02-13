@@ -1,4 +1,5 @@
 import { HStack, VStack } from '@navikt/ds-react';
+import Card from 'src/components/Card';
 import DodsdatoInfo from 'src/components/PersonLinje/Details/DodsdatoInfo';
 import Flytting from 'src/components/PersonLinje/Details/Flytting';
 import RettsligHandleevne from 'src/components/PersonLinje/Details/RettsligHandleevne';
@@ -15,26 +16,28 @@ import Vergemal from './Vergemal';
 
 export const PersonlinjeDetails = () => {
     return (
-        <HStack gap="4" justify="space-between" padding="4">
-            <VStack flexBasis="30%" flexGrow="1">
-                <DodsdatoInfo />
-                <KontaktInfo />
-                <Fullmakter />
-            </VStack>
-            <VStack flexBasis="30%" flexGrow="1">
-                <Familie />
-                <Foreldreansvar />
-                <DeltBosted />
-                <TilrettelagtKommunikasjon />
-                <Vergemal />
-                <RettsligHandleevne />
-            </VStack>
-            <VStack flexBasis="30%" flexGrow="1">
-                <NavKontor />
-                <Sikkerhetstiltak />
-                <Flytting />
-                <PdlLenke />
-            </VStack>
-        </HStack>
+        <Card className="overflow-auto">
+            <HStack gap="4" justify="space-between" padding="4">
+                <VStack flexBasis="30%" flexGrow="1">
+                    <DodsdatoInfo />
+                    <KontaktInfo />
+                    <Fullmakter />
+                </VStack>
+                <VStack flexBasis="30%" flexGrow="1">
+                    <Familie />
+                    <Foreldreansvar />
+                    <DeltBosted />
+                    <TilrettelagtKommunikasjon />
+                    <Vergemal />
+                    <RettsligHandleevne />
+                </VStack>
+                <VStack flexBasis="30%" flexGrow="1">
+                    <NavKontor />
+                    <Sikkerhetstiltak />
+                    <Flytting />
+                    <PdlLenke />
+                </VStack>
+            </HStack>
+        </Card>
     );
 };
