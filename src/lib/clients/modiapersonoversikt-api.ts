@@ -475,6 +475,13 @@ export const useForeldrepengerFpSak = (fom: string, tom: string) => {
     });
 };
 
+export const usePeriodeDagpengerDto = (fom: string, tom: string) => {
+    const fnr = usePersonAtomValue();
+    return $api.useQuery('post', '/rest/ytelse/dagpenger', {
+        body: { fnr, fom, tom }
+    });
+};
+
 export const useSykepengerSpokelse = (fom: string, tom: string) => {
     const { isOn } = useFeatureToggle(FeatureToggles.SpokelseSykepenger);
     const fnr = usePersonAtomValue();
