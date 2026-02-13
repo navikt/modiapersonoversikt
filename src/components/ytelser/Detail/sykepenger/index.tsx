@@ -63,7 +63,7 @@ const Sykepengertilfellet = ({ sykepenger }: { sykepenger: Sykepenger }) => {
     const sykepengeTilfelletEntries = getSykepengertilfelletEntries(sykepenger);
 
     return (
-        <Card padding="4">
+        <Card padding="4" className="shadow-none">
             <Heading as="h4" size="small">
                 Sykepengertilfellet
             </Heading>
@@ -79,7 +79,7 @@ const Arbeidssituasjon = ({ sykepenger }: { sykepenger: Sykepenger }) => {
     };
 
     return (
-        <Card padding="4">
+        <Card padding="4" className="shadow-none">
             <Heading as="h4" size="small">
                 Arbeidssituasjon
             </Heading>
@@ -129,7 +129,7 @@ const Sykemelding = ({ sykmelding }: { sykmelding: SykmeldingItem }) => {
     };
 
     return (
-        <Card padding="4">
+        <Card padding="4" className="shadow-none">
             <Heading as="h4" size="small">
                 Sykmelding
             </Heading>
@@ -145,7 +145,7 @@ export const SykepengerDetails = ({ sykepenger }: { sykepenger: Sykepenger }) =>
     )?.[0];
 
     return (
-        <VStack gap="2" minHeight="0">
+        <VStack gap="1" minHeight="0">
             <Sykepengertilfellet sykepenger={sykepenger} />
             {aktuellSykmelding && <Sykemelding sykmelding={aktuellSykmelding} />}
             <Arbeidssituasjon sykepenger={sykepenger} />
