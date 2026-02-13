@@ -121,18 +121,26 @@ export function useSettAktivBruker() {
     };
 }
 
-export function useAntallListeElementeBasertPaaSkjermStorrelse() {
-    const [antallListeElementer, setAntallListeElementer] = useState(
-        window.matchMedia('(max-width: 767px)').matches ? 5 : 10
-    );
+export function useAntallListeElementeBasertPaaSkjermStorrelse(itemHeight: number = 82) {
+    const calculatePageSize = useCallback(() => {
+        const filterHeight = 150;
+        const headerAndPadding = 100;
+        const reservedSpace = filterHeight + headerAndPadding;
+        const availableHeight = window.innerHeight - reservedSpace;
+        const calculatedSize = Math.floor(availableHeight / itemHeight);
+        return Math.max(5, Math.min(20, calculatedSize));
+    }, [itemHeight]);
+
+    const [pageSize, setPageSize] = useState(calculatePageSize);
 
     useEffect(() => {
-        const handler = () => {
-            setAntallListeElementer(window.matchMedia('(max-width: 767px)').matches ? 5 : 10);
+        const handleResize = () => {
+            setPageSize(calculatePageSize());
         };
-        window.addEventListener('resize', handler);
-        return () => window.removeEventListener('resize', handler);
-    }, []);
 
-    return antallListeElementer;
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [calculatePageSize]);
+
+    return pageSize;
 }
