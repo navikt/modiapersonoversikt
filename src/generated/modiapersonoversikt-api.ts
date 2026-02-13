@@ -116,6 +116,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    '/rest/ytelse/dagpenger': {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations['hentDagpenger'];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     '/rest/ytelse/arbeidsavklaringspenger': {
         parameters: {
             query?: never;
@@ -356,22 +372,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/oppfolging/sykefravaeroppfolging': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations['hentSykefravaerOppfolging'];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     '/rest/oppfolging/hent-gjeldende-14a-vedtak': {
         parameters: {
             query?: never;
@@ -382,22 +382,6 @@ export interface paths {
         get?: never;
         put?: never;
         post: operations['hentGjeldende14aVedtak'];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/oppfolging/arbeidsoppfolging': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations['hentArbeidsOppfolging'];
         delete?: never;
         options?: never;
         head?: never;
@@ -1226,6 +1210,14 @@ export interface components {
         ForeldrepengerResponse: {
             foreldrepenger?: components['schemas']['Foreldrepenger'][];
         };
+        PeriodeDagpengerDto: {
+            /** Format: date */
+            fraOgMedDato: string;
+            /** @enum {string} */
+            ytelseType: PeriodeDagpengerDtoYtelseType;
+            /** Format: date */
+            tilOgMedDato?: string;
+        };
         NonavaapapiinternPeriodeDTO: {
             /** Format: date */
             fraOgMedDato?: string;
@@ -1997,9 +1989,6 @@ export interface components {
         YtelseDTO: {
             type: string;
         };
-        SykefravaerOppfolgingDTO: {
-            sykefravaersoppfolging?: components['schemas']['SyfoPunktDTO'][];
-        };
         Gjeldende14aVedtak: {
             innsatsgruppe: components['schemas']['Innsatsgruppe'];
             hovedmal?: components['schemas']['Hovedmal'];
@@ -2016,13 +2005,6 @@ export interface components {
         Innsatsgruppe: {
             kode: string;
             beskrivelse: string;
-        };
-        ArbeidsOppfolgingDTO: {
-            oppfolging?: components['schemas']['OppfolgingDTO'];
-            meldeplikt?: boolean;
-            formidlingsgruppe?: string;
-            vedtaksdato?: string;
-            rettighetsgruppe?: string;
         };
         JournalforingSak: {
             fnr?: string;
@@ -2352,6 +2334,7 @@ export type ForeldrepengePeriode = components['schemas']['ForeldrepengePeriode']
 export type Foreldrepenger = components['schemas']['Foreldrepenger'];
 export type ForeldrepengerArbeidsforhold = components['schemas']['ForeldrepengerArbeidsforhold'];
 export type ForeldrepengerResponse = components['schemas']['ForeldrepengerResponse'];
+export type PeriodeDagpengerDto = components['schemas']['PeriodeDagpengerDto'];
 export type NonavaapapiinternPeriodeDto = components['schemas']['NonavaapapiinternPeriodeDTO'];
 export type NonavaapapiinternVedtakUtenUtbetalingDto =
     components['schemas']['NonavaapapiinternVedtakUtenUtbetalingDTO'];
@@ -2449,12 +2432,10 @@ export type OppfolgingsYtelseDto = components['schemas']['OppfolgingsYtelseDTO']
 export type SyfoPunktDto = components['schemas']['SyfoPunktDTO'];
 export type UtvidetOppfolgingDto = components['schemas']['UtvidetOppfolgingDTO'];
 export type YtelseDto = components['schemas']['YtelseDTO'];
-export type SykefravaerOppfolgingDto = components['schemas']['SykefravaerOppfolgingDTO'];
 export type Gjeldende14aVedtak = components['schemas']['Gjeldende14aVedtak'];
 export type Gjeldende14aVedtakResponse = components['schemas']['Gjeldende14aVedtakResponse'];
 export type Hovedmal = components['schemas']['Hovedmal'];
 export type Innsatsgruppe = components['schemas']['Innsatsgruppe'];
-export type ArbeidsOppfolgingDto = components['schemas']['ArbeidsOppfolgingDTO'];
 export type JournalforingSak = components['schemas']['JournalforingSak'];
 export type Resultat = components['schemas']['Resultat'];
 export type Criterion = components['schemas']['Criterion'];
@@ -2655,6 +2636,30 @@ export interface operations {
                 };
                 content: {
                     '*/*': components['schemas']['ForeldrepengerResponse'];
+                };
+            };
+        };
+    };
+    hentDagpenger: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                'application/json': components['schemas']['FnrDatoRangeRequest'];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    '*/*': components['schemas']['PeriodeDagpengerDto'][];
                 };
             };
         };
@@ -3054,33 +3059,6 @@ export interface operations {
             };
         };
     };
-    hentSykefravaerOppfolging: {
-        parameters: {
-            query?: {
-                startDato?: string;
-                sluttDato?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                'application/json': components['schemas']['FnrRequest'];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['SykefravaerOppfolgingDTO'];
-                };
-            };
-        };
-    };
     hentGjeldende14aVedtak: {
         parameters: {
             query?: never;
@@ -3101,33 +3079,6 @@ export interface operations {
                 };
                 content: {
                     '*/*': components['schemas']['Gjeldende14aVedtakResponse'];
-                };
-            };
-        };
-    };
-    hentArbeidsOppfolging: {
-        parameters: {
-            query?: {
-                startDato?: string;
-                sluttDato?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                'application/json': components['schemas']['FnrRequest'];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['ArbeidsOppfolgingDTO'];
                 };
             };
         };
@@ -3860,6 +3811,11 @@ export enum ForeldrepengerFpSakYtelse {
     ENGANGSST_NAD = 'ENGANGSST\u00D8NAD',
     FORELDREPENGER = 'FORELDREPENGER',
     SVANGERSKAPSPENGER = 'SVANGERSKAPSPENGER'
+}
+export enum PeriodeDagpengerDtoYtelseType {
+    DAGPENGER_ARBEIDSSOKER_ORDINAER = 'DAGPENGER_ARBEIDSSOKER_ORDINAER',
+    DAGPENGER_PERMITTERING_ORDINAER = 'DAGPENGER_PERMITTERING_ORDINAER',
+    DAGPENGER_PERMITTERING_FISKEINDUSTRI = 'DAGPENGER_PERMITTERING_FISKEINDUSTRI'
 }
 export enum DokumentDokumentStatus {
     UNDER_REDIGERING = 'UNDER_REDIGERING',
