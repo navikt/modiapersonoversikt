@@ -63,7 +63,7 @@ function ArbeidsForholdListe({
     };
 
     return (
-        <VStack gap="2">
+        <VStack gap="1">
             <Accordion size="small" headingSize="xsmall">
                 {arbeidsForholdList.map((arbeidsForhold, index) => {
                     return (
