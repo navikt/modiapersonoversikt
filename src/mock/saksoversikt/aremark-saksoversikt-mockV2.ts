@@ -26,7 +26,7 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
                     hoveddokument: {
                         tittel: 'Innhenting av opplysninger',
                         dokumentreferanse: '77tn8ir0',
-                        kanVises: true,
+                        saksbehandlerHarTilgang: true,
                         logiskDokument: false,
                         skjerming: null,
                         dokumentStatus: null
@@ -35,7 +35,7 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
                         {
                             tittel: 'A-inntekt',
                             dokumentreferanse: 'u87cu54s',
-                            kanVises: false,
+                            saksbehandlerHarTilgang: true,
                             logiskDokument: true,
                             skjerming: null,
                             dokumentStatus: null
@@ -43,7 +43,7 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
                         {
                             tittel: 'Spørsmål via nav.no',
                             dokumentreferanse: '1s9k5q9y',
-                            kanVises: true,
+                            saksbehandlerHarTilgang: true,
                             logiskDokument: true,
                             skjerming: null,
                             dokumentStatus: null
@@ -51,7 +51,7 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
                         {
                             tittel: 'Inntektsopplysninger',
                             dokumentreferanse: '113o8et1',
-                            kanVises: true,
+                            saksbehandlerHarTilgang: true,
                             logiskDokument: true,
                             skjerming: null,
                             dokumentStatus: null
@@ -78,7 +78,7 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
                     hoveddokument: {
                         tittel: 'Inntektsopplysninger',
                         dokumentreferanse: '15pdmh42',
-                        kanVises: true,
+                        saksbehandlerHarTilgang: true,
                         logiskDokument: false,
                         skjerming: null,
                         dokumentStatus: null
@@ -87,7 +87,7 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
                         {
                             tittel: 'A-inntekt',
                             dokumentreferanse: 'k51y90us',
-                            kanVises: true,
+                            saksbehandlerHarTilgang: true,
                             logiskDokument: false,
                             skjerming: null,
                             dokumentStatus: null
@@ -114,7 +114,7 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
                     hoveddokument: {
                         tittel: 'Inntektsopplysninger',
                         dokumentreferanse: null,
-                        kanVises: true,
+                        saksbehandlerHarTilgang: true,
                         logiskDokument: false,
                         skjerming: null,
                         dokumentStatus: null
@@ -123,7 +123,7 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
                         {
                             tittel: 'A-inntekt',
                             dokumentreferanse: null,
-                            kanVises: true,
+                            saksbehandlerHarTilgang: true,
                             logiskDokument: false,
                             skjerming: null,
                             dokumentStatus: null
@@ -150,7 +150,7 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
                     hoveddokument: {
                         tittel: 'Vurdering feilutbetaling/revurdering',
                         dokumentreferanse: '7rtstmj8',
-                        kanVises: true,
+                        saksbehandlerHarTilgang: true,
                         logiskDokument: true,
                         skjerming: null,
                         dokumentStatus: null
@@ -177,7 +177,7 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
                     hoveddokument: {
                         tittel: 'Innhenting av opplysninger',
                         dokumentreferanse: '5a2gc968',
-                        kanVises: true,
+                        saksbehandlerHarTilgang: true,
                         logiskDokument: true,
                         skjerming: null,
                         dokumentStatus: null
@@ -245,7 +245,7 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
                     hoveddokument: {
                         tittel: 'Spørsmål via nav.no',
                         dokumentreferanse: 'nvqxc1ip',
-                        kanVises: true,
+                        saksbehandlerHarTilgang: true,
                         logiskDokument: true,
                         skjerming: null,
                         dokumentStatus: null
@@ -272,7 +272,7 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
                     hoveddokument: {
                         tittel: 'Inntektsopplysninger',
                         dokumentreferanse: 'q90p8dnw',
-                        kanVises: true,
+                        saksbehandlerHarTilgang: true,
                         logiskDokument: false,
                         skjerming: null,
                         dokumentStatus: null
@@ -281,7 +281,7 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
                         {
                             tittel: 'A-inntekt',
                             dokumentreferanse: 'fbp2nc3l',
-                            kanVises: false,
+                            saksbehandlerHarTilgang: true,
                             logiskDokument: false,
                             skjerming: 'Skjerming',
                             dokumentStatus: null
@@ -289,7 +289,7 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
                         {
                             tittel: 'Referat fra samtale på telefon',
                             dokumentreferanse: 'x2njhynn',
-                            kanVises: true,
+                            saksbehandlerHarTilgang: true,
                             logiskDokument: false,
                             skjerming: null,
                             dokumentStatus: null
@@ -297,7 +297,7 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
                         {
                             tittel: 'Vedtak korrigert refusjon/u bet',
                             dokumentreferanse: 'prrweqli',
-                            kanVises: true,
+                            saksbehandlerHarTilgang: true,
                             logiskDokument: true,
                             skjerming: null,
                             dokumentStatus: null
@@ -324,7 +324,7 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
                     hoveddokument: {
                         tittel: 'Automatisk vedtak/nyfødt barn',
                         dokumentreferanse: 'me3wv1le',
-                        kanVises: true,
+                        saksbehandlerHarTilgang: true,
                         logiskDokument: false,
                         skjerming: null,
                         dokumentStatus: null
@@ -333,7 +333,7 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
                         {
                             tittel: 'A-inntekt',
                             dokumentreferanse: '2whugwip',
-                            kanVises: true,
+                            saksbehandlerHarTilgang: true,
                             logiskDokument: true,
                             skjerming: null,
                             dokumentStatus: DokumentStatus.KASSERT
@@ -360,7 +360,7 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
                     hoveddokument: {
                         tittel: 'Innhenting av opplysninger',
                         dokumentreferanse: 'mt1cssx0',
-                        kanVises: true,
+                        saksbehandlerHarTilgang: true,
                         logiskDokument: true,
                         skjerming: null,
                         dokumentStatus: null
@@ -412,7 +412,7 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
                     hoveddokument: {
                         tittel: 'Referat fra samtale på telefon',
                         dokumentreferanse: 'nnp1em30',
-                        kanVises: true,
+                        saksbehandlerHarTilgang: true,
                         logiskDokument: false,
                         skjerming: null,
                         dokumentStatus: null
@@ -496,7 +496,7 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
                     hoveddokument: {
                         tittel: 'Vurdering feilutbetaling/revurdering',
                         dokumentreferanse: 'bjol9s20',
-                        kanVises: true,
+                        saksbehandlerHarTilgang: true,
                         logiskDokument: true,
                         skjerming: null,
                         dokumentStatus: null
@@ -523,7 +523,7 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
                     hoveddokument: {
                         tittel: 'Spørsmål via nav.no',
                         dokumentreferanse: '113wxk3r',
-                        kanVises: true,
+                        saksbehandlerHarTilgang: true,
                         logiskDokument: false,
                         skjerming: null,
                         dokumentStatus: null
@@ -574,7 +574,7 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
                     hoveddokument: {
                         tittel: 'Spørsmål via nav.no',
                         dokumentreferanse: '4asiwin3',
-                        kanVises: false,
+                        saksbehandlerHarTilgang: true,
                         logiskDokument: false,
                         skjerming: 'POL',
                         dokumentStatus: DokumentStatus.KASSERT
@@ -583,7 +583,7 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
                         {
                             tittel: 'Spørsmål via nav.no',
                             dokumentreferanse: '428dwf43',
-                            kanVises: true,
+                            saksbehandlerHarTilgang: true,
                             logiskDokument: false,
                             skjerming: null,
                             dokumentStatus: null
@@ -591,7 +591,7 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
                         {
                             tittel: 'Innhenting av opplysninger',
                             dokumentreferanse: 'sw0rma45',
-                            kanVises: true,
+                            saksbehandlerHarTilgang: true,
                             logiskDokument: true,
                             skjerming: null,
                             dokumentStatus: null
@@ -599,7 +599,7 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
                         {
                             tittel: 'Spørsmål via nav.no',
                             dokumentreferanse: 'tdxt2vie',
-                            kanVises: true,
+                            saksbehandlerHarTilgang: true,
                             logiskDokument: true,
                             skjerming: null,
                             dokumentStatus: null
@@ -626,7 +626,7 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
                     hoveddokument: {
                         tittel: 'A-inntekt',
                         dokumentreferanse: 'gplzp0ho',
-                        kanVises: true,
+                        saksbehandlerHarTilgang: true,
                         logiskDokument: true,
                         skjerming: null,
                         dokumentStatus: null
@@ -653,7 +653,7 @@ export function getAremarkSakstemaListeV2(): SakstemaSoknadsstatus[] {
                     hoveddokument: {
                         tittel: 'Referat fra samtale på telefon',
                         dokumentreferanse: 'zochf067',
-                        kanVises: true,
+                        saksbehandlerHarTilgang: true,
                         logiskDokument: false,
                         skjerming: null,
                         dokumentStatus: null

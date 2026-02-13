@@ -54,7 +54,7 @@ const getPleiePengerRettenEntries = (pleiePenger: Pleiepenger) => {
 
 const PleiePengerRetten = ({ pleiePenger }: { pleiePenger: Pleiepenger }) => {
     return (
-        <Card padding="4">
+        <Card padding="4" className="shadow-none">
             <Heading as="h4" size="small">
                 Om pleiepengerrettighet
             </Heading>
@@ -120,7 +120,7 @@ const PleiePengerPerioder = ({ pleiePenger }: { pleiePenger: Pleiepenger }) => {
     const sortertePerioder = sorterPleiepengerPerioder(pleiePenger);
 
     return (
-        <Card padding="4">
+        <Card padding="4" className="shadow-none">
             <Heading as="h4" size="small">
                 Perioder
             </Heading>
@@ -146,7 +146,7 @@ const PleiePengerPerioder = ({ pleiePenger }: { pleiePenger: Pleiepenger }) => {
 const Arbeidssituasjon = ({ pleiePenger }: { pleiePenger: Pleiepenger }) => {
     const arbeidsforhold = getPleiepengerArbiedsforholdSortert(pleiePenger);
     return (
-        <Card padding="4">
+        <Card padding="4" className="shadow-none">
             <Heading as="h4" size="small">
                 Arbeidssituasjon
             </Heading>
@@ -157,7 +157,7 @@ const Arbeidssituasjon = ({ pleiePenger }: { pleiePenger: Pleiepenger }) => {
 
 export const PleiePengerDetails = ({ pleiePenger }: { pleiePenger: Pleiepenger }) => {
     return (
-        <VStack gap="2" minHeight="0">
+        <VStack gap="1" minHeight="0">
             <PleiePengerRetten pleiePenger={pleiePenger} />
             <PleiePengerPerioder pleiePenger={pleiePenger} />
             <Arbeidssituasjon pleiePenger={pleiePenger} />

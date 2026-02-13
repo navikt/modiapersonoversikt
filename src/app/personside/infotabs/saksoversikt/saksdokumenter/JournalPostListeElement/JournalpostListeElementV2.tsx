@@ -118,7 +118,7 @@ function JournalpostListeElementV2(props: Props) {
     const tittelId = useRef(guid());
 
     const dokumentKanVises = (dokument: Enkeltdokument, journalpost: Journalpost) => {
-        return dokument.kanVises && harTilgangTilJournalpost(journalpost);
+        return !dokument.logiskDokument && harTilgangTilJournalpost(journalpost);
     };
 
     const harTilgangTilJournalpost = (journalpost: Journalpost) => {

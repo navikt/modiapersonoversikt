@@ -18,7 +18,7 @@ const Arbeidsavklaringspenger = ({ aap }: { aap: Arbeidsavklaringspenger }) => {
     };
 
     return (
-        <Card padding="4">
+        <Card padding="4" className="shadow-none">
             <Heading as="h4" size="small">
                 Om arbeidsavklaringspenger
             </Heading>
@@ -36,7 +36,7 @@ const BarneTillegg = ({ aap }: { aap: Arbeidsavklaringspenger }) => {
     };
 
     return (
-        <Card padding="4">
+        <Card padding="4" className="shadow-none">
             <Heading as="h4" size="xsmall">
                 Barnetillegg
             </Heading>
@@ -47,7 +47,7 @@ const BarneTillegg = ({ aap }: { aap: Arbeidsavklaringspenger }) => {
 
 export const ArbeidsavklaringspengerDetails = ({ aap }: { aap: Arbeidsavklaringspenger }) => {
     return (
-        <VStack gap="2" minHeight="0">
+        <VStack gap="1" minHeight="0">
             <Arbeidsavklaringspenger aap={aap} />
             <BarneTillegg aap={aap} />
         </VStack>

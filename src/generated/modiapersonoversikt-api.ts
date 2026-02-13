@@ -1400,12 +1400,11 @@ export interface components {
         Dokument: {
             tittel: string;
             dokumentreferanse?: string;
-            kanVises: boolean;
             logiskDokument: boolean;
             skjerming?: string;
-            erKassert: boolean;
             /** @enum {string} */
             dokumentStatus?: DokumentDokumentStatus;
+            saksbehandlerHarTilgang: boolean;
         };
         Dokumentmetadata: {
             id: string;
@@ -1440,10 +1439,10 @@ export interface components {
         LocalDate: {
             /** Format: date */
             value?: string;
-            /** Format: int32 */
-            monthNumber: number;
             /** Format: date */
             value$kotlinx_datetime: string;
+            /** Format: int32 */
+            monthNumber: number;
             /** Format: int32 */
             year: number;
             /** Format: int32 */
@@ -1458,10 +1457,10 @@ export interface components {
         LocalDateTime: {
             /** Format: date-time */
             value?: string;
-            /** Format: int32 */
-            monthNumber: number;
             /** Format: date-time */
             value$kotlinx_datetime: string;
+            /** Format: int32 */
+            monthNumber: number;
             /** Format: int32 */
             nanosecond: number;
             time: components['schemas']['LocalTime'];
@@ -1530,6 +1529,7 @@ export interface components {
         };
         ResultatSaksDokumenter: {
             saker: components['schemas']['SaksDokumenter'][];
+            dokumenter: components['schemas']['Dokumentmetadata'][];
             temaer: components['schemas']['Sakstema'][];
             feilendeSystemer: ResultatSaksDokumenterFeilendeSystemer[];
         };
@@ -1939,7 +1939,7 @@ export interface components {
         } & (Omit<components['schemas']['YtelseDTO'], 'type'> & {
             type?: string;
             status?: string;
-            datoKravMottat?: string;
+            datoKravMottatt?: string;
             vedtak?: components['schemas']['OppfolgingYtelseVedtakDTO'][];
             fom?: string;
             tom?: string;
@@ -1968,7 +1968,7 @@ export interface components {
         } & (Omit<components['schemas']['YtelseDTO'], 'type'> & {
             type?: string;
             status?: string;
-            datoKravMottat?: string;
+            datoKravMottatt?: string;
             vedtak?: components['schemas']['OppfolgingYtelseVedtakDTO'][];
             fom?: string;
             tom?: string;

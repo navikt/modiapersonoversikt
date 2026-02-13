@@ -24,11 +24,11 @@ function PersonRoute() {
 
 function PersonLayout() {
     return (
-        <VStack className="new-modia h-dvh overflow-hidden" flexGrow="1">
-            <VStack className="shrink-0 px-1 mt-1 overflow-auto">
+        <VStack className="new-modia  overflow-hidden" flexGrow="1" gap="1">
+            <VStack className="shrink-0 overflow-auto">
                 <PersonLinje />
             </VStack>
-            <HStack minHeight="0" gap="1" padding="1" wrap={false} className="h-full">
+            <HStack minHeight="0" gap="1" wrap={false} className="h-full">
                 <VStack>
                     <PersonSidebarMenu />
                 </VStack>
@@ -50,7 +50,6 @@ function PersonLayout() {
                     <LukkbarNyMelding />
                 </PanelGroup>
             </HStack>
-            <HStack className="h-14" />
         </VStack>
     );
 }

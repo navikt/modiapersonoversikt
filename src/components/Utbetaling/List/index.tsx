@@ -19,7 +19,7 @@ export const UtbetalingerList = () => (
 const UtbetalingList = () => {
     const { data, isLoading, isError } = useFilterUtbetalinger();
     const utbetalinger = data?.utbetalinger ?? [];
-    const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
+    const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse(102);
 
     const selectedKey = useSearch({
         from: '/new/person/utbetaling',
