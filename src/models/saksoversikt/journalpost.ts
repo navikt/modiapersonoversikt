@@ -57,10 +57,10 @@ export interface FeilWrapper {
 export interface Dokument {
     tittel: string;
     dokumentreferanse: string | null;
-    kanVises: boolean;
     logiskDokument: boolean;
     skjerming: string | null;
     dokumentStatus: DokumentStatus | null;
+    saksbehandlerHarTilgang: boolean;
 }
 
 export enum DokumentStatus {

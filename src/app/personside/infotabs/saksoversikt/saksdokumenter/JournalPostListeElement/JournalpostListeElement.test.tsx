@@ -54,12 +54,12 @@ describe('JournalpostListeElementV2', () => {
             feil: { inneholderFeil: false, feilmelding: null },
             hoveddokument: {
                 ...hoveddokument,
-                kanVises: false
+                saksbehandlerHarTilgang: false
             },
             vedlegg: [
                 {
                     ...vedlegg,
-                    kanVises: false
+                    saksbehandlerHarTilgang: false
                 }
             ]
         });
