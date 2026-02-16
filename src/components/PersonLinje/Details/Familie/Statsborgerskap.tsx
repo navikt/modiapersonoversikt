@@ -1,4 +1,5 @@
-import { BodyShort } from '@navikt/ds-react';
+import { EarthIcon } from '@navikt/aksel-icons';
+import { BodyShort, HStack } from '@navikt/ds-react';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { capitalizeName } from 'src/utils/string-utils';
 
@@ -26,7 +27,8 @@ const Statsborgerskap = () => {
     );
 
     return (
-        <>
+        <HStack gap="1">
+            <EarthIcon color="--ax-text-neutral" fontSize="1.2rem" />
             {statsborgerskap.length > 1 ? (
                 <BodyShort title="Statsborgerskap" size="small">
                     Flere statsborgerskap: {statsborgerskap.join(', ')}
@@ -36,7 +38,7 @@ const Statsborgerskap = () => {
                     Statsborgerskap: {statsborgerskap}
                 </BodyShort>
             )}
-        </>
+        </HStack>
     );
 };
 
