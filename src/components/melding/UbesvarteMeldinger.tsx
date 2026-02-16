@@ -13,7 +13,7 @@ export const UbesvarteMeldinger = () => {
 
     return (
         <aside aria-label="Ubesvarte henvendelser">
-            <Alert variant="warning" size="small" className="mt-1">
+            <Alert variant="warning" size="small">
                 Brukeren har {antallUbesvarteTraader}{' '}
                 {antallUbesvarteTraader > 1 ? 'ubesvarte henvendelser' : 'ubesvart henvendelse'}
             </Alert>
