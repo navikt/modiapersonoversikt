@@ -8,6 +8,7 @@ import config from 'src/config';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { Kjonn, type KodeBeskrivelseKjonn } from 'src/lib/types/modiapersonoversikt-api';
 import useHotkey from 'src/utils/hooks/use-hotkey';
+import { formaterMobiltelefonnummer } from 'src/utils/telefon-utils';
 import Card from '../Card';
 import ErrorBoundary from '../ErrorBoundary';
 import { PersonBadges } from './Badges';
@@ -77,7 +78,7 @@ const PersonlinjeHeader = () => {
                     )}
                 </Box.New>
                 <VStack gap="2" className="pt-1.5">
-                    <HStack gap="2" align="center">
+                    <HStack gap="12" align="center" wrap={false}>
                         <Personalia
                             navn={navn ? `${navn.fornavn} ${navn.mellomnavn ?? ''} ${navn.etternavn}` : 'UKJENT'}
                             kjonn={kjonn}
@@ -85,29 +86,31 @@ const PersonlinjeHeader = () => {
                             erDod={erDod}
                             farge={farge}
                         />
-                        <HStack className="cursor-[initial]" onClick={(e) => e.stopPropagation()}>
-                            <CopyButton
-                                aria-label={`Kopier f.nr: ${data.person.personIdent}`}
-                                size="xsmall"
-                                className="p-0"
-                                copyText={data.person.personIdent}
-                                activeText="Kopiert f.nr"
-                                text={`F.nr: ${data.person.personIdent}`}
-                            />
-                        </HStack>
-                        {data.person.kontaktInformasjon.mobil?.value && (
-                            <HStack align="center" className="cursor-[initial]" onClick={(e) => e.stopPropagation()}>
+                        <HStack gap="4">
+                            <Statsborgerskap />
+                            <HStack className="cursor-[initial]" onClick={(e) => e.stopPropagation()}>
                                 <CopyButton
-                                    className="p-0"
-                                    activeText="Kopiert tlf.nr"
-                                    aria-label={`Kopier tlf.nr: ${data.person.kontaktInformasjon.mobil.value}`}
-                                    text={`Tlf.nr: ${data.person.kontaktInformasjon.mobil.value}`}
+                                    aria-label={`Kopier f.nr: ${`${person.personIdent.slice(0, 6)} ${person.personIdent.slice(6)}`}`}
                                     size="xsmall"
-                                    copyText={data.person.kontaktInformasjon.mobil.value}
+                                    className="p-0"
+                                    copyText={data.person.personIdent}
+                                    activeText="Kopiert f.nr"
+                                    text={`F.nr: ${`${person.personIdent.slice(0, 6)} ${person.personIdent.slice(6)}`}`}
                                 />
                             </HStack>
-                        )}
-                        <Statsborgerskap />
+                            {data.person.kontaktInformasjon.mobil?.value && (
+                                <HStack className="cursor-[initial]" onClick={(e) => e.stopPropagation()}>
+                                    <CopyButton
+                                        className="p-0"
+                                        activeText="Kopiert tlf.nr"
+                                        aria-label={`Kopier tlf.nr: ${formaterMobiltelefonnummer(data.person.kontaktInformasjon.mobil.value ?? '')}`}
+                                        text={`Tlf: ${formaterMobiltelefonnummer(data.person.kontaktInformasjon.mobil?.value ?? '')}`}
+                                        size="xsmall"
+                                        copyText={data.person.kontaktInformasjon.mobil.value}
+                                    />
+                                </HStack>
+                            )}
+                        </HStack>
                     </HStack>
                     <PersonBadges />
                     {oppgaver.length > 0 && (
