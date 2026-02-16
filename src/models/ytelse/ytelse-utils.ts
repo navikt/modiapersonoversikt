@@ -72,7 +72,8 @@ export function isArbeidsavklaringspenger(ytelse: Ytelse): ytelse is Arbeidsavkl
 export function isForeldrePengerFpSak(ytelse: Ytelse): ytelse is ForeldrepengerFpSak {
     return 'ytelse' in ytelse;
 }
-export function isPeriodeDagpengerDto(ytelse: Ytelse): ytelse is PeriodeDagpengerDto {
+// only used here, not imported in old modia
+function isPeriodeDagpengerDto(ytelse: Ytelse): ytelse is PeriodeDagpengerDto {
     return 'ytelseType' in ytelse; // this one is unique... right now
 }
 
