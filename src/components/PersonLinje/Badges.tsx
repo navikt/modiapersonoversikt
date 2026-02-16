@@ -39,7 +39,7 @@ function DiskresjonskodeBadges({ adressebeskyttelser }: { adressebeskyttelser: P
         return null;
     }
     return (
-        <Tag variant="error" size="small">
+        <Tag variant="error-moderate" size="small">
             {adressebeskyttelse?.beskrivelse}
         </Tag>
     );
@@ -48,7 +48,7 @@ function DiskresjonskodeBadges({ adressebeskyttelser }: { adressebeskyttelser: P
 function EgenAnsattBadge({ erEgenansatt }: { erEgenansatt: PersonData['erEgenAnsatt'] }) {
     if (erEgenansatt === 'JA') {
         return (
-            <Tag size="small" variant="error">
+            <Tag size="small" variant="error-moderate">
                 Egen ansatt
             </Tag>
         );
@@ -62,7 +62,7 @@ function SikkerhetstiltakBadge({ sikkerhetstiltak }: { sikkerhetstiltak: PersonD
     }
 
     return (
-        <Tag size="small" variant="error">
+        <Tag size="small" variant="error-moderate">
             Sikkerhetstiltak
         </Tag>
     );
@@ -71,14 +71,14 @@ function SikkerhetstiltakBadge({ sikkerhetstiltak }: { sikkerhetstiltak: PersonD
 function ReservertIKRRBadge({ kontaktInfo }: { kontaktInfo: PersonData['kontaktInformasjon'] }) {
     if (kontaktInfo?.erReservert?.value) {
         return (
-            <Tag size="small" variant="warning">
+            <Tag size="small" variant="warning-moderate">
                 Reservert i KRR
             </Tag>
         );
     }
     if (kontaktInfo && !kontaktInfo.epost?.value && !kontaktInfo.mobil?.value) {
         return (
-            <Tag size="small" variant="warning">
+            <Tag size="small" variant="warning-moderate">
                 Ikke registrert i KRR
             </Tag>
         );
@@ -91,7 +91,7 @@ function ManuellStatusBadge({ kontaktInfo }: { kontaktInfo: PersonData['kontaktI
 
     if (erManuell) {
         return (
-            <Tag size="small" variant="info">
+            <Tag size="small" variant="info-moderate">
                 Manuell oppfølging
             </Tag>
         );
@@ -105,7 +105,7 @@ function VergemalBadge({ vergemal }: { vergemal: PersonData['vergemal'] }) {
     }
 
     return (
-        <Tag size="small" variant="info">
+        <Tag size="small" variant="info-moderate">
             Vergemål
         </Tag>
     );
@@ -117,12 +117,12 @@ function TilrettelagtKommunikasjonsBadge({
     tilrettelagtKommunikasjon: PersonData['tilrettelagtKommunikasjon'];
 }) {
     const talesprakEtikett = !tilrettelagtKommunikasjon.talesprak.isEmpty() ? (
-        <Tag size="small" variant="info">
+        <Tag size="small" variant="info-moderate">
             Talespråktolk
         </Tag>
     ) : null;
     const tegnsprakEtikett = !tilrettelagtKommunikasjon.tegnsprak.isEmpty() ? (
-        <Tag size="small" variant="info">
+        <Tag size="small" variant="info-moderate">
             Tegnspråktolk
         </Tag>
     ) : null;
@@ -141,7 +141,7 @@ function DodBadge({ dodsdato }: { dodsdato: PersonData['dodsdato'] }) {
     }
 
     return (
-        <Tag size="small" variant="error">
+        <Tag size="small" variant="error-moderate">
             Død
         </Tag>
     );
@@ -153,7 +153,7 @@ function DodsboBadge({ dodsbo }: { dodsbo: PersonData['dodsbo'] }) {
     }
 
     return (
-        <Tag size="small" variant="info">
+        <Tag size="small" variant="info-moderate">
             Dødsbo
         </Tag>
     );
@@ -165,7 +165,7 @@ function FullmaktBadge({ fullmakt }: { fullmakt: PersonData['fullmakt'] }) {
     }
 
     return (
-        <Tag size="small" variant="info">
+        <Tag size="small" variant="info-moderate">
             Fullmakt
         </Tag>
     );
