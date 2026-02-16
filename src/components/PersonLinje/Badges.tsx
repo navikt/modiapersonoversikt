@@ -7,7 +7,7 @@ export const PersonBadges = () => {
     const person = data?.person;
 
     if (!person) {
-        return <></>;
+        return null;
     }
 
     return (
