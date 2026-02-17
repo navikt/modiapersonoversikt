@@ -30,12 +30,12 @@ const Statsborgerskap = () => {
         <HStack gap="1">
             <EarthIcon color="--ax-text-neutral" fontSize="1.2rem" />
             {statsborgerskap.length > 1 ? (
-                <BodyShort title="Statsborgerskap" size="small">
-                    Flere statsborgerskap: {statsborgerskap.join(', ')}
+                <BodyShort title="Flere statsborgerskap:" size="small">
+                    {statsborgerskap.join(', ')}
                 </BodyShort>
             ) : (
-                <BodyShort title="Statsborgerskap" size="small">
-                    Statsborgerskap: {statsborgerskap}
+                <BodyShort title="Statsborgerskap:" size="small">
+                    {statsborgerskap}
                 </BodyShort>
             )}
         </HStack>

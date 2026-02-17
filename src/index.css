@@ -34,3 +34,7 @@
 .aksel-pagination--invisible {
     visibility: visible;
 }
+
+.aksel-copybutton .aksel-label{
+    font-weight: var(--ax-font-weight-regular);
+}
