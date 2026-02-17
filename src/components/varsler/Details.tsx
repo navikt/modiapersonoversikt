@@ -1,4 +1,4 @@
-import { BodyLong, ErrorMessage, Heading, HStack, VStack } from '@navikt/ds-react';
+import { BodyShort, ErrorMessage, HStack, VStack } from '@navikt/ds-react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import type { VarselData } from 'src/components/varsler/List/utils';
@@ -15,9 +15,9 @@ const FeilteVarslingerListe = ({
     return (
         <HStack gap="1">
             <HStack width="8rem">
-                <BodyLong size="medium" weight="semibold">
+                <BodyShort size="small" weight="regular">
                     {tittel}
-                </BodyLong>
+                </BodyShort>
             </HStack>
             {feilteVarslinger.map((varsling) => (
                 <div key={`${varsling.tidspunkt} - ${varsling.kanal}`}>
@@ -34,11 +34,13 @@ const DittNavInformasjonsLinje = ({ tittel, tekst }: { tittel: string; tekst: st
     return (
         <HStack gap="1">
             <HStack width="8rem">
-                <BodyLong size="medium" weight="semibold">
+                <BodyShort size="small" weight="regular">
                     {tittel}
-                </BodyLong>
+                </BodyShort>
             </HStack>
-            <BodyLong>{tekst}</BodyLong>
+            <BodyShort size="small" weight="regular">
+                {tekst}
+            </BodyShort>
         </HStack>
     );
 };
@@ -46,9 +48,9 @@ const DittNavInformasjonsLinje = ({ tittel, tekst }: { tittel: string; tekst: st
 const DittNavInformasjonsLinjer = ({ varsel, kanaler }: { varsel: Varsel; kanaler: string[] }) => {
     return (
         <VStack gap="1" className="p-2">
-            <Heading level="3" size="xsmall" className="mb-4">
+            <BodyShort size="medium" className="mb-4">
                 {varsel.tekst}
-            </Heading>
+            </BodyShort>
             <DittNavInformasjonsLinje tittel="Produsert av:" tekst={emptyReplacement(varsel.produsent, ENDASH)} />
             <DittNavInformasjonsLinje tittel="Kanaler:" tekst={emptyReplacement(kanaler?.join(', '), ENDASH)} />
         </VStack>
@@ -58,6 +60,7 @@ const DittNavInformasjonsLinjer = ({ varsel, kanaler }: { varsel: Varsel; kanale
 const DittNavInformasjonsLinjerV2 = ({ varsel, kanaler }: { varsel: Varsel; kanaler: string[] }) => {
     const varslingsTidspunkt = varsel.varslingsTidspunkt;
 
+    const hasErrors = varslingsTidspunkt?.harFeilteVarslinger || varslingsTidspunkt?.harFeilteRevarslinger;
     return (
         <>
             <DittNavInformasjonsLinjer varsel={varsel} kanaler={kanaler} />
@@ -78,6 +81,7 @@ const DittNavInformasjonsLinjerV2 = ({ varsel, kanaler }: { varsel: Varsel; kana
                         )} - ${varslingsTidspunkt.renotifikasjonsKanaler.join(', ')}`}
                     />
                 )}
+                {hasErrors && <div className="my-2 border border-ax-border-neutral-subtle" />}
                 {varslingsTidspunkt?.harFeilteVarslinger && (
                     <FeilteVarslingerListe
                         tittel="Varslingsfeil: "

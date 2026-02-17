@@ -2,6 +2,7 @@ import { errorPlaceholder, responseErrorMessage } from 'src/components/ytelser/u
 import { useVarslerData } from 'src/lib/clients/modiapersonoversikt-api';
 import type { Varsel } from 'src/lib/types/modiapersonoversikt-api';
 import { datoSynkende } from 'src/utils/date-utils';
+import { ENDASH, emptyReplacement } from 'src/utils/string-utils';
 
 export interface VarselData {
     eventId: string;
@@ -9,6 +10,7 @@ export interface VarselData {
     kanaler: string[];
     sisteDato: string;
     tittel: string;
+    produsent: string;
     harFeilteVarsel?: boolean;
     erVarslerV2: boolean;
     event: Varsel;
@@ -47,10 +49,11 @@ const dataExtractor = (varsel: Varsel): VarselData => {
     const aktiv = varsel.aktiv ? '' : ' (Ferdigstilt)';
     const tittel = `Notifikasjon${aktiv}: ${varsel.tekst}`;
     const eventId = varsel.eventId;
+    const produsent = emptyReplacement(varsel.produsent, ENDASH);
     if (!varslingsTidspunkt || !varslingsTidspunkt.tidspunkt) {
         const datoer = [varsel.forstBehandlet];
         const kanaler = ['DITT_NAV', ...varsel.eksternVarslingKanaler];
-        return { eventId, datoer, kanaler, tittel, sisteDato: datoer[0], erVarslerV2: false, event: varsel };
+        return { eventId, datoer, kanaler, tittel, produsent, sisteDato: datoer[0], erVarslerV2: false, event: varsel };
     }
 
     const datoer = [varslingsTidspunkt.tidspunkt];
@@ -70,6 +73,7 @@ const dataExtractor = (varsel: Varsel): VarselData => {
         datoer,
         kanaler,
         tittel,
+        produsent,
         sisteDato: datoer[0],
         harFeilteVarsel,
         erVarslerV2: true,

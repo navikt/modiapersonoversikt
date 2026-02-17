@@ -1,16 +1,5 @@
-import { ArrowForwardIcon, CheckmarkCircleIcon, ExclamationmarkTriangleIcon, LinkIcon } from '@navikt/aksel-icons';
-import {
-    Alert,
-    BodyLong,
-    CopyButton,
-    Heading,
-    Pagination,
-    Skeleton,
-    type SortState,
-    Table,
-    Tag,
-    VStack
-} from '@navikt/ds-react';
+import { CheckmarkCircleIcon, ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
+import { Alert, BodyLong, Heading, Pagination, Skeleton, type SortState, Table, Tag, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import Card from 'src/components/Card';
 import { VarselDetail } from 'src/components/varsler/Details';
@@ -20,30 +9,16 @@ import { useFilterVarsler, type VarselData } from './utils';
 const Status = ({ varsel }: { varsel: VarselData }) => {
     if (varsel.harFeilteVarsel) {
         return (
-            <Tag title="Varsling feilet" variant="error-moderate" size="xsmall">
-                <ExclamationmarkTriangleIcon aria-hidden />
+            <Tag title="Varsling feilet" variant="error-moderate" size="small">
+                <ExclamationmarkTriangleIcon aria-hidden /> Varsling feilet
             </Tag>
         );
     }
     return (
         <Tag title="Varsling vellykket" variant="success-moderate" size="small">
-            <CheckmarkCircleIcon aria-hidden />
+            <CheckmarkCircleIcon aria-hidden /> Varsling vellykket
         </Tag>
     );
-};
-
-const Renotifikasjon = ({ varsel }: { varsel: VarselData }) => {
-    const varslingsTidspunkt = varsel.event.varslingsTidspunkt;
-
-    if (varslingsTidspunkt?.renotifikasjonTidspunkt) {
-        return (
-            <Tag title="Revarsling sendt" variant="error-moderate" size="small">
-                <ArrowForwardIcon aria-hidden />
-                Revarslet
-            </Tag>
-        );
-    }
-    return;
 };
 
 export const VarslerListe = () => {
@@ -105,15 +80,17 @@ export const VarslerListe = () => {
                 <Table zebraStripes={true} sort={sort} onSortChange={handleSort} size="small">
                     <Table.Header>
                         <Table.Row>
-                            <Table.HeaderCell scope="col">Varsel</Table.HeaderCell>
+                            <Table.ColumnHeader sortKey="tittel" sortable scope="col">
+                                Varsel
+                            </Table.ColumnHeader>
                             <Table.ColumnHeader sortKey="sisteDato" sortable scope="col">
                                 Sendt
                             </Table.ColumnHeader>
-                            <Table.HeaderCell scope="col">Produsert av</Table.HeaderCell>
+                            <Table.ColumnHeader sortKey="produsent" sortable scope="col">
+                                Produsert av
+                            </Table.ColumnHeader>
                             <Table.HeaderCell scope="col">Kanal</Table.HeaderCell>
                             <Table.HeaderCell scope="col">Status</Table.HeaderCell>
-                            <Table.HeaderCell scope="col" />
-                            <Table.HeaderCell scope="col" />
                             <Table.HeaderCell scope="col" />
                         </Table.Row>
                     </Table.Header>
@@ -128,23 +105,12 @@ export const VarslerListe = () => {
                                 >
                                     <Table.DataCell>{varsel.tittel}</Table.DataCell>
                                     <Table.DataCell>{formaterDato(varsel.sisteDato)}</Table.DataCell>
-                                    <Table.DataCell>{emptyReplacement(varsel.event.produsent, ENDASH)}</Table.DataCell>
+                                    <Table.DataCell>{varsel.produsent}</Table.DataCell>
                                     <Table.DataCell>
                                         {emptyReplacement(varsel.kanaler?.join(', '), ENDASH)}
                                     </Table.DataCell>
                                     <Table.DataCell>
                                         <Status varsel={varsel} />
-                                    </Table.DataCell>
-                                    <Table.DataCell>
-                                        <Renotifikasjon varsel={varsel} />
-                                    </Table.DataCell>
-                                    <Table.DataCell>
-                                        <CopyButton
-                                            copyText={emptyReplacement(varsel.event.link, ENDASH)}
-                                            text="Kopier lenke"
-                                            activeText="Lenken er kopiert"
-                                            icon={<LinkIcon aria-hidden />}
-                                        />
                                     </Table.DataCell>
                                 </Table.ExpandableRow>
                             );
