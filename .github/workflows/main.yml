@@ -3,6 +3,8 @@ name: Build & deploy to GCP
 on:
   push:
     branches: [master]
+  issue_comment:
+    types: [ created ]
   workflow_dispatch:
 
 env:
@@ -42,6 +44,7 @@ jobs:
               run: pnpm run lint:ci
 
             - name: Publish Docker image
+              if: github.ref == 'refs/heads/master' || github.event.issue.pull_request != '' && startsWith(github.event.comment.body, '.deploy')
               uses: nais/docker-build-push@v0
               id: docker-build-push
               with:
@@ -54,6 +57,7 @@ jobs:
     deploy-dev:
         name: Deploy to dev-gcp
         needs: build
+        if: github.ref == 'refs/heads/master' || github.event.issue.pull_request != '' && startsWith(github.event.comment.body, '.deploy')
         environment: dev-gcp
         runs-on: ubuntu-latest
         permissions:
