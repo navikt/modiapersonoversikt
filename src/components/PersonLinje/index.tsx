@@ -162,7 +162,7 @@ type PersonaliaProps = {
 
 const Personalia = ({ navn, alder, kjonn, erDod, farge }: PersonaliaProps) => {
     return (
-        <HStack gap="1">
+        <HStack gap="1" flexShrink="0">
             <Heading
                 id="personinformasjon-heading"
                 size="xsmall"
