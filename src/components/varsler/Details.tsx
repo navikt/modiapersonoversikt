@@ -1,16 +1,9 @@
-import { Alert, BodyLong, ErrorMessage, Heading, HStack, Skeleton, VStack } from '@navikt/ds-react';
-import { getRouteApi } from '@tanstack/react-router';
-import { useAtomValue } from 'jotai';
-import { useEffect, useRef } from 'react';
+import { BodyLong, ErrorMessage, Heading, HStack, VStack } from '@navikt/ds-react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
-import { varslerFilterAtom } from 'src/components/varsler/List/Filter';
-import { useFilterVarsler, type VarselData } from 'src/components/varsler/List/utils';
+import type { VarselData } from 'src/components/varsler/List/utils';
 import type { FeiletVarsling, Varsel } from 'src/lib/types/modiapersonoversikt-api';
-import { varslerRouteMiddleware } from 'src/routes/new/person/varsler';
 import { ENDASH, emptyReplacement, formaterDato } from 'src/utils/string-utils';
-
-const routeApi = getRouteApi('/new/person/varsler');
 
 const FeilteVarslingerListe = ({
     tittel,
@@ -102,46 +95,11 @@ const DittNavInformasjonsLinjerV2 = ({ varsel, kanaler }: { varsel: Varsel; kana
     );
 };
 
-const VarselDetailExtractor = ({ varsler }: { varsler: VarselData[] }) => {
-    const { id } = routeApi.useSearch();
-    let valgtVarsel = varsler.find((item) => item.eventId === id);
-    const filterAtomValue = useAtomValue(varslerFilterAtom);
-    const prevFilterRef = useRef(varslerFilterAtom);
-    const navigate = routeApi.useNavigate();
-    // Fjern varselid i URL og cache kun hvis filteret er endret og varselet ikke finnes i filtrerte varsler
-    useEffect(() => {
-        const filterEndret = JSON.stringify(prevFilterRef.current) !== JSON.stringify(filterAtomValue);
-        const varselIkkeIListe = !valgtVarsel || !varsler.includes(valgtVarsel);
-        if (filterEndret && varselIkkeIListe) {
-            varslerRouteMiddleware.clear();
-        }
-    }, [valgtVarsel, varsler, filterAtomValue]);
-
-    if (!varsler.length) {
-        return <></>;
-    }
-
-    if (id && !valgtVarsel) {
-        return (
-            <VStack flexGrow="1" minHeight="0" className="mt-6">
-                <Alert variant="error">Varselet du valgte, ble ikke funnet.</Alert>
-            </VStack>
-        );
-    }
-
-    if (!valgtVarsel && !id) {
-        valgtVarsel = varsler[0];
-        navigate({ search: { id: valgtVarsel.eventId } });
-    }
-
-    if (!valgtVarsel) {
-        return <></>;
-    }
-
+export const VarselDetail = ({ valgtVarsel }: { valgtVarsel: VarselData }) => {
     return (
-        <>
+        <ErrorBoundary boundaryName="vaslerDetaljer" errorText="Det oppstod en feil under visning av varsel">
             {valgtVarsel && (
-                <Card padding="2">
+                <Card padding="2" className="border-0 bg-ax-bg-sunken">
                     {valgtVarsel.erVarslerV2 ? (
                         <DittNavInformasjonsLinjerV2 varsel={valgtVarsel.event} kanaler={valgtVarsel.kanaler} />
                     ) : (
@@ -149,15 +107,6 @@ const VarselDetailExtractor = ({ varsler }: { varsler: VarselData[] }) => {
                     )}
                 </Card>
             )}
-        </>
-    );
-};
-
-export const VarselDetail = () => {
-    const { varsler, isLoading } = useFilterVarsler();
-    return (
-        <ErrorBoundary boundaryName="vaslerDetaljer" errorText="Det oppstod en feil under visning av varsel">
-            {isLoading ? <Skeleton variant="rectangle" height="4rem" /> : <VarselDetailExtractor varsler={varsler} />}
         </ErrorBoundary>
     );
 };
