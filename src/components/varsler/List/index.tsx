@@ -80,6 +80,7 @@ export const VarslerListe = () => {
                 <Table zebraStripes={true} sort={sort} onSortChange={handleSort} size="small">
                     <Table.Header>
                         <Table.Row>
+                            <Table.HeaderCell scope="col" />
                             <Table.ColumnHeader sortKey="tittel" sortable scope="col">
                                 Varsel
                             </Table.ColumnHeader>
@@ -91,7 +92,6 @@ export const VarslerListe = () => {
                             </Table.ColumnHeader>
                             <Table.HeaderCell scope="col">Kanal</Table.HeaderCell>
                             <Table.HeaderCell scope="col">Status</Table.HeaderCell>
-                            <Table.HeaderCell scope="col" />
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
@@ -100,7 +100,6 @@ export const VarslerListe = () => {
                                 <Table.ExpandableRow
                                     shadeOnHover={true}
                                     key={index}
-                                    togglePlacement="right"
                                     content={<VarselDetail valgtVarsel={varsel} />}
                                 >
                                     <Table.DataCell>{varsel.tittel}</Table.DataCell>

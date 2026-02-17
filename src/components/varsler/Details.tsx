@@ -3,7 +3,7 @@ import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import type { VarselData } from 'src/components/varsler/List/utils';
 import type { FeiletVarsling, Varsel } from 'src/lib/types/modiapersonoversikt-api';
-import { ENDASH, emptyReplacement, formaterDato } from 'src/utils/string-utils';
+import { formaterDato } from 'src/utils/string-utils';
 
 const FeilteVarslingerListe = ({
     tittel,
@@ -48,11 +48,9 @@ const DittNavInformasjonsLinje = ({ tittel, tekst }: { tittel: string; tekst: st
 const DittNavInformasjonsLinjer = ({ varsel, kanaler }: { varsel: Varsel; kanaler: string[] }) => {
     return (
         <VStack gap="1" className="p-2">
-            <BodyShort size="medium" className="mb-4">
+            <BodyShort size="medium" className="mb-4" weight="semibold">
                 {varsel.tekst}
             </BodyShort>
-            <DittNavInformasjonsLinje tittel="Produsert av:" tekst={emptyReplacement(varsel.produsent, ENDASH)} />
-            <DittNavInformasjonsLinje tittel="Kanaler:" tekst={emptyReplacement(kanaler?.join(', '), ENDASH)} />
         </VStack>
     );
 };
