@@ -1,6 +1,6 @@
 import {
     BellIcon,
-    ChatElipsisIcon,
+    Chat2Icon,
     EnterIcon,
     PencilIcon,
     TabsRemoveIcon,
@@ -36,7 +36,7 @@ function TildeltSaksbehandler({ traadId }: { traadId: string }) {
 
     if (tildeltTilBruker.map((oppgave) => oppgave.traadId).includes(traadId)) {
         return (
-            <Tag size="xsmall" variant="success-moderate" icon={<TasklistIcon aria-hidden />}>
+            <Tag size="xsmall" variant="alt2-moderate" icon={<TasklistIcon aria-hidden />}>
                 Tildelt meg
             </Tag>
         );
@@ -75,15 +75,12 @@ function Slettet({ melding }: { melding: Melding }) {
 
 function Antallmeldinger({ traad }: { traad: TraadDto }) {
     return (
-        <Tag
-            size="xsmall"
-            variant="neutral-moderate"
-            title="Antall meldinger"
-            className="flex shrink-1"
-            icon={<ChatElipsisIcon aria-hidden />}
-        >
-            {traad.meldinger.length}
-        </Tag>
+        <HStack align="center" gap="1" className="text-ax-text-neutral-subtle">
+            <Chat2Icon title="Antall meldinger i tråd:" />
+            <Label size="small" className="text-ax-text-neutral-subtle font-light">
+                {traad.meldinger.length}
+            </Label>
+        </HStack>
     );
 }
 
@@ -93,9 +90,8 @@ function UbesvartMelding({ traad }: { traad: TraadDto }) {
     return (
         <Tag
             size="xsmall"
-            variant="alt2-moderate"
+            variant="success-moderate"
             className="text-nowrap"
-            data-color="meta-lime"
             title="Tråd er ubesvart"
             icon={<BellIcon aria-hidden />}
         >
@@ -178,7 +174,7 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
                 )}
                 as="li"
             >
-                <VStack>
+                <VStack gap="1">
                     <HStack justify="space-between" gap="1" wrap={false}>
                         <VStack>
                             <Label size="small" as="h3">
@@ -191,16 +187,18 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
                         </VStack>
                         <HStack gap="1" align="start" justify="end" maxHeight="max-content">
                             <Antallmeldinger traad={traad} />
-                            <UbesvartMelding traad={traad} />
-                            <UnderArbeid traadId={traad.traadId} />
-                            <Feilsendt traad={traad} />
-                            <Slettet melding={sisteMelding} />
-                            <TildeltSaksbehandler traadId={traad.traadId} />
-                            <AvsluttetMelding traad={traad} />
-                            <SendtTilSladding traad={traad} />
                         </HStack>
                     </HStack>
                     <Detail truncate>{sisteMelding.fritekst}</Detail>
+                    <HStack gap="1" align="start" justify="start" maxHeight="max-content">
+                        <UbesvartMelding traad={traad} />
+                        <UnderArbeid traadId={traad.traadId} />
+                        <Feilsendt traad={traad} />
+                        <Slettet melding={sisteMelding} />
+                        <TildeltSaksbehandler traadId={traad.traadId} />
+                        <AvsluttetMelding traad={traad} />
+                        <SendtTilSladding traad={traad} />
+                    </HStack>
                 </VStack>
             </Card>
         </Link>
