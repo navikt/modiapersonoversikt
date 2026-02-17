@@ -30,7 +30,7 @@ const Statsborgerskap = () => {
         <HStack gap="1">
             <EarthIcon color="--ax-text-neutral" fontSize="1.2rem" />
             {statsborgerskap.length > 1 ? (
-                <BodyShort title="Flere statsborgerskaP" size="small">
+                <BodyShort title="Flere statsborgerskap:" size="small">
                     {statsborgerskap.join(', ')}
                 </BodyShort>
             ) : (
