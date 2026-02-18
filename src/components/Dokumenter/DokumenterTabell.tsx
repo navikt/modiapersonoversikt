@@ -82,7 +82,7 @@ export const DokumenterTabell = () => {
     return (
         <>
             <Table
-                size="large"
+                size="medium"
                 sort={sort as SortState | undefined}
                 onSortChange={(sortKey) => handleSort(sortKey as DokumenterSortState['orderBy'])}
             >
@@ -105,7 +105,7 @@ export const DokumenterTabell = () => {
                             Tema
                         </Table.ColumnHeader>
                         <Table.ColumnHeader sortKey="tilhorendeFagsaksid" scope="col" sortable>
-                            SaksID
+                            Saksnummer
                         </Table.ColumnHeader>
                         <Table.ColumnHeader />
                     </Table.Row>
@@ -121,7 +121,7 @@ export const DokumenterTabell = () => {
                                 key={journalpost.id}
                                 content={<DokumentVisningExpandable journalpost={journalpost} isOpen={isOpen} />}
                             >
-                                <Table.HeaderCell scope="row" className="font-extralight">
+                                <Table.HeaderCell scope="row" className="font-extralight align-top">
                                     {journalpost.harTilgang ? (
                                         journalpost.beskrivelse
                                     ) : (
@@ -137,11 +137,15 @@ export const DokumenterTabell = () => {
                                         </HStack>
                                     )}
                                 </Table.HeaderCell>
-                                <Table.DataCell>{formaterDato(journalpost.dato)}</Table.DataCell>
-                                <Table.DataCell>{avsenderMottaker(brukersNavn, journalpost.avsender)}</Table.DataCell>
-                                <Table.DataCell>{avsenderMottaker(brukersNavn, journalpost.mottaker)}</Table.DataCell>
-                                <Table.DataCell>{journalpost.temakodeVisning} </Table.DataCell>
-                                <Table.DataCell>{journalpost.tilhorendeFagsaksid}</Table.DataCell>
+                                <Table.DataCell className="align-top">{formaterDato(journalpost.dato)}</Table.DataCell>
+                                <Table.DataCell className="align-top">
+                                    {avsenderMottaker(brukersNavn, journalpost.avsender)}
+                                </Table.DataCell>
+                                <Table.DataCell className="align-top">
+                                    {avsenderMottaker(brukersNavn, journalpost.mottaker)}
+                                </Table.DataCell>
+                                <Table.DataCell className="align-top">{journalpost.temakodeVisning} </Table.DataCell>
+                                <Table.DataCell className="align-top">{journalpost.tilhorendeFagsaksid}</Table.DataCell>
                                 <Table.DataCell>
                                     <Tag
                                         size="small"
