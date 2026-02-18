@@ -54,7 +54,7 @@ const getPleiePengerRettenEntries = (pleiePenger: Pleiepenger) => {
 
 const PleiePengerRetten = ({ pleiePenger }: { pleiePenger: Pleiepenger }) => {
     return (
-        <Card padding="4" className="shadow-none">
+        <Card padding="4">
             <Heading as="h4" size="small">
                 Om pleiepengerrettighet
             </Heading>
@@ -120,7 +120,7 @@ const PleiePengerPerioder = ({ pleiePenger }: { pleiePenger: Pleiepenger }) => {
     const sortertePerioder = sorterPleiepengerPerioder(pleiePenger);
 
     return (
-        <Card padding="4" className="shadow-none">
+        <Card padding="4">
             <Heading as="h4" size="small">
                 Perioder
             </Heading>
@@ -146,7 +146,7 @@ const PleiePengerPerioder = ({ pleiePenger }: { pleiePenger: Pleiepenger }) => {
 const Arbeidssituasjon = ({ pleiePenger }: { pleiePenger: Pleiepenger }) => {
     const arbeidsforhold = getPleiepengerArbiedsforholdSortert(pleiePenger);
     return (
-        <Card padding="4" className="shadow-none">
+        <Card padding="4">
             <Heading as="h4" size="small">
                 Arbeidssituasjon
             </Heading>

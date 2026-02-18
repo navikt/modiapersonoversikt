@@ -28,7 +28,7 @@ const ForeldrepengePerioder = ({ ytelse }: { ytelse: ForeldrepengerFpSak }) => {
     };
 
     return (
-        <Card padding="4" className="shadow-none">
+        <Card padding="4">
             <Heading as="h4" size="small">
                 Perioder
             </Heading>
@@ -51,7 +51,7 @@ const ForeldrepengePerioder = ({ ytelse }: { ytelse: ForeldrepengerFpSak }) => {
 export const ForeldrePengerFpSakDetails = ({ ytelse }: { ytelse: ForeldrepengerFpSak }) => {
     return (
         <VStack gap="1" minHeight="0">
-            <Card padding="4" className="shadow-none">
+            <Card padding="4">
                 <Heading as="h3" size="small">
                     Om {ytelse.ytelse.toLowerCase()}
                 </Heading>

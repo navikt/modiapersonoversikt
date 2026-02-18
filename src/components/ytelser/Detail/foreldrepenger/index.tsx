@@ -131,7 +131,7 @@ const ForeldrepengePerioder = ({ foreldrePenger }: { foreldrePenger: Foreldrepen
 
 const Arbeidssituasjon = ({ foreldrePenger }: { foreldrePenger: Foreldrepenger }) => {
     return (
-        <Card padding="4" className="shadow-none">
+        <Card padding="4">
             <Heading as="h4" size="small">
                 Arbeidssituasjon
             </Heading>

@@ -15,7 +15,7 @@ const TiltaksPengerRetten = ({ tiltaksPenger }: { tiltaksPenger: VedtakDto }) =>
     };
 
     return (
-        <Card padding="4" className="shadow-none">
+        <Card padding="4">
             <Heading as="h4" size="small">
                 Om tiltakspenger
             </Heading>
@@ -33,7 +33,7 @@ const getBarneTilleggEntries = (barnetilleggPeriode: BarnetilleggPeriode) => {
 
 const TiltaksPengerBarneTillegg = ({ tiltaksPenger }: { tiltaksPenger: VedtakDto }) => {
     return (
-        <Card padding="4" className="shadow-none">
+        <Card padding="4">
             <Heading as="h4" size="small">
                 Barnetillegg
             </Heading>
