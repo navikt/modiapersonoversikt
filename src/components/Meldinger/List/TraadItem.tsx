@@ -105,14 +105,16 @@ function AvsluttetMelding({ traad }: { traad: TraadDto }) {
     const sisteMelding = nyesteMelding(traad);
     const avsluttetDato = traad.avsluttetDato || sisteMelding.avsluttetDato;
     const kanBesvares = traadKanBesvares(traad);
-    const erAvsluttetOgKanIkkeBesvares = avsluttetDato && !kanBesvares;
 
-    if (!erAvsluttetOgKanIkkeBesvares) return null;
-    return (
-        <Tag size="xsmall" variant="info-moderate" title="Tråd er avsluttet" icon={<EnterIcon aria-hidden />}>
-            Avsluttet
-        </Tag>
-    );
+    if (avsluttetDato && !kanBesvares) {
+        return (
+            <Tag size="xsmall" variant="info-moderate" title="Tråd er avsluttet" icon={<EnterIcon aria-hidden />}>
+                Avsluttet
+            </Tag>
+        );
+    }
+
+    return null;
 }
 
 function Sladdet({ traad }: { traad: TraadDto }) {
