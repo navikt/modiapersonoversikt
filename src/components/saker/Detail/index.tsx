@@ -167,7 +167,7 @@ const SakDetails = ({ valgtSak, pageView }: { valgtSak: SaksDokumenter; pageView
                 </VStack>
             )}
             <Box.New>
-                <Card padding="4" className="shadow-none">
+                <Card padding="4">
                     <Heading as="h4" size="small">
                         Saksdetaljer
                     </Heading>
