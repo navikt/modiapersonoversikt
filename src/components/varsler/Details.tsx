@@ -113,7 +113,7 @@ const VarselDetailExtractor = ({ varsler }: { varsler: VarselData[] }) => {
         const filterEndret = JSON.stringify(prevFilterRef.current) !== JSON.stringify(filterAtomValue);
         const varselIkkeIListe = !valgtVarsel || !varsler.includes(valgtVarsel);
         if (filterEndret && varselIkkeIListe) {
-            varslerRouteMiddleware.clear();
+            varslerRouteMiddleware().clear();
         }
     }, [valgtVarsel, varsler, filterAtomValue]);
 
@@ -141,7 +141,7 @@ const VarselDetailExtractor = ({ varsler }: { varsler: VarselData[] }) => {
     return (
         <>
             {valgtVarsel && (
-                <Card padding="2">
+                <Card padding="4">
                     {valgtVarsel.erVarslerV2 ? (
                         <DittNavInformasjonsLinjerV2 varsel={valgtVarsel.event} kanaler={valgtVarsel.kanaler} />
                     ) : (

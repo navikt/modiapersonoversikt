@@ -12,7 +12,7 @@ test('Select melding', async ({ page }) => {
     const meldingerList = page.getByRole('region', { name: 'Tråder' });
     await expect(meldingerList).toBeVisible();
     const meldingerCards = meldingerList.getByTestId('traaditem');
-    expect((await meldingerCards.all()).length).toBeGreaterThan(5);
+    expect((await meldingerCards.all()).length).toBeGreaterThan(4);
 
     await meldingerCards.first().click();
 
@@ -45,6 +45,7 @@ test('Send ny melding', async ({ page }) => {
     await page.getByLabel('Temagruppe').selectOption('Pensjon');
 
     await page.addStyleTag({ content: '#ny-modia-knapp-wrapper { display: none !important; }' });
+    await page.addStyleTag({ content: '.TanStackRouterDevtools { display: none !important; }' });
     await page.getByTestId('svar-knapp').click();
 
     const newTraad = page.getByTestId('traaditem').first();

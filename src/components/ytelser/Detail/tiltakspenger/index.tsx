@@ -46,7 +46,7 @@ const TiltaksPengerBarneTillegg = ({ tiltaksPenger }: { tiltaksPenger: VedtakDto
 
 export const TiltaksPengerDetails = ({ tiltaksPenger }: { tiltaksPenger: VedtakDto }) => {
     return (
-        <VStack gap="2" minHeight="0">
+        <VStack gap="1" minHeight="0">
             <TiltaksPengerRetten tiltaksPenger={tiltaksPenger} />
             <TiltaksPengerBarneTillegg tiltaksPenger={tiltaksPenger} />
         </VStack>

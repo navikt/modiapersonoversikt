@@ -134,7 +134,7 @@ const buildTemaQueryForNorg = (sak: SaksDokumenter): string => {
 };
 
 export const dokumentKanVises = (journalpost: Dokumentmetadata, dokument: Dokument) => {
-    return dokument.kanVises && harTilgangTilJournalpost(journalpost);
+    return !dokument.logiskDokument && harTilgangTilJournalpost(journalpost);
 };
 
 const harTilgangTilJournalpost = (journalpost: Dokumentmetadata) => {

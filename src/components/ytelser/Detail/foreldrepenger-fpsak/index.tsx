@@ -50,7 +50,7 @@ const ForeldrepengePerioder = ({ ytelse }: { ytelse: ForeldrepengerFpSak }) => {
 
 export const ForeldrePengerFpSakDetails = ({ ytelse }: { ytelse: ForeldrepengerFpSak }) => {
     return (
-        <VStack gap="2" minHeight="0">
+        <VStack gap="1" minHeight="0">
             <Card padding="4">
                 <Heading as="h3" size="small">
                     Om {ytelse.ytelse.toLowerCase()}

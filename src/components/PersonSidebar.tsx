@@ -4,6 +4,7 @@ import {
     BellIcon,
     ChatIcon,
     FileIcon,
+    FolderIcon,
     HandShakeHeartIcon,
     HouseIcon,
     PersonGroupIcon,
@@ -33,14 +34,14 @@ export const menuItems = [
         Icon: HouseIcon
     },
     {
-        title: 'Oppfølging',
-        href: '/new/person/oppfolging',
-        Icon: PersonGroupIcon
-    },
-    {
         title: 'Kommunikasjon',
         href: '/new/person/meldinger',
         Icon: ChatIcon
+    },
+    {
+        title: 'Oppfølging',
+        href: '/new/person/oppfolging',
+        Icon: PersonGroupIcon
     },
     {
         title: 'Utbetaling',
@@ -51,6 +52,11 @@ export const menuItems = [
         title: 'Ytelser',
         href: '/new/person/ytelser',
         Icon: HandShakeHeartIcon
+    },
+    {
+        title: 'Dokumenter',
+        href: '/new/person/dokumenter',
+        Icon: FolderIcon
     },
     {
         title: 'Saker',

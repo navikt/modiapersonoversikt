@@ -42,7 +42,7 @@ export const NyModia = () => {
         <Box className="absolute bottom-0 right-4 mb-12 overflow-hidden z-10" borderRadius="small">
             <Button
                 icon={nyModia ? <ArrowUndoIcon /> : <SparklesIcon />}
-                variant="primary"
+                variant="secondary"
                 size="small"
                 onClick={handleClick}
                 id="ny-modia-knapp-wrapper"

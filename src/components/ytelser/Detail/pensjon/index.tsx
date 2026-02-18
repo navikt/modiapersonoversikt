@@ -1,4 +1,4 @@
-import { Heading } from '@navikt/ds-react';
+import { Heading, VStack } from '@navikt/ds-react';
 import Card from 'src/components/Card';
 import { TitleValuePairsComponent } from 'src/components/ytelser/Detail';
 import type { PensjonSak } from 'src/generated/modiapersonoversikt-api';
@@ -14,11 +14,13 @@ export const PensjonDetails = ({ pensjon }: { pensjon: PensjonSak }) => {
     };
 
     return (
-        <Card padding="4">
-            <Heading as="h4" size="small">
-                Om pensjon
-            </Heading>
-            <TitleValuePairsComponent entries={entries} columns={{ xs: 2, lg: 4 }} />
-        </Card>
+        <VStack>
+            <Card padding="4">
+                <Heading as="h4" size="small">
+                    Om pensjon
+                </Heading>
+                <TitleValuePairsComponent entries={entries} columns={{ xs: 2, lg: 4 }} />
+            </Card>
+        </VStack>
     );
 };

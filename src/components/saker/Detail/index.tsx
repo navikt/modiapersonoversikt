@@ -47,7 +47,7 @@ const DokumentAvsenderFilter = () => {
     );
 
     return (
-        <HStack gap="2" align="center">
+        <HStack gap="1" align="center">
             <BodyLong size="small">Avsender: </BodyLong>
             {sakerAvsender.map((status) => (
                 <Switch
@@ -107,7 +107,7 @@ const SakContent = ({ saker }: { saker: SaksDokumenter[] }) => {
         const filterEndret = JSON.stringify(prevFilterRef.current) !== JSON.stringify(filterAtomValue);
         const sakIkkeIListe = !valgtSak || !saker.includes(valgtSak);
         if (filterEndret && sakIkkeIListe) {
-            sakerRouteMiddleware.clear();
+            sakerRouteMiddleware().clear();
         }
         prevFilterRef.current = filterAtomValue;
     }, [valgtSak, saker, filterAtomValue]);
@@ -159,7 +159,7 @@ const SakDetails = ({ valgtSak, pageView }: { valgtSak: SaksDokumenter; pageView
     };
 
     return (
-        <VStack gap="2" flexGrow="1" minHeight="0" className="overflow-auto">
+        <VStack gap="1" flexGrow="1" minHeight="0" className="overflow-auto">
             {pageView && (
                 <VStack>
                     <NorgLenke valgtSak={valgtSak} geografiskTilknytning={geografiskTilknytning} />
@@ -175,7 +175,7 @@ const SakDetails = ({ valgtSak, pageView }: { valgtSak: SaksDokumenter; pageView
                 </Card>
             </Box.New>
             <Box.New>
-                <Card padding="4" className="mt-1 mb-4">
+                <Card padding="4" className="">
                     <HStack>
                         <Heading as="h3" size="small" className="mb-2" level="3">
                             Saksdokumenter
@@ -185,13 +185,13 @@ const SakDetails = ({ valgtSak, pageView }: { valgtSak: SaksDokumenter; pageView
                     </HStack>
                     <JournalPoster journalPoster={journalPoster} brukersNavn={brukersNavn} columns={4} />
                 </Card>
-                {pageView && (
-                    <InlineMessage status="info" size="medium">
-                        Modia viser elektroniske dokumenter brukeren har sendt inn via nav.no etter 9. desember 2014.
-                        Dokumenter som er journalført vises fra og med 4.juni 2016
-                    </InlineMessage>
-                )}
             </Box.New>
+            {pageView && (
+                <InlineMessage status="info" size="medium">
+                    Modia viser elektroniske dokumenter brukeren har sendt inn via nav.no etter 9. desember 2014.
+                    Dokumenter som er journalført vises fra og med 4.juni 2016
+                </InlineMessage>
+            )}
         </VStack>
     );
 };

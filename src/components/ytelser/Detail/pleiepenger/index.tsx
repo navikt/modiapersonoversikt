@@ -157,7 +157,7 @@ const Arbeidssituasjon = ({ pleiePenger }: { pleiePenger: Pleiepenger }) => {
 
 export const PleiePengerDetails = ({ pleiePenger }: { pleiePenger: Pleiepenger }) => {
     return (
-        <VStack gap="2" minHeight="0">
+        <VStack gap="1" minHeight="0">
             <PleiePengerRetten pleiePenger={pleiePenger} />
             <PleiePengerPerioder pleiePenger={pleiePenger} />
             <Arbeidssituasjon pleiePenger={pleiePenger} />

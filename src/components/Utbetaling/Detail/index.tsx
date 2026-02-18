@@ -1,17 +1,5 @@
 import { PrinterSmallIcon } from '@navikt/aksel-icons';
-import {
-    Alert,
-    BodyLong,
-    BodyShort,
-    Box,
-    Button,
-    Heading,
-    HGrid,
-    HStack,
-    Skeleton,
-    Table,
-    VStack
-} from '@navikt/ds-react';
+import { Alert, BodyLong, BodyShort, Button, Heading, HGrid, HStack, Skeleton, Table, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai';
@@ -265,7 +253,7 @@ const UtbetalingDetaljer = ({ utbetaling }: { utbetaling: Utbetaling }) => {
     const PrinterWrapper = printer.printerWrapper;
 
     return (
-        <Card padding="4" className="mt-2 shadow-none">
+        <Card padding="4">
             <PrinterWrapper>
                 <HStack justify="space-between">
                     <Heading as="h4" size="small">
@@ -360,7 +348,7 @@ const UtbetalingerSammendrag = ({ utbetalinger, periode }: { utbetalinger: Utbet
     const PrinterWrapper = printer.printerWrapper;
 
     return (
-        <Card padding="4" className="shadow-none">
+        <Card padding="4">
             <PrinterWrapper>
                 <HStack justify="space-between">
                     <Heading as="h3" size="xsmall">
@@ -402,7 +390,7 @@ const UtbetalingDetail = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
         const filterEndret = JSON.stringify(prevFilterRef.current.init) !== JSON.stringify(filterAtomValue);
         const utbetalingIkkeIListe = !selectedUtbetaling || !utbetalinger.includes(selectedUtbetaling);
         if (filterEndret && utbetalingIkkeIListe) {
-            utbetalingRouteMiddleware.clear();
+            utbetalingRouteMiddleware().clear();
         }
     }, [selectedUtbetaling, utbetalinger, filterAtomValue]);
 
@@ -412,7 +400,7 @@ const UtbetalingDetail = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
 
     if (!selectedUtbetaling && id) {
         return (
-            <VStack flexGrow="1" minHeight="0" className="mt-2">
+            <VStack flexGrow="1" minHeight="0">
                 <Alert variant="error">Utbetalingen du valgte, ble ikke funnet.</Alert>
             </VStack>
         );
@@ -422,21 +410,15 @@ const UtbetalingDetail = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
         navigate({ search: { id: getUtbetalingId(utbetalinger[0]) } });
     }
 
-    return (
-        <Box.New>
-            <UtbetalingDetaljer utbetaling={selectedUtbetaling ?? utbetalinger[0]} />
-        </Box.New>
-    );
+    return <UtbetalingDetaljer utbetaling={selectedUtbetaling ?? utbetalinger[0]} />;
 };
 
 const UtbetalingerDetail = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
     const dateRange = useAtomValue(utbetalingFilterDateRangeAtom);
 
     return (
-        <VStack flexGrow="1" minHeight="0" maxHeight="100%" overflow="auto">
-            <Box.New>
-                <UtbetalingerSammendrag utbetalinger={utbetalinger} periode={dateRange} />
-            </Box.New>
+        <VStack flexGrow="1" minHeight="0" gap="1" maxHeight="100%" overflow="auto">
+            <UtbetalingerSammendrag utbetalinger={utbetalinger} periode={dateRange} />
             <UtbetalingDetail utbetalinger={utbetalinger} />
         </VStack>
     );
