@@ -26,6 +26,7 @@ import {
     erUbesvartHenvendelseFraBruker,
     getFormattertMeldingsDato,
     nyesteMelding,
+    traadKanBesvares,
     traadstittel
 } from './utils';
 
@@ -75,7 +76,7 @@ function Slettet({ melding }: { melding: Melding }) {
 
 function Antallmeldinger({ traad }: { traad: TraadDto }) {
     return (
-        <HStack align="center" gap="1" className="text-ax-text-neutral-subtle">
+        <HStack align="center" gap="05" className="text-ax-text-neutral-subtle" wrap={false}>
             <Chat2Icon title="Antall meldinger i tråd:" />
             <Label size="small" className="text-ax-text-neutral-subtle font-light">
                 {traad.meldinger.length}
@@ -101,20 +102,36 @@ function UbesvartMelding({ traad }: { traad: TraadDto }) {
 }
 
 function AvsluttetMelding({ traad }: { traad: TraadDto }) {
-    const avsluttet = !!traad.avsluttetDato;
-    if (!avsluttet) return null;
+    const sisteMelding = nyesteMelding(traad);
+    const avsluttetDato = traad.avsluttetDato || sisteMelding.avsluttetDato;
+    const kanBesvares = traadKanBesvares(traad);
+
+    if (avsluttetDato && !kanBesvares) {
+        return (
+            <Tag size="xsmall" variant="info-moderate" title="Tråd er avsluttet" icon={<EnterIcon aria-hidden />}>
+                Avsluttet
+            </Tag>
+        );
+    }
+
+    return null;
+}
+
+function Sladdet({ traad }: { traad: TraadDto }) {
+    if (!traad.sattTilSladdingAv) return null;
     return (
-        <Tag size="xsmall" variant="info-moderate" title="Tråd er avsluttet" icon={<EnterIcon aria-hidden />}>
-            Avsluttet
+        <Tag size="xsmall" variant="neutral-moderate" data-color="brand-magenta" icon={<TabsRemoveIcon aria-hidden />}>
+            Sladdet
         </Tag>
     );
 }
 
 function SendtTilSladding({ traad }: { traad: TraadDto }) {
-    if (!traad.sladding) return null;
+    const sisteMelding = nyesteMelding(traad);
+    if (!sisteMelding.sendtTilSladding) return null;
     return (
         <Tag size="xsmall" variant="neutral-moderate" data-color="brand-magenta" icon={<TabsRemoveIcon aria-hidden />}>
-            Sladdet
+            Sladding behandles
         </Tag>
     );
 }
@@ -198,6 +215,7 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
                         <TildeltSaksbehandler traadId={traad.traadId} />
                         <AvsluttetMelding traad={traad} />
                         <SendtTilSladding traad={traad} />
+                        <Sladdet traad={traad} />
                     </HStack>
                 </VStack>
             </Card>
