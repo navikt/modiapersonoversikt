@@ -36,6 +36,7 @@ const Toast = ({ title, description, type }: ToastProps) => {
     let bg: BoxNewProps['background'] = 'raised';
     let className: BoxNewProps['className'] = 'ring-ax-border-neutral-subtle';
     let icon: JSX.Element = <BellFillIcon />;
+    let ariaLive: 'assertive' | 'polite' = 'polite';
 
     if (type === 'success') {
         bg = 'success-moderate';
@@ -46,11 +47,13 @@ const Toast = ({ title, description, type }: ToastProps) => {
         bg = 'danger-moderate';
         className = 'text-ax-text-danger ring-ax-border-danger-subtle';
         icon = <XMarkOctagonFillIcon className="text-ax-text-danger-icon" />;
+        ariaLive = 'assertive';
     }
     if (type === 'warning') {
         bg = 'warning-moderate';
         className = 'text-ax-text-warning ring-ax-border-warning-subtle';
         icon = <ExclamationmarkTriangleFillIcon className="text-ax-text-warning-icon" />;
+        ariaLive = 'assertive';
     }
 
     return (
@@ -59,7 +62,8 @@ const Toast = ({ title, description, type }: ToastProps) => {
             padding="4"
             width="var(--width)"
             className={twMerge('flex flex-col rounded-lg justify-center shadow-lg ring-1 ring-black/5', className)}
-            aria-live="polite"
+            role="alert"
+            aria-live={ariaLive}
         >
             <div className="flex gap-2 items-center">
                 <div aria-hidden className="flex items-start">
