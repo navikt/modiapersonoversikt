@@ -7,7 +7,6 @@ import ErrorBoundary from 'src/components/ErrorBoundary';
 import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
 import { trackCloseDialog, trackOpenDialog } from 'src/utils/analytics';
 import { SendMelding } from './SendMelding';
-import { UbesvarteMeldinger } from './UbesvarteMeldinger';
 
 const PANEL_SIZE = 30;
 const LARGE_SIZE = 50;
@@ -76,7 +75,6 @@ export function LukkbarNyMelding() {
         <Panel onResize={onExpand} ref={panelRef} defaultSize={PANEL_SIZE} minSize={20} maxSize={60} order={2}>
             <VStack height="100%" gap="1" overflow="auto">
                 <ErrorBoundary boundaryName="sendmelding">
-                    <UbesvarteMeldinger />
                     <SendMelding
                         lukkeKnapp={
                             <HStack gap="2">
