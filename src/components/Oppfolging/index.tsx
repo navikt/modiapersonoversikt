@@ -221,7 +221,7 @@ const OppfolgingPageContent = () => {
                 alerts={[...arbeidsoppfolgingErrorMessage, ...gjeldende14aVedtakErrorMessage, ...syfoErrorMessage]}
             />
             {!doubleErrors && (
-                <Card padding="4" className="shadow-none">
+                <Card padding="4">
                     <ErrorBoundary boundaryName="oppfolgingDetaljer">
                         <OppfolgingDetaljer />
                     </ErrorBoundary>

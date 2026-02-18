@@ -69,7 +69,7 @@ export const OppgaveContent = ({ oppgave }: { oppgave: OppgaveDto }) => {
     const tilhorendeTraad = traader?.find((m) => m.traadId === oppgave.traadId);
 
     return (
-        <Card padding="4" className="shadow-none">
+        <Card padding="4">
             <HGrid gap="4" columns={{ sm: 2, md: 3 }} className="mt-4">
                 <VStack justify="space-between">
                     <BodyShort size="small" weight="semibold">

@@ -39,7 +39,7 @@ const SykpengerPerioder = ({ ytelse }: { ytelse: Utbetalingsperioder }) => {
 export const SykePengerSpokelseDetails = ({ ytelse }: { ytelse: Utbetalingsperioder }) => {
     return (
         <VStack gap="1" minHeight="0">
-            <Card padding="4" className="shadow-none">
+            <Card padding="4">
                 <Heading level="4" size="small" spacing>
                     Om sykepenger
                 </Heading>

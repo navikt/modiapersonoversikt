@@ -253,7 +253,7 @@ const UtbetalingDetaljer = ({ utbetaling }: { utbetaling: Utbetaling }) => {
     const PrinterWrapper = printer.printerWrapper;
 
     return (
-        <Card padding="4" className="shadow-none">
+        <Card padding="4">
             <PrinterWrapper>
                 <HStack justify="space-between">
                     <Heading as="h4" size="small">
@@ -348,7 +348,7 @@ const UtbetalingerSammendrag = ({ utbetalinger, periode }: { utbetalinger: Utbet
     const PrinterWrapper = printer.printerWrapper;
 
     return (
-        <Card padding="4" className="shadow-none">
+        <Card padding="4">
             <PrinterWrapper>
                 <HStack justify="space-between">
                     <Heading as="h3" size="xsmall">
