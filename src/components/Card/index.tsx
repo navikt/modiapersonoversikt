@@ -7,15 +7,7 @@ type Props = Omit<ComponentPropsWithRef<typeof Box.New>, 'as'> & {
 
 const Card = ({ children, as, ...rest }: PropsWithChildren<Props>) => {
     return (
-        <Box.New
-            background="raised"
-            borderRadius="small"
-            borderColor="neutral-subtle"
-            borderWidth="1"
-            flexGrow="1"
-            as={as ?? 'div'}
-            {...rest}
-        >
+        <Box.New background="raised" flexGrow="1" as={as ?? 'div'} {...rest}>
             {children}
         </Box.New>
     );

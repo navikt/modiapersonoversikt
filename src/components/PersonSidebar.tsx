@@ -3,6 +3,7 @@ import {
     ArrowRightIcon,
     BellIcon,
     ChatIcon,
+    CircleFillIcon,
     FileIcon,
     FolderIcon,
     HandShakeHeartIcon,
@@ -11,10 +12,11 @@ import {
     PiggybankIcon,
     TasklistIcon
 } from '@navikt/aksel-icons';
-import { Box, Button, Heading, VStack } from '@navikt/ds-react';
+import { Bleed, Box, Button, Heading, VStack } from '@navikt/ds-react';
 import { Link } from '@tanstack/react-router';
 import { type ComponentProps, useState } from 'react';
 import { getOpenTabFromRouterPath, useOpenTab } from 'src/app/personside/infotabs/utils/useOpenTab';
+import { erUbesvartHenvendelseFraBruker, useTraader } from 'src/components/Meldinger/List/utils';
 import { usePersonSideBarKotkeys } from 'src/components/usePersonSidebarHotkeys';
 import { trackingEvents } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
@@ -79,6 +81,12 @@ export const PersonSidebarMenu = () => {
     const [expanded, setExpanded] = useState(true);
     const openTab = useOpenTab();
     usePersonSideBarKotkeys();
+    const { data: traader } = useTraader();
+
+    const visNotifikasjon = (tab: string) => {
+        if (tab !== 'Kommunikasjon') return false;
+        return traader?.some((traad) => erUbesvartHenvendelseFraBruker(traad));
+    };
 
     return (
         <Card className="h-full overflow-auto">
@@ -131,26 +139,43 @@ export const PersonSidebarMenu = () => {
                                 aria-label={title}
                             >
                                 {({ isActive }) => (
-                                    <Button
-                                        aria-hidden
-                                        tabIndex={-1}
-                                        icon={<Icon aria-hidden />}
-                                        variant="tertiary-neutral"
-                                        size="small"
-                                        className={twMerge(
-                                            'my-1',
-                                            'font-normal',
-                                            !isActive && ['hover:bg-ax-bg-accent-moderate-hover'],
-                                            expanded && ['justify-start', 'min-w-44'],
-                                            isActive && [
-                                                'bg-ax-bg-accent-moderate-pressed',
-                                                'text-ax-text-accent',
-                                                'hover:text-ax-text-accent'
-                                            ]
-                                        )}
-                                    >
-                                        {expanded && <span className="font-normal">{title}</span>}
-                                    </Button>
+                                    <>
+                                        <Button
+                                            aria-hidden
+                                            tabIndex={-1}
+                                            icon={
+                                                <>
+                                                    <Icon aria-hidden />
+                                                    {visNotifikasjon(title) && (
+                                                        <Box.New position="absolute" left={expanded ? '6' : '4'}>
+                                                            <Bleed marginBlock="space-6" asChild>
+                                                                <CircleFillIcon
+                                                                    fontSize="1rem"
+                                                                    color="var(--ax-text-logo)"
+                                                                    title="Brukeren har ubesvarte meldinger"
+                                                                />
+                                                            </Bleed>
+                                                        </Box.New>
+                                                    )}
+                                                </>
+                                            }
+                                            variant="tertiary-neutral"
+                                            size="small"
+                                            className={twMerge(
+                                                'my-1 relative',
+                                                'font-normal',
+                                                !isActive && ['hover:bg-ax-bg-accent-moderate-hover'],
+                                                expanded && ['justify-start', 'min-w-44'],
+                                                isActive && [
+                                                    'bg-ax-bg-accent-moderate-pressed',
+                                                    'text-ax-text-accent',
+                                                    'hover:text-ax-text-accent'
+                                                ]
+                                            )}
+                                        >
+                                            {expanded && <span className="font-normal">{title}</span>}
+                                        </Button>
+                                    </>
                                 )}
                             </Link>
                         ))}
