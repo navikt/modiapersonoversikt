@@ -26,6 +26,7 @@ import {
     erUbesvartHenvendelseFraBruker,
     getFormattertMeldingsDato,
     nyesteMelding,
+    traadKanBesvares,
     traadstittel
 } from './utils';
 
@@ -101,8 +102,12 @@ function UbesvartMelding({ traad }: { traad: TraadDto }) {
 }
 
 function AvsluttetMelding({ traad }: { traad: TraadDto }) {
-    const avsluttet = !!traad.avsluttetDato;
-    if (!avsluttet) return null;
+    const sisteMelding = nyesteMelding(traad);
+    const avsluttetDato = traad.avsluttetDato || sisteMelding.avsluttetDato;
+    const kanBesvares = traadKanBesvares(traad);
+    const erAvsluttetOgKanIkkeBesvares = avsluttetDato && !kanBesvares;
+
+    if (!erAvsluttetOgKanIkkeBesvares) return null;
     return (
         <Tag size="xsmall" variant="info-moderate" title="Tråd er avsluttet" icon={<EnterIcon aria-hidden />}>
             Avsluttet
@@ -110,11 +115,21 @@ function AvsluttetMelding({ traad }: { traad: TraadDto }) {
     );
 }
 
-function SendtTilSladding({ traad }: { traad: TraadDto }) {
-    if (!traad.sladding) return null;
+function Sladdet({ traad }: { traad: TraadDto }) {
+    if (!traad.sattTilSladdingAv) return null;
     return (
         <Tag size="xsmall" variant="neutral-moderate" data-color="brand-magenta" icon={<TabsRemoveIcon aria-hidden />}>
             Sladdet
+        </Tag>
+    );
+}
+
+function SendtTilSladding({ traad }: { traad: TraadDto }) {
+    const sisteMelding = nyesteMelding(traad);
+    if (!sisteMelding.sendtTilSladding) return null;
+    return (
+        <Tag size="xsmall" variant="neutral-moderate" data-color="brand-magenta" icon={<TabsRemoveIcon aria-hidden />}>
+            Sladding behandles
         </Tag>
     );
 }
@@ -198,6 +213,7 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
                         <TildeltSaksbehandler traadId={traad.traadId} />
                         <AvsluttetMelding traad={traad} />
                         <SendtTilSladding traad={traad} />
+                        <Sladdet traad={traad} />
                     </HStack>
                 </VStack>
             </Card>
