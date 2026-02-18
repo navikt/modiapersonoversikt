@@ -76,7 +76,7 @@ function Slettet({ melding }: { melding: Melding }) {
 
 function Antallmeldinger({ traad }: { traad: TraadDto }) {
     return (
-        <HStack align="center" gap="1" className="text-ax-text-neutral-subtle" wrap={false}>
+        <HStack align="center" gap="05" className="text-ax-text-neutral-subtle" wrap={false}>
             <Chat2Icon title="Antall meldinger i tråd:" />
             <Label size="small" className="text-ax-text-neutral-subtle font-light">
                 {traad.meldinger.length}
