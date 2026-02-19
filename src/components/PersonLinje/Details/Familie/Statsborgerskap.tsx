@@ -27,7 +27,7 @@ const Statsborgerskap = () => {
     );
 
     return (
-        <HStack gap="1">
+        <HStack gap="1" align="center">
             <EarthIcon color="--ax-text-neutral" fontSize="1.2rem" />
             {statsborgerskap.length > 1 ? (
                 <BodyShort title="Flere statsborgerskap:" size="small">

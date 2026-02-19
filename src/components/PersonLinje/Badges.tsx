@@ -1,4 +1,4 @@
-import { Heading, HStack, Tag } from '@navikt/ds-react';
+import { Heading, Tag } from '@navikt/ds-react';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { AdresseBeskyttelseKode, type PersonData } from 'src/lib/types/modiapersonoversikt-api';
 
@@ -11,7 +11,7 @@ export const PersonBadges = () => {
     }
 
     return (
-        <HStack align="center" gap="1" as="section" className="flex-1">
+        <>
             <DodBadge dodsdato={person.dodsdato} />
             <Heading visuallyHidden size="xsmall" level="3">
                 Viktig informasjon
@@ -25,7 +25,7 @@ export const PersonBadges = () => {
             <TilrettelagtKommunikasjonsBadge tilrettelagtKommunikasjon={person.tilrettelagtKommunikasjon} />
             <DodsboBadge dodsbo={person.dodsbo} />
             <FullmaktBadge fullmakt={person.fullmakt} />
-        </HStack>
+        </>
     );
 };
 
