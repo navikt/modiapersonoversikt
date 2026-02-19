@@ -1,5 +1,5 @@
 import { BankNoteFillIcon } from '@navikt/aksel-icons';
-import { Alert, BodyShort, Detail } from '@navikt/ds-react';
+import { BodyShort, Detail, InlineMessage } from '@navikt/ds-react';
 import type { PersonData } from 'src/lib/types/modiapersonoversikt-api';
 import { FormatertKontonummer } from 'src/utils/FormatertKontonummer';
 import { InfoElement, LastChanged } from '../components';
@@ -10,8 +10,12 @@ interface Props {
 }
 
 function BankkontoBody({ harFeilendeSystem, bankkonto }: Props) {
-    if (harFeilendeSystem) {
-        return <Alert variant="warning">Feilet ved uthenting av kontonummer</Alert>;
+    if (!harFeilendeSystem) {
+        return (
+            <InlineMessage status="warning" size="small" className="py-1">
+                Feilet ved uthenting av kontonummer
+            </InlineMessage>
+        );
     }
 
     if (!bankkonto) {
