@@ -63,6 +63,7 @@ export function LukkbarNyMelding() {
                 <Button
                     type="button"
                     ref={openButtonRef}
+                    className="mr-1"
                     icon={<ChatIcon title="Skriv ny melding" />}
                     size="small"
                     onClick={openAndSetFocusToCloseButton}
@@ -80,7 +81,13 @@ export function LukkbarNyMelding() {
                             <HStack gap="2">
                                 <Button
                                     type="button"
-                                    icon={isLarge ? <ShrinkIcon title="Minimer" /> : <ExpandIcon title="Ekspander" />}
+                                    icon={
+                                        isLarge ? (
+                                            <ShrinkIcon color="var(--ax-text-neutral)" title="Minimer" />
+                                        ) : (
+                                            <ExpandIcon color="var(--ax-text-neutral)" title="Ekspander" />
+                                        )
+                                    }
                                     variant="tertiary"
                                     size="small"
                                     onClick={() => {
@@ -92,7 +99,7 @@ export function LukkbarNyMelding() {
                                 />
                                 <Button
                                     type="button"
-                                    icon={<MinusIcon title="Lukk" />}
+                                    icon={<MinusIcon color="var(--ax-text-neutral)" title="Lukk" />}
                                     variant="tertiary"
                                     size="small"
                                     ref={closeButtonRef}
