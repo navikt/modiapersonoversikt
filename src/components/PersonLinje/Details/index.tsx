@@ -33,7 +33,7 @@ export const OversiktWrapper = () => {
     );
 };
 
-export const PersonlinjeDetails = () => {
+const PersonlinjeDetails = () => {
     return (
         <Card className="overflow-auto">
             <HStack gap="4" justify="space-between" padding="4">
