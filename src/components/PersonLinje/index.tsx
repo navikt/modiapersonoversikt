@@ -88,12 +88,11 @@ const PersonlinjeHeader = () => {
                     farge={farge}
                 />
                 <HStack marginInline={{ xs: '0', lg: 'space-28' }} gap="3">
-                    <Statsborgerskap />
                     <HStack className="cursor-[initial]" wrap={false} onClick={(e) => e.stopPropagation()}>
                         <CopyButton
                             aria-label={`Kopier f.nr: ${`${person.personIdent.slice(0, 6)} ${person.personIdent.slice(6)}`}`}
                             size="xsmall"
-                            className="p-0"
+                            className="p-0 text-ax-text-neutral-subtle"
                             copyText={data.person.personIdent}
                             activeText="Kopiert f.nr"
                             text={`F.nr: ${`${person.personIdent.slice(0, 6)} ${person.personIdent.slice(6)}`}`}
@@ -102,7 +101,7 @@ const PersonlinjeHeader = () => {
                     {data.person.kontaktInformasjon.mobil?.value && (
                         <HStack className="cursor-[initial]" wrap={false} onClick={(e) => e.stopPropagation()}>
                             <CopyButton
-                                className="p-0"
+                                className="p-0 text-ax-text-neutral-subtle"
                                 activeText="Kopiert tlf.nr"
                                 aria-label={`Kopier tlf.nr: ${formaterMobiltelefonnummer(data.person.kontaktInformasjon.mobil.value ?? '')}`}
                                 text={`Tlf: ${formaterMobiltelefonnummer(data.person.kontaktInformasjon.mobil?.value ?? '')}`}
@@ -111,6 +110,7 @@ const PersonlinjeHeader = () => {
                             />
                         </HStack>
                     )}
+                    <Statsborgerskap />
                 </HStack>
                 <PersonBadges />
             </HStack>

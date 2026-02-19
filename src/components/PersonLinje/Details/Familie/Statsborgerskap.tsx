@@ -28,13 +28,13 @@ const Statsborgerskap = () => {
 
     return (
         <HStack gap="1" align="center">
-            <EarthIcon color="--ax-text-neutral" fontSize="1.2rem" />
+            <EarthIcon className="text-ax-text-neutral-subtle" fontSize="1.2rem" />
             {statsborgerskap.length > 1 ? (
-                <BodyShort title="Flere statsborgerskap:" size="small">
+                <BodyShort title="Flere statsborgerskap:" size="small" className="text-ax-text-neutral-subtle">
                     {statsborgerskap.join(', ')}
                 </BodyShort>
             ) : (
-                <BodyShort title="Statsborgerskap:" size="small">
+                <BodyShort title="Statsborgerskap:" size="small" className="text-ax-text-neutral-subtle">
                     {statsborgerskap}
                 </BodyShort>
             )}

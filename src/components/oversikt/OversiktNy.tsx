@@ -1,7 +1,7 @@
-import { PersonlinjeDetails } from 'src/components/PersonLinje/Details';
+import { OversiktWrapper } from 'src/components/PersonLinje/Details';
 
 function OversiktNy() {
-    return <PersonlinjeDetails />;
+    return <OversiktWrapper />;
 }
 
 export default OversiktNy;
