@@ -11,7 +11,7 @@ import { twMerge } from 'tailwind-merge';
 const routeApi = getRouteApi('/new/person/varsler');
 
 const Status = ({ varsel }: { varsel: VarselData }) => {
-    if (varsel.harFeilteVarsel) {
+    if (varsel.harFeiledeVarsler) {
         return (
             <Tag title="Varsling feilet" variant="error-moderate" size="xsmall">
                 <ExclamationmarkTriangleIcon aria-hidden />
