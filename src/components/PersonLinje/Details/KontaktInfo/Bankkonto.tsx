@@ -10,7 +10,7 @@ interface Props {
 }
 
 function BankkontoBody({ harFeilendeSystem, bankkonto }: Props) {
-    if (!harFeilendeSystem) {
+    if (harFeilendeSystem) {
         return (
             <InlineMessage status="warning" size="small" className="py-1">
                 Feilet ved uthenting av kontonummer
