@@ -7,7 +7,7 @@ import { datoSynkende } from '../../../../utils/date-utils';
 
 function datoExtractor(varsel: UnifiedVarsel) {
     if (isDittNavEvent(varsel)) {
-        return varsel.forstBehandlet;
+        return varsel.opprettet;
     }
     return varsel.mottattTidspunkt;
 }

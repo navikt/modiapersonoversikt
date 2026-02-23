@@ -1,7 +1,7 @@
-import { type Varsel, Varseltype } from '../../../../models/varsel';
+import { type VarselOld, Varseltype } from '../../../../models/varsel';
 import { loggError } from '../../../../utils/logger/frontendLogger';
 
-export function getVarselTekst(varsel: Varsel) {
+export function getVarselTekst(varsel: VarselOld) {
     const varselTekst = Varseltype[varsel.varselType as keyof typeof Varseltype];
 
     if (!varselTekst) {

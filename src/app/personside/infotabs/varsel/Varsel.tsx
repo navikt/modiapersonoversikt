@@ -2,11 +2,11 @@ import { memo } from 'react';
 import {
     isDittNavEvent,
     type UnifiedVarsel as UnifiedVarselModell,
-    type Varsel as VarselModell
+    type VarselOld as VarselModell
 } from '../../../../models/varsel';
 import { datoSynkende } from '../../../../utils/date-utils';
 import { formaterDato } from '../../../../utils/string-utils';
-import { DittNavEventVarselV2 } from './DittNavVarsler';
+import { DittNavEventVarsel } from './DittNavVarsler';
 import { VarselRow } from './VarselRow';
 import { getVarselTekst } from './varsel-utils';
 import VarselMeldinger from './varselDetaljer/VarselMeldinger';
@@ -28,7 +28,7 @@ function Varsel({ varsel }: { varsel: VarselModell }) {
 
 function UnifiedVarsel({ varsel }: { varsel: UnifiedVarselModell }) {
     if (isDittNavEvent(varsel)) {
-        return <DittNavEventVarselV2 varsel={varsel} />;
+        return <DittNavEventVarsel varsel={varsel} />;
     }
     return <Varsel varsel={varsel} />;
 }

@@ -19,7 +19,7 @@ import { aremark } from '../mock/persondata/aremark';
 import { getStaticMockSaksoversiktV2 } from '../mock/saksoversikt/saksoversikt-mock';
 import { statiskOppfolgingMock } from '../mock/statiskOppfolgingMock';
 import { statiskMockUtbetalingRespons } from '../mock/utbetalinger/statiskMockUtbetalingRespons';
-import { statiskDittnavEventVarselMock } from '../mock/varsler/statiskVarselMock';
+import { statiskVarselMock } from '../mock/varsler/statiskVarselMock';
 import { statiskForeldrepengeMock } from '../mock/ytelse/statiskForeldrepengeMock';
 import { statiskSykepengerMock } from '../mock/ytelse/statiskSykepengerMock';
 import { statiskTiltakspengerMock } from '../mock/ytelse/statiskTiltakspengerMock';
@@ -135,7 +135,7 @@ export function setupReactQueryMocks() {
     mockReactQuery(aktoridResource.useFetch, `000${aremark.personIdent}000`);
     mockReactQuery(varselResource.useFetch, {
         feil: [],
-        varsler: [...statiskDittnavEventVarselMock, ...statiskDittnavEventVarselMock, ...statiskDittnavEventVarselMock]
+        varsler: [...statiskVarselMock, ...statiskVarselMock, ...statiskVarselMock]
     });
     mockReactQuery(sykepengerSpokelseResource.useSykepengerSpokelse, statiskSykepengerSpokelseMock);
 }

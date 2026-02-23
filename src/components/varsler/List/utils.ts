@@ -5,16 +5,15 @@ import { varslerFilterAtom } from 'src/components/varsler/List/Filter';
 import { errorPlaceholder, responseErrorMessage } from 'src/components/ytelser/utils';
 import { useVarslerData } from 'src/lib/clients/modiapersonoversikt-api';
 import type { Varsel } from 'src/lib/types/modiapersonoversikt-api';
-import { datoSynkende } from 'src/utils/date-utils';
 
 export interface VarselData {
     eventId: string;
     datoer: string[];
+    varslingstidspunkt: string;
+    revarslingstidspunkt: string;
     kanaler: string[];
-    sisteDato: string;
     tittel: string;
-    harFeilteVarsel?: boolean;
-    erVarslerV2: boolean;
+    harFeiledeVarsler?: boolean;
     event: Varsel;
 }
 
@@ -39,13 +38,16 @@ const filterVarsler = (varsler: VarselData[], filters: VarslerFilter): VarselDat
     }
 
     if (failedVarslerOnly) {
-        filteredList = filteredList.filter((varsel) => varsel.harFeilteVarsel);
+        filteredList = filteredList.filter((varsel) => varsel.harFeiledeVarsler);
     }
 
     if (dateRange?.from && dateRange?.to) {
         filteredList = filteredList.filter((varsel) => {
             const datoer = varsel.datoer.map((dato) => dayjs(dato));
-            return datoer.some((dato) => dato.isAfter(dateRange.from) && dato.isBefore(dateRange.to));
+            return datoer.some(
+                (dato) =>
+                    dato.isSameOrAfter(dateRange.from.startOf('day')) && dato.isSameOrBefore(dateRange.to.endOf('day'))
+            );
         });
     }
 
@@ -60,9 +62,7 @@ export const useFilterVarsler = (): Returns => {
         feil: [],
         varsler: []
     };
-    const varselElementer = varslerResult.varsler
-        .sort(datoSynkende((v) => v.forstBehandlet))
-        .map((item) => dataExtractor(item));
+    const varselElementer = varslerResult.varsler.map((item) => dataExtractor(item));
 
     const errorMessages = [errorPlaceholder(varselResponse, responseErrorMessage('varsler'))];
 
@@ -75,36 +75,27 @@ export const useFilterVarsler = (): Returns => {
 };
 
 const dataExtractor = (varsel: Varsel): VarselData => {
-    const varslingsTidspunkt = varsel.varslingsTidspunkt;
+    const eksternVarsling = varsel.eksternVarsling;
+    const eventId = varsel.varselId;
     const aktiv = varsel.aktiv ? '' : ' (Ferdigstilt)';
-    const tittel = `Notifikasjon${aktiv}: ${varsel.tekst}`;
-    const eventId = varsel.eventId;
-    if (!varslingsTidspunkt || !varslingsTidspunkt.tidspunkt) {
-        const datoer = [varsel.forstBehandlet];
-        const kanaler = ['DITT_NAV', ...varsel.eksternVarslingKanaler];
-        return { eventId, datoer, kanaler, tittel, sisteDato: datoer[0], erVarslerV2: false, event: varsel };
+    const tittel = `Notifikasjon${aktiv}: ${varsel.innhold.tekst}`;
+    const datoer = [eksternVarsling.sendtTidspunkt];
+    const kanaler = ['DITT_NAV', ...eksternVarsling.sendteKanaler];
+
+    if (eksternVarsling.renotifikasjonTidspunkt != null) {
+        datoer.unshift(eksternVarsling.renotifikasjonTidspunkt);
     }
 
-    const datoer = [varslingsTidspunkt.tidspunkt];
-    if (varslingsTidspunkt.renotifikasjonTidspunkt) {
-        datoer.unshift(varslingsTidspunkt.renotifikasjonTidspunkt);
-    }
-    const kanaler = [
-        'DITT_NAV',
-        ...varsel.eksternVarslingKanaler,
-        ...varslingsTidspunkt.renotifikasjonsKanaler
-    ].unique();
-
-    const harFeilteVarsel = varslingsTidspunkt.harFeilteVarslinger || varslingsTidspunkt.harFeilteRevarslinger;
+    const harFeiledeVarsler = eksternVarsling.feilhistorikk.length > 0;
 
     return {
         eventId,
         datoer,
+        varslingstidspunkt: eksternVarsling.sendtTidspunkt,
+        revarslingstidspunkt: eksternVarsling.renotifikasjonTidspunkt ?? '',
         kanaler,
         tittel,
-        sisteDato: datoer[0],
-        harFeilteVarsel,
-        erVarslerV2: true,
+        harFeiledeVarsler,
         event: varsel
     };
 };

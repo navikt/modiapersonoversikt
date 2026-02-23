@@ -6,7 +6,7 @@ import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { varslerFilterAtom } from 'src/components/varsler/List/Filter';
 import { useFilterVarsler, type VarselData } from 'src/components/varsler/List/utils';
-import type { FeiletVarsling, Varsel } from 'src/lib/types/modiapersonoversikt-api';
+import type { Feilhistorikk, Varsel } from 'src/lib/types/modiapersonoversikt-api';
 import { varslerRouteMiddleware } from 'src/routes/new/person/varsler';
 import { ENDASH, emptyReplacement, formaterDato } from 'src/utils/string-utils';
 
@@ -14,10 +14,10 @@ const routeApi = getRouteApi('/new/person/varsler');
 
 const FeilteVarslingerListe = ({
     tittel,
-    feilteVarslinger
+    feiledeVarslinger
 }: {
     tittel: string;
-    feilteVarslinger: FeiletVarsling[];
+    feiledeVarslinger: Feilhistorikk[];
 }) => {
     return (
         <HStack gap="1">
@@ -26,13 +26,15 @@ const FeilteVarslingerListe = ({
                     {tittel}
                 </BodyLong>
             </HStack>
-            {feilteVarslinger.map((varsling) => (
-                <div key={`${varsling.tidspunkt} - ${varsling.kanal}`}>
-                    <ErrorMessage size="small" showIcon>
-                        {formaterDato(varsling.tidspunkt)} - {varsling.kanal}: {varsling.feilmelding}
-                    </ErrorMessage>
-                </div>
-            ))}
+            <VStack gap="1">
+                {feiledeVarslinger.map((varsling) => (
+                    <div key={`${varsling.tidspunkt} - ${varsling.feilmelding}`}>
+                        <ErrorMessage size="small" showIcon>
+                            {formaterDato(varsling.tidspunkt)}: {varsling.feilmelding}
+                        </ErrorMessage>
+                    </div>
+                ))}
+            </VStack>
         </HStack>
     );
 };
@@ -51,51 +53,37 @@ const DittNavInformasjonsLinje = ({ tittel, tekst }: { tittel: string; tekst: st
 };
 
 const DittNavInformasjonsLinjer = ({ varsel, kanaler }: { varsel: Varsel; kanaler: string[] }) => {
-    return (
-        <VStack gap="1" className="p-2">
-            <Heading level="3" size="xsmall" className="mb-4">
-                {varsel.tekst}
-            </Heading>
-            <DittNavInformasjonsLinje tittel="Produsert av:" tekst={emptyReplacement(varsel.produsent, ENDASH)} />
-            <DittNavInformasjonsLinje tittel="Kanaler:" tekst={emptyReplacement(kanaler?.join(', '), ENDASH)} />
-        </VStack>
-    );
-};
-
-const DittNavInformasjonsLinjerV2 = ({ varsel, kanaler }: { varsel: Varsel; kanaler: string[] }) => {
-    const varslingsTidspunkt = varsel.varslingsTidspunkt;
+    const eksternVarsling = varsel.eksternVarsling;
 
     return (
         <>
-            <DittNavInformasjonsLinjer varsel={varsel} kanaler={kanaler} />
+            <VStack gap="1" className="p-2">
+                <Heading level="3" size="xsmall" className="mb-4">
+                    {varsel.innhold.tekst}
+                </Heading>
+                <DittNavInformasjonsLinje tittel="Produsert av:" tekst={emptyReplacement(varsel.produsent, ENDASH)} />
+                <DittNavInformasjonsLinje tittel="Link:" tekst={emptyReplacement(varsel.innhold.link, ENDASH)} />
+                <DittNavInformasjonsLinje tittel="Kanaler:" tekst={emptyReplacement(kanaler.join(', '), ENDASH)} />
+            </VStack>
+
             <VStack gap="1" className="px-2">
                 <DittNavInformasjonsLinje
                     tittel="Varslet: "
                     tekst={
-                        varslingsTidspunkt?.tidspunkt
-                            ? `${formaterDato(varslingsTidspunkt.tidspunkt)} - ${varslingsTidspunkt.sendteKanaler.join(', ')}`
+                        eksternVarsling.sendtTidspunkt
+                            ? `${formaterDato(eksternVarsling.sendtTidspunkt)} - ${kanaler.join(', ')}`
                             : '-'
                     }
                 />
-                {varslingsTidspunkt?.renotifikasjonTidspunkt && (
+                {eksternVarsling.renotifikasjonTidspunkt && (
                     <DittNavInformasjonsLinje
                         tittel="Revarslet: "
-                        tekst={`${formaterDato(
-                            varslingsTidspunkt.renotifikasjonTidspunkt
-                        )} - ${varslingsTidspunkt.renotifikasjonsKanaler.join(', ')}`}
+                        tekst={`${formaterDato(eksternVarsling.renotifikasjonTidspunkt)} - 
+                    ${kanaler.join(', ')}`}
                     />
                 )}
-                {varslingsTidspunkt?.harFeilteVarslinger && (
-                    <FeilteVarslingerListe
-                        tittel="Varslingsfeil: "
-                        feilteVarslinger={varslingsTidspunkt.feilteVarsliner}
-                    />
-                )}
-                {varslingsTidspunkt?.harFeilteRevarslinger && (
-                    <FeilteVarslingerListe
-                        tittel="Revarslingsfeil: "
-                        feilteVarslinger={varslingsTidspunkt.feilteRevarslinger}
-                    />
+                {(eksternVarsling.feilhistorikk.length ?? 0) > 0 && (
+                    <FeilteVarslingerListe tittel="Varslingsfeil: " feiledeVarslinger={eksternVarsling.feilhistorikk} />
                 )}
             </VStack>
         </>
@@ -141,12 +129,8 @@ const VarselDetailExtractor = ({ varsler }: { varsler: VarselData[] }) => {
     return (
         <>
             {valgtVarsel && (
-                <Card padding="4">
-                    {valgtVarsel.erVarslerV2 ? (
-                        <DittNavInformasjonsLinjerV2 varsel={valgtVarsel.event} kanaler={valgtVarsel.kanaler} />
-                    ) : (
-                        <DittNavInformasjonsLinjer varsel={valgtVarsel.event} kanaler={valgtVarsel.kanaler} />
-                    )}
+                <Card padding="2">
+                    <DittNavInformasjonsLinjer varsel={valgtVarsel.event} kanaler={valgtVarsel.kanaler} />
                 </Card>
             )}
         </>

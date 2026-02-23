@@ -1,53 +1,20 @@
-export interface DittNavEvent {
-    fodselsnummer: string;
-    grupperingsId: string;
-    eventId: string;
-    forstBehandlet: string;
-    produsent: string;
-    sikkerhetsnivaa: number;
-    sistOppdatert: string;
-    tekst: string;
-    link: string;
-    aktiv: boolean;
-    eksternVarslingSendt: boolean;
-    eksternVarslingKanaler: Array<string>;
-    varslingsTidspunkt?: VarslingsTidspunkt;
-}
+import type { Varsel } from 'src/lib/types/modiapersonoversikt-api';
 
-interface VarslingsTidspunkt {
-    sendt: boolean;
-    tidspunkt?: string;
-    renotifikasjonSendt: boolean;
-    renotifikasjonTidspunkt?: string;
-    sendteKanaler: string[];
-    renotifikasjonsKanaler: string[];
-    harFeilteVarslinger: boolean;
-    harFeilteRevarslinger: boolean;
-    feilteVarsliner: FeiletVarsling[];
-    feilteRevarslinger: FeiletVarsling[];
-}
-
-export interface FeiletVarsling {
-    tidspunkt: string;
-    feilmelding: string;
-    kanal?: string;
-}
-
-export interface Varsel {
+export interface VarselOld {
     varselType: string;
     mottattTidspunkt: string;
     erRevarsling: boolean;
     meldingListe: Varselmelding[];
 }
 
-export type UnifiedVarsel = Varsel | DittNavEvent;
+export type UnifiedVarsel = Varsel | VarselOld;
 export interface VarslerResult {
     feil: string[];
     varsler: UnifiedVarsel[];
 }
 
-export function isDittNavEvent(varsel: UnifiedVarsel): varsel is DittNavEvent {
-    return 'eventId' in varsel;
+export function isDittNavEvent(varsel: UnifiedVarsel): varsel is Varsel {
+    return 'varselId' in varsel;
 }
 
 export interface Varselmelding {

@@ -1,6 +1,6 @@
+import type { Feilhistorikk, Varsel } from 'src/lib/types/modiapersonoversikt-api';
 import { emptyReplacement } from 'src/utils/string-utils';
 import styled from 'styled-components';
-import type { DittNavEvent, FeiletVarsling } from '../../../../models/varsel';
 import theme from '../../../../styles/personOversiktTheme';
 import { ENDASH, formaterDato } from '../../../../utils/string-utils';
 import { VarselRow } from './VarselRow';
@@ -42,7 +42,7 @@ function DittNavInformasjonsLinje({ tittel, tekst }: { tittel: string; tekst: st
     );
 }
 
-function DittNavInformasjonsLinjer(varsel: { produsent: string; tekst: string; link: string }) {
+function DittNavInformasjonsLinjer(varsel: { produsent: string; tekst: string; link: string | null | undefined }) {
     return (
         <>
             <DittNavInformasjonsLinje tittel="Produsert av:" tekst={emptyReplacement(varsel.produsent, ENDASH)} />
@@ -52,29 +52,14 @@ function DittNavInformasjonsLinjer(varsel: { produsent: string; tekst: string; l
     );
 }
 
-function DittNavEventVarsel({ varsel }: { varsel: DittNavEvent }) {
-    const aktiv = varsel.aktiv ? '' : ' (Ferdigstilt)';
-    const datoer = [formaterDato(varsel.forstBehandlet)];
-    const tittel = `Notifikasjon${aktiv}: ${varsel.tekst}`;
-    const kanaler = ['DITT_NAV', ...varsel.eksternVarslingKanaler];
-
-    return (
-        <VarselRow datoer={datoer} tittel={tittel} kanaler={kanaler} varsel={varsel}>
-            <GraattDefinisjonsListe>
-                <DittNavInformasjonsLinjer produsent={varsel.produsent} tekst={varsel.tekst} link={varsel.link} />
-            </GraattDefinisjonsListe>
-        </VarselRow>
-    );
-}
-
-function FeilteVarslingerListe({ tittel, feilteVarslinger }: { tittel: string; feilteVarslinger: FeiletVarsling[] }) {
+function FeilteVarslingerListe({ tittel, feilteVarslinger }: { tittel: string; feilteVarslinger: Feilhistorikk[] }) {
     return (
         <FeilteVarslingerListeWrapper>
             <BoldTekst>{tittel}</BoldTekst>
             <FeilteVarslinerListeStyling>
-                {feilteVarslinger.map((varsling) => (
-                    <li key={`${varsling.tidspunkt} - ${varsling.kanal}`}>
-                        {formaterDato(varsling.tidspunkt)} - {varsling.kanal}: {varsling.feilmelding}
+                {feilteVarslinger.map((feiletVarsel) => (
+                    <li key={`${feiletVarsel.tidspunkt}`}>
+                        {formaterDato(feiletVarsel.tidspunkt)}: {feiletVarsel.feilmelding}
                     </li>
                 ))}
             </FeilteVarslinerListeStyling>
@@ -82,25 +67,15 @@ function FeilteVarslingerListe({ tittel, feilteVarslinger }: { tittel: string; f
     );
 }
 
-export function DittNavEventVarselV2({ varsel }: { varsel: DittNavEvent }) {
-    const varslingsTidspunkt = varsel.varslingsTidspunkt;
-
-    if (!varslingsTidspunkt || !varslingsTidspunkt.tidspunkt) {
-        return <DittNavEventVarsel varsel={varsel} />;
-    }
-
+export function DittNavEventVarsel({ varsel }: { varsel: Varsel }) {
     const aktiv = varsel.aktiv ? '' : ' (Ferdigstilt)';
-    const datoer = [formaterDato(varslingsTidspunkt.tidspunkt)];
-    if (varslingsTidspunkt.renotifikasjonTidspunkt) {
-        datoer.push(formaterDato(varslingsTidspunkt.renotifikasjonTidspunkt));
+    const datoer = [formaterDato(varsel.eksternVarsling.sendtTidspunkt)];
+    if (varsel.eksternVarsling.renotifikasjonTidspunkt) {
+        datoer.push(formaterDato(varsel.eksternVarsling.renotifikasjonTidspunkt));
     }
 
-    const tittel = `Notifikasjon${aktiv}: ${varsel.tekst}`;
-    const kanaler = [
-        'DITT_NAV',
-        ...varsel.eksternVarslingKanaler,
-        ...varslingsTidspunkt.renotifikasjonsKanaler
-    ].unique();
+    const tittel = `Notifikasjon${aktiv}: ${varsel.innhold.tekst}`;
+    const kanaler = ['DITT_NAV', ...varsel.eksternVarsling.sendteKanaler].unique();
 
     return (
         <VarselRow
@@ -108,40 +83,35 @@ export function DittNavEventVarselV2({ varsel }: { varsel: DittNavEvent }) {
             tittel={tittel}
             kanaler={kanaler}
             varsel={varsel}
-            harFeilteVarsel={varslingsTidspunkt.harFeilteVarslinger || varslingsTidspunkt.harFeilteRevarslinger}
+            harFeilteVarsel={varsel.eksternVarsling.feilhistorikk.length > 0}
         >
             <GraattDefinisjonsListe>
                 <div>
-                    <DittNavInformasjonsLinjer produsent={varsel.produsent} tekst={varsel.tekst} link={varsel.link} />
+                    <DittNavInformasjonsLinjer
+                        produsent={varsel.produsent}
+                        tekst={varsel.innhold.tekst}
+                        link={varsel.innhold.link}
+                    />
                     <DittNavInformasjonsLinje
                         tittel="Varslet: "
-                        tekst={`${formaterDato(varslingsTidspunkt.tidspunkt)} - ${varslingsTidspunkt.sendteKanaler.join(
+                        tekst={`${formaterDato(varsel.eksternVarsling.sendtTidspunkt)} - ${varsel.eksternVarsling.sendteKanaler.join(
                             ', '
                         )}`}
                     />
-                    {varslingsTidspunkt.renotifikasjonTidspunkt && (
+                    {varsel.eksternVarsling.renotifikasjonTidspunkt && (
                         <DittNavInformasjonsLinje
                             tittel="Revarslet: "
                             tekst={`${formaterDato(
-                                varslingsTidspunkt.renotifikasjonTidspunkt
-                            )} - ${varslingsTidspunkt.renotifikasjonsKanaler.join(', ')}`}
+                                varsel.eksternVarsling.renotifikasjonTidspunkt
+                            )} - ${varsel.eksternVarsling.sendteKanaler.join(', ')}`}
                         />
                     )}
-                    {varslingsTidspunkt.harFeilteVarslinger && (
+                    {varsel.eksternVarsling.feilhistorikk && (
                         <>
                             <hr />
                             <FeilteVarslingerListe
                                 tittel="Varslingsfeil"
-                                feilteVarslinger={varslingsTidspunkt.feilteVarsliner}
-                            />
-                        </>
-                    )}
-                    {varslingsTidspunkt.harFeilteRevarslinger && (
-                        <>
-                            <hr />
-                            <FeilteVarslingerListe
-                                tittel="Revarslingsfeil"
-                                feilteVarslinger={varslingsTidspunkt.feilteRevarslinger}
+                                feilteVarslinger={varsel.eksternVarsling.feilhistorikk}
                             />
                         </>
                     )}
