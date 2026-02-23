@@ -29,8 +29,7 @@ export const useFilterVarsler = (): Returns => {
         feil: [],
         varsler: []
     };
-    const varselElementer = varslerResult.varsler
-        .map((item) => dataExtractor(item));
+    const varselElementer = varslerResult.varsler.map((item) => dataExtractor(item));
 
     const errorMessages = [errorPlaceholder(varselResponse, responseErrorMessage('varsler'))];
 
