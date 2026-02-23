@@ -1049,12 +1049,12 @@ exports[`Viser oversikt med alt innhold 1`] = `
                         <span
                           class="c27"
                         >
-                          11.01.2023
+                          05.01.2026
                         </span>
                         <span
                           class="c27"
                         >
-                          01.08.2023
+                          12.01.2026
                         </span>
                       </p>
                       <div
@@ -1080,7 +1080,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                         class="typo-element c29"
                         id="Helt tilfeldig ID"
                       >
-                        Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
+                        Notifikasjon: Et nytt samtalereferat er tilgjengelig i din innboks
                       </h4>
                       <ul
                         aria-label="Kommunikasjonskanaler"
@@ -1139,13 +1139,13 @@ exports[`Viser oversikt med alt innhold 1`] = `
                           Varslet: 
                         </dt>
                         <dd>
-                          11.01.2023 - SMS, EPOST
+                          05.01.2026 - SMS, EPOST
                         </dd>
                         <dt>
                           Revarslet: 
                         </dt>
                         <dd>
-                          01.08.2023 - SMS, EPOST
+                          12.01.2026 - SMS, EPOST
                         </dd>
                         <hr />
                         <div
@@ -1160,24 +1160,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                             class="c35"
                           >
                             <li>
-                              01.01.2023 - SMS: Feil telefonummer
-                            </li>
-                          </div>
-                        </div>
-                        <hr />
-                        <div
-                          class="c33"
-                        >
-                          <span
-                            class="c34"
-                          >
-                            Revarslingsfeil
-                          </span>
-                          <div
-                            class="c35"
-                          >
-                            <li>
-                              11.08.2023 - EPOST: Feil epost
+                              05.01.2026: Det oppsto en feil
                             </li>
                           </div>
                         </div>
@@ -1202,12 +1185,12 @@ exports[`Viser oversikt med alt innhold 1`] = `
                         <span
                           class="c27"
                         >
-                          11.01.2023
+                          05.01.2026
                         </span>
                         <span
                           class="c27"
                         >
-                          01.08.2023
+                          12.01.2026
                         </span>
                       </p>
                       <div
@@ -1233,7 +1216,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                         class="typo-element c29"
                         id="Helt tilfeldig ID"
                       >
-                        Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
+                        Notifikasjon: Et nytt samtalereferat er tilgjengelig i din innboks
                       </h4>
                       <ul
                         aria-label="Kommunikasjonskanaler"
@@ -1292,13 +1275,13 @@ exports[`Viser oversikt med alt innhold 1`] = `
                           Varslet: 
                         </dt>
                         <dd>
-                          11.01.2023 - SMS, EPOST
+                          05.01.2026 - SMS, EPOST
                         </dd>
                         <dt>
                           Revarslet: 
                         </dt>
                         <dd>
-                          01.08.2023 - SMS, EPOST
+                          12.01.2026 - SMS, EPOST
                         </dd>
                         <hr />
                         <div
@@ -1313,24 +1296,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                             class="c35"
                           >
                             <li>
-                              01.01.2023 - SMS: Feil telefonummer
-                            </li>
-                          </div>
-                        </div>
-                        <hr />
-                        <div
-                          class="c33"
-                        >
-                          <span
-                            class="c34"
-                          >
-                            Revarslingsfeil
-                          </span>
-                          <div
-                            class="c35"
-                          >
-                            <li>
-                              11.08.2023 - EPOST: Feil epost
+                              05.01.2026: Det oppsto en feil
                             </li>
                           </div>
                         </div>
