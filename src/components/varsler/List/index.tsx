@@ -9,14 +9,24 @@ import { useFilterVarsler, type VarselData } from './utils';
 const Status = ({ varsel }: { varsel: VarselData }) => {
     if (varsel.harFeiledeVarsler) {
         return (
-            <Tag title="Varsling feilet" variant="error-moderate" size="small">
-                <ExclamationmarkTriangleIcon aria-hidden /> Varsling feilet
+            <Tag
+                title="Varsling feilet"
+                variant="error-moderate"
+                size="small"
+                icon={<ExclamationmarkTriangleIcon aria-hidden />}
+            >
+                Feilet
             </Tag>
         );
     }
     return (
-        <Tag title="Varsling vellykket" variant="success-moderate" size="small">
-            <CheckmarkCircleIcon aria-hidden /> Varsling vellykket
+        <Tag
+            title="Varsling vellykket"
+            variant="success-moderate"
+            size="small"
+            icon={<CheckmarkCircleIcon aria-hidden />}
+        >
+            Vellykket
         </Tag>
     );
 };
@@ -26,7 +36,7 @@ export const VarslerListe = () => {
     const [page, setPage] = useState(1);
     const [sort, setSort] = useState<SortState | undefined>({ orderBy: 'sisteDato', direction: 'descending' });
 
-    const rowsPerPage = 10;
+    const rowsPerPage = 50;
 
     if (isError) return;
 
@@ -71,13 +81,13 @@ export const VarslerListe = () => {
     return (
         <Card padding="4">
             <VStack gap="space-16">
-                <Heading as="h4" size="small">
+                <Heading level="2" size="medium">
                     Varsler
                 </Heading>
-                <BodyLong>
+                <BodyLong className="text-ax-text-neutral-subtle">
                     Viser varsler for det siste året. For eldre varsler, opprett sak i porten for manuell uthenting.
                 </BodyLong>
-                <Table zebraStripes={true} sort={sort} onSortChange={handleSort} size="small">
+                <Table sort={sort} onSortChange={handleSort} size="medium">
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell scope="col" />
@@ -90,7 +100,7 @@ export const VarslerListe = () => {
                             <Table.ColumnHeader sortKey="produsent" sortable scope="col">
                                 Produsert av
                             </Table.ColumnHeader>
-                            <Table.HeaderCell scope="col">Kanal</Table.HeaderCell>
+                            <Table.HeaderCell scope="col">Kanaler</Table.HeaderCell>
                             <Table.HeaderCell scope="col">Status</Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
@@ -121,7 +131,7 @@ export const VarslerListe = () => {
                         page={page}
                         onPageChange={setPage}
                         count={Math.ceil(sortedData.length / rowsPerPage)}
-                        size="xsmall"
+                        size="small"
                     />
                 )}
             </VStack>
