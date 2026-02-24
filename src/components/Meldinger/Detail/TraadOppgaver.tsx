@@ -1,7 +1,6 @@
-import { ExternalLinkIcon } from '@navikt/aksel-icons';
-import { Box, HStack, ReadMore, Table } from '@navikt/ds-react';
-import { Link } from '@tanstack/react-router';
+import { Box, ReadMore, Table } from '@navikt/ds-react';
 import { useFilterOppgave } from 'src/components/Oppgave/List/utils';
+import { AvsluttOppgave } from 'src/components/Oppgave/OppgaveContent';
 import type { OppgaveDto } from 'src/generated/modiapersonoversikt-api';
 import { useGsakTema } from 'src/lib/clients/modiapersonoversikt-api';
 import { datoEllerNull } from 'src/utils/string-utils';
@@ -39,6 +38,7 @@ export const TraadOppgaver = ({ traadId }: { traadId: string }) => {
                             <Table.HeaderCell scope="col" textSize="small">
                                 Frist
                             </Table.HeaderCell>
+                            <Table.HeaderCell scope="col" textSize="small" />
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
@@ -49,18 +49,7 @@ export const TraadOppgaver = ({ traadId }: { traadId: string }) => {
                             const prioritering = tema?.prioriteter.find((o) => o.kode === p.prioritet);
                             return (
                                 <Table.Row key={p.oppgaveId}>
-                                    <Table.DataCell textSize="small">
-                                        <Link
-                                            to="/new/person/oppgaver"
-                                            className="aksel-link"
-                                            search={{ id: `Oppgave${p.oppgaveId}` }}
-                                        >
-                                            <HStack gap="1" align="center">
-                                                <ExternalLinkIcon aria-hidden fontSize="1rem" />{' '}
-                                                <span>{p.oppgaveId}</span>
-                                            </HStack>
-                                        </Link>
-                                    </Table.DataCell>
+                                    <Table.DataCell textSize="small">{p.oppgaveId}</Table.DataCell>
                                     <Table.DataCell textSize="small">
                                         {oppgavetype?.tekst ?? 'Ukjent oppgavetype'}
                                     </Table.DataCell>
@@ -68,6 +57,9 @@ export const TraadOppgaver = ({ traadId }: { traadId: string }) => {
                                     <Table.DataCell textSize="small">{prioritering?.tekst ?? ''}</Table.DataCell>
                                     <Table.DataCell textSize="small">
                                         {datoEllerNull(p?.fristFerdigstillelse)}
+                                    </Table.DataCell>
+                                    <Table.DataCell>
+                                        <AvsluttOppgave oppgave={p} />
                                     </Table.DataCell>
                                 </Table.Row>
                             );
