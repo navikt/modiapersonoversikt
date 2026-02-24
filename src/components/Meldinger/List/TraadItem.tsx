@@ -201,7 +201,7 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
                             </Bleed>
                         </Box.New>
                     )}
-                    <VStack gap="1" align="stretch" flexGrow="1">
+                    <VStack gap="1" minWidth="0">
                         <HStack justify="space-between" gap="1" wrap={false}>
                             <VStack>
                                 <Label size="small" as="h3">
@@ -216,8 +216,7 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
                                 <Antallmeldinger traad={traad} />
                             </HStack>
                         </HStack>
-                        {/*<Detail truncate>{sisteMelding.fritekst}</Detail> */}
-
+                        <Detail truncate>{sisteMelding.fritekst}</Detail>
                         <HStack gap="1" align="start" justify="start" maxHeight="max-content">
                             <UbesvartMelding traad={traad} />
                             <UnderArbeid traadId={traad.traadId} />
