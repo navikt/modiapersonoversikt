@@ -9,8 +9,7 @@ import {
     HandShakeHeartIcon,
     HouseIcon,
     PersonGroupIcon,
-    PiggybankIcon,
-    TasklistIcon
+    PiggybankIcon
 } from '@navikt/aksel-icons';
 import { Bleed, Box, Button, Heading, VStack } from '@navikt/ds-react';
 import { Link } from '@tanstack/react-router';
@@ -64,11 +63,6 @@ export const menuItems = [
         title: 'Saker',
         href: '/new/person/saker',
         Icon: FileIcon
-    },
-    {
-        title: 'Oppgaver',
-        href: '/new/person/oppgaver',
-        Icon: TasklistIcon
     },
     {
         title: 'Varsler',

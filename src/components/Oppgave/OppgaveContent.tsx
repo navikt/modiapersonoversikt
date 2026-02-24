@@ -12,7 +12,7 @@ import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
 import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { datoEllerNull } from 'src/utils/string-utils';
 
-const AvsluttOppgave = ({ oppgave }: { oppgave: OppgaveDto }) => {
+export const AvsluttOppgave = ({ oppgave }: { oppgave: OppgaveDto }) => {
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
     const setDialogUnderArbeid = useSetAtom(dialogUnderArbeidAtom);
