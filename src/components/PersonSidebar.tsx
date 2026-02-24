@@ -17,6 +17,7 @@ import { Link } from '@tanstack/react-router';
 import { type ComponentProps, useState } from 'react';
 import { getOpenTabFromRouterPath, useOpenTab } from 'src/app/personside/infotabs/utils/useOpenTab';
 import { erUbesvartHenvendelseFraBruker, useTraader } from 'src/components/Meldinger/List/utils';
+import { useFilterOppgave } from 'src/components/Oppgave/List/utils';
 import { usePersonSideBarKotkeys } from 'src/components/usePersonSidebarHotkeys';
 import { trackingEvents } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
@@ -82,10 +83,13 @@ export const PersonSidebarMenu = () => {
     const openTab = useOpenTab();
     usePersonSideBarKotkeys();
     const { data: traader } = useTraader();
+    const oppgaver = useFilterOppgave();
+    const harOppgaverPaaEnTraad = oppgaver.data.some((oppgave) => oppgave.traadId !== null);
+    const harUbesvarteTraader = traader?.some((traad) => erUbesvartHenvendelseFraBruker(traad));
 
     const visNotifikasjon = (tab: string) => {
         if (tab !== 'Kommunikasjon') return false;
-        return traader?.some((traad) => erUbesvartHenvendelseFraBruker(traad));
+        return harOppgaverPaaEnTraad || harUbesvarteTraader;
     };
 
     return (
@@ -146,13 +150,13 @@ export const PersonSidebarMenu = () => {
                                             icon={
                                                 <>
                                                     <Icon aria-hidden />
-                                                    {visNotifikasjon(title) && (
-                                                        <Box.New position="absolute" left={expanded ? '6' : '4'}>
+                                                    {!expanded && visNotifikasjon(title) && (
+                                                        <Box.New position="absolute" left="4">
                                                             <Bleed marginBlock="space-6" asChild>
                                                                 <CircleFillIcon
-                                                                    fontSize="1rem"
+                                                                    fontSize="1.15rem"
                                                                     color="var(--ax-text-logo)"
-                                                                    title="Brukeren har ubesvarte meldinger"
+                                                                    title="Brukeren har ubesvarte meldinger og/eller oppgave må løses"
                                                                 />
                                                             </Bleed>
                                                         </Box.New>
@@ -165,7 +169,7 @@ export const PersonSidebarMenu = () => {
                                                 'my-1 relative',
                                                 'font-normal',
                                                 !isActive && ['hover:bg-ax-bg-accent-moderate-hover'],
-                                                expanded && ['justify-start', 'min-w-44'],
+                                                expanded && ['justify-start', 'min-w-42'],
                                                 isActive && [
                                                     'bg-ax-bg-accent-moderate-pressed',
                                                     'text-ax-text-accent',
@@ -173,7 +177,22 @@ export const PersonSidebarMenu = () => {
                                                 ]
                                             )}
                                         >
-                                            {expanded && <span className="font-normal">{title}</span>}
+                                            {expanded && (
+                                                <span className="font-normal">
+                                                    {title}{' '}
+                                                    {visNotifikasjon(title) && (
+                                                        <Box.New position="absolute" right="0" top="0">
+                                                            <Bleed marginBlock="space-6" marginInline="space-2" asChild>
+                                                                <CircleFillIcon
+                                                                    fontSize="1.15rem"
+                                                                    color="var(--ax-text-logo)"
+                                                                    title="Brukeren har ubesvarte meldinger og/eller oppgave må løses"
+                                                                />
+                                                            </Bleed>
+                                                        </Box.New>
+                                                    )}
+                                                </span>
+                                            )}
                                         </Button>
                                     </>
                                 )}
