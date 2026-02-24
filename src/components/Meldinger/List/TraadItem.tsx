@@ -1,6 +1,7 @@
 import {
     BellIcon,
     Chat2Icon,
+    CircleFillIcon,
     EnterIcon,
     PencilIcon,
     TabsRemoveIcon,
@@ -8,14 +9,13 @@ import {
     TrashIcon,
     XMarkOctagonIcon
 } from '@navikt/aksel-icons';
-import { Detail, HStack, Label, Link, Tag, VStack } from '@navikt/ds-react';
+import { Bleed, Box, Detail, HStack, Label, Link, Tag, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { atom, useAtomValue } from 'jotai';
 import { useEffect, useMemo, useRef } from 'react';
 import Card from 'src/components/Card';
 import { useFilterOppgave } from 'src/components/Oppgave/List/utils';
 import type { TraadDto } from 'src/generated/modiapersonoversikt-api';
-import { usePersonAtomValue } from 'src/lib/state/context';
 import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
 import type { Melding } from 'src/lib/types/modiapersonoversikt-api';
 import { Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
@@ -32,10 +32,8 @@ import {
 
 function TildeltSaksbehandler({ traadId }: { traadId: string }) {
     const { data: oppgaver } = useFilterOppgave();
-    const fnr = usePersonAtomValue();
-    const tildeltTilBruker = oppgaver.filter((oppg) => oppg.fnr === fnr);
 
-    if (tildeltTilBruker.map((oppgave) => oppgave.traadId).includes(traadId)) {
+    if (oppgaver.map((oppgave) => oppgave.traadId).includes(traadId)) {
         return (
             <Tag size="xsmall" variant="alt2-moderate" icon={<TasklistIcon aria-hidden />}>
                 Tildelt meg
@@ -144,6 +142,10 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
     const aktivTraad = routeApi.useSearch().traadId;
     const navigate = routeApi.useNavigate();
     const linkRef = useRef<HTMLAnchorElement | null>(null);
+    const { data: oppgaver } = useFilterOppgave();
+    const ubesvart = erUbesvartHenvendelseFraBruker(traad);
+    const erTildeltVeileder = oppgaver.map((oppgave) => oppgave.traadId).includes(traad.traadId);
+    const visNotifikasjon = ubesvart || erTildeltVeileder;
 
     useEffect(() => {
         if (aktivTraad === traad.traadId) {
@@ -183,7 +185,7 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
             }}
         >
             <Card
-                padding="2"
+                paddingBlock="3"
                 className={twMerge(
                     'cursor-pointer hover:bg-[var(--ax-bg-accent-moderate-hover)] group',
                     aktivTraad === traad.traadId &&
@@ -191,33 +193,43 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
                 )}
                 as="li"
             >
-                <VStack gap="1">
-                    <HStack justify="space-between" gap="1" wrap={false}>
-                        <VStack>
-                            <Label size="small" as="h3">
-                                <Detail className="text-nowrap" visuallyHidden>
-                                    Tema:
-                                </Detail>
-                                {temagruppeTekst(traad.temagruppe as Temagruppe)} ({tittel})
-                            </Label>
-                            <Detail>{datoTekst}</Detail>
-                        </VStack>
-                        <HStack gap="1" align="start" justify="end" maxHeight="max-content">
-                            <Antallmeldinger traad={traad} />
+                <HStack justify="start" align="stretch" wrap={false} paddingInline="4 2">
+                    {visNotifikasjon && (
+                        <Box.New marginBlock="1">
+                            <Bleed marginInline="space-12">
+                                <CircleFillIcon title="" className="text-ax-text-accent-decoration" fontSize="0.5rem" />
+                            </Bleed>
+                        </Box.New>
+                    )}
+                    <VStack gap="1" align="stretch" flexGrow="1">
+                        <HStack justify="space-between" gap="1" wrap={false}>
+                            <VStack>
+                                <Label size="small" as="h3">
+                                    <Detail className="text-nowrap" visuallyHidden>
+                                        Tema:
+                                    </Detail>
+                                    {temagruppeTekst(traad.temagruppe as Temagruppe)} ({tittel})
+                                </Label>
+                                <Detail>{datoTekst}</Detail>
+                            </VStack>
+                            <HStack gap="1" align="start" justify="end" maxHeight="max-content">
+                                <Antallmeldinger traad={traad} />
+                            </HStack>
                         </HStack>
-                    </HStack>
-                    <Detail truncate>{sisteMelding.fritekst}</Detail>
-                    <HStack gap="1" align="start" justify="start" maxHeight="max-content">
-                        <UbesvartMelding traad={traad} />
-                        <UnderArbeid traadId={traad.traadId} />
-                        <Feilsendt traad={traad} />
-                        <Slettet melding={sisteMelding} />
-                        <TildeltSaksbehandler traadId={traad.traadId} />
-                        <AvsluttetMelding traad={traad} />
-                        <SendtTilSladding traad={traad} />
-                        <Sladdet traad={traad} />
-                    </HStack>
-                </VStack>
+                        {/*<Detail truncate>{sisteMelding.fritekst}</Detail> */}
+
+                        <HStack gap="1" align="start" justify="start" maxHeight="max-content">
+                            <UbesvartMelding traad={traad} />
+                            <UnderArbeid traadId={traad.traadId} />
+                            <Feilsendt traad={traad} />
+                            <Slettet melding={sisteMelding} />
+                            <TildeltSaksbehandler traadId={traad.traadId} />
+                            <AvsluttetMelding traad={traad} />
+                            <SendtTilSladding traad={traad} />
+                            <Sladdet traad={traad} />
+                        </HStack>
+                    </VStack>
+                </HStack>
             </Card>
         </Link>
     );
