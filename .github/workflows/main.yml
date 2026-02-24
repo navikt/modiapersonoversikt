@@ -21,8 +21,24 @@ jobs:
             id-token: write
         outputs:
             image: ${{ steps.docker-build-push.outputs.image }}
+        if: |
+          github.event_name == 'push' ||
+          github.event_name == 'workflow_dispatch' ||
+          (
+            github.event_name == 'issue_comment' &&
+            github.event.issue.pull_request != '' &&
+            startsWith(github.event.comment.body, '.deploy')
+          )
         steps:
-            - uses: actions/checkout@v6
+            - name: Checkout (push / manual)
+              if: github.event_name != 'issue_comment'
+              uses: actions/checkout@v6
+
+            - name: Checkout PR branch (comment)
+              if: github.event_name == 'issue_comment'
+              uses: actions/checkout@v6
+              with:
+                ref: ${{ github.event.issue.pull_request.head.sha }}
             - uses: pnpm/action-setup@v4
               with:
                 version: 9
@@ -44,7 +60,7 @@ jobs:
               run: pnpm run lint:ci
 
             - name: Publish Docker image
-              if: github.ref == 'refs/heads/master' || github.event.issue.pull_request != '' && startsWith(github.event.comment.body, '.deploy')
+              if: success()
               uses: nais/docker-build-push@v0
               id: docker-build-push
               with:
@@ -57,7 +73,7 @@ jobs:
     deploy-dev:
         name: Deploy to dev-gcp
         needs: build
-        if: github.ref == 'refs/heads/master' || github.event.issue.pull_request != '' && startsWith(github.event.comment.body, '.deploy')
+        if: needs.build.result == 'success'
         environment: dev-gcp
         runs-on: ubuntu-latest
         permissions:
@@ -75,7 +91,7 @@ jobs:
     deploy-prod:
         name: Deploy to prod-gcp
         needs: build
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/master' && needs.build.result == 'success'
         environment: prod-gcp
         runs-on: ubuntu-latest
         permissions:
