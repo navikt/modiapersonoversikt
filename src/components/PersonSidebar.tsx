@@ -2,7 +2,7 @@ import {
     ArrowLeftIcon,
     ArrowRightIcon,
     BellIcon,
-    ChatIcon,
+    ChatElipsisIcon,
     CircleFillIcon,
     FileIcon,
     FolderIcon,
@@ -22,7 +22,7 @@ import { usePersonSideBarKotkeys } from 'src/components/usePersonSidebarHotkeys'
 import { trackingEvents } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
 import Card from './Card';
-import { ThemeIconToggle, ThemeToggle } from './theme/ThemeToggle';
+import { ThemeIconToggle } from './theme/ThemeToggle';
 
 type MenuItem = {
     title: string;
@@ -39,7 +39,7 @@ export const menuItems = [
     {
         title: 'Kommunikasjon',
         href: '/new/person/meldinger',
-        Icon: ChatIcon
+        Icon: ChatElipsisIcon
     },
     {
         title: 'Oppfølging',
@@ -150,11 +150,11 @@ export const PersonSidebarMenu = () => {
                                             icon={
                                                 <>
                                                     <Icon aria-hidden />
-                                                    {!expanded && visNotifikasjon(title) && (
-                                                        <Box.New position="absolute" left="4">
-                                                            <Bleed marginBlock="space-6" asChild>
+                                                    {visNotifikasjon(title) && (
+                                                        <Box.New position="absolute" left={expanded ? '6' : '4'}>
+                                                            <Bleed marginBlock="space-2" asChild>
                                                                 <CircleFillIcon
-                                                                    fontSize="1.15rem"
+                                                                    fontSize="0.8rem"
                                                                     color="var(--ax-text-logo)"
                                                                     title="Brukeren har ubesvarte meldinger og/eller oppgave må løses"
                                                                 />
@@ -177,22 +177,7 @@ export const PersonSidebarMenu = () => {
                                                 ]
                                             )}
                                         >
-                                            {expanded && (
-                                                <span className="font-normal">
-                                                    {title}{' '}
-                                                    {visNotifikasjon(title) && (
-                                                        <Box.New position="absolute" right="0" top="0">
-                                                            <Bleed marginBlock="space-6" marginInline="space-2" asChild>
-                                                                <CircleFillIcon
-                                                                    fontSize="1.15rem"
-                                                                    color="var(--ax-text-logo)"
-                                                                    title="Brukeren har ubesvarte meldinger og/eller oppgave må løses"
-                                                                />
-                                                            </Bleed>
-                                                        </Box.New>
-                                                    )}
-                                                </span>
-                                            )}
+                                            {expanded && <span className="font-normal">{title}</span>}
                                         </Button>
                                     </>
                                 )}
@@ -200,7 +185,9 @@ export const PersonSidebarMenu = () => {
                         ))}
                     </VStack>
                 </Box.New>
-                <Box.New padding="2">{expanded ? <ThemeToggle /> : <ThemeIconToggle />}</Box.New>
+                <Box.New padding="2">
+                    <ThemeIconToggle />
+                </Box.New>
             </VStack>
         </Card>
     );
