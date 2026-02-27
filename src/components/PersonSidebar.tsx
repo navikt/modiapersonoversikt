@@ -2,7 +2,7 @@ import {
     ArrowLeftIcon,
     ArrowRightIcon,
     BellIcon,
-    ChatIcon,
+    ChatElipsisIcon,
     CircleFillIcon,
     FileIcon,
     FolderIcon,
@@ -16,11 +16,12 @@ import { Link } from '@tanstack/react-router';
 import { type ComponentProps, useState } from 'react';
 import { getOpenTabFromRouterPath, useOpenTab } from 'src/app/personside/infotabs/utils/useOpenTab';
 import { erUbesvartHenvendelseFraBruker, useTraader } from 'src/components/Meldinger/List/utils';
+import { useFilterOppgave } from 'src/components/Oppgave/List/utils';
 import { usePersonSideBarKotkeys } from 'src/components/usePersonSidebarHotkeys';
 import { trackingEvents } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
 import Card from './Card';
-import { ThemeIconToggle, ThemeToggle } from './theme/ThemeToggle';
+import { ThemeIconToggle } from './theme/ThemeToggle';
 
 type MenuItem = {
     title: string;
@@ -37,7 +38,7 @@ export const menuItems = [
     {
         title: 'Kommunikasjon',
         href: '/new/person/meldinger',
-        Icon: ChatIcon
+        Icon: ChatElipsisIcon
     },
     {
         title: 'Oppfølging',
@@ -76,10 +77,13 @@ export const PersonSidebarMenu = () => {
     const openTab = useOpenTab();
     usePersonSideBarKotkeys();
     const { data: traader } = useTraader();
+    const oppgaver = useFilterOppgave();
+    const harOppgaverPaaEnTraad = oppgaver.data.some((oppgave) => oppgave.traadId !== null);
+    const harUbesvarteTraader = traader?.some((traad) => erUbesvartHenvendelseFraBruker(traad));
 
     const visNotifikasjon = (tab: string) => {
         if (tab !== 'Kommunikasjon') return false;
-        return traader?.some((traad) => erUbesvartHenvendelseFraBruker(traad));
+        return harOppgaverPaaEnTraad || harUbesvarteTraader;
     };
 
     return (
@@ -142,11 +146,11 @@ export const PersonSidebarMenu = () => {
                                                     <Icon aria-hidden />
                                                     {visNotifikasjon(title) && (
                                                         <Box.New position="absolute" left={expanded ? '6' : '4'}>
-                                                            <Bleed marginBlock="space-6" asChild>
+                                                            <Bleed marginBlock="space-2" asChild>
                                                                 <CircleFillIcon
-                                                                    fontSize="1rem"
+                                                                    fontSize="0.8rem"
                                                                     color="var(--ax-text-logo)"
-                                                                    title="Brukeren har ubesvarte meldinger"
+                                                                    title="Brukeren har ubesvarte meldinger og/eller oppgave må løses"
                                                                 />
                                                             </Bleed>
                                                         </Box.New>
@@ -159,7 +163,7 @@ export const PersonSidebarMenu = () => {
                                                 'my-1 relative',
                                                 'font-normal',
                                                 !isActive && ['hover:bg-ax-bg-accent-moderate-hover'],
-                                                expanded && ['justify-start', 'min-w-44'],
+                                                expanded && ['justify-start', 'min-w-42'],
                                                 isActive && [
                                                     'bg-ax-bg-accent-moderate-pressed',
                                                     'text-ax-text-accent',
@@ -175,7 +179,9 @@ export const PersonSidebarMenu = () => {
                         ))}
                     </VStack>
                 </Box.New>
-                <Box.New padding="2">{expanded ? <ThemeToggle /> : <ThemeIconToggle />}</Box.New>
+                <Box.New padding="2">
+                    <ThemeIconToggle />
+                </Box.New>
             </VStack>
         </Card>
     );
