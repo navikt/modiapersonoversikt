@@ -116,23 +116,16 @@ function AvsluttetMelding({ traad }: { traad: TraadDto }) {
 }
 
 function Sladdet({ traad }: { traad: TraadDto }) {
-    if (!traad.sattTilSladdingAv) return null;
+    const sisteMelding = nyesteMelding(traad);
+    if (!traad.sattTilSladdingAv && !sisteMelding.sendtTilSladding) return null;
+
     return (
         <Tag size="xsmall" variant="neutral-moderate" data-color="brand-magenta" icon={<TabsRemoveIcon aria-hidden />}>
-            Sladdet
+            Sladding
         </Tag>
     );
 }
 
-function SendtTilSladding({ traad }: { traad: TraadDto }) {
-    const sisteMelding = nyesteMelding(traad);
-    if (!sisteMelding.sendtTilSladding) return null;
-    return (
-        <Tag size="xsmall" variant="neutral-moderate" data-color="brand-magenta" icon={<TabsRemoveIcon aria-hidden />}>
-            Sladding behandles
-        </Tag>
-    );
-}
 const routeApi = getRouteApi('/new/person/meldinger');
 
 export const TraadItem = ({ traad }: { traad: TraadDto }) => {
@@ -201,9 +194,9 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
                             </Bleed>
                         </Box.New>
                     )}
-                    <VStack gap="1" minWidth="0">
-                        <HStack justify="space-between" gap="1" wrap={false}>
-                            <VStack>
+                    <VStack gap="0" minWidth="0">
+                        <HStack justify="space-between" gap="0" wrap={false} minWidth="0">
+                            <VStack minWidth="0" gap="0">
                                 <Label size="small" as="h3">
                                     <Detail className="text-nowrap" visuallyHidden>
                                         Tema:
@@ -212,21 +205,22 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
                                 </Label>
                                 <Detail>{datoTekst}</Detail>
                             </VStack>
-                            <HStack gap="1" align="start" justify="end" maxHeight="max-content">
+                            <HStack align="start" justify="end" maxHeight="max-content">
                                 <Antallmeldinger traad={traad} />
                             </HStack>
                         </HStack>
-                        <Detail truncate>{sisteMelding.fritekst}</Detail>
-                        <HStack gap="1" align="start" justify="start" maxHeight="max-content">
-                            <UbesvartMelding traad={traad} />
-                            <UnderArbeid traadId={traad.traadId} />
-                            <Feilsendt traad={traad} />
-                            <Slettet melding={sisteMelding} />
-                            <TildeltSaksbehandler traadId={traad.traadId} />
-                            <AvsluttetMelding traad={traad} />
-                            <SendtTilSladding traad={traad} />
-                            <Sladdet traad={traad} />
-                        </HStack>
+                        <VStack gap="2">
+                            <Detail truncate>{sisteMelding.fritekst}</Detail>
+                            <HStack gap="1" align="start" justify="start" maxHeight="max-content">
+                                <UbesvartMelding traad={traad} />
+                                <UnderArbeid traadId={traad.traadId} />
+                                <Feilsendt traad={traad} />
+                                <Slettet melding={sisteMelding} />
+                                <TildeltSaksbehandler traadId={traad.traadId} />
+                                <AvsluttetMelding traad={traad} />
+                                <Sladdet traad={traad} />
+                            </HStack>
+                        </VStack>
                     </VStack>
                 </HStack>
             </Card>
