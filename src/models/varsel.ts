@@ -1,20 +1,8 @@
 import type { Varsel } from 'src/lib/types/modiapersonoversikt-api';
 
-export interface VarselOld {
-    varselType: string;
-    mottattTidspunkt: string;
-    erRevarsling: boolean;
-    meldingListe: Varselmelding[];
-}
-
-export type UnifiedVarsel = Varsel | VarselOld;
 export interface VarslerResult {
     feil: string[];
-    varsler: UnifiedVarsel[];
-}
-
-export function isDittNavEvent(varsel: UnifiedVarsel): varsel is Varsel {
-    return 'varselId' in varsel;
+    varsler: Varsel[];
 }
 
 export interface Varselmelding {

@@ -1,8 +1,8 @@
 import type { Action } from 'redux';
-import type { UnifiedVarsel } from '../../models/varsel';
+import type { Varsel } from 'src/generated/modiapersonoversikt-api';
 
 export interface VarslerState {
-    aapneVarsler: UnifiedVarsel[];
+    aapneVarsler: Varsel[];
 }
 
 const initialState: VarslerState = {
@@ -15,13 +15,12 @@ enum actionKeys {
 
 interface ToggleVisAction extends Action {
     type: actionKeys.TOGGLE_VIS_VARSEL;
-    varsel: UnifiedVarsel;
+    varsel: Varsel;
     vis: boolean;
 }
 
 type Actions = ToggleVisAction;
 
-// biome-ignore lint/style/useDefaultParameterLast: biome migration
 function varslerReducer(state: VarslerState = initialState, action: Actions): VarslerState {
     switch (action.type) {
         case actionKeys.TOGGLE_VIS_VARSEL: {
