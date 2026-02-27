@@ -1,0 +1,2 @@
+import{_ as r,$ as o,Y as n,a0 as s}from"./main-b-impCUS.js";const c=r("/new/")({component:a});function a(){const t=o.c(1);let e;return t[0]===Symbol.for("react.memo_cache_sentinel")?(e=n.jsx("div",{className:"flex-1",children:n.jsx(s,{variant:"info",children:"Ingen aktiv bruker. Bruk menyen over for å søke etter person."})}),t[0]=e):e=t[0],e}export{c as Route};
+//# sourceMappingURL=index.lazy-D_Wwf4l2.js.map

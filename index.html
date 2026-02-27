@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="no" data-hj-suppress>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#222222">
+    <meta name="author" content="Nav">
+    <meta property="og:title" content="Modia Personoversikt">
+    <meta property="og:site_name" content="Nav Modia Personoversikt">
+    <meta property="og:description"
+          content="Intern arbeidsflate. Brukes som personoppslag og dialogverktøy av veiledere og saksbehandlere i Nav">
+    <link rel="shortcut icon" href="/modiapersonoversikt/static/favicon-DC_hMhKC.ico">
+    
+    <link rel="preload" href="https://cdn.nav.no/aksel/fonts/SourceSans3-normal.woff2" as="font" type="font/woff2" crossorigin/>
+    <script>
+        window.sendViaBeacon = (event, payload) => {
+            const umamiEventData = window.__router?.state?.location?.state.umamiEvent;
+            const data = {
+                type: "event",
+                payload: {
+                    referrer: "",
+                    ...umamiEventData,
+                    ...payload,
+                }
+            }
+            if (navigator.sendBeacon) {
+                navigator.sendBeacon("https://umami.nav.no/api/send", JSON.stringify(data));
+            } else {
+                fetch("https://umami.nav.no/api/send", { method: "POST", body: JSON.stringify(data), keepalive: true });
+            }
+        };
+    </script>
+
+    
+        <script
+            defer
+            data-before-send="sendViaBeacon"
+            src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
+            data-host-url="https://umami.nav.no"
+            data-website-id="bc5cfdcd-ecc1-402b-8cb0-c30913f0bd13"
+        ></script>
+    
+    
+
+    <style>
+        @layer base, po-base, tailwind-base, nav-frontend, aksel.components, tailwind-components, tailwind-utilities, decorator;
+    </style>
+
+    <slot not-environment="prod">
+        <script src="https://cdn.nav.no/personoversikt/internarbeidsflate-decorator-v3/dev/react19/dist/bundle.js"></script>
+        <link rel="stylesheet" href="https://cdn.nav.no/personoversikt/internarbeidsflate-decorator-v3/dev/react19/dist/index.css" />
+    </slot>
+    <slot environment="prod">
+        <script src="https://cdn.nav.no/personoversikt/internarbeidsflate-decorator-v3/prod/latest/dist/bundle.js"></script>
+        <link rel="stylesheet" href="https://cdn.nav.no/personoversikt/internarbeidsflate-decorator-v3/prod/latest/dist/index.css" />
+    </slot>
+
+    <script env-vars prefix="PUBLIC_">
+    </script>
+
+    <script unleash
+        toggles="modiapersonoversikt.enable-faro">
+      const applicationFeatureToggles = {
+          enableFaro: unleash && unleash["modiapersonoversikt_enable-faro"],
+      };
+      window.applicationFeatureToggles = applicationFeatureToggles;
+    </script>
+
+    <script type="application/javascript">
+      const global = globalThis;
+    </script>
+
+
+    <title>Modia Personoversikt</title>
+  <script type="module" crossorigin src="/modiapersonoversikt/static/main-b-impCUS.js"></script>
+  <link rel="stylesheet" crossorigin href="/modiapersonoversikt/static/main-QRnFGk26.css">
+</head>
+<body>
+<noscript>
+    You need to enable JavaScript to run this app.
+</noscript>
+<div id="root"></div>
+
+</body>
+</html>
