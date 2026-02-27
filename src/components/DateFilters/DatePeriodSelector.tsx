@@ -32,7 +32,7 @@ export const getPeriodFromOption = (periodeValg: PeriodType): DateRange => {
     }
 };
 
-const getOptionFromPeriod = (range: DateRange): PeriodType => {
+export const getOptionFromPeriod = (range: DateRange): PeriodType => {
     const { from, to } = range;
     const now = dayjs();
 
