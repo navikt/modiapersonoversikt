@@ -68,13 +68,12 @@ function FeilteVarslingerListe({ tittel, feilteVarslinger }: { tittel: string; f
 }
 
 export function DittNavEventVarsel({ varsel }: { varsel: Varsel }) {
-    const aktiv = varsel.aktiv ? '' : ' (Ferdigstilt)';
     const datoer = [formaterDato(varsel.eksternVarsling.sendtTidspunkt)];
     if (varsel.eksternVarsling.renotifikasjonTidspunkt) {
         datoer.push(formaterDato(varsel.eksternVarsling.renotifikasjonTidspunkt));
     }
 
-    const tittel = `Notifikasjon${aktiv}: ${varsel.innhold.tekst}`;
+    const tittel = `${varsel.innhold.tekst}`;
     const kanaler = ['DITT_NAV', ...varsel.eksternVarsling.sendteKanaler].unique();
 
     return (

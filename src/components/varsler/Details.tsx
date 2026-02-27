@@ -58,7 +58,6 @@ const DittNavInformasjonsLinjer = ({ varsel, kanaler }: { varsel: Varsel; kanale
                 </BodyShort>
                 <DittNavInformasjonsLinje tittel="Produsert av:" tekst={emptyReplacement(varsel.produsent, ENDASH)} />
                 <DittNavInformasjonsLinje tittel="Link:" tekst={emptyReplacement(varsel.innhold.link, ENDASH)} />
-                <DittNavInformasjonsLinje tittel="Kanaler:" tekst={emptyReplacement(kanaler.join(', '), ENDASH)} />
             </VStack>
 
             <VStack gap="1" className="px-2">

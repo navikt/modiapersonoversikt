@@ -5,6 +5,7 @@ import { ENDASH, emptyReplacement } from 'src/utils/string-utils';
 
 export interface VarselData {
     eventId: string;
+    aktiv: boolean;
     datoer: string[];
     varslingstidspunkt: string;
     revarslingstidspunkt: string;
@@ -43,9 +44,9 @@ export const useFilterVarsler = (): Returns => {
 
 const dataExtractor = (varsel: Varsel): VarselData => {
     const eksternVarsling = varsel.eksternVarsling;
+    const aktiv = varsel.aktiv;
     const eventId = varsel.varselId;
-    const aktiv = varsel.aktiv ? '' : ' (Ferdigstilt)';
-    const tittel = `Notifikasjon${aktiv}: ${varsel.innhold.tekst}`;
+    const tittel = `${varsel.innhold.tekst}`;
     const produsent = emptyReplacement(varsel.produsent, ENDASH);
     const datoer = [eksternVarsling.sendtTidspunkt];
     const kanaler = ['DITT_NAV', ...eksternVarsling.sendteKanaler];
@@ -58,6 +59,7 @@ const dataExtractor = (varsel: Varsel): VarselData => {
 
     return {
         eventId,
+        aktiv,
         datoer,
         varslingstidspunkt: eksternVarsling.sendtTidspunkt,
         revarslingstidspunkt: eksternVarsling.renotifikasjonTidspunkt ?? '',

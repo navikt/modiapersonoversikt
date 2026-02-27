@@ -97,8 +97,8 @@ export const VarslerListe = () => {
                             <Table.ColumnHeader sortKey="sisteDato" sortable scope="col">
                                 Sendt
                             </Table.ColumnHeader>
-                            <Table.ColumnHeader sortKey="produsent" sortable scope="col">
-                                Produsert av
+                            <Table.ColumnHeader sortKey="ferdigstilt" sortable scope="col">
+                                Ferdigstilt?
                             </Table.ColumnHeader>
                             <Table.HeaderCell scope="col">Kanaler</Table.HeaderCell>
                             <Table.HeaderCell scope="col">Status</Table.HeaderCell>
@@ -114,7 +114,7 @@ export const VarslerListe = () => {
                                 >
                                     <Table.DataCell>{varsel.tittel}</Table.DataCell>
                                     <Table.DataCell>{formaterDato(varsel.datoer[0])}</Table.DataCell>
-                                    <Table.DataCell>{varsel.produsent}</Table.DataCell>
+                                    <Table.DataCell>{varsel.aktiv ? 'Ja' : 'Nei'}</Table.DataCell>
                                     <Table.DataCell>
                                         {emptyReplacement(varsel.kanaler?.join(', '), ENDASH)}
                                     </Table.DataCell>
