@@ -213,8 +213,8 @@ importers:
         specifier: ^6.0.0
         version: 6.0.0(react@19.2.1)
       react-hook-form:
-        specifier: ^7.60.0
-        version: 7.60.0(react@19.2.1)
+        specifier: ^7.71.1
+        version: 7.71.1(react@19.2.1)
       react-modal:
         specifier: ^3.16.3
         version: 3.16.3(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
@@ -3630,8 +3630,8 @@ packages:
     peerDependencies:
       react: '>=16.13.1'
 
-  react-hook-form@7.60.0:
-    resolution: {integrity: sha512-SBrYOvMbDB7cV8ZfNpaiLcgjH/a1c7aK0lK+aNigpf4xWLO8q+o4tcvVurv3c4EOyzn/3dCsYt4GKD42VvJ/+A==}
+  react-hook-form@7.71.1:
+    resolution: {integrity: sha512-9SUJKCGKo8HUSsCO+y0CtqkqI5nNuaDqTxyqPsZPqIwudpj4rCrAz/jZV+jn57bx5gtZKOh3neQu94DXMc+w5w==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18 || ^19
@@ -7689,7 +7689,7 @@ snapshots:
       '@babel/runtime': 7.27.1
       react: 19.2.1
 
-  react-hook-form@7.60.0(react@19.2.1):
+  react-hook-form@7.71.1(react@19.2.1):
     dependencies:
       react: 19.2.1
 
