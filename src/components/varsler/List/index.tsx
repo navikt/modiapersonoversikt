@@ -34,7 +34,7 @@ const Status = ({ varsel }: { varsel: VarselData }) => {
 export const VarslerListe = () => {
     const { varsler, isLoading, isError } = useFilterVarsler();
     const [page, setPage] = useState(1);
-    const [sort, setSort] = useState<SortState | undefined>({ orderBy: 'sisteDato', direction: 'descending' });
+    const [sort, setSort] = useState<SortState | undefined>({ orderBy: 'varslingstidspunkt', direction: 'descending' });
 
     const rowsPerPage = 50;
 
@@ -94,10 +94,13 @@ export const VarslerListe = () => {
                             <Table.ColumnHeader sortKey="tittel" sortable scope="col">
                                 Varsel
                             </Table.ColumnHeader>
-                            <Table.ColumnHeader sortKey="sisteDato" sortable scope="col">
+                            <Table.ColumnHeader sortKey="varslingstidspunkt" sortable scope="col">
                                 Sendt
                             </Table.ColumnHeader>
-                            <Table.ColumnHeader sortKey="ferdigstilt" sortable scope="col">
+                            <Table.ColumnHeader sortKey="revarslingstidspunkt" sortable scope="col">
+                                Revarslet
+                            </Table.ColumnHeader>
+                            <Table.ColumnHeader sortKey="aktiv" sortable scope="col">
                                 Ferdigstilt?
                             </Table.ColumnHeader>
                             <Table.HeaderCell scope="col">Kanaler</Table.HeaderCell>
@@ -113,7 +116,12 @@ export const VarslerListe = () => {
                                     content={<VarselDetail valgtVarsel={varsel} />}
                                 >
                                     <Table.DataCell>{varsel.tittel}</Table.DataCell>
-                                    <Table.DataCell>{formaterDato(varsel.datoer[0])}</Table.DataCell>
+                                    <Table.DataCell>{formaterDato(varsel.varslingstidspunkt)}</Table.DataCell>
+                                    <Table.DataCell>
+                                        {varsel.revarslingstidspunkt
+                                            ? formaterDato(varsel.revarslingstidspunkt)
+                                            : ENDASH}
+                                    </Table.DataCell>
                                     <Table.DataCell>{varsel.aktiv ? 'Ja' : 'Nei'}</Table.DataCell>
                                     <Table.DataCell>
                                         {emptyReplacement(varsel.kanaler?.join(', '), ENDASH)}
