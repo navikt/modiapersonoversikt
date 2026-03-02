@@ -94,7 +94,7 @@ export const VarselDetail = ({ valgtVarsel }: { valgtVarsel: VarselData }) => {
     return (
         <ErrorBoundary boundaryName="vaslerDetaljer" errorText="Det oppstod en feil under visning av varsel">
             {valgtVarsel && (
-                <Card padding="2" className="border-0 bg-ax-bg-sunken">
+                <Card padding="2" className="border-0 bg-ax-bg-neutral-soft">
                     <DittNavInformasjonsLinjer varsel={valgtVarsel.event} kanaler={valgtVarsel.kanaler} />
                 </Card>
             )}
