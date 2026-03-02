@@ -1,65 +1,148 @@
-import { Alert, Skeleton, VStack } from '@navikt/ds-react';
-import { useSearch } from '@tanstack/react-router';
-import ErrorBoundary from 'src/components/ErrorBoundary';
-import { PaginatedList } from 'src/components/PaginatedList';
-import { VarslerItem } from 'src/components/varsler/List/VarslerItem';
-import { useAntallListeElementeBasertPaaSkjermStorrelse } from 'src/utils/customHooks';
-import { VarslerListFilter } from './Filter';
-import { useFilterVarsler } from './utils';
+import { CheckmarkCircleIcon, ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
+import { Alert, BodyLong, Heading, Pagination, Skeleton, type SortState, Table, Tag, VStack } from '@navikt/ds-react';
+import { useState } from 'react';
+import Card from 'src/components/Card';
+import { VarselDetail } from 'src/components/varsler/Details';
+import { ENDASH, emptyReplacement, formaterDato } from 'src/utils/string-utils';
+import { useFilterVarsler, type VarselData } from './utils';
 
-export const VarslerList = () => (
-    <ErrorBoundary boundaryName="VarslerList" errorText="Det oppstod en feil under visning av varsler liste">
-        <VStack height="100%" gap="1">
-            <VarslerListFilter />
-            <VarslerListList />
-        </VStack>
-    </ErrorBoundary>
-);
+const Status = ({ varsel }: { varsel: VarselData }) => {
+    if (varsel.harFeiledeVarsler) {
+        return (
+            <Tag
+                title="Varsling feilet"
+                variant="error-moderate"
+                size="small"
+                icon={<ExclamationmarkTriangleIcon aria-hidden />}
+            >
+                Feilet
+            </Tag>
+        );
+    }
+    return (
+        <Tag
+            title="Varsling vellykket"
+            variant="success-moderate"
+            size="small"
+            icon={<CheckmarkCircleIcon aria-hidden />}
+        >
+            Vellykket
+        </Tag>
+    );
+};
 
-const VarslerListList = () => {
+export const VarslerListe = () => {
     const { varsler, isLoading, isError } = useFilterVarsler();
-    const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse(106);
+    const [page, setPage] = useState(1);
+    const [sort, setSort] = useState<SortState | undefined>({ orderBy: 'varslingstidspunkt', direction: 'descending' });
 
-    const selectedKey = useSearch({
-        from: '/new/person/varsler',
-        select: (p) => p.id
-    });
+    const rowsPerPage = 50;
 
     if (isError) return;
 
-    if (!isLoading && !varsler.length) {
-        return (
-            <Alert variant="info" role="alert">
-                Ingen varsler funnet
-            </Alert>
-        );
+    if (isLoading) return <Skeleton variant="rounded" height={166} />;
+
+    if (!varsler || varsler.length === 0) {
+        return <Alert variant="info">Brukeren har ingen varsler.</Alert>;
     }
 
+    const handleSort = (sortKey: string) => {
+        setSort((prevSort) =>
+            prevSort?.orderBy === sortKey && prevSort.direction === 'ascending'
+                ? { orderBy: sortKey, direction: 'descending' }
+                : { orderBy: sortKey, direction: 'ascending' }
+        );
+    };
+
+    type StringKeyOf<T> = Extract<keyof T, string>;
+
+    function isKeyOf<T extends object>(key: string, obj: T): key is StringKeyOf<T> {
+        return key in obj;
+    }
+
+    function comparator<T>(a: T, b: T, orderBy: keyof T): number {
+        if (b[orderBy] == null || b[orderBy] < a[orderBy]) {
+            return -1;
+        }
+        if (b[orderBy] > a[orderBy]) {
+            return 1;
+        }
+        return 0;
+    }
+
+    const sortedData = varsler.slice().sort((a, b) => {
+        if (!sort) return 0;
+        if (!isKeyOf(sort.orderBy, a)) return 0;
+        return sort.direction === 'ascending' ? comparator(b, a, sort.orderBy) : comparator(a, b, sort.orderBy);
+    });
+
+    const paginatedData = sortedData.slice((page - 1) * rowsPerPage, page * rowsPerPage);
+
     return (
-        <>
-            {isLoading ? (
-                <VStack gap="2" marginInline="0 2">
-                    {Array(8)
-                        .keys()
-                        .map((i) => (
-                            <Skeleton key={i} variant="rectangle" height={68} />
-                        ))}
-                </VStack>
-            ) : (
-                <PaginatedList
-                    paginationSrHeading={{
-                        tag: 'h3',
-                        text: 'Varslerpaginering'
-                    }}
-                    as="section"
-                    aria-label="varsler"
-                    pageSize={antallListeElementer}
-                    selectedKey={selectedKey}
-                    items={varsler}
-                    keyExtractor={(item) => item.eventId}
-                    renderItem={({ item }) => <VarslerItem varsel={item} />}
-                />
-            )}
-        </>
+        <Card padding="4">
+            <VStack gap="space-16">
+                <Heading level="2" size="medium">
+                    Varsler
+                </Heading>
+                <BodyLong className="text-ax-text-neutral-subtle">
+                    Viser varsler for det siste året. For eldre varsler, opprett sak i porten for manuell uthenting.
+                </BodyLong>
+                <Table sort={sort} onSortChange={handleSort} size="medium">
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell scope="col" />
+                            <Table.ColumnHeader sortKey="tittel" sortable scope="col">
+                                Varsel
+                            </Table.ColumnHeader>
+                            <Table.ColumnHeader sortKey="varslingstidspunkt" sortable scope="col">
+                                Sendt
+                            </Table.ColumnHeader>
+                            <Table.ColumnHeader sortKey="revarslingstidspunkt" sortable scope="col">
+                                Revarslet
+                            </Table.ColumnHeader>
+                            <Table.ColumnHeader sortKey="aktiv" sortable scope="col">
+                                Ferdigstilt?
+                            </Table.ColumnHeader>
+                            <Table.HeaderCell scope="col">Kanaler</Table.HeaderCell>
+                            <Table.HeaderCell scope="col">Status</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
+                    <Table.Body>
+                        {paginatedData.map((varsel, index) => {
+                            return (
+                                <Table.ExpandableRow
+                                    shadeOnHover={true}
+                                    key={index}
+                                    content={<VarselDetail valgtVarsel={varsel} />}
+                                >
+                                    <Table.DataCell>{varsel.tittel}</Table.DataCell>
+                                    <Table.DataCell>{formaterDato(varsel.varslingstidspunkt)}</Table.DataCell>
+                                    <Table.DataCell>
+                                        {varsel.revarslingstidspunkt
+                                            ? formaterDato(varsel.revarslingstidspunkt)
+                                            : ENDASH}
+                                    </Table.DataCell>
+                                    <Table.DataCell>{varsel.aktiv ? 'Ja' : 'Nei'}</Table.DataCell>
+                                    <Table.DataCell>
+                                        {emptyReplacement(varsel.kanaler?.join(', '), ENDASH)}
+                                    </Table.DataCell>
+                                    <Table.DataCell>
+                                        <Status varsel={varsel} />
+                                    </Table.DataCell>
+                                </Table.ExpandableRow>
+                            );
+                        })}
+                    </Table.Body>
+                </Table>
+                {sortedData.length > rowsPerPage && (
+                    <Pagination
+                        page={page}
+                        onPageChange={setPage}
+                        count={Math.ceil(sortedData.length / rowsPerPage)}
+                        size="small"
+                    />
+                )}
+            </VStack>
+        </Card>
     );
 };

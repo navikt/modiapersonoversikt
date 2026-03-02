@@ -174,58 +174,6 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
     class="c0"
   >
     <div
-      class="navds-stack navds-vstack navds-stack-gap navds-stack-direction"
-      style="--__ac-stack-gap-xs: var(--a-spacing-1); --__ac-stack-direction-xs: column;"
-    >
-      <div
-        class="alertstripe alertstripe--advarsel"
-      >
-        <span
-          class="alertstripe__ikon"
-        >
-          <span
-            class="sr-only"
-          >
-            advarsel
-          </span>
-          <svg
-            aria-label="advarsel-ikon"
-            focusable="false"
-            height="1.5em"
-            kind="advarsel-sirkel-fyll"
-            role="img"
-            viewBox="0 0 24 24"
-            width="1.5em"
-          >
-            <g
-              fill="none"
-              fill-rule="evenodd"
-            >
-              <path
-                d="M12.205-.004l-.214.002a12.225 12.225 0 0 0-8.517 3.659C1.179 5.977-.053 9.013.002 12.208c.115 6.613 5.296 11.793 11.795 11.793l.212-.002c6.726-.116 12.105-5.595 11.99-12.21C23.883 5.178 18.702-.003 12.204-.003z"
-                fill="#FFA733"
-                fill-rule="nonzero"
-              />
-              <path
-                d="M12.027 19H12A1.499 1.499 0 0 1 11.973 16L12 16a1.501 1.501 0 0 1 .027 3z"
-                fill="#3E3832"
-              />
-              <path
-                d="M12 5a1 1 0 0 1 1 1v7a1 1 0 0 1-2 0V6a1 1 0 0 1 1-1z"
-                fill="#3E3832"
-                fill-rule="nonzero"
-              />
-            </g>
-          </svg>
-        </span>
-        <div
-          class="typo-normal alertstripe__tekst"
-        >
-          Vi har problemer med å vise dato for revarsling og vi jobber med å løse dette så fort som mulig. Beklager ulempen dette medfører.
-        </div>
-      </div>
-    </div>
-    <div
       class="panel c1"
     >
       <p
@@ -269,12 +217,12 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
                 <span
                   class="c5"
                 >
-                  11.01.2023
+                  05.01.2026
                 </span>
                 <span
                   class="c5"
                 >
-                  01.08.2023
+                  12.01.2026
                 </span>
               </p>
               <div
@@ -300,7 +248,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
                 class="typo-element c7"
                 id="Helt tilfeldig ID"
               >
-                Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
+                Et nytt samtalereferat er tilgjengelig i din innboks
               </h4>
               <ul
                 aria-label="Kommunikasjonskanaler"
@@ -359,13 +307,13 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
                   Varslet: 
                 </dt>
                 <dd>
-                  11.01.2023 - SMS, EPOST
+                  05.01.2026 - SMS, EPOST
                 </dd>
                 <dt>
                   Revarslet: 
                 </dt>
                 <dd>
-                  01.08.2023 - SMS, EPOST
+                  12.01.2026 - SMS, EPOST
                 </dd>
                 <hr />
                 <div
@@ -380,24 +328,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
                     class="c13"
                   >
                     <li>
-                      01.01.2023 - SMS: Feil telefonummer
-                    </li>
-                  </div>
-                </div>
-                <hr />
-                <div
-                  class="c11"
-                >
-                  <span
-                    class="c12"
-                  >
-                    Revarslingsfeil
-                  </span>
-                  <div
-                    class="c13"
-                  >
-                    <li>
-                      11.08.2023 - EPOST: Feil epost
+                      05.01.2026: Det oppsto en feil
                     </li>
                   </div>
                 </div>
@@ -422,12 +353,12 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
                 <span
                   class="c5"
                 >
-                  11.01.2023
+                  05.01.2026
                 </span>
                 <span
                   class="c5"
                 >
-                  01.08.2023
+                  12.01.2026
                 </span>
               </p>
               <div
@@ -453,7 +384,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
                 class="typo-element c7"
                 id="Helt tilfeldig ID"
               >
-                Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
+                Et nytt samtalereferat er tilgjengelig i din innboks
               </h4>
               <ul
                 aria-label="Kommunikasjonskanaler"
@@ -512,13 +443,13 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
                   Varslet: 
                 </dt>
                 <dd>
-                  11.01.2023 - SMS, EPOST
+                  05.01.2026 - SMS, EPOST
                 </dd>
                 <dt>
                   Revarslet: 
                 </dt>
                 <dd>
-                  01.08.2023 - SMS, EPOST
+                  12.01.2026 - SMS, EPOST
                 </dd>
                 <hr />
                 <div
@@ -533,24 +464,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
                     class="c13"
                   >
                     <li>
-                      01.01.2023 - SMS: Feil telefonummer
-                    </li>
-                  </div>
-                </div>
-                <hr />
-                <div
-                  class="c11"
-                >
-                  <span
-                    class="c12"
-                  >
-                    Revarslingsfeil
-                  </span>
-                  <div
-                    class="c13"
-                  >
-                    <li>
-                      11.08.2023 - EPOST: Feil epost
+                      05.01.2026: Det oppsto en feil
                     </li>
                   </div>
                 </div>
@@ -575,12 +489,12 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
                 <span
                   class="c5"
                 >
-                  11.01.2023
+                  05.01.2026
                 </span>
                 <span
                   class="c5"
                 >
-                  01.08.2023
+                  12.01.2026
                 </span>
               </p>
               <div
@@ -606,7 +520,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
                 class="typo-element c7"
                 id="Helt tilfeldig ID"
               >
-                Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
+                Et nytt samtalereferat er tilgjengelig i din innboks
               </h4>
               <ul
                 aria-label="Kommunikasjonskanaler"
@@ -665,13 +579,13 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
                   Varslet: 
                 </dt>
                 <dd>
-                  11.01.2023 - SMS, EPOST
+                  05.01.2026 - SMS, EPOST
                 </dd>
                 <dt>
                   Revarslet: 
                 </dt>
                 <dd>
-                  01.08.2023 - SMS, EPOST
+                  12.01.2026 - SMS, EPOST
                 </dd>
                 <hr />
                 <div
@@ -686,24 +600,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
                     class="c13"
                   >
                     <li>
-                      01.01.2023 - SMS: Feil telefonummer
-                    </li>
-                  </div>
-                </div>
-                <hr />
-                <div
-                  class="c11"
-                >
-                  <span
-                    class="c12"
-                  >
-                    Revarslingsfeil
-                  </span>
-                  <div
-                    class="c13"
-                  >
-                    <li>
-                      11.08.2023 - EPOST: Feil epost
+                      05.01.2026: Det oppsto en feil
                     </li>
                   </div>
                 </div>

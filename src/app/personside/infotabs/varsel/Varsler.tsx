@@ -1,12 +1,12 @@
 import { Alert } from '@navikt/ds-react';
 import Panel from 'nav-frontend-paneler';
 import { Element } from 'nav-frontend-typografi';
+import { DittNavEventVarsel } from 'src/app/personside/infotabs/varsel/DittNavVarsler';
+import type { Varsel } from 'src/generated/modiapersonoversikt-api';
 import styled from 'styled-components';
-import type { UnifiedVarsel } from '../../../../models/varsel';
-import Varsel from './Varsel';
 
 interface Props {
-    varsler: Array<UnifiedVarsel>;
+    varsler: Array<Varsel>;
 }
 
 const HeaderStyle = styled(Panel)`
@@ -50,8 +50,8 @@ function Varsler(props: Props) {
                 <Element>Kanal</Element>
             </HeaderStyle>
             <ListStyle aria-label="Brukerens varsler">
-                {props.varsler.map((varsel, index) => (
-                    <Varsel key={index} varsel={varsel} />
+                {props.varsler.map((varsel) => (
+                    <DittNavEventVarsel key={varsel.varselId} varsel={varsel} />
                 ))}
             </ListStyle>
             <Alert variant="info">

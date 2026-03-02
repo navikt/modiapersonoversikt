@@ -28,6 +28,7 @@
         "types": "tsc --noEmit",
         "gen:routes": "tsr generate",
         "generate": "openapi-typescript https://modiapersonoversikt-api.intern.dev.nav.no/modiapersonoversikt-api/v3/api-docs -o src/generated/modiapersonoversikt-api.ts --enum --root-types --root-types-no-schema-prefix",
+        "generate:local": "openapi-typescript http://127.0.0.1:8086/modiapersonoversikt-api/v3/api-docs -o src/generated/modiapersonoversikt-api.ts --enum --root-types --root-types-no-schema-prefix",
         "tsc": "tsc",
         "knip": "knip --exclude enumMembers"
     },

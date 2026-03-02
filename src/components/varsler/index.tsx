@@ -1,8 +1,8 @@
-import { Heading, HGrid, VStack } from '@navikt/ds-react';
+import { Heading, HStack, Skeleton, VStack } from '@navikt/ds-react';
 import { AlertBanner } from 'src/components/AlertBanner';
+import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
-import { VarselDetail } from 'src/components/varsler/Details';
-import { VarslerList } from 'src/components/varsler/List';
+import { VarslerListe } from 'src/components/varsler/List';
 import { useFilterVarsler } from 'src/components/varsler/List/utils';
 
 export const VarslerPage = () => {
@@ -14,28 +14,37 @@ export const VarslerPage = () => {
 };
 
 const VarslerPageContent = () => {
-    const { errorMessages } = useFilterVarsler();
+    const { errorMessages, isError, isLoading } = useFilterVarsler();
+
+    if (isError) {
+        return <AlertBanner alerts={errorMessages} />;
+    }
 
     return (
-        <HGrid
-            gap="1"
-            columns={{ xs: 1, md: 'max-content 1fr' }}
-            height="100%"
-            width="100%"
-            overflow={{ xs: 'auto', md: 'hidden' }}
-        >
-            <VStack height="100%" gap="1" width="100%" maxWidth={{ md: '16em' }} overflow={{ md: 'hidden' }}>
-                <Heading size="small" visuallyHidden level="2">
-                    Varsler
-                </Heading>
-                <VarslerList />
-            </VStack>
-            <VStack className="min-h-100 md:min-h-0">
+        <ErrorBoundary boundaryName="VarslerTabell" errorText="Det oppstod en feil undervisning av varsler">
+            <Card padding="4" className="h-full overflow-auto">
                 <AlertBanner alerts={errorMessages} />
-                <VStack minHeight="0">
-                    <VarselDetail />
+                <VStack gap="1" minHeight="0" overflow="auto">
+                    <HStack align="center" gap="2">
+                        <Heading size="small" visuallyHidden level="2">
+                            Varsler
+                        </Heading>
+                    </HStack>
+                    <VStack gap="4">
+                        {isLoading ? (
+                            <VStack gap="2" marginInline="0 2">
+                                {Array(12)
+                                    .keys()
+                                    .map((i) => (
+                                        <Skeleton key={i} variant="rectangle" height={68} />
+                                    ))}
+                            </VStack>
+                        ) : (
+                            <VarslerListe />
+                        )}
+                    </VStack>
                 </VStack>
-            </VStack>
-        </HGrid>
+            </Card>
+        </ErrorBoundary>
     );
 };

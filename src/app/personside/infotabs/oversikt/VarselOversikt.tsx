@@ -1,10 +1,10 @@
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
 import type { ReactNode } from 'react';
+import { DittNavEventVarsel } from 'src/app/personside/infotabs/varsel/DittNavVarsler';
+import { useOnMount } from 'src/utils/customHooks';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { useOnMount } from '../../../../utils/customHooks';
-import Varsel from '../varsel/Varsel';
 import VarslerLoader, { type VarslerRendererProps } from '../varsel/varsel-loader';
 
 const ListStyle = styled.ol`
@@ -37,8 +37,8 @@ function VarselVisning(props: VarslerRendererProps & Props) {
 
     return (
         <ListStyle>
-            {forsteVarsler.map((varsel, index) => (
-                <Varsel key={index} varsel={varsel} />
+            {forsteVarsler.map((varsel) => (
+                <DittNavEventVarsel key={varsel.varselId} varsel={varsel} />
             ))}
         </ListStyle>
     );
