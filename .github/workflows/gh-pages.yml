@@ -44,7 +44,7 @@ jobs:
 
             - name: Deploy
               if: success()
-              uses: crazy-max/ghaction-github-pages@v4
+              uses: crazy-max/ghaction-github-pages@v5
               with:
                   build_dir: build
               env:
