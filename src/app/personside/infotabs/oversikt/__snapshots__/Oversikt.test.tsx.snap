@@ -1080,7 +1080,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                         class="typo-element c29"
                         id="Helt tilfeldig ID"
                       >
-                        Notifikasjon: Et nytt samtalereferat er tilgjengelig i din innboks
+                        Et nytt samtalereferat er tilgjengelig i din innboks
                       </h4>
                       <ul
                         aria-label="Kommunikasjonskanaler"
@@ -1216,7 +1216,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                         class="typo-element c29"
                         id="Helt tilfeldig ID"
                       >
-                        Notifikasjon: Et nytt samtalereferat er tilgjengelig i din innboks
+                        Et nytt samtalereferat er tilgjengelig i din innboks
                       </h4>
                       <ul
                         aria-label="Kommunikasjonskanaler"
