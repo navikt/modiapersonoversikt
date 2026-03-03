@@ -194,9 +194,9 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
                             </Bleed>
                         </Box.New>
                     )}
-                    <VStack gap="0" minWidth="0">
-                        <HStack justify="space-between" gap="0" wrap={false} minWidth="0">
-                            <VStack minWidth="0" gap="0">
+                    <VStack gap="0" width="100%">
+                        <HStack justify="space-between" gap="0" wrap={false}>
+                            <VStack gap="0">
                                 <Label size="small" as="h3">
                                     <Detail className="text-nowrap" visuallyHidden>
                                         Tema:
