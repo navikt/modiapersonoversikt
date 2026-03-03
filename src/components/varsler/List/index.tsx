@@ -1,7 +1,6 @@
 import { CheckmarkCircleIcon, ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
 import { Alert, BodyLong, Heading, Pagination, Skeleton, type SortState, Table, Tag, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
-import Card from 'src/components/Card';
 import { VarselDetail } from 'src/components/varsler/Details';
 import { ENDASH, emptyReplacement, formaterDato } from 'src/utils/string-utils';
 import { useFilterVarsler, type VarselData } from './utils';
@@ -79,70 +78,65 @@ export const VarslerListe = () => {
     const paginatedData = sortedData.slice((page - 1) * rowsPerPage, page * rowsPerPage);
 
     return (
-        <Card padding="4">
-            <VStack gap="space-16">
-                <Heading level="2" size="medium">
-                    Varsler
-                </Heading>
-                <BodyLong className="text-ax-text-neutral-subtle">
-                    Viser varsler for det siste året. For eldre varsler, opprett sak i porten for manuell uthenting.
-                </BodyLong>
-                <Table sort={sort} onSortChange={handleSort} size="medium">
-                    <Table.Header>
-                        <Table.Row>
-                            <Table.HeaderCell scope="col" />
-                            <Table.ColumnHeader sortKey="tittel" sortable scope="col">
-                                Varsel
-                            </Table.ColumnHeader>
-                            <Table.ColumnHeader sortKey="varslingstidspunkt" sortable scope="col">
-                                Sendt
-                            </Table.ColumnHeader>
-                            <Table.ColumnHeader sortKey="revarslingstidspunkt" sortable scope="col">
-                                Revarslet
-                            </Table.ColumnHeader>
-                            <Table.ColumnHeader sortKey="aktiv" sortable scope="col">
-                                Ferdigstilt?
-                            </Table.ColumnHeader>
-                            <Table.HeaderCell scope="col">Kanaler</Table.HeaderCell>
-                            <Table.HeaderCell scope="col">Status</Table.HeaderCell>
-                        </Table.Row>
-                    </Table.Header>
-                    <Table.Body>
-                        {paginatedData.map((varsel, index) => {
-                            return (
-                                <Table.ExpandableRow
-                                    shadeOnHover={true}
-                                    key={index}
-                                    content={<VarselDetail valgtVarsel={varsel} />}
-                                >
-                                    <Table.DataCell>{varsel.tittel}</Table.DataCell>
-                                    <Table.DataCell>{formaterDato(varsel.varslingstidspunkt)}</Table.DataCell>
-                                    <Table.DataCell>
-                                        {varsel.revarslingstidspunkt
-                                            ? formaterDato(varsel.revarslingstidspunkt)
-                                            : ENDASH}
-                                    </Table.DataCell>
-                                    <Table.DataCell>{varsel.aktiv ? 'Ja' : 'Nei'}</Table.DataCell>
-                                    <Table.DataCell>
-                                        {emptyReplacement(varsel.kanaler?.join(', '), ENDASH)}
-                                    </Table.DataCell>
-                                    <Table.DataCell>
-                                        <Status varsel={varsel} />
-                                    </Table.DataCell>
-                                </Table.ExpandableRow>
-                            );
-                        })}
-                    </Table.Body>
-                </Table>
-                {sortedData.length > rowsPerPage && (
-                    <Pagination
-                        page={page}
-                        onPageChange={setPage}
-                        count={Math.ceil(sortedData.length / rowsPerPage)}
-                        size="small"
-                    />
-                )}
-            </VStack>
-        </Card>
+        <VStack gap="space-16">
+            <Heading level="2" size="medium">
+                Varsler
+            </Heading>
+            <BodyLong className="text-ax-text-neutral-subtle">
+                Varsler vises kun ett år tilbake i tid. For eldre varsler, opprett sak i porten for manuell uthenting.
+            </BodyLong>
+            <Table sort={sort} onSortChange={handleSort} size="medium">
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell scope="col" />
+                        <Table.ColumnHeader sortKey="tittel" sortable scope="col">
+                            Varsel
+                        </Table.ColumnHeader>
+                        <Table.ColumnHeader sortKey="varslingstidspunkt" sortable scope="col">
+                            Sendt
+                        </Table.ColumnHeader>
+                        <Table.ColumnHeader sortKey="revarslingstidspunkt" sortable scope="col">
+                            Revarslet
+                        </Table.ColumnHeader>
+                        <Table.ColumnHeader sortKey="aktiv" sortable scope="col">
+                            Ferdigstilt?
+                        </Table.ColumnHeader>
+                        <Table.HeaderCell scope="col">Kanaler</Table.HeaderCell>
+                        <Table.HeaderCell scope="col">Status</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
+                <Table.Body>
+                    {paginatedData.map((varsel, index) => {
+                        return (
+                            <Table.ExpandableRow
+                                shadeOnHover={true}
+                                expandOnRowClick
+                                key={index}
+                                content={<VarselDetail valgtVarsel={varsel} />}
+                            >
+                                <Table.DataCell>{varsel.tittel}</Table.DataCell>
+                                <Table.DataCell>{formaterDato(varsel.varslingstidspunkt)}</Table.DataCell>
+                                <Table.DataCell>
+                                    {varsel.revarslingstidspunkt ? formaterDato(varsel.revarslingstidspunkt) : ENDASH}
+                                </Table.DataCell>
+                                <Table.DataCell>{varsel.aktiv ? 'Ja' : 'Nei'}</Table.DataCell>
+                                <Table.DataCell>{emptyReplacement(varsel.kanaler?.join(', '), ENDASH)}</Table.DataCell>
+                                <Table.DataCell>
+                                    <Status varsel={varsel} />
+                                </Table.DataCell>
+                            </Table.ExpandableRow>
+                        );
+                    })}
+                </Table.Body>
+            </Table>
+            {sortedData.length > rowsPerPage && (
+                <Pagination
+                    page={page}
+                    onPageChange={setPage}
+                    count={Math.ceil(sortedData.length / rowsPerPage)}
+                    size="small"
+                />
+            )}
+        </VStack>
     );
 };

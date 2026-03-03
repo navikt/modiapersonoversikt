@@ -82,6 +82,7 @@ export const DokumenterTabell = () => {
     return (
         <>
             <Table
+                id="dokumentertabell"
                 size="medium"
                 sort={sort as SortState | undefined}
                 onSortChange={(sortKey) => handleSort(sortKey as DokumenterSortState['orderBy'])}
@@ -118,6 +119,7 @@ export const DokumenterTabell = () => {
                             <Table.ExpandableRow
                                 expansionDisabled={!journalpost.harTilgang}
                                 onOpenChange={(open) => handleOnExpand(journalpost.id, open)}
+                                expandOnRowClick
                                 key={journalpost.id}
                                 content={<DokumentVisningExpandable journalpost={journalpost} isOpen={isOpen} />}
                             >
