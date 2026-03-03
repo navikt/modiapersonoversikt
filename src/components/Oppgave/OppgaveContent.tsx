@@ -33,7 +33,7 @@ export const AvsluttOppgave = ({ oppgave }: { oppgave: OppgaveDto }) => {
         <>
             {!oppgave.traadId ? (
                 <Button size="small" variant="secondary" onClick={() => setOpen(true)}>
-                    Avslutt oppgave
+                    Avslutt
                 </Button>
             ) : (
                 <ActionMenu>
@@ -44,7 +44,7 @@ export const AvsluttOppgave = ({ oppgave }: { oppgave: OppgaveDto }) => {
                             icon={<ChevronDownIcon aria-hidden />}
                             iconPosition="right"
                         >
-                            Avslutt oppgave
+                            Avslutt
                         </Button>
                     </ActionMenu.Trigger>
                     <ActionMenu.Content>
