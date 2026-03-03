@@ -1,13 +1,13 @@
-import type { PeriodeDagpengerDto } from 'src/generated/modiapersonoversikt-api';
+import type { PseudoDagpengerVedtak } from 'src/generated/modiapersonoversikt-api';
 
 /**
  * "Id Dato" = date formatted date string, used as an id
  */
-export function getPeriodeDagpengerDtoIdDato(ytelse: PeriodeDagpengerDto) {
-    return ytelse.fraOgMedDato;
+export function getDagpengerIdDato(ytelse: PseudoDagpengerVedtak) {
+    return ytelse.nyesteFraOgMedDato;
 }
 
-export function getUnikPeriodeDagpengerDtoKey(ytelse: PeriodeDagpengerDto) {
+export function getUnikDagpengerKey(ytelse: PseudoDagpengerVedtak) {
     // TODO ensure this is actually unique
-    return `${ytelse.ytelseType.toLowerCase()}-${ytelse.fraOgMedDato}`;
+    return `dagpenger-${ytelse.nyesteFraOgMedDato}`;
 }

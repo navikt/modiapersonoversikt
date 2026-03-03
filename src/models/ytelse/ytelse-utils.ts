@@ -1,6 +1,6 @@
 import type {
     ForeldrepengerFpSak,
-    PeriodeDagpengerDto,
+    PseudoDagpengerVedtak,
     Utbetalingsperioder
 } from 'src/generated/modiapersonoversikt-api';
 import {
@@ -8,7 +8,7 @@ import {
     getArbeidsavklaringspengerIdDato,
     getUnikArbeidsavklaringspengerKey
 } from 'src/models/ytelse/arbeidsavklaringspenger';
-import { getPeriodeDagpengerDtoIdDato, getUnikPeriodeDagpengerDtoKey } from 'src/models/ytelse/dagpenger';
+import { getDagpengerIdDato, getUnikDagpengerKey } from 'src/models/ytelse/dagpenger';
 import {
     type Foreldrepengerettighet,
     getForeldepengerIdDato,
@@ -30,7 +30,7 @@ export enum YtelseVedtakYtelseType {
     Pensjon = 'Pensjon',
     Arbeidsavklaringspenger = 'Arbeidsavklaringspenger',
     ForeldrepengerFpSak = 'ForeldrepengerFpSak',
-    PeriodeDagpengerDto = 'Dagpenger',
+    Dagpenger = 'Dagpenger',
     SykepengerSpokelse = 'SykepengerSpokelse'
 }
 
@@ -42,7 +42,7 @@ export type Ytelse =
     | Pensjon
     | Arbeidsavklaringspenger
     | ForeldrepengerFpSak
-    | PeriodeDagpengerDto
+    | PseudoDagpengerVedtak
     | Utbetalingsperioder;
 
 export function isSykepengerSpokelse(ytelse: Ytelse): ytelse is Utbetalingsperioder {
@@ -73,7 +73,7 @@ export function isForeldrePengerFpSak(ytelse: Ytelse): ytelse is ForeldrepengerF
     return 'ytelse' in ytelse;
 }
 // only used here, not imported in old modia
-function isPeriodeDagpengerDto(ytelse: Ytelse): ytelse is PeriodeDagpengerDto {
+function isDagpenger(ytelse: Ytelse): ytelse is PseudoDagpengerVedtak {
     return 'ytelseType' in ytelse; // this one is unique... right now
 }
 
@@ -102,8 +102,8 @@ export function getYtelseIdDato(ytelse: Ytelse) {
     if (isForeldrePengerFpSak(ytelse)) {
         return getForeldrepengerFpSakIdDato(ytelse);
     }
-    if (isPeriodeDagpengerDto(ytelse)) {
-        return getPeriodeDagpengerDtoIdDato(ytelse);
+    if (isDagpenger(ytelse)) {
+        return getDagpengerIdDato(ytelse);
     }
     loggError(new Error('Matchet ingen ytelser / kunne ikke finne id-dato'));
     return 'ukjent dato';
@@ -137,8 +137,8 @@ export function getUnikYtelseKey(ytelse: Ytelse) {
     if (isForeldrePengerFpSak(ytelse)) {
         return getUnikForeldrepengerFpSakKey(ytelse);
     }
-    if (isForeldrePengerFpSak(ytelse)) {
-        return getUnikPeriodeDagpengerDtoKey(ytelse);
+    if (isDagpenger(ytelse)) {
+        return getUnikDagpengerKey(ytelse);
     }
     loggError(new Error('Matchet ingen ytelser / kunne ikke finne ytelse-key'));
     return 'ukjent ytelse';

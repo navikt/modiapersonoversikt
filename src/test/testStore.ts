@@ -85,7 +85,7 @@ export function setupReactQueryMocks() {
     vi.spyOn(pensjonResource, 'usePensjon');
     vi.spyOn(arbeidsavklaringspengerReesource, 'useArbeidsavklaringspenger');
     vi.spyOn(foreldrepengerFpSakResource, 'useForeldrepengerFpSak');
-    vi.spyOn(dagpengerResource, 'usePeriodeDagpengerDto');
+    vi.spyOn(dagpengerResource, 'useDagpenger');
     vi.spyOn(gsaktemaResource, 'useFetch');
     vi.spyOn(oppfolgingResource, 'useFetch');
     vi.spyOn(sakstemaResource, 'useFetch');
@@ -128,7 +128,7 @@ export function setupReactQueryMocks() {
         statiskEngangstonadFpSakMock,
         statiskEngangstonadFpSakMock
     ]);
-    mockReactQuery(dagpengerResource.usePeriodeDagpengerDto, [statiskPeriodeDagpengerDtoMock]);
+    mockReactQuery(dagpengerResource.useDagpenger, [statiskPeriodeDagpengerDtoMock, statiskPeriodeDagpengerDtoMock]);
     mockReactQuery(oppfolgingResource.useFetch, statiskOppfolgingMock);
     mockReactQuery(sakstemaResource.useFetch, getStaticMockSaksoversiktV2());
     mockReactQuery(utbetalingerResource.useFetch, statiskMockUtbetalingRespons);

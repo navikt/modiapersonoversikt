@@ -5,10 +5,10 @@ import type { FetchError } from 'src/api/api';
 import { type YtelseFilter, ytelseFilterAtom } from 'src/components/ytelser/List/Filter';
 import {
     useArbeidsavklaringspenger,
+    useDagpenger,
     useForeldrepenger,
     useForeldrepengerFpSak,
     usePensjon,
-    usePeriodeDagpengerDto,
     usePleiepenger,
     useSykepenger,
     useSykepengerSpokelse,
@@ -19,11 +19,11 @@ import type {
     Foreldrepenger,
     ForeldrepengerFpSak,
     PensjonSak,
-    PeriodeDagpengerDto,
     Pleiepenger,
     PleiepengerArbeidsforhold,
     PleiepengerPeriode,
     PleiepengerVedtak,
+    PseudoDagpengerVedtak,
     Sykepenger,
     Utbetalingsperioder,
     VedtakDto
@@ -32,7 +32,7 @@ import {
     type Arbeidsavklaringspenger,
     getUnikArbeidsavklaringspengerKey
 } from 'src/models/ytelse/arbeidsavklaringspenger';
-import { getPeriodeDagpengerDtoIdDato, getUnikPeriodeDagpengerDtoKey } from 'src/models/ytelse/dagpenger';
+import { getDagpengerIdDato, getUnikDagpengerKey } from 'src/models/ytelse/dagpenger';
 import { getForeldrepengerFpSakIdDato, getUnikForeldrepengerFpSakKey } from 'src/models/ytelse/foreldrepenger-fpsak';
 import type { Pensjon } from 'src/models/ytelse/pensjon';
 import type { Tiltakspenger } from 'src/models/ytelse/tiltakspenger';
@@ -48,7 +48,7 @@ type Ytelse =
     | Pensjon
     | Arbeidsavklaringspenger
     | ForeldrepengerFpSak
-    | PeriodeDagpengerDto
+    | PseudoDagpengerVedtak
     | Utbetalingsperioder;
 
 type Placeholder = { returnOnForbidden: string; returnOnError: string; returnOnNotFound: string };
@@ -121,8 +121,8 @@ export function getYtelseIdDato(ytelse: YtelseVedtak): string {
             return getArbeidsavklaringspengerDato(ytelse.ytelseData.data as Arbeidsavklaringspenger);
         case YtelseVedtakYtelseType.ForeldrepengerFpSak:
             return getForeldrepengerFpSakIdDato(ytelse.ytelseData.data as ForeldrepengerFpSak);
-        case YtelseVedtakYtelseType.PeriodeDagpengerDto:
-            return getPeriodeDagpengerDtoIdDato(ytelse.ytelseData.data as PeriodeDagpengerDto);
+        case YtelseVedtakYtelseType.Dagpenger:
+            return getDagpengerIdDato(ytelse.ytelseData.data as Dagpenger);
         default:
             return '';
     }
@@ -146,8 +146,8 @@ export function getUnikYtelseKey(ytelse: YtelseVedtak) {
             return getUnikArbeidsavklaringspengerKey(ytelse.ytelseData.data as Arbeidsavklaringspenger);
         case YtelseVedtakYtelseType.ForeldrepengerFpSak:
             return getUnikForeldrepengerFpSakKey(ytelse.ytelseData.data as ForeldrepengerFpSak);
-        case YtelseVedtakYtelseType.PeriodeDagpengerDto:
-            return getUnikPeriodeDagpengerDtoKey(ytelse.ytelseData.data as PeriodeDagpengerDto);
+        case YtelseVedtakYtelseType.Dagpenger:
+            return getUnikDagpengerKey(ytelse.ytelseData.data as PseudoDagpengerVedtak);
         default:
             return 'ukjent ytelse';
     }
@@ -318,7 +318,7 @@ export const useFilterYtelser = (): QueryResult<YtelseVedtak[]> => {
     const pensjonResponse = usePensjon(startDato, sluttDato);
     const arbeidsavklaringspengerResponse = useArbeidsavklaringspenger(startDato, sluttDato);
     const foreldrepengerFpSakResponse = useForeldrepengerFpSak(startDato, sluttDato);
-    const dagpengerResponse = usePeriodeDagpengerDto(startDato, sluttDato);
+    const dagpengerResponse = useDagpenger(startDato, sluttDato);
     const sykepengerSpokelseResponse = useSykepengerSpokelse(startDato, sluttDato);
 
     const ytelser: YtelseVedtak[] = [];
@@ -372,12 +372,12 @@ export const useFilterYtelser = (): QueryResult<YtelseVedtak[]> => {
         })
     );
 
-    dagpengerResponse.data?.map((ytelse) =>
+    if (dagpengerResponse.data) {
         ytelser.push({
-            ytelseData: { data: ytelse },
-            ytelseType: YtelseVedtakYtelseType.PeriodeDagpengerDto
-        })
-    );
+            ytelseData: { data: dagpengerResponse.data },
+            ytelseType: YtelseVedtakYtelseType.Dagpenger
+        });
+    }
 
     const ytelserSortert = ytelser.sort(datoSynkende((ytelse: YtelseVedtak) => getYtelseIdDato(ytelse)));
 

@@ -1,13 +1,13 @@
 import { type UseQueryResult, useQuery } from '@tanstack/react-query';
 import { type FetchError, post } from 'src/api/api';
 import { apiBaseUri } from 'src/api/config';
-import type { PeriodeDagpengerDto } from 'src/generated/modiapersonoversikt-api';
+import type { PseudoDagpengerVedtak } from 'src/generated/modiapersonoversikt-api';
 
-export const usePeriodeDagpengerDto = (
+export const useDagpenger = (
     fnr: string,
     fom: string,
     tom: string
-): UseQueryResult<PeriodeDagpengerDto[], FetchError> => {
+): UseQueryResult<PseudoDagpengerVedtak, FetchError> => {
     return useQuery({
         queryKey: ['dagpenger', fnr, fom, tom],
         queryFn: () =>

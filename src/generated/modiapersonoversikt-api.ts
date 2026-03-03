@@ -1246,9 +1246,16 @@ export interface components {
             /** Format: date */
             fraOgMedDato: string;
             /** @enum {string} */
+            kilde: PeriodeDagpengerDtoKilde;
+            /** @enum {string} */
             ytelseType: PeriodeDagpengerDtoYtelseType;
             /** Format: date */
             tilOgMedDato?: string;
+        };
+        PseudoDagpengerVedtak: {
+            perioder: components['schemas']['PeriodeDagpengerDto'][];
+            /** Format: date */
+            nyesteFraOgMedDato?: string;
         };
         NonavaapapiinternPeriodeDTO: {
             /** Format: date */
@@ -1484,9 +1491,9 @@ export interface components {
         };
         LocalTime: {
             value?: string;
+            value$kotlinx_datetime: string;
             /** Format: int32 */
             nanosecond: number;
-            value$kotlinx_datetime: string;
             /** Format: int32 */
             hour: number;
             /** Format: int32 */
@@ -2037,8 +2044,8 @@ export interface components {
             opprettetDato?: string;
             finnesIGsak?: boolean;
             finnesIPsak?: boolean;
-            sakstypeForVisningGenerell?: boolean;
             saksIdVisning?: string;
+            sakstypeForVisningGenerell?: boolean;
         };
         Resultat: {
             saker: components['schemas']['JournalforingSak'][];
@@ -2077,19 +2084,19 @@ export interface components {
             boost?: number;
         };
         GraphQLClientError: {
-            locations?: components['schemas']['GraphQLClientSourceLocation'][];
             message: string;
             path?: unknown[];
             extensions?: {
                 [key: string]: unknown;
             };
+            locations?: components['schemas']['GraphQLClientSourceLocation'][];
         };
         GraphQLClientResponseResult: {
-            errors?: components['schemas']['GraphQLClientError'][];
             extensions?: {
                 [key: string]: unknown;
             };
             data?: components['schemas']['Result'];
+            errors?: components['schemas']['GraphQLClientError'][];
         };
         GraphQLClientSourceLocation: {
             /** Format: int32 */
@@ -2353,6 +2360,7 @@ export type Foreldrepenger = components['schemas']['Foreldrepenger'];
 export type ForeldrepengerArbeidsforhold = components['schemas']['ForeldrepengerArbeidsforhold'];
 export type ForeldrepengerResponse = components['schemas']['ForeldrepengerResponse'];
 export type PeriodeDagpengerDto = components['schemas']['PeriodeDagpengerDto'];
+export type PseudoDagpengerVedtak = components['schemas']['PseudoDagpengerVedtak'];
 export type NonavaapapiinternPeriodeDto = components['schemas']['NonavaapapiinternPeriodeDTO'];
 export type NonavaapapiinternVedtakUtenUtbetalingDto =
     components['schemas']['NonavaapapiinternVedtakUtenUtbetalingDTO'];
@@ -2678,7 +2686,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    '*/*': components['schemas']['PeriodeDagpengerDto'][];
+                    '*/*': components['schemas']['PseudoDagpengerVedtak'];
                 };
             };
         };
@@ -3884,6 +3892,10 @@ export enum ForeldrepengerFpSakYtelse {
     ENGANGSST_NAD = 'ENGANGSST\u00D8NAD',
     FORELDREPENGER = 'FORELDREPENGER',
     SVANGERSKAPSPENGER = 'SVANGERSKAPSPENGER'
+}
+export enum PeriodeDagpengerDtoKilde {
+    ARENA = 'ARENA',
+    DP_SAK = 'DP_SAK'
 }
 export enum PeriodeDagpengerDtoYtelseType {
     DAGPENGER_ARBEIDSSOKER_ORDINAER = 'DAGPENGER_ARBEIDSSOKER_ORDINAER',

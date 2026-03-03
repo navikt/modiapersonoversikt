@@ -34,7 +34,7 @@ export const YtelseItem = ({ ytelse }: { ytelse: YtelseVedtak }) => {
             case YtelseVedtakYtelseType.Tiltakspenge:
             case YtelseVedtakYtelseType.Pensjon:
             case YtelseVedtakYtelseType.Arbeidsavklaringspenger:
-            case YtelseVedtakYtelseType.PeriodeDagpengerDto:
+            case YtelseVedtakYtelseType.Dagpenger:
                 return ytelse.ytelseType;
             case YtelseVedtakYtelseType.SykepengerSpokelse:
                 return YtelseVedtakYtelseType.Sykepenger;
