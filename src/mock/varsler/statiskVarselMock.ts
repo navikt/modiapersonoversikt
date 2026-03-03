@@ -1,42 +1,30 @@
-import type { DittNavEvent } from '../../models/varsel';
+import type { Varsel } from 'src/lib/types/modiapersonoversikt-api';
 
-export const statiskDittnavEventVarselMock: DittNavEvent[] = [
+export const statiskVarselMock: Varsel[] = [
     {
-        fodselsnummer: '10108000398',
-        grupperingsId: '1',
-        eventId: '2',
-        forstBehandlet: '2023-01-01T00:00:00.000Z',
+        type: 'OPPGAVE',
+        varselId: '2',
+        aktiv: true,
         produsent: 'sf-brukernotifikasjon',
-        sikkerhetsnivaa: 4,
-        sistOppdatert: '2023-08-11T11:11:11.000Z',
-        tekst: 'Et nytt samtalereferat er tilgjengelig i din innboks',
-        link: 'https://innboks.nav.no',
-        aktiv: false,
-        eksternVarslingSendt: true,
-        eksternVarslingKanaler: ['SMS', 'EPOST'],
-        varslingsTidspunkt: {
+        sensitivitet: 'high',
+        innhold: {
+            tekst: 'Et nytt samtalereferat er tilgjengelig i din innboks',
+            link: 'https://innboks.nav.no'
+        },
+        eksternVarsling: {
             sendt: true,
-            tidspunkt: '2023-01-11T11:11:11.000Z',
+            sendtTidspunkt: '2026-01-05T08:17:32.000Z',
             renotifikasjonSendt: true,
-            renotifikasjonTidspunkt: '2023-08-01T00:00:00.000Z',
+            renotifikasjonTidspunkt: '2026-01-12T08:17:32.000Z',
             sendteKanaler: ['SMS', 'EPOST'],
-            renotifikasjonsKanaler: ['SMS', 'EPOST'],
-            harFeilteVarslinger: true,
-            harFeilteRevarslinger: true,
-            feilteVarsliner: [
+            feilhistorikk: [
                 {
-                    tidspunkt: '2023-01-01T00:00:00.000Z',
-                    feilmelding: 'Feil telefonummer',
-                    kanal: 'SMS'
+                    tidspunkt: '2026-01-05T08:17:32.000Z',
+                    feilmelding: 'Det oppsto en feil'
                 }
             ],
-            feilteRevarslinger: [
-                {
-                    tidspunkt: '2023-08-11T11:11:11.000Z',
-                    feilmelding: 'Feil epost',
-                    kanal: 'EPOST'
-                }
-            ]
-        }
+            sistOppdatert: '2026-01-12T08:17:32.000Z'
+        },
+        opprettet: '2026-01-05T08:17:32.000Z'
     }
 ];

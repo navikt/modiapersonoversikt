@@ -1,19 +1,13 @@
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import * as React from 'react';
+import type { Varsel } from 'src/generated/modiapersonoversikt-api';
+import type { VarslerResult } from 'src/models/varsel';
+import { datoSynkende } from 'src/utils/date-utils';
 import LazySpinner from '../../../../components/LazySpinner';
-import { isDittNavEvent, type UnifiedVarsel, type VarslerResult } from '../../../../models/varsel';
 import varselResource from '../../../../rest/resources/varselResource';
-import { datoSynkende } from '../../../../utils/date-utils';
-
-function datoExtractor(varsel: UnifiedVarsel) {
-    if (isDittNavEvent(varsel)) {
-        return varsel.forstBehandlet;
-    }
-    return varsel.mottattTidspunkt;
-}
 
 export interface VarslerRendererProps {
-    varsler: Array<UnifiedVarsel>;
+    varsler: Array<Varsel>;
     feilmelding: React.ReactElement | null;
 }
 type VarslerRenderer<P> = React.ComponentType<VarslerRendererProps & P>;
@@ -34,7 +28,7 @@ function VarslerLoader<P>(props: VarselLoaderProps<P>) {
         feilmelding = <AlertStripeFeil className="blokk-xs">{varsler.feil.join('. ')}</AlertStripeFeil>;
     }
 
-    const varselElementer = varsler?.varsler.sort(datoSynkende(datoExtractor));
+    const varselElementer = varsler?.varsler.sort(datoSynkende((varsel) => varsel.opprettet));
     const { component, ...extraProps } = props;
     const pProps = extraProps as unknown as P;
 

@@ -6,7 +6,7 @@ import * as React from 'react';
 import { useRef } from 'react';
 import { UnmountClosed } from 'react-collapse';
 import { getOpenTabFromRouterPath } from 'src/app/personside/infotabs/utils/useOpenTab';
-import type { UnifiedVarsel } from 'src/models/varsel';
+import type { Varsel } from 'src/generated/modiapersonoversikt-api';
 import { trackVisDetaljvisning } from 'src/utils/analytics';
 import styled from 'styled-components';
 import VisMerChevron from '../../../../components/VisMerChevron';
@@ -76,7 +76,7 @@ const IkonDiv = styled.div`
 `;
 
 interface VarselRowProps {
-    varsel: UnifiedVarsel;
+    varsel: Varsel;
     datoer: Array<string>;
     tittel: string;
     kanaler: Array<string>;

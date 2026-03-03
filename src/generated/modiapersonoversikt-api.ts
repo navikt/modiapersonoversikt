@@ -1259,65 +1259,41 @@ export interface components {
         FnrRequest: {
             fnr: string;
         };
-        EksternVarslingInfo: {
-            sendt: boolean;
-            renotifikasjonSendt: boolean;
-            prefererteKanaler: string[];
-            sendteKanaler: string[];
-            historikk: components['schemas']['HistorikkEntry'][];
-        };
-        Event: {
-            fodselsnummer: string;
-            grupperingsId?: string;
-            eventId: string;
-            /** Format: date-time */
-            forstBehandlet: string;
-            produsent: string;
-            /** Format: int32 */
-            sikkerhetsnivaa: number;
-            /** Format: date-time */
-            sistOppdatert: string;
-            tekst: string;
-            link: string;
-            aktiv: boolean;
-            eksternVarslingSendt: boolean;
-            eksternVarslingKanaler: string[];
-            eksternVarsling?: components['schemas']['EksternVarslingInfo'];
-            varslingsTidspunkt?: components['schemas']['VarslingsTidspunkt'];
-        };
-        FeiletVarsling: {
-            /** Format: date-time */
-            tidspunkt: string;
+        Feilhistorikk: {
             feilmelding: string;
-            kanal?: string;
-        };
-        HistorikkEntry: {
-            melding: string;
-            status: string;
-            /** Format: int64 */
-            distribusjonsId?: number;
-            kanal?: string;
-            renotifikasjon?: boolean;
             /** Format: date-time */
             tidspunkt: string;
+        };
+        Innhold: {
+            tekst: string;
+            link?: string;
         };
         Result: {
             feil: string[];
-            varsler: components['schemas']['Event'][];
+            varsler: components['schemas']['Varsel'][];
         };
-        VarslingsTidspunkt: {
+        Varsel: {
+            type: string;
+            varselId: string;
+            aktiv: boolean;
+            produsent: string;
+            sensitivitet: string;
+            innhold: components['schemas']['Innhold'];
+            eksternVarsling: components['schemas']['VarselInfo'];
+            /** Format: date-time */
+            opprettet: string;
+        };
+        VarselInfo: {
             sendt: boolean;
             /** Format: date-time */
-            tidspunkt?: string;
+            sendtTidspunkt: string;
             renotifikasjonSendt: boolean;
             /** Format: date-time */
             renotifikasjonTidspunkt?: string;
             sendteKanaler: string[];
-            renotifikasjonsKanaler: string[];
-            harFeilteVarslinger: boolean;
-            harFeilteRevarslinger: boolean;
-            feilteVarsliner: components['schemas']['FeiletVarsling'][];
-            feilteRevarslinger: components['schemas']['FeiletVarsling'][];
+            feilhistorikk: components['schemas']['Feilhistorikk'][];
+            /** Format: date-time */
+            sistOppdatert: string;
         };
         Arbeidgiver: {
             orgnr: string;
@@ -1484,9 +1460,9 @@ export interface components {
         };
         LocalTime: {
             value?: string;
-            value$kotlinx_datetime: string;
             /** Format: int32 */
             nanosecond: number;
+            value$kotlinx_datetime: string;
             /** Format: int32 */
             hour: number;
             /** Format: int32 */
@@ -2077,19 +2053,19 @@ export interface components {
             boost?: number;
         };
         GraphQLClientError: {
+            locations?: components['schemas']['GraphQLClientSourceLocation'][];
             message: string;
             path?: unknown[];
             extensions?: {
                 [key: string]: unknown;
             };
-            locations?: components['schemas']['GraphQLClientSourceLocation'][];
         };
         GraphQLClientResponseResult: {
+            errors?: components['schemas']['GraphQLClientError'][];
             extensions?: {
                 [key: string]: unknown;
             };
             data?: components['schemas']['Result'];
-            errors?: components['schemas']['GraphQLClientError'][];
         };
         GraphQLClientSourceLocation: {
             /** Format: int32 */
@@ -2356,12 +2332,11 @@ export type NonavaapapiinternPeriodeDto = components['schemas']['Nonavaapapiinte
 export type NonavaapapiinternVedtakUtenUtbetalingDto =
     components['schemas']['NonavaapapiinternVedtakUtenUtbetalingDTO'];
 export type FnrRequest = components['schemas']['FnrRequest'];
-export type EksternVarslingInfo = components['schemas']['EksternVarslingInfo'];
-export type Event = components['schemas']['Event'];
-export type FeiletVarsling = components['schemas']['FeiletVarsling'];
-export type HistorikkEntry = components['schemas']['HistorikkEntry'];
+export type Feilhistorikk = components['schemas']['Feilhistorikk'];
+export type Innhold = components['schemas']['Innhold'];
 export type Result = components['schemas']['Result'];
-export type VarslingsTidspunkt = components['schemas']['VarslingsTidspunkt'];
+export type Varsel = components['schemas']['Varsel'];
+export type VarselInfo = components['schemas']['VarselInfo'];
 export type Arbeidgiver = components['schemas']['Arbeidgiver'];
 export type Skatt = components['schemas']['Skatt'];
 export type Trekk = components['schemas']['Trekk'];
