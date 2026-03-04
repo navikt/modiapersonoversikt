@@ -1,9 +1,10 @@
-import { Heading, HGrid, VStack } from '@navikt/ds-react';
+import { Heading, HStack, Skeleton, VStack } from '@navikt/ds-react';
 import { AlertBanner } from 'src/components/AlertBanner';
+import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
-import { UtbetalingerDetailPage } from 'src/components/Utbetaling/Detail';
-import { UtbetalingerList } from 'src/components/Utbetaling/List';
-import { useFilterUtbetalinger } from 'src/components/Utbetaling/List/utils';
+import { UtbetalingListFilter } from 'src/components/Utbetaling/Filter';
+import { Utbetalinger } from 'src/components/Utbetaling/Utbetalinger';
+import { useFilterUtbetalinger } from 'src/components/Utbetaling/utils';
 
 export const UtbetalingPage = () => {
     return (
@@ -14,20 +15,38 @@ export const UtbetalingPage = () => {
 };
 
 const UtbetalingPageContent = () => {
-    const { errorMessages } = useFilterUtbetalinger();
+    const { errorMessages, isError, isLoading } = useFilterUtbetalinger();
+
+    if (isError) {
+        return <AlertBanner alerts={errorMessages} />;
+    }
 
     return (
-        <HGrid gap="1" columns={{ xs: 1, md: 'max-content 1fr' }} height="100%" overflow={{ xs: 'auto', md: 'hidden' }}>
-            <VStack height="100%" maxWidth={{ md: '16em' }} overflow={{ md: 'hidden' }}>
-                <Heading size="small" visuallyHidden level="2">
-                    Utbetalinger
-                </Heading>
-                <UtbetalingerList />
-            </VStack>
-            <VStack className="min-h-100 md:min-h-0">
+        <ErrorBoundary boundaryName="Dokumentertabell" errorText="Det oppstod en feil under visning av utbetalinger">
+            <Card padding="4" className="h-full overflow-auto">
                 <AlertBanner alerts={errorMessages} />
-                <UtbetalingerDetailPage />
-            </VStack>
-        </HGrid>
+                <VStack gap="8">
+                    <HStack align="center" gap="2">
+                        <Heading level="2" size="medium">
+                            Utbetalinger
+                        </Heading>
+                    </HStack>
+                    <VStack gap="4">
+                        <UtbetalingListFilter />
+                        {isLoading ? (
+                            <VStack gap="2" marginInline="0 2">
+                                {Array(12)
+                                    .keys()
+                                    .map((i) => (
+                                        <Skeleton key={i} variant="rectangle" height={68} />
+                                    ))}
+                            </VStack>
+                        ) : (
+                            <Utbetalinger />
+                        )}
+                    </VStack>
+                </VStack>
+            </Card>
+        </ErrorBoundary>
     );
 };

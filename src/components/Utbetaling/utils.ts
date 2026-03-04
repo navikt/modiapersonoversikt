@@ -1,13 +1,13 @@
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai';
-import { type UtbetalingFilter, utbetalingFilterAtom } from 'src/components/Utbetaling/List/Filter';
+import { type UtbetalingFilter, utbetalingFilterAtom } from 'src/components/Utbetaling/Filter';
 import { errorPlaceholder, type QueryResult, responseErrorMessage } from 'src/components/ytelser/utils';
 import { useUtbetalinger } from 'src/lib/clients/modiapersonoversikt-api';
 import type { Utbetaling, UtbetalingerResponseDto, Ytelse, YtelsePeriode } from 'src/lib/types/modiapersonoversikt-api';
-import { datoSynkende } from 'src/utils/date-utils';
+import { datoSynkende, datoVerbose } from 'src/utils/date-utils';
 
 const filterUtbetalinger = (utbetalinger: Utbetaling[], filters: UtbetalingFilter): Utbetaling[] => {
-    const { ytelseTyper, utbetaltTil, dateRange } = filters;
+    const { ytelseTyper, dateRange } = filters;
 
     if (!utbetalinger || utbetalinger.length === 0) {
         return [];
@@ -17,15 +17,6 @@ const filterUtbetalinger = (utbetalinger: Utbetaling[], filters: UtbetalingFilte
     if (ytelseTyper?.length) {
         filteredList = filteredList.filter((utbetaling) =>
             utbetaling.ytelser.some((item) => item.type && ytelseTyper.includes(item.type))
-        );
-    }
-
-    if (utbetaltTil?.length) {
-        filteredList = filteredList.filter(
-            (utbetaling) =>
-                (utbetaling.erUtbetaltTilOrganisasjon && utbetaltTil.includes(utbetaltTilOrganisasjon)) ||
-                (utbetaling.erUtbetaltTilSamhandler && utbetaltTil.includes(utbetaltTilSamhandler)) ||
-                (utbetaling.erUtbetaltTilPerson && utbetaltTil.includes(utbetaltTilBruker))
         );
     }
 
@@ -118,8 +109,23 @@ export const getPeriodeFromYtelser = (ytelser: Ytelse[]): YtelsePeriode => {
 export const getUtbetalingId = (utbetaling: Utbetaling) =>
     `${utbetaling.ytelser?.map((item) => item.type?.replace(/\s+/g, ''))?.join('')}${utbetaling.posteringsdato}`;
 
-const utbetaltTilBruker = 'Bruker';
-const utbetaltTilOrganisasjon = 'Organisasjon';
-const utbetaltTilSamhandler = 'Samhandler';
+export function getGjeldendeDatoForUtbetaling(utbetaling: Utbetaling): string {
+    return utbetaling.utbetalingsdato || utbetaling.forfallsdato || utbetaling.posteringsdato;
+}
+export function utbetalingDatoComparator(a: Utbetaling, b: Utbetaling) {
+    return dayjs(getGjeldendeDatoForUtbetaling(b)).unix() - dayjs(getGjeldendeDatoForUtbetaling(a)).unix();
+}
+export function maanedOgAarForUtbetaling(utbetaling: Utbetaling) {
+    const verbose = datoVerbose(getGjeldendeDatoForUtbetaling(utbetaling));
+    return `${verbose.måned} ${verbose.år}`;
+}
 
-export const utbetalingMottakere = [utbetaltTilBruker, utbetaltTilOrganisasjon, utbetaltTilSamhandler];
+export const fargePaBelop = (belop: number) => {
+    if (belop > 0) {
+        return 'text-ax-text-success-subtle';
+    } else if (belop < 0) {
+        return 'text-ax-text-danger-subtle';
+    } else {
+        return '';
+    }
+};
