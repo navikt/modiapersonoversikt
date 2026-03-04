@@ -62,9 +62,7 @@ const ExpandedUtbetaling = ({ utbetaling }: { utbetaling: Utbetaling }) => {
                 </Table>
                 <HStack align="stretch" justify="space-between" padding="2">
                     <Heading size="xsmall">Total brutto</Heading>
-                    <BodyShort className={fargePaBelop(ytelse.ytelseskomponentersum)}>
-                        {formaterNOK(ytelse.ytelseskomponentersum)}
-                    </BodyShort>
+                    <BodyShort>{formaterNOK(ytelse.ytelseskomponentersum)}</BodyShort>
                 </HStack>
                 {ytelse.trekkListe.length > 0 && (
                     <>
@@ -91,9 +89,7 @@ const ExpandedUtbetaling = ({ utbetaling }: { utbetaling: Utbetaling }) => {
                         </Table>
                         <HStack align="stretch" justify="space-between" padding="2">
                             <Heading size="xsmall">Totalt trekk</Heading>
-                            <BodyShort className={fargePaBelop(ytelse.trekksum)}>
-                                {formaterNOK(ytelse.trekksum)}
-                            </BodyShort>
+                            <BodyShort>{formaterNOK(ytelse.trekksum)}</BodyShort>
                         </HStack>
                     </>
                 )}
@@ -122,9 +118,7 @@ const ExpandedUtbetaling = ({ utbetaling }: { utbetaling: Utbetaling }) => {
                         </Table>
                         <HStack align="stretch" justify="space-between" padding="2">
                             <Heading size="xsmall">Total skatt</Heading>
-                            <BodyShort className={fargePaBelop(ytelse.skattsum)}>
-                                {formaterNOK(ytelse.skattsum)}
-                            </BodyShort>
+                            <BodyShort>{formaterNOK(ytelse.skattsum)}</BodyShort>
                         </HStack>
                     </>
                 )}
@@ -132,12 +126,12 @@ const ExpandedUtbetaling = ({ utbetaling }: { utbetaling: Utbetaling }) => {
             <Card
                 className={twMerge(
                     'rounded-(--ax-radius-8) utbetalinger-tabell',
-                    ytelse.nettobelop < 0 ? 'bg-ax-bg-warning-soft' : 'bg-ax-bg-success-soft'
+                    ytelse.nettobelop < 0 ? 'bg-ax-bg-danger-soft' : 'bg-ax-bg-success-soft'
                 )}
                 padding="2"
             >
                 <HStack align="stretch" justify="space-between" paddingInline="2">
-                    <Heading size="xsmall">Totalt netto</Heading>
+                    <Heading size="xsmall">Total</Heading>
                     <BodyShort className={fargePaBelop(ytelse.nettobelop)}>{formaterNOK(ytelse.nettobelop)}</BodyShort>
                 </HStack>
             </Card>
@@ -148,38 +142,45 @@ const ExpandedUtbetaling = ({ utbetaling }: { utbetaling: Utbetaling }) => {
         <VStack gap="8" paddingBlock="2">
             <VStack gap="2">
                 <Heading size="xsmall" level="4">
-                    Oppsummering for utbetalingen
+                    Oppsummering av utbetalingen
                 </Heading>
                 <Card className="bg-ax-bg-neutral-soft rounded-(--ax-radius-8) utbetalinger-tabell" padding="2">
                     <VStack gap="4">
                         <HStack justify="space-between" padding="2">
                             <VStack gap="2">
-                                <BodyShort weight="semibold">Totalt brutto</BodyShort>
+                                <BodyShort weight="semibold">Kontonummer</BodyShort>
+                                <BodyShort>{utbetaling.konto}</BodyShort>
+                            </VStack>
+                            <VStack gap="2">
+                                <BodyShort weight="semibold">Brutto</BodyShort>
                                 <BodyShort>{formaterNOK(getBruttoSumYtelser(utbetaling.ytelser))}</BodyShort>
                             </VStack>
                             <VStack gap="2">
                                 <BodyShort weight="semibold">Trekk og skatt</BodyShort>
-                                <BodyShort>{formaterNOK(getTrekkOgSkattSumYtelser(utbetaling.ytelser))}</BodyShort>
+                                <BodyShort className={fargePaBelop(getTrekkOgSkattSumYtelser(utbetaling.ytelser))}>
+                                    {formaterNOK(getTrekkOgSkattSumYtelser(utbetaling.ytelser))}
+                                </BodyShort>
                             </VStack>
                             <VStack gap="2">
-                                <BodyShort weight="semibold">Totalt utbetalt</BodyShort>
-                                <BodyShort>{formaterNOK(utbetaling.nettobelop)}</BodyShort>
-                            </VStack>
-                            <VStack gap="2">
-                                <BodyShort weight="semibold">Konto.nr</BodyShort>
-                                <BodyShort>{utbetaling.konto}</BodyShort>
-                            </VStack>
-                            <VStack gap="2">
-                                <BodyShort weight="semibold">Metode</BodyShort>
-                                <BodyShort>{utbetaling.metode}</BodyShort>
+                                <BodyShort weight="semibold">Totalt</BodyShort>
+                                <BodyShort className={fargePaBelop(utbetaling.nettobelop)}>
+                                    {formaterNOK(utbetaling.nettobelop)}
+                                </BodyShort>
                             </VStack>
                         </HStack>
-                        {utbetaling.melding && (
-                            <HStack gap="2" paddingInline="2">
-                                <Detail weight="semibold">Melding</Detail>
-                                <Detail weight="semibold">{utbetaling.melding}</Detail>
+
+                        <VStack paddingInline="2">
+                            {utbetaling.melding && (
+                                <HStack gap="2">
+                                    <Detail weight="semibold">Melding</Detail>
+                                    <Detail weight="semibold">{utbetaling.melding}</Detail>
+                                </HStack>
+                            )}
+                            <HStack gap="2">
+                                <Detail weight="semibold">Utbetalingsmetode:</Detail>
+                                <Detail weight="semibold">{utbetaling.metode}</Detail>
                             </HStack>
-                        )}
+                        </VStack>
                     </VStack>
                 </Card>
             </VStack>
@@ -288,17 +289,15 @@ export const Utbetalinger = () => {
                                 <VStack gap="4">
                                     <HStack justify="space-between">
                                         <VStack gap="2">
-                                            <BodyShort weight="semibold">Totalt utbetalt</BodyShort>
+                                            <BodyShort weight="semibold">Detaljer</BodyShort>
                                             <BodyShort>
-                                                {formaterNOK(summertNettobelopFraUtbetalinger(data.utbetalinger))}
-                                            </BodyShort>
-                                        </VStack>
-                                        <VStack gap="2">
-                                            <BodyShort weight="semibold">Trekk og skatt</BodyShort>
-                                            <BodyShort>
-                                                {formaterNOK(
-                                                    summertTrekkOgSkattBelopFraUtbetalinger(data.utbetalinger)
-                                                )}
+                                                {getAlleYtelseTyper(data.utbetalinger).map((type, i) => (
+                                                    <>
+                                                        {i === getAlleYtelseTyper(data.utbetalinger).length - 1
+                                                            ? type
+                                                            : `${type}, `}
+                                                    </>
+                                                ))}
                                             </BodyShort>
                                         </VStack>
                                         <VStack gap="2">
@@ -308,17 +307,25 @@ export const Utbetalinger = () => {
                                             </BodyShort>
                                         </VStack>
                                         <VStack gap="2">
-                                            <BodyShort weight="semibold">Detaljer</BodyShort>
-                                            <BodyShort>
-                                                <VStack>
-                                                    {getAlleYtelseTyper(data.utbetalinger).map((type, i) => (
-                                                        <BodyShort key={type}>
-                                                            {i === getAlleYtelseTyper(data.utbetalinger).length - 1
-                                                                ? type
-                                                                : `${type},`}
-                                                        </BodyShort>
-                                                    ))}
-                                                </VStack>
+                                            <BodyShort weight="semibold">Trekk og skatt</BodyShort>
+                                            <BodyShort
+                                                className={fargePaBelop(
+                                                    summertTrekkOgSkattBelopFraUtbetalinger(data.utbetalinger)
+                                                )}
+                                            >
+                                                {formaterNOK(
+                                                    summertTrekkOgSkattBelopFraUtbetalinger(data.utbetalinger)
+                                                )}
+                                            </BodyShort>
+                                        </VStack>
+                                        <VStack gap="2">
+                                            <BodyShort weight="semibold">Totalt</BodyShort>
+                                            <BodyShort
+                                                className={fargePaBelop(
+                                                    summertNettobelopFraUtbetalinger(data.utbetalinger)
+                                                )}
+                                            >
+                                                {formaterNOK(summertNettobelopFraUtbetalinger(data.utbetalinger))}
                                             </BodyShort>
                                         </VStack>
                                     </HStack>
