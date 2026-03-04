@@ -19,6 +19,7 @@ import { formaterPeriode } from 'src/components/ytelser/utils';
 import type { Utbetaling } from 'src/generated/modiapersonoversikt-api';
 import { formatterDato } from 'src/utils/date-utils';
 import { type GroupedArray, groupArray } from 'src/utils/groupArray';
+import { twMerge } from 'tailwind-merge';
 
 const ExpandedUtbetaling = ({ utbetaling }: { utbetaling: Utbetaling }) => {
     const ytelseliste = utbetaling.ytelser.map((ytelse, i) => (
@@ -128,7 +129,13 @@ const ExpandedUtbetaling = ({ utbetaling }: { utbetaling: Utbetaling }) => {
                     </>
                 )}
             </Card>
-            <Card className="bg-ax-meta-lime-100 rounded-(--ax-radius-8) utbetalinger-tabell" padding="2">
+            <Card
+                className={twMerge(
+                    'rounded-(--ax-radius-8) utbetalinger-tabell',
+                    ytelse.nettobelop < 0 ? 'bg-ax-bg-warning-soft' : 'bg-ax-bg-success-soft'
+                )}
+                padding="2"
+            >
                 <HStack align="stretch" justify="space-between" paddingInline="2">
                     <Heading size="xsmall">Totalt netto</Heading>
                     <BodyShort className={fargePaBelop(ytelse.nettobelop)}>{formaterNOK(ytelse.nettobelop)}</BodyShort>
@@ -148,21 +155,15 @@ const ExpandedUtbetaling = ({ utbetaling }: { utbetaling: Utbetaling }) => {
                         <HStack justify="space-between" padding="2">
                             <VStack gap="2">
                                 <BodyShort weight="semibold">Totalt brutto</BodyShort>
-                                <BodyShort className={fargePaBelop(getBruttoSumYtelser(utbetaling.ytelser))}>
-                                    {formaterNOK(getBruttoSumYtelser(utbetaling.ytelser))}
-                                </BodyShort>
+                                <BodyShort>{formaterNOK(getBruttoSumYtelser(utbetaling.ytelser))}</BodyShort>
                             </VStack>
                             <VStack gap="2">
                                 <BodyShort weight="semibold">Trekk og skatt</BodyShort>
-                                <BodyShort className={fargePaBelop(getTrekkOgSkattSumYtelser(utbetaling.ytelser))}>
-                                    {formaterNOK(getTrekkOgSkattSumYtelser(utbetaling.ytelser))}
-                                </BodyShort>
+                                <BodyShort>{formaterNOK(getTrekkOgSkattSumYtelser(utbetaling.ytelser))}</BodyShort>
                             </VStack>
                             <VStack gap="2">
                                 <BodyShort weight="semibold">Totalt utbetalt</BodyShort>
-                                <BodyShort className={fargePaBelop(utbetaling.nettobelop)}>
-                                    {formaterNOK(utbetaling.nettobelop)}
-                                </BodyShort>
+                                <BodyShort>{formaterNOK(utbetaling.nettobelop)}</BodyShort>
                             </VStack>
                             <VStack gap="2">
                                 <BodyShort weight="semibold">Konto.nr</BodyShort>
@@ -288,21 +289,13 @@ export const Utbetalinger = () => {
                                     <HStack justify="space-between">
                                         <VStack gap="2">
                                             <BodyShort weight="semibold">Totalt utbetalt</BodyShort>
-                                            <BodyShort
-                                                className={fargePaBelop(
-                                                    summertNettobelopFraUtbetalinger(data.utbetalinger)
-                                                )}
-                                            >
+                                            <BodyShort>
                                                 {formaterNOK(summertNettobelopFraUtbetalinger(data.utbetalinger))}
                                             </BodyShort>
                                         </VStack>
                                         <VStack gap="2">
                                             <BodyShort weight="semibold">Trekk og skatt</BodyShort>
-                                            <BodyShort
-                                                className={fargePaBelop(
-                                                    summertTrekkOgSkattBelopFraUtbetalinger(data.utbetalinger)
-                                                )}
-                                            >
+                                            <BodyShort>
                                                 {formaterNOK(
                                                     summertTrekkOgSkattBelopFraUtbetalinger(data.utbetalinger)
                                                 )}
@@ -310,11 +303,7 @@ export const Utbetalinger = () => {
                                         </VStack>
                                         <VStack gap="2">
                                             <BodyShort weight="semibold">Brutto</BodyShort>
-                                            <BodyShort
-                                                className={fargePaBelop(
-                                                    summertBruttobelopFraUtbetalinger(data.utbetalinger)
-                                                )}
-                                            >
+                                            <BodyShort>
                                                 {formaterNOK(summertBruttobelopFraUtbetalinger(data.utbetalinger))}
                                             </BodyShort>
                                         </VStack>
