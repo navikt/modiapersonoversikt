@@ -58,12 +58,8 @@ export const getBruttoSumYtelser = (ytelser: Ytelse[]): number => {
     return ytelser.reduce((acc: number, ytelse: Ytelse) => acc + ytelse.ytelseskomponentersum, 0);
 };
 
-export const getTrekkSumYtelser = (ytelser: Ytelse[]): number => {
+export const getTrekkOgSkattSumYtelser = (ytelser: Ytelse[]): number => {
     return ytelser.reduce((acc: number, ytelse: Ytelse) => acc + ytelse.skattsum + ytelse.trekksum, 0);
-};
-
-export const filtrerBortUtbetalingerSomIkkeErUtbetalt = (utbetaling: Utbetaling): boolean => {
-    return utbetaling.status.toLowerCase() === 'utbetalt';
 };
 
 export const reduceUtbetlingerTilYtelser = (utbetalinger: Utbetaling[]): Ytelse[] => {
@@ -74,16 +70,19 @@ export const formaterNOK = (belop: number): string => {
     return belop.toLocaleString('no', { minimumFractionDigits: 2 });
 };
 
-export const summertBelopFraUtbetalinger = (
-    utbetalinger: Utbetaling[],
-    getSumFromYtelser: (ytelser: Ytelse[]) => number,
-    fjernUtbetalingerSomIkkeErUtbetalt: boolean
-): string => {
-    const ytelser = utbetalinger
-        .filter((utbetaling) => !fjernUtbetalingerSomIkkeErUtbetalt || utbetaling.status.toLowerCase() === 'utbetalt')
-        .flatMap((utbetaling) => utbetaling.ytelser ?? []);
-    const sum = getSumFromYtelser(ytelser);
-    return formaterNOK(sum);
+export const summertNettobelopFraUtbetalinger = (utbetalinger: Utbetaling[]): number => {
+    const ytelser = reduceUtbetlingerTilYtelser(utbetalinger);
+    return getNettoSumYtelser(ytelser);
+};
+
+export const summertBruttobelopFraUtbetalinger = (utbetalinger: Utbetaling[]): number => {
+    const ytelser = reduceUtbetlingerTilYtelser(utbetalinger);
+    return getBruttoSumYtelser(ytelser);
+};
+
+export const summertTrekkOgSkattBelopFraUtbetalinger = (utbetalinger: Utbetaling[]): number => {
+    const ytelser = reduceUtbetlingerTilYtelser(utbetalinger);
+    return getTrekkOgSkattSumYtelser(ytelser);
 };
 
 export const getTypeFromYtelse = (ytelse: Ytelse) => ytelse.type || 'Mangler beskrivelse';

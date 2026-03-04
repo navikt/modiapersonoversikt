@@ -5,9 +5,12 @@ import {
     formaterNOK,
     getBruttoSumYtelser,
     getGjeldendeDatoForUtbetaling,
-    getTrekkSumYtelser,
+    getTrekkOgSkattSumYtelser,
     getUtbetalingId,
     maanedOgAarForUtbetaling,
+    summertBruttobelopFraUtbetalinger,
+    summertNettobelopFraUtbetalinger,
+    summertTrekkOgSkattBelopFraUtbetalinger,
     useFilterUtbetalinger,
     utbetalingDatoComparator
 } from 'src/components/Utbetaling/utils';
@@ -34,7 +37,6 @@ const ExpandedUtbetaling = ({ utbetaling }: { utbetaling: Utbetaling }) => {
                         <Table.Row shadeOnHover={false}>
                             <Table.HeaderCell>Detaljer</Table.HeaderCell>
                             <Table.HeaderCell>Antall</Table.HeaderCell>
-                            <Table.HeaderCell>Sats</Table.HeaderCell>
                             <Table.HeaderCell align="right">Satsbeløp</Table.HeaderCell>
                             <Table.HeaderCell align="right">Beløp</Table.HeaderCell>
                         </Table.Row>
@@ -42,10 +44,9 @@ const ExpandedUtbetaling = ({ utbetaling }: { utbetaling: Utbetaling }) => {
                     <Table.Body>
                         {ytelse.ytelseskomponentListe.map((komp, i) => {
                             return (
-                                <Table.Row key={i} shadeOnHover={false}>
+                                <Table.Row key={`${i}-${komp.ytelseskomponenttype}`} shadeOnHover={false}>
                                     <Table.DataCell scope="row">{komp.ytelseskomponenttype}</Table.DataCell>
-                                    <Table.DataCell scope="row">{komp.ytelseskomponenttype}</Table.DataCell>
-                                    <Table.DataCell>{komp.satsantall}</Table.DataCell>
+                                    <Table.DataCell scope="row">{komp.satsantall}</Table.DataCell>
                                     <Table.DataCell align="right">
                                         {komp.satsbelop ? formaterNOK(komp.satsbelop) : '-'}
                                     </Table.DataCell>
@@ -107,7 +108,7 @@ const ExpandedUtbetaling = ({ utbetaling }: { utbetaling: Utbetaling }) => {
                             <Table.Body>
                                 {ytelse.skattListe.map((skatt, i) => {
                                     return (
-                                        <Table.Row key={`${skatt}-${i}`} shadeOnHover={false}>
+                                        <Table.Row key={`${i}-${skatt.skattebelop}`} shadeOnHover={false}>
                                             <Table.DataCell scope="row">Skatt</Table.DataCell>
                                             <Table.DataCell align="right">
                                                 {formaterNOK(skatt.skattebelop)}
@@ -152,8 +153,8 @@ const ExpandedUtbetaling = ({ utbetaling }: { utbetaling: Utbetaling }) => {
                             </VStack>
                             <VStack gap="2">
                                 <BodyShort weight="semibold">Trekk og skatt</BodyShort>
-                                <BodyShort className={fargePaBelop(getTrekkSumYtelser(utbetaling.ytelser))}>
-                                    {formaterNOK(getTrekkSumYtelser(utbetaling.ytelser))}
+                                <BodyShort className={fargePaBelop(getTrekkOgSkattSumYtelser(utbetaling.ytelser))}>
+                                    {formaterNOK(getTrekkOgSkattSumYtelser(utbetaling.ytelser))}
                                 </BodyShort>
                             </VStack>
                             <VStack gap="2">
@@ -215,45 +216,52 @@ export const Utbetalinger = () => {
                     <Accordion.Item key={periode.category}>
                         <Accordion.Header>{periode.category}</Accordion.Header>
                         <Accordion.Content>
-                            <Table>
-                                <Table.Header>
-                                    <Table.Row>
-                                        <Table.HeaderCell />
-                                        <Table.HeaderCell scope="col">Beløp</Table.HeaderCell>
-                                        <Table.HeaderCell scope="col">Tema</Table.HeaderCell>
-                                        <Table.HeaderCell scope="col">Mottaker</Table.HeaderCell>
-                                        <Table.HeaderCell scope="col">Status</Table.HeaderCell>
-                                        <Table.HeaderCell scope="col">Dato</Table.HeaderCell>
-                                    </Table.Row>
-                                </Table.Header>
-                                {periode.array.map((utbetaling) => {
-                                    return (
-                                        <Table.ExpandableRow
-                                            key={getUtbetalingId(utbetaling)}
-                                            content={
-                                                <ExpandedUtbetaling
-                                                    key={getUtbetalingId(utbetaling)}
-                                                    utbetaling={utbetaling}
-                                                />
-                                            }
-                                        >
-                                            <Table.HeaderCell scope="row">
-                                                {formaterNOK(utbetaling.nettobelop)}
-                                            </Table.HeaderCell>
-                                            <Table.DataCell>
-                                                {utbetaling.ytelser.length === 1
-                                                    ? utbetaling.ytelser[0].type
-                                                    : 'Diverse ytelser'}
-                                            </Table.DataCell>
-                                            <Table.DataCell>{utbetaling.utbetaltTil}</Table.DataCell>
-                                            <Table.DataCell>{utbetaling.status}</Table.DataCell>
-                                            <Table.DataCell>
-                                                {`${formatterDato(getGjeldendeDatoForUtbetaling(utbetaling))} ${utbetaling.forfallsdato && !utbetaling.utbetalingsdato ? '(forfall)' : utbetaling.forfallsdato && !utbetaling.utbetalingsdato ? '(postering)' : ''}`}
-                                            </Table.DataCell>
-                                        </Table.ExpandableRow>
-                                    );
-                                })}
-                            </Table>
+                            <VStack gap="4">
+                                <Table>
+                                    <Table.Header>
+                                        <Table.Row>
+                                            <Table.HeaderCell />
+                                            <Table.HeaderCell scope="col">Beløp</Table.HeaderCell>
+                                            <Table.HeaderCell scope="col">Tema</Table.HeaderCell>
+                                            <Table.HeaderCell scope="col">Mottaker</Table.HeaderCell>
+                                            <Table.HeaderCell scope="col">Status</Table.HeaderCell>
+                                            <Table.HeaderCell scope="col">Dato</Table.HeaderCell>
+                                        </Table.Row>
+                                    </Table.Header>
+                                    {periode.array.map((utbetaling) => {
+                                        return (
+                                            <Table.ExpandableRow
+                                                key={getUtbetalingId(utbetaling)}
+                                                contentGutter="none"
+                                                content={
+                                                    <ExpandedUtbetaling
+                                                        key={getUtbetalingId(utbetaling)}
+                                                        utbetaling={utbetaling}
+                                                    />
+                                                }
+                                            >
+                                                <Table.HeaderCell scope="row">
+                                                    {formaterNOK(utbetaling.nettobelop)}
+                                                </Table.HeaderCell>
+                                                <Table.DataCell>
+                                                    {utbetaling.ytelser.length === 1
+                                                        ? utbetaling.ytelser[0].type
+                                                        : 'Diverse ytelser'}
+                                                </Table.DataCell>
+                                                <Table.DataCell>{utbetaling.utbetaltTil}</Table.DataCell>
+                                                <Table.DataCell>{utbetaling.status}</Table.DataCell>
+                                                <Table.DataCell>
+                                                    {`${formatterDato(getGjeldendeDatoForUtbetaling(utbetaling))} ${utbetaling.forfallsdato && !utbetaling.utbetalingsdato ? '(forfall)' : utbetaling.forfallsdato && !utbetaling.utbetalingsdato ? '(postering)' : ''}`}
+                                                </Table.DataCell>
+                                            </Table.ExpandableRow>
+                                        );
+                                    })}
+                                </Table>
+                                <InlineMessage size="small" className="px-2" status="success">
+                                    Totalt for {periode.category}:{' '}
+                                    {formaterNOK(summertNettobelopFraUtbetalinger(periode.array))}
+                                </InlineMessage>
+                            </VStack>
                         </Accordion.Content>
                     </Accordion.Item>
                 ))}
@@ -261,5 +269,67 @@ export const Utbetalinger = () => {
         </VStack>
     ));
 
-    return <VStack gap="10">{perioder}</VStack>;
+    return (
+        <VStack gap="10">
+            <VStack>
+                <Heading size="xsmall" level="3" spacing>
+                    Totalt utbetalt for valgt periode
+                </Heading>
+                <Accordion>
+                    <Accordion.Item>
+                        <Accordion.Header>Totalt for perioden</Accordion.Header>
+                        <Accordion.Content>
+                            <Card
+                                className="bg-ax-bg-neutral-soft rounded-(--ax-radius-8) utbetalinger-tabell"
+                                padding="4"
+                            >
+                                <VStack gap="4">
+                                    <HStack justify="space-between">
+                                        <VStack gap="2">
+                                            <BodyShort weight="semibold">Totalt utbetalt</BodyShort>
+                                            <BodyShort
+                                                className={fargePaBelop(
+                                                    summertNettobelopFraUtbetalinger(data.utbetalinger)
+                                                )}
+                                            >
+                                                {formaterNOK(summertNettobelopFraUtbetalinger(data.utbetalinger))}
+                                            </BodyShort>
+                                        </VStack>
+                                        <VStack gap="2">
+                                            <BodyShort weight="semibold">Trekk og skatt</BodyShort>
+                                            <BodyShort
+                                                className={fargePaBelop(
+                                                    summertTrekkOgSkattBelopFraUtbetalinger(data.utbetalinger)
+                                                )}
+                                            >
+                                                {formaterNOK(
+                                                    summertTrekkOgSkattBelopFraUtbetalinger(data.utbetalinger)
+                                                )}
+                                            </BodyShort>
+                                        </VStack>
+                                        <VStack gap="2">
+                                            <BodyShort weight="semibold">Brutto</BodyShort>
+                                            <BodyShort
+                                                className={fargePaBelop(
+                                                    summertBruttobelopFraUtbetalinger(data.utbetalinger)
+                                                )}
+                                            >
+                                                {formaterNOK(summertBruttobelopFraUtbetalinger(data.utbetalinger))}
+                                            </BodyShort>
+                                        </VStack>
+                                        <VStack gap="2">
+                                            <BodyShort weight="semibold">Detaljer</BodyShort>
+                                            <BodyShort>test</BodyShort>
+                                        </VStack>
+                                    </HStack>
+                                </VStack>
+                            </Card>
+                        </Accordion.Content>
+                    </Accordion.Item>
+                </Accordion>
+            </VStack>
+
+            {perioder}
+        </VStack>
+    );
 };
