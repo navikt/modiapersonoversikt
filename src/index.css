@@ -47,3 +47,14 @@
 .aksel-copybutton .aksel-label{
     font-weight: var(--ax-font-weight-regular);
 }
+
+
+.utbetalinger-tabell{
+    .aksel-table__data-cell{
+        border-bottom: 0px;
+    }
+
+    .aksel-table__header-cell{
+        border-bottom: 0px;
+    }
+}
