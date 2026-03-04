@@ -109,9 +109,10 @@ export const VarslerListe = () => {
                     {paginatedData.map((varsel, index) => {
                         return (
                             <Table.ExpandableRow
+                                contentGutter="none"
                                 shadeOnHover={true}
                                 expandOnRowClick
-                                key={index}
+                                key={`${index}-${varsel.tittel}`}
                                 content={<VarselDetail valgtVarsel={varsel} />}
                             >
                                 <Table.DataCell>{varsel.tittel}</Table.DataCell>
