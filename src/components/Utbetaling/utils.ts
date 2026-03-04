@@ -3,7 +3,7 @@ import { useAtomValue } from 'jotai';
 import { type UtbetalingFilter, utbetalingFilterAtom } from 'src/components/Utbetaling/Filter';
 import { errorPlaceholder, type QueryResult, responseErrorMessage } from 'src/components/ytelser/utils';
 import { useUtbetalinger } from 'src/lib/clients/modiapersonoversikt-api';
-import type { Utbetaling, UtbetalingerResponseDto, Ytelse, YtelsePeriode } from 'src/lib/types/modiapersonoversikt-api';
+import type { Utbetaling, UtbetalingerResponseDto, Ytelse } from 'src/lib/types/modiapersonoversikt-api';
 import { datoSynkende, datoVerbose } from 'src/utils/date-utils';
 
 const filterUtbetalinger = (utbetalinger: Utbetaling[], filters: UtbetalingFilter): Utbetaling[] => {
@@ -80,29 +80,14 @@ export const summertBruttobelopFraUtbetalinger = (utbetalinger: Utbetaling[]): n
     return getBruttoSumYtelser(ytelser);
 };
 
+export const getAlleYtelseTyper = (utbetalinger: Utbetaling[]): string[] => {
+    const ytelser = reduceUtbetlingerTilYtelser(utbetalinger);
+    return ytelser.flatMap((ytelse) => ytelse.type?.trim() || []).unique();
+};
+
 export const summertTrekkOgSkattBelopFraUtbetalinger = (utbetalinger: Utbetaling[]): number => {
     const ytelser = reduceUtbetlingerTilYtelser(utbetalinger);
     return getTrekkOgSkattSumYtelser(ytelser);
-};
-
-export const getTypeFromYtelse = (ytelse: Ytelse) => ytelse.type || 'Mangler beskrivelse';
-
-export const getPeriodeFromYtelser = (ytelser: Ytelse[]): YtelsePeriode => {
-    return ytelser.reduce(
-        (acc: YtelsePeriode, ytelse: Ytelse) => {
-            if (!ytelse.periode) {
-                return acc;
-            }
-            return {
-                start: dayjs(ytelse.periode.start).isBefore(dayjs(acc.start)) ? ytelse.periode.start : acc.start,
-                slutt: dayjs(ytelse.periode.slutt).isAfter(dayjs(acc.slutt)) ? ytelse.periode.slutt : acc.slutt
-            };
-        },
-        {
-            start: dayjs().format(),
-            slutt: dayjs(0).format()
-        }
-    );
 };
 
 export const getUtbetalingId = (utbetaling: Utbetaling) =>

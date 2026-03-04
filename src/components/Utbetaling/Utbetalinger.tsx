@@ -3,6 +3,7 @@ import Card from 'src/components/Card';
 import {
     fargePaBelop,
     formaterNOK,
+    getAlleYtelseTyper,
     getBruttoSumYtelser,
     getGjeldendeDatoForUtbetaling,
     getTrekkOgSkattSumYtelser,
@@ -319,7 +320,17 @@ export const Utbetalinger = () => {
                                         </VStack>
                                         <VStack gap="2">
                                             <BodyShort weight="semibold">Detaljer</BodyShort>
-                                            <BodyShort>test</BodyShort>
+                                            <BodyShort>
+                                                <VStack>
+                                                    {getAlleYtelseTyper(data.utbetalinger).map((type, i) => (
+                                                        <BodyShort key={type}>
+                                                            {i === getAlleYtelseTyper(data.utbetalinger).length - 1
+                                                                ? type
+                                                                : `${type},`}
+                                                        </BodyShort>
+                                                    ))}
+                                                </VStack>
+                                            </BodyShort>
                                         </VStack>
                                     </HStack>
                                 </VStack>
