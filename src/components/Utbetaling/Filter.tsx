@@ -1,12 +1,13 @@
-import { ArrowCirclepathIcon, ArrowCirclepathReverseIcon } from '@navikt/aksel-icons';
+import { ArrowCirclepathReverseIcon } from '@navikt/aksel-icons';
 import { Box, Button, HStack, UNSAFE_Combobox } from '@navikt/ds-react';
 import { atom, useAtom, useSetAtom } from 'jotai';
 import { atomWithReset, RESET } from 'jotai/utils';
 import { xor } from 'lodash';
 import { useCallback, useEffect } from 'react';
-import DateRangeSelector, { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
+import { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
+import { DateRangePickerWithDebounce } from 'src/components/DateFilters/DateRangePickerWithDebounce';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
-import { reduceUtbetlingerTilYtelser, useFilterUtbetalinger } from 'src/components/Utbetaling/List/utils';
+import { reduceUtbetlingerTilYtelser, useFilterUtbetalinger } from 'src/components/Utbetaling/utils';
 import type { Utbetaling, Ytelse } from 'src/generated/modiapersonoversikt-api';
 import { usePersonAtomValue } from 'src/lib/state/context';
 import { filterType, trackFilterEndret } from 'src/utils/analytics';
@@ -47,7 +48,7 @@ export const utbetalingFilterDateRangeAtom = atom(
 
 const DateFilter = () => {
     const [value, setValue] = useAtom(utbetalingFilterDateRangeAtom);
-    return <DateRangeSelector range={value} onChange={setValue} defaultPeriodType={PeriodType.CUSTOM} />;
+    return <DateRangePickerWithDebounce dateRange={value} onRangeChange={(range) => setValue(range ?? null)} />;
 };
 
 const UtbetalingYtelserFilter = () => {
@@ -93,8 +94,9 @@ const ResetFilter = () => {
         <Button
             icon={<ArrowCirclepathReverseIcon />}
             disabled={!isDirty}
-            onChange={() => setFilter(RESET)}
+            onClick={() => setFilter(RESET)}
             variant="tertiary"
+            size="small"
         >
             Tilbakestill
         </Button>
@@ -117,7 +119,7 @@ export const UtbetalingListFilter = () => {
             <Box.New flexGrow="1">
                 <UtbetalingYtelserFilter />
             </Box.New>
-            <HStack align="start">
+            <HStack align="end">
                 <ResetFilter />
             </HStack>
         </HStack>
