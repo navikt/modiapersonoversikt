@@ -1,6 +1,4 @@
-import { ExternalLinkIcon } from '@navikt/aksel-icons';
-import { Box, HStack, ReadMore, Table } from '@navikt/ds-react';
-import { Link } from '@tanstack/react-router';
+import { Box, ReadMore, Table } from '@navikt/ds-react';
 import type { Journalpost } from 'src/generated/modiapersonoversikt-api';
 import { formaterDato } from 'src/utils/string-utils';
 
