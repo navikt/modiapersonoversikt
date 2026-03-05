@@ -1,27 +1,16 @@
 import { XMarkIcon } from '@navikt/aksel-icons';
-import {
-    BodyShort,
-    Box,
-    Button,
-    ExpansionCard,
-    Fieldset,
-    HStack,
-    Search,
-    Switch,
-    UNSAFE_Combobox,
-    VStack
-} from '@navikt/ds-react';
+import { BodyShort, Box, Button, Fieldset, HStack, Search, Switch, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
 import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { atomWithReset, RESET, useResetAtom } from 'jotai/utils';
 import { debounce, isEqual, xor } from 'lodash';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import DateRangeSelector from 'src/components/DateFilters/DatePeriodSelector';
 import type { DateRange } from 'src/components/DateFilters/types';
+import { FilterExpansionCard } from 'src/components/FilterExpansionCard';
 import { useFilterMeldinger, useTraader } from 'src/components/Meldinger/List/utils';
 import { usePersonAtomValue } from 'src/lib/state/context';
 import { Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
-import { filterType, trackExpansionCardApnet, trackExpansionCardLukket, trackFilterEndret } from 'src/utils/analytics';
-import { twMerge } from 'tailwind-merge';
+import { filterType, trackFilterEndret } from 'src/utils/analytics';
 
 const traadTyperFilter = ['Referat', 'Samtale', 'Infomelding', 'Chat'];
 
@@ -197,57 +186,29 @@ const ResetFilters = () => {
 
 export const TraadListFilterCard = () => {
     const setFilter = useSetAtom(meldingerFilterAtom);
-    const [open, setOpen] = useState(false);
     const fnr = usePersonAtomValue();
-    const expansionFilterRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         setFilter(RESET);
     }, [fnr]);
 
-    const handleExpansionChange = () => {
-        setTimeout(() => {
-            if (!expansionFilterRef.current) return;
-            const isOpen = expansionFilterRef.current.classList.contains('aksel-expansioncard--open');
-            setOpen(isOpen);
-            if (isOpen !== open) {
-                isOpen ? trackExpansionCardApnet('meldingerfilter') : trackExpansionCardLukket('meldingerfilter');
-            }
-        }, 0);
-    };
-
     return (
-        <Box.New className={twMerge(open && 'max-h-full')}>
-            <ExpansionCard
-                onClick={handleExpansionChange}
-                ref={expansionFilterRef}
-                size="small"
-                aria-label="Filtrer meldinger"
-                className={twMerge('rounded-sm', open && 'max-h-full overflow-auto')}
-            >
-                <ExpansionCard.Header className="py-0 pr-0 hover:rounded-sm">
-                    <ExpansionCard.Title size="small" as="h3" className="text-ax-medium" role="alert">
-                        <FilterTitle />
-                    </ExpansionCard.Title>
-                </ExpansionCard.Header>
-                <ExpansionCard.Content className="overflow-visible">
-                    <VStack gap="2">
-                        <SearchField />
-                        <Box.New maxWidth="17rem">
-                            <TemaFilter />
-                        </Box.New>
-                        <Box.New maxWidth="17rem">
-                            <TraadTypeFilter />
-                        </Box.New>
-                        <Box.New>
-                            <DateFilter />
-                        </Box.New>
-                        <Box.New>
-                            <ResetFilters />
-                        </Box.New>
-                    </VStack>
-                </ExpansionCard.Content>
-            </ExpansionCard>
-        </Box.New>
+        <FilterExpansionCard fane="meldinger" title={<FilterTitle />}>
+            <VStack gap="2">
+                <SearchField />
+                <Box.New maxWidth="17rem">
+                    <TemaFilter />
+                </Box.New>
+                <Box.New maxWidth="17rem">
+                    <TraadTypeFilter />
+                </Box.New>
+                <Box.New>
+                    <DateFilter />
+                </Box.New>
+                <Box.New>
+                    <ResetFilters />
+                </Box.New>
+            </VStack>
+        </FilterExpansionCard>
     );
 };

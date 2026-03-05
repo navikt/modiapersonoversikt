@@ -1,4 +1,4 @@
-import { Alert, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, Box, Skeleton, VStack } from '@navikt/ds-react';
 import { useSearch } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import ErrorBoundary from 'src/components/ErrorBoundary';
@@ -10,7 +10,7 @@ import { useFilterMeldinger, useTraader } from './utils';
 
 export const TraadList = () => (
     <ErrorBoundary boundaryName="MeldingerList" errorText="Det oppstod en feil under visning av melding liste">
-        <VStack height="100%" gap="1">
+        <VStack height="100%" gap="1" overflow="auto">
             <TraadListFilterCard />
             <Traader />
         </VStack>
@@ -39,7 +39,7 @@ const Traader = () => {
     }
 
     return (
-        <>
+        <Box.New>
             {isLoading ? (
                 <VStack gap="2">
                     {Array(8)
@@ -63,6 +63,6 @@ const Traader = () => {
                     renderItem={({ item }) => <TraadItem traad={item} />}
                 />
             )}
-        </>
+        </Box.New>
     );
 };
