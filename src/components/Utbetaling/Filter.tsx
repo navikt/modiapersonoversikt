@@ -16,14 +16,26 @@ import { sorterAlfabetisk } from 'src/utils/string-utils';
 export type UtbetalingFilter = {
     dateRange: DateRange;
     ytelseTyper: string[];
+    periodeType: PeriodType;
 };
 
 const defaultDate = getPeriodFromOption(PeriodType.CUSTOM);
 
 export const utbetalingFilterAtom = atomWithReset<UtbetalingFilter>({
     dateRange: defaultDate,
+    periodeType: PeriodType.CUSTOM,
     ytelseTyper: []
 });
+
+const utbetalingFilterPeriodTypeAtom = atom(
+    (get) => get(utbetalingFilterAtom).periodeType,
+    (_get, set, newVal: PeriodType) => {
+        set(utbetalingFilterAtom, (filters) => ({
+            ...filters,
+            periodeType: newVal
+        }));
+    }
+);
 
 const utbetalingFilterYtelseTypeAtom = atom(
     (get) => get(utbetalingFilterAtom).ytelseTyper,
@@ -48,7 +60,15 @@ export const utbetalingFilterDateRangeAtom = atom(
 
 const DateFilter = () => {
     const [value, setValue] = useAtom(utbetalingFilterDateRangeAtom);
-    return <DateRangePickerWithDebounce dateRange={value} onRangeChange={(range) => setValue(range ?? null)} />;
+    const [periodType, setPeriodType] = useAtom(utbetalingFilterPeriodTypeAtom);
+    return (
+        <DateRangePickerWithDebounce
+            dateRange={value}
+            onPeriodChange={setPeriodType}
+            period={periodType}
+            onRangeChange={(range) => setValue(range ?? null)}
+        />
+    );
 };
 
 const UtbetalingYtelserFilter = () => {
