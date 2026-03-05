@@ -1,5 +1,5 @@
 import { CheckmarkCircleIcon, ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
-import { Alert, BodyLong, Heading, Pagination, Skeleton, type SortState, Table, Tag, VStack } from '@navikt/ds-react';
+import { Alert, Detail, Heading, Pagination, Skeleton, type SortState, Table, Tag, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { VarselDetail } from 'src/components/varsler/Details';
 import { ENDASH, emptyReplacement, formaterDato } from 'src/utils/string-utils';
@@ -79,12 +79,15 @@ export const VarslerListe = () => {
 
     return (
         <VStack gap="space-16">
-            <Heading level="2" size="medium">
-                Varsler
-            </Heading>
-            <BodyLong className="text-ax-text-neutral-subtle">
-                Varsler vises kun ett år tilbake i tid. For eldre varsler, opprett sak i porten for manuell uthenting.
-            </BodyLong>
+            <VStack gap="2">
+                <Heading level="2" size="medium">
+                    Varsler
+                </Heading>
+                <Detail className="text-ax-text-neutral-subtle" spacing={false}>
+                    Varsler vises kun ett år tilbake i tid. For eldre varsler, opprett sak i porten for manuell
+                    uthenting.
+                </Detail>
+            </VStack>
             <Table sort={sort} onSortChange={handleSort} size="medium">
                 <Table.Header>
                     <Table.Row>
