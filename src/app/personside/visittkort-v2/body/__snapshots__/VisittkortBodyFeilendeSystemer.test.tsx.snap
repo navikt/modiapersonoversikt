@@ -1229,6 +1229,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             <div
               class="navds-read-more__content navds-read-more__content--closed navds-body-long navds-body-long--medium"
               data-state="closed"
+              tabindex="0"
             >
               Gjelder alle statlige ytelser
             </div>
