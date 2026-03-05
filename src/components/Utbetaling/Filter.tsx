@@ -47,7 +47,7 @@ const utbetalingFilterYtelseTypeAtom = atom(
     }
 );
 
-export const utbetalingFilterDateRangeAtom = atom(
+const utbetalingFilterDateRangeAtom = atom(
     (get) => get(utbetalingFilterAtom).dateRange,
     (_get, set, dateRange: DateRange | null) => {
         const range = dateRange ?? defaultDate;

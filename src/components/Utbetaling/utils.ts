@@ -50,7 +50,7 @@ export const useFilterUtbetalinger = (): QueryResult<UtbetalingerResponseDto> =>
     } as QueryResult<UtbetalingerResponseDto>;
 };
 
-export const getNettoSumYtelser = (ytelser: Ytelse[]): number => {
+const getNettoSumYtelser = (ytelser: Ytelse[]): number => {
     return ytelser.reduce((acc: number, ytelse: Ytelse) => acc + ytelse.nettobelop, 0);
 };
 
