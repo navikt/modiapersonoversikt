@@ -104,7 +104,7 @@ export function DittNavEventVarsel({ varsel }: { varsel: Varsel }) {
                             )} - ${varsel.eksternVarsling.sendteKanaler.join(', ')}`}
                         />
                     )}
-                    {varsel.eksternVarsling.feilhistorikk.length >= 1 && (
+                    {varsel.eksternVarsling.feilhistorikk && varsel.eksternVarsling.feilhistorikk.length >= 1 && (
                         <>
                             <hr />
                             <FeilteVarslingerListe
