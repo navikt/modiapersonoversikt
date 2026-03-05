@@ -6,15 +6,10 @@ export const SelectPeriod = ({
     selectedPeriod
 }: {
     onPeriodChange: (period: string) => void;
-    selectedPeriod: PeriodType | '';
+    selectedPeriod: PeriodType;
 }) => {
     return (
-        <Select
-            label="Periode"
-            size="small"
-            value={selectedPeriod ?? ''}
-            onChange={(e) => onPeriodChange(e.target.value)}
-        >
+        <Select label="Periode" size="small" value={selectedPeriod} onChange={(e) => onPeriodChange(e.target.value)}>
             <option value="">- Velg periode -</option>
             <option key={PeriodType.LAST_30_DAYS} value={PeriodType.LAST_30_DAYS}>
                 Siste 30 dager
