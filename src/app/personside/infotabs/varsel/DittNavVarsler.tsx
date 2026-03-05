@@ -1,8 +1,7 @@
 import type { Feilhistorikk, Varsel } from 'src/lib/types/modiapersonoversikt-api';
-import { emptyReplacement } from 'src/utils/string-utils';
+import { ENDASH, emptyReplacement, formaterDato } from 'src/utils/string-utils';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { ENDASH, formaterDato } from '../../../../utils/string-utils';
 import { VarselRow } from './VarselRow';
 
 const GraattDefinisjonsListe = styled.dl`
@@ -105,7 +104,7 @@ export function DittNavEventVarsel({ varsel }: { varsel: Varsel }) {
                             )} - ${varsel.eksternVarsling.sendteKanaler.join(', ')}`}
                         />
                     )}
-                    {varsel.eksternVarsling.feilhistorikk && (
+                    {varsel.eksternVarsling.feilhistorikk && varsel.eksternVarsling.feilhistorikk.length >= 1 && (
                         <>
                             <hr />
                             <FeilteVarslingerListe
