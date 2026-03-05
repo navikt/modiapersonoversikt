@@ -1,12 +1,11 @@
 import { Box, ReadMore, Table } from '@navikt/ds-react';
-import { useFilterOppgave } from 'src/components/Oppgave/List/utils';
-import { AvsluttOppgave } from 'src/components/Oppgave/OppgaveContent';
+import { AvsluttOppgave } from 'src/components/Meldinger/Detail/AvsluttOppgave';
 import type { OppgaveDto } from 'src/generated/modiapersonoversikt-api';
-import { useGsakTema } from 'src/lib/clients/modiapersonoversikt-api';
+import { useGsakTema, usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
 import { datoEllerNull } from 'src/utils/string-utils';
 
 export const TraadOppgaver = ({ traadId }: { traadId: string }) => {
-    const { data: oppgaver } = useFilterOppgave();
+    const { data: oppgaver = [] } = usePersonOppgaver();
     const { data: gsakTema } = useGsakTema();
 
     const traadOppgaver = oppgaver?.filter((oppagve: OppgaveDto) => oppagve.traadId === traadId);
