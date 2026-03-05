@@ -32,7 +32,7 @@ export const PeriodeAccordions = () => {
                 {aar.array.map((periode) => (
                     <Accordion.Item key={periode.category}>
                         <Accordion.Header>{periode.category}</Accordion.Header>
-                        <Accordion.Content>
+                        <Accordion.Content className="overflow-x-auto">
                             <VStack gap="4">
                                 <UtbetalingerTabell utbetalinger={periode.array} />
                                 <InlineMessage size="small" className="px-2" status="success">

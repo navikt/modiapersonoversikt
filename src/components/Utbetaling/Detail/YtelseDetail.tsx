@@ -31,7 +31,7 @@ export const YtelseDetail = ({ ytelse }: { ytelse: Ytelse }) => (
             padding="2"
         >
             <HStack align="stretch" justify="space-between" paddingInline="2">
-                <Heading size="xsmall">Total</Heading>
+                <Heading size="xsmall">Totalt</Heading>
                 <BodyShort className={fargePaBelop(ytelse.nettobelop)}>{formaterNOK(ytelse.nettobelop)}</BodyShort>
             </HStack>
         </Card>

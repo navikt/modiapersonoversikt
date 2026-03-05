@@ -23,45 +23,41 @@ export const TotaltForPeriode = () => {
                     <Accordion.Content>
                         <Card className="bg-ax-bg-neutral-soft rounded-(--ax-radius-8) utbetalinger-tabell" padding="4">
                             <VStack gap="4">
-                                <HStack justify="space-between">
-                                    <VStack gap="2">
+                                <HStack gap="2" justify="space-between">
+                                    <VStack gap="2" flexGrow="1">
                                         <BodyShort weight="semibold">Detaljer</BodyShort>
-                                        <BodyShort>
-                                            {getAlleYtelseTyper(data.utbetalinger).map((type, i) => (
-                                                <>
-                                                    {i === getAlleYtelseTyper(data.utbetalinger).length - 1
-                                                        ? type
-                                                        : `${type}, `}
-                                                </>
-                                            ))}
-                                        </BodyShort>
+                                        <BodyShort>{getAlleYtelseTyper(data.utbetalinger)[0]}</BodyShort>
                                     </VStack>
-                                    <VStack gap="2">
-                                        <BodyShort weight="semibold">Brutto</BodyShort>
-                                        <BodyShort>
-                                            {formaterNOK(summertBruttobelopFraUtbetalinger(data.utbetalinger))}
-                                        </BodyShort>
-                                    </VStack>
-                                    <VStack gap="2">
-                                        <BodyShort weight="semibold">Trekk og skatt</BodyShort>
-                                        <BodyShort
-                                            className={fargePaBelop(
-                                                summertTrekkOgSkattBelopFraUtbetalinger(data.utbetalinger)
-                                            )}
-                                        >
-                                            {formaterNOK(summertTrekkOgSkattBelopFraUtbetalinger(data.utbetalinger))}
-                                        </BodyShort>
-                                    </VStack>
-                                    <VStack gap="2">
-                                        <BodyShort weight="semibold">Totalt</BodyShort>
-                                        <BodyShort
-                                            className={fargePaBelop(
-                                                summertNettobelopFraUtbetalinger(data.utbetalinger)
-                                            )}
-                                        >
-                                            {formaterNOK(summertNettobelopFraUtbetalinger(data.utbetalinger))}
-                                        </BodyShort>
-                                    </VStack>
+                                    <HStack justify="space-between" flexGrow="1">
+                                        <VStack gap="2">
+                                            <BodyShort weight="semibold">Brutto</BodyShort>
+                                            <BodyShort>
+                                                {formaterNOK(summertBruttobelopFraUtbetalinger(data.utbetalinger))}
+                                            </BodyShort>
+                                        </VStack>
+                                        <VStack gap="2">
+                                            <BodyShort weight="semibold">Trekk og skatt</BodyShort>
+                                            <BodyShort
+                                                className={fargePaBelop(
+                                                    summertTrekkOgSkattBelopFraUtbetalinger(data.utbetalinger)
+                                                )}
+                                            >
+                                                {formaterNOK(
+                                                    summertTrekkOgSkattBelopFraUtbetalinger(data.utbetalinger)
+                                                )}
+                                            </BodyShort>
+                                        </VStack>
+                                        <VStack gap="2">
+                                            <BodyShort weight="semibold">Totalt</BodyShort>
+                                            <BodyShort
+                                                className={fargePaBelop(
+                                                    summertNettobelopFraUtbetalinger(data.utbetalinger)
+                                                )}
+                                            >
+                                                {formaterNOK(summertNettobelopFraUtbetalinger(data.utbetalinger))}
+                                            </BodyShort>
+                                        </VStack>
+                                    </HStack>
                                 </HStack>
                             </VStack>
                         </Card>
