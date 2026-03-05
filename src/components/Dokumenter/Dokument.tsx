@@ -1,6 +1,6 @@
 import { Alert } from '@navikt/ds-react';
-import DokumentVisning from 'src/components/saker/Detail/DokumentVisning';
-import { getSaksdokumentUrl } from 'src/components/saker/utils';
+import DokumentVisning from 'src/components/Dokumenter/DokumentVisning';
+import { getSaksdokumentUrl } from 'src/components/Dokumenter/utils';
 import type { Dokument, Dokumentmetadata } from 'src/generated/modiapersonoversikt-api';
 import { DokumentDokumentStatus } from 'src/generated/modiapersonoversikt-api';
 import { usePersonAtomValue } from 'src/lib/state/context';

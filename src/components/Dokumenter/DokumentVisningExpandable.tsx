@@ -2,9 +2,9 @@ import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { BodyShort, Box, Heading, HStack, Tabs } from '@navikt/ds-react';
 import { Link } from '@tanstack/react-router';
 import { capitalize } from 'lodash';
+import Dokument from 'src/components/Dokumenter/Dokument';
 import { dokumentTekst } from 'src/components/Dokumenter/useSortedAndPaginatedDokumenter';
-import Dokument from 'src/components/saker/Detail/Dokument';
-import { dokumentKanVises } from 'src/components/saker/utils';
+import { dokumentKanVises } from 'src/components/Dokumenter/utils';
 import type { Dokumentmetadata } from 'src/generated/modiapersonoversikt-api';
 import { trackingEvents } from 'src/utils/analytics';
 
