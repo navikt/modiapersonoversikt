@@ -1,4 +1,3 @@
-import { Alert } from '@navikt/ds-react';
 import { useSearch } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import ErrorBoundary from 'src/components/ErrorBoundary';
@@ -26,14 +25,6 @@ const Traader = () => {
     });
 
     if (isError) return;
-
-    if (!isLoading && filteredMeldinger.length === 0) {
-        return (
-            <Alert variant="info" role="alert">
-                ingen dialoger funnet
-            </Alert>
-        );
-    }
 
     return (
         <PaginatedList
