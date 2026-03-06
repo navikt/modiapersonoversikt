@@ -1,0 +1,2 @@
+import{dW as n,b_ as c,a2 as u,c3 as m}from"./main-CQ4f1E-n.js";function y(e,t){const a=c(e,t);return u.useCallback(()=>a(m),[a])}const r=new WeakMap;function S(e,t){const a=n(t),s=f(a);for(const[o,d]of e)(!s.has(o)||t?.dangerouslyForceHydrate)&&(s.add(o),a.set(o,d))}const f=e=>{let t=r.get(e);return t||(t=new WeakSet,r.set(e,t)),t};export{S as a,y as u};
+//# sourceMappingURL=utils-CwXbw3KS.js.map
