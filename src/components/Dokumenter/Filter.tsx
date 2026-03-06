@@ -161,7 +161,7 @@ const ResetFilter = () => {
     const datoErlik = filter.dateRange.from.isSame(defaultDate.from) && filter.dateRange.to.isSame(defaultDate.to);
     const isDirty = !filter.temaer.isEmpty() || filter.saksId !== '' || !datoErlik;
 
-    const setCheckedOgResetFilter = () => {
+    const resetFilter = () => {
         setFilter(RESET);
         navigate({ search: { tema: [], saksid: '', fra: '', til: '' }, replace: true });
     };
@@ -170,7 +170,7 @@ const ResetFilter = () => {
         <Button
             icon={<ArrowCirclepathReverseIcon />}
             disabled={!isDirty}
-            onClick={() => setCheckedOgResetFilter()}
+            onClick={() => resetFilter()}
             variant="tertiary"
             size="small"
         >

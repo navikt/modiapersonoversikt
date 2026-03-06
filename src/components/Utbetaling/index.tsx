@@ -1,4 +1,4 @@
-import { Heading, HStack, Skeleton, VStack } from '@navikt/ds-react';
+import { Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { AlertBanner } from 'src/components/AlertBanner';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
@@ -26,25 +26,21 @@ const UtbetalingPageContent = () => {
             <Card padding="4" className="h-full overflow-auto">
                 <AlertBanner alerts={errorMessages} />
                 <VStack gap="8">
-                    <HStack align="center" gap="2">
-                        <Heading level="2" size="medium">
-                            Utbetalinger
-                        </Heading>
-                    </HStack>
-                    <VStack gap="4">
-                        <UtbetalingListFilter />
-                        {isLoading ? (
-                            <VStack gap="2" marginInline="0 2">
-                                {Array(12)
-                                    .keys()
-                                    .map((i) => (
-                                        <Skeleton key={i} variant="rectangle" height={68} />
-                                    ))}
-                            </VStack>
-                        ) : (
-                            <Utbetalinger />
-                        )}
-                    </VStack>
+                    <Heading level="2" size="medium">
+                        Utbetalinger
+                    </Heading>
+                    <UtbetalingListFilter />
+                    {isLoading ? (
+                        <VStack gap="2" marginInline="0 2">
+                            {Array(12)
+                                .keys()
+                                .map((i) => (
+                                    <Skeleton key={i} variant="rectangle" height={68} />
+                                ))}
+                        </VStack>
+                    ) : (
+                        <Utbetalinger />
+                    )}
                 </VStack>
             </Card>
         </ErrorBoundary>

@@ -16,7 +16,7 @@ export const Utbetalinger = () => {
         );
     }
     return (
-        <VStack gap="10">
+        <VStack gap="8">
             <TotaltForPeriode />
             <PeriodeAccordions />
         </VStack>

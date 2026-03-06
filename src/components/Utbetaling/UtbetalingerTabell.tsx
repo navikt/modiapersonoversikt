@@ -22,6 +22,7 @@ export const UtbetalingerTabell = ({ utbetalinger }: { utbetalinger: Utbetaling[
                     <Table.ExpandableRow
                         key={getUtbetalingId(utbetaling)}
                         contentGutter="none"
+                        expandOnRowClick
                         content={<UtbetalingDetail utbetaling={utbetaling} />}
                     >
                         <Table.HeaderCell scope="row">{formaterNOK(utbetaling.nettobelop)}</Table.HeaderCell>

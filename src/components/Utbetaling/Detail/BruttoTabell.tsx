@@ -1,6 +1,7 @@
 import { BodyShort, Heading, HStack, Table } from '@navikt/ds-react';
 import { formaterNOK } from 'src/components/Utbetaling/utils';
 import type { Ytelse } from 'src/generated/modiapersonoversikt-api';
+import { ENDASH } from 'src/utils/string-utils';
 
 export const BruttoTabell = ({ ytelse }: { ytelse: Ytelse }) => (
     <>
@@ -20,7 +21,7 @@ export const BruttoTabell = ({ ytelse }: { ytelse: Ytelse }) => (
                             <Table.DataCell scope="row">{komp.ytelseskomponenttype}</Table.DataCell>
                             <Table.DataCell scope="row">{komp.satsantall}</Table.DataCell>
                             <Table.DataCell align="right">
-                                {komp.satsbelop ? formaterNOK(komp.satsbelop) : '-'}
+                                {komp.satsbelop ? formaterNOK(komp.satsbelop) : ENDASH}
                             </Table.DataCell>
                             <Table.DataCell align="right">{formaterNOK(komp.ytelseskomponentbelop)}</Table.DataCell>
                         </Table.Row>
