@@ -77,7 +77,11 @@ const YtelserTypeFilter = () => {
 };
 
 const FilterTitle = () => {
-    const { data: ytelser } = useFilterYtelser();
+    const { data: ytelser, isLoading } = useFilterYtelser();
+
+    if (isLoading) {
+        return <>Filter</>;
+    }
 
     return (
         <>
