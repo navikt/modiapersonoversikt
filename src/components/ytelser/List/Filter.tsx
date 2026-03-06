@@ -1,15 +1,15 @@
-import { BodyShort, Box, ExpansionCard, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
+import { BodyShort, Box, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
 import { atom, useAtom, useSetAtom } from 'jotai';
 import { atomWithReset, RESET } from 'jotai/utils';
 import { xor } from 'lodash';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import DateRangeSelector, { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
+import { FilterExpansionCard } from 'src/components/FilterExpansionCard';
 import { useFilterYtelser } from 'src/components/ytelser/utils';
 import { usePersonAtomValue } from 'src/lib/state/context';
 import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
-import { filterType, trackExpansionCardApnet, trackExpansionCardLukket, trackFilterEndret } from 'src/utils/analytics';
-import { twMerge } from 'tailwind-merge';
+import { filterType, trackFilterEndret } from 'src/utils/analytics';
 
 export type YtelseFilter = {
     dateRange: DateRange;
@@ -89,49 +89,22 @@ const FilterTitle = () => {
 
 export const YtelserListFilter = () => {
     const setFilter = useSetAtom(ytelseFilterAtom);
-    const [open, setOpen] = useState(false);
     const fnr = usePersonAtomValue();
-    const expansionFilterRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         setFilter(RESET);
     }, [fnr]);
 
-    const handleExpansionChange = () => {
-        setTimeout(() => {
-            if (!expansionFilterRef.current) return;
-            const isOpen = expansionFilterRef.current.classList.contains('aksel-expansioncard--open');
-            setOpen(isOpen);
-            if (isOpen !== open) {
-                isOpen ? trackExpansionCardApnet('ytelsefilter') : trackExpansionCardLukket('ytelsefilter');
-            }
-        }, 0);
-    };
     return (
-        <Box.New className={twMerge(open && 'max-h-full')}>
-            <ExpansionCard
-                onClick={handleExpansionChange}
-                ref={expansionFilterRef}
-                size="small"
-                aria-label="Filtrer ytelser"
-                className={twMerge('rounded-sm', open && 'max-h-full overflow-auto')}
-            >
-                <ExpansionCard.Header className="py-0 pr-0 hover:rounded-sm">
-                    <ExpansionCard.Title size="small" as="h3" className="text-ax-medium" role="alert">
-                        <FilterTitle />
-                    </ExpansionCard.Title>
-                </ExpansionCard.Header>
-                <ExpansionCard.Content className="overflow-visible">
-                    <VStack gap="2">
-                        <Box.New maxWidth="17rem">
-                            <YtelserTypeFilter />
-                        </Box.New>
-                        <Box.New>
-                            <DateFilter />
-                        </Box.New>
-                    </VStack>
-                </ExpansionCard.Content>
-            </ExpansionCard>
-        </Box.New>
+        <FilterExpansionCard fane="ytelser" title={<FilterTitle />}>
+            <VStack gap="2">
+                <Box.New maxWidth="17rem">
+                    <YtelserTypeFilter />
+                </Box.New>
+                <Box.New>
+                    <DateFilter />
+                </Box.New>
+            </VStack>
+        </FilterExpansionCard>
     );
 };
