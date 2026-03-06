@@ -1,4 +1,4 @@
-import { Alert, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert } from '@navikt/ds-react';
 import { useSearch } from '@tanstack/react-router';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { PaginatedList } from 'src/components/PaginatedList';
@@ -9,10 +9,7 @@ import { YtelserListFilter } from './Filter';
 
 export const YtelserList = () => (
     <ErrorBoundary boundaryName="YtelserList" errorText="Det oppstod en feil under visning av ytelser liste">
-        <VStack height="100%" gap="1">
-            <YtelserListFilter />
-            <YtelseList />
-        </VStack>
+        <YtelseList />
     </ErrorBoundary>
 );
 
@@ -36,30 +33,20 @@ const YtelseList = () => {
     }
 
     return (
-        <>
-            {isLoading ? (
-                <VStack gap="2" marginInline="0 2">
-                    {Array(8)
-                        .keys()
-                        .map((i) => (
-                            <Skeleton key={i} variant="rectangle" height={68} />
-                        ))}
-                </VStack>
-            ) : (
-                <PaginatedList
-                    paginationSrHeading={{
-                        tag: 'h3',
-                        text: 'Ytelsepaginering'
-                    }}
-                    as="section"
-                    aria-label="ytelser"
-                    pageSize={antallListeElementer}
-                    selectedKey={selectedKey}
-                    items={ytelser}
-                    keyExtractor={getUnikYtelseKey}
-                    renderItem={({ item }) => <YtelseItem ytelse={item} />}
-                />
-            )}
-        </>
+        <PaginatedList
+            paginationSrHeading={{
+                tag: 'h3',
+                text: 'Ytelsepaginering'
+            }}
+            filterCard={<YtelserListFilter />}
+            as="section"
+            aria-label="ytelser"
+            pageSize={antallListeElementer}
+            selectedKey={selectedKey}
+            items={ytelser}
+            isLoading={isLoading}
+            keyExtractor={getUnikYtelseKey}
+            renderItem={({ item }) => <YtelseItem ytelse={item} />}
+        />
     );
 };

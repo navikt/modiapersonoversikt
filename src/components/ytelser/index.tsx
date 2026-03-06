@@ -7,7 +7,7 @@ import { useFilterYtelser } from 'src/components/ytelser/utils';
 
 export const YtelserPage = () => {
     return (
-        <ErrorBoundary boundaryName="YtelserList" errorText="Det oppstod en feil under lasting av ytelser">
+        <ErrorBoundary boundaryName="YtelserList" errorText="Det oppstod en feil under visning av ytelser">
             <YtelserPageContent />
         </ErrorBoundary>
     );

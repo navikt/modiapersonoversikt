@@ -1,6 +1,14 @@
-import { Pagination, VStack } from '@navikt/ds-react';
+import { Pagination, Skeleton, VStack } from '@navikt/ds-react';
 import { chunk } from 'lodash';
-import { type ComponentProps, type ComponentPropsWithRef, type JSX, useEffect, useMemo, useState } from 'react';
+import {
+    type ComponentProps,
+    type ComponentPropsWithRef,
+    type JSX,
+    type ReactNode,
+    useEffect,
+    useMemo,
+    useState
+} from 'react';
 
 type Props<T, KeyType> = Omit<ComponentPropsWithRef<typeof VStack>, 'as'> & {
     items: T[];
@@ -10,6 +18,8 @@ type Props<T, KeyType> = Omit<ComponentPropsWithRef<typeof VStack>, 'as'> & {
     selectedKey?: KeyType;
     as?: ComponentPropsWithRef<typeof VStack>['as'];
     paginationSrHeading?: ComponentProps<typeof Pagination>['srHeading'];
+    filterCard?: ReactNode;
+    isLoading?: boolean;
 };
 
 export const PaginatedList = <T, KeyType extends string | number>({
@@ -20,6 +30,8 @@ export const PaginatedList = <T, KeyType extends string | number>({
     selectedKey,
     as,
     paginationSrHeading,
+    filterCard,
+    isLoading,
     ...rest
 }: Props<T, KeyType>) => {
     const [page, setPage] = useState(0);
@@ -39,14 +51,28 @@ export const PaginatedList = <T, KeyType extends string | number>({
     }, [selectedKey, pages, keyExtractor]);
 
     return (
-        <VStack as={as ?? 'div'} gap="1" justify="space-between" className="mb-1" flexGrow="1" minHeight="0" {...rest}>
-            <VStack as="ul" gap="1" overflowY="auto">
-                {renderItems?.map((item) => (
-                    <RenderComp item={item} key={keyExtractor(item)} />
-                ))}
+        <VStack as={as ?? 'div'} gap="1" justify="space-between" height="100%" overflow="auto" {...rest}>
+            <VStack gap="1">
+                {filterCard}
+                {isLoading ? (
+                    <VStack gap="2" marginInline="0 2">
+                        {Array(8)
+                            .keys()
+                            .map((i) => (
+                                <Skeleton key={i} variant="rectangle" height={68} />
+                            ))}
+                    </VStack>
+                ) : (
+                    <VStack as="ul" gap="1">
+                        {renderItems?.map((item) => (
+                            <RenderComp item={item} key={keyExtractor(item)} />
+                        ))}
+                    </VStack>
+                )}
             </VStack>
             {pages.length > 1 && (
                 <Pagination
+                    className="mb-1"
                     srHeading={paginationSrHeading}
                     size="xsmall"
                     page={page + 1}
