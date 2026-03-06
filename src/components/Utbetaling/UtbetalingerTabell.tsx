@@ -4,6 +4,16 @@ import { formaterNOK, getGjeldendeDatoForUtbetaling, getUtbetalingId } from 'src
 import type { Utbetaling } from 'src/generated/modiapersonoversikt-api';
 import { formatterDato } from 'src/utils/date-utils';
 
+const datoVisning = (utbetaling: Utbetaling) => {
+    return `${formatterDato(getGjeldendeDatoForUtbetaling(utbetaling))} ${
+        utbetaling.forfallsdato && !utbetaling.utbetalingsdato
+            ? '(forfall)'
+            : !utbetaling.forfallsdato && !utbetaling.utbetalingsdato && utbetaling.posteringsdato
+              ? '(postering)'
+              : ''
+    }`;
+};
+
 export const UtbetalingerTabell = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
     return (
         <Table>
@@ -31,9 +41,7 @@ export const UtbetalingerTabell = ({ utbetalinger }: { utbetalinger: Utbetaling[
                         </Table.DataCell>
                         <Table.DataCell>{utbetaling.utbetaltTil}</Table.DataCell>
                         <Table.DataCell>{utbetaling.status}</Table.DataCell>
-                        <Table.DataCell>
-                            {`${formatterDato(getGjeldendeDatoForUtbetaling(utbetaling))} ${utbetaling.forfallsdato && !utbetaling.utbetalingsdato ? '(forfall)' : utbetaling.forfallsdato && !utbetaling.utbetalingsdato ? '(postering)' : ''}`}
-                        </Table.DataCell>
+                        <Table.DataCell>{datoVisning(utbetaling)}</Table.DataCell>
                     </Table.ExpandableRow>
                 );
             })}
