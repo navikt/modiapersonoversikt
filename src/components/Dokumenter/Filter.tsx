@@ -11,7 +11,6 @@ import { DateRangePickerWithDebounce } from 'src/components/DateFilters/DateRang
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
 import { useTemaer } from 'src/components/Dokumenter/utils';
 import { aktivBrukerLastetAtom, usePersonAtomValue } from 'src/lib/state/context';
-import { dokumenterRouteMiddleware } from 'src/routes/new/person/dokumenter';
 import { filterType, trackFilterEndret } from 'src/utils/analytics';
 
 const routeApi = getRouteApi('/new/person/dokumenter');
@@ -209,7 +208,6 @@ export const DokumenterFilter = () => {
             prevFnrRef.current = fnr;
             if (prev !== undefined) {
                 setFilter(RESET);
-                dokumenterRouteMiddleware().clear();
             }
         }
     }, [fnr, aktivBrukerLastet, setFilter]);
