@@ -8,7 +8,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
 import { DateRangePickerWithDebounce } from 'src/components/DateFilters/DateRangePickerWithDebounce';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
-import { useTemaer } from 'src/components/saker/utils';
+import { useTemaer } from 'src/components/Dokumenter/utils';
 import { aktivBrukerLastetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import { dokumenterRouteMiddleware } from 'src/routes/new/person/dokumenter';
 import { filterType, trackFilterEndret } from 'src/utils/analytics';

@@ -4,7 +4,6 @@ import {
     BellIcon,
     ChatElipsisIcon,
     CircleFillIcon,
-    FileIcon,
     FolderIcon,
     HandShakeHeartIcon,
     HouseIcon,
@@ -59,11 +58,6 @@ export const menuItems = [
         title: 'Dokumenter',
         href: '/new/person/dokumenter',
         Icon: FolderIcon
-    },
-    {
-        title: 'Saker',
-        href: '/new/person/saker',
-        Icon: FileIcon
     },
     {
         title: 'Varsler',

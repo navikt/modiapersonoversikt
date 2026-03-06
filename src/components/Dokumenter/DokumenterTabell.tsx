@@ -3,7 +3,7 @@ import { Box, HStack, InlineMessage, Pagination, type SortState, Table, Tag } fr
 import { useState } from 'react';
 import { DokumentVisningExpandable } from 'src/components/Dokumenter/DokumentVisningExpandable';
 import { useSortedAndPaginatedDokumenter } from 'src/components/Dokumenter/useSortedAndPaginatedDokumenter';
-import { hentBrukerNavn } from 'src/components/saker/utils';
+import { hentBrukerNavn } from 'src/components/Dokumenter/utils';
 import {
     type Dokumentmetadata,
     DokumentmetadataAvsender,

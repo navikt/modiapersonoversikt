@@ -1,8 +1,8 @@
 import { HStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
-import DokumentVisning from 'src/components/saker/Detail/DokumentVisning';
-import { getSaksdokumentUrl } from 'src/components/saker/utils';
+import DokumentVisning from 'src/components/Dokumenter/DokumentVisning';
+import { getSaksdokumentUrl } from 'src/components/Dokumenter/utils';
 import { useOnMount } from 'src/utils/customHooks';
 
 const routeApi = getRouteApi('/new/dokument');

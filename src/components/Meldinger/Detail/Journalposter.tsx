@@ -1,6 +1,4 @@
-import { ExternalLinkIcon } from '@navikt/aksel-icons';
-import { Box, HStack, ReadMore, Table } from '@navikt/ds-react';
-import { Link } from '@tanstack/react-router';
+import { Box, ReadMore, Table } from '@navikt/ds-react';
 import type { Journalpost } from 'src/generated/modiapersonoversikt-api';
 import { formaterDato } from 'src/utils/string-utils';
 
@@ -44,22 +42,7 @@ export const Journalposter = ({ journalposter }: Props) => {
                             const saksid = p.journalfortSaksid;
                             return (
                                 <Table.Row key={`${p.journalfortDato}-${saksid}`}>
-                                    <Table.DataCell textSize="small">
-                                        {saksid ? (
-                                            <Link
-                                                to="/new/person/saker"
-                                                className="aksel-link"
-                                                search={{ id: `${p.journalfortTema}-${saksid}` }}
-                                            >
-                                                <HStack gap="1" align="center">
-                                                    <ExternalLinkIcon aria-hidden fontSize="1rem" />{' '}
-                                                    <span>{saksid}</span>
-                                                </HStack>
-                                            </Link>
-                                        ) : (
-                                            'Ukjent saksid'
-                                        )}
-                                    </Table.DataCell>
+                                    <Table.DataCell textSize="small">{saksid ?? 'Ukjent saksid'}</Table.DataCell>
                                     <Table.DataCell textSize="small">{tema}</Table.DataCell>
                                     <Table.DataCell textSize="small">{navn}</Table.DataCell>
                                     <Table.DataCell textSize="small">{dato}</Table.DataCell>

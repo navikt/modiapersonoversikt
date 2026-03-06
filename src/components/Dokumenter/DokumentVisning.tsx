@@ -1,8 +1,8 @@
 import { Alert, VStack } from '@navikt/ds-react';
 import { useCallback, useState } from 'react';
 import { getMockableUrl } from 'src/app/personside/infotabs/saksoversikt/dokumentvisning/mockable-dokument-url';
-import { DokumentEmbeder } from 'src/components/saker/Detail/DokumentEmbeder ';
-import { byggDokumentVisningUrl, feilmelding } from 'src/components/saker/utils';
+import { DokumentEmbeder } from 'src/components/Dokumenter/DokumentEmbeder';
+import { byggDokumentVisningUrl, feilmelding } from 'src/components/Dokumenter/utils';
 import { erIE11 } from 'src/utils/erIE11';
 
 const DokumentVisning = ({ fnr, url }: { url: string; fnr: string }) => {
