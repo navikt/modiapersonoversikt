@@ -20,19 +20,19 @@ export const FilterExpansionCard = ({
         open ? trackExpansionCardApnet(fane) : trackExpansionCardLukket(fane);
     };
 
-    // Lukk kortet når Escape trykkes og fokuset er innenfor kortet
-    const handleEscape = (e: KeyboardEvent) => {
-        if (e.key === 'Escape' && expanded && cardRef.current) {
-            const focusedElement = document.activeElement;
-            if (cardRef.current.contains(focusedElement)) {
-                toggle(false);
-                const button = cardRef.current.querySelector('button');
-                button?.focus();
-            }
-        }
-    };
-
     useEffect(() => {
+        // Lukk kortet når Escape trykkes og fokuset er innenfor kortet
+        const handleEscape = (e: KeyboardEvent) => {
+            if (e.key === 'Escape' && expanded && cardRef.current) {
+                const focusedElement = document.activeElement;
+                if (cardRef.current.contains(focusedElement)) {
+                    toggle(false);
+                    const button = cardRef.current.querySelector('button');
+                    button?.focus();
+                }
+            }
+        };
+
         document.addEventListener('keydown', handleEscape);
         return () => document.removeEventListener('keydown', handleEscape);
     }, [expanded]);
