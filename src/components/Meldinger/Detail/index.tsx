@@ -1,19 +1,19 @@
 import { ChevronDownIcon } from '@navikt/aksel-icons';
-import { ActionMenu, Alert, Box, Button, Heading, HStack, InlineMessage, Skeleton, VStack } from '@navikt/ds-react';
+import { ActionMenu, Box, Button, Heading, HStack, InlineMessage, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi, useLocation } from '@tanstack/react-router';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useState } from 'react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { TraadOppgaver } from 'src/components/Meldinger/Detail/TraadOppgaver';
 import { meldingerFilterAtom } from 'src/components/Meldinger/List/Filter';
 import { useFilterMeldinger, useTraader } from 'src/components/Meldinger/List/utils';
 import MeldingerPrint from 'src/components/Meldinger/MeldingerPrint';
+import { useSetTraadIdQueryParam } from 'src/components/Meldinger/useSetTraadIdQueryParam';
 import usePrinter from 'src/components/Print/usePrinter';
 import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
 import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
-import { meldingerRouteMiddleware } from 'src/routes/new/person/meldinger';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import { formatterDatoTid } from 'src/utils/date-utils';
 import { formaterDato } from 'src/utils/string-utils';
@@ -115,10 +115,6 @@ const TraadDetailContent = ({ traad }: { traad: Traad }) => {
         setDialogUnderArbeid(traad.traadId);
     }, [traad.traadId, setDialogUnderArbeid]);
 
-    if (!traad) {
-        return <Alert variant="warning">Tråden du valgte, ble ikke funnet.</Alert>;
-    }
-
     const kanBesvares = traadKanBesvares(traad);
     const melding = nyesteMelding(traad);
     const avsluttetDato = traad.avsluttetDato || melding.avsluttetDato;
@@ -175,39 +171,20 @@ const routeApi = getRouteApi('/new/person/meldinger');
 
 const TraadDetailSection = ({ traader }: { traader: Traad[] }) => {
     const { traadId } = routeApi.useSearch();
-    const navigate = routeApi.useNavigate();
     const filters = useAtomValue(meldingerFilterAtom);
     const filteredTraader = useFilterMeldinger(traader, filters);
-    const firstTraadId = filteredTraader[0]?.traadId;
     const selectedTraad = traadId ? filteredTraader.find((t) => t.traadId === traadId) : undefined;
-    const prevFiltersRef = useRef(filters);
 
-    useEffect(() => {
-        const filterEndret = JSON.stringify(prevFiltersRef.current) !== JSON.stringify(filters);
-        prevFiltersRef.current = filters;
-
-        const traadFinnesIkkeEtterFilter = !!traadId && !selectedTraad;
-
-        if (filterEndret && traadFinnesIkkeEtterFilter) {
-            meldingerRouteMiddleware().clear();
-        }
-    }, [filters, traadId, selectedTraad]);
-
-    useEffect(() => {
-        if (!filteredTraader.length) return;
-        if (!traadId && firstTraadId) {
-            navigate({
-                search: (prev) => ({ ...prev, traadId: firstTraadId }),
-                replace: true
-            });
-            return;
-        }
-    }, [filteredTraader.length, traadId, firstTraadId, navigate]);
+    useSetTraadIdQueryParam(traader);
 
     if (!filteredTraader.length) return null;
 
     if (traadId && !selectedTraad) {
-        return <Alert variant="warning">Tråden du valgte, ble ikke funnet.</Alert>;
+        return (
+            <InlineMessage className="p-2" status="warning">
+                Tråden du valgte, ble ikke funnet.
+            </InlineMessage>
+        );
     }
 
     if (!selectedTraad) return null;
