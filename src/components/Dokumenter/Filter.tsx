@@ -1,11 +1,12 @@
-import { Box, HStack, Search, Switch, UNSAFE_Combobox } from '@navikt/ds-react';
+import { ArrowCirclepathReverseIcon } from '@navikt/aksel-icons';
+import { Box, Button, HStack, Search, UNSAFE_Combobox } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { atomWithReset, RESET, useHydrateAtoms } from 'jotai/utils';
 import { debounce, xor } from 'lodash';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
+import { getOptionFromPeriod, getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
 import { DateRangePickerWithDebounce } from 'src/components/DateFilters/DateRangePickerWithDebounce';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
 import { useTemaer } from 'src/components/Dokumenter/utils';
@@ -17,8 +18,8 @@ const routeApi = getRouteApi('/new/person/dokumenter');
 
 export type DokumenterFilter = {
     dateRange: DateRange;
+    periodType: PeriodType;
     temaer: string[];
-    visAlle: boolean;
     saksId?: string;
 };
 
@@ -27,8 +28,8 @@ const defaultDate = getPeriodFromOption(PeriodType.CUSTOM);
 export const dokumenterFilterAtom = atomWithReset<DokumenterFilter>({
     dateRange: defaultDate,
     temaer: [],
-    visAlle: true,
-    saksId: ''
+    saksId: '',
+    periodType: PeriodType.CUSTOM
 });
 
 const dokFilterTemaAtom = atom(
@@ -62,12 +63,12 @@ const dokFilterDateRangeAtom = atom(
     }
 );
 
-const dokFilterVisAlleAtom = atom(
-    (get) => get(dokumenterFilterAtom).visAlle,
-    (_get, set, visAlle: boolean) => {
+const dokFilterPeriodType = atom(
+    (get) => get(dokumenterFilterAtom).periodType,
+    (_get, set, type: PeriodType) => {
         set(dokumenterFilterAtom, (filters) => ({
             ...filters,
-            visAlle: visAlle
+            periodType: type
         }));
     }
 );
@@ -105,6 +106,7 @@ const SaksIdSearchField = () => {
 
 const DateFilter = () => {
     const [value, setValue] = useAtom(dokFilterDateRangeAtom);
+    const [periodType, setPeriodType] = useAtom(dokFilterPeriodType);
     const navigate = routeApi.useNavigate();
 
     const onChange = (range?: DateRange) => {
@@ -113,7 +115,14 @@ const DateFilter = () => {
             search: { fra: range?.from.format('DD.MM.YYYY').toString(), til: range?.to.format('DD.MM.YYYY').toString() }
         });
     };
-    return <DateRangePickerWithDebounce dateRange={value} onRangeChange={onChange} />;
+    return (
+        <DateRangePickerWithDebounce
+            period={periodType}
+            onPeriodChange={setPeriodType}
+            dateRange={value}
+            onRangeChange={onChange}
+        />
+    );
 };
 
 const TemaFilter = () => {
@@ -147,37 +156,26 @@ const TemaFilter = () => {
 
 const ResetFilter = () => {
     const [filter, setFilter] = useAtom(dokumenterFilterAtom);
-    const [isChecked, setChecked] = useAtom(dokFilterVisAlleAtom);
     const navigate = routeApi.useNavigate();
 
     const datoErlik = filter.dateRange.from.isSame(defaultDate.from) && filter.dateRange.to.isSame(defaultDate.to);
     const isDirty = !filter.temaer.isEmpty() || filter.saksId !== '' || !datoErlik;
 
-    useEffect(() => {
-        if (isDirty && isChecked) {
-            setChecked(false);
-        }
-    }, [isDirty, isChecked]);
-
-    const setCheckedOgResetFilter = (checked: boolean) => {
-        setChecked(checked);
-        if (checked) {
-            setFilter(RESET);
-            navigate({ search: { tema: [], saksid: '', fra: '', til: '' }, replace: true });
-        }
+    const resetFilter = () => {
+        setFilter(RESET);
+        navigate({ search: { tema: [], saksid: '', fra: '', til: '' }, replace: true });
     };
 
     return (
-        <Switch
-            className="mt-7"
+        <Button
+            icon={<ArrowCirclepathReverseIcon />}
+            disabled={!isDirty}
+            onClick={() => resetFilter()}
+            variant="tertiary"
             size="small"
-            checked={isChecked}
-            onChange={(e) => {
-                setCheckedOgResetFilter(e.target.checked);
-            }}
         >
-            Vis alle
-        </Switch>
+            Tilbakestill
+        </Button>
     );
 };
 
@@ -187,18 +185,19 @@ export const DokumenterFilter = () => {
     const fnr = usePersonAtomValue();
     const aktivBrukerLastet = useAtomValue(aktivBrukerLastetAtom);
     const prevFnrRef = useRef<string | undefined>(undefined);
+    const dateRange = {
+        from: queries.fra ? dayjs(queries.fra, 'DD.MM.YYYY') : defaultDate.from,
+        to: queries.til ? dayjs(queries.til, 'DD.MM.YYYY') : defaultDate.to
+    };
 
     useHydrateAtoms([
         [
             dokumenterFilterAtom,
             {
-                dateRange: {
-                    from: queries.fra ? dayjs(queries.fra, 'DD.MM.YYYY') : defaultDate.from,
-                    to: queries.til ? dayjs(queries.til, 'DD.MM.YYYY') : defaultDate.to
-                },
+                dateRange: dateRange,
                 temaer: queries.tema ?? [],
                 saksId: queries.saksid ?? '',
-                visAlle: true
+                periodType: getOptionFromPeriod(dateRange)
             }
         ]
     ]);
@@ -226,7 +225,7 @@ export const DokumenterFilter = () => {
             <Box.New>
                 <SaksIdSearchField />
             </Box.New>
-            <HStack align="start">
+            <HStack align="end">
                 <ResetFilter />
             </HStack>
         </HStack>

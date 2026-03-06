@@ -1,13 +1,13 @@
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai';
-import { type UtbetalingFilter, utbetalingFilterAtom } from 'src/components/Utbetaling/List/Filter';
+import { type UtbetalingFilter, utbetalingFilterAtom } from 'src/components/Utbetaling/Filter';
 import { errorPlaceholder, type QueryResult, responseErrorMessage } from 'src/components/ytelser/utils';
 import { useUtbetalinger } from 'src/lib/clients/modiapersonoversikt-api';
-import type { Utbetaling, UtbetalingerResponseDto, Ytelse, YtelsePeriode } from 'src/lib/types/modiapersonoversikt-api';
-import { datoSynkende } from 'src/utils/date-utils';
+import type { Utbetaling, UtbetalingerResponseDto, Ytelse } from 'src/lib/types/modiapersonoversikt-api';
+import { datoSynkende, datoVerbose } from 'src/utils/date-utils';
 
 const filterUtbetalinger = (utbetalinger: Utbetaling[], filters: UtbetalingFilter): Utbetaling[] => {
-    const { ytelseTyper, utbetaltTil, dateRange } = filters;
+    const { ytelseTyper, dateRange } = filters;
 
     if (!utbetalinger || utbetalinger.length === 0) {
         return [];
@@ -17,15 +17,6 @@ const filterUtbetalinger = (utbetalinger: Utbetaling[], filters: UtbetalingFilte
     if (ytelseTyper?.length) {
         filteredList = filteredList.filter((utbetaling) =>
             utbetaling.ytelser.some((item) => item.type && ytelseTyper.includes(item.type))
-        );
-    }
-
-    if (utbetaltTil?.length) {
-        filteredList = filteredList.filter(
-            (utbetaling) =>
-                (utbetaling.erUtbetaltTilOrganisasjon && utbetaltTil.includes(utbetaltTilOrganisasjon)) ||
-                (utbetaling.erUtbetaltTilSamhandler && utbetaltTil.includes(utbetaltTilSamhandler)) ||
-                (utbetaling.erUtbetaltTilPerson && utbetaltTil.includes(utbetaltTilBruker))
         );
     }
 
@@ -59,7 +50,7 @@ export const useFilterUtbetalinger = (): QueryResult<UtbetalingerResponseDto> =>
     } as QueryResult<UtbetalingerResponseDto>;
 };
 
-export const getNettoSumYtelser = (ytelser: Ytelse[]): number => {
+const getNettoSumYtelser = (ytelser: Ytelse[]): number => {
     return ytelser.reduce((acc: number, ytelse: Ytelse) => acc + ytelse.nettobelop, 0);
 };
 
@@ -67,12 +58,8 @@ export const getBruttoSumYtelser = (ytelser: Ytelse[]): number => {
     return ytelser.reduce((acc: number, ytelse: Ytelse) => acc + ytelse.ytelseskomponentersum, 0);
 };
 
-export const getTrekkSumYtelser = (ytelser: Ytelse[]): number => {
+export const getTrekkOgSkattSumYtelser = (ytelser: Ytelse[]): number => {
     return ytelser.reduce((acc: number, ytelse: Ytelse) => acc + ytelse.skattsum + ytelse.trekksum, 0);
-};
-
-export const filtrerBortUtbetalingerSomIkkeErUtbetalt = (utbetaling: Utbetaling): boolean => {
-    return utbetaling.status.toLowerCase() === 'utbetalt';
 };
 
 export const reduceUtbetlingerTilYtelser = (utbetalinger: Utbetaling[]): Ytelse[] => {
@@ -83,43 +70,46 @@ export const formaterNOK = (belop: number): string => {
     return belop.toLocaleString('no', { minimumFractionDigits: 2 });
 };
 
-export const summertBelopFraUtbetalinger = (
-    utbetalinger: Utbetaling[],
-    getSumFromYtelser: (ytelser: Ytelse[]) => number,
-    fjernUtbetalingerSomIkkeErUtbetalt: boolean
-): string => {
-    const ytelser = utbetalinger
-        .filter((utbetaling) => !fjernUtbetalingerSomIkkeErUtbetalt || utbetaling.status.toLowerCase() === 'utbetalt')
-        .flatMap((utbetaling) => utbetaling.ytelser ?? []);
-    const sum = getSumFromYtelser(ytelser);
-    return formaterNOK(sum);
+export const summertNettobelopFraUtbetalinger = (utbetalinger: Utbetaling[]): number => {
+    const ytelser = reduceUtbetlingerTilYtelser(utbetalinger);
+    return getNettoSumYtelser(ytelser);
 };
 
-export const getTypeFromYtelse = (ytelse: Ytelse) => ytelse.type || 'Mangler beskrivelse';
+export const summertBruttobelopFraUtbetalinger = (utbetalinger: Utbetaling[]): number => {
+    const ytelser = reduceUtbetlingerTilYtelser(utbetalinger);
+    return getBruttoSumYtelser(ytelser);
+};
 
-export const getPeriodeFromYtelser = (ytelser: Ytelse[]): YtelsePeriode => {
-    return ytelser.reduce(
-        (acc: YtelsePeriode, ytelse: Ytelse) => {
-            if (!ytelse.periode) {
-                return acc;
-            }
-            return {
-                start: dayjs(ytelse.periode.start).isBefore(dayjs(acc.start)) ? ytelse.periode.start : acc.start,
-                slutt: dayjs(ytelse.periode.slutt).isAfter(dayjs(acc.slutt)) ? ytelse.periode.slutt : acc.slutt
-            };
-        },
-        {
-            start: dayjs().format(),
-            slutt: dayjs(0).format()
-        }
-    );
+export const getAlleYtelseTyper = (utbetalinger: Utbetaling[]): string[] => {
+    const ytelser = reduceUtbetlingerTilYtelser(utbetalinger);
+    return ytelser.flatMap((ytelse) => ytelse.type?.trim() || []).unique();
+};
+
+export const summertTrekkOgSkattBelopFraUtbetalinger = (utbetalinger: Utbetaling[]): number => {
+    const ytelser = reduceUtbetlingerTilYtelser(utbetalinger);
+    return getTrekkOgSkattSumYtelser(ytelser);
 };
 
 export const getUtbetalingId = (utbetaling: Utbetaling) =>
     `${utbetaling.ytelser?.map((item) => item.type?.replace(/\s+/g, ''))?.join('')}${utbetaling.posteringsdato}`;
 
-const utbetaltTilBruker = 'Bruker';
-const utbetaltTilOrganisasjon = 'Organisasjon';
-const utbetaltTilSamhandler = 'Samhandler';
+export function getGjeldendeDatoForUtbetaling(utbetaling: Utbetaling): string {
+    return utbetaling.utbetalingsdato || utbetaling.forfallsdato || utbetaling.posteringsdato;
+}
+export function utbetalingDatoComparator(a: Utbetaling, b: Utbetaling) {
+    return dayjs(getGjeldendeDatoForUtbetaling(b)).unix() - dayjs(getGjeldendeDatoForUtbetaling(a)).unix();
+}
+export function maanedOgAarForUtbetaling(utbetaling: Utbetaling) {
+    const verbose = datoVerbose(getGjeldendeDatoForUtbetaling(utbetaling));
+    return `${verbose.måned} ${verbose.år}`;
+}
 
-export const utbetalingMottakere = [utbetaltTilBruker, utbetaltTilOrganisasjon, utbetaltTilSamhandler];
+export const fargePaBelop = (belop: number) => {
+    if (belop > 0) {
+        return 'text-ax-text-success-subtle';
+    } else if (belop < 0) {
+        return 'text-ax-text-danger-subtle';
+    } else {
+        return '';
+    }
+};

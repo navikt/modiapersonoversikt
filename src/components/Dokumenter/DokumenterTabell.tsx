@@ -117,6 +117,7 @@ export const DokumenterTabell = () => {
 
                         return (
                             <Table.ExpandableRow
+                                contentGutter="none"
                                 expansionDisabled={!journalpost.harTilgang}
                                 onOpenChange={(open) => handleOnExpand(journalpost.id, open)}
                                 expandOnRowClick
