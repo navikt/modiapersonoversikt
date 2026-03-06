@@ -116,6 +116,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    '/rest/ytelse/dagpenger': {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations['hentDagpenger'];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     '/rest/ytelse/arbeidsavklaringspenger': {
         parameters: {
             query?: never;
@@ -1226,6 +1242,14 @@ export interface components {
         ForeldrepengerResponse: {
             foreldrepenger?: components['schemas']['Foreldrepenger'][];
         };
+        PeriodeDagpengerDto: {
+            /** Format: date */
+            fraOgMedDato: string;
+            /** @enum {string} */
+            ytelseType: PeriodeDagpengerDtoYtelseType;
+            /** Format: date */
+            tilOgMedDato?: string;
+        };
         NonavaapapiinternPeriodeDTO: {
             /** Format: date */
             fraOgMedDato?: string;
@@ -2328,6 +2352,7 @@ export type ForeldrepengePeriode = components['schemas']['ForeldrepengePeriode']
 export type Foreldrepenger = components['schemas']['Foreldrepenger'];
 export type ForeldrepengerArbeidsforhold = components['schemas']['ForeldrepengerArbeidsforhold'];
 export type ForeldrepengerResponse = components['schemas']['ForeldrepengerResponse'];
+export type PeriodeDagpengerDto = components['schemas']['PeriodeDagpengerDto'];
 export type NonavaapapiinternPeriodeDto = components['schemas']['NonavaapapiinternPeriodeDTO'];
 export type NonavaapapiinternVedtakUtenUtbetalingDto =
     components['schemas']['NonavaapapiinternVedtakUtenUtbetalingDTO'];
@@ -2630,6 +2655,30 @@ export interface operations {
                 };
                 content: {
                     '*/*': components['schemas']['ForeldrepengerResponse'];
+                };
+            };
+        };
+    };
+    hentDagpenger: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                'application/json': components['schemas']['FnrDatoRangeRequest'];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    '*/*': components['schemas']['PeriodeDagpengerDto'][];
                 };
             };
         };
@@ -3835,6 +3884,11 @@ export enum ForeldrepengerFpSakYtelse {
     ENGANGSST_NAD = 'ENGANGSST\u00D8NAD',
     FORELDREPENGER = 'FORELDREPENGER',
     SVANGERSKAPSPENGER = 'SVANGERSKAPSPENGER'
+}
+export enum PeriodeDagpengerDtoYtelseType {
+    DAGPENGER_ARBEIDSSOKER_ORDINAER = 'DAGPENGER_ARBEIDSSOKER_ORDINAER',
+    DAGPENGER_PERMITTERING_ORDINAER = 'DAGPENGER_PERMITTERING_ORDINAER',
+    DAGPENGER_PERMITTERING_FISKEINDUSTRI = 'DAGPENGER_PERMITTERING_FISKEINDUSTRI'
 }
 export enum DokumentDokumentStatus {
     UNDER_REDIGERING = 'UNDER_REDIGERING',
