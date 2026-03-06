@@ -16,8 +16,8 @@ import { Link } from '@tanstack/react-router';
 import { type ComponentProps, useState } from 'react';
 import { getOpenTabFromRouterPath, useOpenTab } from 'src/app/personside/infotabs/utils/useOpenTab';
 import { erUbesvartHenvendelseFraBruker, useTraader } from 'src/components/Meldinger/List/utils';
-import { useFilterOppgave } from 'src/components/Oppgave/List/utils';
 import { usePersonSideBarKotkeys } from 'src/components/usePersonSidebarHotkeys';
+import { usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
 import { trackingEvents } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
 import Card from './Card';
@@ -76,10 +76,10 @@ export const PersonSidebarMenu = () => {
     const [expanded, setExpanded] = useState(true);
     const openTab = useOpenTab();
     usePersonSideBarKotkeys();
-    const { data: traader } = useTraader();
-    const oppgaver = useFilterOppgave();
-    const harOppgaverPaaEnTraad = oppgaver.data.some((oppgave) => oppgave.traadId !== null);
-    const harUbesvarteTraader = traader?.some((traad) => erUbesvartHenvendelseFraBruker(traad));
+    const { data: traader = [] } = useTraader();
+    const { data: oppgaver = [] } = usePersonOppgaver();
+    const harOppgaverPaaEnTraad = oppgaver.some((oppgave) => oppgave.traadId !== null);
+    const harUbesvarteTraader = traader.some((traad) => erUbesvartHenvendelseFraBruker(traad));
 
     const visNotifikasjon = (tab: string) => {
         if (tab !== 'Kommunikasjon') return false;

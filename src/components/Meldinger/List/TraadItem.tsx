@@ -14,8 +14,8 @@ import { getRouteApi } from '@tanstack/react-router';
 import { atom, useAtomValue } from 'jotai';
 import { useEffect, useMemo, useRef } from 'react';
 import Card from 'src/components/Card';
-import { useFilterOppgave } from 'src/components/Oppgave/List/utils';
 import type { TraadDto } from 'src/generated/modiapersonoversikt-api';
+import { usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
 import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
 import type { Melding } from 'src/lib/types/modiapersonoversikt-api';
 import { Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
@@ -31,7 +31,7 @@ import {
 } from './utils';
 
 function TildeltSaksbehandler({ traadId }: { traadId: string }) {
-    const { data: oppgaver } = useFilterOppgave();
+    const { data: oppgaver = [] } = usePersonOppgaver();
 
     if (oppgaver.map((oppgave) => oppgave.traadId).includes(traadId)) {
         return (
@@ -135,7 +135,7 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
     const aktivTraad = routeApi.useSearch().traadId;
     const navigate = routeApi.useNavigate();
     const linkRef = useRef<HTMLAnchorElement | null>(null);
-    const { data: oppgaver } = useFilterOppgave();
+    const { data: oppgaver = [] } = usePersonOppgaver();
     const ubesvart = erUbesvartHenvendelseFraBruker(traad);
     const erTildeltVeileder = oppgaver.map((oppgave) => oppgave.traadId).includes(traad.traadId);
     const visNotifikasjon = ubesvart || erTildeltVeileder;

@@ -2,10 +2,9 @@ import { FigureInwardIcon, FigureOutwardIcon } from '@navikt/aksel-icons';
 import { BodyShort, Box, CopyButton, Heading, HStack, Skeleton } from '@navikt/ds-react';
 import { AlertBanner } from 'src/components/AlertBanner';
 import { erUbesvartHenvendelseFraBruker, useTraader } from 'src/components/Meldinger/List/utils';
-import { useFilterOppgave } from 'src/components/Oppgave/List/utils';
 import Statsborgerskap from 'src/components/PersonLinje/Details/Familie/Statsborgerskap';
 import config from 'src/config';
-import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
+import { usePersonData, usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
 import { Kjonn, type KodeBeskrivelseKjonn } from 'src/lib/types/modiapersonoversikt-api';
 import useHotkey from 'src/utils/hooks/use-hotkey';
 import { formaterMobiltelefonnummer } from 'src/utils/telefon-utils';
@@ -38,7 +37,7 @@ export const PersonLinje = () => {
 const PersonlinjeHeader = () => {
     const { data } = usePersonData();
     const { data: traader } = useTraader();
-    const { data: oppgaver } = useFilterOppgave();
+    const { data: oppgaver = [] } = usePersonOppgaver();
 
     const person = data?.person;
     const antallUbesvarteTraader = traader?.filter((traad) => erUbesvartHenvendelseFraBruker(traad))?.length;
