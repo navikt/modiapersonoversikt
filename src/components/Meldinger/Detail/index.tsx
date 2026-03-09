@@ -1,109 +1,22 @@
-import { ChevronDownIcon } from '@navikt/aksel-icons';
-import { ActionMenu, Box, Button, Heading, HStack, InlineMessage, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, Box, Button, HStack, InlineMessage, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi, useLocation } from '@tanstack/react-router';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { useCallback, useState } from 'react';
+import { useCallback, useCallback, useEffect, useRef, useState } from 'react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
+import { MeldingActionMenu } from 'src/components/Meldinger/Detail/MeldingActionMenu';
 import { TraadOppgaver } from 'src/components/Meldinger/Detail/TraadOppgaver';
 import { meldingerFilterAtom } from 'src/components/Meldinger/List/Filter';
 import { useFilterMeldinger, useTraader } from 'src/components/Meldinger/List/utils';
-import MeldingerPrint from 'src/components/Meldinger/MeldingerPrint';
 import { useSetTraadIdQueryParam } from 'src/components/Meldinger/useSetTraadIdQueryParam';
-import usePrinter from 'src/components/Print/usePrinter';
 import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
-import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
-import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import { formatterDatoTid } from 'src/utils/date-utils';
 import { formaterDato } from 'src/utils/string-utils';
-import { JournalForingModal } from '../Journalforing';
-import { nyesteMelding, saksbehandlerTekst, traadKanBesvares, traadstittel } from '../List/utils';
-import { DialogMerkMeny } from '../Merk';
-import { OppgaveModal } from '../Oppgave';
+import { nyesteMelding, saksbehandlerTekst, traadKanBesvares } from '../List/utils';
+
 import { Journalposter } from './Journalposter';
 import { Meldinger } from './Meldinger';
-
-const TraadMeta = ({ traad }: { traad: Traad }) => {
-    const [journalforingOpen, setJournalforingOpen] = useState(false);
-    const [oppgaveOpen, setOppgaveOpen] = useState(false);
-    const [actionMenuOpen, setActionMenuOpen] = useState(false);
-    const [printAllThreads, setPrintAllThreads] = useState(false);
-    const printer = usePrinter();
-    const PrinterWrapper = printer.printerWrapper;
-    const { data: traader } = useTraader();
-    const triggerPrinting = (printAllThreads = false) => {
-        setPrintAllThreads(printAllThreads);
-        printer.triggerPrint();
-    };
-
-    return (
-        <HStack justify="space-between" gap="2">
-            <Heading size="xsmall" level="3">
-                {traadstittel(traad)} - {temagruppeTekst(traad.temagruppe as Temagruppe)}
-            </Heading>
-            <HStack gap="2" justify="end" align="start">
-                <ActionMenu open={actionMenuOpen} onOpenChange={setActionMenuOpen}>
-                    <ActionMenu.Trigger>
-                        <Button
-                            variant="secondary"
-                            size="small"
-                            icon={<ChevronDownIcon aria-hidden />}
-                            iconPosition="right"
-                        >
-                            Skriv ut
-                        </Button>
-                    </ActionMenu.Trigger>
-                    <ActionMenu.Content>
-                        <ActionMenu.Item
-                            onSelect={() => {
-                                trackGenereltUmamiEvent(trackingEvents.skrivUt, { tekst: 'enkel dialog' });
-                                triggerPrinting();
-                            }}
-                        >
-                            Skriv ut dialog
-                        </ActionMenu.Item>
-                        <ActionMenu.Item
-                            onSelect={() => {
-                                trackGenereltUmamiEvent(trackingEvents.skrivUt, { tekst: 'alle dialoger' });
-                                triggerPrinting(true);
-                            }}
-                        >
-                            Skriv ut alle dialoger
-                        </ActionMenu.Item>
-                    </ActionMenu.Content>
-                </ActionMenu>
-                <Button
-                    variant="secondary"
-                    size="small"
-                    data-testid="journalfør-knapp"
-                    onClick={() => setJournalforingOpen(true)}
-                >
-                    Journalfør
-                </Button>
-                <Button variant="secondary" size="small" onClick={() => setOppgaveOpen(true)}>
-                    Ny oppgave
-                </Button>
-                <DialogMerkMeny traadId={traad.traadId} />
-            </HStack>
-            {journalforingOpen && (
-                <JournalForingModal
-                    isOpen={journalforingOpen}
-                    close={() => setJournalforingOpen(false)}
-                    traad={traad}
-                />
-            )}
-            {oppgaveOpen && <OppgaveModal open={oppgaveOpen} setOpen={setOppgaveOpen} traad={traad} />}
-            <PrinterWrapper>
-                {printAllThreads ? (
-                    traader.map((traad) => <MeldingerPrint key={traad.traadId} traad={traad} />)
-                ) : (
-                    <MeldingerPrint traad={traad} />
-                )}
-            </PrinterWrapper>
-        </HStack>
-    );
-};
 
 const TraadDetailContent = ({ traad }: { traad: Traad }) => {
     const setDialogUnderArbeid = useSetAtom(dialogUnderArbeidAtom);
@@ -123,7 +36,7 @@ const TraadDetailContent = ({ traad }: { traad: Traad }) => {
     return (
         <Card as={VStack} padding="2" overflow="auto">
             <VStack as="section" gap="1" padding="2" height="100%" aria-label="Dialogdetaljer">
-                <TraadMeta traad={traad} />
+                <MeldingActionMenu traad={traad} />
                 <Journalposter journalposter={traad.journalposter} />
                 {erIMeldingerfane && <TraadOppgaver traadId={traad.traadId} />}
                 <Meldinger meldinger={traad.meldinger} />
