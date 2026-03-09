@@ -1,5 +1,16 @@
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
-import { Alert, Button, Checkbox, HStack, Link, Modal, Select, Skeleton, VStack } from '@navikt/ds-react';
+import {
+    Alert,
+    Button,
+    Checkbox,
+    HStack,
+    InlineMessage,
+    Link,
+    Modal,
+    Select,
+    Skeleton,
+    VStack
+} from '@navikt/ds-react';
 import { useAtomValue } from 'jotai';
 import { Suspense, useCallback, useState } from 'react';
 import { AlertBanner } from 'src/components/AlertBanner';
@@ -62,10 +73,10 @@ export const AvsluttDialogModal = ({ traad, open, onClose }: ModalProps) => {
             size="small"
         >
             <Modal.Body>
-                <Alert variant="info">
+                <InlineMessage status="error">
                     Ved avslutting blir dialogen låst og oppgave ferdigstilt. Det er ikke mulig å sende flere meldinger
                     i denne dialogen i ettertid.
-                </Alert>
+                </InlineMessage>
             </Modal.Body>
             <Modal.Footer>
                 <Button type="button" variant="primary" onClick={avsluttDialog} loading={isPending} size="small">
