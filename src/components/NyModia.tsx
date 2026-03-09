@@ -1,5 +1,4 @@
-import { ArrowUndoIcon, SparklesIcon } from '@navikt/aksel-icons';
-import { Box, Button } from '@navikt/ds-react';
+import { Switch } from '@navikt/ds-react';
 import { useLocation, useNavigate } from '@tanstack/react-router';
 import { atom, useAtom, useAtomValue } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
@@ -25,7 +24,7 @@ export const nyModiaAtom = atom(
 
 const brukerHarValgtAtom = atom((get) => get(nyModiaStorageAtom) !== null);
 
-export const NyModia = () => {
+export const NyModiaSwitch = () => {
     const { isOn, pending } = useFeatureToggle(FeatureToggles.NyModiaKnapp);
     const [nyModia, setNyModia] = useAtom(nyModiaAtom);
     const brukerHarValgt = useAtomValue(brukerHarValgtAtom);
@@ -61,16 +60,10 @@ export const NyModia = () => {
     if (!isOn) return;
 
     return (
-        <Box className="absolute bottom-0 right-4 mb-12 overflow-hidden z-10" borderRadius="small">
-            <Button
-                icon={nyModia ? <ArrowUndoIcon /> : <SparklesIcon />}
-                variant="secondary"
-                size="small"
-                onClick={handleClick}
-                id="ny-modia-knapp-wrapper"
-            >
-                {nyModia ? 'Gammel Modia' : 'Ny Modia'}
-            </Button>
-        </Box>
+        <div style={{ padding: '0 8px' }}>
+            <Switch size="medium" checked={nyModia} onChange={handleClick}>
+                Ny Modia
+            </Switch>
+        </div>
     );
 };

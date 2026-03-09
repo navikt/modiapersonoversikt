@@ -9,6 +9,7 @@ import { loggEvent } from 'src/utils/logger/frontendLogger';
 import { parseQueryString, useQueryParams } from 'src/utils/url-utils';
 import config from '../../config';
 import bjelleIkon from '../../svg/bjelle.svg?raw';
+import sparklesIkon from '../../svg/sparkles.svg?raw';
 import { DecoratorButtonId as OppdateringsloggButtonId } from '../oppdateringslogg/OppdateringsloggContainer';
 import type { DecoratorPropsV3, Hotkey } from './decoratorprops';
 
@@ -35,11 +36,7 @@ export function useDecoratorConfig() {
         setAktivEnhet(enhet);
     };
 
-    const configV3 = useCallback(lagConfigV3, [aktivEnhet, settAktivBruker, handleSetEnhet])(
-        aktivEnhet,
-        settAktivBruker,
-        handleSetEnhet
-    );
+    const configV3 = useCallback(lagConfigV3, [])(aktivEnhet, settAktivBruker, handleSetEnhet);
 
     return { configV3 };
 }
@@ -56,6 +53,14 @@ const etterSokefelt = `
             <span class="oppdateringslogg__beskrivelse" aria-label="Åpne oppdateringslogg"></span>
             <span class="oppdateringslogg__ulestindikator" aria-label="(Uleste)"></span>
           </button>
+          <details class="meny-knapp-container" id="meny-knapp-container">
+            <summary class="meny-knapp" aria-label="Åpne meny" title="Åpne meny">
+              <span>${sparklesIkon}</span>
+            </summary>
+            <div class="meny-panel" data-theme="dark">
+              <div id="decorator-dropdown-container"></div>
+            </div>
+          </details>
         </div>
     `;
 
