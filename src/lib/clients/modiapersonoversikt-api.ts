@@ -83,6 +83,11 @@ export const useSendMelding = () => {
                     params: { query: { enhet } }
                 }).queryKey
             });
+            queryClient.invalidateQueries({
+                queryKey: $api.queryOptions('post', '/rest/oppgaver/tildelt', {
+                    body: { fnr }
+                }).queryKey
+            });
             toast.success('Melding sendt');
         },
         onError: () => {
@@ -126,11 +131,22 @@ export const useJournalforingSaker = () => {
 
 export const usePersonOppgaver = () => {
     const aktivBruker = usePersonAtomValue();
-
     return $api.useQuery('post', '/rest/oppgaver/tildelt', {
         body: {
             fnr: aktivBruker
         }
+    });
+};
+
+export const invalidatePersonOppgaver = () => {
+    const aktivBruker = usePersonAtomValue();
+    const queryClient = useQueryClient();
+    queryClient.invalidateQueries({
+        queryKey: $api.queryOptions('post', '/rest/oppgaver/tildelt', {
+            body: {
+                fnr: aktivBruker
+            }
+        }).queryKey
     });
 };
 
