@@ -1,5 +1,5 @@
 import { Alert, Box, Button, HStack, InlineMessage, Skeleton, VStack } from '@navikt/ds-react';
-import { getRouteApi, useLocation } from '@tanstack/react-router';
+import { getRouteApi } from '@tanstack/react-router';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useCallback, useCallback, useEffect, useRef, useState } from 'react';
 import Card from 'src/components/Card';
@@ -21,9 +21,6 @@ import { Meldinger } from './Meldinger';
 const TraadDetailContent = ({ traad }: { traad: Traad }) => {
     const setDialogUnderArbeid = useSetAtom(dialogUnderArbeidAtom);
 
-    const pathname = useLocation().pathname;
-    const erIMeldingerfane = pathname.includes('meldinger');
-
     const svarSamtale = useCallback(() => {
         setDialogUnderArbeid(traad.traadId);
     }, [traad.traadId, setDialogUnderArbeid]);
@@ -38,7 +35,7 @@ const TraadDetailContent = ({ traad }: { traad: Traad }) => {
             <VStack as="section" gap="1" padding="2" height="100%" aria-label="Dialogdetaljer">
                 <MeldingActionMenu traad={traad} />
                 <Journalposter journalposter={traad.journalposter} />
-                {erIMeldingerfane && <TraadOppgaver traadId={traad.traadId} />}
+                <TraadOppgaver traadId={traad.traadId} />
                 <Meldinger meldinger={traad.meldinger} />
                 <Box.New>
                     <HStack justify="end">
