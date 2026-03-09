@@ -6,7 +6,7 @@ import { getUnikYtelseKey, useFilterYtelser, type YtelseVedtak } from 'src/compo
 
 const routeApi = getRouteApi('/new/person/ytelser');
 
-export const useResetIdQueryParam = (ytelser: YtelseVedtak[]) => {
+export const useSetIdQueryParam = (ytelser: YtelseVedtak[]) => {
     const { id } = routeApi.useSearch();
     const filterAtomValue = useAtomValue(ytelseFilterAtom);
     const prevFilterRef = useRef(ytelseFilterAtom);
@@ -19,8 +19,7 @@ export const useResetIdQueryParam = (ytelser: YtelseVedtak[]) => {
         const filterEndret = JSON.stringify(prevFilterRef.current.init) !== JSON.stringify(filterAtomValue);
         const selectedYtelse = ytelser.find((item) => getUnikYtelseKey(item) === id);
 
-        const ytelseIkkeIListe = !selectedYtelse || !ytelser.includes(selectedYtelse);
-        if (filterEndret && ytelseIkkeIListe) {
+        if (filterEndret && !selectedYtelse) {
             navigate({ search: { id: ytelser.length ? getUnikYtelseKey(ytelser[0]) : '' }, replace: true });
             return;
         }

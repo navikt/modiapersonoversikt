@@ -9,7 +9,7 @@ import { PleiePengerDetails } from 'src/components/ytelser/Detail/pleiepenger';
 import { SykepengerDetails } from 'src/components/ytelser/Detail/sykepenger';
 import { SykePengerSpokelseDetails } from 'src/components/ytelser/Detail/sykepenger-spokelse';
 import { TiltaksPengerDetails } from 'src/components/ytelser/Detail/tiltakspenger';
-import { useResetIdQueryParam } from 'src/components/ytelser/useResetIdQueryParam';
+import { useSetIdQueryParam } from 'src/components/ytelser/useSetIdQueryParam';
 import { getUnikYtelseKey, useFilterYtelser, type YtelseVedtak } from 'src/components/ytelser/utils';
 import type {
     Foreldrepenger,
@@ -69,7 +69,7 @@ const YtelseDataDetails = ({ ytelser }: { ytelser: YtelseVedtak[] }) => {
     const { id } = routeApi.useSearch();
     const selectedYtelse = ytelser.find((item) => getUnikYtelseKey(item) === id);
 
-    useResetIdQueryParam(ytelser);
+    useSetIdQueryParam(ytelser);
 
     if (ytelser.length === 0) {
         return null;
