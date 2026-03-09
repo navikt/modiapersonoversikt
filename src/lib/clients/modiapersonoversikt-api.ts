@@ -138,18 +138,6 @@ export const usePersonOppgaver = () => {
     });
 };
 
-export const invalidatePersonOppgaver = () => {
-    const aktivBruker = usePersonAtomValue();
-    const queryClient = useQueryClient();
-    queryClient.invalidateQueries({
-        queryKey: $api.queryOptions('post', '/rest/oppgaver/tildelt', {
-            body: {
-                fnr: aktivBruker
-            }
-        }).queryKey
-    });
-};
-
 export const useOppgave = (oppgaveId?: string) => {
     if (oppgaveId === undefined) return { data: undefined, isLoading: false, isError: false };
     // biome-ignore lint/correctness/useHookAtTopLevel:Biome migration - bør fikses
@@ -190,19 +178,6 @@ export const useMeldinger = () => {
         body: { fnr },
         params: { query: { enhet } }
     });
-};
-
-export const useTraadById = (traadId: string) => {
-    const fnr = usePersonAtomValue();
-    const enhet = useAtomValue(aktivEnhetAtom) ?? '';
-    const { data: traader = [] } = $api.useQuery('post', '/rest/dialog/meldinger', {
-        body: { fnr },
-        params: { query: { enhet } }
-    });
-
-    const traad = traader.find((t) => t.traadId === traadId);
-
-    return traad;
 };
 
 export const useInnloggetSaksbehandler = () => {
