@@ -1,4 +1,4 @@
-import { SparklesIcon } from '@navikt/aksel-icons';
+import { BookIcon, ChatExclamationmarkIcon, SparklesIcon } from '@navikt/aksel-icons';
 import { ActionMenu, Button } from '@navikt/ds-react';
 import { NyModiaSwitch } from 'src/components/NyModia';
 
@@ -11,6 +11,12 @@ export const DropdownMeny = () => (
             <ActionMenu.Content>
                 <ActionMenu.Group label="Visningsalternativer">
                     <NyModiaSwitch />
+                </ActionMenu.Group>
+                <ActionMenu.Divider />
+                <ActionMenu.Group label="Veiledning og tilbakemelding">
+                    <ActionMenu.Item icon={<SparklesIcon />}>Introduksjon</ActionMenu.Item>
+                    <ActionMenu.Item icon={<BookIcon />}>Brukerveiledning</ActionMenu.Item>
+                    <ActionMenu.Item icon={<ChatExclamationmarkIcon />}>Gi tilbakemelding</ActionMenu.Item>
                 </ActionMenu.Group>
             </ActionMenu.Content>
         </ActionMenu>
