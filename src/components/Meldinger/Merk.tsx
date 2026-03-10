@@ -185,8 +185,6 @@ export const SladdTraadModal = ({ traad, onClose, open }: ModalProps) => {
         );
     };
 
-    console.log(open);
-
     return (
         <Modal width="medium" open={open} onClose={onClose} header={{ heading: 'Send til sladding' }}>
             <Modal.Body>
