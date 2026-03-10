@@ -73,7 +73,7 @@ export const AvsluttDialogModal = ({ traad, open, onClose }: ModalProps) => {
             size="small"
         >
             <Modal.Body>
-                <InlineMessage status="error">
+                <InlineMessage status="warning">
                     Ved avslutting blir dialogen låst og oppgave ferdigstilt. Det er ikke mulig å sende flere meldinger
                     i denne dialogen i ettertid.
                 </InlineMessage>

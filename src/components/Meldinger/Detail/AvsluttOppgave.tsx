@@ -9,10 +9,9 @@ export const AvsluttOppgave = ({ oppgave }: { oppgave: OppgaveDto }) => {
 
     return (
         <>
-            <Button size="small" variant="secondary" onClick={() => setOpen(true)} iconPosition="right">
+            <Button size="small" variant="secondary" onClick={() => setOpen(true)}>
                 Avslutt
             </Button>
-
             <AvsluttOppgaveModal oppgave={oppgave} open={open} onClose={() => setOpen(false)} />
         </>
     );

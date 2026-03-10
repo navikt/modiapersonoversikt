@@ -73,7 +73,7 @@ test('Journalfore dialog', async ({ page }) => {
     await expect(journalposterTable).toBeVisible();
     const existingRows = await journalposter.count();
 
-    await page.getByRole('button', { name: 'Valg for tråd' }).click();
+    await page.getByRole('button', { name: 'Åpne menyvalg for tråd' }).click();
     await page.getByRole('menuitem', { name: 'Journalfør' }).click();
 
     const modal = page.getByRole('dialog', { name: 'Journalfør dialog' });
@@ -107,7 +107,7 @@ test('Autocomplete textarea', async ({ page }) => {
 
 test('Avslutt dialog', async ({ page }) => {
     await page.goto('/new/person/meldinger?traadId=0DjWfYnF');
-    await page.getByRole('button', { name: 'Valg for tråd' }).click();
+    await page.getByRole('button', { name: 'Åpne menyvalg for tråd' }).click();
     const avsluttItem = page.getByRole('menuitem', { name: 'Avslutt' });
     await expect(avsluttItem).toBeVisible();
     await avsluttItem.click();
@@ -123,7 +123,7 @@ test('Avslutt dialog', async ({ page }) => {
 
 test('Lag ny oppgave', async ({ page }) => {
     await page.goto('/new/person/meldinger?traadId=0DjWfYnF');
-    await page.getByRole('button', { name: 'Valg for tråd' }).click();
+    await page.getByRole('button', { name: 'Åpne menyvalg for tråd' }).click();
     await page.getByRole('menuitem', { name: 'Ny oppgave' }).click();
 
     const opprettDialog = page.getByRole('dialog', { name: 'Opprett oppgave' });

@@ -67,7 +67,7 @@ export const MeldingActionMenu = ({ traad }: { traad: Traad }) => {
                         <Button
                             data-color="neutral"
                             variant="tertiary"
-                            icon={<MenuHamburgerIcon title="Valg for tråd" />}
+                            icon={<MenuHamburgerIcon title="Åpne menyvalg for tråd" />}
                             size="small"
                         />
                     </ActionMenu.Trigger>
