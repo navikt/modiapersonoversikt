@@ -1,4 +1,4 @@
-import { Pagination, Skeleton, VStack } from '@navikt/ds-react';
+import { InlineMessage, Pagination, Skeleton, VStack } from '@navikt/ds-react';
 import { chunk } from 'lodash';
 import {
     type ComponentProps,
@@ -62,6 +62,10 @@ export const PaginatedList = <T, KeyType extends string | number>({
                                 <Skeleton key={i} variant="rectangle" height={68} />
                             ))}
                     </VStack>
+                ) : items.length === 0 ? (
+                    <InlineMessage status="info" role="alert">
+                        Ingen resultat
+                    </InlineMessage>
                 ) : (
                     <VStack as="ul" gap="1">
                         {renderItems?.map((item) => (

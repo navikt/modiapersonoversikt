@@ -1,4 +1,3 @@
-import { Alert } from '@navikt/ds-react';
 import { useSearch } from '@tanstack/react-router';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { PaginatedList } from 'src/components/PaginatedList';
@@ -23,14 +22,6 @@ const YtelseList = () => {
     });
 
     if (isError) return;
-
-    if (!isLoading && ytelser.length === 0) {
-        return (
-            <Alert variant="info" role="alert">
-                Ingen ytelser funner
-            </Alert>
-        );
-    }
 
     return (
         <PaginatedList

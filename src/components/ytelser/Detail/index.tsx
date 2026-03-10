@@ -1,7 +1,5 @@
-import { Alert, BodyShort, HGrid, Skeleton, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, HGrid, InlineMessage, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
-import { useAtomValue } from 'jotai';
-import { useEffect, useRef } from 'react';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { ArbeidsavklaringspengerDetails } from 'src/components/ytelser/Detail/arbeidsavklaringspenger';
 import { ForeldrePengerDetails } from 'src/components/ytelser/Detail/foreldrepenger';
@@ -11,7 +9,7 @@ import { PleiePengerDetails } from 'src/components/ytelser/Detail/pleiepenger';
 import { SykepengerDetails } from 'src/components/ytelser/Detail/sykepenger';
 import { SykePengerSpokelseDetails } from 'src/components/ytelser/Detail/sykepenger-spokelse';
 import { TiltaksPengerDetails } from 'src/components/ytelser/Detail/tiltakspenger';
-import { ytelseFilterAtom } from 'src/components/ytelser/List/Filter';
+import { useSetIdQueryParam } from 'src/components/ytelser/useSetIdQueryParam';
 import { getUnikYtelseKey, useFilterYtelser, type YtelseVedtak } from 'src/components/ytelser/utils';
 import type {
     Foreldrepenger,
@@ -24,7 +22,6 @@ import type {
 } from 'src/generated/modiapersonoversikt-api';
 import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaringspenger';
 import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
-import { ytelserRouteMiddleware } from 'src/routes/new/person/ytelser';
 
 const TitleValuePairComponent = ({ title, value }: { title: string; value: string | number | null | undefined }) => {
     return (
@@ -70,34 +67,24 @@ const routeApi = getRouteApi('/new/person/ytelser');
 
 const YtelseDataDetails = ({ ytelser }: { ytelser: YtelseVedtak[] }) => {
     const { id } = routeApi.useSearch();
-    let selectedYtelse = ytelser.find((item) => getUnikYtelseKey(item) === id);
-    const filterAtomValue = useAtomValue(ytelseFilterAtom);
-    const prevFilterRef = useRef(ytelseFilterAtom);
-    const navigate = routeApi.useNavigate();
-    // Fjern ytelseid i URL og cache hvis filteret er endret og ytelsen ikke finnes i filtrerte ytelser
-    useEffect(() => {
-        const filterEndret = JSON.stringify(prevFilterRef.current.init) !== JSON.stringify(filterAtomValue);
-        const ytelseIkkeIListe = !selectedYtelse || !ytelser.includes(selectedYtelse);
-        if (filterEndret && ytelseIkkeIListe) {
-            ytelserRouteMiddleware().clear();
-        }
-    }, [selectedYtelse, ytelser, filterAtomValue]);
+    const selectedYtelse = ytelser.find((item) => getUnikYtelseKey(item) === id);
+
+    useSetIdQueryParam(ytelser);
 
     if (ytelser.length === 0) {
-        return <></>;
+        return null;
     }
 
     if (!selectedYtelse && id) {
-        return <Alert variant="error">Ytelsen du valgte, ble ikke funnet.</Alert>;
-    }
-
-    if (!selectedYtelse && !id) {
-        selectedYtelse = ytelser[0];
-        navigate({ search: { id: getUnikYtelseKey(ytelser[0]) } });
+        return (
+            <InlineMessage status="warning" className="p-2">
+                Ytelsen du valgte, ble ikke funnet.
+            </InlineMessage>
+        );
     }
 
     if (!selectedYtelse) {
-        return <></>;
+        return null;
     }
 
     switch (selectedYtelse.ytelseType) {

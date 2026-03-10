@@ -375,8 +375,19 @@ export const useFilterYtelser = (): QueryResult<YtelseVedtak[]> => {
         arbeidsavklaringspengerResponse ||
         foreldrepengerFpSakResponse;
 
+    const isLoading =
+        foreldrepengerResponse.isLoading ||
+        pleiepengerResponse.isLoading ||
+        sykepengerResponse.isLoading ||
+        sykepengerSpokelseResponse.isLoading ||
+        tiltakspengerResponse.isLoading ||
+        pensjonResponse.isLoading ||
+        arbeidsavklaringspengerResponse.isLoading ||
+        foreldrepengerFpSakResponse.isLoading;
+
     return {
         ...response,
+        isLoading,
         data: filterYtelser(ytelserSortert, filters) ?? [],
         errorMessages: placeholders.filter(Boolean)
     } as QueryResult<YtelseVedtak[]>;
