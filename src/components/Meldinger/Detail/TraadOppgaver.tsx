@@ -23,10 +23,10 @@ export const TraadOppgaver = ({ traadId }: { traadId: string }) => {
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell scope="col" textSize="small">
-                                Oppgave-ID
+                                Oppgave-id
                             </Table.HeaderCell>
                             <Table.HeaderCell scope="col" textSize="small">
-                                Oppgave type
+                                Oppgavetype
                             </Table.HeaderCell>
                             <Table.HeaderCell scope="col" textSize="small">
                                 Tema

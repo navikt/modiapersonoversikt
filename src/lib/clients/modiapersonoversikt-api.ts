@@ -83,6 +83,11 @@ export const useSendMelding = () => {
                     params: { query: { enhet } }
                 }).queryKey
             });
+            queryClient.invalidateQueries({
+                queryKey: $api.queryOptions('post', '/rest/oppgaver/tildelt', {
+                    body: { fnr }
+                }).queryKey
+            });
             toast.success('Melding sendt');
         },
         onError: () => {
@@ -126,7 +131,6 @@ export const useJournalforingSaker = () => {
 
 export const usePersonOppgaver = () => {
     const aktivBruker = usePersonAtomValue();
-
     return $api.useQuery('post', '/rest/oppgaver/tildelt', {
         body: {
             fnr: aktivBruker
@@ -174,19 +178,6 @@ export const useMeldinger = () => {
         body: { fnr },
         params: { query: { enhet } }
     });
-};
-
-export const useTraadById = (traadId: string) => {
-    const fnr = usePersonAtomValue();
-    const enhet = useAtomValue(aktivEnhetAtom) ?? '';
-    const { data: traader = [] } = $api.useQuery('post', '/rest/dialog/meldinger', {
-        body: { fnr },
-        params: { query: { enhet } }
-    });
-
-    const traad = traader.find((t) => t.traadId === traadId);
-
-    return traad;
 };
 
 export const useInnloggetSaksbehandler = () => {

@@ -9,7 +9,7 @@ test.beforeEach(async ({ page }) => {
 test('Select melding', async ({ page }) => {
     await page.goto('/new/person/meldinger');
 
-    const meldingerList = page.getByRole('region', { name: 'Tråder' });
+    const meldingerList = await page.getByRole('region', { name: 'Tråder', exact: true });
     await expect(meldingerList).toBeVisible();
     const meldingerCards = meldingerList.getByTestId('traaditem');
     expect((await meldingerCards.all()).length).toBeGreaterThan(4);
@@ -32,7 +32,7 @@ test('Send melding i tråd', async ({ page }) => {
     await page.getByRole('textbox').fill('playwright test melding');
     await page.getByRole('button', { name: 'Send til Aremark' }).click();
 
-    const meldingerList = page.getByLabel('Dialogdetaljer').getByLabel('Meldinger');
+    const meldingerList = page.getByRole('region', { name: 'Dialogdetaljer' }).getByRole('list', { name: 'Meldinger' });
     const newMelding = meldingerList.getByText('playwright test melding');
 
     await expect(newMelding).toBeVisible();
@@ -58,7 +58,7 @@ test('Send ny melding', async ({ page }) => {
     const meldingerDetails = page.getByRole('region', { name: 'Dialogdetaljer' });
     await expect(meldingerDetails.getByRole('heading').first()).toHaveText('Referat - Pensjon');
 
-    const meldingerList = page.getByLabel('Dialogdetaljer').getByLabel('Meldinger');
+    const meldingerList = page.getByRole('region', { name: 'Dialogdetaljer' }).getByRole('list', { name: 'Meldinger' });
     await expect(meldingerList).toHaveCount(1);
     await expect(meldingerList.first()).toContainText('playwright new melding');
 });
@@ -73,7 +73,8 @@ test('Journalfore dialog', async ({ page }) => {
     await expect(journalposterTable).toBeVisible();
     const existingRows = await journalposter.count();
 
-    await page.getByTestId('journalfør-knapp').click();
+    await page.getByRole('button', { name: 'Åpne menyvalg for tråd' }).click();
+    await page.getByRole('menuitem', { name: 'Journalfør' }).click();
 
     const modal = page.getByRole('dialog', { name: 'Journalfør dialog' });
     const submitButton = modal.getByRole('button', { name: 'Journalfør' });
@@ -106,7 +107,7 @@ test('Autocomplete textarea', async ({ page }) => {
 
 test('Avslutt dialog', async ({ page }) => {
     await page.goto('/new/person/meldinger?traadId=0DjWfYnF');
-    await page.getByRole('button', { name: 'Merk' }).click();
+    await page.getByRole('button', { name: 'Åpne menyvalg for tråd' }).click();
     const avsluttItem = page.getByRole('menuitem', { name: 'Avslutt' });
     await expect(avsluttItem).toBeVisible();
     await avsluttItem.click();
@@ -122,7 +123,8 @@ test('Avslutt dialog', async ({ page }) => {
 
 test('Lag ny oppgave', async ({ page }) => {
     await page.goto('/new/person/meldinger?traadId=0DjWfYnF');
-    await page.getByRole('button', { name: 'oppgave' }).click();
+    await page.getByRole('button', { name: 'Åpne menyvalg for tråd' }).click();
+    await page.getByRole('menuitem', { name: 'Ny oppgave' }).click();
 
     const opprettDialog = page.getByRole('dialog', { name: 'Opprett oppgave' });
     await expect(opprettDialog).toBeVisible();
