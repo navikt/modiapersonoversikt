@@ -1,7 +1,7 @@
-import { Alert, Box, Button, HStack, InlineMessage, Skeleton, VStack } from '@navikt/ds-react';
+import { Box, Button, HStack, InlineMessage, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { useCallback, useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback } from 'react';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { MeldingActionMenu } from 'src/components/Meldinger/Detail/MeldingActionMenu';
