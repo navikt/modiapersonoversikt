@@ -2,7 +2,7 @@ import { Switch } from '@navikt/ds-react';
 import { useLocation, useNavigate } from '@tanstack/react-router';
 import { atom, useAtom, useAtomValue } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { trackToggleNyModia } from 'src/utils/analytics';
 import { nesteMidnattOslo } from 'src/utils/date-utils';
 import { FeatureToggles } from './featureToggle/toggleIDs';
@@ -31,6 +31,7 @@ export const NyModiaSwitch = () => {
 
     const { href } = useLocation();
     const navigate = useNavigate();
+    const [isChecked, setIsChecked] = useState(nyModia);
 
     useEffect(() => {
         if (!pending && isOn && !brukerHarValgt) {
@@ -40,8 +41,11 @@ export const NyModiaSwitch = () => {
 
     const handleClick = useCallback(() => {
         const switchingTo = !nyModia;
-        setNyModia(switchingTo);
-        trackToggleNyModia(switchingTo);
+        setIsChecked(!nyModia);
+        setTimeout(() => {
+            setNyModia(switchingTo);
+            trackToggleNyModia(!nyModia);
+        }, 200);
         void navigate({ to: switchingTo ? `/new/${href}` : href.replace('/new', '') });
     }, [navigate, setNyModia, nyModia, href]);
 
@@ -61,7 +65,7 @@ export const NyModiaSwitch = () => {
 
     return (
         <div style={{ padding: '0 8px' }}>
-            <Switch size="medium" checked={nyModia} onChange={handleClick}>
+            <Switch size="medium" checked={isChecked} onChange={handleClick}>
                 Ny Modia
             </Switch>
         </div>
