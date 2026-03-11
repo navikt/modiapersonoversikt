@@ -1,0 +1,120 @@
+import { BodyShort, HStack, VStack } from '@navikt/ds-react';
+import { useRef, useState } from 'react';
+import { twMerge } from 'tailwind-merge';
+
+const hvaErNyttItems = [
+    {
+        id: 'generelle-ednringer',
+        panelId: 'generelle-ednringer',
+        title: 'Generelle endringer',
+        description: (
+            <ul className="list-disc ml-6">
+                <li>Meny på venstre side</li>
+                <li>Du kan bytte til mørk versjon frå menyen</li>
+            </ul>
+        ),
+        image: <div>halla</div>
+    },
+    {
+        id: 'dokumenter',
+        panelId: 'dokumenter',
+        title: 'Dokumenter',
+        description: (
+            <ul className="list-disc ml-6">
+                <li>Her finner du alle dokumenter, og du har enkel tilgang til filtre på toppen</li>
+                <li>Dokumentene åpnes i denne visningen, eller du kan velge å åpne de i ny fane</li>
+            </ul>
+        ),
+        image: <div>halla</div>
+    },
+    {
+        id: 'kommunikasjon',
+        panelId: 'kommunikasjon',
+        title: 'Kommunikasjon',
+        description: (
+            <ul className="list-disc ml-6">
+                <li>Nyeste melding er nederst i en dialog</li>
+                <li>Utvidet filter</li>
+                <li>Nye meldinger og oppgaver markeres med rød prikk i sidemenyen, og blå prikk ved selv meldingen</li>
+            </ul>
+        ),
+        image: <div>hade</div>
+    },
+    {
+        id: 'oversikt',
+        panelId: 'oversikt',
+        title: 'Oversikt',
+        description: (
+            <ul className="list-disc ml-6">
+                <li>Her finner du nå all personinformasjon om brukeren</li>
+                <li>Nøkkelinfo finner du i personlinjen på toppen av siden</li>
+            </ul>
+        ),
+        image: <div>hade</div>
+    }
+];
+
+export const HvaErNyttStep = () => {
+    const [activeIndex, setActiveIndex] = useState(0);
+    const listboxRef = useRef<HTMLDivElement>(null);
+    const activeItem = hvaErNyttItems[activeIndex];
+
+    const onKeyDown = (event: React.KeyboardEvent) => {
+        let next: number | null = null;
+        if (event.key === 'ArrowDown') next = (activeIndex + 1) % hvaErNyttItems.length;
+        else if (event.key === 'ArrowUp') next = (activeIndex - 1 + hvaErNyttItems.length) % hvaErNyttItems.length;
+        else if (event.key === 'Home') next = 0;
+        else if (event.key === 'End') next = hvaErNyttItems.length - 1;
+
+        if (next !== null) {
+            event.preventDefault();
+            setActiveIndex(next);
+        }
+    };
+
+    return (
+        <HStack wrap={false} gap="2" align="start">
+            <div
+                ref={listboxRef}
+                aria-label="Hva er nytt i Modia Personoversikt?"
+                aria-orientation="vertical"
+                className="flex flex-col max-w-1/2"
+                aria-activedescendant={activeItem.id}
+                aria-controls={activeItem.panelId}
+                tabIndex={0}
+                onKeyDown={onKeyDown}
+                role="listbox"
+            >
+                {hvaErNyttItems.map((item, index) => (
+                    <div
+                        key={item.id}
+                        id={item.id}
+                        role="option"
+                        tabIndex={0}
+                        aria-selected={activeIndex === index}
+                        onClick={() => setActiveIndex(index)}
+                        onKeyDown={(event) => {
+                            if (event.key === ' ' || event.key === 'Enter') {
+                                setActiveIndex(index);
+                            }
+                        }}
+                        className={twMerge(
+                            'aksel-button border-2 border-[var(--ax-border-default)] text-ax-text-accent-subtle mb-6 justify-start',
+                            activeIndex === index ? 'bg-[var(--ax-bg-moderate-pressed)]' : ''
+                        )}
+                    >
+                        <VStack>
+                            <BodyShort className="font-ax-bold">{item.title}</BodyShort>
+                            {item.description}
+                        </VStack>
+                    </div>
+                ))}
+            </div>
+            {hvaErNyttItems.map((item, index) => (
+                <div key={item.panelId} id={item.panelId} hidden={activeIndex !== index}>
+                    {item.image}
+                </div>
+            ))}
+        </HStack>
+    );
+};
