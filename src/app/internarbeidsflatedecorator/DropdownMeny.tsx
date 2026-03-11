@@ -6,7 +6,7 @@ export const DropdownMeny = () => (
     <>
         <ActionMenu>
             <ActionMenu.Trigger>
-                <Button data-color="neutral" variant="secondary" icon={<SparklesIcon />} />
+                <Button className="py-[0.5rem]" data-color="neutral" variant="secondary" icon={<SparklesIcon />} />
             </ActionMenu.Trigger>
             <ActionMenu.Content>
                 <ActionMenu.Group label="Visningsalternativer">
