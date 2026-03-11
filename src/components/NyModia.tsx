@@ -1,4 +1,4 @@
-import { Switch } from '@navikt/ds-react';
+import { Box, Switch } from '@navikt/ds-react';
 import { useLocation, useNavigate } from '@tanstack/react-router';
 import { atom, useAtom, useAtomValue } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
@@ -64,10 +64,10 @@ export const NyModiaSwitch = () => {
     if (!isOn) return;
 
     return (
-        <div style={{ padding: '0 8px' }}>
+        <Box.New paddingInline="2">
             <Switch size="medium" checked={isChecked} onChange={handleClick}>
                 Ny Modia
             </Switch>
-        </div>
+        </Box.New>
     );
 };
