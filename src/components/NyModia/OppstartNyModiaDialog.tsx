@@ -2,15 +2,24 @@ import { XMarkIcon } from '@navikt/aksel-icons';
 import { Button, Heading, HStack, Modal, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { OnboardingStepper } from 'src/components/NyModia/OnboardingStepper';
+import useHarSettNyModiaDialog from 'src/components/NyModia/useHarSettNyModiaDialog';
 
 export const OppstartNyModiaDialog = () => {
+    const [harSett, markerSomSett] = useHarSettNyModiaDialog();
     const [open, setOpen] = useState(false);
     const [activeStep, setActiveStep] = useState(1);
+
+    const openEllerIkkeSett = open || !harSett;
+
+    const lukk = () => {
+        setOpen(false);
+        markerSomSett();
+    };
 
     return (
         <>
             <Button onClick={() => setOpen(true)}>Åpne modal</Button>
-            <Modal width="1000px" aria-labelledby="modal-header" open={open} onClose={() => setOpen(false)}>
+            <Modal width="1000px" aria-labelledby="modal-header" open={openEllerIkkeSett} onClose={lukk}>
                 <Modal.Header closeButton={false}>
                     <VStack>
                         <HStack className="justify-end">
@@ -18,7 +27,7 @@ export const OppstartNyModiaDialog = () => {
                                 size="xsmall"
                                 title="Lukk modal"
                                 variant="tertiary"
-                                onClick={() => setOpen(false)}
+                                onClick={lukk}
                                 icon={<XMarkIcon aria-hidden />}
                             ></Button>
                         </HStack>
@@ -39,7 +48,7 @@ export const OppstartNyModiaDialog = () => {
                             if (activeStep < 3) {
                                 setActiveStep(activeStep + 1);
                             } else {
-                                setOpen(false);
+                                lukk();
                             }
                         }}
                     >
