@@ -7,8 +7,9 @@ import { LukkbarNyMelding } from 'src/components/melding/LukkbarNyMelding';
 import { PersonLinje } from 'src/components/PersonLinje';
 import { PersonSidebarMenu } from 'src/components/PersonSidebar';
 import BegrensetTilgangBegrunnelse from 'src/components/person/BegrensetTilgangBegrunnelse';
+import { useTilgangskontroll } from 'src/lib/clients/modiapersonoversikt-api';
 import { aktivBrukerAtom } from 'src/lib/state/context';
-import tilgangskontroll from 'src/rest/resources/tilgangskontrollResource';
+import type { IkkeTilgangArsak } from 'src/rest/resources/tilgangskontrollResource';
 
 export const Route = createLazyFileRoute('/new/person')({
     component: PersonRoute
@@ -21,11 +22,11 @@ function PersonRoute() {
         return <Navigate to="/" />;
     }
 
-    return <PersonRouteMedTilgang fnr={aktivBruker} />;
+    return <PersonRouteMedTilgang />;
 }
 
-function PersonRouteMedTilgang({ fnr }: { fnr: string }) {
-    const tilgang = tilgangskontroll.useFetch(fnr);
+function PersonRouteMedTilgang() {
+    const tilgang = useTilgangskontroll();
 
     if (tilgang.isPending) return <Skeleton variant="rectangle" height="4rem" />;
     if (tilgang.isError)
@@ -38,7 +39,7 @@ function PersonRouteMedTilgang({ fnr }: { fnr: string }) {
         return (
             <div className="flex-1">
                 <Alert variant="warning">
-                    <BegrensetTilgangBegrunnelse begrunnelseType={tilgang.data.ikkeTilgangArsak} />
+                    <BegrensetTilgangBegrunnelse begrunnelseType={tilgang.data.ikkeTilgangArsak as IkkeTilgangArsak} />
                 </Alert>
             </div>
         );

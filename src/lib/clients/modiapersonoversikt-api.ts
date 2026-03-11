@@ -480,3 +480,12 @@ export const useSykepengerSpokelse = (fom: string, tom: string) => {
         }
     );
 };
+
+export const useTilgangskontroll = () => {
+    const fnr = usePersonAtomValue();
+    const enhet = useAtomValue(aktivEnhetAtom);
+    return $api.useQuery('post', '/rest/tilgang', {
+        body: { fnr },
+        params: { query: { enhet: enhet ?? undefined } }
+    });
+};
