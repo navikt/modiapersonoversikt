@@ -1,10 +1,14 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/nb';
 import isSameOrBeforePlugin from 'dayjs/plugin/isSameOrBefore';
+import timezonePlugin from 'dayjs/plugin/timezone';
+import utcPlugin from 'dayjs/plugin/utc';
 import { loggError } from './logger/frontendLogger';
 
 dayjs.locale('nb');
 dayjs.extend(isSameOrBeforePlugin);
+dayjs.extend(utcPlugin);
+dayjs.extend(timezonePlugin);
 
 export const ISO_DATE_FORMAT = 'YYYY-MM-DD';
 export const backendDatoformat: string = 'YYYY-MM-DD';
@@ -121,4 +125,8 @@ export function datoStigende<T>(getDate: (element: T) => Date | string) {
 
 export function datoSynkende<T>(getDate: (element: T) => Date | string) {
     return (a: T, b: T): number => -ascendingDateComparator(getDate(a), getDate(b));
+}
+
+export function nesteMidnattOslo(): number {
+    return dayjs().tz('Europe/Oslo').add(1, 'day').startOf('day').valueOf();
 }

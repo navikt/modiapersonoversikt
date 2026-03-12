@@ -1,14 +1,25 @@
 import { ArrowUndoIcon, SparklesIcon } from '@navikt/aksel-icons';
 import { Box, Button } from '@navikt/ds-react';
 import { useLocation, useNavigate } from '@tanstack/react-router';
-import { useAtom } from 'jotai';
+import { atom, useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import { useCallback, useEffect } from 'react';
 import { trackToggleNyModia } from 'src/utils/analytics';
+import { nesteMidnattOslo } from 'src/utils/date-utils';
 import { FeatureToggles } from './featureToggle/toggleIDs';
 import useFeatureToggle from './featureToggle/useFeatureToggle';
 
-export const nyModiaAtom = atomWithStorage('ny-modia', false);
+const nyModiaStorageAtom = atomWithStorage<number | null>('ny-modia-v2', null);
+
+export const nyModiaAtom = atom(
+    (get) => {
+        const expiresAt = get(nyModiaStorageAtom);
+        return expiresAt === null || Date.now() >= expiresAt;
+    },
+    (_get, set, useNyModia: boolean) => {
+        set(nyModiaStorageAtom, useNyModia ? null : nesteMidnattOslo());
+    }
+);
 
 export const NyModia = () => {
     const { isOn } = useFeatureToggle(FeatureToggles.NyModiaKnapp);
@@ -18,7 +29,7 @@ export const NyModia = () => {
     const navigate = useNavigate();
 
     const handleClick = useCallback(() => {
-        setNyModia((v) => !v);
+        setNyModia(!nyModia);
         trackToggleNyModia(!nyModia);
         if (!nyModia) {
             navigate({ to: `/new/${href}` });
