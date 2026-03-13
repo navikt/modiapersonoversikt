@@ -1,11 +1,12 @@
-import { BodyShort, HStack, VStack } from '@navikt/ds-react';
+import { BodyShort, Box, HStack, VStack } from '@navikt/ds-react';
 import { useRef, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
+import testmodal from './img/testmodal.png';
 
-const hvaErNyttItems = [
+const options = [
     {
-        id: 'generelle-ednringer',
-        panelId: 'generelle-ednringer',
+        id: 'generelle-endringer',
+        panelId: 'generelle-endringer',
         title: 'Generelle endringer',
         description: (
             <ul className="list-disc ml-6">
@@ -13,7 +14,7 @@ const hvaErNyttItems = [
                 <li>Du kan bytte til mørk versjon frå menyen</li>
             </ul>
         ),
-        image: <div>halla</div>
+        image: testmodal
     },
     {
         id: 'dokumenter',
@@ -25,7 +26,7 @@ const hvaErNyttItems = [
                 <li>Dokumentene åpnes i denne visningen, eller du kan velge å åpne de i ny fane</li>
             </ul>
         ),
-        image: <div>halla</div>
+        image: ''
     },
     {
         id: 'kommunikasjon',
@@ -38,7 +39,7 @@ const hvaErNyttItems = [
                 <li>Nye meldinger og oppgaver markeres med rød prikk i sidemenyen, og blå prikk ved selv meldingen</li>
             </ul>
         ),
-        image: <div>hade</div>
+        image: '<div>hade</div>'
     },
     {
         id: 'oversikt',
@@ -50,21 +51,21 @@ const hvaErNyttItems = [
                 <li>Nøkkelinfo finner du i personlinjen på toppen av siden</li>
             </ul>
         ),
-        image: <div>hade</div>
+        image: '<div>hade</div>'
     }
 ];
 
 export const HvaErNyttStep = () => {
     const [activeIndex, setActiveIndex] = useState(0);
     const listboxRef = useRef<HTMLDivElement>(null);
-    const activeItem = hvaErNyttItems[activeIndex];
+    const activeItem = options[activeIndex];
 
     const onKeyDown = (event: React.KeyboardEvent) => {
         let next: number | null = null;
-        if (event.key === 'ArrowDown') next = (activeIndex + 1) % hvaErNyttItems.length;
-        else if (event.key === 'ArrowUp') next = (activeIndex - 1 + hvaErNyttItems.length) % hvaErNyttItems.length;
+        if (event.key === 'ArrowDown') next = (activeIndex + 1) % options.length;
+        else if (event.key === 'ArrowUp') next = (activeIndex - 1 + options.length) % options.length;
         else if (event.key === 'Home') next = 0;
-        else if (event.key === 'End') next = hvaErNyttItems.length - 1;
+        else if (event.key === 'End') next = options.length - 1;
 
         if (next !== null) {
             event.preventDefault();
@@ -74,7 +75,7 @@ export const HvaErNyttStep = () => {
 
     return (
         <HStack wrap={false} gap="2" align="start">
-            <div
+            <Box.New
                 ref={listboxRef}
                 aria-label="Hva er nytt i Modia Personoversikt?"
                 aria-orientation="vertical"
@@ -85,8 +86,8 @@ export const HvaErNyttStep = () => {
                 onKeyDown={onKeyDown}
                 role="listbox"
             >
-                {hvaErNyttItems.map((item, index) => (
-                    <div
+                {options.map((item, index) => (
+                    <Box.New
                         key={item.id}
                         id={item.id}
                         role="option"
@@ -107,13 +108,13 @@ export const HvaErNyttStep = () => {
                             <BodyShort className="font-ax-bold">{item.title}</BodyShort>
                             {item.description}
                         </VStack>
-                    </div>
+                    </Box.New>
                 ))}
-            </div>
-            {hvaErNyttItems.map((item, index) => (
-                <div key={item.panelId} id={item.panelId} hidden={activeIndex !== index}>
-                    {item.image}
-                </div>
+            </Box.New>
+            {options.map((item, index) => (
+                <Box.New key={item.panelId} id={item.panelId} hidden={activeIndex !== index}>
+                    <img width="2000" alt="blal" src={item.image} />
+                </Box.New>
             ))}
         </HStack>
     );

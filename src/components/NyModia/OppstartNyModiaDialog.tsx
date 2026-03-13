@@ -6,19 +6,19 @@ import useHarSettNyModiaDialog from 'src/components/NyModia/useHarSettNyModiaDia
 
 export const OppstartNyModiaDialog = () => {
     const [harSett, markerSomSett] = useHarSettNyModiaDialog();
-    const [open, setOpen] = useState(false);
+    const [manueltÅpnet, setmanueltÅpnet] = useState(false);
     const [activeStep, setActiveStep] = useState(1);
 
-    const openEllerIkkeSett = open || !harSett;
+    const openEllerIkkeSett = manueltÅpnet || !harSett;
 
     const lukk = () => {
-        setOpen(false);
+        setmanueltÅpnet(false);
         markerSomSett();
     };
 
     return (
         <>
-            <Button onClick={() => setOpen(true)}>Åpne modal</Button>
+            <Button onClick={() => setmanueltÅpnet(true)}>Åpne modal</Button>
             <Modal width="1000px" aria-labelledby="modal-header" open={openEllerIkkeSett} onClose={lukk}>
                 <Modal.Header closeButton={false}>
                     <VStack>
