@@ -1,7 +1,6 @@
 import { BodyShort, Box, HStack, VStack } from '@navikt/ds-react';
 import { useRef, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
-import testmodal from './img/testmodal.png';
 
 const options = [
     {
@@ -14,7 +13,7 @@ const options = [
                 <li>Du kan bytte til mørk versjon frå menyen</li>
             </ul>
         ),
-        image: testmodal
+        image: ''
     },
     {
         id: 'dokumenter',
