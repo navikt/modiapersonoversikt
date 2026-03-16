@@ -1,5 +1,11 @@
 import { expect, test } from '@playwright/test';
 
+test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => {
+        window.localStorage.setItem('ny-modia-v2', String(Number.MAX_SAFE_INTEGER));
+    });
+});
+
 test('smoketest', async ({ page }) => {
     await page.goto('/');
 
