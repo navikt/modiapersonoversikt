@@ -1,14 +1,17 @@
 import { SparklesIcon } from '@navikt/aksel-icons';
 import { Button, Modal } from '@navikt/ds-react';
 import { useRef } from 'react';
+import { useDisableDialog } from 'src/lib/state/dialog';
 
 function AutoCompleteTekstTips() {
     const modalRef = useRef<HTMLDialogElement>(null);
+    const disableDialog = useDisableDialog();
     return (
         <div>
             <Button
                 variant="tertiary"
                 size="small"
+                disabled={disableDialog}
                 icon={<SparklesIcon title="Hurtigtast-tips" />}
                 onClick={(e) => {
                     e.preventDefault();

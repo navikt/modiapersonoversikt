@@ -1,5 +1,6 @@
 import { Select, VStack } from '@navikt/ds-react';
 import type { ReactNode } from 'react';
+import { useDisableDialog } from 'src/lib/state/dialog';
 import { Temagruppe, temagruppeTekst } from 'src/models/temagrupper';
 
 interface VelgTemaProps {
@@ -9,9 +10,11 @@ interface VelgTemaProps {
 }
 
 export default function VelgTema({ valgtTema, setValgtTema, error }: VelgTemaProps) {
+    const diableDialog = useDisableDialog();
     return (
         <VStack gap="1">
             <Select
+                disabled={diableDialog}
                 label="Temagruppe"
                 hideLabel
                 onChange={(e) => {
