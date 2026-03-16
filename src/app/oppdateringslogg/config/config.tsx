@@ -707,6 +707,25 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                     </p>
                 </>
             )
+        },
+        {
+            id: 42,
+            tittel: 'Mandag 23.mars vil Modia personoversikt oppdateres',
+            dato: new Date('2026-03-17 12:00'),
+            aktiv: true,
+            ingress: null,
+            beskrivelse: (
+                <>
+                    <p className="my-2">
+                        Endringene er mest av alt visuelle, slik at personoversikten får et mer moderne utseende. Det
+                        vil også være noen funksjonelle forbedringer som vi håper forenkler bruken.
+                    </p>
+                    <p>
+                        Mer informasjon finner dere i brukermanualen, og i introduksjonen som vises i systemet ved
+                        åpning.
+                    </p>
+                </>
+            )
         }
     ];
 }
