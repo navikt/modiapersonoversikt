@@ -18,8 +18,8 @@ export const nyModiaAtom = atom(
         if (stored < 0) return true;
         return Date.now() >= stored;
     },
-    (_get, set, useNyModia: boolean) => {
-        set(nyModiaStorageAtom, useNyModia ? -1 : nesteMidnattOslo());
+    (_get, set, brukNyModia: boolean) => {
+        set(nyModiaStorageAtom, brukNyModia ? -1 : nesteMidnattOslo());
     }
 );
 
