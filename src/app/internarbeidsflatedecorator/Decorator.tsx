@@ -9,6 +9,8 @@ import type { DecoratorPropsV3 } from './decoratorprops';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
 import './personsokKnapp.less';
 import './decorator.less';
+import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
+import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 import { useDecoratorConfig } from './useDecoratorConfig';
 
 const InternflateDecoratorV3 = NAVSPA.importer<DecoratorPropsV3>('internarbeidsflate-decorator-v3');
@@ -16,6 +18,7 @@ const InternflateDecoratorV3 = NAVSPA.importer<DecoratorPropsV3>('internarbeidsf
 function DropdownMenyPortal() {
     const [container, setContainer] = useState<Element | null>(null);
     const containerRef = useRef<Element | null>(null);
+    const { isOn } = useFeatureToggle(FeatureToggles.NyModiaKnapp);
 
     useEffect(() => {
         const findAndSet = () => {
@@ -33,7 +36,7 @@ function DropdownMenyPortal() {
         return () => observer.disconnect();
     }, []);
 
-    if (!container) return null;
+    if (!container || !isOn) return null;
     return createPortal(<DropdownMeny />, container);
 }
 
