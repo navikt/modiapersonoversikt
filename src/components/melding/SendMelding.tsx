@@ -26,7 +26,7 @@ export const SendMelding = ({ lukkeKnapp }: { lukkeKnapp?: ReactElement<typeof B
     );
 };
 
-export const ReservertIKRR = () => {
+const ReservertIKRR = () => {
     const { data } = usePersonData();
     const reservertIKRR = !!data?.person.kontaktInformasjon?.erReservert?.value;
     const [overskridReservasjon, setOverskridReservasjon] = useAtom(overskridKontaktReservasjonAtom);
