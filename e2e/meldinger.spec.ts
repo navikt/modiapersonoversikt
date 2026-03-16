@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
     await page.addInitScript(() => {
-        window.localStorage.setItem('ny-modia', 'true');
+        window.localStorage.setItem('ny-modia-v2', '-1');
     });
 });
 

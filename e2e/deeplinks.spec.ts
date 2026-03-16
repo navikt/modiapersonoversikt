@@ -2,6 +2,12 @@ import { expect, test } from '@playwright/test';
 import { meldingerTest, sakerTest, ytelserTest } from 'src/app/personside/infotabs/dyplenkeTest/utils-dyplenker-test';
 import { INFOTABS } from 'src/app/personside/infotabs/InfoTabEnum';
 
+test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => {
+        window.localStorage.setItem('ny-modia-v2', String(Number.MAX_SAFE_INTEGER));
+    });
+});
+
 test('Utbetalinger', async ({ page }) => {
     await page.clock.setFixedTime(new Date(0));
     page.goto('/person/oversikt');
