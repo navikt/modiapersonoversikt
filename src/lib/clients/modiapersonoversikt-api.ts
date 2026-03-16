@@ -458,7 +458,8 @@ export const useForeldrepengerFpSak = (fom: string, tom: string) => {
 export const useDagpenger = (fom: string, tom: string) => {
     const fnr = usePersonAtomValue();
     return $api.useQuery('post', '/rest/ytelse/dagpenger', {
-        body: { fnr, fom, tom }
+        // the fnr: fnr is just to satisfy our mock setup
+        body: { personIdent: fnr, fraOgMedDato: fom, tilOgMedDato: tom, fnr: fnr }
     });
 };
 

@@ -128,7 +128,7 @@ export function setupReactQueryMocks() {
         statiskEngangstonadFpSakMock,
         statiskEngangstonadFpSakMock
     ]);
-    mockReactQuery(dagpengerResource.useDagpenger, [statiskPeriodeDagpengerDtoMock, statiskPeriodeDagpengerDtoMock]);
+    mockReactQuery(dagpengerResource.useDagpenger, statiskPeriodeDagpengerDtoMock);
     mockReactQuery(oppfolgingResource.useFetch, statiskOppfolgingMock);
     mockReactQuery(sakstemaResource.useFetch, getStaticMockSaksoversiktV2());
     mockReactQuery(utbetalingerResource.useFetch, statiskMockUtbetalingRespons);

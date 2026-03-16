@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import navfaker from 'nav-faker/dist/index';
 import {
     type PeriodeDagpengerDto,
+    PeriodeDagpengerDtoKilde,
     PeriodeDagpengerDtoYtelseType,
     type PseudoDagpengerVedtak
 } from 'src/generated/modiapersonoversikt-api';
@@ -13,18 +14,13 @@ import { fyllRandomListe } from '../utils/mock-utils';
 
 export function getMockDagpengerResponse(fnr: string): PseudoDagpengerVedtak {
     if (fnr === aremark.personIdent) {
-        const statisk = statiskPeriodeDagpengerDtoMock;
-        const først = statiskPeriodeDagpengerDtoMock.fraOgMedDato;
-        return {
-            perioder: [statisk, statisk],
-            nyesteFraOgMedDato: først
-        };
+        return statiskPeriodeDagpengerDtoMock;
     }
     faker.seed(Number(fnr));
     navfaker.seed(`${fnr}xyzzy`);
-    // sometimes we want an empty list
+    // sometimes we might want an empty list
     if (navfaker.random.vektetSjanse(0.3)) {
-        return [];
+        return { perioder: [] };
     }
     const perioder = fyllRandomListe<PeriodeDagpengerDto>(() => getMockPeriodeDagpengerDto(fnr), 3);
     const først = perioder[0].fraOgMedDato;
@@ -47,9 +43,12 @@ function getMockPeriodeDagpengerDto(fnr: string): PeriodeDagpengerDto {
         PeriodeDagpengerDtoYtelseType.DAGPENGER_PERMITTERING_FISKEINDUSTRI
     ]);
 
+    const kilde = navfaker.random.arrayElement([PeriodeDagpengerDtoKilde.ARENA, PeriodeDagpengerDtoKilde.DP_SAK]);
+
     return {
         fraOgMedDato: fomDato,
         ytelseType: ytelseType,
-        tilOgMedDato: tomDato
+        tilOgMedDato: tomDato,
+        kilde: kilde
     };
 }

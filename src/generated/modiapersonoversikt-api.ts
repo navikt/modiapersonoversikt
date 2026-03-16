@@ -1242,6 +1242,13 @@ export interface components {
         ForeldrepengerResponse: {
             foreldrepenger?: components['schemas']['Foreldrepenger'][];
         };
+        DatadelingRequestDagpengerDto: {
+            personIdent: string;
+            /** Format: date */
+            fraOgMedDato: string;
+            /** Format: date */
+            tilOgMedDato?: string;
+        };
         PeriodeDagpengerDto: {
             /** Format: date */
             fraOgMedDato: string;
@@ -2044,8 +2051,8 @@ export interface components {
             opprettetDato?: string;
             finnesIGsak?: boolean;
             finnesIPsak?: boolean;
-            saksIdVisning?: string;
             sakstypeForVisningGenerell?: boolean;
+            saksIdVisning?: string;
         };
         Resultat: {
             saker: components['schemas']['JournalforingSak'][];
@@ -2359,6 +2366,7 @@ export type ForeldrepengePeriode = components['schemas']['ForeldrepengePeriode']
 export type Foreldrepenger = components['schemas']['Foreldrepenger'];
 export type ForeldrepengerArbeidsforhold = components['schemas']['ForeldrepengerArbeidsforhold'];
 export type ForeldrepengerResponse = components['schemas']['ForeldrepengerResponse'];
+export type DatadelingRequestDagpengerDto = components['schemas']['DatadelingRequestDagpengerDto'];
 export type PeriodeDagpengerDto = components['schemas']['PeriodeDagpengerDto'];
 export type PseudoDagpengerVedtak = components['schemas']['PseudoDagpengerVedtak'];
 export type NonavaapapiinternPeriodeDto = components['schemas']['NonavaapapiinternPeriodeDTO'];
@@ -2676,7 +2684,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                'application/json': components['schemas']['FnrDatoRangeRequest'];
+                'application/json': components['schemas']['DatadelingRequestDagpengerDto'];
             };
         };
         responses: {

@@ -3,6 +3,10 @@ import { type FetchError, post } from 'src/api/api';
 import { apiBaseUri } from 'src/api/config';
 import type { PseudoDagpengerVedtak } from 'src/generated/modiapersonoversikt-api';
 
+/**
+ * does _not_ pass an FnrDatoRangeRequest, but a DatadelingRequestDagpengerDto,
+ * which has the same rough shape.
+ */
 export const useDagpenger = (
     fnr: string,
     fom: string,
@@ -13,8 +17,8 @@ export const useDagpenger = (
         queryFn: () =>
             post(`${apiBaseUri}/ytelse/dagpenger`, {
                 fnr,
-                fom: fom,
-                tom: tom
+                fraOgMedDato: fom,
+                tilOgMedDato: tom
             })
     });
 };
