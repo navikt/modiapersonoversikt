@@ -393,18 +393,20 @@ export const useForeslotteEnheter = ({
     );
 };
 
+const ytelseQueryOptions = {
+    retry: false,
+    retryOnMount: false,
+    throwOnError: false
+} as const;
+
 export const useForeldrepenger = (fom: string, tom: string) => {
     const enableForeldrepengerInfotrygd = useFeatureToggle(FeatureToggles.InfotrygdForeldrepenger).isOn;
     const fnr = usePersonAtomValue();
     return $api.useQuery(
         'post',
         '/rest/ytelse/foreldrepenger',
-        {
-            body: { fnr, fom, tom }
-        },
-        {
-            enabled: enableForeldrepengerInfotrygd
-        }
+        { body: { fnr, fom, tom } },
+        { ...ytelseQueryOptions, enabled: enableForeldrepengerInfotrygd }
     );
 };
 
@@ -414,12 +416,8 @@ export const usePleiepenger = (fom: string, tom: string) => {
     return $api.useQuery(
         'post',
         '/rest/ytelse/pleiepenger',
-        {
-            body: { fnr, fom, tom }
-        },
-        {
-            enabled: enablePleiepengerInfotrygd
-        }
+        { body: { fnr, fom, tom } },
+        { ...ytelseQueryOptions, enabled: enablePleiepengerInfotrygd }
     );
 };
 
@@ -429,41 +427,34 @@ export const useSykepenger = (fom: string, tom: string) => {
     return $api.useQuery(
         'post',
         '/rest/ytelse/sykepenger',
-        {
-            body: { fnr, fom, tom }
-        },
-        {
-            enabled: enableSykepengerInfotrygd
-        }
+        { body: { fnr, fom, tom } },
+        { ...ytelseQueryOptions, enabled: enableSykepengerInfotrygd }
     );
 };
 
 export const useTiltakspenger = (fom: string, tom: string) => {
     const fnr = usePersonAtomValue();
-    return $api.useQuery('post', '/rest/ytelse/tiltakspenger', {
-        body: { fnr, fom, tom }
-    });
+    return $api.useQuery('post', '/rest/ytelse/tiltakspenger', { body: { fnr, fom, tom } }, ytelseQueryOptions);
 };
 
 export const usePensjon = (fom: string, tom: string) => {
     const fnr = usePersonAtomValue();
-    return $api.useQuery('post', '/rest/ytelse/pensjon', {
-        body: { fnr, fom, tom }
-    });
+    return $api.useQuery('post', '/rest/ytelse/pensjon', { body: { fnr, fom, tom } }, ytelseQueryOptions);
 };
 
 export const useArbeidsavklaringspenger = (fom: string, tom: string) => {
     const fnr = usePersonAtomValue();
-    return $api.useQuery('post', '/rest/ytelse/arbeidsavklaringspenger', {
-        body: { fnr, fom, tom }
-    });
+    return $api.useQuery(
+        'post',
+        '/rest/ytelse/arbeidsavklaringspenger',
+        { body: { fnr, fom, tom } },
+        ytelseQueryOptions
+    );
 };
 
 export const useForeldrepengerFpSak = (fom: string, tom: string) => {
     const fnr = usePersonAtomValue();
-    return $api.useQuery('post', '/rest/ytelse/foreldrepenger_fpsak', {
-        body: { fnr, fom, tom }
-    });
+    return $api.useQuery('post', '/rest/ytelse/foreldrepenger_fpsak', { body: { fnr, fom, tom } }, ytelseQueryOptions);
 };
 
 export const useSykepengerSpokelse = (fom: string, tom: string) => {
@@ -472,12 +463,8 @@ export const useSykepengerSpokelse = (fom: string, tom: string) => {
     return $api.useQuery(
         'post',
         '/rest/ytelse/spokelse_sykepenger',
-        {
-            body: { fnr, fom, tom }
-        },
-        {
-            enabled: isOn
-        }
+        { body: { fnr, fom, tom } },
+        { ...ytelseQueryOptions, enabled: isOn }
     );
 };
 
