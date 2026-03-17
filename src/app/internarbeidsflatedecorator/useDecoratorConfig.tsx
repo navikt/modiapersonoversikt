@@ -35,11 +35,7 @@ export function useDecoratorConfig() {
         setAktivEnhet(enhet);
     };
 
-    const configV3 = useCallback(lagConfigV3, [aktivEnhet, settAktivBruker, handleSetEnhet])(
-        aktivEnhet,
-        settAktivBruker,
-        handleSetEnhet
-    );
+    const configV3 = useCallback(lagConfigV3, [])(aktivEnhet, settAktivBruker, handleSetEnhet);
 
     return { configV3 };
 }
@@ -56,6 +52,7 @@ const etterSokefelt = `
             <span class="oppdateringslogg__beskrivelse" aria-label="Åpne oppdateringslogg"></span>
             <span class="oppdateringslogg__ulestindikator" aria-label="(Uleste)"></span>
           </button>
+          <div id="dropdown-container"></div>
         </div>
     `;
 

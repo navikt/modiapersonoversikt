@@ -1,9 +1,8 @@
-import { ArrowUndoIcon, SparklesIcon } from '@navikt/aksel-icons';
-import { Box, Button } from '@navikt/ds-react';
+import { Box, Switch } from '@navikt/ds-react';
 import { useLocation, useNavigate } from '@tanstack/react-router';
 import { atom, useAtom, useAtomValue } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { trackToggleNyModia } from 'src/utils/analytics';
 import { nesteMidnattOslo } from 'src/utils/date-utils';
 import { FeatureToggles } from './featureToggle/toggleIDs';
@@ -25,13 +24,14 @@ export const nyModiaAtom = atom(
 
 const brukerHarValgtAtom = atom((get) => get(nyModiaStorageAtom) !== null);
 
-export const NyModia = () => {
+export const NyModiaSwitch = () => {
     const { isOn, pending } = useFeatureToggle(FeatureToggles.NyModiaKnapp);
     const [nyModia, setNyModia] = useAtom(nyModiaAtom);
     const brukerHarValgt = useAtomValue(brukerHarValgtAtom);
 
     const { href } = useLocation();
     const navigate = useNavigate();
+    const [isChecked, setIsChecked] = useState(nyModia);
 
     useEffect(() => {
         if (!pending && isOn && !brukerHarValgt) {
@@ -41,10 +41,12 @@ export const NyModia = () => {
 
     const handleClick = useCallback(() => {
         const switchingTo = !nyModia;
-        setNyModia(switchingTo);
-        trackToggleNyModia(switchingTo);
-        void navigate({ to: switchingTo ? `/new/${href}` : href.replace('/new', '') });
-    }, [navigate, setNyModia, nyModia, href]);
+        setIsChecked(switchingTo);
+        setTimeout(() => {
+            setNyModia(switchingTo);
+            trackToggleNyModia(switchingTo);
+        }, 200);
+    }, [setNyModia, nyModia]);
 
     useEffect(() => {
         if (pending) return;
@@ -61,16 +63,10 @@ export const NyModia = () => {
     if (!isOn) return;
 
     return (
-        <Box className="absolute bottom-0 right-4 mb-12 overflow-hidden z-10" borderRadius="small">
-            <Button
-                icon={nyModia ? <ArrowUndoIcon /> : <SparklesIcon />}
-                variant="secondary"
-                size="small"
-                onClick={handleClick}
-                id="ny-modia-knapp-wrapper"
-            >
-                {nyModia ? 'Gammel Modia' : 'Ny Modia'}
-            </Button>
-        </Box>
+        <Box.New paddingInline="2">
+            <Switch size="medium" checked={isChecked} onChange={handleClick}>
+                Ny Modia
+            </Switch>
+        </Box.New>
     );
 };
