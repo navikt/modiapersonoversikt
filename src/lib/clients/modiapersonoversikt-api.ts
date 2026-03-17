@@ -394,9 +394,7 @@ export const useForeslotteEnheter = ({
 };
 
 const ytelseQueryOptions = {
-    retry: false,
-    retryOnMount: false,
-    throwOnError: false
+    retryOnMount: false
 } as const;
 
 export const useForeldrepenger = (fom: string, tom: string) => {
