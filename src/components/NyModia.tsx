@@ -41,13 +41,12 @@ export const NyModiaSwitch = () => {
 
     const handleClick = useCallback(() => {
         const switchingTo = !nyModia;
-        setIsChecked(!nyModia);
+        setIsChecked(switchingTo);
         setTimeout(() => {
             setNyModia(switchingTo);
-            trackToggleNyModia(!nyModia);
+            trackToggleNyModia(switchingTo);
         }, 200);
-        void navigate({ to: switchingTo ? `/new/${href}` : href.replace('/new', '') });
-    }, [navigate, setNyModia, nyModia, href]);
+    }, [setNyModia, nyModia]);
 
     useEffect(() => {
         if (pending) return;
