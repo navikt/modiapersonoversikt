@@ -98,10 +98,8 @@ export function erChatTraad(traad: Traad): boolean {
 }
 
 export function erUbesvartHenvendelseFraBruker(traad: Traad): boolean {
-    if (traad.meldinger.length > 1) {
-        return false;
-    }
-    const melding = traad.meldinger[0];
+    if (!traad.meldinger.length) return false;
+    const melding = nyesteMelding(traad);
     if (!erMeldingFraBruker(melding.meldingstype)) {
         return false;
     }
