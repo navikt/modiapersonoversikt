@@ -35,7 +35,7 @@ function BankkontoBody({ harFeilendeSystem, bankkonto }: Props) {
 function Bankkonto({ bankkonto, harFeilendeSystem }: Props) {
     const title = bankkonto?.landkode && bankkonto.landkode.kode !== 'NOR' ? 'Kontonummer utland' : 'Kontonummer';
     return (
-        <InfoElement title={title} icon={<BankNoteFillIcon fontSize="1.2rem" color="var(--a-green-300)" />}>
+        <InfoElement title={title} icon={<BankNoteFillIcon fontSize="1.2rem" color="var(--ax-success-400)" />}>
             <BankkontoBody bankkonto={bankkonto} harFeilendeSystem={harFeilendeSystem} />
         </InfoElement>
     );
