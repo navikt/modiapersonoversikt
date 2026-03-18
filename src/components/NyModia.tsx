@@ -1,13 +1,12 @@
 import { useLocation, useNavigate } from '@tanstack/react-router';
-import {atom, useAtom, useAtomValue} from 'jotai';
+import { atom, useAtom, useAtomValue } from 'jotai';
+import { atomWithStorage } from 'jotai/utils';
 import { useEffect } from 'react';
+import { nesteMidnattOslo } from 'src/utils/date-utils';
 import { FeatureToggles } from './featureToggle/toggleIDs';
 import useFeatureToggle from './featureToggle/useFeatureToggle';
-import {atomWithStorage} from "jotai/utils";
-import {nesteMidnattOslo} from "src/utils/date-utils";
 
-
-export const nyModiaStorageAtom = atomWithStorage<number | null>('ny-modia-v2', null);
+const nyModiaStorageAtom = atomWithStorage<number | null>('ny-modia-v2', null);
 
 export const nyModiaAtom = atom(
     (get) => {
@@ -21,8 +20,7 @@ export const nyModiaAtom = atom(
     }
 );
 
-export const brukerHarValgtAtom = atom((get) => get(nyModiaStorageAtom) !== null);
-
+const brukerHarValgtAtom = atom((get) => get(nyModiaStorageAtom) !== null);
 
 export const useNavigateToNewOrOldModia = () => {
     const { isOn, pending } = useFeatureToggle(FeatureToggles.NyModiaKnapp);
@@ -38,11 +36,10 @@ export const useNavigateToNewOrOldModia = () => {
         }
     }, [pending, isOn, brukerHarValgt, setNyModia]);
 
-
     useEffect(() => {
-        if(pending) return
+        if (pending) return;
         const nyModiaEnabled = isOn && nyModia;
-        console.log({nyModiaEnabled})
+        console.log({ nyModiaEnabled });
 
         if (href.includes('/saker') && nyModiaEnabled) {
             void navigate({ to: href.replace('/saker', '/dokumenter') });
@@ -52,6 +49,4 @@ export const useNavigateToNewOrOldModia = () => {
             void navigate({ to: `/new/${href}` });
         }
     }, [href, nyModia, isOn, pending, navigate]);
-
-
 };

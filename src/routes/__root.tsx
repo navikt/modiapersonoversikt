@@ -11,13 +11,13 @@ import VelgEnhet from 'src/app/VelgEnhet';
 import DemoBanner from 'src/components/DemoBanner';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import NotFound from 'src/components/NotFound';
+import { useNavigateToNewOrOldModia } from 'src/components/NyModia';
 import { ValgtEnhetProvider } from 'src/context/valgtenhet-state';
 import { aktivBrukerLastetAtom, aktivEnhetAtom } from 'src/lib/state/context';
 import { ThemeProvider, themeAtom } from 'src/lib/state/theme';
 import { usePersistentWWLogin } from 'src/login/use-persistent-ww-login';
 import HandleLegacyUrls from 'src/utils/HandleLegacyUrls';
 import useTimeout from 'src/utils/hooks/use-timeout';
-import {useNavigateToNewOrOldModia} from "src/components/NyModia";
 
 export const Route = createRootRoute({
     component: RootLayout,
@@ -46,8 +46,7 @@ function App({ children }: PropsWithChildren) {
         setContextTimeout(true);
     }, 1500);
 
-    useNavigateToNewOrOldModia()
-
+    useNavigateToNewOrOldModia();
 
     if (!contextLoaded && contextTimeout) {
         return (
@@ -113,7 +112,6 @@ function RootLayout() {
     const isLanding = matchRoute({ to: '/landingpage' });
     const isNewModia = matchRoute({ to: '/new/person', fuzzy: true }) !== false;
     const theme = useAtomValue(themeAtom);
-
 
     useEffect(() => {
         document.documentElement.classList.toggle('dark', theme === 'dark');

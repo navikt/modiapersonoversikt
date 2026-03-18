@@ -1,10 +1,10 @@
 import { Box, Switch } from '@navikt/ds-react';
 import { useAtom } from 'jotai';
 import { useCallback, useState } from 'react';
+import { nyModiaAtom } from 'src/components/NyModia';
 import { trackToggleNyModia } from 'src/utils/analytics';
 import { FeatureToggles } from './featureToggle/toggleIDs';
 import useFeatureToggle from './featureToggle/useFeatureToggle';
-import {nyModiaAtom} from "src/components/NyModia";
 
 export const NyModiaSwitch = () => {
     const { isOn } = useFeatureToggle(FeatureToggles.NyModiaKnapp);
@@ -20,7 +20,6 @@ export const NyModiaSwitch = () => {
             trackToggleNyModia(switchingTo);
         }, 200);
     }, [setNyModia, nyModia]);
-
 
     if (!isOn) return;
 
