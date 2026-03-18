@@ -37,14 +37,14 @@ const TraadDetailContent = ({ traad }: { traad: Traad }) => {
                 <Journalposter journalposter={traad.journalposter} />
                 <TraadOppgaver traadId={traad.traadId} />
                 <Meldinger meldinger={traad.meldinger} />
-                <Box.New>
+                <Box>
                     <HStack justify="end">
                         {kanBesvares && (
-                            <Box.New>
+                            <Box>
                                 <Button size="small" onClick={svarSamtale}>
                                     Svar
                                 </Button>
-                            </Box.New>
+                            </Box>
                         )}
                     </HStack>
                     <VStack gap="2">
@@ -71,7 +71,7 @@ const TraadDetailContent = ({ traad }: { traad: Traad }) => {
                             </InlineMessage>
                         )}
                     </VStack>
-                </Box.New>
+                </Box>
             </VStack>
         </Card>
     );

@@ -106,12 +106,12 @@ export const YtelserListFilter = () => {
     return (
         <FilterExpansionCard fane="ytelser" title={<FilterTitle />}>
             <VStack gap="2">
-                <Box.New maxWidth="17rem">
+                <Box maxWidth="17rem">
                     <YtelserTypeFilter />
-                </Box.New>
-                <Box.New>
+                </Box>
+                <Box>
                     <DateFilter />
-                </Box.New>
+                </Box>
             </VStack>
         </FilterExpansionCard>
     );

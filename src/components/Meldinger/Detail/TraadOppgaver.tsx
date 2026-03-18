@@ -18,7 +18,7 @@ export const TraadOppgaver = ({ traadId }: { traadId: string }) => {
 
     return (
         <ReadMore header={`${traadOppgaver.length} ${flertall ? 'åpne' : 'åpen'} oppgave${flertall ? 'r' : ''}`}>
-            <Box.New paddingInline="4" paddingBlock="2">
+            <Box paddingInline="4" paddingBlock="2">
                 <Table size="small" data-testid="oppgaver-table">
                     <Table.Header>
                         <Table.Row>
@@ -65,7 +65,7 @@ export const TraadOppgaver = ({ traadId }: { traadId: string }) => {
                         })}
                     </Table.Body>
                 </Table>
-            </Box.New>
+            </Box>
         </ReadMore>
     );
 };

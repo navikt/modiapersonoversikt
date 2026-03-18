@@ -63,10 +63,10 @@ export const NyModiaSwitch = () => {
     if (!isOn) return;
 
     return (
-        <Box.New paddingInline="2">
+        <Box paddingInline="2">
             <Switch size="medium" checked={isChecked} onChange={handleClick}>
                 Ny Modia
             </Switch>
-        </Box.New>
+        </Box>
     );
 };

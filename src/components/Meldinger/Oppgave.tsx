@@ -52,7 +52,7 @@ export const OppgaveModal = ({ open, setOpen, traad }: Props) => {
             }}
         >
             <Modal.Body>
-                <Box.New overflowY="scroll" paddingInline="4">
+                <Box overflowY="scroll" paddingInline="4">
                     <Suspense
                         fallback={
                             <HStack justify="center" align="center">
@@ -64,7 +64,7 @@ export const OppgaveModal = ({ open, setOpen, traad }: Props) => {
                             {open && <OppgaveForm traad={traad} onSuccess={() => setOpen(false)} />}
                         </ErrorBoundary>
                     </Suspense>
-                </Box.New>
+                </Box>
             </Modal.Body>
         </Modal>
     );

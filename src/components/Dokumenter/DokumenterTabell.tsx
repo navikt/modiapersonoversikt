@@ -71,11 +71,11 @@ export const DokumenterTabell = () => {
 
     if (antallDokumenter === 0) {
         return (
-            <Box.New paddingBlock="4">
+            <Box paddingBlock="4">
                 <InlineMessage status="info" aria-live="polite">
                     Ingen resultat
                 </InlineMessage>
-            </Box.New>
+            </Box>
         );
     }
 
@@ -134,9 +134,9 @@ export const DokumenterTabell = () => {
                                                 fontSize="1.3rem"
                                                 aria-hidden
                                             />{' '}
-                                            <Box.New className="text-[var(--ax-text-neutral-subtle)]">
+                                            <Box className="text-[var(--ax-text-neutral-subtle)]">
                                                 Ingen tilgang
-                                            </Box.New>
+                                            </Box>
                                         </HStack>
                                     )}
                                 </Table.HeaderCell>

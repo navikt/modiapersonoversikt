@@ -196,18 +196,18 @@ export const TraadListFilterCard = () => {
         <FilterExpansionCard fane="meldinger" title={<FilterTitle />}>
             <VStack gap="2">
                 <SearchField />
-                <Box.New maxWidth="17rem">
+                <Box maxWidth="17rem">
                     <TemaFilter />
-                </Box.New>
-                <Box.New maxWidth="17rem">
+                </Box>
+                <Box maxWidth="17rem">
                     <TraadTypeFilter />
-                </Box.New>
-                <Box.New>
+                </Box>
+                <Box>
                     <DateFilter />
-                </Box.New>
-                <Box.New>
+                </Box>
+                <Box>
                     <ResetFilters />
-                </Box.New>
+                </Box>
             </VStack>
         </FilterExpansionCard>
     );

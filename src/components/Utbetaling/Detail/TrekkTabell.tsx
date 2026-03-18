@@ -6,7 +6,7 @@ export const TrekkTabell = ({ ytelse }: { ytelse: Ytelse }) => {
     if (!ytelse.trekkListe || ytelse.trekkListe?.isEmpty()) return null;
     return (
         <>
-            <Box.New margin="2" className="border-ax-border-neutral-subtle border-b-1"></Box.New>
+            <Box margin="2" className="border-ax-border-neutral-subtle border-b-1"></Box>
             <Table size="small">
                 <Table.Header>
                     <Table.Row shadeOnHover={false}>

@@ -57,7 +57,7 @@ const Toast = ({ title, description, type }: ToastProps) => {
     }
 
     return (
-        <Box.New
+        <Box
             background={bg}
             padding="4"
             width="var(--width)"
@@ -78,6 +78,6 @@ const Toast = ({ title, description, type }: ToastProps) => {
                     </BodyShort>
                 )}
             </div>
-        </Box.New>
+        </Box>
     );
 };

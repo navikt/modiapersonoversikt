@@ -71,13 +71,13 @@ const PersonlinjeHeader = () => {
             className="focus:outline-0"
             tabIndex={-1}
         >
-            <Box.New borderRadius="full" borderWidth="2" style={{ borderColor: farge }}>
+            <Box borderRadius="full" borderWidth="2" style={{ borderColor: farge }}>
                 {kjonn.kode === Kjonn.K ? (
                     <FigureOutwardIcon aria-hidden color={farge} fontSize="2rem" />
                 ) : (
                     <FigureInwardIcon aria-hidden color={farge} fontSize="2rem" />
                 )}
-            </Box.New>
+            </Box>
             <HStack gap="1 3">
                 <Personalia
                     navn={navn ? `${navn.fornavn} ${navn.mellomnavn ?? ''} ${navn.etternavn}` : 'UKJENT'}

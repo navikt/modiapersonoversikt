@@ -214,15 +214,15 @@ export const DokumenterFilter = () => {
 
     return (
         <HStack gap="2" justify="start">
-            <Box.New>
+            <Box>
                 <DateFilter />
-            </Box.New>
-            <Box.New flexGrow="1">
+            </Box>
+            <Box flexGrow="1">
                 <TemaFilter />
-            </Box.New>
-            <Box.New>
+            </Box>
+            <Box>
                 <SaksIdSearchField />
-            </Box.New>
+            </Box>
             <HStack align="end">
                 <ResetFilter />
             </HStack>
