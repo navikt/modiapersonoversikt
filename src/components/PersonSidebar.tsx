@@ -86,6 +86,7 @@ export const PersonSidebarMenu = () => {
                 <Box>
                     <Box padding="2" className="flex">
                         <Button
+                            data-color="neutral"
                             icon={
                                 expanded ? (
                                     <ArrowLeftIcon className="group-hover:-translate-x-1" aria-hidden />
@@ -95,12 +96,11 @@ export const PersonSidebarMenu = () => {
                             }
                             aria-controls="sidebar-person"
                             aria-expanded={expanded}
-                            variant="tertiary-neutral"
+                            variant="tertiary"
                             size="small"
                             onClick={() => setExpanded((v) => !v)}
                             className="flex-1 justify-end group p-0"
-                            iconPosition="right"
-                        >
+                            iconPosition="right">
                             {expanded && <span className="font-normal">Skjul</span>}
                             {!expanded && <span className="sr-only">Vis</span>}
                         </Button>
@@ -133,6 +133,7 @@ export const PersonSidebarMenu = () => {
                                 {({ isActive }) => (
                                     <>
                                         <Button
+                                            data-color="neutral"
                                             aria-hidden
                                             tabIndex={-1}
                                             icon={
@@ -151,7 +152,7 @@ export const PersonSidebarMenu = () => {
                                                     )}
                                                 </>
                                             }
-                                            variant="tertiary-neutral"
+                                            variant="tertiary"
                                             size="small"
                                             className={twMerge(
                                                 'my-1 relative',
@@ -163,8 +164,7 @@ export const PersonSidebarMenu = () => {
                                                     'text-ax-text-accent',
                                                     'hover:text-ax-text-accent'
                                                 ]
-                                            )}
-                                        >
+                                            )}>
                                             {expanded && <span className="font-normal">{title}</span>}
                                         </Button>
                                     </>
