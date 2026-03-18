@@ -17,6 +17,7 @@ import { ThemeProvider, themeAtom } from 'src/lib/state/theme';
 import { usePersistentWWLogin } from 'src/login/use-persistent-ww-login';
 import HandleLegacyUrls from 'src/utils/HandleLegacyUrls';
 import useTimeout from 'src/utils/hooks/use-timeout';
+import {useNavigateToNewOrOldModia} from "src/components/NyModia";
 
 export const Route = createRootRoute({
     component: RootLayout,
@@ -44,6 +45,9 @@ function App({ children }: PropsWithChildren) {
     useTimeout(() => {
         setContextTimeout(true);
     }, 1500);
+
+    useNavigateToNewOrOldModia()
+
 
     if (!contextLoaded && contextTimeout) {
         return (
@@ -109,6 +113,7 @@ function RootLayout() {
     const isLanding = matchRoute({ to: '/landingpage' });
     const isNewModia = matchRoute({ to: '/new/person', fuzzy: true }) !== false;
     const theme = useAtomValue(themeAtom);
+
 
     useEffect(() => {
         document.documentElement.classList.toggle('dark', theme === 'dark');
