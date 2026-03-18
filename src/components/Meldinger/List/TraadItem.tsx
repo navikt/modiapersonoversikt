@@ -174,9 +174,9 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
 
     return (
         <Link
+            data-color="neutral"
             ref={linkRef}
             data-testid="traaditem"
-            variant="neutral"
             className="hover:no-underline block"
             underline={false}
             onClick={(e) => {
