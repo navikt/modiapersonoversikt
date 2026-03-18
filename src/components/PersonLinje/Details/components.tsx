@@ -15,7 +15,7 @@ export const Group = ({
     return (
         <section className="mx-4 mb-2">
             <HStack className="relative" align="center">
-                <div aria-hidden className="absolute -left-7 text-2xl text-icon-subtle">
+                <div aria-hidden className="absolute -left-7 text-2xl text-ax-text-neutral-subtle">
                     {icon}
                 </div>
                 {title && (
@@ -42,7 +42,7 @@ export const InfoElement = ({
             {title && (
                 <HStack>
                     {icon}
-                    <Heading as="h4" size="xsmall" className={twMerge('text-medium', icon && 'pl-1')}>
+                    <Heading as="h4" size="xsmall" className={twMerge('text-ax-medium', icon && 'pl-1')}>
                         {title}
                     </Heading>
                 </HStack>

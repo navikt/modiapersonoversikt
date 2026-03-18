@@ -84,7 +84,7 @@ function SakerFullscreen() {
     });
 
     return (
-        <div className="flex-auto bg-gray-200">
+        <div className="flex-auto bg-ax-neutral-300">
             <Innhold />
         </div>
     );

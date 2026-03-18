@@ -24,7 +24,7 @@ const YtelserPageContent = () => {
                 </Heading>
                 <YtelserList />
             </VStack>
-            <VStack className="min-h-100 md:min-h-0">
+            <VStack className="min-h-100 ax-md:min-h-0">
                 <AlertBanner alerts={errorMessages} />
                 <ValgteYtelseDetailPage />
             </VStack>
