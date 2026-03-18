@@ -25,6 +25,7 @@ import MarkeringDodeBarnBilde from './img/markering-dode-barn.png';
 import MeldingsVisning from './img/meldinger.png';
 import NotifikasjonKanal from './img/notifikasjon-kanal.png';
 import NyeYtelser from './img/nye_ytelser.png';
+import NyModia from './img/nyModia.png';
 import OppdateringsloggKnappBilde from './img/oppdateringslogg-knapp.jpg';
 import OppgaveDestinasjon from './img/oppgave-destinasjon.png';
 import OppslagPaaInaktivIdent from './img/oppslag-paa-inaktiv-ident.png';
@@ -704,6 +705,27 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                         Det er ikke satt bestemt dato når dette skal fases ut, men sykepenger fra Infotrygd forblir i
                         hvert fall ut året. Vi jobber med å få inn vedtak frå Speil også, men datagrunnlaget fra Speil
                         vil være mer begrenset.
+                    </p>
+                </>
+            )
+        },
+        {
+            id: 42,
+            tittel: 'Mandag 23.mars vil Modia personoversikt oppdateres',
+            dato: new Date('2026-03-17 12:00'),
+            aktiv: true,
+            ingress: null,
+            src: NyModia,
+            beskrivelse: (
+                <>
+                    <p className="my-2">
+                        Endringene er stort sett visuelle, slik at personoversikten får et mer moderne utseende. Det vil
+                        også være noen funksjonelle forbedringer som vi håper forenkler bruken. Det vil fortsatt være
+                        mulig å benytte seg av den gamle versjonen av personoversikten i en overgangsperiode.
+                    </p>
+                    <p>
+                        Mer informasjon finner dere i ny brukermanual på Navet (tilgjengelig fra 23.mars), og i
+                        introduksjonen som vises i systemet ved åpning 23.mars
                     </p>
                 </>
             )
