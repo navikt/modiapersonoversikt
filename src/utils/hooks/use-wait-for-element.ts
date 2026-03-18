@@ -4,15 +4,14 @@ function useWaitForElement(selector: string): HTMLElement | null {
     const [element, setElement] = useState<HTMLElement | null>(null);
     useEffect(() => {
         const id = setInterval(() => {
-            const el = document.querySelector<HTMLElement>(selector);
-            setElement(el);
-            if (el) {
-                clearInterval(id);
-            }
-        }, 50);
+            setElement((prev) => {
+                if (prev?.isConnected) return prev;
+                return document.querySelector<HTMLElement>(selector);
+            });
+        }, 200);
 
         return () => clearInterval(id);
-    }, [selector, setElement]);
+    }, [selector]);
     return element;
 }
 
