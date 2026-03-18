@@ -202,11 +202,11 @@ export const FortsettDialog = ({ traad, lukkOppgave }: Props) => {
                         )}
                     </form.Field>
                     <HGrid gap="2" columns={{ xs: 1, md: '2fr 3fr' }}>
-                        <Box.New flexGrow="1">
+                        <Box flexGrow="1">
                             {draftStatus &&
                                 form.getFieldValue('melding').length > 0 &&
                                 form.getFieldMeta('melding')?.isDirty && <DraftStatus state={draftStatus} />}
-                        </Box.New>
+                        </Box>
                         <Bleed
                             marginBlock={{ xs: '0 0', md: disableDialog ? 'space-0 space-0' : 'space-20 space-0' }}
                             asChild

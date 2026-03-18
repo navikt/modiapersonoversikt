@@ -188,11 +188,11 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
             >
                 <HStack justify="start" align="stretch" wrap={false} paddingInline="4 2">
                     {visNotifikasjon && (
-                        <Box.New marginBlock="1">
+                        <Box marginBlock="1">
                             <Bleed marginInline="space-12">
                                 <CircleFillIcon title="" className="text-ax-text-accent-decoration" fontSize="0.5rem" />
                             </Bleed>
-                        </Box.New>
+                        </Box>
                     )}
                     <VStack gap="0" width="100%">
                         <HStack justify="space-between" gap="0" wrap={false}>

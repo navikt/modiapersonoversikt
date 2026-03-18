@@ -98,7 +98,7 @@ export const DokumentVisningExpandable = ({
                     );
                 })}
             </Tabs.List>
-            <Box.New className="mt-12">
+            <Box className="mt-12">
                 <DokumentTabInnhold value="hoveddokument" journalpost={journalpost} dokument={hovedDokument} />
                 {journalpost.vedlegg.map((vedlegg, i) => {
                     return (
@@ -110,7 +110,7 @@ export const DokumentVisningExpandable = ({
                         />
                     );
                 })}
-            </Box.New>
+            </Box>
         </Tabs>
     );
 };

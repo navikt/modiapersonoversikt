@@ -117,11 +117,11 @@ function DateRangeSelector({
                 <CustomDatePickerModal period={period} onUpdate={onFraTilDatoChange} />
             )}
             {periodType && !required && resettable && (
-                <Box.New>
+                <Box>
                     <Button variant="tertiary" size="small" icon={<XMarkIcon />} onClick={resetFilter}>
                         Resett datofilter
                     </Button>
-                </Box.New>
+                </Box>
             )}
         </VStack>
     );

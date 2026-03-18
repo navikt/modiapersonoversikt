@@ -45,7 +45,7 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
     }, [meldinger]);
 
     return (
-        <Box.New
+        <Box
             ref={setChatAreaRef}
             height="100%"
             overflowX="auto"
@@ -86,7 +86,7 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
                     );
                 })}
             </VStack>
-        </Box.New>
+        </Box>
     );
 };
 
