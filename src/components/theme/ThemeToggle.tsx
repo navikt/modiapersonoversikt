@@ -16,12 +16,12 @@ export const ThemeIconToggle = () => {
     return (
         <Tooltip content={tooltipTekst} placement="right">
             <Button
+                data-color="neutral"
                 size="small"
-                variant="tertiary-neutral"
+                variant="tertiary"
                 onClick={changeTheme}
                 title={`Bytt til ${endreTilTemaTekst} tema`}
-                icon={<ThemeIcon aria-hidden />}
-            />
+                icon={<ThemeIcon aria-hidden />} />
         </Tooltip>
     );
 };
