@@ -1,5 +1,7 @@
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useCallback } from 'react';
+import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
+import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 import { aktivBrukerAtom, aktivBrukerLastetAtom, aktivEnhetAtom } from 'src/lib/state/context';
 import type { Enhet } from 'src/rest/resources/saksbehandlersEnheterResource';
 import { updateUserEnhet } from 'src/utils/analytics';
@@ -11,8 +13,6 @@ import config from '../../config';
 import bjelleIkon from '../../svg/bjelle.svg?raw';
 import { DecoratorButtonId as OppdateringsloggButtonId } from '../oppdateringslogg/OppdateringsloggContainer';
 import type { DecoratorPropsV3, Hotkey } from './decoratorprops';
-import useFeatureToggle from "src/components/featureToggle/useFeatureToggle";
-import {FeatureToggles} from "src/components/featureToggle/toggleIDs";
 
 export function useDecoratorConfig() {
     const [aktivEnhet, setAktivEnhet] = useAtom(aktivEnhetAtom);
@@ -169,11 +169,15 @@ function getHotkeys(): Hotkey[] {
             description: 'Vis varsler',
             documentationOnly: true
         },
-        ...(!isOn ? [{
-            key: { char: 'N', altKey: true },
-            description: 'Åpne/lukke visitkort',
-            documentationOnly: true
-        }] : []),
+        ...(!isOn
+            ? [
+                  {
+                      key: { char: 'N', altKey: true },
+                      description: 'Åpne/lukke visitkort',
+                      documentationOnly: true
+                  }
+              ]
+            : []),
         {
             key: { char: 'B', altKey: true },
             description: 'Gå til personforvalter',
