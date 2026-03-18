@@ -128,6 +128,7 @@
         "@biomejs/biome": "2.3.8",
         "@eslint/js": "^9.38.0",
         "@faker-js/faker": "^9.9.0",
+        "@navikt/aksel": "^8.7.0",
         "@playwright/test": "^1.56.1",
         "@tailwindcss/postcss": "^4.1.16",
         "@tanstack/router-cli": "^1.133.25",
