@@ -88,7 +88,7 @@ const SendMeldingContent = ({
     }, [setOppgave]);
 
     return (
-        <Card padding="2" as="section" aria-label="Dialogpanel">
+        <Card padding="space-8" as="section" aria-label="Dialogpanel">
             <HStack justify="space-between" align="start" className="mb-4">
                 <Heading level="2" size="small">
                     {meldingsHeader(traad)}

@@ -23,7 +23,7 @@ const UtbetalingPageContent = () => {
 
     return (
         <ErrorBoundary boundaryName="Dokumentertabell" errorText="Det oppstod en feil under visning av utbetalinger">
-            <Card padding="4" className="h-full overflow-auto">
+            <Card padding="space-16" className="h-full overflow-auto">
                 <AlertBanner alerts={errorMessages} />
                 <VStack gap="space-32">
                     <Heading level="2" size="medium">

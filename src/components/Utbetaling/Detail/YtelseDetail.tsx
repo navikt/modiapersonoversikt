@@ -18,7 +18,7 @@ export const YtelseDetail = ({ ytelse }: { ytelse: Ytelse }) => (
                 Periode: {formaterPeriode({ fra: ytelse.periode?.start, til: ytelse.periode?.slutt })}
             </BodyShort>
         </VStack>
-        <Card className="bg-ax-bg-neutral-soft rounded-(--ax-radius-8) utbetalinger-tabell" padding="2">
+        <Card className="bg-ax-bg-neutral-soft rounded-(--ax-radius-8) utbetalinger-tabell" padding="space-8">
             <BruttoTabell ytelse={ytelse} />
             <TrekkTabell ytelse={ytelse} />
             <SkattTabell ytelse={ytelse} />
@@ -28,7 +28,7 @@ export const YtelseDetail = ({ ytelse }: { ytelse: Ytelse }) => (
                 'rounded-(--ax-radius-8) utbetalinger-tabell',
                 ytelse.nettobelop < 0 ? 'bg-ax-bg-danger-soft' : 'bg-ax-bg-success-soft'
             )}
-            padding="2"
+            padding="space-8"
         >
             <HStack align="stretch" justify="space-between" paddingInline="space-8">
                 <Heading size="xsmall">Totalt</Heading>

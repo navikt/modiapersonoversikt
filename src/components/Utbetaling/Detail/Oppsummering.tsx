@@ -13,7 +13,7 @@ export const Oppsummering = ({ utbetaling }: { utbetaling: Utbetaling }) => (
         <Heading size="xsmall" level="4">
             Oppsummering av utbetalingen
         </Heading>
-        <Card className="bg-ax-bg-neutral-soft rounded-(--ax-radius-8) utbetalinger-tabell" padding="2">
+        <Card className="bg-ax-bg-neutral-soft rounded-(--ax-radius-8) utbetalinger-tabell" padding="space-8">
             <VStack gap="space-16">
                 <HStack justify="space-between" padding="space-8">
                     <VStack gap="space-8">

@@ -77,7 +77,7 @@ const getForeldrePengerPeriodeEntries = (periode: ForeldrepengePeriode) => {
 
 const ForeldrePengerRetten = ({ foreldrePenger }: { foreldrePenger: Foreldrepenger }) => {
     return (
-        <Card padding="4">
+        <Card padding="space-16">
             <Heading as="h4" size="small">
                 Om foreldrepengeretten
             </Heading>
@@ -91,7 +91,7 @@ const ForeldrePengerRetten = ({ foreldrePenger }: { foreldrePenger: Foreldrepeng
 
 const ForeldrePengerRettenBarnet = ({ foreldrePenger }: { foreldrePenger: Foreldrepenger }) => {
     return (
-        <Card padding="4">
+        <Card padding="space-16">
             <Heading as="h4" size="small">
                 Om barnet
             </Heading>
@@ -106,7 +106,7 @@ const ForeldrePengerRettenBarnet = ({ foreldrePenger }: { foreldrePenger: Foreld
 const ForeldrepengePerioder = ({ foreldrePenger }: { foreldrePenger: Foreldrepenger }) => {
     const perioder = foreldrePenger.periode ?? [];
     return (
-        <Card padding="4">
+        <Card padding="space-16">
             <Heading as="h4" size="small">
                 Perioder
             </Heading>
@@ -131,7 +131,7 @@ const ForeldrepengePerioder = ({ foreldrePenger }: { foreldrePenger: Foreldrepen
 
 const Arbeidssituasjon = ({ foreldrePenger }: { foreldrePenger: Foreldrepenger }) => {
     return (
-        <Card padding="4">
+        <Card padding="space-16">
             <Heading as="h4" size="small">
                 Arbeidssituasjon
             </Heading>

@@ -165,7 +165,7 @@ const SykefravaersoppfolgingDetaljer = () => {
     const tabellData = sortedData.slice((page - 1) * rowsPerPage, page * rowsPerPage);
 
     return (
-        <Card padding="4">
+        <Card padding="space-16">
             <VStack gap="space-16">
                 <Heading as="h4" size="small">
                     Sykefraværsoppfølging
@@ -221,7 +221,7 @@ const OppfolgingPageContent = () => {
                 alerts={[...arbeidsoppfolgingErrorMessage, ...gjeldende14aVedtakErrorMessage, ...syfoErrorMessage]}
             />
             {!doubleErrors && (
-                <Card padding="4">
+                <Card padding="space-16">
                     <ErrorBoundary boundaryName="oppfolgingDetaljer">
                         <OppfolgingDetaljer />
                     </ErrorBoundary>

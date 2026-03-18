@@ -35,12 +35,9 @@ function TildeltSaksbehandler({ traadId }: { traadId: string }) {
 
     if (oppgaver.map((oppgave) => oppgave.traadId).includes(traadId)) {
         return (
-            <Tag
-                data-color="meta-lime"
-                size="xsmall"
-                variant="moderate"
-                icon={<TasklistIcon aria-hidden />}>Tildelt meg
-                            </Tag>
+            <Tag data-color="meta-lime" size="xsmall" variant="moderate" icon={<TasklistIcon aria-hidden />}>
+                Tildelt meg
+            </Tag>
         );
     }
 
@@ -51,36 +48,27 @@ function UnderArbeid({ traadId }: { traadId: string }) {
 
     if (!isUnderArbeid) return null;
     return (
-        <Tag
-            data-color="info"
-            size="xsmall"
-            variant="moderate"
-            icon={<PencilIcon aria-hidden />}>Under arbeid
-                    </Tag>
+        <Tag data-color="info" size="xsmall" variant="moderate" icon={<PencilIcon aria-hidden />}>
+            Under arbeid
+        </Tag>
     );
 }
 
 function Feilsendt({ traad }: { traad: TraadDto }) {
     if (!erFeilsendt(traad)) return null;
     return (
-        <Tag
-            data-color="meta-purple"
-            size="xsmall"
-            icon={<XMarkOctagonIcon aria-hidden />}
-            variant="moderate">Feilsendt
-                    </Tag>
+        <Tag data-color="meta-purple" size="xsmall" icon={<XMarkOctagonIcon aria-hidden />} variant="moderate">
+            Feilsendt
+        </Tag>
     );
 }
 
 function Slettet({ melding }: { melding: Melding }) {
     if (melding.temagruppe !== Temagruppe.InnholdSlettet) return null;
     return (
-        <Tag
-            data-color="danger"
-            size="xsmall"
-            variant="moderate"
-            icon={<TrashIcon aria-hidden />}>Slettet
-                    </Tag>
+        <Tag data-color="danger" size="xsmall" variant="moderate" icon={<TrashIcon aria-hidden />}>
+            Slettet
+        </Tag>
     );
 }
 
@@ -105,8 +93,10 @@ function UbesvartMelding({ traad }: { traad: TraadDto }) {
             variant="moderate"
             className="text-nowrap"
             title="Tråd er ubesvart"
-            icon={<BellIcon aria-hidden />}>Ny melding
-                    </Tag>
+            icon={<BellIcon aria-hidden />}
+        >
+            Ny melding
+        </Tag>
     );
 }
 
@@ -122,8 +112,10 @@ function AvsluttetMelding({ traad }: { traad: TraadDto }) {
                 size="xsmall"
                 variant="moderate"
                 title="Tråd er avsluttet"
-                icon={<EnterIcon aria-hidden />}>Avsluttet
-                            </Tag>
+                icon={<EnterIcon aria-hidden />}
+            >
+                Avsluttet
+            </Tag>
         );
     }
 
@@ -135,8 +127,9 @@ function Sladdet({ traad }: { traad: TraadDto }) {
     if (!traad.sattTilSladdingAv && !sisteMelding.sendtTilSladding) return null;
 
     return (
-        <Tag size="xsmall" variant="moderate" data-color="brand-magenta" icon={<TabsRemoveIcon aria-hidden />}>Sladding
-                    </Tag>
+        <Tag size="xsmall" variant="moderate" data-color="brand-magenta" icon={<TabsRemoveIcon aria-hidden />}>
+            Sladding
+        </Tag>
     );
 }
 
@@ -200,7 +193,7 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
                 )}
                 as="li"
             >
-                <HStack justify="start" align="stretch" wrap={false} paddingInline="space-16 space-8">
+                <HStack justify="start" align="stretch" wrap={false} paddingBlock="space-12" paddingInline="space-16">
                     {visNotifikasjon && (
                         <Box marginBlock="space-4">
                             <Bleed marginInline="space-12">

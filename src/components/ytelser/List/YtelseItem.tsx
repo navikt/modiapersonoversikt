@@ -87,7 +87,7 @@ export const YtelseItem = ({ ytelse }: { ytelse: YtelseVedtak }) => {
             }}
         >
             <Card
-                padding="2"
+                padding="space-8"
                 as="li"
                 className={twMerge(
                     'cursor-pointer hover:bg-[var(--ax-bg-accent-moderate-hover)] group',
