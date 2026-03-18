@@ -372,7 +372,7 @@ export const useFilterYtelser = (): QueryResult<YtelseVedtak[]> => {
         })
     );
 
-    if (dagpengerResponse.data) {
+    if (dagpengerResponse.data?.perioder.length) {
         ytelser.push({
             ytelseData: { data: dagpengerResponse.data },
             ytelseType: YtelseVedtakYtelseType.Dagpenger
