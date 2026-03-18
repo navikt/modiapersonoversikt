@@ -64,10 +64,10 @@ export function mockReactQuery<A extends unknown[], R>(
 ) {
     (resource as unknown as MockInstance<(...args: A) => Partial<UseQueryResult<R>>>).mockImplementation(
         () =>
-            ({
+            (({
                 data,
                 ...extra
-            }) as Partial<UseQueryResult<R, FetchError>>
+            }) as Partial<UseQueryResult<R, FetchError>>)
     );
 }
 export function setupReactQueryMocks() {
