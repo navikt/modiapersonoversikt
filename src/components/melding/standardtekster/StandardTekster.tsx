@@ -93,7 +93,7 @@ function StandardTekster({
         <Box>
             <h2 className="sr-only">Standardtekster</h2>
             <SokeFelt sokRef={sokRef} />
-            <HGrid gap="2" columns="1fr 2fr">
+            <HGrid gap="space-8" columns="1fr 2fr">
                 <StandardtekstListe listeRef={listeRef} />
                 {erGyldigValg(values.tekst, values.locale) ? (
                     <VStack
@@ -108,7 +108,7 @@ function StandardTekster({
                             <div>
                                 <LocaleVelger />
                             </div>
-                            <HStack gap="3">
+                            <HStack gap="space-12">
                                 <Button
                                     size="small"
                                     variant="secondary"

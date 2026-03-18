@@ -50,27 +50,26 @@ export const AvsluttOppgaveModal = ({ open, onClose, oppgave }: Props) => {
             width="small"
             size="small"
         >
-            <VStack justify="space-between" gap="2">
-                <HStack justify="start" gap="2" className="ml-4">
+            <VStack justify="space-between" gap="space-8">
+                <HStack justify="start" gap="space-8" className="ml-4">
                     <BodyShort size="small" weight="semibold">
                         Tema:
                     </BodyShort>
                     <BodyShort size="small">{tema?.tekst ?? 'Ukjent tema'}</BodyShort>
                 </HStack>
-                <HStack justify="start" gap="2" className="ml-4">
+                <HStack justify="start" gap="space-8" className="ml-4">
                     <BodyShort size="small" weight="semibold">
                         OppgaveId:
                     </BodyShort>
                     <BodyShort size="small">{oppgave.oppgaveId}</BodyShort>
                 </HStack>
-                <HStack justify="start" gap="2" className="ml-4">
+                <HStack justify="start" gap="space-8" className="ml-4">
                     <BodyShort size="small" weight="semibold">
                         TildeltEnhetsnr:
                     </BodyShort>
                     <BodyShort size="small">{oppgave.tildeltEnhetsnr}</BodyShort>
                 </HStack>
             </VStack>
-
             <Modal.Body>
                 <Textarea label="Beskrivelse" value={beskrivelse} onChange={(e) => setBeskrivelse(e.target.value)} />
             </Modal.Body>

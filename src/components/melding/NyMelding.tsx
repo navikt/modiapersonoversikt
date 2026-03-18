@@ -93,7 +93,7 @@ function NyMelding() {
                 await form.handleSubmit();
             }}
         >
-            <VStack gap="4">
+            <VStack gap="space-16">
                 <form.Field name="meldingsType">
                     {(field) => (
                         <VelgMeldingsType
@@ -137,7 +137,7 @@ function NyMelding() {
                         </form.Field>
                     }
                 />
-                <VStack gap="1">
+                <VStack gap="space-4">
                     <form.Field
                         name="melding"
                         listeners={{
@@ -170,17 +170,17 @@ function NyMelding() {
                             </div>
                         )}
                     </form.Field>
-                    <HGrid gap="2" columns={{ xs: 1, md: '2fr 3fr' }}>
+                    <HGrid gap="space-8" columns={{ xs: 1, md: '2fr 3fr' }}>
                         <Box flexGrow="1">
                             {draftStatus &&
                                 form.getFieldValue('melding').length > 0 &&
                                 form.getFieldMeta('melding')?.isDirty && <DraftStatus state={draftStatus} />}
                         </Box>
                         <Bleed
-                            marginBlock={{ xs: '0 0', md: disableDialog ? 'space-0 space-0' : 'space-20 space-0' }}
+                            marginBlock={{ xs: "space-0 space-0", md: disableDialog ? 'space-0 space-0' : 'space-20 space-0' }}
                             asChild
                         >
-                            <HStack gap="1" justify="end">
+                            <HStack gap="space-4" justify="end">
                                 <HStack justify="center">
                                     <AutoCompleteTekstTips />
                                     <StandardTekstModal

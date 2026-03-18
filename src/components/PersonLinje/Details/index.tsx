@@ -36,7 +36,7 @@ export const OversiktWrapper = () => {
 const PersonlinjeDetails = () => {
     return (
         <Card className="overflow-auto">
-            <HStack gap="4" justify="space-between" padding="4">
+            <HStack gap="space-16" justify="space-between" padding="space-16">
                 <VStack flexBasis="30%" flexGrow="1">
                     <DodsdatoInfo />
                     <KontaktInfo />

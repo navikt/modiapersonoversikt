@@ -98,11 +98,11 @@ export const YtelseItem = ({ ytelse }: { ytelse: YtelseVedtak }) => {
                     <Label size="small" as="h3">
                         {getYtelseTtile()}
                     </Label>
-                    <HStack gap="2">
+                    <HStack gap="space-8">
                         <Detail>{dayjs(getYtelseIdDato(ytelse)).format('DD.MM.YYYY')}</Detail>
                     </HStack>
                     {ytelse.ytelseType === YtelseVedtakYtelseType.Pleiepenger && (
-                        <HStack gap="2">
+                        <HStack gap="space-8">
                             <BodyShort size="small" weight="semibold">
                                 Barnets f.nr:
                             </BodyShort>

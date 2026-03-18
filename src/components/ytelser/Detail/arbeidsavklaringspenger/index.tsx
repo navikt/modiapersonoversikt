@@ -47,7 +47,7 @@ const BarneTillegg = ({ aap }: { aap: Arbeidsavklaringspenger }) => {
 
 export const ArbeidsavklaringspengerDetails = ({ aap }: { aap: Arbeidsavklaringspenger }) => {
     return (
-        <VStack gap="1" minHeight="0">
+        <VStack gap="space-4" minHeight="0">
             <Arbeidsavklaringspenger aap={aap} />
             <BarneTillegg aap={aap} />
         </VStack>

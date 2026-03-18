@@ -52,7 +52,7 @@ export const OppgaveModal = ({ open, setOpen, traad }: Props) => {
             }}
         >
             <Modal.Body>
-                <Box overflowY="scroll" paddingInline="4">
+                <Box overflowY="scroll" paddingInline="space-16">
                     <Suspense
                         fallback={
                             <HStack justify="center" align="center">
@@ -194,9 +194,9 @@ const OppgaveForm = ({ traad, onSuccess }: { traad: Traad; onSuccess: () => void
                 errorSummaryRef.current?.focus();
             }}
         >
-            <VStack gap="4">
+            <VStack gap="space-16">
                 <AlertBanner alerts={errorMessages} />
-                <VStack gap="4" justify="space-between">
+                <VStack gap="space-16" justify="space-between">
                     <form.Field name="valgtTema">
                         {(field) => (
                             <Select
@@ -327,7 +327,7 @@ const OppgaveForm = ({ traad, onSuccess }: { traad: Traad; onSuccess: () => void
                     )}
                 </form.Field>
 
-                <VStack gap="4" justify="space-between">
+                <VStack gap="space-16" justify="space-between">
                     <form.Subscribe
                         selector={(f) =>
                             [
@@ -439,7 +439,7 @@ const OppgaveForm = ({ traad, onSuccess }: { traad: Traad; onSuccess: () => void
                         {error}
                     </Alert>
                 )}
-                <HStack gap="4" align="center" marginBlock="2">
+                <HStack gap="space-16" align="center" marginBlock="space-8">
                     <form.Subscribe selector={(f) => [f.isSubmitting, f.canSubmit]}>
                         {([isSubmitting, canSubmit]) => (
                             <Button type="submit" size="small" loading={isSubmitting} disabled={!canSubmit}>

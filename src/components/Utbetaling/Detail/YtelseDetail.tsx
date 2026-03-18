@@ -9,7 +9,7 @@ import type { Ytelse } from 'src/generated/modiapersonoversikt-api';
 import { twMerge } from 'tailwind-merge';
 
 export const YtelseDetail = ({ ytelse }: { ytelse: Ytelse }) => (
-    <VStack gap="2">
+    <VStack gap="space-8">
         <VStack>
             <Heading size="xsmall" level="4">
                 Utbetaling {ytelse.type}
@@ -30,7 +30,7 @@ export const YtelseDetail = ({ ytelse }: { ytelse: Ytelse }) => (
             )}
             padding="2"
         >
-            <HStack align="stretch" justify="space-between" paddingInline="2">
+            <HStack align="stretch" justify="space-between" paddingInline="space-8">
                 <Heading size="xsmall">Totalt</Heading>
                 <BodyShort className={fargePaBelop(ytelse.nettobelop)}>{formaterNOK(ytelse.nettobelop)}</BodyShort>
             </HStack>

@@ -52,7 +52,7 @@ export const DokumentEmbeder = ({ url, fnr, onError, children }: DokumentViewerP
 
     if (!canEmbedFileType(contentType)) {
         return (
-            <HStack gap="2">
+            <HStack gap="space-8">
                 <BodyShort size="small" weight="semibold">
                     Vedlegget kan ikke vises i nettleseren. Last ned filen for å se innholdet.{' '}
                     <a href={blobUrl}>Last ned dokument</a>

@@ -71,7 +71,7 @@ export const DokumenterTabell = () => {
 
     if (antallDokumenter === 0) {
         return (
-            <Box paddingBlock="4">
+            <Box paddingBlock="space-16">
                 <InlineMessage status="info" aria-live="polite">
                     Ingen resultat
                 </InlineMessage>
@@ -128,7 +128,7 @@ export const DokumenterTabell = () => {
                                     {journalpost.harTilgang ? (
                                         journalpost.beskrivelse
                                     ) : (
-                                        <HStack wrap={false} gap="1" align="center">
+                                        <HStack wrap={false} gap="space-4" align="center">
                                             <EyeSlashIcon
                                                 color="var(--ax-text-neutral-subtle)"
                                                 fontSize="1.3rem"

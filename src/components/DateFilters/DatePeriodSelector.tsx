@@ -105,7 +105,7 @@ function DateRangeSelector({
     }, [onChange, defaultPeriodType]);
 
     return (
-        <VStack gap="2">
+        <VStack gap="space-8">
             <RadioGroup legend="Periode" size="small" value={periodType ?? ''} onChange={onPeriodTypeChange}>
                 {Object.entries(PeriodType).map(([, type]) => (
                     <Radio size="small" key={type} value={type}>

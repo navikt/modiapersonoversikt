@@ -9,28 +9,28 @@ import {
 import type { Utbetaling } from 'src/generated/modiapersonoversikt-api';
 
 export const Oppsummering = ({ utbetaling }: { utbetaling: Utbetaling }) => (
-    <VStack gap="2">
+    <VStack gap="space-8">
         <Heading size="xsmall" level="4">
             Oppsummering av utbetalingen
         </Heading>
         <Card className="bg-ax-bg-neutral-soft rounded-(--ax-radius-8) utbetalinger-tabell" padding="2">
-            <VStack gap="4">
-                <HStack justify="space-between" padding="2">
-                    <VStack gap="2">
+            <VStack gap="space-16">
+                <HStack justify="space-between" padding="space-8">
+                    <VStack gap="space-8">
                         <BodyShort weight="semibold">Kontonummer</BodyShort>
                         <BodyShort>{utbetaling.konto}</BodyShort>
                     </VStack>
-                    <VStack gap="2">
+                    <VStack gap="space-8">
                         <BodyShort weight="semibold">Brutto</BodyShort>
                         <BodyShort>{formaterNOK(getBruttoSumYtelser(utbetaling.ytelser))}</BodyShort>
                     </VStack>
-                    <VStack gap="2">
+                    <VStack gap="space-8">
                         <BodyShort weight="semibold">Trekk og skatt</BodyShort>
                         <BodyShort className={fargePaBelop(getTrekkOgSkattSumYtelser(utbetaling.ytelser))}>
                             {formaterNOK(getTrekkOgSkattSumYtelser(utbetaling.ytelser))}
                         </BodyShort>
                     </VStack>
-                    <VStack gap="2">
+                    <VStack gap="space-8">
                         <BodyShort weight="semibold">Totalt</BodyShort>
                         <BodyShort className={fargePaBelop(utbetaling.nettobelop)}>
                             {formaterNOK(utbetaling.nettobelop)}
@@ -38,14 +38,14 @@ export const Oppsummering = ({ utbetaling }: { utbetaling: Utbetaling }) => (
                     </VStack>
                 </HStack>
 
-                <VStack paddingInline="2">
+                <VStack paddingInline="space-8">
                     {utbetaling.melding && (
-                        <HStack gap="2">
+                        <HStack gap="space-8">
                             <Detail weight="semibold">Melding</Detail>
                             <Detail weight="semibold">{utbetaling.melding}</Detail>
                         </HStack>
                     )}
-                    <HStack gap="2">
+                    <HStack gap="space-8">
                         <Detail weight="semibold">Utbetalingsmetode:</Detail>
                         <Detail weight="semibold">{utbetaling.metode}</Detail>
                     </HStack>

@@ -29,7 +29,7 @@ export const BruttoTabell = ({ ytelse }: { ytelse: Ytelse }) => (
                 })}
             </Table.Body>
         </Table>
-        <HStack align="stretch" justify="space-between" padding="2">
+        <HStack align="stretch" justify="space-between" padding="space-8">
             <Heading size="xsmall">Total brutto</Heading>
             <BodyShort>{formaterNOK(ytelse.ytelseskomponentersum)}</BodyShort>
         </HStack>

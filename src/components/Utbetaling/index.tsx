@@ -25,13 +25,13 @@ const UtbetalingPageContent = () => {
         <ErrorBoundary boundaryName="Dokumentertabell" errorText="Det oppstod en feil under visning av utbetalinger">
             <Card padding="4" className="h-full overflow-auto">
                 <AlertBanner alerts={errorMessages} />
-                <VStack gap="8">
+                <VStack gap="space-32">
                     <Heading level="2" size="medium">
                         Utbetalinger
                     </Heading>
                     <UtbetalingListFilter />
                     {isLoading ? (
-                        <VStack gap="2" marginInline="0 2">
+                        <VStack gap="space-8" marginInline="space-0 space-8">
                             {Array(12)
                                 .keys()
                                 .map((i) => (

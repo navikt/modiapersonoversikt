@@ -16,8 +16,8 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
     const disableDialog = useDisableDialog();
 
     return (
-        <VStack gap="1">
-            <VStack gap="2">
+        <VStack gap="space-4">
+            <VStack gap="space-8">
                 <div className="max-w-30">
                     <Button
                         type="button"
@@ -74,12 +74,12 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
                             saksListeRef,
                             temaListeRef
                         }) => (
-                            <VStack gap="2">
+                            <VStack gap="space-8">
                                 <SakVelger.ToggleGroup
                                     valgtSakKategori={valgtSakKategori}
                                     setSakKategori={setSakKategori}
                                 />
-                                <HGrid align="start" columns={2} gap="2">
+                                <HGrid align="start" columns={2} gap="space-8">
                                     <div className="h-[60vh]">
                                         <SakVelger.TemaListe
                                             kategorier={fordelteSaker}

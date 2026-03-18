@@ -27,7 +27,7 @@ const Personsok = () => {
             <Modal.Body>
                 <PersonsokForm onSubmit={setSearchQuery} onReset={() => setSearchQuery(undefined)} />
                 {searchQuery && (
-                    <Box marginBlock="4">
+                    <Box marginBlock="space-16">
                         <PersonsokResult query={searchQuery} onClick={() => ref.current?.close()} />
                     </Box>
                 )}

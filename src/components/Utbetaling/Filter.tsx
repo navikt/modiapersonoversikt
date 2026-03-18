@@ -132,7 +132,7 @@ export const UtbetalingListFilter = () => {
     }, [fnr]);
 
     return (
-        <HStack gap="2" justify="start">
+        <HStack gap="space-8" justify="start">
             <Box>
                 <DateFilter />
             </Box>
