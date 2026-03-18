@@ -1,9 +1,10 @@
 import { Alert, Button, Heading, HStack, InlineMessage, Skeleton, VStack } from '@navikt/ds-react';
-import { useAtom } from 'jotai';
-import { type ReactElement, useCallback, useMemo } from 'react';
+import { useAtom, useAtomValue } from 'jotai';
+import { type ReactElement, useCallback, useEffect, useMemo } from 'react';
 import { traadTypeTekst } from 'src/components/Meldinger/List/tekster';
 import { nyesteMelding, useTraader } from 'src/components/Meldinger/List/utils';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
+import { aktivBrukerAtom } from 'src/lib/state/context';
 import { dialogUnderArbeidAtom, overskridKontaktReservasjonAtom } from 'src/lib/state/dialog';
 import { type Traad, type TraadDto, TraadType } from 'src/lib/types/modiapersonoversikt-api';
 import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
@@ -30,6 +31,13 @@ const ReservertIKRR = () => {
     const { data } = usePersonData();
     const reservertIKRR = !!data?.person.kontaktInformasjon?.erReservert?.value;
     const [overskridReservasjon, setOverskridReservasjon] = useAtom(overskridKontaktReservasjonAtom);
+
+    const aktivBruker = useAtomValue(aktivBrukerAtom);
+
+    useEffect(() => {
+        setOverskridReservasjon(false);
+    }, [aktivBruker]);
+
     if (!reservertIKRR) return null;
     return (
         <InlineMessage size="small" status="error" className="mb-4">
@@ -38,7 +46,7 @@ const ReservertIKRR = () => {
                 <button
                     type="button"
                     className="aksel-link text-ax-text-danger cursor-pointer"
-                    onClick={() => setOverskridReservasjon(!overskridReservasjon)}
+                    onClick={() => setOverskridReservasjon((prev) => !prev)}
                 >
                     Overskrid
                 </button>
