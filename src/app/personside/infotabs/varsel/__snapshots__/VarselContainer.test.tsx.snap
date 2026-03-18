@@ -611,13 +611,13 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
       </li>
     </ol>
     <div
-      class="navds-alert navds-alert--info navds-alert--medium"
+      class="aksel-alert aksel-alert--info aksel-alert--medium"
       data-color="info"
       data-variant="info"
     >
       <svg
         aria-labelledby="title-_r_0_"
-        class="navds-alert__icon"
+        class="aksel-alert__icon"
         fill="none"
         focusable="false"
         height="1em"
@@ -639,7 +639,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
         />
       </svg>
       <div
-        class="navds-alert__wrapper navds-alert__wrapper--maxwidth navds-body-long navds-body-long--medium"
+        class="aksel-alert__wrapper aksel-alert__wrapper--maxwidth aksel-body-long aksel-body-long--medium"
       >
         Varsler vises kun ett år tilbake i tid.
         <br />
