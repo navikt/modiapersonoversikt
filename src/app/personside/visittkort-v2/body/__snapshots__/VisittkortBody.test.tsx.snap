@@ -770,18 +770,18 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             </p>
           </div>
           <div
-            class="navds-read-more navds-read-more--medium"
+            class="aksel-read-more aksel-read-more--medium"
             data-volume="low"
           >
             <button
               aria-expanded="false"
-              class="navds-read-more__button navds-body-short"
+              class="aksel-read-more__button aksel-body-short"
               data-state="closed"
               type="button"
             >
               <svg
                 aria-hidden="true"
-                class="navds-read-more__expand-icon"
+                class="aksel-read-more__expand-icon"
                 fill="none"
                 focusable="false"
                 height="1em"
@@ -802,43 +802,42 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               </span>
             </button>
             <div
-              class="navds-read-more__content navds-read-more__content--closed navds-body-long navds-body-long--medium"
+              class="aksel-read-more__content aksel-read-more__content--closed aksel-body-long aksel-body-long--medium"
               data-state="closed"
-              tabindex="0"
             >
               <table
-                class="navds-table navds-table--small"
+                class="aksel-table aksel-table--small"
               >
                 <thead
-                  class="navds-table__header"
+                  class="aksel-table__header"
                 >
                   <tr
-                    class="navds-table__row navds-table__row--shade-on-hover"
+                    class="aksel-table__row aksel-table__row--shade-on-hover"
                     data-interactive="false"
                   >
                     <th
-                      class="navds-table__header-cell navds-label"
+                      class="aksel-table__header-cell aksel-label"
                       scope="col"
                     >
                       Område
                     </th>
                     <th
-                      class="navds-table__header-cell navds-label"
+                      class="aksel-table__header-cell aksel-label"
                       scope="col"
                     >
                       <div
-                        class="navds-help-text"
+                        class="aksel-help-text"
                         data-color="info"
                       >
                         <button
                           aria-expanded="false"
                           aria-label="Hva betyr lese/innsyn?"
-                          class="navds-help-text__button"
+                          class="aksel-help-text__button"
                           type="button"
                         >
                           <svg
                             aria-hidden="true"
-                            class="navds-help-text__icon"
+                            class="aksel-help-text__icon"
                             fill="none"
                             focusable="false"
                             height="1em"
@@ -864,7 +863,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                           </svg>
                           <svg
                             aria-hidden="true"
-                            class="navds-help-text__icon navds-help-text__icon--filled"
+                            class="aksel-help-text__icon aksel-help-text__icon--filled"
                             fill="none"
                             focusable="false"
                             height="1em"
@@ -884,46 +883,42 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                             <path
                               clip-rule="evenodd"
                               d="M9.75 9C9.75 7.75736 10.7574 6.75 12 6.75H12.1716C13.3195 6.75 14.25 7.68054 14.25 8.82843C14.25 9.37966 14.031 9.90832 13.6412 10.2981L12.6412 11.2981C11.7504 12.1889 11.25 13.3971 11.25 14.6569C11.25 15.0711 11.5858 15.4069 12 15.4069C12.4142 15.4069 12.75 15.0711 12.75 14.6569C12.75 13.7949 13.0924 12.9682 13.7019 12.3588L14.7019 11.3588C15.373 10.6877 15.75 9.77748 15.75 8.82843C15.75 6.85212 14.1479 5.25 12.1716 5.25H12C9.92893 5.25 8.25 6.92893 8.25 9V9.5C8.25 9.91421 8.58579 10.25 9 10.25C9.41421 10.25 9.75 9.91421 9.75 9.5V9ZM12 16.5C11.4477 16.5 11 16.9477 11 17.5C11 18.0523 11.4477 18.5 12 18.5C12.5523 18.5 13 18.0523 13 17.5C13 16.9477 12.5523 16.5 12 16.5Z"
-                              fill="var(--ax-text-accent-contrast, var(--a-surface-default))"
+                              fill="var(--ax-text-accent-contrast)"
                               fill-rule="evenodd"
                             />
                           </svg>
                         </button>
                         <div
                           aria-hidden="true"
-                          class="navds-popover navds-help-text__popover navds-popover--hidden"
+                          class="aksel-popover aksel-help-text__popover aksel-popover--hidden"
                           data-placement="top"
                           style="position: absolute; left: 0px; top: 0px; transform: translate(0px, 0px);"
                         >
                           <div
-                            class="navds-popover__content navds-body-short"
+                            class="aksel-popover__content aksel-body-short"
                           >
                             Fullmektig kan lese dokumenter på de områdene det er gitt fullmakt til
                           </div>
-                          <div
-                            class="navds-popover__arrow"
-                            style="bottom: -0.5rem;"
-                          />
                         </div>
                       </div>
                     </th>
                     <th
-                      class="navds-table__header-cell navds-label"
+                      class="aksel-table__header-cell aksel-label"
                       scope="col"
                     >
                       <div
-                        class="navds-help-text"
+                        class="aksel-help-text"
                         data-color="info"
                       >
                         <button
                           aria-expanded="false"
                           aria-label="Hva betyr snakke/kommunisere?"
-                          class="navds-help-text__button"
+                          class="aksel-help-text__button"
                           type="button"
                         >
                           <svg
                             aria-hidden="true"
-                            class="navds-help-text__icon"
+                            class="aksel-help-text__icon"
                             fill="none"
                             focusable="false"
                             height="1em"
@@ -949,7 +944,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                           </svg>
                           <svg
                             aria-hidden="true"
-                            class="navds-help-text__icon navds-help-text__icon--filled"
+                            class="aksel-help-text__icon aksel-help-text__icon--filled"
                             fill="none"
                             focusable="false"
                             height="1em"
@@ -969,46 +964,42 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                             <path
                               clip-rule="evenodd"
                               d="M9.75 9C9.75 7.75736 10.7574 6.75 12 6.75H12.1716C13.3195 6.75 14.25 7.68054 14.25 8.82843C14.25 9.37966 14.031 9.90832 13.6412 10.2981L12.6412 11.2981C11.7504 12.1889 11.25 13.3971 11.25 14.6569C11.25 15.0711 11.5858 15.4069 12 15.4069C12.4142 15.4069 12.75 15.0711 12.75 14.6569C12.75 13.7949 13.0924 12.9682 13.7019 12.3588L14.7019 11.3588C15.373 10.6877 15.75 9.77748 15.75 8.82843C15.75 6.85212 14.1479 5.25 12.1716 5.25H12C9.92893 5.25 8.25 6.92893 8.25 9V9.5C8.25 9.91421 8.58579 10.25 9 10.25C9.41421 10.25 9.75 9.91421 9.75 9.5V9ZM12 16.5C11.4477 16.5 11 16.9477 11 17.5C11 18.0523 11.4477 18.5 12 18.5C12.5523 18.5 13 18.0523 13 17.5C13 16.9477 12.5523 16.5 12 16.5Z"
-                              fill="var(--ax-text-accent-contrast, var(--a-surface-default))"
+                              fill="var(--ax-text-accent-contrast)"
                               fill-rule="evenodd"
                             />
                           </svg>
                         </button>
                         <div
                           aria-hidden="true"
-                          class="navds-popover navds-help-text__popover navds-popover--hidden"
+                          class="aksel-popover aksel-help-text__popover aksel-popover--hidden"
                           data-placement="top"
                           style="position: absolute; left: 0px; top: 0px; transform: translate(0px, 0px);"
                         >
                           <div
-                            class="navds-popover__content navds-body-short"
+                            class="aksel-popover__content aksel-body-short"
                           >
                             Fullmektig kan snakke med NAV og hjelpe til i kontakten med NAV, både på telefon, nav.no og NAV-kontor. Tilgangen innebærer at fullmektig også kan lese dokumenter i sakene
                           </div>
-                          <div
-                            class="navds-popover__arrow"
-                            style="bottom: -0.5rem;"
-                          />
                         </div>
                       </div>
                     </th>
                     <th
-                      class="navds-table__header-cell navds-label"
+                      class="aksel-table__header-cell aksel-label"
                       scope="col"
                     >
                       <div
-                        class="navds-help-text"
+                        class="aksel-help-text"
                         data-color="info"
                       >
                         <button
                           aria-expanded="false"
                           aria-label="Hva betyr Søke/klage?"
-                          class="navds-help-text__button"
+                          class="aksel-help-text__button"
                           type="button"
                         >
                           <svg
                             aria-hidden="true"
-                            class="navds-help-text__icon"
+                            class="aksel-help-text__icon"
                             fill="none"
                             focusable="false"
                             height="1em"
@@ -1034,7 +1025,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                           </svg>
                           <svg
                             aria-hidden="true"
-                            class="navds-help-text__icon navds-help-text__icon--filled"
+                            class="aksel-help-text__icon aksel-help-text__icon--filled"
                             fill="none"
                             focusable="false"
                             height="1em"
@@ -1054,45 +1045,41 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                             <path
                               clip-rule="evenodd"
                               d="M9.75 9C9.75 7.75736 10.7574 6.75 12 6.75H12.1716C13.3195 6.75 14.25 7.68054 14.25 8.82843C14.25 9.37966 14.031 9.90832 13.6412 10.2981L12.6412 11.2981C11.7504 12.1889 11.25 13.3971 11.25 14.6569C11.25 15.0711 11.5858 15.4069 12 15.4069C12.4142 15.4069 12.75 15.0711 12.75 14.6569C12.75 13.7949 13.0924 12.9682 13.7019 12.3588L14.7019 11.3588C15.373 10.6877 15.75 9.77748 15.75 8.82843C15.75 6.85212 14.1479 5.25 12.1716 5.25H12C9.92893 5.25 8.25 6.92893 8.25 9V9.5C8.25 9.91421 8.58579 10.25 9 10.25C9.41421 10.25 9.75 9.91421 9.75 9.5V9ZM12 16.5C11.4477 16.5 11 16.9477 11 17.5C11 18.0523 11.4477 18.5 12 18.5C12.5523 18.5 13 18.0523 13 17.5C13 16.9477 12.5523 16.5 12 16.5Z"
-                              fill="var(--ax-text-accent-contrast, var(--a-surface-default))"
+                              fill="var(--ax-text-accent-contrast)"
                               fill-rule="evenodd"
                             />
                           </svg>
                         </button>
                         <div
                           aria-hidden="true"
-                          class="navds-popover navds-help-text__popover navds-popover--hidden"
+                          class="aksel-popover aksel-help-text__popover aksel-popover--hidden"
                           data-placement="top"
                           style="position: absolute; left: 0px; top: 0px; transform: translate(0px, 0px);"
                         >
                           <div
-                            class="navds-popover__content navds-body-short"
+                            class="aksel-popover__content aksel-body-short"
                           >
                             Fullmektig kan søke og klage. Tilgangen innebærer at fullmektig også kan lese dokumenter og snakke med NAV
                           </div>
-                          <div
-                            class="navds-popover__arrow"
-                            style="bottom: -0.5rem;"
-                          />
                         </div>
                       </div>
                     </th>
                   </tr>
                 </thead>
                 <tbody
-                  class="navds-table__body"
+                  class="aksel-table__body"
                 >
                   <tr
-                    class="navds-table__row navds-table__row--shade-on-hover"
+                    class="aksel-table__row aksel-table__row--shade-on-hover"
                     data-interactive="false"
                   >
                     <td
-                      class="navds-table__data-cell navds-body-short navds-body-short--medium"
+                      class="aksel-table__data-cell aksel-body-short aksel-body-short--medium"
                     >
                       Arbeidsavklaringspenger
                     </td>
                     <td
-                      class="navds-table__data-cell navds-body-short navds-body-short--medium"
+                      class="aksel-table__data-cell aksel-body-short aksel-body-short--medium"
                     >
                       <svg
                         aria-labelledby="title-_r_f_"
@@ -1118,7 +1105,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                       </svg>
                     </td>
                     <td
-                      class="navds-table__data-cell navds-body-short navds-body-short--medium"
+                      class="aksel-table__data-cell aksel-body-short aksel-body-short--medium"
                     >
                       <svg
                         aria-labelledby="title-_r_g_"
@@ -1144,20 +1131,20 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                       </svg>
                     </td>
                     <td
-                      class="navds-table__data-cell navds-body-short navds-body-short--medium"
+                      class="aksel-table__data-cell aksel-body-short aksel-body-short--medium"
                     />
                   </tr>
                   <tr
-                    class="navds-table__row navds-table__row--shade-on-hover"
+                    class="aksel-table__row aksel-table__row--shade-on-hover"
                     data-interactive="false"
                   >
                     <td
-                      class="navds-table__data-cell navds-body-short navds-body-short--medium"
+                      class="aksel-table__data-cell aksel-body-short aksel-body-short--medium"
                     >
                       Dagpenger
                     </td>
                     <td
-                      class="navds-table__data-cell navds-body-short navds-body-short--medium"
+                      class="aksel-table__data-cell aksel-body-short aksel-body-short--medium"
                     >
                       <svg
                         aria-labelledby="title-_r_h_"
@@ -1183,7 +1170,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                       </svg>
                     </td>
                     <td
-                      class="navds-table__data-cell navds-body-short navds-body-short--medium"
+                      class="aksel-table__data-cell aksel-body-short aksel-body-short--medium"
                     >
                       <svg
                         aria-labelledby="title-_r_i_"
@@ -1209,7 +1196,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                       </svg>
                     </td>
                     <td
-                      class="navds-table__data-cell navds-body-short navds-body-short--medium"
+                      class="aksel-table__data-cell aksel-body-short aksel-body-short--medium"
                     >
                       <svg
                         aria-labelledby="title-_r_j_"
@@ -1281,18 +1268,18 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             </p>
           </div>
           <div
-            class="navds-read-more navds-read-more--medium"
+            class="aksel-read-more aksel-read-more--medium"
             data-volume="low"
           >
             <button
               aria-expanded="false"
-              class="navds-read-more__button navds-body-short"
+              class="aksel-read-more__button aksel-body-short"
               data-state="closed"
               type="button"
             >
               <svg
                 aria-hidden="true"
-                class="navds-read-more__expand-icon"
+                class="aksel-read-more__expand-icon"
                 fill="none"
                 focusable="false"
                 height="1em"
@@ -1313,9 +1300,8 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               </span>
             </button>
             <div
-              class="navds-read-more__content navds-read-more__content--closed navds-body-long navds-body-long--medium"
+              class="aksel-read-more__content aksel-read-more__content--closed aksel-body-long aksel-body-long--medium"
               data-state="closed"
-              tabindex="0"
             >
               Gjelder alle statlige ytelser
             </div>
@@ -2371,7 +2357,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             </h4>
           </div>
           <div
-            class="navds-box mb-[0.5rem]"
+            class="aksel-box mb-[0.5rem]"
           >
             <p
               class="typo-normal"
@@ -2398,7 +2384,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             </div>
           </div>
           <div
-            class="navds-box mb-[0.5rem]"
+            class="aksel-box mb-[0.5rem]"
           >
             <p
               class="typo-normal"
@@ -2438,7 +2424,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             </h4>
           </div>
           <div
-            class="navds-box mb-[0.5rem]"
+            class="aksel-box mb-[0.5rem]"
           >
             <p
               class="typo-normal"

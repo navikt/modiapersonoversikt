@@ -361,34 +361,34 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                 class="c8"
               >
                 <div
-                  class="navds-date__wrapper"
+                  class="aksel-date__wrapper"
                 >
                   <div
-                    class="navds-form-field navds-form-field--small navds-date__field"
+                    class="aksel-form-field aksel-form-field--small aksel-date__field"
                   >
                     <label
-                      class="navds-form-field__label navds-label navds-label--small"
-                      for="datepicker-input-_r_1_"
+                      class="aksel-form-field__label aksel-label aksel-label--small"
+                      for="datepicker-input-_r_2_"
                     >
                       Fra
                     </label>
                     <div
-                      class="navds-date__field-wrapper"
+                      class="aksel-date__field-wrapper"
                     >
                       <input
                         autocomplete="off"
-                        class="navds-date__field-input navds-text-field__input navds-body-short navds-body-short--small"
-                        id="datepicker-input-_r_1_"
+                        class="aksel-date__field-input aksel-text-field__input aksel-body-short aksel-body-short--small"
+                        id="datepicker-input-_r_2_"
                         size="11"
                         value="01.01.1968"
                       />
                       <button
-                        class="navds-date__field-button"
+                        class="aksel-date__field-button"
                         tabindex="0"
                         type="button"
                       >
                         <svg
-                          aria-labelledby="title-_r_2_"
+                          aria-labelledby="title-_r_3_"
                           fill="none"
                           focusable="false"
                           height="1em"
@@ -398,7 +398,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <title
-                            id="title-_r_2_"
+                            id="title-_r_3_"
                           >
                             Åpne datovelger
                           </title>
@@ -414,40 +414,40 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                     <div
                       aria-live="polite"
                       aria-relevant="additions removals"
-                      class="navds-form-field__error"
-                      id="datepicker-input-error-_r_1_"
+                      class="aksel-form-field__error"
+                      id="datepicker-input-error-_r_2_"
                     />
                   </div>
                 </div>
                 <div
-                  class="navds-date__wrapper"
+                  class="aksel-date__wrapper"
                 >
                   <div
-                    class="navds-form-field navds-form-field--small navds-date__field"
+                    class="aksel-form-field aksel-form-field--small aksel-date__field"
                   >
                     <label
-                      class="navds-form-field__label navds-label navds-label--small"
-                      for="datepicker-input-_r_4_"
+                      class="aksel-form-field__label aksel-label aksel-label--small"
+                      for="datepicker-input-_r_6_"
                     >
                       Til
                     </label>
                     <div
-                      class="navds-date__field-wrapper"
+                      class="aksel-date__field-wrapper"
                     >
                       <input
                         autocomplete="off"
-                        class="navds-date__field-input navds-text-field__input navds-body-short navds-body-short--small"
-                        id="datepicker-input-_r_4_"
+                        class="aksel-date__field-input aksel-text-field__input aksel-body-short aksel-body-short--small"
+                        id="datepicker-input-_r_6_"
                         size="11"
                         value="01.01.1970"
                       />
                       <button
-                        class="navds-date__field-button"
+                        class="aksel-date__field-button"
                         tabindex="0"
                         type="button"
                       >
                         <svg
-                          aria-labelledby="title-_r_5_"
+                          aria-labelledby="title-_r_7_"
                           fill="none"
                           focusable="false"
                           height="1em"
@@ -457,7 +457,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <title
-                            id="title-_r_5_"
+                            id="title-_r_7_"
                           >
                             Åpne datovelger
                           </title>
@@ -473,8 +473,8 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                     <div
                       aria-live="polite"
                       aria-relevant="additions removals"
-                      class="navds-form-field__error"
-                      id="datepicker-input-error-_r_4_"
+                      class="aksel-form-field__error"
+                      id="datepicker-input-error-_r_6_"
                     />
                   </div>
                 </div>
