@@ -64,7 +64,7 @@ function ArbeidsForholdListe({
 
     return (
         <VStack gap="1">
-            <Accordion size="small" headingSize="xsmall">
+            <Accordion size="small">
                 {arbeidsForholdList.map((arbeidsForhold, index) => {
                     return (
                         <Accordion.Item key={index} defaultOpen>

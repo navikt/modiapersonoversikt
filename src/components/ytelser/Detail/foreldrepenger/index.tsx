@@ -110,7 +110,7 @@ const ForeldrepengePerioder = ({ foreldrePenger }: { foreldrePenger: Foreldrepen
             <Heading as="h4" size="small">
                 Perioder
             </Heading>
-            <Accordion size="small" headingSize="xsmall">
+            <Accordion size="small">
                 {perioder.map((periode, index) => {
                     return (
                         <Accordion.Item key={index} defaultOpen>

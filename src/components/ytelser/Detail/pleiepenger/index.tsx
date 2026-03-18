@@ -124,7 +124,7 @@ const PleiePengerPerioder = ({ pleiePenger }: { pleiePenger: Pleiepenger }) => {
             <Heading as="h4" size="small">
                 Perioder
             </Heading>
-            <Accordion size="small" headingSize="xsmall">
+            <Accordion size="small">
                 {sortertePerioder.map((entry, index) => {
                     return (
                         <Accordion.Item key={index} defaultOpen>
