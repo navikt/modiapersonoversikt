@@ -45,7 +45,7 @@ const PeriodeContent = ({ periode }: { periode: PeriodeDagpengerDto }) => {
     };
     return (
         <Accordion.Content>
-            <Heading as="h3" size="small">
+            <Heading as="h5" size="small">
                 Anviste utbetalinger
             </Heading>
             <TitleValuePairsComponent entries={entries} columns={{ xs: 2, lg: 4 }} />
@@ -59,7 +59,7 @@ const PeriodeContent = ({ periode }: { periode: PeriodeDagpengerDto }) => {
  * rest of the ytelser.
  */
 const Perioder = ({ perioder }: { perioder: PeriodeDagpengerDto[] }) => (
-    <Card padding="4">
+    <Card paddingBlock="4">
         <Heading as="h4" size="small">
             Perioder
         </Heading>
@@ -77,12 +77,14 @@ const Perioder = ({ perioder }: { perioder: PeriodeDagpengerDto[] }) => (
 );
 
 export const DagpengerDetails = ({ ytelse }: { ytelse: PseudoDagpengerVedtak }) => (
-    <Card padding="4">
-        <Heading as="h4" size="small">
-            Om dagpenger
-        </Heading>
-        <VStack gap="1" minHeight="0">
-            <Perioder perioder={ytelse.perioder} />
-        </VStack>
-    </Card>
+    <VStack gap="1" minHeight="0">
+        <Card padding="4">
+            <Heading as="h3" size="small">
+                Om dagpenger
+            </Heading>
+            <VStack gap="1" minHeight="0">
+                <Perioder perioder={ytelse.perioder} />
+            </VStack>
+        </Card>
+    </VStack>
 );
