@@ -77,7 +77,7 @@ export const VarslerListe = () => {
 
     return (
         <VStack gap="space-16">
-            <VStack gap="2">
+            <VStack gap="space-8">
                 <Heading level="2" size="medium">
                     Varsler
                 </Heading>

@@ -71,12 +71,12 @@ export const JournalForingModal = ({ traad, close, isOpen }: Props) => {
                             temaListeRef,
                             saksListeRef
                         }) => (
-                            <VStack gap="2">
+                            <VStack gap="space-8">
                                 <SakVelger.ToggleGroup
                                     valgtSakKategori={valgtSakKategori}
                                     setSakKategori={setSakKategori}
                                 />
-                                <HGrid align="start" columns={2} gap="4">
+                                <HGrid align="start" columns={2} gap="space-16">
                                     <div className="h-[60vh]">
                                         <SakVelger.TemaListe
                                             kategorier={fordelteSaker}

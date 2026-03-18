@@ -51,11 +51,11 @@ export const PaginatedList = <T, KeyType extends string | number>({
     }, [selectedKey, pages, keyExtractor]);
 
     return (
-        <VStack as={as ?? 'div'} gap="1" justify="space-between" height="100%" overflow="auto" {...rest}>
-            <VStack gap="1">
+        <VStack as={as ?? 'div'} gap="space-4" justify="space-between" height="100%" overflow="auto" {...rest}>
+            <VStack gap="space-4">
                 {filterCard}
                 {isLoading ? (
-                    <VStack gap="2" marginInline="0 2">
+                    <VStack gap="space-8" marginInline="space-0 space-8">
                         {Array(8)
                             .keys()
                             .map((i) => (
@@ -67,7 +67,7 @@ export const PaginatedList = <T, KeyType extends string | number>({
                         Ingen resultat
                     </InlineMessage>
                 ) : (
-                    <VStack as="ul" gap="1">
+                    <VStack as="ul" gap="space-4">
                         {renderItems?.map((item) => (
                             <RenderComp item={item} key={keyExtractor(item)} />
                         ))}

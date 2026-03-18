@@ -22,20 +22,20 @@ export const TotaltForPeriode = () => {
                     <Accordion.Header>Totalt for perioden</Accordion.Header>
                     <Accordion.Content>
                         <Card className="bg-ax-bg-neutral-soft rounded-(--ax-radius-8) utbetalinger-tabell" padding="4">
-                            <VStack gap="4">
-                                <HStack gap="2" justify="space-between">
-                                    <VStack gap="2" flexGrow="1">
+                            <VStack gap="space-16">
+                                <HStack gap="space-8" justify="space-between">
+                                    <VStack gap="space-8" flexGrow="1">
                                         <BodyShort weight="semibold">Detaljer</BodyShort>
                                         <BodyShort>{getAlleYtelseTyper(data.utbetalinger)[0]}</BodyShort>
                                     </VStack>
                                     <HStack justify="space-between" flexGrow="1">
-                                        <VStack gap="2">
+                                        <VStack gap="space-8">
                                             <BodyShort weight="semibold">Brutto</BodyShort>
                                             <BodyShort>
                                                 {formaterNOK(summertBruttobelopFraUtbetalinger(data.utbetalinger))}
                                             </BodyShort>
                                         </VStack>
-                                        <VStack gap="2">
+                                        <VStack gap="space-8">
                                             <BodyShort weight="semibold">Trekk og skatt</BodyShort>
                                             <BodyShort
                                                 className={fargePaBelop(
@@ -47,7 +47,7 @@ export const TotaltForPeriode = () => {
                                                 )}
                                             </BodyShort>
                                         </VStack>
-                                        <VStack gap="2">
+                                        <VStack gap="space-8">
                                             <BodyShort weight="semibold">Totalt</BodyShort>
                                             <BodyShort
                                                 className={fargePaBelop(

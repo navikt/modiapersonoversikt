@@ -57,11 +57,11 @@ export const MeldingActionMenu = ({ traad }: { traad: Traad }) => {
     };
 
     return (
-        <HStack justify="space-between" gap="2">
+        <HStack justify="space-between" gap="space-8">
             <Heading size="xsmall" level="3">
                 {traadstittel(traad)} - {temagruppeTekst(traad.temagruppe as Temagruppe)}
             </Heading>
-            <HStack gap="2" justify="end" align="start">
+            <HStack gap="space-8" justify="end" align="start">
                 <ActionMenu>
                     <ActionMenu.Trigger>
                         <Button

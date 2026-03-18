@@ -102,7 +102,7 @@ const SendMeldingContent = ({
                 ) : (
                     <>
                         <Alert variant="warning">Fant ikke dialogen under arbeid</Alert>
-                        <HStack justify="end" marginBlock="1">
+                        <HStack justify="end" marginBlock="space-4">
                             <Button variant="tertiary" size="small" onClick={cancelOppgave}>
                                 Avbryt
                             </Button>

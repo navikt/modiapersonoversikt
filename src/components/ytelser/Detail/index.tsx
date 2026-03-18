@@ -54,7 +54,7 @@ export const TitleValuePairsComponent = ({
 }) => {
     const keys = Object.keys(entries);
     return (
-        <HGrid gap="6" columns={columns ?? 2} className="my-2">
+        <HGrid gap="space-24" columns={columns ?? 2} className="my-2">
             {keys.map((key) => {
                 const value = entries[key];
                 return <TitleValuePairComponent key={key} title={key} value={value} />;

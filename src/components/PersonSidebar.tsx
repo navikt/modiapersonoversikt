@@ -84,7 +84,7 @@ export const PersonSidebarMenu = () => {
         <Card className="h-full overflow-auto">
             <VStack justify="space-between" height="100%" as="nav">
                 <Box>
-                    <Box padding="2" className="flex">
+                    <Box padding="space-8" className="flex">
                         <Button
                             data-color="neutral"
                             icon={
@@ -109,7 +109,7 @@ export const PersonSidebarMenu = () => {
                         as="nav"
                         id="sidebar-person"
                         aria-label="Person"
-                        padding="2"
+                        padding="space-8"
                         className="divide-y divide-ax-border-neutral-subtle "
                     >
                         <Heading visuallyHidden size="small" level="2">
@@ -173,7 +173,7 @@ export const PersonSidebarMenu = () => {
                         ))}
                     </VStack>
                 </Box>
-                <Box padding="2">
+                <Box padding="space-8">
                     <ThemeIconToggle />
                 </Box>
             </VStack>

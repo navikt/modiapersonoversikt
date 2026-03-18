@@ -44,7 +44,7 @@ export const DateRangePickerWithDebounce = ({
 
     return (
         <VStack>
-            <HStack gap="2" wrap={false}>
+            <HStack gap="space-8" wrap={false}>
                 <SelectPeriod onPeriodChange={periodChange} selectedPeriod={period} />
                 <SingleDatePicker
                     date={dateRange.from.toDate()}

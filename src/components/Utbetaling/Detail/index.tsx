@@ -6,7 +6,7 @@ import type { Utbetaling } from 'src/generated/modiapersonoversikt-api';
 
 export const UtbetalingDetail = ({ utbetaling }: { utbetaling: Utbetaling }) => {
     return (
-        <VStack gap="8" paddingBlock="2">
+        <VStack gap="space-32" paddingBlock="space-8">
             <Oppsummering utbetaling={utbetaling} />
             {utbetaling.ytelser.map((ytelse, i) => (
                 <YtelseDetail key={`${i}-${ytelse.type}`} ytelse={ytelse} />

@@ -33,7 +33,7 @@ export const PeriodeAccordions = () => {
                     <Accordion.Item key={periode.category}>
                         <Accordion.Header>{periode.category}</Accordion.Header>
                         <Accordion.Content className="overflow-x-auto">
-                            <VStack gap="4">
+                            <VStack gap="space-16">
                                 <UtbetalingerTabell utbetalinger={periode.array} />
                                 <InlineMessage size="small" className="px-2" status="success">
                                     Totalt for {periode.category}:{' '}

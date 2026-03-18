@@ -49,18 +49,18 @@ function PersonRouteMedTilgang() {
 
 function PersonLayout() {
     return (
-        <VStack className="new-modia  overflow-hidden" flexGrow="1" gap="1">
+        <VStack className="new-modia  overflow-hidden" flexGrow="1" gap="space-4">
             <VStack className="shrink-0 overflow-auto">
                 <PersonLinje />
             </VStack>
-            <HStack minHeight="0" gap="1" wrap={false} className="h-full">
+            <HStack minHeight="0" gap="space-4" wrap={false} className="h-full">
                 <VStack>
                     <PersonSidebarMenu />
                 </VStack>
                 <PanelGroup direction="horizontal" autoSaveId="person-content">
                     <Panel order={1} className="overflow-scroll">
                         <Box as="main" id="main-content" height="100%">
-                            <VStack gap="1" height="100%">
+                            <VStack gap="space-4" height="100%">
                                 <Suspense>
                                     <Outlet />
                                 </Suspense>

@@ -188,7 +188,7 @@ export const SladdTraadModal = ({ traad, onClose, open }: ModalProps) => {
     return (
         <Modal width="medium" open={open} onClose={onClose} header={{ heading: 'Send til sladding' }}>
             <Modal.Body>
-                <VStack gap="2">
+                <VStack gap="space-8">
                     <Suspense fallback={<Skeleton variant="rectangle" height="16" />}>
                         <ErrorBoundary boundaryName="sladding">
                             <Select
@@ -242,7 +242,7 @@ export const SladdTraadModal = ({ traad, onClose, open }: ModalProps) => {
                         </Link>
                         .
                     </Alert>
-                    <HStack justify="end" gap="4">
+                    <HStack justify="end" gap="space-16">
                         <Button variant="secondary" onClick={onClose} size="small">
                             Avbryt
                         </Button>

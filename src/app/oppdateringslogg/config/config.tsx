@@ -639,7 +639,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             aktiv: true,
             ingress: null,
             beskrivelse: (
-                <VStack justify="start" gap="4">
+                <VStack justify="start" gap="space-16">
                     <p className="font-ax-bold">
                         Vi har de siste månedene gjort noen endringer på dataen som er tilgjengelig i Modia
                         personoversikt:

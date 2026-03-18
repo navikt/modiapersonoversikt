@@ -20,7 +20,7 @@ const MeldingerPageContent = () => {
 
     return (
         <HGrid
-            gap="1"
+            gap="space-4"
             columns={{ xs: 1, md: 'max-content 1fr' }}
             overflow={{ xs: 'scroll', md: 'hidden' }}
             height="100%"

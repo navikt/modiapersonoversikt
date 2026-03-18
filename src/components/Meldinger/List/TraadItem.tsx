@@ -86,7 +86,7 @@ function Slettet({ melding }: { melding: Melding }) {
 
 function Antallmeldinger({ traad }: { traad: TraadDto }) {
     return (
-        <HStack align="center" gap="05" className="text-ax-text-neutral-subtle" wrap={false}>
+        <HStack align="center" gap="space-2" className="text-ax-text-neutral-subtle" wrap={false}>
             <Chat2Icon title="Antall meldinger i tråd:" />
             <Label size="small" className="text-ax-text-neutral-subtle font-light">
                 {traad.meldinger.length}
@@ -200,17 +200,17 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
                 )}
                 as="li"
             >
-                <HStack justify="start" align="stretch" wrap={false} paddingInline="4 2">
+                <HStack justify="start" align="stretch" wrap={false} paddingInline="space-16 space-8">
                     {visNotifikasjon && (
-                        <Box marginBlock="1">
+                        <Box marginBlock="space-4">
                             <Bleed marginInline="space-12">
                                 <CircleFillIcon title="" className="text-ax-text-accent-decoration" fontSize="0.5rem" />
                             </Bleed>
                         </Box>
                     )}
-                    <VStack gap="0" width="100%">
-                        <HStack justify="space-between" gap="0" wrap={false}>
-                            <VStack gap="0">
+                    <VStack gap="space-0" width="100%">
+                        <HStack justify="space-between" gap="space-0" wrap={false}>
+                            <VStack gap="space-0">
                                 <Label size="small" as="h3">
                                     <Detail className="text-nowrap" visuallyHidden>
                                         Tema:
@@ -223,9 +223,9 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
                                 <Antallmeldinger traad={traad} />
                             </HStack>
                         </HStack>
-                        <VStack gap="2">
+                        <VStack gap="space-8">
                             <Detail truncate>{sisteMelding.fritekst}</Detail>
-                            <HStack gap="1" align="start" justify="start" maxHeight="max-content">
+                            <HStack gap="space-4" align="start" justify="start" maxHeight="max-content">
                                 <UbesvartMelding traad={traad} />
                                 <UnderArbeid traadId={traad.traadId} />
                                 <Feilsendt traad={traad} />

@@ -32,7 +32,7 @@ const TraadDetailContent = ({ traad }: { traad: Traad }) => {
 
     return (
         <Card as={VStack} padding="2" overflow="auto">
-            <VStack as="section" gap="1" padding="2" height="100%" aria-label="Dialogdetaljer">
+            <VStack as="section" gap="space-4" padding="space-8" height="100%" aria-label="Dialogdetaljer">
                 <MeldingActionMenu traad={traad} />
                 <Journalposter journalposter={traad.journalposter} />
                 <TraadOppgaver traadId={traad.traadId} />
@@ -47,7 +47,7 @@ const TraadDetailContent = ({ traad }: { traad: Traad }) => {
                             </Box>
                         )}
                     </HStack>
-                    <VStack gap="2">
+                    <VStack gap="space-8">
                         {avsluttetDato && !kanBesvares && (
                             <InlineMessage status="warning" size="small">
                                 Samtalen er avsluttet av {avsluttetAv ?? 'Systembruker'}{' '}

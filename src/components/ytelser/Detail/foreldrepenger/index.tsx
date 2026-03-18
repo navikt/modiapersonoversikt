@@ -145,7 +145,7 @@ const Arbeidssituasjon = ({ foreldrePenger }: { foreldrePenger: Foreldrepenger }
 
 export const ForeldrePengerDetails = ({ foreldrePenger }: { foreldrePenger: Foreldrepenger }) => {
     return (
-        <VStack gap="1" minHeight="0">
+        <VStack gap="space-4" minHeight="0">
             <ForeldrePengerRetten foreldrePenger={foreldrePenger} />
             <ForeldrePengerRettenBarnet foreldrePenger={foreldrePenger} />
             <ForeldrepengePerioder foreldrePenger={foreldrePenger} />

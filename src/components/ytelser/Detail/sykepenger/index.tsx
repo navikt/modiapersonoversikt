@@ -145,7 +145,7 @@ export const SykepengerDetails = ({ sykepenger }: { sykepenger: Sykepenger }) =>
     )?.[0];
 
     return (
-        <VStack gap="1" minHeight="0">
+        <VStack gap="space-4" minHeight="0">
             <Sykepengertilfellet sykepenger={sykepenger} />
             {aktuellSykmelding && <Sykemelding sykmelding={aktuellSykmelding} />}
             <Arbeidssituasjon sykepenger={sykepenger} />

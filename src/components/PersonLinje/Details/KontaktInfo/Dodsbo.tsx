@@ -92,7 +92,7 @@ function KontaktinformasjonDodsbo({ harFeilendeSystem, dodsbo }: { dodsbo: Dodsb
                         icon={<LocationPinFillIcon fontSize="1.2rem" color="var(--ax-neutral-500)" />}
                     >
                         <Adressatinfo harFeilendeSystem={harFeilendeSystem} adressat={dodsbo.adressat} />
-                        <Box marginBlock="2">
+                        <Box marginBlock="space-8">
                             <Adresseinfo adresse={dodsbo.adresse} />
                             {/* TODO: Her ble det tidligere brukt dodsbo.registrert. Hva ønsker vi å bruke? */}
                             <LastChanged sistEndret={dodsbo.sistEndret} />

@@ -51,10 +51,10 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
             overflowX="auto"
             borderColor="neutral-subtle"
             borderWidth="2 0 2 0"
-            marginBlock="2"
-            padding="4"
+            marginBlock="space-8"
+            padding="space-16"
         >
-            <VStack gap="8" align="baseline" paddingBlock="8 8" as="ol" aria-label="Meldinger">
+            <VStack gap="space-32" align="baseline" paddingBlock="space-32 space-32" as="ol" aria-label="Meldinger">
                 {meldinger.map((m) => {
                     const erFraNav = erMeldingFraNav(m.meldingstype);
                     return (
@@ -92,13 +92,13 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
 
 const ReadStatus = ({ date }: { date?: string }) =>
     date ? (
-        <HStack gap="1">
+        <HStack gap="space-4">
             <EnvelopeOpenIcon color="var(--ax-text-success-icon)" />
             <Detail>Lest</Detail>
             <Detail textColor="subtle">({formatterDatoTid(date)})</Detail>
         </HStack>
     ) : (
-        <HStack gap="1">
+        <HStack gap="space-4">
             <EnvelopeClosedIcon color="var(--ax-text-warning-icon)" />
             <Detail>Ikke lest</Detail>
         </HStack>
