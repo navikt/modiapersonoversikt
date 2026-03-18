@@ -73,8 +73,8 @@ export const YtelseItem = ({ ytelse }: { ytelse: YtelseVedtak }) => {
 
     return (
         <Link
+            data-color="neutral"
             ref={linkRef}
-            variant="neutral"
             className="hover:no-underline block"
             underline={false}
             onClick={(e) => {
