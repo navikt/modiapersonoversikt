@@ -14,7 +14,7 @@ interface Props {
 function Telefon({ harFeilendeSystem, kontaktinformasjon }: Props) {
     if (harFeilendeSystem) {
         return (
-            <InfoElement title="Telefon" icon={<PhoneFillIcon fontSize="1.2rem" color="var(--a-gray-400)" />}>
+            <InfoElement title="Telefon" icon={<PhoneFillIcon fontSize="1.2rem" color="var(--ax-neutral-500)" />}>
                 <Alert variant="warning">Feilet ved uthenting av data fra Kontakt- og reservasjonsregisteret</Alert>
             </InfoElement>
         );
@@ -30,7 +30,7 @@ function Telefon({ harFeilendeSystem, kontaktinformasjon }: Props) {
         : null;
 
     return (
-        <InfoElement title="Telefon" icon={<PhoneFillIcon fontSize="1.2rem" color="var(--a-gray-400)" />}>
+        <InfoElement title="Telefon" icon={<PhoneFillIcon fontSize="1.2rem" color="var(--ax-neutral-500)" />}>
             <KRRInfo
                 erReservert={kontaktinformasjon.erReservert?.value}
                 reservasjonOppdatert={kontaktinformasjon.erReservert?.sistOppdatert}

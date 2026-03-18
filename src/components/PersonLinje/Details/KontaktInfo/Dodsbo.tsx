@@ -89,7 +89,7 @@ function KontaktinformasjonDodsbo({ harFeilendeSystem, dodsbo }: { dodsbo: Dodsb
                     <InfoElement
                         key={`${dodsbo.adresse}-${index}`}
                         title="Kontaktinformasjon for dødsbo"
-                        icon={<LocationPinFillIcon fontSize="1.2rem" color="var(--a-gray-400)" />}
+                        icon={<LocationPinFillIcon fontSize="1.2rem" color="var(--ax-neutral-500)" />}
                     >
                         <Adressatinfo harFeilendeSystem={harFeilendeSystem} adressat={dodsbo.adressat} />
                         <Box marginBlock="2">
