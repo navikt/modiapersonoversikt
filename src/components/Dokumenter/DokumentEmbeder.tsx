@@ -62,7 +62,7 @@ export const DokumentEmbeder = ({ url, fnr, onError, children }: DokumentViewerP
     }
 
     return (
-        <div className="flex justify-center items-center w-full h-screen bg-gray-100 overflow-hidden">
+        <div className="flex justify-center items-center w-full h-screen bg-ax-neutral-200 overflow-hidden">
             <object data={blobUrl} type={contentType} className="w-full h-full border-none">
                 {children}
             </object>
