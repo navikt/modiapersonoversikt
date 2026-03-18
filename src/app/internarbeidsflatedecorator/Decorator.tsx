@@ -12,6 +12,7 @@ import './decorator.less';
 import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
 import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 import { useDecoratorConfig } from './useDecoratorConfig';
+import {OppstartNyModiaDialog} from "src/components/NyModia/OppstartNyModiaDialog";
 
 const InternflateDecoratorV3 = NAVSPA.importer<DecoratorPropsV3>('internarbeidsflate-decorator-v3');
 
@@ -49,6 +50,7 @@ function Decorator() {
             <Personsok />
             <OppdateringsloggContainer />
             <DropdownMenyPortal />
+            <OppstartNyModiaDialog/>
             <DecoratorEasterEgg />
         </StyledNav>
     );
