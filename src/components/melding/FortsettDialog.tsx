@@ -1,18 +1,7 @@
-import {
-    Alert,
-    Bleed,
-    BodyShort,
-    Box,
-    Button,
-    Checkbox,
-    HGrid,
-    HStack,
-    InlineMessage,
-    Loader,
-    VStack
-} from '@navikt/ds-react';
+import { Alert, Bleed, Box, Button, Checkbox, HGrid, HStack, InlineMessage, Loader, VStack } from '@navikt/ds-react';
 import { useForm, type ValidationError } from '@tanstack/react-form';
-import { useAtom, useAtomValue } from 'jotai';
+import { getRouteApi } from '@tanstack/react-router';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import DraftStatus from 'src/app/personside/dialogpanel/DraftStatus';
 import type { Draft, DraftContext } from 'src/app/personside/dialogpanel/use-draft';
@@ -24,16 +13,14 @@ import { settInnStandardTekst } from 'src/components/melding/standardtekster/set
 import { useOppgaveForTraad, useSendMelding } from 'src/lib/clients/modiapersonoversikt-api';
 import { useSuspendingBrukernavn } from 'src/lib/hooks/useSuspendingBrukernavn';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
-import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
+import { dialogUnderArbeidAtom, overskridKontaktReservasjonAtom, useDisableDialog } from 'src/lib/state/dialog';
 import {
     type SendMeldingRequestV2,
     SendMeldingRequestV2TraadType,
     type Traad,
     TraadType
 } from 'src/lib/types/modiapersonoversikt-api';
-import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { trackFortsettDialog } from 'src/utils/analytics';
-import { formatterDatoTid } from 'src/utils/date-utils';
 import type { z } from 'zod';
 import AutocompleteTextarea from './AutoCompleteTextarea';
 import { fortsettDialogSchema, maksLengdeMelding } from './nyMeldingSchema';
@@ -48,14 +35,20 @@ type Props = {
     traad: Traad;
     lukkOppgave: () => void;
 };
+
+const routeApi = getRouteApi('/new/person/meldinger');
+
 export const FortsettDialog = ({ traad, lukkOppgave }: Props) => {
     const fnr = usePersonAtomValue();
     const enhetsId = useAtomValue(aktivEnhetAtom);
     const [, setDialogUnderArbeid] = useAtom(dialogUnderArbeidAtom);
     const brukerNavn = useSuspendingBrukernavn();
     const { oppgave } = useOppgaveForTraad(traad.traadId);
-
+    const disableDialog = useDisableDialog();
+    const setOverskridKontaktReservasjon = useSetAtom(overskridKontaktReservasjonAtom);
     const { error, mutate, isPending, isSuccess } = useSendMelding();
+    const { traadId: valgtTraadId } = routeApi.useSearch();
+    const erValgtTraad = valgtTraadId === traad.traadId;
 
     // Brukes for å sette initialverdien til meldingen basert på draften
     const [defaultMessage, setDefaultMessage] = useState('');
@@ -96,6 +89,7 @@ export const FortsettDialog = ({ traad, lukkOppgave }: Props) => {
                             { keepDefaultValues: true }
                         );
                         setDialogUnderArbeid(undefined);
+                        setOverskridKontaktReservasjon(false);
                     }
                 }
             );
@@ -108,7 +102,11 @@ export const FortsettDialog = ({ traad, lukkOppgave }: Props) => {
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
     if (henvendelsePending) {
-        return <Loader size="medium" />;
+        return (
+            <HStack align="center" justify="center">
+                <Loader size="medium" />
+            </HStack>
+        );
     }
 
     return (
@@ -120,34 +118,24 @@ export const FortsettDialog = ({ traad, lukkOppgave }: Props) => {
             }}
         >
             <VStack gap="4">
-                <Box.New
-                    padding="2"
-                    background="sunken"
-                    borderColor="neutral-subtle"
-                    borderWidth="1"
-                    borderRadius="small"
-                >
-                    <VStack gap="2">
-                        <BodyShort>
-                            <span className="font-semibold">Tema: </span>
-                            {temagruppeTekst(traad.temagruppe as Temagruppe)}
-                        </BodyShort>
-                        {traad.opprettetDato && (
-                            <BodyShort>
-                                Opprettet:{' '}
-                                <span className="text-text-subtle">{formatterDatoTid(traad.opprettetDato)}</span>
-                            </BodyShort>
-                        )}
-                        <Link to="/new/person/meldinger" search={{ traadId: traad.traadId }}>
-                            Gå til dialog
+                {!erValgtTraad && (
+                    <InlineMessage size="small" status="warning" className="mt-2">
+                        Dialogen du nå svarer til, er ikke den som vises til venstre.
+                        <Link
+                            to="/new/person/meldinger"
+                            className="text-ax-medium cursor-pointer"
+                            search={{ traadId: traad.traadId }}
+                        >
+                            Gå til aktuell dialog
                         </Link>
-                    </VStack>
-                </Box.New>
+                    </InlineMessage>
+                )}
                 {!erSamtalereferat && (
                     <>
                         <form.Field name="avsluttet">
                             {(field) => (
                                 <Checkbox
+                                    disabled={disableDialog}
                                     checked={field.state.value}
                                     size="small"
                                     onChange={(e) => field.handleChange(e.target.checked)}
@@ -195,6 +183,7 @@ export const FortsettDialog = ({ traad, lukkOppgave }: Props) => {
                         {(field) => (
                             <div>
                                 <AutocompleteTextarea
+                                    disabled={disableDialog}
                                     autoFocus
                                     hideLabel
                                     ref={textAreaRef}
@@ -218,7 +207,10 @@ export const FortsettDialog = ({ traad, lukkOppgave }: Props) => {
                                 form.getFieldValue('melding').length > 0 &&
                                 form.getFieldMeta('melding')?.isDirty && <DraftStatus state={draftStatus} />}
                         </Box.New>
-                        <Bleed marginBlock={{ xs: '0 0', md: 'space-20 space-0' }} asChild>
+                        <Bleed
+                            marginBlock={{ xs: '0 0', md: disableDialog ? 'space-0 space-0' : 'space-20 space-0' }}
+                            asChild
+                        >
                             <HStack gap="1" justify="end">
                                 <HStack justify="center">
                                     <AutoCompleteTekstTips />
@@ -236,6 +228,7 @@ export const FortsettDialog = ({ traad, lukkOppgave }: Props) => {
                                         type="submit"
                                         data-testid="svar-knapp-fortsett-dialog"
                                         size="small"
+                                        disabled={disableDialog}
                                         loading={isPending}
                                     >
                                         Send til {brukerNavn} {oppgaveId ? 'og avslutt oppgave' : ''}

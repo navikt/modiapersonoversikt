@@ -1,4 +1,5 @@
 import { Radio, RadioGroup, VStack } from '@navikt/ds-react';
+import { useDisableDialog } from 'src/lib/state/dialog';
 import { TraadType } from 'src/lib/types/modiapersonoversikt-api';
 
 interface VelgMeldingsTypeProps {
@@ -7,8 +8,17 @@ interface VelgMeldingsTypeProps {
 }
 
 export function VelgMeldingsType({ meldingsType, setMeldingsType }: VelgMeldingsTypeProps) {
+    const disableDialog = useDisableDialog();
+
     return (
-        <RadioGroup legend="Type dialog" hideLegend onChange={setMeldingsType} value={meldingsType} size="small">
+        <RadioGroup
+            legend="Type dialog"
+            hideLegend
+            onChange={setMeldingsType}
+            value={meldingsType}
+            size="small"
+            disabled={disableDialog}
+        >
             <VStack gap="1">
                 <MeldingsTypeRadioKnapper valgtMeldingsType={meldingsType} />
             </VStack>

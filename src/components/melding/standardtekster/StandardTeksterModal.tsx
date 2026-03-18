@@ -2,6 +2,7 @@ import { FileTextIcon } from '@navikt/aksel-icons';
 import { Button, Modal } from '@navikt/ds-react';
 import { type RefObject, useRef } from 'react';
 import StandardTekster from 'src/components/melding/standardtekster/StandardTekster';
+import { useDisableDialog } from 'src/lib/state/dialog';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import useHotkey from 'src/utils/hooks/use-hotkey';
 
@@ -13,7 +14,7 @@ function StandardTekstModal({
     textAreaRef?: RefObject<HTMLTextAreaElement | null>;
 }) {
     const modalRef = useRef<HTMLDialogElement>(null);
-
+    const disableDialog = useDisableDialog();
     useHotkey({ char: 'c', altKey: true }, () => modalRef.current?.showModal(), [], 'Standardtekster');
 
     const setTekst = (nyTekst: string) => {
@@ -26,6 +27,7 @@ function StandardTekstModal({
     return (
         <div>
             <Button
+                disabled={disableDialog}
                 variant="tertiary"
                 size="small"
                 icon={<FileTextIcon title="Vis standardtekster" />}

@@ -2,6 +2,7 @@ import { Alert, Button, HGrid, Modal, Tag, VStack } from '@navikt/ds-react';
 import { type ReactNode, useState } from 'react';
 import SakVelger from 'src/components/sakVelger/SakVelger';
 import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
+import { useDisableDialog } from 'src/lib/state/dialog';
 import { formatterDatoMedMaanedsnavnOrNull } from 'src/utils/date-utils';
 
 interface VelgSakProps {
@@ -12,6 +13,7 @@ interface VelgSakProps {
 
 export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
     const [velgSakModalOpen, setVelgSakModalOpen] = useState(false);
+    const disableDialog = useDisableDialog();
 
     return (
         <VStack gap="1">
@@ -22,6 +24,7 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
                         id="knytt-dialog-til-sak"
                         variant="secondary"
                         size="xsmall"
+                        disabled={disableDialog}
                         onClick={() => setVelgSakModalOpen(true)}
                         iconPosition="left"
                     >

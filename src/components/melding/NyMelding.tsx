@@ -1,6 +1,6 @@
 import { Alert, Bleed, Box, Button, ErrorMessage, HGrid, HStack, VStack } from '@navikt/ds-react';
 import { useForm, useStore, type ValidationError } from '@tanstack/react-form';
-import { useAtomValue } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import DraftStatus from 'src/app/personside/dialogpanel/DraftStatus';
 import useDraft, { type Draft, type DraftContext } from 'src/app/personside/dialogpanel/use-draft';
@@ -22,6 +22,7 @@ import {
 import { useSendMelding } from 'src/lib/clients/modiapersonoversikt-api';
 import { useSuspendingBrukernavn } from 'src/lib/hooks/useSuspendingBrukernavn';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
+import { overskridKontaktReservasjonAtom, useDisableDialog } from 'src/lib/state/dialog';
 import type { Temagruppe } from 'src/models/temagrupper';
 import { trackSendNyMelding } from 'src/utils/analytics';
 import type { z } from 'zod';
@@ -31,6 +32,8 @@ function NyMelding() {
     const fnr = usePersonAtomValue();
     const enhetsId = useAtomValue(aktivEnhetAtom);
     const brukerNavn = useSuspendingBrukernavn();
+    const disableDialog = useDisableDialog();
+    const setOverskridKontaktReservasjon = useSetAtom(overskridKontaktReservasjonAtom);
 
     const { error, mutate, isPending, isSuccess } = useSendMelding();
 
@@ -71,6 +74,7 @@ function NyMelding() {
                             },
                             { keepDefaultValues: true }
                         );
+                        setOverskridKontaktReservasjon(false);
                     }
                 }
             );
@@ -150,6 +154,7 @@ function NyMelding() {
                         {(field) => (
                             <div>
                                 <AutocompleteTextarea
+                                    disabled={disableDialog}
                                     ref={textAreaRef}
                                     label={meldingsTypeTekst.tittel}
                                     hideLabel
@@ -171,7 +176,10 @@ function NyMelding() {
                                 form.getFieldValue('melding').length > 0 &&
                                 form.getFieldMeta('melding')?.isDirty && <DraftStatus state={draftStatus} />}
                         </Box.New>
-                        <Bleed marginBlock={{ xs: '0 0', md: 'space-20 space-0' }} asChild>
+                        <Bleed
+                            marginBlock={{ xs: '0 0', md: disableDialog ? 'space-0 space-0' : 'space-20 space-0' }}
+                            asChild
+                        >
                             <HStack gap="1" justify="end">
                                 <HStack justify="center">
                                     <AutoCompleteTekstTips />
@@ -185,7 +193,13 @@ function NyMelding() {
                                     />
                                 </HStack>
                                 <HStack justify="center" align="start">
-                                    <Button type="submit" size="small" data-testid="svar-knapp" loading={isPending}>
+                                    <Button
+                                        disabled={disableDialog}
+                                        type="submit"
+                                        size="small"
+                                        data-testid="svar-knapp"
+                                        loading={isPending}
+                                    >
                                         Send til {brukerNavn}
                                     </Button>
                                 </HStack>
