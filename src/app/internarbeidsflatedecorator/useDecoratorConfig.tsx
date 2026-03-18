@@ -8,7 +8,7 @@ import { updateUserEnhet } from 'src/utils/analytics';
 import { useOnMount, useSettAktivBruker } from 'src/utils/customHooks';
 import { getDomainFromHost, getEnvFromHost } from 'src/utils/environment';
 import { loggEvent } from 'src/utils/logger/frontendLogger';
-import { parseQueryString, useQueryParams } from 'src/utils/url-utils';
+import { parseQueryString } from 'src/utils/url-utils';
 import config from '../../config';
 import bjelleIkon from '../../svg/bjelle.svg?raw';
 import { DecoratorButtonId as OppdateringsloggButtonId } from '../oppdateringslogg/OppdateringsloggContainer';
@@ -19,13 +19,9 @@ export function useDecoratorConfig() {
 
     const settAktivBruker = useSettAktivBruker();
 
-    const queryParams = useQueryParams<{
-        sokFnr?: string;
-        sokFnrCode?: string;
-    }>();
-
     useOnMount(() => {
-        if (queryParams.sokFnr) {
+        const { sokFnr } = parseQueryString<{ sokFnr?: string }>(window.location.search);
+        if (sokFnr) {
             loggEvent('Oppslag', 'Puzzle');
         }
     });
