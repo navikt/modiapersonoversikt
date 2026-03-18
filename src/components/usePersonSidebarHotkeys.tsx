@@ -54,10 +54,7 @@ export const usePersonSideBarKotkeys = () => {
                     navigerMedTracking('meldinger');
                     break;
                 case 's':
-                    navigerMedTracking('saker');
-                    break;
-                case 'p':
-                    navigerMedTracking('oppgaver');
+                    navigerMedTracking('dokumenter');
                     break;
             }
         };

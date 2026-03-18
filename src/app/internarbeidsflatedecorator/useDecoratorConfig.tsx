@@ -11,6 +11,8 @@ import config from '../../config';
 import bjelleIkon from '../../svg/bjelle.svg?raw';
 import { DecoratorButtonId as OppdateringsloggButtonId } from '../oppdateringslogg/OppdateringsloggContainer';
 import type { DecoratorPropsV3, Hotkey } from './decoratorprops';
+import useFeatureToggle from "src/components/featureToggle/useFeatureToggle";
+import {FeatureToggles} from "src/components/featureToggle/toggleIDs";
 
 export function useDecoratorConfig() {
     const [aktivEnhet, setAktivEnhet] = useAtom(aktivEnhetAtom);
@@ -124,6 +126,7 @@ function getFnrFraUrl() {
 }
 
 function getHotkeys(): Hotkey[] {
+    const { isOn } = useFeatureToggle(FeatureToggles.NyModiaKnapp);
     /**
      * TODO ønskelig å fjerne dobbelt-bokføring her og ved bruken av useHook
      * hurtigtastene kan definere actions her om det er enkelt (litt avhengig av funksjon)
@@ -153,12 +156,7 @@ function getHotkeys(): Hotkey[] {
         },
         {
             key: { char: 'S', altKey: true },
-            description: 'Vis saker',
-            documentationOnly: true
-        },
-        {
-            key: { char: 'P', altKey: true },
-            description: 'Vis oppgaver',
+            description: isOn ? 'Vis dokumenter' : 'Vis saker',
             documentationOnly: true
         },
         {
@@ -171,11 +169,11 @@ function getHotkeys(): Hotkey[] {
             description: 'Vis varsler',
             documentationOnly: true
         },
-        {
+        ...(!isOn ? [{
             key: { char: 'N', altKey: true },
             description: 'Åpne/lukke visitkort',
             documentationOnly: true
-        },
+        }] : []),
         {
             key: { char: 'B', altKey: true },
             description: 'Gå til personforvalter',
