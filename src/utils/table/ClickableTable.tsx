@@ -73,9 +73,9 @@ export function ClickableTable({ tittelRekke, rows, rowsOnClickHandlers }: Table
                         {tittelRekke.map((tittel: TitleCell, index: number) => (
                             //biome-ignore lint/suspicious/noArrayIndexKey lint/a11y/useSemanticElements: biome migration
                             // biome-ignore lint/a11y/useFocusableInteractive: biome migration
-                            <div role="columnheader" key={index}>
+                            (<div role="columnheader" key={index}>
                                 {tittel}
-                            </div>
+                            </div>)
                         ))}
                     </div>
                 </div>
@@ -83,12 +83,12 @@ export function ClickableTable({ tittelRekke, rows, rowsOnClickHandlers }: Table
                 <div role="rowgroup" className="tbody">
                     {rows.map((row: TableRow, index: number) => (
                         //biome-ignore lint/suspicious/noArrayIndexKey: biome migration
-                        <Row key={index} onClick={rowsOnClickHandlers?.[index]}>
+                        (<Row key={index} onClick={rowsOnClickHandlers?.[index]}>
                             {row.map((entry, i) => (
                                 //biome-ignore lint/suspicious/noArrayIndexKey: biome migration
-                                <Cell key={i}>{entry || (entry === 0 && '0') || '\u2014'}</Cell>
+                                (<Cell key={i}>{entry || (entry === 0 && '0') || '\u2014'}</Cell>)
                             ))}
-                        </Row>
+                        </Row>)
                     ))}
                 </div>
             </div>

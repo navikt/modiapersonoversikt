@@ -12,12 +12,12 @@ const NotFound = () => {
                         <BodyShort>
                             Denne siden kan være slettet eller flyttet, eller det er en feil i lenken.
                         </BodyShort>
-                        <List>
-                            <List.Item>Bruk gjerne søket eller menyen</List.Item>
-                            <List.Item>
-                                <Link href="/">Gå til forsiden</Link>
-                            </List.Item>
-                        </List>
+                        <Box marginBlock="space-16" asChild><List data-aksel-migrated-v8>
+                                <List.Item>Bruk gjerne søket eller menyen</List.Item>
+                                <List.Item>
+                                    <Link href="/">Gå til forsiden</Link>
+                                </List.Item>
+                            </List></Box>
                     </div>
                 </Box>
             </Page.Block>
