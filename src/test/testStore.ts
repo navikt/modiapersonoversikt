@@ -7,7 +7,6 @@ import {
     statiskForeldrepengerFpSakMock
 } from 'src/mock/ytelse/statiskForeldrepengerFpSakMock';
 import { statiskPensjonMock } from 'src/mock/ytelse/statiskPensjonMock';
-import { statiskPeriodeDagpengerDtoMock } from 'src/mock/ytelse/statiskPeriodeDagpengerDtoMock';
 import { statiskSykepengerSpokelseMock } from 'src/mock/ytelse/statiskSykepengerSpokelseMock';
 import { type MockInstance, vi } from 'vitest';
 import type { FetchError } from '../api/api';
@@ -29,7 +28,6 @@ import reducers, { type AppState } from '../redux/reducers';
 import aktoridResource from '../rest/resources/aktoridResource';
 import * as arbeidsavklaringspengerReesource from '../rest/resources/arbeidsavklaringspengerResource';
 import baseurlsResource from '../rest/resources/baseurlsResource';
-import * as dagpengerResource from '../rest/resources/dagpengerResource';
 import dialogResource from '../rest/resources/dialogResource';
 import featuretogglesResource from '../rest/resources/featuretogglesResource';
 import * as foreldrepengerFpSakResource from '../rest/resources/foreldrepengerFpSakResource';
@@ -85,7 +83,6 @@ export function setupReactQueryMocks() {
     vi.spyOn(pensjonResource, 'usePensjon');
     vi.spyOn(arbeidsavklaringspengerReesource, 'useArbeidsavklaringspenger');
     vi.spyOn(foreldrepengerFpSakResource, 'useForeldrepengerFpSak');
-    vi.spyOn(dagpengerResource, 'useDagpenger');
     vi.spyOn(gsaktemaResource, 'useFetch');
     vi.spyOn(oppfolgingResource, 'useFetch');
     vi.spyOn(sakstemaResource, 'useFetch');
@@ -128,7 +125,6 @@ export function setupReactQueryMocks() {
         statiskEngangstonadFpSakMock,
         statiskEngangstonadFpSakMock
     ]);
-    mockReactQuery(dagpengerResource.useDagpenger, statiskPeriodeDagpengerDtoMock);
     mockReactQuery(oppfolgingResource.useFetch, statiskOppfolgingMock);
     mockReactQuery(sakstemaResource.useFetch, getStaticMockSaksoversiktV2());
     mockReactQuery(utbetalingerResource.useFetch, statiskMockUtbetalingRespons);

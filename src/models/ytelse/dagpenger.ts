@@ -11,5 +11,5 @@ export function getDagpengerIdDato(ytelse: PseudoDagpengerVedtak) {
 
 export function getUnikDagpengerKey(ytelse: PseudoDagpengerVedtak) {
     // TODO ensure this is actually unique
-    return `dagpenger-${ytelse.nyesteFraOgMedDato ?? 'N/A'}`;
+    return `dagpenger-${ytelse.nyesteFraOgMedDato ?? 'NONE'}`;
 }
