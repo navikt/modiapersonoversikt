@@ -39,7 +39,7 @@ function DiskresjonskodeBadges({ adressebeskyttelser }: { adressebeskyttelser: P
         return null;
     }
     return (
-        <Tag variant="error-moderate" size="small">
+        <Tag data-color="danger" variant="moderate" size="small">
             {adressebeskyttelse?.beskrivelse}
         </Tag>
     );
@@ -48,9 +48,8 @@ function DiskresjonskodeBadges({ adressebeskyttelser }: { adressebeskyttelser: P
 function EgenAnsattBadge({ erEgenansatt }: { erEgenansatt: PersonData['erEgenAnsatt'] }) {
     if (erEgenansatt === 'JA') {
         return (
-            <Tag size="small" variant="error-moderate">
-                Egen ansatt
-            </Tag>
+            <Tag data-color="danger" size="small" variant="moderate">Egen ansatt
+                            </Tag>
         );
     }
     return null;
@@ -62,25 +61,22 @@ function SikkerhetstiltakBadge({ sikkerhetstiltak }: { sikkerhetstiltak: PersonD
     }
 
     return (
-        <Tag size="small" variant="error-moderate">
-            Sikkerhetstiltak
-        </Tag>
+        <Tag data-color="danger" size="small" variant="moderate">Sikkerhetstiltak
+                    </Tag>
     );
 }
 
 function ReservertIKRRBadge({ kontaktInfo }: { kontaktInfo: PersonData['kontaktInformasjon'] }) {
     if (kontaktInfo?.erReservert?.value) {
         return (
-            <Tag size="small" variant="warning-moderate">
-                Reservert i KRR
-            </Tag>
+            <Tag data-color="warning" size="small" variant="moderate">Reservert i KRR
+                            </Tag>
         );
     }
     if (kontaktInfo && !kontaktInfo.epost?.value && !kontaktInfo.mobil?.value) {
         return (
-            <Tag size="small" variant="warning-moderate">
-                Ikke registrert i KRR
-            </Tag>
+            <Tag data-color="warning" size="small" variant="moderate">Ikke registrert i KRR
+                            </Tag>
         );
     }
     return null;
@@ -91,9 +87,8 @@ function ManuellStatusBadge({ kontaktInfo }: { kontaktInfo: PersonData['kontaktI
 
     if (erManuell) {
         return (
-            <Tag size="small" variant="info-moderate">
-                Manuell oppfølging
-            </Tag>
+            <Tag data-color="info" size="small" variant="moderate">Manuell oppfølging
+                            </Tag>
         );
     }
     return null;
@@ -105,9 +100,8 @@ function VergemalBadge({ vergemal }: { vergemal: PersonData['vergemal'] }) {
     }
 
     return (
-        <Tag size="small" variant="info-moderate">
-            Vergemål
-        </Tag>
+        <Tag data-color="info" size="small" variant="moderate">Vergemål
+                    </Tag>
     );
 }
 
@@ -117,12 +111,12 @@ function TilrettelagtKommunikasjonsBadge({
     tilrettelagtKommunikasjon: PersonData['tilrettelagtKommunikasjon'];
 }) {
     const talesprakEtikett = !tilrettelagtKommunikasjon.talesprak.isEmpty() ? (
-        <Tag size="small" variant="info-moderate">
+        <Tag data-color="info" size="small" variant="moderate">
             Talespråktolk
         </Tag>
     ) : null;
     const tegnsprakEtikett = !tilrettelagtKommunikasjon.tegnsprak.isEmpty() ? (
-        <Tag size="small" variant="info-moderate">
+        <Tag data-color="info" size="small" variant="moderate">
             Tegnspråktolk
         </Tag>
     ) : null;
@@ -141,9 +135,8 @@ function DodBadge({ dodsdato }: { dodsdato: PersonData['dodsdato'] }) {
     }
 
     return (
-        <Tag size="small" variant="error-moderate">
-            Død
-        </Tag>
+        <Tag data-color="danger" size="small" variant="moderate">Død
+                    </Tag>
     );
 }
 
@@ -153,9 +146,8 @@ function DodsboBadge({ dodsbo }: { dodsbo: PersonData['dodsbo'] }) {
     }
 
     return (
-        <Tag size="small" variant="info-moderate">
-            Dødsbo
-        </Tag>
+        <Tag data-color="info" size="small" variant="moderate">Dødsbo
+                    </Tag>
     );
 }
 
@@ -165,8 +157,7 @@ function FullmaktBadge({ fullmakt }: { fullmakt: PersonData['fullmakt'] }) {
     }
 
     return (
-        <Tag size="small" variant="info-moderate">
-            Fullmakt
-        </Tag>
+        <Tag data-color="info" size="small" variant="moderate">Fullmakt
+                    </Tag>
     );
 }

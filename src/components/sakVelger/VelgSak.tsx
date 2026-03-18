@@ -33,7 +33,7 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
                 </div>
                 {valgtSak && (
                     <div className="flex-auto">
-                        <Tag variant="neutral" size="small">
+                        <Tag data-color="neutral" variant="outline" size="small">
                             {valgtSak.saksId} | {valgtSak.temaNavn} |{' '}
                             {formatterDatoMedMaanedsnavnOrNull(valgtSak.opprettetDato)}
                         </Tag>

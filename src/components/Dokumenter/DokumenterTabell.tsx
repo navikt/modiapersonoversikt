@@ -151,11 +151,11 @@ export const DokumenterTabell = () => {
                                 <Table.DataCell className="align-top">{journalpost.tilhorendeFagsaksid}</Table.DataCell>
                                 <Table.DataCell>
                                     <Tag
+                                        data-color="info"
                                         size="small"
-                                        variant="info-moderate"
+                                        variant="moderate"
                                         title="Antall vedlegg"
-                                        icon={<FilesIcon aria-hidden />}
-                                    >
+                                        icon={<FilesIcon aria-hidden />}>
                                         {journalpost.vedlegg.length ? journalpost.vedlegg.length + 1 : 1}
                                     </Tag>
                                 </Table.DataCell>
