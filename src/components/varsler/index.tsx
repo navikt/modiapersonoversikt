@@ -22,7 +22,7 @@ const VarslerPageContent = () => {
 
     return (
         <ErrorBoundary boundaryName="VarslerTabell" errorText="Det oppstod en feil undervisning av varsler">
-            <Card padding="4" className="h-full overflow-auto">
+            <Card padding="space-16" className="h-full overflow-auto">
                 <AlertBanner alerts={errorMessages} />
                 <VStack gap="space-4" minHeight="0" overflow="auto">
                     <HStack align="center" gap="space-8">

@@ -21,7 +21,7 @@ export const TotaltForPeriode = () => {
                 <Accordion.Item>
                     <Accordion.Header>Totalt for perioden</Accordion.Header>
                     <Accordion.Content>
-                        <Card className="bg-ax-bg-neutral-soft rounded-(--ax-radius-8) utbetalinger-tabell" padding="4">
+                        <Card className="bg-ax-bg-neutral-soft rounded-(--ax-radius-8) utbetalinger-tabell" padding="space-16">
                             <VStack gap="space-16">
                                 <HStack gap="space-8" justify="space-between">
                                     <VStack gap="space-8" flexGrow="1">

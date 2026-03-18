@@ -20,7 +20,7 @@ export const DokumenterPage = () => {
 
     return (
         <ErrorBoundary boundaryName="Dokumentertabell" errorText="Det oppstod en feil under visning av dokumenter">
-            <Card padding="4" className="h-full overflow-auto">
+            <Card padding="space-16" className="h-full overflow-auto">
                 <AlertBanner alerts={errorMessages} />
                 <VStack gap="space-32">
                     <VStack gap="space-8">

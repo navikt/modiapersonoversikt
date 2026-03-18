@@ -18,7 +18,7 @@ const Arbeidsavklaringspenger = ({ aap }: { aap: Arbeidsavklaringspenger }) => {
     };
 
     return (
-        <Card padding="4">
+        <Card padding="space-16">
             <Heading as="h4" size="small">
                 Om arbeidsavklaringspenger
             </Heading>
@@ -36,7 +36,7 @@ const BarneTillegg = ({ aap }: { aap: Arbeidsavklaringspenger }) => {
     };
 
     return (
-        <Card padding="4">
+        <Card padding="space-16">
             <Heading as="h4" size="xsmall">
                 Barnetillegg
             </Heading>

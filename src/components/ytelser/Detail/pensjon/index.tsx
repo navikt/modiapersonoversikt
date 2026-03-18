@@ -15,7 +15,7 @@ export const PensjonDetails = ({ pensjon }: { pensjon: PensjonSak }) => {
 
     return (
         <VStack>
-            <Card padding="4">
+            <Card padding="space-16">
                 <Heading as="h4" size="small">
                     Om pensjon
                 </Heading>
