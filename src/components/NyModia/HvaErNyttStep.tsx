@@ -1,6 +1,10 @@
 import { BodyShort, Box, HStack, VStack } from '@navikt/ds-react';
 import { useRef, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
+import Dokumenter from './img/dokumenter-ekspandert.png';
+import Kommunikasjon from './img/meldinger-oversikt.png';
+import Oversikt from './img/oversikt.png';
+import GenerelleEndringer from './img/oversikt-med-dekorator.png';
 
 const options = [
     {
@@ -10,10 +14,10 @@ const options = [
         description: (
             <ul className="list-disc ml-6">
                 <li>Meny på venstre side</li>
-                <li>Du kan bytte til mørk versjon frå menyen</li>
+                <li>Du kan bytte til mørk versjon fra menyen</li>
             </ul>
         ),
-        image: ''
+        image: GenerelleEndringer
     },
     {
         id: 'dokumenter',
@@ -25,7 +29,7 @@ const options = [
                 <li>Dokumentene åpnes i denne visningen, eller du kan velge å åpne de i ny fane</li>
             </ul>
         ),
-        image: ''
+        image: Dokumenter
     },
     {
         id: 'kommunikasjon',
@@ -38,7 +42,7 @@ const options = [
                 <li>Nye meldinger og oppgaver markeres med rød prikk i sidemenyen, og blå prikk ved selv meldingen</li>
             </ul>
         ),
-        image: '<div>hade</div>'
+        image: Kommunikasjon
     },
     {
         id: 'oversikt',
@@ -50,7 +54,7 @@ const options = [
                 <li>Nøkkelinfo finner du i personlinjen på toppen av siden</li>
             </ul>
         ),
-        image: '<div>hade</div>'
+        image: Oversikt
     }
 ];
 
@@ -73,8 +77,8 @@ export const HvaErNyttStep = () => {
     };
 
     return (
-        <HStack wrap={false} gap="2" align="start">
-            <Box.New
+        <HStack wrap={false} gap="2" align="center">
+            <VStack
                 ref={listboxRef}
                 aria-label="Hva er nytt i Modia Personoversikt?"
                 aria-orientation="vertical"
@@ -84,6 +88,7 @@ export const HvaErNyttStep = () => {
                 tabIndex={0}
                 onKeyDown={onKeyDown}
                 role="listbox"
+                gap="4"
             >
                 {options.map((item, index) => (
                     <Box.New
@@ -99,19 +104,25 @@ export const HvaErNyttStep = () => {
                             }
                         }}
                         className={twMerge(
-                            'aksel-button border-2 border-[var(--ax-border-default)] text-ax-text-accent-subtle mb-6 justify-start',
+                            'aksel-button border-2 border-[var(--ax-border-default)] text-ax-text-accent-subtle justify-start text-sm',
                             activeIndex === index ? 'bg-[var(--ax-bg-moderate-pressed)]' : ''
                         )}
                     >
                         <VStack>
-                            <BodyShort className="font-ax-bold">{item.title}</BodyShort>
+                            <BodyShort className="font-ax-bold text-sm">{item.title}</BodyShort>
                             {item.description}
                         </VStack>
                     </Box.New>
                 ))}
-            </Box.New>
+            </VStack>
             {options.map((item, index) => (
-                <Box.New key={item.panelId} id={item.panelId} hidden={activeIndex !== index}>
+                <Box.New
+                    key={item.panelId}
+                    id={item.panelId}
+                    hidden={activeIndex !== index}
+                    borderColor="neutral-subtle"
+                    borderWidth="1"
+                >
                     <img width="2000" alt="blal" src={item.image} />
                 </Box.New>
             ))}

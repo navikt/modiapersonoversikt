@@ -15,7 +15,6 @@ import { Link } from '@tanstack/react-router';
 import { type ComponentProps, useState } from 'react';
 import { getOpenTabFromRouterPath, useOpenTab } from 'src/app/personside/infotabs/utils/useOpenTab';
 import { erUbesvartHenvendelseFraBruker, useTraader } from 'src/components/Meldinger/List/utils';
-import { OppstartNyModiaDialog } from 'src/components/NyModia/OppstartNyModiaDialog';
 import { usePersonSideBarKotkeys } from 'src/components/usePersonSidebarHotkeys';
 import { usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
 import { trackingEvents } from 'src/utils/analytics';
@@ -175,7 +174,6 @@ export const PersonSidebarMenu = () => {
                     </VStack>
                 </Box.New>
                 <Box.New padding="2">
-                    <OppstartNyModiaDialog />
                     <ThemeIconToggle />
                 </Box.New>
             </VStack>

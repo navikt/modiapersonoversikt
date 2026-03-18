@@ -1,4 +1,7 @@
+import { atom, useAtom } from 'jotai';
 import { useInnstillinger, useOppdaterInnstillinger } from 'src/lib/clients/innstillinger';
+
+export const openIntroduksjonsModalAtom = atom<boolean>(false);
 
 const INNSTILLINGER_KEY = 'har-sett-oppstart-ny-modia';
 
@@ -22,4 +25,22 @@ function useHarSettNyModiaDialog(): [boolean, () => void] {
     return [harSett, markerSomSett];
 }
 
-export default useHarSettNyModiaDialog;
+function useOpenIntroduksjonsModal(): [boolean, (toggleVal: boolean) => void] {
+    const [harSett, markerSomSett] = useHarSettNyModiaDialog();
+    const [manueltOpnet, setManueltOpnet] = useAtom(openIntroduksjonsModalAtom);
+
+    const open = manueltOpnet || !harSett;
+
+    const toggleModal = (openModal: boolean) => {
+        if (openModal) {
+            setManueltOpnet(true);
+        } else {
+            setManueltOpnet(false);
+            markerSomSett();
+        }
+    };
+
+    return [open, toggleModal];
+}
+
+export default useOpenIntroduksjonsModal;
