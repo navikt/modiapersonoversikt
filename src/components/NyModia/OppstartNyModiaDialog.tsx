@@ -1,5 +1,5 @@
 import { XMarkIcon } from '@navikt/aksel-icons';
-import { Button, Heading, HStack, Modal, VStack } from '@navikt/ds-react';
+import {Box, Button, Heading, HStack, Modal} from '@navikt/ds-react';
 import { useState } from 'react';
 import { OnboardingStepper } from 'src/components/NyModia/OnboardingStepper';
 import useOpenIntroduksjonsModal from 'src/components/NyModia/useHarSettNyModiaDialog';
@@ -16,8 +16,13 @@ export const OppstartNyModiaDialog = () => {
     return (
         <Modal width="90%" aria-labelledby="modal-header" open={open} onClose={lukkModal}>
             <Modal.Header closeButton={false}>
-                <VStack>
-                    <HStack className="justify-end">
+                    <HStack className="justify-between">
+                        <Box.New className="flex-0"/>
+                        <HStack className="">
+                        <Heading id="modal-header" size="medium" align="center">
+                            Se hva som er nytt i Modia personoversikt <span aria-hidden>✨</span>
+                        </Heading>
+                        </HStack>
                         <Button
                             size="xsmall"
                             title="Lukk modal"
@@ -26,10 +31,6 @@ export const OppstartNyModiaDialog = () => {
                             icon={<XMarkIcon aria-hidden />}
                         ></Button>
                     </HStack>
-                    <Heading id="modal-header" size="medium" align="center">
-                        Se hva som er nytt i Modia personoversikt <span aria-hidden>✨</span>
-                    </Heading>
-                </VStack>
             </Modal.Header>
             <Modal.Body>
                 <OnboardingStepper activeStep={activeStep} setActiveStep={setActiveStep} />
