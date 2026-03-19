@@ -18,8 +18,8 @@ importers:
         specifier: ^1.18.2
         version: 1.18.2
       '@navikt/aksel-icons':
-        specifier: ^8.1.0
-        version: 8.1.0
+        specifier: ^8.7.0
+        version: 8.7.0
       '@navikt/ds-css':
         specifier: ^8.7.0
         version: 8.7.0
@@ -27,7 +27,7 @@ importers:
         specifier: ^8.7.0
         version: 8.7.0(@types/react@19.2.1)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       '@navikt/ds-tailwind':
-        specifier: ^8.0.0
+        specifier: ^8.7.0
         version: 8.7.0
       '@navikt/fnrvalidator':
         specifier: ^2.1.5
@@ -1231,11 +1231,8 @@ packages:
   '@napi-rs/wasm-runtime@1.0.7':
     resolution: {integrity: sha512-SeDnOO0Tk7Okiq6DbXmmBODgOAb9dp9gjlphokTUxmt8U3liIP1ZsozBahH69j/RJv+Rfs6IwUKHTgQYJ/HBAw==}
 
-  '@navikt/aksel-icons@8.1.0':
-    resolution: {integrity: sha512-3rDxnZaFdxVv3/S6GRxgYl3KQpPcaUhS2DD0Kop1HtDT4QiYVIDcVD42y+L/AjuTT7YbGqJUJB1z8ufXlb+AsQ==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.1.0/d1796650b2b1e3d19a18b45670833fdc6fef3ca3}
-
   '@navikt/aksel-icons@8.7.0':
-    resolution: {integrity: sha512-pANfaE/xr2a9Q3CYMWbCjhAk9+UNuUa50Ez37Zk2nZQYtjP1vLXluOgHrxGAGTs6T4ToE+IjtJdU9DoEBnBbdw==}
+    resolution: {integrity: sha512-pANfaE/xr2a9Q3CYMWbCjhAk9+UNuUa50Ez37Zk2nZQYtjP1vLXluOgHrxGAGTs6T4ToE+IjtJdU9DoEBnBbdw==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.7.0/71371b0ac52d8760340b655f20580faeb47a2fb5}
 
   '@navikt/aksel@8.7.0':
     resolution: {integrity: sha512-daTV+DFgMUpOF3XeXpJNjZGa0x1jexWTBHxDix6glHYEOlLuvH4/RdXs3AXK2gGEgYJgMUeqWJTY9kB8M56efw==, tarball: https://npm.pkg.github.com/download/@navikt/aksel/8.7.0/f2022dfe8072d86f909f874afc400008521ef165}
@@ -1243,7 +1240,7 @@ packages:
     hasBin: true
 
   '@navikt/ds-css@8.7.0':
-    resolution: {integrity: sha512-kYeaCPcaNEvXixA7upGOpi3hWCvT1fZcL1arRJHSOZJf5uXm5b3Wey+WL9+5zLE7M90q6jsV/vGy4E370ZoWmg==}
+    resolution: {integrity: sha512-kYeaCPcaNEvXixA7upGOpi3hWCvT1fZcL1arRJHSOZJf5uXm5b3Wey+WL9+5zLE7M90q6jsV/vGy4E370ZoWmg==, tarball: https://npm.pkg.github.com/download/@navikt/ds-css/8.7.0/353215289ac1a756ed37dc54379b7a501fc84a28}
 
   '@navikt/ds-react@8.7.0':
     resolution: {integrity: sha512-hb0Ah4By9H+9RH88UUudQ6onKK59V8Qe9JnHwk7RSWHJrgLhTa4wm3uSf0o08oqxp08/AiAYS5YPl0NUPf83gA==}
@@ -1256,7 +1253,7 @@ packages:
         optional: true
 
   '@navikt/ds-tailwind@8.7.0':
-    resolution: {integrity: sha512-J/ResgmF2WfjcDOoj/55Ero2Wfv1UZSxh+n/wpcnjAH+iEHhE/imPV042OLXi1/DLwcXUxkEg23gk7uHojTfKg==}
+    resolution: {integrity: sha512-J/ResgmF2WfjcDOoj/55Ero2Wfv1UZSxh+n/wpcnjAH+iEHhE/imPV042OLXi1/DLwcXUxkEg23gk7uHojTfKg==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tailwind/8.7.0/99ec8b29ec7dbf154362952f78a512234c7a3ec3}
 
   '@navikt/ds-tokens@8.7.0':
     resolution: {integrity: sha512-YEeAzjJNFXwTrx2R9xf4Sue/sTCLaygFlJ0MVgje8Q5KzLiQSaVoK6gIGZHZ4wHVU6Q1uOAlIkdaHKlPvCfu7A==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/8.7.0/17a22dcaa2107ac81431db172701e0debe4e3fe3}
@@ -5699,8 +5696,6 @@ snapshots:
       '@emnapi/runtime': 1.6.0
       '@tybys/wasm-util': 0.10.1
     optional: true
-
-  '@navikt/aksel-icons@8.1.0': {}
 
   '@navikt/aksel-icons@8.7.0': {}
 
