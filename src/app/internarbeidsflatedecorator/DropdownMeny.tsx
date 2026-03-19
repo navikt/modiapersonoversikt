@@ -1,8 +1,8 @@
 import { SparklesIcon } from '@navikt/aksel-icons';
 import { ActionMenu, Button } from '@navikt/ds-react';
-import { NyModiaSwitch } from 'src/components/NyModiaSwitch';
 import { useSetAtom } from 'jotai';
 import { openIntroduksjonsModalAtom } from 'src/components/NyModia/useHarSettNyModiaDialog';
+import { NyModiaSwitch } from 'src/components/NyModiaSwitch';
 
 export const DropdownMeny = () => {
     const opneIntroduksjonsModal = useSetAtom(openIntroduksjonsModalAtom);
