@@ -141,7 +141,10 @@ export const PersonSidebarMenu = () => {
                                                 <>
                                                     <Icon aria-hidden />
                                                     {visNotifikasjon(title) && (
-                                                        <Box position="absolute" left={expanded ? '6' : '4'}>
+                                                        <Box
+                                                            position="absolute"
+                                                            className={expanded ? 'left-6' : 'left-4'}
+                                                        >
                                                             <Bleed marginBlock="space-2" asChild>
                                                                 <CircleFillIcon
                                                                     fontSize="0.8rem"
