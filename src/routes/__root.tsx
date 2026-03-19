@@ -11,6 +11,7 @@ import VelgEnhet from 'src/app/VelgEnhet';
 import DemoBanner from 'src/components/DemoBanner';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import NotFound from 'src/components/NotFound';
+import { useNavigateToNewOrOldModia } from 'src/components/NyModia';
 import { ValgtEnhetProvider } from 'src/context/valgtenhet-state';
 import { aktivBrukerLastetAtom, aktivEnhetAtom } from 'src/lib/state/context';
 import { ThemeProvider, themeAtom } from 'src/lib/state/theme';
@@ -44,6 +45,8 @@ function App({ children }: PropsWithChildren) {
     useTimeout(() => {
         setContextTimeout(true);
     }, 1500);
+
+    useNavigateToNewOrOldModia();
 
     if (!contextLoaded && contextTimeout) {
         return (

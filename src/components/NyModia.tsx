@@ -1,9 +1,7 @@
-import { Box, Switch } from '@navikt/ds-react';
 import { useLocation, useNavigate } from '@tanstack/react-router';
 import { atom, useAtom, useAtomValue } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
-import { useCallback, useEffect, useState } from 'react';
-import { trackToggleNyModia } from 'src/utils/analytics';
+import { useEffect } from 'react';
 import { nesteMidnattOslo } from 'src/utils/date-utils';
 import { FeatureToggles } from './featureToggle/toggleIDs';
 import useFeatureToggle from './featureToggle/useFeatureToggle';
@@ -24,14 +22,13 @@ export const nyModiaAtom = atom(
 
 const brukerHarValgtAtom = atom((get) => get(nyModiaStorageAtom) !== null);
 
-export const NyModiaSwitch = () => {
+export const useNavigateToNewOrOldModia = () => {
     const { isOn, pending } = useFeatureToggle(FeatureToggles.NyModiaKnapp);
     const [nyModia, setNyModia] = useAtom(nyModiaAtom);
     const brukerHarValgt = useAtomValue(brukerHarValgtAtom);
 
     const { href } = useLocation();
     const navigate = useNavigate();
-    const [isChecked, setIsChecked] = useState(nyModia);
 
     useEffect(() => {
         if (!pending && isOn && !brukerHarValgt) {
@@ -39,18 +36,11 @@ export const NyModiaSwitch = () => {
         }
     }, [pending, isOn, brukerHarValgt, setNyModia]);
 
-    const handleClick = useCallback(() => {
-        const switchingTo = !nyModia;
-        setIsChecked(switchingTo);
-        setTimeout(() => {
-            setNyModia(switchingTo);
-            trackToggleNyModia(switchingTo);
-        }, 200);
-    }, [setNyModia, nyModia]);
-
     useEffect(() => {
         if (pending) return;
         const nyModiaEnabled = isOn && nyModia;
+        console.log({ nyModiaEnabled });
+
         if (href.includes('/saker') && nyModiaEnabled) {
             void navigate({ to: href.replace('/saker', '/dokumenter') });
         } else if (href.includes('/new') && !nyModiaEnabled) {
@@ -59,14 +49,4 @@ export const NyModiaSwitch = () => {
             void navigate({ to: `/new/${href}` });
         }
     }, [href, nyModia, isOn, pending, navigate]);
-
-    if (!isOn) return;
-
-    return (
-        <Box.New paddingInline="2">
-            <Switch size="medium" checked={isChecked} onChange={handleClick}>
-                Ny Modia
-            </Switch>
-        </Box.New>
-    );
 };
