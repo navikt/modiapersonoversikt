@@ -220,9 +220,9 @@ export const SladdTraadModal = ({ traad, onClose, open }: ModalProps) => {
                             meldinger={traad.meldinger}
                             wrapper={({ children, melding }) => (
                                 <Checkbox
-                                    checked={selected.includes(melding.id)}
+                                    checked={selected.includes(melding.meldingsId ?? melding.id)}
                                     width="100%"
-                                    onChange={() => toggleMelding(melding.id)}
+                                    onChange={() => toggleMelding(melding.meldingsId ?? melding.id)}
                                 >
                                     {children}
                                 </Checkbox>

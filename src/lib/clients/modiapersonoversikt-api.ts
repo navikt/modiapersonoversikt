@@ -238,7 +238,7 @@ export const useMarkerFeilsendtMutation = () => {
             toast.success('Tråden ble markert som feilsent');
         },
         onError: () => {
-            toast.error('Kunne ikke avslutte dialogen');
+            toast.error('Kunne ikke merke tråd som feilsendt');
         }
     });
 };
