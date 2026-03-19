@@ -208,7 +208,10 @@ export const FortsettDialog = ({ traad, lukkOppgave }: Props) => {
                                 form.getFieldMeta('melding')?.isDirty && <DraftStatus state={draftStatus} />}
                         </Box>
                         <Bleed
-                            marginBlock={{ xs: "space-0 space-0", md: disableDialog ? 'space-0 space-0' : 'space-20 space-0' }}
+                            marginBlock={{
+                                xs: 'space-0 space-0',
+                                md: disableDialog ? 'space-0 space-0' : 'space-20 space-0'
+                            }}
                             asChild
                         >
                             <HStack gap="space-4" justify="end">

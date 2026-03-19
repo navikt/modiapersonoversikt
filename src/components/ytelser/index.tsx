@@ -17,7 +17,12 @@ const YtelserPageContent = () => {
     const { errorMessages } = useFilterYtelser();
 
     return (
-        <HGrid gap="space-4" columns={{ xs: 1, md: 'max-content 1fr' }} height="100%" overflow={{ xs: 'auto', md: 'hidden' }}>
+        <HGrid
+            gap="space-4"
+            columns={{ xs: 1, md: 'max-content 1fr' }}
+            height="100%"
+            overflow={{ xs: 'auto', md: 'hidden' }}
+        >
             <VStack height="100%" maxWidth={{ md: '16em' }} overflow={{ md: 'hidden' }}>
                 <Heading size="small" visuallyHidden level="2">
                     Ytelser

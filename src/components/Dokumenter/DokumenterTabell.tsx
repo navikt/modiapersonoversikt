@@ -134,9 +134,7 @@ export const DokumenterTabell = () => {
                                                 fontSize="1.3rem"
                                                 aria-hidden
                                             />{' '}
-                                            <Box className="text-[var(--ax-text-neutral-subtle)]">
-                                                Ingen tilgang
-                                            </Box>
+                                            <Box className="text-[var(--ax-text-neutral-subtle)]">Ingen tilgang</Box>
                                         </HStack>
                                     )}
                                 </Table.HeaderCell>
@@ -155,7 +153,8 @@ export const DokumenterTabell = () => {
                                         size="small"
                                         variant="moderate"
                                         title="Antall vedlegg"
-                                        icon={<FilesIcon aria-hidden />}>
+                                        icon={<FilesIcon aria-hidden />}
+                                    >
                                         {journalpost.vedlegg.length ? journalpost.vedlegg.length + 1 : 1}
                                     </Tag>
                                 </Table.DataCell>

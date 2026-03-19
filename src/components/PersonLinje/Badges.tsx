@@ -48,8 +48,9 @@ function DiskresjonskodeBadges({ adressebeskyttelser }: { adressebeskyttelser: P
 function EgenAnsattBadge({ erEgenansatt }: { erEgenansatt: PersonData['erEgenAnsatt'] }) {
     if (erEgenansatt === 'JA') {
         return (
-            <Tag data-color="danger" size="small" variant="moderate">Egen ansatt
-                            </Tag>
+            <Tag data-color="danger" size="small" variant="moderate">
+                Egen ansatt
+            </Tag>
         );
     }
     return null;
@@ -61,22 +62,25 @@ function SikkerhetstiltakBadge({ sikkerhetstiltak }: { sikkerhetstiltak: PersonD
     }
 
     return (
-        <Tag data-color="danger" size="small" variant="moderate">Sikkerhetstiltak
-                    </Tag>
+        <Tag data-color="danger" size="small" variant="moderate">
+            Sikkerhetstiltak
+        </Tag>
     );
 }
 
 function ReservertIKRRBadge({ kontaktInfo }: { kontaktInfo: PersonData['kontaktInformasjon'] }) {
     if (kontaktInfo?.erReservert?.value) {
         return (
-            <Tag data-color="warning" size="small" variant="moderate">Reservert i KRR
-                            </Tag>
+            <Tag data-color="warning" size="small" variant="moderate">
+                Reservert i KRR
+            </Tag>
         );
     }
     if (kontaktInfo && !kontaktInfo.epost?.value && !kontaktInfo.mobil?.value) {
         return (
-            <Tag data-color="warning" size="small" variant="moderate">Ikke registrert i KRR
-                            </Tag>
+            <Tag data-color="warning" size="small" variant="moderate">
+                Ikke registrert i KRR
+            </Tag>
         );
     }
     return null;
@@ -87,8 +91,9 @@ function ManuellStatusBadge({ kontaktInfo }: { kontaktInfo: PersonData['kontaktI
 
     if (erManuell) {
         return (
-            <Tag data-color="info" size="small" variant="moderate">Manuell oppfølging
-                            </Tag>
+            <Tag data-color="info" size="small" variant="moderate">
+                Manuell oppfølging
+            </Tag>
         );
     }
     return null;
@@ -100,8 +105,9 @@ function VergemalBadge({ vergemal }: { vergemal: PersonData['vergemal'] }) {
     }
 
     return (
-        <Tag data-color="info" size="small" variant="moderate">Vergemål
-                    </Tag>
+        <Tag data-color="info" size="small" variant="moderate">
+            Vergemål
+        </Tag>
     );
 }
 
@@ -135,8 +141,9 @@ function DodBadge({ dodsdato }: { dodsdato: PersonData['dodsdato'] }) {
     }
 
     return (
-        <Tag data-color="danger" size="small" variant="moderate">Død
-                    </Tag>
+        <Tag data-color="danger" size="small" variant="moderate">
+            Død
+        </Tag>
     );
 }
 
@@ -146,8 +153,9 @@ function DodsboBadge({ dodsbo }: { dodsbo: PersonData['dodsbo'] }) {
     }
 
     return (
-        <Tag data-color="info" size="small" variant="moderate">Dødsbo
-                    </Tag>
+        <Tag data-color="info" size="small" variant="moderate">
+            Dødsbo
+        </Tag>
     );
 }
 
@@ -157,7 +165,8 @@ function FullmaktBadge({ fullmakt }: { fullmakt: PersonData['fullmakt'] }) {
     }
 
     return (
-        <Tag data-color="info" size="small" variant="moderate">Fullmakt
-                    </Tag>
+        <Tag data-color="info" size="small" variant="moderate">
+            Fullmakt
+        </Tag>
     );
 }

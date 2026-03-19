@@ -21,7 +21,8 @@ export const ThemeIconToggle = () => {
                 variant="tertiary"
                 onClick={changeTheme}
                 title={`Bytt til ${endreTilTemaTekst} tema`}
-                icon={<ThemeIcon aria-hidden />} />
+                icon={<ThemeIcon aria-hidden />}
+            />
         </Tooltip>
     );
 };

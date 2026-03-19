@@ -100,7 +100,8 @@ export const PersonSidebarMenu = () => {
                             size="small"
                             onClick={() => setExpanded((v) => !v)}
                             className="flex-1 justify-end group p-0"
-                            iconPosition="right">
+                            iconPosition="right"
+                        >
                             {expanded && <span className="font-normal">Skjul</span>}
                             {!expanded && <span className="sr-only">Vis</span>}
                         </Button>
@@ -164,7 +165,8 @@ export const PersonSidebarMenu = () => {
                                                     'text-ax-text-accent',
                                                     'hover:text-ax-text-accent'
                                                 ]
-                                            )}>
+                                            )}
+                                        >
                                             {expanded && <span className="font-normal">{title}</span>}
                                         </Button>
                                     </>

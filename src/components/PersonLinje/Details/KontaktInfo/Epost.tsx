@@ -13,7 +13,10 @@ interface Props {
 function Email({ harFeilendeSystem, kontaktinformasjon }: Props) {
     if (harFeilendeSystem) {
         return (
-            <InfoElement title="E-post" icon={<EnvelopeClosedFillIcon fontSize="1.2rem" color="var(--ax-neutral-500)" />}>
+            <InfoElement
+                title="E-post"
+                icon={<EnvelopeClosedFillIcon fontSize="1.2rem" color="var(--ax-neutral-500)" />}
+            >
                 <Alert variant="warning">Feilet ved uthenting av data fra Kontakt- og reservasjonsregisteret</Alert>
             </InfoElement>
         );

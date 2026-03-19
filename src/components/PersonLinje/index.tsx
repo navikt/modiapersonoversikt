@@ -86,7 +86,7 @@ const PersonlinjeHeader = () => {
                     erDod={erDod}
                     farge={farge}
                 />
-                <HStack marginInline={{ xs: "space-0", lg: 'space-28' }} gap="space-12">
+                <HStack marginInline={{ xs: 'space-0', lg: 'space-28' }} gap="space-12">
                     <HStack className="cursor-[initial]" wrap={false} onClick={(e) => e.stopPropagation()}>
                         <CopyButton
                             aria-label={`Kopier f.nr: ${`${person.personIdent.slice(0, 6)} ${person.personIdent.slice(6)}`}`}

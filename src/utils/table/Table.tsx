@@ -32,9 +32,9 @@ export function Table({ tittelRekke, rows, rowsOnClickHandlers }: TableProps) {
                 <tr role="row">
                     {tittelRekke.map((tittel: TitleCell, index: number) => (
                         /*biome-ignore lint/a11y/useSemanticElements lint/suspicious/noArrayIndexKey: biome migration*/
-                        (<th role="columnheader" key={index}>
+                        <th role="columnheader" key={index}>
                             {tittel}
-                        </th>)
+                        </th>
                     ))}
                 </tr>
             </thead>
@@ -42,14 +42,14 @@ export function Table({ tittelRekke, rows, rowsOnClickHandlers }: TableProps) {
             <tbody role="rowgroup" data-testid="table-tbody">
                 {rows.map((row: TableRow, index: number) => (
                     //biome-ignore lint/a11y lint/suspicious/noArrayIndexKey: biome migration
-                    (<tr role="row" key={index} onClick={rowsOnClickHandlers?.[index]}>
+                    <tr role="row" key={index} onClick={rowsOnClickHandlers?.[index]}>
                         {row.map((entry, i) => (
                             /*biome-ignore lint/a11y lint/suspicious/noArrayIndexKey: biome migration*/
-                            (<td role="cell" key={i}>
+                            <td role="cell" key={i}>
                                 {entry || (entry === 0 && '0') || '\u2014'}
-                            </td>)
+                            </td>
                         ))}
-                    </tr>)
+                    </tr>
                 ))}
             </tbody>
         </table>

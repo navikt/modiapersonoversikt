@@ -13,8 +13,10 @@ const Status = ({ varsel }: { varsel: VarselData }) => {
                 title="Varsling feilet"
                 variant="moderate"
                 size="small"
-                icon={<ExclamationmarkTriangleIcon aria-hidden />}>Feilet
-                            </Tag>
+                icon={<ExclamationmarkTriangleIcon aria-hidden />}
+            >
+                Feilet
+            </Tag>
         );
     }
     return (
@@ -23,8 +25,10 @@ const Status = ({ varsel }: { varsel: VarselData }) => {
             title="Varsling vellykket"
             variant="moderate"
             size="small"
-            icon={<CheckmarkCircleIcon aria-hidden />}>Vellykket
-                    </Tag>
+            icon={<CheckmarkCircleIcon aria-hidden />}
+        >
+            Vellykket
+        </Tag>
     );
 };
 
