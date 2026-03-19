@@ -1,5 +1,5 @@
 import { XMarkIcon } from '@navikt/aksel-icons';
-import {Box, Button, Heading, HStack, Modal} from '@navikt/ds-react';
+import { Box, Button, Heading, HStack, Modal } from '@navikt/ds-react';
 import { useState } from 'react';
 import { OnboardingStepper } from 'src/components/NyModia/OnboardingStepper';
 import useOpenIntroduksjonsModal from 'src/components/NyModia/useHarSettNyModiaDialog';
@@ -14,25 +14,23 @@ export const OppstartNyModiaDialog = () => {
     };
 
     return (
-        <Modal width="90%" aria-labelledby="modal-header" open={open} onClose={lukkModal}>
+        <Modal className="w-[1000px] max-w-[99%]" aria-labelledby="modal-header" open={open} onClose={lukkModal}>
             <Modal.Header closeButton={false}>
-                    <HStack className="justify-between">
-                        <Box.New className="flex-0"/>
-                        <HStack className="">
-                        <Heading id="modal-header" size="medium" align="center">
-                            Se hva som er nytt i Modia personoversikt <span aria-hidden>✨</span>
-                        </Heading>
-                        </HStack>
-                        <Button
-                            size="xsmall"
-                            title="Lukk modal"
-                            variant="tertiary"
-                            onClick={lukkModal}
-                            icon={<XMarkIcon aria-hidden />}
-                        ></Button>
-                    </HStack>
+                <HStack justify="space-between">
+                    <Box.New className="flex-0" />
+                    <Heading id="modal-header" size="medium" align="center" className="ml-8">
+                        Se hva som er nytt i Modia personoversikt <span aria-hidden>✨</span>
+                    </Heading>
+                    <Button
+                        size="xsmall"
+                        title="Lukk modal"
+                        variant="tertiary"
+                        onClick={lukkModal}
+                        icon={<XMarkIcon aria-hidden />}
+                    ></Button>
+                </HStack>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body className="h-[500px]">
                 <OnboardingStepper activeStep={activeStep} setActiveStep={setActiveStep} />
             </Modal.Body>
             <Modal.Footer>

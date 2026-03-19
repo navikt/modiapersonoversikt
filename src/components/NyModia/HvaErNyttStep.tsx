@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge';
 import Dokumenter from './img/dokumenter-ekspandert.png';
 import Kommunikasjon from './img/meldinger-oversikt.png';
 import Oversikt from './img/oversikt.png';
-import GenerelleEndringer from './img/oversikt-med-dekorator.png';
+import GenerelleEndringer from './img/oversikt-uten-dekorator.png';
 
 const options = [
     {
@@ -17,7 +17,8 @@ const options = [
                 <li>Du kan bytte til mørk versjon fra menyen</li>
             </ul>
         ),
-        image: GenerelleEndringer
+        image: GenerelleEndringer,
+        alt: 'Skjermbilde av menyen'
     },
     {
         id: 'dokumenter',
@@ -29,7 +30,8 @@ const options = [
                 <li>Dokumentene åpnes i denne visningen, eller du kan velge å åpne de i ny fane</li>
             </ul>
         ),
-        image: Dokumenter
+        image: Dokumenter,
+        alt: 'Skjermbilde av dokumentersiden'
     },
     {
         id: 'kommunikasjon',
@@ -42,7 +44,8 @@ const options = [
                 <li>Nye meldinger og oppgaver markeres med rød prikk i sidemenyen, og blå prikk ved selv meldingen</li>
             </ul>
         ),
-        image: Kommunikasjon
+        image: Kommunikasjon,
+        alt: 'Skjermbilde av meldingsfanen'
     },
     {
         id: 'oversikt',
@@ -54,7 +57,8 @@ const options = [
                 <li>Nøkkelinfo finner du i personlinjen på toppen av siden</li>
             </ul>
         ),
-        image: Oversikt
+        image: Oversikt,
+        alt: 'Skjermbilde av oversiktssiden'
     }
 ];
 
@@ -77,18 +81,18 @@ export const HvaErNyttStep = () => {
     };
 
     return (
-        <HStack wrap={false} gap="2" align="center">
+        <HStack wrap={false} gap="space-24" align="start">
             <VStack
                 ref={listboxRef}
                 aria-label="Hva er nytt i Modia Personoversikt?"
                 aria-orientation="vertical"
-                className="flex flex-col max-w-1/2"
+                className="flex flex-col min-w-1/3"
                 aria-activedescendant={activeItem.id}
                 aria-controls={activeItem.panelId}
                 tabIndex={0}
                 onKeyDown={onKeyDown}
                 role="listbox"
-                gap="4"
+                gap="space-16"
             >
                 {options.map((item, index) => (
                     <Box.New
@@ -109,8 +113,10 @@ export const HvaErNyttStep = () => {
                         )}
                     >
                         <VStack>
-                            <BodyShort className="font-ax-bold text-sm">{item.title}</BodyShort>
-                            {item.description}
+                            <BodyShort weight="semibold" size="small">
+                                {item.title}
+                            </BodyShort>
+                            {activeIndex === index ? item.description : ''}
                         </VStack>
                     </Box.New>
                 ))}
@@ -121,9 +127,11 @@ export const HvaErNyttStep = () => {
                     id={item.panelId}
                     hidden={activeIndex !== index}
                     borderColor="neutral-subtle"
-                    borderWidth="1"
+                    borderWidth="2"
+                    minWidth="550px"
+                    borderRadius="8"
                 >
-                    <img width="2000" alt="blal" src={item.image} />
+                    <img alt={item.alt} src={item.image} />
                 </Box.New>
             ))}
         </HStack>

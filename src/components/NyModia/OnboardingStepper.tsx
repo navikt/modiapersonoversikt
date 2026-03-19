@@ -1,30 +1,37 @@
-import { BodyLong, BodyShort, Box, Stepper, VStack } from '@navikt/ds-react';
+import { BodyLong, BodyShort, Box, HStack, Spacer, Stepper, VStack } from '@navikt/ds-react';
 import { HvaErNyttStep } from 'src/components/NyModia/HvaErNyttStep';
+import NyKnapp from 'src/components/NyModia/img/ny-knapp.png';
 
 const IntroStep = () => (
-    <VStack gap="6">
-        <BodyShort className="font-ax-bold">
+    <VStack gap="space-24">
+        <BodyShort weight="semibold">
             Hei! <span aria-hidden>👋</span>
         </BodyShort>
-        <BodyShort>Vi har gjort noen endringer til Modia personoversikt, og vil gjerne vise deg noe av det!</BodyShort>
-        <BodyLong>
-            Du kan finne igjen denne informasjonen øverst i høyre hjørne. Her har du også tilgang til en utfyllende
-            brukermanual, og mulighet til å gi oss tilbakemeldinger på den nye versjonen.
+        <BodyShort size="small">
+            Vi har gjort noen endringer til Modia personoversikt, og vil gjerne vise deg noe av det!
+        </BodyShort>
+        <BodyLong size="small">
+            Du kan finne igjen denne informasjonen i hovedmenyen på toppen av siden. Her har du også tilgang til en
+            utfyllende brukermanual, og muligheten til å gå tilbake til den gamle versjonen av personoversikten.
         </BodyLong>
     </VStack>
 );
 
 const TakkStep = () => (
-    <VStack gap="6">
-        <BodyShort className="font-ax-bold">Takk for tiden din!</BodyShort>
-        <BodyShort>
-            Du finner tilbake til denne informasjonen øverst til høyre i toppmeny sammen med brukermanualen.
-        </BodyShort>
-        <BodyLong>
-            Vi kommer til å jobbe med forbedringer av denne nye versjonen kontinuerlig, og ønsker gjerne
-            tilbakemeldinger fra dere! Det kan dere gjøre ved å klikke på knappen øverst til høyre i menyen.
-        </BodyLong>
-    </VStack>
+    <HStack gap="space-32" wrap={false}>
+        <VStack gap="space-24">
+            <BodyShort weight="semibold">Takk for tiden din!</BodyShort>
+            <BodyShort size="small">
+                Du finner tilbake til denne informasjonen øverst til høyre i hovedmenyen sammen med brukermanualen.
+                Herfra kan du også velge å bytte tilbake til den gamle versjonen i en overgangsperiode.
+            </BodyShort>
+            <BodyLong size="small">
+                Vi jobber hele tiden med forbedringer av den nye versjonen, og ønsker gjerne tilbakemeldinger fra dere.
+                Vi jobber med å legge til rette for å kunne gjøre dette direkte fra personoversikten.
+            </BodyLong>
+        </VStack>
+        <img width="300px" src={NyKnapp} alt="Bilde ab den nye knappen i hovedmenyen" />
+    </HStack>
 );
 
 export const OnboardingStepper = ({
@@ -37,18 +44,23 @@ export const OnboardingStepper = ({
     const steps = [<IntroStep key="intro" />, <HvaErNyttStep key="nytt" />, <TakkStep key="takk" />];
 
     return (
-        <VStack gap="8" padding="space-20">
-            <Stepper
-                aria-labelledby="stepper-heading"
-                activeStep={activeStep}
-                onStepChange={setActiveStep}
-                className="text-nowrap"
-                orientation="horizontal"
-            >
-                <Stepper.Step href="#">Hei!</Stepper.Step>
-                <Stepper.Step href="#">Hva er nytt?</Stepper.Step>
-                <Stepper.Step href="#">Takk for tiden din!</Stepper.Step>
-            </Stepper>
+        <VStack gap="space-64" paddingInline="space-20" justify="space-between">
+            <HStack justify="space-between">
+                <Spacer />
+                <Stepper
+                    id="onboarding-stepper"
+                    aria-labelledby="stepper-heading"
+                    activeStep={activeStep}
+                    onStepChange={setActiveStep}
+                    className="text-nowrap grow-1 align-middle"
+                    orientation="horizontal"
+                >
+                    <Stepper.Step href="#">Hei!</Stepper.Step>
+                    <Stepper.Step href="#">Hva er nytt?</Stepper.Step>
+                    <Stepper.Step href="#">Takk for tiden din!</Stepper.Step>
+                </Stepper>
+                <Spacer />
+            </HStack>
             <Box.New>{steps[activeStep + -1]}</Box.New>
         </VStack>
     );

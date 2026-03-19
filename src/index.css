@@ -58,3 +58,14 @@
         border-bottom: 0px;
     }
 }
+
+#onboarding-stepper.aksel-stepper {
+    a span {
+        font-size: 1rem;
+    }
+
+    .aksel-stepper__circle {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+}
