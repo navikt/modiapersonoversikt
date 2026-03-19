@@ -2,6 +2,7 @@ import { Alert, BodyShort, HGrid, InlineMessage, Skeleton, VStack } from '@navik
 import { getRouteApi } from '@tanstack/react-router';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { ArbeidsavklaringspengerDetails } from 'src/components/ytelser/Detail/arbeidsavklaringspenger';
+import { DagpengerDetails } from 'src/components/ytelser/Detail/dagpenger';
 import { ForeldrePengerDetails } from 'src/components/ytelser/Detail/foreldrepenger';
 import { ForeldrePengerFpSakDetails } from 'src/components/ytelser/Detail/foreldrepenger-fpsak';
 import { PensjonDetails } from 'src/components/ytelser/Detail/pensjon';
@@ -16,6 +17,7 @@ import type {
     ForeldrepengerFpSak,
     PensjonSak,
     Pleiepenger,
+    PseudoDagpengerVedtak,
     Sykepenger,
     Utbetalingsperioder,
     VedtakDto
@@ -102,10 +104,12 @@ const YtelseDataDetails = ({ ytelser }: { ytelser: YtelseVedtak[] }) => {
             return <ArbeidsavklaringspengerDetails aap={selectedYtelse.ytelseData.data as Arbeidsavklaringspenger} />;
         case YtelseVedtakYtelseType.ForeldrepengerFpSak:
             return <ForeldrePengerFpSakDetails ytelse={selectedYtelse.ytelseData.data as ForeldrepengerFpSak} />;
+        case YtelseVedtakYtelseType.Dagpenger:
+            return <DagpengerDetails ytelse={selectedYtelse.ytelseData.data as PseudoDagpengerVedtak} />;
         case YtelseVedtakYtelseType.SykepengerSpokelse:
             return <SykePengerSpokelseDetails ytelse={selectedYtelse.ytelseData.data as Utbetalingsperioder} />;
         default:
-            return <Alert variant="info">Ukjent ytelse type {selectedYtelse.ytelseType}</Alert>;
+            return <Alert variant="info">Ukjent ytelsestype {selectedYtelse.ytelseType}</Alert>;
     }
 };
 

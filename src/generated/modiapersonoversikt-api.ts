@@ -116,6 +116,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    '/rest/ytelse/dagpenger': {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations['hentDagpenger'];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     '/rest/ytelse/arbeidsavklaringspenger': {
         parameters: {
             query?: never;
@@ -1226,6 +1242,28 @@ export interface components {
         ForeldrepengerResponse: {
             foreldrepenger?: components['schemas']['Foreldrepenger'][];
         };
+        DatadelingRequestDagpengerDto: {
+            personIdent: string;
+            /** Format: date */
+            fraOgMedDato: string;
+            /** Format: date */
+            tilOgMedDato?: string;
+        };
+        PeriodeDagpengerDto: {
+            /** Format: date */
+            fraOgMedDato: string;
+            /** @enum {string} */
+            kilde: PeriodeDagpengerDtoKilde;
+            /** @enum {string} */
+            ytelseType: PeriodeDagpengerDtoYtelseType;
+            /** Format: date */
+            tilOgMedDato?: string;
+        };
+        PseudoDagpengerVedtak: {
+            perioder: components['schemas']['PeriodeDagpengerDto'][];
+            /** Format: date */
+            nyesteFraOgMedDato?: string;
+        };
         NonavaapapiinternPeriodeDTO: {
             /** Format: date */
             fraOgMedDato?: string;
@@ -1460,9 +1498,9 @@ export interface components {
         };
         LocalTime: {
             value?: string;
+            value$kotlinx_datetime: string;
             /** Format: int32 */
             nanosecond: number;
-            value$kotlinx_datetime: string;
             /** Format: int32 */
             hour: number;
             /** Format: int32 */
@@ -2053,19 +2091,19 @@ export interface components {
             boost?: number;
         };
         GraphQLClientError: {
-            locations?: components['schemas']['GraphQLClientSourceLocation'][];
             message: string;
             path?: unknown[];
             extensions?: {
                 [key: string]: unknown;
             };
+            locations?: components['schemas']['GraphQLClientSourceLocation'][];
         };
         GraphQLClientResponseResult: {
-            errors?: components['schemas']['GraphQLClientError'][];
             extensions?: {
                 [key: string]: unknown;
             };
             data?: components['schemas']['Result'];
+            errors?: components['schemas']['GraphQLClientError'][];
         };
         GraphQLClientSourceLocation: {
             /** Format: int32 */
@@ -2328,6 +2366,9 @@ export type ForeldrepengePeriode = components['schemas']['ForeldrepengePeriode']
 export type Foreldrepenger = components['schemas']['Foreldrepenger'];
 export type ForeldrepengerArbeidsforhold = components['schemas']['ForeldrepengerArbeidsforhold'];
 export type ForeldrepengerResponse = components['schemas']['ForeldrepengerResponse'];
+export type DatadelingRequestDagpengerDto = components['schemas']['DatadelingRequestDagpengerDto'];
+export type PeriodeDagpengerDto = components['schemas']['PeriodeDagpengerDto'];
+export type PseudoDagpengerVedtak = components['schemas']['PseudoDagpengerVedtak'];
 export type NonavaapapiinternPeriodeDto = components['schemas']['NonavaapapiinternPeriodeDTO'];
 export type NonavaapapiinternVedtakUtenUtbetalingDto =
     components['schemas']['NonavaapapiinternVedtakUtenUtbetalingDTO'];
@@ -2630,6 +2671,30 @@ export interface operations {
                 };
                 content: {
                     '*/*': components['schemas']['ForeldrepengerResponse'];
+                };
+            };
+        };
+    };
+    hentDagpenger: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                'application/json': components['schemas']['DatadelingRequestDagpengerDto'];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    '*/*': components['schemas']['PseudoDagpengerVedtak'];
                 };
             };
         };
@@ -3835,6 +3900,15 @@ export enum ForeldrepengerFpSakYtelse {
     ENGANGSST_NAD = 'ENGANGSST\u00D8NAD',
     FORELDREPENGER = 'FORELDREPENGER',
     SVANGERSKAPSPENGER = 'SVANGERSKAPSPENGER'
+}
+export enum PeriodeDagpengerDtoKilde {
+    ARENA = 'ARENA',
+    DP_SAK = 'DP_SAK'
+}
+export enum PeriodeDagpengerDtoYtelseType {
+    DAGPENGER_ARBEIDSSOKER_ORDINAER = 'DAGPENGER_ARBEIDSSOKER_ORDINAER',
+    DAGPENGER_PERMITTERING_ORDINAER = 'DAGPENGER_PERMITTERING_ORDINAER',
+    DAGPENGER_PERMITTERING_FISKEINDUSTRI = 'DAGPENGER_PERMITTERING_FISKEINDUSTRI'
 }
 export enum DokumentDokumentStatus {
     UNDER_REDIGERING = 'UNDER_REDIGERING',

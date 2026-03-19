@@ -14,6 +14,7 @@ import type {
     OpprettOppgaveResponseDto
 } from 'src/generated/modiapersonoversikt-api';
 import { getMockArbeidsavklaringspengerResponse } from 'src/mock/ytelse/arbeidsavklaringspengerMock';
+import { getMockDagpengerResponse } from 'src/mock/ytelse/dagpengerMock';
 import { getMockForeldrepengerFpSakResponse } from 'src/mock/ytelse/foreldrepengerFpSakMock';
 import { getMockPensjon } from 'src/mock/ytelse/pensjon-mock';
 import { getMockSykpengerSpokelseResponse } from 'src/mock/ytelse/sykepengerSpokelseMock';
@@ -231,6 +232,15 @@ const foreldrepengerFpSakHandlerMock = http.post(
     )
 );
 
+const dagpengerHandlerMock = http.post(
+    `${apiBaseUri}/ytelse/dagpenger`,
+    withDelayedResponse(
+        randomDelay(),
+        fodselsNummerErGyldigStatus,
+        mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMockDagpengerResponse(fodselsnummer))
+    )
+);
+
 const oppfolgingHandler = http.post(
     `${apiBaseUri}/oppfolging`,
     withDelayedResponse(
@@ -422,6 +432,7 @@ export const handlers: (HttpHandler | WebSocketHandler)[] = [
     pleiepengerHandler,
     tiltakspengerMock,
     foreldrepengerFpSakHandlerMock,
+    dagpengerHandlerMock,
     pensjonMock,
     arbeidsavklaringspengerMock,
     tildelteOppgaverHandler,

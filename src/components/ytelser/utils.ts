@@ -5,6 +5,7 @@ import type { FetchError } from 'src/api/api';
 import { type YtelseFilter, ytelseFilterAtom } from 'src/components/ytelser/List/Filter';
 import {
     useArbeidsavklaringspenger,
+    useDagpenger,
     useForeldrepenger,
     useForeldrepengerFpSak,
     usePensjon,
@@ -22,6 +23,7 @@ import type {
     PleiepengerArbeidsforhold,
     PleiepengerPeriode,
     PleiepengerVedtak,
+    PseudoDagpengerVedtak,
     Sykepenger,
     Utbetalingsperioder,
     VedtakDto
@@ -30,6 +32,7 @@ import {
     type Arbeidsavklaringspenger,
     getUnikArbeidsavklaringspengerKey
 } from 'src/models/ytelse/arbeidsavklaringspenger';
+import { getDagpengerIdDato, getUnikDagpengerKey } from 'src/models/ytelse/dagpenger';
 import { getForeldrepengerFpSakIdDato, getUnikForeldrepengerFpSakKey } from 'src/models/ytelse/foreldrepenger-fpsak';
 import type { Pensjon } from 'src/models/ytelse/pensjon';
 import type { Tiltakspenger } from 'src/models/ytelse/tiltakspenger';
@@ -45,6 +48,7 @@ type Ytelse =
     | Pensjon
     | Arbeidsavklaringspenger
     | ForeldrepengerFpSak
+    | PseudoDagpengerVedtak
     | Utbetalingsperioder;
 
 type Placeholder = { returnOnForbidden: string; returnOnError: string; returnOnNotFound: string };
@@ -117,6 +121,8 @@ export function getYtelseIdDato(ytelse: YtelseVedtak): string {
             return getArbeidsavklaringspengerDato(ytelse.ytelseData.data as Arbeidsavklaringspenger);
         case YtelseVedtakYtelseType.ForeldrepengerFpSak:
             return getForeldrepengerFpSakIdDato(ytelse.ytelseData.data as ForeldrepengerFpSak);
+        case YtelseVedtakYtelseType.Dagpenger:
+            return getDagpengerIdDato(ytelse.ytelseData.data as PseudoDagpengerVedtak);
         default:
             return '';
     }
@@ -140,6 +146,8 @@ export function getUnikYtelseKey(ytelse: YtelseVedtak) {
             return getUnikArbeidsavklaringspengerKey(ytelse.ytelseData.data as Arbeidsavklaringspenger);
         case YtelseVedtakYtelseType.ForeldrepengerFpSak:
             return getUnikForeldrepengerFpSakKey(ytelse.ytelseData.data as ForeldrepengerFpSak);
+        case YtelseVedtakYtelseType.Dagpenger:
+            return getUnikDagpengerKey(ytelse.ytelseData.data as PseudoDagpengerVedtak);
         default:
             return 'ukjent ytelse';
     }
@@ -269,7 +277,7 @@ export function periodeEllerNull(periode?: CommonPeriode | null): string | null 
     if (!periode || !periode.fra) {
         return null;
     }
-    return `${formaterDato(periode.fra)} - ${periode.til ? formaterDato(periode.til) : ''}`;
+    return `${formaterDato(periode.fra)} – ${periode.til ? formaterDato(periode.til) : ''}`;
 }
 
 export const responseErrorMessage = (type: string) => ({
@@ -310,6 +318,7 @@ export const useFilterYtelser = (): QueryResult<YtelseVedtak[]> => {
     const pensjonResponse = usePensjon(startDato, sluttDato);
     const arbeidsavklaringspengerResponse = useArbeidsavklaringspenger(startDato, sluttDato);
     const foreldrepengerFpSakResponse = useForeldrepengerFpSak(startDato, sluttDato);
+    const dagpengerResponse = useDagpenger(startDato, sluttDato);
     const sykepengerSpokelseResponse = useSykepengerSpokelse(startDato, sluttDato);
 
     const ytelser: YtelseVedtak[] = [];
@@ -363,6 +372,13 @@ export const useFilterYtelser = (): QueryResult<YtelseVedtak[]> => {
         })
     );
 
+    if (dagpengerResponse.data?.perioder.length) {
+        ytelser.push({
+            ytelseData: { data: dagpengerResponse.data },
+            ytelseType: YtelseVedtakYtelseType.Dagpenger
+        });
+    }
+
     const ytelserSortert = ytelser.sort(datoSynkende((ytelse: YtelseVedtak) => getYtelseIdDato(ytelse)));
 
     const placeholders = [
@@ -373,7 +389,8 @@ export const useFilterYtelser = (): QueryResult<YtelseVedtak[]> => {
         errorPlaceholder(tiltakspengerResponse, responseErrorMessage('tiltakspenger')),
         errorPlaceholder(pensjonResponse, responseErrorMessage('pensjon')),
         errorPlaceholder(arbeidsavklaringspengerResponse, responseErrorMessage('arbeidsavklaringspenger')),
-        errorPlaceholder(foreldrepengerFpSakResponse, responseErrorMessage('foreldrepenger'))
+        errorPlaceholder(foreldrepengerFpSakResponse, responseErrorMessage('foreldrepenger')),
+        errorPlaceholder(dagpengerResponse, responseErrorMessage('dagpenger'))
     ];
 
     const response =
@@ -384,7 +401,8 @@ export const useFilterYtelser = (): QueryResult<YtelseVedtak[]> => {
         tiltakspengerResponse ||
         pensjonResponse ||
         arbeidsavklaringspengerResponse ||
-        foreldrepengerFpSakResponse;
+        foreldrepengerFpSakResponse ||
+        dagpengerResponse;
 
     const isLoading =
         foreldrepengerResponse.isLoading ||

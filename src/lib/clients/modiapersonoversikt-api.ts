@@ -455,6 +455,14 @@ export const useForeldrepengerFpSak = (fom: string, tom: string) => {
     return $api.useQuery('post', '/rest/ytelse/foreldrepenger_fpsak', { body: { fnr, fom, tom } }, ytelseQueryOptions);
 };
 
+export const useDagpenger = (fom: string, tom: string) => {
+    const fnr = usePersonAtomValue();
+    return $api.useQuery('post', '/rest/ytelse/dagpenger', {
+        // the fnr: fnr is just to satisfy our mock setup
+        body: { personIdent: fnr, fraOgMedDato: fom, tilOgMedDato: tom, fnr: fnr }
+    });
+};
+
 export const useSykepengerSpokelse = (fom: string, tom: string) => {
     const { isOn } = useFeatureToggle(FeatureToggles.SpokelseSykepenger);
     const fnr = usePersonAtomValue();
