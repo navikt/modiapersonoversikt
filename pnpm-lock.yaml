@@ -32,6 +32,9 @@ importers:
       '@navikt/fnrvalidator':
         specifier: ^2.1.5
         version: 2.1.5
+      '@navikt/lumi-survey':
+        specifier: ^0.2.0
+        version: 0.2.0(@navikt/ds-css@8.7.0)(@navikt/ds-react@8.7.0(@types/react@19.2.1)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       '@navikt/navspa':
         specifier: 7.4.0
         version: 7.4.0(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
@@ -1257,6 +1260,14 @@ packages:
 
   '@navikt/fnrvalidator@2.1.5':
     resolution: {integrity: sha512-uHzoL3ZTYwrF7OTKaihNf9xHH6S9WnGqz420HX4lEX+yu5367l+dYxI5OIRVT5MKWEDQ4DCVSAuJhoWValv6Fw==, tarball: https://npm.pkg.github.com/download/@navikt/fnrvalidator/2.1.5/e33cbc5693b14419bbcf4d5daee2ac9eeec532e5}
+
+  '@navikt/lumi-survey@0.2.0':
+    resolution: {integrity: sha512-xtDOKHC+OWWfSlt/eai5YZnPKm2Kba+1oqA6/gKhKrQ9UrelhhwfzVNOpnLIsMAlIQw/kheO/Zov0x1yzLfrpw==, tarball: https://npm.pkg.github.com/download/@navikt/lumi-survey/0.2.0/7dc970d846d93063832c5eef77829d8c06514eb8}
+    peerDependencies:
+      '@navikt/ds-css': '>=8'
+      '@navikt/ds-react': '>=8'
+      react: '>=18'
+      react-dom: '>=18'
 
   '@navikt/navspa@7.4.0':
     resolution: {integrity: sha512-WQCyOnbBHJRxtp6Hq1CMmHFW83z0zuJ2HNBajhHtVhcnR5dV01GfxMFX1clqNsigByrU9yTaxEbFNLacoSgLSA==, tarball: https://npm.pkg.github.com/download/@navikt/navspa/7.4.0/8e7cfa5ca022fa7301e85796f39de4374eaf47ac}
@@ -5710,6 +5721,13 @@ snapshots:
   '@navikt/ds-tokens@8.7.0': {}
 
   '@navikt/fnrvalidator@2.1.5': {}
+
+  '@navikt/lumi-survey@0.2.0(@navikt/ds-css@8.7.0)(@navikt/ds-react@8.7.0(@types/react@19.2.1)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)':
+    dependencies:
+      '@navikt/ds-css': 8.7.0
+      '@navikt/ds-react': 8.7.0(@types/react@19.2.1)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+      react: 19.2.1
+      react-dom: 19.2.1(react@19.2.1)
 
   '@navikt/navspa@7.4.0(react-dom@19.2.1(react@19.2.1))(react@19.2.1)':
     dependencies:

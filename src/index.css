@@ -1,6 +1,7 @@
 @import "./reset.css" layer(po-base);
 @import "tailwindcss";
 @import "@navikt/ds-css" layer(aksel);
+@import "@navikt/lumi-survey/styles.css";
 @import "./index.less" layer(nav-frontend);
 
 @config "../tailwind.config.js";

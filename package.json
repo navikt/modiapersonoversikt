@@ -51,6 +51,7 @@
         "@navikt/ds-react": "^8.7.0",
         "@navikt/ds-tailwind": "^8.0.0",
         "@navikt/fnrvalidator": "^2.1.5",
+        "@navikt/lumi-survey": "^0.2.0",
         "@navikt/navspa": "7.4.0",
         "@navikt/tag-input": "^2.0.2",
         "@navikt/textparser": "^2.5.0",
