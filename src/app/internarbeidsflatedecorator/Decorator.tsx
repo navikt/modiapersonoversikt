@@ -8,6 +8,7 @@ import { DropdownMeny } from './DropdownMeny';
 import type { DecoratorPropsV3 } from './decoratorprops';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
 import './personsokKnapp.less';
+import './nymodiaKnapp.less';
 import './decorator.less';
 import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
 import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
