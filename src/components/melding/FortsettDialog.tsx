@@ -140,7 +140,7 @@ export const FortsettDialog = ({ traad, lukkOppgave }: Props) => {
                                     size="small"
                                     onChange={(e) => field.handleChange(e.target.checked)}
                                 >
-                                    Avslutt samtale etter sending
+                                    Avslutt dialog etter sending
                                 </Checkbox>
                             )}
                         </form.Field>

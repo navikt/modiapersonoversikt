@@ -46,7 +46,6 @@ test('Send ny melding', async ({ page }) => {
     await page.getByRole('textbox').fill('playwright new melding');
     await page.getByLabel('Temagruppe').selectOption('Pensjon');
 
-    await page.addStyleTag({ content: '#ny-modia-knapp-wrapper { display: none !important; }' });
     await page.addStyleTag({ content: '.TanStackRouterDevtools { display: none !important; }' });
     await page.getByTestId('svar-knapp').click();
 
