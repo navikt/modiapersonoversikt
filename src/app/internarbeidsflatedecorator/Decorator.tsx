@@ -13,6 +13,7 @@ import './decorator.less';
 import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
 import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 import { OppstartNyModiaDialog } from 'src/components/NyModia/OppstartNyModiaDialog';
+import useOpenIntroduksjonsModal from 'src/components/NyModia/useHarSettNyModiaDialog';
 import { useDecoratorConfig } from './useDecoratorConfig';
 
 const InternflateDecoratorV3 = NAVSPA.importer<DecoratorPropsV3>('internarbeidsflate-decorator-v3');
@@ -44,6 +45,7 @@ function DropdownMenyPortal() {
 
 function Decorator() {
     const { configV3 } = useDecoratorConfig();
+    const [open] = useOpenIntroduksjonsModal();
 
     return (
         <StyledNav>
@@ -51,7 +53,7 @@ function Decorator() {
             <Personsok />
             <OppdateringsloggContainer />
             <DropdownMenyPortal />
-            <OppstartNyModiaDialog />
+            {open && <OppstartNyModiaDialog />}
             <DecoratorEasterEgg />
         </StyledNav>
     );

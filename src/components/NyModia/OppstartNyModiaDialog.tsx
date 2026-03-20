@@ -3,6 +3,7 @@ import { Box, Button, Heading, HStack, Modal } from '@navikt/ds-react';
 import { useState } from 'react';
 import { OnboardingStepper } from 'src/components/NyModia/OnboardingStepper';
 import useOpenIntroduksjonsModal from 'src/components/NyModia/useHarSettNyModiaDialog';
+import { twMerge } from 'tailwind-merge';
 
 export const OppstartNyModiaDialog = () => {
     const [open, toggleModal] = useOpenIntroduksjonsModal();
@@ -14,7 +15,12 @@ export const OppstartNyModiaDialog = () => {
     };
 
     return (
-        <Modal className="w-[1000px] max-w-[99%]" aria-labelledby="modal-header" open={open} onClose={lukkModal}>
+        <Modal
+            className={twMerge(open && 'w-[1000px] max-w-[99%]')}
+            aria-labelledby="modal-header"
+            open={open}
+            onClose={lukkModal}
+        >
             <Modal.Header closeButton={false}>
                 <HStack justify="space-between">
                     <Box.New className="flex-0" />
@@ -30,7 +36,7 @@ export const OppstartNyModiaDialog = () => {
                     ></Button>
                 </HStack>
             </Modal.Header>
-            <Modal.Body className="h-[500px]">
+            <Modal.Body className={twMerge('h-[500px]')}>
                 <OnboardingStepper activeStep={activeStep} setActiveStep={setActiveStep} />
             </Modal.Body>
             <Modal.Footer>
