@@ -30,7 +30,9 @@ const TakkStep = () => (
                 Vi jobber med å legge til rette for å kunne gjøre dette direkte fra personoversikten.
             </BodyLong>
         </VStack>
-        <img width="300px" src={NyKnapp} alt="Bilde ab den nye knappen i hovedmenyen" />
+        <Box.New borderColor="neutral-subtle" borderWidth="2" borderRadius="8">
+            <img width="600px" src={NyKnapp} alt="Bilde av den nye knappen i hovedmenyen" />
+        </Box.New>
     </HStack>
 );
 
