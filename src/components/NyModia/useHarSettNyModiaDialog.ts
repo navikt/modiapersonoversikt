@@ -1,4 +1,6 @@
 import { atom, useAtom } from 'jotai';
+import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
+import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 import { useInnstillinger, useOppdaterInnstillinger } from 'src/lib/clients/innstillinger';
 
 export const openIntroduksjonsModalAtom = atom<boolean>(false);
@@ -28,8 +30,9 @@ function useHarSettNyModiaDialog(): [boolean, () => void] {
 function useOpenIntroduksjonsModal(): [boolean, (toggleVal: boolean) => void] {
     const [harSett, markerSomSett] = useHarSettNyModiaDialog();
     const [manueltOpnet, setManueltOpnet] = useAtom(openIntroduksjonsModalAtom);
+    const { isOn } = useFeatureToggle(FeatureToggles.NyModiaKnapp);
 
-    const open = manueltOpnet || !harSett;
+    const open = (manueltOpnet || !harSett) && isOn;
 
     const toggleModal = (openModal: boolean) => {
         if (openModal) {
@@ -40,7 +43,7 @@ function useOpenIntroduksjonsModal(): [boolean, (toggleVal: boolean) => void] {
         }
     };
 
-    return [open, toggleModal];
+    return [!!open, toggleModal];
 }
 
 export default useOpenIntroduksjonsModal;
