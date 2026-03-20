@@ -1,5 +1,5 @@
 import { SparklesIcon } from '@navikt/aksel-icons';
-import { ActionMenu, Button, Tooltip } from '@navikt/ds-react';
+import { ActionMenu, Button } from '@navikt/ds-react';
 import { useSetAtom } from 'jotai';
 import { type KeyboardEvent, useRef, useState } from 'react';
 import { openIntroduksjonsModalAtom } from 'src/components/NyModia/useHarSettNyModiaDialog';
@@ -62,9 +62,7 @@ export const DropdownMeny = () => {
                     >
                         <ActionMenu.Item>Brukerveiledning</ActionMenu.Item>
                     </a>
-                    <Tooltip content="Løsning for tilbakemelding kommer snart. Meld fra i porten i mellomtiden.">
-                        <ActionMenu.Item disabled>Gi tilbakemelding (kommer snart, bruk porten)</ActionMenu.Item>
-                    </Tooltip>
+                    <ActionMenu.Item disabled>Gi tilbakemelding (kommer snart, bruk porten)</ActionMenu.Item>
                 </ActionMenu.Group>
             </ActionMenu.Content>
         </ActionMenu>
