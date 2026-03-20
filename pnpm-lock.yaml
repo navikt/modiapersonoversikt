@@ -18,8 +18,8 @@ importers:
         specifier: ^1.18.2
         version: 1.18.2
       '@navikt/aksel-icons':
-        specifier: ^8.1.0
-        version: 8.1.0
+        specifier: ^8.7.0
+        version: 8.7.0
       '@navikt/ds-css':
         specifier: ^7.35.0
         version: 7.35.0
@@ -691,6 +691,10 @@ packages:
     resolution: {integrity: sha512-05WQkdpL9COIMz4LjTxGpPNCdlpyimKppYNoJ5Di5EUObifl8t4tuLuUBBZEpoLYOmfvIWrsp9fCl0HoPRVTdA==}
     engines: {node: '>=6.9.0'}
 
+  '@babel/runtime@7.29.2':
+    resolution: {integrity: sha512-JiDShH45zKHWyGe4ZNVRrCjBz8Nh9TMmZG1kh4QTK8hCBTWBi8Da+i7s1fJw7/lYpM4ccepSNfqzZ/QvABBi5g==}
+    engines: {node: '>=6.9.0'}
+
   '@babel/template@7.27.2':
     resolution: {integrity: sha512-LPDZ85aEJyYSd18/DkjNh4/y1ntkE5KwUHWTiqgRxruuZL2F1yuHligVHLvcHY2vMHXttKFpJn6LwfI7cw7ODw==}
     engines: {node: '>=6.9.0'}
@@ -1140,8 +1144,8 @@ packages:
   '@navikt/aksel-icons@7.40.0':
     resolution: {integrity: sha512-1xuhplMhKCEPn2iMFypMVgkRNxUd5iupQ7HP2itdQCkK3K2mm2b8HsDwL9d7YDWcxowq5ff7ewpKgQFPn6o1UQ==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/7.40.0/16d67c0742bcf2a2c38ad37be6c287765640fd7f}
 
-  '@navikt/aksel-icons@8.1.0':
-    resolution: {integrity: sha512-3rDxnZaFdxVv3/S6GRxgYl3KQpPcaUhS2DD0Kop1HtDT4QiYVIDcVD42y+L/AjuTT7YbGqJUJB1z8ufXlb+AsQ==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.1.0/d1796650b2b1e3d19a18b45670833fdc6fef3ca3}
+  '@navikt/aksel-icons@8.7.0':
+    resolution: {integrity: sha512-pANfaE/xr2a9Q3CYMWbCjhAk9+UNuUa50Ez37Zk2nZQYtjP1vLXluOgHrxGAGTs6T4ToE+IjtJdU9DoEBnBbdw==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.7.0/71371b0ac52d8760340b655f20580faeb47a2fb5}
 
   '@navikt/ds-css@7.35.0':
     resolution: {integrity: sha512-lRqLPslT3gXDlyqT5601oLs3u7joVV6FfQVCU7IopIltZFcxpC0XoJEibgath7jDF1EfPZn8TI3bqZQcEp824A==, tarball: https://npm.pkg.github.com/download/@navikt/ds-css/7.35.0/af568312ae1be10ff361691532f9861bf5e499d2}
@@ -4741,6 +4745,8 @@ snapshots:
 
   '@babel/runtime@7.28.6': {}
 
+  '@babel/runtime@7.29.2': {}
+
   '@babel/template@7.27.2':
     dependencies:
       '@babel/code-frame': 7.27.1
@@ -5179,7 +5185,7 @@ snapshots:
 
   '@navikt/aksel-icons@7.40.0': {}
 
-  '@navikt/aksel-icons@8.1.0': {}
+  '@navikt/aksel-icons@8.7.0': {}
 
   '@navikt/ds-css@7.35.0': {}
 
@@ -6035,7 +6041,7 @@ snapshots:
   '@testing-library/dom@10.4.0':
     dependencies:
       '@babel/code-frame': 7.29.0
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       '@types/aria-query': 5.0.4
       aria-query: 5.3.0
       chalk: 4.1.2
