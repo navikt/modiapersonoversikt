@@ -1,12 +1,12 @@
 import { Box, Switch } from '@navikt/ds-react';
 import { useAtom } from 'jotai';
-import { useCallback, useState } from 'react';
+import { forwardRef, useCallback, useState } from 'react';
 import { nyModiaAtom } from 'src/components/NyModia';
 import { trackToggleNyModia } from 'src/utils/analytics';
 import { FeatureToggles } from './featureToggle/toggleIDs';
 import useFeatureToggle from './featureToggle/useFeatureToggle';
 
-export const NyModiaSwitch = () => {
+export const NyModiaSwitch = forwardRef<HTMLInputElement>((_props, ref) => {
     const { isOn } = useFeatureToggle(FeatureToggles.NyModiaKnapp);
     const [nyModia, setNyModia] = useAtom(nyModiaAtom);
 
@@ -25,9 +25,9 @@ export const NyModiaSwitch = () => {
 
     return (
         <Box.New paddingInline="2">
-            <Switch size="medium" checked={isChecked} onChange={handleClick}>
+            <Switch role="menuitem" ref={ref} size="medium" checked={isChecked} onChange={handleClick}>
                 Ny Modia
             </Switch>
         </Box.New>
     );
-};
+});

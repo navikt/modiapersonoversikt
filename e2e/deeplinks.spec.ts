@@ -5,6 +5,13 @@ import { INFOTABS } from 'src/app/personside/infotabs/InfoTabEnum';
 test.beforeEach(async ({ page }) => {
     await page.addInitScript(() => {
         window.localStorage.setItem('ny-modia-v2', String(Number.MAX_SAFE_INTEGER));
+        window.localStorage.setItem(
+            'modia-innstillinger-mock',
+            JSON.stringify({
+                sistLagret: '2020-04-07T12:12:54',
+                innstillinger: { 'har-sett-oppstart-ny-modia': 'true' }
+            })
+        );
     });
 });
 

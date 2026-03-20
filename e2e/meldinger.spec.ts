@@ -3,6 +3,13 @@ import { expect, test } from '@playwright/test';
 test.beforeEach(async ({ page }) => {
     await page.addInitScript(() => {
         window.localStorage.setItem('ny-modia-v2', '-1');
+        window.localStorage.setItem(
+            'modia-innstillinger-mock',
+            JSON.stringify({
+                sistLagret: '2020-04-07T12:12:54',
+                innstillinger: { 'har-sett-oppstart-ny-modia': 'true' }
+            })
+        );
     });
 });
 
@@ -46,7 +53,6 @@ test('Send ny melding', async ({ page }) => {
     await page.getByRole('textbox').fill('playwright new melding');
     await page.getByLabel('Temagruppe').selectOption('Pensjon');
 
-    await page.addStyleTag({ content: '#ny-modia-knapp-wrapper { display: none !important; }' });
     await page.addStyleTag({ content: '.TanStackRouterDevtools { display: none !important; }' });
     await page.getByTestId('svar-knapp').click();
 

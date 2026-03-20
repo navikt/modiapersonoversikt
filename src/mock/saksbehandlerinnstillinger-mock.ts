@@ -5,7 +5,7 @@ const localstoreageKey = 'modia-innstillinger-mock';
 const finnesILocalStorage = localStorage.getItem(localstoreageKey);
 const defaultInnstillinger: SaksbehandlerInnstillinger = {
     sistLagret: '2020-04-07T12:12:54',
-    innstillinger: {}
+    innstillinger: { 'har-sett-ny-modia-dialog': 'true' }
 };
 
 let innstillinger =
