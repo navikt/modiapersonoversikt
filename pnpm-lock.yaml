@@ -66,8 +66,8 @@ importers:
         specifier: ^9.0.10
         version: 9.0.10(react@19.2.1)
       jotai:
-        specifier: ^2.12.5
-        version: 2.12.5(@types/react@19.2.1)(react@19.2.1)
+        specifier: ^2.18.1
+        version: 2.18.1(@babel/core@7.28.5)(@babel/template@7.27.2)(@types/react@19.2.1)(react@19.2.1)
       lodash:
         specifier: ^4.17.23
         version: 4.17.23
@@ -2873,13 +2873,19 @@ packages:
     resolution: {integrity: sha512-ekilCSN1jwRvIbgeg/57YFh8qQDNbwDb9xT/qu2DAHbFFZUicIl4ygVaAvzveMhMVr3LnpSKTNnwt8PoOfmKhQ==}
     hasBin: true
 
-  jotai@2.12.5:
-    resolution: {integrity: sha512-G8m32HW3lSmcz/4mbqx0hgJIQ0ekndKWiYP7kWVKi0p6saLXdSoye+FZiOFyonnd7Q482LCzm8sMDl7Ar1NWDw==}
+  jotai@2.18.1:
+    resolution: {integrity: sha512-e0NOzK+yRFwHo7DOp0DS0Ycq74KMEAObDWFGmfEL28PD9nLqBTt3/Ug7jf9ca72x0gC9LQZG9zH+0ISICmy3iA==}
     engines: {node: '>=12.20.0'}
     peerDependencies:
+      '@babel/core': '>=7.0.0'
+      '@babel/template': '>=7.0.0'
       '@types/react': '>=17.0.0'
       react: '>=17.0.0'
     peerDependenciesMeta:
+      '@babel/core':
+        optional: true
+      '@babel/template':
+        optional: true
       '@types/react':
         optional: true
       react:
@@ -6956,8 +6962,10 @@ snapshots:
 
   jiti@2.6.1: {}
 
-  jotai@2.12.5(@types/react@19.2.1)(react@19.2.1):
+  jotai@2.18.1(@babel/core@7.28.5)(@babel/template@7.27.2)(@types/react@19.2.1)(react@19.2.1):
     optionalDependencies:
+      '@babel/core': 7.28.5
+      '@babel/template': 7.27.2
       '@types/react': 19.2.1
       react: 19.2.1
 
