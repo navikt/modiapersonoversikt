@@ -1,4 +1,4 @@
-import { Alert, Bleed, Box, Button, Checkbox, HGrid, HStack, InlineMessage, Loader, VStack } from '@navikt/ds-react';
+import { Bleed, Box, Button, Checkbox, HGrid, HStack, InlineMessage, Loader, VStack } from '@navikt/ds-react';
 import { useForm, type ValidationError } from '@tanstack/react-form';
 import { getRouteApi } from '@tanstack/react-router';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
@@ -46,7 +46,7 @@ export const FortsettDialog = ({ traad, lukkOppgave }: Props) => {
     const { oppgave } = useOppgaveForTraad(traad.traadId);
     const disableDialog = useDisableDialog();
     const setOverskridKontaktReservasjon = useSetAtom(overskridKontaktReservasjonAtom);
-    const { error, mutate, isPending, isSuccess } = useSendMelding();
+    const { mutate, isPending } = useSendMelding();
     const { traadId: valgtTraadId } = routeApi.useSearch();
     const erValgtTraad = valgtTraadId === traad.traadId;
 
@@ -241,8 +241,6 @@ export const FortsettDialog = ({ traad, lukkOppgave }: Props) => {
                         </Bleed>
                     </HGrid>
                 </VStack>
-                {isSuccess && <Alert variant="success">Meldingen ble sendt</Alert>}
-                {error && <Alert variant="error">Det skjedde en feil. Meldingen ble ikke sendt</Alert>}
             </VStack>
         </form>
     );
