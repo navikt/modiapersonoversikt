@@ -54,6 +54,7 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
                             setSak({
                                 ...sak,
                                 fnr: undefined,
+                                saksId: sak.saksId ?? undefined,
                                 fagsystemSaksId: sak.fagsystemSaksId ?? undefined,
                                 opprettetDato: sak.opprettetDato ?? undefined
                             });
