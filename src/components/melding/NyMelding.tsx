@@ -1,4 +1,4 @@
-import { Alert, Bleed, Box, Button, ErrorMessage, HGrid, HStack, VStack } from '@navikt/ds-react';
+import { Bleed, Box, Button, ErrorMessage, HGrid, HStack, VStack } from '@navikt/ds-react';
 import { useForm, useStore, type ValidationError } from '@tanstack/react-form';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useCallback, useMemo, useRef, useState } from 'react';
@@ -35,7 +35,7 @@ function NyMelding() {
     const disableDialog = useDisableDialog();
     const setOverskridKontaktReservasjon = useSetAtom(overskridKontaktReservasjonAtom);
 
-    const { error, mutate, isPending, isSuccess } = useSendMelding();
+    const { mutate, isPending } = useSendMelding();
 
     // Brukes for å sette initialverdien til meldingen basert på draften
     const [defaultMessage, setDefaultMessage] = useState('');
@@ -207,8 +207,6 @@ function NyMelding() {
                         </Bleed>
                     </HGrid>
                 </VStack>
-                {isSuccess && <Alert variant="success">Meldingen ble sendt</Alert>}
-                {error && <Alert variant="error">Det skjedde en feil. Meldingen ble ikke sendt</Alert>}
             </VStack>
         </form>
     );
