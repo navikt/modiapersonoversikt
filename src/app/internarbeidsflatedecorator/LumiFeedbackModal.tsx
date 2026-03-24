@@ -4,7 +4,7 @@ import { atom, useAtom } from 'jotai';
 import { useRef, useState } from 'react';
 import { apiBaseUri, postConfig } from 'src/api/config';
 
-export const mySurvey = {
+const mySurvey = {
     type: 'rating',
     questions: [
         {
