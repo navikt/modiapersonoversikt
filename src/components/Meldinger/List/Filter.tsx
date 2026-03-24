@@ -125,7 +125,7 @@ const TraadTypeFilter = () => {
 
     return (
         <Fieldset size="small" legend="Type dialog">
-            <HStack wrap gap="2">
+            <HStack wrap gap="space-8">
                 {traadTyperFilter.map((t) => (
                     <Switch
                         key={t}
@@ -194,20 +194,20 @@ export const TraadListFilterCard = () => {
 
     return (
         <FilterExpansionCard fane="meldinger" title={<FilterTitle />}>
-            <VStack gap="2">
+            <VStack gap="space-8">
                 <SearchField />
-                <Box.New maxWidth="17rem">
+                <Box maxWidth="17rem">
                     <TemaFilter />
-                </Box.New>
-                <Box.New maxWidth="17rem">
+                </Box>
+                <Box maxWidth="17rem">
                     <TraadTypeFilter />
-                </Box.New>
-                <Box.New>
+                </Box>
+                <Box>
                     <DateFilter />
-                </Box.New>
-                <Box.New>
+                </Box>
+                <Box>
                     <ResetFilters />
-                </Box.New>
+                </Box>
             </VStack>
         </FilterExpansionCard>
     );

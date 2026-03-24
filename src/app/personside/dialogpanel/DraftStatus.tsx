@@ -11,15 +11,15 @@ const DraftStatusWrapper = styled.div`
 `;
 
 const CheckmarkCircleIconGreen = styled(CheckmarkCircleIcon)`
-    color: var(--a-icon-success);
+    color: var(--ax-text-success-decoration);
 `;
 
 const ErrorText = styled.span`
-    color: var(--a-text-danger);
+    color: var(--ax-text-danger-subtle);
 `;
 
 const ExclamationmarkTriangleIconRed = styled(ExclamationmarkTriangleIcon)`
-    color var(--a-text-danger);
+    color: var(--ax-text-danger-subtle);
 `;
 
 const DraftStatus = ({ state }: { state: DraftState }) => {

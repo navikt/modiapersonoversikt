@@ -8,15 +8,15 @@ export const Utbetalinger = () => {
 
     if (data.utbetalinger.length === 0) {
         return (
-            <Box.New paddingBlock="4">
+            <Box paddingBlock="space-16">
                 <InlineMessage status="info" aria-live="polite">
                     Ingen resultat
                 </InlineMessage>
-            </Box.New>
+            </Box>
         );
     }
     return (
-        <VStack gap="8">
+        <VStack gap="space-32">
             <TotaltForPeriode />
             <PeriodeAccordions />
         </VStack>

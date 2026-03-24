@@ -16,7 +16,7 @@ export const Journalposter = ({ journalposter }: Props) => {
             header={`${journalposter.length} ${journalposter.length > 1 ? 'journalføringer' : 'journalføring'}`}
             data-testid="journalposter-readmore"
         >
-            <Box.New paddingInline="4" paddingBlock="2">
+            <Box paddingInline="space-16" paddingBlock="space-8">
                 <Table size="small" data-testid="journalposter-table">
                     <Table.Header>
                         <Table.Row>
@@ -51,7 +51,7 @@ export const Journalposter = ({ journalposter }: Props) => {
                         })}
                     </Table.Body>
                 </Table>
-            </Box.New>
+            </Box>
         </ReadMore>
     );
 };

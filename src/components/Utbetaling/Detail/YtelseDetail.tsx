@@ -9,7 +9,7 @@ import type { Ytelse } from 'src/generated/modiapersonoversikt-api';
 import { twMerge } from 'tailwind-merge';
 
 export const YtelseDetail = ({ ytelse }: { ytelse: Ytelse }) => (
-    <VStack gap="2">
+    <VStack gap="space-8">
         <VStack>
             <Heading size="xsmall" level="4">
                 Utbetaling {ytelse.type}
@@ -18,7 +18,7 @@ export const YtelseDetail = ({ ytelse }: { ytelse: Ytelse }) => (
                 Periode: {formaterPeriode({ fra: ytelse.periode?.start, til: ytelse.periode?.slutt })}
             </BodyShort>
         </VStack>
-        <Card className="bg-ax-bg-neutral-soft rounded-(--ax-radius-8) utbetalinger-tabell" padding="2">
+        <Card className="bg-ax-bg-neutral-soft rounded-(--ax-radius-8) utbetalinger-tabell" padding="space-8">
             <BruttoTabell ytelse={ytelse} />
             <TrekkTabell ytelse={ytelse} />
             <SkattTabell ytelse={ytelse} />
@@ -28,9 +28,9 @@ export const YtelseDetail = ({ ytelse }: { ytelse: Ytelse }) => (
                 'rounded-(--ax-radius-8) utbetalinger-tabell',
                 ytelse.nettobelop < 0 ? 'bg-ax-bg-danger-soft' : 'bg-ax-bg-success-soft'
             )}
-            padding="2"
+            padding="space-8"
         >
-            <HStack align="stretch" justify="space-between" paddingInline="2">
+            <HStack align="stretch" justify="space-between" paddingInline="space-8">
                 <Heading size="xsmall">Totalt</Heading>
                 <BodyShort className={fargePaBelop(ytelse.nettobelop)}>{formaterNOK(ytelse.nettobelop)}</BodyShort>
             </HStack>

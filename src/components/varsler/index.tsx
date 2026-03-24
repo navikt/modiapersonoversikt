@@ -22,17 +22,17 @@ const VarslerPageContent = () => {
 
     return (
         <ErrorBoundary boundaryName="VarslerTabell" errorText="Det oppstod en feil undervisning av varsler">
-            <Card padding="4" className="h-full overflow-auto">
+            <Card padding="space-16" className="h-full overflow-auto">
                 <AlertBanner alerts={errorMessages} />
-                <VStack gap="1" minHeight="0" overflow="auto">
-                    <HStack align="center" gap="2">
+                <VStack gap="space-4" minHeight="0" overflow="auto">
+                    <HStack align="center" gap="space-8">
                         <Heading size="small" visuallyHidden level="2">
                             Varsler
                         </Heading>
                     </HStack>
-                    <VStack gap="4">
+                    <VStack gap="space-16">
                         {isLoading ? (
-                            <VStack gap="2" marginInline="0 2">
+                            <VStack gap="space-8" marginInline="space-0 space-8">
                                 {Array(12)
                                     .keys()
                                     .map((i) => (

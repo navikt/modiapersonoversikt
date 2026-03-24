@@ -105,7 +105,7 @@ function DateRangeSelector({
     }, [onChange, defaultPeriodType]);
 
     return (
-        <VStack gap="2">
+        <VStack gap="space-8">
             <RadioGroup legend="Periode" size="small" value={periodType ?? ''} onChange={onPeriodTypeChange}>
                 {Object.entries(PeriodType).map(([, type]) => (
                     <Radio size="small" key={type} value={type}>
@@ -117,11 +117,11 @@ function DateRangeSelector({
                 <CustomDatePickerModal period={period} onUpdate={onFraTilDatoChange} />
             )}
             {periodType && !required && resettable && (
-                <Box.New>
+                <Box>
                     <Button variant="tertiary" size="small" icon={<XMarkIcon />} onClick={resetFilter}>
                         Resett datofilter
                     </Button>
-                </Box.New>
+                </Box>
             )}
         </VStack>
     );

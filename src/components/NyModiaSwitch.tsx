@@ -24,7 +24,7 @@ export const NyModiaSwitch = forwardRef<HTMLInputElement>((_props, ref) => {
     if (!isOn) return;
 
     return (
-        <Box.New paddingInline="2">
+        <Box.New paddingInline="space-8">
             <Switch role="menuitem" ref={ref} size="medium" checked={isChecked} onChange={handleClick}>
                 Ny Modia
             </Switch>

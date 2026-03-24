@@ -213,16 +213,16 @@ export const DokumenterFilter = () => {
     }, [fnr, aktivBrukerLastet, setFilter]);
 
     return (
-        <HStack gap="2" justify="start">
-            <Box.New>
+        <HStack gap="space-8" justify="start">
+            <Box>
                 <DateFilter />
-            </Box.New>
-            <Box.New flexGrow="1">
+            </Box>
+            <Box flexGrow="1">
                 <TemaFilter />
-            </Box.New>
-            <Box.New>
+            </Box>
+            <Box>
                 <SaksIdSearchField />
-            </Box.New>
+            </Box>
             <HStack align="end">
                 <ResetFilter />
             </HStack>

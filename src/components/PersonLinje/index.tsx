@@ -62,23 +62,23 @@ const PersonlinjeHeader = () => {
 
     return (
         <HStack
-            gap="2"
+            gap="space-8"
             wrap={false}
             align={{ xs: 'start', sm: 'center' }}
             id="personlinje-header"
-            paddingInline="8"
-            paddingBlock="4"
+            paddingInline="space-32"
+            paddingBlock="space-16"
             className="focus:outline-0"
             tabIndex={-1}
         >
-            <Box.New borderRadius="full" borderWidth="2" style={{ borderColor: farge }}>
+            <Box borderRadius="full" borderWidth="2" style={{ borderColor: farge }}>
                 {kjonn.kode === Kjonn.K ? (
                     <FigureOutwardIcon aria-hidden color={farge} fontSize="2rem" />
                 ) : (
                     <FigureInwardIcon aria-hidden color={farge} fontSize="2rem" />
                 )}
-            </Box.New>
-            <HStack gap="1 3">
+            </Box>
+            <HStack gap="space-4 space-12">
                 <Personalia
                     navn={navn ? `${navn.fornavn} ${navn.mellomnavn ?? ''} ${navn.etternavn}` : 'UKJENT'}
                     kjonn={kjonn}
@@ -86,7 +86,7 @@ const PersonlinjeHeader = () => {
                     erDod={erDod}
                     farge={farge}
                 />
-                <HStack marginInline={{ xs: '0', lg: 'space-28' }} gap="3">
+                <HStack marginInline={{ xs: 'space-0', lg: 'space-28' }} gap="space-12">
                     <HStack className="cursor-[initial]" wrap={false} onClick={(e) => e.stopPropagation()}>
                         <CopyButton
                             aria-label={`Kopier f.nr: ${`${person.personIdent.slice(0, 6)} ${person.personIdent.slice(6)}`}`}
@@ -160,7 +160,7 @@ type PersonaliaProps = {
 
 const Personalia = ({ navn, alder, kjonn, erDod, farge }: PersonaliaProps) => {
     return (
-        <HStack gap="1" wrap={false}>
+        <HStack gap="space-4" wrap={false}>
             <Heading
                 id="personinformasjon-heading"
                 size="xsmall"

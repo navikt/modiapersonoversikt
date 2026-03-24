@@ -12,7 +12,7 @@ interface VelgTemaProps {
 export default function VelgTema({ valgtTema, setValgtTema, error }: VelgTemaProps) {
     const diableDialog = useDisableDialog();
     return (
-        <VStack gap="1">
+        <VStack gap="space-4">
             <Select
                 disabled={diableDialog}
                 label="Temagruppe"

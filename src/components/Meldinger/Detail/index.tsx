@@ -31,23 +31,23 @@ const TraadDetailContent = ({ traad }: { traad: Traad }) => {
     const avsluttetAv = traad.avsluttetAv || melding.skrevetAvTekst;
 
     return (
-        <Card as={VStack} padding="2" overflow="auto">
-            <VStack as="section" gap="1" padding="2" height="100%" aria-label="Dialogdetaljer">
+        <Card as={VStack} padding="space-8" overflow="auto">
+            <VStack as="section" gap="space-4" padding="space-8" height="100%" aria-label="Dialogdetaljer">
                 <MeldingActionMenu traad={traad} />
                 <Journalposter journalposter={traad.journalposter} />
                 <TraadOppgaver traadId={traad.traadId} />
                 <Meldinger meldinger={traad.meldinger} />
-                <Box.New>
+                <Box>
                     <HStack justify="end">
                         {kanBesvares && (
-                            <Box.New>
+                            <Box>
                                 <Button size="small" onClick={svarSamtale}>
                                     Svar
                                 </Button>
-                            </Box.New>
+                            </Box>
                         )}
                     </HStack>
-                    <VStack gap="2">
+                    <VStack gap="space-8">
                         {avsluttetDato && !kanBesvares && (
                             <InlineMessage status="warning" size="small">
                                 Samtalen er avsluttet av {avsluttetAv ?? 'Systembruker'}{' '}
@@ -71,7 +71,7 @@ const TraadDetailContent = ({ traad }: { traad: Traad }) => {
                             </InlineMessage>
                         )}
                     </VStack>
-                </Box.New>
+                </Box>
             </VStack>
         </Card>
     );

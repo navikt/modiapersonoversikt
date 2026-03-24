@@ -13,10 +13,13 @@ export default function RettsligHandleevne() {
     }
 
     return (
-        <Group title="Rettslig handleevne" icon={<ExclamationmarkTriangleFillIcon color="var(--a-icon-warning)" />}>
+        <Group
+            title="Rettslig handleevne"
+            icon={<ExclamationmarkTriangleFillIcon color="var(--ax-text-warning-decoration)" />}
+        >
             {person.rettsligHandleevne.map((handleevne, index) => {
                 return (
-                    <Box key={`${handleevne.omfang}-${index}`} marginBlock="2">
+                    <Box key={`${handleevne.omfang}-${index}`} marginBlock="space-8">
                         <BodyShort>Omfang: {handleevne.omfang} </BodyShort>
                         <ValidPeriod
                             from={handleevne.gyldighetsPeriode?.gyldigFraOgMed}

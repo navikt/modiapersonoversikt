@@ -70,8 +70,8 @@ export const YtelseItem = ({ ytelse }: { ytelse: YtelseVedtak }) => {
 
     return (
         <Link
+            data-color="neutral"
             ref={linkRef}
-            variant="neutral"
             className="hover:no-underline block"
             underline={false}
             onClick={(e) => {
@@ -87,7 +87,7 @@ export const YtelseItem = ({ ytelse }: { ytelse: YtelseVedtak }) => {
             }}
         >
             <Card
-                padding="2"
+                padding="space-8"
                 as="li"
                 className={twMerge(
                     'cursor-pointer hover:bg-[var(--ax-bg-accent-moderate-hover)] group',
@@ -98,11 +98,11 @@ export const YtelseItem = ({ ytelse }: { ytelse: YtelseVedtak }) => {
                     <Label size="small" as="h3">
                         {getYtelseTtile()}
                     </Label>
-                    <HStack gap="2">
+                    <HStack gap="space-8">
                         <Detail>{dayjs(getYtelseIdDato(ytelse)).format('DD.MM.YYYY')}</Detail>
                     </HStack>
                     {ytelse.ytelseType === YtelseVedtakYtelseType.Pleiepenger && (
-                        <HStack gap="2">
+                        <HStack gap="space-8">
                             <BodyShort size="small" weight="semibold">
                                 Barnets f.nr:
                             </BodyShort>

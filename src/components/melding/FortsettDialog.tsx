@@ -117,7 +117,7 @@ export const FortsettDialog = ({ traad, lukkOppgave }: Props) => {
                 await form.handleSubmit();
             }}
         >
-            <VStack gap="4">
+            <VStack gap="space-16">
                 {!erValgtTraad && (
                     <InlineMessage size="small" status="warning" className="mt-2">
                         Dialogen du nå svarer til, er ikke den som vises til venstre.
@@ -166,7 +166,7 @@ export const FortsettDialog = ({ traad, lukkOppgave }: Props) => {
                         </form.Subscribe>
                     </>
                 )}
-                <VStack gap="1">
+                <VStack gap="space-4">
                     <form.Field
                         name="melding"
                         listeners={{
@@ -201,17 +201,20 @@ export const FortsettDialog = ({ traad, lukkOppgave }: Props) => {
                             </div>
                         )}
                     </form.Field>
-                    <HGrid gap="2" columns={{ xs: 1, md: '2fr 3fr' }}>
-                        <Box.New flexGrow="1">
+                    <HGrid gap="space-8" columns={{ xs: 1, md: '2fr 3fr' }}>
+                        <Box flexGrow="1">
                             {draftStatus &&
                                 form.getFieldValue('melding').length > 0 &&
                                 form.getFieldMeta('melding')?.isDirty && <DraftStatus state={draftStatus} />}
-                        </Box.New>
+                        </Box>
                         <Bleed
-                            marginBlock={{ xs: '0 0', md: disableDialog ? 'space-0 space-0' : 'space-20 space-0' }}
+                            marginBlock={{
+                                xs: 'space-0 space-0',
+                                md: disableDialog ? 'space-0 space-0' : 'space-20 space-0'
+                            }}
                             asChild
                         >
-                            <HStack gap="1" justify="end">
+                            <HStack gap="space-4" justify="end">
                                 <HStack justify="center">
                                     <AutoCompleteTekstTips />
                                     <StandardTekstModal
@@ -223,7 +226,7 @@ export const FortsettDialog = ({ traad, lukkOppgave }: Props) => {
                                         }
                                     />
                                 </HStack>
-                                <VStack justify="center" align="end" gap="1">
+                                <VStack justify="center" align="end" gap="space-4">
                                     <Button
                                         type="submit"
                                         data-testid="svar-knapp-fortsett-dialog"

@@ -1,4 +1,4 @@
-import { Button, List, VStack } from '@navikt/ds-react';
+import { Box, Button, List, VStack } from '@navikt/ds-react';
 import { useAtom } from 'jotai/index';
 import { useEffect, useState } from 'react';
 import type * as StandardTeksterType from 'src/app/personside/dialogpanel/sendMelding/standardTekster/domain.ts';
@@ -70,9 +70,11 @@ function StandardtekstListe({ listeRef }: { listeRef: React.RefObject<HTMLDivEle
             <div className="font-ax-bold" aria-live="polite">
                 {values.filtrerteTekster.length} samtalemaler traff søket
             </div>
-            <List id="standardtekster-liste" ref={listeRef}>
-                {tekstElementer}
-            </List>
+            <div id="standardtekster-liste" ref={listeRef}>
+                <Box marginBlock="space-16" asChild>
+                    <List data-aksel-migrated-v8>{tekstElementer}</List>
+                </Box>
+            </div>
             {values.filtrerteTekster.length > tekstElementer.length && visFlereTeksterKnapp}
         </VStack>
     );

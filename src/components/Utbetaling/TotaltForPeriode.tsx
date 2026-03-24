@@ -37,19 +37,19 @@ export const TotaltForPeriode = () => {
                                 </BodyShort>
                                 <Card
                                     className="bg-ax-bg-neutral-soft rounded-(--ax-radius-8) utbetalinger-tabell"
-                                    padding="4"
+                                    padding="space-16"
                                 >
-                                    <VStack gap="4">
+                                    <VStack gap="space-16">
                                         <HStack gap="space-24" justify="space-between">
-                                            <HStack gap="2" justify="space-between" flexGrow="1">
-                                                <VStack gap="2">
+                                            <HStack gap="space-8" justify="space-between" flexGrow="1">
+                                                <VStack gap="space-8">
                                                     <BodyShort weight="semibold">Detaljer</BodyShort>
                                                     <BodyShort>
                                                         {getAlleYtelseTyper(data.utbetalinger).join(', ')}
                                                     </BodyShort>{' '}
                                                 </VStack>
                                                 <HStack justify="space-between" flexGrow="1">
-                                                    <VStack gap="2">
+                                                    <VStack gap="space-8">
                                                         <BodyShort weight="semibold">Brutto</BodyShort>
                                                         <BodyShort>
                                                             {formaterNOK(
@@ -57,7 +57,7 @@ export const TotaltForPeriode = () => {
                                                             )}
                                                         </BodyShort>
                                                     </VStack>
-                                                    <VStack gap="2">
+                                                    <VStack gap="space-8">
                                                         <BodyShort weight="semibold">Trekk og skatt</BodyShort>
                                                         <BodyShort
                                                             className={fargePaBelop(
@@ -73,7 +73,7 @@ export const TotaltForPeriode = () => {
                                                             )}
                                                         </BodyShort>
                                                     </VStack>
-                                                    <VStack gap="2">
+                                                    <VStack gap="space-8">
                                                         <BodyShort weight="semibold">Totalt</BodyShort>
                                                         <BodyShort
                                                             className={fargePaBelop(

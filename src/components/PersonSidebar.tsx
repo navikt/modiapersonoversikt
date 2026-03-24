@@ -83,9 +83,10 @@ export const PersonSidebarMenu = () => {
     return (
         <Card className="h-full overflow-auto">
             <VStack justify="space-between" height="100%" as="nav">
-                <Box.New>
-                    <Box.New padding="2" className="flex">
+                <Box>
+                    <Box padding="space-8" className="flex">
                         <Button
+                            data-color="neutral"
                             icon={
                                 expanded ? (
                                     <ArrowLeftIcon className="group-hover:-translate-x-1" aria-hidden />
@@ -95,7 +96,7 @@ export const PersonSidebarMenu = () => {
                             }
                             aria-controls="sidebar-person"
                             aria-expanded={expanded}
-                            variant="tertiary-neutral"
+                            variant="tertiary"
                             size="small"
                             onClick={() => setExpanded((v) => !v)}
                             className="flex-1 justify-end group p-0"
@@ -104,12 +105,12 @@ export const PersonSidebarMenu = () => {
                             {expanded && <span className="font-normal">Skjul</span>}
                             {!expanded && <span className="sr-only">Vis</span>}
                         </Button>
-                    </Box.New>
+                    </Box>
                     <VStack
                         as="nav"
                         id="sidebar-person"
                         aria-label="Person"
-                        padding="2"
+                        padding="space-8"
                         className="divide-y divide-ax-border-neutral-subtle "
                     >
                         <Heading visuallyHidden size="small" level="2">
@@ -133,13 +134,17 @@ export const PersonSidebarMenu = () => {
                                 {({ isActive }) => (
                                     <>
                                         <Button
+                                            data-color="neutral"
                                             aria-hidden
                                             tabIndex={-1}
                                             icon={
                                                 <>
                                                     <Icon aria-hidden />
                                                     {visNotifikasjon(title) && (
-                                                        <Box.New position="absolute" left={expanded ? '6' : '4'}>
+                                                        <Box
+                                                            position="absolute"
+                                                            className={expanded ? 'left-6' : 'left-4'}
+                                                        >
                                                             <Bleed marginBlock="space-2" asChild>
                                                                 <CircleFillIcon
                                                                     fontSize="0.8rem"
@@ -147,11 +152,11 @@ export const PersonSidebarMenu = () => {
                                                                     title="Brukeren har ubesvarte meldinger og/eller oppgave må løses"
                                                                 />
                                                             </Bleed>
-                                                        </Box.New>
+                                                        </Box>
                                                     )}
                                                 </>
                                             }
-                                            variant="tertiary-neutral"
+                                            variant="tertiary"
                                             size="small"
                                             className={twMerge(
                                                 'my-1 relative',
@@ -172,10 +177,10 @@ export const PersonSidebarMenu = () => {
                             </Link>
                         ))}
                     </VStack>
-                </Box.New>
-                <Box.New padding="2">
+                </Box>
+                <Box padding="space-8">
                     <ThemeIconToggle />
-                </Box.New>
+                </Box>
             </VStack>
         </Card>
     );

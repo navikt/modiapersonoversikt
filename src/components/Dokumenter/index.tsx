@@ -20,10 +20,10 @@ export const DokumenterPage = () => {
 
     return (
         <ErrorBoundary boundaryName="Dokumentertabell" errorText="Det oppstod en feil under visning av dokumenter">
-            <Card padding="4" className="h-full overflow-auto">
+            <Card padding="space-16" className="h-full overflow-auto">
                 <AlertBanner alerts={errorMessages} />
-                <VStack gap="8">
-                    <VStack gap="2">
+                <VStack gap="space-32">
+                    <VStack gap="space-8">
                         <Heading level="2" size="medium">
                             Dokumenter
                         </Heading>
@@ -33,10 +33,10 @@ export const DokumenterPage = () => {
                             <br /> Dokumenter som er journalført vises fra og med 4.juni 2016
                         </Detail>
                     </VStack>
-                    <VStack gap="4">
+                    <VStack gap="space-16">
                         <DokumenterFilter />
                         {isLoading ? (
-                            <VStack gap="2" marginInline="0 2">
+                            <VStack gap="space-8" marginInline="space-0 space-8">
                                 {Array(12)
                                     .keys()
                                     .map((i) => (

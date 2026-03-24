@@ -71,11 +71,11 @@ export const DokumenterTabell = () => {
 
     if (antallDokumenter === 0) {
         return (
-            <Box.New paddingBlock="4">
+            <Box paddingBlock="space-16">
                 <InlineMessage status="info" aria-live="polite">
                     Ingen resultat
                 </InlineMessage>
-            </Box.New>
+            </Box>
         );
     }
 
@@ -128,15 +128,13 @@ export const DokumenterTabell = () => {
                                     {journalpost.harTilgang ? (
                                         journalpost.beskrivelse
                                     ) : (
-                                        <HStack wrap={false} gap="1" align="center">
+                                        <HStack wrap={false} gap="space-4" align="center">
                                             <EyeSlashIcon
                                                 color="var(--ax-text-neutral-subtle)"
                                                 fontSize="1.3rem"
                                                 aria-hidden
                                             />{' '}
-                                            <Box.New className="text-[var(--ax-text-neutral-subtle)]">
-                                                Ingen tilgang
-                                            </Box.New>
+                                            <Box className="text-[var(--ax-text-neutral-subtle)]">Ingen tilgang</Box>
                                         </HStack>
                                     )}
                                 </Table.HeaderCell>
@@ -151,8 +149,9 @@ export const DokumenterTabell = () => {
                                 <Table.DataCell className="align-top">{journalpost.tilhorendeFagsaksid}</Table.DataCell>
                                 <Table.DataCell>
                                     <Tag
+                                        data-color="info"
                                         size="small"
-                                        variant="info-moderate"
+                                        variant="moderate"
                                         title="Antall vedlegg"
                                         icon={<FilesIcon aria-hidden />}
                                     >

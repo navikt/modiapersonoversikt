@@ -35,7 +35,7 @@ const SakVelgerSakList: React.FC<SakVelgerSakListProps> = ({
     if (!valgtTema) return <BodyShort>Velg et tema</BodyShort>;
 
     return (
-        <VStack className="bg-ax-bg-accent-soft rounded-sm" padding="4">
+        <VStack className="bg-ax-bg-accent-soft rounded-sm" padding="space-16">
             <Heading size="xsmall" as="h2" id="heading-listbox2" className="mb-2">
                 Velg sak
             </Heading>

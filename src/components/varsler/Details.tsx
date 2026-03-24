@@ -13,13 +13,13 @@ const FeilteVarslingerListe = ({
     feiledeVarslinger: Feilhistorikk[];
 }) => {
     return (
-        <HStack gap="1">
+        <HStack gap="space-4">
             <HStack width="8rem">
                 <BodyShort size="small" weight="regular">
                     {tittel}
                 </BodyShort>
             </HStack>
-            <VStack gap="1">
+            <VStack gap="space-4">
                 {feiledeVarslinger.map((varsling) => (
                     <div key={`${varsling.tidspunkt} - ${varsling.feilmelding}`}>
                         <ErrorMessage size="small" showIcon>
@@ -34,7 +34,7 @@ const FeilteVarslingerListe = ({
 
 const DittNavInformasjonsLinje = ({ tittel, tekst }: { tittel: string; tekst: string; className?: string }) => {
     return (
-        <HStack gap="1">
+        <HStack gap="space-4">
             <HStack width="8rem">
                 <BodyShort size="small" weight="regular">
                     {tittel}
@@ -52,15 +52,14 @@ const DittNavInformasjonsLinjer = ({ varsel, kanaler }: { varsel: Varsel; kanale
 
     return (
         <>
-            <VStack gap="1" className="p-2">
+            <VStack gap="space-4" className="p-2">
                 <BodyShort size="medium" className="mb-4" weight="semibold">
                     {varsel.innhold.tekst}
                 </BodyShort>
                 <DittNavInformasjonsLinje tittel="Produsert av:" tekst={emptyReplacement(varsel.produsent, ENDASH)} />
                 <DittNavInformasjonsLinje tittel="Link:" tekst={emptyReplacement(varsel.innhold.link, ENDASH)} />
             </VStack>
-
-            <VStack gap="1" className="px-2">
+            <VStack gap="space-4" className="px-2">
                 <DittNavInformasjonsLinje
                     tittel="Varslet: "
                     tekst={
@@ -94,7 +93,7 @@ export const VarselDetail = ({ valgtVarsel }: { valgtVarsel: VarselData }) => {
     return (
         <ErrorBoundary boundaryName="vaslerDetaljer" errorText="Det oppstod en feil under visning av varsel">
             {valgtVarsel && (
-                <Card padding="2" className="border-0 bg-ax-bg-neutral-soft">
+                <Card padding="space-8" className="border-0 bg-ax-bg-neutral-soft">
                     <DittNavInformasjonsLinjer varsel={valgtVarsel.event} kanaler={valgtVarsel.kanaler} />
                 </Card>
             )}

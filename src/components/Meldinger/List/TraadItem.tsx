@@ -35,7 +35,7 @@ function TildeltSaksbehandler({ traadId }: { traadId: string }) {
 
     if (oppgaver.map((oppgave) => oppgave.traadId).includes(traadId)) {
         return (
-            <Tag size="xsmall" variant="alt2-moderate" icon={<TasklistIcon aria-hidden />}>
+            <Tag data-color="meta-lime" size="xsmall" variant="moderate" icon={<TasklistIcon aria-hidden />}>
                 Tildelt meg
             </Tag>
         );
@@ -48,7 +48,7 @@ function UnderArbeid({ traadId }: { traadId: string }) {
 
     if (!isUnderArbeid) return null;
     return (
-        <Tag size="xsmall" variant="info-moderate" icon={<PencilIcon aria-hidden />}>
+        <Tag data-color="info" size="xsmall" variant="moderate" icon={<PencilIcon aria-hidden />}>
             Under arbeid
         </Tag>
     );
@@ -57,7 +57,7 @@ function UnderArbeid({ traadId }: { traadId: string }) {
 function Feilsendt({ traad }: { traad: TraadDto }) {
     if (!erFeilsendt(traad)) return null;
     return (
-        <Tag size="xsmall" icon={<XMarkOctagonIcon aria-hidden />} variant="alt1-moderate">
+        <Tag data-color="meta-purple" size="xsmall" icon={<XMarkOctagonIcon aria-hidden />} variant="moderate">
             Feilsendt
         </Tag>
     );
@@ -66,7 +66,7 @@ function Feilsendt({ traad }: { traad: TraadDto }) {
 function Slettet({ melding }: { melding: Melding }) {
     if (melding.temagruppe !== Temagruppe.InnholdSlettet) return null;
     return (
-        <Tag size="xsmall" variant="error-moderate" icon={<TrashIcon aria-hidden />}>
+        <Tag data-color="danger" size="xsmall" variant="moderate" icon={<TrashIcon aria-hidden />}>
             Slettet
         </Tag>
     );
@@ -74,7 +74,7 @@ function Slettet({ melding }: { melding: Melding }) {
 
 function Antallmeldinger({ traad }: { traad: TraadDto }) {
     return (
-        <HStack align="center" gap="05" className="text-ax-text-neutral-subtle" wrap={false}>
+        <HStack align="center" gap="space-2" className="text-ax-text-neutral-subtle" wrap={false}>
             <Chat2Icon title="Antall meldinger i tråd:" />
             <Label size="small" className="text-ax-text-neutral-subtle font-light">
                 {traad.meldinger.length}
@@ -88,8 +88,9 @@ function UbesvartMelding({ traad }: { traad: TraadDto }) {
     if (!ubesvart) return null;
     return (
         <Tag
+            data-color="success"
             size="xsmall"
-            variant="success-moderate"
+            variant="moderate"
             className="text-nowrap"
             title="Tråd er ubesvart"
             icon={<BellIcon aria-hidden />}
@@ -106,7 +107,13 @@ function AvsluttetMelding({ traad }: { traad: TraadDto }) {
 
     if (avsluttetDato && !kanBesvares) {
         return (
-            <Tag size="xsmall" variant="info-moderate" title="Tråd er avsluttet" icon={<EnterIcon aria-hidden />}>
+            <Tag
+                data-color="info"
+                size="xsmall"
+                variant="moderate"
+                title="Tråd er avsluttet"
+                icon={<EnterIcon aria-hidden />}
+            >
                 Avsluttet
             </Tag>
         );
@@ -120,7 +127,7 @@ function Sladdet({ traad }: { traad: TraadDto }) {
     if (!traad.sattTilSladdingAv && !sisteMelding.sendtTilSladding) return null;
 
     return (
-        <Tag size="xsmall" variant="neutral-moderate" data-color="brand-magenta" icon={<TabsRemoveIcon aria-hidden />}>
+        <Tag size="xsmall" variant="moderate" data-color="brand-magenta" icon={<TabsRemoveIcon aria-hidden />}>
             Sladding
         </Tag>
     );
@@ -160,9 +167,9 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
 
     return (
         <Link
+            data-color="neutral"
             ref={linkRef}
             data-testid="traaditem"
-            variant="neutral"
             className="hover:no-underline block"
             underline={false}
             onClick={(e) => {
@@ -186,17 +193,17 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
                 )}
                 as="li"
             >
-                <HStack justify="start" align="stretch" wrap={false} paddingInline="4 2">
+                <HStack justify="start" align="stretch" wrap={false} paddingBlock="space-12" paddingInline="space-16">
                     {visNotifikasjon && (
-                        <Box.New marginBlock="1">
+                        <Box marginBlock="space-4">
                             <Bleed marginInline="space-12">
                                 <CircleFillIcon title="" className="text-ax-text-accent-decoration" fontSize="0.5rem" />
                             </Bleed>
-                        </Box.New>
+                        </Box>
                     )}
-                    <VStack gap="0" width="100%">
-                        <HStack justify="space-between" gap="0" wrap={false}>
-                            <VStack gap="0">
+                    <VStack gap="space-0" width="100%">
+                        <HStack justify="space-between" gap="space-0" wrap={false}>
+                            <VStack gap="space-0">
                                 <Label size="small" as="h3">
                                     <Detail className="text-nowrap" visuallyHidden>
                                         Tema:
@@ -209,9 +216,9 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
                                 <Antallmeldinger traad={traad} />
                             </HStack>
                         </HStack>
-                        <VStack gap="2">
+                        <VStack gap="space-8">
                             <Detail truncate>{sisteMelding.fritekst}</Detail>
-                            <HStack gap="1" align="start" justify="start" maxHeight="max-content">
+                            <HStack gap="space-4" align="start" justify="start" maxHeight="max-content">
                                 <UbesvartMelding traad={traad} />
                                 <UnderArbeid traadId={traad.traadId} />
                                 <Feilsendt traad={traad} />

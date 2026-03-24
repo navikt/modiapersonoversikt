@@ -19,7 +19,7 @@ export function VelgMeldingsType({ meldingsType, setMeldingsType }: VelgMeldings
             size="small"
             disabled={disableDialog}
         >
-            <VStack gap="1">
+            <VStack gap="space-4">
                 <MeldingsTypeRadioKnapper valgtMeldingsType={meldingsType} />
             </VStack>
         </RadioGroup>

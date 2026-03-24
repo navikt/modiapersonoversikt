@@ -110,7 +110,7 @@ export function PersonsokForm({ onSubmit, onReset }: Props) {
                 form.handleSubmit();
             }}
         >
-            <VStack marginBlock="8" gap="4">
+            <VStack marginBlock="space-32" gap="space-16">
                 <Box className="grid grid-cols-2 gap-4 items-end">
                     {fieldGroup.map((fieldName) => (
                         <form.Field
@@ -141,7 +141,7 @@ export function PersonsokForm({ onSubmit, onReset }: Props) {
                     ))}
                 </Box>
                 <HStack justify="space-between">
-                    <HStack gap="4" align="start" className="pr-2">
+                    <HStack gap="space-16" align="start" className="pr-2">
                         <form.Field name="gender">
                             {(field) => (
                                 <Select
@@ -188,7 +188,7 @@ export function PersonsokForm({ onSubmit, onReset }: Props) {
                             )}
                         </form.Field>
                     </HStack>
-                    <HStack gap="4">
+                    <HStack gap="space-16">
                         <form.Field name="birthDateFrom">
                             {(field) => (
                                 <DateInput
@@ -230,8 +230,7 @@ export function PersonsokForm({ onSubmit, onReset }: Props) {
                     }}
                 </form.Subscribe>
             </Box>
-
-            <Box marginBlock="2">
+            <Box marginBlock="space-8">
                 <div>
                     <form.Subscribe
                         selector={(state) =>

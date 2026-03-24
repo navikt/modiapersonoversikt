@@ -9,8 +9,9 @@ const Status = ({ varsel }: { varsel: VarselData }) => {
     if (varsel.harFeiledeVarsler) {
         return (
             <Tag
+                data-color="danger"
                 title="Varsling feilet"
-                variant="error-moderate"
+                variant="moderate"
                 size="small"
                 icon={<ExclamationmarkTriangleIcon aria-hidden />}
             >
@@ -20,8 +21,9 @@ const Status = ({ varsel }: { varsel: VarselData }) => {
     }
     return (
         <Tag
+            data-color="success"
             title="Varsling vellykket"
-            variant="success-moderate"
+            variant="moderate"
             size="small"
             icon={<CheckmarkCircleIcon aria-hidden />}
         >
@@ -79,7 +81,7 @@ export const VarslerListe = () => {
 
     return (
         <VStack gap="space-16">
-            <VStack gap="2">
+            <VStack gap="space-8">
                 <Heading level="2" size="medium">
                     Varsler
                 </Heading>

@@ -114,7 +114,7 @@ function NavKontor() {
         <Group title="NAV-kontor">
             <InfoElement title={`${navEnhet?.id} ${navEnhet.navn}`} icon={<NavLogo style={{ width: '2.5rem' }} />}>
                 <Publikumsmottak publikumsmottak={navEnhet.publikumsmottak} />
-                <Box marginBlock="4">
+                <Box marginBlock="space-16">
                     <KontorLenke navEnhetId={navEnhet.id} />
                 </Box>
             </InfoElement>

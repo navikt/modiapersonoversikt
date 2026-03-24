@@ -77,7 +77,7 @@ const getForeldrePengerPeriodeEntries = (periode: ForeldrepengePeriode) => {
 
 const ForeldrePengerRetten = ({ foreldrePenger }: { foreldrePenger: Foreldrepenger }) => {
     return (
-        <Card padding="4">
+        <Card padding="space-16">
             <Heading as="h4" size="small">
                 Om foreldrepengeretten
             </Heading>
@@ -91,7 +91,7 @@ const ForeldrePengerRetten = ({ foreldrePenger }: { foreldrePenger: Foreldrepeng
 
 const ForeldrePengerRettenBarnet = ({ foreldrePenger }: { foreldrePenger: Foreldrepenger }) => {
     return (
-        <Card padding="4">
+        <Card padding="space-16">
             <Heading as="h4" size="small">
                 Om barnet
             </Heading>
@@ -106,11 +106,11 @@ const ForeldrePengerRettenBarnet = ({ foreldrePenger }: { foreldrePenger: Foreld
 const ForeldrepengePerioder = ({ foreldrePenger }: { foreldrePenger: Foreldrepenger }) => {
     const perioder = foreldrePenger.periode ?? [];
     return (
-        <Card padding="4">
+        <Card padding="space-16">
             <Heading as="h4" size="small">
                 Perioder
             </Heading>
-            <Accordion size="small" headingSize="xsmall">
+            <Accordion size="small">
                 {perioder.map((periode, index) => {
                     return (
                         <Accordion.Item key={index} defaultOpen>
@@ -131,7 +131,7 @@ const ForeldrepengePerioder = ({ foreldrePenger }: { foreldrePenger: Foreldrepen
 
 const Arbeidssituasjon = ({ foreldrePenger }: { foreldrePenger: Foreldrepenger }) => {
     return (
-        <Card padding="4">
+        <Card padding="space-16">
             <Heading as="h4" size="small">
                 Arbeidssituasjon
             </Heading>
@@ -145,7 +145,7 @@ const Arbeidssituasjon = ({ foreldrePenger }: { foreldrePenger: Foreldrepenger }
 
 export const ForeldrePengerDetails = ({ foreldrePenger }: { foreldrePenger: Foreldrepenger }) => {
     return (
-        <VStack gap="1" minHeight="0">
+        <VStack gap="space-4" minHeight="0">
             <ForeldrePengerRetten foreldrePenger={foreldrePenger} />
             <ForeldrePengerRettenBarnet foreldrePenger={foreldrePenger} />
             <ForeldrepengePerioder foreldrePenger={foreldrePenger} />

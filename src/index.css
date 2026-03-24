@@ -1,6 +1,6 @@
 @import "./reset.css" layer(po-base);
 @import "tailwindcss";
-@import "@navikt/ds-css/darkside" layer(aksel);
+@import "@navikt/ds-css" layer(aksel);
 @import "./index.less" layer(nav-frontend);
 
 @config "../tailwind.config.js";
@@ -15,7 +15,7 @@
 
 .dekorator {
     h1 {
-        font-size: var(--a-font-size-large);
+        font-size: var(--ax-font-size-large);
     }
 }
 

@@ -16,10 +16,13 @@ export default function Flytting() {
     return (
         <Group title="Flytting">
             {person.innflyttingTilNorge.isNotEmpty() && (
-                <InfoElement title="Flyttet fra" icon={<GlobeFillIcon fontSize="1.2rem" color="var(--a-gray-400)" />}>
+                <InfoElement
+                    title="Flyttet fra"
+                    icon={<GlobeFillIcon fontSize="1.2rem" color="var(--ax-neutral-500)" />}
+                >
                     {person.innflyttingTilNorge.map((innFlytting, index) => {
                         return (
-                            <Box key={`${innFlytting.fraflyttingsland}-${index}`} marginBlock="2">
+                            <Box key={`${innFlytting.fraflyttingsland}-${index}`} marginBlock="space-8">
                                 <BodyShort>{innFlytting.fraflyttingsland} </BodyShort>
                                 <LastChanged sistEndret={innFlytting.sistEndret} />
                                 <ValidPeriod
@@ -32,10 +35,13 @@ export default function Flytting() {
                 </InfoElement>
             )}
             {person.utflyttingFraNorge.isNotEmpty() && (
-                <InfoElement title="Flyttet til" icon={<GlobeFillIcon fontSize="1.2rem" color="var(--a-gray-400)" />}>
+                <InfoElement
+                    title="Flyttet til"
+                    icon={<GlobeFillIcon fontSize="1.2rem" color="var(--ax-neutral-500)" />}
+                >
                     {person.utflyttingFraNorge.map((utflytting, index) => {
                         return (
-                            <Box key={`${utflytting.utflyttingsdato}-${index}`} marginBlock="2">
+                            <Box key={`${utflytting.utflyttingsdato}-${index}`} marginBlock="space-8">
                                 <BodyShort>{utflytting.tilflyttingsland} </BodyShort>
                                 {utflytting.utflyttingsdato && (
                                     <BodyShort>

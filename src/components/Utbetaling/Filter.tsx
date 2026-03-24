@@ -132,13 +132,13 @@ export const UtbetalingListFilter = () => {
     }, [fnr]);
 
     return (
-        <HStack gap="2" justify="start">
-            <Box.New>
+        <HStack gap="space-8" justify="start">
+            <Box>
                 <DateFilter />
-            </Box.New>
-            <Box.New flexGrow="1">
+            </Box>
+            <Box flexGrow="1">
                 <UtbetalingYtelserFilter />
-            </Box.New>
+            </Box>
             <HStack align="end">
                 <ResetFilter />
             </HStack>

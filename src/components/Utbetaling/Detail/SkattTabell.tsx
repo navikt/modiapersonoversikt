@@ -6,7 +6,7 @@ export const SkattTabell = ({ ytelse }: { ytelse: Ytelse }) => {
     if (!ytelse.skattListe || ytelse.skattListe.isEmpty()) return null;
     return (
         <>
-            <Box.New margin="2" className="border-ax-border-neutral-subtle border-b-1"></Box.New>
+            <Box margin="space-8" className="border-ax-border-neutral-subtle border-b-1"></Box>
             <Table size="small">
                 <Table.Header>
                     <Table.Row shadeOnHover={false}>
@@ -25,7 +25,7 @@ export const SkattTabell = ({ ytelse }: { ytelse: Ytelse }) => {
                     })}
                 </Table.Body>
             </Table>
-            <HStack align="stretch" justify="space-between" padding="2">
+            <HStack align="stretch" justify="space-between" padding="space-8">
                 <Heading size="xsmall">Total skatt</Heading>
                 <BodyShort>{formaterNOK(ytelse.skattsum)}</BodyShort>
             </HStack>

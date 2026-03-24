@@ -88,7 +88,7 @@ const SendMeldingContent = ({
     }, [setOppgave]);
 
     return (
-        <Card padding="2" as="section" aria-label="Dialogpanel">
+        <Card padding="space-8" as="section" aria-label="Dialogpanel">
             <HStack justify="space-between" align="start" className="mb-4">
                 <Heading level="2" size="small">
                     {meldingsHeader(traad)}
@@ -102,7 +102,7 @@ const SendMeldingContent = ({
                 ) : (
                     <>
                         <Alert variant="warning">Fant ikke dialogen under arbeid</Alert>
-                        <HStack justify="end" marginBlock="1">
+                        <HStack justify="end" marginBlock="space-4">
                             <Button variant="tertiary" size="small" onClick={cancelOppgave}>
                                 Avbryt
                             </Button>

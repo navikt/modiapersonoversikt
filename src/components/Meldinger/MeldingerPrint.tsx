@@ -49,13 +49,13 @@ function EnkeltMeldingMarkup({ melding }: { melding: Melding }) {
     );
 
     return (
-        <Box.New marginBlock="0 8" borderColor="neutral-subtle" className="border-b break-inside-avoid">
-            <Box.New marginBlock="2">
+        <Box marginBlock="space-0 space-32" borderColor="neutral-subtle" className="border-b break-inside-avoid">
+            <Box marginBlock="space-8">
                 <Heading size="small" textColor="subtle" as="h2">
                     {tittel}
                 </Heading>
-            </Box.New>
-            <HStack justify="space-between" marginBlock="8">
+            </Box>
+            <HStack justify="space-between" marginBlock="space-32">
                 <div>
                     <Element>Skrevet av: {melding.skrevetAvTekst}</Element>
                     <Element>Kanal: NAV_NO</Element>
@@ -70,11 +70,11 @@ function EnkeltMeldingMarkup({ melding }: { melding: Melding }) {
                     {lest}
                 </div>
             </HStack>
-            <VStack gap="2" marginBlock="0 4">
+            <VStack gap="space-8" marginBlock="space-0 space-16">
                 <Element>Innhold:</Element>
                 <RichText rules={[SladdRule, HighlightRule, ...defaultRules]}>{melding.fritekst}</RichText>
             </VStack>
-        </Box.New>
+        </Box>
     );
 }
 
@@ -91,10 +91,10 @@ function MeldingerPrint(props: Props) {
     ));
     return (
         <div className="print-only break-after-page">
-            <Box.New marginBlock="0 8">
+            <Box marginBlock="space-0 space-32">
                 {feilsendt}
                 {journalposter}
-            </Box.New>
+            </Box>
             {enkeltmeldinger}
         </div>
     );

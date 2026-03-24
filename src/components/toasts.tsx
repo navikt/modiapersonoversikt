@@ -57,9 +57,9 @@ const Toast = ({ title, description, type }: ToastProps) => {
     }
 
     return (
-        <Box.New
+        <Box
             background={bg}
-            padding="4"
+            padding="space-16"
             width="var(--width)"
             className={twMerge('flex flex-col rounded-lg justify-center shadow-lg ring-1 ring-black/5', className)}
             role="alert"
@@ -78,6 +78,6 @@ const Toast = ({ title, description, type }: ToastProps) => {
                     </BodyShort>
                 )}
             </div>
-        </Box.New>
+        </Box>
     );
 };

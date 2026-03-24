@@ -1,4 +1,4 @@
-import akselTw from '@navikt/ds-tailwind/darkside-tw3';
+import akselTw from '@navikt/ds-tailwind';
 
 /** @type {import('tailwindcss').Config} */
 export default {
