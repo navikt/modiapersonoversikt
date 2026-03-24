@@ -16,10 +16,43 @@ const datoVisning = (utbetaling: Utbetaling) => {
     }`;
 };
 
-export const UtbetalingerTabell = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
+const UtbetalingRad = ({ utbetaling }: { utbetaling: Utbetaling }) => {
     const printer = usePrinter();
     const PrinterWrapper = printer.printerWrapper;
 
+    return (
+        <Table.ExpandableRow
+            key={getUtbetalingId(utbetaling)}
+            contentGutter="none"
+            expandOnRowClick
+            content={
+                <PrinterWrapper>
+                    <UtbetalingDetail utbetaling={utbetaling} />
+                </PrinterWrapper>
+            }
+        >
+            <Table.HeaderCell scope="row">{formaterNOK(utbetaling.nettobelop)}</Table.HeaderCell>
+            <Table.DataCell>
+                {utbetaling.ytelser.length === 1 ? utbetaling.ytelser[0].type : 'Diverse ytelser'}
+            </Table.DataCell>
+            <Table.DataCell>{utbetaling.utbetaltTil}</Table.DataCell>
+            <Table.DataCell>{utbetaling.status}</Table.DataCell>
+            <Table.DataCell>{datoVisning(utbetaling)}</Table.DataCell>
+            <Table.DataCell align="right">
+                <Button
+                    size="small"
+                    onClick={() => {
+                        printer.triggerPrint();
+                    }}
+                    variant="tertiary"
+                    icon={<PrinterSmallIcon title="Skriv ut utbetalingsdetaljer" />}
+                />
+            </Table.DataCell>
+        </Table.ExpandableRow>
+    );
+};
+
+export const UtbetalingerTabell = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
     return (
         <Table>
             <Table.Header>
@@ -33,38 +66,9 @@ export const UtbetalingerTabell = ({ utbetalinger }: { utbetalinger: Utbetaling[
                     <Table.HeaderCell scope="col" />
                 </Table.Row>
             </Table.Header>
-            {utbetalinger.map((utbetaling) => {
-                return (
-                    <Table.ExpandableRow
-                        key={getUtbetalingId(utbetaling)}
-                        contentGutter="none"
-                        expandOnRowClick
-                        content={
-                            <PrinterWrapper>
-                                <UtbetalingDetail utbetaling={utbetaling} />
-                            </PrinterWrapper>
-                        }
-                    >
-                        <Table.HeaderCell scope="row">{formaterNOK(utbetaling.nettobelop)}</Table.HeaderCell>
-                        <Table.DataCell>
-                            {utbetaling.ytelser.length === 1 ? utbetaling.ytelser[0].type : 'Diverse ytelser'}
-                        </Table.DataCell>
-                        <Table.DataCell>{utbetaling.utbetaltTil}</Table.DataCell>
-                        <Table.DataCell>{utbetaling.status}</Table.DataCell>
-                        <Table.DataCell>{datoVisning(utbetaling)}</Table.DataCell>
-                        <Table.DataCell align="right">
-                            <Button
-                                size="small"
-                                onClick={() => {
-                                    printer.triggerPrint();
-                                }}
-                                variant="tertiary"
-                                icon={<PrinterSmallIcon title="Skriv ut utbetalingsdetaljer" />}
-                            />
-                        </Table.DataCell>
-                    </Table.ExpandableRow>
-                );
-            })}
+            {utbetalinger.map((utbetaling) => (
+                <UtbetalingRad key={getUtbetalingId(utbetaling)} utbetaling={utbetaling} />
+            ))}
         </Table>
     );
 };
