@@ -2,12 +2,7 @@ import { EnvelopeClosedIcon, EnvelopeOpenIcon, PersonIcon } from '@navikt/aksel-
 import { Box, Chat, Detail, HStack, VStack } from '@navikt/ds-react';
 import { useAtomValue } from 'jotai';
 import { type ElementType, type ReactNode, useLayoutEffect, useMemo, useRef } from 'react';
-import RichText, {
-    createDynamicHighlightingRule,
-    defaultRules,
-    HighlightRule,
-    SladdRule
-} from 'src/components/RichText';
+import RichText, { createDynamicHighlightingRule, defaultRules, SladdRule } from 'src/components/RichText';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
 import { formatterDatoTid } from 'src/utils/date-utils';
 import { meldingerFilterAtom } from '../List/Filter';
@@ -71,7 +66,7 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
                                 <Chat.Bubble className="text-wrap">
                                     <RichText
                                         className="wrap-anywhere"
-                                        rules={[SladdRule, HighlightRule, highlightRule, ...defaultRules]}
+                                        rules={[SladdRule, highlightRule, ...defaultRules]}
                                     >
                                         {m.fritekst}
                                     </RichText>
