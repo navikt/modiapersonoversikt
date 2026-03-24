@@ -10,10 +10,8 @@ import VisMerKnapp from 'src/components/VisMerKnapp';
 import type { ForeldrepengerFpSak, Utbetalingsperioder } from 'src/generated/modiapersonoversikt-api';
 import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaringspenger';
 import { getArbeidsavklaringspengerIdDato } from 'src/models/ytelse/arbeidsavklaringspenger';
-import { type Foreldrepengerettighet, getForeldepengerIdDato } from 'src/models/ytelse/foreldrepenger';
 import { getForeldrepengerFpSakIdDato } from 'src/models/ytelse/foreldrepenger-fpsak';
 import { getPensjonIdDato, getUnikPensjonKey, type Pensjon } from 'src/models/ytelse/pensjon';
-import type { Pleiepengerettighet } from 'src/models/ytelse/pleiepenger';
 import { getSykepengerIdDato, type Sykepenger } from 'src/models/ytelse/sykepenger';
 import { getSykepengerSpokelseIdDato } from 'src/models/ytelse/sykepenger-spokelse';
 import { getTiltakspengerIdDato, getUnikTiltakspengerKey, type Tiltakspenger } from 'src/models/ytelse/tiltakspenger';
@@ -44,12 +42,6 @@ const umamiEvent = {
 
 function YtelserOversikt(props: Props) {
     const { ytelserMarkup, pending, feilmeldinger, harFeil } = useBrukersYtelserMarkup({
-        renderPleiepenger: (pleiepenger) => (
-            <PleiepengerKomponent pleiepenger={pleiepenger} key={getUnikYtelseKey(pleiepenger)} />
-        ),
-        renderForeldrepenger: (foreldrepenger) => (
-            <ForeldrepengerKomponent foreldrepenger={foreldrepenger} key={getUnikYtelseKey(foreldrepenger)} />
-        ),
         renderSykepenger: (sykepenger) => (
             <SykepengerKomponent sykepenger={sykepenger} key={getUnikYtelseKey(sykepenger)} />
         ),
@@ -91,22 +83,6 @@ function YtelserOversikt(props: Props) {
     );
 }
 
-function PleiepengerKomponent(props: { pleiepenger: Pleiepengerettighet }) {
-    const dyplenker = useInfotabsDyplenker();
-    return (
-        <VisMerKnapp
-            linkTo={dyplenker.ytelser.link(props.pleiepenger)}
-            valgt={false}
-            ariaDescription="Vis pleiepenger"
-            className={ytelserTest.oversikt}
-            umamiEvent={umamiEvent}
-        >
-            <Element>Pleiepenger sykt barn</Element>
-            <Normaltekst>Barnets f.nr: {props.pleiepenger.barnet}</Normaltekst>
-        </VisMerKnapp>
-    );
-}
-
 function SykepengerKomponent(props: { sykepenger: Sykepenger }) {
     const dyplenker = useInfotabsDyplenker();
 
@@ -138,26 +114,6 @@ function SykepengerSpokelseKomponent(props: { sykepenger: Utbetalingsperioder })
         >
             <Normaltekst>ID dato: {formaterDato(getSykepengerSpokelseIdDato(props.sykepenger))}</Normaltekst>
             <Element>Sykepenger (Speil)</Element>
-        </VisMerKnapp>
-    );
-}
-
-function ForeldrepengerKomponent(props: { foreldrepenger: Foreldrepengerettighet }) {
-    const dyplenker = useInfotabsDyplenker();
-    return (
-        <VisMerKnapp
-            linkTo={dyplenker.ytelser.link(props.foreldrepenger)}
-            valgt={false}
-            ariaDescription="Vis foreldrepenger"
-            className={ytelserTest.oversikt}
-            umamiEvent={umamiEvent}
-        >
-            <Normaltekst>ID dato: {formaterDato(getForeldepengerIdDato(props.foreldrepenger))}</Normaltekst>
-            <Element>Foreldrepenger</Element>
-            <Normaltekst>
-                {props.foreldrepenger.dekningsgrad}% dekningsgrad - Maksdato{' '}
-                {props.foreldrepenger.slutt ? formaterDato(props.foreldrepenger.slutt) : 'ikke tilgjengelig'}
-            </Normaltekst>
         </VisMerKnapp>
     );
 }

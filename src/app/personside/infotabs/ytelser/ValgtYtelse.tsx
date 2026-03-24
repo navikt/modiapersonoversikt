@@ -8,9 +8,7 @@ import SykepengerPerioderSpokelse from 'src/app/personside/infotabs/ytelser/syke
 import {
     isArbeidsavklaringspenger,
     isForeldrePengerFpSak,
-    isForeldrepenger,
     isPensjon,
-    isPleiepenger,
     isSykepenger,
     isSykepengerSpokelse,
     isTiltakspenger,
@@ -19,8 +17,6 @@ import {
 import { usePrevious } from 'src/utils/customHooks';
 import { loggError } from 'src/utils/logger/frontendLogger';
 import styled from 'styled-components';
-import Foreldrepenger from './foreldrepenger/ForeldrePenger';
-import Pleiepenger from './pleiepenger/Pleiepenger';
 import Sykepenger from './sykepenger/Sykepenger';
 import Tiltakspenger from './tiltakspenger/Tiltakspenger';
 
@@ -35,12 +31,6 @@ const Styling = styled.section`
 `;
 
 function YtelseMarkup(props: { ytelse: Ytelse }) {
-    if (isForeldrepenger(props.ytelse)) {
-        return <Foreldrepenger foreldrepenger={props.ytelse} />;
-    }
-    if (isPleiepenger(props.ytelse)) {
-        return <Pleiepenger pleiepenger={props.ytelse} />;
-    }
     if (isSykepenger(props.ytelse)) {
         return <Sykepenger sykepenger={props.ytelse} />;
     }

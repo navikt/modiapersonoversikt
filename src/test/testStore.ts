@@ -10,7 +10,6 @@ import { statiskPensjonMock } from 'src/mock/ytelse/statiskPensjonMock';
 import { statiskSykepengerSpokelseMock } from 'src/mock/ytelse/statiskSykepengerSpokelseMock';
 import { type MockInstance, vi } from 'vitest';
 import type { FetchError } from '../api/api';
-import { pleiepengerTestData } from '../app/personside/infotabs/ytelser/pleiepenger/pleiepengerTestData';
 import { FeatureToggles } from '../components/featureToggle/toggleIDs';
 import { mockBaseUrls } from '../mock/baseUrls-mock';
 import { getMockGsakTema } from '../mock/meldinger/oppgave-mock';
@@ -20,7 +19,6 @@ import { getStaticMockSaksoversiktV2 } from '../mock/saksoversikt/saksoversikt-m
 import { statiskOppfolgingMock } from '../mock/statiskOppfolgingMock';
 import { statiskMockUtbetalingRespons } from '../mock/utbetalinger/statiskMockUtbetalingRespons';
 import { statiskVarselMock } from '../mock/varsler/statiskVarselMock';
-import { statiskForeldrepengeMock } from '../mock/ytelse/statiskForeldrepengeMock';
 import { statiskSykepengerMock } from '../mock/ytelse/statiskSykepengerMock';
 import { statiskTiltakspengerMock } from '../mock/ytelse/statiskTiltakspengerMock';
 import setGjeldendeBrukerIRedux from '../redux/gjeldendeBruker/actions';
@@ -31,13 +29,11 @@ import baseurlsResource from '../rest/resources/baseurlsResource';
 import dialogResource from '../rest/resources/dialogResource';
 import featuretogglesResource from '../rest/resources/featuretogglesResource';
 import * as foreldrepengerFpSakResource from '../rest/resources/foreldrepengerFpSakResource';
-import * as foreldrepengerResource from '../rest/resources/foreldrepengerResource';
 import gsaktemaResource from '../rest/resources/gsaktemaResource';
 import innstillingerResource from '../rest/resources/innstillingerResource';
 import oppfolgingResource from '../rest/resources/oppfolgingResource';
 import * as pensjonResource from '../rest/resources/pensjonResource';
 import persondataResource from '../rest/resources/persondataResource';
-import * as pleiepengerResource from '../rest/resources/pleiepengerResource';
 import sakstemaResource from '../rest/resources/sakstemaResource';
 import * as sykepengerResource from '../rest/resources/sykepengerResource';
 import * as sykepengerSpokelseResource from '../rest/resources/sykepengerSpokelseResource';
@@ -75,8 +71,6 @@ export function setupReactQueryMocks() {
     vi.spyOn(dialogResource, 'useFetch');
     vi.spyOn(baseurlsResource, 'useFetch');
     vi.spyOn(featuretogglesResource, 'useFetch');
-    vi.spyOn(foreldrepengerResource, 'useForeldrepenger');
-    vi.spyOn(pleiepengerResource, 'usePleiepenger');
     vi.spyOn(sykepengerResource, 'useSykepenger');
     vi.spyOn(sykepengerSpokelseResource, 'useSykepengerSpokelse');
     vi.spyOn(tiltakspengerResource, 'useTiltakspenger');
@@ -108,12 +102,6 @@ export function setupReactQueryMocks() {
         [FeatureToggles.SpokelseSykepenger]: true
     });
     mockReactQuery(gsaktemaResource.useFetch, getMockGsakTema());
-    mockReactQuery(foreldrepengerResource.useForeldrepenger, {
-        foreldrepenger: [statiskForeldrepengeMock]
-    });
-    mockReactQuery(pleiepengerResource.usePleiepenger, {
-        pleiepenger: [pleiepengerTestData]
-    });
     mockReactQuery(sykepengerResource.useSykepenger, {
         sykepenger: [statiskSykepengerMock]
     });

@@ -5,10 +5,8 @@ import {
     getArbeidsavklaringspengerIdDato,
     getUnikArbeidsavklaringspengerKey
 } from 'src/models/ytelse/arbeidsavklaringspenger';
-import { getForeldepengerIdDato, getUnikForeldrepengerKey } from 'src/models/ytelse/foreldrepenger';
 import { getForeldrepengerFpSakIdDato, getUnikForeldrepengerFpSakKey } from 'src/models/ytelse/foreldrepenger-fpsak';
 import { getPensjonIdDato, getUnikPensjonKey } from 'src/models/ytelse/pensjon';
-import { getUnikPleiepengerKey } from 'src/models/ytelse/pleiepenger';
 import { getUnikSykepengerKey } from 'src/models/ytelse/sykepenger';
 import { getSykepengerSpokelseIdDato, getUnikSykepengerSpokelseKey } from 'src/models/ytelse/sykepenger-spokelse';
 import { getTiltakspengerIdDato, getUnikTiltakspengerKey } from 'src/models/ytelse/tiltakspenger';
@@ -16,9 +14,7 @@ import {
     getYtelseIdDato,
     isArbeidsavklaringspenger,
     isForeldrePengerFpSak,
-    isForeldrepenger,
     isPensjon,
-    isPleiepenger,
     isSykepenger,
     isSykepengerSpokelse,
     isTiltakspenger,
@@ -35,29 +31,6 @@ interface Props {
 
 function YtelserListeElement(props: Props) {
     const dypLenker = useInfotabsDyplenker();
-
-    if (isPleiepenger(props.ytelse)) {
-        return (
-            <li key={getUnikPleiepengerKey(props.ytelse)}>
-                <VisMerKnapp
-                    key={getUnikPleiepengerKey(props.ytelse)}
-                    ariaDescription="Vis pleiepenger"
-                    valgt={props.erValgt}
-                    linkTo={dypLenker.ytelser.link(props.ytelse)}
-                    umamiEvent={{
-                        name: trackingEvents.detaljvisningKlikket,
-                        data: { fane: 'ytelser', tekst: 'pleiepenger' }
-                    }}
-                >
-                    <Undertittel tag="h3">Pleiepenger sykt barn</Undertittel>
-                    <Element>ID-dato</Element>
-                    <Normaltekst>{formaterDato(getYtelseIdDato(props.ytelse))}</Normaltekst>
-                    <Element>Barnets f.nr: </Element>
-                    <Normaltekst>{props.ytelse.barnet}</Normaltekst>
-                </VisMerKnapp>
-            </li>
-        );
-    }
 
     if (isSykepenger(props.ytelse)) {
         return (
@@ -98,27 +71,6 @@ function YtelserListeElement(props: Props) {
                     <Undertittel tag="h3">Sykepenger (Speil)</Undertittel>
                     <Element>ID-dato</Element>
                     <Normaltekst>{fom ? formaterDato(fom) : ''}</Normaltekst>
-                </VisMerKnapp>
-            </li>
-        );
-    }
-
-    if (isForeldrepenger(props.ytelse)) {
-        return (
-            <li key={getUnikForeldrepengerKey(props.ytelse)}>
-                <VisMerKnapp
-                    key={getUnikForeldrepengerKey(props.ytelse)}
-                    ariaDescription="Vis foreldrepenger"
-                    valgt={props.erValgt}
-                    linkTo={dypLenker.ytelser.link(props.ytelse)}
-                    umamiEvent={{
-                        name: trackingEvents.detaljvisningKlikket,
-                        data: { fane: 'ytelser', tekst: 'foreldrepenger' }
-                    }}
-                >
-                    <Undertittel tag="h3">Foreldrepenger</Undertittel>
-                    <Element>ID-dato</Element>
-                    <Normaltekst>{formaterDato(getForeldepengerIdDato(props.ytelse))}</Normaltekst>
                 </VisMerKnapp>
             </li>
         );

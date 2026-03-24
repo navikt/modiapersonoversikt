@@ -3,20 +3,16 @@ import { getRouteApi } from '@tanstack/react-router';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { ArbeidsavklaringspengerDetails } from 'src/components/ytelser/Detail/arbeidsavklaringspenger';
 import { DagpengerDetails } from 'src/components/ytelser/Detail/dagpenger';
-import { ForeldrePengerDetails } from 'src/components/ytelser/Detail/foreldrepenger';
 import { ForeldrePengerFpSakDetails } from 'src/components/ytelser/Detail/foreldrepenger-fpsak';
 import { PensjonDetails } from 'src/components/ytelser/Detail/pensjon';
-import { PleiePengerDetails } from 'src/components/ytelser/Detail/pleiepenger';
 import { SykepengerDetails } from 'src/components/ytelser/Detail/sykepenger';
 import { SykePengerSpokelseDetails } from 'src/components/ytelser/Detail/sykepenger-spokelse';
 import { TiltaksPengerDetails } from 'src/components/ytelser/Detail/tiltakspenger';
 import { useSetIdQueryParam } from 'src/components/ytelser/useSetIdQueryParam';
 import { getUnikYtelseKey, useFilterYtelser, type YtelseVedtak } from 'src/components/ytelser/utils';
 import type {
-    Foreldrepenger,
     ForeldrepengerFpSak,
     PensjonSak,
-    Pleiepenger,
     PseudoDagpengerVedtak,
     Sykepenger,
     Utbetalingsperioder,
@@ -90,12 +86,8 @@ const YtelseDataDetails = ({ ytelser }: { ytelser: YtelseVedtak[] }) => {
     }
 
     switch (selectedYtelse.ytelseType) {
-        case YtelseVedtakYtelseType.Foreldrepenger:
-            return <ForeldrePengerDetails foreldrePenger={selectedYtelse.ytelseData.data as Foreldrepenger} />;
         case YtelseVedtakYtelseType.Sykepenger:
             return <SykepengerDetails sykepenger={selectedYtelse.ytelseData.data as Sykepenger} />;
-        case YtelseVedtakYtelseType.Pleiepenger:
-            return <PleiePengerDetails pleiePenger={selectedYtelse.ytelseData.data as Pleiepenger} />;
         case YtelseVedtakYtelseType.Tiltakspenge:
             return <TiltaksPengerDetails tiltaksPenger={selectedYtelse.ytelseData.data as VedtakDto} />;
         case YtelseVedtakYtelseType.Pensjon:
