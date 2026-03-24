@@ -5,7 +5,6 @@ import { type ElementType, type ReactNode, useLayoutEffect, useMemo, useRef } fr
 import RichText, {
     createDynamicHighlightingRule,
     defaultRules,
-    HighlightRule,
     SladdRule
 } from 'src/components/RichText';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
@@ -71,7 +70,7 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
                                 <Chat.Bubble className="text-wrap">
                                     <RichText
                                         className="wrap-anywhere"
-                                        rules={[SladdRule, HighlightRule, highlightRule, ...defaultRules]}
+                                        rules={[SladdRule, highlightRule, ...defaultRules]}
                                     >
                                         {m.fritekst}
                                     </RichText>
