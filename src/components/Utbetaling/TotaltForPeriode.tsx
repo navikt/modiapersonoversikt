@@ -11,6 +11,7 @@ import {
     summertTrekkOgSkattBelopFraUtbetalinger,
     useFilterUtbetalinger
 } from 'src/components/Utbetaling/utils';
+import { formaterPeriode } from 'src/components/ytelser/utils';
 
 export const TotaltForPeriode = () => {
     const { data } = useFilterUtbetalinger();
@@ -25,18 +26,27 @@ export const TotaltForPeriode = () => {
                 <Accordion.Item>
                     <Accordion.Header>Totalt for perioden</Accordion.Header>
                     <Accordion.Content>
-                        <HStack gap="1">
-                            <Card
-                                className="bg-ax-bg-neutral-soft rounded-(--ax-radius-8) utbetalinger-tabell"
-                                padding="4"
-                            >
-                                <VStack gap="4">
-                                    <HStack gap="space-24" justify="space-between">
-                                        <PrinterWrapper>
-                                            <HStack gap="2" justify="space-between" wrap={false} flexGrow="1">
-                                                <VStack gap="2" flexGrow="1">
+                        <VStack gap="space-8">
+                            <PrinterWrapper>
+                                <BodyShort size="small">
+                                    Periode:{' '}
+                                    {formaterPeriode({
+                                        fra: data.periode?.startDato,
+                                        til: data.periode?.sluttDato
+                                    })}
+                                </BodyShort>
+                                <Card
+                                    className="bg-ax-bg-neutral-soft rounded-(--ax-radius-8) utbetalinger-tabell"
+                                    padding="4"
+                                >
+                                    <VStack gap="4">
+                                        <HStack gap="space-24" justify="space-between">
+                                            <HStack gap="2" justify="space-between" flexGrow="1">
+                                                <VStack gap="2">
                                                     <BodyShort weight="semibold">Detaljer</BodyShort>
-                                                    <BodyShort>{getAlleYtelseTyper(data.utbetalinger)[0]}</BodyShort>
+                                                    <BodyShort>
+                                                        {getAlleYtelseTyper(data.utbetalinger).join(', ')}
+                                                    </BodyShort>{' '}
                                                 </VStack>
                                                 <HStack justify="space-between" flexGrow="1">
                                                     <VStack gap="2">
@@ -77,21 +87,23 @@ export const TotaltForPeriode = () => {
                                                     </VStack>
                                                 </HStack>
                                             </HStack>
-                                        </PrinterWrapper>
-                                        <VStack justify="center">
-                                            <Button
-                                                size="small"
-                                                onClick={() => {
-                                                    printer.triggerPrint();
-                                                }}
-                                                variant="tertiary"
-                                                icon={<PrinterSmallIcon title="Skriv ut utbetalingsdetaljer" />}
-                                            />
-                                        </VStack>
-                                    </HStack>
-                                </VStack>
-                            </Card>
-                        </HStack>
+                                        </HStack>
+                                    </VStack>
+                                </Card>
+                            </PrinterWrapper>
+                            <VStack align="start">
+                                <Button
+                                    size="small"
+                                    onClick={() => {
+                                        printer.triggerPrint();
+                                    }}
+                                    variant="tertiary"
+                                    icon={<PrinterSmallIcon aria-hidden />}
+                                >
+                                    Skriv ut
+                                </Button>
+                            </VStack>
+                        </VStack>
                     </Accordion.Content>
                 </Accordion.Item>
             </Accordion>
