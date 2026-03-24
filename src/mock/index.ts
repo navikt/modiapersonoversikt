@@ -73,6 +73,11 @@ const harEnhetIdSomQueryParam = (request: StrictRequest<DefaultBodyType>) => {
     return undefined;
 };
 
+const lumiFeedbackHandler = http.post(
+    `${apiBaseUri}/lumi/feedback`,
+    withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+);
+
 const innloggetSaksbehandlerMock = http.get(`${apiBaseUri}/hode/me`, () =>
     HttpResponse.json(getMockInnloggetSaksbehandler())
 );
@@ -400,6 +405,7 @@ if (import.meta.env.MODE !== 'test') {
 
 export const handlers: (HttpHandler | WebSocketHandler)[] = [
     innloggetSaksbehandlerMock,
+    lumiFeedbackHandler,
     persondataMock,
     ...tilgangsKontrollHandler,
     ...aktorIdMock,

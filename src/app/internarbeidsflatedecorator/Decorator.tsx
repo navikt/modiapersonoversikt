@@ -5,6 +5,7 @@ import Personsok from 'src/components/personsok';
 import styled from 'styled-components';
 import OppdateringsloggContainer from '../oppdateringslogg/OppdateringsloggContainer';
 import { DropdownMeny } from './DropdownMeny';
+import { LumiFeedbackModal } from './LumiFeedbackModal';
 import type { DecoratorPropsV3 } from './decoratorprops';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
 import './personsokKnapp.less';
@@ -54,6 +55,7 @@ function Decorator() {
             <OppdateringsloggContainer />
             <DropdownMenyPortal />
             {open && <OppstartNyModiaDialog />}
+            <LumiFeedbackModal />
             <DecoratorEasterEgg />
         </StyledNav>
     );

@@ -1,6 +1,7 @@
 @import "./reset.css" layer(po-base);
 @import "tailwindcss";
 @import "@navikt/ds-css" layer(aksel);
+@import "@navikt/lumi-survey/styles.css";
 @import "./index.less" layer(nav-frontend);
 
 @config "../tailwind.config.js";
@@ -67,5 +68,25 @@
     .aksel-stepper__circle {
         width: 1.5rem;
         height: 1.5rem;
+    }
+}
+
+/* Lumi overrides*/
+#lumi-survey-container {
+    .lumi-survey-dock {
+        position: static!important;
+        button {
+            padding: var(--ax-space-4) var(--ax-space-12);
+            color: var(--ax-text-contrast);
+            border-radius: var(--ax-radius-8);
+
+            span {
+                font-size: var(--ax-font-size-medium);
+            }
+        }
+    }
+
+    .lumi-survey-dock__header button {
+        display: none;
     }
 }
