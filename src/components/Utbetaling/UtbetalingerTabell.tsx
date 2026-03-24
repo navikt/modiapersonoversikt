@@ -1,8 +1,10 @@
-import { Table } from '@navikt/ds-react';
+import { PrinterSmallIcon } from '@navikt/aksel-icons';
+import { Button, Table } from '@navikt/ds-react';
 import { UtbetalingDetail } from 'src/components/Utbetaling/Detail';
 import { formaterNOK, getGjeldendeDatoForUtbetaling, getUtbetalingId } from 'src/components/Utbetaling/utils';
 import type { Utbetaling } from 'src/generated/modiapersonoversikt-api';
 import { formatterDato } from 'src/utils/date-utils';
+import usePrinter from 'src/utils/print/usePrinter';
 
 const datoVisning = (utbetaling: Utbetaling) => {
     return `${formatterDato(getGjeldendeDatoForUtbetaling(utbetaling))} ${
@@ -15,6 +17,9 @@ const datoVisning = (utbetaling: Utbetaling) => {
 };
 
 export const UtbetalingerTabell = ({ utbetalinger }: { utbetalinger: Utbetaling[] }) => {
+    const printer = usePrinter();
+    const PrinterWrapper = printer.printerWrapper;
+
     return (
         <Table>
             <Table.Header>
@@ -25,6 +30,7 @@ export const UtbetalingerTabell = ({ utbetalinger }: { utbetalinger: Utbetaling[
                     <Table.HeaderCell scope="col">Mottaker</Table.HeaderCell>
                     <Table.HeaderCell scope="col">Status</Table.HeaderCell>
                     <Table.HeaderCell scope="col">Dato</Table.HeaderCell>
+                    <Table.HeaderCell scope="col" />
                 </Table.Row>
             </Table.Header>
             {utbetalinger.map((utbetaling) => {
@@ -33,7 +39,11 @@ export const UtbetalingerTabell = ({ utbetalinger }: { utbetalinger: Utbetaling[
                         key={getUtbetalingId(utbetaling)}
                         contentGutter="none"
                         expandOnRowClick
-                        content={<UtbetalingDetail utbetaling={utbetaling} />}
+                        content={
+                            <PrinterWrapper>
+                                <UtbetalingDetail utbetaling={utbetaling} />
+                            </PrinterWrapper>
+                        }
                     >
                         <Table.HeaderCell scope="row">{formaterNOK(utbetaling.nettobelop)}</Table.HeaderCell>
                         <Table.DataCell>
@@ -42,6 +52,16 @@ export const UtbetalingerTabell = ({ utbetalinger }: { utbetalinger: Utbetaling[
                         <Table.DataCell>{utbetaling.utbetaltTil}</Table.DataCell>
                         <Table.DataCell>{utbetaling.status}</Table.DataCell>
                         <Table.DataCell>{datoVisning(utbetaling)}</Table.DataCell>
+                        <Table.DataCell>
+                            <Button
+                                size="small"
+                                onClick={() => {
+                                    printer.triggerPrint();
+                                }}
+                                variant="tertiary"
+                                icon={<PrinterSmallIcon title="Skriv ut utbetalingsdetaljer" />}
+                            />
+                        </Table.DataCell>
                     </Table.ExpandableRow>
                 );
             })}
