@@ -35,7 +35,11 @@ export const PeriodeAccordions = () => {
                         <Accordion.Content className="overflow-x-auto">
                             <VStack gap="4">
                                 <UtbetalingerTabell utbetalinger={periode.array} />
-                                <InlineMessage size="small" className="px-2" status="success">
+                                <InlineMessage
+                                    size="small"
+                                    className="px-2"
+                                    status={summertNettobelopFraUtbetalinger(periode.array) >= 0 ? 'success' : 'error'}
+                                >
                                     Totalt for {periode.category}:{' '}
                                     {formaterNOK(summertNettobelopFraUtbetalinger(periode.array))}
                                 </InlineMessage>
