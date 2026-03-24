@@ -1,10 +1,10 @@
 import { PrinterSmallIcon } from '@navikt/aksel-icons';
 import { Button, Table } from '@navikt/ds-react';
+import usePrinter from 'src/components/Print/usePrinter';
 import { UtbetalingDetail } from 'src/components/Utbetaling/Detail';
 import { formaterNOK, getGjeldendeDatoForUtbetaling, getUtbetalingId } from 'src/components/Utbetaling/utils';
 import type { Utbetaling } from 'src/generated/modiapersonoversikt-api';
 import { formatterDato } from 'src/utils/date-utils';
-import usePrinter from 'src/utils/print/usePrinter';
 
 const datoVisning = (utbetaling: Utbetaling) => {
     return `${formatterDato(getGjeldendeDatoForUtbetaling(utbetaling))} ${
@@ -52,7 +52,7 @@ export const UtbetalingerTabell = ({ utbetalinger }: { utbetalinger: Utbetaling[
                         <Table.DataCell>{utbetaling.utbetaltTil}</Table.DataCell>
                         <Table.DataCell>{utbetaling.status}</Table.DataCell>
                         <Table.DataCell>{datoVisning(utbetaling)}</Table.DataCell>
-                        <Table.DataCell>
+                        <Table.DataCell align="right">
                             <Button
                                 size="small"
                                 onClick={() => {
