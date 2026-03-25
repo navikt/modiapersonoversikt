@@ -14,7 +14,7 @@ import { filterType, trackFilterEndret } from 'src/utils/analytics';
 
 const traadTyperFilter = ['Referat', 'Samtale', 'Infomelding', 'Chat'];
 
-export type MeldingerFilter = {
+type MeldingerFilter = {
     tema?: Temagruppe[];
     search?: string;
     traadType?: string[];

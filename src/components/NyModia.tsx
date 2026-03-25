@@ -39,7 +39,6 @@ export const useNavigateToNewOrOldModia = () => {
     useEffect(() => {
         if (pending) return;
         const nyModiaEnabled = isOn && nyModia;
-        console.log({ nyModiaEnabled });
 
         if (href.includes('/saker') && nyModiaEnabled) {
             void navigate({ to: href.replace('/saker', '/dokumenter') });
