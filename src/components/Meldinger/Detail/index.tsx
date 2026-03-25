@@ -1,7 +1,6 @@
-import { Box, Button, HStack, InlineMessage, Skeleton, VStack } from '@navikt/ds-react';
+import { Box, InlineMessage, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
-import { useAtomValue, useSetAtom } from 'jotai';
-import { useCallback } from 'react';
+import { useAtomValue } from 'jotai';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { MeldingActionMenu } from 'src/components/Meldinger/Detail/MeldingActionMenu';
@@ -9,7 +8,6 @@ import { TraadOppgaver } from 'src/components/Meldinger/Detail/TraadOppgaver';
 import { meldingerFilterAtom } from 'src/components/Meldinger/List/Filter';
 import { useFilterMeldinger, useTraader } from 'src/components/Meldinger/List/utils';
 import { useSetTraadIdQueryParam } from 'src/components/Meldinger/useSetTraadIdQueryParam';
-import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
 import { formatterDatoTid } from 'src/utils/date-utils';
 import { formaterDato } from 'src/utils/string-utils';
@@ -19,12 +17,6 @@ import { Journalposter } from './Journalposter';
 import { Meldinger } from './Meldinger';
 
 const TraadDetailContent = ({ traad }: { traad: Traad }) => {
-    const setDialogUnderArbeid = useSetAtom(dialogUnderArbeidAtom);
-
-    const svarSamtale = useCallback(() => {
-        setDialogUnderArbeid(traad.traadId);
-    }, [traad.traadId, setDialogUnderArbeid]);
-
     const kanBesvares = traadKanBesvares(traad);
     const melding = nyesteMelding(traad);
     const avsluttetDato = traad.avsluttetDato || melding.avsluttetDato;
@@ -38,15 +30,6 @@ const TraadDetailContent = ({ traad }: { traad: Traad }) => {
                 <TraadOppgaver traadId={traad.traadId} />
                 <Meldinger meldinger={traad.meldinger} />
                 <Box>
-                    <HStack justify="end">
-                        {kanBesvares && (
-                            <Box>
-                                <Button size="small" onClick={svarSamtale}>
-                                    Svar
-                                </Button>
-                            </Box>
-                        )}
-                    </HStack>
                     <VStack gap="space-8">
                         {avsluttetDato && !kanBesvares && (
                             <InlineMessage status="warning" size="small">
