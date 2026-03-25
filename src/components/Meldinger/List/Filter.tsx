@@ -159,9 +159,7 @@ const DateFilter = () => {
 };
 
 const FilterTitle = () => {
-    const filters = useAtomValue(meldingerFilterAtom);
-    const { data: traader } = useTraader();
-    const filteredMeldinger = useFilterMeldinger(traader, filters);
+    const filteredMeldinger = useFilterMeldinger();
     return (
         <>
             Filter ({filteredMeldinger.length} {filteredMeldinger.length === 1 ? 'dialog' : 'dialoger'})

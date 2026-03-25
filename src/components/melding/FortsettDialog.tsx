@@ -33,12 +33,12 @@ type FortsettDialogForm = z.infer<typeof fortsettDialogSchema>;
 
 type Props = {
     traad: Traad;
-    lukkOppgave: () => void;
+    avbryt: () => void;
 };
 
 const routeApi = getRouteApi('/new/person/meldinger');
 
-export const FortsettDialog = ({ traad, lukkOppgave }: Props) => {
+export const FortsettDialog = ({ traad, avbryt }: Props) => {
     const fnr = usePersonAtomValue();
     const enhetsId = useAtomValue(aktivEnhetAtom);
     const [, setDialogUnderArbeid] = useAtom(dialogUnderArbeidAtom);
@@ -236,7 +236,7 @@ export const FortsettDialog = ({ traad, lukkOppgave }: Props) => {
                                     >
                                         Send til {brukerNavn} {oppgaveId ? 'og avslutt oppgave' : ''}
                                     </Button>
-                                    <Button variant="tertiary" size="small" onClick={lukkOppgave}>
+                                    <Button variant="tertiary" size="small" onClick={avbryt}>
                                         Avbryt
                                     </Button>
                                 </VStack>
