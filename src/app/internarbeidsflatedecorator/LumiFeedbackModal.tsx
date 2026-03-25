@@ -10,7 +10,9 @@ const mySurvey = {
         {
             id: 'comment',
             type: 'text',
-            prompt: 'Vi jobber kontinuerlig med å forbedre den nye utgaven av Modia personoversikt, så deres innspill og tilbakemeldinger er verdifulle for oss!',
+            prompt:
+                'Din tilbakemelding er anonym, og vi får derfor ikke besvart. Beskriv derfor så godt du kan. ' +
+                'Tekniske feil meldes fremdeles fra i porten.',
             maxLength: 1000,
             placeholder: 'Skriv her...'
         }
@@ -44,12 +46,18 @@ export const LumiFeedbackModal = () => {
         >
             <Modal.Header>
                 <Heading id="lumi-feedback-header" size="medium">
-                    Gi oss din tilbakemelding!
+                    Din tilbakemelding er verdifull!
                 </Heading>
             </Modal.Header>
             <Modal.Body>
                 {submitted ? (
-                    <BodyLong>Takk for tilbakemeldingen! 🎉</BodyLong>
+                    <VStack gap="space-4">
+                        <BodyLong>Takk for tilbakemeldingen! 🎉</BodyLong>
+                        <BodyLong>
+                            Vi jobber kontinuerlig med å forbedre den nye utgaven av Modia personoversikt, så deres
+                            innspill og tilbakemeldinger er verdifulle for oss!
+                        </BodyLong>
+                    </VStack>
                 ) : (
                     <Box id="lumi-survey-container">
                         <VStack gap="space-8">
