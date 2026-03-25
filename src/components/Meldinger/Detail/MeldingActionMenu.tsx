@@ -1,4 +1,5 @@
 import {
+    ArrowUndoIcon,
     Chat2Icon,
     ChatElipsisIcon,
     CheckmarkCircleIcon,
@@ -75,7 +76,7 @@ export const MeldingActionMenu = ({ traad }: { traad: Traad }) => {
             <HStack gap="space-8" justify="end" align="start">
                 {kanBesvares && (
                     <Box>
-                        <Button size="small" onClick={svarSamtale} variant="secondary">
+                        <Button size="small" onClick={svarSamtale} variant="primary" icon={<ArrowUndoIcon />}>
                             Svar
                         </Button>
                     </Box>
