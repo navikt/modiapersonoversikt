@@ -1,5 +1,6 @@
 import { Box, ReadMore, Table } from '@navikt/ds-react';
 import { AvsluttOppgave } from 'src/components/Meldinger/Detail/AvsluttOppgave';
+import { oppgavePrioritet, oppgaveTyper } from 'src/components/Meldinger/oppgave-utils';
 import type { OppgaveDto } from 'src/generated/modiapersonoversikt-api';
 import { useGsakTema, usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
 import { datoEllerNull } from 'src/utils/string-utils';
@@ -43,17 +44,17 @@ export const TraadOppgaver = ({ traadId }: { traadId: string }) => {
                     <Table.Body>
                         {traadOppgaver.map((p) => {
                             const tema = gsakTema.find((item) => item.kode === p.tema);
-                            const oppgaveTyper = tema?.oppgavetyper ?? [];
-                            const oppgavetype = oppgaveTyper.find((o) => o.kode === p.oppgavetype);
-                            const prioritering = tema?.prioriteter.find((o) => o.kode === p.prioritet);
                             return (
                                 <Table.Row key={p.oppgaveId} shadeOnHover={false}>
                                     <Table.DataCell textSize="small">{p.oppgaveId}</Table.DataCell>
                                     <Table.DataCell textSize="small">
-                                        {oppgavetype?.tekst ?? 'Ukjent oppgavetype'}
+                                        {oppgaveTyper[p.oppgavetype as keyof typeof oppgaveTyper] ??
+                                            'Ukjent oppgavetype'}
                                     </Table.DataCell>
                                     <Table.DataCell textSize="small">{tema?.tekst ?? 'Ukjent tema'}</Table.DataCell>
-                                    <Table.DataCell textSize="small">{prioritering?.tekst ?? ''}</Table.DataCell>
+                                    <Table.DataCell textSize="small">
+                                        {oppgavePrioritet[p.prioritet as keyof typeof oppgavePrioritet] ?? ''}
+                                    </Table.DataCell>
                                     <Table.DataCell textSize="small">
                                         {datoEllerNull(p?.fristFerdigstillelse)}
                                     </Table.DataCell>
