@@ -47,7 +47,7 @@ export const TraadOppgaver = ({ traadId }: { traadId: string }) => {
                             const oppgavetype = oppgaveTyper.find((o) => o.kode === p.oppgavetype);
                             const prioritering = tema?.prioriteter.find((o) => o.kode === p.prioritet);
                             return (
-                                <Table.Row key={p.oppgaveId}>
+                                <Table.Row key={p.oppgaveId} shadeOnHover={false}>
                                     <Table.DataCell textSize="small">{p.oppgaveId}</Table.DataCell>
                                     <Table.DataCell textSize="small">
                                         {oppgavetype?.tekst ?? 'Ukjent oppgavetype'}
