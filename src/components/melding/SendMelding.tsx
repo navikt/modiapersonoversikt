@@ -80,12 +80,12 @@ const SendMeldingContent = ({
     lukkeKnapp?: ReactElement<typeof Button>;
     traader: Traad[];
 }) => {
-    const [oppgave, setOppgave] = useAtom(dialogUnderArbeidAtom);
-    const traad = useMemo(() => traader.find((m) => m.traadId === oppgave), [traader, oppgave]);
+    const [dialogUnderArbeid, setDialogUnderArbeid] = useAtom(dialogUnderArbeidAtom);
+    const traad = useMemo(() => traader.find((m) => m.traadId === dialogUnderArbeid), [traader, dialogUnderArbeid]);
 
-    const cancelOppgave = useCallback(() => {
-        setOppgave(undefined);
-    }, [setOppgave]);
+    const handleAvbryt = useCallback(() => {
+        setDialogUnderArbeid(undefined);
+    }, [setDialogUnderArbeid]);
 
     return (
         <Card padding="space-8" as="section" aria-label="Dialogpanel">
@@ -96,14 +96,14 @@ const SendMeldingContent = ({
                 {lukkeKnapp}
             </HStack>
             <ReservertIKRR />
-            {oppgave ? (
+            {dialogUnderArbeid ? (
                 traad ? (
-                    <FortsettDialog traad={traad} key={traad.traadId} lukkOppgave={cancelOppgave} />
+                    <FortsettDialog traad={traad} key={traad.traadId} avbryt={handleAvbryt} />
                 ) : (
                     <>
                         <Alert variant="warning">Fant ikke dialogen under arbeid</Alert>
                         <HStack justify="end" marginBlock="space-4">
-                            <Button variant="tertiary" size="small" onClick={cancelOppgave}>
+                            <Button variant="tertiary" size="small" onClick={handleAvbryt}>
                                 Avbryt
                             </Button>
                         </HStack>
