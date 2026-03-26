@@ -3,14 +3,15 @@ import { useAtomValue } from 'jotai';
 import { useEffect, useRef } from 'react';
 import { meldingerFilterAtom } from 'src/components/Meldinger/List/Filter';
 import { useFilterMeldinger } from 'src/components/Meldinger/List/utils';
+import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
 
 const routeApi = getRouteApi('/new/person/meldinger');
 
-export const useSetTraadIdQueryParam = () => {
+export const useSetTraadIdQueryParam = (traader: Traad[]) => {
     const { traadId } = routeApi.useSearch();
     const navigate = routeApi.useNavigate();
     const filters = useAtomValue(meldingerFilterAtom);
-    const filteredTraader = useFilterMeldinger();
+    const filteredTraader = useFilterMeldinger(traader, filters);
     const prevFiltersRef = useRef(filters);
 
     useEffect(() => {

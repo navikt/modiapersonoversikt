@@ -1,16 +1,18 @@
 import { Box, InlineMessage, Skeleton, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
+import { useAtomValue } from 'jotai';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { MeldingActionMenu } from 'src/components/Meldinger/Detail/MeldingActionMenu';
 import { TraadOppgaver } from 'src/components/Meldinger/Detail/TraadOppgaver';
-import { useSetDialogUnderArbeidOnMount } from 'src/components/Meldinger/Detail/useSetDialogUnderArbeidOnMount';
+import { meldingerFilterAtom } from 'src/components/Meldinger/List/Filter';
 import { useFilterMeldinger, useTraader } from 'src/components/Meldinger/List/utils';
 import { useSetTraadIdQueryParam } from 'src/components/Meldinger/useSetTraadIdQueryParam';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
 import { formatterDatoTid } from 'src/utils/date-utils';
 import { formaterDato } from 'src/utils/string-utils';
 import { nyesteMelding, saksbehandlerTekst, traadKanBesvares } from '../List/utils';
+
 import { Journalposter } from './Journalposter';
 import { Meldinger } from './Meldinger';
 
@@ -60,13 +62,13 @@ const TraadDetailContent = ({ traad }: { traad: Traad }) => {
 
 const routeApi = getRouteApi('/new/person/meldinger');
 
-const TraadDetailSection = () => {
+const TraadDetailSection = ({ traader }: { traader: Traad[] }) => {
     const { traadId } = routeApi.useSearch();
-    const filteredTraader = useFilterMeldinger();
+    const filters = useAtomValue(meldingerFilterAtom);
+    const filteredTraader = useFilterMeldinger(traader, filters);
     const selectedTraad = traadId ? filteredTraader.find((t) => t.traadId === traadId) : undefined;
 
-    useSetTraadIdQueryParam();
-    useSetDialogUnderArbeidOnMount();
+    useSetTraadIdQueryParam(traader);
 
     if (!filteredTraader.length) return null;
 
@@ -84,10 +86,10 @@ const TraadDetailSection = () => {
 };
 
 export const TraadDetail = () => {
-    const { isLoading } = useTraader();
+    const { data: traader, isLoading } = useTraader();
     return (
         <ErrorBoundary boundaryName="traaddetail" errorText="Det oppstod en feil under visning av melding detailjer">
-            {isLoading ? <Skeleton variant="rectangle" height="4rem" /> : <TraadDetailSection />}
+            {isLoading ? <Skeleton variant="rectangle" height="4rem" /> : <TraadDetailSection traader={traader} />}
         </ErrorBoundary>
     );
 };
