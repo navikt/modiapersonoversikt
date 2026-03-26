@@ -78,7 +78,7 @@ const Perioder = ({ perioder }: { perioder: PeriodeDagpengerDto[] }) => (
 
 export const DagpengerDetails = ({ ytelse }: { ytelse: PseudoDagpengerVedtak }) => (
     <VStack gap="space-4" minHeight="0">
-        <Card padding="4">
+        <Card padding="space-16">
             <Heading as="h3" size="small">
                 Om dagpenger
             </Heading>

@@ -1,9 +1,8 @@
 import { useSearch } from '@tanstack/react-router';
-import { useAtomValue } from 'jotai';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { useAntallListeElementeBasertPaaSkjermStorrelse } from 'src/utils/customHooks';
-import { meldingerFilterAtom, TraadListFilterCard } from './Filter';
+import { TraadListFilterCard } from './Filter';
 import { TraadItem } from './TraadItem';
 import { useFilterMeldinger, useTraader } from './utils';
 
@@ -14,9 +13,8 @@ export const TraadList = () => (
 );
 
 const Traader = () => {
-    const { data: traader, isLoading, isError } = useTraader();
-    const filters = useAtomValue(meldingerFilterAtom);
-    const filteredMeldinger = useFilterMeldinger(traader, filters);
+    const { isLoading, isError } = useTraader();
+    const filteredMeldinger = useFilterMeldinger();
     const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
 
     const traadId = useSearch({
