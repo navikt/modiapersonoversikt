@@ -412,7 +412,8 @@ export const useFilterYtelser = (): QueryResult<YtelseVedtak[]> => {
         tiltakspengerResponse.isLoading ||
         pensjonResponse.isLoading ||
         arbeidsavklaringspengerResponse.isLoading ||
-        foreldrepengerFpSakResponse.isLoading;
+        foreldrepengerFpSakResponse.isLoading ||
+        dagpengerResponse.isLoading;
 
     return {
         ...response,
