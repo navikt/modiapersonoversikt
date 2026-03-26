@@ -14,7 +14,7 @@ import { filterType, trackFilterEndret } from 'src/utils/analytics';
 
 const traadTyperFilter = ['Referat', 'Samtale', 'Infomelding', 'Chat'];
 
-type MeldingerFilter = {
+export type MeldingerFilter = {
     tema?: Temagruppe[];
     search?: string;
     traadType?: string[];
@@ -159,7 +159,9 @@ const DateFilter = () => {
 };
 
 const FilterTitle = () => {
-    const filteredMeldinger = useFilterMeldinger();
+    const filters = useAtomValue(meldingerFilterAtom);
+    const { data: traader } = useTraader();
+    const filteredMeldinger = useFilterMeldinger(traader, filters);
     return (
         <>
             Filter ({filteredMeldinger.length} {filteredMeldinger.length === 1 ? 'dialog' : 'dialoger'})

@@ -1,6 +1,6 @@
 import { Bleed, Box, Button, Checkbox, HGrid, HStack, InlineMessage, Loader, VStack } from '@navikt/ds-react';
 import { useForm, type ValidationError } from '@tanstack/react-form';
-import { useSearch } from '@tanstack/react-router';
+import { getRouteApi } from '@tanstack/react-router';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import DraftStatus from 'src/app/personside/dialogpanel/DraftStatus';
@@ -33,10 +33,12 @@ type FortsettDialogForm = z.infer<typeof fortsettDialogSchema>;
 
 type Props = {
     traad: Traad;
-    avbryt: () => void;
+    lukkOppgave: () => void;
 };
 
-export const FortsettDialog = ({ traad, avbryt }: Props) => {
+const routeApi = getRouteApi('/new/person/meldinger');
+
+export const FortsettDialog = ({ traad, lukkOppgave }: Props) => {
     const fnr = usePersonAtomValue();
     const enhetsId = useAtomValue(aktivEnhetAtom);
     const [, setDialogUnderArbeid] = useAtom(dialogUnderArbeidAtom);
@@ -45,9 +47,8 @@ export const FortsettDialog = ({ traad, avbryt }: Props) => {
     const disableDialog = useDisableDialog();
     const setOverskridKontaktReservasjon = useSetAtom(overskridKontaktReservasjonAtom);
     const { mutate, isPending } = useSendMelding();
-    const search = useSearch({ from: '/new/person/meldinger', shouldThrow: false });
-
-    const erValgtTraad = !search?.traadId || search?.traadId === traad.traadId;
+    const { traadId: valgtTraadId } = routeApi.useSearch();
+    const erValgtTraad = valgtTraadId === traad.traadId;
 
     // Brukes for å sette initialverdien til meldingen basert på draften
     const [defaultMessage, setDefaultMessage] = useState('');
@@ -235,7 +236,7 @@ export const FortsettDialog = ({ traad, avbryt }: Props) => {
                                     >
                                         Send til {brukerNavn} {oppgaveId ? 'og avslutt oppgave' : ''}
                                     </Button>
-                                    <Button variant="tertiary" size="small" onClick={avbryt}>
+                                    <Button variant="tertiary" size="small" onClick={lukkOppgave}>
                                         Avbryt
                                     </Button>
                                 </VStack>

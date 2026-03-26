@@ -1,5 +1,4 @@
 import dayjs from 'dayjs';
-import { useAtomValue } from 'jotai';
 import { useMemo } from 'react';
 import { errorPlaceholder, type QueryResult, responseErrorMessage } from 'src/components/ytelser/utils';
 import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
@@ -12,7 +11,7 @@ import {
 } from 'src/lib/types/modiapersonoversikt-api';
 import { Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { datoStigende, datoSynkende, formatterDatoTid } from 'src/utils/date-utils';
-import { meldingerFilterAtom } from './Filter';
+import type { MeldingerFilter } from './Filter';
 import { meldingstypeTekst, traadTypeTekst } from './tekster';
 
 /*
@@ -155,10 +154,7 @@ interface TraadSearchDb {
     traad: Traad;
     searchable: string;
 }
-export function useFilterMeldinger() {
-    const { data: traader } = useTraader();
-    const filters = useAtomValue(meldingerFilterAtom);
-
+export function useFilterMeldinger(traader: Traad[], filters: MeldingerFilter) {
     const sortedTraader = useMemo(
         () => traader.toSorted(datoSynkende((t) => nyesteMelding(t).opprettetDato)),
         [traader]
