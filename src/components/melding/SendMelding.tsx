@@ -1,6 +1,7 @@
 import { Alert, Button, Heading, HStack, InlineMessage, Skeleton, VStack } from '@navikt/ds-react';
 import { useAtom, useAtomValue } from 'jotai';
 import { type ReactElement, useCallback, useEffect, useMemo } from 'react';
+import { useSetDialogUnderArbeidOnMount } from 'src/components/Meldinger/Detail/useSetDialogUnderArbeidOnMount';
 import { traadTypeTekst } from 'src/components/Meldinger/List/tekster';
 import { nyesteMelding, useTraader } from 'src/components/Meldinger/List/utils';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
@@ -86,6 +87,8 @@ const SendMeldingContent = ({
     const handleAvbryt = useCallback(() => {
         setDialogUnderArbeid(undefined);
     }, [setDialogUnderArbeid]);
+
+    useSetDialogUnderArbeidOnMount();
 
     return (
         <Card padding="space-8" as="section" aria-label="Dialogpanel">

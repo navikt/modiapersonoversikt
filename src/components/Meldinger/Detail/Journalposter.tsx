@@ -41,7 +41,7 @@ export const Journalposter = ({ journalposter }: Props) => {
                             const tema = p.journalfortTemanavn;
                             const saksid = p.journalfortSaksid;
                             return (
-                                <Table.Row key={`${p.journalfortDato}-${saksid}`}>
+                                <Table.Row key={`${p.journalfortDato}-${saksid}`} shadeOnHover={false}>
                                     <Table.DataCell textSize="small">{saksid ?? 'Ukjent saksid'}</Table.DataCell>
                                     <Table.DataCell textSize="small">{tema}</Table.DataCell>
                                     <Table.DataCell textSize="small">{navn}</Table.DataCell>

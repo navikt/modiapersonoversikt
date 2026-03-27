@@ -4,7 +4,6 @@ import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { MeldingActionMenu } from 'src/components/Meldinger/Detail/MeldingActionMenu';
 import { TraadOppgaver } from 'src/components/Meldinger/Detail/TraadOppgaver';
-import { useSetDialogUnderArbeidOnMount } from 'src/components/Meldinger/Detail/useSetDialogUnderArbeidOnMount';
 import { useFilterMeldinger, useTraader } from 'src/components/Meldinger/List/utils';
 import { useSetTraadIdQueryParam } from 'src/components/Meldinger/useSetTraadIdQueryParam';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
@@ -66,8 +65,6 @@ const TraadDetailSection = () => {
     const selectedTraad = traadId ? filteredTraader.find((t) => t.traadId === traadId) : undefined;
 
     useSetTraadIdQueryParam();
-    useSetDialogUnderArbeidOnMount();
-
     if (!filteredTraader.length) return null;
 
     if (traadId && !selectedTraad) {
