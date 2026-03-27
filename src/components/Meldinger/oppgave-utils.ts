@@ -1,7 +1,7 @@
 export enum oppgaveTyper {
     VURD_HENV = 'Vurder henvendelse',
     VUR_SVAR = 'Vurder svar',
-    SVAR_IK_MOT = 'Svar ikke motatt',
+    SVAR_IK_MOT = 'Svar ikke mottatt',
     KONT_BRUK = 'Kontakt bruker',
     VUR_KONS_YTE = 'Vurder konsekvens av ytelse'
 }
