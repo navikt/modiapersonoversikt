@@ -16,6 +16,11 @@ const datoVisning = (utbetaling: Utbetaling) => {
     }`;
 };
 
+const getUtbetalingsDetaljer = (utbetaling: Utbetaling) => {
+    const alleYtelseTyper = utbetaling.ytelser.map((ytelse) => ytelse.type).unique();
+    return alleYtelseTyper.join(', ');
+};
+
 const UtbetalingRad = ({ utbetaling }: { utbetaling: Utbetaling }) => {
     const printer = usePrinter();
     const PrinterWrapper = printer.printerWrapper;
@@ -32,9 +37,7 @@ const UtbetalingRad = ({ utbetaling }: { utbetaling: Utbetaling }) => {
             }
         >
             <Table.HeaderCell scope="row">{formaterNOK(utbetaling.nettobelop)}</Table.HeaderCell>
-            <Table.DataCell>
-                {utbetaling.ytelser.length === 1 ? utbetaling.ytelser[0].type : 'Diverse ytelser'}
-            </Table.DataCell>
+            <Table.DataCell>{getUtbetalingsDetaljer(utbetaling)}</Table.DataCell>
             <Table.DataCell>{utbetaling.utbetaltTil}</Table.DataCell>
             <Table.DataCell>{utbetaling.status}</Table.DataCell>
             <Table.DataCell>{datoVisning(utbetaling)}</Table.DataCell>
