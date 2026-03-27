@@ -10,7 +10,7 @@ import { Link } from 'src/components/Link';
 import AutoCompleteTekstTips from 'src/components/melding/standardtekster/AutoCompleteTekstTips';
 import StandardTekstModal from 'src/components/melding/standardtekster/StandardTeksterModal';
 import { settInnStandardTekst } from 'src/components/melding/standardtekster/settInnStandardTekst';
-import { useOppgaveForTraad, useSendMelding } from 'src/lib/clients/modiapersonoversikt-api';
+import { useNyesteVurderSvarOppgaveForTraad, useSendMelding } from 'src/lib/clients/modiapersonoversikt-api';
 import { useSuspendingBrukernavn } from 'src/lib/hooks/useSuspendingBrukernavn';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import { dialogUnderArbeidAtom, overskridKontaktReservasjonAtom, useDisableDialog } from 'src/lib/state/dialog';
@@ -41,7 +41,7 @@ export const FortsettDialog = ({ traad, avbryt }: Props) => {
     const enhetsId = useAtomValue(aktivEnhetAtom);
     const [, setDialogUnderArbeid] = useAtom(dialogUnderArbeidAtom);
     const brukerNavn = useSuspendingBrukernavn();
-    const { oppgave } = useOppgaveForTraad(traad.traadId);
+    const oppgaveForTraad = useNyesteVurderSvarOppgaveForTraad(traad.traadId);
     const disableDialog = useDisableDialog();
     const setOverskridKontaktReservasjon = useSetAtom(overskridKontaktReservasjonAtom);
     const { mutate, isPending } = useSendMelding();
@@ -65,7 +65,8 @@ export const FortsettDialog = ({ traad, avbryt }: Props) => {
     } as FortsettDialogForm;
 
     const { data: henvendelse, isPending: henvendelsePending } = useTraadHenvendelse(traad);
-    const oppgaveId = oppgave?.oppgaveId ?? henvendelse?.oppgaveId;
+
+    const oppgaveId = oppgaveForTraad?.oppgaveId ?? henvendelse?.oppgaveId;
 
     const form = useForm({
         defaultValues: defaultFormOptions,

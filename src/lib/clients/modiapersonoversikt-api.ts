@@ -1,4 +1,5 @@
 import { useQueryClient } from '@tanstack/react-query';
+import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai';
 import createFetchClient from 'openapi-fetch';
 import createClient from 'openapi-react-query';
@@ -10,6 +11,7 @@ import { toast } from 'src/components/toasts';
 import { errorPlaceholder, responseErrorMessage } from 'src/components/ytelser/utils';
 import type { paths } from 'src/generated/modiapersonoversikt-api';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
+import { datoSynkende } from 'src/utils/date-utils';
 
 export type ModiapersonoversiktAPI = paths;
 
@@ -146,13 +148,15 @@ export const useOppgave = (oppgaveId?: string) => {
     });
 };
 
-export const useOppgaveForTraad = (traadId: string) => {
+export const useNyesteVurderSvarOppgaveForTraad = (traadId: string) => {
     const { data: oppgaver = [] } = usePersonOppgaver();
 
-    const oppgave = oppgaver.find((oppgave) => oppgave.traadId === traadId);
-    const erSTOOppgave = !!oppgave?.erSTOOppgave;
+    const oppgaverForTraad = oppgaver.filter((oppgave) => oppgave.traadId === traadId);
 
-    return { oppgave, erSTOOppgave };
+    const vurderSvarOppgaver = oppgaverForTraad.filter((oppgave) => oppgave.oppgavetype === 'VUR_SVAR');
+    if (vurderSvarOppgaver.length === 0) return oppgaverForTraad[0];
+
+    return vurderSvarOppgaver.sort(datoSynkende((opp) => opp.opprettetTidspunkt ?? dayjs().toString()))[0];
 };
 
 export const useAvsluttOppgaveMutation = () => {
