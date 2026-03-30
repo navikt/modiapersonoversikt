@@ -23,6 +23,7 @@ export const TraadOppgaver = ({ traadId }: { traadId: string }) => {
                 <Table size="small" data-testid="oppgaver-table">
                     <Table.Header>
                         <Table.Row>
+                            <Table.HeaderCell scope="col" textSize="small" />
                             <Table.HeaderCell scope="col" textSize="small">
                                 Oppgave-id
                             </Table.HeaderCell>
@@ -38,7 +39,6 @@ export const TraadOppgaver = ({ traadId }: { traadId: string }) => {
                             <Table.HeaderCell scope="col" textSize="small">
                                 Frist
                             </Table.HeaderCell>
-                            <Table.HeaderCell scope="col" textSize="small" />
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
@@ -46,6 +46,9 @@ export const TraadOppgaver = ({ traadId }: { traadId: string }) => {
                             const tema = gsakTema.find((item) => item.kode === p.tema);
                             return (
                                 <Table.Row key={p.oppgaveId} shadeOnHover={false}>
+                                    <Table.DataCell>
+                                        <AvsluttOppgave oppgave={p} />
+                                    </Table.DataCell>
                                     <Table.DataCell textSize="small">{p.oppgaveId}</Table.DataCell>
                                     <Table.DataCell textSize="small">
                                         {oppgaveTyper[p.oppgavetype as keyof typeof oppgaveTyper] ??
@@ -57,9 +60,6 @@ export const TraadOppgaver = ({ traadId }: { traadId: string }) => {
                                     </Table.DataCell>
                                     <Table.DataCell textSize="small">
                                         {datoEllerNull(p?.fristFerdigstillelse)}
-                                    </Table.DataCell>
-                                    <Table.DataCell>
-                                        <AvsluttOppgave oppgave={p} />
                                     </Table.DataCell>
                                 </Table.Row>
                             );
