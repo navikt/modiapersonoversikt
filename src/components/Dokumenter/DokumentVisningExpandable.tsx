@@ -1,21 +1,23 @@
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
-import { BodyShort, Box, Heading, HStack, Tabs } from '@navikt/ds-react';
+import { BodyShort, Box, Heading, HStack, List, Tabs } from '@navikt/ds-react';
 import { Link } from '@tanstack/react-router';
 import { capitalize } from 'lodash';
 import Dokument from 'src/components/Dokumenter/Dokument';
 import { dokumentTekst } from 'src/components/Dokumenter/useSortedAndPaginatedDokumenter';
 import { dokumentKanVises } from 'src/components/Dokumenter/utils';
-import type { Dokumentmetadata } from 'src/generated/modiapersonoversikt-api';
+import type { Dokumentmetadata, Dokument as DokumentType } from 'src/generated/modiapersonoversikt-api';
 import { trackingEvents } from 'src/utils/analytics';
 
 const DokumentTabInnhold = ({
     value,
     journalpost,
-    dokument
+    dokument,
+    vedleggUtenReferanse = []
 }: {
     value: string;
     journalpost: Dokumentmetadata;
-    dokument: Dokument;
+    dokument: DokumentType;
+    vedleggUtenReferanse?: DokumentType[];
 }) => {
     const kanVises = dokumentKanVises(journalpost, dokument);
     return (
@@ -23,7 +25,18 @@ const DokumentTabInnhold = ({
             <Heading size="xsmall" level="3" className="pt-4 pb-2 font-light">
                 {dokumentTekst(dokument, !kanVises)}
             </Heading>
-            <Dokument journalPost={journalpost} dokument={dokument} kanVises={kanVises} />
+            <HStack gap="space-8">
+                {vedleggUtenReferanse.length > 0 && (
+                    <List as="ul" size="small">
+                        {vedleggUtenReferanse.map((vedlegg, i) => (
+                            <List.Item key={vedlegg.tittel}>
+                                <BodyShort size="small">{vedlegg.tittel}</BodyShort>
+                            </List.Item>
+                        ))}
+                    </List>
+                )}
+                <Dokument journalPost={journalpost} dokument={dokument} kanVises={kanVises} />
+            </HStack>
         </Tabs.Panel>
     );
 };
@@ -36,7 +49,7 @@ const DokumentTab = ({
     value?: string;
     index?: number;
     journalpost: Dokumentmetadata;
-    dokument: Dokument;
+    dokument: DokumentType;
 }) => {
     return (
         <Tabs.Tab
@@ -82,12 +95,14 @@ export const DokumentVisningExpandable = ({
     }
 
     const hovedDokument = journalpost.hoveddokument;
+    const vedleggMedReferanse = journalpost.vedlegg.filter((v) => v.dokumentreferanse);
+    const vedleggUtenReferanse = journalpost.vedlegg.filter((v) => !v.dokumentreferanse);
 
     return (
         <Tabs defaultValue="hoveddokument" className="relative">
             <Tabs.List className="absolute">
                 <DokumentTab value="hoveddokument" dokument={hovedDokument} journalpost={journalpost} />
-                {journalpost.vedlegg.map((vedlegg, i) => {
+                {vedleggMedReferanse.map((vedlegg, i) => {
                     return (
                         <DokumentTab
                             dokument={vedlegg}
@@ -99,8 +114,13 @@ export const DokumentVisningExpandable = ({
                 })}
             </Tabs.List>
             <Box className="mt-12">
-                <DokumentTabInnhold value="hoveddokument" journalpost={journalpost} dokument={hovedDokument} />
-                {journalpost.vedlegg.map((vedlegg, i) => {
+                <DokumentTabInnhold
+                    value="hoveddokument"
+                    journalpost={journalpost}
+                    dokument={hovedDokument}
+                    vedleggUtenReferanse={vedleggUtenReferanse}
+                />
+                {vedleggMedReferanse.map((vedlegg, i) => {
                     return (
                         <DokumentTabInnhold
                             key={`${i}-${vedlegg.dokumentreferanse}`}
