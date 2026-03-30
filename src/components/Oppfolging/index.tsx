@@ -37,7 +37,7 @@ const OppfolgingDetaljer = () => {
             <Heading as="h4" size="small">
                 Arbeidsoppfølging
             </Heading>
-            <HGrid gap="space-16" columns={{ sm: 1, md: 2, lg: 4 }} className="mt-2">
+            <HGrid gap="space-16" columns={{ sm: 1, md: 2, lg: 3 }} className="mt-2">
                 <VStack justify="space-between">
                     <BodyShort size="small" weight="semibold">
                         Status:
@@ -51,12 +51,6 @@ const OppfolgingDetaljer = () => {
                         Oppfølgingsenhet:
                     </BodyShort>
                     <BodyShort size="small">{getOppfolgingEnhet(arbeidsOppfolging.oppfolging)}</BodyShort>
-                </VStack>
-                <VStack justify="space-between">
-                    <BodyShort size="small" weight="semibold">
-                        Rettighetsgruppe:
-                    </BodyShort>
-                    <BodyShort size="small">{arbeidsOppfolging.rettighetsgruppe}</BodyShort>
                 </VStack>
                 <VStack justify="space-between">
                     <BodyShort size="small" weight="semibold">
