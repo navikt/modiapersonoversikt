@@ -6,7 +6,7 @@ import { sokEtterTekster } from 'src/app/personside/dialogpanel/sendMelding/stan
 import { standardTekstSokAtom } from 'src/components/melding/standardtekster/StandardTekster';
 import skrivestotteResource from 'src/rest/resources/skrivestotteResource';
 import useHotkey from 'src/utils/hooks/use-hotkey';
-import { cyclicClamp } from 'src/utils/math';
+import { modulo } from 'src/utils/math';
 
 const SokeFelt = ({ sokRef }: { sokRef: RefObject<HTMLDivElement | null> }) => {
     const { data } = skrivestotteResource.useFetch();
@@ -26,7 +26,7 @@ const SokeFelt = ({ sokRef }: { sokRef: RefObject<HTMLDivElement | null> }) => {
     const velg = (offset: number) => () => {
         const index = value.filtrerteTekster.findIndex((tekst) => tekst.id === value.tekst?.id);
         if (index !== -1) {
-            const nextIndex = cyclicClamp(index + offset, value.filtrerteTekster.length);
+            const nextIndex = modulo(index + offset, value.filtrerteTekster.length);
             const nextTekst = value.filtrerteTekster[nextIndex];
             setValue((vals) => ({
                 ...vals,

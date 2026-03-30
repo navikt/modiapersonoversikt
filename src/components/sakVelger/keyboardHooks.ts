@@ -1,6 +1,6 @@
 import type { DependencyList } from 'react';
 import useHotkey from 'src/utils/hooks/use-hotkey';
-import { cyclicClamp } from 'src/utils/math';
+import { modulo } from 'src/utils/math';
 
 export function usePiltasterIListe<T>(
     listeRef: React.RefObject<HTMLDivElement | null>,
@@ -12,7 +12,7 @@ export function usePiltasterIListe<T>(
     const velg = (offset: number) => () => {
         const index = listeElementer.findIndex((element) => element === valgtElement);
         if (index !== -1) {
-            const nextIndex = cyclicClamp(index + offset, listeElementer.length);
+            const nextIndex = modulo(index + offset, listeElementer.length);
             const nesteElement = listeElementer[nextIndex];
             velgElement(nesteElement);
         }
