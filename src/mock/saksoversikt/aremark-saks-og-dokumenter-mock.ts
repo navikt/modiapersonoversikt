@@ -13091,26 +13091,26 @@ export const getAremarkSaksOgDokumenterListe = () => {
                     vedlegg: [
                         {
                             tittel: 'Epost vedrørende bruk av egenmelding',
-                            dokumentreferanse: null,
+                            dokumentreferanse: undefined,
                             logiskDokument: true,
-                            skjerming: null,
-                            dokumentStatus: null,
+                            skjerming: undefined,
+                            dokumentStatus: undefined,
                             saksbehandlerHarTilgang: false
                         },
                         {
                             tittel: 'Et vedlegg som er oversendt',
                             dokumentreferanse: '454414877',
                             logiskDokument: false,
-                            skjerming: null,
-                            dokumentStatus: null,
+                            skjerming: undefined,
+                            dokumentStatus: undefined,
                             saksbehandlerHarTilgang: true
                         },
                         {
                             tittel: 'Epost vedrørende arbeid med arbeidsbil',
-                            dokumentreferanse: null,
+                            dokumentreferanse: undefined,
                             logiskDokument: true,
-                            skjerming: null,
-                            dokumentStatus: null,
+                            skjerming: undefined,
+                            dokumentStatus: undefined,
                             saksbehandlerHarTilgang: false
                         }
                     ],
