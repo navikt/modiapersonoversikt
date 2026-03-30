@@ -17,7 +17,7 @@ import { usePrevious } from '../../../../../utils/customHooks';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
 import useFieldState, { type FieldState } from '../../../../../utils/hooks/use-field-state';
 import useHotkey from '../../../../../utils/hooks/use-hotkey';
-import { cyclicClamp } from '../../../../../utils/math';
+import { modulo } from '../../../../../utils/math';
 import { type AutofullforData, autofullfor, byggAutofullforMap, useAutoFullforData } from '../autofullforUtils';
 import type * as StandardTeksterModels from './domain';
 import { erGyldigValg, rapporterBruk, sokEtterTekster } from './sokUtils';
@@ -157,7 +157,7 @@ function StandardTekster(props: Props) {
     const velg = (offset: number) => () => {
         const index = filtrerteTekster.findIndex((tekst) => tekst.id === valgt.input.value);
         if (index !== -1) {
-            const nextIndex = cyclicClamp(index + offset, filtrerteTekster.length);
+            const nextIndex = modulo(index + offset, filtrerteTekster.length);
             const nextTekst = filtrerteTekster[nextIndex];
             valgt.setValue(nextTekst.id);
         }
