@@ -13088,7 +13088,32 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
                         saksbehandlerHarTilgang: true
                     },
-                    vedlegg: [],
+                    vedlegg: [
+                        {
+                            tittel: 'Epost vedrørende bruk av egenmelding',
+                            dokumentreferanse: undefined,
+                            logiskDokument: true,
+                            skjerming: undefined,
+                            dokumentStatus: undefined,
+                            saksbehandlerHarTilgang: false
+                        },
+                        {
+                            tittel: 'Et vedlegg som er oversendt',
+                            dokumentreferanse: '454414877',
+                            logiskDokument: false,
+                            skjerming: undefined,
+                            dokumentStatus: undefined,
+                            saksbehandlerHarTilgang: true
+                        },
+                        {
+                            tittel: 'Epost vedrørende arbeid med arbeidsbil',
+                            dokumentreferanse: undefined,
+                            logiskDokument: true,
+                            skjerming: undefined,
+                            dokumentStatus: undefined,
+                            saksbehandlerHarTilgang: false
+                        }
+                    ],
                     avsender: DokumentmetadataAvsender.NAV,
                     mottaker: DokumentmetadataMottaker.NAV,
                     tilhorendeSaksid: '140334804',
