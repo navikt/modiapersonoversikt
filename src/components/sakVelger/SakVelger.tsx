@@ -63,8 +63,8 @@ const SakVelgerRoot: React.FC<SakVelgerRootProps> = ({ children, setSak }) => {
     };
 
     useFokusVedPiltaster(
-        saksListeRef,
         temaListeRef,
+        saksListeRef,
         [valgtTema, valgteSaker],
         foksuserPaaValgtTema,
         fokuserPaaForsteSak
