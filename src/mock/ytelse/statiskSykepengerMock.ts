@@ -1,5 +1,3 @@
-import { statiskKommendeUtbetaling } from './statiskForeldrepengeMock';
-
 const arbeidsforhold = {
     arbeidsgiverNavn: 'Bærlevåg Burger og Bitcoin',
     arbeidsgiverOrgnr: null,
@@ -42,6 +40,19 @@ const sykmelding = {
             sykmeldingsgrad: 89
         }
     ]
+};
+
+export const statiskKommendeUtbetaling = {
+    vedtak: { fra: '2018-01-14', til: '2017-07-15' },
+    utbetalingsgrad: 79,
+    utbetalingsdato: '2018-06-25',
+    bruttobelop: 466,
+    arbeidsgiverNavn: 'Vedvik - Lunde',
+    arbeidsgiverOrgNr: '1234567890',
+    arbeidsgiverKontonr: '549801574',
+    dagsats: 705,
+    saksbehandler: 'Mari Johannessen',
+    type: 'KONTOØVERFØRING'
 };
 
 export const statiskSykepengerMock = {

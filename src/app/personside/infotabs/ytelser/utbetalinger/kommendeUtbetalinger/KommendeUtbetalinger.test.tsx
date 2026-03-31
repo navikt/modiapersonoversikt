@@ -1,5 +1,5 @@
 import { act } from '@testing-library/react';
-import { statiskKommendeUtbetaling } from '../../../../../../mock/ytelse/statiskForeldrepengeMock';
+import { statiskKommendeUtbetaling } from 'src/mock/ytelse/statiskSykepengerMock';
 import { renderWithProviders } from '../../../../../../test/Testprovider';
 import KommendeUtbetalinger from './KommendeUtbetalinger';
 
