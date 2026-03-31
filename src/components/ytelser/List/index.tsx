@@ -13,15 +13,13 @@ export const YtelserList = () => (
 );
 
 const YtelseList = () => {
-    const { data: ytelser, isLoading, isError } = useFilterYtelser();
+    const { data: ytelser, isLoading } = useFilterYtelser();
     const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
 
     const selectedKey = useSearch({
         from: '/new/person/ytelser',
         select: (p) => p.id
     });
-
-    if (isError) return;
 
     return (
         <PaginatedList
