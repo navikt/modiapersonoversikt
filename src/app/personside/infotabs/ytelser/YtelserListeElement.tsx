@@ -72,7 +72,7 @@ function YtelserListeElement(props: Props) {
                         data: { fane: 'ytelser', tekst: 'sykepenger' }
                     }}
                 >
-                    <Undertittel tag="h3">Sykepengerrettighet</Undertittel>
+                    <Undertittel tag="h3">Sykepenger (Infotrygd)</Undertittel>
                     <Element>ID-dato</Element>
                     <Normaltekst>{formaterDato(getYtelseIdDato(props.ytelse))}</Normaltekst>
                 </VisMerKnapp>
@@ -95,7 +95,7 @@ function YtelserListeElement(props: Props) {
                         data: { fane: 'ytelser', tekst: 'sykepenger' }
                     }}
                 >
-                    <Undertittel tag="h3">Sykepenger</Undertittel>
+                    <Undertittel tag="h3">Sykepenger (Speil)</Undertittel>
                     <Element>ID-dato</Element>
                     <Normaltekst>{fom ? formaterDato(fom) : ''}</Normaltekst>
                 </VisMerKnapp>

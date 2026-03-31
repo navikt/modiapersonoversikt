@@ -41,7 +41,7 @@ export const SykePengerSpokelseDetails = ({ ytelse }: { ytelse: Utbetalingsperio
         <VStack gap="space-4" minHeight="0">
             <Card padding="space-16">
                 <Heading level="4" size="small" spacing>
-                    Om sykepenger
+                    Sykepenger fra Speil
                 </Heading>
                 <SykpengerPerioder ytelse={ytelse} />
             </Card>

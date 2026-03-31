@@ -53,7 +53,9 @@ function YtelserOversikt(props: Props) {
         renderSykepenger: (sykepenger) => (
             <SykepengerKomponent sykepenger={sykepenger} key={getUnikYtelseKey(sykepenger)} />
         ),
-        renderSykepengerSpokelse: (ytelse) => <SykepengerSpokelseKomponent sykepenger={ytelse} />,
+        renderSykepengerSpokelse: (sykepengerSpokelse) => (
+            <SykepengerSpokelseKomponent sykepenger={sykepengerSpokelse} key={getUnikYtelseKey(sykepengerSpokelse)} />
+        ),
         renderTiltakspenger: (tiltakspenger) => (
             <TiltakspengerKomponent tiltakspenger={tiltakspenger} key={getUnikTiltakspengerKey(tiltakspenger)} />
         ),
@@ -117,7 +119,7 @@ function SykepengerKomponent(props: { sykepenger: Sykepenger }) {
             umamiEvent={umamiEvent}
         >
             <Normaltekst>ID dato: {formaterDato(getSykepengerIdDato(props.sykepenger))}</Normaltekst>
-            <Element>Sykepenger</Element>
+            <Element>Sykepenger (Infotrygd)</Element>
             <Normaltekst>100% sykemeldt - Dokumentet Sykepenger behandlet i ny løsning inneholder maksdato</Normaltekst>
         </VisMerKnapp>
     );
@@ -135,7 +137,7 @@ function SykepengerSpokelseKomponent(props: { sykepenger: Utbetalingsperioder })
             umamiEvent={umamiEvent}
         >
             <Normaltekst>ID dato: {formaterDato(getSykepengerSpokelseIdDato(props.sykepenger))}</Normaltekst>
-            <Element>Sykepenger</Element>
+            <Element>Sykepenger (Speil)</Element>
         </VisMerKnapp>
     );
 }
