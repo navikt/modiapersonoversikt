@@ -178,10 +178,15 @@ export const useMeldinger = () => {
     const fnr = usePersonAtomValue();
     const enhet = useAtomValue(aktivEnhetAtom) as string;
 
-    return $api.useQuery('post', '/rest/dialog/meldinger', {
-        body: { fnr },
-        params: { query: { enhet } }
-    });
+    return $api.useQuery(
+        'post',
+        '/rest/dialog/meldinger',
+        {
+            body: { fnr },
+            params: { query: { enhet } }
+        },
+        { refetchOnMount: false }
+    );
 };
 
 export const useInnloggetSaksbehandler = () => {
@@ -461,10 +466,15 @@ export const useForeldrepengerFpSak = (fom: string, tom: string) => {
 
 export const useDagpenger = (fom: string, tom: string) => {
     const fnr = usePersonAtomValue();
-    return $api.useQuery('post', '/rest/ytelse/dagpenger', {
-        // the fnr: fnr is just to satisfy our mock setup
-        body: { personIdent: fnr, fraOgMedDato: fom, tilOgMedDato: tom, fnr: fnr }
-    });
+    return $api.useQuery(
+        'post',
+        '/rest/ytelse/dagpenger',
+        {
+            // the fnr: fnr is just to satisfy our mock setup
+            body: { personIdent: fnr, fraOgMedDato: fom, tilOgMedDato: tom, fnr: fnr }
+        },
+        ytelseQueryOptions
+    );
 };
 
 export const useSykepengerSpokelse = (fom: string, tom: string) => {

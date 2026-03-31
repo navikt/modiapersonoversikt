@@ -13,7 +13,7 @@ export const TraadList = () => (
 );
 
 const Traader = () => {
-    const { isLoading, isError } = useTraader();
+    const { isLoading } = useTraader();
     const filteredMeldinger = useFilterMeldinger();
     const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
 
@@ -21,8 +21,6 @@ const Traader = () => {
         from: '/new/person/meldinger',
         select: (p) => p.traadId
     });
-
-    if (isError) return;
 
     return (
         <PaginatedList
