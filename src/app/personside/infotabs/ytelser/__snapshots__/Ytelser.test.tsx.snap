@@ -545,7 +545,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                     <div
                       class="hjelpetekst__innhold"
                     >
-                      Viser ytelser fra Infotrygd 2 år tilbake i tid (foreldrepenger, pleiepenger, sykepenger). I tillegg til tiltakspenger 10 år tilbake.
+                      Viser om bruker har ytelser av typen: sykepenger, foreldrepenger, arbeidsavklaringspenger, pensjon eller tiltakspenger.
                     </div>
                   </div>
                   <span
