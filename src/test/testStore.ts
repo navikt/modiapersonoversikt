@@ -96,8 +96,6 @@ export function setupReactQueryMocks() {
         [FeatureToggles.VisPromptMeldingSending]: true,
         [FeatureToggles.VisSiste14aVedtak]: true,
         [FeatureToggles.NyModiaKnapp]: true,
-        [FeatureToggles.InfotrygdForeldrepenger]: true,
-        [FeatureToggles.InfotrygdPleiepenger]: true,
         [FeatureToggles.InfotrygdSykepenger]: true,
         [FeatureToggles.SpokelseSykepenger]: true
     });

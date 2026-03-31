@@ -75,7 +75,8 @@ function YtelserOversikt(props: Props) {
             {ytelserListe}
             {!pending && !harFeil && ytelserMarkup.length === 0 && (
                 <AlertStripeInfo>
-                    Det finnes ikke foreldrepenger, sykepenger eller pleiepenger for brukeren
+                    Det finnes ikke foreldrepenger, sykepenger, tiltakspenger, pensjon, eller arbeidsavklaringspenger
+                    for denne personen.
                 </AlertStripeInfo>
             )}
             {pending ? <CenteredLazySpinner padding={theme.margin.layout} /> : feilmeldinger}

@@ -18,12 +18,12 @@ import { getTiltakspengerIdDato, getUnikTiltakspengerKey, type Tiltakspenger } f
 
 export enum YtelseVedtakYtelseType {
     Sykepenger = 'Sykepenger (Infotrygd)',
-    Foreldrepenger = 'Foreldrepenger',
-    Pleiepenger = 'Pleiepenger',
     Tiltakspenge = 'Tiltakspenger',
     Pensjon = 'Pensjon',
     Arbeidsavklaringspenger = 'Arbeidsavklaringspenger',
     ForeldrepengerFpSak = 'ForeldrepengerFpSak',
+    // Trenger denne til filtertype
+    Foreldrepenger = 'Foreldrepenger',
     Dagpenger = 'Dagpenger',
     SykepengerSpokelse = 'Sykepenger (Speil)'
 }
