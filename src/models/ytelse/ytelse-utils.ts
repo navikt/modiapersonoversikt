@@ -23,7 +23,7 @@ import { getSykepengerIdDato, getUnikSykepengerKey, type Sykepenger } from './sy
 import { getTiltakspengerIdDato, getUnikTiltakspengerKey, type Tiltakspenger } from './tiltakspenger';
 
 export enum YtelseVedtakYtelseType {
-    Sykepenger = 'Sykepenger',
+    Sykepenger = 'Sykepenger (Infotrygd)',
     Foreldrepenger = 'Foreldrepenger',
     Pleiepenger = 'Pleiepenger',
     Tiltakspenge = 'Tiltakspenger',
@@ -31,7 +31,7 @@ export enum YtelseVedtakYtelseType {
     Arbeidsavklaringspenger = 'Arbeidsavklaringspenger',
     ForeldrepengerFpSak = 'ForeldrepengerFpSak',
     Dagpenger = 'Dagpenger',
-    SykepengerSpokelse = 'SykepengerSpokelse'
+    SykepengerSpokelse = 'Sykepenger (Speil)'
 }
 
 export type Ytelse =
