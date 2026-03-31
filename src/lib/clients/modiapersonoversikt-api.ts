@@ -178,10 +178,15 @@ export const useMeldinger = () => {
     const fnr = usePersonAtomValue();
     const enhet = useAtomValue(aktivEnhetAtom) as string;
 
-    return $api.useQuery('post', '/rest/dialog/meldinger', {
-        body: { fnr },
-        params: { query: { enhet } }
-    });
+    return $api.useQuery(
+        'post',
+        '/rest/dialog/meldinger',
+        {
+            body: { fnr },
+            params: { query: { enhet } }
+        },
+        { refetchOnMount: false }
+    );
 };
 
 export const useInnloggetSaksbehandler = () => {
