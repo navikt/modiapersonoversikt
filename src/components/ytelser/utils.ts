@@ -60,13 +60,6 @@ export type YtelseVedtak = {
     ytelseType: YtelseVedtakYtelseType;
 };
 
-const filterSykepenger = (ytelse: YtelseVedtak, ytelsetyper: string[]): boolean => {
-    return (
-        ytelsetyper.includes(YtelseVedtakYtelseType.Sykepenger) &&
-        ytelse.ytelseType === YtelseVedtakYtelseType.SykepengerSpokelse
-    );
-};
-
 const filterForeldrepenger = (ytelse: YtelseVedtak, ytelsetyper: string[]): boolean => {
     return (
         ytelsetyper.includes(YtelseVedtakYtelseType.Foreldrepenger) &&
@@ -75,7 +68,7 @@ const filterForeldrepenger = (ytelse: YtelseVedtak, ytelsetyper: string[]): bool
 };
 
 const filterDobleYtelseTyper = (ytelse: YtelseVedtak, ytelsetyper: string[]): boolean => {
-    return filterSykepenger(ytelse, ytelsetyper) || filterForeldrepenger(ytelse, ytelsetyper);
+    return filterForeldrepenger(ytelse, ytelsetyper);
 };
 
 const filterYtelser = (ytelser: YtelseVedtak[], filters: YtelseFilter): YtelseVedtak[] => {
