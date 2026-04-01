@@ -1,33 +1,33 @@
 import { fakerNB_NO as faker } from '@faker-js/faker';
 import dayjs from 'dayjs';
 import navfaker from 'nav-faker/dist/index';
-import { type ForeldrepengerFpSak, ForeldrepengerFpSakYtelse } from 'src/generated/modiapersonoversikt-api';
+import { type Foreldrepenger, ForeldrepengerYtelse } from 'src/generated/modiapersonoversikt-api';
 import {
-    statiskEngangstonadFpSakMock,
-    statiskForeldrepengerFpSakMock,
-    statiskSvangerskapspengerFpSakMock
-} from 'src/mock/ytelse/statiskForeldrepengerFpSakMock';
+    statiskEngangstonadMock,
+    statiskForeldrepengerMock,
+    statiskSvangerskapspengerMock
+} from 'src/mock/ytelse/statiskForeldrepengerMock';
 import { backendDatoformat } from 'src/utils/date-utils';
 import { aremark } from '../persondata/aremark';
 import { fyllRandomListe } from '../utils/mock-utils';
 
-export function getMockForeldrepengerFpSakResponse(fnr: string): ForeldrepengerFpSak[] {
+export function getMockForeldrepengerResponse(fnr: string): Foreldrepenger[] {
     if (fnr === aremark.personIdent) {
-        return [statiskForeldrepengerFpSakMock, statiskSvangerskapspengerFpSakMock, statiskEngangstonadFpSakMock];
+        return [statiskForeldrepengerMock, statiskSvangerskapspengerMock, statiskEngangstonadMock];
     }
     faker.seed(Number(fnr));
-    navfaker.seed(`${fnr}foreldrepengerFpSak`);
+    navfaker.seed(`${fnr}foreldrepenger`);
 
     if (navfaker.random.vektetSjanse(0.3)) {
         return [];
     }
 
-    return fyllRandomListe<ForeldrepengerFpSak>(() => getMockForeldrepengerFpSak(fnr), 3);
+    return fyllRandomListe<Foreldrepenger>(() => getMockForeldrepenger(fnr), 3);
 }
 
-function getMockForeldrepengerFpSak(fnr: string): ForeldrepengerFpSak {
+function getMockForeldrepenger(fnr: string): Foreldrepenger {
     faker.seed(Number(fnr));
-    navfaker.seed(`${fnr}foreldrepengerFpSak`);
+    navfaker.seed(`${fnr}foreldrepenger`);
 
     const fomDato = dayjs(faker.date.past({ years: 2 })).format(backendDatoformat);
     const tomDatoForstePeriode = dayjs(fomDato).add(faker.number.int(40), 'days').format(backendDatoformat);
@@ -36,9 +36,9 @@ function getMockForeldrepengerFpSak(fnr: string): ForeldrepengerFpSak {
     const tomDato = dayjs(fomDatoAndrePeriode).add(faker.number.int(40), 'days').format(backendDatoformat);
 
     const ytelseType = navfaker.random.arrayElement([
-        ForeldrepengerFpSakYtelse.FORELDREPENGER,
-        ForeldrepengerFpSakYtelse.ENGANGSST_NAD,
-        ForeldrepengerFpSakYtelse.SVANGERSKAPSPENGER
+        ForeldrepengerYtelse.FORELDREPENGER,
+        ForeldrepengerYtelse.ENGANGSST_NAD,
+        ForeldrepengerYtelse.SVANGERSKAPSPENGER
     ]);
 
     return {

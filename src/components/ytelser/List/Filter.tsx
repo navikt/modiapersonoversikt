@@ -60,10 +60,7 @@ const YtelserTypeFilter = () => {
         [setSelectedYtelseType]
     );
 
-    // TODO: Midlertidig; Fjern dette når gammel versjon av foreldrepenger er fjernet
-    const ytelseTyper = Object.values(YtelseVedtakYtelseType).filter(
-        (yType) => yType !== YtelseVedtakYtelseType.ForeldrepengerFpSak
-    );
+    const ytelseTyper = Object.values(YtelseVedtakYtelseType);
 
     return (
         <UNSAFE_Combobox

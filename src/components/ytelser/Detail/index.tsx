@@ -3,7 +3,7 @@ import { getRouteApi } from '@tanstack/react-router';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { ArbeidsavklaringspengerDetails } from 'src/components/ytelser/Detail/arbeidsavklaringspenger';
 import { DagpengerDetails } from 'src/components/ytelser/Detail/dagpenger';
-import { ForeldrePengerFpSakDetails } from 'src/components/ytelser/Detail/foreldrepenger-fpsak';
+import { ForeldrePengerDetails } from 'src/components/ytelser/Detail/foreldrepenger';
 import { PensjonDetails } from 'src/components/ytelser/Detail/pensjon';
 import { SykepengerDetails } from 'src/components/ytelser/Detail/sykepenger';
 import { SykePengerSpokelseDetails } from 'src/components/ytelser/Detail/sykepenger-spokelse';
@@ -11,7 +11,7 @@ import { TiltaksPengerDetails } from 'src/components/ytelser/Detail/tiltakspenge
 import { useSetIdQueryParam } from 'src/components/ytelser/useSetIdQueryParam';
 import { getUnikYtelseKey, useFilterYtelser, type YtelseVedtak } from 'src/components/ytelser/utils';
 import type {
-    ForeldrepengerFpSak,
+    Foreldrepenger,
     PensjonSak,
     PseudoDagpengerVedtak,
     Sykepenger,
@@ -94,8 +94,8 @@ const YtelseDataDetails = ({ ytelser }: { ytelser: YtelseVedtak[] }) => {
             return <PensjonDetails pensjon={selectedYtelse.ytelseData.data as PensjonSak} />;
         case YtelseVedtakYtelseType.Arbeidsavklaringspenger:
             return <ArbeidsavklaringspengerDetails aap={selectedYtelse.ytelseData.data as Arbeidsavklaringspenger} />;
-        case YtelseVedtakYtelseType.ForeldrepengerFpSak:
-            return <ForeldrePengerFpSakDetails ytelse={selectedYtelse.ytelseData.data as ForeldrepengerFpSak} />;
+        case YtelseVedtakYtelseType.Foreldrepenger:
+            return <ForeldrePengerDetails ytelse={selectedYtelse.ytelseData.data as Foreldrepenger} />;
         case YtelseVedtakYtelseType.Dagpenger:
             return <DagpengerDetails ytelse={selectedYtelse.ytelseData.data as PseudoDagpengerVedtak} />;
         case YtelseVedtakYtelseType.SykepengerSpokelse:

@@ -15,7 +15,7 @@ import type {
 } from 'src/generated/modiapersonoversikt-api';
 import { getMockArbeidsavklaringspengerResponse } from 'src/mock/ytelse/arbeidsavklaringspengerMock';
 import { getMockDagpengerResponse } from 'src/mock/ytelse/dagpengerMock';
-import { getMockForeldrepengerFpSakResponse } from 'src/mock/ytelse/foreldrepengerFpSakMock';
+import { getMockForeldrepengerResponse } from 'src/mock/ytelse/foreldrepengerMock';
 import { getMockPensjon } from 'src/mock/ytelse/pensjon-mock';
 import { getMockSykpengerSpokelseResponse } from 'src/mock/ytelse/sykepengerSpokelseMock';
 import type { FeatureTogglesResponse } from 'src/rest/resources/featuretogglesResource';
@@ -203,12 +203,12 @@ const arbeidsavklaringspengerMock = http.post(
     )
 );
 
-const foreldrepengerFpSakHandlerMock = http.post(
-    `${apiBaseUri}/ytelse/foreldrepenger_fpsak`,
+const foreldrepengerHandlerMock = http.post(
+    `${apiBaseUri}/ytelse/foreldrepenger`,
     withDelayedResponse(
         randomDelay(),
         fodselsNummerErGyldigStatus,
-        mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMockForeldrepengerFpSakResponse(fodselsnummer))
+        mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMockForeldrepengerResponse(fodselsnummer))
     )
 );
 
@@ -409,7 +409,7 @@ export const handlers: (HttpHandler | WebSocketHandler)[] = [
     sykepengerHandler,
     sykepengerSpokelseHandler,
     tiltakspengerMock,
-    foreldrepengerFpSakHandlerMock,
+    foreldrepengerHandlerMock,
     dagpengerHandlerMock,
     pensjonMock,
     arbeidsavklaringspengerMock,

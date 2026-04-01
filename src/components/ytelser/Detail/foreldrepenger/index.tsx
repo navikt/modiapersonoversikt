@@ -2,24 +2,27 @@ import { Accordion, Heading, VStack } from '@navikt/ds-react';
 import { capitalize } from 'lodash';
 import Card from 'src/components/Card';
 import { TitleValuePairsComponent } from 'src/components/ytelser/Detail';
-import { type ForeldrepengerFpSak, ForeldrepengerFpSakYtelse } from 'src/generated/modiapersonoversikt-api';
-import type { ForeldrepengerFpSakPeriode } from 'src/models/ytelse/foreldrepenger-fpsak';
+import {
+    type Foreldrepenger,
+    type ForeldrepengerPeriode,
+    ForeldrepengerYtelse
+} from 'src/generated/modiapersonoversikt-api';
 import { datoEllerTomString, formaterDato, prosentEllerNull } from 'src/utils/string-utils';
 
-const getForeldrePengerRettenEntries = (ytelse: ForeldrepengerFpSak) => {
+const getForeldrePengerEntries = (ytelse: Foreldrepenger) => {
     const perioder = { 'Fra og med': formaterDato(ytelse.fom), 'Til og med': formaterDato(ytelse.tom) };
 
     return {
         Saksnummer: ytelse.saksnummer,
         Ytelsetype: capitalize(ytelse.ytelse),
-        ...(ytelse.ytelse === ForeldrepengerFpSakYtelse.ENGANGSST_NAD ? { Dato: formaterDato(ytelse.fom) } : perioder)
+        ...(ytelse.ytelse === ForeldrepengerYtelse.ENGANGSST_NAD ? { Dato: formaterDato(ytelse.fom) } : perioder)
     };
 };
 
-const ForeldrepengePerioder = ({ ytelse }: { ytelse: ForeldrepengerFpSak }) => {
-    if (ytelse.perioder.length === 0 || ytelse.ytelse === ForeldrepengerFpSakYtelse.ENGANGSST_NAD) return <></>;
+const ForeldrepengerPerioder = ({ ytelse }: { ytelse: Foreldrepenger }) => {
+    if (ytelse.perioder.length === 0 || ytelse.ytelse === ForeldrepengerYtelse.ENGANGSST_NAD) return <></>;
 
-    const getEntries = (periode: ForeldrepengerFpSakPeriode) => {
+    const getEntries = (periode: ForeldrepengerPeriode) => {
         return {
             'Fra og med': formaterDato(periode.fom),
             'Til og med': formaterDato(periode.tom),
@@ -48,16 +51,16 @@ const ForeldrepengePerioder = ({ ytelse }: { ytelse: ForeldrepengerFpSak }) => {
     );
 };
 
-export const ForeldrePengerFpSakDetails = ({ ytelse }: { ytelse: ForeldrepengerFpSak }) => {
+export const ForeldrePengerDetails = ({ ytelse }: { ytelse: Foreldrepenger }) => {
     return (
         <VStack gap="space-4" minHeight="0">
             <Card padding="space-16">
                 <Heading as="h3" size="small">
                     Om {ytelse.ytelse.toLowerCase()}
                 </Heading>
-                <TitleValuePairsComponent entries={getForeldrePengerRettenEntries(ytelse)} />
+                <TitleValuePairsComponent entries={getForeldrePengerEntries(ytelse)} />
             </Card>
-            <ForeldrepengePerioder ytelse={ytelse} />
+            <ForeldrepengerPerioder ytelse={ytelse} />
         </VStack>
     );
 };

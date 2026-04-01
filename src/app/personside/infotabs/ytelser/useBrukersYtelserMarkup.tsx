@@ -1,12 +1,12 @@
 import type { ReactNode } from 'react';
-import type { ForeldrepengerFpSak, Utbetalingsperioder } from 'src/generated/modiapersonoversikt-api';
+import type { Foreldrepenger, Utbetalingsperioder } from 'src/generated/modiapersonoversikt-api';
 import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaringspenger';
 import type { Pensjon } from 'src/models/ytelse/pensjon';
 import type { Sykepenger } from 'src/models/ytelse/sykepenger';
 import type { Tiltakspenger } from 'src/models/ytelse/tiltakspenger';
 import {
     isArbeidsavklaringspenger,
-    isForeldrePengerFpSak,
+    isForeldrePenger,
     isPensjon,
     isSykepenger,
     isSykepengerSpokelse,
@@ -22,7 +22,7 @@ interface Props {
     renderTiltakspenger: (tiltakspenger: Tiltakspenger) => ReactNode;
     renderPensjon: (pensjon: Pensjon) => ReactNode;
     renderArbeidsavklaringspenger: (aap: Arbeidsavklaringspenger) => ReactNode;
-    renderForeldrepengerFpSak: (ytelse: ForeldrepengerFpSak) => ReactNode;
+    renderForeldrepenger: (ytelse: Foreldrepenger) => ReactNode;
     renderSykepengerSpokelse: (ytelse: Utbetalingsperioder) => ReactNode;
 }
 
@@ -52,8 +52,8 @@ function useBrukersYtelserMarkup(props: Props): Returns {
         if (isArbeidsavklaringspenger(ytelse)) {
             return props.renderArbeidsavklaringspenger(ytelse);
         }
-        if (isForeldrePengerFpSak(ytelse)) {
-            return props.renderForeldrepengerFpSak(ytelse);
+        if (isForeldrePenger(ytelse)) {
+            return props.renderForeldrepenger(ytelse);
         }
         loggError(new Error('Fant ikke rendermetode for ytelsen'));
         return null;

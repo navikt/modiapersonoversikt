@@ -5,7 +5,7 @@ import {
     getArbeidsavklaringspengerIdDato,
     getUnikArbeidsavklaringspengerKey
 } from 'src/models/ytelse/arbeidsavklaringspenger';
-import { getForeldrepengerFpSakIdDato, getUnikForeldrepengerFpSakKey } from 'src/models/ytelse/foreldrepenger-fpsak';
+import { getForeldrepengerIdDato, getUnikForeldrepengerKey } from 'src/models/ytelse/foreldrepenger';
 import { getPensjonIdDato, getUnikPensjonKey } from 'src/models/ytelse/pensjon';
 import { getUnikSykepengerKey } from 'src/models/ytelse/sykepenger';
 import { getSykepengerSpokelseIdDato, getUnikSykepengerSpokelseKey } from 'src/models/ytelse/sykepenger-spokelse';
@@ -13,7 +13,7 @@ import { getTiltakspengerIdDato, getUnikTiltakspengerKey } from 'src/models/ytel
 import {
     getYtelseIdDato,
     isArbeidsavklaringspenger,
-    isForeldrePengerFpSak,
+    isForeldrePenger,
     isPensjon,
     isSykepenger,
     isSykepengerSpokelse,
@@ -141,13 +141,13 @@ function YtelserListeElement(props: Props) {
         );
     }
 
-    if (isForeldrePengerFpSak(props.ytelse)) {
-        const fom = getForeldrepengerFpSakIdDato(props.ytelse);
+    if (isForeldrePenger(props.ytelse)) {
+        const fom = getForeldrepengerIdDato(props.ytelse);
 
         return (
-            <li key={getUnikForeldrepengerFpSakKey(props.ytelse)}>
+            <li key={getUnikForeldrepengerKey(props.ytelse)}>
                 <VisMerKnapp
-                    key={getUnikForeldrepengerFpSakKey(props.ytelse)}
+                    key={getUnikForeldrepengerKey(props.ytelse)}
                     ariaDescription={`Vis ${props.ytelse.ytelse.toLowerCase()}`}
                     valgt={props.erValgt}
                     linkTo={dypLenker.ytelser.link(props.ytelse)}

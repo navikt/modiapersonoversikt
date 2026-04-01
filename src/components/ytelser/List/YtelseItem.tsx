@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import { useEffect, useRef } from 'react';
 import Card from 'src/components/Card';
 import { getUnikYtelseKey, getYtelseIdDato, type YtelseVedtak } from 'src/components/ytelser/utils';
-import { type ForeldrepengerFpSak, ForeldrepengerFpSakYtelse } from 'src/generated/modiapersonoversikt-api';
+import { type Foreldrepenger, ForeldrepengerYtelse } from 'src/generated/modiapersonoversikt-api';
 import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
 import { trackingEvents } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
@@ -32,11 +32,11 @@ export const YtelseItem = ({ ytelse }: { ytelse: YtelseVedtak }) => {
             case YtelseVedtakYtelseType.Dagpenger:
             case YtelseVedtakYtelseType.SykepengerSpokelse:
                 return ytelse.ytelseType;
-            case YtelseVedtakYtelseType.ForeldrepengerFpSak:
-                switch ((ytelse.ytelseData.data as ForeldrepengerFpSak).ytelse) {
-                    case ForeldrepengerFpSakYtelse.ENGANGSST_NAD:
+            case YtelseVedtakYtelseType.Foreldrepenger:
+                switch ((ytelse.ytelseData.data as Foreldrepenger).ytelse) {
+                    case ForeldrepengerYtelse.ENGANGSST_NAD:
                         return 'Engangsstønad';
-                    case ForeldrepengerFpSakYtelse.SVANGERSKAPSPENGER:
+                    case ForeldrepengerYtelse.SVANGERSKAPSPENGER:
                         return 'Svangerskapspenger';
                     default:
                         return 'Foreldrepenger';

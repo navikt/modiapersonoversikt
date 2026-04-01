@@ -2,12 +2,12 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { guid } from 'nav-frontend-js-utils';
 import { useEffect, useRef } from 'react';
 import Arbeidsavklaringspenger from 'src/app/personside/infotabs/ytelser/arbeidsavklaringspenger/Arbeidsavklaringspenger';
-import ForeldrepengerFpSakComp from 'src/app/personside/infotabs/ytelser/foreldrepengerFpSak/ForeldrepengerFpSakComp';
+import ForeldrepengerComp from 'src/app/personside/infotabs/ytelser/foreldrepenger/ForeldrepengerComp';
 import Pensjon from 'src/app/personside/infotabs/ytelser/pensjon/Pensjon';
 import SykepengerPerioderSpokelse from 'src/app/personside/infotabs/ytelser/sykepengerSpokelse/SykepengerSpokelseComp';
 import {
     isArbeidsavklaringspenger,
-    isForeldrePengerFpSak,
+    isForeldrePenger,
     isPensjon,
     isSykepenger,
     isSykepengerSpokelse,
@@ -46,8 +46,8 @@ function YtelseMarkup(props: { ytelse: Ytelse }) {
     if (isArbeidsavklaringspenger(props.ytelse)) {
         return <Arbeidsavklaringspenger arbeidsavklaringspenger={props.ytelse} />;
     }
-    if (isForeldrePengerFpSak(props.ytelse)) {
-        return <ForeldrepengerFpSakComp foreldrepenger={props.ytelse} />;
+    if (isForeldrePenger(props.ytelse)) {
+        return <ForeldrepengerComp foreldrepenger={props.ytelse} />;
     }
     loggError(new Error('Ytelse ikke håndtert, kunne ikke finne markup'));
     return null;

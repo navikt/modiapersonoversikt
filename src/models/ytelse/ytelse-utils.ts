@@ -1,15 +1,11 @@
-import type {
-    ForeldrepengerFpSak,
-    PseudoDagpengerVedtak,
-    Utbetalingsperioder
-} from 'src/generated/modiapersonoversikt-api';
+import type { Foreldrepenger, PseudoDagpengerVedtak, Utbetalingsperioder } from 'src/generated/modiapersonoversikt-api';
 import {
     type Arbeidsavklaringspenger,
     getArbeidsavklaringspengerIdDato,
     getUnikArbeidsavklaringspengerKey
 } from 'src/models/ytelse/arbeidsavklaringspenger';
 import { getDagpengerIdDato, getUnikDagpengerKey } from 'src/models/ytelse/dagpenger';
-import { getForeldrepengerFpSakIdDato, getUnikForeldrepengerFpSakKey } from 'src/models/ytelse/foreldrepenger-fpsak';
+import { getForeldrepengerIdDato, getUnikForeldrepengerKey } from 'src/models/ytelse/foreldrepenger';
 import { getPensjonIdDato, getUnikPensjonKey, type Pensjon } from 'src/models/ytelse/pensjon';
 import { getSykepengerSpokelseIdDato, getUnikSykepengerSpokelseKey } from 'src/models/ytelse/sykepenger-spokelse';
 import { loggError } from 'src/utils/logger/frontendLogger';
@@ -21,8 +17,6 @@ export enum YtelseVedtakYtelseType {
     Tiltakspenge = 'Tiltakspenger',
     Pensjon = 'Pensjon',
     Arbeidsavklaringspenger = 'Arbeidsavklaringspenger',
-    ForeldrepengerFpSak = 'ForeldrepengerFpSak',
-    // Trenger denne til filtertype
     Foreldrepenger = 'Foreldrepenger',
     Dagpenger = 'Dagpenger',
     SykepengerSpokelse = 'Sykepenger (Speil)'
@@ -33,7 +27,7 @@ export type Ytelse =
     | Tiltakspenger
     | Pensjon
     | Arbeidsavklaringspenger
-    | ForeldrepengerFpSak
+    | Foreldrepenger
     | PseudoDagpengerVedtak
     | Utbetalingsperioder;
 
@@ -53,7 +47,7 @@ export function isPensjon(ytelse: Ytelse): ytelse is Pensjon {
 export function isArbeidsavklaringspenger(ytelse: Ytelse): ytelse is Arbeidsavklaringspenger {
     return 'rettighetsType' in ytelse;
 }
-export function isForeldrePengerFpSak(ytelse: Ytelse): ytelse is ForeldrepengerFpSak {
+export function isForeldrePenger(ytelse: Ytelse): ytelse is Foreldrepenger {
     return 'ytelse' in ytelse;
 }
 // only used here, not imported in old modia
@@ -77,8 +71,8 @@ export function getYtelseIdDato(ytelse: Ytelse) {
     if (isArbeidsavklaringspenger(ytelse)) {
         return getArbeidsavklaringspengerIdDato(ytelse);
     }
-    if (isForeldrePengerFpSak(ytelse)) {
-        return getForeldrepengerFpSakIdDato(ytelse);
+    if (isForeldrePenger(ytelse)) {
+        return getForeldrepengerIdDato(ytelse);
     }
     if (isDagpenger(ytelse)) {
         return getDagpengerIdDato(ytelse);
@@ -103,8 +97,8 @@ export function getUnikYtelseKey(ytelse: Ytelse) {
     if (isArbeidsavklaringspenger(ytelse)) {
         return getUnikArbeidsavklaringspengerKey(ytelse);
     }
-    if (isForeldrePengerFpSak(ytelse)) {
-        return getUnikForeldrepengerFpSakKey(ytelse);
+    if (isForeldrePenger(ytelse)) {
+        return getUnikForeldrepengerKey(ytelse);
     }
     if (isDagpenger(ytelse)) {
         return getUnikDagpengerKey(ytelse);

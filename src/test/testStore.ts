@@ -2,10 +2,7 @@ import type { UseQueryResult } from '@tanstack/react-query';
 import { applyMiddleware, createStore, type Dispatch, type Store } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { statiskArbeidsavklaringspengerMock } from 'src/mock/ytelse/statiskArbeidsavklaringspengerMock';
-import {
-    statiskEngangstonadFpSakMock,
-    statiskForeldrepengerFpSakMock
-} from 'src/mock/ytelse/statiskForeldrepengerFpSakMock';
+import { statiskEngangstonadMock, statiskForeldrepengerMock } from 'src/mock/ytelse/statiskForeldrepengerMock';
 import { statiskPensjonMock } from 'src/mock/ytelse/statiskPensjonMock';
 import { statiskSykepengerSpokelseMock } from 'src/mock/ytelse/statiskSykepengerSpokelseMock';
 import { type MockInstance, vi } from 'vitest';
@@ -28,7 +25,7 @@ import * as arbeidsavklaringspengerReesource from '../rest/resources/arbeidsavkl
 import baseurlsResource from '../rest/resources/baseurlsResource';
 import dialogResource from '../rest/resources/dialogResource';
 import featuretogglesResource from '../rest/resources/featuretogglesResource';
-import * as foreldrepengerFpSakResource from '../rest/resources/foreldrepengerFpSakResource';
+import * as foreldrepengerResource from '../rest/resources/foreldrepengerResource';
 import gsaktemaResource from '../rest/resources/gsaktemaResource';
 import innstillingerResource from '../rest/resources/innstillingerResource';
 import oppfolgingResource from '../rest/resources/oppfolgingResource';
@@ -76,7 +73,7 @@ export function setupReactQueryMocks() {
     vi.spyOn(tiltakspengerResource, 'useTiltakspenger');
     vi.spyOn(pensjonResource, 'usePensjon');
     vi.spyOn(arbeidsavklaringspengerReesource, 'useArbeidsavklaringspenger');
-    vi.spyOn(foreldrepengerFpSakResource, 'useForeldrepengerFpSak');
+    vi.spyOn(foreldrepengerResource, 'useForeldrepenger');
     vi.spyOn(gsaktemaResource, 'useFetch');
     vi.spyOn(oppfolgingResource, 'useFetch');
     vi.spyOn(sakstemaResource, 'useFetch');
@@ -106,10 +103,10 @@ export function setupReactQueryMocks() {
     mockReactQuery(tiltakspengerResource.useTiltakspenger, [statiskTiltakspengerMock]);
     mockReactQuery(pensjonResource.usePensjon, [statiskPensjonMock]);
     mockReactQuery(arbeidsavklaringspengerReesource.useArbeidsavklaringspenger, [statiskArbeidsavklaringspengerMock]);
-    mockReactQuery(foreldrepengerFpSakResource.useForeldrepengerFpSak, [
-        statiskForeldrepengerFpSakMock,
-        statiskEngangstonadFpSakMock,
-        statiskEngangstonadFpSakMock
+    mockReactQuery(foreldrepengerResource.useForeldrepenger, [
+        statiskForeldrepengerMock,
+        statiskEngangstonadMock,
+        statiskEngangstonadMock
     ]);
     mockReactQuery(oppfolgingResource.useFetch, statiskOppfolgingMock);
     mockReactQuery(sakstemaResource.useFetch, getStaticMockSaksoversiktV2());
