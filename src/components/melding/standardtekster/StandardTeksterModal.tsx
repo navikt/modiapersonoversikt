@@ -4,7 +4,7 @@ import { type RefObject, useRef } from 'react';
 import StandardTekster from 'src/components/melding/standardtekster/StandardTekster';
 import { useDisableDialog } from 'src/lib/state/dialog';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
-import useHotkey from 'src/utils/hooks/use-hotkey';
+import { useHotkey } from 'src/utils/hooks/use-hotkey';
 
 function StandardTekstModal({
     submitTekst,

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import styled from 'styled-components';
 import useFieldState from '../../../../../utils/hooks/use-field-state';
-import useHotkey from '../../../../../utils/hooks/use-hotkey';
+import { useHotkey } from '../../../../../utils/hooks/use-hotkey';
 import StandardTekster from './StandardTekster';
 import SvgIkon from './StandardTekstIkon';
 

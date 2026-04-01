@@ -6,7 +6,7 @@ import Statsborgerskap from 'src/components/PersonLinje/Details/Familie/Statsbor
 import config from 'src/config';
 import { usePersonData, usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
 import { Kjonn, type KodeBeskrivelseKjonn } from 'src/lib/types/modiapersonoversikt-api';
-import useHotkey from 'src/utils/hooks/use-hotkey';
+import { useHotkey } from 'src/utils/hooks/use-hotkey';
 import { formaterMobiltelefonnummer } from 'src/utils/telefon-utils';
 import Card from '../Card';
 import ErrorBoundary from '../ErrorBoundary';
