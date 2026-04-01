@@ -126,7 +126,7 @@ function getHotkeys(): Hotkey[] {
     /**
      * TODO ønskelig å fjerne dobbelt-bokføring her og ved bruken av useHook
      * hurtigtastene kan definere actions her om det er enkelt (litt avhengig av funksjon)
-     * Evt kan bruken av `useHotkey` hooken føre til at dette blir registrert i en global context som kan brukes her
+     * Evt kan bruken av `useGlobalHotkey`-hooken føre til at dette blir registrert i en global context som kan brukes her
      */
     const naisInternNavDomain = config.isProd ? '.intern.nav.no' : '.intern.dev.nav.no';
     return [
