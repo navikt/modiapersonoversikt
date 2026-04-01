@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { Foreldrepenger, Utbetalingsperioder } from 'src/generated/modiapersonoversikt-api';
+import type { Foreldrepenger, SykepengerSpokelse } from 'src/generated/modiapersonoversikt-api';
 import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaringspenger';
 import type { Pensjon } from 'src/models/ytelse/pensjon';
 import type { Sykepenger } from 'src/models/ytelse/sykepenger';
@@ -23,7 +23,7 @@ interface Props {
     renderPensjon: (pensjon: Pensjon) => ReactNode;
     renderArbeidsavklaringspenger: (aap: Arbeidsavklaringspenger) => ReactNode;
     renderForeldrepenger: (ytelse: Foreldrepenger) => ReactNode;
-    renderSykepengerSpokelse: (ytelse: Utbetalingsperioder) => ReactNode;
+    renderSykepengerSpokelse: (ytelse: SykepengerSpokelse) => ReactNode;
 }
 
 interface Returns {

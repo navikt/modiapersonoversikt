@@ -1,4 +1,4 @@
-import type { Foreldrepenger, PseudoDagpengerVedtak, Utbetalingsperioder } from 'src/generated/modiapersonoversikt-api';
+import type { Foreldrepenger, PseudoDagpengerVedtak, SykepengerSpokelse } from 'src/generated/modiapersonoversikt-api';
 import {
     type Arbeidsavklaringspenger,
     getArbeidsavklaringspengerIdDato,
@@ -29,9 +29,9 @@ export type Ytelse =
     | Arbeidsavklaringspenger
     | Foreldrepenger
     | PseudoDagpengerVedtak
-    | Utbetalingsperioder;
+    | SykepengerSpokelse;
 
-export function isSykepengerSpokelse(ytelse: Ytelse): ytelse is Utbetalingsperioder {
+export function isSykepengerSpokelse(ytelse: Ytelse): ytelse is SykepengerSpokelse {
     return 'utbetaltePerioder' in ytelse;
 }
 

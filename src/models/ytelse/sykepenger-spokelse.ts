@@ -1,11 +1,11 @@
 import dayjs from 'dayjs';
-import type { Utbetalingsperioder } from 'src/generated/modiapersonoversikt-api';
+import type { SykepengerSpokelse } from 'src/generated/modiapersonoversikt-api';
 import { backendDatoformat } from 'src/utils/date-utils';
 
-export function getSykepengerSpokelseIdDato(ytelse: Utbetalingsperioder) {
+export function getSykepengerSpokelseIdDato(ytelse: SykepengerSpokelse) {
     return ytelse.utbetaltePerioder.firstOrNull()?.fom ?? dayjs().format(backendDatoformat);
 }
 
-export function getUnikSykepengerSpokelseKey(ytelse: Utbetalingsperioder) {
+export function getUnikSykepengerSpokelseKey(ytelse: SykepengerSpokelse) {
     return `spokelse-${ytelse.utbetaltePerioder.firstOrNull()?.fom}`;
 }

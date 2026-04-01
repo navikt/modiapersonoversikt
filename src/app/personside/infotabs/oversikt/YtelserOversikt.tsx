@@ -7,7 +7,7 @@ import { ytelserTest } from 'src/app/personside/infotabs/dyplenkeTest/utils-dypl
 import useBrukersYtelserMarkup from 'src/app/personside/infotabs/ytelser/useBrukersYtelserMarkup';
 import { CenteredLazySpinner } from 'src/components/LazySpinner';
 import VisMerKnapp from 'src/components/VisMerKnapp';
-import type { Foreldrepenger, Utbetalingsperioder } from 'src/generated/modiapersonoversikt-api';
+import type { Foreldrepenger, SykepengerSpokelse } from 'src/generated/modiapersonoversikt-api';
 import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaringspenger';
 import { getArbeidsavklaringspengerIdDato } from 'src/models/ytelse/arbeidsavklaringspenger';
 import { getForeldrepengerIdDato } from 'src/models/ytelse/foreldrepenger';
@@ -102,7 +102,7 @@ function SykepengerKomponent(props: { sykepenger: Sykepenger }) {
     );
 }
 
-function SykepengerSpokelseKomponent(props: { sykepenger: Utbetalingsperioder }) {
+function SykepengerSpokelseKomponent(props: { sykepenger: SykepengerSpokelse }) {
     const dyplenker = useInfotabsDyplenker();
 
     return (

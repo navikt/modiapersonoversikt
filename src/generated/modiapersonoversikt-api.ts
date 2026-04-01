@@ -1057,6 +1057,9 @@ export interface components {
             sanksjon?: components['schemas']['CommonPeriode'];
             sykmeldt?: components['schemas']['CommonPeriode'];
         };
+        SykepengerSpokelse: {
+            utbetaltePerioder: components['schemas']['Utbetalingsperiode'][];
+        };
         Utbetalingsperiode: {
             /** Format: date */
             fom: string;
@@ -1065,9 +1068,6 @@ export interface components {
             /** Format: double */
             grad: number;
             tags: string[];
-        };
-        Utbetalingsperioder: {
-            utbetaltePerioder: components['schemas']['Utbetalingsperiode'][];
         };
         PensjonSak: {
             /** Format: int64 */
@@ -1318,10 +1318,10 @@ export interface components {
             dayOfWeek: LocalDateDayOfWeek;
             /** Format: int32 */
             dayOfYear: number;
-            /** Format: date */
-            value$kotlinx_datetime: string;
             /** Format: int32 */
             monthNumber: number;
+            /** Format: date */
+            value$kotlinx_datetime: string;
         };
         LocalDateTime: {
             /** Format: date-time */
@@ -1344,12 +1344,12 @@ export interface components {
             /** Format: int32 */
             dayOfYear: number;
             date: components['schemas']['LocalDate'];
-            /** Format: date-time */
-            value$kotlinx_datetime: string;
-            /** Format: int32 */
-            monthNumber: number;
             /** Format: int32 */
             nanosecond: number;
+            /** Format: int32 */
+            monthNumber: number;
+            /** Format: date-time */
+            value$kotlinx_datetime: string;
         };
         LocalTime: {
             value?: string;
@@ -1359,9 +1359,9 @@ export interface components {
             minute: number;
             /** Format: int32 */
             second: number;
-            value$kotlinx_datetime: string;
             /** Format: int32 */
             nanosecond: number;
+            value$kotlinx_datetime: string;
         };
         ResultatSoknadsstatus: {
             resultat: components['schemas']['SoknadsstatusSakstema'][];
@@ -1906,8 +1906,8 @@ export interface components {
             opprettetDato?: string;
             finnesIGsak?: boolean;
             finnesIPsak?: boolean;
-            sakstypeForVisningGenerell?: boolean;
             saksIdVisning?: string;
+            sakstypeForVisningGenerell?: boolean;
         };
         Resultat: {
             saker: components['schemas']['JournalforingSak'][];
@@ -2206,8 +2206,8 @@ export type SykepengerResponse = components['schemas']['SykepengerResponse'];
 export type SykmeldingArbeidsforhold = components['schemas']['SykmeldingArbeidsforhold'];
 export type SykmeldingItem = components['schemas']['SykmeldingItem'];
 export type SykmeldingUtbetalingPaVent = components['schemas']['SykmeldingUtbetalingPaVent'];
+export type SykepengerSpokelse = components['schemas']['SykepengerSpokelse'];
 export type Utbetalingsperiode = components['schemas']['Utbetalingsperiode'];
-export type Utbetalingsperioder = components['schemas']['Utbetalingsperioder'];
 export type PensjonSak = components['schemas']['PensjonSak'];
 export type Foreldrepenger = components['schemas']['Foreldrepenger'];
 export type ForeldrepengerPeriode = components['schemas']['ForeldrepengerPeriode'];
@@ -2419,7 +2419,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    '*/*': components['schemas']['Utbetalingsperioder'];
+                    '*/*': components['schemas']['SykepengerSpokelse'];
                 };
             };
         };

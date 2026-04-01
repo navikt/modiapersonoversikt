@@ -18,7 +18,7 @@ import type {
     PensjonSak,
     PseudoDagpengerVedtak,
     Sykepenger,
-    Utbetalingsperioder,
+    SykepengerSpokelse,
     VedtakDto
 } from 'src/lib/types/modiapersonoversikt-api';
 import {
@@ -40,7 +40,7 @@ type Ytelse =
     | Arbeidsavklaringspenger
     | Foreldrepenger
     | PseudoDagpengerVedtak
-    | Utbetalingsperioder;
+    | SykepengerSpokelse;
 
 type Placeholder = { returnOnForbidden: string; returnOnError: string; returnOnNotFound: string };
 
@@ -79,7 +79,7 @@ export function getYtelseIdDato(ytelse: YtelseVedtak): string {
         case YtelseVedtakYtelseType.Sykepenger:
             return getSykepengerDato(ytelse.ytelseData.data as Sykepenger);
         case YtelseVedtakYtelseType.SykepengerSpokelse:
-            return getSykepengerSpokelseIdDato(ytelse.ytelseData.data as Utbetalingsperioder);
+            return getSykepengerSpokelseIdDato(ytelse.ytelseData.data as SykepengerSpokelse);
         case YtelseVedtakYtelseType.Tiltakspenge:
             return getTiltakspengerDato(ytelse.ytelseData.data as VedtakDto);
         case YtelseVedtakYtelseType.Pensjon:
@@ -100,7 +100,7 @@ export function getUnikYtelseKey(ytelse: YtelseVedtak) {
         case YtelseVedtakYtelseType.Sykepenger:
             return getUnikSykepengerKey(ytelse.ytelseData.data as Sykepenger);
         case YtelseVedtakYtelseType.SykepengerSpokelse:
-            return getUnikSykepengerSpokelseKey(ytelse.ytelseData.data as Utbetalingsperioder);
+            return getUnikSykepengerSpokelseKey(ytelse.ytelseData.data as SykepengerSpokelse);
         case YtelseVedtakYtelseType.Tiltakspenge:
             return getUnikTiltakspengerKey(ytelse.ytelseData.data as VedtakDto);
         case YtelseVedtakYtelseType.Pensjon:
@@ -120,7 +120,7 @@ function getUnikSykepengerKey(sykepenger: Sykepenger): string {
     return `sykepenger${getSykepengerDato(sykepenger)}`;
 }
 
-function getUnikSykepengerSpokelseKey(ytelse: Utbetalingsperioder) {
+function getUnikSykepengerSpokelseKey(ytelse: SykepengerSpokelse) {
     return `spokelse-${ytelse.utbetaltePerioder.firstOrNull()?.fom}`;
 }
 
@@ -136,7 +136,7 @@ function getSykepengerDato(sykepenger: Sykepenger) {
     return sykepenger.sykmeldtFom ?? dayjs().format(backendDatoformat);
 }
 
-function getSykepengerSpokelseIdDato(ytelse: Utbetalingsperioder) {
+function getSykepengerSpokelseIdDato(ytelse: SykepengerSpokelse) {
     return ytelse.utbetaltePerioder.firstOrNull()?.fom ?? dayjs().format(backendDatoformat);
 }
 

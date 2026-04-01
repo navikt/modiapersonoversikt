@@ -1,10 +1,10 @@
 import { Accordion, Heading, VStack } from '@navikt/ds-react';
 import Card from 'src/components/Card';
 import { TitleValuePairsComponent } from 'src/components/ytelser/Detail';
-import type { Utbetalingsperiode, Utbetalingsperioder } from 'src/generated/modiapersonoversikt-api';
+import type { SykepengerSpokelse, Utbetalingsperiode } from 'src/generated/modiapersonoversikt-api';
 import { datoEllerTomString, formaterDato, prosentEllerNull } from 'src/utils/string-utils';
 
-const SykpengerPerioder = ({ ytelse }: { ytelse: Utbetalingsperioder }) => {
+const SykpengerPerioder = ({ ytelse }: { ytelse: SykepengerSpokelse }) => {
     if (ytelse.utbetaltePerioder.length === 0) return <></>;
 
     const getEntries = (periode: Utbetalingsperiode) => {
@@ -36,7 +36,7 @@ const SykpengerPerioder = ({ ytelse }: { ytelse: Utbetalingsperioder }) => {
     );
 };
 
-export const SykePengerSpokelseDetails = ({ ytelse }: { ytelse: Utbetalingsperioder }) => {
+export const SykePengerSpokelseDetails = ({ ytelse }: { ytelse: SykepengerSpokelse }) => {
     return (
         <VStack gap="space-4" minHeight="0">
             <Card padding="space-16">
