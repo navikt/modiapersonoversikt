@@ -4,7 +4,7 @@ import { type RefObject, useRef } from 'react';
 import StandardTekster from 'src/components/melding/standardtekster/StandardTekster';
 import { useDisableDialog } from 'src/lib/state/dialog';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
-import { useHotkey } from 'src/utils/hooks/use-hotkey';
+import { useGlobalHotkey } from 'src/utils/hooks/use-hotkey';
 
 function StandardTekstModal({
     submitTekst,
@@ -15,7 +15,7 @@ function StandardTekstModal({
 }) {
     const modalRef = useRef<HTMLDialogElement>(null);
     const disableDialog = useDisableDialog();
-    useHotkey({ char: 'c', altKey: true }, () => modalRef.current?.showModal(), [], 'Standardtekster');
+    useGlobalHotkey({ char: 'c', altKey: true }, () => modalRef.current?.showModal(), [], 'Standardtekster');
 
     const setTekst = (nyTekst: string) => {
         trackGenereltUmamiEvent(trackingEvents.brukStandardtekst);

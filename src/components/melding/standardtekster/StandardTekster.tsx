@@ -17,7 +17,7 @@ import StandardtekstListe from 'src/components/melding/standardtekster/StandardT
 import StandardTekstPreview from 'src/components/melding/standardtekster/StandardTekstPreview';
 import { useStandardTekster } from 'src/lib/clients/skrivestotte';
 import { Locale } from 'src/lib/types/skrivestotte';
-import { useHotkey } from 'src/utils/hooks/use-hotkey';
+import { useGlobalHotkey } from 'src/utils/hooks/use-hotkey';
 
 type standardTekstSok = {
     filtrerteTekster: StandardTeksterType.Tekst[];
@@ -64,7 +64,7 @@ const useSetDefaultAtomVerdier = (hentetTekster?: StandardTeksterType.Tekster) =
 };
 
 const useSubmitTekstByEnter = (ref: RefObject<HTMLDivElement | null>, submitTekst: () => void, dep: DependencyList) => {
-    useHotkey('enter', () => submitTekst(), dep, 'velg standardtekst', ref?.current || undefined);
+    useGlobalHotkey('enter', () => submitTekst(), dep, 'velg standardtekst', ref?.current || undefined);
 };
 
 function StandardTekster({

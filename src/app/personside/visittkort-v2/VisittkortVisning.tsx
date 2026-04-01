@@ -3,7 +3,7 @@ import { UnmountClosed } from 'react-collapse';
 import AriaNotification from '../../../components/AriaNotification';
 import { useVisittkortState } from '../../../context/visittkort-state';
 import { trackAccordionClosed, trackAccordionOpened } from '../../../utils/analytics';
-import { useHotkey } from '../../../utils/hooks/use-hotkey';
+import { useGlobalHotkey } from '../../../utils/hooks/use-hotkey';
 import useUrlNyPersonforvalter from '../../brukerprofil/useUrlNyPersonforvalter';
 import VisittkortBody from './body/VisittkortBody';
 import { harFeilendeSystemer } from './harFeilendeSystemer';
@@ -32,8 +32,8 @@ function VisittkortVisning(props: Props) {
         return erApen ? trackAccordionOpened('Visittkort') : trackAccordionClosed('Visittkort');
     }, [erApen, isMount]);
 
-    useHotkey({ char: 'n', altKey: true }, () => toggleApen(), [toggleApen], 'Visittkort');
-    useHotkey(
+    useGlobalHotkey({ char: 'n', altKey: true }, () => toggleApen(), [toggleApen], 'Visittkort');
+    useGlobalHotkey(
         { char: 'b', altKey: true },
         () => window.open(lenkeNyBrukerprofil, '_blank', 'noopener noreferrer'),
         [lenkeNyBrukerprofil],

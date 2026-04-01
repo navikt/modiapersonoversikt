@@ -1,5 +1,5 @@
 import type { DependencyList } from 'react';
-import { useHotkey } from 'src/utils/hooks/use-hotkey';
+import { useGlobalHotkey } from 'src/utils/hooks/use-hotkey';
 import { modulo } from 'src/utils/math';
 
 export function usePiltasterIListe<T>(
@@ -18,8 +18,8 @@ export function usePiltasterIListe<T>(
         }
     };
 
-    useHotkey('arrowup', velg(-1), dependencies, 'Neste listelement', listeRef?.current ?? undefined);
-    useHotkey('arrowdown', velg(1), dependencies, 'Neste listeelement', listeRef?.current ?? undefined);
+    useGlobalHotkey('arrowup', velg(-1), dependencies, 'Neste listelement', listeRef?.current ?? undefined);
+    useGlobalHotkey('arrowdown', velg(1), dependencies, 'Neste listeelement', listeRef?.current ?? undefined);
 }
 
 /**
@@ -34,14 +34,14 @@ export function useFokusVedPiltaster(
     foksuserPaaValgtTema: () => void,
     fokuserPaaForsteSak: () => void
 ) {
-    useHotkey(
+    useGlobalHotkey(
         'arrowright',
         fokuserPaaForsteSak,
         dependencies,
         'Gå til liste høyre',
         temaListeRef?.current ?? undefined
     );
-    useHotkey(
+    useGlobalHotkey(
         'arrowleft',
         foksuserPaaValgtTema,
         dependencies,
@@ -49,14 +49,14 @@ export function useFokusVedPiltaster(
         saksListeRef?.current ?? undefined
     );
 
-    useHotkey(
+    useGlobalHotkey(
         'arrowdown',
         foksuserPaaValgtTema,
         dependencies,
         'Fokuser på første sak i listen',
         temaListeRef.current ?? undefined
     );
-    useHotkey(
+    useGlobalHotkey(
         'arrowdown',
         fokuserPaaForsteSak,
         dependencies,
