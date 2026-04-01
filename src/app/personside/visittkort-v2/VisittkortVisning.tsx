@@ -3,7 +3,7 @@ import { UnmountClosed } from 'react-collapse';
 import AriaNotification from '../../../components/AriaNotification';
 import { useVisittkortState } from '../../../context/visittkort-state';
 import { trackAccordionClosed, trackAccordionOpened } from '../../../utils/analytics';
-import useHotkey from '../../../utils/hooks/use-hotkey';
+import { useHotkey } from '../../../utils/hooks/use-hotkey';
 import useUrlNyPersonforvalter from '../../brukerprofil/useUrlNyPersonforvalter';
 import VisittkortBody from './body/VisittkortBody';
 import { harFeilendeSystemer } from './harFeilendeSystemer';

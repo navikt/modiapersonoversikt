@@ -16,7 +16,7 @@ import theme from '../../../../../styles/personOversiktTheme';
 import { usePrevious } from '../../../../../utils/customHooks';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
 import useFieldState, { type FieldState } from '../../../../../utils/hooks/use-field-state';
-import useHotkey from '../../../../../utils/hooks/use-hotkey';
+import { useHotkey } from '../../../../../utils/hooks/use-hotkey';
 import { modulo } from '../../../../../utils/math';
 import { type AutofullforData, autofullfor, byggAutofullforMap, useAutoFullforData } from '../autofullforUtils';
 import type * as StandardTeksterModels from './domain';

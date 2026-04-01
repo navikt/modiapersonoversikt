@@ -17,7 +17,7 @@ import StandardtekstListe from 'src/components/melding/standardtekster/StandardT
 import StandardTekstPreview from 'src/components/melding/standardtekster/StandardTekstPreview';
 import { useStandardTekster } from 'src/lib/clients/skrivestotte';
 import { Locale } from 'src/lib/types/skrivestotte';
-import useHotkey from 'src/utils/hooks/use-hotkey';
+import { useHotkey } from 'src/utils/hooks/use-hotkey';
 
 type standardTekstSok = {
     filtrerteTekster: StandardTeksterType.Tekst[];

@@ -34,7 +34,7 @@ function matches(keyDescription: KeyDescription, event: KeyboardEvent): boolean 
     ].every((comp) => comp);
 }
 
-export default function useHotkey(
+export function useHotkey(
     key: string | KeyDescription,
     action: () => void,
     deps: DependencyList,

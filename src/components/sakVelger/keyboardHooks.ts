@@ -1,5 +1,5 @@
 import type { DependencyList } from 'react';
-import useHotkey from 'src/utils/hooks/use-hotkey';
+import { useHotkey } from 'src/utils/hooks/use-hotkey';
 import { modulo } from 'src/utils/math';
 
 export function usePiltasterIListe<T>(
