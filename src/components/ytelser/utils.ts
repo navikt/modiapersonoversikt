@@ -96,7 +96,7 @@ const filterYtelser = (ytelser: YtelseVedtak[], filters: YtelseFilter): YtelseVe
         filteredList = filteredList.filter((ytelse) => {
             const ytelseDato = getYtelseIdDato(ytelse);
             const dato = dayjs(ytelseDato);
-            return dato.isSameOrAfter(dateRange.from) && dato.isSameOrBefore(dateRange.to);
+            return dato.isSameOrAfter(dayjs(dateRange.from), 'day') && dato.isSameOrBefore(dayjs(dateRange.to), 'day');
         });
     }
 

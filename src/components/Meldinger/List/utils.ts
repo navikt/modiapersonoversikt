@@ -209,7 +209,10 @@ export function useFilterMeldinger() {
         if (!dateRange) return filteredByType;
         return filteredByType.filter((t) => {
             const lastMsg = dayjs(nyesteMelding(t).opprettetDato);
-            return lastMsg.isAfter(dateRange.from) && lastMsg.isBefore(dateRange.to);
+            return (
+                lastMsg.isSameOrAfter(dayjs(dateRange.from), 'day') &&
+                lastMsg.isSameOrBefore(dayjs(dateRange.to), 'day')
+            );
         });
     }, [filteredByType, dateRange]);
 
