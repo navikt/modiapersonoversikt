@@ -46,7 +46,7 @@ function SykepengerPerioderSpokelse(props: Props) {
         <ErrorBoundary boundaryName="SykepengerSpokelse">
             <article>
                 <StyledPanel>
-                    <h2 className="sr-only">Sykepenger</h2>
+                    <h2 className="sr-only">Sykepenger (Speil)</h2>
                     <OversiktStyling>
                         <SykepengerPerioder perioder={props.sykepenger.utbetaltePerioder} />
                     </OversiktStyling>

@@ -632,7 +632,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       <h3
                         class="typo-undertittel"
                       >
-                        Sykepenger
+                        Sykepenger (Speil)
                       </h3>
                       <p
                         class="typo-element"
@@ -792,7 +792,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       <h3
                         class="typo-undertittel"
                       >
-                        Sykepengerrettighet
+                        Sykepenger (Infotrygd)
                       </h3>
                       <p
                         class="typo-element"
