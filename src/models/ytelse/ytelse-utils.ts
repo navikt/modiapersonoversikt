@@ -103,9 +103,6 @@ export function getUnikYtelseKey(ytelse: Ytelse) {
     if (isArbeidsavklaringspenger(ytelse)) {
         return getUnikArbeidsavklaringspengerKey(ytelse);
     }
-    if (isArbeidsavklaringspenger(ytelse)) {
-        return getUnikArbeidsavklaringspengerKey(ytelse);
-    }
     if (isForeldrePengerFpSak(ytelse)) {
         return getUnikForeldrepengerFpSakKey(ytelse);
     }
