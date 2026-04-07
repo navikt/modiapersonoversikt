@@ -1,12 +1,12 @@
 import { fakerNB_NO as faker } from '@faker-js/faker';
 import dayjs from 'dayjs';
 import navfaker from 'nav-faker/dist/index';
-import type { Utbetalingsperioder } from 'src/generated/modiapersonoversikt-api';
+import type { SykepengerSpokelse } from 'src/generated/modiapersonoversikt-api';
 import { statiskSykepengerSpokelseMock } from 'src/mock/ytelse/statiskSykepengerSpokelseMock';
 import { backendDatoformat } from 'src/utils/date-utils';
 import { aremark } from '../persondata/aremark';
 
-export function getMockSykpengerSpokelseResponse(fnr: string): Utbetalingsperioder {
+export function getMockSykpengerSpokelseResponse(fnr: string): SykepengerSpokelse {
     if (fnr === aremark.personIdent) {
         return statiskSykepengerSpokelseMock;
     }
@@ -31,12 +31,14 @@ export function getMockSykpengerSpokelseResponse(fnr: string): Utbetalingsperiod
             {
                 fom: fomDatoAndrePeriode,
                 tom: tomDato,
-                grad: 50
+                grad: 50,
+                tags: []
             },
             {
                 fom: fomDato,
                 tom: tomDatoForstePeriode,
-                grad: 100
+                grad: 100,
+                tags: []
             }
         ]
     };

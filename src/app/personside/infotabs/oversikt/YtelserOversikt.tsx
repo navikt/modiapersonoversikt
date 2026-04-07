@@ -7,10 +7,10 @@ import { ytelserTest } from 'src/app/personside/infotabs/dyplenkeTest/utils-dypl
 import useBrukersYtelserMarkup from 'src/app/personside/infotabs/ytelser/useBrukersYtelserMarkup';
 import { CenteredLazySpinner } from 'src/components/LazySpinner';
 import VisMerKnapp from 'src/components/VisMerKnapp';
-import type { ForeldrepengerFpSak, Utbetalingsperioder } from 'src/generated/modiapersonoversikt-api';
+import type { Foreldrepenger, SykepengerSpokelse } from 'src/generated/modiapersonoversikt-api';
 import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaringspenger';
 import { getArbeidsavklaringspengerIdDato } from 'src/models/ytelse/arbeidsavklaringspenger';
-import { getForeldrepengerFpSakIdDato } from 'src/models/ytelse/foreldrepenger-fpsak';
+import { getForeldrepengerIdDato } from 'src/models/ytelse/foreldrepenger';
 import { getPensjonIdDato, getUnikPensjonKey, type Pensjon } from 'src/models/ytelse/pensjon';
 import { getSykepengerIdDato, type Sykepenger } from 'src/models/ytelse/sykepenger';
 import { getSykepengerSpokelseIdDato } from 'src/models/ytelse/sykepenger-spokelse';
@@ -53,7 +53,7 @@ function YtelserOversikt(props: Props) {
         ),
         renderPensjon: (pensjon) => <PensjonKomponent pensjon={pensjon} key={getUnikPensjonKey(pensjon)} />,
         renderArbeidsavklaringspenger: (aap) => <ArbeidsavklaringspengerKomponent aap={aap} />,
-        renderForeldrepengerFpSak: (ytelse) => <ForeldrepengerFpSakKomponent ytelse={ytelse} />
+        renderForeldrepenger: (ytelse) => <ForeldrepengerKomponent ytelse={ytelse} />
     });
 
     const ytelserListe = ytelserMarkup.slice(0, 2);
@@ -102,7 +102,7 @@ function SykepengerKomponent(props: { sykepenger: Sykepenger }) {
     );
 }
 
-function SykepengerSpokelseKomponent(props: { sykepenger: Utbetalingsperioder }) {
+function SykepengerSpokelseKomponent(props: { sykepenger: SykepengerSpokelse }) {
     const dyplenker = useInfotabsDyplenker();
 
     return (
@@ -186,9 +186,9 @@ function ArbeidsavklaringspengerKomponent(props: { aap: Arbeidsavklaringspenger 
         </VisMerKnapp>
     );
 }
-function ForeldrepengerFpSakKomponent(props: { ytelse: ForeldrepengerFpSak }) {
+function ForeldrepengerKomponent(props: { ytelse: Foreldrepenger }) {
     const dyplenker = useInfotabsDyplenker();
-    const fomId = getForeldrepengerFpSakIdDato(props.ytelse);
+    const fomId = getForeldrepengerIdDato(props.ytelse);
     const fom = props.ytelse.fom;
     const tom = props.ytelse.tom;
     return (

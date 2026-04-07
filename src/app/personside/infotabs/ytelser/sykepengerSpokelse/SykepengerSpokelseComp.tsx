@@ -1,14 +1,14 @@
 import Panel from 'nav-frontend-paneler';
 import YtelserInfoGruppe from 'src/app/personside/infotabs/ytelser/felles-styling/YtelserInfoGruppe';
 import ErrorBoundary from 'src/components/ErrorBoundary';
-import type { Utbetalingsperiode, Utbetalingsperioder } from 'src/generated/modiapersonoversikt-api';
+import type { SykepengerSpokelse, Utbetalingsperiode } from 'src/generated/modiapersonoversikt-api';
 import theme from 'src/styles/personOversiktTheme';
 import { periodeEllerNull, prosentEllerNull } from 'src/utils/string-utils';
 import { StyledTable } from 'src/utils/table/StyledTable';
 import styled from 'styled-components';
 
 interface Props {
-    sykepenger: Utbetalingsperioder;
+    sykepenger: SykepengerSpokelse;
 }
 
 const StyledPanel = styled(Panel)`

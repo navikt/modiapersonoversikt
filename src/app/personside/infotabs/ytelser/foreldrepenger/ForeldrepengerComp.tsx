@@ -3,15 +3,15 @@ import Panel from 'nav-frontend-paneler';
 import YtelserInfoGruppe from 'src/app/personside/infotabs/ytelser/felles-styling/YtelserInfoGruppe';
 import DescriptionList from 'src/components/DescriptionList';
 import ErrorBoundary from 'src/components/ErrorBoundary';
-import { type ForeldrepengerFpSak, ForeldrepengerFpSakYtelse } from 'src/generated/modiapersonoversikt-api';
-import type { ForeldrepengerFpSakPeriode } from 'src/models/ytelse/foreldrepenger-fpsak';
+import { type Foreldrepenger, ForeldrepengerYtelse } from 'src/generated/modiapersonoversikt-api';
+import type { ForeldrepengerPerioder } from 'src/models/ytelse/foreldrepenger';
 import theme from 'src/styles/personOversiktTheme';
 import { formaterDato, periodeEllerNull, prosentEllerNull } from 'src/utils/string-utils';
 import { StyledTable } from 'src/utils/table/StyledTable';
 import styled from 'styled-components';
 
 interface Props {
-    foreldrepenger: ForeldrepengerFpSak;
+    foreldrepenger: Foreldrepenger;
 }
 
 const StyledPanel = styled(Panel)`
@@ -28,7 +28,7 @@ const OversiktStyling = styled.div`
     }
 `;
 
-function ForeldrepengerPerioderFpSak({ perioder }: { perioder: ForeldrepengerFpSakPeriode[] }) {
+function ForeldrepengerPerioder({ perioder }: { perioder: ForeldrepengerPerioder[] }) {
     if (perioder.length === 0) {
         return <></>;
     }
@@ -44,8 +44,8 @@ function ForeldrepengerPerioderFpSak({ perioder }: { perioder: ForeldrepengerFpS
     );
 }
 
-function ForeldrepengerFpSakComp(props: Props) {
-    const erEngangstonad = props.foreldrepenger.ytelse === ForeldrepengerFpSakYtelse.ENGANGSST_NAD;
+function ForeldrepengerComp(props: Props) {
+    const erEngangstonad = props.foreldrepenger.ytelse === ForeldrepengerYtelse.ENGANGSST_NAD;
 
     const perioder = {
         'Fra og med': props.foreldrepenger.fom ? formaterDato(props.foreldrepenger.fom) : '',
@@ -67,7 +67,7 @@ function ForeldrepengerFpSakComp(props: Props) {
                         <YtelserInfoGruppe tittel={`Om ${props.foreldrepenger.ytelse.toLowerCase()}`}>
                             <DescriptionList entries={entries} />
                         </YtelserInfoGruppe>
-                        {!erEngangstonad && <ForeldrepengerPerioderFpSak perioder={props.foreldrepenger.perioder} />}
+                        {!erEngangstonad && <ForeldrepengerPerioder perioder={props.foreldrepenger.perioder} />}
                     </OversiktStyling>
                 </StyledPanel>
             </article>
@@ -75,4 +75,4 @@ function ForeldrepengerFpSakComp(props: Props) {
     );
 }
 
-export default ForeldrepengerFpSakComp;
+export default ForeldrepengerComp;

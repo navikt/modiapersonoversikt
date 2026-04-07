@@ -437,9 +437,9 @@ export const useArbeidsavklaringspenger = (fom: string, tom: string) => {
     );
 };
 
-export const useForeldrepengerFpSak = (fom: string, tom: string) => {
+export const useForeldrepenger = (fom: string, tom: string) => {
     const fnr = usePersonAtomValue();
-    return $api.useQuery('post', '/rest/ytelse/foreldrepenger_fpsak', { body: { fnr, fom, tom } }, ytelseQueryOptions);
+    return $api.useQuery('post', '/rest/ytelse/foreldrepenger', { body: { fnr, fom, tom } }, ytelseQueryOptions);
 };
 
 export const useDagpenger = (fom: string, tom: string) => {

@@ -6,7 +6,7 @@ import { usePersonAtomValue } from 'src/lib/state/context';
 import { getYtelseIdDato, type Ytelse } from 'src/models/ytelse/ytelse-utils';
 import type { FraTilDato } from 'src/redux/utbetalinger/types';
 import { useArbeidsavklaringspenger } from 'src/rest/resources/arbeidsavklaringspengerResource';
-import { useForeldrepengerFpSak } from 'src/rest/resources/foreldrepengerFpSakResource';
+import { useForeldrepenger } from 'src/rest/resources/foreldrepengerResource';
 import { usePensjon } from 'src/rest/resources/pensjonResource';
 import { useSykepenger } from 'src/rest/resources/sykepengerResource';
 import { useSykepengerSpokelse } from 'src/rest/resources/sykepengerSpokelseResource';
@@ -41,7 +41,7 @@ const arbeidsavklaringsPengerPlaceholder = {
     returnOnForbidden: 'Du har ikke tilgang til arbeidsavklaringspenger'
 };
 
-const foreldrepegerFpSakPlaceholder = {
+const foreldrepegerPlaceholder = {
     returnOnError: 'Kunne ikke laste foreldrepenger',
     returnOnNotFound: 'Kunne finne foreldrepenger',
     returnOnForbidden: 'Du har ikke tilgang til foreldrepenger'
@@ -70,7 +70,7 @@ function useBrukersYtelser(periode: FraTilDato): Returns {
     const tiltakspengerResponse = useTiltakspenger(fnr, periode.fra, periode.til);
     const pensjonResponse = usePensjon(fnr, periode.fra, periode.til);
     const arbeidsavklaringspengerResponse = useArbeidsavklaringspenger(fnr, periode.fra, periode.til);
-    const foreldrepengerFpSakResponse = useForeldrepengerFpSak(fnr, periode.fra, periode.til);
+    const foreldrepengerResponse = useForeldrepenger(fnr, periode.fra, periode.til);
 
     return useMemo(() => {
         const pending =
@@ -79,13 +79,13 @@ function useBrukersYtelser(periode: FraTilDato): Returns {
             tiltakspengerResponse.isLoading ||
             pensjonResponse.isLoading ||
             arbeidsavklaringspengerResponse.isLoading ||
-            foreldrepengerFpSakResponse.isLoading;
+            foreldrepengerResponse.isLoading;
 
         const sykepenger = sykepengerResponse.data?.sykepenger ?? [];
         const tiltakspenger = tiltakspengerResponse.data ?? [];
         const pensjon = pensjonResponse.data ?? [];
         const arbeidsavklaringspenger = arbeidsavklaringspengerResponse.data ?? [];
-        const foreldrePengerFpSak = foreldrepengerFpSakResponse.data ?? [];
+        const foreldrePenger = foreldrepengerResponse.data ?? [];
         const sykepengerSpokelse =
             sykepengerSpokelseResponse.data && sykepengerSpokelseResponse.data.utbetaltePerioder.length > 0
                 ? [sykepengerSpokelseResponse.data]
@@ -97,7 +97,7 @@ function useBrukersYtelser(periode: FraTilDato): Returns {
             ...tiltakspenger,
             ...pensjon,
             ...arbeidsavklaringspenger,
-            ...foreldrePengerFpSak
+            ...foreldrePenger
         ];
         const ytelserSortert = ytelser.sort(datoSynkende((ytelse: Ytelse) => getYtelseIdDato(ytelse)));
 
@@ -107,7 +107,7 @@ function useBrukersYtelser(periode: FraTilDato): Returns {
             placeholder(tiltakspengerResponse, tiltakspengerPlaceholder),
             placeholder(pensjonResponse, pensjonPlaceholder),
             placeholder(arbeidsavklaringspengerResponse, arbeidsavklaringsPengerPlaceholder),
-            placeholder(foreldrepengerFpSakResponse, foreldrepegerFpSakPlaceholder)
+            placeholder(foreldrepengerResponse, foreldrepegerPlaceholder)
         ];
 
         const harFeil =
@@ -116,7 +116,7 @@ function useBrukersYtelser(periode: FraTilDato): Returns {
             tiltakspengerResponse.isError ||
             pensjonResponse.isError ||
             arbeidsavklaringspengerResponse.isError ||
-            foreldrepengerFpSakResponse.isError;
+            foreldrepengerResponse.isError;
         return { ytelser: ytelserSortert, pending: pending, placeholders: placeholders, harFeil: harFeil };
     }, [
         sykepengerResponse,
@@ -124,7 +124,7 @@ function useBrukersYtelser(periode: FraTilDato): Returns {
         tiltakspengerResponse,
         pensjonResponse,
         arbeidsavklaringspengerResponse,
-        foreldrepengerFpSakResponse
+        foreldrepengerResponse
     ]);
 }
 

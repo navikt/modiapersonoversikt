@@ -52,22 +52,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/ytelse/pleiepenger': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations['hentPleiepenger'];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     '/rest/ytelse/pensjon': {
         parameters: {
             query?: never;
@@ -78,22 +62,6 @@ export interface paths {
         get?: never;
         put?: never;
         post: operations['hentPensjonSaker'];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    '/rest/ytelse/foreldrepenger_fpsak': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations['hentForeldrepengerFpSak'];
         delete?: never;
         options?: never;
         head?: never;
@@ -1089,6 +1057,9 @@ export interface components {
             sanksjon?: components['schemas']['CommonPeriode'];
             sykmeldt?: components['schemas']['CommonPeriode'];
         };
+        SykepengerSpokelse: {
+            utbetaltePerioder: components['schemas']['Utbetalingsperiode'][];
+        };
         Utbetalingsperiode: {
             /** Format: date */
             fom: string;
@@ -1096,59 +1067,7 @@ export interface components {
             tom: string;
             /** Format: double */
             grad: number;
-        };
-        Utbetalingsperioder: {
-            utbetaltePerioder: components['schemas']['Utbetalingsperiode'][];
-        };
-        Pleiepenger: {
-            barnet?: string;
-            omsorgsperson?: string;
-            andreOmsorgsperson?: string;
-            /** Format: int32 */
-            restDagerFomIMorgen?: number;
-            /** Format: int32 */
-            forbrukteDagerTomIDag?: number;
-            /** Format: int32 */
-            pleiepengedager?: number;
-            /** Format: int32 */
-            restDagerAnvist?: number;
-            perioder?: components['schemas']['PleiepengerPeriode'][];
-        };
-        PleiepengerArbeidsforhold: {
-            arbeidsgiverNavn?: string;
-            arbeidsgiverKontonr?: string;
-            inntektsperiode?: string;
-            refusjonTom?: string;
-            refusjonstype?: string;
-            arbeidsgiverOrgnr?: string;
-            arbeidskategori?: string;
-            inntektForPerioden?: number;
-        };
-        PleiepengerPeriode: {
-            fom?: string;
-            /** Format: int32 */
-            antallPleiepengedager?: number;
-            arbeidsforhold?: components['schemas']['PleiepengerArbeidsforhold'][];
-            vedtak?: components['schemas']['PleiepengerVedtak'][];
-        };
-        PleiepengerResponse: {
-            pleiepenger?: components['schemas']['Pleiepenger'][];
-        };
-        PleiepengerVedtak: {
-            periode?: components['schemas']['PleiepengerVedtakPeriode'];
-            /** Format: int32 */
-            kompensasjonsgrad?: number;
-            /** Format: int32 */
-            utbetalingsgrad?: number;
-            anvistUtbetaling?: string;
-            bruttobelop?: number;
-            dagsats?: number;
-            /** Format: int32 */
-            pleiepengegrad?: number;
-        };
-        PleiepengerVedtakPeriode: {
-            fom?: string;
-            tom?: string;
+            tags: string[];
         };
         PensjonSak: {
             /** Format: int64 */
@@ -1161,86 +1080,22 @@ export interface components {
             tomDato?: string;
             enhetsId: string;
         };
-        ForeldrepengerFpSak: {
+        Foreldrepenger: {
             /** @enum {string} */
-            ytelse: ForeldrepengerFpSakYtelse;
+            ytelse: ForeldrepengerYtelse;
             saksnummer: string;
-            perioder: components['schemas']['UtbetalingFpSak'][];
+            perioder: components['schemas']['ForeldrepengerPeriode'][];
             /** Format: date */
             fom: string;
             /** Format: date */
             tom: string;
         };
-        UtbetalingFpSak: {
+        ForeldrepengerPeriode: {
             /** Format: date */
             fom: string;
             /** Format: date */
             tom: string;
             grad: number;
-        };
-        ForeldrepengePeriode: {
-            fodselsnummer?: string;
-            harAleneomsorgFar?: boolean;
-            harAleneomsorgMor?: boolean;
-            /** Format: double */
-            arbeidsprosentMor?: number;
-            avslagsaarsak?: string;
-            avslaatt?: string;
-            /** Format: double */
-            disponibelGradering?: number;
-            erFedrekvote?: boolean;
-            forskyvelsesaarsak1?: string;
-            forskyvelsesperiode1?: components['schemas']['CommonPeriode'];
-            forskyvelsesaarsak2?: string;
-            forskyvelsesperiode2?: components['schemas']['CommonPeriode'];
-            foreldrepengerFom?: string;
-            midlertidigStansDato?: string;
-            erModrekvote?: boolean;
-            morSituasjon?: string;
-            rettTilFedrekvote?: string;
-            rettTilModrekvote?: string;
-            stansaarsak?: string;
-            historiskeUtbetalinger?: components['schemas']['CommonHistoriskUtbetaling'][];
-            kommendeUtbetalinger?: components['schemas']['CommonKommendeUtbetaling'][];
-        };
-        Foreldrepenger: {
-            forelder?: string;
-            andreForeldersFnr?: string;
-            /** Format: int32 */
-            antallBarn?: number;
-            barnetsFodselsdato?: string;
-            /** Format: double */
-            dekningsgrad?: number;
-            fedrekvoteTom?: string;
-            modrekvoteTom?: string;
-            foreldrepengetype?: string;
-            /** Format: int32 */
-            graderingsdager?: number;
-            /** Format: int32 */
-            restDager?: number;
-            rettighetFom?: string;
-            eldsteIdDato?: string;
-            foreldreAvSammeKjonn?: string;
-            periode?: components['schemas']['ForeldrepengePeriode'][];
-            slutt?: string;
-            arbeidsforhold?: components['schemas']['ForeldrepengerArbeidsforhold'][];
-            erArbeidsgiverperiode?: boolean;
-            arbeidskategori?: string;
-            omsorgsovertakelse?: string;
-            termin?: string;
-        };
-        ForeldrepengerArbeidsforhold: {
-            arbeidsgiverNavn?: string;
-            arbeidsgiverKontonr?: string;
-            inntektsperiode?: string;
-            /** Format: double */
-            inntektForPerioden?: number;
-            sykepengerFom?: string;
-            refusjonTom?: string;
-            refusjonstype?: string;
-        };
-        ForeldrepengerResponse: {
-            foreldrepenger?: components['schemas']['Foreldrepenger'][];
         };
         DatadelingRequestDagpengerDto: {
             personIdent: string;
@@ -1453,10 +1308,6 @@ export interface components {
         LocalDate: {
             /** Format: date */
             value?: string;
-            /** Format: date */
-            value$kotlinx_datetime: string;
-            /** Format: int32 */
-            monthNumber: number;
             /** Format: int32 */
             year: number;
             /** Format: int32 */
@@ -1467,16 +1318,14 @@ export interface components {
             dayOfWeek: LocalDateDayOfWeek;
             /** Format: int32 */
             dayOfYear: number;
+            /** Format: int32 */
+            monthNumber: number;
+            /** Format: date */
+            value$kotlinx_datetime: string;
         };
         LocalDateTime: {
             /** Format: date-time */
             value?: string;
-            /** Format: date-time */
-            value$kotlinx_datetime: string;
-            /** Format: int32 */
-            monthNumber: number;
-            /** Format: int32 */
-            nanosecond: number;
             time: components['schemas']['LocalTime'];
             /** Format: int32 */
             year: number;
@@ -1495,18 +1344,24 @@ export interface components {
             /** Format: int32 */
             dayOfYear: number;
             date: components['schemas']['LocalDate'];
+            /** Format: int32 */
+            nanosecond: number;
+            /** Format: int32 */
+            monthNumber: number;
+            /** Format: date-time */
+            value$kotlinx_datetime: string;
         };
         LocalTime: {
             value?: string;
-            value$kotlinx_datetime: string;
-            /** Format: int32 */
-            nanosecond: number;
             /** Format: int32 */
             hour: number;
             /** Format: int32 */
             minute: number;
             /** Format: int32 */
             second: number;
+            /** Format: int32 */
+            nanosecond: number;
+            value$kotlinx_datetime: string;
         };
         ResultatSoknadsstatus: {
             resultat: components['schemas']['SoknadsstatusSakstema'][];
@@ -2051,8 +1906,8 @@ export interface components {
             opprettetDato?: string;
             finnesIGsak?: boolean;
             finnesIPsak?: boolean;
-            sakstypeForVisningGenerell?: boolean;
             saksIdVisning?: string;
+            sakstypeForVisningGenerell?: boolean;
         };
         Resultat: {
             saker: components['schemas']['JournalforingSak'][];
@@ -2351,21 +2206,11 @@ export type SykepengerResponse = components['schemas']['SykepengerResponse'];
 export type SykmeldingArbeidsforhold = components['schemas']['SykmeldingArbeidsforhold'];
 export type SykmeldingItem = components['schemas']['SykmeldingItem'];
 export type SykmeldingUtbetalingPaVent = components['schemas']['SykmeldingUtbetalingPaVent'];
+export type SykepengerSpokelse = components['schemas']['SykepengerSpokelse'];
 export type Utbetalingsperiode = components['schemas']['Utbetalingsperiode'];
-export type Utbetalingsperioder = components['schemas']['Utbetalingsperioder'];
-export type Pleiepenger = components['schemas']['Pleiepenger'];
-export type PleiepengerArbeidsforhold = components['schemas']['PleiepengerArbeidsforhold'];
-export type PleiepengerPeriode = components['schemas']['PleiepengerPeriode'];
-export type PleiepengerResponse = components['schemas']['PleiepengerResponse'];
-export type PleiepengerVedtak = components['schemas']['PleiepengerVedtak'];
-export type PleiepengerVedtakPeriode = components['schemas']['PleiepengerVedtakPeriode'];
 export type PensjonSak = components['schemas']['PensjonSak'];
-export type ForeldrepengerFpSak = components['schemas']['ForeldrepengerFpSak'];
-export type UtbetalingFpSak = components['schemas']['UtbetalingFpSak'];
-export type ForeldrepengePeriode = components['schemas']['ForeldrepengePeriode'];
 export type Foreldrepenger = components['schemas']['Foreldrepenger'];
-export type ForeldrepengerArbeidsforhold = components['schemas']['ForeldrepengerArbeidsforhold'];
-export type ForeldrepengerResponse = components['schemas']['ForeldrepengerResponse'];
+export type ForeldrepengerPeriode = components['schemas']['ForeldrepengerPeriode'];
 export type DatadelingRequestDagpengerDto = components['schemas']['DatadelingRequestDagpengerDto'];
 export type PeriodeDagpengerDto = components['schemas']['PeriodeDagpengerDto'];
 export type PseudoDagpengerVedtak = components['schemas']['PseudoDagpengerVedtak'];
@@ -2574,31 +2419,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    '*/*': components['schemas']['Utbetalingsperioder'];
-                };
-            };
-        };
-    };
-    hentPleiepenger: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                'application/json': components['schemas']['FnrDatoRangeRequest'];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['PleiepengerResponse'];
+                    '*/*': components['schemas']['SykepengerSpokelse'];
                 };
             };
         };
@@ -2627,30 +2448,6 @@ export interface operations {
             };
         };
     };
-    hentForeldrepengerFpSak: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                'application/json': components['schemas']['FnrDatoRangeRequest'];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['ForeldrepengerFpSak'][];
-                };
-            };
-        };
-    };
     hentForeldrepenger: {
         parameters: {
             query?: never;
@@ -2670,7 +2467,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    '*/*': components['schemas']['ForeldrepengerResponse'];
+                    '*/*': components['schemas']['Foreldrepenger'][];
                 };
             };
         };
@@ -3896,7 +3693,7 @@ export enum VedtakDTOKilde {
     TPSAK = 'TPSAK',
     ARENA = 'ARENA'
 }
-export enum ForeldrepengerFpSakYtelse {
+export enum ForeldrepengerYtelse {
     ENGANGSST_NAD = 'ENGANGSST\u00D8NAD',
     FORELDREPENGER = 'FORELDREPENGER',
     SVANGERSKAPSPENGER = 'SVANGERSKAPSPENGER'
