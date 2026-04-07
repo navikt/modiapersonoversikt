@@ -84,7 +84,7 @@ const Arbeidssituasjon = ({ sykepenger }: { sykepenger: Sykepenger }) => {
                 Arbeidssituasjon
             </Heading>
             <TitleValuePairsComponent entries={arbeidssituasjonEntries} columns={{ xs: 2, lg: 4 }} />
-            <ArbeidsForholdListe arbeidsForholdList={sykepenger.arbeidsforholdListe ?? []} ytelseType="Sykepenger" />
+            <ArbeidsForholdListe arbeidsForholdList={sykepenger.arbeidsforholdListe ?? []} />
         </Card>
     );
 };

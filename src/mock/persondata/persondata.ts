@@ -59,7 +59,7 @@ export function hentPersondata(fodselsnummer: string): PersonData | null {
     return { feilendeSystemer: [], person: lagPerson(fodselsnummer) };
 }
 
-export function lagPerson(fnr: string): Person {
+function lagPerson(fnr: string): Person {
     return {
         personIdent: fnr,
         navn: [

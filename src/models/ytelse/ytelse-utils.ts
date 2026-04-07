@@ -9,34 +9,26 @@ import {
     getUnikArbeidsavklaringspengerKey
 } from 'src/models/ytelse/arbeidsavklaringspenger';
 import { getDagpengerIdDato, getUnikDagpengerKey } from 'src/models/ytelse/dagpenger';
-import {
-    type Foreldrepengerettighet,
-    getForeldepengerIdDato,
-    getUnikForeldrepengerKey
-} from 'src/models/ytelse/foreldrepenger';
 import { getForeldrepengerFpSakIdDato, getUnikForeldrepengerFpSakKey } from 'src/models/ytelse/foreldrepenger-fpsak';
 import { getPensjonIdDato, getUnikPensjonKey, type Pensjon } from 'src/models/ytelse/pensjon';
 import { getSykepengerSpokelseIdDato, getUnikSykepengerSpokelseKey } from 'src/models/ytelse/sykepenger-spokelse';
 import { loggError } from 'src/utils/logger/frontendLogger';
-import { getPleiepengerIdDato, getUnikPleiepengerKey, type Pleiepengerettighet } from './pleiepenger';
 import { getSykepengerIdDato, getUnikSykepengerKey, type Sykepenger } from './sykepenger';
 import { getTiltakspengerIdDato, getUnikTiltakspengerKey, type Tiltakspenger } from './tiltakspenger';
 
 export enum YtelseVedtakYtelseType {
     Sykepenger = 'Sykepenger (Infotrygd)',
-    Foreldrepenger = 'Foreldrepenger',
-    Pleiepenger = 'Pleiepenger',
     Tiltakspenge = 'Tiltakspenger',
     Pensjon = 'Pensjon',
     Arbeidsavklaringspenger = 'Arbeidsavklaringspenger',
     ForeldrepengerFpSak = 'ForeldrepengerFpSak',
+    // Trenger denne til filtertype
+    Foreldrepenger = 'Foreldrepenger',
     Dagpenger = 'Dagpenger',
     SykepengerSpokelse = 'Sykepenger (Speil)'
 }
 
 export type Ytelse =
-    | Pleiepengerettighet
-    | Foreldrepengerettighet
     | Sykepenger
     | Tiltakspenger
     | Pensjon
@@ -47,14 +39,6 @@ export type Ytelse =
 
 export function isSykepengerSpokelse(ytelse: Ytelse): ytelse is Utbetalingsperioder {
     return 'utbetaltePerioder' in ytelse;
-}
-
-export function isPleiepenger(ytelse: Ytelse): ytelse is Pleiepengerettighet {
-    return 'pleiepengedager' in ytelse;
-}
-
-export function isForeldrepenger(ytelse: Ytelse): ytelse is Foreldrepengerettighet {
-    return 'forelder' in ytelse;
 }
 
 export function isSykepenger(ytelse: Ytelse): ytelse is Sykepenger {
@@ -80,12 +64,6 @@ function isDagpenger(ytelse: Ytelse): ytelse is PseudoDagpengerVedtak {
 export function getYtelseIdDato(ytelse: Ytelse) {
     if (isSykepengerSpokelse(ytelse)) {
         return getSykepengerSpokelseIdDato(ytelse);
-    }
-    if (isPleiepenger(ytelse)) {
-        return getPleiepengerIdDato(ytelse);
-    }
-    if (isForeldrepenger(ytelse)) {
-        return getForeldepengerIdDato(ytelse);
     }
     if (isSykepenger(ytelse)) {
         return getSykepengerIdDato(ytelse);
@@ -113,12 +91,6 @@ export function getUnikYtelseKey(ytelse: Ytelse) {
     if (isSykepengerSpokelse(ytelse)) {
         return getUnikSykepengerSpokelseKey(ytelse);
     }
-    if (isPleiepenger(ytelse)) {
-        return getUnikPleiepengerKey(ytelse);
-    }
-    if (isForeldrepenger(ytelse)) {
-        return getUnikForeldrepengerKey(ytelse);
-    }
     if (isSykepenger(ytelse)) {
         return getUnikSykepengerKey(ytelse);
     }
@@ -127,9 +99,6 @@ export function getUnikYtelseKey(ytelse: Ytelse) {
     }
     if (isPensjon(ytelse)) {
         return getUnikPensjonKey(ytelse);
-    }
-    if (isArbeidsavklaringspenger(ytelse)) {
-        return getUnikArbeidsavklaringspengerKey(ytelse);
     }
     if (isArbeidsavklaringspenger(ytelse)) {
         return getUnikArbeidsavklaringspengerKey(ytelse);

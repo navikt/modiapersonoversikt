@@ -7,9 +7,7 @@ import { getYtelseIdDato, type Ytelse } from 'src/models/ytelse/ytelse-utils';
 import type { FraTilDato } from 'src/redux/utbetalinger/types';
 import { useArbeidsavklaringspenger } from 'src/rest/resources/arbeidsavklaringspengerResource';
 import { useForeldrepengerFpSak } from 'src/rest/resources/foreldrepengerFpSakResource';
-import { useForeldrepenger } from 'src/rest/resources/foreldrepengerResource';
 import { usePensjon } from 'src/rest/resources/pensjonResource';
-import { usePleiepenger } from 'src/rest/resources/pleiepengerResource';
 import { useSykepenger } from 'src/rest/resources/sykepengerResource';
 import { useSykepengerSpokelse } from 'src/rest/resources/sykepengerSpokelseResource';
 import { useTiltakspenger } from 'src/rest/resources/tiltakspengerResource';
@@ -21,16 +19,7 @@ interface Returns {
     placeholders: ReactNode[];
     harFeil: boolean;
 }
-const foreldrepengerPlaceholder = {
-    returnOnError: 'Kunne ikke laste foreldrepenger',
-    returnOnNotFound: 'Kunne finne foreldrepenger',
-    returnOnForbidden: 'Du har ikke tilgang til foreldrepenger'
-};
-const pleiepengerPlaceholder = {
-    returnOnError: 'Kunne ikke laste pleiepenger',
-    returnOnNotFound: 'Kunne finne pleiepenger',
-    returnOnForbidden: 'Du har ikke tilgang til pleiepenger'
-};
+
 const sykepengerPlaceholder = {
     returnOnError: 'Kunne ikke laste sykepenger',
     returnOnNotFound: 'Kunne finne sykepenger',
@@ -76,8 +65,6 @@ function placeholder(resource: UseQueryResult<any, FetchError>, tekster: Placeho
 
 function useBrukersYtelser(periode: FraTilDato): Returns {
     const fnr = usePersonAtomValue();
-    const foreldrepengerResponse = useForeldrepenger(fnr, periode.fra, periode.til);
-    const pleiepengerResponse = usePleiepenger(fnr, periode.fra, periode.til);
     const sykepengerResponse = useSykepenger(fnr, periode.fra, periode.til);
     const sykepengerSpokelseResponse = useSykepengerSpokelse(fnr, periode.fra, periode.til);
     const tiltakspengerResponse = useTiltakspenger(fnr, periode.fra, periode.til);
@@ -87,16 +74,13 @@ function useBrukersYtelser(periode: FraTilDato): Returns {
 
     return useMemo(() => {
         const pending =
-            pleiepengerResponse.isLoading ||
-            foreldrepengerResponse.isLoading ||
             sykepengerResponse.isLoading ||
             sykepengerSpokelseResponse.isLoading ||
             tiltakspengerResponse.isLoading ||
             pensjonResponse.isLoading ||
             arbeidsavklaringspengerResponse.isLoading ||
             foreldrepengerFpSakResponse.isLoading;
-        const foreldrepenger = foreldrepengerResponse.data?.foreldrepenger ?? [];
-        const pleiepenger = pleiepengerResponse.data?.pleiepenger ?? [];
+
         const sykepenger = sykepengerResponse.data?.sykepenger ?? [];
         const tiltakspenger = tiltakspengerResponse.data ?? [];
         const pensjon = pensjonResponse.data ?? [];
@@ -108,8 +92,6 @@ function useBrukersYtelser(periode: FraTilDato): Returns {
                 : [];
 
         const ytelser = [
-            ...foreldrepenger,
-            ...pleiepenger,
             ...sykepenger,
             ...sykepengerSpokelse,
             ...tiltakspenger,
@@ -120,8 +102,6 @@ function useBrukersYtelser(periode: FraTilDato): Returns {
         const ytelserSortert = ytelser.sort(datoSynkende((ytelse: Ytelse) => getYtelseIdDato(ytelse)));
 
         const placeholders = [
-            placeholder(foreldrepengerResponse, foreldrepengerPlaceholder),
-            placeholder(pleiepengerResponse, pleiepengerPlaceholder),
             placeholder(sykepengerResponse, sykepengerPlaceholder),
             placeholder(sykepengerSpokelseResponse, sykepengerPlaceholder),
             placeholder(tiltakspengerResponse, tiltakspengerPlaceholder),
@@ -131,8 +111,6 @@ function useBrukersYtelser(periode: FraTilDato): Returns {
         ];
 
         const harFeil =
-            foreldrepengerResponse.isError ||
-            pleiepengerResponse.isError ||
             sykepengerResponse.isError ||
             sykepengerSpokelseResponse.isError ||
             tiltakspengerResponse.isError ||
@@ -141,8 +119,6 @@ function useBrukersYtelser(periode: FraTilDato): Returns {
             foreldrepengerFpSakResponse.isError;
         return { ytelser: ytelserSortert, pending: pending, placeholders: placeholders, harFeil: harFeil };
     }, [
-        foreldrepengerResponse,
-        pleiepengerResponse,
         sykepengerResponse,
         sykepengerSpokelseResponse,
         tiltakspengerResponse,

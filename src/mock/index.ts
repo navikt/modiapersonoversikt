@@ -56,8 +56,6 @@ import {
 } from './utils/fetch-utils';
 import { fodselsNummerErGyldigStatus, randomDelay, STATUS_OK } from './utils-mock';
 import { getMockVarsler } from './varsler/varsel-mock';
-import { getMockForeldrepenger } from './ytelse/foreldrepenger-mock';
-import { getMockPleiepenger } from './ytelse/pleiepenger-mock';
 import { getMockSykepengerRespons } from './ytelse/sykepenger-mock';
 import { getMockTiltakspenger } from './ytelse/tiltakspenger-mock';
 
@@ -175,24 +173,6 @@ const sykepengerHandler = http.post(
         randomDelay(),
         fodselsNummerErGyldigStatus,
         mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMockSykepengerRespons(fodselsnummer))
-    )
-);
-
-const foreldrepengerHandler = http.post(
-    `${apiBaseUri}/ytelse/foreldrepenger`,
-    withDelayedResponse(
-        randomDelay(),
-        fodselsNummerErGyldigStatus,
-        mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMockForeldrepenger(fodselsnummer))
-    )
-);
-
-const pleiepengerHandler = http.post(
-    `${apiBaseUri}/ytelse/pleiepenger`,
-    withDelayedResponse(
-        randomDelay(),
-        fodselsNummerErGyldigStatus,
-        mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMockPleiepenger(fodselsnummer))
     )
 );
 
@@ -428,8 +408,6 @@ export const handlers: (HttpHandler | WebSocketHandler)[] = [
     utbetalingerHandler,
     sykepengerHandler,
     sykepengerSpokelseHandler,
-    foreldrepengerHandler,
-    pleiepengerHandler,
     tiltakspengerMock,
     foreldrepengerFpSakHandlerMock,
     dagpengerHandlerMock,

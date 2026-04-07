@@ -1,17 +1,13 @@
 import type { ReactNode } from 'react';
 import type { ForeldrepengerFpSak, Utbetalingsperioder } from 'src/generated/modiapersonoversikt-api';
 import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaringspenger';
-import type { Foreldrepengerettighet } from 'src/models/ytelse/foreldrepenger';
 import type { Pensjon } from 'src/models/ytelse/pensjon';
-import type { Pleiepengerettighet } from 'src/models/ytelse/pleiepenger';
 import type { Sykepenger } from 'src/models/ytelse/sykepenger';
 import type { Tiltakspenger } from 'src/models/ytelse/tiltakspenger';
 import {
     isArbeidsavklaringspenger,
     isForeldrePengerFpSak,
-    isForeldrepenger,
     isPensjon,
-    isPleiepenger,
     isSykepenger,
     isSykepengerSpokelse,
     isTiltakspenger
@@ -22,9 +18,7 @@ import { getFraDateFromPeriod } from '../utbetalinger/utils/utbetalinger-utils';
 import useBrukersYtelser from './useBrukersYtelser';
 
 interface Props {
-    renderPleiepenger: (pleiepenger: Pleiepengerettighet) => ReactNode;
     renderSykepenger: (sykepenger: Sykepenger) => ReactNode;
-    renderForeldrepenger: (foreldrepenger: Foreldrepengerettighet) => ReactNode;
     renderTiltakspenger: (tiltakspenger: Tiltakspenger) => ReactNode;
     renderPensjon: (pensjon: Pensjon) => ReactNode;
     renderArbeidsavklaringspenger: (aap: Arbeidsavklaringspenger) => ReactNode;
@@ -43,17 +37,11 @@ function useBrukersYtelserMarkup(props: Props): Returns {
     const brukersYtelser = useBrukersYtelser(getFraDateFromPeriod(PeriodeValg.EGENDEFINERT));
 
     const ytelserMarkup: ReactNode[] = brukersYtelser.ytelser.map((ytelse) => {
-        if (isForeldrepenger(ytelse)) {
-            return props.renderForeldrepenger(ytelse);
-        }
         if (isSykepenger(ytelse)) {
             return props.renderSykepenger(ytelse);
         }
         if (isSykepengerSpokelse(ytelse)) {
             return props.renderSykepengerSpokelse(ytelse);
-        }
-        if (isPleiepenger(ytelse)) {
-            return props.renderPleiepenger(ytelse);
         }
         if (isTiltakspenger(ytelse)) {
             return props.renderTiltakspenger(ytelse);

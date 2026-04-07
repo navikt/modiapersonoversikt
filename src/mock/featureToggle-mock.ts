@@ -7,10 +7,6 @@ export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleRespon
             return true;
         case FeatureToggles.NyModiaKnapp:
             return true;
-        case FeatureToggles.InfotrygdForeldrepenger:
-            return true;
-        case FeatureToggles.InfotrygdPleiepenger:
-            return true;
         case FeatureToggles.InfotrygdSykepenger:
             return true;
         default:

@@ -60,9 +60,9 @@ const YtelserTypeFilter = () => {
         [setSelectedYtelseType]
     );
 
-    // TODO: Midlertidig; Fjern dette når gamle versjoner av pleiepenger, foreldrepenger og sykepenger er fjernet
+    // TODO: Midlertidig; Fjern dette når gammel versjon av foreldrepenger er fjernet
     const ytelseTyper = Object.values(YtelseVedtakYtelseType).filter(
-        (yType) => yType !== YtelseVedtakYtelseType.ForeldrepengerFpSak && yType !== YtelseVedtakYtelseType.Pleiepenger
+        (yType) => yType !== YtelseVedtakYtelseType.ForeldrepengerFpSak
     );
 
     return (

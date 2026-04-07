@@ -1,14 +1,10 @@
-import { BodyShort, Detail, HStack, Label, Link, VStack } from '@navikt/ds-react';
+import { Detail, HStack, Label, Link, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import { useEffect, useRef } from 'react';
 import Card from 'src/components/Card';
 import { getUnikYtelseKey, getYtelseIdDato, type YtelseVedtak } from 'src/components/ytelser/utils';
-import {
-    type ForeldrepengerFpSak,
-    ForeldrepengerFpSakYtelse,
-    type Pleiepenger
-} from 'src/generated/modiapersonoversikt-api';
+import { type ForeldrepengerFpSak, ForeldrepengerFpSakYtelse } from 'src/generated/modiapersonoversikt-api';
 import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
 import { trackingEvents } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
@@ -29,7 +25,6 @@ export const YtelseItem = ({ ytelse }: { ytelse: YtelseVedtak }) => {
 
     const getYtelseTtile = () => {
         switch (ytelse.ytelseType) {
-            case YtelseVedtakYtelseType.Foreldrepenger:
             case YtelseVedtakYtelseType.Sykepenger:
             case YtelseVedtakYtelseType.Tiltakspenge:
             case YtelseVedtakYtelseType.Pensjon:
@@ -37,8 +32,6 @@ export const YtelseItem = ({ ytelse }: { ytelse: YtelseVedtak }) => {
             case YtelseVedtakYtelseType.Dagpenger:
             case YtelseVedtakYtelseType.SykepengerSpokelse:
                 return ytelse.ytelseType;
-            case YtelseVedtakYtelseType.Pleiepenger:
-                return 'Pleiepenger sykt barn';
             case YtelseVedtakYtelseType.ForeldrepengerFpSak:
                 switch ((ytelse.ytelseData.data as ForeldrepengerFpSak).ytelse) {
                     case ForeldrepengerFpSakYtelse.ENGANGSST_NAD:
@@ -52,8 +45,6 @@ export const YtelseItem = ({ ytelse }: { ytelse: YtelseVedtak }) => {
                 return `Ukjent ytelsetype ${ytelse.ytelseType}`;
         }
     };
-
-    const getBarnetFnr = (pleiepenger: Pleiepenger) => pleiepenger.barnet;
 
     const onClick = () => {
         navigate({
@@ -100,14 +91,6 @@ export const YtelseItem = ({ ytelse }: { ytelse: YtelseVedtak }) => {
                     <HStack gap="space-8">
                         <Detail>{dayjs(getYtelseIdDato(ytelse)).format('DD.MM.YYYY')}</Detail>
                     </HStack>
-                    {ytelse.ytelseType === YtelseVedtakYtelseType.Pleiepenger && (
-                        <HStack gap="space-8">
-                            <BodyShort size="small" weight="semibold">
-                                Barnets f.nr:
-                            </BodyShort>
-                            <BodyShort size="small">{getBarnetFnr(ytelse.ytelseData.data as Pleiepenger)}</BodyShort>
-                        </HStack>
-                    )}
                 </VStack>
             </Card>
         </Link>

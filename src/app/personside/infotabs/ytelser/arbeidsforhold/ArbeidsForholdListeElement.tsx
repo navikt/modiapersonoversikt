@@ -1,19 +1,17 @@
 import type { Arbeidsforhold } from 'src/models/ytelse/arbeidsforhold';
-import { FormatertKontonummer } from 'src/utils/FormatertKontonummer';
+import { formatertKontonummerString } from 'src/utils/FormatertKontonummer';
 import { datoEllerNull, NOKellerNull } from 'src/utils/string-utils';
 import DescriptionList from '../../../../../components/DescriptionList';
 
 interface Props {
     arbeidsforhold: Arbeidsforhold;
-    erPleiepenger?: boolean;
 }
 
-function ArbeidsForholdListeElement({ arbeidsforhold, erPleiepenger }: Props) {
+function ArbeidsForholdListeElement({ arbeidsforhold }: Props) {
     const arbeidsForholdEntries = {
         Arbeidsgiver: arbeidsforhold.arbeidsgiverNavn,
-        Kontonummer: arbeidsforhold.arbeidsgiverKontonr && (
-            <FormatertKontonummer kontonummer={arbeidsforhold.arbeidsgiverKontonr} />
-        ),
+        Kontonummer:
+            arbeidsforhold.arbeidsgiverKontonr && formatertKontonummerString(arbeidsforhold.arbeidsgiverKontonr),
         Inntekstsperiode: arbeidsforhold.inntektsperiode,
         'Inntekt for perioden': NOKellerNull(arbeidsforhold.inntektForPerioden),
         Refusjonstype: arbeidsforhold.refusjonstype,
@@ -21,21 +19,9 @@ function ArbeidsForholdListeElement({ arbeidsforhold, erPleiepenger }: Props) {
         'Sykepenger fra og med': datoEllerNull(arbeidsforhold.sykepengerFom)
     };
 
-    const arbeidsSituasjonEntriesPleiepenger = {
-        Arbeidsgiver: arbeidsforhold.arbeidsgiverNavn,
-        Arbeidskategori: arbeidsforhold.arbeidskategori,
-        Inntekstsperiode: arbeidsforhold.inntektsperiode,
-        Kontonummer: arbeidsforhold.arbeidsgiverKontonr && (
-            <FormatertKontonummer kontonummer={arbeidsforhold.arbeidsgiverKontonr} />
-        ),
-        Refusjonstype: arbeidsforhold.refusjonstype,
-        'Inntekt for perioden': NOKellerNull(arbeidsforhold.inntektForPerioden),
-        'Refusjon til dato': datoEllerNull(arbeidsforhold.refusjonTom)
-    };
-
     return (
         <li>
-            <DescriptionList entries={erPleiepenger ? arbeidsSituasjonEntriesPleiepenger : arbeidsForholdEntries} />
+            <DescriptionList entries={arbeidsForholdEntries} />
         </li>
     );
 }

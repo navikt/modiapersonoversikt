@@ -2,11 +2,7 @@
 
 exports[`ArbeidsforholdListe matcher snapshot 1`] = `
 <DocumentFragment>
-  .c2 span:not(:last-child):after {
-  content: '.';
-}
-
-.c1 {
+  .c1 {
   display: flex;
   flex-wrap: wrap;
 }
@@ -57,19 +53,7 @@ exports[`ArbeidsforholdListe matcher snapshot 1`] = `
           <dd
             class="typo-element"
           >
-            <span
-              class="c2"
-            >
-              <span>
-                8786
-              </span>
-              <span>
-                52
-              </span>
-              <span>
-                75970
-              </span>
-            </span>
+            8786.52.75970
           </dd>
         </div>
         <div>

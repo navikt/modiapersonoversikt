@@ -6,23 +6,16 @@ import { type YtelseFilter, ytelseFilterAtom } from 'src/components/ytelser/List
 import {
     useArbeidsavklaringspenger,
     useDagpenger,
-    useForeldrepenger,
     useForeldrepengerFpSak,
     usePensjon,
-    usePleiepenger,
     useSykepenger,
     useSykepengerSpokelse,
     useTiltakspenger
 } from 'src/lib/clients/modiapersonoversikt-api';
 import type {
     CommonPeriode,
-    Foreldrepenger,
     ForeldrepengerFpSak,
     PensjonSak,
-    Pleiepenger,
-    PleiepengerArbeidsforhold,
-    PleiepengerPeriode,
-    PleiepengerVedtak,
     PseudoDagpengerVedtak,
     Sykepenger,
     Utbetalingsperioder,
@@ -37,12 +30,10 @@ import { getForeldrepengerFpSakIdDato, getUnikForeldrepengerFpSakKey } from 'src
 import type { Pensjon } from 'src/models/ytelse/pensjon';
 import type { Tiltakspenger } from 'src/models/ytelse/tiltakspenger';
 import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
-import { ascendingDateComparator, backendDatoformat, datoStigende, datoSynkende } from 'src/utils/date-utils';
+import { backendDatoformat, datoSynkende } from 'src/utils/date-utils';
 import { formaterDato } from 'src/utils/string-utils';
 
 type Ytelse =
-    | Foreldrepenger
-    | Pleiepenger
     | Sykepenger
     | Tiltakspenger
     | Pensjon
@@ -98,14 +89,10 @@ const filterYtelser = (ytelser: YtelseVedtak[], filters: YtelseFilter): YtelseVe
 
 export function getYtelseIdDato(ytelse: YtelseVedtak): string {
     switch (ytelse.ytelseType) {
-        case YtelseVedtakYtelseType.Foreldrepenger:
-            return getForeldepengerDato(ytelse.ytelseData.data as Foreldrepenger);
         case YtelseVedtakYtelseType.Sykepenger:
             return getSykepengerDato(ytelse.ytelseData.data as Sykepenger);
         case YtelseVedtakYtelseType.SykepengerSpokelse:
             return getSykepengerSpokelseIdDato(ytelse.ytelseData.data as Utbetalingsperioder);
-        case YtelseVedtakYtelseType.Pleiepenger:
-            return getPleiepengerDato(ytelse.ytelseData.data as Pleiepenger);
         case YtelseVedtakYtelseType.Tiltakspenge:
             return getTiltakspengerDato(ytelse.ytelseData.data as VedtakDto);
         case YtelseVedtakYtelseType.Pensjon:
@@ -123,14 +110,10 @@ export function getYtelseIdDato(ytelse: YtelseVedtak): string {
 
 export function getUnikYtelseKey(ytelse: YtelseVedtak) {
     switch (ytelse.ytelseType) {
-        case YtelseVedtakYtelseType.Foreldrepenger:
-            return getUnikForeldrepengerKey(ytelse.ytelseData.data as Foreldrepenger);
         case YtelseVedtakYtelseType.Sykepenger:
             return getUnikSykepengerKey(ytelse.ytelseData.data as Sykepenger);
         case YtelseVedtakYtelseType.SykepengerSpokelse:
             return getUnikSykepengerSpokelseKey(ytelse.ytelseData.data as Utbetalingsperioder);
-        case YtelseVedtakYtelseType.Pleiepenger:
-            return getUnikPleiepengerKey(ytelse.ytelseData.data as Pleiepenger);
         case YtelseVedtakYtelseType.Tiltakspenge:
             return getUnikTiltakspengerKey(ytelse.ytelseData.data as VedtakDto);
         case YtelseVedtakYtelseType.Pensjon:
@@ -144,14 +127,6 @@ export function getUnikYtelseKey(ytelse: YtelseVedtak) {
         default:
             return 'ukjent ytelse';
     }
-}
-
-function getUnikPleiepengerKey(pleiePenger: Pleiepenger): string {
-    return `pleiepenger${getPleiepengerDato(pleiePenger)}`;
-}
-
-function getUnikForeldrepengerKey(foreldrepenger: Foreldrepenger): string {
-    return `foreldrepenger${getForeldepengerDato(foreldrepenger)}`;
 }
 
 function getUnikSykepengerKey(sykepenger: Sykepenger): string {
@@ -170,10 +145,6 @@ function getPensjonpengerKey(ytelse: PensjonSak) {
     return `pensjon${ytelse.sakType}${ytelse.sakid}`;
 }
 
-function getForeldepengerDato(foreldrepenger: Foreldrepenger) {
-    return foreldrepenger.rettighetFom ?? dayjs().format(backendDatoformat);
-}
-
 function getSykepengerDato(sykepenger: Sykepenger) {
     return sykepenger.sykmeldtFom ?? dayjs().format(backendDatoformat);
 }
@@ -186,22 +157,12 @@ function getTiltakspengerDato(ytelse: VedtakDto) {
     return ytelse.periode.fraOgMed ?? dayjs().format(backendDatoformat);
 }
 
-function getPleiepengerDato(pleiePenger: Pleiepenger) {
-    const sistePeriodeForPleiepengerettighet = getSistePeriodeForPleiepenger(pleiePenger);
-    return sistePeriodeForPleiepengerettighet?.fom ?? dayjs().format(backendDatoformat);
-}
-
 function getPensjonDato(pensjonSak: PensjonSak) {
     return pensjonSak.fomDato ?? dayjs().format(backendDatoformat);
 }
 
 function getArbeidsavklaringspengerDato(arbeidsavklaringspenger: Arbeidsavklaringspenger) {
     return arbeidsavklaringspenger.periode.fraOgMedDato ?? dayjs().format(backendDatoformat);
-}
-
-function getSistePeriodeForPleiepenger(pleiePenger: Pleiepenger) {
-    const perioder = pleiePenger.perioder ?? [];
-    return perioder?.sort(datoStigende((p) => new Date(p.fom ?? 0))).reverse()[0];
 }
 
 export function fjernEntriesUtenVerdi(obj: { [name: string]: string | number | null | undefined }) {
@@ -233,37 +194,6 @@ export function formaterBoolean(verdi?: boolean | null): string | null {
         default:
             return null;
     }
-}
-
-export function getSisteVedtakForPleiepenger(pleiePenger: Pleiepenger): PleiepengerVedtak | undefined {
-    const sistePeriode = getSistePeriodeForPleiepenger(pleiePenger);
-    if (!sistePeriode) {
-        return undefined;
-    }
-    const vedtakter = sistePeriode.vedtak ?? [];
-    return vedtakter.sort(datoStigende((vedtak) => new Date(vedtak.periode?.fom ?? 0))).reverse()[0];
-}
-
-export function sorterPleiepengerPerioder(pleiePenger: Pleiepenger): PleiepengerPeriode[] {
-    const perioder = pleiePenger.perioder ?? [];
-    return perioder.sort(datoStigende((p) => new Date(p.fom ?? 0))).reverse();
-}
-
-export function getPleiepengerArbiedsforholdSortert(pleiePenger: Pleiepenger): PleiepengerArbeidsforhold[] {
-    const perioder = pleiePenger.perioder ?? [];
-    const arbeidsforhold = perioder.flatMap((periode) => periode.arbeidsforhold ?? []) ?? [];
-    return sorterArbeidsforholdEtterRefusjonTom(arbeidsforhold);
-}
-
-function sorterArbeidsforholdEtterRefusjonTom(
-    arbeidsforhold: PleiepengerArbeidsforhold[]
-): PleiepengerArbeidsforhold[] {
-    return arbeidsforhold.sort(datoStigende((a) => a.refusjonTom || new Date(0))).reverse();
-}
-
-export function utledFraDatoForForeldrePenger(foreldrepenger: Foreldrepenger): Date {
-    const periode = foreldrepenger.periode ?? [];
-    return periode.map((periode) => new Date(periode.foreldrepengerFom ?? 0)).sort(ascendingDateComparator)[0];
 }
 
 export function periodeEllerNull(periode?: CommonPeriode | null): string | null {
@@ -304,8 +234,7 @@ export const useFilterYtelser = (): QueryResult<YtelseVedtak[]> => {
     const periode = filters.dateRange;
     const startDato = periode.from.format('YYYY-MM-DD');
     const sluttDato = periode.to.format('YYYY-MM-DD');
-    const foreldrepengerResponse = useForeldrepenger(startDato, sluttDato);
-    const pleiepengerResponse = usePleiepenger(startDato, sluttDato);
+
     const sykepengerResponse = useSykepenger(startDato, sluttDato);
     const tiltakspengerResponse = useTiltakspenger(startDato, sluttDato);
     const pensjonResponse = usePensjon(startDato, sluttDato);
@@ -315,18 +244,7 @@ export const useFilterYtelser = (): QueryResult<YtelseVedtak[]> => {
     const sykepengerSpokelseResponse = useSykepengerSpokelse(startDato, sluttDato);
 
     const ytelser: YtelseVedtak[] = [];
-    foreldrepengerResponse.data?.foreldrepenger?.map((ytelse) =>
-        ytelser.push({
-            ytelseData: { data: ytelse },
-            ytelseType: YtelseVedtakYtelseType.Foreldrepenger
-        })
-    );
-    pleiepengerResponse.data?.pleiepenger?.map((ytelse) =>
-        ytelser.push({
-            ytelseData: { data: ytelse },
-            ytelseType: YtelseVedtakYtelseType.Pleiepenger
-        })
-    );
+
     sykepengerResponse.data?.sykepenger?.map((ytelse) =>
         ytelser.push({
             ytelseData: { data: ytelse },
@@ -375,8 +293,6 @@ export const useFilterYtelser = (): QueryResult<YtelseVedtak[]> => {
     const ytelserSortert = ytelser.sort(datoSynkende((ytelse: YtelseVedtak) => getYtelseIdDato(ytelse)));
 
     const placeholders = [
-        errorPlaceholder(foreldrepengerResponse, responseErrorMessage('foreldrepenger')),
-        errorPlaceholder(pleiepengerResponse, responseErrorMessage('pleiepenger')),
         errorPlaceholder(sykepengerResponse, responseErrorMessage('sykepenger')),
         errorPlaceholder(sykepengerSpokelseResponse, responseErrorMessage('sykepenger')),
         errorPlaceholder(tiltakspengerResponse, responseErrorMessage('tiltakspenger')),
@@ -387,8 +303,6 @@ export const useFilterYtelser = (): QueryResult<YtelseVedtak[]> => {
     ];
 
     const response =
-        foreldrepengerResponse ||
-        pleiepengerResponse ||
         sykepengerResponse ||
         sykepengerSpokelseResponse ||
         tiltakspengerResponse ||
@@ -398,8 +312,6 @@ export const useFilterYtelser = (): QueryResult<YtelseVedtak[]> => {
         dagpengerResponse;
 
     const isLoading =
-        foreldrepengerResponse.isLoading ||
-        pleiepengerResponse.isLoading ||
         sykepengerResponse.isLoading ||
         sykepengerSpokelseResponse.isLoading ||
         tiltakspengerResponse.isLoading ||

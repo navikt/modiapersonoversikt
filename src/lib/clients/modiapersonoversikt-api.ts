@@ -406,28 +406,6 @@ const ytelseQueryOptions = {
     retryOnMount: false
 } as const;
 
-export const useForeldrepenger = (fom: string, tom: string) => {
-    const enableForeldrepengerInfotrygd = useFeatureToggle(FeatureToggles.InfotrygdForeldrepenger).isOn;
-    const fnr = usePersonAtomValue();
-    return $api.useQuery(
-        'post',
-        '/rest/ytelse/foreldrepenger',
-        { body: { fnr, fom, tom } },
-        { ...ytelseQueryOptions, enabled: enableForeldrepengerInfotrygd }
-    );
-};
-
-export const usePleiepenger = (fom: string, tom: string) => {
-    const enablePleiepengerInfotrygd = useFeatureToggle(FeatureToggles.InfotrygdPleiepenger).isOn;
-    const fnr = usePersonAtomValue();
-    return $api.useQuery(
-        'post',
-        '/rest/ytelse/pleiepenger',
-        { body: { fnr, fom, tom } },
-        { ...ytelseQueryOptions, enabled: enablePleiepengerInfotrygd }
-    );
-};
-
 export const useSykepenger = (fom: string, tom: string) => {
     const enableSykepengerInfotrygd = useFeatureToggle(FeatureToggles.InfotrygdSykepenger).isOn;
     const fnr = usePersonAtomValue();
