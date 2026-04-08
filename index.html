@@ -13,8 +13,13 @@
     
     <link rel="preload" href="https://cdn.nav.no/aksel/fonts/SourceSans3-normal.woff2" as="font" type="font/woff2" crossorigin/>
     <script>
-        window.sendViaBeacon = (event, payload) => {
+        window.sendWithEventData = (event, payload) => {
             const umamiEventData = window.__router?.state?.location?.state.umamiEvent;
+            const isProd = window.__ENV__?.PUBLIC_ENVIRONMENT === 'prod';
+            const endpoint = isProd
+                ? "https://reops-event-proxy.nav.no/api/send"
+                : "https://reops-event-proxy.ekstern.dev.nav.no/api/send";
+
             const data = {
                 type: "event",
                 payload: {
@@ -23,29 +28,23 @@
                     ...payload,
                 }
             }
-            if (navigator.sendBeacon) {
-                navigator.sendBeacon("https://umami.nav.no/api/send", JSON.stringify(data));
-            } else {
-                fetch("https://umami.nav.no/api/send", { method: "POST", body: JSON.stringify(data), keepalive: true });
-            }
+            fetch(endpoint, { method: "POST", body: JSON.stringify(data), keepalive: true });
         };
     </script>
 
     <slot not-environment="prod">
         <script
             defer
-            data-before-send="sendViaBeacon"
-            src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
-            data-host-url="https://umami.nav.no"
+            data-before-send="sendWithEventData"
+            src="https://cdn.nav.no/team-researchops/sporing/sporing-dev.js"
             data-website-id="bc5cfdcd-ecc1-402b-8cb0-c30913f0bd13"
         ></script>
     </slot>
     <slot environment="prod">
         <script
             defer
-            data-before-send="sendViaBeacon"
+            data-before-send="sendWithEventData"
             src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
-            data-host-url="https://umami.nav.no"
             data-website-id="a8c2ec9c-2846-4154-8841-5db26494171a"
         ></script>
     </slot>
