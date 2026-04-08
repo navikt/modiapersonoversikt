@@ -1,8 +1,7 @@
-import { Heading, HGrid, VStack } from '@navikt/ds-react';
+import { VStack } from '@navikt/ds-react';
 import { AlertBanner } from 'src/components/AlertBanner';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { ValgteYtelseDetailPage } from 'src/components/ytelser/Detail';
-import { YtelserList } from 'src/components/ytelser/List';
 import { useFilterYtelser } from 'src/components/ytelser/utils';
 
 export const YtelserPage = () => {
@@ -17,22 +16,9 @@ const YtelserPageContent = () => {
     const { errorMessages } = useFilterYtelser();
 
     return (
-        <HGrid
-            gap="space-4"
-            columns={{ xs: 1, md: 'max-content 1fr' }}
-            height="100%"
-            overflow={{ xs: 'auto', md: 'hidden' }}
-        >
-            <VStack height="100%" maxWidth={{ md: '16em' }} overflow={{ md: 'hidden' }}>
-                <Heading size="small" visuallyHidden level="2">
-                    Ytelser
-                </Heading>
-                <YtelserList />
-            </VStack>
-            <VStack className="min-h-100 ax-md:min-h-0">
-                <AlertBanner alerts={errorMessages} />
-                <ValgteYtelseDetailPage />
-            </VStack>
-        </HGrid>
+        <VStack height="100%">
+            <AlertBanner alerts={errorMessages} />
+            <ValgteYtelseDetailPage />
+        </VStack>
     );
 };

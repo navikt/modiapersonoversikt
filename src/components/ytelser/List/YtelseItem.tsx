@@ -23,7 +23,7 @@ export const YtelseItem = ({ ytelse }: { ytelse: YtelseVedtak }) => {
         }
     }, [aktivYtelse, id]);
 
-    const getYtelseTtile = () => {
+    const getYtelseTittel = () => {
         switch (ytelse.ytelseType) {
             case YtelseVedtakYtelseType.Sykepenger:
             case YtelseVedtakYtelseType.Tiltakspenge:
@@ -84,9 +84,9 @@ export const YtelseItem = ({ ytelse }: { ytelse: YtelseVedtak }) => {
                     aktivYtelse === id && 'bg-ax-bg-accent-moderate-pressed border-ax-bg-accent-moderate-pressed'
                 )}
             >
-                <VStack justify="center">
-                    <Label size="small" as="h3">
-                        {getYtelseTtile()}
+                <VStack justify="center" className="min-w-0">
+                    <Label size="small" as="h3" className="truncate">
+                        {getYtelseTittel()}
                     </Label>
                     <HStack gap="space-8">
                         <Detail>{dayjs(getYtelseIdDato(ytelse)).format('DD.MM.YYYY')}</Detail>
