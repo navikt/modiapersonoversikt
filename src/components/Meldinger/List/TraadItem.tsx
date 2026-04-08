@@ -203,14 +203,14 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
                     )}
                     <VStack gap="space-0" width="100%">
                         <HStack justify="space-between" gap="space-0" wrap={false}>
-                            <VStack gap="space-0">
-                                <Label size="small" as="h3">
+                            <VStack gap="space-0" className="min-w-0">
+                                <Label size="small" as="h3" className="truncate">
                                     <Detail className="text-nowrap" visuallyHidden>
                                         Tema:
                                     </Detail>
                                     {temagruppeTekst(traad.temagruppe as Temagruppe)} ({tittel})
                                 </Label>
-                                <Detail>{datoTekst}</Detail>
+                                <Detail truncate>{datoTekst}</Detail>
                             </VStack>
                             <HStack align="start" justify="end" maxHeight="max-content">
                                 <Antallmeldinger traad={traad} />

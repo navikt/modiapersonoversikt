@@ -1,10 +1,9 @@
-import { Heading, HGrid, VStack } from '@navikt/ds-react';
+import { VStack } from '@navikt/ds-react';
 import { AlertBanner } from 'src/components/AlertBanner';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { useTraader } from 'src/components/Meldinger/List/utils';
 import { useGsakTema } from 'src/lib/clients/modiapersonoversikt-api';
 import { TraadDetail } from './Detail';
-import { TraadList } from './List';
 
 export const MeldingerPage = () => {
     return (
@@ -19,22 +18,9 @@ const MeldingerPageContent = () => {
     const { errorMessages: temaErrorMessages } = useGsakTema();
 
     return (
-        <HGrid
-            gap="space-4"
-            columns={{ xs: 1, md: 'max-content 1fr' }}
-            overflow={{ xs: 'scroll', md: 'hidden' }}
-            height="100%"
-        >
-            <VStack height="100%" maxWidth={{ md: '16em' }} overflow={{ md: 'hidden' }}>
-                <Heading level="2" size="small" visuallyHidden>
-                    Dialoger
-                </Heading>
-                <TraadList />
-            </VStack>
-            <VStack flexGrow="1" overflowX={{ md: 'hidden' }}>
-                <AlertBanner alerts={[...traadErrorMessages, ...temaErrorMessages]} />
-                <TraadDetail />
-            </VStack>
-        </HGrid>
+        <VStack height="100%">
+            <AlertBanner alerts={[...traadErrorMessages, ...temaErrorMessages]} />
+            <TraadDetail />
+        </VStack>
     );
 };
