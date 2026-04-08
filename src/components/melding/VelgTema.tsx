@@ -1,7 +1,7 @@
 import { Select, VStack } from '@navikt/ds-react';
 import type { ReactNode } from 'react';
 import { useDisableDialog } from 'src/lib/state/dialog';
-import { Temagruppe, temagruppeTekst } from 'src/models/temagrupper';
+import { type Temagruppe, TemaSamtalereferat, temagruppeTekst } from 'src/models/temagrupper';
 
 interface VelgTemaProps {
     valgtTema?: Temagruppe;
@@ -31,7 +31,7 @@ export default function VelgTema({ valgtTema, setValgtTema, error }: VelgTemaPro
 }
 
 function TemagruppeActionMenuItems() {
-    const temagruppeActionMenuItems = Object.values(Temagruppe).map((temagruppe) => (
+    const temagruppeActionMenuItems = Object.values(TemaSamtalereferat).map((temagruppe) => (
         <option key={temagruppe} value={temagruppe}>
             {temagruppeTekst(temagruppe)}
         </option>
