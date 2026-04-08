@@ -185,7 +185,7 @@ export const useMeldinger = () => {
             body: { fnr },
             params: { query: { enhet } }
         },
-        { refetchOnMount: false }
+        { retryOnMount: false }
     );
 };
 
