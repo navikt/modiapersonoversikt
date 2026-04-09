@@ -72,9 +72,9 @@ export function useGlobalHotkey(
     key: string | KeyDescription,
     action: () => void,
     deps: DependencyList,
-    loggAction: string,
-    element: HTMLElement = document.body
+    loggAction: string
 ) {
+    const element = document.body;
     // eslint-disable-next-line
     const stableAction = useMemo(() => action, deps);
     const keyDescription = useCallback(toKeyDescription, [key])(key);

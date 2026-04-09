@@ -5,7 +5,7 @@ import { type RefObject, useState } from 'react';
 import { sokEtterTekster } from 'src/app/personside/dialogpanel/sendMelding/standardTekster/sokUtils';
 import { standardTekstSokAtom } from 'src/components/melding/standardtekster/StandardTekster';
 import skrivestotteResource from 'src/rest/resources/skrivestotteResource';
-import { useGlobalHotkey } from 'src/utils/hooks/use-hotkey';
+import { useHotkey } from 'src/utils/hooks/use-hotkey';
 import { modulo } from 'src/utils/math';
 
 const SokeFelt = ({ sokRef }: { sokRef: RefObject<HTMLDivElement | null> }) => {
@@ -35,19 +35,19 @@ const SokeFelt = ({ sokRef }: { sokRef: RefObject<HTMLDivElement | null> }) => {
         }
     };
 
-    useGlobalHotkey(
+    useHotkey(
         'arrowup',
         velg(-1),
         [value.filtrerteTekster, value.tekst],
         'ForrigeStandardtekst',
-        sokRef?.current ?? undefined
+        sokRef?.current
     );
-    useGlobalHotkey(
+    useHotkey(
         'arrowdown',
         velg(1),
         [value.filtrerteTekster, value.tekst],
         'NesteStandardtekst',
-        sokRef?.current ?? undefined
+        sokRef?.current
     );
 
     return (
