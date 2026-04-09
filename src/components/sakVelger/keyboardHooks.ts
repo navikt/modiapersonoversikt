@@ -34,33 +34,9 @@ export function useFokusVedPiltaster(
     foksuserPaaValgtTema: () => void,
     fokuserPaaForsteSak: () => void
 ) {
-    useHotkey(
-        'arrowright',
-        fokuserPaaForsteSak,
-        dependencies,
-        'Gå til liste høyre',
-        temaListeRef?.current
-    );
-    useHotkey(
-        'arrowleft',
-        foksuserPaaValgtTema,
-        dependencies,
-        'Gå til liste venstre',
-        saksListeRef?.current
-    );
+    useHotkey('arrowright', fokuserPaaForsteSak, dependencies, 'Gå til liste høyre', temaListeRef?.current);
+    useHotkey('arrowleft', foksuserPaaValgtTema, dependencies, 'Gå til liste venstre', saksListeRef?.current);
 
-    useHotkey(
-        'arrowdown',
-        foksuserPaaValgtTema,
-        dependencies,
-        'Fokuser på første sak i listen',
-        temaListeRef.current
-    );
-    useHotkey(
-        'arrowdown',
-        fokuserPaaForsteSak,
-        dependencies,
-        'Fokuser på første sak i listen',
-        saksListeRef.current
-    );
+    useHotkey('arrowdown', foksuserPaaValgtTema, dependencies, 'Fokuser på første sak i listen', temaListeRef.current);
+    useHotkey('arrowdown', fokuserPaaForsteSak, dependencies, 'Fokuser på første sak i listen', saksListeRef.current);
 }
