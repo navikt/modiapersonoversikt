@@ -163,13 +163,7 @@ function StandardTekster(props: Props) {
         }
     };
 
-    useHotkey(
-        'arrowup',
-        velg(-1),
-        [filtrerteTekster, valgt],
-        'ForrigeStandardtekst',
-        sokRef.current
-    );
+    useHotkey('arrowup', velg(-1), [filtrerteTekster, valgt], 'ForrigeStandardtekst', sokRef.current);
     useHotkey('arrowdown', velg(1), [filtrerteTekster, valgt], 'NesteStandardtekst', sokRef.current);
 
     let content: ReactNode = null;

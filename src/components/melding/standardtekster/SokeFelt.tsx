@@ -35,20 +35,8 @@ const SokeFelt = ({ sokRef }: { sokRef: RefObject<HTMLDivElement | null> }) => {
         }
     };
 
-    useHotkey(
-        'arrowup',
-        velg(-1),
-        [value.filtrerteTekster, value.tekst],
-        'ForrigeStandardtekst',
-        sokRef?.current
-    );
-    useHotkey(
-        'arrowdown',
-        velg(1),
-        [value.filtrerteTekster, value.tekst],
-        'NesteStandardtekst',
-        sokRef?.current
-    );
+    useHotkey('arrowup', velg(-1), [value.filtrerteTekster, value.tekst], 'ForrigeStandardtekst', sokRef?.current);
+    useHotkey('arrowdown', velg(1), [value.filtrerteTekster, value.tekst], 'NesteStandardtekst', sokRef?.current);
 
     return (
         <Search
