@@ -28,7 +28,7 @@
         "font-src": ["'self'", "data:", "https://cdn.nav.no"],
         "connect-src": [
             "'self'",
-            "umami.nav.no",
+            "reops-event-proxy.ekstern.dev.nav.no",
             "wss://modiaeventdistribution.intern.dev.nav.no",
             "wss://modiacontextholder.intern.dev.nav.no",
             "wss://modiapersonoversikt-draft.intern.dev.nav.no",
