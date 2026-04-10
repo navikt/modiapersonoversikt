@@ -1,7 +1,7 @@
 import { Alert, Box, Heading, HStack, Skeleton, VStack } from '@navikt/ds-react';
 import { createLazyFileRoute, Navigate, Outlet, useRouterState } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
-import { Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 import { TraadList } from 'src/components/Meldinger/List';
 import { LukkbarNyMelding } from 'src/components/melding/LukkbarNyMelding';
@@ -48,6 +48,21 @@ function PersonRouteMedTilgang() {
     return <PersonLayout />;
 }
 
+const MOBILE_BREAKPOINT = '(max-width: 767px)';
+
+const useIsMobile = () => {
+    const [isMobile, setIsMobile] = useState(() => window.matchMedia(MOBILE_BREAKPOINT).matches);
+
+    useEffect(() => {
+        const mql = window.matchMedia(MOBILE_BREAKPOINT);
+        const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+        mql.addEventListener('change', handler);
+        return () => mql.removeEventListener('change', handler);
+    }, []);
+
+    return isMobile;
+};
+
 const ResizeHandle = () => (
     <PanelResizeHandle
         aria-hidden
@@ -63,16 +78,17 @@ function PersonLayout() {
     const isYtelser = useRouterState({
         select: (s) => s.matches.some((m) => m.routeId.includes('/ytelser'))
     });
+    const isMobile = useIsMobile();
 
     const listPanel = isMeldinger ? (
-        <VStack height="100%" overflow="hidden">
+        <VStack height={isMobile ? undefined : '100%'} overflow={isMobile ? undefined : 'hidden'}>
             <Heading level="2" size="small" visuallyHidden>
                 Dialoger
             </Heading>
             <TraadList />
         </VStack>
     ) : isYtelser ? (
-        <VStack height="100%" overflow="hidden">
+        <VStack height={isMobile ? undefined : '100%'} overflow={isMobile ? undefined : 'hidden'}>
             <Heading size="small" visuallyHidden level="2">
                 Ytelser
             </Heading>
@@ -89,23 +105,49 @@ function PersonLayout() {
                 <VStack>
                     <PersonSidebarMenu />
                 </VStack>
-                <PanelGroup direction="horizontal" autoSaveId={listPanel ? 'person-content-list' : 'person-content'}>
-                    {listPanel && (
-                        <>
-                            <Panel order={1} defaultSize={20} minSize={10} maxSize={40} className="overflow-hidden">
+                <PanelGroup direction="horizontal" autoSaveId="person-outer">
+                    <Panel order={1} className="overflow-hidden">
+                        {isMobile ? (
+                            <VStack className="h-full overflow-auto" gap="space-4">
                                 {listPanel}
-                            </Panel>
-                            <ResizeHandle />
-                        </>
-                    )}
-                    <Panel order={2} minSize={30} className="overflow-scroll">
-                        <Box as="main" id="main-content" height="100%">
-                            <VStack gap="space-4" height="100%">
-                                <Suspense>
-                                    <Outlet />
-                                </Suspense>
+                                <Box as="main" id="main-content">
+                                    <VStack gap="space-4">
+                                        <Suspense>
+                                            <Outlet />
+                                        </Suspense>
+                                    </VStack>
+                                </Box>
                             </VStack>
-                        </Box>
+                        ) : (
+                            <PanelGroup
+                                direction="horizontal"
+                                autoSaveId={listPanel ? 'person-content-list' : 'person-content'}
+                            >
+                                {listPanel && (
+                                    <>
+                                        <Panel
+                                            order={1}
+                                            defaultSize={20}
+                                            minSize={10}
+                                            maxSize={40}
+                                            className="overflow-hidden"
+                                        >
+                                            {listPanel}
+                                        </Panel>
+                                        <ResizeHandle />
+                                    </>
+                                )}
+                                <Panel order={2} minSize={30} className="overflow-scroll">
+                                    <Box as="main" id="main-content" height="100%">
+                                        <VStack gap="space-4" height="100%">
+                                            <Suspense>
+                                                <Outlet />
+                                            </Suspense>
+                                        </VStack>
+                                    </Box>
+                                </Panel>
+                            </PanelGroup>
+                        )}
                     </Panel>
                     <ResizeHandle />
                     <LukkbarNyMelding />
