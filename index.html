@@ -15,16 +15,24 @@
     <script>
         window.sendWithEventData = (_event, payload) => {
             const url = new URL(payload.url, location.href);
-            if(url.host.includes("localhost")) return null
 
-            url.search = '';
+           if(url.host.includes("localhost")) return null
             const umamiEventData = window.__router?.state?.location?.state.umamiEvent;
 
-            return {
+            url.search = '';
+
+            const result = {
                     ...payload,
-                    ...umamiEventData,
+                data: umamiEventData?.data ?? payload?.data,
+                name: umamiEventData?.name ?? payload?.name,
                 url: url.toString(),
+            };
+
+            if (umamiEventData && window.__router?.state?.location?.state) {
+                window.__router.state.location.state.umamiEvent = undefined;
             }
+
+            return result;
         };
     </script>
 
