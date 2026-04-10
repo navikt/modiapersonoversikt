@@ -16,8 +16,8 @@ import theme from '../../../../../styles/personOversiktTheme';
 import { usePrevious } from '../../../../../utils/customHooks';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
 import useFieldState, { type FieldState } from '../../../../../utils/hooks/use-field-state';
-import useHotkey from '../../../../../utils/hooks/use-hotkey';
-import { cyclicClamp } from '../../../../../utils/math';
+import { useHotkey } from '../../../../../utils/hooks/use-hotkey';
+import { modulo } from '../../../../../utils/math';
 import { type AutofullforData, autofullfor, byggAutofullforMap, useAutoFullforData } from '../autofullforUtils';
 import type * as StandardTeksterModels from './domain';
 import { erGyldigValg, rapporterBruk, sokEtterTekster } from './sokUtils';
@@ -157,14 +157,14 @@ function StandardTekster(props: Props) {
     const velg = (offset: number) => () => {
         const index = filtrerteTekster.findIndex((tekst) => tekst.id === valgt.input.value);
         if (index !== -1) {
-            const nextIndex = cyclicClamp(index + offset, filtrerteTekster.length);
+            const nextIndex = modulo(index + offset, filtrerteTekster.length);
             const nextTekst = filtrerteTekster[nextIndex];
             valgt.setValue(nextTekst.id);
         }
     };
 
-    useHotkey('arrowup', velg(-1), [filtrerteTekster, valgt], 'ForrigeStandardtekst', sokRef.current || undefined);
-    useHotkey('arrowdown', velg(1), [filtrerteTekster, valgt], 'NesteStandardtekst', sokRef.current || undefined);
+    useHotkey('arrowup', velg(-1), [filtrerteTekster, valgt], 'ForrigeStandardtekst', sokRef.current);
+    useHotkey('arrowdown', velg(1), [filtrerteTekster, valgt], 'NesteStandardtekst', sokRef.current);
 
     let content: ReactNode = null;
     if (standardTekster.isLoading) {

@@ -6,7 +6,7 @@ import Statsborgerskap from 'src/components/PersonLinje/Details/Familie/Statsbor
 import config from 'src/config';
 import { usePersonData, usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
 import { Kjonn, type KodeBeskrivelseKjonn } from 'src/lib/types/modiapersonoversikt-api';
-import useHotkey from 'src/utils/hooks/use-hotkey';
+import { useGlobalHotkey } from 'src/utils/hooks/use-hotkey';
 import { formaterMobiltelefonnummer } from 'src/utils/telefon-utils';
 import Card from '../Card';
 import ErrorBoundary from '../ErrorBoundary';
@@ -129,7 +129,7 @@ const PersonLinjeContent = () => {
 
     const lenkeNyBrukerprofil = config.isProd ? 'https://pdl-web.intern.nav.no' : 'https://pdl-web.intern.dev.nav.no';
 
-    useHotkey(
+    useGlobalHotkey(
         { char: 'b', altKey: true },
         () => window.open(lenkeNyBrukerprofil, '_blank', 'noopener noreferrer'),
         [lenkeNyBrukerprofil],

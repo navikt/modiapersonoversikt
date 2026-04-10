@@ -34,13 +34,47 @@ function matches(keyDescription: KeyDescription, event: KeyboardEvent): boolean 
     ].every((comp) => comp);
 }
 
-export default function useHotkey(
+export function useHotkey(
     key: string | KeyDescription,
     action: () => void,
     deps: DependencyList,
     loggAction: string,
-    element: HTMLElement = document.body
+    element: HTMLElement | null
 ) {
+    // eslint-disable-next-line
+    const stableAction = useMemo(() => action, deps);
+    const keyDescription = useCallback(toKeyDescription, [key])(key);
+    const handler = useCallback(
+        (event: KeyboardEvent) => {
+            if (matches(keyDescription, event)) {
+                event.preventDefault();
+                event.stopPropagation();
+                loggEvent(loggAction, 'Hurtigtast', {
+                    type: `Alt + ${keyDescription.char}`
+                });
+                stableAction();
+            }
+        },
+        [keyDescription, stableAction, loggAction]
+    );
+
+    useEffect(() => {
+        if (element) {
+            element.addEventListener('keydown', handler);
+            return () => element.removeEventListener('keydown', handler);
+        }
+
+        return undefined;
+    }, [element, handler]);
+}
+
+export function useGlobalHotkey(
+    key: string | KeyDescription,
+    action: () => void,
+    deps: DependencyList,
+    loggAction: string
+) {
+    const element = document.body;
     // eslint-disable-next-line
     const stableAction = useMemo(() => action, deps);
     const keyDescription = useCallback(toKeyDescription, [key])(key);

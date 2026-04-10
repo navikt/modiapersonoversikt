@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import styled from 'styled-components';
 import useFieldState from '../../../../../utils/hooks/use-field-state';
-import useHotkey from '../../../../../utils/hooks/use-hotkey';
+import { useGlobalHotkey } from '../../../../../utils/hooks/use-hotkey';
 import StandardTekster from './StandardTekster';
 import SvgIkon from './StandardTekstIkon';
 
@@ -58,7 +58,7 @@ function StandardTekstModal(props: Props) {
     const [isOpen, setOpen] = useState(false);
     const sokefelt = useFieldState('');
 
-    useHotkey({ char: 'c', altKey: true }, () => setOpen(true), [setOpen], 'Standardtekster');
+    useGlobalHotkey({ char: 'c', altKey: true }, () => setOpen(true), [setOpen], 'Standardtekster');
 
     return (
         <>

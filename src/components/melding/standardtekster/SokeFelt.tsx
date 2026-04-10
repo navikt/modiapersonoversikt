@@ -5,8 +5,8 @@ import { type RefObject, useState } from 'react';
 import { sokEtterTekster } from 'src/app/personside/dialogpanel/sendMelding/standardTekster/sokUtils';
 import { standardTekstSokAtom } from 'src/components/melding/standardtekster/StandardTekster';
 import skrivestotteResource from 'src/rest/resources/skrivestotteResource';
-import useHotkey from 'src/utils/hooks/use-hotkey';
-import { cyclicClamp } from 'src/utils/math';
+import { useHotkey } from 'src/utils/hooks/use-hotkey';
+import { modulo } from 'src/utils/math';
 
 const SokeFelt = ({ sokRef }: { sokRef: RefObject<HTMLDivElement | null> }) => {
     const { data } = skrivestotteResource.useFetch();
@@ -26,7 +26,7 @@ const SokeFelt = ({ sokRef }: { sokRef: RefObject<HTMLDivElement | null> }) => {
     const velg = (offset: number) => () => {
         const index = value.filtrerteTekster.findIndex((tekst) => tekst.id === value.tekst?.id);
         if (index !== -1) {
-            const nextIndex = cyclicClamp(index + offset, value.filtrerteTekster.length);
+            const nextIndex = modulo(index + offset, value.filtrerteTekster.length);
             const nextTekst = value.filtrerteTekster[nextIndex];
             setValue((vals) => ({
                 ...vals,
@@ -35,20 +35,8 @@ const SokeFelt = ({ sokRef }: { sokRef: RefObject<HTMLDivElement | null> }) => {
         }
     };
 
-    useHotkey(
-        'arrowup',
-        velg(-1),
-        [value.filtrerteTekster, value.tekst],
-        'ForrigeStandardtekst',
-        sokRef?.current ?? undefined
-    );
-    useHotkey(
-        'arrowdown',
-        velg(1),
-        [value.filtrerteTekster, value.tekst],
-        'NesteStandardtekst',
-        sokRef?.current ?? undefined
-    );
+    useHotkey('arrowup', velg(-1), [value.filtrerteTekster, value.tekst], 'ForrigeStandardtekst', sokRef?.current);
+    useHotkey('arrowdown', velg(1), [value.filtrerteTekster, value.tekst], 'NesteStandardtekst', sokRef?.current);
 
     return (
         <Search
