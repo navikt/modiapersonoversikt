@@ -231,7 +231,7 @@ export const FortsettDialog = ({ traad, avbryt }: Props) => {
                                         type="submit"
                                         data-testid="svar-knapp-fortsett-dialog"
                                         size="small"
-                                        disabled={disableDialog}
+                                        disabled={disableDialog || isPending}
                                         loading={isPending}
                                     >
                                         Send til {brukerNavn} {oppgaveId ? 'og avslutt oppgave' : ''}
