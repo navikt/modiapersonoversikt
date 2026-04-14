@@ -26,7 +26,7 @@ export function getMockDagpengerResponse(fnr: string): PseudoDagpengerVedtak {
     const først = perioder[0].fraOgMedDato;
     return {
         perioder: perioder,
-        nyesteFraOgMedDato: først
+        eldsteFraOgMedDato: først
     };
 }
 
