@@ -1,16 +1,17 @@
-import { Alert, Box, HStack, Skeleton, VStack } from '@navikt/ds-react';
-import { createLazyFileRoute, Navigate, Outlet } from '@tanstack/react-router';
+import { Alert, Box, Heading, HStack, Skeleton, VStack } from '@navikt/ds-react';
+import { createLazyFileRoute, Navigate, Outlet, useRouterState } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
-import { Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
+import { TraadList } from 'src/components/Meldinger/List';
 import { LukkbarNyMelding } from 'src/components/melding/LukkbarNyMelding';
 import { PersonLinje } from 'src/components/PersonLinje';
 import { PersonSidebarMenu } from 'src/components/PersonSidebar';
 import BegrensetTilgangBegrunnelse from 'src/components/person/BegrensetTilgangBegrunnelse';
+import { YtelserList } from 'src/components/ytelser/List';
 import { useTilgangskontroll } from 'src/lib/clients/modiapersonoversikt-api';
 import { aktivBrukerAtom } from 'src/lib/state/context';
 import type { IkkeTilgangArsak } from 'src/rest/resources/tilgangskontrollResource';
-
 export const Route = createLazyFileRoute('/new/person')({
     component: PersonRoute
 });
@@ -47,7 +48,54 @@ function PersonRouteMedTilgang() {
     return <PersonLayout />;
 }
 
+const MOBILE_BREAKPOINT = '(max-width: 767px)';
+
+const useIsMobile = () => {
+    const [isMobile, setIsMobile] = useState(() => window.matchMedia(MOBILE_BREAKPOINT).matches);
+
+    useEffect(() => {
+        const mql = window.matchMedia(MOBILE_BREAKPOINT);
+        const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+        mql.addEventListener('change', handler);
+        return () => mql.removeEventListener('change', handler);
+    }, []);
+
+    return isMobile;
+};
+
+const ResizeHandle = () => (
+    <PanelResizeHandle
+        aria-hidden
+        tabIndex={-1}
+        className="hover:bg-ax-bg-neutral-moderate-hover w-1 cursor-col-resize focus:bg-ax-brand-blue-100"
+    />
+);
+
 function PersonLayout() {
+    const isMeldinger = useRouterState({
+        select: (s) => s.matches.some((m) => m.routeId.includes('/meldinger'))
+    });
+    const isYtelser = useRouterState({
+        select: (s) => s.matches.some((m) => m.routeId.includes('/ytelser'))
+    });
+    const isMobile = useIsMobile();
+
+    const listPanel = isMeldinger ? (
+        <VStack height={{ md: '100%' }} overflow={{ md: 'hidden' }}>
+            <Heading size="small" visuallyHidden level="2">
+                Dialoger
+            </Heading>
+            <TraadList />
+        </VStack>
+    ) : isYtelser ? (
+        <VStack height={{ md: '100%' }} overflow={{ md: 'hidden' }}>
+            <Heading size="small" visuallyHidden level="2">
+                Ytelser
+            </Heading>
+            <YtelserList />
+        </VStack>
+    ) : null;
+
     return (
         <VStack className="new-modia  overflow-hidden" flexGrow="1" gap="space-4">
             <VStack className="shrink-0 overflow-auto">
@@ -57,21 +105,51 @@ function PersonLayout() {
                 <VStack>
                     <PersonSidebarMenu />
                 </VStack>
-                <PanelGroup direction="horizontal" autoSaveId="person-content">
-                    <Panel order={1} className="overflow-scroll">
-                        <Box as="main" id="main-content" height="100%">
-                            <VStack gap="space-4" height="100%">
-                                <Suspense>
-                                    <Outlet />
-                                </Suspense>
+                <PanelGroup direction="horizontal" autoSaveId="person-outer">
+                    <Panel order={1} className="overflow-hidden">
+                        {isMobile ? (
+                            <VStack className="h-full overflow-auto" gap="space-4">
+                                {listPanel}
+                                <Box as="main" id="main-content">
+                                    <VStack gap="space-4">
+                                        <Suspense>
+                                            <Outlet />
+                                        </Suspense>
+                                    </VStack>
+                                </Box>
                             </VStack>
-                        </Box>
+                        ) : (
+                            <PanelGroup
+                                direction="horizontal"
+                                autoSaveId={listPanel ? 'person-content-list' : 'person-content'}
+                            >
+                                {listPanel && (
+                                    <>
+                                        <Panel
+                                            order={1}
+                                            defaultSize={20}
+                                            minSize={10}
+                                            maxSize={40}
+                                            className="overflow-hidden"
+                                        >
+                                            {listPanel}
+                                        </Panel>
+                                        <ResizeHandle />
+                                    </>
+                                )}
+                                <Panel order={2} minSize={30} className="overflow-scroll">
+                                    <Box as="main" id="main-content" height="100%">
+                                        <VStack gap="space-4" height="100%">
+                                            <Suspense>
+                                                <Outlet />
+                                            </Suspense>
+                                        </VStack>
+                                    </Box>
+                                </Panel>
+                            </PanelGroup>
+                        )}
                     </Panel>
-                    <PanelResizeHandle
-                        aria-hidden
-                        tabIndex={-1}
-                        className="hover:bg-ax-bg-neutral-moderate-hover w-1 focus:bg-ax-brand-blue-100"
-                    />
+                    <ResizeHandle />
                     <LukkbarNyMelding />
                 </PanelGroup>
             </HStack>
