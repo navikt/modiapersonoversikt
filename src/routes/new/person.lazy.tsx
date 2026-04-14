@@ -80,25 +80,21 @@ function PersonLayout() {
     });
     const isMobile = useIsMobile();
 
-    const listPanel = (
+    const listPanel = isMeldinger ? (
         <VStack height={{ md: '100%' }} overflow={{ md: 'hidden' }}>
-            {isMeldinger ? (
-                <>
-                    <Heading size="small" visuallyHidden level="2">
-                        Dialoger
-                    </Heading>
-                    <TraadList />
-                </>
-            ) : isYtelser ? (
-                <>
-                    <Heading size="small" visuallyHidden level="2">
-                        Ytelser
-                    </Heading>
-                    <YtelserList />
-                </>
-            ) : null}
+            <Heading size="small" visuallyHidden level="2">
+                Dialoger
+            </Heading>
+            <TraadList />
         </VStack>
-    );
+    ) : isYtelser ? (
+        <VStack height={{ md: '100%' }} overflow={{ md: 'hidden' }}>
+            <Heading size="small" visuallyHidden level="2">
+                Ytelser
+            </Heading>
+            <YtelserList />
+        </VStack>
+    ) : null;
 
     return (
         <VStack className="new-modia  overflow-hidden" flexGrow="1" gap="space-4">
