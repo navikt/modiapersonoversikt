@@ -197,7 +197,7 @@ function NyMelding() {
                                 </HStack>
                                 <HStack justify="center" align="start">
                                     <Button
-                                        disabled={disableDialog}
+                                        disabled={disableDialog || isPending}
                                         type="submit"
                                         size="small"
                                         data-testid="svar-knapp"
