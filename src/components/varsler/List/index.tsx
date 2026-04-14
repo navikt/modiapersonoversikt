@@ -2,6 +2,7 @@ import { CheckmarkCircleIcon, ExclamationmarkTriangleIcon } from '@navikt/aksel-
 import { Alert, Detail, Heading, Pagination, Skeleton, type SortState, Table, Tag, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { VarselDetail } from 'src/components/varsler/Details';
+import { trackVisDetaljvisning } from 'src/utils/analytics';
 import { ENDASH, emptyReplacement, formaterDato } from 'src/utils/string-utils';
 import { useFilterVarsler, type VarselData } from './utils';
 
@@ -119,6 +120,9 @@ export const VarslerListe = () => {
                                 expandOnRowClick
                                 key={`${index}-${varsel.tittel}`}
                                 content={<VarselDetail valgtVarsel={varsel} />}
+                                onOpenChange={(isOpen) => {
+                                    if (isOpen) trackVisDetaljvisning('varslinger', 'åpnet varselexpandable');
+                                }}
                             >
                                 <Table.DataCell>{varsel.tittel}</Table.DataCell>
                                 <Table.DataCell>{formaterDato(varsel.varslingstidspunkt)}</Table.DataCell>
