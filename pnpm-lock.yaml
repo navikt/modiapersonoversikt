@@ -32,9 +32,6 @@ importers:
       '@navikt/fnrvalidator':
         specifier: ^2.1.5
         version: 2.1.5
-      '@navikt/navspa':
-        specifier: 7.4.0
-        version: 7.4.0(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       '@navikt/tag-input':
         specifier: ^2.0.2
         version: 2.0.2(6f00529ce96dfdb0b2b6ff2135fdf290)
@@ -1155,6 +1152,9 @@ packages:
       '@types/react': ^17.0.30 || ^18 || ^19
       react: ^17 || ^18 || ^19
       react-dom: ^17 || ^18 || ^19
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
 
   '@navikt/ds-tailwind@8.7.0':
     resolution: {integrity: sha512-J/ResgmF2WfjcDOoj/55Ero2Wfv1UZSxh+n/wpcnjAH+iEHhE/imPV042OLXi1/DLwcXUxkEg23gk7uHojTfKg==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tailwind/8.7.0/99ec8b29ec7dbf154362952f78a512234c7a3ec3}
@@ -1164,12 +1164,6 @@ packages:
 
   '@navikt/fnrvalidator@2.1.5':
     resolution: {integrity: sha512-uHzoL3ZTYwrF7OTKaihNf9xHH6S9WnGqz420HX4lEX+yu5367l+dYxI5OIRVT5MKWEDQ4DCVSAuJhoWValv6Fw==, tarball: https://npm.pkg.github.com/download/@navikt/fnrvalidator/2.1.5/e33cbc5693b14419bbcf4d5daee2ac9eeec532e5}
-
-  '@navikt/navspa@7.4.0':
-    resolution: {integrity: sha512-WQCyOnbBHJRxtp6Hq1CMmHFW83z0zuJ2HNBajhHtVhcnR5dV01GfxMFX1clqNsigByrU9yTaxEbFNLacoSgLSA==, tarball: https://npm.pkg.github.com/download/@navikt/navspa/7.4.0/8e7cfa5ca022fa7301e85796f39de4374eaf47ac}
-    peerDependencies:
-      react: '>=19.2.1'
-      react-dom: '>=19.2.1'
 
   '@navikt/tag-input@2.0.2':
     resolution: {integrity: sha512-1ld7mfoTscx6K2wB6HrxgG8AL3sP+PW8tySygk84txuVgsyAjDHOiw3N3QG5nJcjDTddFXyellyxq6zVC8nOcQ==, tarball: https://npm.pkg.github.com/download/@navikt/tag-input/2.0.2/3140c6202847323a57c4085aa4bcbca31b65866f}
@@ -3028,9 +3022,6 @@ packages:
   listr2@9.0.5:
     resolution: {integrity: sha512-ME4Fb83LgEgwNw96RKNvKV4VTLuXfoKudAmm2lP8Kk87KaMK0/Xrx/aAkMWmT8mDb+3MlFDspfbCs7adjRxA2g==}
     engines: {node: '>=20.0.0'}
-
-  loadjs@4.3.0:
-    resolution: {integrity: sha512-vNX4ZZLJBeDEOBvdr2v/F+0aN5oMuPu7JTqrMwp+DtgK+AryOlpy6Xtm2/HpNr+azEa828oQjOtWsB6iDtSfSQ==}
 
   locate-path@6.0.0:
     resolution: {integrity: sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==}
@@ -5217,23 +5208,18 @@ snapshots:
       '@floating-ui/react-dom': 2.1.6(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       '@navikt/aksel-icons': 8.7.0
       '@navikt/ds-tokens': 8.7.0
-      '@types/react': 19.2.1
       date-fns: 4.1.0
       react: 19.2.1
       react-day-picker: 9.7.0(react@19.2.1)
       react-dom: 19.2.1(react@19.2.1)
+    optionalDependencies:
+      '@types/react': 19.2.1
 
   '@navikt/ds-tailwind@8.7.0': {}
 
   '@navikt/ds-tokens@8.7.0': {}
 
   '@navikt/fnrvalidator@2.1.5': {}
-
-  '@navikt/navspa@7.4.0(react-dom@19.2.1(react@19.2.1))(react@19.2.1)':
-    dependencies:
-      loadjs: 4.3.0
-      react: 19.2.1
-      react-dom: 19.2.1(react@19.2.1)
 
   '@navikt/tag-input@2.0.2(6f00529ce96dfdb0b2b6ff2135fdf290)':
     dependencies:
@@ -7102,8 +7088,6 @@ snapshots:
       log-update: 6.1.0
       rfdc: 1.4.1
       wrap-ansi: 9.0.2
-
-  loadjs@4.3.0: {}
 
   locate-path@6.0.0:
     dependencies:
