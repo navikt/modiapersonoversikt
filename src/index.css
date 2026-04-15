@@ -71,8 +71,8 @@
     }
 }
 
-/* Lumi overrides*/
-#lumi-survey-container {
+/* Lumi overrides */
+.lumi-survey-container {
     .lumi-survey-dock {
         position: static!important;
         button {

@@ -3,6 +3,9 @@ import { type LumiSurveyConfig, LumiSurveyDock, type LumiSurveyTransport } from 
 import { atom, useAtom } from 'jotai';
 import { useRef, useState } from 'react';
 import { apiBaseUri, postConfig } from 'src/api/config';
+import { nyModiaAtom } from 'src/components/NyModia';
+import { trackToggleNyModia } from 'src/utils/analytics';
+import { lumiStorageStrategy } from './lumiStorageUtils';
 
 const mySurvey = {
     type: 'rating',
@@ -11,20 +14,20 @@ const mySurvey = {
             id: 'comment',
             type: 'text',
             prompt:
-                'Din tilbakemelding er anonym, og vi får derfor ikke besvart. Beskriv derfor så godt du kan. ' +
-                'Tekniske feil meldes fremdeles fra i porten.',
+                'Vi jobber kontinuerlig med å forbedre den nye versjonen av Modia og lurer på hvorfor du bytter ' +
+                'tilbake til den gamle? Meldingen din er anonym, og kan ikke besvares',
             maxLength: 1000,
-            placeholder: 'Skriv her...',
-            required: true
+            placeholder: 'Skriv her...'
         }
     ]
 } satisfies LumiSurveyConfig;
 
-export const openLumiFeedbackModalAtom = atom<boolean>(false);
+export const openGamleModiaFeedbackModalAtom = atom<boolean>(false);
 
-export const LumiFeedbackModal = () => {
-    const [open, setOpen] = useAtom(openLumiFeedbackModalAtom);
+export const LumiGamleModiaModal = () => {
+    const [open, setOpen] = useAtom(openGamleModiaFeedbackModalAtom);
     const [submitted, setSubmitted] = useState(false);
+    const [, setNyModia] = useAtom(nyModiaAtom);
 
     const transport = useRef<LumiSurveyTransport>({
         async submit(submission) {
@@ -38,36 +41,42 @@ export const LumiFeedbackModal = () => {
         setSubmitted(false);
     };
 
+    const handleProceed = () => {
+        setNyModia(false);
+        trackToggleNyModia(false);
+        handleClose();
+    };
+
     return (
         <Modal
             className="w-[600px] max-w-[99%]"
-            aria-labelledby="lumi-feedback-header"
+            aria-labelledby="lumi-gamle-modia-header"
             open={open}
             onClose={handleClose}
         >
             <Modal.Header>
-                <Heading id="lumi-feedback-header" size="medium">
-                    Din tilbakemelding er verdifull!
+                <Heading id="lumi-gamle-modia-header" size="medium">
+                    Hei!
                 </Heading>
             </Modal.Header>
             <Modal.Body>
                 {submitted ? (
                     <VStack gap="space-4">
                         <BodyLong>Takk for tilbakemeldingen! 🎉</BodyLong>
-                        <BodyLong>
-                            Vi jobber kontinuerlig med å forbedre den nye utgaven av Modia personoversikt, så deres
-                            innspill og tilbakemeldinger er verdifulle for oss!
-                        </BodyLong>
                     </VStack>
                 ) : (
                     <Box className="lumi-survey-container">
                         <VStack gap="space-8">
                             <LumiSurveyDock
-                                surveyId="modiapersonoversikt-tilbakemelding"
+                                surveyId="modiapersonoversikt-bytt-til-gammel"
                                 survey={mySurvey}
                                 success={{ autoClose: true, autoCloseDelayMs: 0 }}
                                 transport={transport}
-                                behavior={{ showPersonalDataNotice: false, storageStrategy: 'none' }}
+                                behavior={{
+                                    showPersonalDataNotice: false,
+                                    storageStrategy: lumiStorageStrategy,
+                                    dismissCooldownDays: 30
+                                }}
                                 style={{ containerClassName: '!w-full', panelClassName: '!w-full !max-w-full' }}
                             />
                             <InlineMessage status="warning">
@@ -79,8 +88,15 @@ export const LumiFeedbackModal = () => {
             </Modal.Body>
             {submitted && (
                 <Modal.Footer>
-                    <Button type="button" size="small" variant="primary" onClick={handleClose}>
-                        Lukk
+                    <Button type="button" size="small" variant="primary" onClick={handleProceed}>
+                        Gå til gamle Modia
+                    </Button>
+                </Modal.Footer>
+            )}
+            {!submitted && (
+                <Modal.Footer>
+                    <Button type="button" size="small" variant="tertiary" onClick={handleProceed}>
+                        Hopp over og gå til gamle Modia
                     </Button>
                 </Modal.Footer>
             )}

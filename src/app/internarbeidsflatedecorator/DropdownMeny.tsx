@@ -11,8 +11,10 @@ export const DropdownMeny = () => {
     const openLumiFeedbackModal = useSetAtom(openLumiFeedbackModalAtom);
     const ref = useRef<HTMLInputElement | null>(null);
     const [openedWithKeyboard, setOpenedWithKeyboard] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
 
     const onOpenChange = (open: boolean): void => {
+        setMenuOpen(open);
         if (open && openedWithKeyboard) {
             setTimeout(() => ref.current?.focus(), 50);
         }
@@ -39,7 +41,7 @@ export const DropdownMeny = () => {
     };
 
     return (
-        <ActionMenu onOpenChange={onOpenChange}>
+        <ActionMenu open={menuOpen} onOpenChange={onOpenChange}>
             <ActionMenu.Trigger onKeyDown={() => setOpenedWithKeyboard(true)}>
                 <Button
                     className="py-[0.5rem]"
@@ -52,7 +54,7 @@ export const DropdownMeny = () => {
             </ActionMenu.Trigger>
             <ActionMenu.Content onKeyDown={handleContentKeyDown}>
                 <ActionMenu.Group label="Velg versjon">
-                    <NyModiaSwitch ref={ref} />
+                    <NyModiaSwitch ref={ref} onCloseMenu={() => setMenuOpen(false)} />
                     <ActionMenu.Item onClick={() => openLumiFeedbackModal(true)}>Gi tilbakemelding</ActionMenu.Item>
                 </ActionMenu.Group>
                 <ActionMenu.Divider />

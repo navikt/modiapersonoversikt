@@ -7,6 +7,7 @@ import { DropdownMeny } from './DropdownMeny';
 import type { DecoratorPropsV3 } from './decoratorprops';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
 import { LumiFeedbackModal } from './LumiFeedbackModal';
+import { LumiGamleModiaModal } from './LumiGamleModiaModal';
 import './personsokKnapp.less';
 import './nymodiaKnapp.less';
 import './decorator.less';
@@ -56,6 +57,7 @@ function Decorator() {
             <DropdownMenyPortal />
             {open && <OppstartNyModiaDialog />}
             <LumiFeedbackModal />
+            <LumiGamleModiaModal />
             <DecoratorEasterEgg />
         </StyledNav>
     );
