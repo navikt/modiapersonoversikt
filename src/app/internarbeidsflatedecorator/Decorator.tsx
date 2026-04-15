@@ -1,12 +1,13 @@
 import NAVSPA from '@navikt/navspa';
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import Personsok from 'src/components/personsok';
 import styled from 'styled-components';
 import OppdateringsloggContainer from '../oppdateringslogg/OppdateringsloggContainer';
 import { DropdownMeny } from './DropdownMeny';
 import type { DecoratorPropsV3 } from './decoratorprops';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
+import { LumiFeedbackModal } from './LumiFeedbackModal';
+import { LumiGamleModiaModal } from './LumiGamleModiaModal';
 import './personsokKnapp.less';
 import './nymodiaKnapp.less';
 import './decorator.less';
@@ -14,6 +15,7 @@ import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
 import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 import { OppstartNyModiaDialog } from 'src/components/NyModia/OppstartNyModiaDialog';
 import useOpenIntroduksjonsModal from 'src/components/NyModia/useHarSettNyModiaDialog';
+import Personsok from 'src/components/personsok';
 import { useDecoratorConfig } from './useDecoratorConfig';
 
 const InternflateDecoratorV3 = NAVSPA.importer<DecoratorPropsV3>('internarbeidsflate-decorator-v3');
@@ -54,6 +56,8 @@ function Decorator() {
             <OppdateringsloggContainer />
             <DropdownMenyPortal />
             {open && <OppstartNyModiaDialog />}
+            <LumiFeedbackModal />
+            <LumiGamleModiaModal />
             <DecoratorEasterEgg />
         </StyledNav>
     );
