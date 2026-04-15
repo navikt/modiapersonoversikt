@@ -94,7 +94,6 @@ export function setupReactQueryMocks() {
         [FeatureToggles.VisSiste14aVedtak]: true,
         [FeatureToggles.NyModiaKnapp]: true,
         [FeatureToggles.LumiFeedbackGamleModia]: true,
-        [FeatureToggles.InfotrygdForeldrepenger]: true,
         [FeatureToggles.InfotrygdSykepenger]: true,
         [FeatureToggles.SpokelseSykepenger]: true
     });
