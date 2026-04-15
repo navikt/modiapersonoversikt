@@ -54,12 +54,10 @@
     </style>
 
     <slot not-environment="prod">
-        <script src="%VITE_HODE_URL_V2%/dev/react19/dist/bundle.js"></script>
-        <link rel="stylesheet" href="%VITE_HODE_URL_V2%/dev/react19/dist/index.css" />
+        <script src="%VITE_HODE_URL_V2%/dev/latest/dist/internarbeidsflate-decorator.wc.js" type="module"></script>
     </slot>
     <slot environment="prod">
-        <script src="%VITE_HODE_URL_V2%/prod/latest/dist/bundle.js"></script>
-        <link rel="stylesheet" href="%VITE_HODE_URL_V2%/prod/latest/dist/index.css" />
+        <script src="%VITE_HODE_URL_V2%/prod/latest/dist/internarbeidsflate-decorator.wc.js" type="module"></script>
     </slot>
 
     <script env-vars prefix="PUBLIC_">
