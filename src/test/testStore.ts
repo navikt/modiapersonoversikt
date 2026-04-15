@@ -95,7 +95,6 @@ export function setupReactQueryMocks() {
         [FeatureToggles.NyModiaKnapp]: true,
         [FeatureToggles.LumiFeedbackGamleModia]: true,
         [FeatureToggles.InfotrygdForeldrepenger]: true,
-        [FeatureToggles.InfotrygdPleiepenger]: true,
         [FeatureToggles.InfotrygdSykepenger]: true,
         [FeatureToggles.SpokelseSykepenger]: true
     });
