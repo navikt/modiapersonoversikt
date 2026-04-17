@@ -139,7 +139,7 @@ function RootLayout() {
                         </AppWrapper>
                     )}
                     <TanStackRouterDevtools position="bottom-right" />
-                    <Toaster position="top-right" theme={theme} richColors />
+                    <Toaster position="bottom-right" theme={theme} richColors />
                 </ValgtEnhetProvider>
             </Theme>
         </QueryClientProvider>
