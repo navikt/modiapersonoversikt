@@ -4,6 +4,7 @@ declare global {
         firstOrNull(): T | null;
         isEmpty(): boolean;
         isNotEmpty(): boolean;
+        lastOrNull(): T | null;
         unique(): Array<T>;
     }
 }
@@ -18,6 +19,10 @@ Array.prototype.isEmpty = function <T>(this: T[]) {
 
 Array.prototype.isNotEmpty = function <T>(this: T[]) {
     return this.length > 0;
+};
+
+Array.prototype.lastOrNull = function <T>(this: T[]) {
+    return this.isEmpty() ? null : this[this.length - 1];
 };
 
 Array.prototype.unique = function <T>(this: T[]) {

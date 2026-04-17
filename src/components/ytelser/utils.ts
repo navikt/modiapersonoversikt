@@ -74,6 +74,10 @@ const filterYtelser = (ytelser: YtelseVedtak[], filters: YtelseFilter): YtelseVe
     return filteredList;
 };
 
+/**
+ * "Id Dato" = date formatted date string, used as an id and for sorting.
+ * if there are multiple periods, use the earliest one.
+ */
 export function getYtelseIdDato(ytelse: YtelseVedtak): string {
     switch (ytelse.ytelseType) {
         case YtelseVedtakYtelseType.Sykepenger:
@@ -137,7 +141,8 @@ function getSykepengerDato(sykepenger: Sykepenger) {
 }
 
 function getSykepengerSpokelseIdDato(ytelse: SykepengerSpokelse) {
-    return ytelse.utbetaltePerioder.firstOrNull()?.fom ?? dayjs().format(backendDatoformat);
+    // utbetaltePerioder comes sorted in descending order
+    return ytelse.utbetaltePerioder.lastOrNull()?.fom ?? dayjs().format(backendDatoformat);
 }
 
 function getTiltakspengerDato(ytelse: VedtakDto) {

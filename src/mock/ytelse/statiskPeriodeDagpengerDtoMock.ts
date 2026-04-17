@@ -2,7 +2,7 @@ import type { PeriodeDagpengerDtoKilde, PeriodeDagpengerDtoYtelseType } from 'sr
 
 //export const statiskPeriodeDagpengerDtoMock: PseudoDagpengerVedtak = {
 export const statiskPeriodeDagpengerDtoMock = {
-    nyesteFraOgMedDato: '2025-10-10',
+    eldsteFraOgMedDato: '2025-06-06',
     perioder: [
         {
             fraOgMedDato: '2025-06-06',
