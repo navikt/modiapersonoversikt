@@ -22,6 +22,9 @@ interface DecoratorElementAttributes {
     'access-token'?: string;
     'include-credentials'?: string;
     'user-key'?: string;
+    onEnhetChanged?: (e: Event) => void;
+    onFnrChanged?: (e: Event) => void;
+    onLinkClick?: (e: Event) => void;
 }
 
 declare namespace React {

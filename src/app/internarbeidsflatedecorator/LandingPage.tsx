@@ -4,28 +4,27 @@ import { useDecoratorConfig } from './useDecoratorConfig';
 
 function InternarbeidsflateDecoratorFullscreenElement(props: DecoratorPropsV3) {
     const ref = useRef<HTMLElement>(null);
+    const propsRef = useRef(props);
+    propsRef.current = props;
 
-    const onEnhetChangedRef = useRef(props.onEnhetChanged);
-    onEnhetChangedRef.current = props.onEnhetChanged;
-    const onFnrChangedRef = useRef(props.onFnrChanged);
-    onFnrChangedRef.current = props.onFnrChanged;
-
+    // Hotkeys kan inneholde funksjoner som ikke kan JSON-serialiseres — settes direkte som JS-property
     useEffect(() => {
         if (ref.current) {
             (ref.current as HTMLElement & { hotkeys: DecoratorPropsV3['hotkeys'] }).hotkeys = props.hotkeys;
         }
     }, [props.hotkeys]);
 
+    // useLayoutEffect registrerer lyttere synkront etter DOM-commit, før web componenten kan sende events
     useLayoutEffect(() => {
         const el = ref.current;
         if (!el) return;
 
         const onEnhetChanged = (e: Event) => {
             const { enhet, enhetObjekt } = (e as CustomEvent).detail;
-            onEnhetChangedRef.current(enhet, enhetObjekt);
+            propsRef.current.onEnhetChanged?.(enhet, enhetObjekt);
         };
         const onFnrChanged = (e: Event) => {
-            onFnrChangedRef.current((e as CustomEvent).detail.fnr);
+            propsRef.current.onFnrChanged?.((e as CustomEvent).detail.fnr);
         };
 
         el.addEventListener('enhet-changed', onEnhetChanged);

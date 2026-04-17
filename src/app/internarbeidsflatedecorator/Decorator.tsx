@@ -11,13 +11,9 @@ import { useDecoratorConfig } from './useDecoratorConfig';
 function InternarbeidsflateDecoratorElement(props: DecoratorPropsV3) {
     const ref = useRef<HTMLElement>(null);
 
-    // Hold siste versjon av callbacks i refs så event-handlers aldri blir utdaterte og aldri trenger å re-registreres
-    const onEnhetChangedRef = useRef(props.onEnhetChanged);
-    onEnhetChangedRef.current = props.onEnhetChanged;
-    const onFnrChangedRef = useRef(props.onFnrChanged);
-    onFnrChangedRef.current = props.onFnrChanged;
-    const onLinkClickRef = useRef(props.onLinkClick);
-    onLinkClickRef.current = props.onLinkClick;
+    // Hold siste versjon av alle callbacks i én ref — handlers registreres én gang, men er alltid oppdaterte
+    const propsRef = useRef(props);
+    propsRef.current = props;
 
     // Hotkeys kan inneholde funksjoner som ikke kan JSON-serialiseres — settes direkte som JS-property
     useEffect(() => {
@@ -26,21 +22,20 @@ function InternarbeidsflateDecoratorElement(props: DecoratorPropsV3) {
         }
     }, [props.hotkeys]);
 
-    // useLayoutEffect kjører sync etter DOM-commit (som er før noe vises på skjermen), slik at lyttere er
-    // registrert før web componentens interne React-scheduler kan sende context-events.
+    // useLayoutEffect registrerer lyttere synkront etter DOM-commit, før web componenten kan sende events
     useLayoutEffect(() => {
         const el = ref.current;
         if (!el) return;
 
         const onEnhetChanged = (e: Event) => {
             const { enhet, enhetObjekt } = (e as CustomEvent).detail;
-            onEnhetChangedRef.current(enhet, enhetObjekt);
+            propsRef.current.onEnhetChanged?.(enhet, enhetObjekt);
         };
         const onFnrChanged = (e: Event) => {
-            onFnrChangedRef.current((e as CustomEvent).detail.fnr);
+            propsRef.current.onFnrChanged?.((e as CustomEvent).detail.fnr);
         };
         const onLinkClick = (e: Event) => {
-            onLinkClickRef.current?.((e as CustomEvent).detail);
+            propsRef.current.onLinkClick?.((e as CustomEvent).detail);
         };
 
         el.addEventListener('enhet-changed', onEnhetChanged);
@@ -51,7 +46,7 @@ function InternarbeidsflateDecoratorElement(props: DecoratorPropsV3) {
             el.removeEventListener('fnr-changed', onFnrChanged);
             el.removeEventListener('link-click', onLinkClick);
         };
-    }, []); // tom deps-array — stabile handlers via refs, registreres én gang ved mount
+    }, []);
 
     return (
         <internarbeidsflate-decorator
