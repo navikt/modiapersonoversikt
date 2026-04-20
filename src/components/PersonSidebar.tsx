@@ -146,50 +146,50 @@ export const PersonSidebarMenu = () => {
                                     }}
                                     aria-label={title}
                                 >
-                                {({ isActive }) => (
-                                    <>
-                                        <Button
-                                            data-color="neutral"
-                                            aria-hidden
-                                            tabIndex={-1}
-                                            icon={
-                                                <>
-                                                    <Icon aria-hidden />
-                                                    {visNotifikasjon(title) && (
-                                                        <Box
-                                                            position="absolute"
-                                                            className={expanded ? 'left-6' : 'left-4'}
-                                                        >
-                                                            <Bleed marginBlock="space-2" asChild>
-                                                                <CircleFillIcon
-                                                                    fontSize="0.8rem"
-                                                                    color="var(--ax-text-logo)"
-                                                                    title="Brukeren har ubesvarte meldinger og/eller oppgave må løses"
-                                                                />
-                                                            </Bleed>
-                                                        </Box>
-                                                    )}
-                                                </>
-                                            }
-                                            variant="tertiary"
-                                            size="small"
-                                            className={twMerge(
-                                                'my-1 relative',
-                                                'font-normal',
-                                                !isActive && ['hover:bg-ax-bg-accent-moderate-hover'],
-                                                expanded && ['justify-start', 'min-w-42'],
-                                                isActive && [
-                                                    'bg-ax-bg-accent-moderate-pressed',
-                                                    'text-ax-text-accent',
-                                                    'hover:text-ax-text-accent'
-                                                ]
-                                            )}
-                                        >
-                                            {expanded && <span className="font-normal">{title}</span>}
-                                        </Button>
-                                    </>
-                                )}
-                            </Link>
+                                    {({ isActive }) => (
+                                        <>
+                                            <Button
+                                                data-color="neutral"
+                                                aria-hidden
+                                                tabIndex={-1}
+                                                icon={
+                                                    <>
+                                                        <Icon aria-hidden />
+                                                        {visNotifikasjon(title) && (
+                                                            <Box
+                                                                position="absolute"
+                                                                className={expanded ? 'left-6' : 'left-4'}
+                                                            >
+                                                                <Bleed marginBlock="space-2" asChild>
+                                                                    <CircleFillIcon
+                                                                        fontSize="0.8rem"
+                                                                        color="var(--ax-text-logo)"
+                                                                        title="Brukeren har ubesvarte meldinger og/eller oppgave må løses"
+                                                                    />
+                                                                </Bleed>
+                                                            </Box>
+                                                        )}
+                                                    </>
+                                                }
+                                                variant="tertiary"
+                                                size="small"
+                                                className={twMerge(
+                                                    'my-1 relative',
+                                                    'font-normal',
+                                                    !isActive && ['hover:bg-ax-bg-accent-moderate-hover'],
+                                                    expanded && ['justify-start', 'min-w-42'],
+                                                    isActive && [
+                                                        'bg-ax-bg-accent-moderate-pressed',
+                                                        'text-ax-text-accent',
+                                                        'hover:text-ax-text-accent'
+                                                    ]
+                                                )}
+                                            >
+                                                {expanded && <span className="font-normal">{title}</span>}
+                                            </Button>
+                                        </>
+                                    )}
+                                </Link>
                             </ConditionalTooltip>
                         ))}
                     </VStack>
