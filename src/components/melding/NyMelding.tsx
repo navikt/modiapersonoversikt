@@ -98,7 +98,10 @@ function NyMelding() {
                     {(field) => (
                         <VelgMeldingsType
                             meldingsType={field.state.value}
-                            setMeldingsType={(meldingsType) => field.handleChange(meldingsType)}
+                            setMeldingsType={(meldingsType) => {
+                                form.reset();
+                                field.handleChange(meldingsType);
+                            }}
                         />
                     )}
                 </form.Field>
