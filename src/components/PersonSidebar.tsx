@@ -10,9 +10,9 @@ import {
     PersonGroupIcon,
     PiggybankIcon
 } from '@navikt/aksel-icons';
-import { Bleed, Box, Button, Heading, VStack } from '@navikt/ds-react';
+import { Bleed, Box, Button, Heading, Tooltip, VStack } from '@navikt/ds-react';
 import { Link } from '@tanstack/react-router';
-import { type ComponentProps, useState } from 'react';
+import { type ComponentProps, type ReactElement, useState } from 'react';
 import { getOpenTabFromRouterPath, useOpenTab } from 'src/app/personside/infotabs/utils/useOpenTab';
 import { erUbesvartHenvendelseFraBruker, useTraader } from 'src/components/Meldinger/List/utils';
 import { usePersonSideBarKotkeys } from 'src/components/usePersonSidebarHotkeys';
@@ -26,6 +26,21 @@ type MenuItem = {
     title: string;
     href: ComponentProps<typeof Link>['to'];
     Icon: React.ExoticComponent;
+};
+
+type ConditionalTooltipProps = {
+    content: string;
+    enabled: boolean;
+    children: ReactElement;
+};
+
+const ConditionalTooltip = ({ content, enabled, children }: ConditionalTooltipProps) => {
+    if (!enabled) return <>{children}</>;
+    return (
+        <Tooltip content={content} placement="right">
+            {children}
+        </Tooltip>
+    );
 };
 
 export const menuItems = [
@@ -117,64 +132,65 @@ export const PersonSidebarMenu = () => {
                             Faner
                         </Heading>
                         {menuItems.map(({ title, href, Icon }) => (
-                            <Link
-                                key={title}
-                                to={href}
-                                state={{
-                                    umamiEvent: {
-                                        name: trackingEvents.faneEndret,
-                                        data: {
-                                            nyFane: getOpenTabFromRouterPath(href).path,
-                                            forrigeFane: openTab.path
-                                        }
-                                    }
-                                }}
-                                aria-label={title}
-                            >
-                                {({ isActive }) => (
-                                    <>
-                                        <Button
-                                            data-color="neutral"
-                                            aria-hidden
-                                            tabIndex={-1}
-                                            icon={
-                                                <>
-                                                    <Icon aria-hidden />
-                                                    {visNotifikasjon(title) && (
-                                                        <Box
-                                                            position="absolute"
-                                                            className={expanded ? 'left-6' : 'left-4'}
-                                                        >
-                                                            <Bleed marginBlock="space-2" asChild>
-                                                                <CircleFillIcon
-                                                                    fontSize="0.8rem"
-                                                                    color="var(--ax-text-logo)"
-                                                                    title="Brukeren har ubesvarte meldinger og/eller oppgave må løses"
-                                                                />
-                                                            </Bleed>
-                                                        </Box>
-                                                    )}
-                                                </>
+                            <ConditionalTooltip key={title} content={title} enabled={!expanded}>
+                                <Link
+                                    to={href}
+                                    state={{
+                                        umamiEvent: {
+                                            name: trackingEvents.faneEndret,
+                                            data: {
+                                                nyFane: getOpenTabFromRouterPath(href).path,
+                                                forrigeFane: openTab.path
                                             }
-                                            variant="tertiary"
-                                            size="small"
-                                            className={twMerge(
-                                                'my-1 relative',
-                                                'font-normal',
-                                                !isActive && ['hover:bg-ax-bg-accent-moderate-hover'],
-                                                expanded && ['justify-start', 'min-w-42'],
-                                                isActive && [
-                                                    'bg-ax-bg-accent-moderate-pressed',
-                                                    'text-ax-text-accent',
-                                                    'hover:text-ax-text-accent'
-                                                ]
-                                            )}
-                                        >
-                                            {expanded && <span className="font-normal">{title}</span>}
-                                        </Button>
-                                    </>
-                                )}
-                            </Link>
+                                        }
+                                    }}
+                                    aria-label={title}
+                                >
+                                    {({ isActive }) => (
+                                        <>
+                                            <Button
+                                                data-color="neutral"
+                                                aria-hidden
+                                                tabIndex={-1}
+                                                icon={
+                                                    <>
+                                                        <Icon aria-hidden />
+                                                        {visNotifikasjon(title) && (
+                                                            <Box
+                                                                position="absolute"
+                                                                className={expanded ? 'left-6' : 'left-4'}
+                                                            >
+                                                                <Bleed marginBlock="space-2" asChild>
+                                                                    <CircleFillIcon
+                                                                        fontSize="0.8rem"
+                                                                        color="var(--ax-text-logo)"
+                                                                        title="Brukeren har ubesvarte meldinger og/eller oppgave må løses"
+                                                                    />
+                                                                </Bleed>
+                                                            </Box>
+                                                        )}
+                                                    </>
+                                                }
+                                                variant="tertiary"
+                                                size="small"
+                                                className={twMerge(
+                                                    'my-1 relative',
+                                                    'font-normal',
+                                                    !isActive && ['hover:bg-ax-bg-accent-moderate-hover'],
+                                                    expanded && ['justify-start', 'min-w-42'],
+                                                    isActive && [
+                                                        'bg-ax-bg-accent-moderate-pressed',
+                                                        'text-ax-text-accent',
+                                                        'hover:text-ax-text-accent'
+                                                    ]
+                                                )}
+                                            >
+                                                {expanded && <span className="font-normal">{title}</span>}
+                                            </Button>
+                                        </>
+                                    )}
+                                </Link>
+                            </ConditionalTooltip>
                         ))}
                     </VStack>
                 </Box>
