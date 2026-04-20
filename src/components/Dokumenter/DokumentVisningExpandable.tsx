@@ -56,9 +56,7 @@ const DokumentTab = ({
             value={value ?? `${index}-${dokument.dokumentreferanse}`}
             label={
                 <HStack wrap={false}>
-                    <BodyShort className="whitespace-nowrap">
-                        {value ? capitalize(value) : `Vedlegg ${index + 1}`}
-                    </BodyShort>
+                    <BodyShort className="whitespace-nowrap">{value ? capitalize(value) : dokument.tittel}</BodyShort>
                     <Link
                         to="/new/dokument"
                         target="_blank"
