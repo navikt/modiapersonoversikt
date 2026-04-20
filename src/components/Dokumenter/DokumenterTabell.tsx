@@ -35,6 +35,11 @@ const avsenderMottaker = (
     }
 };
 
+const countVedleggMedReferanse = (journalpost: Dokumentmetadata) => {
+    if (!journalpost.vedlegg.length) return 1;
+    return journalpost.vedlegg.filter((vedlegg) => vedlegg.dokumentreferanse).length + 1;
+};
+
 export const DokumenterTabell = () => {
     const [openMap, setOpenMap] = useState<{ [key: string]: boolean }>({});
 
@@ -155,7 +160,7 @@ export const DokumenterTabell = () => {
                                         title="Antall vedlegg"
                                         icon={<FilesIcon aria-hidden />}
                                     >
-                                        {journalpost.vedlegg.length ? journalpost.vedlegg.length + 1 : 1}
+                                        {countVedleggMedReferanse(journalpost)}
                                     </Tag>
                                 </Table.DataCell>
                             </Table.ExpandableRow>
