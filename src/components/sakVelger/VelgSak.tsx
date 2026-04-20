@@ -51,13 +51,10 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
                 <Modal.Body className="overflow-y-hidden">
                     <SakVelger.Root
                         setSak={(sak) => {
-                            setSak({
-                                ...sak,
-                                fnr: undefined,
-                                saksId: sak.saksId ?? undefined,
-                                fagsystemSaksId: sak.fagsystemSaksId ?? undefined,
-                                opprettetDato: sak.opprettetDato ?? undefined
-                            });
+                            const normalized = Object.fromEntries(
+                                Object.entries(sak).map(([k, v]) => [k, v ?? undefined])
+                            ) as JournalforingSak;
+                            setSak({ ...normalized, fnr: undefined });
                             setVelgSakModalOpen(false);
                         }}
                     >
