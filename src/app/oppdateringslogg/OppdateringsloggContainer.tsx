@@ -47,6 +47,9 @@ function useHoldUlestIndikatorOppdatert(
             element?.classList.remove('oppdateringslogg--uleste');
             if (ulest) {
                 element?.classList.add('oppdateringslogg--uleste');
+                element.setAttribute('title', 'Oppdateringslogg (du har en eller flere uleste logginnslag)');
+            } else {
+                element.setAttribute('title', 'Oppdateringslogg');
             }
         }
     }, [element, sistLesteId, oppdateringslogg]);
