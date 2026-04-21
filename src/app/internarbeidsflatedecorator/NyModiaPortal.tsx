@@ -10,10 +10,10 @@ export function NyModiaPortal() {
     const { isOn } = useFeatureToggle(FeatureToggles.NyModiaKnapp);
 
     useEffect(() => {
-        const findAndSet = () => {
-            // Som web-component så har dekoratøren et isolert DOM subtree (shadow DOM).
-            const host = document.querySelector('internarbeidsflate-decorator');
+        // Som web-component så har dekoratøren et isolert DOM subtree (shadow DOM).
+        const host = document.querySelector('internarbeidsflate-decorator');
 
+        const findAndSet = () => {
             const el = host?.shadowRoot?.getElementById('dropdown-container') ?? null;
             if (el && el !== containerRef.current) {
                 containerRef.current = el;
@@ -24,11 +24,9 @@ export function NyModiaPortal() {
         // Lokaliserer #dropdown-container ved initial mount
         findAndSet();
 
-        // Må i tilegg observeres og settes i tilfelle dekoratøren ikke har rendret sin shadow DOM før etter mount
+        // Må i tillegg observeres og settes i tilfelle dekoratøren ikke har rendret sin shadow DOM før etter mount
         const observer = new MutationObserver(findAndSet);
-        observer.observe(document.body, { childList: true, subtree: true });
 
-        const host = document.querySelector('internarbeidsflate-decorator');
         if (host?.shadowRoot) {
             observer.observe(host.shadowRoot, { childList: true, subtree: true });
         }
