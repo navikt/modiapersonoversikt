@@ -99,7 +99,10 @@ function NyMelding() {
                         <VelgMeldingsType
                             meldingsType={field.state.value}
                             setMeldingsType={(meldingsType) => {
-                                form.reset();
+                                form.reset({
+                                    ...defaultFormOptions,
+                                    sak: meldingsType !== MeldingsType.Referat ? form.getFieldValue('sak') : undefined
+                                });
                                 field.handleChange(meldingsType);
                             }}
                         />
