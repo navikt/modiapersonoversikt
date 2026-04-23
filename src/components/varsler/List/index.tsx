@@ -129,7 +129,7 @@ export const VarslerListe = () => {
                                 <Table.DataCell>
                                     {varsel.revarslingstidspunkt ? formaterDato(varsel.revarslingstidspunkt) : ENDASH}
                                 </Table.DataCell>
-                                <Table.DataCell>{varsel.aktiv ? 'Ja' : 'Nei'}</Table.DataCell>
+                                <Table.DataCell>{varsel.aktiv ? 'Nei' : 'Ja'}</Table.DataCell>
                                 <Table.DataCell>{emptyReplacement(varsel.kanaler?.join(', '), ENDASH)}</Table.DataCell>
                                 <Table.DataCell>
                                     <Status varsel={varsel} />
