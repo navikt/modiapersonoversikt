@@ -101,6 +101,7 @@ function NyMelding() {
                             setMeldingsType={(meldingsType) => {
                                 form.reset({
                                     ...defaultFormOptions,
+                                    melding: form.getFieldValue('melding'),
                                     sak: meldingsType !== MeldingsType.Referat ? form.getFieldValue('sak') : undefined
                                 });
                                 field.handleChange(meldingsType);
