@@ -110,6 +110,7 @@ const SkipNavigasjonsLink = () => {
 function RootLayout() {
     const matchRoute = useMatchRoute();
     const isLanding = matchRoute({ to: '/landingpage' });
+    const isPersonvern = matchRoute({ to: '/personvern' });
     const isNewModia = matchRoute({ to: '/new/person', fuzzy: true }) !== false;
     const theme = useAtomValue(themeAtom);
 
@@ -122,7 +123,7 @@ function RootLayout() {
             <Theme hasBackground={isNewModia} theme={isNewModia ? theme : 'light'}>
                 <ThemeProvider />
                 <ValgtEnhetProvider>
-                    {isLanding ? (
+                    {isLanding || isPersonvern ? (
                         <Outlet />
                     ) : (
                         <AppWrapper>
