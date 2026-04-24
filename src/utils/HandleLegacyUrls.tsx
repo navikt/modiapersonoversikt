@@ -1,12 +1,13 @@
 import { Loader } from '@navikt/ds-react';
 import { useMatchRoute, useNavigate } from '@tanstack/react-router';
-import { type PropsWithChildren, useState } from 'react';
+import { type PropsWithChildren, useEffect, useRef, useState } from 'react';
 import { post } from 'src/api/api';
 import { contextHolderBaseUri } from 'src/api/config';
 import { INFOTABS } from 'src/app/personside/infotabs/InfoTabEnum';
 import { paths } from 'src/app/routes/routing';
+import type { OppgaveDto } from 'src/generated/modiapersonoversikt-api';
 import { useOppgave } from 'src/lib/clients/modiapersonoversikt-api';
-import { useOnMount, useSettAktivBruker } from 'src/utils/customHooks';
+import { useSettAktivBruker } from 'src/utils/customHooks';
 import { erGyldigishFnr } from 'src/utils/fnr-utils';
 import { loggEvent } from 'src/utils/logger/frontendLogger';
 import { useQueryParams } from 'src/utils/url-utils';
@@ -24,10 +25,15 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
     const validFnr = fnrMatch && erGyldigishFnr(fnrMatch.fnr ?? '') ? fnrMatch.fnr : undefined;
     const settGjeldendeBruker = useSettAktivBruker();
     const navigate = useNavigate();
-    const [delayRender, setDelayRender] = useState(!!validFnr);
-    const { data: oppgaveData } = useOppgave(queryParams.oppgaveid);
+    const [delayRender, setDelayRender] = useState(!!validFnr || !!queryParams.oppgaveid);
+    const { data: oppgaveData, isLoading } = useOppgave(queryParams.oppgaveid);
+    const hasHandled = useRef(false);
 
-    useOnMount(() => {
+    useEffect(() => {
+        if (queryParams.oppgaveid && isLoading) return;
+        if (hasHandled.current) return;
+        hasHandled.current = true;
+
         const behandlingsId = queryParams.henvendelseid || queryParams.behandlingsid;
         const oppgaveId = queryParams.oppgaveid;
         if (queryParams.sokFnrCode) {
@@ -41,15 +47,15 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
             }).then((res) => {
                 const url = removeParamFromURL('sokFnrCode');
                 window.history.replaceState(null, '', url.toString());
-                handleLegacyUrls(res.aktivBruker, behandlingsId, oppgaveId);
+                handleLegacyUrls(res.aktivBruker, behandlingsId, oppgaveId, oppgaveData);
             });
         } else {
-            handleLegacyUrls(queryParams.sokFnr ?? validFnr, behandlingsId, oppgaveId);
+            handleLegacyUrls(queryParams.sokFnr ?? validFnr, behandlingsId, oppgaveId, oppgaveData);
             setDelayRender(false);
         }
-    });
+    }, [isLoading, oppgaveData]);
 
-    const handleLegacyUrls = (fnr?: string, behandlingsId?: string, oppgaveId?: string) => {
+    const handleLegacyUrls = (fnr?: string, behandlingsId?: string, oppgaveId?: string, oppgaveData?: OppgaveDto) => {
         const linkTilValgtHenvendelse = `${paths.personUri}/${INFOTABS.MELDINGER.path}` as const;
         const newQuery = { traadId: behandlingsId };
 
