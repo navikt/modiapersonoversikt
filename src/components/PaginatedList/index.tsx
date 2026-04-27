@@ -4,6 +4,7 @@ import {
     type ComponentProps,
     type ComponentPropsWithRef,
     type JSX,
+    type KeyboardEvent,
     type ReactNode,
     useEffect,
     useMemo,
@@ -50,6 +51,22 @@ export const PaginatedList = <T, KeyType extends string | number>({
         setPage(0);
     }, [selectedKey, pages, keyExtractor]);
 
+    const handleListKeyDown = (e: KeyboardEvent<HTMLElement>) => {
+        if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+
+        const focusableItems = Array.from(e.currentTarget.querySelectorAll<HTMLElement>('[tabindex="0"]'));
+        const focusedIndex = focusableItems.indexOf(document.activeElement as HTMLElement);
+
+        if (focusedIndex === -1) return;
+
+        e.preventDefault();
+
+        const lastIndex = focusableItems.length - 1;
+        const nextIndex = e.key === 'ArrowDown' ? Math.min(focusedIndex + 1, lastIndex) : Math.max(focusedIndex - 1, 0);
+
+        focusableItems[nextIndex].focus();
+    };
+
     return (
         <VStack as={as ?? 'div'} gap="space-4" justify="space-between" height="100%" overflow="auto" {...rest}>
             <VStack gap="space-4">
@@ -67,7 +84,7 @@ export const PaginatedList = <T, KeyType extends string | number>({
                         Ingen resultat
                     </InlineMessage>
                 ) : (
-                    <VStack as="ul" gap="space-4">
+                    <VStack as="ul" gap="space-4" onKeyDown={handleListKeyDown}>
                         {renderItems?.map((item, i) => (
                             <RenderComp item={item} key={`${i}-${keyExtractor(item)}`} />
                         ))}
