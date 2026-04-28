@@ -16,7 +16,7 @@ import { useEffect, useMemo, useRef } from 'react';
 import Card from 'src/components/Card';
 import type { TraadDto } from 'src/generated/modiapersonoversikt-api';
 import { usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
-import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
+import { svarUnderArbeidAtom } from 'src/lib/state/dialog';
 import type { Melding } from 'src/lib/types/modiapersonoversikt-api';
 import { Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { trackingEvents } from 'src/utils/analytics';
@@ -44,7 +44,7 @@ function TildeltSaksbehandler({ traadId }: { traadId: string }) {
     return null;
 }
 function UnderArbeid({ traadId }: { traadId: string }) {
-    const isUnderArbeid = useAtomValue(useMemo(() => atom((get) => get(dialogUnderArbeidAtom) === traadId), [traadId]));
+    const isUnderArbeid = useAtomValue(useMemo(() => atom((get) => get(svarUnderArbeidAtom) === traadId), [traadId]));
 
     if (!isUnderArbeid) return null;
     return (

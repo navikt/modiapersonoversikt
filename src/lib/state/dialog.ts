@@ -1,7 +1,8 @@
 import { atom, useAtomValue } from 'jotai';
+import { atomWithStorage } from 'jotai/utils';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 
-export const dialogUnderArbeidAtom = atom<string>();
+export const svarUnderArbeidAtom = atomWithStorage<string | undefined>('svar-under-arbeid', undefined);
 export const overskridKontaktReservasjonAtom = atom<boolean>(false);
 
 export const useDisableDialog = () => {
