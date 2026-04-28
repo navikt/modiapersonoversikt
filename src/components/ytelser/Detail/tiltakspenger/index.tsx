@@ -37,7 +37,7 @@ const TiltaksPengerBarneTillegg = ({ tiltaksPenger }: { tiltaksPenger: VedtakDto
             <Heading as="h4" size="small">
                 Barnetillegg
             </Heading>
-            {tiltaksPenger.barnetillegg?.perioder?.map((periode, index) => {
+            {tiltaksPenger.barnetillegg?.perioder.map((periode, index) => {
                 return <TitleValuePairsComponent key={index} entries={getBarneTilleggEntries(periode)} />;
             })}
         </Card>
