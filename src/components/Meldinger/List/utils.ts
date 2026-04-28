@@ -66,6 +66,7 @@ function traadErInfoMelding(traad: Traad): boolean {
     return traad.meldinger.length === 1 && !!melding.avsluttetDato && !erMeldingFraBruker(melding.meldingstype);
 }
 
+// kun for bruk i søk, print og sladding i nye (src/components) modia
 export function meldingstittel(melding: Melding): string {
     if (melding.temagruppe === Temagruppe.InnholdSlettet) {
         return meldingstypeTekst(melding.meldingstype);

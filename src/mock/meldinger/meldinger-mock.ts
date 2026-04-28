@@ -208,7 +208,8 @@ function getSaksbehandler(): Saksbehandler {
     return {
         ident: faker.string.alphanumeric(6),
         fornavn: faker.person.firstName(),
-        etternavn: faker.person.lastName()
+        etternavn: faker.person.lastName(),
+        enhet: '1337'
     };
 }
 

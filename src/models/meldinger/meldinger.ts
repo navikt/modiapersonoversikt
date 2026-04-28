@@ -45,6 +45,7 @@ export interface Saksbehandler {
     fornavn: string;
     etternavn: string;
     ident?: string;
+    enhet?: string;
 }
 
 export enum Meldingstype {
