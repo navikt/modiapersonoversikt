@@ -89,7 +89,7 @@ export const PersonSidebarMenu = () => {
     const { data: oppgaver = [] } = usePersonOppgaver();
     const harOppgaverPaaEnTraad = oppgaver.some((oppgave) => oppgave.traadId !== null);
     const harUbesvarteTraader = traader.some((traad) => erUbesvartHenvendelseFraBruker(traad));
-    const navRef = useRef<HTMLElement>(null);
+    const navRef = useRef<HTMLDivElement>(null);
 
     const visNotifikasjon = (tab: string) => {
         if (tab !== 'Kommunikasjon') return false;
@@ -137,6 +137,7 @@ export const PersonSidebarMenu = () => {
                         as="nav"
                         id="sidebar-person"
                         ref={navRef}
+                        role="menu"
                         aria-label="Person"
                         padding="space-8"
                         className="divide-y divide-ax-border-neutral-subtle "
@@ -159,6 +160,7 @@ export const PersonSidebarMenu = () => {
                                         }
                                     }}
                                     aria-label={title}
+                                    role="menuitem"
                                     activeProps={{ tabIndex: 0 }}
                                     inactiveProps={{ tabIndex: -1 }}
                                 >
