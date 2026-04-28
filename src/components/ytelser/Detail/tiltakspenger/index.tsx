@@ -32,6 +32,7 @@ const getBarneTilleggEntries = (barnetilleggPeriode: BarnetilleggPeriode) => {
 };
 
 const TiltaksPengerBarneTillegg = ({ tiltaksPenger }: { tiltaksPenger: VedtakDto }) => {
+    if (!tiltaksPenger.barnetillegg?.perioder.length) return null;
     return (
         <Card padding="space-16">
             <Heading as="h4" size="small">
