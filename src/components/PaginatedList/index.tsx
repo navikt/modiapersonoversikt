@@ -44,15 +44,6 @@ export const PaginatedList = <T, KeyType extends string | number>({
     const pages = useMemo(() => chunk(items, pageSize), [items, pageSize]);
     const pageCount = useMemo(() => pages.length, [pages]);
     const renderItems = useMemo(() => pages[page > pageCount - 1 ? pageCount - 1 : page], [pages, page, pageCount]);
-    const listRef = useRef<HTMLDivElement>(null);
-
-    usePiltasterIListe(
-        listRef,
-        [renderItems, selectedItem],
-        renderItems ?? [],
-        onSelectItem ?? (() => {}),
-        selectedItem
-    );
 
     useEffect(() => {
         if (selectedKey) {
@@ -64,6 +55,9 @@ export const PaginatedList = <T, KeyType extends string | number>({
         }
         setPage(0);
     }, [selectedKey, pages, keyExtractor]);
+
+    const listRef = useRef<HTMLDivElement>(null);
+    usePiltasterIListe(listRef, [selectedItem, items], items, (item) => onSelectItem?.(item), selectedItem);
 
     return (
         <VStack as={as ?? 'div'} gap="space-4" justify="space-between" height="100%" overflow="auto" {...rest}>
@@ -82,7 +76,7 @@ export const PaginatedList = <T, KeyType extends string | number>({
                         Ingen resultat
                     </InlineMessage>
                 ) : (
-                    <div ref={listRef}>
+                    <div ref={listRef} tabIndex={!selectedItem && !!onSelectItem ? 0 : -1}>
                         <VStack as="ul" gap="space-4">
                             {renderItems?.map((item, i) => (
                                 <RenderComp item={item} key={`${i}-${keyExtractor(item)}`} />
