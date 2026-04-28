@@ -4,12 +4,13 @@ import {
     type ComponentProps,
     type ComponentPropsWithRef,
     type JSX,
-    type KeyboardEvent,
     type ReactNode,
     useEffect,
     useMemo,
+    useRef,
     useState
 } from 'react';
+import { usePiltasterIListe } from 'src/components/sakVelger/keyboardHooks';
 
 type Props<T, KeyType> = Omit<ComponentPropsWithRef<typeof VStack>, 'as'> & {
     items: T[];
@@ -21,6 +22,8 @@ type Props<T, KeyType> = Omit<ComponentPropsWithRef<typeof VStack>, 'as'> & {
     paginationSrHeading?: ComponentProps<typeof Pagination>['srHeading'];
     filterCard?: ReactNode;
     isLoading?: boolean;
+    onSelectItem?: (item: T) => void;
+    selectedItem?: T;
 };
 
 export const PaginatedList = <T, KeyType extends string | number>({
@@ -33,12 +36,23 @@ export const PaginatedList = <T, KeyType extends string | number>({
     paginationSrHeading,
     filterCard,
     isLoading,
+    onSelectItem,
+    selectedItem,
     ...rest
 }: Props<T, KeyType>) => {
     const [page, setPage] = useState(0);
     const pages = useMemo(() => chunk(items, pageSize), [items, pageSize]);
     const pageCount = useMemo(() => pages.length, [pages]);
     const renderItems = useMemo(() => pages[page > pageCount - 1 ? pageCount - 1 : page], [pages, page, pageCount]);
+    const listRef = useRef<HTMLDivElement>(null);
+
+    usePiltasterIListe(
+        listRef,
+        [renderItems, selectedItem],
+        renderItems ?? [],
+        onSelectItem ?? (() => {}),
+        selectedItem
+    );
 
     useEffect(() => {
         if (selectedKey) {
@@ -50,22 +64,6 @@ export const PaginatedList = <T, KeyType extends string | number>({
         }
         setPage(0);
     }, [selectedKey, pages, keyExtractor]);
-
-    const handleListKeyDown = (e: KeyboardEvent<HTMLElement>) => {
-        if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
-
-        const focusableItems = Array.from(e.currentTarget.querySelectorAll<HTMLElement>('[tabindex="0"]'));
-        const focusedIndex = focusableItems.indexOf(document.activeElement as HTMLElement);
-
-        if (focusedIndex === -1) return;
-
-        e.preventDefault();
-
-        const lastIndex = focusableItems.length - 1;
-        const nextIndex = e.key === 'ArrowDown' ? Math.min(focusedIndex + 1, lastIndex) : Math.max(focusedIndex - 1, 0);
-
-        focusableItems[nextIndex].focus();
-    };
 
     return (
         <VStack as={as ?? 'div'} gap="space-4" justify="space-between" height="100%" overflow="auto" {...rest}>
@@ -84,11 +82,13 @@ export const PaginatedList = <T, KeyType extends string | number>({
                         Ingen resultat
                     </InlineMessage>
                 ) : (
-                    <VStack as="ul" gap="space-4" onKeyDown={handleListKeyDown}>
-                        {renderItems?.map((item, i) => (
-                            <RenderComp item={item} key={`${i}-${keyExtractor(item)}`} />
-                        ))}
-                    </VStack>
+                    <div ref={listRef}>
+                        <VStack as="ul" gap="space-4">
+                            {renderItems?.map((item, i) => (
+                                <RenderComp item={item} key={`${i}-${keyExtractor(item)}`} />
+                            ))}
+                        </VStack>
+                    </div>
                 )}
             </VStack>
             {pages.length > 1 && (
