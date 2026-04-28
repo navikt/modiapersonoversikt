@@ -41,7 +41,7 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
         const oppgaveId = queryParams.oppgaveid;
         if (queryParams.sokFnrCode) {
             setUserContext.mutate(
-                { fnr: queryParams.sokFnrCode },
+                { fnr: queryParams.sokFnrCode, verdiType: 'FNR_CODE' },
                 {
                     onSuccess: (res) => {
                         const url = removeParamFromURL('sokFnrCode');
@@ -72,7 +72,7 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
             trackDyplenkeFraEksternKilde('kun oppgave');
             if (!oppgaveData.fnr) return;
             setUserContext.mutate(
-                { fnr: oppgaveData.fnr },
+                { fnr: oppgaveData.fnr, verdiType: 'FNR' },
                 {
                     onSuccess: () => {
                         navigerTilTraadOgApneSvar(oppgaveData.traadId);
