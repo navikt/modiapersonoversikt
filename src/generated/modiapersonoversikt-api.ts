@@ -1118,12 +1118,6 @@ export interface components {
             perioder: components['schemas']['PeriodeDagpengerDto'][];
             /** Format: date */
             eldsteFraOgMedDato?: string;
-            /**
-             * Format: date
-             * @deprecated
-             * @description now sorting by the first period, not the last
-             */
-            nyesteFraOgMedDato?: string;
         };
         NonavaapapiinternPeriodeDTO: {
             /** Format: date */

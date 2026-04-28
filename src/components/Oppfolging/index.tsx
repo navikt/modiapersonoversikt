@@ -92,14 +92,16 @@ const Gjeldende14aVedtakDetaljer = () => {
     return (
         <>
             <Heading as="h4" size="small">
-                14 a-vedtak
+                § 14 a-vedtak
             </Heading>
             <HGrid gap="space-16" columns={{ sm: 1, md: 2 }} className="mt-4">
                 <VStack justify="space-between">
                     <BodyShort size="small" weight="semibold">
                         Status:
                     </BodyShort>
-                    <BodyShort size="small">{gjeldende14aVedtak ? 'Har 14a vedtak' : 'Har ikke 14a vedtak'}</BodyShort>
+                    <BodyShort size="small">
+                        {gjeldende14aVedtak ? 'Har § 14 a-vedtak' : 'Har ikke § 14 a-vedtak'}
+                    </BodyShort>
                 </VStack>
                 <VStack justify="space-between">
                     <BodyShort size="small" weight="semibold">

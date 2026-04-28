@@ -32,12 +32,13 @@ const getBarneTilleggEntries = (barnetilleggPeriode: BarnetilleggPeriode) => {
 };
 
 const TiltaksPengerBarneTillegg = ({ tiltaksPenger }: { tiltaksPenger: VedtakDto }) => {
+    if (!tiltaksPenger.barnetillegg?.perioder.length) return null;
     return (
         <Card padding="space-16">
             <Heading as="h4" size="small">
                 Barnetillegg
             </Heading>
-            {tiltaksPenger.barnetillegg?.perioder?.map((periode, index) => {
+            {tiltaksPenger.barnetillegg?.perioder.map((periode, index) => {
                 return <TitleValuePairsComponent key={index} entries={getBarneTilleggEntries(periode)} />;
             })}
         </Card>

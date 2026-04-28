@@ -14,9 +14,9 @@ function Gjeldende14aVedtakDetaljer() {
     const headerId = useRef(guid());
     const detaljer = gjeldende14aVedtakData?.gjeldende14aVedtak;
     const responsePlaceholder = {
-        returnOnError: 'Kunne ikke laste gjeldende 14a vedtak',
-        returnOnNotFound: 'Kunne ikke finne gjeldende 14a vedtak',
-        returnOnForbidden: 'Du har ikke tilgang til gjeldende 14a vedtak'
+        returnOnError: 'Kunne ikke laste gjeldende § 14 a-vedtak',
+        returnOnNotFound: 'Kunne ikke finne gjeldende § 14 a-vedtak',
+        returnOnForbidden: 'Du har ikke tilgang til gjeldende § 14 a-vedtak'
     };
 
     const gjeldende14aVedtakDetailElement = () => {
