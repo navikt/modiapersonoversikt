@@ -153,8 +153,12 @@ export function saksbehandlerTekst(saksbehandler?: Saksbehandler) {
     if (!saksbehandler) {
         return 'Ukjent saksbehandler';
     }
-    const identTekst = saksbehandler.ident ? `(${saksbehandler.ident})` : '';
-    return `${saksbehandler.fornavn} ${saksbehandler.etternavn} ${identTekst}`;
+    const identOgEnhetTekst = saksbehandler.ident
+        ? saksbehandler.enhet
+            ? `(${saksbehandler.ident}, ${saksbehandler.enhet})`
+            : `(${saksbehandler.ident})`
+        : '';
+    return `${saksbehandler.fornavn} ${saksbehandler.etternavn} ${identOgEnhetTekst}`;
 }
 interface TraadSearchDb {
     traad: Traad;
