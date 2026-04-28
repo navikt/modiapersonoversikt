@@ -49,11 +49,6 @@ function PersonvernPage() {
                                     <Link href="https://www.nav.no/personvern">NAVs generelle personvernerklæring</Link>
                                     .
                                 </BodyLong>
-                                <BodyLong>
-                                    <Link href="https://etterlevelse.intern.nav.no/">
-                                        For detaljer se Modia Personoversikts oppføring i Etterlevelse i NAV.
-                                    </Link>
-                                </BodyLong>
                             </Section>
 
                             <Section title="Bruk av informasjonskapsler (cookies)">
