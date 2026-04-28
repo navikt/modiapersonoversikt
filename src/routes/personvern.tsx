@@ -29,7 +29,7 @@ function SubSection({ title, children }: { title: string; children: React.ReactN
 
 function PersonvernPage() {
     return (
-        <Box style={{ height: '100vh', overflow: 'auto' }}>
+        <Box height="100svh" overflow="auto">
             <InternalHeader>
                 <InternalHeader.Title>Modia personoversikt</InternalHeader.Title>
             </InternalHeader>
