@@ -7,8 +7,10 @@ import {
     type ReactNode,
     useEffect,
     useMemo,
+    useRef,
     useState
 } from 'react';
+import { usePiltasterIListe } from 'src/components/sakVelger/keyboardHooks';
 
 type Props<T, KeyType> = Omit<ComponentPropsWithRef<typeof VStack>, 'as'> & {
     items: T[];
@@ -20,6 +22,8 @@ type Props<T, KeyType> = Omit<ComponentPropsWithRef<typeof VStack>, 'as'> & {
     paginationSrHeading?: ComponentProps<typeof Pagination>['srHeading'];
     filterCard?: ReactNode;
     isLoading?: boolean;
+    onSelectItem?: (item: T) => void;
+    selectedItem?: T;
 };
 
 export const PaginatedList = <T, KeyType extends string | number>({
@@ -32,6 +36,8 @@ export const PaginatedList = <T, KeyType extends string | number>({
     paginationSrHeading,
     filterCard,
     isLoading,
+    onSelectItem,
+    selectedItem,
     ...rest
 }: Props<T, KeyType>) => {
     const [page, setPage] = useState(0);
@@ -50,6 +56,9 @@ export const PaginatedList = <T, KeyType extends string | number>({
         setPage(0);
     }, [selectedKey, pages, keyExtractor]);
 
+    const listRef = useRef<HTMLDivElement>(null);
+    usePiltasterIListe(listRef, [selectedItem, items], items, (item) => onSelectItem?.(item), selectedItem);
+
     return (
         <VStack as={as ?? 'div'} gap="space-4" justify="space-between" height="100%" overflow="auto" {...rest}>
             <VStack gap="space-4">
@@ -67,11 +76,13 @@ export const PaginatedList = <T, KeyType extends string | number>({
                         Ingen resultat
                     </InlineMessage>
                 ) : (
-                    <VStack as="ul" gap="space-4">
-                        {renderItems?.map((item, i) => (
-                            <RenderComp item={item} key={`${i}-${keyExtractor(item)}`} />
-                        ))}
-                    </VStack>
+                    <div ref={listRef} tabIndex={!selectedItem && !!onSelectItem ? 0 : -1}>
+                        <VStack as="ul" gap="space-4">
+                            {renderItems?.map((item, i) => (
+                                <RenderComp item={item} key={`${i}-${keyExtractor(item)}`} />
+                            ))}
+                        </VStack>
+                    </div>
                 )}
             </VStack>
             {pages.length > 1 && (
