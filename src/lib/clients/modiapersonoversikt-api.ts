@@ -141,11 +141,12 @@ export const usePersonOppgaver = () => {
 };
 
 export const useOppgave = (oppgaveId?: string) => {
-    if (oppgaveId === undefined) return { data: undefined, isLoading: false, isError: false };
-    // biome-ignore lint/correctness/useHookAtTopLevel:Biome migration - bør fikses
-    return $api.useQuery('get', '/rest/oppgaver/oppgavedata/{oppgaveId}', {
-        params: { path: { oppgaveId: oppgaveId } }
-    });
+    return $api.useQuery(
+        'get',
+        '/rest/oppgaver/oppgavedata/{oppgaveId}',
+        { params: { path: { oppgaveId: oppgaveId ?? '' } } },
+        { enabled: !!oppgaveId }
+    );
 };
 
 export const useNyesteVurderSvarOppgaveForTraad = (traadId: string) => {

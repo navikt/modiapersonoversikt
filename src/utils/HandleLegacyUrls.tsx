@@ -1,101 +1,98 @@
 import { Loader } from '@navikt/ds-react';
-import { useMatchRoute, useNavigate } from '@tanstack/react-router';
-import { type PropsWithChildren, useState } from 'react';
-import { post } from 'src/api/api';
-import { contextHolderBaseUri } from 'src/api/config';
+import { useMatchRoute, useNavigate, useSearch } from '@tanstack/react-router';
+import { useSetAtom } from 'jotai';
+import { type PropsWithChildren, useEffect, useRef, useState } from 'react';
 import { INFOTABS } from 'src/app/personside/infotabs/InfoTabEnum';
 import { paths } from 'src/app/routes/routing';
+import type { OppgaveDto } from 'src/generated/modiapersonoversikt-api';
+import { useSetUserContext } from 'src/lib/clients/contextholder';
 import { useOppgave } from 'src/lib/clients/modiapersonoversikt-api';
-import { useOnMount, useSettAktivBruker } from 'src/utils/customHooks';
+import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
+import { trackDyplenkeFraEksternKilde } from 'src/utils/analytics';
+import { useSettAktivBruker } from 'src/utils/customHooks';
 import { erGyldigishFnr } from 'src/utils/fnr-utils';
-import { loggEvent } from 'src/utils/logger/frontendLogger';
-import { useQueryParams } from 'src/utils/url-utils';
 
 function HandleLegacyUrls({ children }: PropsWithChildren) {
-    const queryParams = useQueryParams<{
-        sokFnr?: string;
-        sokFnrCode?: string;
-        oppgaveid?: string;
-        behandlingsid?: string;
-        henvendelseid?: string;
-    }>();
+    const { oppgaveId, sokFnr, sokFnrCode, henvendelseId, behandlingsId } = useSearch({ strict: false });
+
     const match = useMatchRoute();
     const fnrMatch = match({ to: '/person/$fnr' });
     const validFnr = fnrMatch && erGyldigishFnr(fnrMatch.fnr ?? '') ? fnrMatch.fnr : undefined;
     const settGjeldendeBruker = useSettAktivBruker();
     const navigate = useNavigate();
-    const [delayRender, setDelayRender] = useState(!!validFnr);
-    const { data: oppgaveData } = useOppgave(queryParams.oppgaveid);
+    const [delayRender, setDelayRender] = useState(!!validFnr || !!oppgaveId);
+    const { data: oppgaveData, isLoading } = useOppgave(oppgaveId);
+    const hasHandled = useRef(false);
+    const setDialogUnderArbeid = useSetAtom(dialogUnderArbeidAtom);
+    const setUserContext = useSetUserContext();
 
-    useOnMount(() => {
-        const behandlingsId = queryParams.henvendelseid || queryParams.behandlingsid;
-        const oppgaveId = queryParams.oppgaveid;
-        if (queryParams.sokFnrCode) {
-            post<{
-                aktivBruker: string;
-                aktivEnhet: string;
-            }>(`${contextHolderBaseUri}/context`, {
-                eventType: 'NY_AKTIV_BRUKER',
-                verdiType: 'FNR_KODE',
-                verdi: queryParams.sokFnrCode
-            }).then((res) => {
-                const url = removeParamFromURL('sokFnrCode');
-                window.history.replaceState(null, '', url.toString());
-                handleLegacyUrls(res.aktivBruker, behandlingsId, oppgaveId);
-            });
+    useEffect(() => {
+        if (oppgaveId && isLoading) return;
+        if (hasHandled.current) return;
+        hasHandled.current = true;
+
+        const traadId = henvendelseId || behandlingsId;
+
+        if (sokFnrCode) {
+            setUserContext.mutate(
+                { fnr: sokFnrCode, verdiType: 'FNR_CODE' },
+                {
+                    onSuccess: (res) => {
+                        const url = removeParamFromURL('sokFnrCode');
+                        window.history.replaceState(null, '', url.toString());
+                        handleLegacyUrls(res.aktivBruker, traadId, oppgaveId, oppgaveData);
+                    }
+                }
+            );
         } else {
-            handleLegacyUrls(queryParams.sokFnr ?? validFnr, behandlingsId, oppgaveId);
+            handleLegacyUrls(sokFnr ?? validFnr, traadId, oppgaveId, oppgaveData);
             setDelayRender(false);
         }
-    });
+    }, [isLoading, oppgaveData]);
 
-    const handleLegacyUrls = (fnr?: string, behandlingsId?: string, oppgaveId?: string) => {
-        const linkTilValgtHenvendelse = `${paths.personUri}/${INFOTABS.MELDINGER.path}` as const;
-        const newQuery = { traadId: behandlingsId };
-
-        if (oppgaveId && behandlingsId && fnr) {
+    const handleLegacyUrls = (fnr?: string, traadId?: string, oppgaveId?: string, oppgaveData?: OppgaveDto) => {
+        if (oppgaveId && traadId && fnr) {
             settGjeldendeBruker(fnr, false);
-            loggEvent('Oppgave', 'FraGosys');
-            navigate({
-                to: linkTilValgtHenvendelse,
-                search: newQuery,
-                replace: true
-            });
-        } else if (fnr && behandlingsId) {
-            loggEvent('Henvendelse', 'FraGosys');
+            trackDyplenkeFraEksternKilde('oppgave');
+            navigerTilTraadOgApneSvar(traadId);
+        } else if (fnr && traadId) {
+            trackDyplenkeFraEksternKilde('henvendelse');
             settGjeldendeBruker(fnr, false);
-            navigate({
-                to: linkTilValgtHenvendelse,
-                search: newQuery,
-                replace: true
-            });
-        } else if (behandlingsId) {
-            loggEvent('Henvendelse', 'FraGosys');
-            navigate({
-                to: linkTilValgtHenvendelse,
-                search: newQuery,
-                replace: true
-            });
+            navigerTilTraadOgApneSvar(traadId);
+        } else if (traadId) {
+            trackDyplenkeFraEksternKilde('henvendelse');
+            navigerTilTraadOgApneSvar(traadId);
         } else if (oppgaveData) {
-            loggEvent('Oppgave', 'FraGosys');
-            post<{
-                aktivBruker: string;
-                aktivEnhet: string;
-            }>(`${contextHolderBaseUri}/context`, {
-                eventType: 'NY_AKTIV_BRUKER',
-                verdiType: 'FNR',
-                verdi: oppgaveData.fnr
-            }).then(() => {
-                const query = { traadId: oppgaveData.traadId };
-                navigate({
-                    to: linkTilValgtHenvendelse,
-                    search: query,
-                    replace: true
-                });
-            });
+            trackDyplenkeFraEksternKilde('kun oppgave');
+            if (!oppgaveData.fnr) return;
+            setUserContext.mutate(
+                { fnr: oppgaveData.fnr, verdiType: 'FNR' },
+                {
+                    onSuccess: () => {
+                        navigerTilTraadOgApneSvar(oppgaveData.traadId);
+                    }
+                }
+            );
         } else if (fnr) {
-            settGjeldendeBruker(fnr);
+            trackDyplenkeFraEksternKilde('kun fnr');
+            settGjeldendeBruker(fnr, false);
+            navigate({
+                to: `${paths.personUri}/${INFOTABS.MELDINGER.path}`,
+                replace: true
+            });
         }
+    };
+
+    const navigerTilTraadOgApneSvar = (traadId?: string) => {
+        const linkTilValgtHenvendelse = `${paths.personUri}/${INFOTABS.MELDINGER.path}` as const;
+        const newQuery = { traadId: traadId };
+
+        setDialogUnderArbeid(traadId);
+        navigate({
+            to: linkTilValgtHenvendelse,
+            search: newQuery,
+            replace: true
+        });
     };
 
     const removeParamFromURL = (param: string) => {
