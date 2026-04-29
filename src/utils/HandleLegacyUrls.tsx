@@ -1,5 +1,5 @@
 import { Loader } from '@navikt/ds-react';
-import { useMatchRoute, useNavigate } from '@tanstack/react-router';
+import { useMatchRoute, useNavigate, useSearch } from '@tanstack/react-router';
 import { useSetAtom } from 'jotai';
 import { type PropsWithChildren, useEffect, useRef, useState } from 'react';
 import { INFOTABS } from 'src/app/personside/infotabs/InfoTabEnum';
@@ -11,63 +11,57 @@ import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
 import { trackDyplenkeFraEksternKilde } from 'src/utils/analytics';
 import { useSettAktivBruker } from 'src/utils/customHooks';
 import { erGyldigishFnr } from 'src/utils/fnr-utils';
-import { useQueryParams } from 'src/utils/url-utils';
 
 function HandleLegacyUrls({ children }: PropsWithChildren) {
-    const queryParams = useQueryParams<{
-        sokFnr?: string;
-        sokFnrCode?: string;
-        oppgaveid?: string;
-        behandlingsid?: string;
-        henvendelseid?: string;
-    }>();
+    const { oppgaveId, sokFnr, sokFnrCode, henvendelseId, behandlingsId } = useSearch({ strict: false });
+
     const match = useMatchRoute();
     const fnrMatch = match({ to: '/person/$fnr' });
     const validFnr = fnrMatch && erGyldigishFnr(fnrMatch.fnr ?? '') ? fnrMatch.fnr : undefined;
     const settGjeldendeBruker = useSettAktivBruker();
     const navigate = useNavigate();
-    const [delayRender, setDelayRender] = useState(!!validFnr || !!queryParams.oppgaveid);
-    const { data: oppgaveData, isLoading } = useOppgave(queryParams.oppgaveid);
+    const [delayRender, setDelayRender] = useState(!!validFnr || !!oppgaveId);
+    const { data: oppgaveData, isLoading } = useOppgave(oppgaveId);
     const hasHandled = useRef(false);
     const setDialogUnderArbeid = useSetAtom(dialogUnderArbeidAtom);
     const setUserContext = useSetUserContext();
 
     useEffect(() => {
-        if (queryParams.oppgaveid && isLoading) return;
+        if (oppgaveId && isLoading) return;
         if (hasHandled.current) return;
         hasHandled.current = true;
 
-        const behandlingsId = queryParams.henvendelseid || queryParams.behandlingsid;
-        const oppgaveId = queryParams.oppgaveid;
-        if (queryParams.sokFnrCode) {
+        const traadId = henvendelseId || behandlingsId;
+
+        if (sokFnrCode) {
             setUserContext.mutate(
-                { fnr: queryParams.sokFnrCode, verdiType: 'FNR_CODE' },
+                { fnr: sokFnrCode, verdiType: 'FNR_CODE' },
                 {
                     onSuccess: (res) => {
                         const url = removeParamFromURL('sokFnrCode');
                         window.history.replaceState(null, '', url.toString());
-                        handleLegacyUrls(res.aktivBruker, behandlingsId, oppgaveId, oppgaveData);
+                        handleLegacyUrls(res.aktivBruker, traadId, oppgaveId, oppgaveData);
                     }
                 }
             );
         } else {
-            handleLegacyUrls(queryParams.sokFnr ?? validFnr, behandlingsId, oppgaveId, oppgaveData);
+            handleLegacyUrls(sokFnr ?? validFnr, traadId, oppgaveId, oppgaveData);
             setDelayRender(false);
         }
     }, [isLoading, oppgaveData]);
 
-    const handleLegacyUrls = (fnr?: string, behandlingsId?: string, oppgaveId?: string, oppgaveData?: OppgaveDto) => {
-        if (oppgaveId && behandlingsId && fnr) {
+    const handleLegacyUrls = (fnr?: string, traadId?: string, oppgaveId?: string, oppgaveData?: OppgaveDto) => {
+        if (oppgaveId && traadId && fnr) {
             settGjeldendeBruker(fnr, false);
             trackDyplenkeFraEksternKilde('oppgave');
-            navigerTilTraadOgApneSvar(behandlingsId);
-        } else if (fnr && behandlingsId) {
+            navigerTilTraadOgApneSvar(traadId);
+        } else if (fnr && traadId) {
             trackDyplenkeFraEksternKilde('henvendelse');
             settGjeldendeBruker(fnr, false);
-            navigerTilTraadOgApneSvar(behandlingsId);
-        } else if (behandlingsId) {
+            navigerTilTraadOgApneSvar(traadId);
+        } else if (traadId) {
             trackDyplenkeFraEksternKilde('henvendelse');
-            navigerTilTraadOgApneSvar(behandlingsId);
+            navigerTilTraadOgApneSvar(traadId);
         } else if (oppgaveData) {
             trackDyplenkeFraEksternKilde('kun oppgave');
             if (!oppgaveData.fnr) return;

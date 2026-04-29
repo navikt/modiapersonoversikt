@@ -7,7 +7,7 @@ export function parseQueryString<TYPE>(queryParams: string): TYPE {
         .split('&')
         .map((it) => it.split('='));
     //biome-ignore lint/performance/noAccumulatingSpread: biome migration
-    return entries.reduce((acc, entry) => ({ ...acc, [entry[0].toLowerCase()]: entry[1] }), {} as TYPE);
+    return entries.reduce((acc, entry) => ({ ...acc, [entry[0]]: entry[1] }), {} as TYPE);
 }
 
 export function useQueryParams<TYPE>(): TYPE {
