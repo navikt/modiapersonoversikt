@@ -165,14 +165,14 @@ function NyMelding() {
                                     ref={textAreaRef}
                                     label={meldingsTypeTekst.tittel}
                                     hideLabel
-                                    size="small"
+                                    size="medium"
                                     value={field.state.value}
                                     onChange={(e) => field.handleChange(e.target.value)}
                                     error={buildErrorMessage(field.state.meta.errors)}
                                     maxLength={maksLengdeMelding}
                                     resize="vertical"
-                                    minRows={10}
-                                    maxRows={15}
+                                    minRows={20}
+                                    maxRows={50}
                                 />
                             </div>
                         )}

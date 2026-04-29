@@ -187,7 +187,7 @@ export const FortsettDialog = ({ traad, avbryt }: Props) => {
                                     autoFocus
                                     hideLabel
                                     ref={textAreaRef}
-                                    size="small"
+                                    size="medium"
                                     label="Ny melding i dialog"
                                     description={meldingsTypeTekst.beskrivelse}
                                     value={field.state.value}
@@ -195,8 +195,8 @@ export const FortsettDialog = ({ traad, avbryt }: Props) => {
                                     error={buildErrorMessage(field.state.meta.errors)}
                                     maxLength={maksLengdeMelding}
                                     resize="vertical"
-                                    minRows={10}
-                                    maxRows={15}
+                                    minRows={20}
+                                    maxRows={50}
                                 />
                             </div>
                         )}
