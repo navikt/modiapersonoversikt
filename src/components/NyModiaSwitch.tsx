@@ -25,7 +25,14 @@ export const NyModiaSwitch = forwardRef<HTMLInputElement>((_props, ref) => {
 
     return (
         <Box.New paddingInline="space-8">
-            <Switch role="menuitem" ref={ref} size="medium" checked={isChecked} onChange={handleClick}>
+            <Switch
+                role="menuitem"
+                ref={ref}
+                size="medium"
+                title={`Bytt til ${nyModia ? 'gammel' : 'ny'} Modia`}
+                checked={isChecked}
+                onChange={handleClick}
+            >
                 Ny Modia
             </Switch>
         </Box.New>

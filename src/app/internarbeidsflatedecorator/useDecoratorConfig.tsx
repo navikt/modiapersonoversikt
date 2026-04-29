@@ -13,6 +13,7 @@ import config from '../../config';
 import bjelleIkon from '../../svg/bjelle.svg?raw';
 import { DecoratorButtonId as OppdateringsloggButtonId } from '../oppdateringslogg/OppdateringsloggContainer';
 import type { DecoratorPropsV3, Hotkey } from './decoratorprops';
+import { etterSokeFeltStyles } from './EtterSokeFeltStyles';
 
 export function useDecoratorConfig() {
     const [aktivEnhet, setAktivEnhet] = useAtom(aktivEnhetAtom);
@@ -39,6 +40,7 @@ export function useDecoratorConfig() {
 }
 
 const etterSokefelt = `
+        <style>${etterSokeFeltStyles}</style>
         <div class="knapper_container">
           <button class="personsok-button" id="toggle-personsok" title="Åpne avansert søk">
             <span aria-hidden="true"> A </span>
