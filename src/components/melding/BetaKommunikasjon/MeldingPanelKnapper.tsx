@@ -28,7 +28,7 @@ export const MeldingPanelKnapper = () => {
                 icon={<NotePencilIcon aria-hidden />}
                 className="text-nowrap"
                 size="small"
-                variant="secondary"
+                variant="primary"
                 data-color="success"
                 onClick={() => {
                     if (svarUnderArbeid !== undefined) {
