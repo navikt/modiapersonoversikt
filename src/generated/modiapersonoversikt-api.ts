@@ -1801,6 +1801,7 @@ export interface components {
             fornavn: string;
             etternavn: string;
             ident: string;
+            enhet?: string;
             navn: string;
         };
         DagpengeytelseDTO: {
