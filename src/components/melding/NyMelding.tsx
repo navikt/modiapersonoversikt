@@ -221,7 +221,7 @@ function NyMelding() {
                                 {isOn && (
                                     <AvbrytAlert
                                         handleAvbryt={() => {
-                                            form.reset(defaultFormOptions);
+                                            removeDraft();
                                             setNyMeldingUnderArbeid(false);
                                         }}
                                     />

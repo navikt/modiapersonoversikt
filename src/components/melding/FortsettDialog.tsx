@@ -244,6 +244,7 @@ export const FortsettDialog = ({ traad }: Props) => {
                                 {isOn ? (
                                     <AvbrytAlert
                                         handleAvbryt={() => {
+                                            removeDraft();
                                             setDialogUnderArbeid(undefined);
                                         }}
                                     />
