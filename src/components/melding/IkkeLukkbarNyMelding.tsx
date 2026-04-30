@@ -1,113 +1,27 @@
-import { ChatIcon, ExpandIcon, MinusIcon, ShrinkIcon } from '@navikt/aksel-icons';
-import { Box, Button, HStack, VStack } from '@navikt/ds-react';
+import { VStack } from '@navikt/ds-react';
 import { useAtomValue } from 'jotai';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { type ImperativePanelHandle, Panel } from 'react-resizable-panels';
 import ErrorBoundary from 'src/components/ErrorBoundary';
-import { svarUnderArbeidAtom } from 'src/lib/state/dialog';
-import { trackCloseDialog, trackOpenDialog } from 'src/utils/analytics';
+import { meldingPanelIsOpenAtom } from 'src/lib/state/dialog';
 import { SendMelding } from './SendMelding';
 
 const PANEL_SIZE = 30;
-const LARGE_SIZE = 50;
 
-export function LukkbarNyMelding() {
+export function IkkeLukkbarNyMelding() {
     const panelRef = useRef<ImperativePanelHandle>(null);
-    const openButtonRef = useRef<HTMLButtonElement | null>(null); // Create a ref for the second button
-    const closeButtonRef = useRef<HTMLButtonElement | null>(null); // Create a ref for the second button
 
-    const [isLarge, setIsLarge] = useState(false);
-    useEffect(() => {
-        setIsLarge((panelRef.current?.getSize() ?? PANEL_SIZE) > PANEL_SIZE);
-    }, []);
-    const [isOpen, setIsOpen] = useState(localStorage.getItem('ny-melding-is-open') !== 'false');
-
-    const closeAndSetFocusToOpenButton = () => {
-        setIsOpen(false);
-        setTimeout(() => {
-            if (openButtonRef.current) {
-                openButtonRef.current.focus();
-            }
-        }, 0);
-    };
-
-    const openAndSetFocusToCloseButton = () => {
-        setIsOpen(true);
-        setTimeout(() => {
-            if (closeButtonRef.current) {
-                closeButtonRef.current.focus();
-            }
-        }, 0);
-    };
-
-    useEffect(() => {
-        localStorage.setItem('ny-melding-is-open', String(isOpen));
-    }, [isOpen]);
-
-    const svarUnderArbeid = useAtomValue(svarUnderArbeidAtom);
-    useEffect(() => {
-        if (svarUnderArbeid) {
-            setIsOpen(true);
-        }
-    }, [svarUnderArbeid]);
-
-    const onExpand = useCallback(() => {
-        if (!panelRef.current) return;
-
-        setIsLarge(panelRef.current.getSize() > PANEL_SIZE);
-    }, []);
+    const isOpen = useAtomValue(meldingPanelIsOpenAtom);
 
     if (!isOpen) {
-        return (
-            <Box>
-                <Button
-                    type="button"
-                    ref={openButtonRef}
-                    className="mr-1"
-                    icon={<ChatIcon title="Skriv ny melding" />}
-                    size="small"
-                    onClick={openAndSetFocusToCloseButton}
-                />
-            </Box>
-        );
+        return null;
     }
 
     return (
-        <Panel onResize={onExpand} ref={panelRef} defaultSize={PANEL_SIZE} minSize={20} maxSize={60} order={3}>
+        <Panel ref={panelRef} defaultSize={PANEL_SIZE} minSize={20} maxSize={60} order={3}>
             <VStack height="100%" gap="space-4" overflow="auto">
                 <ErrorBoundary boundaryName="sendmelding">
-                    <SendMelding
-                        lukkeKnapp={
-                            <HStack gap="space-8">
-                                <Button
-                                    type="button"
-                                    icon={
-                                        isLarge ? (
-                                            <ShrinkIcon color="var(--ax-text-neutral)" title="Minimer" />
-                                        ) : (
-                                            <ExpandIcon color="var(--ax-text-neutral)" title="Ekspander" />
-                                        )
-                                    }
-                                    variant="tertiary"
-                                    size="small"
-                                    onClick={() => {
-                                        if (!panelRef.current) return;
-                                        isLarge ? trackOpenDialog() : trackCloseDialog();
-                                        const newSize = isLarge ? PANEL_SIZE : LARGE_SIZE;
-                                        panelRef.current.resize(newSize);
-                                    }}
-                                />
-                                <Button
-                                    type="button"
-                                    icon={<MinusIcon color="var(--ax-text-neutral)" title="Lukk" />}
-                                    variant="tertiary"
-                                    size="small"
-                                    ref={closeButtonRef}
-                                    onClick={closeAndSetFocusToOpenButton}
-                                />
-                            </HStack>
-                        }
-                    />
+                    <SendMelding />
                 </ErrorBoundary>
             </VStack>
         </Panel>

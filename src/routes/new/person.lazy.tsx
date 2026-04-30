@@ -3,7 +3,10 @@ import { createLazyFileRoute, Navigate, Outlet, useRouterState } from '@tanstack
 import { useAtomValue } from 'jotai';
 import { Suspense, useEffect, useState } from 'react';
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
+import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
+import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 import { TraadList } from 'src/components/Meldinger/List';
+import { IkkeLukkbarNyMelding } from 'src/components/melding/IkkeLukkbarNyMelding';
 import { LukkbarNyMelding } from 'src/components/melding/LukkbarNyMelding';
 import { PersonLinje } from 'src/components/PersonLinje';
 import { PersonSidebarMenu } from 'src/components/PersonSidebar';
@@ -72,6 +75,7 @@ const ResizeHandle = () => (
 );
 
 function PersonLayout() {
+    const { isOn } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
     const isMeldinger = useRouterState({
         select: (s) => s.matches.some((m) => m.routeId.includes('/meldinger'))
     });
@@ -150,7 +154,7 @@ function PersonLayout() {
                         )}
                     </Panel>
                     <ResizeHandle />
-                    <LukkbarNyMelding />
+                    {isOn ? <IkkeLukkbarNyMelding /> : <LukkbarNyMelding />}
                 </PanelGroup>
             </HStack>
         </VStack>
