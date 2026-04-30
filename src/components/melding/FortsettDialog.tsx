@@ -1,19 +1,22 @@
-import { Bleed, Box, Button, Checkbox, HGrid, HStack, InlineMessage, Loader, VStack } from '@navikt/ds-react';
+import { Bleed, Box, Button, Checkbox, HStack, InlineMessage, Loader, VStack } from '@navikt/ds-react';
 import { useForm, type ValidationError } from '@tanstack/react-form';
 import { useSearch } from '@tanstack/react-router';
-import { useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import DraftStatus from 'src/app/personside/dialogpanel/DraftStatus';
 import type { Draft, DraftContext } from 'src/app/personside/dialogpanel/use-draft';
 import useDraft from 'src/app/personside/dialogpanel/use-draft';
+import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
+import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 import { Link } from 'src/components/Link';
+import { AvbrytAlert } from 'src/components/melding/BetaKommunikasjon/AvbrytAlert';
 import AutoCompleteTekstTips from 'src/components/melding/standardtekster/AutoCompleteTekstTips';
 import StandardTekstModal from 'src/components/melding/standardtekster/StandardTeksterModal';
 import { settInnStandardTekst } from 'src/components/melding/standardtekster/settInnStandardTekst';
 import { useNyesteVurderSvarOppgaveForTraad, useSendMelding } from 'src/lib/clients/modiapersonoversikt-api';
 import { useSuspendingBrukernavn } from 'src/lib/hooks/useSuspendingBrukernavn';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
-import { dialogUnderArbeidAtom, overskridKontaktReservasjonAtom, useDisableDialog } from 'src/lib/state/dialog';
+import { overskridKontaktReservasjonAtom, svarUnderArbeidAtom, useDisableDialog } from 'src/lib/state/dialog';
 import {
     type SendMeldingRequestV2,
     SendMeldingRequestV2TraadType,
@@ -33,19 +36,19 @@ type FortsettDialogForm = z.infer<typeof fortsettDialogSchema>;
 
 type Props = {
     traad: Traad;
-    avbryt: () => void;
 };
 
-export const FortsettDialog = ({ traad, avbryt }: Props) => {
+export const FortsettDialog = ({ traad }: Props) => {
     const fnr = usePersonAtomValue();
     const enhetsId = useAtomValue(aktivEnhetAtom);
-    const [, setDialogUnderArbeid] = useAtom(dialogUnderArbeidAtom);
+    const setDialogUnderArbeid = useSetAtom(svarUnderArbeidAtom);
     const brukerNavn = useSuspendingBrukernavn();
     const oppgaveForTraad = useNyesteVurderSvarOppgaveForTraad(traad.traadId);
     const disableDialog = useDisableDialog();
     const setOverskridKontaktReservasjon = useSetAtom(overskridKontaktReservasjonAtom);
     const { mutate, isPending } = useSendMelding();
     const search = useSearch({ from: '/new/person/meldinger', shouldThrow: false });
+    const { isOn } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
 
     const erValgtTraad = !search?.traadId || search?.traadId === traad.traadId;
 
@@ -182,6 +185,11 @@ export const FortsettDialog = ({ traad, avbryt }: Props) => {
                     >
                         {(field) => (
                             <div>
+                                <Box height="30px">
+                                    {draftStatus &&
+                                        form.getFieldValue('melding').length > 0 &&
+                                        form.getFieldMeta('melding')?.isDirty && <DraftStatus state={draftStatus} />}
+                                </Box>
                                 <AutocompleteTextarea
                                     disabled={disableDialog}
                                     autoFocus
@@ -201,48 +209,59 @@ export const FortsettDialog = ({ traad, avbryt }: Props) => {
                             </div>
                         )}
                     </form.Field>
-                    <HGrid gap="space-8" columns={{ xs: 1, md: '2fr 3fr' }}>
-                        <Box flexGrow="1">
-                            {draftStatus &&
-                                form.getFieldValue('melding').length > 0 &&
-                                form.getFieldMeta('melding')?.isDirty && <DraftStatus state={draftStatus} />}
-                        </Box>
-                        <Bleed
-                            marginBlock={{
-                                xs: 'space-0 space-0',
-                                md: disableDialog ? 'space-0 space-0' : 'space-20 space-0'
-                            }}
-                            asChild
-                        >
-                            <HStack gap="space-4" justify="end">
-                                <HStack justify="center">
-                                    <AutoCompleteTekstTips />
-                                    <StandardTekstModal
-                                        textAreaRef={textAreaRef}
-                                        submitTekst={(standardTekst) =>
-                                            settInnStandardTekst(standardTekst, textAreaRef, (e) =>
-                                                form.setFieldValue('melding', e.target.value)
-                                            )
-                                        }
+
+                    <Bleed
+                        marginBlock={{
+                            xs: 'space-0 space-0',
+                            md: disableDialog ? 'space-0 space-0' : 'space-20 space-0'
+                        }}
+                        asChild
+                    >
+                        <HStack gap="space-4" justify="end">
+                            <Box height="15px" width="100px" />
+                            <HStack justify="end" wrap={false}>
+                                <AutoCompleteTekstTips />
+                                <StandardTekstModal
+                                    textAreaRef={textAreaRef}
+                                    submitTekst={(standardTekst) =>
+                                        settInnStandardTekst(standardTekst, textAreaRef, (e) =>
+                                            form.setFieldValue('melding', e.target.value)
+                                        )
+                                    }
+                                />
+                            </HStack>
+                            <HStack justify="end" gap="space-8" align="center" flexGrow="1" maxWidth="fit-content">
+                                <Button
+                                    type="submit"
+                                    data-testid="svar-knapp-fortsett-dialog"
+                                    size="small"
+                                    className="text-nowrap"
+                                    disabled={disableDialog || isPending}
+                                    loading={isPending}
+                                >
+                                    Send til {brukerNavn} {oppgaveId ? 'og avslutt oppgave' : ''}
+                                </Button>
+                                {isOn ? (
+                                    <AvbrytAlert
+                                        handleAvbryt={() => {
+                                            setDialogUnderArbeid(undefined);
+                                        }}
                                     />
-                                </HStack>
-                                <VStack justify="center" align="end" gap="space-4">
+                                ) : (
                                     <Button
-                                        type="submit"
-                                        data-testid="svar-knapp-fortsett-dialog"
                                         size="small"
-                                        disabled={disableDialog || isPending}
-                                        loading={isPending}
+                                        data-color="danger"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            setDialogUnderArbeid(undefined);
+                                        }}
                                     >
-                                        Send til {brukerNavn} {oppgaveId ? 'og avslutt oppgave' : ''}
-                                    </Button>
-                                    <Button variant="tertiary" size="small" onClick={avbryt}>
                                         Avbryt
                                     </Button>
-                                </VStack>
+                                )}
                             </HStack>
-                        </Bleed>
-                    </HGrid>
+                        </HStack>
+                    </Bleed>
                 </VStack>
             </VStack>
         </form>

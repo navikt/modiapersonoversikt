@@ -1,6 +1,15 @@
 import { BodyLong, Button, Dialog } from '@navikt/ds-react';
 
-export const AvbrytAlert = ({ innhold, handleAvbryt }: { innhold?: string; handleAvbryt: () => void }) => {
+// Bruk children for å kunne overstyrre trigger med custom knapp
+export const AvbrytAlert = ({
+    innhold,
+    tittel,
+    handleAvbryt
+}: {
+    innhold?: string;
+    tittel?: string;
+    handleAvbryt: () => void;
+}) => {
     return (
         <Dialog>
             <Dialog.Trigger>
@@ -10,7 +19,7 @@ export const AvbrytAlert = ({ innhold, handleAvbryt }: { innhold?: string; handl
             </Dialog.Trigger>
             <Dialog.Popup role="alertdialog" closeOnOutsideClick={false}>
                 <Dialog.Header withClosebutton={true}>
-                    <Dialog.Title>Ønsker du å avbryte?</Dialog.Title>
+                    <Dialog.Title>{tittel ?? 'Ønsker du å avbryte?'}</Dialog.Title>
                 </Dialog.Header>
                 <Dialog.Body>
                     <BodyLong>{innhold ?? 'Utkastet blir ikke lagret.'}</BodyLong>

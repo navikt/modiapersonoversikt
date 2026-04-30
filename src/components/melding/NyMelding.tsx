@@ -1,9 +1,12 @@
-import { Bleed, Box, Button, ErrorMessage, HGrid, HStack, VStack } from '@navikt/ds-react';
+import { Bleed, Box, Button, ErrorMessage, HStack, VStack } from '@navikt/ds-react';
 import { useForm, useStore, type ValidationError } from '@tanstack/react-form';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import DraftStatus from 'src/app/personside/dialogpanel/DraftStatus';
 import useDraft, { type Draft, type DraftContext } from 'src/app/personside/dialogpanel/use-draft';
+import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
+import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
+import { AvbrytAlert } from 'src/components/melding/BetaKommunikasjon/AvbrytAlert';
 import nyMeldingSchema, { maksLengdeMelding } from 'src/components/melding/nyMeldingSchema';
 import { Oppgaveliste } from 'src/components/melding/OppgavelisteOptions';
 import AutoCompleteTekstTips from 'src/components/melding/standardtekster/AutoCompleteTekstTips';
@@ -22,7 +25,7 @@ import {
 import { useSendMelding } from 'src/lib/clients/modiapersonoversikt-api';
 import { useSuspendingBrukernavn } from 'src/lib/hooks/useSuspendingBrukernavn';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
-import { overskridKontaktReservasjonAtom, useDisableDialog } from 'src/lib/state/dialog';
+import { nyMeldingUnderArbeidAtom, overskridKontaktReservasjonAtom, useDisableDialog } from 'src/lib/state/dialog';
 import type { Temagruppe } from 'src/models/temagrupper';
 import { trackSendNyMelding } from 'src/utils/analytics';
 import type { z } from 'zod';
@@ -34,6 +37,8 @@ function NyMelding() {
     const brukerNavn = useSuspendingBrukernavn();
     const disableDialog = useDisableDialog();
     const setOverskridKontaktReservasjon = useSetAtom(overskridKontaktReservasjonAtom);
+    const { isOn } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
+    const setNyMeldingUnderArbeid = useSetAtom(nyMeldingUnderArbeidAtom);
 
     const { mutate, isPending } = useSendMelding();
 
@@ -160,6 +165,11 @@ function NyMelding() {
                     >
                         {(field) => (
                             <div>
+                                <Box height="30px">
+                                    {draftStatus &&
+                                        form.getFieldValue('melding').length > 0 &&
+                                        form.getFieldMeta('melding')?.isDirty && <DraftStatus state={draftStatus} />}
+                                </Box>
                                 <AutocompleteTextarea
                                     disabled={disableDialog}
                                     ref={textAreaRef}
@@ -177,45 +187,48 @@ function NyMelding() {
                             </div>
                         )}
                     </form.Field>
-                    <HGrid gap="space-8" columns={{ xs: 1, md: '2fr 3fr' }}>
-                        <Box flexGrow="1">
-                            {draftStatus &&
-                                form.getFieldValue('melding').length > 0 &&
-                                form.getFieldMeta('melding')?.isDirty && <DraftStatus state={draftStatus} />}
-                        </Box>
-                        <Bleed
-                            marginBlock={{
-                                xs: 'space-0 space-0',
-                                md: disableDialog ? 'space-0 space-0' : 'space-20 space-0'
-                            }}
-                            asChild
-                        >
-                            <HStack gap="space-4" justify="end">
-                                <HStack justify="center">
-                                    <AutoCompleteTekstTips />
-                                    <StandardTekstModal
-                                        textAreaRef={textAreaRef}
-                                        submitTekst={(standardTekst) =>
-                                            settInnStandardTekst(standardTekst, textAreaRef, (e) =>
-                                                form.setFieldValue('melding', e.target.value)
-                                            )
-                                        }
-                                    />
-                                </HStack>
-                                <HStack justify="center" align="start">
-                                    <Button
-                                        disabled={disableDialog || isPending}
-                                        type="submit"
-                                        size="small"
-                                        data-testid="svar-knapp"
-                                        loading={isPending}
-                                    >
-                                        Send til {brukerNavn}
-                                    </Button>
-                                </HStack>
+                    <Bleed
+                        marginBlock={{
+                            xs: 'space-0 space-0',
+                            md: disableDialog ? 'space-0 space-0' : 'space-20 space-0'
+                        }}
+                        asChild
+                    >
+                        <HStack gap="space-4" justify="end">
+                            <Box height="15px" width="100px" />
+                            <HStack justify="end" wrap={false}>
+                                <AutoCompleteTekstTips />
+                                <StandardTekstModal
+                                    textAreaRef={textAreaRef}
+                                    submitTekst={(standardTekst) =>
+                                        settInnStandardTekst(standardTekst, textAreaRef, (e) =>
+                                            form.setFieldValue('melding', e.target.value)
+                                        )
+                                    }
+                                />
                             </HStack>
-                        </Bleed>
-                    </HGrid>
+                            <HStack justify="end" gap="space-8" align="center" flexGrow="1" maxWidth="fit-content">
+                                <Button
+                                    disabled={disableDialog || isPending}
+                                    type="submit"
+                                    size="small"
+                                    data-testid="svar-knapp"
+                                    className="text-nowrap"
+                                    loading={isPending}
+                                >
+                                    Send til {brukerNavn}
+                                </Button>
+                                {isOn && (
+                                    <AvbrytAlert
+                                        handleAvbryt={() => {
+                                            form.reset(defaultFormOptions);
+                                            setNyMeldingUnderArbeid(false);
+                                        }}
+                                    />
+                                )}
+                            </HStack>
+                        </HStack>
+                    </Bleed>
                 </VStack>
             </VStack>
         </form>
