@@ -14,6 +14,8 @@ import {
 import { ActionMenu, Box, Button, Heading, HStack } from '@navikt/ds-react';
 import { useSetAtom } from 'jotai';
 import { useCallback, useState } from 'react';
+import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
+import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 import { JournalForingModal } from 'src/components/Meldinger/Journalforing';
 import {
     eldsteMelding,
@@ -30,6 +32,7 @@ import {
 import MeldingerPrint from 'src/components/Meldinger/MeldingerPrint';
 import { AvsluttDialogModal, MarkerFeilsendtModal, SladdTraadModal } from 'src/components/Meldinger/Merk';
 import { OppgaveModal } from 'src/components/Meldinger/Oppgave';
+import { SvarPaaTraadKnapp } from 'src/components/melding/BetaKommunikasjon/SvarPaaTraadKnapp';
 import usePrinter from 'src/components/Print/usePrinter';
 import { svarUnderArbeidAtom } from 'src/lib/state/dialog';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
@@ -52,6 +55,7 @@ export const MeldingActionMenu = ({ traad }: { traad: Traad }) => {
     const [avsluttOpen, setAvsluttOpen] = useState(false);
     const [sladdOpen, setSladdOpen] = useState(false);
     const [feilsendtOpen, setFeilsendtOpen] = useState(false);
+    const { isOn: nyKommunikasjon } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
 
     const PrinterWrapper = printer.printerWrapper;
     const { data: traader } = useTraader();
@@ -74,13 +78,16 @@ export const MeldingActionMenu = ({ traad }: { traad: Traad }) => {
                 {traadstittel(traad)} - {temagruppeTekst(traad.temagruppe as Temagruppe)}
             </Heading>
             <HStack gap="space-8" justify="end" align="start">
-                {kanBesvares && (
-                    <Box>
-                        <Button size="small" onClick={svarSamtale} variant="primary" icon={<ArrowUndoIcon />}>
-                            Svar
-                        </Button>
-                    </Box>
-                )}
+                {kanBesvares &&
+                    (nyKommunikasjon ? (
+                        <SvarPaaTraadKnapp traad={traad} />
+                    ) : (
+                        <Box>
+                            <Button size="small" onClick={svarSamtale} variant="primary" icon={<ArrowUndoIcon />}>
+                                Svar
+                            </Button>
+                        </Box>
+                    ))}
                 <ActionMenu>
                     <ActionMenu.Trigger>
                         <Button
