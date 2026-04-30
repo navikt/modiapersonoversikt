@@ -7,13 +7,12 @@ import {
     LeaveIcon,
     MenuHamburgerIcon,
     NotePencilDashIcon,
-    PencilIcon,
     PrinterSmallIcon,
     TasklistIcon,
     XMarkOctagonIcon
 } from '@navikt/aksel-icons';
 import { ActionMenu, Box, Button, Heading, HStack } from '@navikt/ds-react';
-import { useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { useSetAtom } from 'jotai';
 import { useCallback, useState } from 'react';
 import { JournalForingModal } from 'src/components/Meldinger/Journalforing';
 import {
@@ -32,7 +31,7 @@ import MeldingerPrint from 'src/components/Meldinger/MeldingerPrint';
 import { AvsluttDialogModal, MarkerFeilsendtModal, SladdTraadModal } from 'src/components/Meldinger/Merk';
 import { OppgaveModal } from 'src/components/Meldinger/Oppgave';
 import usePrinter from 'src/components/Print/usePrinter';
-import { meldingPanelIsOpenAtom, nyMeldingUnderArbeidAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
+import { svarUnderArbeidAtom } from 'src/lib/state/dialog';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
 import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
@@ -53,7 +52,6 @@ export const MeldingActionMenu = ({ traad }: { traad: Traad }) => {
     const [avsluttOpen, setAvsluttOpen] = useState(false);
     const [sladdOpen, setSladdOpen] = useState(false);
     const [feilsendtOpen, setFeilsendtOpen] = useState(false);
-    const openPanel = useAtomValue(meldingPanelIsOpenAtom);
 
     const PrinterWrapper = printer.printerWrapper;
     const { data: traader } = useTraader();
@@ -62,18 +60,13 @@ export const MeldingActionMenu = ({ traad }: { traad: Traad }) => {
         printer.triggerPrint();
     };
 
-    const [dialogUnderArbeid, setDialogUnderArbeid] = useAtom(svarUnderArbeidAtom);
-    const setNyMeldingUnderArbeid = useSetAtom(nyMeldingUnderArbeidAtom);
-    const gjeldeneDialogErUnderArbeid = dialogUnderArbeid === traad.traadId;
+    const setDialogUnderArbeid = useSetAtom(svarUnderArbeidAtom);
 
     const svarSamtale = useCallback(() => {
         setDialogUnderArbeid(traad.traadId);
-        setNyMeldingUnderArbeid(false);
     }, [traad.traadId, setDialogUnderArbeid]);
 
     const kanBesvares = traadKanBesvares(traad);
-
-    const tekstPaaKnapp = gjeldeneDialogErUnderArbeid && openPanel ? 'Under arbeid' : 'Svar';
 
     return (
         <HStack justify="space-between" gap="space-8">
@@ -83,20 +76,8 @@ export const MeldingActionMenu = ({ traad }: { traad: Traad }) => {
             <HStack gap="space-8" justify="end" align="start">
                 {kanBesvares && (
                     <Box>
-                        <Button
-                            size="small"
-                            onClick={svarSamtale}
-                            disabled={gjeldeneDialogErUnderArbeid && openPanel}
-                            variant="primary"
-                            icon={
-                                gjeldeneDialogErUnderArbeid && openPanel ? (
-                                    <PencilIcon aria-hidden />
-                                ) : (
-                                    <ArrowUndoIcon aria-hidden />
-                                )
-                            }
-                        >
-                            {tekstPaaKnapp}
+                        <Button size="small" onClick={svarSamtale} variant="primary" icon={<ArrowUndoIcon />}>
+                            Svar
                         </Button>
                     </Box>
                 )}
