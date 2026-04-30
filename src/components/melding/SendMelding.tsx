@@ -1,12 +1,12 @@
 import { Alert, Button, Heading, HStack, InlineMessage, Skeleton, VStack } from '@navikt/ds-react';
 import { useAtom, useAtomValue } from 'jotai';
-import { type ReactElement, useCallback, useEffect, useMemo } from 'react';
+import { type ReactElement, useEffect, useMemo } from 'react';
 import { useSetDialogUnderArbeidOnMount } from 'src/components/Meldinger/Detail/useSetDialogUnderArbeidOnMount';
 import { traadTypeTekst } from 'src/components/Meldinger/List/tekster';
 import { nyesteMelding, useTraader } from 'src/components/Meldinger/List/utils';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { aktivBrukerAtom } from 'src/lib/state/context';
-import { dialogUnderArbeidAtom, overskridKontaktReservasjonAtom } from 'src/lib/state/dialog';
+import { overskridKontaktReservasjonAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
 import { type Traad, type TraadDto, TraadType } from 'src/lib/types/modiapersonoversikt-api';
 import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { formatterDato } from 'src/utils/date-utils';
@@ -81,12 +81,8 @@ const SendMeldingContent = ({
     lukkeKnapp?: ReactElement<typeof Button>;
     traader: Traad[];
 }) => {
-    const [dialogUnderArbeid, setDialogUnderArbeid] = useAtom(dialogUnderArbeidAtom);
+    const [dialogUnderArbeid, setDialogUnderArbeid] = useAtom(svarUnderArbeidAtom);
     const traad = useMemo(() => traader.find((m) => m.traadId === dialogUnderArbeid), [traader, dialogUnderArbeid]);
-
-    const handleAvbryt = useCallback(() => {
-        setDialogUnderArbeid(undefined);
-    }, [setDialogUnderArbeid]);
 
     useSetDialogUnderArbeidOnMount();
 
@@ -101,12 +97,12 @@ const SendMeldingContent = ({
             <ReservertIKRR />
             {dialogUnderArbeid ? (
                 traad ? (
-                    <FortsettDialog traad={traad} key={traad.traadId} avbryt={handleAvbryt} />
+                    <FortsettDialog traad={traad} key={traad.traadId} />
                 ) : (
                     <>
                         <Alert variant="warning">Fant ikke dialogen under arbeid</Alert>
                         <HStack justify="end" marginBlock="space-4">
-                            <Button variant="tertiary" size="small" onClick={handleAvbryt}>
+                            <Button variant="tertiary" size="small" onClick={() => setDialogUnderArbeid(undefined)}>
                                 Avbryt
                             </Button>
                         </HStack>
