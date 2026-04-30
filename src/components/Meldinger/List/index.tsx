@@ -1,4 +1,4 @@
-import { useSearch } from '@tanstack/react-router';
+import { getRouteApi, useSearch } from '@tanstack/react-router';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { useAntallListeElementeBasertPaaSkjermStorrelse } from 'src/utils/customHooks';
@@ -12,15 +12,20 @@ export const TraadList = () => (
     </ErrorBoundary>
 );
 
+const routeApi = getRouteApi('/new/person/meldinger');
+
 const Traader = () => {
     const { isLoading } = useTraader();
     const filteredMeldinger = useFilterMeldinger();
     const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
+    const navigate = routeApi.useNavigate();
 
     const traadId = useSearch({
         from: '/new/person/meldinger',
         select: (p) => p.traadId
     });
+
+    const selectedItem = filteredMeldinger.find((t) => t.traadId === traadId);
 
     return (
         <PaginatedList
@@ -37,6 +42,8 @@ const Traader = () => {
             items={filteredMeldinger}
             keyExtractor={(item) => item.traadId}
             renderItem={({ item }) => <TraadItem traad={item} />}
+            onSelectItem={(traad) => navigate({ search: { traadId: traad.traadId } })}
+            selectedItem={selectedItem}
         />
     );
 };

@@ -1,4 +1,4 @@
-import { useSearch } from '@tanstack/react-router';
+import { getRouteApi, useSearch } from '@tanstack/react-router';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { YtelseItem } from 'src/components/ytelser/List/YtelseItem';
@@ -12,14 +12,19 @@ export const YtelserList = () => (
     </ErrorBoundary>
 );
 
+const routeApi = getRouteApi('/new/person/ytelser');
+
 const YtelseList = () => {
     const { data: ytelser, isLoading } = useFilterYtelser();
     const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
+    const navigate = routeApi.useNavigate();
 
     const selectedKey = useSearch({
         from: '/new/person/ytelser',
         select: (p) => p.id
     });
+
+    const selectedItem = ytelser.find((y) => getUnikYtelseKey(y) === selectedKey);
 
     return (
         <PaginatedList
@@ -36,6 +41,8 @@ const YtelseList = () => {
             isLoading={isLoading}
             keyExtractor={getUnikYtelseKey}
             renderItem={({ item }) => <YtelseItem ytelse={item} />}
+            onSelectItem={(ytelse) => navigate({ search: { id: getUnikYtelseKey(ytelse) } })}
+            selectedItem={selectedItem}
         />
     );
 };

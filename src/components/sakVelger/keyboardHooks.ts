@@ -1,4 +1,4 @@
-import type { DependencyList } from 'react';
+import { type DependencyList, useEffect, useState } from 'react';
 import { useHotkey } from 'src/utils/hooks/use-hotkey';
 import { modulo } from 'src/utils/math';
 
@@ -9,17 +9,30 @@ export function usePiltasterIListe<T>(
     velgElement: (element: T) => void,
     valgtElement?: T
 ) {
+    const [element, setElement] = useState<HTMLDivElement | null>(null);
+    useEffect(() => {
+        if (listeRef.current !== element) {
+            setElement(listeRef.current);
+        }
+    });
+
     const velg = (offset: number) => () => {
-        const index = listeElementer.findIndex((element) => element === valgtElement);
+        if (!listeElementer.length) return;
+
+        if (!valgtElement) {
+            velgElement(offset > 0 ? listeElementer[0] : listeElementer[listeElementer.length - 1]);
+            return;
+        }
+
+        const index = listeElementer.indexOf(valgtElement);
         if (index !== -1) {
             const nextIndex = modulo(index + offset, listeElementer.length);
-            const nesteElement = listeElementer[nextIndex];
-            velgElement(nesteElement);
+            velgElement(listeElementer[nextIndex]);
         }
     };
 
-    useHotkey('arrowup', velg(-1), dependencies, 'Neste listelement', listeRef?.current);
-    useHotkey('arrowdown', velg(1), dependencies, 'Neste listeelement', listeRef?.current);
+    useHotkey('arrowup', velg(-1), dependencies, 'Forrige listeelement', element);
+    useHotkey('arrowdown', velg(1), dependencies, 'Neste listeelement', element);
 }
 
 /**

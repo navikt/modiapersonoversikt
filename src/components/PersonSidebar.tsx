@@ -12,7 +12,7 @@ import {
 } from '@navikt/aksel-icons';
 import { Bleed, Box, Button, Heading, Tooltip, VStack } from '@navikt/ds-react';
 import { Link } from '@tanstack/react-router';
-import { type ComponentProps, type ReactElement, useState } from 'react';
+import { type ComponentProps, type KeyboardEvent, type ReactElement, useRef, useState } from 'react';
 import { getOpenTabFromRouterPath, useOpenTab } from 'src/app/personside/infotabs/utils/useOpenTab';
 import { erUbesvartHenvendelseFraBruker, useTraader } from 'src/components/Meldinger/List/utils';
 import { usePersonSideBarKotkeys } from 'src/components/usePersonSidebarHotkeys';
@@ -89,10 +89,22 @@ export const PersonSidebarMenu = () => {
     const { data: oppgaver = [] } = usePersonOppgaver();
     const harOppgaverPaaEnTraad = oppgaver.some((oppgave) => oppgave.traadId !== null);
     const harUbesvarteTraader = traader.some((traad) => erUbesvartHenvendelseFraBruker(traad));
+    const navRef = useRef<HTMLDivElement>(null);
 
     const visNotifikasjon = (tab: string) => {
         if (tab !== 'Kommunikasjon') return false;
         return harOppgaverPaaEnTraad || harUbesvarteTraader;
+    };
+
+    const handleNavKeyDown = (e: KeyboardEvent<HTMLElement>) => {
+        if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+        const links = Array.from(navRef.current?.querySelectorAll<HTMLElement>('a') ?? []);
+        const currentIndex = links.indexOf(document.activeElement as HTMLElement);
+        if (currentIndex === -1) return;
+        e.preventDefault();
+        const lastIndex = links.length - 1;
+        const nextIndex = e.key === 'ArrowDown' ? Math.min(currentIndex + 1, lastIndex) : Math.max(currentIndex - 1, 0);
+        links[nextIndex].focus();
     };
 
     return (
@@ -124,9 +136,12 @@ export const PersonSidebarMenu = () => {
                     <VStack
                         as="nav"
                         id="sidebar-person"
+                        ref={navRef}
+                        role="menu"
                         aria-label="Person"
                         padding="space-8"
                         className="divide-y divide-ax-border-neutral-subtle "
+                        onKeyDown={handleNavKeyDown}
                     >
                         <Heading visuallyHidden size="small" level="2">
                             Faner
@@ -145,6 +160,9 @@ export const PersonSidebarMenu = () => {
                                         }
                                     }}
                                     aria-label={title}
+                                    role="menuitem"
+                                    activeProps={{ tabIndex: 0 }}
+                                    inactiveProps={{ tabIndex: -1 }}
                                 >
                                     {({ isActive }) => (
                                         <>
