@@ -27,20 +27,20 @@ export interface DecoratorPropsV3 {
     websocketUrl?: string | undefined; // WebSocket URL
 }
 
-export interface Markup {
+interface Markup {
     etterSokefelt?: string; // Gir muligheten for å sende inn egen HTML som blir en del av dekoratøren
 }
 
-export interface Enhet {
+interface Enhet {
     readonly enhetId: string;
     readonly navn: string;
 }
 
-export type Environment = 'q0' | 'q1' | 'q2' | 'q3' | 'q4' | 'prod' | 'local' | 'mock';
+type Environment = 'q0' | 'q1' | 'q2' | 'q3' | 'q4' | 'prod' | 'local' | 'mock';
 
-export type UrlFormat = 'LOCAL' | 'NAV_NO' | 'ANSATT';
+type UrlFormat = 'LOCAL' | 'NAV_NO' | 'ANSATT';
 
-export interface HotkeyObject {
+interface HotkeyObject {
     char: string;
     altKey?: boolean;
     ctrlKey?: boolean;
@@ -48,17 +48,17 @@ export interface HotkeyObject {
     shiftKey?: boolean;
 }
 
-export interface HotkeyDescription {
+interface HotkeyDescription {
     key: HotkeyObject;
     description: string;
     forceOverride?: boolean;
 }
 
-export interface ActionHotKey extends HotkeyDescription {
+interface ActionHotKey extends HotkeyDescription {
     action(event: KeyboardEvent): void;
 }
 
-export interface DocumentingHotKey extends HotkeyDescription {
+interface DocumentingHotKey extends HotkeyDescription {
     documentationOnly: boolean;
 }
 
