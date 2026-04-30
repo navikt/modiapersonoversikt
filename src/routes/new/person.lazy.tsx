@@ -6,7 +6,7 @@ import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
 import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 import { TraadList } from 'src/components/Meldinger/List';
-import { IkkeLukkbarNyMelding } from 'src/components/melding/IkkeLukkbarNyMelding';
+import { IkkeLukkbarNyMelding } from 'src/components/melding/BetaKommunikasjon/IkkeLukkbarNyMelding';
 import { LukkbarNyMelding } from 'src/components/melding/LukkbarNyMelding';
 import { PersonLinje } from 'src/components/PersonLinje';
 import { PersonSidebarMenu } from 'src/components/PersonSidebar';

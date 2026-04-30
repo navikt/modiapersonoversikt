@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import { type ImperativePanelHandle, Panel } from 'react-resizable-panels';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { meldingPanelIsOpenAtom } from 'src/lib/state/dialog';
-import { SendMelding } from './SendMelding';
+import { SendMelding } from '../SendMelding';
 
 const PANEL_SIZE = 30;
 
