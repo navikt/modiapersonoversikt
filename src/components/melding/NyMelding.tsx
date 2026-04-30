@@ -80,6 +80,7 @@ function NyMelding() {
                             { keepDefaultValues: true }
                         );
                         setOverskridKontaktReservasjon(false);
+                        setNyMeldingUnderArbeid(false);
                     }
                 }
             );
