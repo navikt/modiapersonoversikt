@@ -2,7 +2,7 @@ import { FigureInwardIcon, FigureOutwardIcon } from '@navikt/aksel-icons';
 import { BodyShort, Box, CopyButton, Heading, HStack, Skeleton } from '@navikt/ds-react';
 import { AlertBanner } from 'src/components/AlertBanner';
 import { erUbesvartHenvendelseFraBruker, useTraader } from 'src/components/Meldinger/List/utils';
-import { MeldingPanelKnapper } from 'src/components/melding/MeldingPanelKnapper';
+import { MeldingPanelKnapper } from 'src/components/melding/BetaKommunikasjon/MeldingPanelKnapper';
 import Statsborgerskap from 'src/components/PersonLinje/Details/Familie/Statsborgerskap';
 import config from 'src/config';
 import { usePersonData, usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
