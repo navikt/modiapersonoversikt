@@ -1,46 +1,78 @@
-import NAVSPA from '@navikt/navspa';
-import { useEffect, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
-import Personsok from 'src/components/personsok';
-import styled from 'styled-components';
-import OppdateringsloggContainer from '../oppdateringslogg/OppdateringsloggContainer';
-import { DropdownMeny } from './DropdownMeny';
-import type { DecoratorPropsV3 } from './decoratorprops';
-import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
-import './personsokKnapp.less';
-import './nymodiaKnapp.less';
-import './decorator.less';
-import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
-import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
+import { useEffect, useLayoutEffect, useRef } from 'react';
+import { NyModiaPortal } from 'src/app/internarbeidsflatedecorator/NyModiaPortal';
 import { OppstartNyModiaDialog } from 'src/components/NyModia/OppstartNyModiaDialog';
 import useOpenIntroduksjonsModal from 'src/components/NyModia/useHarSettNyModiaDialog';
+import Personsok from 'src/components/personsok';
+import OppdateringsloggContainer from '../oppdateringslogg/OppdateringsloggContainer';
+import type { DecoratorPropsV3 } from './decoratorprops';
+import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
 import { useDecoratorConfig } from './useDecoratorConfig';
 
-const InternflateDecoratorV3 = NAVSPA.importer<DecoratorPropsV3>('internarbeidsflate-decorator-v3');
+function InternarbeidsflateDecoratorElement(props: DecoratorPropsV3) {
+    const ref = useRef<HTMLElement>(null);
 
-function DropdownMenyPortal() {
-    const [container, setContainer] = useState<Element | null>(null);
-    const containerRef = useRef<Element | null>(null);
-    const { isOn } = useFeatureToggle(FeatureToggles.NyModiaKnapp);
+    // Hold siste versjon av alle callbacks i én ref — handlers registreres én gang, men er alltid oppdaterte
+    const propsRef = useRef(props);
+    propsRef.current = props;
 
+    // Hotkeys kan inneholde funksjoner som ikke kan JSON-serialiseres — settes direkte som JS-property
     useEffect(() => {
-        const findAndSet = () => {
-            const el = document.getElementById('dropdown-container');
-            if (el && el !== containerRef.current) {
-                containerRef.current = el;
-                setContainer(el);
-            }
+        if (ref.current) {
+            (ref.current as HTMLElement & { hotkeys: DecoratorPropsV3['hotkeys'] }).hotkeys = props.hotkeys;
+        }
+    }, [props.hotkeys]);
+
+    // useLayoutEffect registrerer lyttere synkront etter DOM-commit, før web componenten kan sende events
+    useLayoutEffect(() => {
+        const el = ref.current;
+        if (!el) return;
+
+        const onEnhetChanged = (e: Event) => {
+            const { enhet, enhetObjekt } = (e as CustomEvent).detail;
+            propsRef.current.onEnhetChanged?.(enhet, enhetObjekt);
+        };
+        const onFnrChanged = (e: Event) => {
+            propsRef.current.onFnrChanged?.((e as CustomEvent).detail.fnr);
+        };
+        const onLinkClick = (e: Event) => {
+            propsRef.current.onLinkClick?.((e as CustomEvent).detail);
         };
 
-        findAndSet();
-
-        const observer = new MutationObserver(findAndSet);
-        observer.observe(document.body, { childList: true, subtree: true });
-        return () => observer.disconnect();
+        el.addEventListener('enhet-changed', onEnhetChanged);
+        el.addEventListener('fnr-changed', onFnrChanged);
+        el.addEventListener('link-click', onLinkClick);
+        return () => {
+            el.removeEventListener('enhet-changed', onEnhetChanged);
+            el.removeEventListener('fnr-changed', onFnrChanged);
+            el.removeEventListener('link-click', onLinkClick);
+        };
     }, []);
 
-    if (!container || !isOn) return null;
-    return createPortal(<DropdownMeny />, container);
+    return (
+        <internarbeidsflate-decorator
+            ref={ref}
+            app-name={props.appName}
+            environment={props.environment}
+            url-format={props.urlFormat}
+            fnr={props.fnr}
+            enhet={props.enhet}
+            user-key={props.userKey}
+            proxy={props.proxy}
+            websocket-url={props.websocketUrl}
+            access-token={props.accessToken}
+            show-enheter={String(props.showEnheter)}
+            show-search-area={String(props.showSearchArea)}
+            show-hotkeys={String(props.showHotkeys)}
+            enable-hotkeys={props.enableHotkeys !== undefined ? String(props.enableHotkeys) : undefined}
+            fetch-active-enhet-on-mount={
+                props.fetchActiveEnhetOnMount !== undefined ? String(props.fetchActiveEnhetOnMount) : undefined
+            }
+            fetch-active-user-on-mount={
+                props.fetchActiveUserOnMount !== undefined ? String(props.fetchActiveUserOnMount) : undefined
+            }
+            markup={props.markup ? JSON.stringify(props.markup) : undefined}
+        />
+    );
 }
 
 function Decorator() {
@@ -48,21 +80,15 @@ function Decorator() {
     const [open] = useOpenIntroduksjonsModal();
 
     return (
-        <StyledNav>
-            <InternflateDecoratorV3 {...configV3} />
+        <nav>
+            <InternarbeidsflateDecoratorElement {...configV3} />
             <Personsok />
             <OppdateringsloggContainer />
-            <DropdownMenyPortal />
+            <NyModiaPortal />
             {open && <OppstartNyModiaDialog />}
             <DecoratorEasterEgg />
-        </StyledNav>
+        </nav>
     );
 }
-
-const StyledNav = styled.nav`
-  .dekorator .dekorator__container {
-    max-width: initial;
-  }
-`;
 
 export default Decorator;

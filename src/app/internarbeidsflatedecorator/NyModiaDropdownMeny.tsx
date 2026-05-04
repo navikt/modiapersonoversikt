@@ -1,11 +1,11 @@
 import { SparklesIcon } from '@navikt/aksel-icons';
-import { ActionMenu, Button } from '@navikt/ds-react';
+import { ActionMenu } from '@navikt/ds-react';
 import { useSetAtom } from 'jotai';
 import { type KeyboardEvent, useRef, useState } from 'react';
 import { openIntroduksjonsModalAtom } from 'src/components/NyModia/useHarSettNyModiaDialog';
 import { NyModiaSwitch } from 'src/components/NyModiaSwitch';
 
-export const DropdownMeny = () => {
+export const NyModiaDropdownMeny = () => {
     const opneIntroduksjonsModal = useSetAtom(openIntroduksjonsModalAtom);
     const ref = useRef<HTMLInputElement | null>(null);
     const [openedWithKeyboard, setOpenedWithKeyboard] = useState(false);
@@ -39,14 +39,12 @@ export const DropdownMeny = () => {
     return (
         <ActionMenu onOpenChange={onOpenChange}>
             <ActionMenu.Trigger onKeyDown={() => setOpenedWithKeyboard(true)}>
-                <Button
-                    className="py-[0.5rem]"
-                    id="ny-modia-knapp"
-                    data-color="neutral"
-                    title="Åpne handlinger for ny Modia"
-                    variant="secondary"
-                    icon={<SparklesIcon aria-hidden />}
-                />
+                {/* Aksel finnes ikke på denne knappen fordi den blir satt inne i dekoratørens shadow DOM*/}
+                <button id="ny-modia-knapp" title="Åpne handlinger for ny Modia" type="button">
+                    <span>
+                        <SparklesIcon aria-hidden />
+                    </span>
+                </button>
             </ActionMenu.Trigger>
             <ActionMenu.Content onKeyDown={handleContentKeyDown}>
                 <ActionMenu.Group label="Velg versjon">

@@ -3,8 +3,9 @@ import { useCallback, useEffect } from 'react';
 export default function useListener(selector: string, event: string, fn: EventListener, parent?: Element | null) {
     const handler: EventListener = useCallback(
         (event) => {
-            const target = event.target;
-            if (target instanceof Element && target?.matches(selector)) {
+            // Bruk composedPath så klikk inne i shadow-dom root også blir matchet
+            const hit = event.composedPath().some((el) => el instanceof Element && el.matches(selector));
+            if (hit) {
                 fn(event);
             }
         },

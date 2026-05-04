@@ -11,7 +11,7 @@ const Personsok = () => {
         ref?.current?.showModal();
     }, []);
 
-    useListener('#toggle-personsok', 'click', listener, document.querySelector('dekorator'));
+    useListener('#toggle-personsok', 'click', listener, document.querySelector('internarbeidsflate-decorator'));
     const [searchQuery, setSearchQuery] = useState<PersonsokRequest | undefined>(undefined);
 
     return (

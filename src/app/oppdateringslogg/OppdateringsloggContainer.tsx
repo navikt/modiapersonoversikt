@@ -8,7 +8,6 @@ import useWaitForElement from '../../utils/hooks/use-wait-for-element';
 import { lagOppdateringsloggConfig } from './config/config';
 import Oppdateringslogg from './Oppdateringslogg';
 import useSisteLestOppdateringLogg from './useSisteLestOppdateringLogg';
-import './oppdateringsloggKnapp.less';
 
 export const DecoratorButtonId = 'oppdateringslogg';
 export interface OppdateringsloggInnslag {
@@ -67,7 +66,7 @@ function useApneOppdateringsLoggModal(
         settApen(true);
     }, [settApen, oppdateringslogg, settSistLesteId]);
 
-    useListener(`#${DecoratorButtonId}`, 'click', listener, document.querySelector('dekorator'));
+    useListener(`#${DecoratorButtonId}`, 'click', listener, document.querySelector('internarbeidsflate-decorator'));
 }
 
 function OppdateringsloggContainer() {

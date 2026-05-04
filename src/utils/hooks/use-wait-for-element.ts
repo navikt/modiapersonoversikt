@@ -6,7 +6,10 @@ function useWaitForElement(selector: string): HTMLElement | null {
         const id = setInterval(() => {
             setElement((prev) => {
                 if (prev?.isConnected) return prev;
-                return document.querySelector<HTMLElement>(selector);
+                const host = document.querySelector('internarbeidsflate-decorator');
+                return (
+                    document.querySelector<HTMLElement>(selector) ?? host?.shadowRoot?.querySelector(selector) ?? null
+                );
             });
         }, 200);
 
