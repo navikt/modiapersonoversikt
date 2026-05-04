@@ -251,6 +251,7 @@ export const FortsettDialog = ({ traad }: Props) => {
                                 ) : (
                                     <Button
                                         size="small"
+                                        variant="secondary"
                                         data-color="danger"
                                         onClick={(e) => {
                                             e.preventDefault();

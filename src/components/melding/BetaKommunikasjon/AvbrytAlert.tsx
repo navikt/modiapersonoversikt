@@ -13,7 +13,7 @@ export const AvbrytAlert = ({
     return (
         <Dialog>
             <Dialog.Trigger>
-                <Button data-color="danger" size="small">
+                <Button data-color="danger" size="small" variant="secondary">
                     Avbryt
                 </Button>
             </Dialog.Trigger>
