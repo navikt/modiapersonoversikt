@@ -1,6 +1,5 @@
 import { BodyLong, Button, Dialog } from '@navikt/ds-react';
 
-// Bruk children for å kunne overstyrre trigger med custom knapp
 export const AvbrytAlert = ({
     innhold,
     tittel,
