@@ -11,7 +11,7 @@ function url(): string {
 }
 
 export const useSetUserContext = () => {
-    return useMutation<ContextResponse, FetchError, { fnr: string; verdiType: 'FNR' | 'FNR_CODE' }>({
+    return useMutation<ContextResponse, FetchError, { fnr: string; verdiType: 'FNR' | 'FNR_KODE' }>({
         mutationFn: ({ fnr, verdiType }) =>
             post(url(), {
                 eventType: 'NY_AKTIV_BRUKER',
