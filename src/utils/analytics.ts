@@ -35,7 +35,8 @@ export enum trackingEvents {
     sendNyMelding = 'send ny melding',
     fortsettDialog = 'fortsett dialog',
     brukStandardtekst = 'bruk standardtekst',
-    brukAutofullfor = 'bruk autofullfør'
+    brukAutofullfor = 'bruk autofullfør',
+    eksternDyplenke = 'ekstern dyplenke'
 }
 
 export enum filterType {
@@ -47,6 +48,14 @@ export enum filterType {
     SOK = 'søk',
     TEMA = 'tema'
 }
+
+export const trackDyplenkeFraEksternKilde = (tekst: string) => {
+    if (!window.umami) {
+        console.warn('Umami is not initialized. Ignoring');
+        return;
+    }
+    window.umami.track(trackingEvents.eksternDyplenke, { tekst });
+};
 
 export const trackFortsettDialog = (traadType: string) => {
     if (!window.umami) {
