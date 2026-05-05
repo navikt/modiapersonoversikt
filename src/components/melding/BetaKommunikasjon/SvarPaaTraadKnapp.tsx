@@ -26,10 +26,10 @@ export const SvarPaaTraadKnapp = ({ traad }: { traad: Traad }) => {
         setNyMeldingUnderArbeid(false);
     };
 
-    const gjeldeneDialogErUnderArbeid = svarUnderArbeid === traad.traadId;
+    const gjeldendeDialogErUnderArbeid = svarUnderArbeid === traad.traadId;
     const kanBesvares = traadKanBesvares(traad);
 
-    const tekstPaaKnapp = gjeldeneDialogErUnderArbeid && openPanel ? 'Under arbeid' : 'Svar';
+    const tekstPaaKnapp = gjeldendeDialogErUnderArbeid && openPanel ? 'Under arbeid' : 'Svar';
 
     return (
         <>
@@ -38,10 +38,10 @@ export const SvarPaaTraadKnapp = ({ traad }: { traad: Traad }) => {
                     <Button
                         size="small"
                         onClick={openDialogEllerSvarPaaTraad}
-                        disabled={gjeldeneDialogErUnderArbeid && openPanel}
+                        disabled={gjeldendeDialogErUnderArbeid && openPanel}
                         variant="primary"
                         icon={
-                            gjeldeneDialogErUnderArbeid && openPanel ? (
+                            gjeldendeDialogErUnderArbeid && openPanel ? (
                                 <PencilIcon aria-hidden />
                             ) : (
                                 <ArrowUndoIcon aria-hidden />
