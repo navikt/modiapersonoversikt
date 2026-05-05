@@ -72,7 +72,7 @@ export const SvarPaaTraadKnapp = ({ traad }: { traad: Traad }) => {
                                 </Dialog.CloseTrigger>
                                 <Dialog.CloseTrigger>
                                     <Button size="medium" onClick={svarSamtale}>
-                                        ja
+                                        Ja
                                     </Button>
                                 </Dialog.CloseTrigger>
                             </Dialog.Footer>
