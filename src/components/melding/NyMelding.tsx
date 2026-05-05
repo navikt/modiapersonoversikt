@@ -165,7 +165,7 @@ function NyMelding() {
                                     ref={textAreaRef}
                                     label={meldingsTypeTekst.tittel}
                                     hideLabel
-                                    size="medium"
+                                    size="small"
                                     value={field.state.value}
                                     onChange={(e) => field.handleChange(e.target.value)}
                                     error={buildErrorMessage(field.state.meta.errors)}

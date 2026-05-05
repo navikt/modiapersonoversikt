@@ -187,7 +187,7 @@ export const FortsettDialog = ({ traad, avbryt }: Props) => {
                                     autoFocus
                                     hideLabel
                                     ref={textAreaRef}
-                                    size="medium"
+                                    size="small"
                                     label="Ny melding i dialog"
                                     description={meldingsTypeTekst.beskrivelse}
                                     value={field.state.value}
