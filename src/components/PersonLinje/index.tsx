@@ -2,6 +2,7 @@ import { FigureInwardIcon, FigureOutwardIcon } from '@navikt/aksel-icons';
 import { BodyShort, Box, CopyButton, Heading, HStack, Skeleton } from '@navikt/ds-react';
 import { AlertBanner } from 'src/components/AlertBanner';
 import { erUbesvartHenvendelseFraBruker, useTraader } from 'src/components/Meldinger/List/utils';
+import { MeldingPanelKnapper } from 'src/components/melding/BetaKommunikasjon/MeldingPanelKnapper';
 import Statsborgerskap from 'src/components/PersonLinje/Details/Familie/Statsborgerskap';
 import config from 'src/config';
 import { usePersonData, usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
@@ -62,63 +63,71 @@ const PersonlinjeHeader = () => {
 
     return (
         <HStack
-            gap="space-8"
             wrap={false}
-            align={{ xs: 'start', sm: 'center' }}
             id="personlinje-header"
-            paddingInline="space-32"
-            paddingBlock="space-16"
             className="focus:outline-0"
             tabIndex={-1}
+            paddingInline="space-32"
+            justify="space-between"
+            gap="space-8"
         >
-            <Box borderRadius="full" borderWidth="2" style={{ borderColor: farge }}>
-                {kjonn.kode === Kjonn.K ? (
-                    <FigureOutwardIcon aria-hidden color={farge} fontSize="2rem" />
-                ) : (
-                    <FigureInwardIcon aria-hidden color={farge} fontSize="2rem" />
-                )}
-            </Box>
-            <HStack gap="space-4 space-12">
-                <Personalia
-                    navn={navn ? `${navn.fornavn} ${navn.mellomnavn ?? ''} ${navn.etternavn}` : 'UKJENT'}
-                    kjonn={kjonn}
-                    alder={person.alder}
-                    erDod={erDod}
-                    farge={farge}
-                />
-                <HStack marginInline={{ xs: 'space-0', lg: 'space-28' }} gap="space-12">
-                    <HStack className="cursor-[initial]" wrap={false} onClick={(e) => e.stopPropagation()}>
-                        <CopyButton
-                            aria-label={`Kopier f.nr: ${`${person.personIdent.slice(0, 6)} ${person.personIdent.slice(6)}`}`}
-                            size="xsmall"
-                            className="p-0 text-ax-text-neutral-subtle"
-                            copyText={data.person.personIdent}
-                            activeText="Kopiert f.nr"
-                            text={`F.nr: ${`${person.personIdent.slice(0, 6)} ${person.personIdent.slice(6)}`}`}
-                        />
-                    </HStack>
-                    {data.person.kontaktInformasjon.mobil?.value && (
+            <HStack
+                gap="space-8"
+                wrap={false}
+                align={{ xs: 'start', sm: 'center' }}
+                paddingBlock="space-16"
+                className="focus:outline-0"
+            >
+                <Box borderRadius="full" borderWidth="2" style={{ borderColor: farge }}>
+                    {kjonn.kode === Kjonn.K ? (
+                        <FigureOutwardIcon aria-hidden color={farge} fontSize="2rem" />
+                    ) : (
+                        <FigureInwardIcon aria-hidden color={farge} fontSize="2rem" />
+                    )}
+                </Box>
+                <HStack gap="space-4 space-12">
+                    <Personalia
+                        navn={navn ? `${navn.fornavn} ${navn.mellomnavn ?? ''} ${navn.etternavn}` : 'UKJENT'}
+                        kjonn={kjonn}
+                        alder={person.alder}
+                        erDod={erDod}
+                        farge={farge}
+                    />
+                    <HStack marginInline={{ xs: 'space-0', lg: 'space-28' }} gap="space-12">
                         <HStack className="cursor-[initial]" wrap={false} onClick={(e) => e.stopPropagation()}>
                             <CopyButton
-                                className="p-0 text-ax-text-neutral-subtle"
-                                activeText="Kopiert tlf.nr"
-                                aria-label={`Kopier tlf.nr: ${formaterMobiltelefonnummer(data.person.kontaktInformasjon.mobil.value ?? '')}`}
-                                text={`Tlf: ${formaterMobiltelefonnummer(data.person.kontaktInformasjon.mobil?.value ?? '')}`}
+                                aria-label={`Kopier f.nr: ${`${person.personIdent.slice(0, 6)} ${person.personIdent.slice(6)}`}`}
                                 size="xsmall"
-                                copyText={data.person.kontaktInformasjon.mobil.value}
+                                className="p-0 text-ax-text-neutral-subtle"
+                                copyText={data.person.personIdent}
+                                activeText="Kopiert f.nr"
+                                text={`F.nr: ${`${person.personIdent.slice(0, 6)} ${person.personIdent.slice(6)}`}`}
                             />
                         </HStack>
-                    )}
-                    <Statsborgerskap />
+                        {data.person.kontaktInformasjon.mobil?.value && (
+                            <HStack className="cursor-[initial]" wrap={false} onClick={(e) => e.stopPropagation()}>
+                                <CopyButton
+                                    className="p-0 text-ax-text-neutral-subtle"
+                                    activeText="Kopiert tlf.nr"
+                                    aria-label={`Kopier tlf.nr: ${formaterMobiltelefonnummer(data.person.kontaktInformasjon.mobil.value ?? '')}`}
+                                    text={`Tlf: ${formaterMobiltelefonnummer(data.person.kontaktInformasjon.mobil?.value ?? '')}`}
+                                    size="xsmall"
+                                    copyText={data.person.kontaktInformasjon.mobil.value}
+                                />
+                            </HStack>
+                        )}
+                        <Statsborgerskap />
+                    </HStack>
+                    <PersonBadges />
                 </HStack>
-                <PersonBadges />
+                {oppgaver.length > 0 && (
+                    <BodyShort visuallyHidden>{`Bruker har ${oppgaver.length} åpne oppgaver`}</BodyShort>
+                )}
+                {antallUbesvarteTraader > 0 && (
+                    <BodyShort visuallyHidden>{`Bruker har ${antallUbesvarteTraader} ubesvart hendelse`}</BodyShort>
+                )}
             </HStack>
-            {oppgaver.length > 0 && (
-                <BodyShort visuallyHidden>{`Bruker har ${oppgaver.length} åpne oppgaver`}</BodyShort>
-            )}
-            {antallUbesvarteTraader > 0 && (
-                <BodyShort visuallyHidden>{`Bruker har ${antallUbesvarteTraader} ubesvart hendelse`}</BodyShort>
-            )}
+            <MeldingPanelKnapper />
         </HStack>
     );
 };

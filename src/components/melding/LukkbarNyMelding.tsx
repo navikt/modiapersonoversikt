@@ -4,7 +4,7 @@ import { useAtomValue } from 'jotai';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { type ImperativePanelHandle, Panel } from 'react-resizable-panels';
 import ErrorBoundary from 'src/components/ErrorBoundary';
-import { dialogUnderArbeidAtom } from 'src/lib/state/dialog';
+import { svarUnderArbeidAtom } from 'src/lib/state/dialog';
 import { trackCloseDialog, trackOpenDialog } from 'src/utils/analytics';
 import { SendMelding } from './SendMelding';
 
@@ -44,12 +44,12 @@ export function LukkbarNyMelding() {
         localStorage.setItem('ny-melding-is-open', String(isOpen));
     }, [isOpen]);
 
-    const oppgave = useAtomValue(dialogUnderArbeidAtom);
+    const svarUnderArbeid = useAtomValue(svarUnderArbeidAtom);
     useEffect(() => {
-        if (oppgave) {
+        if (svarUnderArbeid) {
             setIsOpen(true);
         }
-    }, [oppgave]);
+    }, [svarUnderArbeid]);
 
     const onExpand = useCallback(() => {
         if (!panelRef.current) return;

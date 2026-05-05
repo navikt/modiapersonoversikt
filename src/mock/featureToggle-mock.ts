@@ -9,6 +9,8 @@ export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleRespon
             return true;
         case FeatureToggles.InfotrygdSykepenger:
             return true;
+        case FeatureToggles.NyKommunikasjon:
+            return false;
         default:
             return Math.random() > 0.5;
     }
