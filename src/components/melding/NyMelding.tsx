@@ -171,8 +171,8 @@ function NyMelding() {
                                     error={buildErrorMessage(field.state.meta.errors)}
                                     maxLength={maksLengdeMelding}
                                     resize="vertical"
-                                    minRows={10}
-                                    maxRows={15}
+                                    minRows={20}
+                                    maxRows={50}
                                 />
                             </div>
                         )}
