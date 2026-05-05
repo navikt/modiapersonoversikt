@@ -7,13 +7,13 @@ import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 import { nyMeldingUnderArbeidAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
 
 export const MeldingPanelKnapper = () => {
-    const { isOn } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
+    const { isOn: isNyKommunikasjonEnabled } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
     const openButtonRef = useRef<HTMLButtonElement | null>(null);
     const [svarUnderArbeid, setSvarUnderArbeid] = useAtom(svarUnderArbeidAtom);
     const [nyMeldingUnderArbeid, setNyMeldingUnderArbeid] = useAtom(nyMeldingUnderArbeidAtom);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-    if (!isOn) return null;
+    if (!isNyKommunikasjonEnabled) return null;
 
     const handleStartNyMelding = () => {
         setSvarUnderArbeid(undefined);

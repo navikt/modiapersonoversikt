@@ -21,10 +21,10 @@ export const useSetDialogUnderArbeidOnMount = () => {
     const fnr = useAtomValue(aktivBrukerAtom);
     const { isLoading } = useTraader();
     const prevFnr = useRef<string | undefined>(undefined);
-    const { isOn } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
+    const { isOn: isNyKommunikasjonEnabled } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
 
     useEffect(() => {
-        if (isOn) return;
+        if (isNyKommunikasjonEnabled) return;
         if (isLoading) return;
         if (prevFnr.current === fnr) return;
         if (!valgtTraad) return;
@@ -33,5 +33,5 @@ export const useSetDialogUnderArbeidOnMount = () => {
         const kanBesvares = traadKanBesvares(valgtTraad);
         if (!kanBesvares) return;
         setDialogUnderArbeid(valgtTraad.traadId);
-    }, [fnr, isLoading, valgtTraad?.traadId, isOn]);
+    }, [fnr, isLoading, valgtTraad?.traadId, isNyKommunikasjonEnabled]);
 };

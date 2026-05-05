@@ -75,7 +75,7 @@ const ResizeHandle = () => (
 );
 
 function PersonLayout() {
-    const { isOn } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
+    const { isOn: isNyKommunikasjonEnabled } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
     const isMeldinger = useRouterState({
         select: (s) => s.matches.some((m) => m.routeId.includes('/meldinger'))
     });
@@ -154,7 +154,7 @@ function PersonLayout() {
                         )}
                     </Panel>
                     <ResizeHandle />
-                    {isOn ? <IkkeLukkbarNyMelding /> : <LukkbarNyMelding />}
+                    {isNyKommunikasjonEnabled ? <IkkeLukkbarNyMelding /> : <LukkbarNyMelding />}
                 </PanelGroup>
             </HStack>
         </VStack>

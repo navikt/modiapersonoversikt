@@ -16,7 +16,7 @@ import { erGyldigishFnr } from 'src/utils/fnr-utils';
 
 function HandleLegacyUrls({ children }: PropsWithChildren) {
     const { oppgaveId, sokFnr, sokFnrCode, henvendelseId, behandlingsId } = useSearch({ strict: false });
-    const { isOn: nyKommunikasjon } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
+    const { isOn: nyKommunikasjonIsEnabled } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
 
     const match = useMatchRoute();
     const fnrMatch = match({ to: '/person/$fnr' });
@@ -90,7 +90,7 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
         const linkTilValgtHenvendelse = `${paths.personUri}/${INFOTABS.MELDINGER.path}` as const;
         const newQuery = { traadId: traadId };
 
-        if (!nyKommunikasjon) setDialogUnderArbeid(traadId);
+        if (!nyKommunikasjonIsEnabled) setDialogUnderArbeid(traadId);
 
         navigate({
             to: linkTilValgtHenvendelse,

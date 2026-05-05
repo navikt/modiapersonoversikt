@@ -37,7 +37,7 @@ function NyMelding() {
     const brukerNavn = useSuspendingBrukernavn();
     const disableDialog = useDisableDialog();
     const setOverskridKontaktReservasjon = useSetAtom(overskridKontaktReservasjonAtom);
-    const { isOn } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
+    const { isOn: isNyKommunikasjonEnabled } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
     const setNyMeldingUnderArbeid = useSetAtom(nyMeldingUnderArbeidAtom);
 
     const { mutate, isPending } = useSendMelding();
@@ -219,7 +219,7 @@ function NyMelding() {
                                 >
                                     Send til {brukerNavn}
                                 </Button>
-                                {isOn && (
+                                {isNyKommunikasjonEnabled && (
                                     <AvbrytAlert
                                         handleAvbryt={() => {
                                             removeDraft();

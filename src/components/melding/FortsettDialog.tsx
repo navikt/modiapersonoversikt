@@ -48,7 +48,7 @@ export const FortsettDialog = ({ traad }: Props) => {
     const setOverskridKontaktReservasjon = useSetAtom(overskridKontaktReservasjonAtom);
     const { mutate, isPending } = useSendMelding();
     const search = useSearch({ from: '/new/person/meldinger', shouldThrow: false });
-    const { isOn } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
+    const { isOn: isNyKommunikasjonEnabled } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
 
     const erValgtTraad = !search?.traadId || search?.traadId === traad.traadId;
 
@@ -241,7 +241,7 @@ export const FortsettDialog = ({ traad }: Props) => {
                                 >
                                     Send til {brukerNavn} {oppgaveId ? 'og avslutt oppgave' : ''}
                                 </Button>
-                                {isOn ? (
+                                {isNyKommunikasjonEnabled ? (
                                     <AvbrytAlert
                                         handleAvbryt={() => {
                                             removeDraft();

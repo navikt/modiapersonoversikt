@@ -55,7 +55,7 @@ export const MeldingActionMenu = ({ traad }: { traad: Traad }) => {
     const [avsluttOpen, setAvsluttOpen] = useState(false);
     const [sladdOpen, setSladdOpen] = useState(false);
     const [feilsendtOpen, setFeilsendtOpen] = useState(false);
-    const { isOn: nyKommunikasjon } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
+    const { isOn: isNyKommunikasjonEnabled } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
 
     const PrinterWrapper = printer.printerWrapper;
     const { data: traader } = useTraader();
@@ -79,7 +79,7 @@ export const MeldingActionMenu = ({ traad }: { traad: Traad }) => {
             </Heading>
             <HStack gap="space-8" justify="end" align="start">
                 {kanBesvares &&
-                    (nyKommunikasjon ? (
+                    (isNyKommunikasjonEnabled ? (
                         <SvarPaaTraadKnapp traad={traad} />
                     ) : (
                         <Box>
