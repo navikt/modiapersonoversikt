@@ -38,7 +38,9 @@ test('Send melding i tråd', async ({ page }) => {
 
     await page.getByRole('button', { name: 'Overskrid' }).click();
     await page.getByRole('textbox').fill('playwright test melding');
-    await page.getByRole('button', { name: 'Send til Aremark' }).click();
+
+    await page.addStyleTag({ content: '.TanStackRouterDevtools { display: none !important; }' });
+    await page.getByTestId('svar-knapp-fortsett-dialog').click();
 
     const meldingerList = page.getByRole('region', { name: 'Dialogdetaljer' }).getByRole('list', { name: 'Meldinger' });
     const newMelding = meldingerList.getByText('playwright test melding');
