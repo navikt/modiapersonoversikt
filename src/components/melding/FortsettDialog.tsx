@@ -235,7 +235,6 @@ export const FortsettDialog = ({ traad }: Props) => {
                                     type="submit"
                                     data-testid="svar-knapp-fortsett-dialog"
                                     size="small"
-                                    className="text-nowrap"
                                     disabled={disableDialog || isPending}
                                     loading={isPending}
                                 >
