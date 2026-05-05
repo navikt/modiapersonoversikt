@@ -31,7 +31,7 @@ export const AvbrytAlert = ({
                     </Dialog.CloseTrigger>
                     <Dialog.CloseTrigger>
                         <Button size="medium" variant="danger" onClick={handleAvbryt}>
-                            ja
+                            Ja
                         </Button>
                     </Dialog.CloseTrigger>
                 </Dialog.Footer>
