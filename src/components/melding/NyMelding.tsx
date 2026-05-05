@@ -214,7 +214,6 @@ function NyMelding() {
                                     type="submit"
                                     size="small"
                                     data-testid="svar-knapp"
-                                    className="text-nowrap"
                                     loading={isPending}
                                 >
                                     Send til {brukerNavn}
