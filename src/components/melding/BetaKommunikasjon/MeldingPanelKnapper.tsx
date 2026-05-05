@@ -56,7 +56,7 @@ export const MeldingPanelKnapper = () => {
                         </Dialog.CloseTrigger>
                         <Dialog.CloseTrigger>
                             <Button size="medium" onClick={handleStartNyMelding}>
-                                ja
+                                Ja
                             </Button>
                         </Dialog.CloseTrigger>
                     </Dialog.Footer>
