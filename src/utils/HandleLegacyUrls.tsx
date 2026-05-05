@@ -35,7 +35,7 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
 
         if (sokFnrCode) {
             setUserContext.mutate(
-                { fnr: sokFnrCode, verdiType: 'FNR_CODE' },
+                { fnr: sokFnrCode, verdiType: 'FNR_KODE' },
                 {
                     onSuccess: (res) => {
                         const url = removeParamFromURL('sokFnrCode');
