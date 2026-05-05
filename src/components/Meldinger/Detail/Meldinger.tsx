@@ -61,7 +61,7 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
                                 timestamp={formatterDatoTid(m.opprettetDato)}
                                 position={erFraNav ? 'right' : 'left'}
                                 className={erFraNav ? 'self-end' : undefined}
-                                variant={erFraNav ? 'info' : 'neutral'}
+                                data-color={erFraNav ? 'brand-blue' : 'neutral'}
                             >
                                 <Chat.Bubble className="text-wrap">
                                     <RichText
