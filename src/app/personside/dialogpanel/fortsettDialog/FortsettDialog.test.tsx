@@ -8,6 +8,7 @@ import FortsettDialogContainer from './FortsettDialogContainer';
 
 test('viser fortsett dialog', async () => {
     const testStore = getTestStore();
+    const fix = '';
     testStore.dispatch(setValgtTraadDialogpanel(statiskTraadMock));
     const dialogPanelBody = await act(() =>
         renderWithProviders(
