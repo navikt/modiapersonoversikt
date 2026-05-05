@@ -1,0 +1,2 @@
+import{a1 as r,a2 as o,$ as n,a3 as s}from"./main-DkyItGdo.js";const c=r("/new/")({component:a});function a(){const t=o.c(1);let e;return t[0]===Symbol.for("react.memo_cache_sentinel")?(e=n.jsx("div",{className:"flex-1",children:n.jsx(s,{variant:"info",children:"Ingen aktiv bruker. Bruk menyen over for å søke etter person."})}),t[0]=e):e=t[0],e}export{c as Route};
+//# sourceMappingURL=index.lazy-B2SNSVU3.js.map
