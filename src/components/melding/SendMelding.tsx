@@ -87,7 +87,7 @@ const SendMeldingContent = ({
 }) => {
     const [dialogUnderArbeid, setDialogUnderArbeid] = useAtom(svarUnderArbeidAtom);
     const traad = useMemo(() => traader.find((m) => m.traadId === dialogUnderArbeid), [traader, dialogUnderArbeid]);
-    const [meldingsTittel] = useState(meldingsHeader(traad));
+    const [meldingsTittel, setMeldingsTittel] = useState(meldingsHeader(traad));
 
     const [suksessMelding, setSukessMelding] = useAtom(dialogSuksessMeldingAtom);
     const [feilMelding, setFeilMelding] = useAtom(dialogFeilMeldingAtom);
@@ -103,6 +103,11 @@ const SendMeldingContent = ({
             setFeilMelding(null);
         }, 2000);
     }, [feedBackMelding, isPending]);
+
+    useEffect(() => {
+        if (feedBackMelding) return;
+        setMeldingsTittel(meldingsHeader(traad));
+    }, [traad, feedBackMelding]);
 
     useSetDialogUnderArbeidOnMount();
 
