@@ -110,7 +110,7 @@ function PersonLayout() {
                     <PersonSidebarMenu />
                 </VStack>
                 <PanelGroup direction="horizontal" autoSaveId="person-outer">
-                    <Panel order={1} className="overflow-hidden">
+                    <Panel order={1} className="overflow-hidden" id="person-panel">
                         {isMobile ? (
                             <VStack className="h-full overflow-auto" gap="space-4">
                                 {listPanel}
@@ -130,6 +130,7 @@ function PersonLayout() {
                                 {listPanel && (
                                     <>
                                         <Panel
+                                            id="list-panel"
                                             order={1}
                                             defaultSize={20}
                                             minSize={10}
@@ -141,7 +142,7 @@ function PersonLayout() {
                                         <ResizeHandle />
                                     </>
                                 )}
-                                <Panel order={2} minSize={30} className="overflow-scroll">
+                                <Panel id="main-content-panel" order={2} minSize={30} className="overflow-scroll">
                                     <Box as="main" id="main-content" height="100%">
                                         <VStack gap="space-4" height="100%">
                                             <Suspense>

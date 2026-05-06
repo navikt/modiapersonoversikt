@@ -29,7 +29,6 @@ export function IkkeLukkbarNyMelding() {
         </Panel>
     );
 
-    console.log(isOpen);
     if (isOpen || feedBackMelding) return panel;
     return null;
 }
