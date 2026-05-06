@@ -266,6 +266,11 @@ export const useAvsluttDialogMutation = () => {
                     params: { query: { enhet } }
                 }).queryKey
             });
+            queryClient.invalidateQueries({
+                queryKey: $api.queryOptions('post', '/rest/oppgaver/tildelt', {
+                    body: { fnr }
+                }).queryKey
+            });
             toast.success('Tråden ble avsluttet');
         },
         onError: () => {
