@@ -82,7 +82,7 @@ export const useSendMelding = () => {
     const enhet = useAtomValue(aktivEnhetAtom) as string;
     const setSuksessMelding = useSetAtom(dialogSuksessMeldingAtom);
     const setFeilMelding = useSetAtom(dialogFeilMeldingAtom);
-    const { isOn: nyKommunikasjon } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
+    const { isOn: isNyKommunikasjonEnabled } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
 
     return $api.useMutation('post', '/rest/dialog/sendmelding', {
         onSuccess: () => {
@@ -97,14 +97,14 @@ export const useSendMelding = () => {
                     body: { fnr }
                 }).queryKey
             });
-            if (nyKommunikasjon) {
+            if (isNyKommunikasjonEnabled) {
                 setSuksessMelding('Melding sendt');
             } else {
                 toast.success('Melding sendt');
             }
         },
         onError: () => {
-            if (nyKommunikasjon) {
+            if (isNyKommunikasjonEnabled) {
                 setFeilMelding('Kunne ikke sende melding');
             } else {
                 toast.error('Kunne ikke sende melding');
