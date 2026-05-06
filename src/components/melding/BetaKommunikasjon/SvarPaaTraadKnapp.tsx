@@ -54,14 +54,14 @@ export const SvarPaaTraadKnapp = ({ traad }: { traad: Traad }) => {
                         <Dialog.Popup role="alertdialog" closeOnOutsideClick={false}>
                             <Dialog.Header withClosebutton={true}>
                                 <Dialog.Title>
-                                    {svarUnderArbeid
-                                        ? 'Ønsker du å svare på annen dialog?'
-                                        : 'Ønsker du å svare på dialog?'}
+                                    {svarUnderArbeid ? 'Ønsker du å avbryte "svar"?' : 'Vil du avbryte “Ny melding?”'}
                                 </Dialog.Title>
                             </Dialog.Header>
                             <Dialog.Body>
                                 <BodyLong>
-                                    {svarUnderArbeid ? 'Utkast blir med til nytt svar.' : 'Utkast blir med til svar.'}
+                                    {svarUnderArbeid
+                                        ? 'Du starter på et nytt svar, og utkastet ditt vil kopieres'
+                                        : 'Du starter på et svar, og utkastet ditt vil kopieres'}
                                 </BodyLong>
                             </Dialog.Body>
                             <Dialog.Footer>
