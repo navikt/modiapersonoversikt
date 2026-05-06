@@ -1,12 +1,16 @@
 import { useQueryClient } from '@tanstack/react-query';
 import dayjs from 'dayjs';
-import { useAtomValue } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import createFetchClient from 'openapi-fetch';
 import createClient from 'openapi-react-query';
 import { FetchError } from 'src/api/api';
 import { apiBaseUriWithoutRest } from 'src/api/config';
 import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
 import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
+import {
+    dialogFeilMeldingAtom,
+    dialogSuksessMeldingAtom
+} from 'src/components/melding/BetaKommunikasjon/IkkeLukkbarNyMelding';
 import { toast } from 'src/components/toasts';
 import { errorPlaceholder, responseErrorMessage } from 'src/components/ytelser/utils';
 import type { paths } from 'src/generated/modiapersonoversikt-api';
@@ -76,6 +80,8 @@ export const useSendMelding = () => {
     const queryClient = useQueryClient();
     const fnr = usePersonAtomValue();
     const enhet = useAtomValue(aktivEnhetAtom) as string;
+    const setSuksessMelding = useSetAtom(dialogSuksessMeldingAtom);
+    const setFeilMelding = useSetAtom(dialogFeilMeldingAtom);
 
     return $api.useMutation('post', '/rest/dialog/sendmelding', {
         onSuccess: () => {
@@ -90,10 +96,10 @@ export const useSendMelding = () => {
                     body: { fnr }
                 }).queryKey
             });
-            toast.success('Melding sendt');
+            setSuksessMelding('Melding sendt');
         },
         onError: () => {
-            toast.error('Kunne ikke sende melding');
+            setFeilMelding('Kunne ikke sende melding');
         },
         throwOnError: false
     });
