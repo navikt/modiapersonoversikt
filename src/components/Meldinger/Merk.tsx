@@ -12,17 +12,19 @@ import {
     VStack
 } from '@navikt/ds-react';
 import { useAtomValue } from 'jotai';
-import { Suspense, useCallback, useState } from 'react';
+import { Suspense, useState } from 'react';
 import { AlertBanner } from 'src/components/AlertBanner';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import {
     useAvsluttDialogMutation,
+    useAvsluttOppgaveMutation,
     useMarkerFeilsendtMutation,
+    usePersonOppgaver,
     useSendTilSladdingMutation,
     useSladdeAarsaker
 } from 'src/lib/clients/modiapersonoversikt-api';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
-import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
+import type { OppgaveDto, Traad } from 'src/lib/types/modiapersonoversikt-api';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import { Meldinger } from './Detail/Meldinger';
 import { erMeldingFeilsendt } from './List/utils';
@@ -41,25 +43,41 @@ export const AvsluttDialogModal = ({ traad, open, onClose }: ModalProps) => {
     const enhetId = useAtomValue(aktivEnhetAtom);
     const fnr = usePersonAtomValue();
     const { mutate, isPending } = useAvsluttDialogMutation();
+    const { mutate: mutateOppgave } = useAvsluttOppgaveMutation();
 
-    const avsluttDialog = useCallback(() => {
+    const { data: oppgaver = [] } = usePersonOppgaver();
+
+    const traadOppgaver = oppgaver?.filter((oppagve: OppgaveDto) => oppagve.traadId === traad.traadId);
+
+    const avsluttDialog = () => {
         trackGenereltUmamiEvent(trackingEvents.merkDialog, { tekst: 'lukk' });
         mutate(
             {
                 body: {
                     fnr,
                     traadId: traad.traadId,
-                    saksbehandlerValgtEnhet: enhetId as string
+                    saksbehandlerValgtEnhet: enhetId as string,
+                    oppgaveId: traadOppgaver[0]?.oppgaveId ?? undefined
                 }
             },
             {
                 onSettled: () => {
+                    // Avslutt resten av oppgavene som tilhører tråden om det er flere enn 1
+                    for (const oppgave of traadOppgaver.slice(1)) {
+                        mutateOppgave({
+                            body: {
+                                oppgaveid: oppgave.oppgaveId,
+                                fnr,
+                                saksbehandlerValgtEnhet: enhetId as string,
+                                beskrivelse: 'Dialog avsluttet'
+                            }
+                        });
+                    }
                     onClose();
                 }
             }
         );
-    }, [fnr, mutate, traad, enhetId, onClose]);
-
+    };
     return (
         <Modal
             open={open}
@@ -74,7 +92,7 @@ export const AvsluttDialogModal = ({ traad, open, onClose }: ModalProps) => {
         >
             <Modal.Body>
                 <InlineMessage status="warning">
-                    Ved avslutting blir dialogen låst og oppgave ferdigstilt. Det er ikke mulig å sende flere meldinger
+                    Ved avslutting blir dialogen låst og oppgaver ferdigstilt. Det er ikke mulig å sende flere meldinger
                     i denne dialogen i ettertid.
                 </InlineMessage>
             </Modal.Body>
@@ -94,7 +112,7 @@ export const MarkerFeilsendtModal = ({ traad, open, onClose }: ModalProps) => {
     const fnr = usePersonAtomValue();
     const { mutate, isPending } = useMarkerFeilsendtMutation();
 
-    const merkFeilsendt = useCallback(() => {
+    const merkFeilsendt = () => {
         trackGenereltUmamiEvent(trackingEvents.merkDialog, { tekst: 'feilsendt' });
         if (!traad) {
             onClose();
@@ -111,7 +129,7 @@ export const MarkerFeilsendtModal = ({ traad, open, onClose }: ModalProps) => {
                 }
             }
         );
-    }, [mutate, fnr, traad, onClose]);
+    };
 
     return (
         <Modal
