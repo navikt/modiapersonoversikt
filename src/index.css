@@ -69,3 +69,7 @@
         height: 1.5rem;
     }
 }
+
+.aksel-chat__avatar{
+    border: none;
+}
