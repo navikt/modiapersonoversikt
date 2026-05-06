@@ -28,6 +28,7 @@ import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import { nyMeldingUnderArbeidAtom, overskridKontaktReservasjonAtom, useDisableDialog } from 'src/lib/state/dialog';
 import type { Temagruppe } from 'src/models/temagrupper';
 import { trackSendNyMelding } from 'src/utils/analytics';
+import useShortScreen from 'src/utils/hooks/use-dynamic-height-text-area';
 import type { z } from 'zod';
 import AutocompleteTextarea from './AutoCompleteTextarea';
 
@@ -39,6 +40,7 @@ function NyMelding() {
     const setOverskridKontaktReservasjon = useSetAtom(overskridKontaktReservasjonAtom);
     const { isOn: isNyKommunikasjonEnabled } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
     const setNyMeldingUnderArbeid = useSetAtom(nyMeldingUnderArbeidAtom);
+    const minRows = useShortScreen();
 
     const { mutate, isPending } = useSendMelding();
 
@@ -182,7 +184,7 @@ function NyMelding() {
                                     error={buildErrorMessage(field.state.meta.errors)}
                                     maxLength={maksLengdeMelding}
                                     resize="vertical"
-                                    minRows={20}
+                                    minRows={minRows}
                                     maxRows={50}
                                 />
                             </div>

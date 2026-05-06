@@ -24,6 +24,7 @@ import {
     TraadType
 } from 'src/lib/types/modiapersonoversikt-api';
 import { trackFortsettDialog } from 'src/utils/analytics';
+import useDynamicHeightTextArea from 'src/utils/hooks/use-dynamic-height-text-area';
 import type { z } from 'zod';
 import AutocompleteTextarea from './AutoCompleteTextarea';
 import { fortsettDialogSchema, maksLengdeMelding } from './nyMeldingSchema';
@@ -49,7 +50,7 @@ export const FortsettDialog = ({ traad }: Props) => {
     const { mutate, isPending } = useSendMelding();
     const search = useSearch({ from: '/new/person/meldinger', shouldThrow: false });
     const { isOn: isNyKommunikasjonEnabled } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
-
+    const minRows = useDynamicHeightTextArea();
     const erValgtTraad = !search?.traadId || search?.traadId === traad.traadId;
 
     // Brukes for å sette initialverdien til meldingen basert på draften
@@ -203,7 +204,7 @@ export const FortsettDialog = ({ traad }: Props) => {
                                     error={buildErrorMessage(field.state.meta.errors)}
                                     maxLength={maksLengdeMelding}
                                     resize="vertical"
-                                    minRows={20}
+                                    minRows={minRows}
                                     maxRows={50}
                                 />
                             </div>
