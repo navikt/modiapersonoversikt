@@ -21,7 +21,7 @@ export const AvbrytAlert = ({
                     <Dialog.Title>{tittel ?? 'Ønsker du å avbryte?'}</Dialog.Title>
                 </Dialog.Header>
                 <Dialog.Body>
-                    <BodyLong>{innhold ?? 'Utkastet blir ikke lagret.'}</BodyLong>
+                    <BodyLong>{innhold ?? 'Utkastet blir ikke lagret'}</BodyLong>
                 </Dialog.Body>
                 <Dialog.Footer>
                     <Dialog.CloseTrigger>
@@ -31,7 +31,7 @@ export const AvbrytAlert = ({
                     </Dialog.CloseTrigger>
                     <Dialog.CloseTrigger>
                         <Button size="medium" variant="danger" onClick={handleAvbryt}>
-                            ja
+                            Ja
                         </Button>
                     </Dialog.CloseTrigger>
                 </Dialog.Footer>

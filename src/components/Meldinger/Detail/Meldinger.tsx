@@ -4,6 +4,7 @@ import { useAtomValue } from 'jotai';
 import { type ElementType, type ReactNode, useLayoutEffect, useMemo, useRef } from 'react';
 import RichText, { createDynamicHighlightingRule, defaultRules, SladdRule } from 'src/components/RichText';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
+import NavLogoWhite from 'src/svg/NavLogoWhite.svg';
 import { formatterDatoTid } from 'src/utils/date-utils';
 import { meldingerFilterAtom } from '../List/Filter';
 import { erMeldingFraNav } from '../List/utils';
@@ -56,14 +57,22 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
                         <Wrapper key={m.id} as="li" melding={m}>
                             <Chat
                                 size="small"
-                                avatar={erFraNav ? 'nav' : <PersonIcon />}
+                                avatar={
+                                    erFraNav ? (
+                                        <Box aria-hidden className="justify-items-center align-middle bg-ax-text-logo">
+                                            <NavLogoWhite className="min-w-[8rem] max-h-[8rem]" />
+                                        </Box>
+                                    ) : (
+                                        <PersonIcon />
+                                    )
+                                }
                                 name={m.skrevetAvTekst}
                                 timestamp={formatterDatoTid(m.opprettetDato)}
                                 position={erFraNav ? 'right' : 'left'}
                                 className={erFraNav ? 'self-end' : undefined}
                                 variant={erFraNav ? 'info' : 'neutral'}
                             >
-                                <Chat.Bubble className="text-wrap">
+                                <Chat.Bubble className="text-wrap border-0">
                                     <RichText
                                         className="wrap-anywhere"
                                         rules={[SladdRule, highlightRule, ...defaultRules]}

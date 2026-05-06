@@ -43,10 +43,10 @@ export const MeldingPanelKnapper = () => {
             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                 <Dialog.Popup role="alertdialog" closeOnOutsideClick={false}>
                     <Dialog.Header withClosebutton={true}>
-                        <Dialog.Title>Ønsker du å avbryte svar?</Dialog.Title>
+                        <Dialog.Title>Vil du avbryte "Svar"?</Dialog.Title>
                     </Dialog.Header>
                     <Dialog.Body>
-                        <BodyLong>Utkast fra svar blir med til ny melding.</BodyLong>
+                        <BodyLong>Du starter på et svar, og utkastet ditt vil kopieres</BodyLong>
                     </Dialog.Body>
                     <Dialog.Footer>
                         <Dialog.CloseTrigger>
@@ -56,7 +56,7 @@ export const MeldingPanelKnapper = () => {
                         </Dialog.CloseTrigger>
                         <Dialog.CloseTrigger>
                             <Button size="medium" onClick={handleStartNyMelding}>
-                                ja
+                                Ja
                             </Button>
                         </Dialog.CloseTrigger>
                     </Dialog.Footer>

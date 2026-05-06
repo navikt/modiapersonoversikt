@@ -1,10 +1,14 @@
 import { Alert, Button, Heading, HStack, InlineMessage, Skeleton, VStack } from '@navikt/ds-react';
 import { useAtom, useAtomValue } from 'jotai';
-import { type ReactElement, useEffect, useMemo } from 'react';
+import { type ReactElement, useEffect, useMemo, useState } from 'react';
 import { useSetDialogUnderArbeidOnMount } from 'src/components/Meldinger/Detail/useSetDialogUnderArbeidOnMount';
 import { traadTypeTekst } from 'src/components/Meldinger/List/tekster';
 import { nyesteMelding, useTraader } from 'src/components/Meldinger/List/utils';
-import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
+import {
+    dialogFeilMeldingAtom,
+    dialogSuksessMeldingAtom
+} from 'src/components/melding/BetaKommunikasjon/IkkeLukkbarNyMelding';
+import { useMeldinger, usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { aktivBrukerAtom } from 'src/lib/state/context';
 import { overskridKontaktReservasjonAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
 import { type Traad, type TraadDto, TraadType } from 'src/lib/types/modiapersonoversikt-api';
@@ -83,19 +87,47 @@ const SendMeldingContent = ({
 }) => {
     const [dialogUnderArbeid, setDialogUnderArbeid] = useAtom(svarUnderArbeidAtom);
     const traad = useMemo(() => traader.find((m) => m.traadId === dialogUnderArbeid), [traader, dialogUnderArbeid]);
+    const [meldingsTittel, setMeldingsTittel] = useState(meldingsHeader(traad));
+
+    const [suksessMelding, setSukessMelding] = useAtom(dialogSuksessMeldingAtom);
+    const [feilMelding, setFeilMelding] = useAtom(dialogFeilMeldingAtom);
+
+    const { isPending } = useMeldinger();
+
+    const feedBackMelding = suksessMelding || feilMelding;
+
+    useEffect(() => {
+        if (!feedBackMelding || isPending) return;
+        setTimeout(() => {
+            setSukessMelding(null);
+            setFeilMelding(null);
+        }, 2000);
+    }, [feedBackMelding, isPending]);
+
+    useEffect(() => {
+        if (feedBackMelding) return;
+        setMeldingsTittel(meldingsHeader(traad));
+    }, [traad, feedBackMelding]);
 
     useSetDialogUnderArbeidOnMount();
 
+    const feilMeldingComp = feilMelding ? <Alert variant="error">{feilMelding}</Alert> : null;
+    const sukessMeldingComp = suksessMelding ? <Alert variant="success">{suksessMelding}</Alert> : null;
     return (
         <Card padding="space-8" as="section" aria-label="Dialogpanel">
             <HStack justify="space-between" align="start" className="mb-4">
                 <Heading level="2" size="small">
-                    {meldingsHeader(traad)}
+                    {meldingsTittel}
                 </Heading>
                 {lukkeKnapp}
             </HStack>
             <ReservertIKRR />
-            {dialogUnderArbeid ? (
+            {feedBackMelding ? (
+                <Card padding="space-8" as="section" aria-label="Dialogpanel">
+                    {feilMeldingComp}
+                    {sukessMeldingComp}
+                </Card>
+            ) : dialogUnderArbeid ? (
                 traad ? (
                     <FortsettDialog traad={traad} key={traad.traadId} />
                 ) : (
