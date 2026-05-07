@@ -1,7 +1,9 @@
 import dayjs, { type Dayjs } from 'dayjs';
+import { useSetAtom } from 'jotai';
 import { debounce } from 'lodash';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FetchError } from 'src/api/api';
+import { draftAtom } from 'src/lib/state/dialog';
 import { getEnvFromHost } from 'src/utils/environment';
 import { loggError, loggInfo } from 'src/utils/logger/frontendLogger';
 import config from '../../../config';
@@ -59,6 +61,7 @@ const getWsUrl = () => {
 const draftUrl = (import.meta.env.VITE_DRAFT_URL as string) ?? `${import.meta.env.BASE_URL}proxy/modia-draft`;
 
 function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () => {}): DraftSystem {
+    const setDraftAtom = useSetAtom(draftAtom);
     const wsRef = useRef<WebSocketImpl>(undefined);
     const [lastConfirm, setLastConfirm] = useState<{
         ok: boolean;
@@ -148,6 +151,7 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
                 setTimeoutVal(false);
                 setLastSent(new Date());
                 const data: WsEvent = { type: 'UPDATE', context, content };
+                setDraftAtom(content);
                 wsRef.current?.send(JSON.stringify(data));
                 if (timer.current) {
                     clearTimeout(timer.current);
@@ -155,13 +159,14 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
 
                 timer.current = setTimeout(() => setTimeoutVal(true), DRAFT_TIMEOUT_SECONDS * 1000);
             }, 500),
-        [context]
+        [context, setDraftAtom]
     );
 
     const remove = useCallback(() => {
         const data: WsEvent = { type: 'DELETE', context, content: null };
+        setDraftAtom('');
         wsRef.current?.send(JSON.stringify(data));
-    }, [context]);
+    }, [context, setDraftAtom]);
 
     useEffect(() => {
         const queryParams = Object.entries(context)
@@ -178,6 +183,7 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
             .then((json: Array<Draft>) => {
                 if (json.length > 0) {
                     ifPresent(json[0]);
+                    setDraftAtom(json[0].content);
                     setLastConfirm({ ok: true, time: new Date(`${json[0].created}Z`) });
                 }
             })

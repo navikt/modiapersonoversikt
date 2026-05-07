@@ -73,7 +73,15 @@ export function LukkbarNyMelding() {
     }
 
     return (
-        <Panel onResize={onExpand} ref={panelRef} defaultSize={PANEL_SIZE} minSize={20} maxSize={60} order={3}>
+        <Panel
+            id="lukkbar-ny-melding-panel"
+            onResize={onExpand}
+            ref={panelRef}
+            defaultSize={PANEL_SIZE}
+            minSize={20}
+            maxSize={60}
+            order={3}
+        >
             <VStack height="100%" gap="space-4" overflow="auto">
                 <ErrorBoundary boundaryName="sendmelding">
                     <SendMelding

@@ -3,18 +3,18 @@ import { BodyLong, Button, Dialog } from '@navikt/ds-react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useState } from 'react';
 import { traadKanBesvares } from 'src/components/Meldinger/List/utils';
-
-import { meldingPanelIsOpenAtom, nyMeldingUnderArbeidAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
+import { draftAtom, meldingPanelIsOpenAtom, nyMeldingUnderArbeidAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
 
 export const SvarPaaTraadKnapp = ({ traad }: { traad: Traad }) => {
     const openPanel = useAtomValue(meldingPanelIsOpenAtom);
     const [svarUnderArbeid, setSvarUnderArbeid] = useAtom(svarUnderArbeidAtom);
     const setNyMeldingUnderArbeid = useSetAtom(nyMeldingUnderArbeidAtom);
+    const draft = useAtomValue(draftAtom);
     const [isAvbrytDialogOpen, setIsAvbrytDialogOpen] = useState(false);
 
     const openDialogEllerSvarPaaTraad = () => {
-        if (openPanel) {
+        if (openPanel && draft !== '') {
             setIsAvbrytDialogOpen(true);
             return;
         }
@@ -54,14 +54,14 @@ export const SvarPaaTraadKnapp = ({ traad }: { traad: Traad }) => {
                         <Dialog.Popup role="alertdialog" closeOnOutsideClick={false}>
                             <Dialog.Header withClosebutton={true}>
                                 <Dialog.Title>
-                                    {svarUnderArbeid
-                                        ? 'Ønsker du å svare på annen dialog?'
-                                        : 'Ønsker du å svare på dialog?'}
+                                    {svarUnderArbeid ? 'Ønsker du å avbryte "svar"?' : 'Vil du avbryte “Ny melding”?'}
                                 </Dialog.Title>
                             </Dialog.Header>
                             <Dialog.Body>
                                 <BodyLong>
-                                    {svarUnderArbeid ? 'Utkast blir med til nytt svar.' : 'Utkast blir med til svar.'}
+                                    {svarUnderArbeid
+                                        ? 'Du starter på et nytt svar, og utkastet ditt vil kopieres'
+                                        : 'Du starter på et svar, og utkastet ditt vil kopieres'}
                                 </BodyLong>
                             </Dialog.Body>
                             <Dialog.Footer>
@@ -72,7 +72,7 @@ export const SvarPaaTraadKnapp = ({ traad }: { traad: Traad }) => {
                                 </Dialog.CloseTrigger>
                                 <Dialog.CloseTrigger>
                                     <Button size="medium" onClick={svarSamtale}>
-                                        ja
+                                        Ja
                                     </Button>
                                 </Dialog.CloseTrigger>
                             </Dialog.Footer>

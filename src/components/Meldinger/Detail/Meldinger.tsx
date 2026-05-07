@@ -3,7 +3,10 @@ import { Box, Chat, Detail, HStack, VStack } from '@navikt/ds-react';
 import { useAtomValue } from 'jotai';
 import { type ElementType, type ReactNode, useLayoutEffect, useMemo, useRef } from 'react';
 import RichText, { createDynamicHighlightingRule, defaultRules, SladdRule } from 'src/components/RichText';
+import { themeAtom } from 'src/lib/state/theme';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
+import NavLogoBlack from 'src/svg/NavLogoBlack.svg';
+import NavLogoWhite from 'src/svg/NavLogoWhite.svg';
 import { formatterDatoTid } from 'src/utils/date-utils';
 import { meldingerFilterAtom } from '../List/Filter';
 import { erMeldingFraNav } from '../List/utils';
@@ -23,6 +26,7 @@ const DefaultWrapper: Props['wrapper'] = ({ children }) => {
 export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Props) => {
     const { search } = useAtomValue(meldingerFilterAtom);
     const highlightRule = useMemo(() => createDynamicHighlightingRule((search ?? '').split(' ')), [search]);
+    const theme = useAtomValue(themeAtom);
 
     const chatAreaRef = useRef<HTMLDivElement>(null);
     const setChatAreaRef = (node: HTMLDivElement | null) => {
@@ -56,14 +60,26 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
                         <Wrapper key={m.id} as="li" melding={m}>
                             <Chat
                                 size="small"
-                                avatar={erFraNav ? 'nav' : <PersonIcon />}
                                 name={erFraNav ? m.skrevetAvTekst : undefined}
+                                avatar={
+                                    erFraNav ? (
+                                        <Box aria-hidden className="justify-items-center align-middle bg-ax-text-logo">
+                                            {theme === 'light' ? (
+                                                <NavLogoWhite className="min-w-[8rem] max-h-[8rem]" />
+                                            ) : (
+                                                <NavLogoBlack className="min-w-[8rem] max-h-[8rem]" />
+                                            )}
+                                        </Box>
+                                    ) : (
+                                        <PersonIcon />
+                                    )
+                                }
                                 timestamp={formatterDatoTid(m.opprettetDato)}
                                 position={erFraNav ? 'right' : 'left'}
                                 className={erFraNav ? 'self-end' : undefined}
                                 data-color={erFraNav ? 'brand-blue' : 'neutral'}
                             >
-                                <Chat.Bubble className="text-wrap">
+                                <Chat.Bubble className="text-wrap border-0">
                                     <RichText
                                         className="wrap-anywhere"
                                         rules={[SladdRule, highlightRule, ...defaultRules]}

@@ -4,6 +4,7 @@ import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 
 export const svarUnderArbeidAtom = atomWithStorage<string | undefined>('svar-under-arbeid', undefined);
 export const nyMeldingUnderArbeidAtom = atomWithStorage<boolean>('ny-melding-under-arbeid', false);
+export const draftAtom = atom<string>('');
 export const overskridKontaktReservasjonAtom = atom<boolean>(false);
 export const meldingPanelIsOpenAtom = atom(
     (get) => get(svarUnderArbeidAtom) !== undefined || get(nyMeldingUnderArbeidAtom)
