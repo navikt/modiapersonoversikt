@@ -222,6 +222,7 @@ function NyMelding() {
                                 </Button>
                                 {isNyKommunikasjonEnabled && (
                                     <AvbrytAlert
+                                        disablePopup={form.getFieldValue('melding').length === 0}
                                         handleAvbryt={() => {
                                             removeDraft();
                                             setNyMeldingUnderArbeid(false);

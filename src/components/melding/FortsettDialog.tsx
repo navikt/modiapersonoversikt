@@ -243,6 +243,7 @@ export const FortsettDialog = ({ traad }: Props) => {
                                 </Button>
                                 {isNyKommunikasjonEnabled ? (
                                     <AvbrytAlert
+                                        disablePopup={form.getFieldValue('melding').length === 0}
                                         handleAvbryt={() => {
                                             removeDraft();
                                             setDialogUnderArbeid(undefined);
