@@ -57,11 +57,11 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
                             <Chat
                                 size="small"
                                 avatar={erFraNav ? 'nav' : <PersonIcon />}
-                                name={m.skrevetAvTekst}
+                                name={erFraNav ? m.skrevetAvTekst : undefined}
                                 timestamp={formatterDatoTid(m.opprettetDato)}
                                 position={erFraNav ? 'right' : 'left'}
                                 className={erFraNav ? 'self-end' : undefined}
-                                variant={erFraNav ? 'info' : 'neutral'}
+                                data-color={erFraNav ? 'brand-blue' : 'neutral'}
                             >
                                 <Chat.Bubble className="text-wrap">
                                     <RichText
