@@ -17,7 +17,7 @@ export function IkkeLukkbarNyMelding() {
     const feilMelding = useAtomValue(dialogFeilMeldingAtom);
 
     const isOpen = useAtomValue(meldingPanelIsOpenAtom);
-    const feedBackMelding = suksessMelding || feilMelding;
+    const feedbackMelding = suksessMelding || feilMelding;
 
     const panel = (
         <Panel id="ikke-lukkbar-ny-melding" ref={panelRef} defaultSize={PANEL_SIZE} minSize={20} maxSize={60} order={3}>
@@ -29,6 +29,6 @@ export function IkkeLukkbarNyMelding() {
         </Panel>
     );
 
-    if (isOpen || feedBackMelding) return panel;
+    if (isOpen || feedbackMelding) return panel;
     return null;
 }

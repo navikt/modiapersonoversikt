@@ -23,5 +23,6 @@ export default function useDynamicHeightTextArea(): number {
         return () => window.removeEventListener('resize', handler);
     }, []);
 
+    // Ny meldingsdialogen har mer innhold enn svar-dialogen, så vi trekker fra 4 rader når det er en ny-dialog
     return svarUnderArbeid ? minRows : minRows - 4;
 }

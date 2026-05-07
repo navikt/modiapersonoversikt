@@ -89,30 +89,30 @@ const SendMeldingContent = ({
     const traad = useMemo(() => traader.find((m) => m.traadId === dialogUnderArbeid), [traader, dialogUnderArbeid]);
     const [meldingsTittel, setMeldingsTittel] = useState(meldingsHeader(traad));
 
-    const [suksessMelding, setSukessMelding] = useAtom(dialogSuksessMeldingAtom);
+    const [suksessMelding, setSuksessMelding] = useAtom(dialogSuksessMeldingAtom);
     const [feilMelding, setFeilMelding] = useAtom(dialogFeilMeldingAtom);
 
     const { isPending } = useMeldinger();
 
-    const feedBackMelding = suksessMelding || feilMelding;
+    const feedbackMelding = suksessMelding || feilMelding;
 
     useEffect(() => {
-        if (!feedBackMelding || isPending) return;
+        if (!feedbackMelding || isPending) return;
         setTimeout(() => {
-            setSukessMelding(null);
+            setSuksessMelding(null);
             setFeilMelding(null);
         }, 2000);
-    }, [feedBackMelding, isPending, setSukessMelding, setFeilMelding]);
+    }, [feedbackMelding, isPending, setSuksessMelding, setFeilMelding]);
 
     useEffect(() => {
-        if (feedBackMelding) return;
+        if (feedbackMelding) return;
         setMeldingsTittel(meldingsHeader(traad));
-    }, [traad, feedBackMelding]);
+    }, [traad, feedbackMelding]);
 
     useSetDialogUnderArbeidOnMount();
 
     const feilMeldingComp = feilMelding ? <Alert variant="error">{feilMelding}</Alert> : null;
-    const sukessMeldingComp = suksessMelding ? <Alert variant="success">{suksessMelding}</Alert> : null;
+    const suksessMeldingComp = suksessMelding ? <Alert variant="success">{suksessMelding}</Alert> : null;
     return (
         <Card padding="space-8" as="section" aria-label="Dialogpanel">
             <HStack justify="space-between" align="start" className="mb-4">
@@ -122,10 +122,10 @@ const SendMeldingContent = ({
                 {lukkeKnapp}
             </HStack>
             <ReservertIKRR />
-            {feedBackMelding ? (
+            {feedbackMelding ? (
                 <Card padding="space-8" as="section" aria-label="Dialogpanel">
                     {feilMeldingComp}
-                    {sukessMeldingComp}
+                    {suksessMeldingComp}
                 </Card>
             ) : dialogUnderArbeid ? (
                 traad ? (
