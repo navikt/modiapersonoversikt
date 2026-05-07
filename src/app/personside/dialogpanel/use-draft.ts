@@ -183,6 +183,7 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
             .then((json: Array<Draft>) => {
                 if (json.length > 0) {
                     ifPresent(json[0]);
+                    setDraftAtom(json[0].content);
                     setLastConfirm({ ok: true, time: new Date(`${json[0].created}Z`) });
                 }
             })
