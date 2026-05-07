@@ -3,18 +3,18 @@ import { BodyLong, Button, Dialog } from '@navikt/ds-react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useState } from 'react';
 import { traadKanBesvares } from 'src/components/Meldinger/List/utils';
-
-import { meldingPanelIsOpenAtom, nyMeldingUnderArbeidAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
+import { draftAtom, meldingPanelIsOpenAtom, nyMeldingUnderArbeidAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
 
 export const SvarPaaTraadKnapp = ({ traad }: { traad: Traad }) => {
     const openPanel = useAtomValue(meldingPanelIsOpenAtom);
     const [svarUnderArbeid, setSvarUnderArbeid] = useAtom(svarUnderArbeidAtom);
     const setNyMeldingUnderArbeid = useSetAtom(nyMeldingUnderArbeidAtom);
+    const draft = useAtomValue(draftAtom);
     const [isAvbrytDialogOpen, setIsAvbrytDialogOpen] = useState(false);
 
     const openDialogEllerSvarPaaTraad = () => {
-        if (openPanel) {
+        if (openPanel && draft !== '') {
             setIsAvbrytDialogOpen(true);
             return;
         }

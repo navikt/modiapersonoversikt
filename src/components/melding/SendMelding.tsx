@@ -102,7 +102,7 @@ const SendMeldingContent = ({
             setSukessMelding(null);
             setFeilMelding(null);
         }, 2000);
-    }, [feedBackMelding, isPending]);
+    }, [feedBackMelding, isPending, setSukessMelding, setFeilMelding]);
 
     useEffect(() => {
         if (feedBackMelding) return;

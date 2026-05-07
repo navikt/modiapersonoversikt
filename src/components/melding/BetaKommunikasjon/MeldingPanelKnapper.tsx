@@ -1,10 +1,10 @@
 import { NotePencilIcon } from '@navikt/aksel-icons';
 import { BodyLong, Button, Dialog, HStack } from '@navikt/ds-react';
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { useRef, useState } from 'react';
 import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
 import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
-import { nyMeldingUnderArbeidAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
+import { draftAtom, nyMeldingUnderArbeidAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
 
 export const MeldingPanelKnapper = () => {
     const { isOn: isNyKommunikasjonEnabled } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
@@ -12,6 +12,7 @@ export const MeldingPanelKnapper = () => {
     const [svarUnderArbeid, setSvarUnderArbeid] = useAtom(svarUnderArbeidAtom);
     const [nyMeldingUnderArbeid, setNyMeldingUnderArbeid] = useAtom(nyMeldingUnderArbeidAtom);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const draft = useAtomValue(draftAtom);
 
     if (!isNyKommunikasjonEnabled) return null;
 
@@ -31,7 +32,7 @@ export const MeldingPanelKnapper = () => {
                 variant="primary"
                 data-color="success"
                 onClick={() => {
-                    if (svarUnderArbeid !== undefined) {
+                    if (svarUnderArbeid !== undefined && draft !== '') {
                         setIsDialogOpen(true);
                         return;
                     }
@@ -46,7 +47,7 @@ export const MeldingPanelKnapper = () => {
                         <Dialog.Title>Vil du avbryte "Svar"?</Dialog.Title>
                     </Dialog.Header>
                     <Dialog.Body>
-                        <BodyLong>Du starter på et svar, og utkastet ditt vil kopieres</BodyLong>
+                        <BodyLong>Du starter på en ny melding, og utkastet ditt vil kopieres</BodyLong>
                     </Dialog.Body>
                     <Dialog.Footer>
                         <Dialog.CloseTrigger>
