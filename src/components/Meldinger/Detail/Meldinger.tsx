@@ -3,7 +3,9 @@ import { Box, Chat, Detail, HStack, VStack } from '@navikt/ds-react';
 import { useAtomValue } from 'jotai';
 import { type ElementType, type ReactNode, useLayoutEffect, useMemo, useRef } from 'react';
 import RichText, { createDynamicHighlightingRule, defaultRules, SladdRule } from 'src/components/RichText';
+import { themeAtom } from 'src/lib/state/theme';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
+import NavLogoBlack from 'src/svg/NavLogoBlack.svg';
 import NavLogoWhite from 'src/svg/NavLogoWhite.svg';
 import { formatterDatoTid } from 'src/utils/date-utils';
 import { meldingerFilterAtom } from '../List/Filter';
@@ -24,6 +26,7 @@ const DefaultWrapper: Props['wrapper'] = ({ children }) => {
 export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Props) => {
     const { search } = useAtomValue(meldingerFilterAtom);
     const highlightRule = useMemo(() => createDynamicHighlightingRule((search ?? '').split(' ')), [search]);
+    const theme = useAtomValue(themeAtom);
 
     const chatAreaRef = useRef<HTMLDivElement>(null);
     const setChatAreaRef = (node: HTMLDivElement | null) => {
@@ -61,7 +64,11 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
                                 avatar={
                                     erFraNav ? (
                                         <Box aria-hidden className="justify-items-center align-middle bg-ax-text-logo">
-                                            <NavLogoWhite className="min-w-[8rem] max-h-[8rem]" />
+                                            {theme === 'light' ? (
+                                                <NavLogoWhite className="min-w-[8rem] max-h-[8rem]" />
+                                            ) : (
+                                                <NavLogoBlack className="min-w-[8rem] max-h-[8rem]" />
+                                            )}
                                         </Box>
                                     ) : (
                                         <PersonIcon />
