@@ -10,10 +10,7 @@ import {
 } from 'src/components/melding/BetaKommunikasjon/IkkeLukkbarNyMelding';
 import { useMeldinger, usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { aktivBrukerAtom } from 'src/lib/state/context';
-import {
-    overskridKontaktReservasjonAtom,
-    svarUnderArbeidAtom
-} from 'src/lib/state/dialog';
+import { overskridKontaktReservasjonAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
 import { type Traad, type TraadDto, TraadType } from 'src/lib/types/modiapersonoversikt-api';
 import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { formatterDato } from 'src/utils/date-utils';
