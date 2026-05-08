@@ -1,5 +1,5 @@
 import { useNavigate } from '@tanstack/react-router';
-import { useAtomValue, useSetAtom } from 'jotai';
+import { useAtomValue, useSetAtom, useStore } from 'jotai';
 import { eq } from 'lodash';
 import type * as React from 'react';
 import {
@@ -15,6 +15,7 @@ import {
 import { useSelector } from 'react-redux';
 import { nyModiaAtom } from 'src/components/NyModia';
 import { aktivBrukerAtom } from 'src/lib/state/context';
+import { meldingPanelIsOpenAtom, nyMeldingUnderArbeidAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
 import { trackBrukerEndret } from 'src/utils/analytics';
 import { paths } from '../app/routes/routing';
 import type { AppState } from '../redux/reducers';
@@ -90,11 +91,19 @@ export function useSettAktivBruker() {
     const setBruker = useSetAtom(aktivBrukerAtom);
     const nyModia = useAtomValue(nyModiaAtom);
     const navigate = useNavigate();
+    const store = useStore();
+
     return (fnr: string | null, redirect = true) => {
         if (!fnr) {
             navigate({ to: '/' });
             setBruker('');
             return;
+        }
+
+        const currentFnr = store.get(aktivBrukerAtom);
+        if (currentFnr && fnr !== currentFnr && store.get(meldingPanelIsOpenAtom)) {
+            store.set(svarUnderArbeidAtom, undefined);
+            store.set(nyMeldingUnderArbeidAtom, false);
         }
 
         setBruker(fnr);
