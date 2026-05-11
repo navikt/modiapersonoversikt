@@ -1,5 +1,5 @@
 import { useNavigate } from '@tanstack/react-router';
-import { useAtomValue, useSetAtom, useStore } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { eq } from 'lodash';
 import type * as React from 'react';
 import {
@@ -88,10 +88,12 @@ export function useAppState<T>(selector: (state: AppState) => T) {
 }
 
 export function useSettAktivBruker() {
-    const setBruker = useSetAtom(aktivBrukerAtom);
+    const [currentFnr, setBruker] = useAtom(aktivBrukerAtom);
     const nyModia = useAtomValue(nyModiaAtom);
     const navigate = useNavigate();
-    const store = useStore();
+    const meldingPanelIsOpen = useAtomValue(meldingPanelIsOpenAtom);
+    const setSvarUnderArbeid = useSetAtom(svarUnderArbeidAtom);
+    const setNyMeldingUnderArbeid = useSetAtom(nyMeldingUnderArbeidAtom);
 
     return (fnr: string | null, redirect = true) => {
         if (!fnr) {
@@ -100,10 +102,9 @@ export function useSettAktivBruker() {
             return;
         }
 
-        const currentFnr = store.get(aktivBrukerAtom);
-        if (currentFnr && fnr !== currentFnr && store.get(meldingPanelIsOpenAtom)) {
-            store.set(svarUnderArbeidAtom, undefined);
-            store.set(nyMeldingUnderArbeidAtom, false);
+        if (currentFnr && fnr !== currentFnr && meldingPanelIsOpen) {
+            setSvarUnderArbeid(undefined);
+            setNyMeldingUnderArbeid(false);
         }
 
         setBruker(fnr);
