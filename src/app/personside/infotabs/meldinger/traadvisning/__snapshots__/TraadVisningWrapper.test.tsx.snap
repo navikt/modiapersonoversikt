@@ -2,7 +2,48 @@
 
 exports[`Viser traad med verktøylinje 1`] = `
 <DocumentFragment>
-  .c26 .snakkeboble-panel {
+  .c16 .ekspanderbartPanel {
+  position: relative;
+}
+
+.c16 .ekspanderbartPanel__hode {
+  padding: 0.35rem 0.5rem;
+  position: sticky;
+  top: 0;
+}
+
+.c16 .ekspanderbartPanel__innhold {
+  padding: 0.3rem;
+}
+
+.c14 {
+  display: flex;
+}
+
+.c14 >* {
+  margin: 0;
+}
+
+.c14 >*:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.c15 .radioknapp+label {
+  cline-height: 1.25rem;
+}
+
+.c15 .radioknapp+label:before {
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
+.c13 {
+  position: relative;
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.c26 .snakkeboble-panel {
   flex-basis: 40rem;
   padding: 0.5rem 0.5rem 0.3rem;
 }
@@ -152,47 +193,6 @@ exports[`Viser traad med verktøylinje 1`] = `
   margin-bottom: 2rem;
   border-bottom: solid 0.0625rem #78706a;
   page-break-inside: avoid;
-}
-
-.c16 .ekspanderbartPanel {
-  position: relative;
-}
-
-.c16 .ekspanderbartPanel__hode {
-  padding: 0.35rem 0.5rem;
-  position: sticky;
-  top: 0;
-}
-
-.c16 .ekspanderbartPanel__innhold {
-  padding: 0.3rem;
-}
-
-.c14 {
-  display: flex;
-}
-
-.c14 >* {
-  margin: 0;
-}
-
-.c14 >*:not(:last-child) {
-  margin-right: 1rem;
-}
-
-.c15 .radioknapp+label {
-  cline-height: 1.25rem;
-}
-
-.c15 .radioknapp+label:before {
-  height: 1.25rem;
-  width: 1.25rem;
-}
-
-.c13 {
-  position: relative;
-  text-align: center;
-  padding-top: 1rem;
 }
 
 .c22 {

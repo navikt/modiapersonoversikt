@@ -2,23 +2,7 @@
 
 exports[`Sykemelding matcher snapshot 1`] = `
 <DocumentFragment>
-  .c1 {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.c1 dt {
-  color: #645f5a;
-}
-
-.c1 >div {
-  margin: 0.5625rem 0;
-  padding-right: 0.7rem;
-  width: 13rem;
-  overflow-wrap: break-word;
-}
-
-.c2 {
+  .c2 {
   overflow: auto;
   box-shadow: 0 0 0 0.07rem rgba(0, 0, 0, 0.25);
   border-radius: .25rem;
@@ -48,6 +32,22 @@ exports[`Sykemelding matcher snapshot 1`] = `
 
 .c2 [role='table'] [role='row']:nth-child(even) {
   background-color: rgba(0, 0, 0, 0.1);
+}
+
+.c1 {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.c1 dt {
+  color: #645f5a;
+}
+
+.c1 >div {
+  margin: 0.5625rem 0;
+  padding-right: 0.7rem;
+  width: 13rem;
+  overflow-wrap: break-word;
 }
 
 .c0 {
