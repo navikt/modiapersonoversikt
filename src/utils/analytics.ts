@@ -161,12 +161,21 @@ export const trackAccordionClosed = (name: string) => {
     });
 };
 
-export const updateUserEnhet = (enhet: string, type: string) => {
+export const trackEnhetEndet = () => {
     if (!window.umami) {
         console.warn('Umami is not initialized. Ignoring');
         return;
     }
     window.umami.track(trackingEvents.enhetEndret);
+};
+
+// Ved bruk av Umami identify vil alle påfølgende umami event knyttes til enhet.
+// Da kan vi gruppere bruk av appen basert på kontor
+export const identifyEnhetOgTypeUmami = (enhet: string, type: string) => {
+    if (!window.umami) {
+        console.warn('Umami is not initialized. Ignoring');
+        return;
+    }
     window.umami.identify({ enhet: enhet.toLowerCase(), type: type.toLowerCase() });
 };
 
