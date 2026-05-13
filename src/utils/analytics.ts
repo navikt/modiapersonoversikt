@@ -21,7 +21,8 @@ export enum trackingEvents {
     lenkeKlikketFraOversikt = 'linke klikket fra oversikt',
     hotkeyBrukt = 'hotkey brukt',
 
-    // denne er i bruk i internflatedekoratøren, ikke bruk her
+    // Denne er også i bruk i internflatedekoratøren
+    // Siden vi ikke tracker automatisk så må vi legge på event på lenker i dekoratøren
     lenkeKlikket = 'lenke klikket',
     dialogApnet = 'dialog åpnet',
     dialogLukket = 'dialog lukket',

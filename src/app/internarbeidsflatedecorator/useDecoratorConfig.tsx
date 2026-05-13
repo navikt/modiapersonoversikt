@@ -4,7 +4,13 @@ import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
 import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 import { aktivBrukerAtom, aktivBrukerLastetAtom, aktivEnhetAtom } from 'src/lib/state/context';
 import type { Enhet } from 'src/rest/resources/saksbehandlersEnheterResource';
-import { identifyEnhetOgTypeUmami, trackBrukerEndret, trackEnhetEndet } from 'src/utils/analytics';
+import {
+    identifyEnhetOgTypeUmami,
+    trackBrukerEndret,
+    trackEnhetEndet,
+    trackGenereltUmamiEvent,
+    trackingEvents
+} from 'src/utils/analytics';
 import { useOnMount, useSettAktivBruker } from 'src/utils/customHooks';
 import { getDomainFromHost, getEnvFromHost } from 'src/utils/environment';
 import { loggEvent } from 'src/utils/logger/frontendLogger';
@@ -55,7 +61,11 @@ export function useDecoratorConfig() {
         [settAktivBruker]
     );
 
-    const configV3 = useCallback(lagConfigV3, [])(aktivEnhet, handleSetBruker, handleSetEnhet);
+    const handleLenkeKlikket = (data: { text: string; url: string }) => {
+        trackGenereltUmamiEvent(trackingEvents.lenkeKlikket, data);
+    };
+
+    const configV3 = useCallback(lagConfigV3, [])(aktivEnhet, handleSetBruker, handleSetEnhet, handleLenkeKlikket);
 
     return { configV3 };
 }
