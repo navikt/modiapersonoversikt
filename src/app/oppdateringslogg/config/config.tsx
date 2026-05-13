@@ -24,6 +24,7 @@ import LestDatoSak from './img/lest-dato-sak.png';
 import MarkeringDodeBarnBilde from './img/markering-dode-barn.png';
 import MeldingsVisning from './img/meldinger.png';
 import NotifikasjonKanal from './img/notifikasjon-kanal.png';
+import NyKommunikasjon from './img/ny-kommunikasjon-knapper.png';
 import NyeYtelser from './img/nye_ytelser.png';
 import NyModia from './img/nyModia.png';
 import OppdateringsloggKnappBilde from './img/oppdateringslogg-knapp.jpg';
@@ -128,9 +129,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                     <a
                         target="_blank"
                         rel="noreferrer"
-                        href={
-                            'https://navno.sharepoint.com/sites/enhet-kontaktsenter/SitePages/Familie-Felles-Barneloven.aspx'
-                        }
+                        href="https://navno.sharepoint.com/sites/enhet-kontaktsenter/SitePages/Familie-Felles-Barneloven.aspx"
                     >
                         Les mer om Foreldreansvar på Navet.
                     </a>
@@ -726,6 +725,28 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                     <p>
                         Mer informasjon finner dere i ny brukermanual på Navet (tilgjengelig fra 23.mars), og i
                         introduksjonen som vises i systemet ved åpning 23.mars
+                    </p>
+                </>
+            )
+        },
+        {
+            id: 43,
+            tittel: 'Ny funksjonalitet for kommunikasjon og dialog fra 18.mai',
+            dato: new Date('2026-05-13 14:00'),
+            aktiv: true,
+            ingress: null,
+            src: NyKommunikasjon,
+            beskrivelse: (
+                <>
+                    <p className="my-2">
+                        Fra og med 18.mai vil ikke meldings-panelet lenger åpne seg automatisk i Modia Personoversikt.
+                        Bruk "Skriv ny melding" øverst i høyre hjørne for nye meldinger, eller "Svar" på en eksisterende
+                        dialog under Kommunikasjon-fanen.
+                    </p>
+                    <p>
+                        Endringene innføres for å hindre at meldinger blir sendt i feil tråd og at du som bruker aktivt
+                        må ta et valg om du velger å skrive ny melding, eller svare. Endringen vil også føre til mer
+                        plass i personoversikten de gangene du ikke har behov for å benytte dialogen.
                     </p>
                 </>
             )
