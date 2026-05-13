@@ -129,9 +129,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                     <a
                         target="_blank"
                         rel="noreferrer"
-                        href={
-                            'https://navno.sharepoint.com/sites/enhet-kontaktsenter/SitePages/Familie-Felles-Barneloven.aspx'
-                        }
+                        href="https://navno.sharepoint.com/sites/enhet-kontaktsenter/SitePages/Familie-Felles-Barneloven.aspx"
                     >
                         Les mer om Foreldreansvar på Navet.
                     </a>
@@ -746,8 +744,9 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                         dialog under Kommunikasjon-fanen.
                     </p>
                     <p>
-                        Endringen vil føre til økt plass i personoversikten de gangene du ikke har behov for å benytte
-                        deg av dialogen.
+                        Endringene innføres for å hindre at meldinger blir sendt i feil tråd og at du som bruker aktivt
+                        må ta et valg om du velger å skrive ny melding, eller svare. Endringen vil også føre til mer
+                        plass i personoversikten de gangene du ikke har behov for å benytte dialogen.
                     </p>
                 </>
             )
