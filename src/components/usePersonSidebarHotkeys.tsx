@@ -2,7 +2,7 @@ import { useNavigate } from '@tanstack/react-router';
 import { useEffect } from 'react';
 import { menuItems } from 'src/components/PersonSidebar';
 import { usePersonAtomValue } from 'src/lib/state/context';
-import { trackingEvents } from 'src/utils/analytics';
+import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 
 export const usePersonSideBarKotkeys = () => {
     const fnr = usePersonAtomValue();
@@ -17,14 +17,9 @@ export const usePersonSideBarKotkeys = () => {
         const url = finnUrl(tittel);
         if (!url) return;
         navigate({
-            to: url,
-            state: {
-                umamiEvent: {
-                    name: trackingEvents.hotkeyBrukt,
-                    data: { tekst: tittel }
-                }
-            }
+            to: url
         });
+        trackGenereltUmamiEvent(trackingEvents.hotkeyBrukt, { tekst: tittel });
     };
 
     useEffect(() => {

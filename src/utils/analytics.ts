@@ -49,6 +49,13 @@ export enum filterType {
     TEMA = 'tema'
 }
 
+export const trackFaneEndret = (nyFane: string, forrigefane: string) => {
+    if (!window.umami) {
+        console.warn('Umami is not initialized. Ignoring');
+        return;
+    }
+    window.umami.track(trackingEvents.faneEndret, { nyFane, forrigefane });
+};
 export const trackDyplenkeFraEksternKilde = (tekst: string) => {
     if (!window.umami) {
         console.warn('Umami is not initialized. Ignoring');

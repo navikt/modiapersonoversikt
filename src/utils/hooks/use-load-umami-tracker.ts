@@ -4,11 +4,9 @@ import config from 'src/config';
 let isLoaded = false;
 export const useLoadUmamiTracker = () => {
     const isProd = config.isProd;
-    const isLocal = window.location.host.includes('localhost');
 
     useEffect(() => {
         if (isLoaded) return;
-        if (isLocal) return;
 
         const script = document.createElement('script');
         script.defer = true;
@@ -27,5 +25,5 @@ export const useLoadUmamiTracker = () => {
         return () => {
             document.head.removeChild(script);
         };
-    }, [isLocal, isProd]);
+    }, [isProd]);
 };
