@@ -743,7 +743,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                     <p className="my-2">
                         Fra og med 18.mai vil ikke meldings-panelet lenger åpne seg automatisk i Modia Personoversikt.
                         Bruk "Skriv ny melding" øverst i høyre hjørne for nye meldinger, eller "Svar" på en eksisterende
-                        dialog under Kommunikasjon-fanen
+                        dialog under Kommunikasjon-fanen.
                     </p>
                     <p>
                         Endringen vil føre til økt plass i personoversikten de gangene du ikke har behov for å benytte
