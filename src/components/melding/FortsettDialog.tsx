@@ -1,4 +1,4 @@
-import { Bleed, Box, Button, Checkbox, HStack, InlineMessage, Loader, VStack } from '@navikt/ds-react';
+import { Alert, Bleed, Box, Button, Checkbox, Dialog, HStack, InlineMessage, Loader, VStack } from '@navikt/ds-react';
 import { useForm, type ValidationError } from '@tanstack/react-form';
 import { useSearch } from '@tanstack/react-router';
 import { useAtomValue, useSetAtom } from 'jotai';
@@ -9,6 +9,7 @@ import useDraft from 'src/app/personside/dialogpanel/use-draft';
 import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
 import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 import { Link } from 'src/components/Link';
+import { getFormattertMeldingsDato, nyesteMelding, traadstittel } from 'src/components/Meldinger/List/utils';
 import { AvbrytAlert } from 'src/components/melding/BetaKommunikasjon/AvbrytAlert';
 import AutoCompleteTekstTips from 'src/components/melding/standardtekster/AutoCompleteTekstTips';
 import StandardTekstModal from 'src/components/melding/standardtekster/StandardTeksterModal';
@@ -23,6 +24,7 @@ import {
     type Traad,
     TraadType
 } from 'src/lib/types/modiapersonoversikt-api';
+import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { trackFortsettDialog } from 'src/utils/analytics';
 import useDynamicHeightTextArea from 'src/utils/hooks/use-dynamic-height-text-area';
 import type { z } from 'zod';
@@ -52,6 +54,7 @@ export const FortsettDialog = ({ traad }: Props) => {
     const { isOn: isNyKommunikasjonEnabled } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
     const minRows = useDynamicHeightTextArea();
     const erValgtTraad = !search?.traadId || search?.traadId === traad.traadId;
+    const [openDialog, setOpenDialog] = useState(false);
 
     // Brukes for å sette initialverdien til meldingen basert på draften
     const [defaultMessage, setDefaultMessage] = useState('');
@@ -123,7 +126,7 @@ export const FortsettDialog = ({ traad }: Props) => {
         >
             <VStack gap="space-16">
                 {!erValgtTraad && (
-                    <InlineMessage size="small" status="warning" className="mt-2">
+                    <Alert size="small" variant="warning" className="mt-2">
                         Dialogen du nå svarer til, er ikke den som vises til venstre.
                         <Link
                             to="/new/person/meldinger"
@@ -132,7 +135,7 @@ export const FortsettDialog = ({ traad }: Props) => {
                         >
                             Gå til aktuell dialog
                         </Link>
-                    </InlineMessage>
+                    </Alert>
                 )}
                 {!erSamtalereferat && (
                     <>
@@ -232,15 +235,6 @@ export const FortsettDialog = ({ traad }: Props) => {
                                 />
                             </HStack>
                             <HStack justify="end" gap="space-8" align="center" flexGrow="1" maxWidth="fit-content">
-                                <Button
-                                    type="submit"
-                                    data-testid="svar-knapp-fortsett-dialog"
-                                    size="small"
-                                    disabled={disableDialog || isPending}
-                                    loading={isPending}
-                                >
-                                    Send til {brukerNavn} {oppgaveId ? 'og avslutt oppgave' : ''}
-                                </Button>
                                 {isNyKommunikasjonEnabled ? (
                                     <AvbrytAlert
                                         disablePopup={form.getFieldValue('melding').length === 0}
@@ -262,11 +256,54 @@ export const FortsettDialog = ({ traad }: Props) => {
                                         Avbryt
                                     </Button>
                                 )}
+                                <Button
+                                    aria-controls={openDialog ? 'svar-warning' : undefined}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        if (erValgtTraad) {
+                                            form.handleSubmit();
+                                        } else {
+                                            setOpenDialog(true);
+                                        }
+                                    }}
+                                    data-testid="svar-knapp-fortsett-dialog"
+                                    size="small"
+                                    disabled={disableDialog || isPending}
+                                    loading={isPending}
+                                >
+                                    Send til {brukerNavn} {oppgaveId ? 'og avslutt oppgave' : ''}
+                                </Button>
                             </HStack>
                         </HStack>
                     </Bleed>
                 </VStack>
             </VStack>
+            <Dialog open={openDialog} onOpenChange={setOpenDialog}>
+                <Dialog.Popup id="svar-warning">
+                    <Dialog.Header>
+                        <Dialog.Title>
+                            Svar på {traadstittel(traad).toLowerCase()} (
+                            {temagruppeTekst(traad.temagruppe as Temagruppe)}{' '}
+                            {getFormattertMeldingsDato(nyesteMelding(traad)).slice(0, 8)})
+                        </Dialog.Title>
+                    </Dialog.Header>
+                    <Dialog.Body>
+                        <InlineMessage status="warning">
+                            Dialogen du nå svarer til, er ikke dialogen du har åpen
+                        </InlineMessage>
+                    </Dialog.Body>
+                    <Dialog.Footer>
+                        <Dialog.CloseTrigger>
+                            <Button variant="secondary" data-color="neutral">
+                                Avbryt
+                            </Button>
+                        </Dialog.CloseTrigger>
+                        <Dialog.CloseTrigger>
+                            <Button onClick={form.handleSubmit}>Send melding</Button>
+                        </Dialog.CloseTrigger>
+                    </Dialog.Footer>
+                </Dialog.Popup>
+            </Dialog>
         </form>
     );
 };

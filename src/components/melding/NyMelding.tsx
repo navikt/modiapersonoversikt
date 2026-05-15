@@ -211,15 +211,6 @@ function NyMelding() {
                                 />
                             </HStack>
                             <HStack justify="end" gap="space-8" align="center" flexGrow="1" maxWidth="fit-content">
-                                <Button
-                                    disabled={disableDialog || isPending}
-                                    type="submit"
-                                    size="small"
-                                    data-testid="svar-knapp"
-                                    loading={isPending}
-                                >
-                                    Send til {brukerNavn}
-                                </Button>
                                 {isNyKommunikasjonEnabled && (
                                     <AvbrytAlert
                                         disablePopup={form.getFieldValue('melding').length === 0}
@@ -229,6 +220,15 @@ function NyMelding() {
                                         }}
                                     />
                                 )}
+                                <Button
+                                    disabled={disableDialog || isPending}
+                                    type="submit"
+                                    size="small"
+                                    data-testid="svar-knapp"
+                                    loading={isPending}
+                                >
+                                    Send til {brukerNavn}
+                                </Button>
                             </HStack>
                         </HStack>
                     </Bleed>
