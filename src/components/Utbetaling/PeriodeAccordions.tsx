@@ -8,6 +8,7 @@ import {
     utbetalingDatoComparator
 } from 'src/components/Utbetaling/utils';
 import type { Utbetaling } from 'src/generated/modiapersonoversikt-api';
+import { trackVisDetaljvisning } from 'src/utils/analytics';
 import { type GroupedArray, groupArray } from 'src/utils/groupArray';
 
 export const PeriodeAccordions = () => {
@@ -30,7 +31,16 @@ export const PeriodeAccordions = () => {
             </Heading>
             <Accordion>
                 {aar.array.map((periode) => (
-                    <Accordion.Item key={periode.category}>
+                    <Accordion.Item
+                        key={periode.category}
+                        onOpenChange={(isOpen) => {
+                            if (isOpen) {
+                                trackVisDetaljvisning('utbetalinger', 'åpnet periode');
+                            } else {
+                                trackVisDetaljvisning('utbetalinger', 'lukket periode');
+                            }
+                        }}
+                    >
                         <Accordion.Header>{periode.category}</Accordion.Header>
                         <Accordion.Content className="overflow-x-auto">
                             <VStack gap="space-16">
