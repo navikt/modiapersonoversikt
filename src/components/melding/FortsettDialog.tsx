@@ -9,7 +9,7 @@ import useDraft from 'src/app/personside/dialogpanel/use-draft';
 import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
 import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 import { Link } from 'src/components/Link';
-import { traadstittel } from 'src/components/Meldinger/List/utils';
+import { getFormattertMeldingsDato, nyesteMelding, traadstittel } from 'src/components/Meldinger/List/utils';
 import { AvbrytAlert } from 'src/components/melding/BetaKommunikasjon/AvbrytAlert';
 import AutoCompleteTekstTips from 'src/components/melding/standardtekster/AutoCompleteTekstTips';
 import StandardTekstModal from 'src/components/melding/standardtekster/StandardTeksterModal';
@@ -283,7 +283,8 @@ export const FortsettDialog = ({ traad }: Props) => {
                     <Dialog.Header>
                         <Dialog.Title>
                             Svar på {traadstittel(traad).toLowerCase()} (
-                            {temagruppeTekst(traad.temagruppe as Temagruppe)})
+                            {temagruppeTekst(traad.temagruppe as Temagruppe)}{' '}
+                            {getFormattertMeldingsDato(nyesteMelding(traad)).slice(0, 8)})
                         </Dialog.Title>
                     </Dialog.Header>
                     <Dialog.Body>
@@ -298,7 +299,7 @@ export const FortsettDialog = ({ traad }: Props) => {
                             </Button>
                         </Dialog.CloseTrigger>
                         <Dialog.CloseTrigger>
-                            <Button>Send melding</Button>
+                            <Button onClick={form.handleSubmit}>Send melding</Button>
                         </Dialog.CloseTrigger>
                     </Dialog.Footer>
                 </Dialog.Popup>
