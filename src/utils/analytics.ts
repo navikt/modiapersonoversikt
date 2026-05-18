@@ -62,7 +62,10 @@ export const trackBesokUmami = () => {
         console.warn('Umami is not initialized. Ignoring');
         return;
     }
-    window.umami.track();
+    window.umami.track((payload: unknown) => ({
+        ...(payload as Record<string, unknown>),
+        referrer: document.referrer
+    }));
 };
 
 export const trackFaneEndret = (nyFane: string, forrigefane: string) => {
