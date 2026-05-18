@@ -210,16 +210,14 @@ function NyMelding() {
                                     }
                                 />
                             </HStack>
-                            <HStack justify="end" gap="space-8" align="center" flexGrow="1" maxWidth="fit-content">
-                                {isNyKommunikasjonEnabled && (
-                                    <AvbrytAlert
-                                        disablePopup={form.getFieldValue('melding').length === 0}
-                                        handleAvbryt={() => {
-                                            removeDraft();
-                                            setNyMeldingUnderArbeid(false);
-                                        }}
-                                    />
-                                )}
+                            <HStack
+                                justify="end"
+                                gap="space-8"
+                                align="center"
+                                flexGrow="1"
+                                maxWidth="fit-content"
+                                className="flex-row-reverse"
+                            >
                                 <Button
                                     disabled={disableDialog || isPending}
                                     type="submit"
@@ -229,6 +227,15 @@ function NyMelding() {
                                 >
                                     Send til {brukerNavn}
                                 </Button>
+                                {isNyKommunikasjonEnabled && (
+                                    <AvbrytAlert
+                                        disablePopup={form.getFieldValue('melding').length === 0}
+                                        handleAvbryt={() => {
+                                            removeDraft();
+                                            setNyMeldingUnderArbeid(false);
+                                        }}
+                                    />
+                                )}
                             </HStack>
                         </HStack>
                     </Bleed>
