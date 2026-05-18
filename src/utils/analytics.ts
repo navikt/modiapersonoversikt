@@ -1,5 +1,5 @@
 interface Umami {
-    track(payload: unknown): void;
+    track(payload?: unknown): void;
     track(event_name: string, payload: unknown): void;
     identify(session_data: unknown): void;
 }
@@ -49,6 +49,18 @@ export enum filterType {
     SOK = 'søk',
     TEMA = 'tema'
 }
+
+/*Denne tracker "generelt" besøk på siden, altså hver gang en ny link klikkes på og siden besøkes
+Brukes kun i _root og sørger for at kun 1 besøk blir tracket per sidevisning (etter redirects)
+ De andre funksjonene er ment for å tracke spesifikke events som ikke nødvendigvis trigger en sidevisning, f.eks klikk på en fane, åpning av dialog osv
+ Ved f.eks fendring av faner så blir det gjort to kall til  umami, ett for besøket og ett for hendelsen "fane endret"*/
+export const trackBesokUmami = () => {
+    if (!window.umami) {
+        console.warn('Umami is not initialized. Ignoring');
+        return;
+    }
+    window.umami.track();
+};
 
 export const trackFaneEndret = (nyFane: string, forrigefane: string) => {
     if (!window.umami) {

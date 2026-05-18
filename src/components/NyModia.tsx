@@ -47,6 +47,5 @@ export const useNavigateToNewOrOldModia = () => {
         } else if (!href.includes('/new') && nyModiaEnabled) {
             void navigate({ to: `/new/${href}` });
         }
-        //umamiTrack();
     }, [href, nyModia, isOn, pending, navigate]);
 };

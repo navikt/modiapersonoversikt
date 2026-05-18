@@ -1,6 +1,6 @@
 import { Alert, Button, HStack, Link, Loader, Theme } from '@navikt/ds-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { createRootRoute, Outlet, useMatchRoute } from '@tanstack/react-router';
+import { createRootRoute, Outlet, useMatchRoute, useRouterState } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import { lazy, type PropsWithChildren, useEffect, useState } from 'react';
 import { Toaster } from 'sonner';
@@ -16,6 +16,7 @@ import { ValgtEnhetProvider } from 'src/context/valgtenhet-state';
 import { aktivBrukerLastetAtom, aktivEnhetAtom } from 'src/lib/state/context';
 import { ThemeProvider, themeAtom } from 'src/lib/state/theme';
 import { usePersistentWWLogin } from 'src/login/use-persistent-ww-login';
+import { trackBesokUmami } from 'src/utils/analytics';
 import HandleLegacyUrls from 'src/utils/HandleLegacyUrls';
 import { useLoadUmamiTracker } from 'src/utils/hooks/use-load-umami-tracker';
 import useTimeout from 'src/utils/hooks/use-timeout';
@@ -43,12 +44,19 @@ function App({ children }: PropsWithChildren) {
     const valgtEnhet = useAtomValue(aktivEnhetAtom);
     const contextLoaded = useAtomValue(aktivBrukerLastetAtom);
     const [contextTimeout, setContextTimeout] = useState(false);
+    const routerStatus = useRouterState({ select: (s) => s.status });
+
     useTimeout(() => {
         setContextTimeout(true);
     }, 1500);
 
     useLoadUmamiTracker();
     useNavigateToNewOrOldModia();
+
+    useEffect(() => {
+        if (routerStatus !== 'idle') return;
+        trackBesokUmami();
+    }, [routerStatus]);
 
     if (!contextLoaded && contextTimeout) {
         return (
