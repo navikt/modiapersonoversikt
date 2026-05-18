@@ -2,13 +2,12 @@
 /* tslint:disable */
 
 window.sendWithEventData = (_event, payload) => {
-    const url = new URL(payload.url, location.href);
-    if (url.host.includes('localhost')) return false;
+    const newUrl = new URL(window.location.href);
+    if (newUrl.host.includes('localhost')) return false;
 
-    url.search = '';
-
+    newUrl.search = '';
     return {
         ...payload,
-        url: url.toString()
+        url: newUrl.toString()
     };
 };
