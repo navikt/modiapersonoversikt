@@ -37,7 +37,10 @@ export enum trackingEvents {
     fortsettDialog = 'fortsett dialog',
     brukStandardtekst = 'bruk standardtekst',
     brukAutofullfor = 'bruk autofullfør',
-    eksternDyplenke = 'ekstern dyplenke'
+    eksternDyplenke = 'ekstern dyplenke',
+    startNyMelding = 'start ny melding',
+    startSvar = 'start svar',
+    avbrytMelding = 'avbryt melding'
 }
 
 export enum filterType {

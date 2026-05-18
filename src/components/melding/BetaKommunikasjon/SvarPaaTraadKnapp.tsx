@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { traadKanBesvares } from 'src/components/Meldinger/List/utils';
 import { draftAtom, meldingPanelIsOpenAtom, nyMeldingUnderArbeidAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
+import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 
 export const SvarPaaTraadKnapp = ({ traad }: { traad: Traad }) => {
     const openPanel = useAtomValue(meldingPanelIsOpenAtom);
@@ -14,6 +15,7 @@ export const SvarPaaTraadKnapp = ({ traad }: { traad: Traad }) => {
     const [isAvbrytDialogOpen, setIsAvbrytDialogOpen] = useState(false);
 
     const openDialogEllerSvarPaaTraad = () => {
+        trackGenereltUmamiEvent(trackingEvents.startSvar);
         if (openPanel && draft !== '') {
             setIsAvbrytDialogOpen(true);
             return;

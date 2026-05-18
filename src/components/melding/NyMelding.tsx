@@ -27,7 +27,7 @@ import { useSuspendingBrukernavn } from 'src/lib/hooks/useSuspendingBrukernavn';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import { nyMeldingUnderArbeidAtom, overskridKontaktReservasjonAtom, useDisableDialog } from 'src/lib/state/dialog';
 import type { Temagruppe } from 'src/models/temagrupper';
-import { trackSendNyMelding } from 'src/utils/analytics';
+import { trackGenereltUmamiEvent, trackingEvents, trackSendNyMelding } from 'src/utils/analytics';
 import useDynamicHeightTextArea from 'src/utils/hooks/use-dynamic-height-text-area';
 import type { z } from 'zod';
 import AutocompleteTextarea from './AutoCompleteTextarea';
@@ -233,6 +233,8 @@ function NyMelding() {
                                         handleAvbryt={() => {
                                             removeDraft();
                                             setNyMeldingUnderArbeid(false);
+                                            trackGenereltUmamiEvent(trackingEvents.avbrytMelding);
+
                                         }}
                                     />
                                 )}
