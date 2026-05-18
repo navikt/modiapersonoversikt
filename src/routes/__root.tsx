@@ -55,7 +55,14 @@ function App({ children }: PropsWithChildren) {
 
     useEffect(() => {
         if (routerStatus !== 'idle') return;
-        trackBesokUmami();
+
+        const interval = setInterval(() => {
+            if (!window.umami) return;
+            clearInterval(interval);
+            trackBesokUmami();
+        }, 100);
+
+        return () => clearInterval(interval);
     }, [routerStatus]);
 
     if (!contextLoaded && contextTimeout) {
