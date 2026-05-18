@@ -18,7 +18,6 @@ import { ThemeProvider, themeAtom } from 'src/lib/state/theme';
 import { usePersistentWWLogin } from 'src/login/use-persistent-ww-login';
 import { trackBesokUmami } from 'src/utils/analytics';
 import HandleLegacyUrls from 'src/utils/HandleLegacyUrls';
-import { useLoadUmamiTracker } from 'src/utils/hooks/use-load-umami-tracker';
 import useTimeout from 'src/utils/hooks/use-timeout';
 
 export const Route = createRootRoute({
@@ -50,7 +49,6 @@ function App({ children }: PropsWithChildren) {
         setContextTimeout(true);
     }, 1500);
 
-    useLoadUmamiTracker();
     useNavigateToNewOrOldModia();
 
     useEffect(() => {
