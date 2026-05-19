@@ -54,7 +54,7 @@ export enum filterType {
 }
 
 /*Denne tracker "generelt" besøk på siden, altså hver gang en ny link klikkes på og siden besøkes
-Brukes kun i _root og sørger for at kun 1 besøk blir tracket per sidevisning (etter redirects)
+Brukes kun i __root og sørger for at kun 1 besøk blir tracket per sidevisning (etter redirects)
  De andre funksjonene er ment for å tracke spesifikke events som ikke nødvendigvis trigger en sidevisning, f.eks klikk på en fane, åpning av dialog osv
  Ved f.eks fendring av faner så blir det gjort to kall til  umami, ett for besøket og ett for hendelsen "fane endret"*/
 export const trackBesokUmami = () => {
@@ -190,7 +190,7 @@ export const trackAccordionClosed = (name: string) => {
     });
 };
 
-export const trackEnhetEndet = () => {
+export const trackEnhetEndret = () => {
     if (!window.umami) {
         console.warn('Umami is not initialized. Ignoring');
         return;

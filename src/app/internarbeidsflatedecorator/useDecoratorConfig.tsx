@@ -7,7 +7,7 @@ import type { Enhet } from 'src/rest/resources/saksbehandlersEnheterResource';
 import {
     identifyEnhetOgTypeUmami,
     trackBrukerEndret,
-    trackEnhetEndet,
+    trackEnhetEndret,
     trackGenereltUmamiEvent,
     trackingEvents
 } from 'src/utils/analytics';
@@ -41,7 +41,7 @@ export function useDecoratorConfig() {
                 identifyEnhetOgTypeUmami(enhetValue.navn, enhetValue?.type ?? 'Ingen type');
                 // Funksjonen kjører ved mount, men vi ønsker ikke å tracke det som en endring av enhet
                 if (isMountedEnhet.current) {
-                    trackEnhetEndet();
+                    trackEnhetEndret();
                 }
             }
             isMountedEnhet.current = true;
