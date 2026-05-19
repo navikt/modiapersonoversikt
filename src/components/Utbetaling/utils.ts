@@ -62,11 +62,11 @@ export const getTrekkOgSkattSumYtelser = (ytelser: Ytelse[]): number => {
     return ytelser.reduce((acc: number, ytelse: Ytelse) => acc + ytelse.skattsum + ytelse.trekksum, 0);
 };
 
-export const getSkattSumYtelser = (ytelser: Ytelse[]): number => {
+const getSkattSumYtelser = (ytelser: Ytelse[]): number => {
     return ytelser.reduce((acc: number, ytelse: Ytelse) => acc + ytelse.skattsum, 0);
 };
 
-export const getTrekkSumYtelser = (ytelser: Ytelse[]): number => {
+const getTrekkSumYtelser = (ytelser: Ytelse[]): number => {
     return ytelser.reduce((acc: number, ytelse: Ytelse) => acc + ytelse.trekksum, 0);
 };
 
