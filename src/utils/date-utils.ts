@@ -84,7 +84,7 @@ export function datoVerbose(dato?: string | Date) {
         måned: måned,
         år: år,
         sammensatt: `${dag}. ${måned} ${år}`,
-        sammensattMedKlokke: `${dag}. ${måned} ${år} ${klokkeslett}`,
+        sammensattMedKlokke: `${dag}. ${måned.toLowerCase()} ${år} ${klokkeslett}`,
         meldingerFormat: `${dag}. ${måned} ${år}, klokken ${klokkeslett}`
     };
 }

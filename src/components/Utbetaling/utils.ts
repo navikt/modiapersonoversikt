@@ -62,6 +62,14 @@ export const getTrekkOgSkattSumYtelser = (ytelser: Ytelse[]): number => {
     return ytelser.reduce((acc: number, ytelse: Ytelse) => acc + ytelse.skattsum + ytelse.trekksum, 0);
 };
 
+const getSkattSumYtelser = (ytelser: Ytelse[]): number => {
+    return ytelser.reduce((acc: number, ytelse: Ytelse) => acc + ytelse.skattsum, 0);
+};
+
+const getTrekkSumYtelser = (ytelser: Ytelse[]): number => {
+    return ytelser.reduce((acc: number, ytelse: Ytelse) => acc + ytelse.trekksum, 0);
+};
+
 export const reduceUtbetlingerTilYtelser = (utbetalinger: Utbetaling[]): Ytelse[] => {
     return utbetalinger.flatMap((utbetaling) => utbetaling.ytelser ?? []);
 };
@@ -85,9 +93,14 @@ export const getAlleYtelseTyper = (utbetalinger: Utbetaling[]): string[] => {
     return ytelser.flatMap((ytelse) => ytelse.type?.trim() || []).unique();
 };
 
-export const summertTrekkOgSkattBelopFraUtbetalinger = (utbetalinger: Utbetaling[]): number => {
+export const summertSkattBelopFraUtbetalinger = (utbetalinger: Utbetaling[]): number => {
     const ytelser = reduceUtbetlingerTilYtelser(utbetalinger);
-    return getTrekkOgSkattSumYtelser(ytelser);
+    return getSkattSumYtelser(ytelser);
+};
+
+export const summertTrekkBelopFraUtbetalinger = (utbetalinger: Utbetaling[]): number => {
+    const ytelser = reduceUtbetlingerTilYtelser(utbetalinger);
+    return getTrekkSumYtelser(ytelser);
 };
 
 export const getUtbetalingId = (utbetaling: Utbetaling) =>
