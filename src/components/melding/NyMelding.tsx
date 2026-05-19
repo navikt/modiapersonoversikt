@@ -234,7 +234,6 @@ function NyMelding() {
                                             removeDraft();
                                             setNyMeldingUnderArbeid(false);
                                             trackGenereltUmamiEvent(trackingEvents.avbrytMelding);
-
                                         }}
                                     />
                                 )}
