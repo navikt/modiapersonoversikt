@@ -6,7 +6,7 @@ import Card from 'src/components/Card';
 import { getUnikYtelseKey, getYtelseIdDato, type YtelseVedtak } from 'src/components/ytelser/utils';
 import { type Foreldrepenger, ForeldrepengerYtelse } from 'src/generated/modiapersonoversikt-api';
 import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
-import { trackingEvents } from 'src/utils/analytics';
+import { trackVisDetaljvisning } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
 
 const routeApi = getRouteApi('/new/person/ytelser');
@@ -48,14 +48,9 @@ export const YtelseItem = ({ ytelse }: { ytelse: YtelseVedtak }) => {
 
     const onClick = () => {
         navigate({
-            search: { id },
-            state: {
-                umamiEvent: {
-                    name: trackingEvents.detaljvisningKlikket,
-                    data: { fane: 'ytelser', tekst: ytelse.ytelseType.toLowerCase() }
-                }
-            }
+            search: { id }
         });
+        trackVisDetaljvisning('ytelser', ytelse.ytelseType.toLowerCase());
     };
 
     return (

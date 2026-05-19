@@ -3,7 +3,7 @@ import { guid } from 'nav-frontend-js-utils';
 import { useEffect, useRef } from 'react';
 import { MeldingsokProvider } from 'src/context/meldingsok';
 import { useVisittkortState } from 'src/context/visittkort-state';
-import { trackingEvents } from 'src/utils/analytics';
+import { trackFaneEndret } from 'src/utils/analytics';
 import styled from 'styled-components';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 import useKeepScroll from '../../../utils/hooks/useKeepScroll';
@@ -34,17 +34,9 @@ function InfoTabs() {
         const newPath = location.pathname !== path;
         if (newPath) {
             navigate({
-                to: path,
-                state: {
-                    umamiEvent: {
-                        name: trackingEvents.faneEndret,
-                        data: {
-                            nyFane: getOpenTabFromRouterPath(newTab).path,
-                            forrigeFane: openTab.path
-                        }
-                    }
-                }
+                to: path
             });
+            trackFaneEndret(getOpenTabFromRouterPath(newTab).path, openTab.path);
         }
         visittkortStatus.setApent(false);
     };

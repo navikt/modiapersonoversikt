@@ -5,6 +5,7 @@ import { useRef, useState } from 'react';
 import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
 import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 import { draftAtom, nyMeldingUnderArbeidAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
+import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 
 export const MeldingPanelKnapper = () => {
     const { isOn: isNyKommunikasjonEnabled } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
@@ -37,6 +38,7 @@ export const MeldingPanelKnapper = () => {
                         return;
                     }
                     handleStartNyMelding();
+                    trackGenereltUmamiEvent(trackingEvents.startNyMelding);
                 }}
             >
                 Skriv ny melding

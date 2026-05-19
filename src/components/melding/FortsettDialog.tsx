@@ -25,7 +25,7 @@ import {
     TraadType
 } from 'src/lib/types/modiapersonoversikt-api';
 import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
-import { trackFortsettDialog } from 'src/utils/analytics';
+import { trackFortsettDialog, trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import useDynamicHeightTextArea from 'src/utils/hooks/use-dynamic-height-text-area';
 import type { z } from 'zod';
 import AutocompleteTextarea from './AutoCompleteTextarea';
@@ -265,6 +265,7 @@ export const FortsettDialog = ({ traad }: Props) => {
                                         handleAvbryt={() => {
                                             removeDraft();
                                             setDialogUnderArbeid(undefined);
+                                            trackGenereltUmamiEvent(trackingEvents.avbrytMelding);
                                         }}
                                     />
                                 ) : (
@@ -275,6 +276,7 @@ export const FortsettDialog = ({ traad }: Props) => {
                                         onClick={(e) => {
                                             e.preventDefault();
                                             setDialogUnderArbeid(undefined);
+                                            trackGenereltUmamiEvent(trackingEvents.avbrytMelding);
                                         }}
                                     >
                                         Avbryt

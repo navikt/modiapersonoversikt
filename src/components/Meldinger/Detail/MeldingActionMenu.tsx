@@ -68,6 +68,7 @@ export const MeldingActionMenu = ({ traad }: { traad: Traad }) => {
 
     const svarSamtale = useCallback(() => {
         setDialogUnderArbeid(traad.traadId);
+        trackGenereltUmamiEvent(trackingEvents.startSvar);
     }, [traad.traadId, setDialogUnderArbeid]);
 
     const kanBesvares = traadKanBesvares(traad);

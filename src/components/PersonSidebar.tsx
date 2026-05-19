@@ -17,7 +17,7 @@ import { getOpenTabFromRouterPath, useOpenTab } from 'src/app/personside/infotab
 import { erUbesvartHenvendelseFraBruker, useTraader } from 'src/components/Meldinger/List/utils';
 import { usePersonSideBarKotkeys } from 'src/components/usePersonSidebarHotkeys';
 import { usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
-import { trackingEvents } from 'src/utils/analytics';
+import { trackFaneEndret } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
 import Card from './Card';
 import { ThemeIconToggle } from './theme/ThemeToggle';
@@ -149,16 +149,10 @@ export const PersonSidebarMenu = () => {
                         {menuItems.map(({ title, href, Icon }) => (
                             <ConditionalTooltip key={title} content={title} enabled={!expanded}>
                                 <Link
-                                    to={href}
-                                    state={{
-                                        umamiEvent: {
-                                            name: trackingEvents.faneEndret,
-                                            data: {
-                                                nyFane: getOpenTabFromRouterPath(href).path,
-                                                forrigeFane: openTab.path
-                                            }
-                                        }
+                                    onClick={() => {
+                                        trackFaneEndret(getOpenTabFromRouterPath(href).path, openTab.path);
                                     }}
+                                    to={href}
                                     aria-label={title}
                                     role="menuitem"
                                     activeProps={{ tabIndex: 0 }}

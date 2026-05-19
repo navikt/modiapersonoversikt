@@ -14,42 +14,34 @@
     <link rel="preload" href="https://cdn.nav.no/aksel/fonts/SourceSans3-normal.woff2" as="font" type="font/woff2" crossorigin/>
     <script>
         window.sendWithEventData = (_event, payload) => {
-            const url = new URL(payload.url, location.href);
+            const newUrl = new URL(window.location.href);
+            if (newUrl.host.includes('localhost')) return false;
 
-           if(url.host.includes("localhost")) return null
-            const umamiEventData = window.__router?.state?.location?.state.umamiEvent;
+            newUrl.search = '';
 
-            url.search = '';
-
-            const result = {
-                    ...payload,
-                data: umamiEventData?.data ?? payload?.data,
-                name: umamiEventData?.name ?? payload?.name,
-                url: url.toString(),
+            return {
+                ...payload,
+                url: newUrl.toString()
             };
-
-            if (umamiEventData && window.__router?.state?.location?.state) {
-                window.__router.state.location.state.umamiEvent = undefined;
-            }
-
-            return result;
-        };
+    };
     </script>
 
     <slot not-environment="prod">
         <script
-            defer
-            data-before-send="sendWithEventData"
-            src="https://cdn.nav.no/team-researchops/sporing/sporing-dev.js"
-            data-website-id="bc5cfdcd-ecc1-402b-8cb0-c30913f0bd13"
+                defer
+                data-before-send="sendWithEventData"
+                src="https://cdn.nav.no/team-researchops/sporing/sporing-dev.js"
+                data-website-id="bc5cfdcd-ecc1-402b-8cb0-c30913f0bd13"
+                data-auto-track="false"
         ></script>
     </slot>
     <slot environment="prod">
         <script
-            defer
-            data-before-send="sendWithEventData"
-            src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
-            data-website-id="a8c2ec9c-2846-4154-8841-5db26494171a"
+                defer
+                data-before-send="sendWithEventData"
+                src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
+                data-website-id="a8c2ec9c-2846-4154-8841-5db26494171a"
+                data-auto-track="false"
         ></script>
     </slot>
 

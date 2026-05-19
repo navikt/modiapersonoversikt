@@ -4,6 +4,7 @@ import usePrinter from 'src/components/Print/usePrinter';
 import { UtbetalingDetail } from 'src/components/Utbetaling/Detail';
 import { formaterNOK, getGjeldendeDatoForUtbetaling, getUtbetalingId } from 'src/components/Utbetaling/utils';
 import type { Utbetaling } from 'src/generated/modiapersonoversikt-api';
+import { trackVisDetaljvisning } from 'src/utils/analytics';
 import { formatterDato } from 'src/utils/date-utils';
 
 const datoVisning = (utbetaling: Utbetaling) => {
@@ -30,6 +31,13 @@ const UtbetalingRad = ({ utbetaling }: { utbetaling: Utbetaling }) => {
             key={getUtbetalingId(utbetaling)}
             contentGutter="none"
             expandOnRowClick
+            onOpenChange={(isOpen) => {
+                if (isOpen) {
+                    trackVisDetaljvisning('utbetalinger', 'åpnet enkel utbetaling');
+                } else {
+                    trackVisDetaljvisning('utbetalinger', 'lukket enkel utbetaling');
+                }
+            }}
             content={
                 <PrinterWrapper>
                     <UtbetalingDetail utbetaling={utbetaling} />

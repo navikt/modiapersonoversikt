@@ -13,6 +13,7 @@ import { aktivBrukerAtom } from 'src/lib/state/context';
 import { overskridKontaktReservasjonAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
 import { type Traad, type TraadDto, TraadType } from 'src/lib/types/modiapersonoversikt-api';
 import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
+import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import { formatterDato } from 'src/utils/date-utils';
 import Card from '../Card';
 import { FortsettDialog } from './FortsettDialog';
@@ -144,7 +145,10 @@ const SendMeldingContent = ({
                                 variant="secondary"
                                 data-color="danger"
                                 size="small"
-                                onClick={() => setDialogUnderArbeid(undefined)}
+                                onClick={() => {
+                                    setDialogUnderArbeid(undefined);
+                                    trackGenereltUmamiEvent(trackingEvents.avbrytMelding);
+                                }}
                             >
                                 Avbryt
                             </Button>

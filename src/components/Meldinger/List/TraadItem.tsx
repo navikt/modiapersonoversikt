@@ -19,7 +19,7 @@ import { usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
 import { svarUnderArbeidAtom } from 'src/lib/state/dialog';
 import type { Melding } from 'src/lib/types/modiapersonoversikt-api';
 import { Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
-import { trackingEvents } from 'src/utils/analytics';
+import { trackVisDetaljvisning } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
 import {
     erFeilsendt,
@@ -155,14 +155,9 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
 
     const onClick = () => {
         navigate({
-            search: { traadId: traad.traadId },
-            state: {
-                umamiEvent: {
-                    name: trackingEvents.detaljvisningKlikket,
-                    data: { fane: 'meldinger', tekst: 'åpne melding' }
-                }
-            }
+            search: { traadId: traad.traadId }
         });
+        trackVisDetaljvisning('meldinger', 'åpne melding');
     };
 
     return (

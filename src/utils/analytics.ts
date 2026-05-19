@@ -1,5 +1,5 @@
 interface Umami {
-    track(payload: unknown): void;
+    track(payload?: unknown): void;
     track(event_name: string, payload: unknown): void;
     identify(session_data: unknown): void;
 }
@@ -21,7 +21,8 @@ export enum trackingEvents {
     lenkeKlikketFraOversikt = 'linke klikket fra oversikt',
     hotkeyBrukt = 'hotkey brukt',
 
-    // denne er i bruk i internflatedekoratøren, ikke bruk her
+    // Denne er også i bruk i internflatedekoratøren
+    // Siden vi ikke tracker automatisk så må vi legge på event på lenker i dekoratøren
     lenkeKlikket = 'lenke klikket',
     dialogApnet = 'dialog åpnet',
     dialogLukket = 'dialog lukket',
@@ -36,7 +37,10 @@ export enum trackingEvents {
     fortsettDialog = 'fortsett dialog',
     brukStandardtekst = 'bruk standardtekst',
     brukAutofullfor = 'bruk autofullfør',
-    eksternDyplenke = 'ekstern dyplenke'
+    eksternDyplenke = 'ekstern dyplenke',
+    startNyMelding = 'start ny melding',
+    startSvar = 'start svar',
+    avbrytMelding = 'avbryt melding'
 }
 
 export enum filterType {
@@ -49,6 +53,31 @@ export enum filterType {
     TEMA = 'tema'
 }
 
+/*Denne tracker "generelt" besøk på siden, altså hver gang en ny link klikkes på og siden besøkes
+Brukes kun i __root og sørger for at kun 1 besøk blir tracket per sidevisning (etter redirects)
+ De andre funksjonene er ment for å tracke spesifikke events som ikke nødvendigvis trigger en sidevisning, f.eks klikk på en fane, åpning av dialog osv
+ Ved f.eks fendring av faner så blir det gjort to kall til  umami, ett for besøket og ett for hendelsen "fane endret"*/
+export const trackBesokUmami = () => {
+    if (!window.umami) {
+        console.warn('Umami is not initialized. Ignoring');
+        return;
+    }
+    const referrerUrl = new URL(document.referrer);
+    referrerUrl.search = '';
+
+    window.umami.track((payload: unknown) => ({
+        ...(payload as Record<string, unknown>),
+        referrer: referrerUrl.toString()
+    }));
+};
+
+export const trackFaneEndret = (nyFane: string, forrigefane: string) => {
+    if (!window.umami) {
+        console.warn('Umami is not initialized. Ignoring');
+        return;
+    }
+    window.umami.track(trackingEvents.faneEndret, { nyFane, forrigefane });
+};
 export const trackDyplenkeFraEksternKilde = (tekst: string) => {
     if (!window.umami) {
         console.warn('Umami is not initialized. Ignoring');
@@ -161,12 +190,21 @@ export const trackAccordionClosed = (name: string) => {
     });
 };
 
-export const updateUserEnhet = (enhet: string, type: string) => {
+export const trackEnhetEndret = () => {
     if (!window.umami) {
         console.warn('Umami is not initialized. Ignoring');
         return;
     }
     window.umami.track(trackingEvents.enhetEndret);
+};
+
+// Ved bruk av Umami identify vil alle påfølgende umami event knyttes til enhet.
+// Da kan vi gruppere bruk av appen basert på kontor
+export const identifyEnhetOgTypeUmami = (enhet: string, type: string) => {
+    if (!window.umami) {
+        console.warn('Umami is not initialized. Ignoring');
+        return;
+    }
     window.umami.identify({ enhet: enhet.toLowerCase(), type: type.toLowerCase() });
 };
 

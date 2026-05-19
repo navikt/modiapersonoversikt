@@ -3,9 +3,9 @@ import { HoyreChevron } from 'nav-frontend-chevron';
 import { guid } from 'nav-frontend-js-utils';
 import * as React from 'react';
 import { type ChangeEvent, type ReactNode, useRef } from 'react';
-import { trackingEvents } from 'src/utils/analytics';
+import type { Traad } from 'src/models/meldinger/meldinger';
+import { trackVisDetaljvisning } from 'src/utils/analytics';
 import styled, { css } from 'styled-components';
-import type { Traad } from '../../../../../models/meldinger/meldinger';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { meldingerTest } from '../../dyplenkeTest/utils-dyplenker-test';
 import { valgtMeldingKlasse } from './TraadListe';
@@ -66,17 +66,9 @@ function TraadListeElement(props: Props) {
             return;
         }
         navigate({
-            search: { traadId: props.traad.traadId },
-            state: {
-                umamiEvent: {
-                    name: trackingEvents.detaljvisningKlikket,
-                    data: {
-                        fane: 'meldinger',
-                        tekst: 'åpne melding'
-                    }
-                }
-            }
+            search: { traadId: props.traad.traadId }
         });
+        trackVisDetaljvisning('meldinger', 'åpne melding');
     };
 
     return (

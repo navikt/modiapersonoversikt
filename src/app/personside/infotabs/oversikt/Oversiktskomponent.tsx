@@ -9,7 +9,7 @@ import { getOpenTabFromRouterPath } from 'src/app/personside/infotabs/utils/useO
 import { paths } from 'src/app/routes/routing';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import theme, { pxToRem } from 'src/styles/personOversiktTheme';
-import { trackingEvents } from 'src/utils/analytics';
+import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import styled from 'styled-components';
 
 interface Props {
@@ -54,16 +54,11 @@ const CustomContent = styled.div`
     padding: 0 1rem;
 `;
 
-function createUmamiEvent(path: string) {
-    return {
-        umamiEvent: {
-            name: trackingEvents.lenkeKlikketFraOversikt,
-            data: {
-                fane: 'oversikt',
-                tekst: `lenke til ${getOpenTabFromRouterPath(path).path}`
-            }
-        }
-    };
+function trackEvent(path: string) {
+    trackGenereltUmamiEvent(trackingEvents.lenkeKlikketFraOversikt, {
+        fane: 'oversikt',
+        tekst: `lenke til ${getOpenTabFromRouterPath(path).path}`
+    });
 }
 
 function Oversiktskomponent(props: Props) {
@@ -73,7 +68,8 @@ function Oversiktskomponent(props: Props) {
     const headerId = useRef(guid());
 
     if (redirect) {
-        return <Navigate to={path} state={createUmamiEvent(path)} replace />;
+        trackEvent(path);
+        return <Navigate to={path} replace />;
     }
 
     const handleClick = () => {
@@ -92,10 +88,12 @@ function Oversiktskomponent(props: Props) {
                         </Undertittel>
                         <CustomContent>{customContent}</CustomContent>
                         <StyledLink
-                            onClick={(e) => e.stopPropagation()}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                trackEvent(path);
+                            }}
                             className="lenke"
                             to={path}
-                            state={createUmamiEvent(path)}
                         >
                             <Normaltekst>Gå til {props.tittel.toLowerCase()}</Normaltekst>
                         </StyledLink>
