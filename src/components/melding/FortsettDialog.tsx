@@ -234,7 +234,31 @@ export const FortsettDialog = ({ traad }: Props) => {
                                     }
                                 />
                             </HStack>
-                            <HStack justify="end" gap="space-8" align="center" flexGrow="1" maxWidth="fit-content">
+                            <HStack
+                                justify="end"
+                                gap="space-8"
+                                align="center"
+                                flexGrow="1"
+                                maxWidth="fit-content"
+                                className="flex-row-reverse"
+                            >
+                                <Button
+                                    aria-controls={openDialog ? 'svar-warning' : undefined}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        if (erValgtTraad) {
+                                            form.handleSubmit();
+                                        } else {
+                                            setOpenDialog(true);
+                                        }
+                                    }}
+                                    data-testid="svar-knapp-fortsett-dialog"
+                                    size="small"
+                                    disabled={disableDialog || isPending}
+                                    loading={isPending}
+                                >
+                                    Send til {brukerNavn} {oppgaveId ? 'og avslutt oppgave' : ''}
+                                </Button>
                                 {isNyKommunikasjonEnabled ? (
                                     <AvbrytAlert
                                         disablePopup={form.getFieldValue('melding').length === 0}
@@ -256,23 +280,6 @@ export const FortsettDialog = ({ traad }: Props) => {
                                         Avbryt
                                     </Button>
                                 )}
-                                <Button
-                                    aria-controls={openDialog ? 'svar-warning' : undefined}
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        if (erValgtTraad) {
-                                            form.handleSubmit();
-                                        } else {
-                                            setOpenDialog(true);
-                                        }
-                                    }}
-                                    data-testid="svar-knapp-fortsett-dialog"
-                                    size="small"
-                                    disabled={disableDialog || isPending}
-                                    loading={isPending}
-                                >
-                                    Send til {brukerNavn} {oppgaveId ? 'og avslutt oppgave' : ''}
-                                </Button>
                             </HStack>
                         </HStack>
                     </Bleed>
