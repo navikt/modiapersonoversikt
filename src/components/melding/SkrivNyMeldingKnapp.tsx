@@ -15,6 +15,7 @@ export const SkrivNyMeldingKnapp = () => {
     const handleStartNyMelding = () => {
         setSvarUnderArbeid(undefined);
         setNyMeldingUnderArbeid(true);
+        trackGenereltUmamiEvent(trackingEvents.startNyMelding);
     };
 
     return (
@@ -33,7 +34,6 @@ export const SkrivNyMeldingKnapp = () => {
                         return;
                     }
                     handleStartNyMelding();
-                    trackGenereltUmamiEvent(trackingEvents.startNyMelding);
                 }}
             >
                 Skriv ny melding
