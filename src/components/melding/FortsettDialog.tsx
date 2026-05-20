@@ -6,8 +6,6 @@ import { useCallback, useMemo, useRef, useState } from 'react';
 import DraftStatus from 'src/app/personside/dialogpanel/DraftStatus';
 import type { Draft, DraftContext } from 'src/app/personside/dialogpanel/use-draft';
 import useDraft from 'src/app/personside/dialogpanel/use-draft';
-import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
-import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 import { Link } from 'src/components/Link';
 import { getFormattertMeldingsDato, nyesteMelding, traadstittel } from 'src/components/Meldinger/List/utils';
 import { AvbrytAlert } from 'src/components/melding/BetaKommunikasjon/AvbrytAlert';
@@ -51,7 +49,6 @@ export const FortsettDialog = ({ traad }: Props) => {
     const setOverskridKontaktReservasjon = useSetAtom(overskridKontaktReservasjonAtom);
     const { mutate, isPending } = useSendMelding();
     const search = useSearch({ from: '/new/person/meldinger', shouldThrow: false });
-    const { isOn: isNyKommunikasjonEnabled } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
     const minRows = useDynamicHeightTextArea();
     const erValgtTraad = !search?.traadId || search?.traadId === traad.traadId;
     const [openDialog, setOpenDialog] = useState(false);
@@ -259,29 +256,14 @@ export const FortsettDialog = ({ traad }: Props) => {
                                 >
                                     Send til {brukerNavn} {oppgaveId ? 'og avslutt oppgave' : ''}
                                 </Button>
-                                {isNyKommunikasjonEnabled ? (
-                                    <AvbrytAlert
-                                        disablePopup={form.getFieldValue('melding').length === 0}
-                                        handleAvbryt={() => {
-                                            removeDraft();
-                                            setDialogUnderArbeid(undefined);
-                                            trackGenereltUmamiEvent(trackingEvents.avbrytMelding);
-                                        }}
-                                    />
-                                ) : (
-                                    <Button
-                                        size="small"
-                                        variant="secondary"
-                                        data-color="danger"
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            setDialogUnderArbeid(undefined);
-                                            trackGenereltUmamiEvent(trackingEvents.avbrytMelding);
-                                        }}
-                                    >
-                                        Avbryt
-                                    </Button>
-                                )}
+                                <AvbrytAlert
+                                    disablePopup={form.getFieldValue('melding').length === 0}
+                                    handleAvbryt={() => {
+                                        removeDraft();
+                                        setDialogUnderArbeid(undefined);
+                                        trackGenereltUmamiEvent(trackingEvents.avbrytMelding);
+                                    }}
+                                />
                             </HStack>
                         </HStack>
                     </Bleed>

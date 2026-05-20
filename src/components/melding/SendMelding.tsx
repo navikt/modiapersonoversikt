@@ -1,7 +1,6 @@
 import { Alert, Button, Heading, HStack, InlineMessage, Skeleton, VStack } from '@navikt/ds-react';
 import { useAtom, useAtomValue } from 'jotai';
 import { type ReactElement, useEffect, useMemo, useState } from 'react';
-import { useSetDialogUnderArbeidOnMount } from 'src/components/Meldinger/Detail/useSetDialogUnderArbeidOnMount';
 import { traadTypeTekst } from 'src/components/Meldinger/List/tekster';
 import { nyesteMelding, useTraader } from 'src/components/Meldinger/List/utils';
 import {
@@ -115,8 +114,6 @@ const SendMeldingContent = ({
         if (feedbackMelding) return;
         setMeldingsTittel(meldingsHeader(traad));
     }, [traad, feedbackMelding]);
-
-    useSetDialogUnderArbeidOnMount();
 
     const feilMeldingComp = feilMelding ? <Alert variant="error">{feilMelding}</Alert> : null;
     const suksessMeldingComp = suksessMelding ? <Alert variant="success">{suksessMelding}</Alert> : null;

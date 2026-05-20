@@ -82,7 +82,6 @@ export const useSendMelding = () => {
     const enhet = useAtomValue(aktivEnhetAtom) as string;
     const setSuksessMelding = useSetAtom(dialogSuksessMeldingAtom);
     const setFeilMelding = useSetAtom(dialogFeilMeldingAtom);
-    const { isOn: isNyKommunikasjonEnabled } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
 
     return $api.useMutation('post', '/rest/dialog/sendmelding', {
         onSuccess: () => {
@@ -97,18 +96,10 @@ export const useSendMelding = () => {
                     body: { fnr }
                 }).queryKey
             });
-            if (isNyKommunikasjonEnabled) {
-                setSuksessMelding('Melding sendt');
-            } else {
-                toast.success('Melding sendt');
-            }
+            setSuksessMelding('Melding sendt');
         },
         onError: () => {
-            if (isNyKommunikasjonEnabled) {
-                setFeilMelding('Kunne ikke sende melding');
-            } else {
-                toast.error('Kunne ikke sende melding');
-            }
+            setFeilMelding('Kunne ikke sende melding');
         },
         throwOnError: false
     });
@@ -478,6 +469,7 @@ export const useDagpenger = (fom: string, tom: string) => {
 
 export const useSykepengerSpokelse = (fom: string, tom: string) => {
     const { isOn } = useFeatureToggle(FeatureToggles.SpokelseSykepenger);
+
     const fnr = usePersonAtomValue();
     return $api.useQuery(
         'post',

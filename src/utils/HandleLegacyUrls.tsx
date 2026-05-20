@@ -1,22 +1,17 @@
 import { Loader } from '@navikt/ds-react';
 import { useMatchRoute, useNavigate, useSearch } from '@tanstack/react-router';
-import { useSetAtom } from 'jotai';
 import { type PropsWithChildren, useEffect, useRef, useState } from 'react';
 import { INFOTABS } from 'src/app/personside/infotabs/InfoTabEnum';
 import { paths } from 'src/app/routes/routing';
-import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
-import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 import type { OppgaveDto } from 'src/generated/modiapersonoversikt-api';
 import { useSetUserContext } from 'src/lib/clients/contextholder';
 import { useOppgave } from 'src/lib/clients/modiapersonoversikt-api';
-import { svarUnderArbeidAtom } from 'src/lib/state/dialog';
 import { trackDyplenkeFraEksternKilde } from 'src/utils/analytics';
 import { useSettAktivBruker } from 'src/utils/customHooks';
 import { erGyldigishFnr } from 'src/utils/fnr-utils';
 
 function HandleLegacyUrls({ children }: PropsWithChildren) {
     const { oppgaveId, sokFnr, sokFnrCode, henvendelseId, behandlingsId } = useSearch({ strict: false });
-    const { isOn: nyKommunikasjonIsEnabled } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
 
     const match = useMatchRoute();
     const fnrMatch = match({ to: '/person/$fnr' });
@@ -26,7 +21,6 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
     const [delayRender, setDelayRender] = useState(!!validFnr || !!oppgaveId);
     const { data: oppgaveData, isLoading } = useOppgave(oppgaveId);
     const hasHandled = useRef(false);
-    const setDialogUnderArbeid = useSetAtom(svarUnderArbeidAtom);
     const setUserContext = useSetUserContext();
 
     useEffect(() => {
@@ -89,8 +83,6 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
     const navigerTilTraadOgApneSvar = (traadId?: string) => {
         const linkTilValgtHenvendelse = `${paths.personUri}/${INFOTABS.MELDINGER.path}` as const;
         const newQuery = { traadId: traadId };
-
-        if (!nyKommunikasjonIsEnabled) setDialogUnderArbeid(traadId);
 
         navigate({
             to: linkTilValgtHenvendelse,
