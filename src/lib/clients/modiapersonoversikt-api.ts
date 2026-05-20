@@ -7,10 +7,7 @@ import { FetchError } from 'src/api/api';
 import { apiBaseUriWithoutRest } from 'src/api/config';
 import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
 import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
-import {
-    dialogFeilMeldingAtom,
-    dialogSuksessMeldingAtom
-} from 'src/components/melding/MeldingPanel';
+import { dialogFeilMeldingAtom, dialogSuksessMeldingAtom } from 'src/components/melding/MeldingPanel';
 import { toast } from 'src/components/toasts';
 import { errorPlaceholder, responseErrorMessage } from 'src/components/ytelser/utils';
 import type { paths } from 'src/generated/modiapersonoversikt-api';
