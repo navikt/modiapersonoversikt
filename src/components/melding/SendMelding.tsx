@@ -3,10 +3,7 @@ import { useAtom, useAtomValue } from 'jotai';
 import { type ReactElement, useEffect, useMemo, useState } from 'react';
 import { traadTypeTekst } from 'src/components/Meldinger/List/tekster';
 import { nyesteMelding, useTraader } from 'src/components/Meldinger/List/utils';
-import {
-    dialogFeilMeldingAtom,
-    dialogSuksessMeldingAtom
-} from 'src/components/melding/BetaKommunikasjon/IkkeLukkbarNyMelding';
+import { dialogFeilMeldingAtom, dialogSuksessMeldingAtom } from 'src/components/melding/MeldingPanel';
 import { useMeldinger, usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { aktivBrukerAtom } from 'src/lib/state/context';
 import { overskridKontaktReservasjonAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';

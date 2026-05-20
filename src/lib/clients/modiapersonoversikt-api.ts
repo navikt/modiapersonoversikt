@@ -10,7 +10,7 @@ import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 import {
     dialogFeilMeldingAtom,
     dialogSuksessMeldingAtom
-} from 'src/components/melding/BetaKommunikasjon/IkkeLukkbarNyMelding';
+} from 'src/components/melding/MeldingPanel';
 import { toast } from 'src/components/toasts';
 import { errorPlaceholder, responseErrorMessage } from 'src/components/ytelser/utils';
 import type { paths } from 'src/generated/modiapersonoversikt-api';

@@ -8,7 +8,7 @@ import type { Draft, DraftContext } from 'src/app/personside/dialogpanel/use-dra
 import useDraft from 'src/app/personside/dialogpanel/use-draft';
 import { Link } from 'src/components/Link';
 import { getFormattertMeldingsDato, nyesteMelding, traadstittel } from 'src/components/Meldinger/List/utils';
-import { AvbrytAlert } from 'src/components/melding/BetaKommunikasjon/AvbrytAlert';
+import { AvbrytAlert } from 'src/components/melding/AvbrytAlert';
 import AutoCompleteTekstTips from 'src/components/melding/standardtekster/AutoCompleteTekstTips';
 import StandardTekstModal from 'src/components/melding/standardtekster/StandardTeksterModal';
 import { settInnStandardTekst } from 'src/components/melding/standardtekster/settInnStandardTekst';

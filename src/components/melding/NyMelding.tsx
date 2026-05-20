@@ -4,7 +4,7 @@ import { useAtomValue, useSetAtom } from 'jotai';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import DraftStatus from 'src/app/personside/dialogpanel/DraftStatus';
 import useDraft, { type Draft, type DraftContext } from 'src/app/personside/dialogpanel/use-draft';
-import { AvbrytAlert } from 'src/components/melding/BetaKommunikasjon/AvbrytAlert';
+import { AvbrytAlert } from 'src/components/melding/AvbrytAlert';
 import nyMeldingSchema, { maksLengdeMelding } from 'src/components/melding/nyMeldingSchema';
 import { Oppgaveliste } from 'src/components/melding/OppgavelisteOptions';
 import AutoCompleteTekstTips from 'src/components/melding/standardtekster/AutoCompleteTekstTips';

@@ -4,7 +4,7 @@ import { useAtomValue } from 'jotai';
 import { Suspense, useEffect, useState } from 'react';
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 import { TraadList } from 'src/components/Meldinger/List';
-import { IkkeLukkbarNyMelding } from 'src/components/melding/BetaKommunikasjon/IkkeLukkbarNyMelding';
+import { MeldingPanel } from 'src/components/melding/MeldingPanel';
 import { PersonLinje } from 'src/components/PersonLinje';
 import { PersonSidebarMenu } from 'src/components/PersonSidebar';
 import BegrensetTilgangBegrunnelse from 'src/components/person/BegrensetTilgangBegrunnelse';
@@ -151,7 +151,7 @@ function PersonLayout() {
                         )}
                     </Panel>
                     <ResizeHandle />
-                    <IkkeLukkbarNyMelding />
+                    <MeldingPanel />
                 </PanelGroup>
             </HStack>
         </VStack>

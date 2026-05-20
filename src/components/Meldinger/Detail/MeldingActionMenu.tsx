@@ -29,7 +29,7 @@ import {
 import MeldingerPrint from 'src/components/Meldinger/MeldingerPrint';
 import { AvsluttDialogModal, MarkerFeilsendtModal, SladdTraadModal } from 'src/components/Meldinger/Merk';
 import { OppgaveModal } from 'src/components/Meldinger/Oppgave';
-import { SvarPaaTraadKnapp } from 'src/components/melding/BetaKommunikasjon/SvarPaaTraadKnapp';
+import { SvarPaaTraadKnapp } from 'src/components/melding/SvarPaaTraadKnapp';
 import usePrinter from 'src/components/Print/usePrinter';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
 import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';

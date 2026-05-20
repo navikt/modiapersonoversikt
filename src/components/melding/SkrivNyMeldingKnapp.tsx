@@ -5,7 +5,7 @@ import { useRef, useState } from 'react';
 import { draftAtom, nyMeldingUnderArbeidAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 
-export const MeldingPanelKnapper = () => {
+export const SkrivNyMeldingKnapp = () => {
     const openButtonRef = useRef<HTMLButtonElement | null>(null);
     const [svarUnderArbeid, setSvarUnderArbeid] = useAtom(svarUnderArbeidAtom);
     const [nyMeldingUnderArbeid, setNyMeldingUnderArbeid] = useAtom(nyMeldingUnderArbeidAtom);
