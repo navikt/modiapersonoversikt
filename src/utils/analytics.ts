@@ -60,12 +60,19 @@ export const trackBesokUmami = () => {
         console.warn('Umami is not initialized. Ignoring');
         return;
     }
-    const referrerUrl = new URL(document.referrer);
-    referrerUrl.search = '';
+    const referrer = (() => {
+        try {
+            const url = new URL(document.referrer);
+            url.search = '';
+            return url.toString();
+        } catch {
+            return '';
+        }
+    })();
 
     window.umami.track((payload: unknown) => ({
         ...(payload as Record<string, unknown>),
-        referrer: referrerUrl.toString()
+        referrer
     }));
 };
 
