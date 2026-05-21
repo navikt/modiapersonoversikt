@@ -33,7 +33,6 @@
             "wss://modiacontextholder.intern.dev.nav.no",
             "wss://modiapersonoversikt-draft.intern.dev.nav.no",
             "https://telemetry.ekstern.dev.nav.no",
-            "https://ingest.staging.skyra.no",
             "https://survey.skyra.no/skyra-survey.js"
         ],
         "object-src": [" blob:"],
