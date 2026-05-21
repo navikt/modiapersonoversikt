@@ -1,0 +1,2 @@
+import{a2 as r,a3 as o,a0 as n,a4 as a}from"./main-DuslvtAY.js";const c=r("/new/")({component:s});function s(){const t=o.c(1);let e;return t[0]===Symbol.for("react.memo_cache_sentinel")?(e=n.jsx("div",{className:"flex-1",children:n.jsx(a,{variant:"info",children:"Ingen aktiv bruker. Bruk menyen over for å søke etter person."})}),t[0]=e):e=t[0],e}export{c as Route};
+//# sourceMappingURL=index.lazy-C1WAoDF7.js.map
