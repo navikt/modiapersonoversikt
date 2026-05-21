@@ -2,24 +2,20 @@ import { NotePencilIcon } from '@navikt/aksel-icons';
 import { BodyLong, Button, Dialog, HStack } from '@navikt/ds-react';
 import { useAtom, useAtomValue } from 'jotai';
 import { useRef, useState } from 'react';
-import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
-import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 import { draftAtom, nyMeldingUnderArbeidAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 
-export const MeldingPanelKnapper = () => {
-    const { isOn: isNyKommunikasjonEnabled } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
+export const SkrivNyMeldingKnapp = () => {
     const openButtonRef = useRef<HTMLButtonElement | null>(null);
     const [svarUnderArbeid, setSvarUnderArbeid] = useAtom(svarUnderArbeidAtom);
     const [nyMeldingUnderArbeid, setNyMeldingUnderArbeid] = useAtom(nyMeldingUnderArbeidAtom);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const draft = useAtomValue(draftAtom);
 
-    if (!isNyKommunikasjonEnabled) return null;
-
     const handleStartNyMelding = () => {
         setSvarUnderArbeid(undefined);
         setNyMeldingUnderArbeid(true);
+        trackGenereltUmamiEvent(trackingEvents.startNyMelding);
     };
 
     return (
@@ -38,7 +34,6 @@ export const MeldingPanelKnapper = () => {
                         return;
                     }
                     handleStartNyMelding();
-                    trackGenereltUmamiEvent(trackingEvents.startNyMelding);
                 }}
             >
                 Skriv ny melding

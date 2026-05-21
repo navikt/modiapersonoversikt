@@ -1,13 +1,9 @@
 import { Alert, Button, Heading, HStack, InlineMessage, Skeleton, VStack } from '@navikt/ds-react';
 import { useAtom, useAtomValue } from 'jotai';
 import { type ReactElement, useEffect, useMemo, useState } from 'react';
-import { useSetDialogUnderArbeidOnMount } from 'src/components/Meldinger/Detail/useSetDialogUnderArbeidOnMount';
 import { traadTypeTekst } from 'src/components/Meldinger/List/tekster';
 import { nyesteMelding, useTraader } from 'src/components/Meldinger/List/utils';
-import {
-    dialogFeilMeldingAtom,
-    dialogSuksessMeldingAtom
-} from 'src/components/melding/BetaKommunikasjon/IkkeLukkbarNyMelding';
+import { dialogFeilMeldingAtom, dialogSuksessMeldingAtom } from 'src/components/melding/MeldingPanel';
 import { useMeldinger, usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { aktivBrukerAtom } from 'src/lib/state/context';
 import { overskridKontaktReservasjonAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
@@ -89,13 +85,6 @@ const SendMeldingContent = ({
     const [dialogUnderArbeid, setDialogUnderArbeid] = useAtom(svarUnderArbeidAtom);
     const traad = useMemo(() => traader.find((m) => m.traadId === dialogUnderArbeid), [traader, dialogUnderArbeid]);
     const [meldingsTittel, setMeldingsTittel] = useState(meldingsHeader(traad));
-
-    useEffect(() => {
-        if (dialogUnderArbeid !== undefined && traad === undefined) {
-            setDialogUnderArbeid(undefined);
-        }
-    }, [dialogUnderArbeid, traad]);
-
     const [suksessMelding, setSuksessMelding] = useAtom(dialogSuksessMeldingAtom);
     const [feilMelding, setFeilMelding] = useAtom(dialogFeilMeldingAtom);
 
@@ -115,8 +104,6 @@ const SendMeldingContent = ({
         if (feedbackMelding) return;
         setMeldingsTittel(meldingsHeader(traad));
     }, [traad, feedbackMelding]);
-
-    useSetDialogUnderArbeidOnMount();
 
     const feilMeldingComp = feilMelding ? <Alert variant="error">{feilMelding}</Alert> : null;
     const suksessMeldingComp = suksessMelding ? <Alert variant="success">{suksessMelding}</Alert> : null;

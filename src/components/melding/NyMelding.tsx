@@ -4,9 +4,7 @@ import { useAtomValue, useSetAtom } from 'jotai';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import DraftStatus from 'src/app/personside/dialogpanel/DraftStatus';
 import useDraft, { type Draft, type DraftContext } from 'src/app/personside/dialogpanel/use-draft';
-import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
-import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
-import { AvbrytAlert } from 'src/components/melding/BetaKommunikasjon/AvbrytAlert';
+import { AvbrytAlert } from 'src/components/melding/AvbrytAlert';
 import nyMeldingSchema, { maksLengdeMelding } from 'src/components/melding/nyMeldingSchema';
 import { Oppgaveliste } from 'src/components/melding/OppgavelisteOptions';
 import AutoCompleteTekstTips from 'src/components/melding/standardtekster/AutoCompleteTekstTips';
@@ -38,7 +36,6 @@ function NyMelding() {
     const brukerNavn = useSuspendingBrukernavn();
     const disableDialog = useDisableDialog();
     const setOverskridKontaktReservasjon = useSetAtom(overskridKontaktReservasjonAtom);
-    const { isOn: isNyKommunikasjonEnabled } = useFeatureToggle(FeatureToggles.NyKommunikasjon);
     const setNyMeldingUnderArbeid = useSetAtom(nyMeldingUnderArbeidAtom);
     const minRows = useDynamicHeightTextArea();
 
@@ -227,16 +224,14 @@ function NyMelding() {
                                 >
                                     Send til {brukerNavn}
                                 </Button>
-                                {isNyKommunikasjonEnabled && (
-                                    <AvbrytAlert
-                                        disablePopup={form.getFieldValue('melding').length === 0}
-                                        handleAvbryt={() => {
-                                            removeDraft();
-                                            setNyMeldingUnderArbeid(false);
-                                            trackGenereltUmamiEvent(trackingEvents.avbrytMelding);
-                                        }}
-                                    />
-                                )}
+                                <AvbrytAlert
+                                    disablePopup={form.getFieldValue('melding').length === 0}
+                                    handleAvbryt={() => {
+                                        removeDraft();
+                                        setNyMeldingUnderArbeid(false);
+                                        trackGenereltUmamiEvent(trackingEvents.avbrytMelding);
+                                    }}
+                                />
                             </HStack>
                         </HStack>
                     </Bleed>

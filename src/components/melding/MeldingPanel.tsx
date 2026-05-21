@@ -4,14 +4,14 @@ import { useRef } from 'react';
 import { type ImperativePanelHandle, Panel } from 'react-resizable-panels';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { meldingPanelIsOpenAtom } from 'src/lib/state/dialog';
-import { SendMelding } from '../SendMelding';
+import { SendMelding } from './SendMelding';
 
 export const dialogSuksessMeldingAtom = atom<string | null>(null);
 export const dialogFeilMeldingAtom = atom<string | null>(null);
 
 const PANEL_SIZE = 30;
 
-export function IkkeLukkbarNyMelding() {
+export function MeldingPanel() {
     const panelRef = useRef<ImperativePanelHandle>(null);
     const suksessMelding = useAtomValue(dialogSuksessMeldingAtom);
     const feilMelding = useAtomValue(dialogFeilMeldingAtom);

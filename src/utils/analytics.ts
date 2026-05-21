@@ -24,8 +24,6 @@ export enum trackingEvents {
     // Denne er også i bruk i internflatedekoratøren
     // Siden vi ikke tracker automatisk så må vi legge på event på lenker i dekoratøren
     lenkeKlikket = 'lenke klikket',
-    dialogApnet = 'dialog åpnet',
-    dialogLukket = 'dialog lukket',
     brukerEndret = 'bruker endret',
     enhetEndret = 'enhet endret',
     toggleNyModia = 'toggle ny modia',
@@ -206,20 +204,4 @@ export const identifyEnhetOgTypeUmami = (enhet: string, type: string) => {
         return;
     }
     window.umami.identify({ enhet: enhet.toLowerCase(), type: type.toLowerCase() });
-};
-
-export const trackOpenDialog = () => {
-    if (!window.umami) {
-        console.warn('Umami is not initialized. Ignoring');
-        return;
-    }
-    window.umami.track(trackingEvents.dialogApnet);
-};
-
-export const trackCloseDialog = () => {
-    if (!window.umami) {
-        console.warn('Umami is not initialized. Ignoring');
-        return;
-    }
-    window.umami.track(trackingEvents.dialogLukket);
 };

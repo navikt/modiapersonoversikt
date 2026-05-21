@@ -51,6 +51,7 @@ test('Send melding i tråd', async ({ page }) => {
 test('Send ny melding', async ({ page }) => {
     await page.goto('/new/person/meldinger');
 
+    await page.getByRole('button', { name: 'Skriv ny melding' }).click();
     await page.getByRole('button', { name: 'Overskrid' }).click();
     await page.getByRole('textbox').fill('playwright new melding');
     await page.getByLabel('Temagruppe').selectOption('Pensjon');
@@ -105,6 +106,8 @@ test('Journalfore dialog', async ({ page }) => {
 });
 test('Autocomplete textarea', async ({ page }) => {
     await page.goto('/new/person');
+    await page.getByRole('button', { name: 'Skriv ny melding' }).click();
+
     await page.getByRole('button', { name: 'Overskrid' }).click();
 
     const textarea = page.getByRole('textbox');
