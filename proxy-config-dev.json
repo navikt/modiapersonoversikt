@@ -33,7 +33,7 @@
             "wss://modiacontextholder.intern.dev.nav.no",
             "wss://modiapersonoversikt-draft.intern.dev.nav.no",
             "https://telemetry.ekstern.dev.nav.no",
-            "https://ingest.skyra.no/survey/arbeids-og-velferdsetaten-nav",
+            "https://ingest.skyra.no",
             "https://survey.skyra.no/skyra-survey.js"
         ],
         "object-src": [" blob:"],

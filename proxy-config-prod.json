@@ -34,7 +34,7 @@
             "wss://veilederflatehendelser.adeo.no",
             "wss://modiapersonoversikt-draft.intern.nav.no",
             "https://telemetry.nav.no",
-            "https://ingest.skyra.no/survey/arbeids-og-velferdsetaten-nav",
+            "https://ingest.skyra.no",
             "https://survey.skyra.no/skyra-survey.js"
         ],
         "object-src": [" blob:"],
