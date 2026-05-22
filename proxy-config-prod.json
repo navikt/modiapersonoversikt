@@ -22,7 +22,7 @@
         }
     },
     "contentSecurityPolicy": {
-        "scriptSrc": ["'self'", "'unsafe-inline'", "https://cdn.nav.no"],
+        "scriptSrc": ["'self'", "'unsafe-inline'", "https://cdn.nav.no", "https://survey.skyra.no/skyra-survey.js"],
         "style-src": ["'self'", "'unsafe-inline'", "https://cdn.nav.no"],
         "img-src": ["'self'", "data:"],
         "font-src": ["'self'", "data:", "https://cdn.nav.no"],
@@ -33,7 +33,9 @@
             "wss://modiacontextholder.intern.nav.no",
             "wss://veilederflatehendelser.adeo.no",
             "wss://modiapersonoversikt-draft.intern.nav.no",
-            "https://telemetry.nav.no"
+            "https://telemetry.nav.no",
+            "https://ingest.staging.skyra.no",
+            "https://survey.skyra.no/skyra-survey.js"
         ],
         "object-src": [" blob:"],
         "frame-src": ["blob:"]
