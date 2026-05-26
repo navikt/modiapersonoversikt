@@ -1,7 +1,7 @@
 import { HeartFillIcon } from '@navikt/aksel-icons';
-import { Alert, BodyShort, CopyButton, Detail } from '@navikt/ds-react';
+import { Alert, BodyShort, Detail } from '@navikt/ds-react';
+import { KopierFnrKnapp } from 'src/components/PersonLinje/common/KopierFnrKnapp';
 import { type PersonData, SivilstandType } from 'src/lib/types/modiapersonoversikt-api';
-import { erGyldigishFnr } from 'src/utils/fnr-utils';
 import { formaterDato } from 'src/utils/string-utils';
 import Diskresjonskode from '../../common/DiskresjonsKode';
 import { erPartner, hentAlderEllerDod, hentNavn } from '../../utils';
@@ -47,7 +47,6 @@ function Partner(props: { partner: Sivilstand; harFeilendeSystem: boolean }) {
     }
     const navn = partnerRelasjon.navn.firstOrNull();
     const fnr = partnerRelasjon.fnr;
-    const fnrOppdelt = `${fnr.slice(0, 6)} ${fnr.slice(6)}`;
     const alderEllerDod = hentAlderEllerDod(partnerRelasjon);
     return (
         <>
@@ -58,20 +57,7 @@ function Partner(props: { partner: Sivilstand; harFeilendeSystem: boolean }) {
             <BodyShort size="small">
                 {navn && hentNavn(navn)} {alderEllerDod && `(${alderEllerDod})`}
             </BodyShort>
-            <Detail>
-                {fnr && erGyldigishFnr(fnr) ? (
-                    <CopyButton
-                        aria-label={`Kopier f.nr: ${fnrOppdelt}`}
-                        size="xsmall"
-                        className="p-0"
-                        copyText={fnr}
-                        activeText="Kopiert f.nr"
-                        text={`F.nr: ${fnrOppdelt}`}
-                    />
-                ) : (
-                    'Ukjent'
-                )}
-            </Detail>
+            <KopierFnrKnapp fnr={fnr} />
             <Detail textColor="subtle">
                 {partnerRelasjon.harSammeAdresse ? <>Bor med bruker</> : <>Bor ikke med bruker</>}
             </Detail>

@@ -3,6 +3,7 @@ import { BodyShort, Box, CopyButton, Heading, HStack, Skeleton } from '@navikt/d
 import { AlertBanner } from 'src/components/AlertBanner';
 import { erUbesvartHenvendelseFraBruker, useTraader } from 'src/components/Meldinger/List/utils';
 import { SkrivNyMeldingKnapp } from 'src/components/melding/SkrivNyMeldingKnapp';
+import { KopierFnrKnapp } from 'src/components/PersonLinje/common/KopierFnrKnapp';
 import Statsborgerskap from 'src/components/PersonLinje/Details/Familie/Statsborgerskap';
 import config from 'src/config';
 import { usePersonData, usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
@@ -94,14 +95,7 @@ const PersonlinjeHeader = () => {
                         farge={farge}
                     />
                     <HStack marginInline={{ xs: 'space-0', lg: 'space-28' }} gap="space-12">
-                        <CopyButton
-                            aria-label={`Kopier f.nr: ${`${person.personIdent.slice(0, 6)} ${person.personIdent.slice(6)}`}`}
-                            size="xsmall"
-                            className="p-0 text-ax-text-neutral-subtle"
-                            copyText={data.person.personIdent}
-                            activeText="Kopiert f.nr"
-                            text={`F.nr: ${`${person.personIdent.slice(0, 6)} ${person.personIdent.slice(6)}`}`}
-                        />
+                        <KopierFnrKnapp fnr={person.personIdent} />
                         {data.person.kontaktInformasjon.mobil?.value && (
                             <CopyButton
                                 className="p-0 text-ax-text-neutral-subtle"
