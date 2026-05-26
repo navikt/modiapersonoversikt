@@ -5,8 +5,9 @@ import {
     FigureOutwardFillIcon,
     PersonCrossFillIcon
 } from '@navikt/aksel-icons';
-import { Alert, BodyShort, Detail } from '@navikt/ds-react';
+import { Alert, BodyShort, CopyButton, Detail } from '@navikt/ds-react';
 import type { PersonData } from 'src/lib/types/modiapersonoversikt-api';
+import { erGyldigishFnr } from 'src/utils/fnr-utils';
 import BostedForRelasjon from '../../common/BostedForRelasjon';
 import Diskresjonskode from '../../common/DiskresjonsKode';
 import { harDiskresjonskode, hentAlderEllerDod, hentNavn } from '../../utils';
@@ -34,13 +35,28 @@ export function ForelderBarnRelasjonVisning({
     }
     const alder = hentAlderEllerDod(relasjon) ? `(${hentAlderEllerDod(relasjon)})` : null;
     const navn = relasjon.navn.firstOrNull();
+    const fnr = relasjon.ident;
+    const fnrOppdelt = fnr ? `${fnr.slice(0, 6)} ${fnr.slice(6)}` : null;
     return (
         <InfoElement title={beskrivelse} icon={<FamilierelasjonIkon relasjon={relasjon} erBarn={erBarn} />}>
             <Diskresjonskode adressebeskyttelse={relasjon.adressebeskyttelse} />
             <BodyShort size="small">
                 {navn && hentNavn(navn)} {alder}
             </BodyShort>
-            <Detail>{relasjon.ident ? relasjon.ident : 'Ukjent'}</Detail>
+            <Detail>
+                {fnr && erGyldigishFnr(fnr) ? (
+                    <CopyButton
+                        aria-label={`Kopier f.nr: ${fnrOppdelt}`}
+                        size="xsmall"
+                        className="p-0"
+                        copyText={fnr}
+                        activeText="Kopiert f.nr"
+                        text={`F.nr: ${fnrOppdelt}`}
+                    />
+                ) : (
+                    'Ukjent'
+                )}
+            </Detail>
             <Detail textColor="subtle">
                 <BostedForRelasjon relasjon={relasjon} />
             </Detail>
