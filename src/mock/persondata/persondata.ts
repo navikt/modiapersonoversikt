@@ -298,9 +298,9 @@ function lagPerson(fnr: string): Person {
                               fnr: '10108000398',
                               navn: [
                                   {
-                                      fornavn: '',
+                                      fornavn: 'Test',
                                       mellomnavn: null,
-                                      etternavn: ''
+                                      etternavn: 'Testesen'
                                   }
                               ],
                               fodselsdato: '10.10.1980' as LocalDate
