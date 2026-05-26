@@ -1,5 +1,6 @@
 import { ExclamationmarkTriangleFillIcon } from '@navikt/aksel-icons';
 import { Alert, BodyShort, Box, Detail, HelpText, HStack } from '@navikt/ds-react';
+import { KopierFnrKnapp } from 'src/components/PersonLinje/common/KopierFnrKnapp';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { type PersonData, PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
 import ValidPeriod from '../common/ValidPeriod';
@@ -22,7 +23,7 @@ function Verge(props: { feilendeSystemer: PersonDataFeilendeSystemer[]; verge: V
         <InfoElement title="Verge">
             <Box className="mb-2">
                 {harFeilendeSystemOgIngenNavn}
-                <Detail>{verge.ident}</Detail>
+                <KopierFnrKnapp fnr={verge.ident} />
             </Box>
             {verge.tjenesteOppgaver && verge.tjenesteOppgaver?.length > 0 ? (
                 <>
