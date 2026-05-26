@@ -12,6 +12,7 @@ import DemoBanner from 'src/components/DemoBanner';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import NotFound from 'src/components/NotFound';
 import { useNavigateToNewOrOldModia } from 'src/components/NyModia';
+import { SkyraHandler } from 'src/components/SkyraHandler';
 import { ValgtEnhetProvider } from 'src/context/valgtenhet-state';
 import { aktivBrukerLastetAtom, aktivEnhetAtom } from 'src/lib/state/context';
 import { ThemeProvider, themeAtom } from 'src/lib/state/theme';
@@ -137,6 +138,7 @@ function RootLayout() {
         <QueryClientProvider client={queryClient}>
             <Theme hasBackground={isNewModia} theme={isNewModia ? theme : 'light'}>
                 <ThemeProvider />
+                <SkyraHandler />
                 <ValgtEnhetProvider>
                     {isLanding || isPersonvern ? (
                         <Outlet />
