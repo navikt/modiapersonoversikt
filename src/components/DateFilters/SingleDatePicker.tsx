@@ -10,7 +10,7 @@ export const SingleDatePicker = ({
     maxDate,
     minDate
 }: {
-    date: Date;
+    date: Date | undefined;
     label: string;
     onDateChange: (val?: Date) => void;
     onValidate: (val: DateValidationT) => void;
@@ -26,8 +26,13 @@ export const SingleDatePicker = ({
     });
 
     useEffect(() => {
-        const validDate = dayjs(datepickerProps.selected as Date).isValid();
-        if (datepickerProps.selected?.toString() !== date.toString() && validDate) {
+        if (date === undefined) {
+            inputProps?.onChange?.({
+                target: { value: '' }
+            } as React.ChangeEvent<HTMLInputElement>);
+            return;
+        }
+        if (datepickerProps.selected?.toString() !== date.toString()) {
             inputProps?.onChange?.({
                 target: { value: dayjs(date).format('DD.MM.YYYY') }
             } as React.ChangeEvent<HTMLInputElement>);

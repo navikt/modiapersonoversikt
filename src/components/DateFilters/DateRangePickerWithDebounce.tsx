@@ -11,12 +11,14 @@ export const DateRangePickerWithDebounce = ({
     dateRange,
     onRangeChange,
     onPeriodChange,
-    period = PeriodType.CUSTOM
+    period = PeriodType.CUSTOM,
+    allowUnset
 }: {
-    dateRange: DateRange;
+    dateRange: DateRange | null;
     onRangeChange: (val?: DateRange) => void;
     onPeriodChange: (val: PeriodType) => void;
     period: PeriodType;
+    allowUnset?: boolean;
 }) => {
     const [error, setError] = useState<string | undefined>();
 
@@ -28,37 +30,40 @@ export const DateRangePickerWithDebounce = ({
     }, 500);
 
     const debouncedValidate = debounce((validation) => {
+        if (validation.isEmpty && allowUnset) return;
         if (!validation.isValidDate) setError('Feil datoformat: dd.mm.yyyy');
         if (validation.isBefore || validation.isBefore) setError('Fra dato kan ikke være senere enn til dato');
     }, 500);
 
     const periodChange = (value: string) => {
         if (value === '') {
-            onPeriodChange(PeriodType.CUSTOM);
-        } else {
-            const period = value as PeriodType;
-            onPeriodChange(period);
-            onRangeChange(getPeriodFromOption(period));
+            onPeriodChange(PeriodType.UNSET);
+            return;
         }
+        const period = value as PeriodType;
+        onPeriodChange(period);
+        onRangeChange(getPeriodFromOption(period) ?? undefined);
     };
 
     return (
         <VStack>
             <HStack gap="space-8" wrap={false}>
-                <SelectPeriod onPeriodChange={periodChange} selectedPeriod={period} />
+                <SelectPeriod allowUnset={allowUnset} onPeriodChange={periodChange} selectedPeriod={period} />
                 <SingleDatePicker
-                    date={dateRange.from.toDate()}
+                    date={dateRange?.from?.toDate()}
                     label="Fra"
-                    onDateChange={(date) => debounceSetDate({ from: dayjs(date), to: dateRange.to })}
+                    onDateChange={(date) =>
+                        debounceSetDate({ from: date ? dayjs(date) : undefined, to: dateRange?.to })
+                    }
                     onValidate={debouncedValidate}
-                    maxDate={dateRange.to.toDate()}
+                    maxDate={dateRange?.to?.toDate()}
                 />
                 <SingleDatePicker
-                    date={dateRange.to.toDate()}
+                    date={dateRange?.to?.toDate()}
                     label="Til"
-                    onDateChange={(date) => debounceSetDate({ from: dateRange.from, to: dayjs(date) })}
+                    onDateChange={(date) => date && debounceSetDate({ from: dateRange?.from, to: dayjs(date) })}
                     onValidate={debouncedValidate}
-                    minDate={dateRange.from.toDate()}
+                    minDate={dateRange?.from?.toDate()}
                 />
             </HStack>
             {error && (
