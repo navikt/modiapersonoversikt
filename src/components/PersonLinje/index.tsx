@@ -95,12 +95,12 @@ const PersonlinjeHeader = () => {
                     />
                     <HStack marginInline={{ xs: 'space-0', lg: 'space-28' }} gap="space-12">
                         <CopyButton
-                            aria-label={`Kopier f.nr: ${`${person.personIdent.slice(0, 6)} ${person.personIdent.slice(6)}`}`}
+                            aria-label={`Kopier f.nr.: ${`${person.personIdent.slice(0, 6)} ${person.personIdent.slice(6)}`}`}
                             size="xsmall"
                             className="p-0 text-ax-text-neutral-subtle"
                             copyText={data.person.personIdent}
-                            activeText="Kopiert f.nr"
-                            text={`F.nr: ${`${person.personIdent.slice(0, 6)} ${person.personIdent.slice(6)}`}`}
+                            activeText="Kopiert f.nr."
+                            text={`F.nr.: ${`${person.personIdent.slice(0, 6)} ${person.personIdent.slice(6)}`}`}
                         />
                         {data.person.kontaktInformasjon.mobil?.value && (
                             <CopyButton

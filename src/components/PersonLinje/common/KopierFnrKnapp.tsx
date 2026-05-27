@@ -6,12 +6,12 @@ export const KopierFnrKnapp = ({ fnr }: { fnr?: string }) => {
 
     return fnr && erGyldigishFnr(fnr) ? (
         <CopyButton
-            aria-label={`Kopier f.nr: ${fnrOppdelt}`}
+            aria-label={`Kopier f.nr.: ${fnrOppdelt}`}
             size="xsmall"
             className="p-0"
             copyText={fnr}
-            activeText="Kopiert f.nr"
-            text={`F.nr: ${fnrOppdelt}`}
+            activeText="Kopiert f.nr."
+            text={`F.nr.: ${fnrOppdelt}`}
         />
     ) : (
         <Detail className="p-0">Ukjent</Detail>
