@@ -24,7 +24,7 @@ export const getPeriodFromOption = (periodeValg: PeriodType): DateRange => {
                 from: dayjs().subtract(1, 'year').startOf('year'),
                 to: dayjs().subtract(1, 'year').endOf('year')
             };
-        case PeriodType.CUSTOM:
+        default:
             return {
                 from: dayjs().subtract(2, 'year').startOf('day'),
                 to: dayjs().startOf('day')
@@ -34,6 +34,9 @@ export const getPeriodFromOption = (periodeValg: PeriodType): DateRange => {
 
 export const getOptionFromPeriod = (range: DateRange): PeriodType => {
     const { from, to } = range;
+    if (!(from || to)) return PeriodType.UNSET;
+    if (!from || !to) return PeriodType.CUSTOM;
+
     const now = dayjs();
 
     const isSameDay = (d1: dayjs.Dayjs, d2: dayjs.Dayjs) => d1.isSame(d2, 'day');
@@ -46,8 +49,6 @@ export const getOptionFromPeriod = (range: DateRange): PeriodType => {
         case isSameDay(from, now.subtract(1, 'year').startOf('year')) &&
             isSameDay(to, now.subtract(1, 'year').endOf('year')):
             return PeriodType.LAST_YEAR;
-        case isSameDay(from, now.subtract(2, 'year')) && isSameDay(to, now):
-            return PeriodType.CUSTOM;
         default:
             return PeriodType.CUSTOM;
     }

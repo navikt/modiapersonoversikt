@@ -224,8 +224,8 @@ export type QueryResult<T> = UseQueryResult<T, FetchError> & {
 export const useFilterYtelser = (): QueryResult<YtelseVedtak[]> => {
     const filters = useAtomValue(ytelseFilterAtom);
     const periode = filters.dateRange;
-    const startDato = periode.from.format('YYYY-MM-DD');
-    const sluttDato = periode.to.format('YYYY-MM-DD');
+    const startDato = (periode.from ?? dayjs().subtract(2, 'year')).startOf('day').format('YYYY-MM-DD');
+    const sluttDato = (periode.to ?? dayjs()).endOf('day').format('YYYY-MM-DD');
 
     const sykepengerResponse = useSykepenger(startDato, sluttDato);
     const tiltakspengerResponse = useTiltakspenger(startDato, sluttDato);

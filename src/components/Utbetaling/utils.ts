@@ -32,8 +32,8 @@ const filterUtbetalinger = (utbetalinger: Utbetaling[], filters: UtbetalingFilte
 
 export const useFilterUtbetalinger = (): QueryResult<UtbetalingerResponseDto> => {
     const filters = useAtomValue(utbetalingFilterAtom);
-    const startDato = filters.dateRange.from.format('YYYY-MM-DD');
-    const sluttDato = filters.dateRange.to.format('YYYY-MM-DD');
+    const startDato = (filters.dateRange.from ?? dayjs().subtract(2, 'year')).startOf('day').format('YYYY-MM-DD');
+    const sluttDato = (filters.dateRange.to ?? dayjs()).endOf('day').format('YYYY-MM-DD');
     const utbetalingerResponse = useUtbetalinger(startDato, sluttDato);
 
     const utbetalinger = utbetalingerResponse?.data?.utbetalinger ?? [];

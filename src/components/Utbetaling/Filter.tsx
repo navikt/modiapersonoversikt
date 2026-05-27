@@ -107,7 +107,7 @@ const UtbetalingYtelserFilter = () => {
 const ResetFilter = () => {
     const [filter, setFilter] = useAtom(utbetalingFilterAtom);
 
-    const datoErlik = filter.dateRange.from.isSame(defaultDate.from) && filter.dateRange.to.isSame(defaultDate.to);
+    const datoErlik = filter.dateRange.from?.isSame(defaultDate.from) && filter.dateRange.to?.isSame(defaultDate.to);
     const isDirty = filter.ytelseTyper.isNotEmpty() || !datoErlik;
 
     return (

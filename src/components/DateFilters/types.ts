@@ -1,6 +1,7 @@
 import type { Dayjs } from 'dayjs';
 
 export enum PeriodType {
+    UNSET = '',
     LAST_30_DAYS = 'Siste 30 dager',
     THIS_YEAR = 'Inneværende år',
     LAST_YEAR = 'I fjor',
@@ -8,6 +9,6 @@ export enum PeriodType {
 }
 
 export interface DateRange {
-    from: Dayjs;
-    to: Dayjs;
+    from?: Dayjs;
+    to?: Dayjs;
 }
