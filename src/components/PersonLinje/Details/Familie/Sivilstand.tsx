@@ -1,5 +1,6 @@
 import { HeartFillIcon } from '@navikt/aksel-icons';
 import { Alert, BodyShort, Detail } from '@navikt/ds-react';
+import { KopierFnrKnapp } from 'src/components/PersonLinje/common/KopierFnrKnapp';
 import { type PersonData, SivilstandType } from 'src/lib/types/modiapersonoversikt-api';
 import { formaterDato } from 'src/utils/string-utils';
 import Diskresjonskode from '../../common/DiskresjonsKode';
@@ -45,6 +46,8 @@ function Partner(props: { partner: Sivilstand; harFeilendeSystem: boolean }) {
         return null;
     }
     const navn = partnerRelasjon.navn.firstOrNull();
+    const fnr = partnerRelasjon.fnr;
+    const alderEllerDod = hentAlderEllerDod(partnerRelasjon);
     return (
         <>
             <BodyShort size="small">
@@ -52,9 +55,9 @@ function Partner(props: { partner: Sivilstand; harFeilendeSystem: boolean }) {
             </BodyShort>
             <Diskresjonskode adressebeskyttelse={partnerRelasjon.adressebeskyttelse} />
             <BodyShort size="small">
-                {navn && hentNavn(navn)} ({hentAlderEllerDod(partnerRelasjon)})
+                {navn && hentNavn(navn)} {alderEllerDod && `(${alderEllerDod})`}
             </BodyShort>
-            <Detail>{partnerRelasjon.fnr}</Detail>
+            <KopierFnrKnapp fnr={fnr} />
             <Detail textColor="subtle">
                 {partnerRelasjon.harSammeAdresse ? <>Bor med bruker</> : <>Bor ikke med bruker</>}
             </Detail>

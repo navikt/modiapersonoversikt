@@ -1,5 +1,6 @@
 import { Chat2Icon, GlassesIcon, PencilIcon } from '@navikt/aksel-icons';
-import { Alert, Detail, HelpText, ReadMore, Table } from '@navikt/ds-react';
+import { Alert, BodyShort, Detail, HelpText, ReadMore, Table } from '@navikt/ds-react';
+import { KopierFnrKnapp } from 'src/components/PersonLinje/common/KopierFnrKnapp';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import {
     type OmraadeMedHandling,
@@ -89,9 +90,8 @@ function Fullmakt(props: { fullmakt: Fullmakt; harFeilendeSystem: boolean }) {
     return (
         <InfoElement title={beskrivelse}>
             {harFeilendeSystem}
-            <Detail>
-                {motpartsPersonNavn} {`(${props.fullmakt.motpartsPersonident})`}
-            </Detail>
+            <BodyShort size="small">{motpartsPersonNavn}</BodyShort>
+            <KopierFnrKnapp fnr={props.fullmakt.motpartsPersonident} />
             <KontaktinformasjonFullmakt
                 kontaktinformasjon={props.fullmakt.digitalKontaktinformasjonTredjepartsperson}
             />

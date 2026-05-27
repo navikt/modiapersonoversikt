@@ -94,27 +94,23 @@ const PersonlinjeHeader = () => {
                         farge={farge}
                     />
                     <HStack marginInline={{ xs: 'space-0', lg: 'space-28' }} gap="space-12">
-                        <HStack className="cursor-[initial]" wrap={false} onClick={(e) => e.stopPropagation()}>
-                            <CopyButton
-                                aria-label={`Kopier f.nr: ${`${person.personIdent.slice(0, 6)} ${person.personIdent.slice(6)}`}`}
-                                size="xsmall"
-                                className="p-0 text-ax-text-neutral-subtle"
-                                copyText={data.person.personIdent}
-                                activeText="Kopiert f.nr"
-                                text={`F.nr: ${`${person.personIdent.slice(0, 6)} ${person.personIdent.slice(6)}`}`}
-                            />
-                        </HStack>
+                        <CopyButton
+                            aria-label={`Kopier f.nr.: ${`${person.personIdent.slice(0, 6)} ${person.personIdent.slice(6)}`}`}
+                            size="xsmall"
+                            className="p-0 text-ax-text-neutral-subtle"
+                            copyText={data.person.personIdent}
+                            activeText="Kopiert f.nr."
+                            text={`F.nr.: ${`${person.personIdent.slice(0, 6)} ${person.personIdent.slice(6)}`}`}
+                        />
                         {data.person.kontaktInformasjon.mobil?.value && (
-                            <HStack className="cursor-[initial]" wrap={false} onClick={(e) => e.stopPropagation()}>
-                                <CopyButton
-                                    className="p-0 text-ax-text-neutral-subtle"
-                                    activeText="Kopiert tlf.nr"
-                                    aria-label={`Kopier tlf.nr: ${formaterMobiltelefonnummer(data.person.kontaktInformasjon.mobil.value ?? '')}`}
-                                    text={`Tlf: ${formaterMobiltelefonnummer(data.person.kontaktInformasjon.mobil?.value ?? '')}`}
-                                    size="xsmall"
-                                    copyText={data.person.kontaktInformasjon.mobil.value}
-                                />
-                            </HStack>
+                            <CopyButton
+                                className="p-0 text-ax-text-neutral-subtle"
+                                activeText="Kopiert tlf.nr"
+                                aria-label={`Kopier tlf.nr: ${formaterMobiltelefonnummer(data.person.kontaktInformasjon.mobil.value ?? '')}`}
+                                text={`Tlf: ${formaterMobiltelefonnummer(data.person.kontaktInformasjon.mobil?.value ?? '')}`}
+                                size="xsmall"
+                                copyText={data.person.kontaktInformasjon.mobil.value}
+                            />
                         )}
                         <Statsborgerskap />
                     </HStack>
