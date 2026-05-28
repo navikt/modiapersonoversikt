@@ -187,7 +187,10 @@ export const DokumenterFilter = () => {
     const prevFnrRef = useRef<string | undefined>(undefined);
     const dateRange: DateRange | null =
         queries.fra && queries.til
-            ? { from: dayjs(queries.fra, 'DD.MM.YYYY'), to: dayjs(queries.til, 'DD.MM.YYYY') }
+            ? {
+                  from: dayjs(queries.fra, 'DD.MM.YYYY'),
+                  to: dayjs(queries.til, 'DD.MM.YYYY')
+              }
             : null;
 
     useHydrateAtoms([

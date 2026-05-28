@@ -52,9 +52,10 @@ export const DateRangePickerWithDebounce = ({
                 <SingleDatePicker
                     date={dateRange?.from?.toDate()}
                     label="Fra"
-                    onDateChange={(date) =>
-                        debounceSetDate({ from: date ? dayjs(date).startOf('day') : undefined, to: dateRange?.to })
-                    }
+                    onDateChange={(date) => {
+                        console.log(date);
+                        debounceSetDate({ from: date ? dayjs(date) : undefined, to: dateRange?.to });
+                    }}
                     onValidate={debouncedValidate}
                     maxDate={dateRange?.to?.toDate()}
                 />
@@ -62,7 +63,7 @@ export const DateRangePickerWithDebounce = ({
                     date={dateRange?.to?.toDate()}
                     label="Til"
                     onDateChange={(date) =>
-                        date && debounceSetDate({ from: dateRange?.from, to: dayjs(date).endOf('day') })
+                        debounceSetDate({ from: dateRange?.from, to: date ? dayjs(date) : undefined })
                     }
                     onValidate={debouncedValidate}
                     minDate={dateRange?.from?.toDate()}

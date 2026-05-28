@@ -99,8 +99,8 @@ const filterDokumenter = (dokumenter: Dokumentmetadata[], filters: DokumenterFil
     if (dateRange?.from || dateRange?.to) {
         filteredList = filteredList.filter((dok) => {
             const dato = dayjs(dok.dato);
-            const afterFrom = !dateRange.from || dato.isSameOrAfter(dayjs(dateRange.from), 'day');
-            const beforeTo = !dateRange.to || dato.isSameOrBefore(dayjs(dateRange.to), 'day');
+            const afterFrom = !dateRange.from || dato.isSameOrAfter(dayjs(dateRange.from).startOf('day'), 'day');
+            const beforeTo = !dateRange.to || dato.isSameOrBefore(dayjs(dateRange.to).endOf('day'), 'day');
             return afterFrom && beforeTo;
         });
     }

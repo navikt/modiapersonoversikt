@@ -210,8 +210,8 @@ export function useFilterMeldinger() {
         if (!dateRange) return filteredByType;
         return filteredByType.filter((t) => {
             const lastMsg = dayjs(nyesteMelding(t).opprettetDato);
-            const afterFrom = !dateRange.from || lastMsg.isSameOrAfter(dayjs(dateRange.from), 'day');
-            const beforeTo = !dateRange.to || lastMsg.isSameOrBefore(dayjs(dateRange.to), 'day');
+            const afterFrom = !dateRange.from || lastMsg.isSameOrAfter(dayjs(dateRange.from).startOf('day'), 'day');
+            const beforeTo = !dateRange.to || lastMsg.isSameOrBefore(dayjs(dateRange.to).endOf('day'), 'day');
             return afterFrom && beforeTo;
         });
     }, [filteredByType, dateRange]);
