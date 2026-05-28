@@ -22,7 +22,7 @@ export const getPeriodFromOption = (periodeValg: PeriodType): DateRange => {
         case PeriodType.LAST_YEAR:
             return {
                 from: dayjs().subtract(1, 'year').startOf('year'),
-                to: dayjs().subtract(1, 'year')
+                to: dayjs().subtract(1, 'year').endOf('year')
             };
         case PeriodType.LAST_TWO_YEARS:
             return {
