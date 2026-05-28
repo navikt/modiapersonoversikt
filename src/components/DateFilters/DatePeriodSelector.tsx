@@ -108,11 +108,14 @@ function DateRangeSelector({
     return (
         <VStack gap="space-8">
             <RadioGroup legend="Periode" size="small" value={periodType ?? ''} onChange={onPeriodTypeChange}>
-                {Object.entries(PeriodType).map(([, type]) => (
-                    <Radio size="small" key={type} value={type}>
-                        {type}
-                    </Radio>
-                ))}
+                {Object.entries(PeriodType).map(
+                    ([, type]) =>
+                        type !== PeriodType.UNSET && (
+                            <Radio size="small" key={type} value={type}>
+                                {type}
+                            </Radio>
+                        )
+                )}
             </RadioGroup>
             {periodType === PeriodType.CUSTOM && period && (
                 <CustomDatePickerModal period={period} onUpdate={onFraTilDatoChange} />
