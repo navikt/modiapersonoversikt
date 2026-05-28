@@ -12,7 +12,7 @@ export const getPeriodFromOption = (periodeValg: PeriodType): DateRange => {
         case PeriodType.LAST_30_DAYS:
             return {
                 from: dayjs().subtract(30, 'day').startOf('day'),
-                to: dayjs().startOf('day')
+                to: dayjs().endOf('day')
             };
         case PeriodType.THIS_YEAR:
             return {
@@ -24,10 +24,15 @@ export const getPeriodFromOption = (periodeValg: PeriodType): DateRange => {
                 from: dayjs().subtract(1, 'year').startOf('year'),
                 to: dayjs().subtract(1, 'year').endOf('year')
             };
-        default:
+        case PeriodType.LAST_TWO_YEARS:
             return {
                 from: dayjs().subtract(2, 'year').startOf('day'),
-                to: dayjs().startOf('day')
+                to: dayjs().endOf('day')
+            };
+        default:
+            return {
+                from: dayjs().startOf('day'),
+                to: dayjs().endOf('day')
             };
     }
 };
@@ -49,6 +54,8 @@ export const getOptionFromPeriod = (range: DateRange): PeriodType => {
         case isSameDay(from, now.subtract(1, 'year').startOf('year')) &&
             isSameDay(to, now.subtract(1, 'year').endOf('year')):
             return PeriodType.LAST_YEAR;
+        case isSameDay(from, now.subtract(2, 'year')) && isSameDay(to, now):
+            return PeriodType.LAST_TWO_YEARS;
         default:
             return PeriodType.CUSTOM;
     }

@@ -48,12 +48,12 @@ export const DateRangePickerWithDebounce = ({
     return (
         <VStack>
             <HStack gap="space-8" wrap={false}>
-                <SelectPeriod allowUnset={allowUnset} onPeriodChange={periodChange} selectedPeriod={period} />
+                <SelectPeriod onPeriodChange={periodChange} selectedPeriod={period} />
                 <SingleDatePicker
                     date={dateRange?.from?.toDate()}
                     label="Fra"
                     onDateChange={(date) =>
-                        debounceSetDate({ from: date ? dayjs(date) : undefined, to: dateRange?.to })
+                        debounceSetDate({ from: date ? dayjs(date).startOf('day') : undefined, to: dateRange?.to })
                     }
                     onValidate={debouncedValidate}
                     maxDate={dateRange?.to?.toDate()}
@@ -61,7 +61,9 @@ export const DateRangePickerWithDebounce = ({
                 <SingleDatePicker
                     date={dateRange?.to?.toDate()}
                     label="Til"
-                    onDateChange={(date) => date && debounceSetDate({ from: dateRange?.from, to: dayjs(date) })}
+                    onDateChange={(date) =>
+                        date && debounceSetDate({ from: dateRange?.from, to: dayjs(date).endOf('day') })
+                    }
                     onValidate={debouncedValidate}
                     minDate={dateRange?.from?.toDate()}
                 />

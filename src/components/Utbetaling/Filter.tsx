@@ -19,11 +19,11 @@ export type UtbetalingFilter = {
     periodeType: PeriodType;
 };
 
-const defaultDate = getPeriodFromOption(PeriodType.CUSTOM);
+const defaultDate = getPeriodFromOption(PeriodType.LAST_TWO_YEARS);
 
 export const utbetalingFilterAtom = atomWithReset<UtbetalingFilter>({
     dateRange: defaultDate,
-    periodeType: PeriodType.CUSTOM,
+    periodeType: PeriodType.LAST_TWO_YEARS,
     ytelseTyper: []
 });
 

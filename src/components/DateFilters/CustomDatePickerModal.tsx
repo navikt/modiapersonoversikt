@@ -76,7 +76,7 @@ function PeriodDatePicker(props: Props) {
         const dateValue = dayjs(val);
         setFromDate(dateValue);
         setFromDateKeyboardInput(dateToString(dateValue));
-        onRangeDateChange(dateValue, toDate);
+        onRangeDateChange(dateValue.startOf('day'), toDate);
         setFromModalOpen(false);
     };
 
@@ -84,7 +84,7 @@ function PeriodDatePicker(props: Props) {
         const dateValue = dayjs(val);
         setToDate(dateValue);
         setToDateKeyboardInput(dateToString(dateValue));
-        onRangeDateChange(fromDate, dateValue);
+        onRangeDateChange(fromDate, dateValue.endOf('day'));
         setToModalOpen(false);
     };
 
