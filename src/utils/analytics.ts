@@ -54,22 +54,12 @@ export enum filterType {
 let _referrer = document.referrer;
 let _url = '';
 
-const removeSearchString = (href: string): string => {
-    try {
-        const url = new URL(href);
-        url.search = '';
-        return url.toString();
-    } catch {
-        return '';
-    }
-};
-
 export const setAnalyticsReferrer = (href: string) => {
-    _referrer = removeSearchString(href);
+    _referrer = href;
 };
 
 export const setAnalyticsUrl = (href: string) => {
-    _url = removeSearchString(href);
+    _url = href;
 };
 
 const getReferrer = (): string => _referrer;

@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import { RouterProvider } from '@tanstack/react-router';
 import { StrictMode } from 'react';
-import { setAnalyticsReferrer, setAnalyticsUrl } from 'src/utils/analytics';
+import { setAnalyticsReferrer, setAnalyticsUrl, trackBesokUmami } from 'src/utils/analytics';
 import { createRouter } from './router';
 import { initializeObservability } from './utils/observability';
 
@@ -22,6 +22,16 @@ if (import.meta.env.DEV) {
 
 initializeObservability();
 
+const removeSearchString = (href: string): string => {
+    try {
+        const url = new URL(href);
+        url.search = '';
+        return url.toString();
+    } catch {
+        return '';
+    }
+};
+
 export const router = createRouter();
 window.__router = router;
 
@@ -29,11 +39,17 @@ router.subscribe('onResolved', (event) => {
     // Setter url og referrer for analytics
     const origin = window.location.origin;
     const currentUrl = origin + event.toLocation.href;
+    const currentUrlWithoutSearch = removeSearchString(currentUrl);
 
     const referrerUrl = event.fromLocation ? origin + event.fromLocation.href : document.referrer;
+    const referrerUrlWithoutSearch = removeSearchString(referrerUrl);
 
-    setAnalyticsReferrer(referrerUrl);
-    setAnalyticsUrl(currentUrl);
+    setAnalyticsReferrer(referrerUrlWithoutSearch);
+    setAnalyticsUrl(currentUrlWithoutSearch);
+
+    // Ikke track besøk om det kun er søkestrengen som har endret seg
+    if (referrerUrlWithoutSearch === currentUrlWithoutSearch) return;
+    trackBesokUmami();
 });
 
 let preRenderPromise: Promise<unknown> = Promise.resolve();
