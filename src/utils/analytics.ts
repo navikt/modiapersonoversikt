@@ -65,7 +65,7 @@ export const setAnalyticsUrl = (href: string) => {
 const getReferrer = (): string => _referrer;
 const getUrl = (): string => _url;
 
-// Sentralisert sjekk og kall til umami.track. Skal brukes for alle egnedefinerte events. Legger automatisk på referrer på alle events.
+// Sentralisert sjekk og kall til umami.track. Skal brukes for alle egnedefinerte events.
 const trackEventUmami = (name: string, data?: Record<string, unknown>): void => {
     if (!window.umami) {
         console.warn('Umami is not initialized. Ignoring');
@@ -81,7 +81,7 @@ const trackEventUmami = (name: string, data?: Record<string, unknown>): void => 
 };
 
 /*Denne tracker "generelt" besøk på siden, altså hver gang en ny link klikkes på og siden besøkes
-Brukes kun i __root og sørger for at kun 1 besøk blir tracket per sidevisning (etter redirects)
+Brukes kun i main.tsx og sørger for at kun 1 besøk blir tracket per sidevisning (etter redirects)
  De andre funksjonene er ment for å tracke spesifikke events som ikke nødvendigvis trigger en sidevisning, f.eks klikk på en fane, åpning av dialog osv
  Ved f.eks fendring av faner så blir det gjort to kall til  umami, ett for besøket og ett for hendelsen "fane endret"*/
 export const trackBesokUmami = () => {
