@@ -15,7 +15,6 @@
     <script>
         window.beforeSendAnalytics = (_event, payload) => {
             const url = new URL(window.location.href);
-            console.log({payload})
             if (url.host.includes('localhost')) return false;
             return payload
     };
