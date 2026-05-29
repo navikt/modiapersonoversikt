@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import { RouterProvider } from '@tanstack/react-router';
 import { StrictMode } from 'react';
+import { setAnalyticsReferrer, setAnalyticsUrl } from 'src/utils/analytics';
 import { createRouter } from './router';
 import { initializeObservability } from './utils/observability';
 
@@ -23,6 +24,17 @@ initializeObservability();
 
 export const router = createRouter();
 window.__router = router;
+
+router.subscribe('onResolved', (event) => {
+    // Setter url og referrer for analytics
+    const origin = window.location.origin;
+    const currentUrl = origin + event.toLocation.href;
+
+    const referrerUrl = event.fromLocation ? origin + event.fromLocation.href : document.referrer;
+
+    setAnalyticsReferrer(referrerUrl);
+    setAnalyticsUrl(currentUrl);
+});
 
 let preRenderPromise: Promise<unknown> = Promise.resolve();
 

@@ -51,9 +51,12 @@ export enum filterType {
     TEMA = 'tema'
 }
 
-const getReferrer = (): string => {
+let _referrer = document.referrer;
+let _url = '';
+
+const removeSearchString = (href: string): string => {
     try {
-        const url = new URL(document.referrer);
+        const url = new URL(href);
         url.search = '';
         return url.toString();
     } catch {
@@ -61,14 +64,28 @@ const getReferrer = (): string => {
     }
 };
 
+export const setAnalyticsReferrer = (href: string) => {
+    _referrer = removeSearchString(href);
+};
+
+export const setAnalyticsUrl = (href: string) => {
+    _url = removeSearchString(href);
+};
+
+const getReferrer = (): string => _referrer;
+const getUrl = (): string => _url;
+
 // Sentralisert sjekk og kall til umami.track. Skal brukes for alle egnedefinerte events. Legger automatisk på referrer på alle events.
 const trackEventUmami = (name: string, data?: Record<string, unknown>): void => {
     if (!window.umami) {
         console.warn('Umami is not initialized. Ignoring');
         return;
     }
+
     window.umami.track((payload: unknown) => ({
         ...(payload as Record<string, unknown>),
+        referrer: getReferrer(),
+        url: getUrl(),
         data,
         name
     }));
@@ -86,7 +103,8 @@ export const trackBesokUmami = () => {
 
     window.umami.track((payload: unknown) => ({
         ...(payload as Record<string, unknown>),
-        referrer: getReferrer()
+        referrer: getReferrer(),
+        url: getUrl()
     }));
 };
 
