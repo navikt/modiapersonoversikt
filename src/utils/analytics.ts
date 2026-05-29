@@ -84,7 +84,6 @@ const trackEventUmami = (name: string, data?: Record<string, unknown>): void => 
 
     window.umami.track((payload: unknown) => ({
         ...(payload as Record<string, unknown>),
-        referrer: getReferrer(),
         url: getUrl(),
         data,
         name
