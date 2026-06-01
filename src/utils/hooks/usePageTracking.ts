@@ -16,7 +16,7 @@ const removeSearchString = (href: string): string => {
     }
 };
 
-const isNewModiaUrl = (pathname: string): boolean => pathname === '/new' || pathname.startsWith('/new/');
+const isNewModiaUrl = (pathname: string): boolean => pathname.includes('new');
 
 const isNyModiaRedirect = (fromPathname: string, toPathname: string): boolean =>
     isNewModiaUrl(toPathname) && fromPathname === toPathname.slice('/new'.length);
@@ -36,19 +36,20 @@ export function usePageTracking() {
     useEffect(() => {
         if (featureToggleisPending || routerIsPending) return;
 
-        const origin = window.location.origin;
-        const currentUrl = removeSearchString(origin + location.href);
+        const currentUrl = removeSearchString(window.location.origin + location.href);
         const prev = prevRef.current;
         const fromPathname = prev?.pathname ?? '';
+        const toPathname = location.pathname;
 
         prevRef.current = { pathname: location.pathname, url: currentUrl };
 
         // Om brukeren blir redirected fra gammel til ny modia så vil vi ikke tracke besøk til gammel modia
-        const willSkip = !isNewModiaUrl(location.pathname) && nyModia;
-        const nyModiaRedirect = !!fromPathname && isNyModiaRedirect(fromPathname, location.pathname);
+        const willSkip = !isNewModiaUrl(toPathname) && nyModia;
+
+        // Dette er den faktiske urlen vi vil tracke
+        const nyModiaRedirect = !!fromPathname && isNyModiaRedirect(fromPathname, toPathname);
 
         if (nyModiaRedirect) {
-            // For intern navigasjon via dekoratøren: bruk siste trackede side som referrer.
             if (lastTrackedUrlRef.current) {
                 setAnalyticsReferrer(lastTrackedUrlRef.current);
             }
@@ -57,7 +58,7 @@ export function usePageTracking() {
         }
         setAnalyticsUrl(currentUrl);
 
-        // Ikke track om det kun er søkestrengen har endret seg
+        // Ikke track om det kun er søkestrengen som har endret seg
         const prevUrlWithoutSearch = prev ? removeSearchString(prev.url) : '';
         if (prevUrlWithoutSearch === currentUrl) return;
         if (willSkip) return;
