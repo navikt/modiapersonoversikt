@@ -10,6 +10,7 @@ declare global {
         __ENV__: Record<string, string>;
         faro?: Faro;
         __router: AnyRouter;
+        skyra?: { reload?: () => void };
     }
 }
 
