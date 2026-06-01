@@ -17,9 +17,14 @@ import { parseQueryString } from 'src/utils/url-utils';
 
 export const useTemaer = () => {
     const { data } = useSakerDokumenter();
-    const temaer = data?.temaer ?? [];
+    const dokumenter = data?.dokumenter ?? [];
 
-    return useMemo(() => temaer, [temaer]);
+    return useMemo(() => {
+        const temaMap = new Map(
+            dokumenter.map((d) => [d.temakode, { temakode: d.temakode, temanavn: d.temakodeVisning }])
+        );
+        return [...temaMap.values()].sort((a, b) => a.temanavn.localeCompare(b.temanavn));
+    }, [dokumenter]);
 };
 
 export const feilmelding = (statusKode: number) => {
