@@ -36,10 +36,10 @@ export function usePageTracking() {
     useEffect(() => {
         if (featureToggleisPending || routerIsPending) return;
 
-        const currentUrl = removeSearchString(window.location.origin + location.href);
         const prev = prevRef.current;
         const fromPathname = prev?.pathname ?? '';
         const toPathname = location.pathname;
+        const currentUrl = removeSearchString(window.location.origin + toPathname);
 
         prevRef.current = { pathname: location.pathname, url: currentUrl };
 
@@ -65,5 +65,5 @@ export function usePageTracking() {
 
         trackBesokUmami();
         lastTrackedUrlRef.current = currentUrl;
-    }, [location.pathname, location.href, routerIsPending, nyModia, featureToggleisPending]);
+    }, [location.pathname, routerIsPending, nyModia, featureToggleisPending]);
 }
