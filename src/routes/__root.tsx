@@ -19,6 +19,7 @@ import { ThemeProvider, themeAtom } from 'src/lib/state/theme';
 import { usePersistentWWLogin } from 'src/login/use-persistent-ww-login';
 import HandleLegacyUrls from 'src/utils/HandleLegacyUrls';
 import useTimeout from 'src/utils/hooks/use-timeout';
+import { usePageTracking } from 'src/utils/hooks/usePageTracking';
 
 export const Route = createRootRoute({
     component: RootLayout,
@@ -49,6 +50,7 @@ function App({ children }: PropsWithChildren) {
     }, 1500);
 
     useNavigateToNewOrOldModia();
+    usePageTracking();
 
     if (!contextLoaded && contextTimeout) {
         return (
