@@ -1,6 +1,7 @@
 import { createBrowserHistory, createHashHistory, createRouter as createReactRouter } from '@tanstack/react-router';
 
 import type { PropsWithChildren } from 'react';
+import NotFound from 'src/components/NotFound';
 import { routeTree } from './routeTree.gen';
 
 const history = import.meta.env.VITE_USE_HASH_ROUTER === 'true' ? createHashHistory() : createBrowserHistory();
@@ -12,6 +13,7 @@ export function createRouter({ Wrap }: { Wrap?: ({ children }: PropsWithChildren
             head: ''
         },
         defaultPreload: 'intent',
+        defaultNotFoundComponent: NotFound,
         history,
         Wrap
     });
