@@ -19,11 +19,11 @@ export type UtbetalingFilter = {
     periodeType: PeriodType;
 };
 
-const defaultDate = getPeriodFromOption(PeriodType.CUSTOM);
+const defaultDate = getPeriodFromOption(PeriodType.LAST_TWO_YEARS);
 
 export const utbetalingFilterAtom = atomWithReset<UtbetalingFilter>({
     dateRange: defaultDate,
-    periodeType: PeriodType.CUSTOM,
+    periodeType: PeriodType.LAST_TWO_YEARS,
     ytelseTyper: []
 });
 
@@ -107,7 +107,7 @@ const UtbetalingYtelserFilter = () => {
 const ResetFilter = () => {
     const [filter, setFilter] = useAtom(utbetalingFilterAtom);
 
-    const datoErlik = filter.dateRange.from.isSame(defaultDate.from) && filter.dateRange.to.isSame(defaultDate.to);
+    const datoErlik = filter.dateRange.from?.isSame(defaultDate.from) && filter.dateRange.to?.isSame(defaultDate.to);
     const isDirty = filter.ytelseTyper.isNotEmpty() || !datoErlik;
 
     return (

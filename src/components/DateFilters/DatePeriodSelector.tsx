@@ -11,8 +11,8 @@ export const getPeriodFromOption = (periodeValg: PeriodType): DateRange => {
     switch (periodeValg) {
         case PeriodType.LAST_30_DAYS:
             return {
-                from: dayjs().subtract(30, 'day').startOf('day'),
-                to: dayjs().startOf('day')
+                from: dayjs().subtract(30, 'day'),
+                to: dayjs()
             };
         case PeriodType.THIS_YEAR:
             return {
@@ -24,16 +24,24 @@ export const getPeriodFromOption = (periodeValg: PeriodType): DateRange => {
                 from: dayjs().subtract(1, 'year').startOf('year'),
                 to: dayjs().subtract(1, 'year').endOf('year')
             };
-        case PeriodType.CUSTOM:
+        case PeriodType.LAST_TWO_YEARS:
             return {
-                from: dayjs().subtract(2, 'year').startOf('day'),
-                to: dayjs().startOf('day')
+                from: dayjs().subtract(2, 'year'),
+                to: dayjs()
+            };
+        default:
+            return {
+                from: dayjs().startOf('day'),
+                to: dayjs().endOf('day')
             };
     }
 };
 
 export const getOptionFromPeriod = (range: DateRange): PeriodType => {
     const { from, to } = range;
+    if (!(from || to)) return PeriodType.UNSET;
+    if (!from || !to) return PeriodType.CUSTOM;
+
     const now = dayjs();
 
     const isSameDay = (d1: dayjs.Dayjs, d2: dayjs.Dayjs) => d1.isSame(d2, 'day');
@@ -47,7 +55,7 @@ export const getOptionFromPeriod = (range: DateRange): PeriodType => {
             isSameDay(to, now.subtract(1, 'year').endOf('year')):
             return PeriodType.LAST_YEAR;
         case isSameDay(from, now.subtract(2, 'year')) && isSameDay(to, now):
-            return PeriodType.CUSTOM;
+            return PeriodType.LAST_TWO_YEARS;
         default:
             return PeriodType.CUSTOM;
     }
@@ -107,11 +115,14 @@ function DateRangeSelector({
     return (
         <VStack gap="space-8">
             <RadioGroup legend="Periode" size="small" value={periodType ?? ''} onChange={onPeriodTypeChange}>
-                {Object.entries(PeriodType).map(([, type]) => (
-                    <Radio size="small" key={type} value={type}>
-                        {type}
-                    </Radio>
-                ))}
+                {Object.entries(PeriodType).map(
+                    ([, type]) =>
+                        type !== PeriodType.UNSET && (
+                            <Radio size="small" key={type} value={type}>
+                                {type}
+                            </Radio>
+                        )
+                )}
             </RadioGroup>
             {periodType === PeriodType.CUSTOM && period && (
                 <CustomDatePickerModal period={period} onUpdate={onFraTilDatoChange} />

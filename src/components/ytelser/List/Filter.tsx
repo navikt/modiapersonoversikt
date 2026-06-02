@@ -16,7 +16,7 @@ export type YtelseFilter = {
     ytelseTyper: string[];
 };
 
-const defaultDate = getPeriodFromOption(PeriodType.CUSTOM);
+const defaultDate = getPeriodFromOption(PeriodType.LAST_TWO_YEARS);
 
 export const ytelseFilterAtom = atomWithReset<YtelseFilter>({
     dateRange: defaultDate,
@@ -46,7 +46,7 @@ const filterDateRangeAtom = atom(
 
 const DateFilter = () => {
     const [value, setValue] = useAtom(filterDateRangeAtom);
-    return <DateRangeSelector range={value} onChange={setValue} defaultPeriodType={PeriodType.CUSTOM} />;
+    return <DateRangeSelector range={value} onChange={setValue} defaultPeriodType={PeriodType.LAST_TWO_YEARS} />;
 };
 
 const YtelserTypeFilter = () => {

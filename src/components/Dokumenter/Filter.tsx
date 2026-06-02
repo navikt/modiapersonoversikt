@@ -6,7 +6,7 @@ import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { atomWithReset, RESET, useHydrateAtoms } from 'jotai/utils';
 import { debounce, xor } from 'lodash';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { getOptionFromPeriod, getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
+import { getOptionFromPeriod } from 'src/components/DateFilters/DatePeriodSelector';
 import { DateRangePickerWithDebounce } from 'src/components/DateFilters/DateRangePickerWithDebounce';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
 import { useTemaer } from 'src/components/Dokumenter/utils';
@@ -16,19 +16,17 @@ import { filterType, trackFilterEndret } from 'src/utils/analytics';
 const routeApi = getRouteApi('/new/person/dokumenter');
 
 export type DokumenterFilter = {
-    dateRange: DateRange;
+    dateRange: DateRange | null;
     periodType: PeriodType;
     temaer: string[];
     saksId?: string;
 };
 
-const defaultDate = getPeriodFromOption(PeriodType.CUSTOM);
-
 export const dokumenterFilterAtom = atomWithReset<DokumenterFilter>({
-    dateRange: defaultDate,
+    dateRange: null,
     temaer: [],
     saksId: '',
-    periodType: PeriodType.CUSTOM
+    periodType: PeriodType.UNSET
 });
 
 const dokFilterTemaAtom = atom(
@@ -54,10 +52,9 @@ const dokFilterSaksIdAtom = atom(
 const dokFilterDateRangeAtom = atom(
     (get) => get(dokumenterFilterAtom).dateRange,
     (_get, set, dateRange: DateRange | null) => {
-        const range = dateRange ?? defaultDate;
         set(dokumenterFilterAtom, (filters) => ({
             ...filters,
-            dateRange: range
+            dateRange
         }));
     }
 );
@@ -111,7 +108,10 @@ const DateFilter = () => {
     const onChange = (range?: DateRange) => {
         setValue(range ?? null);
         navigate({
-            search: { fra: range?.from.format('DD.MM.YYYY').toString(), til: range?.to.format('DD.MM.YYYY').toString() }
+            search: {
+                fra: range?.from ? range?.from.format('DD.MM.YYYY').toString() : '',
+                til: range?.to ? range?.to.format('DD.MM.YYYY').toString() : ''
+            }
         });
     };
     return (
@@ -120,6 +120,7 @@ const DateFilter = () => {
             onPeriodChange={setPeriodType}
             dateRange={value}
             onRangeChange={onChange}
+            allowUnset
         />
     );
 };
@@ -157,7 +158,7 @@ const ResetFilter = () => {
     const [filter, setFilter] = useAtom(dokumenterFilterAtom);
     const navigate = routeApi.useNavigate();
 
-    const datoErlik = filter.dateRange.from.isSame(defaultDate.from) && filter.dateRange.to.isSame(defaultDate.to);
+    const datoErlik = filter.dateRange === null;
     const isDirty = !filter.temaer.isEmpty() || filter.saksId !== '' || !datoErlik;
 
     const resetFilter = () => {
@@ -184,10 +185,13 @@ export const DokumenterFilter = () => {
     const fnr = usePersonAtomValue();
     const aktivBrukerLastet = useAtomValue(aktivBrukerLastetAtom);
     const prevFnrRef = useRef<string | undefined>(undefined);
-    const dateRange = {
-        from: queries.fra ? dayjs(queries.fra, 'DD.MM.YYYY') : defaultDate.from,
-        to: queries.til ? dayjs(queries.til, 'DD.MM.YYYY') : defaultDate.to
-    };
+    const dateRange: DateRange | null =
+        queries.fra && queries.til
+            ? {
+                  from: dayjs(queries.fra, 'DD.MM.YYYY'),
+                  to: dayjs(queries.til, 'DD.MM.YYYY')
+              }
+            : null;
 
     useHydrateAtoms([
         [
@@ -196,7 +200,7 @@ export const DokumenterFilter = () => {
                 dateRange: dateRange,
                 temaer: queries.tema ?? [],
                 saksId: queries.saksid ?? '',
-                periodType: getOptionFromPeriod(dateRange)
+                periodType: dateRange ? getOptionFromPeriod(dateRange) : PeriodType.UNSET
             }
         ]
     ]);
