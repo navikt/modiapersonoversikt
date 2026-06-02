@@ -52,8 +52,7 @@ export enum filterType {
 }
 
 let _referrer = document.referrer;
-let _url = '';
-
+let _url = window.location.origin + window.location.pathname;
 export const setAnalyticsReferrer = (href: string) => {
     _referrer = href;
 };
