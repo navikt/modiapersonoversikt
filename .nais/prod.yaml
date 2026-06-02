@@ -71,8 +71,6 @@ spec:
       value: "modiapersonoversikt"
     - name: APP_VERSION
       value: "{{ version }}"
-    - name: REFERRER_POLICY
-      value: "no-referrer"
     - name: APP_ENVIRONMENT_NAME
       value: prod
     - name: ENVIRONMENT
