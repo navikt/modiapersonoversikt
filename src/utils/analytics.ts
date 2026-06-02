@@ -51,156 +51,110 @@ export enum filterType {
     TEMA = 'tema'
 }
 
-/*Denne tracker "generelt" besøk på siden, altså hver gang en ny link klikkes på og siden besøkes
-Brukes kun i __root og sørger for at kun 1 besøk blir tracket per sidevisning (etter redirects)
- De andre funksjonene er ment for å tracke spesifikke events som ikke nødvendigvis trigger en sidevisning, f.eks klikk på en fane, åpning av dialog osv
- Ved f.eks fendring av faner så blir det gjort to kall til  umami, ett for besøket og ett for hendelsen "fane endret"*/
+let _referrer = document.referrer;
+let _url = window.location.origin + window.location.pathname;
+export const setAnalyticsReferrer = (href: string) => {
+    _referrer = href;
+};
+
+export const setAnalyticsUrl = (href: string) => {
+    _url = href;
+};
+
+const getReferrer = (): string => _referrer;
+const getUrl = (): string => _url;
+
+// Sentralisert sjekk og kall til umami.track. Skal brukes for alle egnedefinerte events.
+const trackEventUmami = (name: string, data?: Record<string, unknown>): void => {
+    if (!window.umami) {
+        console.warn('Umami is not initialized. Ignoring');
+        return;
+    }
+
+    window.umami.track((payload: unknown) => ({
+        ...(payload as Record<string, unknown>),
+        url: getUrl(),
+        data,
+        name
+    }));
+};
+
+/*Denne tracker "generelt" besøk på siden, altså hver gang en ny link klikkes på og siden besøkes.
+Brukes kun i usePageTracking og sørger for at kun 1 besøk blir tracket per sidevisning (etter redirects).
+De andre funksjonene er ment for å tracke spesifikke events som ikke nødvendigvis trigger en sidevisning, f.eks klikk på en fane, åpning av dialog osv.
+Ved f.eks endring av faner så blir det gjort to kall til umami, ett for besøket og ett for hendelsen "fane endret".
+NB: setAnalyticsReferrer må alltid kalles før denne funksjonen, slik at _referrer er korrekt satt.*/
 export const trackBesokUmami = () => {
     if (!window.umami) {
         console.warn('Umami is not initialized. Ignoring');
         return;
     }
-    const referrer = (() => {
-        try {
-            const url = new URL(document.referrer);
-            url.search = '';
-            return url.toString();
-        } catch {
-            return '';
-        }
-    })();
 
     window.umami.track((payload: unknown) => ({
         ...(payload as Record<string, unknown>),
-        referrer
+        referrer: getReferrer(),
+        url: getUrl()
     }));
 };
 
 export const trackFaneEndret = (nyFane: string, forrigefane: string) => {
-    if (!window.umami) {
-        console.warn('Umami is not initialized. Ignoring');
-        return;
-    }
-    window.umami.track(trackingEvents.faneEndret, { nyFane, forrigefane });
+    trackEventUmami(trackingEvents.faneEndret, { nyFane, forrigefane });
 };
 export const trackDyplenkeFraEksternKilde = (tekst: string) => {
-    if (!window.umami) {
-        console.warn('Umami is not initialized. Ignoring');
-        return;
-    }
-    window.umami.track(trackingEvents.eksternDyplenke, { tekst });
+    trackEventUmami(trackingEvents.eksternDyplenke, { tekst });
 };
 
 export const trackFortsettDialog = (traadType: string) => {
-    if (!window.umami) {
-        console.warn('Umami is not initialized. Ignoring');
-        return;
-    }
-    window.umami.track(trackingEvents.fortsettDialog, { traadType });
+    trackEventUmami(trackingEvents.fortsettDialog, { traadType });
 };
 
 export const trackSendNyMelding = (traadType: string) => {
-    if (!window.umami) {
-        console.warn('Umami is not initialized. Ignoring');
-        return;
-    }
-    window.umami.track(trackingEvents.sendNyMelding, { traadType });
+    trackEventUmami(trackingEvents.sendNyMelding, { traadType });
 };
 
-export const trackGenereltUmamiEvent = (eventNavn: trackingEvents, payload?: unknown) => {
-    if (!window.umami) {
-        console.warn('Umami is not initialized. Ignoring');
-        return;
-    }
-    window.umami.track(eventNavn, payload);
+export const trackGenereltUmamiEvent = (eventNavn: trackingEvents, payload?: Record<string, unknown>) => {
+    trackEventUmami(eventNavn, payload);
 };
 
 export const trackToggleNyModia = (erPaaNyModia: boolean) => {
-    if (!window.umami) {
-        console.warn('Umami is not initialized. Ignoring');
-        return;
-    }
-    window.umami.track(trackingEvents.toggleNyModia, { tekst: erPaaNyModia ? 'på' : 'av' });
+    trackEventUmami(trackingEvents.toggleNyModia, { tekst: erPaaNyModia ? 'på' : 'av' });
 };
 
 export const trackBrukerEndret = () => {
-    if (!window.umami) {
-        console.warn('Umami is not initialized. Ignoring');
-        return;
-    }
-    window.umami.track(trackingEvents.brukerEndret);
+    trackEventUmami(trackingEvents.brukerEndret);
 };
 
-export const trackFilterEndret = (fane: string, filterType: filterType) => {
-    if (!window.umami) {
-        console.warn('Umami is not initialized. Ignoring');
-        return;
-    }
-    window.umami.track(trackingEvents.filterEndret, {
+export const trackFilterEndret = (fane: string, type: filterType) => {
+    trackEventUmami(trackingEvents.filterEndret, {
         fane: fane.toLowerCase(),
-        filterType: filterType
+        filterType: type
     });
 };
 
 export const trackExpansionCardApnet = (name: string) => {
-    if (!window.umami) {
-        console.warn('Umami is not initialized. Ignoring');
-        return;
-    }
-    window.umami.track(trackingEvents.expansionCardApnet, {
-        tittel: name
-    });
+    trackEventUmami(trackingEvents.expansionCardApnet, { tittel: name });
 };
 
 export const trackExpansionCardLukket = (name: string) => {
-    if (!window.umami) {
-        console.warn('Umami is not initialized. Ignoring');
-        return;
-    }
-    window.umami.track(trackingEvents.expansionCardLukket, {
-        tittel: name
-    });
+    trackEventUmami(trackingEvents.expansionCardLukket, { tittel: name });
 };
 
 // Bruker denne til å tracke klikk på detaljvisning i ulike faner
 // F.eks vise enkelt ytelse, åpne et dokument i sakerfanen, åpner detalj om utbetaling osv
 export const trackVisDetaljvisning = (fane: string, tekst: string) => {
-    if (!window.umami) {
-        console.warn('Umami is not initialized. Ignoring');
-        return;
-    }
-    window.umami.track(trackingEvents.detaljvisningKlikket, {
-        fane: fane,
-        tekst: tekst
-    });
+    trackEventUmami(trackingEvents.detaljvisningKlikket, { fane, tekst });
 };
 
 export const trackAccordionOpened = (name: string) => {
-    if (!window.umami) {
-        console.warn('Umami is not initialized. Ignoring');
-        return;
-    }
-    window.umami.track(trackingEvents.accordionApnet, {
-        tittel: name
-    });
+    trackEventUmami(trackingEvents.accordionApnet, { tittel: name });
 };
 
 export const trackAccordionClosed = (name: string) => {
-    if (!window.umami) {
-        console.warn('Umami is not initialized. Ignoring');
-        return;
-    }
-    window.umami.track(trackingEvents.accordionLukket, {
-        tittel: name
-    });
+    trackEventUmami(trackingEvents.accordionLukket, { tittel: name });
 };
 
 export const trackEnhetEndret = () => {
-    if (!window.umami) {
-        console.warn('Umami is not initialized. Ignoring');
-        return;
-    }
-    window.umami.track(trackingEvents.enhetEndret);
+    trackEventUmami(trackingEvents.enhetEndret);
 };
 
 // Ved bruk av Umami identify vil alle påfølgende umami event knyttes til enhet.
