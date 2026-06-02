@@ -38,7 +38,8 @@ export enum trackingEvents {
     eksternDyplenke = 'ekstern dyplenke',
     startNyMelding = 'start ny melding',
     startSvar = 'start svar',
-    avbrytMelding = 'avbryt melding'
+    avbrytMelding = 'avbryt melding',
+    notfoundRoute = 'route ikke funnet'
 }
 
 export enum filterType {

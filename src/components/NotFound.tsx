@@ -1,6 +1,12 @@
 import { BodyShort, Box, Heading, Link, List, Page, VStack } from '@navikt/ds-react';
+import { useEffect } from 'react';
+import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 
 const NotFound = () => {
+    useEffect(() => {
+        trackGenereltUmamiEvent(trackingEvents.notfoundRoute);
+    }, []);
+
     return (
         <Page>
             <Page.Block as="main" width="xl" gutters>
