@@ -16,7 +16,7 @@ const removeSearchString = (href: string): string => {
     }
 };
 
-const isNewModiaUrl = (pathname: string): boolean => pathname.includes('new');
+const isNewModiaUrl = (pathname: string): boolean => pathname.startsWith('/new');
 
 const isNyModiaRedirect = (fromPathname: string, toPathname: string): boolean =>
     isNewModiaUrl(toPathname) && fromPathname === toPathname.slice('/new'.length);
