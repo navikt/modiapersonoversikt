@@ -80,6 +80,14 @@ function PersonvernPage() {
                                     personlig. Vi bruker denne informasjonen for å forstå brukernes behov og forbedre
                                     Modia basert på tilbakemeldingene vi mottar.
                                 </SubSection>
+                                <SubSection title="Lumi">
+                                    Lumi benyttes for å hente inn tilbakemeldinger fra brukerne. Når du sender inn en
+                                    tilbakemelding, lagres opplysningene i Lumi for å hjelpe oss med å forbedre
+                                    tjenesten. Opplysningene som samles inn inkluderer tilbakemeldingen du gir,
+                                    tidspunktet for tilbakemeldingen, og en anonym ID som ikke kan knyttes til deg
+                                    personlig. Vi bruker denne informasjonen for å forstå brukernes behov og forbedre
+                                    tjenesten basert på tilbakemeldingene vi mottar.
+                                </SubSection>
                                 <SubSection title="Umami">
                                     Umami brukes til statistikk og analyse av hvordan Modia Personoversikt brukes. Umami
                                     bruker ikke informasjonskapsler, men henter inn opplysninger om nettleseren din for
