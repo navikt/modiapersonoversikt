@@ -20,7 +20,7 @@ export const nyModiaAtom = atom(
     }
 );
 
-const brukerHarValgtAtom = atom((get) => get(nyModiaStorageAtom) !== null);
+export const brukerHarValgtAtom = atom((get) => get(nyModiaStorageAtom) !== null);
 
 export const useNavigateToNewOrOldModia = () => {
     const { isOn, pending } = useFeatureToggle(FeatureToggles.NyModiaKnapp);

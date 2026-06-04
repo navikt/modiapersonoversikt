@@ -1,5 +1,3 @@
-import { removeSearchString } from 'src/utils/hooks/usePageTracking';
-
 interface Umami {
     track(payload?: unknown): void;
     track(event_name: string, payload: unknown): void;
@@ -54,8 +52,8 @@ export enum filterType {
     TEMA = 'tema'
 }
 
-let _referrer = removeSearchString(document.referrer);
-let _url = removeSearchString(window.location.origin + window.location.pathname);
+let _referrer = document.referrer;
+let _url = window.location.origin + window.location.pathname;
 export const setAnalyticsReferrer = (href: string) => {
     _referrer = href;
 };
