@@ -6,7 +6,7 @@ import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 import { brukerHarValgtAtom, nyModiaAtom } from 'src/components/NyModia';
 import { setAnalyticsReferrer, setAnalyticsUrl, trackBesokUmami } from 'src/utils/analytics';
 
-export const removeSearchString = (href: string): string => {
+const removeSearchString = (href: string): string => {
     try {
         const url = new URL(href);
         url.search = '';
