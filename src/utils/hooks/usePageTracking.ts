@@ -3,7 +3,7 @@ import { useAtomValue } from 'jotai';
 import { useEffect, useRef } from 'react';
 import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
 import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
-import { nyModiaAtom } from 'src/components/NyModia';
+import { brukerHarValgtAtom, nyModiaAtom } from 'src/components/NyModia';
 import { setAnalyticsReferrer, setAnalyticsUrl, trackBesokUmami } from 'src/utils/analytics';
 
 export const removeSearchString = (href: string): string => {
@@ -23,7 +23,8 @@ const isNyModiaRedirect = (fromPathname: string, toPathname: string): boolean =>
 
 export function usePageTracking() {
     const nyModia = useAtomValue(nyModiaAtom);
-    const { pending: featureToggleisPending } = useFeatureToggle(FeatureToggles.NyModiaKnapp);
+    const brukerHarValgt = useAtomValue(brukerHarValgtAtom);
+    const { isOn, pending: featureToggleisPending } = useFeatureToggle(FeatureToggles.NyModiaKnapp);
 
     const { location, isLoading: routerIsPending } = useRouterState({
         select: (s) => ({ location: s.location, isLoading: s.isLoading })
@@ -41,10 +42,11 @@ export function usePageTracking() {
         const toPathname = location.pathname;
         const currentUrl = removeSearchString(window.location.origin + toPathname);
 
-        prevRef.current = { pathname: location.pathname, url: currentUrl };
+        prevRef.current = { pathname: toPathname, url: currentUrl };
 
         // Om brukeren blir redirected fra gammel til ny modia så vil vi ikke tracke besøk til gammel modia
-        const willSkip = !isNewModiaUrl(toPathname) && nyModia;
+        const nyModiaWillBeEnabled = isOn && !brukerHarValgt;
+        const willSkip = !isNewModiaUrl(toPathname) && (nyModia || nyModiaWillBeEnabled);
 
         // Dette er den faktiske urlen vi vil tracke
         const nyModiaRedirect = !!fromPathname && isNyModiaRedirect(fromPathname, toPathname);
@@ -65,5 +67,5 @@ export function usePageTracking() {
 
         trackBesokUmami();
         lastTrackedUrlRef.current = currentUrl;
-    }, [location.pathname, routerIsPending, nyModia, featureToggleisPending]);
+    }, [location.pathname, routerIsPending, nyModia, featureToggleisPending, isOn, brukerHarValgt]);
 }
