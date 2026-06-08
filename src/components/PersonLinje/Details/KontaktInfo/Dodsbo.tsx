@@ -2,7 +2,7 @@ import { LocationPinFillIcon } from '@navikt/aksel-icons';
 import { Alert, BodyShort, Box } from '@navikt/ds-react';
 import { KopierFnrKnapp } from 'src/components/PersonLinje/common/KopierFnrKnapp';
 import type { PersonData } from 'src/lib/types/modiapersonoversikt-api';
-import { formaterDato } from 'src/utils/string-utils';
+import { capitalizeFirstLetter, formaterDato } from 'src/utils/string-utils';
 import { hentNavn } from '../../utils';
 import { Adresseinfo, InfoElement, LastChanged } from '../components';
 
@@ -92,7 +92,10 @@ function KontaktinformasjonDodsbo({ harFeilendeSystem, dodsbo }: { dodsbo: Dodsb
                         title="Kontaktinformasjon for dødsbo"
                         icon={<LocationPinFillIcon fontSize="1.2rem" color="var(--ax-neutral-500)" />}
                     >
-                        <Adressatinfo harFeilendeSystem={harFeilendeSystem} adressat={dodsbo.adressat} />
+                        <BodyShort size="small">Skifteform: {capitalizeFirstLetter(dodsbo.skifteform)}</BodyShort>
+                        <Box marginBlock="space-8">
+                            <Adressatinfo harFeilendeSystem={harFeilendeSystem} adressat={dodsbo.adressat} />
+                        </Box>
                         <Box marginBlock="space-8">
                             <Adresseinfo adresse={dodsbo.adresse} />
                             {/* TODO: Her ble det tidligere brukt dodsbo.registrert. Hva ønsker vi å bruke? */}

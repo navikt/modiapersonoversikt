@@ -1,5 +1,6 @@
 import {
     capitalizeAfterPunctuation,
+    capitalizeFirstLetter,
     capitalizeName,
     convertBoolTilJaNei,
     datoEllerNull,
@@ -103,5 +104,12 @@ it('capitalizeAfterPunctuation gir store bokstaver der det skal være', () => {
     expect(capitalizeAfterPunctuation('test nummer. to')).toEqual('Test nummer. To');
     expect(capitalizeAfterPunctuation('test? test! test.')).toEqual('Test? Test! Test.');
     expect(capitalizeAfterPunctuation('øvrig. åssen kan. ærlig')).toEqual('Øvrig. Åssen kan. Ærlig');
+    expect(capitalizeAfterPunctuation('se www.nav.no')).toEqual('Se www.nav.no');
+});
+
+it('capitalizeFirstLetter gir store bokstaver der det skal være', () => {
+    expect(capitalizeFirstLetter('test')).toEqual('Test');
+    expect(capitalizeFirstLetter('Test')).toEqual('Test');
+    expect(capitalizeFirstLetter('TEST')).toEqual('Test');
     expect(capitalizeAfterPunctuation('se www.nav.no')).toEqual('Se www.nav.no');
 });

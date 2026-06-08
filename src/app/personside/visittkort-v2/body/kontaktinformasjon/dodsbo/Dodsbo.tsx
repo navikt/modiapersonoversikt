@@ -2,7 +2,7 @@ import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import LocationPin from '../../../../../../svg/LocationPin';
-import { formaterDato } from '../../../../../../utils/string-utils';
+import { capitalizeFirstLetter, formaterDato } from '../../../../../../utils/string-utils';
 import type {
     Adressat,
     AdvokatSomAdressat,
@@ -101,6 +101,7 @@ function KontaktinformasjonDodsbo({ harFeilendeSystem, dodsbo }: Props) {
             {dodsbo.map((dodsbo, index) => {
                 return (
                     <VisittkortElement key={index} beskrivelse={'Kontaktinformasjon for dødsbo'} ikon={<LocationPin />}>
+                        <Normaltekst>Skifteform: {capitalizeFirstLetter(dodsbo.skifteform)}</Normaltekst>
                         <Adressatinfo harFeilendeSystem={harFeilendeSystem} adressat={dodsbo.adressat} />
                         <AdresseStyle>
                             <Adresseinfo adresse={dodsbo.adresse} />
