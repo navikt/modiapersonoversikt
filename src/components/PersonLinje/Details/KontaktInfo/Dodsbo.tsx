@@ -92,6 +92,9 @@ function KontaktinformasjonDodsbo({ harFeilendeSystem, dodsbo }: { dodsbo: Dodsb
                         title="Kontaktinformasjon for dødsbo"
                         icon={<LocationPinFillIcon fontSize="1.2rem" color="var(--ax-neutral-500)" />}
                     >
+                        <BodyShort size="small" weight="semibold">
+                            Skifteform: {dodsbo.skifteform}
+                        </BodyShort>
                         <Adressatinfo harFeilendeSystem={harFeilendeSystem} adressat={dodsbo.adressat} />
                         <Box marginBlock="space-8">
                             <Adresseinfo adresse={dodsbo.adresse} />

@@ -101,6 +101,9 @@ function KontaktinformasjonDodsbo({ harFeilendeSystem, dodsbo }: Props) {
             {dodsbo.map((dodsbo, index) => {
                 return (
                     <VisittkortElement key={index} beskrivelse={'Kontaktinformasjon for dødsbo'} ikon={<LocationPin />}>
+                        <Normaltekst>
+                            <b>Skifteform: {dodsbo.skifteform}</b>
+                        </Normaltekst>
                         <Adressatinfo harFeilendeSystem={harFeilendeSystem} adressat={dodsbo.adressat} />
                         <AdresseStyle>
                             <Adresseinfo adresse={dodsbo.adresse} />
