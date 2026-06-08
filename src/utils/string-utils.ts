@@ -91,6 +91,10 @@ export function periodeEllerNull(periode: Periode | null): string | null {
     return `${formaterDato(periode.fra)} - ${periode.til ? formaterDato(periode.til) : ''}`;
 }
 
+export function capitalizeFirstLetter(str: string): string {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
+
 export function capitalizeName(name: string): string {
     return name.replace(/[\wæøåÆØÅ][^\s'-]*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
 }
