@@ -111,5 +111,5 @@ it('capitalizeFirstCharacter gir store bokstaver der det skal være', () => {
     expect(capitalizeFirstCharacter('test')).toEqual('Test');
     expect(capitalizeFirstCharacter('Test')).toEqual('Test');
     expect(capitalizeFirstCharacter('TEST')).toEqual('Test');
-    expect(capitalizeAfterPunctuation('se www.nav.no')).toEqual('Se www.nav.no');
+    expect(capitalizeFirstCharacter('se www.nav.no')).toEqual('Se www.nav.no');
 });
