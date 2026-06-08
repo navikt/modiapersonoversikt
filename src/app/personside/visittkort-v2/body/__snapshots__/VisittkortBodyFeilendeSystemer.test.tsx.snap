@@ -175,6 +175,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <p
             class="typo-normal"
           >
+            <b>
+              Skifteform: OFFENTLIG
+            </b>
+          </p>
+          <p
+            class="typo-normal"
+          >
             Advokat Navnesen
           </p>
           <p
