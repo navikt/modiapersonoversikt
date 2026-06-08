@@ -102,7 +102,7 @@ function KontaktinformasjonDodsbo({ harFeilendeSystem, dodsbo }: Props) {
                 return (
                     <VisittkortElement key={index} beskrivelse={'Kontaktinformasjon for dødsbo'} ikon={<LocationPin />}>
                         <Normaltekst>
-                            <b>Skifteform: {dodsbo.skifteform}</b>
+                            <strong>Skifteform: {dodsbo.skifteform}</strong>
                         </Normaltekst>
                         <Adressatinfo harFeilendeSystem={harFeilendeSystem} adressat={dodsbo.adressat} />
                         <AdresseStyle>
