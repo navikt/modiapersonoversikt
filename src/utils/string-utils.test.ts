@@ -107,7 +107,7 @@ it('capitalizeAfterPunctuation gir store bokstaver der det skal være', () => {
     expect(capitalizeAfterPunctuation('se www.nav.no')).toEqual('Se www.nav.no');
 });
 
-it('capitalizeFirstAndLowercaseRest gir store bokstaver der det skal være', () => {
+it('capitalizeFirstCharacterAndLowercaseRest gir store bokstaver der det skal være', () => {
     expect(capitalizeFirstCharacterAndLowercaseRest('test')).toEqual('Test');
     expect(capitalizeFirstCharacterAndLowercaseRest('Test')).toEqual('Test');
     expect(capitalizeFirstCharacterAndLowercaseRest('TEST')).toEqual('Test');
