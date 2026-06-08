@@ -93,9 +93,9 @@ exports[`viser dodsbo 1`] = `
     <p
       class="typo-normal"
     >
-      <b>
+      <strong>
         Skifteform: OFFENTLIG
-      </b>
+      </strong>
     </p>
     <p
       class="typo-normal"
