@@ -3,7 +3,6 @@ const bidragMarkor = 'BID-HACK';
 export const saker = {
     saker: [
         {
-            saksId: '-',
             fagsystemSaksId: '-',
             temaKode: bidragMarkor,
             temaNavn: 'Bidrag',
@@ -11,41 +10,27 @@ export const saker = {
             fagsystemNavn: 'Kopiert inn i Bisys',
             sakstype: 'MFS',
             opprettetDato: null,
-            finnesIGsak: false,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: ''
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '138971902',
             fagsystemSaksId: 'SF 19857613',
             temaKode: 'HJE',
             temaNavn: 'Hjelpemidler',
             fagsystemKode: 'OEBS',
             fagsystemNavn: 'OeBS',
             sakstype: 'MFS',
-            opprettetDato: '2019-03-27T11:58:54.372Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: 'SF 19857613'
+            opprettetDato: '2019-03-27T11:58:54.372Z'
         },
         {
-            saksId: '110494279',
             fagsystemSaksId: '0118C01',
             temaKode: 'YRK',
             temaNavn: 'Yrkesskade / Menerstatning',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2012-12-17T09:18:33.913Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '0118C01'
+            opprettetDato: '2012-12-17T09:18:33.913Z'
         },
         {
-            saksId: '106661012',
             fagsystemSaksId: null,
             temaKode: 'KTR',
             temaNavn: 'Kontroll',
@@ -53,13 +38,9 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2012-01-23T11:38:41.717Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '106661012'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '107939107',
             fagsystemSaksId: null,
             temaKode: 'DAG',
             temaNavn: 'Dagpenger',
@@ -67,13 +48,9 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2012-04-27T09:19:05.598Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '107939107'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '113797889',
             fagsystemSaksId: null,
             temaKode: 'FEI',
             temaNavn: 'Feilutbetaling',
@@ -81,55 +58,36 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2013-09-13T10:21:04.994Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '113797889'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '114690983',
             fagsystemSaksId: '7892148',
             temaKode: 'DAG',
             temaNavn: 'Dagpenger',
             fagsystemKode: 'AO01',
             fagsystemNavn: 'Arena',
             sakstype: 'MFS',
-            opprettetDato: '2013-11-25T09:22:52.979Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '7892148'
+            opprettetDato: '2013-11-25T09:22:52.979Z'
         },
         {
-            saksId: '122415295',
             fagsystemSaksId: '0118F01',
             temaKode: 'SYK',
             temaNavn: 'Sykepenger',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2015-12-05T18:16:28.783Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '0118F01'
+            opprettetDato: '2015-12-05T18:16:28.783Z'
         },
         {
-            saksId: '130513613',
             fagsystemSaksId: '0118B22',
             temaKode: 'BAR',
             temaNavn: 'Barnetrygd',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2017-11-03T13:27:14.267Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '0118B22'
+            opprettetDato: '2017-11-03T13:27:14.267Z'
         },
         {
-            saksId: '106661021',
             fagsystemSaksId: null,
             temaKode: 'ENF',
             temaNavn: 'Enslig forsørger',
@@ -137,13 +95,9 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2012-01-23T11:39:05.980Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '106661021'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '105974678',
             fagsystemSaksId: null,
             temaKode: 'GEN',
             temaNavn: 'Generell',
@@ -151,55 +105,36 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2011-11-29T12:31:55.156Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '105974678'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '119971149',
             fagsystemSaksId: '8907059',
             temaKode: 'IND',
             temaNavn: 'Tiltakspenger',
             fagsystemKode: 'AO01',
             fagsystemNavn: 'Arena',
             sakstype: 'MFS',
-            opprettetDato: '2015-04-13T08:02:15.361Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '8907059'
+            opprettetDato: '2015-04-13T08:02:15.361Z'
         },
         {
-            saksId: '116724411',
             fagsystemSaksId: '0118A03',
             temaKode: 'ENF',
             temaNavn: 'Enslig forsørger',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2014-05-24T19:51:36.547Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '0118A03'
+            opprettetDato: '2014-05-24T19:51:36.547Z'
         },
         {
-            saksId: '118712602',
             fagsystemSaksId: '0118A04',
             temaKode: 'ENF',
             temaNavn: 'Enslig forsørger',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2014-12-06T17:48:06.940Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '0118A04'
+            opprettetDato: '2014-12-06T17:48:06.940Z'
         },
         {
-            saksId: '109471941',
             fagsystemSaksId: null,
             temaKode: 'FOS',
             temaNavn: 'Forsikring',
@@ -207,41 +142,27 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2012-09-19T07:03:08.235Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '109471941'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '125792333',
             fagsystemSaksId: '9964772',
             temaKode: 'AAP',
             temaNavn: 'Arbeidsavklaringspenger',
             fagsystemKode: 'AO01',
             fagsystemNavn: 'Arena',
             sakstype: 'MFS',
-            opprettetDato: '2016-10-19T11:56:54.625Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '9964772'
+            opprettetDato: '2016-10-19T11:56:54.625Z'
         },
         {
-            saksId: '110013820',
             fagsystemSaksId: '0118B01',
             temaKode: 'BAR',
             temaNavn: 'Barnetrygd',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2012-11-06T07:45:15.914Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '0118B01'
+            opprettetDato: '2012-11-06T07:45:15.914Z'
         },
         {
-            saksId: '122658938',
             fagsystemSaksId: null,
             temaKode: 'TSO',
             temaNavn: 'Tilleggsstønad',
@@ -249,69 +170,45 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2016-01-05T09:21:40.732Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '122658938'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '116427534',
             fagsystemSaksId: '0118B06',
             temaKode: 'BAR',
             temaNavn: 'Barnetrygd',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2014-04-28T13:02:51.019Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '0118B06'
+            opprettetDato: '2014-04-28T13:02:51.019Z'
         },
         {
-            saksId: '116922556',
             fagsystemSaksId: '100/2014',
             temaKode: 'DAG',
             temaNavn: 'Dagpenger',
             fagsystemKode: 'AO11',
             fagsystemNavn: 'Grisen',
             sakstype: 'MFS',
-            opprettetDato: '2014-06-16T12:32:18.452Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '100/2014'
+            opprettetDato: '2014-06-16T12:32:18.452Z'
         },
         {
-            saksId: '110326014',
             fagsystemSaksId: '7403138',
             temaKode: 'DAG',
             temaNavn: 'Dagpenger',
             fagsystemKode: 'AO01',
             fagsystemNavn: 'Arena',
             sakstype: 'MFS',
-            opprettetDato: '2012-12-03T11:44:35.670Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '7403138'
+            opprettetDato: '2012-12-03T11:44:35.670Z'
         },
         {
-            saksId: '118712601',
             fagsystemSaksId: '0118D03',
             temaKode: 'KON',
             temaNavn: 'Kontantstøtte',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2014-12-06T17:42:39.741Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '0118D03'
+            opprettetDato: '2014-12-06T17:42:39.741Z'
         },
         {
-            saksId: '109471916',
             fagsystemSaksId: null,
             temaKode: 'ERS',
             temaNavn: 'Erstatning',
@@ -319,13 +216,9 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2012-09-19T07:02:05.361Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '109471916'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '108082628',
             fagsystemSaksId: null,
             temaKode: 'BIL',
             temaNavn: 'Bil',
@@ -333,27 +226,18 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2012-05-10T07:09:24.505Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '108082628'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '116922654',
             fagsystemSaksId: '1/2014',
             temaKode: 'DAG',
             temaNavn: 'Dagpenger',
             fagsystemKode: 'AO11',
             fagsystemNavn: 'Grisen',
             sakstype: 'MFS',
-            opprettetDato: '2014-06-16T12:32:11.478Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '1/2014'
+            opprettetDato: '2014-06-16T12:32:11.478Z'
         },
         {
-            saksId: '109471963',
             fagsystemSaksId: null,
             temaKode: 'HEL',
             temaNavn: 'Helsetjenester og ortopediske hjelpemidler',
@@ -361,13 +245,9 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2012-09-19T07:03:57.126Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '109471963'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '108257801',
             fagsystemSaksId: null,
             temaKode: 'OMS',
             temaNavn: 'Omsorgspenger, Pleiepenger og opplæringspenger',
@@ -375,41 +255,27 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2012-05-25T10:20:50.449Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '108257801'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '116057992',
             fagsystemSaksId: '0118B07',
             temaKode: 'BAR',
             temaNavn: 'Barnetrygd',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2014-03-22T19:17:14.562Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '0118B07'
+            opprettetDato: '2014-03-22T19:17:14.562Z'
         },
         {
-            saksId: '118007224',
             fagsystemSaksId: '0118B09',
             temaKode: 'BAR',
             temaNavn: 'Barnetrygd',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2014-10-02T15:01:49.681Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '0118B09'
+            opprettetDato: '2014-10-02T15:01:49.681Z'
         },
         {
-            saksId: '130510754',
             fagsystemSaksId: null,
             temaKode: 'RVE',
             temaNavn: 'Rettferdsvederlag',
@@ -417,41 +283,27 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2017-11-03T09:58:46.705Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '130510754'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '119484276',
             fagsystemSaksId: '2101U03',
             temaKode: 'MED',
             temaNavn: 'Medlemskap',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2015-02-23T08:32:35.087Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '2101U03'
+            opprettetDato: '2015-02-23T08:32:35.087Z'
         },
         {
-            saksId: '123046148',
             fagsystemSaksId: '1502D02',
             temaKode: 'GRA',
             temaNavn: 'Gravferdsstønad',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2016-02-05T09:48:30.094Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '1502D02'
+            opprettetDato: '2016-02-05T09:48:30.094Z'
         },
         {
-            saksId: '120539811',
             fagsystemSaksId: null,
             temaKode: 'UFM',
             temaNavn: 'Unntak fra medlemskap',
@@ -459,27 +311,18 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2015-06-06T14:21:54.404Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '120539811'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '130809676',
             fagsystemSaksId: '10518629',
             temaKode: 'AAP',
             temaNavn: 'Arbeidsavklaringspenger',
             fagsystemKode: 'AO01',
             fagsystemNavn: 'Arena',
             sakstype: 'MFS',
-            opprettetDato: '2017-12-02T22:22:20.634Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '10518629'
+            opprettetDato: '2017-12-02T22:22:20.634Z'
         },
         {
-            saksId: '109488137',
             fagsystemSaksId: null,
             temaKode: 'TRY',
             temaNavn: 'Trygdeavgift',
@@ -487,13 +330,9 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2012-09-20T05:24:29.485Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '109488137'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '107917503',
             fagsystemSaksId: null,
             temaKode: 'STO',
             temaNavn: 'Regnskap/utbetaling',
@@ -501,41 +340,27 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2012-04-26T06:22:00.757Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '107917503'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '121038512',
             fagsystemSaksId: '0118B03',
             temaKode: 'BAR',
             temaNavn: 'Barnetrygd',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2015-07-29T12:09:22.213Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '0118B03'
+            opprettetDato: '2015-07-29T12:09:22.213Z'
         },
         {
-            saksId: '130513745',
             fagsystemSaksId: '123654',
             temaKode: 'DAG',
             temaNavn: 'Dagpenger',
             fagsystemKode: 'AO11',
             fagsystemNavn: 'Grisen',
             sakstype: 'MFS',
-            opprettetDato: '2017-11-03T13:33:04.396Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '123654'
+            opprettetDato: '2017-11-03T13:33:04.396Z'
         },
         {
-            saksId: '106963522',
             fagsystemSaksId: null,
             temaKode: 'SER',
             temaNavn: 'Serviceklager',
@@ -543,13 +368,9 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2012-02-13T13:35:13.500Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '106963522'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '106660702',
             fagsystemSaksId: null,
             temaKode: 'GRA',
             temaNavn: 'Gravferdsstønad',
@@ -557,13 +378,9 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2012-01-23T11:22:20.864Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '106660702'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '106706896',
             fagsystemSaksId: null,
             temaKode: 'GRU',
             temaNavn: 'Grunn- og hjelpestønad',
@@ -571,13 +388,9 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2012-01-25T13:41:52.871Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '106706896'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '130229612',
             fagsystemSaksId: null,
             temaKode: 'RPO',
             temaNavn: 'Retting av personopplysninger',
@@ -585,41 +398,27 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2017-10-12T07:06:32.211Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '130229612'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '123460845',
             fagsystemSaksId: '0118B11',
             temaKode: 'BAR',
             temaNavn: 'Barnetrygd',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2016-03-12T16:56:43.724Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '0118B11'
+            opprettetDato: '2016-03-12T16:56:43.724Z'
         },
         {
-            saksId: '122739224',
             fagsystemSaksId: '9315582',
             temaKode: 'AAP',
             temaNavn: 'Arbeidsavklaringspenger',
             fagsystemKode: 'AO01',
             fagsystemNavn: 'Arena',
             sakstype: 'MFS',
-            opprettetDato: '2016-01-12T11:30:17.081Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '9315582'
+            opprettetDato: '2016-01-12T11:30:17.081Z'
         },
         {
-            saksId: '122962699',
             fagsystemSaksId: null,
             temaKode: 'TSR',
             temaNavn: 'Tilleggsstønad arbeidssøkere',
@@ -627,13 +426,9 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2016-01-29T13:19:49.112Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '122962699'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '123047426',
             fagsystemSaksId: null,
             temaKode: 'SAP',
             temaNavn: 'Sanksjon - Person',
@@ -641,55 +436,36 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2016-02-05T11:26:54.703Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '123047426'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '107058689',
             fagsystemSaksId: '6585821',
             temaKode: 'OPP',
             temaNavn: 'Oppfølging',
             fagsystemKode: 'AO01',
             fagsystemNavn: 'Arena',
             sakstype: 'MFS',
-            opprettetDato: '2012-02-20T13:17:17.034Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '6585821'
+            opprettetDato: '2012-02-20T13:17:17.034Z'
         },
         {
-            saksId: '111626553',
             fagsystemSaksId: '0118B05',
             temaKode: 'BAR',
             temaNavn: 'Barnetrygd',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2013-03-09T18:27:56.114Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '0118B05'
+            opprettetDato: '2013-03-09T18:27:56.114Z'
         },
         {
-            saksId: '116922630',
             fagsystemSaksId: '01/2014/10108000398',
             temaKode: 'DAG',
             temaNavn: 'Dagpenger',
             fagsystemKode: 'AO11',
             fagsystemNavn: 'Grisen',
             sakstype: 'MFS',
-            opprettetDato: '2014-06-16T12:38:50.769Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '01/2014/10108000398'
+            opprettetDato: '2014-06-16T12:38:50.769Z'
         },
         {
-            saksId: '106661023',
             fagsystemSaksId: null,
             temaKode: 'FUL',
             temaNavn: 'Fullmakt',
@@ -697,97 +473,63 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2012-01-23T11:39:09.664Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '106661023'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '122940548',
             fagsystemSaksId: '0118E02',
             temaKode: 'ENF',
             temaNavn: 'Enslig forsørger',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2016-01-28T06:50:32.549Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '0118E02'
+            opprettetDato: '2016-01-28T06:50:32.549Z'
         },
         {
-            saksId: '117408291',
             fagsystemSaksId: '0118B02',
             temaKode: 'BAR',
             temaNavn: 'Barnetrygd',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2014-08-06T06:16:35.590Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '0118B02'
+            opprettetDato: '2014-08-06T06:16:35.590Z'
         },
         {
-            saksId: '118831671',
             fagsystemSaksId: '0118A05',
             temaKode: 'ENF',
             temaNavn: 'Enslig forsørger',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2014-12-17T22:42:40.812Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '0118A05'
+            opprettetDato: '2014-12-17T22:42:40.812Z'
         },
         {
-            saksId: '119117852',
             fagsystemSaksId: '2101U01',
             temaKode: 'MED',
             temaNavn: 'Medlemskap',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2015-01-21T13:53:25.811Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '2101U01'
+            opprettetDato: '2015-01-21T13:53:25.811Z'
         },
         {
-            saksId: '124294014',
             fagsystemSaksId: '0118B12',
             temaKode: 'BAR',
             temaNavn: 'Barnetrygd',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2016-06-04T18:23:19.077Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '0118B12'
+            opprettetDato: '2016-06-04T18:23:19.077Z'
         },
         {
-            saksId: '113144038',
             fagsystemSaksId: '0/2013',
             temaKode: 'DAG',
             temaNavn: 'Dagpenger',
             fagsystemKode: 'AO11',
             fagsystemNavn: 'Grisen',
             sakstype: 'MFS',
-            opprettetDato: '2013-07-12T12:03:31.672Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '0/2013'
+            opprettetDato: '2013-07-12T12:03:31.672Z'
         },
         {
-            saksId: '124100142',
             fagsystemSaksId: null,
             temaKode: 'MOB',
             temaNavn: 'Mobilitetsfremmende stønad',
@@ -795,13 +537,9 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2016-05-18T08:12:04.678Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '124100142'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '106661017',
             fagsystemSaksId: null,
             temaKode: 'BAR',
             temaNavn: 'Barnetrygd',
@@ -809,13 +547,9 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2012-01-23T11:38:53.720Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '106661017'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '113762331',
             fagsystemSaksId: null,
             temaKode: 'SYM',
             temaNavn: 'Sykmelding',
@@ -823,13 +557,9 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2013-09-11T08:28:43.555Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '113762331'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '106660710',
             fagsystemSaksId: null,
             temaKode: 'SYK',
             temaNavn: 'Sykepenger',
@@ -837,41 +567,27 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2012-01-23T11:22:33.684Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '106660710'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '122958862',
             fagsystemSaksId: '1001E01',
             temaKode: 'FOR',
             temaNavn: 'Foreldre- og svangerskapspenger',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2016-01-29T08:44:16.989Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '1001E01'
+            opprettetDato: '2016-01-29T08:44:16.989Z'
         },
         {
-            saksId: '119277844',
             fagsystemSaksId: '2101U02',
             temaKode: 'MED',
             temaNavn: 'Medlemskap',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2015-02-04T09:34:28.501Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '2101U02'
+            opprettetDato: '2015-02-04T09:34:28.501Z'
         },
         {
-            saksId: '109488139',
             fagsystemSaksId: null,
             temaKode: 'YRK',
             temaNavn: 'Yrkesskade / Menerstatning',
@@ -879,27 +595,18 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2012-09-20T05:24:44.635Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '109488139'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '117954291',
             fagsystemSaksId: '0118D02',
             temaKode: 'KON',
             temaNavn: 'Kontantstøtte',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2014-09-27T16:09:31.190Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '0118D02'
+            opprettetDato: '2014-09-27T16:09:31.190Z'
         },
         {
-            saksId: '109823779',
             fagsystemSaksId: null,
             temaKode: 'AAP',
             temaNavn: 'Arbeidsavklaringspenger',
@@ -907,27 +614,18 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2012-10-19T12:15:51.278Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '109823779'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '127326943',
             fagsystemSaksId: '189231471',
             temaKode: 'OPP',
             temaNavn: 'Oppfølging',
             fagsystemKode: 'AO01',
             fagsystemNavn: 'Arena',
             sakstype: 'MFS',
-            opprettetDato: '2017-02-15T12:10:22.840Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '189231471'
+            opprettetDato: '2017-02-15T12:10:22.840Z'
         },
         {
-            saksId: '106661014',
             fagsystemSaksId: null,
             temaKode: 'AGR',
             temaNavn: 'Ajourhold - Grunnopplysninger',
@@ -935,69 +633,45 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2012-01-23T11:38:47.903Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '106661014'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '120539842',
             fagsystemSaksId: '0118B10',
             temaKode: 'BAR',
             temaNavn: 'Barnetrygd',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2015-06-06T15:58:44.315Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '0118B10'
+            opprettetDato: '2015-06-06T15:58:44.315Z'
         },
         {
-            saksId: '122940526',
             fagsystemSaksId: '0118E01',
             temaKode: 'ENF',
             temaNavn: 'Enslig forsørger',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2016-01-28T06:47:01.480Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '0118E01'
+            opprettetDato: '2016-01-28T06:47:01.480Z'
         },
         {
-            saksId: '116922558',
             fagsystemSaksId: '01/10108000398',
             temaKode: 'DAG',
             temaNavn: 'Dagpenger',
             fagsystemKode: 'AO11',
             fagsystemNavn: 'Grisen',
             sakstype: 'MFS',
-            opprettetDato: '2014-06-16T12:32:41.077Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '01/10108000398'
+            opprettetDato: '2014-06-16T12:32:41.077Z'
         },
         {
-            saksId: '117981024',
             fagsystemSaksId: '0118B08',
             temaKode: 'BAR',
             temaNavn: 'Barnetrygd',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2014-10-01T15:40:46.245Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '0118B08'
+            opprettetDato: '2014-10-01T15:40:46.245Z'
         },
         {
-            saksId: '109823780',
             fagsystemSaksId: null,
             temaKode: 'IND',
             temaNavn: 'Tiltakspenger',
@@ -1005,13 +679,9 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2012-10-19T12:16:07.140Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '109823780'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '108300950',
             fagsystemSaksId: null,
             temaKode: 'MED',
             temaNavn: 'Medlemskap',
@@ -1019,13 +689,9 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2012-05-31T06:24:41.066Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '108300950'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '109488138',
             fagsystemSaksId: null,
             temaKode: 'VEN',
             temaNavn: 'Ventelønn',
@@ -1033,41 +699,27 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2012-09-20T05:24:33.392Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '109488138'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '122958911',
             fagsystemSaksId: '1002E01',
             temaKode: 'FOR',
             temaNavn: 'Foreldre- og svangerskapspenger',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2016-01-29T08:48:00.854Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '1002E01'
+            opprettetDato: '2016-01-29T08:48:00.854Z'
         },
         {
-            saksId: '125774731',
             fagsystemSaksId: '9744848',
             temaKode: 'DAG',
             temaNavn: 'Dagpenger',
             fagsystemKode: 'AO01',
             fagsystemNavn: 'Arena',
             sakstype: 'MFS',
-            opprettetDato: '2016-10-18T12:49:31.255Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '9744848'
+            opprettetDato: '2016-10-18T12:49:31.255Z'
         },
         {
-            saksId: '124294074',
             fagsystemSaksId: null,
             temaKode: 'YRA',
             temaNavn: 'Yrkesrettet attføring',
@@ -1075,41 +727,27 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2016-06-04T18:50:54.238Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '124294074'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '114861634',
             fagsystemSaksId: '0118D01',
             temaKode: 'KON',
             temaNavn: 'Kontantstøtte',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2013-12-07T19:25:49.980Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '0118D01'
+            opprettetDato: '2013-12-07T19:25:49.980Z'
         },
         {
-            saksId: '110398626',
             fagsystemSaksId: '0118A02',
             temaKode: 'ENF',
             temaNavn: 'Enslig forsørger',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2012-12-08T15:37:35.498Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '0118A02'
+            opprettetDato: '2012-12-08T15:37:35.498Z'
         },
         {
-            saksId: '103897238',
             fagsystemSaksId: null,
             temaKode: 'TRK',
             temaNavn: 'Trekkhåndtering',
@@ -1117,55 +755,36 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2011-06-30T13:47:36.572Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '103897238'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '107905042',
             fagsystemSaksId: '0118A01',
             temaKode: 'ENF',
             temaNavn: 'Enslig forsørger',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2012-04-25T14:28:15.504Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '0118A01'
+            opprettetDato: '2012-04-25T14:28:15.504Z'
         },
         {
-            saksId: '130338350',
             fagsystemSaksId: '9744627',
             temaKode: 'DAG',
             temaNavn: 'Dagpenger',
             fagsystemKode: 'AO01',
             fagsystemNavn: 'Arena',
             sakstype: 'MFS',
-            opprettetDato: '2017-10-23T10:22:56.959Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '9744627'
+            opprettetDato: '2017-10-23T10:22:56.959Z'
         },
         {
-            saksId: '125889657',
             fagsystemSaksId: '9744871',
             temaKode: 'DAG',
             temaNavn: 'Dagpenger',
             fagsystemKode: 'AO01',
             fagsystemNavn: 'Arena',
             sakstype: 'MFS',
-            opprettetDato: '2016-10-27T09:36:21.997Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '9744871'
+            opprettetDato: '2016-10-27T09:36:21.997Z'
         },
         {
-            saksId: '108320472',
             fagsystemSaksId: null,
             temaKode: 'SAK',
             temaNavn: 'Saksomkostninger',
@@ -1173,13 +792,9 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2012-06-01T11:24:25.130Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '108320472'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '109472021',
             fagsystemSaksId: null,
             temaKode: 'KON',
             temaNavn: 'Kontantstøtte',
@@ -1187,13 +802,9 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2012-09-19T07:07:06.274Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '109472021'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '106660707',
             fagsystemSaksId: null,
             temaKode: 'SUP',
             temaNavn: 'Supplerende stønad',
@@ -1201,13 +812,9 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2012-01-23T11:22:28.625Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '106660707'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '107439888',
             fagsystemSaksId: null,
             temaKode: 'FOR',
             temaNavn: 'Foreldre- og svangerskapspenger',
@@ -1215,13 +822,9 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2012-03-19T09:49:17.630Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '107439888'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '109472016',
             fagsystemSaksId: null,
             temaKode: 'HJE',
             temaNavn: 'Hjelpemidler',
@@ -1229,13 +832,9 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2012-09-19T07:06:58.442Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '109472016'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '122657596',
             fagsystemSaksId: null,
             temaKode: 'REH',
             temaNavn: 'Rehabilitering',
@@ -1243,178 +842,115 @@ export const saker = {
             fagsystemNavn: 'Gosys',
             sakstype: 'GEN',
             opprettetDato: '2016-01-05T08:06:13.305Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: true,
-            saksIdVisning: '122657596'
+            sakstypeForVisningGenerell: true
         },
         {
-            saksId: '118093746',
             fagsystemSaksId: '120444',
             temaKode: 'DAG',
             temaNavn: 'Dagpenger',
             fagsystemKode: 'AO11',
             fagsystemNavn: 'Grisen',
             sakstype: 'MFS',
-            opprettetDato: '2014-10-10T06:21:54.234Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '120444'
+            opprettetDato: '2014-10-10T06:21:54.234Z'
         },
         {
-            saksId: '123042770',
             fagsystemSaksId: '1502D01',
             temaKode: 'GRA',
             temaNavn: 'Gravferdsstønad',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2016-02-05T06:57:37.973Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '1502D01'
+            opprettetDato: '2016-02-05T06:57:37.973Z'
         },
         {
-            saksId: '135396650',
             fagsystemSaksId: '9744686',
             temaKode: 'AAP',
             temaNavn: 'Arbeidsavklaringspenger',
             fagsystemKode: 'AO01',
             fagsystemNavn: 'Arena',
             sakstype: 'MFS',
-            opprettetDato: '2018-06-05T09:19:55.419Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '9744686'
+            opprettetDato: '2018-06-05T09:19:55.419Z'
         },
         {
-            saksId: '135891043',
             fagsystemSaksId: '0747F01',
             temaKode: 'HJE',
             temaNavn: 'Hjelpemidler',
             fagsystemKode: 'IT01',
             fagsystemNavn: 'Infotrygd',
             sakstype: 'MFS',
-            opprettetDato: '2018-07-19T12:20:52.964Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '0747F01'
+            opprettetDato: '2018-07-19T12:20:52.964Z'
         },
         {
-            saksId: '135890907',
             fagsystemSaksId: 'SF35353535',
             temaKode: 'HJE',
             temaNavn: 'Hjelpemidler',
             fagsystemKode: 'OEBS',
             fagsystemNavn: 'OeBS',
             sakstype: 'MFS',
-            opprettetDato: '2018-07-19T12:08:48.777Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: 'SF35353535'
+            opprettetDato: '2018-07-19T12:08:48.777Z'
         },
         {
-            saksId: '137029618',
             fagsystemSaksId: 'SF8888888',
             temaKode: 'HJE',
             temaNavn: 'Hjelpemidler',
             fagsystemKode: 'OEBS',
             fagsystemNavn: 'OeBS',
             sakstype: 'MFS',
-            opprettetDato: '2018-11-02T09:35:06.993Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: 'SF8888888'
+            opprettetDato: '2018-11-02T09:35:06.993Z'
         },
         {
-            saksId: '138431733',
             fagsystemSaksId: '11507318',
             temaKode: 'IND',
             temaNavn: 'Tiltakspenger',
             fagsystemKode: 'AO01',
             fagsystemNavn: 'Arena',
             sakstype: 'MFS',
-            opprettetDato: '2019-02-15T02:06:39.357Z',
-            finnesIGsak: true,
-            finnesIPsak: false,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '11507318'
+            opprettetDato: '2019-02-15T02:06:39.357Z'
         },
         {
-            saksId: '21248166',
             fagsystemSaksId: '21248166',
             temaKode: 'UFO',
             temaNavn: 'Uføretrygd',
             fagsystemKode: 'PP01',
             fagsystemNavn: 'Pesys',
             sakstype: null,
-            opprettetDato: null,
-            finnesIGsak: false,
-            finnesIPsak: true,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '21248166'
+            opprettetDato: null
         },
         {
-            saksId: '21225259',
             fagsystemSaksId: '21225259',
             temaKode: 'PEN',
             temaNavn: 'Pensjon',
             fagsystemKode: 'PP01',
             fagsystemNavn: 'Pesys',
             sakstype: null,
-            opprettetDato: null,
-            finnesIGsak: false,
-            finnesIPsak: true,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '21225259'
+            opprettetDato: null
         },
         {
-            saksId: '22274451',
             fagsystemSaksId: '22274451',
             temaKode: 'PEN',
             temaNavn: 'Pensjon',
             fagsystemKode: 'PP01',
             fagsystemNavn: 'Pesys',
             sakstype: null,
-            opprettetDato: null,
-            finnesIGsak: false,
-            finnesIPsak: true,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '22274451'
+            opprettetDato: null
         },
         {
-            saksId: '22274452',
             fagsystemSaksId: '22274452',
             temaKode: 'PEN',
             temaNavn: 'Pensjon',
             fagsystemKode: 'PP01',
             fagsystemNavn: 'Pesys',
             sakstype: null,
-            opprettetDato: null,
-            finnesIGsak: false,
-            finnesIPsak: true,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '22274452'
+            opprettetDato: null
         },
         {
-            saksId: '22274453',
             fagsystemSaksId: '22274453',
             temaKode: 'PEN',
             temaNavn: 'Pensjon',
             fagsystemKode: 'PP01',
             fagsystemNavn: 'Pesys',
             sakstype: null,
-            opprettetDato: null,
-            finnesIGsak: false,
-            finnesIPsak: true,
-            sakstypeForVisningGenerell: false,
-            saksIdVisning: '22274453'
+            opprettetDato: null
         }
     ],
     feiledeSystemer: []

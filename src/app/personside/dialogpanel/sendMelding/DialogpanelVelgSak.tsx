@@ -16,7 +16,7 @@ interface Props {
 }
 
 function getTittel(sak: JournalforingsSak) {
-    return [sak.opprettetDato && formatterDatoMedMaanedsnavn(sak.opprettetDato), sak.temaNavn, sak.saksIdVisning]
+    return [sak.opprettetDato && formatterDatoMedMaanedsnavn(sak.opprettetDato), sak.temaNavn, sak.fagsystemSaksId]
         .map((element) => (element ? element : '-'))
         .join(' | ');
 }
