@@ -83,7 +83,7 @@ const TraadDetailSection = () => {
 export const TraadDetail = () => {
     const { isLoading } = useTraader();
     return (
-        <ErrorBoundary boundaryName="traaddetail" errorText="Det oppstod en feil under visning av melding detailjer">
+        <ErrorBoundary boundaryName="traaddetail" errorText="Det oppstod en feil under visning av melding detaljer">
             {isLoading ? <Skeleton variant="rectangle" height="4rem" /> : <TraadDetailSection />}
         </ErrorBoundary>
     );
