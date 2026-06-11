@@ -30,7 +30,9 @@ const filterUtbetalinger = (utbetalinger: Utbetaling[], filters: UtbetalingFilte
     return filteredList;
 };
 
-export const useFilterUtbetalinger = (): QueryResult<UtbetalingerResponseDto> => {
+type FilteredUtbetalingerResponse = UtbetalingerResponseDto & { alleUtbetalinger: Utbetaling[] };
+
+export const useFilterUtbetalinger = (): QueryResult<FilteredUtbetalingerResponse> => {
     const filters = useAtomValue(utbetalingFilterAtom);
     const startDato = (filters.dateRange.from ?? dayjs().subtract(2, 'year')).startOf('day').format('YYYY-MM-DD');
     const sluttDato = (filters.dateRange.to ?? dayjs()).endOf('day').format('YYYY-MM-DD');
@@ -44,10 +46,11 @@ export const useFilterUtbetalinger = (): QueryResult<UtbetalingerResponseDto> =>
         ...utbetalingerResponse,
         data: {
             ...utbetalingerResponse.data,
-            utbetalinger: filterUtbetalinger(sortedUtbetalinger, filters) ?? []
+            utbetalinger: filterUtbetalinger(sortedUtbetalinger, filters) ?? [],
+            alleUtbetalinger: sortedUtbetalinger ?? []
         },
         errorMessages: errorMessages.filter(Boolean)
-    } as QueryResult<UtbetalingerResponseDto>;
+    } as QueryResult<FilteredUtbetalingerResponse>;
 };
 
 const getNettoSumYtelser = (ytelser: Ytelse[]): number => {

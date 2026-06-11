@@ -73,7 +73,7 @@ const DateFilter = () => {
 
 const UtbetalingYtelserFilter = () => {
     const { data } = useFilterUtbetalinger();
-    const utbetalinger = data?.utbetalinger ?? [];
+    const utbetalinger = data?.alleUtbetalinger;
     const [selectedYtelse, setSelectedYtelse] = useAtom(utbetalingFilterYtelseTypeAtom);
 
     const onToggleSelected = useCallback(
