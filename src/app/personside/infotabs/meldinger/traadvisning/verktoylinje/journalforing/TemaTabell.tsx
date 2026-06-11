@@ -26,7 +26,7 @@ interface Props extends Tema {
 
 function TemaTable(props: Props) {
     const { tema, saker, velgSak, valgtSak } = props;
-    const apenByDefault = (valgtSak && saker.some((sak) => sak.saksId === valgtSak.saksId)) || false;
+    const apenByDefault = (valgtSak && saker.some((sak) => sak.fagsystemSaksId === valgtSak.fagsystemSaksId)) || false;
     const [apen, settApen] = useState(apenByDefault);
     return (
         <MiniEkspanderbartpanelBase

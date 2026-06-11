@@ -14,18 +14,13 @@ const commonSchema = z.object({
 const sakSchema = z.object(
     {
         fnr: z.string().optional(),
-        saksId: z.string().optional(),
         fagsystemSaksId: z.string().optional(),
         temaKode: z.string().optional(),
         temaNavn: z.string().optional(),
         fagsystemKode: z.string().optional(),
         fagsystemNavn: z.string().optional(),
         sakstype: z.string().optional(),
-        opprettetDato: z.string().optional(),
-        finnesIGsak: z.boolean().optional(),
-        finnesIPsak: z.boolean().optional(),
-        sakstypeForVisningGenerell: z.boolean().optional(),
-        saksIdVisning: z.string().optional()
+        opprettetDato: z.string().optional()
     },
     { message: 'Meldingen må knyttes til en sak' }
 );

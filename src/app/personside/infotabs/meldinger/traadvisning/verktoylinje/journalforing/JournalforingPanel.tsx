@@ -23,16 +23,10 @@ export interface JournalforingsSak {
     fagsystemKode: string;
     fagsystemNavn: string;
     fagsystemSaksId: string | null;
-    finnesIGsak: boolean;
-    finnesIPsak: boolean;
     opprettetDato: string | null;
-    saksId: string;
-    saksIdVisning: string;
     sakstype: string | null;
-    sakstypeForVisningGenerell: boolean;
     temaKode: string;
     temaNavn: string;
-    syntetisk?: boolean | null;
 }
 
 export type Result = { saker: Array<JournalforingsSak>; feiledeSystemer: Array<string> };
