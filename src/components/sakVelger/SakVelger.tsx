@@ -1,9 +1,8 @@
-import { Alert, HGrid, VStack } from '@navikt/ds-react';
+import { Alert, HGrid, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
 import Spinner from 'nav-frontend-spinner';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { SakKategori } from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
-import TemaListeElement from 'src/components/melding/TemaListeElement';
-import { useFokusVedPiltaster, usePiltasterIListe } from 'src/components/sakVelger/keyboardHooks';
+import { useFokusVedPiltaster } from 'src/components/sakVelger/keyboardHooks';
 import SakVelgerSakList from 'src/components/sakVelger/SakVelgerSakList';
 import SakVelgerTemaList from 'src/components/sakVelger/SakVelgerTemaList';
 import SakVelgerToggleGroup from 'src/components/sakVelger/SakVelgerToggleGroup';
@@ -16,7 +15,7 @@ export type Tema = { tema: string; saker: Array<JournalforingSak> };
 export type Kategorier = { [key in SakKategori]: Tema[] };
 
 interface SakVelgerProps {
-    setSak: (sak: JournalforingSak, kategori: SakKategori, tema: Tema) => void;
+    setSak: (sak: JournalforingSak, kategori: SakKategori, tema?: Tema) => void;
     valgtSak?: JournalforingSak;
 }
 
@@ -71,9 +70,8 @@ const SakVelger: React.FC<SakVelgerProps> = ({ setSak, valgtSak }) => {
             <SakVelgerToggleGroup valgtSakKategori={valgtSakKategori} setSakKategori={setSakKategori} />
             {valgtSakKategori === SakKategori.GEN ? (
                 <GenerelleSakerListe
-                    temaer={fordelteSaker[SakKategori.GEN]}
-                    onVelgTema={(tema) => setSak(tema.saker[0], SakKategori.GEN, tema)}
-                    valgtSak={valgtSak}
+                    saker={fordelteSaker[SakKategori.GEN].flatMap((tema) => tema.saker)}
+                    setSak={(sak) => setSak(sak, SakKategori.GEN)}
                 />
             ) : (
                 <HGrid align="start" columns={2} gap="space-8">
@@ -110,36 +108,29 @@ const SakVelger: React.FC<SakVelgerProps> = ({ setSak, valgtSak }) => {
 };
 
 interface GenerelleSakerListeProps {
-    temaer: Tema[];
-    onVelgTema: (tema: Tema) => void;
-    valgtSak?: JournalforingSak;
+    saker: JournalforingSak[];
+    setSak: (sak: JournalforingSak) => void;
 }
 
-const GenerelleSakerListe: React.FC<GenerelleSakerListeProps> = ({ temaer, onVelgTema, valgtSak }) => {
-    const listeRef = useRef<HTMLDivElement>(null);
-    const valgtTema = temaer.find((t) => t.saker[0]?.saksIdVisning === valgtSak?.saksIdVisning);
-
-    usePiltasterIListe<Tema>(listeRef, [valgtTema], temaer, onVelgTema, valgtTema);
+const GenerelleSakerListe: React.FC<GenerelleSakerListeProps> = ({ saker, setSak }) => {
+    const velgSak = (temaKode: string) => {
+        const sak = saker.find((s) => s.temaKode === temaKode);
+        if (sak) setSak(sak);
+    };
 
     return (
-        <div
-            tabIndex={0}
-            // biome-ignore lint/a11y/useSemanticElements: <Custom tabindex og tastaturnavigasjon gir bedre ux enn select/option>
-            role="listbox"
-            aria-label="Velg sak"
-            ref={listeRef}
-            aria-activedescendant={valgtTema?.tema.replace(/\s+/g, '')}
-            className="h-[63vh] overflow-auto"
-        >
-            {temaer.map((tema) => (
-                <TemaListeElement
-                    key={tema.tema}
-                    tema={tema.tema}
-                    onChange={() => onVelgTema(tema)}
-                    valgt={tema === valgtTema}
-                />
-            ))}
-        </div>
+        <UNSAFE_Combobox
+            description="Ved å knytte dialogen til et tema vil dialogen bli journalført på generell sak med valgt tema"
+            label="Velg tema"
+            size="small"
+            onToggleSelected={(option) => velgSak(option)}
+            options={saker
+                .filter(
+                    (sak): sak is JournalforingSak & { temaNavn: string; temaKode: string } =>
+                        typeof sak.temaNavn === 'string' && typeof sak.temaKode === 'string'
+                )
+                .map((sak) => ({ label: sak.temaNavn, value: sak.temaKode }))}
+        />
     );
 };
 
