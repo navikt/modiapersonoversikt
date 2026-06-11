@@ -1,4 +1,4 @@
-import { Alert, Button, HGrid, Modal, VStack } from '@navikt/ds-react';
+import { Alert, Button, Modal } from '@navikt/ds-react';
 import { useAtomValue } from 'jotai';
 import { useState } from 'react';
 import { FetchError } from 'src/api/api';
@@ -53,60 +53,7 @@ export const JournalForingModal = ({ traad, close, isOpen }: Props) => {
         >
             <Modal.Body className="overflow-y-hidden">
                 {kanJournalfores ? (
-                    <SakVelger.Root
-                        setSak={(sak) => {
-                            setValgtSak(sak);
-                        }}
-                    >
-                        {({
-                            setSak,
-                            valgtSakKategori,
-                            setSakKategori,
-                            fordelteSaker,
-                            valgtTema,
-                            setTema,
-                            feiledeSystemer,
-                            sakIFokus,
-                            setSakIFokus,
-                            temaListeRef,
-                            saksListeRef
-                        }) => (
-                            <VStack gap="space-8">
-                                <SakVelger.ToggleGroup
-                                    valgtSakKategori={valgtSakKategori}
-                                    setSakKategori={setSakKategori}
-                                />
-                                <HGrid align="start" columns={2} gap="space-16">
-                                    <div className="h-[60vh]">
-                                        <SakVelger.TemaListe
-                                            kategorier={fordelteSaker}
-                                            valgtKategori={valgtSakKategori}
-                                            valgtTema={valgtTema}
-                                            setValgtTema={setTema}
-                                            temaListeRef={temaListeRef}
-                                        />
-                                    </div>
-                                    <div className="h-[60vh] ">
-                                        <SakVelger.SakListe
-                                            kategorier={fordelteSaker}
-                                            valgtKategori={valgtSakKategori}
-                                            valgtTema={valgtTema}
-                                            setSak={setSak}
-                                            saksListeRef={saksListeRef}
-                                            sakIFokus={sakIFokus}
-                                            setSakIFokus={setSakIFokus}
-                                            valgtSak={valgtSak}
-                                        />
-                                    </div>
-                                </HGrid>
-                                {feiledeSystemer.map((feiledeSystem) => (
-                                    <Alert variant="warning" key={feiledeSystem}>
-                                        {feiledeSystem}
-                                    </Alert>
-                                ))}
-                            </VStack>
-                        )}
-                    </SakVelger.Root>
+                    <SakVelger setSak={(sak) => setValgtSak(sak)} valgtSak={valgtSak} />
                 ) : (
                     <Alert variant="warning">Dialogen kan ikke journalføres</Alert>
                 )}
