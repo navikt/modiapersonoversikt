@@ -26,17 +26,22 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
                         size="xsmall"
                         disabled={disableDialog}
                         onClick={() => setVelgSakModalOpen(true)}
-                        iconPosition="left"
                     >
                         Velg sak
                     </Button>
                 </div>
                 {valgtSak && (
                     <div className="flex-auto">
-                        <Tag data-color="neutral" variant="outline" size="small">
-                            {valgtSak.saksId} | {valgtSak.temaNavn} |{' '}
-                            {formatterDatoMedMaanedsnavnOrNull(valgtSak.opprettetDato)}
-                        </Tag>
+                        {valgtSak.sakstype === 'GEN' ? (
+                            <Tag data-color="neutral" variant="outline" size="small">
+                                Generell sak: {valgtSak.temaNavn}
+                            </Tag>
+                        ) : (
+                            <Tag data-color="neutral" variant="outline" size="small">
+                                {valgtSak.fagsystemSaksId} | {valgtSak.temaNavn} |{' '}
+                                {formatterDatoMedMaanedsnavnOrNull(valgtSak.opprettetDato)}
+                            </Tag>
+                        )}
                     </div>
                 )}
                 {error}
