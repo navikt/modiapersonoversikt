@@ -75,7 +75,7 @@ const SakVelger: React.FC<SakVelgerProps> = ({ setSak, valgtSak }) => {
                 />
             ) : (
                 <HGrid align="start" columns={2} gap="space-8">
-                    <div className="h-[60vh]">
+                    <div className="h-[50vh]">
                         <SakVelgerTemaList
                             kategorier={fordelteSaker}
                             valgtKategori={valgtSakKategori}
@@ -84,7 +84,7 @@ const SakVelger: React.FC<SakVelgerProps> = ({ setSak, valgtSak }) => {
                             temaListeRef={temaListeRef}
                         />
                     </div>
-                    <div className="h-[60vh]">
+                    <div className="h-[50vh]">
                         <SakVelgerSakList
                             kategorier={fordelteSaker}
                             valgtKategori={valgtSakKategori}
@@ -119,18 +119,20 @@ const GenerelleSakerListe: React.FC<GenerelleSakerListeProps> = ({ saker, setSak
     };
 
     return (
-        <UNSAFE_Combobox
-            description="Ved å knytte dialogen til et tema vil dialogen bli journalført på generell sak med valgt tema"
-            label="Velg tema"
-            size="small"
-            onToggleSelected={(option) => velgSak(option)}
-            options={saker
-                .filter(
-                    (sak): sak is JournalforingSak & { temaNavn: string; temaKode: string } =>
-                        typeof sak.temaNavn === 'string' && typeof sak.temaKode === 'string'
-                )
-                .map((sak) => ({ label: sak.temaNavn, value: sak.temaKode }))}
-        />
+        <div className="h-[50vh]">
+            <UNSAFE_Combobox
+                description="Ved å knytte dialogen til et tema vil dialogen bli journalført på generell sak med valgt tema"
+                label="Velg tema"
+                size="small"
+                onToggleSelected={(option) => velgSak(option)}
+                options={saker
+                    .filter(
+                        (sak): sak is JournalforingSak & { temaNavn: string; temaKode: string } =>
+                            typeof sak.temaNavn === 'string' && typeof sak.temaKode === 'string'
+                    )
+                    .map((sak) => ({ label: sak.temaNavn, value: sak.temaKode }))}
+            />
+        </div>
     );
 };
 
