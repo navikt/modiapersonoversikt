@@ -84,7 +84,7 @@ export function JournalforSak(props: Props) {
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
                 loggError(error, 'Kunne ikke gjennomføre journalføring', {
                     traadId: props.traad.traadId,
-                    saksId: props.sak.saksId
+                    saksId: props.sak.fagsystemSaksId ?? '-'
                 });
             });
     };
@@ -110,7 +110,7 @@ export function JournalforSak(props: Props) {
                 tittelRekke={['Saksid', 'Opprettet', 'Fagsystem']}
                 rows={[
                     [
-                        props.sak.saksIdVisning,
+                        props.sak.fagsystemSaksId,
                         formatterDatoMedMaanedsnavnOrNull(props.sak.opprettetDato) ?? ENDASH,
                         props.sak.fagsystemNavn
                     ]

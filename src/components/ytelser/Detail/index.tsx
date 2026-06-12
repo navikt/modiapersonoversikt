@@ -110,7 +110,7 @@ export const ValgteYtelseDetailPage = () => {
     return (
         <ErrorBoundary
             boundaryName="valgteYtelseDetailPage"
-            errorText="Det oppstod en feil under visning av ytelse detailjer"
+            errorText="Det oppstod en feil under visning av ytelse detaljer"
         >
             {isLoading ? (
                 <Skeleton variant="rectangle" height="4rem" />

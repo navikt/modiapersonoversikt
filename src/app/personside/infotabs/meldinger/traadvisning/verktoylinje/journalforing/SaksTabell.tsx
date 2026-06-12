@@ -12,7 +12,7 @@ interface Props {
 function SaksTabell(props: Props) {
     const tittelRekke = ['Saks id', 'Opprettet dato', 'Fagsystem'];
     const rows = props.saker.map((sak) => [
-        sak.saksIdVisning,
+        sak.fagsystemSaksId,
         formatterDatoMedMaanedsnavnOrNull(sak.opprettetDato) ?? ENDASH,
         sak.fagsystemNavn
     ]);

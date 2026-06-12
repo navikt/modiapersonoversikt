@@ -1896,7 +1896,6 @@ export interface components {
         };
         JournalforingSak: {
             fnr?: string;
-            saksId?: string;
             fagsystemSaksId?: string;
             temaKode?: string;
             temaNavn?: string;
@@ -1905,10 +1904,6 @@ export interface components {
             sakstype?: string;
             /** Format: date-time */
             opprettetDato?: string;
-            finnesIGsak?: boolean;
-            finnesIPsak?: boolean;
-            saksIdVisning?: string;
-            sakstypeForVisningGenerell?: boolean;
         };
         Resultat: {
             saker: components['schemas']['JournalforingSak'][];

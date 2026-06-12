@@ -1,3 +1,4 @@
+import { Detail } from '@navikt/ds-react';
 import { AlertStripeAdvarsel, AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { Radio, type RadioProps } from 'nav-frontend-skjema';
 import Spinner from 'nav-frontend-spinner';
@@ -99,7 +100,8 @@ function VelgSak(props: Props) {
         </AlertStripeAdvarsel>
     ));
 
-    const temaTable = fordelteSaker[valgtKategori.input.value as SakKategori].map((tema: Tema) => (
+    const saksKategori = valgtKategori.input.value as SakKategori;
+    const temaTable = fordelteSaker[saksKategori].map((tema: Tema) => (
         <TemaTable
             key={tema.tema}
             tema={tema.tema}
@@ -128,6 +130,11 @@ function VelgSak(props: Props) {
                 />
             </Form>
             <div>{feiledeSystemerAlerts}</div>
+            {saksKategori === SakKategori.GEN && (
+                <Detail spacing className="pt-2">
+                    Ved å knytte dialogen til et tema vil dialogen bli journalført på generell sak med valgt tema
+                </Detail>
+            )}
             {temaTable}
         </>
     );
