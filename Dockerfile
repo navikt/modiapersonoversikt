@@ -5,7 +5,7 @@ ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable && corepack prepare pnpm@11.6.0 --activate
 
 WORKDIR /app
-COPY pnpm-lock.yaml .npmrc /app
+COPY pnpm-lock.yaml  /app
 RUN --mount=type=secret,id=node_auth_token \
   NODE_AUTH_TOKEN=$(cat /run/secrets/node_auth_token) \
   pnpm fetch
