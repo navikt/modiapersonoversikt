@@ -1,0 +1,10 @@
+engineStrict: true
+
+registries:
+  default: https://registry.npmjs.org/
+  '@navikt': https://npm.pkg.github.com/
+
+allowBuilds:
+  esbuild: false
+  msw: false
+  protobufjs: false
