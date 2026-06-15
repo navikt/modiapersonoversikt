@@ -25,6 +25,15 @@ av tokens for kallene som skjer til `/proxy` og `/modiapersonoversikt-draft`.
 Kun et `LOCAL_TOKEN` er nødvendig. Dette kan hentes fra
 <https://azure-token-generator.intern.dev.nav.no/api/obo?aud=dev-gcp:personoversikt:modiapersonoversikt>.
 
+#### Laste ned pakker fra @navikt 
+Opprett GitHub-token og konfigurer SSO for å autorisere tokenet mot navikt (husk å legg til expiration date)
+Set tokenet i pnpm config:
+```console
+pnpm config set //npm.pkg.github.com/:_authToken <gh_token> --location=user
+```
+
+Start appen
+
 ```console
 pnpm i
 pnpm run start

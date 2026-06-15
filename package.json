@@ -5,6 +5,7 @@
     "license": "MIT",
     "main": "build/dist/index.js",
     "type": "module",
+    "packageManager": "pnpm@11.6.0",
     "files": [
         "build/dist/"
     ],
@@ -190,14 +191,5 @@
     },
     "msw": {
         "workerDirectory": "./public"
-    },
-    "pnpm": {
-        "ignoredBuiltDependencies": [
-            "esbuild",
-            "msw"
-        ],
-        "onlyBuiltDependencies": [
-            "msw"
-        ]
     }
 }

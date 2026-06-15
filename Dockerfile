@@ -2,22 +2,20 @@ FROM node:24-slim AS builder
 
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
-RUN corepack enable && npm i -g corepack@latest
+RUN corepack enable && corepack prepare pnpm@11.6.0 --activate
 
 WORKDIR /app
-COPY pnpm-lock.yaml .npmrc /app
+COPY pnpm-lock.yaml  /app
 RUN --mount=type=secret,id=node_auth_token \
-  NODE_AUTH_TOKEN=$(cat /run/secrets/node_auth_token) \
+  env "pnpm_config_//npm.pkg.github.com/:_authToken=$(cat /run/secrets/node_auth_token)" \
   pnpm fetch
 
 COPY . /app
 RUN --mount=type=secret,id=node_auth_token \
-  NODE_AUTH_TOKEN=$(cat /run/secrets/node_auth_token) \
+  env "pnpm_config_//npm.pkg.github.com/:_authToken=$(cat /run/secrets/node_auth_token)" \
   pnpm install -r --offline
 
-RUN --mount=type=secret,id=node_auth_token \
-  NODE_AUTH_TOKEN=$(cat /run/secrets/node_auth_token) \
-  pnpm run build
+RUN pnpm run build
 
 FROM europe-north1-docker.pkg.dev/nais-management-233d/personoversikt/modia-frontend:1.13
 
