@@ -26,7 +26,7 @@ const SakVelgerTemaList = ({
             <Heading size="xsmall" as="h2" className="mb-2" id="listboxlabel">
                 Velg tema
             </Heading>
-            <VStack height="58vh" overflow="auto" tabIndex={-1}>
+            <VStack height="48vh" overflow="auto" tabIndex={-1}>
                 <div
                     tabIndex={0}
                     id="velg-sak-liste"

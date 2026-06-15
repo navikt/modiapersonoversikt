@@ -16,6 +16,7 @@ import FortlopendeJournalforing from './img/fortlopende-journalforing.png';
 import Gjeldende14aVedtak from './img/gjeldende_14a-vedtak.png';
 import InfomeldingBilde from './img/infomelding.jpg';
 import JournalforFlere from './img/journalfor-flere.png';
+import JournalforingGenerellSak from './img/journalforing_generell_sak.png';
 import Journalforing from './img/journaloring.png';
 import KassertDokumentBilde from './img/kassert.jpg';
 import Kontonummersok from './img/kontonummersok.png';
@@ -749,6 +750,21 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                         plass i personoversikten de gangene du ikke har behov for å benytte dialogen.
                     </p>
                 </>
+            )
+        },
+        {
+            id: 44,
+            tittel: 'Forenklet utseende ved journalføring på generell sak',
+            dato: new Date('2026-06-15 11:00'),
+            aktiv: true,
+            ingress: null,
+            src: JournalforingGenerellSak,
+            beskrivelse: (
+                <Normaltekst>
+                    Ved journalføring på generell sak så trenger en kun å velge et tema. Det opprettes da en generell
+                    sak i Joark på dette temaet. For å journalføre på eksisterende saker fra fagsystemer må det velges
+                    en sak under fagsaker-fanen slik som tidligere.
+                </Normaltekst>
             )
         }
     ];

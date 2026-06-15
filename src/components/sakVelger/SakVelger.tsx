@@ -1,4 +1,4 @@
-import { Alert } from '@navikt/ds-react';
+import { Alert, HGrid, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
 import Spinner from 'nav-frontend-spinner';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { SakKategori } from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
@@ -11,35 +11,23 @@ import { useJournalforingSaker } from 'src/lib/clients/modiapersonoversikt-api';
 import { datoSynkende } from 'src/utils/date-utils';
 import { type Group, groupBy } from 'src/utils/groupArray';
 
-interface SakVelgerRootContext {
-    valgtSakKategori: SakKategori;
-    setSakKategori: (sakKategori: SakKategori) => void;
-    valgtTema: Tema | undefined;
-    setTema: (tema: Tema) => void;
-    saker: JournalforingSak[];
-    setSak: (sak: JournalforingSak, kategori: SakKategori, tema: Tema) => void;
-    fordelteSaker: Kategorier;
-    feiledeSystemer: string[];
-    sakIFokus: JournalforingSak | undefined;
-    setSakIFokus: (sak: JournalforingSak | undefined) => void;
-    temaListeRef: React.RefObject<HTMLDivElement | null>;
-    saksListeRef: React.RefObject<HTMLDivElement | null>;
+export type Tema = { tema: string; saker: Array<JournalforingSak> };
+export type Kategorier = { [key in SakKategori]: Tema[] };
+
+interface SakVelgerProps {
+    setSak: (sak: JournalforingSak, kategori: SakKategori, tema?: Tema) => void;
+    valgtSak?: JournalforingSak;
 }
 
-interface SakVelgerRootProps {
-    setSak: (sak: JournalforingSak, kategori: SakKategori, tema: Tema) => void;
-    children: (context: SakVelgerRootContext) => React.ReactNode;
-}
-
-const SakVelgerRoot: React.FC<SakVelgerRootProps> = ({ children, setSak }) => {
+const SakVelger: React.FC<SakVelgerProps> = ({ setSak, valgtSak }) => {
     const { data, isPending, isError } = useJournalforingSaker();
 
     const [valgtSakKategori, setSakKategori] = useState<SakKategori>(SakKategori.FAG);
     const [valgtTema, setTema] = useState<Tema | undefined>();
-
     const [sakIFokus, setSakIFokus] = useState<JournalforingSak | undefined>();
 
     const { saker, feiledeSystemer } = data || { saker: [], feiledeSystemer: [] };
+
     const fordelteSaker = useMemo(() => fordelSaker(saker), [saker]);
 
     const temaListeRef = useRef<HTMLDivElement>(null);
@@ -59,7 +47,7 @@ const SakVelgerRoot: React.FC<SakVelgerRootProps> = ({ children, setSak }) => {
     };
 
     const fokuserPaaForsteSak = () => {
-        valgteSaker.length ? setSakIFokus(valgteSaker[0]) : undefined;
+        if (valgteSaker.length) setSakIFokus(valgteSaker[0]);
     };
 
     useFokusVedPiltaster(
@@ -74,39 +62,78 @@ const SakVelgerRoot: React.FC<SakVelgerRootProps> = ({ children, setSak }) => {
         setTema(fordelteSaker[valgtSakKategori][0]);
     }, [valgtSakKategori, fordelteSaker]);
 
-    if (isPending) {
-        return <Spinner type="XL" />;
-    }
-    if (isError) {
-        return <Alert variant="error">Feil ved henting av journalsaker</Alert>;
-    }
+    if (isPending) return <Spinner type="XL" />;
+    if (isError) return <Alert variant="error">Feil ved henting av journalsaker</Alert>;
 
     return (
-        <>
-            {/* eslint-disable-next-line react-compiler/react-compiler */}
-            {children({
-                saker,
-                setSak,
-                fordelteSaker,
-                feiledeSystemer,
-                valgtSakKategori,
-                setSakKategori,
-                valgtTema,
-                setTema,
-                sakIFokus,
-                setSakIFokus,
-                temaListeRef,
-                saksListeRef
-            })}
-        </>
+        <VStack gap="space-8">
+            <SakVelgerToggleGroup valgtSakKategori={valgtSakKategori} setSakKategori={setSakKategori} />
+            {valgtSakKategori === SakKategori.GEN ? (
+                <GenerelleSakerListe
+                    saker={fordelteSaker[SakKategori.GEN].flatMap((tema) => tema.saker)}
+                    setSak={(sak) => setSak(sak, SakKategori.GEN)}
+                />
+            ) : (
+                <HGrid align="start" columns={2} gap="space-8">
+                    <div className="h-[50vh]">
+                        <SakVelgerTemaList
+                            kategorier={fordelteSaker}
+                            valgtKategori={valgtSakKategori}
+                            valgtTema={valgtTema}
+                            setValgtTema={setTema}
+                            temaListeRef={temaListeRef}
+                        />
+                    </div>
+                    <div className="h-[50vh]">
+                        <SakVelgerSakList
+                            kategorier={fordelteSaker}
+                            valgtKategori={valgtSakKategori}
+                            valgtTema={valgtTema}
+                            setSak={setSak}
+                            setSakIFokus={setSakIFokus}
+                            sakIFokus={sakIFokus}
+                            saksListeRef={saksListeRef}
+                            valgtSak={valgtSak}
+                        />
+                    </div>
+                </HGrid>
+            )}
+            {feiledeSystemer.map((feiledeSystem) => (
+                <Alert variant="warning" key={feiledeSystem}>
+                    {feiledeSystem}
+                </Alert>
+            ))}
+        </VStack>
     );
 };
 
-const SakVelger = {
-    Root: SakVelgerRoot,
-    ToggleGroup: SakVelgerToggleGroup,
-    TemaListe: SakVelgerTemaList,
-    SakListe: SakVelgerSakList
+interface GenerelleSakerListeProps {
+    saker: JournalforingSak[];
+    setSak: (sak: JournalforingSak) => void;
+}
+
+const GenerelleSakerListe: React.FC<GenerelleSakerListeProps> = ({ saker, setSak }) => {
+    const velgSak = (temaKode: string) => {
+        const sak = saker.find((s) => s.temaKode === temaKode);
+        if (sak) setSak(sak);
+    };
+
+    return (
+        <div className="h-[50vh]">
+            <UNSAFE_Combobox
+                description="Ved å knytte dialogen til et tema vil dialogen bli journalført på generell sak med valgt tema"
+                label="Velg tema"
+                size="small"
+                onToggleSelected={(option) => velgSak(option)}
+                options={saker
+                    .filter(
+                        (sak): sak is JournalforingSak & { temaNavn: string; temaKode: string } =>
+                            typeof sak.temaNavn === 'string' && typeof sak.temaKode === 'string'
+                    )
+                    .map((sak) => ({ label: sak.temaNavn, value: sak.temaKode }))}
+            />
+        </div>
+    );
 };
 
 export default SakVelger;
@@ -123,6 +150,7 @@ function fordelSaker(saker: JournalforingSak[]): Kategorier {
             groupBy((sak) => sak.temaNavn),
             {}
         );
+
     const temaGrupperteGenerelleSaker: Group<JournalforingSak> = kategoriGruppert[SakKategori.GEN]
         .filter((sak): sak is JournalforingSak & { temaNavn: string } => typeof sak.temaNavn === 'string')
         .reduce(
@@ -132,15 +160,14 @@ function fordelSaker(saker: JournalforingSak[]): Kategorier {
 
     const fagSaker = Object.entries(temaGruppertefagSaker)
         .reduce((acc, [tema, saker]) => {
-            const sortedSaker = saker.sort(datoSynkende((t) => t.opprettetDato || new Date(0)));
-            acc.push({ tema, saker: sortedSaker });
+            acc.push({ tema, saker: saker.sort(datoSynkende((t) => t.opprettetDato || new Date(0))) });
             return acc;
         }, [] as Tema[])
         .toSorted((a, b) => a.tema.localeCompare(b.tema));
+
     const generelleSaker = Object.entries(temaGrupperteGenerelleSaker)
         .reduce((acc, [tema, saker]) => {
-            const sortedSaker = saker.sort(datoSynkende((t) => t.opprettetDato || new Date(0)));
-            acc.push({ tema, saker: sortedSaker });
+            acc.push({ tema, saker: saker.sort(datoSynkende((t) => t.opprettetDato || new Date(0))) });
             return acc;
         }, [] as Tema[])
         .toSorted((a, b) => a.tema.localeCompare(b.tema));
@@ -154,6 +181,3 @@ function fordelSaker(saker: JournalforingSak[]): Kategorier {
 function sakKategori(sak: JournalforingSak): SakKategori {
     return sak.sakstype === 'GEN' ? SakKategori.GEN : SakKategori.FAG;
 }
-
-export type Tema = { tema: string; saker: Array<JournalforingSak> };
-export type Kategorier = { [key in SakKategori]: Tema[] };

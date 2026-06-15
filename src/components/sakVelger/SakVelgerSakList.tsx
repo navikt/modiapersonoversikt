@@ -47,16 +47,16 @@ const SakVelgerSakList: React.FC<SakVelgerSakListProps> = ({
             </HStack>
             <div
                 tabIndex={0}
-                className="h-[55vh] overflow-auto"
+                className="h-[43vh] overflow-auto"
                 // biome-ignore lint/a11y/useSemanticElements: <Custom tabindex og tastaturnavigasjon gir bedre ux enn select/option>
                 role="listbox"
                 aria-labelledby="heading-listbox2"
                 ref={saksListeRef}
-                aria-activedescendant={sakIFokus?.saksIdVisning}
+                aria-activedescendant={sakIFokus?.fagsystemSaksId}
             >
                 {saker.map((sak) => (
                     <SakListeElement
-                        key={sak.saksIdVisning}
+                        key={sak.fagsystemSaksId}
                         sak={sak}
                         onClick={() => setSak(sak, valgtKategori, valgtTema)}
                         valgtSak={valgtSak}
@@ -90,18 +90,18 @@ const SakListeElement = ({
     return (
         <div
             ref={sakRef}
-            id={sak.saksIdVisning}
+            id={sak.fagsystemSaksId}
             tabIndex={-1}
             // biome-ignore lint/a11y/useSemanticElements: <Custom tabindex og tastaturnavigasjon gir bedre ux enn select/option>
             role="option"
             onClick={onClick}
             className={twMerge(
-                valgtSak?.saksIdVisning === sak.saksIdVisning
+                valgtSak?.fagsystemSaksId === sak.fagsystemSaksId
                     ? 'bg-ax-bg-accent-moderate-pressed outline-ax-border-accent-strong outline-2'
                     : 'border-b-2 focus:border-0 hover:bg-ax-bg-accent-moderate-hover focus:bg-ax-bg-accent-moderate-hover focus:outline-2 focus:outline-ax-border-accent-strong',
                 'cursor-pointer py-1'
             )}
-            aria-selected={valgtSak?.saksIdVisning === sak.saksIdVisning}
+            aria-selected={valgtSak?.fagsystemSaksId === sak.fagsystemSaksId}
             onSelect={onClick}
             onKeyDown={(e) => {
                 if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
@@ -109,7 +109,7 @@ const SakListeElement = ({
             }}
         >
             <HStack justify="space-between">
-                <span>{sak.saksIdVisning}</span>
+                <span>{sak.fagsystemSaksId}</span>
                 <span className="w-50">{formatterDatoMedMaanedsnavnOrNull(sak.opprettetDato)}</span>
             </HStack>
         </div>

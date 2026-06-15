@@ -1,4 +1,4 @@
-import { Alert, Button, HGrid, Modal, Tag, VStack } from '@navikt/ds-react';
+import { Button, Modal, Tag, VStack } from '@navikt/ds-react';
 import { type ReactNode, useState } from 'react';
 import SakVelger from 'src/components/sakVelger/SakVelger';
 import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
@@ -26,17 +26,22 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
                         size="xsmall"
                         disabled={disableDialog}
                         onClick={() => setVelgSakModalOpen(true)}
-                        iconPosition="left"
                     >
                         Velg sak
                     </Button>
                 </div>
                 {valgtSak && (
                     <div className="flex-auto">
-                        <Tag data-color="neutral" variant="outline" size="small">
-                            {valgtSak.saksId} | {valgtSak.temaNavn} |{' '}
-                            {formatterDatoMedMaanedsnavnOrNull(valgtSak.opprettetDato)}
-                        </Tag>
+                        {valgtSak.sakstype === 'GEN' ? (
+                            <Tag data-color="neutral" variant="outline" size="small">
+                                Generell sak: {valgtSak.temaNavn}
+                            </Tag>
+                        ) : (
+                            <Tag data-color="neutral" variant="outline" size="small">
+                                {valgtSak.fagsystemSaksId} | {valgtSak.temaNavn} |{' '}
+                                {formatterDatoMedMaanedsnavnOrNull(valgtSak.opprettetDato)}
+                            </Tag>
+                        )}
                     </div>
                 )}
                 {error}
@@ -49,7 +54,7 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
                 closeOnBackdropClick
             >
                 <Modal.Body className="overflow-y-hidden">
-                    <SakVelger.Root
+                    <SakVelger
                         setSak={(sak) => {
                             const normalized = Object.fromEntries(
                                 Object.entries(sak).map(([k, v]) => [k, v ?? undefined])
@@ -57,55 +62,7 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
                             setSak({ ...normalized, fnr: undefined });
                             setVelgSakModalOpen(false);
                         }}
-                    >
-                        {({
-                            setSak,
-                            valgtSakKategori,
-                            setSakKategori,
-                            fordelteSaker,
-                            valgtTema,
-                            setTema,
-                            feiledeSystemer,
-                            sakIFokus,
-                            setSakIFokus,
-                            saksListeRef,
-                            temaListeRef
-                        }) => (
-                            <VStack gap="space-8">
-                                <SakVelger.ToggleGroup
-                                    valgtSakKategori={valgtSakKategori}
-                                    setSakKategori={setSakKategori}
-                                />
-                                <HGrid align="start" columns={2} gap="space-8">
-                                    <div className="h-[60vh]">
-                                        <SakVelger.TemaListe
-                                            kategorier={fordelteSaker}
-                                            valgtKategori={valgtSakKategori}
-                                            valgtTema={valgtTema}
-                                            setValgtTema={setTema}
-                                            temaListeRef={temaListeRef}
-                                        />
-                                    </div>
-                                    <div className="h-[60vh]">
-                                        <SakVelger.SakListe
-                                            kategorier={fordelteSaker}
-                                            valgtKategori={valgtSakKategori}
-                                            valgtTema={valgtTema}
-                                            setSak={setSak}
-                                            setSakIFokus={setSakIFokus}
-                                            sakIFokus={sakIFokus}
-                                            saksListeRef={saksListeRef}
-                                        />
-                                    </div>
-                                </HGrid>
-                                {feiledeSystemer.map((feiledeSystem) => (
-                                    <Alert variant="warning" key={feiledeSystem}>
-                                        {feiledeSystem}
-                                    </Alert>
-                                ))}
-                            </VStack>
-                        )}
-                    </SakVelger.Root>
+                    />
                 </Modal.Body>
             </Modal>
         </VStack>
