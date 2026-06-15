@@ -762,7 +762,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             beskrivelse: (
                 <Normaltekst>
                     Ved journalføring på generell sak så trenger en kun å velge et tema. Det opprettes da en generell
-                    sak i Joark på dette teamet. For å journalføre på eksisterende saker fra fagsystemer må det velges
+                    sak i Joark på dette temaet. For å journalføre på eksisterende saker fra fagsystemer må det velges
                     en sak under fagsaker-fanen slik som tidligere.
                 </Normaltekst>
             )
