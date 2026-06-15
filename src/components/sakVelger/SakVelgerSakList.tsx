@@ -47,7 +47,7 @@ const SakVelgerSakList: React.FC<SakVelgerSakListProps> = ({
             </HStack>
             <div
                 tabIndex={0}
-                className="h-[45vh] overflow-auto"
+                className="h-[43vh] overflow-auto"
                 // biome-ignore lint/a11y/useSemanticElements: <Custom tabindex og tastaturnavigasjon gir bedre ux enn select/option>
                 role="listbox"
                 aria-labelledby="heading-listbox2"
