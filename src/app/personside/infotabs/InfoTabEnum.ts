@@ -22,10 +22,3 @@ export const INFOTABS = {
     YTELSER: { tittel: 'Ytelser', path: 'ytelser' },
     VARSLER: { tittel: 'Varsler', path: 'varsler' }
 } as const;
-
-const { SAKER: _, ...infotabsUtenSaker } = INFOTABS;
-
-export const infotabsMedDokumenterUtenSaker = {
-    ...infotabsUtenSaker,
-    DOKUMENTER: { tittel: 'Dokumenter', path: 'dokumenter' }
-};

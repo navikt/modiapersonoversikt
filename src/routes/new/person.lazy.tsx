@@ -97,7 +97,7 @@ function PersonLayout() {
     ) : null;
 
     return (
-        <VStack className="new-modia  overflow-hidden" flexGrow="1" gap="space-4">
+        <VStack className="new-modia overflow-hidden" flexGrow="1" gap="space-4" data-testid="person-route">
             <VStack className="shrink-0 overflow-auto">
                 <PersonLinje />
             </VStack>
