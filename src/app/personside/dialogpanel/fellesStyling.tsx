@@ -74,7 +74,7 @@ function MeldingSendtVerktoyLinje(props: { traad: Traad | undefined }) {
 
 function VarselTilBrukerOmStatus(props: {
     meldingstatus: SendNyMeldingStatus;
-    tittle: string;
+    tittel: string;
     journalforingFeilet?: boolean;
 }) {
     if (props.meldingstatus === SendNyMeldingStatus.ERROR) {
@@ -82,7 +82,7 @@ function VarselTilBrukerOmStatus(props: {
     }
     return (
         <>
-            <AlertStripeSuksess>{props.tittle}</AlertStripeSuksess>
+            <AlertStripeSuksess>{props.tittel}</AlertStripeSuksess>
             {props.journalforingFeilet && (
                 <AlertStripeFeil>
                     Meldingen ble sendt, men journalføring feilet. Journalfør manuelt og meld fra i Porten om problemet
@@ -106,7 +106,7 @@ export function DialogpanelKvittering(props: {
                 <VisuallyHiddenAutoFokusHeader tittel={props.tittel} />
                 <VarselTilBrukerOmStatus
                     meldingstatus={props.meldingstatus}
-                    tittle={props.tittel}
+                    tittel={props.tittel}
                     journalforingFeilet={props.traad?.journalforingFeilet}
                 />
                 {props.traad && props.traad.meldinger.length > 1 && (

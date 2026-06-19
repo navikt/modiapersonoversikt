@@ -150,6 +150,7 @@ const SendMeldingContent = ({
                                 variant="secondary"
                                 data-color="danger"
                                 size="small"
+                                title="Lukk meldingspanel"
                                 onClick={() => {
                                     setDialogUnderArbeid(undefined);
                                     trackGenereltUmamiEvent(trackingEvents.avbrytMelding);
