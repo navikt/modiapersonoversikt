@@ -158,12 +158,12 @@ function FortsettDialogContainer(props: Props) {
                 fritekst: requestV2.fritekst,
                 traad: props.traad
             };
-            post(url, requestV2, 'Send-Svar')
-                .then(() => {
+            post<Traad>(url, requestV2, 'Send-Svar')
+                .then((traad) => {
                     callback();
                     setDialogStatus({
                         type: DialogPanelStatus.SVAR_SENDT,
-                        kvitteringsData: kvitteringsData
+                        kvitteringsData: { ...kvitteringsData, traad }
                     });
                 })
                 .catch(() => {
@@ -191,15 +191,15 @@ function FortsettDialogContainer(props: Props) {
                 fritekst: requestV2.fritekst,
                 traad: props.traad
             };
-            post(url, requestV2, 'Svar-Med-Spørsmål')
-                .then(() => {
+            post<Traad>(url, requestV2, 'Svar-Med-Spørsmål')
+                .then((traad) => {
                     callback();
                     queryClient.invalidateQueries({
                         queryKey: journalsakResource.queryKey(fnr)
                     });
                     setDialogStatus({
                         type: DialogPanelStatus.SVAR_SENDT,
-                        kvitteringsData: kvitteringsData
+                        kvitteringsData: { ...kvitteringsData, traad }
                     });
                 })
                 .catch(() => {

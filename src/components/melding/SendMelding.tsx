@@ -1,3 +1,4 @@
+import { XMarkIcon } from '@navikt/aksel-icons';
 import { Alert, Button, Heading, HStack, InlineMessage, Skeleton, VStack } from '@navikt/ds-react';
 import { useAtom, useAtomValue } from 'jotai';
 import { type ReactElement, useEffect, useMemo, useState } from 'react';
@@ -93,17 +94,22 @@ const SendMeldingContent = ({
     const feedbackMelding = suksessMelding || feilMelding;
 
     useEffect(() => {
-        if (!feedbackMelding || isPending) return;
-        setTimeout(() => {
+        if (!feedbackMelding || isPending || feilMelding) return;
+        const timer = setTimeout(() => {
             setSuksessMelding(null);
-            setFeilMelding(null);
         }, 2000);
-    }, [feedbackMelding, isPending, setSuksessMelding, setFeilMelding]);
+        return () => clearTimeout(timer);
+    }, [feedbackMelding, isPending, feilMelding, setSuksessMelding]);
 
     useEffect(() => {
         if (feedbackMelding) return;
         setMeldingsTittel(meldingsHeader(traad));
     }, [traad, feedbackMelding]);
+
+    const lukkFeedback = () => {
+        setSuksessMelding(null);
+        setFeilMelding(null);
+    };
 
     const feilMeldingComp = feilMelding ? <Alert variant="error">{feilMelding}</Alert> : null;
     const suksessMeldingComp = suksessMelding ? <Alert variant="success">{suksessMelding}</Alert> : null;
@@ -118,8 +124,20 @@ const SendMeldingContent = ({
             <ReservertIKRR />
             {feedbackMelding ? (
                 <Card padding="space-8" as="section" aria-label="Dialogpanel">
-                    {feilMeldingComp}
-                    {suksessMeldingComp}
+                    {feilMelding && (
+                        <HStack justify="end">
+                            <Button
+                                variant="tertiary"
+                                size="small"
+                                icon={<XMarkIcon aria-hidden />}
+                                onClick={lukkFeedback}
+                            />
+                        </HStack>
+                    )}
+                    <VStack gap="space-4">
+                        {suksessMeldingComp}
+                        {feilMeldingComp}
+                    </VStack>
                 </Card>
             ) : dialogUnderArbeid ? (
                 traad ? (
