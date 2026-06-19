@@ -5,7 +5,7 @@ import { CheckboksPanelGruppe, type CheckboksPanelProps } from 'nav-frontend-skj
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { useRef } from 'react';
 import styled from 'styled-components';
-import type { Sakstema } from '../../../../../models/saksoversikt/sakstema';
+import type { Sakstema } from 'src/generated/modiapersonoversikt-api';
 import { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { useHentAlleSakstemaFraResourceV2, useSakstemaURLStateV2 } from '../useSakstemaURLState';
 import { aggregertSakstemaV2, sakstemakodeAlle } from '../utils/saksoversiktUtilsV2';

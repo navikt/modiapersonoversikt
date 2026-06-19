@@ -1,6 +1,5 @@
 import { Normaltekst } from 'nav-frontend-typografi';
-import type { Dokumentmetadata } from 'src/generated/modiapersonoversikt-api';
-import type { Sakstema } from '../../../../../models/saksoversikt/sakstema';
+import type { Sakstema } from 'src/generated/modiapersonoversikt-api';
 import baseurls from '../../../../../rest/resources/baseurlsResource';
 import persondataResource from '../../../../../rest/resources/persondataResource';
 import { sakstemakodeAlle } from './saksoversiktUtilsV2';
@@ -15,19 +14,11 @@ function lenkeNorg2Frontend(baseUrl: string, props: Props): string {
     return `${baseUrl}/#/startsok?tema=${temakodeTilNorgoppslag}&gt=${props.geografiskTilknytning}`;
 }
 
-function byggSokestrengTilNorgTemaOppslag(sakstema: Sakstema) {
+function byggSokestrengTilNorgTemaOppslag(sakstema: Sakstema): string {
     if (sakstema.temakode !== sakstemakodeAlle) {
         return sakstema.temakode;
     }
-    const temaArray: string[] = sakstema.dokumentMetadata.reduce((acc: string[], dok: Dokumentmetadata) => {
-        const tema = dok.temakode;
-        if (acc.includes(tema)) {
-            return acc;
-        }
-        //biome-ignore lint/performance/noAccumulatingSpread: biome migration
-        return [...acc, tema];
-    }, []);
-    return temaArray.join();
+    return '';
 }
 
 function LenkeNorg(props: Props) {

@@ -5,10 +5,10 @@ import Panel from 'nav-frontend-paneler';
 import { Checkbox } from 'nav-frontend-skjema';
 import { Element, Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { createRef, type JSX, useEffect, useRef, useState } from 'react';
+import type { Sakstema } from 'src/generated/modiapersonoversikt-api';
 import { type Dokumentmetadata, DokumentmetadataAvsender } from 'src/generated/modiapersonoversikt-api';
 import { useSakerDokumenter } from 'src/lib/clients/modiapersonoversikt-api';
 import { saksdatoSomDate } from 'src/models/saksoversikt/fellesSak';
-import type { Sakstema } from 'src/models/saksoversikt/sakstema';
 import type { DokumentAvsenderFilter } from 'src/redux/saksoversikt/types';
 import { usePrevious } from 'src/utils/customHooks';
 import { datoSynkende } from 'src/utils/date-utils';
@@ -20,7 +20,7 @@ import { KategoriSkille } from '../../../dialogpanel/fellesStyling';
 import { sakerTest } from '../../dyplenkeTest/utils-dyplenker-test';
 import { useHentAlleSakstemaFraResourceV2, useSakstemaURLStateV2 } from '../useSakstemaURLState';
 import LenkeNorg from '../utils/LenkeNorg';
-import { aggregertSakstemaV2, forkortetTemanavnV2 } from '../utils/saksoversiktUtilsV2';
+import { aggregertSakstemaV2, forkortetTemanavnV2, sakstemakodeAlle } from '../utils/saksoversiktUtilsV2';
 import ToggleViktigAaViteKnapp from '../viktigavite/ToggleViktigAaViteKnapp';
 import ViktigÅVite from '../viktigavite/viktigavite';
 import JournalpostListeElementV2 from './JournalPostListeElement/JournalpostListeElementV2';
@@ -155,12 +155,7 @@ function JournalpostListe(props: DokumentListeProps) {
     );
 
     const arsgrupper = journalposterGruppert.map((gruppe: ArrayGroup<Dokumentmetadata>) => (
-        <JournalpostGruppe
-            gruppe={gruppe}
-            harTilgang={props.sakstema.harTilgang}
-            key={gruppe.category}
-            valgtSakstema={props.sakstema}
-        />
+        <JournalpostGruppe gruppe={gruppe} harTilgang={true} key={gruppe.category} valgtSakstema={props.sakstema} />
     ));
 
     return <DokumenterListe aria-label="Dokumenter gruppert på årstall">{arsgrupper}</DokumenterListe>;
@@ -203,7 +198,13 @@ function JournalPoster(props: Props) {
         fraAndre: !!avsenderFilterQuery?.includes('andre'),
         fraBruker: !!avsenderFilterQuery?.includes('bruker')
     };
+    const valgteTemaKoder = valgteSakstemaer.map((t) => t.temakode);
+    console.log('Valgte sakstemaer', valgteSakstemaer);
     const filtrerteJournalposter = (data?.dokumenter ?? [])
+        .filter(
+            (journalpost) =>
+                aggregertSak.temakode === sakstemakodeAlle || valgteTemaKoder.includes(journalpost.temakode)
+        )
         .filter((journalpost) => hentRiktigAvsenderfilter(journalpost.avsender, avsenderFilter))
         .sort(datoSynkende((journalpost) => saksdatoSomDate(journalpost.dato)));
     const paginering = usePaginering<Dokumentmetadata, string>(

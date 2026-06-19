@@ -11,7 +11,7 @@ import {
     FeilFeilmelding
 } from 'src/generated/modiapersonoversikt-api';
 import { saksdatoSomDate } from 'src/models/saksoversikt/fellesSak';
-import type { Sakstema } from 'src/models/saksoversikt/sakstema';
+import type { Sakstema } from 'src/generated/modiapersonoversikt-api';
 import styled, { css } from 'styled-components';
 import EtikettGraa from '../../../../../../components/EtikettGraa';
 import persondataResource from '../../../../../../rest/resources/persondataResource';

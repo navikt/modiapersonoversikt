@@ -1,6 +1,6 @@
 import { UnmountClosed } from 'react-collapse';
 import styled from 'styled-components';
-import type { Sakstema } from '../../../../../models/saksoversikt/sakstema';
+import type { Sakstema } from 'src/generated/modiapersonoversikt-api';
 import theme from '../../../../../styles/personOversiktTheme';
 import { ViktigÅViteAAPInnhold } from './AAPInnhold';
 import { ViktigÅViteDAGInnhold } from './DAGInnhold';
