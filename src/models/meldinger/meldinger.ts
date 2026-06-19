@@ -10,6 +10,7 @@ export interface Traad {
     avsluttetDato?: string;
     avsluttetAv?: string;
     sattTilSladdingAv?: string;
+    journalforingFeilet?: boolean;
 }
 
 export interface Melding {

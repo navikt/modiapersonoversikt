@@ -2087,6 +2087,7 @@ export interface components {
             sladding?: boolean;
             meldinger: components['schemas']['MeldingDTO'][];
             journalposter: components['schemas']['Journalpost'][];
+            journalforingFeilet?: boolean;
         };
         OpprettHenvendelseRequestV2: {
             fnr: string;
