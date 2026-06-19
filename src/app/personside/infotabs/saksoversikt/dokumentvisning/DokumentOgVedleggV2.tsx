@@ -6,11 +6,11 @@ import { TabsPure } from 'nav-frontend-tabs';
 import type { TabProps } from 'nav-frontend-tabs/lib/tab';
 import { Undertittel } from 'nav-frontend-typografi';
 import { createRef } from 'react';
+import type { Dokument, Dokumentmetadata } from 'src/generated/modiapersonoversikt-api';
 import { usePersonAtomValue } from 'src/lib/state/context';
 import styled from 'styled-components';
 import { TilbakePil } from '../../../../../components/common-styled-components';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
-import type { Dokument, Journalpost } from '../../../../../models/saksoversikt/journalpost';
 import type { SakstemaSoknadsstatus } from '../../../../../models/saksoversikt/sakstema';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { useFocusOnMount } from '../../../../../utils/customHooks';
@@ -53,7 +53,7 @@ const HeaderStyle = styled(Panel)`
 interface Props {
     valgteSakstemaer: SakstemaSoknadsstatus[];
     valgtDokument: Dokument | undefined;
-    valgtJournalpost: Journalpost | undefined;
+    valgtJournalpost: Dokumentmetadata | undefined;
 }
 
 function DokumentOgVedlegg(props: Props) {

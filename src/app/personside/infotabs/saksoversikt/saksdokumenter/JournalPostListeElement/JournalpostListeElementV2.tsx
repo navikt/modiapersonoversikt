@@ -2,17 +2,18 @@ import dayjs from 'dayjs';
 import { guid } from 'nav-frontend-js-utils';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { createRef, useRef } from 'react';
+import {
+    type Dokumentmetadata,
+    DokumentmetadataAvsender,
+    DokumentmetadataMottaker,
+    DokumentmetadataRetning,
+    type Dokument as Enkeltdokument,
+    FeilFeilmelding
+} from 'src/generated/modiapersonoversikt-api';
+import { saksdatoSomDate } from 'src/models/saksoversikt/fellesSak';
+import type { Sakstema } from 'src/models/saksoversikt/sakstema';
 import styled, { css } from 'styled-components';
 import EtikettGraa from '../../../../../../components/EtikettGraa';
-import { saksdatoSomDate } from '../../../../../../models/saksoversikt/fellesSak';
-import {
-    type Dokument as Enkeltdokument,
-    Entitet,
-    Feilmelding,
-    type Journalpost,
-    Kommunikasjonsretning
-} from '../../../../../../models/saksoversikt/journalpost';
-import type { Sakstema } from '../../../../../../models/saksoversikt/sakstema';
 import persondataResource from '../../../../../../rest/resources/persondataResource';
 import theme from '../../../../../../styles/personOversiktTheme';
 import DokumentIkkeTilgangIkon from '../../../../../../svg/DokumentIkkeTilgangIkon';
@@ -24,7 +25,7 @@ import DokumentLenke from '../DokumentLenke';
 import JournalpostLestAvBruker from './JournalpostLestAvBruker';
 
 interface Props {
-    journalpost: Journalpost;
+    journalpost: Dokumentmetadata;
     harTilgangTilSakstema: boolean;
     valgtSakstema: Sakstema;
 }
@@ -79,25 +80,27 @@ const SaksVisiningOgLestWrapper = styled.div`
     justify-content: space-between;
 `;
 
-function tekstBasertPaRetning(brukernavn: string, dokument: Journalpost) {
+function tekstBasertPaRetning(brukernavn: string, dokument: Dokumentmetadata) {
     switch (dokument.retning) {
-        case Kommunikasjonsretning.Inn:
-            return dokument.avsender === Entitet.Sluttbruker ? `Fra ${brukernavn}` : `Fra ${dokument.navn}`;
-        case Kommunikasjonsretning.Ut:
+        case DokumentmetadataRetning.INN:
+            return dokument.avsender === DokumentmetadataAvsender.SLUTTBRUKER
+                ? `Fra ${brukernavn}`
+                : `Fra ${dokument.navn}`;
+        case DokumentmetadataRetning.UT:
             return utgaendeTekst(dokument.mottaker, dokument.navn);
-        case Kommunikasjonsretning.Intern:
+        case DokumentmetadataRetning.INTERN:
             return 'Notat';
         default:
             return 'Ukjent kommunikasjonsretning';
     }
 }
 
-function utgaendeTekst(mottaker: Entitet, mottakernavn: string) {
-    const dokumentmottaker = mottaker === Entitet.Sluttbruker ? '' : `(Sendt til ${mottakernavn})`;
+function utgaendeTekst(mottaker: DokumentmetadataMottaker, mottakernavn: string) {
+    const dokumentmottaker = mottaker === DokumentmetadataMottaker.SLUTTBRUKER ? '' : `(Sendt til ${mottakernavn})`;
     return `Fra NAV ${dokumentmottaker}`;
 }
 
-function formaterDatoOgAvsender(brukernavn: string, dokument: Journalpost) {
+function formaterDatoOgAvsender(brukernavn: string, dokument: Dokumentmetadata) {
     const dato = dayjs(saksdatoSomDate(dokument.dato)).format('DD.MM.YYYY');
     return `${dato} / ${tekstBasertPaRetning(brukernavn, dokument)}`;
 }
@@ -117,11 +120,11 @@ function JournalpostListeElementV2(props: Props) {
     const brukerResponse = persondataResource.useFetch();
     const tittelId = useRef(guid());
 
-    const dokumentKanVises = (dokument: Enkeltdokument, journalpost: Journalpost) => {
+    const dokumentKanVises = (dokument: Enkeltdokument, journalpost: Dokumentmetadata) => {
         return !dokument.logiskDokument && harTilgangTilJournalpost(journalpost);
     };
 
-    const harTilgangTilJournalpost = (journalpost: Journalpost) => {
+    const harTilgangTilJournalpost = (journalpost: Dokumentmetadata) => {
         const saksid = journalpost.tilhorendeFagsaksid
             ? journalpost.tilhorendeFagsaksid
             : journalpost.tilhorendeSaksid
@@ -129,7 +132,7 @@ function JournalpostListeElementV2(props: Props) {
               : '';
         return (
             props.harTilgangTilSakstema &&
-            journalpost.feil.feilmelding !== Feilmelding.Sikkerhetsbegrensning &&
+            journalpost.feil.feilmelding !== FeilFeilmelding.SIKKERHETSBEGRENSNING &&
             saksid.length !== 0
         );
     };

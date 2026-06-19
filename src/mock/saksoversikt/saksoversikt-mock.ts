@@ -3,11 +3,11 @@ import { fakerNB_NO as faker } from '@faker-js/faker';
 import navfaker from 'nav-faker/dist/index';
 import type { ResultatSaksDokumenter } from 'src/generated/modiapersonoversikt-api';
 import { getAremarkSaksOgDokumenterListe } from 'src/mock/saksoversikt/aremark-saks-og-dokumenter-mock';
+import { getAremarkSakstemaListeV2 } from 'src/mock/saksoversikt/aremark-saksoversikt-mockV2';
 import type { Sak } from 'src/models/saksoversikt/sak';
 import type { SakstemaSoknadsstatus, SakstemaSoknadsstatusResponse } from 'src/models/saksoversikt/sakstema';
 import { aremark } from '../persondata/aremark';
 import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
-import { getAremarkSakstemaListeV2 } from './aremark-saksoversikt-mockV2';
 import { getJournalposter } from './journalpost-mock';
 import { getBaksystem, getSaksdato } from './saksoversikt-felles-mock';
 import { getSoknadsstatus } from './soknadsstatus-mock';
@@ -30,7 +30,7 @@ const temaarray = [
 export function getMockSaksoversiktV2(fødselsnummer: string): SakstemaSoknadsstatusResponse {
     if (fødselsnummer === aremark.personIdent) {
         return {
-            resultat: getAremarkSakstemaListeV2()
+            resultat: []
         };
     }
 

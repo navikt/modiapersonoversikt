@@ -1,7 +1,7 @@
 import { useNavigate, useSearch } from '@tanstack/react-router';
 import { useMemo } from 'react';
+import type { Dokument, Dokumentmetadata } from 'src/generated/modiapersonoversikt-api';
 import { filterType, trackFilterEndret } from 'src/utils/analytics';
-import type { Dokument, Journalpost } from '../../../../models/saksoversikt/journalpost';
 import type { SakstemaSoknadsstatus } from '../../../../models/saksoversikt/sakstema';
 import sakstemaResource from '../../../../rest/resources/sakstemaResource';
 import { datoSynkende } from '../../../../utils/date-utils';
@@ -11,7 +11,7 @@ import { hentDatoForSisteHendelseV2, sakstemakodeAlle, sakstemakodeIngen } from 
 interface SakstemaURLStateV2 {
     valgteSakstemaer: SakstemaSoknadsstatus[];
     valgtDokument: Dokument | undefined;
-    valgtJournalpost: Journalpost | undefined;
+    valgtJournalpost: Dokumentmetadata | undefined;
     setIngenValgte(): void;
     setAlleValgte(): void;
     toggleValgtSakstema(sakstema: SakstemaSoknadsstatus): void;
@@ -101,7 +101,7 @@ export function useHentAlleSakstemaFraResourceV2(): SakstemaResourceV2 {
     }, [resource]);
 }
 
-function inneholderValgtDokument(journalpost: Journalpost, dokumentId?: string): boolean {
+function inneholderValgtDokument(journalpost: Dokumentmetadata, dokumentId?: string): boolean {
     return (
         !!dokumentId &&
         [

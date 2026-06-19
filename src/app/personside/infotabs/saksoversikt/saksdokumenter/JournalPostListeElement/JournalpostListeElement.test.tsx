@@ -1,6 +1,6 @@
 import { act, screen } from '@testing-library/react';
+import { type Dokumentmetadata, FeilFeilmelding } from 'src/generated/modiapersonoversikt-api';
 import { getStaticMockSaksoversiktV2 } from '../../../../../../mock/saksoversikt/saksoversikt-mock';
-import { Feilmelding, type Journalpost } from '../../../../../../models/saksoversikt/journalpost';
 import { renderWithProviders } from '../../../../../../test/Testprovider';
 import { getTestStore } from '../../../../../../test/testStore';
 import { aggregertSakstemaV2 } from '../../utils/saksoversiktUtilsV2';
@@ -14,7 +14,7 @@ describe('JournalpostListeElementV2', () => {
         const { testStore, journalposter } = lagStoreMedJustertDokumentMetadata({
             feil: {
                 inneholderFeil: true,
-                feilmelding: Feilmelding.Sikkerhetsbegrensning
+                feilmelding: FeilFeilmelding.SIKKERHETSBEGRENSNING
             }
         });
 
@@ -51,7 +51,7 @@ describe('JournalpostListeElementV2', () => {
         const hoveddokument = staticSaksoversikt.resultat[0].dokumentMetadata[0].hoveddokument;
         const vedlegg = staticSaksoversikt.resultat[0].dokumentMetadata[0].vedlegg[0];
         const { testStore, journalposter } = lagStoreMedJustertDokumentMetadata({
-            feil: { inneholderFeil: false, feilmelding: null },
+            feil: { inneholderFeil: false },
             hoveddokument: {
                 ...hoveddokument,
                 saksbehandlerHarTilgang: false
@@ -80,7 +80,7 @@ describe('JournalpostListeElementV2', () => {
 
     it('Viser ikke-tilgang-ikon selv i "Alle" sakstemalisten', async () => {
         const { testStore, journalposter } = lagStoreMedJustertDokumentMetadata({
-            feil: { inneholderFeil: false, feilmelding: null }
+            feil: { inneholderFeil: false }
         });
 
         await act(() =>
@@ -96,10 +96,10 @@ describe('JournalpostListeElementV2', () => {
         expect(screen.getByTestId('dokument-ikon')).toBeInTheDocument();
     });
 
-    function lagStoreMedJustertDokumentMetadata(partialDok: Partial<Journalpost>) {
+    function lagStoreMedJustertDokumentMetadata(partialDok: Partial<Dokumentmetadata>) {
         const testStore = getTestStore();
 
-        const dokumentResultat: Journalpost = {
+        const dokumentResultat: Dokumentmetadata = {
             ...staticSaksoversikt.resultat[0].dokumentMetadata[0],
             ...partialDok
         };

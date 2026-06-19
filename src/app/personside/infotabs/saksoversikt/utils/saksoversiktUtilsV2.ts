@@ -1,5 +1,5 @@
+import type { Dokumentmetadata } from 'src/generated/modiapersonoversikt-api';
 import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
-import type { Journalpost } from '../../../../../models/saksoversikt/journalpost';
 import type { SakstemaSoknadsstatus, Soknadsstatus } from '../../../../../models/saksoversikt/sakstema';
 import { formatterDato } from '../../../../../utils/date-utils';
 import { filtrerSakstemaerUtenDataV2 } from '../sakstemaliste/SakstemaListeUtils';
@@ -117,8 +117,8 @@ export function hentDatoForSisteHendelseV2(sakstema: SakstemaSoknadsstatus): Dat
     return dateSoknadsstatus > dateDokumenter ? dateSoknadsstatus : dateDokumenter;
 }
 
-function hentSenesteDatoForDokumenter(journalposter: Journalpost[]) {
-    return journalposter.reduce((acc: Date, dok: Journalpost) => {
+function hentSenesteDatoForDokumenter(journalposter: Dokumentmetadata[]) {
+    return journalposter.reduce((acc: Date, dok: Dokumentmetadata) => {
         return acc > saksdatoSomDate(dok.dato) ? acc : saksdatoSomDate(dok.dato);
     }, new Date(0));
 }

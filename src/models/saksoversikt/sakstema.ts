@@ -1,4 +1,4 @@
-import type { Journalpost } from './journalpost';
+import type { Dokumentmetadata } from 'src/generated/modiapersonoversikt-api';
 import type { Sak } from './sak';
 
 export interface SakstemaSoknadsstatusResponse {
@@ -10,7 +10,7 @@ export interface Sakstema {
     temakode: string;
     temanavn: string;
     erGruppert: boolean;
-    dokumentMetadata: Journalpost[];
+    dokumentMetadata: Dokumentmetadata[];
     tilhorendeSaker: Sak[];
     feilkoder: number[];
 }

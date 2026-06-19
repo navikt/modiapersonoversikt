@@ -1,22 +1,22 @@
 import { Link, useLocation } from '@tanstack/react-router';
 import { Element, Undertekst } from 'nav-frontend-typografi';
+import { type Dokument, DokumentDokumentStatus, type Dokumentmetadata } from 'src/generated/modiapersonoversikt-api';
+import type { Sakstema } from 'src/models/saksoversikt/sakstema';
 import { trackingEvents } from 'src/utils/analytics';
-import { type Dokument, DokumentStatus, type Journalpost } from '../../../../../models/saksoversikt/journalpost';
-import type { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { erSakerFullscreen } from '../utils/erSakerFullscreen';
 
 interface Props {
     dokument: Dokument;
     valgtSakstema: Sakstema;
     kanVises: boolean;
-    journalPost: Journalpost;
+    journalPost: Dokumentmetadata;
 }
 
 const dokumentTekst = (dokument: Dokument) => {
     return (
         dokument.tittel +
         (dokument.skjerming ? ' (Skjermet)' : '') +
-        (dokument.dokumentStatus === DokumentStatus.KASSERT ? ' (Kassert)' : '')
+        (dokument.dokumentStatus === DokumentDokumentStatus.KASSERT ? ' (Kassert)' : '')
     );
 };
 

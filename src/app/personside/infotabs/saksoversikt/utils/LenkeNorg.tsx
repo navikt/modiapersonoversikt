@@ -1,5 +1,5 @@
 import { Normaltekst } from 'nav-frontend-typografi';
-import type { Journalpost } from '../../../../../models/saksoversikt/journalpost';
+import type { Dokumentmetadata } from 'src/generated/modiapersonoversikt-api';
 import type { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import baseurls from '../../../../../rest/resources/baseurlsResource';
 import persondataResource from '../../../../../rest/resources/persondataResource';
@@ -19,7 +19,7 @@ function byggSokestrengTilNorgTemaOppslag(sakstema: Sakstema) {
     if (sakstema.temakode !== sakstemakodeAlle) {
         return sakstema.temakode;
     }
-    const temaArray: string[] = sakstema.dokumentMetadata.reduce((acc: string[], dok: Journalpost) => {
+    const temaArray: string[] = sakstema.dokumentMetadata.reduce((acc: string[], dok: Dokumentmetadata) => {
         const tema = dok.temakode;
         if (acc.includes(tema)) {
             return acc;

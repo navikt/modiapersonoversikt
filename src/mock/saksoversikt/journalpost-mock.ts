@@ -2,17 +2,18 @@ import type { Faker } from '@faker-js/faker';
 import type NavFaker from 'nav-faker/dist/navfaker';
 import {
     type Dokument,
-    DokumentStatus,
-    Entitet,
-    Feilmelding,
-    type FeilWrapper,
-    type Journalpost,
-    Kommunikasjonsretning
-} from '../../models/saksoversikt/journalpost';
+    DokumentDokumentStatus,
+    type Dokumentmetadata,
+    DokumentmetadataAvsender,
+    DokumentmetadataMottaker,
+    DokumentmetadataRetning,
+    FeilFeilmelding
+} from 'src/generated/modiapersonoversikt-api';
+import type { FeilWrapper, Journalpost } from 'src/models/saksoversikt/journalpost';
 import { fyllRandomListe } from '../utils/mock-utils';
 import { getBaksystem, getSaksdato } from './saksoversikt-felles-mock';
 
-export function getJournalposter(faker: Faker, navfaker: NavFaker, tema: string[]): Journalpost[] {
+export function getJournalposter(faker: Faker, navfaker: NavFaker, tema: string[]): Dokumentmetadata[] {
     if (navfaker.random.vektetSjanse(0.3)) {
         return [];
     }
@@ -22,20 +23,20 @@ export function getJournalposter(faker: Faker, navfaker: NavFaker, tema: string[
         .map(() => getJournalpost(faker, navfaker, tema));
 }
 
-function getJournalpost(faker: Faker, navfaker: NavFaker, tema: string[]): Journalpost {
+function getJournalpost(faker: Faker, navfaker: NavFaker, tema: string[]): Dokumentmetadata {
     const retning = getKommunikasjonsretning(faker);
 
     return {
         id: faker.string.alphanumeric(8),
         retning: getKommunikasjonsretning(faker),
         dato: getSaksdato(navfaker),
-        lestDato: getLestDato(navfaker, retning),
+        lestDato: getLestDato(navfaker, retning) ?? undefined,
         navn: navfaker.navn.fornavn(),
         journalpostId: faker.string.alphanumeric(8),
         hoveddokument: getDokument(faker, navfaker),
         vedlegg: navfaker.random.vektetSjanse(0.3) ? fyllRandomListe(() => getDokument(faker, navfaker), 3) : [],
-        avsender: getEntitet(faker),
-        mottaker: getEntitet(faker),
+        avsender: getAvsender(faker),
+        mottaker: getMottaker(faker),
         tilhorendeSaksid: faker.string.alphanumeric(8),
         tilhorendeFagsaksid: faker.string.alphanumeric(8),
         baksystem: fyllRandomListe(() => getBaksystem(faker), 3),
@@ -51,7 +52,7 @@ function getFeilWrapper(faker: Faker): FeilWrapper {
     const erFeil = faker.datatype.boolean(0.1);
     return erFeil
         ? { inneholderFeil: true, feilmelding: getFeilmelding(faker) }
-        : { inneholderFeil: false, feilmelding: null };
+        : { inneholderFeil: false, feilmelding: undefined };
 }
 
 const fakeDokumentNavn = [
@@ -72,43 +73,57 @@ function getDokument(faker: Faker, navFaker: NavFaker): Dokument {
         dokumentreferanse: faker.string.alphanumeric(8),
         saksbehandlerHarTilgang: navFaker.random.vektetSjanse(0.9),
         logiskDokument: faker.datatype.boolean(),
-        skjerming: navFaker.random.vektetSjanse(0.1) ? 'POL' : null,
-        dokumentStatus: navFaker.random.vektetSjanse(0.1) ? DokumentStatus.KASSERT : null
+        skjerming: navFaker.random.vektetSjanse(0.1) ? 'POL' : undefined,
+        dokumentStatus: navFaker.random.vektetSjanse(0.1) ? DokumentDokumentStatus.KASSERT : undefined
     };
 }
 
-function getKommunikasjonsretning(faker: Faker): Kommunikasjonsretning {
+function getKommunikasjonsretning(faker: Faker): DokumentmetadataRetning {
     return faker.helpers.arrayElement([
-        Kommunikasjonsretning.Intern,
-        Kommunikasjonsretning.Ut,
-        Kommunikasjonsretning.Inn
+        DokumentmetadataRetning.INTERN,
+        DokumentmetadataRetning.UT,
+        DokumentmetadataRetning.INN
     ]);
 }
 
-function getLestDato(navFaker: NavFaker, retning: Kommunikasjonsretning): Journalpost['lestDato'] {
-    if (retning !== Kommunikasjonsretning.Ut) {
+function getLestDato(navFaker: NavFaker, retning: DokumentmetadataRetning): Journalpost['lestDato'] {
+    if (retning !== DokumentmetadataRetning.UT) {
         return null;
     }
     return navFaker.dato.mellom(new Date('2020-06-12'), new Date()).toISOString();
 }
 
-function getEntitet(faker: Faker): Entitet {
-    return faker.helpers.arrayElement([Entitet.Nav, Entitet.Sluttbruker, Entitet.Ukjent, Entitet.EksternPart]);
+function getAvsender(faker: Faker): DokumentmetadataAvsender {
+    return faker.helpers.arrayElement([
+        DokumentmetadataAvsender.NAV,
+        DokumentmetadataAvsender.SLUTTBRUKER,
+        DokumentmetadataAvsender.UKJENT,
+        DokumentmetadataAvsender.EKSTERN_PART
+    ]);
 }
 
-function getFeilmelding(faker: Faker): Feilmelding {
+function getMottaker(faker: Faker): DokumentmetadataMottaker {
     return faker.helpers.arrayElement([
-        Feilmelding.TekniskFeil,
-        Feilmelding.Sikkerhetsbegrensning,
-        Feilmelding.SaksbehandlerIkkeTilgang,
-        Feilmelding.ManglerDokumentmetadata,
-        Feilmelding.KorruptPdf,
-        Feilmelding.JournalfortAnnetTema,
-        Feilmelding.IkkeJournalfortEllerAnnenBruker,
-        Feilmelding.DokumentSlettet,
-        Feilmelding.DokumentIkkeTilgjengelig,
-        Feilmelding.DokumentIkkeFunnet,
-        Feilmelding.TemakodeErBidrag,
-        Feilmelding.UkjentFeil
+        DokumentmetadataMottaker.NAV,
+        DokumentmetadataMottaker.SLUTTBRUKER,
+        DokumentmetadataMottaker.UKJENT,
+        DokumentmetadataMottaker.EKSTERN_PART
+    ]);
+}
+
+function getFeilmelding(faker: Faker): FeilFeilmelding {
+    return faker.helpers.arrayElement([
+        FeilFeilmelding.TEKNISK_FEIL,
+        FeilFeilmelding.SIKKERHETSBEGRENSNING,
+        FeilFeilmelding.SAKSBEHANDLER_IKKE_TILGANG,
+        FeilFeilmelding.MANGLER_DOKUMENTMETADATA,
+        FeilFeilmelding.KORRUPT_PDF,
+        FeilFeilmelding.JOURNALFORT_ANNET_TEMA,
+        FeilFeilmelding.IKKE_JOURNALFORT,
+        FeilFeilmelding.DOKUMENT_SLETTET,
+        FeilFeilmelding.DOKUMENT_IKKE_TILGJENGELIG,
+        FeilFeilmelding.DOKUMENT_IKKE_FUNNET,
+        FeilFeilmelding.TEMAKODE_ER_BIDRAG,
+        FeilFeilmelding.UKJENT_FEIL
     ]);
 }

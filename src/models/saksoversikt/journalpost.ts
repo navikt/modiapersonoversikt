@@ -1,19 +1,25 @@
-import type { Baksystem } from './fellesSak';
+import type {
+    DokumentmetadataAvsender,
+    DokumentmetadataBaksystem,
+    DokumentmetadataMottaker,
+    DokumentmetadataRetning,
+    FeilFeilmelding
+} from 'src/generated/modiapersonoversikt-api';
 
 export interface Journalpost {
     id: string;
-    retning: Kommunikasjonsretning;
+    retning: DokumentmetadataRetning;
     dato: string;
     lestDato: string | null;
     navn: string;
     journalpostId: string | null;
     hoveddokument: Dokument;
     vedlegg: Dokument[];
-    avsender: Entitet;
-    mottaker: Entitet;
+    avsender: DokumentmetadataAvsender;
+    mottaker: DokumentmetadataMottaker;
     tilhorendeSaksid: string;
     tilhorendeFagsaksid: string;
-    baksystem: Baksystem[];
+    baksystem: DokumentmetadataBaksystem[];
     temakode: string;
     temakodeVisning: string;
     ettersending: boolean;
@@ -51,7 +57,7 @@ export enum Feilmelding {
 
 export interface FeilWrapper {
     inneholderFeil: boolean;
-    feilmelding: Feilmelding | null;
+    feilmelding?: FeilFeilmelding;
 }
 
 export interface Dokument {

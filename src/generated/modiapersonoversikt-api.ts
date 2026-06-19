@@ -1405,7 +1405,6 @@ export interface components {
         SaksDokumenter: {
             temakode: string;
             temanavn: string;
-            saksid: string;
             fagsaksnummer?: string;
             tilhorendeDokumenter: components['schemas']['Dokumentmetadata'][];
             /** Format: date-time */

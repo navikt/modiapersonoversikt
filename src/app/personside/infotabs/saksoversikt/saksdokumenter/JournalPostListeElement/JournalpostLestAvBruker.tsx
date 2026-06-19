@@ -1,9 +1,9 @@
-import EtikettGraa from '../../../../../../components/EtikettGraa';
-import type { Journalpost } from '../../../../../../models/saksoversikt/journalpost';
-import { formatterDatoTid } from '../../../../../../utils/date-utils';
+import EtikettGraa from 'src/components/EtikettGraa';
+import type { Dokumentmetadata } from 'src/generated/modiapersonoversikt-api';
+import { formatterDatoTid } from 'src/utils/date-utils';
 
 interface Props {
-    journalpost: Journalpost;
+    journalpost: Dokumentmetadata;
 }
 
 function JournalpostLestAvBruker({ journalpost }: Props) {

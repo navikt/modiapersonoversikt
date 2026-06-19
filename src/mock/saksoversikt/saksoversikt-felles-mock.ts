@@ -1,6 +1,6 @@
 import type { Faker } from '@faker-js/faker';
 import type NavFaker from 'nav-faker/dist/navfaker';
-import { Baksystem } from '../../models/saksoversikt/fellesSak';
+import { DokumentmetadataBaksystem } from 'src/generated/modiapersonoversikt-api';
 
 export function getSaksdato(navfaker: NavFaker): string {
     return new Date(
@@ -14,16 +14,16 @@ export function getSaksdato(navfaker: NavFaker): string {
     ).toISOString();
 }
 
-export function getBaksystem(faker: Faker): Baksystem {
+export function getBaksystem(faker: Faker): DokumentmetadataBaksystem {
     return faker.helpers.arrayElement([
-        Baksystem.SakOgBehandling,
-        Baksystem.Pesys,
-        Baksystem.PdfKonvertering,
-        Baksystem.Kodeverk,
-        Baksystem.JoarkSikkerhetsbegrensning,
-        Baksystem.Joark,
-        Baksystem.Henvendelse,
-        Baksystem.Gsak,
-        Baksystem.Aktoer
+        DokumentmetadataBaksystem.SAK_OG_BEHANDLING,
+        DokumentmetadataBaksystem.PESYS,
+        DokumentmetadataBaksystem.PDF_KONVERTERING,
+        DokumentmetadataBaksystem.KODEVERK,
+        DokumentmetadataBaksystem.JOARK_SIKKERHETSBEGRENSNING,
+        DokumentmetadataBaksystem.JOARK,
+        DokumentmetadataBaksystem.HENVENDELSE,
+        DokumentmetadataBaksystem.GSAK,
+        DokumentmetadataBaksystem.AKTOER
     ]);
 }
