@@ -93,4 +93,3 @@ function inneholderValgtDokument(journalpost: Dokumentmetadata, dokumentId?: str
         ].includes(dokumentId)
     );
 }
-

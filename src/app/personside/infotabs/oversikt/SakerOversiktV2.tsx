@@ -31,14 +31,16 @@ function SakerOversikt(props: Props) {
 }
 
 function SakerPanel(props: { sakstema: Sakstema[] } & Props) {
-    const sakstemakomponenter = props.sakstema.slice(0, 2).map((sakstema, index) => (
-        <SakstemaListeElementKnappV2
-            sakstema={sakstema}
-            umamiEvent={{ name: trackingEvents.detaljvisningKlikket, data: { fane: 'oversikt', tekst: 'vis sak' } }}
-            key={index}
-            erValgt={false}
-        />
-    ));
+    const sakstemakomponenter = props.sakstema
+        .slice(0, 2)
+        .map((sakstema, index) => (
+            <SakstemaListeElementKnappV2
+                sakstema={sakstema}
+                umamiEvent={{ name: trackingEvents.detaljvisningKlikket, data: { fane: 'oversikt', tekst: 'vis sak' } }}
+                key={index}
+                erValgt={false}
+            />
+        ));
 
     useOnMount(() => {
         props.setHeaderContent(

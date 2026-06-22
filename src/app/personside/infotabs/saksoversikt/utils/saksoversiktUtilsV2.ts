@@ -11,7 +11,8 @@ export function aggregertSakstemaV2(alleSakstema: Sakstema[], valgteSakstema?: S
 
     return {
         temanavn: aggregertTemanavnV2(sakstema, erAlleSakstema),
-        temakode: erAlleSakstema ? sakstemakodeAlle : aggregertTemakode(sakstema)
+        temakode: erAlleSakstema ? sakstemakodeAlle : aggregertTemakode(sakstema),
+        harTilgang: true
     };
 }
 
@@ -34,4 +35,3 @@ export function forkortetTemanavnV2(temanavn: string): string {
         ? temanavn
         : `${temanavnListe.slice(0, 2).join(', ')} og ${temanavnListe.length - 2} andre sakstemaer`;
 }
-

@@ -1,5 +1,5 @@
-import EkspanderKnapp from '../../../../../components/EkspanderKnapp';
 import type { Sakstema } from 'src/generated/modiapersonoversikt-api';
+import EkspanderKnapp from '../../../../../components/EkspanderKnapp';
 
 interface OwnProps {
     valgtSakstema?: Sakstema;

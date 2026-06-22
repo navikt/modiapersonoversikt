@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import { guid } from 'nav-frontend-js-utils';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { createRef, useRef } from 'react';
+import type { Sakstema } from 'src/generated/modiapersonoversikt-api';
 import {
     type Dokumentmetadata,
     DokumentmetadataAvsender,
@@ -11,7 +12,6 @@ import {
     FeilFeilmelding
 } from 'src/generated/modiapersonoversikt-api';
 import { saksdatoSomDate } from 'src/models/saksoversikt/fellesSak';
-import type { Sakstema } from 'src/generated/modiapersonoversikt-api';
 import styled, { css } from 'styled-components';
 import EtikettGraa from '../../../../../../components/EtikettGraa';
 import persondataResource from '../../../../../../rest/resources/persondataResource';

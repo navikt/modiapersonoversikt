@@ -1308,6 +1308,10 @@ export interface components {
         LocalDate: {
             /** Format: date */
             value?: string;
+            /** Format: date */
+            value$kotlinx_datetime: string;
+            /** Format: int32 */
+            monthNumber: number;
             /** Format: int32 */
             year: number;
             /** Format: int32 */
@@ -1318,14 +1322,16 @@ export interface components {
             dayOfWeek: LocalDateDayOfWeek;
             /** Format: int32 */
             dayOfYear: number;
-            /** Format: int32 */
-            monthNumber: number;
-            /** Format: date */
-            value$kotlinx_datetime: string;
         };
         LocalDateTime: {
             /** Format: date-time */
             value?: string;
+            /** Format: date-time */
+            value$kotlinx_datetime: string;
+            /** Format: int32 */
+            monthNumber: number;
+            /** Format: int32 */
+            nanosecond: number;
             time: components['schemas']['LocalTime'];
             /** Format: int32 */
             year: number;
@@ -1344,31 +1350,24 @@ export interface components {
             /** Format: int32 */
             dayOfYear: number;
             date: components['schemas']['LocalDate'];
-            /** Format: int32 */
-            nanosecond: number;
-            /** Format: int32 */
-            monthNumber: number;
-            /** Format: date-time */
-            value$kotlinx_datetime: string;
         };
         LocalTime: {
             value?: string;
+            value$kotlinx_datetime: string;
+            /** Format: int32 */
+            nanosecond: number;
             /** Format: int32 */
             hour: number;
             /** Format: int32 */
             minute: number;
             /** Format: int32 */
             second: number;
-            /** Format: int32 */
-            nanosecond: number;
-            value$kotlinx_datetime: string;
         };
         ResultatSoknadsstatus: {
             resultat: components['schemas']['SoknadsstatusSakstema'][];
         };
         Sak: {
             temakode: string;
-            saksid: string;
             fagsaksnummer?: string;
             /** Format: date-time */
             avsluttet?: string;
@@ -1397,30 +1396,16 @@ export interface components {
             harTilgang: boolean;
         };
         ResultatSaksDokumenter: {
-            saker: components['schemas']['SaksDokumenter'][];
             dokumenter: components['schemas']['Dokumentmetadata'][];
             temaer: components['schemas']['Sakstema'][];
             feilendeSystemer: ResultatSaksDokumenterFeilendeSystemer[];
         };
-        SaksDokumenter: {
-            temakode: string;
-            temanavn: string;
-            fagsaksnummer?: string;
-            tilhorendeDokumenter: components['schemas']['Dokumentmetadata'][];
-            /** Format: date-time */
-            avsluttet?: string;
-            /** Format: date-time */
-            opprettet?: string;
-            fagsystem: string;
-            fagsystemNavn?: string;
-            /** @enum {string} */
-            baksystem: SaksDokumenterBaksystem;
-            harTilgang: boolean;
-            feilendeSystemer: SaksDokumenterFeilendeSystemer[];
-        };
         Sakstema: {
             temakode: string;
             temanavn: string;
+            harTilgang?: boolean;
+            /** Format: date-time */
+            nyesteDokumentDato?: string;
         };
         PersonsokRequestV3: {
             enhet?: string;
@@ -2240,7 +2225,6 @@ export type Sak = components['schemas']['Sak'];
 export type Soknadsstatus = components['schemas']['Soknadsstatus'];
 export type SoknadsstatusSakstema = components['schemas']['SoknadsstatusSakstema'];
 export type ResultatSaksDokumenter = components['schemas']['ResultatSaksDokumenter'];
-export type SaksDokumenter = components['schemas']['SaksDokumenter'];
 export type Sakstema = components['schemas']['Sakstema'];
 export type PersonsokRequestV3 = components['schemas']['PersonsokRequestV3'];
 export type BrukerinfoDto = components['schemas']['BrukerinfoDTO'];
@@ -3812,32 +3796,6 @@ export enum SakBaksystem {
     SAK = 'SAK'
 }
 export enum ResultatSaksDokumenterFeilendeSystemer {
-    GSAK = 'GSAK',
-    PESYS = 'PESYS',
-    SAK_OG_BEHANDLING = 'SAK_OG_BEHANDLING',
-    JOARK = 'JOARK',
-    JOARK_SIKKERHETSBEGRENSNING = 'JOARK_SIKKERHETSBEGRENSNING',
-    HENVENDELSE = 'HENVENDELSE',
-    PDF_KONVERTERING = 'PDF_KONVERTERING',
-    AKTOER = 'AKTOER',
-    KODEVERK = 'KODEVERK',
-    SAF = 'SAF',
-    SAK = 'SAK'
-}
-export enum SaksDokumenterBaksystem {
-    GSAK = 'GSAK',
-    PESYS = 'PESYS',
-    SAK_OG_BEHANDLING = 'SAK_OG_BEHANDLING',
-    JOARK = 'JOARK',
-    JOARK_SIKKERHETSBEGRENSNING = 'JOARK_SIKKERHETSBEGRENSNING',
-    HENVENDELSE = 'HENVENDELSE',
-    PDF_KONVERTERING = 'PDF_KONVERTERING',
-    AKTOER = 'AKTOER',
-    KODEVERK = 'KODEVERK',
-    SAF = 'SAF',
-    SAK = 'SAK'
-}
-export enum SaksDokumenterFeilendeSystemer {
     GSAK = 'GSAK',
     PESYS = 'PESYS',
     SAK_OG_BEHANDLING = 'SAK_OG_BEHANDLING',

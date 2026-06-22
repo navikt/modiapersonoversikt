@@ -1,4 +1,5 @@
 import type { Sakstema } from 'src/generated/modiapersonoversikt-api';
+import SakIkkeTilgangIkon from 'src/svg/SakIkkeTilgangIkon';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 
@@ -10,6 +11,12 @@ export const SVGStyling = styled.span`
     }
 `;
 
+export function saksikon(harTilgang: boolean) {
+    if (harTilgang) {
+        return null;
+    }
+    return <SakIkkeTilgangIkon />;
+}
 export function filtrerSakstemaerUtenDataV2(sakstemaer: Sakstema[]): Sakstema[] {
     return sakstemaer;
 }

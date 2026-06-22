@@ -1,6 +1,8 @@
-import { Element } from 'nav-frontend-typografi';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { memo } from 'react';
+import { SVGStyling, saksikon } from 'src/app/personside/infotabs/saksoversikt/sakstemaliste/SakstemaListeUtils';
 import type { Sakstema } from 'src/generated/modiapersonoversikt-api';
+import { formaterDato } from 'src/utils/string-utils';
 import styled from 'styled-components';
 
 const CheckboksElement = styled.div`
@@ -22,7 +24,13 @@ interface CheckboksProps {
 function SakstemaListeElementCheckboks(props: CheckboksProps) {
     return (
         <CheckboksElement>
-            <Element>{props.sakstema.temanavn}</Element>
+            <div>
+                <Normaltekst>
+                    {props.sakstema.nyesteDokumentDato ? formaterDato(props.sakstema.nyesteDokumentDato) : ''}
+                </Normaltekst>
+                <Element>{props.sakstema.temanavn}</Element>
+            </div>
+            <SVGStyling>{saksikon(props.sakstema.harTilgang ?? false)}</SVGStyling>
         </CheckboksElement>
     );
 }

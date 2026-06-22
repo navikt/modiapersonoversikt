@@ -52,7 +52,7 @@ export function getStaticMockSaksoOgDokumenter(fnr: string): ResultatSaksDokumen
     if (fnr === aremark.personIdent) {
         return getAremarkSaksOgDokumenterListe();
     }
-    return { saker: [], temaer: [], feilendeSystemer: [], dokumenter: [] };
+    return { temaer: [], feilendeSystemer: [], dokumenter: [] };
 }
 
 function getSakstemaListeV2(): SakstemaSoknadsstatus[] {
