@@ -32,7 +32,7 @@ function DokumentLenke(props: Props) {
     const journalpostId = props.journalPost.journalpostId;
     const dokumentReferanse = props.dokument.dokumentreferanse;
 
-    if (journalpostId === null || dokumentReferanse === null) {
+    if (journalpostId === null || !dokumentReferanse) {
         return (
             <>
                 {dokumentTekst(props.dokument)} <Undertekst>(Dokument er ikke tilgjengelig)</Undertekst>

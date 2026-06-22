@@ -76,7 +76,7 @@ export function useSakstemaURLStateV2(alleSakstemaer: Sakstema[]): SakstemaURLSt
             setIngenValgte,
             toggleValgtSakstema
         };
-    }, [history, queryParams, alleSakstemaer, sakerData]);
+    }, [queryParams, alleSakstemaer, sakerData]);
 }
 
 export function useHentAlleSakstemaFraResourceV2(): SakstemaResourceV2 {

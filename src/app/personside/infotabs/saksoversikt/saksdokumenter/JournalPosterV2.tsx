@@ -199,7 +199,6 @@ function JournalPoster(props: Props) {
         fraBruker: !!avsenderFilterQuery?.includes('bruker')
     };
     const valgteTemaKoder = valgteSakstemaer.map((t) => t.temakode);
-    console.log('Valgte sakstemaer', valgteSakstemaer);
     const filtrerteJournalposter = (data?.dokumenter ?? [])
         .filter(
             (journalpost) =>

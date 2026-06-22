@@ -1,14 +1,15 @@
 import { act, screen } from '@testing-library/react';
 import { type Dokumentmetadata, FeilFeilmelding } from 'src/generated/modiapersonoversikt-api';
-import { getStaticMockSaksoversiktV2 } from '../../../../../../mock/saksoversikt/saksoversikt-mock';
+import { aremark } from 'src/mock/persondata/aremark';
+import { getStaticMockSaksoOgDokumenter } from '../../../../../../mock/saksoversikt/saksoversikt-mock';
 import { renderWithProviders } from '../../../../../../test/Testprovider';
 import { getTestStore } from '../../../../../../test/testStore';
 import { aggregertSakstemaV2 } from '../../utils/saksoversiktUtilsV2';
 import JournalpostListeElementV2 from './JournalpostListeElementV2';
 
 describe('JournalpostListeElementV2', () => {
-    const staticSaksoversikt = getStaticMockSaksoversiktV2();
-    const valgtSakstema = aggregertSakstemaV2(staticSaksoversikt.resultat);
+    const staticSaksoversikt = getStaticMockSaksoOgDokumenter(aremark.personIdent);
+    const valgtSakstema = aggregertSakstemaV2(staticSaksoversikt.temaer);
 
     it('Viser ikke-tilgang-ikon om journalpost har sikkerhetsbegrensning', async () => {
         const { testStore, journalposter } = lagStoreMedJustertDokumentMetadata({
@@ -23,7 +24,7 @@ describe('JournalpostListeElementV2', () => {
                 <JournalpostListeElementV2
                     journalpost={journalposter}
                     harTilgangTilSakstema={true}
-                    valgtSakstema={valgtSakstema}
+                    valgtSakstema={valgtSakstema ?? undefined}
                 />,
                 testStore
             )
@@ -48,8 +49,8 @@ describe('JournalpostListeElementV2', () => {
     });
 
     it('Viser tilgang-ikon hvis tilgang til sakstema og ikke sikkerhetsbegrensning, selv om ikke tilgang til alle dokumenter', async () => {
-        const hoveddokument = staticSaksoversikt.resultat[0].dokumentMetadata[0].hoveddokument;
-        const vedlegg = staticSaksoversikt.resultat[0].dokumentMetadata[0].vedlegg[0];
+        const hoveddokument = staticSaksoversikt.dokumenter[0].hoveddokument;
+        const vedlegg = staticSaksoversikt.dokumenter[0].vedlegg[0];
         const { testStore, journalposter } = lagStoreMedJustertDokumentMetadata({
             feil: { inneholderFeil: false },
             hoveddokument: {
@@ -100,7 +101,7 @@ describe('JournalpostListeElementV2', () => {
         const testStore = getTestStore();
 
         const dokumentResultat: Dokumentmetadata = {
-            ...staticSaksoversikt.resultat[0].dokumentMetadata[0],
+            ...staticSaksoversikt.dokumenter[0],
             ...partialDok
         };
 
