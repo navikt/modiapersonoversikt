@@ -19,15 +19,7 @@ import NyMelding from './NyMelding';
 export const SendMelding = () => {
     const { data: traader, isLoading } = useTraader();
 
-    return (
-        <>
-            {isLoading ? (
-                <Skeleton variant="rectangle" height="100%" />
-            ) : (
-                <SendMeldingContent traader={traader} />
-            )}
-        </>
-    );
+    return <>{isLoading ? <Skeleton variant="rectangle" height="100%" /> : <SendMeldingContent traader={traader} />}</>;
 };
 
 const ReservertIKRR = () => {
@@ -76,11 +68,7 @@ const meldingsHeader = (traad?: TraadDto) => {
     );
 };
 
-const SendMeldingContent = ({
-    traader
-}: {
-    traader: Traad[];
-}) => {
+const SendMeldingContent = ({ traader }: { traader: Traad[] }) => {
     const [dialogUnderArbeid, setDialogUnderArbeid] = useAtom(svarUnderArbeidAtom);
     const traad = useMemo(() => traader.find((m) => m.traadId === dialogUnderArbeid), [traader, dialogUnderArbeid]);
     const [meldingsTittel, setMeldingsTittel] = useState(meldingsHeader(traad));
@@ -118,12 +106,7 @@ const SendMeldingContent = ({
                     {meldingsTittel}
                 </Heading>
                 {feilMelding && (
-                    <Button
-                        variant="tertiary"
-                        size="small"
-                        icon={<XMarkIcon aria-hidden />}
-                        onClick={lukkFeedback}
-                    />
+                    <Button variant="tertiary" size="small" icon={<XMarkIcon aria-hidden />} onClick={lukkFeedback} />
                 )}
             </HStack>
             <ReservertIKRR />
