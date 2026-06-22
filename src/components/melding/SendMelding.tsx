@@ -1,7 +1,7 @@
 import { XMarkIcon } from '@navikt/aksel-icons';
 import { Alert, Button, Heading, HStack, InlineMessage, Skeleton, VStack } from '@navikt/ds-react';
 import { useAtom, useAtomValue } from 'jotai';
-import { type ReactElement, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { traadTypeTekst } from 'src/components/Meldinger/List/tekster';
 import { nyesteMelding, useTraader } from 'src/components/Meldinger/List/utils';
 import { dialogFeilMeldingAtom, dialogSuksessMeldingAtom } from 'src/components/melding/MeldingPanel';
@@ -16,7 +16,7 @@ import Card from '../Card';
 import { FortsettDialog } from './FortsettDialog';
 import NyMelding from './NyMelding';
 
-export const SendMelding = ({ lukkeKnapp }: { lukkeKnapp?: ReactElement<typeof Button> }) => {
+export const SendMelding = () => {
     const { data: traader, isLoading } = useTraader();
 
     return (
@@ -24,7 +24,7 @@ export const SendMelding = ({ lukkeKnapp }: { lukkeKnapp?: ReactElement<typeof B
             {isLoading ? (
                 <Skeleton variant="rectangle" height="100%" />
             ) : (
-                <SendMeldingContent traader={traader} lukkeKnapp={lukkeKnapp} />
+                <SendMeldingContent traader={traader} />
             )}
         </>
     );
@@ -77,10 +77,8 @@ const meldingsHeader = (traad?: TraadDto) => {
 };
 
 const SendMeldingContent = ({
-    traader,
-    lukkeKnapp
+    traader
 }: {
-    lukkeKnapp?: ReactElement<typeof Button>;
     traader: Traad[];
 }) => {
     const [dialogUnderArbeid, setDialogUnderArbeid] = useAtom(svarUnderArbeidAtom);
@@ -119,21 +117,18 @@ const SendMeldingContent = ({
                 <Heading level="2" size="small">
                     {meldingsTittel}
                 </Heading>
-                {lukkeKnapp}
+                {feilMelding && (
+                    <Button
+                        variant="tertiary"
+                        size="small"
+                        icon={<XMarkIcon aria-hidden />}
+                        onClick={lukkFeedback}
+                    />
+                )}
             </HStack>
             <ReservertIKRR />
             {feedbackMelding ? (
                 <Card padding="space-8" as="section" aria-label="Dialogpanel">
-                    {feilMelding && (
-                        <HStack justify="end">
-                            <Button
-                                variant="tertiary"
-                                size="small"
-                                icon={<XMarkIcon aria-hidden />}
-                                onClick={lukkFeedback}
-                            />
-                        </HStack>
-                    )}
                     <VStack gap="space-4">
                         {suksessMeldingComp}
                         {feilMeldingComp}
