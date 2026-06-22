@@ -106,7 +106,13 @@ const SendMeldingContent = ({ traader }: { traader: Traad[] }) => {
                     {meldingsTittel}
                 </Heading>
                 {feilMelding && (
-                    <Button variant="tertiary" size="small" icon={<XMarkIcon aria-hidden />} onClick={lukkFeedback} />
+                    <Button
+                        variant="tertiary"
+                        size="small"
+                        icon={<XMarkIcon aria-hidden />}
+                        title="Lukk meldingspanel"
+                        onClick={lukkFeedback}
+                    />
                 )}
             </HStack>
             <ReservertIKRR />
