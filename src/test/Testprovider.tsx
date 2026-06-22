@@ -5,7 +5,7 @@ import { createStore, Provider as JProvider } from 'jotai';
 import type { ReactElement, ReactNode } from 'react';
 import { Provider } from 'react-redux';
 import type { Store } from 'redux';
-import { aktivBrukerAtom, aktivEnhetAtom } from 'src/lib/state/context';
+import { aktivBrukerAtom } from 'src/lib/state/context';
 import { DialogpanelStateProvider } from '../context/dialogpanel-state';
 import { MeldingsokProvider } from '../context/meldingsok';
 import { ValgtEnhetProvider } from '../context/valgtenhet-state';
@@ -33,7 +33,6 @@ const setupTestRouter = (customStore: Props['customStore'], children: Props['chi
 
     const jstore = createStore();
     jstore.set(aktivBrukerAtom, store.getState().gjeldendeBruker.fødselsnummer);
-    jstore.set(aktivEnhetAtom, '0118');
 
     const routeTree = rootRoute.addChildren([
         createRoute({
