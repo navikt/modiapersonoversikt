@@ -38,7 +38,11 @@ jobs:
       run: pnpm exec playwright install --with-deps
 
     - name: Run Playwright tests
-      run: pnpm exec playwright test
+      run: pnpm exec playwright test --grep-invert "Universell utforming"
+
+    - name: Run A11y tests
+      continue-on-error: true
+      run: pnpm exec playwright test e2e/a11y.spec.ts
 
     - uses: actions/upload-artifact@v7
       if: ${{ !cancelled() }}

@@ -3,15 +3,15 @@ import { INFOTABS, type InfotabConfig } from '../InfoTabEnum';
 
 export function getOpenTabFromRouterPath(currentPath: string): InfotabConfig {
     const pathfragments = currentPath.toLowerCase().split('/');
-    const infotabsWithOppgave = {
+
+    const infotabsWithDokumenter = {
         ...INFOTABS,
-        OPPGAVER: { tittel: 'Oppgaver', path: 'oppgaver' },
         DOKUMENTER: { tittel: 'Dokumenter', path: 'dokumenter' }
     };
-    const infotab: InfotabConfig | undefined = Object.values(infotabsWithOppgave).find((infotab) =>
+    const infotab: InfotabConfig | undefined = Object.values(infotabsWithDokumenter).find((infotab) =>
         pathfragments.includes(infotab.path)
     );
-    return infotab ?? infotabsWithOppgave.OVERSIKT;
+    return infotab ?? infotabsWithDokumenter.OVERSIKT;
 }
 
 export function useOpenTab() {
