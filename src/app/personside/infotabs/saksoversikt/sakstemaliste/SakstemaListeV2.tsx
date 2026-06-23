@@ -10,7 +10,6 @@ import { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { useHentAlleSakstemaFraResourceV2, useSakstemaURLStateV2 } from '../useSakstemaURLState';
 import { aggregertSakstemaV2, sakstemakodeAlle } from '../utils/saksoversiktUtilsV2';
 import SakstemaListeElementCheckboksV2 from './SakstemaListeElementCheckboksV2';
-import { filtrerSakstemaerUtenDataV2 } from './SakstemaListeUtils';
 
 const StyledPanel = styled(Panel)`
     padding: 0rem;
@@ -69,7 +68,7 @@ function SakstemaListe() {
         return valgteTemakoder.includes(sakstema.temakode) || valgteTemakoder[0] === sakstemakodeAlle;
     }
 
-    const checkbokser = filtrerSakstemaerUtenDataV2(alleSakstema).map((sakstema) => {
+    const checkbokser = alleSakstema.map((sakstema) => {
         return {
             label: <SakstemaListeElementCheckboksV2 sakstema={sakstema} key={sakstema.temakode} />,
             value: sakstema.temakode,

@@ -19,7 +19,6 @@ import usePaginering from '../../../../../utils/hooks/usePaginering';
 import { KategoriSkille } from '../../../dialogpanel/fellesStyling';
 import { sakerTest } from '../../dyplenkeTest/utils-dyplenker-test';
 import { useHentAlleSakstemaFraResourceV2, useSakstemaURLStateV2 } from '../useSakstemaURLState';
-import LenkeNorg from '../utils/LenkeNorg';
 import { aggregertSakstemaV2, forkortetTemanavnV2, sakstemakodeAlle } from '../utils/saksoversiktUtilsV2';
 import ToggleViktigAaViteKnapp from '../viktigavite/ToggleViktigAaViteKnapp';
 import ViktigÅVite from '../viktigavite/viktigavite';
@@ -277,7 +276,6 @@ function JournalPoster(props: Props) {
                             {filterCheckboxer}
                         </div>
                         <div>
-                            <LenkeNorg valgtSakstema={aggregertSak} />
                             <ToggleViktigAaViteKnapp
                                 open={viktigaviteOpen}
                                 setOpen={setViktigaviteOpen}
