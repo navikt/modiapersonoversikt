@@ -3,16 +3,10 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import ModalWrapper from 'nav-frontend-modal';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { useCallback, useState } from 'react';
-import type { HarIkkeTilgang } from 'src/rest/resources/tilgangskontrollResource';
 import styled from 'styled-components';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
-import BegrensetTilgangBegrunnelse from '../../components/person/BegrensetTilgangBegrunnelse';
 import gsaktemaResource from '../../rest/resources/gsaktemaResource';
 import OppgaveSkjemaBegrensetTilgang from './infotabs/meldinger/traadvisning/verktoylinje/oppgave/BegrensetTilgang/OppgaveSkjemaBegrensetTilgang';
-
-interface BegrensetTilgangProps {
-    tilgangsData: HarIkkeTilgang;
-}
 
 const Wrapper = styled.div`
   display: flex;
@@ -63,12 +57,12 @@ function OpprettOppgaveAvvistTilgang() {
     });
 }
 
-function BegrensetTilgangSide(props: BegrensetTilgangProps) {
+function BegrensetTilgangSide({ begrunnelse }: { begrunnelse?: string }) {
     return (
         <FillCenterAndFadeIn>
             <Wrapper>
                 <AlertStripe type="advarsel">
-                    <BegrensetTilgangBegrunnelse begrunnelseType={props.tilgangsData.ikkeTilgangArsak} />
+                    Tilgangskontroll: {begrunnelse ?? 'Feil sikkerhetsbegrensing'}
                 </AlertStripe>
                 <OpprettOppgaveAvvistTilgang />
             </Wrapper>

@@ -23,19 +23,11 @@ interface HarTilgang {
     aktivIdent?: string;
 }
 
-export interface HarIkkeTilgang {
+interface HarIkkeTilgang {
     harTilgang: false;
-    ikkeTilgangArsak: IkkeTilgangArsak;
+    message?: string;
 }
 
-export enum IkkeTilgangArsak {
-    Kode6 = 'FP1_KODE6',
-    Kode7 = 'FP2_KODE7',
-    EgenAnsatt = 'FP3_EGEN_ANSATT',
-    Geografi = 'FP4_GEOGRAFISK',
-    AdRoller = 'AD_ROLLE',
-    Ukjent = 'UNKNOWN'
-}
 function queryKey(fnr: string | undefined) {
     return ['tilgangskontroll', fnr];
 }

@@ -9,7 +9,7 @@ import NyIdentModal from './NyIdentModal';
 function Personoversikt({ fnr }: { fnr: string }) {
     return tilgangskontroll.useRenderer(fnr, (data) => {
         if (!data.harTilgang) {
-            return <BegrensetTilgangSide tilgangsData={data} />;
+            return <BegrensetTilgangSide begrunnelse={data.message} />;
         }
         if (data.harTilgang && data.aktivIdent && data.aktivIdent !== fnr) {
             return <NyIdentModal aktivIdent={data.aktivIdent} />;
