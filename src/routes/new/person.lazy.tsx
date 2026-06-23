@@ -37,7 +37,7 @@ function PersonRouteMedTilgang() {
     if (!tilgang.data.harTilgang) {
         return (
             <div className="flex-1">
-                <Alert variant="warning">{tilgang.data.message ?? 'Feil sikkerhetsbegrensing'}</Alert>
+                <Alert variant="warning">{tilgang.data.message ?? 'Feil sikkerhetsbegrensning'}</Alert>
             </div>
         );
     }

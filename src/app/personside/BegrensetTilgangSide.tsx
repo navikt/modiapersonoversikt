@@ -62,7 +62,7 @@ function BegrensetTilgangSide({ begrunnelse }: { begrunnelse?: string }) {
         <FillCenterAndFadeIn>
             <Wrapper>
                 <AlertStripe type="advarsel">
-                    Tilgangskontroll: {begrunnelse ?? 'Feil sikkerhetsbegrensing'}
+                    Tilgangskontroll: {begrunnelse ?? 'Feil sikkerhetsbegrensning'}
                 </AlertStripe>
                 <OpprettOppgaveAvvistTilgang />
             </Wrapper>
