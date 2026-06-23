@@ -1,6 +1,7 @@
+import { XMarkIcon } from '@navikt/aksel-icons';
 import { Alert, Button, Heading, HStack, InlineMessage, Skeleton, VStack } from '@navikt/ds-react';
 import { useAtom, useAtomValue } from 'jotai';
-import { type ReactElement, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { traadTypeTekst } from 'src/components/Meldinger/List/tekster';
 import { nyesteMelding, useTraader } from 'src/components/Meldinger/List/utils';
 import { dialogFeilMeldingAtom, dialogSuksessMeldingAtom } from 'src/components/melding/MeldingPanel';
@@ -15,18 +16,10 @@ import Card from '../Card';
 import { FortsettDialog } from './FortsettDialog';
 import NyMelding from './NyMelding';
 
-export const SendMelding = ({ lukkeKnapp }: { lukkeKnapp?: ReactElement<typeof Button> }) => {
+export const SendMelding = () => {
     const { data: traader, isLoading } = useTraader();
 
-    return (
-        <>
-            {isLoading ? (
-                <Skeleton variant="rectangle" height="100%" />
-            ) : (
-                <SendMeldingContent traader={traader} lukkeKnapp={lukkeKnapp} />
-            )}
-        </>
-    );
+    return <>{isLoading ? <Skeleton variant="rectangle" height="100%" /> : <SendMeldingContent traader={traader} />}</>;
 };
 
 const ReservertIKRR = () => {
@@ -75,13 +68,7 @@ const meldingsHeader = (traad?: TraadDto) => {
     );
 };
 
-const SendMeldingContent = ({
-    traader,
-    lukkeKnapp
-}: {
-    lukkeKnapp?: ReactElement<typeof Button>;
-    traader: Traad[];
-}) => {
+const SendMeldingContent = ({ traader }: { traader: Traad[] }) => {
     const [dialogUnderArbeid, setDialogUnderArbeid] = useAtom(svarUnderArbeidAtom);
     const traad = useMemo(() => traader.find((m) => m.traadId === dialogUnderArbeid), [traader, dialogUnderArbeid]);
     const [meldingsTittel, setMeldingsTittel] = useState(meldingsHeader(traad));
@@ -93,17 +80,22 @@ const SendMeldingContent = ({
     const feedbackMelding = suksessMelding || feilMelding;
 
     useEffect(() => {
-        if (!feedbackMelding || isPending) return;
-        setTimeout(() => {
+        if (!feedbackMelding || isPending || feilMelding) return;
+        const timer = setTimeout(() => {
             setSuksessMelding(null);
-            setFeilMelding(null);
         }, 2000);
-    }, [feedbackMelding, isPending, setSuksessMelding, setFeilMelding]);
+        return () => clearTimeout(timer);
+    }, [feedbackMelding, isPending, feilMelding, setSuksessMelding]);
 
     useEffect(() => {
         if (feedbackMelding) return;
         setMeldingsTittel(meldingsHeader(traad));
     }, [traad, feedbackMelding]);
+
+    const lukkFeedback = () => {
+        setSuksessMelding(null);
+        setFeilMelding(null);
+    };
 
     const feilMeldingComp = feilMelding ? <Alert variant="error">{feilMelding}</Alert> : null;
     const suksessMeldingComp = suksessMelding ? <Alert variant="success">{suksessMelding}</Alert> : null;
@@ -113,13 +105,23 @@ const SendMeldingContent = ({
                 <Heading level="2" size="small">
                     {meldingsTittel}
                 </Heading>
-                {lukkeKnapp}
+                {feilMelding && (
+                    <Button
+                        variant="tertiary"
+                        size="small"
+                        icon={<XMarkIcon aria-hidden />}
+                        title="Lukk meldingspanel"
+                        onClick={lukkFeedback}
+                    />
+                )}
             </HStack>
             <ReservertIKRR />
             {feedbackMelding ? (
                 <Card padding="space-8" as="section" aria-label="Dialogpanel">
-                    {feilMeldingComp}
-                    {suksessMeldingComp}
+                    <VStack gap="space-4">
+                        {suksessMeldingComp}
+                        {feilMeldingComp}
+                    </VStack>
                 </Card>
             ) : dialogUnderArbeid ? (
                 traad ? (
@@ -132,6 +134,7 @@ const SendMeldingContent = ({
                                 variant="secondary"
                                 data-color="danger"
                                 size="small"
+                                title="Lukk meldingspanel"
                                 onClick={() => {
                                     setDialogUnderArbeid(undefined);
                                     trackGenereltUmamiEvent(trackingEvents.avbrytMelding);

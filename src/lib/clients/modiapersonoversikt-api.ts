@@ -81,7 +81,7 @@ export const useSendMelding = () => {
     const setFeilMelding = useSetAtom(dialogFeilMeldingAtom);
 
     return $api.useMutation('post', '/rest/dialog/sendmelding', {
-        onSuccess: () => {
+        onSuccess: (data) => {
             queryClient.invalidateQueries({
                 queryKey: $api.queryOptions('post', '/rest/dialog/meldinger', {
                     body: { fnr },
@@ -94,6 +94,9 @@ export const useSendMelding = () => {
                 }).queryKey
             });
             setSuksessMelding('Melding sendt');
+            if (data.journalforingFeilet) {
+                setFeilMelding('Journalføring feilet. Journalfør manuelt og meld fra i Porten om problemet vedvarer.');
+            }
         },
         onError: () => {
             setFeilMelding('Kunne ikke sende melding');

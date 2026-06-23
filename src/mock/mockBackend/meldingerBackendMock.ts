@@ -25,6 +25,7 @@ export class MeldingerBackendMock {
     private oppgaveBackendMock: OppgaverBackendMock;
     private journalposter: Record<string, MeldingJournalpost[]> = {};
     private patches: Record<string, Partial<Traad>[]> = {};
+    public journalforingFeilet = false;
 
     constructor(oppgaveBackendMock: OppgaverBackendMock) {
         this.oppgaveBackendMock = oppgaveBackendMock;
@@ -85,7 +86,8 @@ export class MeldingerBackendMock {
             traadType: request.traadType,
             temagruppe: request.temagruppe,
             meldinger: [melding],
-            journalposter: []
+            journalposter: [],
+            journalforingFeilet: this.journalforingFeilet
         };
         if (request.traadId) {
             this.sendteSvar.unshift(traad);

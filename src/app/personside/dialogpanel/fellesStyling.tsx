@@ -72,11 +72,25 @@ function MeldingSendtVerktoyLinje(props: { traad: Traad | undefined }) {
     return <StyledVerktoylinje valgtTraad={sendtMelding.traad} />;
 }
 
-function VarselTilBrukerOmStatus(props: { meldingstatus: SendNyMeldingStatus; tittle: string }) {
+function VarselTilBrukerOmStatus(props: {
+    meldingstatus: SendNyMeldingStatus;
+    tittel: string;
+    journalforingFeilet?: boolean;
+}) {
     if (props.meldingstatus === SendNyMeldingStatus.ERROR) {
         return <DialogpanelFeilmelding />;
     }
-    return <AlertStripeSuksess>{props.tittle}</AlertStripeSuksess>;
+    return (
+        <>
+            <AlertStripeSuksess>{props.tittel}</AlertStripeSuksess>
+            {props.journalforingFeilet && (
+                <AlertStripeFeil>
+                    Meldingen ble sendt, men journalføring feilet. Journalfør manuelt og meld fra i Porten om problemet
+                    vedvarer.
+                </AlertStripeFeil>
+            )}
+        </>
+    );
 }
 
 export function DialogpanelKvittering(props: {
@@ -90,7 +104,11 @@ export function DialogpanelKvittering(props: {
         <ErrorBoundary boundaryName="DialogpanelKvittering">
             <DialogpanelKvitteringStyling>
                 <VisuallyHiddenAutoFokusHeader tittel={props.tittel} />
-                <VarselTilBrukerOmStatus meldingstatus={props.meldingstatus} tittle={props.tittel} />
+                <VarselTilBrukerOmStatus
+                    meldingstatus={props.meldingstatus}
+                    tittel={props.tittel}
+                    journalforingFeilet={props.traad?.journalforingFeilet}
+                />
                 {props.traad && props.traad.meldinger.length > 1 && (
                     <ErrorBoundary boundaryName="Tidligere meldinger Dialogpanelkvittering">
                         <TidligereMeldinger traad={props.traad} />
