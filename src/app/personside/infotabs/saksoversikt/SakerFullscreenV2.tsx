@@ -9,7 +9,6 @@ import { loggEvent } from '../../../../utils/logger/frontendLogger';
 import { sakerTest } from '../dyplenkeTest/utils-dyplenker-test';
 import DokumentOgVedleggV2 from './dokumentvisning/DokumentOgVedleggV2';
 import JournalPosterV2 from './saksdokumenter/JournalPosterV2';
-import { filtrerSakstemaerUtenDataV2 } from './sakstemaliste/SakstemaListeUtils';
 import SakstemaListeV2 from './sakstemaliste/SakstemaListeV2';
 import { useHentAlleSakstemaFraResourceV2, useSakstemaURLStateV2 } from './useSakstemaURLState';
 import { aggregertTemanavnV2, forkortetTemanavnV2 } from './utils/saksoversiktUtilsV2';
@@ -52,10 +51,7 @@ function Innhold() {
     const tittel = (
         <Undertittel className={sakerTest.dokument}>
             {forkortetTemanavnV2(
-                aggregertTemanavnV2(
-                    valgteSakstemaer,
-                    valgteSakstemaer.length === filtrerSakstemaerUtenDataV2(alleSakstema).length
-                )
+                aggregertTemanavnV2(valgteSakstemaer, valgteSakstemaer.length === alleSakstema.length)
             )}
         </Undertittel>
     );

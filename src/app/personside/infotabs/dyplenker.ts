@@ -1,9 +1,8 @@
 import { useLocation, useParams } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import { useMemo } from 'react';
+import type { Dokument, Sakstema } from 'src/generated/modiapersonoversikt-api';
 import type { Traad } from '../../../models/meldinger/meldinger';
-import type { Dokument } from '../../../models/saksoversikt/journalpost';
-import type { Sakstema } from '../../../models/saksoversikt/sakstema';
 import type { Utbetaling } from '../../../models/utbetalinger';
 import { getUnikYtelseKey, type Ytelse } from '../../../models/ytelse/ytelse-utils';
 import { useQueryParams } from '../../../utils/url-utils';

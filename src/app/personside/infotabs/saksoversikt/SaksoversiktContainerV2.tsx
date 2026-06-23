@@ -2,7 +2,6 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
 import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
-import resource from '../../../../rest/resources/sakstemaResource';
 import theme from '../../../../styles/personOversiktTheme';
 import { ScrollBar } from '../utils/InfoTabsScrollBar';
 import DokumentOgVedleggV2 from './dokumentvisning/DokumentOgVedleggV2';
@@ -38,8 +37,12 @@ const SaksoversiktStyle = styled.div`
 `;
 
 function SaksoversiktContainer() {
-    const { alleSakstema } = useHentAlleSakstemaFraResourceV2();
+    const { alleSakstema, isLoading } = useHentAlleSakstemaFraResourceV2();
     const { valgtDokument, valgtJournalpost, valgteSakstemaer } = useSakstemaURLStateV2(alleSakstema);
+
+    if (isLoading) {
+        return BigCenteredLazySpinner;
+    }
 
     if (valgtDokument) {
         return (
@@ -50,32 +53,28 @@ function SaksoversiktContainer() {
             />
         );
     }
-    // biome-ignore lint/correctness/useHookAtTopLevel: ""
-    return resource.useRenderer({
-        ifPending: BigCenteredLazySpinner,
-        ifData: (data) => {
-            if (data.resultat.length === 0) {
-                return <AlertStripeInfo>Brukeren har ingen saker</AlertStripeInfo>;
-            }
-            return (
-                <ErrorBoundary boundaryName="Saksoversikt">
-                    <SaksoversiktStyle>
-                        <ScrollBar keepScrollId="saker-sakstema">
-                            <ErrorBoundary boundaryName="Sakstemaliste">
-                                <SakerFullscreenLenkeV2 />
-                                <SakstemaListeV2 />
-                            </ErrorBoundary>
-                        </ScrollBar>
-                        <ScrollBar keepScrollId="saker-saksdokumenter">
-                            <ErrorBoundary boundaryName="Journalposter">
-                                <JournalPosterV2 />
-                            </ErrorBoundary>
-                        </ScrollBar>
-                    </SaksoversiktStyle>
-                </ErrorBoundary>
-            );
-        }
-    });
+
+    if (alleSakstema.length === 0) {
+        return <AlertStripeInfo>Brukeren har ingen saker</AlertStripeInfo>;
+    }
+
+    return (
+        <ErrorBoundary boundaryName="Saksoversikt">
+            <SaksoversiktStyle>
+                <ScrollBar keepScrollId="saker-sakstema">
+                    <ErrorBoundary boundaryName="Sakstemaliste">
+                        <SakerFullscreenLenkeV2 />
+                        <SakstemaListeV2 />
+                    </ErrorBoundary>
+                </ScrollBar>
+                <ScrollBar keepScrollId="saker-saksdokumenter">
+                    <ErrorBoundary boundaryName="Journalposter">
+                        <JournalPosterV2 />
+                    </ErrorBoundary>
+                </ScrollBar>
+            </SaksoversiktStyle>
+        </ErrorBoundary>
+    );
 }
 
 export default SaksoversiktContainer;

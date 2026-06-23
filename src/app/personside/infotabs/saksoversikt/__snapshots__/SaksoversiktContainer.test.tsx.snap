@@ -2,35 +2,2743 @@
 
 exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 <DocumentFragment>
-  <div
-    style="padding: 0.5rem; max-width: 100%;"
+  .c1 {
+  overflow: auto;
+  max-height: 100%;
+  padding: .5rem;
+}
+
+.c2 {
+  padding: 0rem;
+  font-weight: 600;
+}
+
+.c2 a {
+  padding: 0.9375rem;
+}
+
+.c2 a:visited {
+  color: currentColor!important;
+}
+
+.c2 .lenkepanel {
+  margin-bottom: 0;
+}
+
+.c3 {
+  margin-bottom: .5rem;
+}
+
+.c10 {
+  padding: 0rem;
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.c11 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0.9375rem;
+}
+
+.c11 >*:first-child {
+  flex-grow: 1;
+}
+
+.c11 >div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.c11 >div >* {
+  margin-bottom: 0.5rem;
+}
+
+.c11 >div:last-child {
+  align-items: flex-end;
+  flex-grow: 1;
+}
+
+.c13 {
+  display: flex;
+}
+
+.c13 >*:not(:last-child) {
+  padding-right: 1rem;
+}
+
+.c13 >* {
+  margin-bottom: 0;
+}
+
+.c12 {
+  display: inline-flex;
+  align-items: center;
+}
+
+.c12 >*:last-child {
+  margin-left: 1rem;
+}
+
+.c12:focus {
+  outline: none;
+}
+
+.c9 svg {
+  height: 1.875rem;
+  width: 1.875rem;
+  opacity: 0.5;
+}
+
+.c8 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.c8 .checkbox label {
+  font-weight: bold;
+}
+
+.c4 {
+  padding: 0rem;
+}
+
+.c4 ol {
+  list-style: none;
+}
+
+.c5 {
+  padding: 0.9375rem;
+  display: flex;
+  align-items: flex-end;
+}
+
+.c5 >*:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.c6 {
+  width: 100%;
+  padding: 0 0.9375rem 0.9375rem 0.9375rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.c7 label {
+  border: 0;
+  border-top: 1px solid #6a6a6a;
+  border-radius: 0;
+}
+
+.c7 label.inputPanel--checked {
+  background-color: transparent;
+}
+
+.c7 label.inputPanel:not(:last-child) {
+  margin-bottom: 0;
+}
+
+.c7 label.inputPanel:hover:not(.inputPanel--disabled):not(.bekreftCheckboksPanel) {
+  border: 0;
+  border-top: 1px solid #6a6a6a;
+  box-shadow: none;
+}
+
+.c0 {
+  display: flex;
+  flex-direction: column;
+  overflow: unset;
+  max-height: none;
+}
+
+.c0 .visually-hidden {
+  position: absolute!important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+.c0 a:visited:not(:focus) {
+  color: purple;
+}
+
+@media (min-width: 70rem) {
+  .c0 {
+    flex-direction: row;
+    height: 0;
+    flex-grow: 1;
+    align-items: flex-start;
+  }
+
+  .c0 >*:first-child {
+    min-width: 20rem;
+    flex-basis: 20rem;
+  }
+
+  .c0 >*:last-child {
+    flex-grow: 1;
+  }
+}
+
+<div
+    class="c0"
   >
     <div
-      style="display: flex; align-items: center; gap: .5rem;"
+      class="c1"
     >
-      <strong
-        style="font-size: 1rem;"
+      <div
+        class="panel c2 c3"
       >
-        Something went wrong!
-      </strong>
-      <button
-        style="appearance: none; font-size: 0.6em; border: 1px solid currentcolor; padding: 0.1rem 0.2rem; font-weight: bold; border-radius: 0.25rem;"
-      >
-        Hide Error
-      </button>
+        <a
+          class="lenkepanel"
+          href="/saker/?sakstema=ALLE"
+          rel="noreferrer"
+          target="_blank"
+        >
+          Åpne i fullscreen
+          <span
+            class="lenkepanel__indikator"
+          />
+        </a>
+      </div>
+      <nav>
+        <div
+          aria-labelledby="Helt tilfeldig ID"
+          class="panel c4"
+        >
+          <div
+            class="c5"
+          >
+            <h2
+              class="typo-undertittel"
+              id="Helt tilfeldig ID"
+            >
+              Tema
+            </h2>
+            <p
+              class="typo-normal"
+            >
+              (54 saker)
+            </p>
+          </div>
+          <section
+            class="c6"
+          >
+            <button
+              class="knapp knapp--standard knapp--kompakt"
+              type="button"
+            >
+              Velg alle
+            </button>
+            <button
+              class="knapp knapp--standard knapp--kompakt"
+              type="button"
+            >
+              Velg ingen
+            </button>
+          </section>
+          <nav
+            aria-label="Velg sakstema"
+          >
+            <ol>
+              <fieldset
+                aria-invalid="false"
+                class="skjemagruppe inputPanelGruppe c7"
+              >
+                <div
+                  class="inputPanelGruppe__inner"
+                >
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="MED"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="MED"
+                      type="checkbox"
+                      value="MED"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            24.03.2025
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Medlemskap
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        />
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="MOB"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="MOB"
+                      type="checkbox"
+                      value="MOB"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          />
+                          <p
+                            class="typo-element"
+                          >
+                            Mobilitetsfremmende stønad
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        >
+                          <svg
+                            contentScriptType="text/ecmascript"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              fill="currentColor"
+                            >
+                              <path
+                                d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                              />
+                              <path
+                                d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="STO"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="STO"
+                      type="checkbox"
+                      value="STO"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            09.02.2024
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Regnskap/utbetaling
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        />
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="REH"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="REH"
+                      type="checkbox"
+                      value="REH"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          />
+                          <p
+                            class="typo-element"
+                          >
+                            Rehabilitering
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        >
+                          <svg
+                            contentScriptType="text/ecmascript"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              fill="currentColor"
+                            >
+                              <path
+                                d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                              />
+                              <path
+                                d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="RVE"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="RVE"
+                      type="checkbox"
+                      value="RVE"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          />
+                          <p
+                            class="typo-element"
+                          >
+                            Rettferdsvederlag
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        />
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="RPO"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="RPO"
+                      type="checkbox"
+                      value="RPO"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            04.09.2024
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Retting av personopplysninger
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        >
+                          <svg
+                            contentScriptType="text/ecmascript"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              fill="currentColor"
+                            >
+                              <path
+                                d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                              />
+                              <path
+                                d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="SUP"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="SUP"
+                      type="checkbox"
+                      value="SUP"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          />
+                          <p
+                            class="typo-element"
+                          >
+                            Supplerende stønad
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        />
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="TSR"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="TSR"
+                      type="checkbox"
+                      value="TSR"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          />
+                          <p
+                            class="typo-element"
+                          >
+                            Tilleggsstønad arbeidssøkere
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        >
+                          <svg
+                            contentScriptType="text/ecmascript"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              fill="currentColor"
+                            >
+                              <path
+                                d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                              />
+                              <path
+                                d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="ERS"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="ERS"
+                      type="checkbox"
+                      value="ERS"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            21.06.2025
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Erstatning
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        />
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="ENF"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="ENF"
+                      type="checkbox"
+                      value="ENF"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            06.01.2025
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Enslig mor eller far
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        >
+                          <svg
+                            contentScriptType="text/ecmascript"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              fill="currentColor"
+                            >
+                              <path
+                                d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                              />
+                              <path
+                                d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="TRK"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="TRK"
+                      type="checkbox"
+                      value="TRK"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          />
+                          <p
+                            class="typo-element"
+                          >
+                            Trekkhåndtering
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        />
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="SAP"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="SAP"
+                      type="checkbox"
+                      value="SAP"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          />
+                          <p
+                            class="typo-element"
+                          >
+                            Sanksjon - Person
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        >
+                          <svg
+                            contentScriptType="text/ecmascript"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              fill="currentColor"
+                            >
+                              <path
+                                d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                              />
+                              <path
+                                d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="YRA"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="YRA"
+                      type="checkbox"
+                      value="YRA"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          />
+                          <p
+                            class="typo-element"
+                          >
+                            Yrkesrettet attføring
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        />
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="HJE"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="HJE"
+                      type="checkbox"
+                      value="HJE"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            04.11.2024
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Hjelpemidler
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        >
+                          <svg
+                            contentScriptType="text/ecmascript"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              fill="currentColor"
+                            >
+                              <path
+                                d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                              />
+                              <path
+                                d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="IND"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="IND"
+                      type="checkbox"
+                      value="IND"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            23.09.2021
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Tiltakspenger
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        />
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="BAR"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="BAR"
+                      type="checkbox"
+                      value="BAR"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            21.07.2025
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Barnetrygd
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        >
+                          <svg
+                            contentScriptType="text/ecmascript"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              fill="currentColor"
+                            >
+                              <path
+                                d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                              />
+                              <path
+                                d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="AAR"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="AAR"
+                      type="checkbox"
+                      value="AAR"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            12.05.2025
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Aa-registeret
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        />
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="GRU"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="GRU"
+                      type="checkbox"
+                      value="GRU"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            01.07.2025
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Grunn- og hjelpestønad
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        >
+                          <svg
+                            contentScriptType="text/ecmascript"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              fill="currentColor"
+                            >
+                              <path
+                                d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                              />
+                              <path
+                                d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="AAP"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="AAP"
+                      type="checkbox"
+                      value="AAP"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            12.08.2025
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Arbeidsavklaringspenger
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        />
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="DAG"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="DAG"
+                      type="checkbox"
+                      value="DAG"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            12.08.2025
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Dagpenger
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        >
+                          <svg
+                            contentScriptType="text/ecmascript"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              fill="currentColor"
+                            >
+                              <path
+                                d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                              />
+                              <path
+                                d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="BID"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="BID"
+                      type="checkbox"
+                      value="BID"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            16.07.2025
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Bidrag
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        />
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="KON"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="KON"
+                      type="checkbox"
+                      value="KON"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            09.01.2023
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Kontantstøtte
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        >
+                          <svg
+                            contentScriptType="text/ecmascript"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              fill="currentColor"
+                            >
+                              <path
+                                d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                              />
+                              <path
+                                d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="FOR"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="FOR"
+                      type="checkbox"
+                      value="FOR"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            27.05.2025
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Foreldre- og svangerskapspenger
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        />
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="FIP"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="FIP"
+                      type="checkbox"
+                      value="FIP"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          />
+                          <p
+                            class="typo-element"
+                          >
+                            Fiskerpensjon
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        >
+                          <svg
+                            contentScriptType="text/ecmascript"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              fill="currentColor"
+                            >
+                              <path
+                                d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                              />
+                              <path
+                                d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="ARS"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="ARS"
+                      type="checkbox"
+                      value="ARS"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            11.12.2024
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Arbeidsrådgivning skjermet
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        />
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="ARP"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="ARP"
+                      type="checkbox"
+                      value="ARP"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            08.10.2024
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Arbeidsrådgivning psykologtester
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        >
+                          <svg
+                            contentScriptType="text/ecmascript"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              fill="currentColor"
+                            >
+                              <path
+                                d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                              />
+                              <path
+                                d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="AGR"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="AGR"
+                      type="checkbox"
+                      value="AGR"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            03.07.2025
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Ajourhold - Grunnopplysninger
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        />
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="KLL"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="KLL"
+                      type="checkbox"
+                      value="KLL"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            14.05.2024
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Klage lønnsgaranti
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        >
+                          <svg
+                            contentScriptType="text/ecmascript"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              fill="currentColor"
+                            >
+                              <path
+                                d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                              />
+                              <path
+                                d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="BIL"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="BIL"
+                      type="checkbox"
+                      value="BIL"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            07.09.2021
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Bil
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        />
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="SYK"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="SYK"
+                      type="checkbox"
+                      value="SYK"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            15.04.2025
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Sykepenger
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        >
+                          <svg
+                            contentScriptType="text/ecmascript"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              fill="currentColor"
+                            >
+                              <path
+                                d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                              />
+                              <path
+                                d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="GEN"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="GEN"
+                      type="checkbox"
+                      value="GEN"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            09.01.2024
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Generell
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        />
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="PEN"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="PEN"
+                      type="checkbox"
+                      value="PEN"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            20.04.2023
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Pensjon
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        >
+                          <svg
+                            contentScriptType="text/ecmascript"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              fill="currentColor"
+                            >
+                              <path
+                                d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                              />
+                              <path
+                                d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="GRA"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="GRA"
+                      type="checkbox"
+                      value="GRA"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            21.04.2022
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Gravferdsstønad
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        />
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="OPP"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="OPP"
+                      type="checkbox"
+                      value="OPP"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            27.11.2024
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Oppfølging
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        >
+                          <svg
+                            contentScriptType="text/ecmascript"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              fill="currentColor"
+                            >
+                              <path
+                                d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                              />
+                              <path
+                                d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="FEI"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="FEI"
+                      type="checkbox"
+                      value="FEI"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            13.06.2023
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Feilutbetaling
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        />
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="KTR"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="KTR"
+                      type="checkbox"
+                      value="KTR"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            29.09.2023
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Kontroll
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        >
+                          <svg
+                            contentScriptType="text/ecmascript"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              fill="currentColor"
+                            >
+                              <path
+                                d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                              />
+                              <path
+                                d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="SAK"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="SAK"
+                      type="checkbox"
+                      value="SAK"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          />
+                          <p
+                            class="typo-element"
+                          >
+                            Saksomkostninger
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        />
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="FOS"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="FOS"
+                      type="checkbox"
+                      value="FOS"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            16.07.2025
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Forsikring
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        >
+                          <svg
+                            contentScriptType="text/ecmascript"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              fill="currentColor"
+                            >
+                              <path
+                                d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                              />
+                              <path
+                                d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="HEL"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="HEL"
+                      type="checkbox"
+                      value="HEL"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          />
+                          <p
+                            class="typo-element"
+                          >
+                            Helsetjenester og ortopediske hjelpemidler
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        />
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="OMS"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="OMS"
+                      type="checkbox"
+                      value="OMS"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          />
+                          <p
+                            class="typo-element"
+                          >
+                            Omsorgspenger, Pleiepenger og opplæringspenger
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        >
+                          <svg
+                            contentScriptType="text/ecmascript"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              fill="currentColor"
+                            >
+                              <path
+                                d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                              />
+                              <path
+                                d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="YRK"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="YRK"
+                      type="checkbox"
+                      value="YRK"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            12.04.2023
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Yrkesskade og menerstatning
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        />
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="OPA"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="OPA"
+                      type="checkbox"
+                      value="OPA"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          />
+                          <p
+                            class="typo-element"
+                          >
+                            Oppfølging - arbeidsgiver
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        >
+                          <svg
+                            contentScriptType="text/ecmascript"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              fill="currentColor"
+                            >
+                              <path
+                                d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                              />
+                              <path
+                                d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="SYM"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="SYM"
+                      type="checkbox"
+                      value="SYM"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          />
+                          <p
+                            class="typo-element"
+                          >
+                            Sykmelding
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        />
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="TRY"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="TRY"
+                      type="checkbox"
+                      value="TRY"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          />
+                          <p
+                            class="typo-element"
+                          >
+                            Trygdeavgift
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        >
+                          <svg
+                            contentScriptType="text/ecmascript"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              fill="currentColor"
+                            >
+                              <path
+                                d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                              />
+                              <path
+                                d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="VEN"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="VEN"
+                      type="checkbox"
+                      value="VEN"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          />
+                          <p
+                            class="typo-element"
+                          >
+                            Ventelønn
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        />
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="UFM"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="UFM"
+                      type="checkbox"
+                      value="UFM"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          />
+                          <p
+                            class="typo-element"
+                          >
+                            Unntak fra medlemskap
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        >
+                          <svg
+                            contentScriptType="text/ecmascript"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              fill="currentColor"
+                            >
+                              <path
+                                d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                              />
+                              <path
+                                d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="UFO"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="UFO"
+                      type="checkbox"
+                      value="UFO"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            16.12.2024
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Uføretrygd
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        />
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="EYB"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="EYB"
+                      type="checkbox"
+                      value="EYB"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            12.08.2025
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Barnepensjon
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        >
+                          <svg
+                            contentScriptType="text/ecmascript"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              fill="currentColor"
+                            >
+                              <path
+                                d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                              />
+                              <path
+                                d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="EYO"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="EYO"
+                      type="checkbox"
+                      value="EYO"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            30.11.2023
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Omstillingsstønad
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        />
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="TSO"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="TSO"
+                      type="checkbox"
+                      value="TSO"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          />
+                          <p
+                            class="typo-element"
+                          >
+                            Tilleggsstønad
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        >
+                          <svg
+                            contentScriptType="text/ecmascript"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              fill="currentColor"
+                            >
+                              <path
+                                d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                              />
+                              <path
+                                d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="FUL"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="FUL"
+                      type="checkbox"
+                      value="FUL"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          />
+                          <p
+                            class="typo-element"
+                          >
+                            Fullmakt
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        />
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="SER"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="SER"
+                      type="checkbox"
+                      value="SER"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            07.10.2024
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            Serviceklager
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        >
+                          <svg
+                            contentScriptType="text/ecmascript"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              fill="currentColor"
+                            >
+                              <path
+                                d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                              />
+                              <path
+                                d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="PAI"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="PAI"
+                      type="checkbox"
+                      value="PAI"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            01.07.2025
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            PAI
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        />
+                      </div>
+                    </span>
+                  </label>
+                  <label
+                    class="inputPanel checkboksPanel inputPanel--checked"
+                    for="AKT"
+                  >
+                    <input
+                      aria-checked="true"
+                      aria-errormessage="Helt tilfeldig ID"
+                      aria-invalid="false"
+                      checked=""
+                      class="inputPanel__field"
+                      id="AKT"
+                      type="checkbox"
+                      value="AKT"
+                    />
+                    <span
+                      class="inputPanel__label"
+                    >
+                      <div
+                        class="c8"
+                      >
+                        <div>
+                          <p
+                            class="typo-normal"
+                          >
+                            23.06.2025
+                          </p>
+                          <p
+                            class="typo-element"
+                          >
+                            AKT
+                          </p>
+                        </div>
+                        <span
+                          class="c9"
+                        >
+                          <svg
+                            contentScriptType="text/ecmascript"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              fill="currentColor"
+                            >
+                              <path
+                                d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                              />
+                              <path
+                                d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </span>
+                  </label>
+                </div>
+                <div
+                  aria-live="polite"
+                  id="Helt tilfeldig ID"
+                />
+              </fieldset>
+            </ol>
+          </nav>
+        </div>
+      </nav>
     </div>
-    <div
-      style="height: 0.25rem;"
-    />
-    <div>
-      <pre
-        style="font-size: 0.7em; border: 1px solid red; border-radius: 0.25rem; padding: 0.3rem; color: red; overflow: auto;"
-      >
-        <code>
-          Class constructor MockDate cannot be invoked without 'new'
-        </code>
-      </pre>
-    </div>
+    <div … />
   </div>
 </DocumentFragment>
 `;

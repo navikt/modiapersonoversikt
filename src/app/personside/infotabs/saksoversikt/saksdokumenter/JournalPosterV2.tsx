@@ -5,21 +5,21 @@ import Panel from 'nav-frontend-paneler';
 import { Checkbox } from 'nav-frontend-skjema';
 import { Element, Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { createRef, type JSX, useEffect, useRef, useState } from 'react';
+import type { Sakstema } from 'src/generated/modiapersonoversikt-api';
+import { type Dokumentmetadata, DokumentmetadataAvsender } from 'src/generated/modiapersonoversikt-api';
+import { useSakerDokumenter } from 'src/lib/clients/modiapersonoversikt-api';
+import { saksdatoSomDate } from 'src/models/saksoversikt/fellesSak';
+import type { DokumentAvsenderFilter } from 'src/redux/saksoversikt/types';
+import { usePrevious } from 'src/utils/customHooks';
+import { datoSynkende } from 'src/utils/date-utils';
+import { type ArrayGroup, type GroupedArray, groupArray } from 'src/utils/groupArray';
 import styled from 'styled-components';
-import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
-import { Entitet, type Journalpost } from '../../../../../models/saksoversikt/journalpost';
-import type { Sakstema } from '../../../../../models/saksoversikt/sakstema';
-import type { DokumentAvsenderFilter } from '../../../../../redux/saksoversikt/types';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
-import { usePrevious } from '../../../../../utils/customHooks';
-import { datoSynkende } from '../../../../../utils/date-utils';
-import { type ArrayGroup, type GroupedArray, groupArray } from '../../../../../utils/groupArray';
 import usePaginering from '../../../../../utils/hooks/usePaginering';
 import { KategoriSkille } from '../../../dialogpanel/fellesStyling';
 import { sakerTest } from '../../dyplenkeTest/utils-dyplenker-test';
 import { useHentAlleSakstemaFraResourceV2, useSakstemaURLStateV2 } from '../useSakstemaURLState';
-import LenkeNorg from '../utils/LenkeNorg';
-import { aggregertSakstemaV2, forkortetTemanavnV2 } from '../utils/saksoversiktUtilsV2';
+import { aggregertSakstemaV2, forkortetTemanavnV2, sakstemakodeAlle } from '../utils/saksoversiktUtilsV2';
 import ToggleViktigAaViteKnapp from '../viktigavite/ToggleViktigAaViteKnapp';
 import ViktigÅVite from '../viktigavite/viktigavite';
 import JournalpostListeElementV2 from './JournalPostListeElement/JournalpostListeElementV2';
@@ -90,7 +90,7 @@ const TittelWrapperStyling = styled.div`
 `;
 
 interface JournalpostGruppeProps {
-    gruppe: ArrayGroup<Journalpost>;
+    gruppe: ArrayGroup<Dokumentmetadata>;
     harTilgang: boolean;
     valgtSakstema: Sakstema;
 }
@@ -119,15 +119,15 @@ function JournalpostGruppe({ gruppe, harTilgang, valgtSakstema }: JournalpostGru
     );
 }
 
-function arForDokument(dok: Journalpost) {
+function arForDokument(dok: Dokumentmetadata) {
     return `${new Date(dok.dato).getFullYear()}`;
 }
 
-function hentRiktigAvsenderfilter(avsender: Entitet, avsenderfilter: DokumentAvsenderFilter) {
+function hentRiktigAvsenderfilter(avsender: DokumentmetadataAvsender, avsenderfilter: DokumentAvsenderFilter) {
     switch (avsender) {
-        case Entitet.Sluttbruker:
+        case DokumentmetadataAvsender.SLUTTBRUKER:
             return avsenderfilter.fraBruker;
-        case Entitet.Nav:
+        case DokumentmetadataAvsender.NAV:
             return avsenderfilter.fraNav;
         default:
             return avsenderfilter.fraAndre;
@@ -136,7 +136,7 @@ function hentRiktigAvsenderfilter(avsender: Entitet, avsenderfilter: DokumentAvs
 
 interface DokumentListeProps {
     sakstema: Sakstema;
-    filtrerteJournalposter: Journalpost[];
+    filtrerteJournalposter: Dokumentmetadata[];
 }
 
 function JournalpostListe(props: DokumentListeProps) {
@@ -148,15 +148,13 @@ function JournalpostListe(props: DokumentListeProps) {
         );
     }
 
-    const journalposterGruppert: GroupedArray<Journalpost> = groupArray(props.filtrerteJournalposter, arForDokument);
+    const journalposterGruppert: GroupedArray<Dokumentmetadata> = groupArray(
+        props.filtrerteJournalposter,
+        arForDokument
+    );
 
-    const arsgrupper = journalposterGruppert.map((gruppe: ArrayGroup<Journalpost>) => (
-        <JournalpostGruppe
-            gruppe={gruppe}
-            harTilgang={props.sakstema.harTilgang}
-            key={gruppe.category}
-            valgtSakstema={props.sakstema}
-        />
+    const arsgrupper = journalposterGruppert.map((gruppe: ArrayGroup<Dokumentmetadata>) => (
+        <JournalpostGruppe gruppe={gruppe} harTilgang={true} key={gruppe.category} valgtSakstema={props.sakstema} />
     ));
 
     return <DokumenterListe aria-label="Dokumenter gruppert på årstall">{arsgrupper}</DokumenterListe>;
@@ -181,7 +179,7 @@ interface Props {
     sakstemaListeDropdown?: JSX.Element;
 }
 
-const fieldCompareJournalposter = (journalpost: Journalpost) => journalpost.id;
+const fieldCompareJournalposter = (journalpost: Dokumentmetadata) => journalpost.id;
 
 function JournalPoster(props: Props) {
     const navigate = useNavigate();
@@ -190,6 +188,7 @@ function JournalPoster(props: Props) {
 
     const { alleSakstema } = useHentAlleSakstemaFraResourceV2();
     const { valgteSakstemaer } = useSakstemaURLStateV2(alleSakstema);
+    const { data } = useSakerDokumenter();
     const tittelRef = createRef<HTMLDivElement>();
     const aggregertSak: Sakstema = aggregertSakstemaV2(alleSakstema, valgteSakstemaer);
 
@@ -198,10 +197,21 @@ function JournalPoster(props: Props) {
         fraAndre: !!avsenderFilterQuery?.includes('andre'),
         fraBruker: !!avsenderFilterQuery?.includes('bruker')
     };
-    const filtrerteJournalposter = aggregertSak.dokumentMetadata
+    const valgteTemaKoder = valgteSakstemaer.map((t) => t.temakode);
+    const filtrerteJournalposter = (data?.dokumenter ?? [])
+        .filter(
+            (journalpost) =>
+                aggregertSak.temakode === sakstemakodeAlle || valgteTemaKoder.includes(journalpost.temakode)
+        )
         .filter((journalpost) => hentRiktigAvsenderfilter(journalpost.avsender, avsenderFilter))
         .sort(datoSynkende((journalpost) => saksdatoSomDate(journalpost.dato)));
-    const paginering = usePaginering(filtrerteJournalposter, 50, 'journalpost', undefined, fieldCompareJournalposter);
+    const paginering = usePaginering<Dokumentmetadata, string>(
+        filtrerteJournalposter,
+        50,
+        'journalpost',
+        undefined,
+        fieldCompareJournalposter
+    );
     const handleOppdaterAvsenderFilter = (filter: 'nav' | 'andre' | 'bruker') => {
         const query = avsenderFilterQuery ?? [];
         const avsender = query.includes(filter) ? query.filter((f) => f !== filter) : [...query, filter];
@@ -266,7 +276,6 @@ function JournalPoster(props: Props) {
                             {filterCheckboxer}
                         </div>
                         <div>
-                            <LenkeNorg valgtSakstema={aggregertSak} />
                             <ToggleViktigAaViteKnapp
                                 open={viktigaviteOpen}
                                 setOpen={setViktigaviteOpen}

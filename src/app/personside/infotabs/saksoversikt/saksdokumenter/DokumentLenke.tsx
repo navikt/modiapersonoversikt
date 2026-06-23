@@ -1,22 +1,22 @@
 import { Link, useLocation } from '@tanstack/react-router';
 import { Element, Undertekst } from 'nav-frontend-typografi';
+import type { Sakstema } from 'src/generated/modiapersonoversikt-api';
+import { type Dokument, DokumentDokumentStatus, type Dokumentmetadata } from 'src/generated/modiapersonoversikt-api';
 import { trackingEvents } from 'src/utils/analytics';
-import { type Dokument, DokumentStatus, type Journalpost } from '../../../../../models/saksoversikt/journalpost';
-import type { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { erSakerFullscreen } from '../utils/erSakerFullscreen';
 
 interface Props {
     dokument: Dokument;
     valgtSakstema: Sakstema;
     kanVises: boolean;
-    journalPost: Journalpost;
+    journalPost: Dokumentmetadata;
 }
 
 const dokumentTekst = (dokument: Dokument) => {
     return (
         dokument.tittel +
         (dokument.skjerming ? ' (Skjermet)' : '') +
-        (dokument.dokumentStatus === DokumentStatus.KASSERT ? ' (Kassert)' : '')
+        (dokument.dokumentStatus === DokumentDokumentStatus.KASSERT ? ' (Kassert)' : '')
     );
 };
 
@@ -32,7 +32,7 @@ function DokumentLenke(props: Props) {
     const journalpostId = props.journalPost.journalpostId;
     const dokumentReferanse = props.dokument.dokumentreferanse;
 
-    if (journalpostId === null || dokumentReferanse === null) {
+    if (journalpostId === null || !dokumentReferanse) {
         return (
             <>
                 {dokumentTekst(props.dokument)} <Undertekst>(Dokument er ikke tilgjengelig)</Undertekst>

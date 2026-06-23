@@ -1,15 +1,14 @@
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
 import type { ReactNode } from 'react';
+import type { Sakstema } from 'src/generated/modiapersonoversikt-api';
 import { trackingEvents } from 'src/utils/analytics';
 import styled from 'styled-components';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
-import type { SakstemaSoknadsstatus } from '../../../../models/saksoversikt/sakstema';
-import resource from '../../../../rest/resources/sakstemaResource';
 import theme from '../../../../styles/personOversiktTheme';
 import { useOnMount } from '../../../../utils/customHooks';
 import SakstemaListeElementKnappV2 from '../saksoversikt/sakstemaliste/SakstemaListeElementKnappV2';
-import { filtrerSakstemaerUtenDataV2 } from '../saksoversikt/sakstemaliste/SakstemaListeUtils';
+import { useHentAlleSakstemaFraResourceV2 } from '../saksoversikt/useSakstemaURLState';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
@@ -22,14 +21,17 @@ interface Props {
 }
 
 function SakerOversikt(props: Props) {
-    return resource.useRenderer({
-        ifPending: <CenteredLazySpinner padding={theme.margin.layout} />,
-        ifData: (sakstema) => <SakerPanel sakstema={sakstema.resultat} {...props} />
-    });
+    const { alleSakstema, isLoading } = useHentAlleSakstemaFraResourceV2();
+
+    if (isLoading) {
+        return <CenteredLazySpinner padding={theme.margin.layout} />;
+    }
+
+    return <SakerPanel sakstema={alleSakstema} {...props} />;
 }
 
-function SakerPanel(props: { sakstema: SakstemaSoknadsstatus[] } & Props) {
-    const sakstemakomponenter = filtrerSakstemaerUtenDataV2(props.sakstema)
+function SakerPanel(props: { sakstema: Sakstema[] } & Props) {
+    const sakstemakomponenter = props.sakstema
         .slice(0, 2)
         .map((sakstema, index) => (
             <SakstemaListeElementKnappV2

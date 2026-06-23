@@ -1,39 +1,36 @@
 import { useNavigate, useSearch } from '@tanstack/react-router';
 import { useMemo } from 'react';
+import type { Dokument, Dokumentmetadata, Sakstema } from 'src/generated/modiapersonoversikt-api';
+import { useSakerDokumenter } from 'src/lib/clients/modiapersonoversikt-api';
 import { filterType, trackFilterEndret } from 'src/utils/analytics';
-import type { Dokument, Journalpost } from '../../../../models/saksoversikt/journalpost';
-import type { SakstemaSoknadsstatus } from '../../../../models/saksoversikt/sakstema';
-import sakstemaResource from '../../../../rest/resources/sakstemaResource';
-import { datoSynkende } from '../../../../utils/date-utils';
-import { filtrerSakstemaerUtenDataV2 } from './sakstemaliste/SakstemaListeUtils';
-import { hentDatoForSisteHendelseV2, sakstemakodeAlle, sakstemakodeIngen } from './utils/saksoversiktUtilsV2';
+import { sakstemakodeAlle, sakstemakodeIngen } from './utils/saksoversiktUtilsV2';
 
 interface SakstemaURLStateV2 {
-    valgteSakstemaer: SakstemaSoknadsstatus[];
+    valgteSakstemaer: Sakstema[];
     valgtDokument: Dokument | undefined;
-    valgtJournalpost: Journalpost | undefined;
+    valgtJournalpost: Dokumentmetadata | undefined;
     setIngenValgte(): void;
     setAlleValgte(): void;
-    toggleValgtSakstema(sakstema: SakstemaSoknadsstatus): void;
+    toggleValgtSakstema(sakstema: Sakstema): void;
 }
 
 interface SakstemaResourceV2 {
-    alleSakstema: SakstemaSoknadsstatus[];
+    alleSakstema: Sakstema[];
     isLoading: boolean;
 }
 
-export function useSakstemaURLStateV2(alleSakstemaer: SakstemaSoknadsstatus[]): SakstemaURLStateV2 {
-    const filtrertAlleSakstemaer = filtrerSakstemaerUtenDataV2(alleSakstemaer);
+export function useSakstemaURLStateV2(alleSakstemaer: Sakstema[]): SakstemaURLStateV2 {
+    const { data: sakerData } = useSakerDokumenter();
     const navigate = useNavigate({ from: '/person/saker' });
     const query = useSearch({ strict: false });
     const queryParams = useSearch({ strict: false }); //SYK-BAR-AAP
     return useMemo(() => {
         const sakstemaerFraUrl: string[] = queryParams.sakstema?.split('-') ?? [sakstemakodeAlle];
-        const valgteSakstemaer: SakstemaSoknadsstatus[] = sakstemaerFraUrl.includes(sakstemakodeAlle)
-            ? filtrertAlleSakstemaer
-            : filtrertAlleSakstemaer.filter((sakstema) => sakstemaerFraUrl.includes(sakstema.temakode));
+        const valgteSakstemaer: Sakstema[] = sakstemaerFraUrl.includes(sakstemakodeAlle)
+            ? alleSakstemaer
+            : alleSakstemaer.filter((sakstema) => sakstemaerFraUrl.includes(sakstema.temakode));
 
-        const journalposter = filtrertAlleSakstemaer.flatMap((sakstema) => sakstema.dokumentMetadata);
+        const journalposter: Dokumentmetadata[] = sakerData?.dokumenter ?? [];
         const dokumenter = journalposter.flatMap((journalpost) => [journalpost.hoveddokument, ...journalpost.vedlegg]);
         const dokumentReferanseFraUrl = queryParams.dokument ?? '';
         const valgtDokument = dokumenter.find((dokument) => dokument.dokumentreferanse === dokumentReferanseFraUrl);
@@ -53,20 +50,17 @@ export function useSakstemaURLStateV2(alleSakstemaer: SakstemaSoknadsstatus[]): 
             });
         };
 
-        const toggleValgtSakstema = (sakstema: SakstemaSoknadsstatus) => {
+        const toggleValgtSakstema = (sakstema: Sakstema) => {
             const nyTemaliste = valgteSakstemaer.includes(sakstema)
                 ? valgteSakstemaer.filter((tema) => tema !== sakstema)
                 : [...valgteSakstemaer, sakstema];
 
             if (nyTemaliste.isEmpty()) {
                 setIngenValgte();
-            } else if (nyTemaliste.length === filtrertAlleSakstemaer.length) {
+            } else if (nyTemaliste.length === alleSakstemaer.length) {
                 setAlleValgte();
             } else {
-                const nyURL = nyTemaliste
-                    .sort(datoSynkende((sakstema) => hentDatoForSisteHendelseV2(sakstema) ?? Date()))
-                    .map((sakstema) => sakstema.temakode)
-                    .join('-');
+                const nyURL = nyTemaliste.map((sakstema) => sakstema.temakode).join('-');
                 navigate({
                     search: { ...query, sakstema: nyURL }
                 });
@@ -82,26 +76,15 @@ export function useSakstemaURLStateV2(alleSakstemaer: SakstemaSoknadsstatus[]): 
             setIngenValgte,
             toggleValgtSakstema
         };
-    }, [history, queryParams, filtrertAlleSakstemaer]);
+    }, [queryParams, alleSakstemaer, sakerData]);
 }
 
 export function useHentAlleSakstemaFraResourceV2(): SakstemaResourceV2 {
-    const resource = sakstemaResource.useFetch();
-
-    return useMemo(() => {
-        if (resource.data) {
-            return {
-                alleSakstema: resource.data.resultat.sort(
-                    datoSynkende((it) => hentDatoForSisteHendelseV2(it) ?? Date())
-                ),
-                isLoading: false
-            };
-        }
-        return { alleSakstema: [], isLoading: true };
-    }, [resource]);
+    const { data, isLoading } = useSakerDokumenter();
+    return { alleSakstema: data?.temaer ?? [], isLoading };
 }
 
-function inneholderValgtDokument(journalpost: Journalpost, dokumentId?: string): boolean {
+function inneholderValgtDokument(journalpost: Dokumentmetadata, dokumentId?: string): boolean {
     return (
         !!dokumentId &&
         [

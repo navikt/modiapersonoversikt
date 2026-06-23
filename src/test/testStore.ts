@@ -1,6 +1,7 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { applyMiddleware, createStore, type Dispatch, type Store } from 'redux';
 import thunkMiddleware from 'redux-thunk';
+import * as modiapersonoversiktApiClient from 'src/lib/clients/modiapersonoversikt-api';
 import { statiskArbeidsavklaringspengerMock } from 'src/mock/ytelse/statiskArbeidsavklaringspengerMock';
 import { statiskEngangstonadMock, statiskForeldrepengerMock } from 'src/mock/ytelse/statiskForeldrepengerMock';
 import { statiskPensjonMock } from 'src/mock/ytelse/statiskPensjonMock';
@@ -12,7 +13,7 @@ import { mockBaseUrls } from '../mock/baseUrls-mock';
 import { getMockGsakTema } from '../mock/meldinger/oppgave-mock';
 import { statiskTraadMock } from '../mock/meldinger/statiskTraadMock';
 import { aremark } from '../mock/persondata/aremark';
-import { getStaticMockSaksoversiktV2 } from '../mock/saksoversikt/saksoversikt-mock';
+import { getStaticMockSaksoOgDokumenter } from '../mock/saksoversikt/saksoversikt-mock';
 import { statiskOppfolgingMock } from '../mock/statiskOppfolgingMock';
 import { statiskMockUtbetalingRespons } from '../mock/utbetalinger/statiskMockUtbetalingRespons';
 import { statiskVarselMock } from '../mock/varsler/statiskVarselMock';
@@ -31,7 +32,6 @@ import innstillingerResource from '../rest/resources/innstillingerResource';
 import oppfolgingResource from '../rest/resources/oppfolgingResource';
 import * as pensjonResource from '../rest/resources/pensjonResource';
 import persondataResource from '../rest/resources/persondataResource';
-import sakstemaResource from '../rest/resources/sakstemaResource';
 import * as sykepengerResource from '../rest/resources/sykepengerResource';
 import * as sykepengerSpokelseResource from '../rest/resources/sykepengerSpokelseResource';
 import * as tiltakspengerResource from '../rest/resources/tiltakspengerResource';
@@ -76,7 +76,7 @@ export function setupReactQueryMocks() {
     vi.spyOn(foreldrepengerResource, 'useForeldrepenger');
     vi.spyOn(gsaktemaResource, 'useFetch');
     vi.spyOn(oppfolgingResource, 'useFetch');
-    vi.spyOn(sakstemaResource, 'useFetch');
+    vi.spyOn(modiapersonoversiktApiClient, 'useSakerDokumenter');
     vi.spyOn(utbetalingerResource, 'useFetch');
     vi.spyOn(persondataResource, 'useFetch');
     vi.spyOn(aktoridResource, 'useFetch');
@@ -109,7 +109,10 @@ export function setupReactQueryMocks() {
         statiskEngangstonadMock
     ]);
     mockReactQuery(oppfolgingResource.useFetch, statiskOppfolgingMock);
-    mockReactQuery(sakstemaResource.useFetch, getStaticMockSaksoversiktV2());
+    mockReactQuery(
+        modiapersonoversiktApiClient.useSakerDokumenter,
+        getStaticMockSaksoOgDokumenter(aremark.personIdent)
+    );
     mockReactQuery(utbetalingerResource.useFetch, statiskMockUtbetalingRespons);
     mockReactQuery(persondataResource.useFetch, {
         feilendeSystemer: [],

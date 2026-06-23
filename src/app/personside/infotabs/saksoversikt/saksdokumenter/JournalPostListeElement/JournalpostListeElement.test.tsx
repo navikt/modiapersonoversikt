@@ -1,20 +1,21 @@
 import { act, screen } from '@testing-library/react';
-import { getStaticMockSaksoversiktV2 } from '../../../../../../mock/saksoversikt/saksoversikt-mock';
-import { Feilmelding, type Journalpost } from '../../../../../../models/saksoversikt/journalpost';
+import { type Dokumentmetadata, FeilFeilmelding } from 'src/generated/modiapersonoversikt-api';
+import { aremark } from 'src/mock/persondata/aremark';
+import { getStaticMockSaksoOgDokumenter } from '../../../../../../mock/saksoversikt/saksoversikt-mock';
 import { renderWithProviders } from '../../../../../../test/Testprovider';
 import { getTestStore } from '../../../../../../test/testStore';
 import { aggregertSakstemaV2 } from '../../utils/saksoversiktUtilsV2';
 import JournalpostListeElementV2 from './JournalpostListeElementV2';
 
 describe('JournalpostListeElementV2', () => {
-    const staticSaksoversikt = getStaticMockSaksoversiktV2();
-    const valgtSakstema = aggregertSakstemaV2(staticSaksoversikt.resultat);
+    const staticSaksoversikt = getStaticMockSaksoOgDokumenter(aremark.personIdent);
+    const valgtSakstema = aggregertSakstemaV2(staticSaksoversikt.temaer);
 
     it('Viser ikke-tilgang-ikon om journalpost har sikkerhetsbegrensning', async () => {
         const { testStore, journalposter } = lagStoreMedJustertDokumentMetadata({
             feil: {
                 inneholderFeil: true,
-                feilmelding: Feilmelding.Sikkerhetsbegrensning
+                feilmelding: FeilFeilmelding.SIKKERHETSBEGRENSNING
             }
         });
 
@@ -23,7 +24,7 @@ describe('JournalpostListeElementV2', () => {
                 <JournalpostListeElementV2
                     journalpost={journalposter}
                     harTilgangTilSakstema={true}
-                    valgtSakstema={valgtSakstema}
+                    valgtSakstema={valgtSakstema ?? undefined}
                 />,
                 testStore
             )
@@ -48,10 +49,10 @@ describe('JournalpostListeElementV2', () => {
     });
 
     it('Viser tilgang-ikon hvis tilgang til sakstema og ikke sikkerhetsbegrensning, selv om ikke tilgang til alle dokumenter', async () => {
-        const hoveddokument = staticSaksoversikt.resultat[0].dokumentMetadata[0].hoveddokument;
-        const vedlegg = staticSaksoversikt.resultat[0].dokumentMetadata[0].vedlegg[0];
+        const hoveddokument = staticSaksoversikt.dokumenter[0].hoveddokument;
+        const vedlegg = staticSaksoversikt.dokumenter[0].vedlegg[0];
         const { testStore, journalposter } = lagStoreMedJustertDokumentMetadata({
-            feil: { inneholderFeil: false, feilmelding: null },
+            feil: { inneholderFeil: false },
             hoveddokument: {
                 ...hoveddokument,
                 saksbehandlerHarTilgang: false
@@ -80,7 +81,7 @@ describe('JournalpostListeElementV2', () => {
 
     it('Viser ikke-tilgang-ikon selv i "Alle" sakstemalisten', async () => {
         const { testStore, journalposter } = lagStoreMedJustertDokumentMetadata({
-            feil: { inneholderFeil: false, feilmelding: null }
+            feil: { inneholderFeil: false }
         });
 
         await act(() =>
@@ -96,11 +97,11 @@ describe('JournalpostListeElementV2', () => {
         expect(screen.getByTestId('dokument-ikon')).toBeInTheDocument();
     });
 
-    function lagStoreMedJustertDokumentMetadata(partialDok: Partial<Journalpost>) {
+    function lagStoreMedJustertDokumentMetadata(partialDok: Partial<Dokumentmetadata>) {
         const testStore = getTestStore();
 
-        const dokumentResultat: Journalpost = {
-            ...staticSaksoversikt.resultat[0].dokumentMetadata[0],
+        const dokumentResultat: Dokumentmetadata = {
+            ...staticSaksoversikt.dokumenter[0],
             ...partialDok
         };
 
