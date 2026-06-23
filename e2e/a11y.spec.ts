@@ -30,8 +30,9 @@ test.beforeEach(async ({ page }) => {
 faner.forEach((fane) => {
     test(`Universell utforming: Analyse av new/person/${fane}`, async ({ page }) => {
         await page.goto(`/new/person/${fane}`);
-        await page.waitForLoadState('networkidle');
         await page.getByTestId('person-route').waitFor();
+        await page.waitForURL(`**/new/person/${fane}**`);
+        await page.waitForLoadState('networkidle');
 
         const { violations } = await new AxeBuilder({ page }).analyze();
 
@@ -46,7 +47,7 @@ test.afterAll(() => {
 
     const byTab = Map.groupBy(allViolations, (v) => v.tab);
     for (const [tab, violations] of byTab) {
-        console.log(`\n--- /new/person/${tab} ---`);
+        console.log(`\n--- /new/person/${tab}: Inneholder ${violations.length} regelbrudd ---`);
         for (const v of violations) {
             console.log(`  [${v.impact}] ${v.id}: ${v.description}`);
             console.log(`  nodes: ${v.nodes.map((n) => n.html).join(', ')}`);
@@ -55,6 +56,6 @@ test.afterAll(() => {
     }
 });
 
-test(`Universell urforming: Forventer ingen regelbrudd`, async () => {
+test(`Universell utforming: Forventer ingen regelbrudd`, async () => {
     expect(allViolations, `A11y: ${allViolations.length} regelbrudd funnet — se logg for detaljer`).toHaveLength(0);
 });
