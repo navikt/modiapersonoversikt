@@ -2,7 +2,7 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import ModalWrapper from 'nav-frontend-modal';
 import { Systemtittel } from 'nav-frontend-typografi';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import gsaktemaResource from '../../rest/resources/gsaktemaResource';
@@ -38,7 +38,7 @@ const StyledSystemtittel = styled(Systemtittel)`
 
 function OpprettOppgaveAvvistTilgang() {
     const [apen, setApen] = useState(false);
-    const togglePanel = useCallback(() => setApen((it) => !it), [setApen]);
+    const togglePanel = () => setApen((it) => !it);
     return gsaktemaResource.useRenderer({
         ifError: (
             <AlertStripe type="info">Kunne ikke vise opprett oppgave panel. Vennligst last siden på nytt</AlertStripe>
