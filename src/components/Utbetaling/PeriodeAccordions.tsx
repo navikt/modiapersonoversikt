@@ -18,8 +18,17 @@ interface UtbetalingMedPeriode {
     array: Utbetaling[];
 }
 
-const AarAccordion = ({ aar }: { aar: GroupedArray<UtbetalingMedPeriode>[number] }) => {
-    const [openItems, setOpenItems] = useState<Set<string>>(new Set());
+const AarAccordion = ({
+    aar,
+    isFirstYear
+}: {
+    aar: GroupedArray<UtbetalingMedPeriode>[number];
+    isFirstYear: boolean;
+}) => {
+    const [openItems, setOpenItems] = useState<Set<string>>(
+        isFirstYear && aar.array[0] ? new Set([aar.array[0].category]) : new Set()
+    );
+
     const isClosed = useMemo(() => openItems.size < aar.array.length, [openItems, aar]);
 
     const toggleItem = (category: string, isOpen: boolean) => {
@@ -45,14 +54,14 @@ const AarAccordion = ({ aar }: { aar: GroupedArray<UtbetalingMedPeriode>[number]
 
     return (
         <VStack key={aar.category}>
-            <HStack justify="space-between">
+            <HStack justify="space-between" align="start">
                 <Heading size="xsmall" level="3" spacing>
                     {aar.category}
                 </Heading>
                 <Button
                     size="xsmall"
                     variant="tertiary"
-                    icon={isClosed ? <ChevronUpDoubleIcon aria-hidden /> : <ChevronDownDoubleIcon aria-hidden />}
+                    icon={isClosed ? <ChevronDownDoubleIcon aria-hidden /> : <ChevronUpDoubleIcon aria-hidden />}
                     onClick={toggleAllePerioder}
                 >
                     {isClosed ? 'Åpne alle' : 'Lukk alle'}
@@ -99,5 +108,7 @@ export const PeriodeAccordions = () => {
         (gruppe) => gruppe.category.split(' ')[1]
     );
 
-    return utbetalingerGruppertPaAar.map((aar) => <AarAccordion key={aar.category} aar={aar} />);
+    return utbetalingerGruppertPaAar.map((aar, i) => (
+        <AarAccordion key={aar.category} aar={aar} isFirstYear={i === 0} />
+    ));
 };
