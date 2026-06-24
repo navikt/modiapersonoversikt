@@ -1,4 +1,6 @@
-import { Accordion, Heading, InlineMessage, VStack } from '@navikt/ds-react';
+import { ChevronDownDoubleIcon, ChevronUpDoubleIcon } from '@navikt/aksel-icons';
+import { Accordion, Button, Heading, HStack, InlineMessage, VStack } from '@navikt/ds-react';
+import { useMemo, useState } from 'react';
 import { UtbetalingerTabell } from 'src/components/Utbetaling/UtbetalingerTabell';
 import {
     formaterNOK,
@@ -11,35 +13,67 @@ import type { Utbetaling } from 'src/generated/modiapersonoversikt-api';
 import { trackVisDetaljvisning } from 'src/utils/analytics';
 import { type GroupedArray, groupArray } from 'src/utils/groupArray';
 
-export const PeriodeAccordions = () => {
-    const { data } = useFilterUtbetalinger();
+interface UtbetalingMedPeriode {
+    category: string;
+    array: Utbetaling[];
+}
 
-    const utbetalingerGruppertPaaMaaned: GroupedArray<Utbetaling> = groupArray(
-        data.utbetalinger.sort(utbetalingDatoComparator),
-        maanedOgAarForUtbetaling
+const AarAccordion = ({
+    aar,
+    isFirstYear
+}: {
+    aar: GroupedArray<UtbetalingMedPeriode>[number];
+    isFirstYear: boolean;
+}) => {
+    const [openItems, setOpenItems] = useState<Set<string>>(
+        isFirstYear && aar.array[0] ? new Set([aar.array[0].category]) : new Set()
     );
 
-    const utbetalingerGruppertPaAar = groupArray(
-        utbetalingerGruppertPaaMaaned,
-        (gruppe) => gruppe.category.split(' ')[1]
-    );
+    const isClosed = useMemo(() => aar.array.some((p) => !openItems.has(p.category)), [openItems, aar.array]);
 
-    return utbetalingerGruppertPaAar.map((aar) => (
+    const toggleItem = (category: string, isOpen: boolean) => {
+        trackVisDetaljvisning('utbetalinger', isOpen ? 'åpnet periode' : 'lukket periode');
+        setOpenItems((prev) => {
+            const next = new Set(prev);
+            if (isOpen) {
+                next.add(category);
+            } else {
+                next.delete(category);
+            }
+            return next;
+        });
+    };
+    const toggleAllePerioder = () => {
+        if (isClosed) {
+            trackVisDetaljvisning('utbetalinger', 'åpne alle perioder i et år');
+            setOpenItems(new Set(aar.array.map((p) => p.category)));
+        } else {
+            trackVisDetaljvisning('utbetalinger', 'lukk alle perioder i et år');
+            setOpenItems(new Set());
+        }
+    };
+
+    return (
         <VStack key={aar.category}>
-            <Heading size="xsmall" level="3" spacing>
-                {aar.category}
-            </Heading>
+            <HStack justify="space-between" align="start">
+                <Heading size="xsmall" level="3" spacing>
+                    {aar.category}
+                </Heading>
+                <Button
+                    size="xsmall"
+                    variant="tertiary"
+                    icon={isClosed ? <ChevronDownDoubleIcon aria-hidden /> : <ChevronUpDoubleIcon aria-hidden />}
+                    onClick={toggleAllePerioder}
+                >
+                    {isClosed ? 'Åpne alle' : 'Lukk alle'}
+                </Button>
+            </HStack>
             <Accordion>
                 {aar.array.map((periode) => (
                     <Accordion.Item
                         key={periode.category}
-                        onOpenChange={(isOpen) => {
-                            if (isOpen) {
-                                trackVisDetaljvisning('utbetalinger', 'åpnet periode');
-                            } else {
-                                trackVisDetaljvisning('utbetalinger', 'lukket periode');
-                            }
-                        }}
+                        open={openItems.has(periode.category)}
+                        onOpenChange={(isOpen) => toggleItem(periode.category, isOpen)}
                     >
                         <Accordion.Header>{periode.category}</Accordion.Header>
                         <Accordion.Content className="overflow-x-auto">
@@ -59,5 +93,23 @@ export const PeriodeAccordions = () => {
                 ))}
             </Accordion>
         </VStack>
+    );
+};
+
+export const PeriodeAccordions = () => {
+    const { data } = useFilterUtbetalinger();
+
+    const utbetalingerGruppertPaaMaaned: GroupedArray<Utbetaling> = groupArray(
+        data.utbetalinger.sort(utbetalingDatoComparator),
+        maanedOgAarForUtbetaling
+    );
+
+    const utbetalingerGruppertPaAar = groupArray(
+        utbetalingerGruppertPaaMaaned,
+        (gruppe) => gruppe.category.split(' ')[1]
+    );
+
+    return utbetalingerGruppertPaAar.map((aar, i) => (
+        <AarAccordion key={aar.category} aar={aar} isFirstYear={i === 0} />
     ));
 };
