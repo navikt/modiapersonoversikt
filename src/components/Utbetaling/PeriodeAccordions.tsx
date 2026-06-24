@@ -29,25 +29,26 @@ const AarAccordion = ({
         isFirstYear && aar.array[0] ? new Set([aar.array[0].category]) : new Set()
     );
 
-    const isClosed = useMemo(() => openItems.size < aar.array.length, [openItems, aar]);
+    const isClosed = useMemo(() => aar.array.some((p) => !openItems.has(p.category)), [openItems, aar.array]);
 
     const toggleItem = (category: string, isOpen: boolean) => {
+        trackVisDetaljvisning('utbetalinger', isOpen ? 'åpnet periode' : 'lukket periode');
         setOpenItems((prev) => {
             const next = new Set(prev);
             if (isOpen) {
                 next.add(category);
-                trackVisDetaljvisning('utbetalinger', 'åpnet periode');
             } else {
                 next.delete(category);
-                trackVisDetaljvisning('utbetalinger', 'lukket periode');
             }
             return next;
         });
     };
     const toggleAllePerioder = () => {
         if (isClosed) {
+            trackVisDetaljvisning('utbetalinger', 'åpne alle perioder i et år');
             setOpenItems(new Set(aar.array.map((p) => p.category)));
         } else {
+            trackVisDetaljvisning('utbetalinger', 'lukk alle perioder i et år');
             setOpenItems(new Set());
         }
     };
