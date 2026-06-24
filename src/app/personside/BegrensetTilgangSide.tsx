@@ -2,17 +2,11 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import ModalWrapper from 'nav-frontend-modal';
 import { Systemtittel } from 'nav-frontend-typografi';
-import { useCallback, useState } from 'react';
-import type { HarIkkeTilgang } from 'src/rest/resources/tilgangskontrollResource';
+import { useState } from 'react';
 import styled from 'styled-components';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
-import BegrensetTilgangBegrunnelse from '../../components/person/BegrensetTilgangBegrunnelse';
 import gsaktemaResource from '../../rest/resources/gsaktemaResource';
 import OppgaveSkjemaBegrensetTilgang from './infotabs/meldinger/traadvisning/verktoylinje/oppgave/BegrensetTilgang/OppgaveSkjemaBegrensetTilgang';
-
-interface BegrensetTilgangProps {
-    tilgangsData: HarIkkeTilgang;
-}
 
 const Wrapper = styled.div`
   display: flex;
@@ -44,7 +38,7 @@ const StyledSystemtittel = styled(Systemtittel)`
 
 function OpprettOppgaveAvvistTilgang() {
     const [apen, setApen] = useState(false);
-    const togglePanel = useCallback(() => setApen((it) => !it), [setApen]);
+    const togglePanel = () => setApen((it) => !it);
     return gsaktemaResource.useRenderer({
         ifError: (
             <AlertStripe type="info">Kunne ikke vise opprett oppgave panel. Vennligst last siden på nytt</AlertStripe>
@@ -63,12 +57,12 @@ function OpprettOppgaveAvvistTilgang() {
     });
 }
 
-function BegrensetTilgangSide(props: BegrensetTilgangProps) {
+function BegrensetTilgangSide({ begrunnelse }: { begrunnelse?: string }) {
     return (
         <FillCenterAndFadeIn>
             <Wrapper>
                 <AlertStripe type="advarsel">
-                    <BegrensetTilgangBegrunnelse begrunnelseType={props.tilgangsData.ikkeTilgangArsak} />
+                    Tilgangskontroll: {begrunnelse ?? 'Feil sikkerhetsbegrensning'}
                 </AlertStripe>
                 <OpprettOppgaveAvvistTilgang />
             </Wrapper>

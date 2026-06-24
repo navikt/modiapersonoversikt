@@ -7,11 +7,9 @@ import { TraadList } from 'src/components/Meldinger/List';
 import { MeldingPanel } from 'src/components/melding/MeldingPanel';
 import { PersonLinje } from 'src/components/PersonLinje';
 import { PersonSidebarMenu } from 'src/components/PersonSidebar';
-import BegrensetTilgangBegrunnelse from 'src/components/person/BegrensetTilgangBegrunnelse';
 import { YtelserList } from 'src/components/ytelser/List';
 import { useTilgangskontroll } from 'src/lib/clients/modiapersonoversikt-api';
 import { aktivBrukerAtom } from 'src/lib/state/context';
-import type { IkkeTilgangArsak } from 'src/rest/resources/tilgangskontrollResource';
 export const Route = createLazyFileRoute('/new/person')({
     component: PersonRoute
 });
@@ -36,15 +34,13 @@ function PersonRouteMedTilgang() {
                 <Alert variant="error">Beklager. Det oppsto en feil ved sjekk av tilgang til bruker.</Alert>
             </div>
         );
-    if (!tilgang.data.harTilgang)
+    if (!tilgang.data.harTilgang) {
         return (
             <div className="flex-1">
-                <Alert variant="warning">
-                    <BegrensetTilgangBegrunnelse begrunnelseType={tilgang.data.ikkeTilgangArsak as IkkeTilgangArsak} />
-                </Alert>
+                <Alert variant="warning">{tilgang.data.message ?? 'Feil sikkerhetsbegrensning'}</Alert>
             </div>
         );
-
+    }
     return <PersonLayout />;
 }
 
