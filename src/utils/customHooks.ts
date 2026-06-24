@@ -128,27 +128,3 @@ export function useSettAktivBruker() {
         }
     };
 }
-
-export function useAntallListeElementeBasertPaaSkjermStorrelse(itemHeight: number = 82) {
-    const calculatePageSize = useCallback(() => {
-        const filterHeight = 150;
-        const headerAndPadding = 100;
-        const reservedSpace = filterHeight + headerAndPadding;
-        const availableHeight = window.innerHeight - reservedSpace;
-        const calculatedSize = Math.floor(availableHeight / itemHeight);
-        return Math.max(5, Math.min(20, calculatedSize));
-    }, [itemHeight]);
-
-    const [pageSize, setPageSize] = useState(calculatePageSize);
-
-    useEffect(() => {
-        const handleResize = () => {
-            setPageSize(calculatePageSize());
-        };
-
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, [calculatePageSize]);
-
-    return pageSize;
-}
