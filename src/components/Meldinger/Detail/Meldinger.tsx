@@ -1,5 +1,5 @@
-import { EnvelopeClosedIcon, EnvelopeOpenIcon, PersonIcon } from '@navikt/aksel-icons';
-import { Box, Chat, Detail, HStack, VStack } from '@navikt/ds-react';
+import { PersonIcon } from '@navikt/aksel-icons';
+import { BodyLong, Box, Chat, HStack, VStack } from '@navikt/ds-react';
 import { useAtomValue } from 'jotai';
 import { type ElementType, type ReactNode, useLayoutEffect, useMemo, useRef } from 'react';
 import RichText, { createDynamicHighlightingRule, defaultRules, SladdRule } from 'src/components/RichText';
@@ -103,14 +103,11 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
 
 const ReadStatus = ({ date }: { date?: string }) =>
     date ? (
-        <HStack gap="space-4">
-            <EnvelopeOpenIcon color="var(--ax-text-success-icon)" />
-            <Detail>Lest</Detail>
-            <Detail textColor="subtle">({formatterDatoTid(date)})</Detail>
-        </HStack>
+        <BodyLong as="span" size="small" className="aksel-inline-message" data-color="danger">
+            Ikke lest
+        </BodyLong>
     ) : (
-        <HStack gap="space-4">
-            <EnvelopeClosedIcon color="var(--ax-text-warning-icon)" />
-            <Detail>Ikke lest</Detail>
-        </HStack>
+        <BodyLong as="span" size="small" className="aksel-inline-message" data-color="danger">
+            Ikke lest
+        </BodyLong>
     );
