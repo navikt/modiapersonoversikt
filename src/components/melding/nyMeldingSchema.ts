@@ -38,7 +38,7 @@ const nyMeldingSchema = z
     .superRefine((val, ctx) => {
         if (!val.meldingsType) {
             ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'Velg dialogtype', path: ['meldingsType'] });
-            return z.NEVER;
+            return;
         }
         switch (val.meldingsType) {
             case MeldingsType.Referat:
