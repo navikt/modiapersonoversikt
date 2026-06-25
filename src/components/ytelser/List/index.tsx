@@ -3,7 +3,6 @@ import ErrorBoundary from 'src/components/ErrorBoundary';
 import { PaginatedList } from 'src/components/PaginatedList';
 import { YtelseItem } from 'src/components/ytelser/List/YtelseItem';
 import { getUnikYtelseKey, useFilterYtelser } from 'src/components/ytelser/utils';
-import { useAntallListeElementeBasertPaaSkjermStorrelse } from 'src/utils/customHooks';
 import { YtelserListFilter } from './Filter';
 
 export const YtelserList = () => (
@@ -16,7 +15,7 @@ const routeApi = getRouteApi('/new/person/ytelser');
 
 const YtelseList = () => {
     const { data: ytelser, isLoading } = useFilterYtelser();
-    const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
+    const antallListeElementer = 50;
     const navigate = routeApi.useNavigate();
 
     const selectedKey = useSearch({

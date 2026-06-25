@@ -1,7 +1,6 @@
 import { getRouteApi, useSearch } from '@tanstack/react-router';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { PaginatedList } from 'src/components/PaginatedList';
-import { useAntallListeElementeBasertPaaSkjermStorrelse } from 'src/utils/customHooks';
 import { TraadListFilterCard } from './Filter';
 import { TraadItem } from './TraadItem';
 import { useFilterMeldinger, useTraader } from './utils';
@@ -17,7 +16,7 @@ const routeApi = getRouteApi('/new/person/meldinger');
 const Traader = () => {
     const { isLoading } = useTraader();
     const filteredMeldinger = useFilterMeldinger();
-    const antallListeElementer = useAntallListeElementeBasertPaaSkjermStorrelse();
+    const antallListeElementer = 50;
     const navigate = routeApi.useNavigate();
 
     const traadId = useSearch({
