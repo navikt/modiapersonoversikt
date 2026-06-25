@@ -53,6 +53,7 @@ test('Send ny melding', async ({ page }) => {
 
     await page.getByRole('button', { name: 'Skriv ny melding' }).click();
     await page.getByRole('button', { name: 'Overskrid' }).click();
+    await page.getByRole('radio', { name: 'Referat' }).click();
     await page.getByRole('textbox').fill('playwright new melding');
     await page.getByLabel('Temagruppe').selectOption('Pensjon');
 

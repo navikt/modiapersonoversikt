@@ -5,7 +5,7 @@ import type VelgTema from 'src/components/melding/VelgTema';
 import type VelgSak from 'src/components/sakVelger/VelgSak';
 
 interface ValgForMeldingstypeProps {
-    meldingsType: MeldingsType;
+    meldingsType?: MeldingsType;
     velgTema: ReactElement<typeof VelgTema>;
     velgOppgaveliste: ReactElement<typeof VelgOppgaveliste>;
     velgSak: ReactElement<typeof VelgSak>;
@@ -24,5 +24,7 @@ export function ValgForMeldingstype({ meldingsType, velgTema, velgOppgaveliste, 
             );
         case MeldingsType.Infomelding:
             return velgSak;
+        default:
+            return undefined;
     }
 }
