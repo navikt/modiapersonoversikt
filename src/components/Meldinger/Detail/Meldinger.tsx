@@ -103,8 +103,8 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
 
 const ReadStatus = ({ date }: { date?: string }) =>
     date ? (
-        <BodyLong as="span" size="small" className="aksel-inline-message" data-color="danger">
-            Ikke lest
+        <BodyLong as="span" size="small" className="aksel-inline-message" data-color="success">
+            Lest ({formatterDatoTid(date)})
         </BodyLong>
     ) : (
         <BodyLong as="span" size="small" className="aksel-inline-message" data-color="danger">
