@@ -73,3 +73,7 @@
 .aksel-chat__avatar{
     border: none;
 }
+
+.aksel-radio__description {
+    font-style: italic;
+}

@@ -26,25 +26,42 @@ const sakSchema = z.object(
 );
 
 const nyMeldingSchema = z
-    .discriminatedUnion('meldingsType', [
-        z.object({
-            meldingsType: z.literal(MeldingsType.Referat),
-            tema: z.nativeEnum(Temagruppe, {
-                message: 'Knytt meldingen til en temagruppe'
-            })
-        }),
-        z.object({
-            meldingsType: z.literal(MeldingsType.Samtale),
-            oppgaveliste: z.nativeEnum(Oppgaveliste),
-            sak: sakSchema
-        }),
-        z.object({
-            meldingsType: z.literal(MeldingsType.Infomelding),
-            oppgaveliste: z.nativeEnum(Oppgaveliste),
-            sak: sakSchema
-        })
-    ])
-    .and(commonSchema);
+    .object({
+        meldingsType: z.nativeEnum(MeldingsType, { message: 'Velg dialogtype' }).optional(),
+        melding: z.string().nonempty('Fyll ut meldingsfeltet').max(maksLengdeMelding, `Maks ${maksLengdeMelding} tegn`),
+        fnr: z.string(),
+        enhetsId: z.string(),
+        tema: z.nativeEnum(Temagruppe).optional(),
+        oppgaveliste: z.nativeEnum(Oppgaveliste).optional(),
+        sak: sakSchema.optional()
+    })
+    .superRefine((val, ctx) => {
+        if (!val.meldingsType) {
+            ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'Velg dialogtype', path: ['meldingsType'] });
+            return z.NEVER;
+        }
+        switch (val.meldingsType) {
+            case MeldingsType.Referat:
+                if (!val.tema) {
+                    ctx.addIssue({
+                        code: z.ZodIssueCode.custom,
+                        message: 'Knytt meldingen til en temagruppe',
+                        path: ['tema']
+                    });
+                }
+                break;
+            case MeldingsType.Samtale:
+            case MeldingsType.Infomelding:
+                if (!val.sak) {
+                    ctx.addIssue({
+                        code: z.ZodIssueCode.custom,
+                        message: 'Meldingen må knyttes til en sak',
+                        path: ['sak']
+                    });
+                }
+                break;
+        }
+    });
 
 export default nyMeldingSchema;
 

@@ -49,7 +49,7 @@ function NyMelding() {
     const { update: updateDraft, remove: removeDraft, status: draftStatus } = useDraft(draftContext, draftLoader);
 
     const defaultFormOptions: DefaultFormOptions = {
-        meldingsType: MeldingsType.Referat,
+        meldingsType: undefined,
         melding: defaultMessage,
         tema: undefined,
         oppgaveliste: Oppgaveliste.MinListe,
@@ -64,7 +64,7 @@ function NyMelding() {
         },
         onSubmit: ({ value }) => {
             const body = generateRequestBody(value as NyMeldingSchema);
-            trackSendNyMelding(meldingsTyperTekst[meldingsType].tittel.toLowerCase());
+            if (meldingsType) trackSendNyMelding(meldingsTyperTekst[meldingsType].tittel.toLowerCase());
             mutate(
                 { body: body },
                 {
@@ -87,7 +87,7 @@ function NyMelding() {
     });
 
     const meldingsType = useStore(form.store, (state) => state.values.meldingsType);
-    const meldingsTypeTekst = meldingsTyperTekst[meldingsType];
+    const meldingsTypeTekst = meldingsType ? meldingsTyperTekst[meldingsType] : undefined;
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
     return (
@@ -102,6 +102,11 @@ function NyMelding() {
                 <form.Field name="meldingsType">
                     {(field) => (
                         <VelgMeldingsType
+                            error={
+                                field.state.meta.errors.length ? (
+                                    <ValidationErrorMessage errors={field.state.meta.errors} />
+                                ) : undefined
+                            }
                             meldingsType={field.state.value}
                             setMeldingsType={(meldingsType) => {
                                 form.reset({
@@ -122,7 +127,11 @@ function NyMelding() {
                                 <VelgTema
                                     valgtTema={field.state.value}
                                     setValgtTema={(tema) => field.handleChange(tema)}
-                                    error={<ValidationErrorMessage errors={field.state.meta.errors} />}
+                                    error={
+                                        field.state.meta.errors.length ? (
+                                            <ValidationErrorMessage errors={field.state.meta.errors} />
+                                        ) : undefined
+                                    }
                                 />
                             )}
                         </form.Field>
@@ -173,7 +182,7 @@ function NyMelding() {
                                 <AutocompleteTextarea
                                     disabled={disableDialog}
                                     ref={textAreaRef}
-                                    label={meldingsTypeTekst.tittel}
+                                    label={meldingsTypeTekst?.tittel}
                                     hideLabel
                                     size="small"
                                     value={field.state.value}
@@ -242,7 +251,7 @@ function NyMelding() {
 }
 
 function ValidationErrorMessage({ errors }: { errors: ValidationError[] }) {
-    return errors.isNotEmpty() ? <ErrorMessage>{buildErrorMessage(errors)}</ErrorMessage> : null;
+    return errors.isNotEmpty() ? <ErrorMessage size="small">{buildErrorMessage(errors)}</ErrorMessage> : null;
 }
 
 function buildErrorMessage(errors: ValidationError[]) {
@@ -262,7 +271,7 @@ function generateRequestBody(value: NyMeldingSchema) {
         fritekst: value.melding,
         fnr: value.fnr
     };
-    let request: SendMeldingRequestV2;
+    let request: SendMeldingRequestV2 | undefined;
 
     switch (value.meldingsType) {
         case MeldingsType.Referat:
@@ -290,6 +299,8 @@ function generateRequestBody(value: NyMeldingSchema) {
                 erOppgaveTilknyttetAnsatt: value.oppgaveliste === Oppgaveliste.MinListe
             };
             break;
+        default:
+            throw new Error(`Ukjent meldingsType: ${value.meldingsType}`);
     }
     return request;
 }
@@ -297,7 +308,7 @@ function generateRequestBody(value: NyMeldingSchema) {
 type NyMeldingSchema = z.infer<typeof nyMeldingSchema>;
 
 interface DefaultFormOptions {
-    meldingsType: MeldingsType;
+    meldingsType?: MeldingsType;
     melding: string;
     tema?: Temagruppe;
     oppgaveliste?: Oppgaveliste;

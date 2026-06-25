@@ -22,10 +22,10 @@ export default function VelgTema({ valgtTema, setValgtTema, error }: VelgTemaPro
                 }}
                 value={valgtTema ?? ''}
                 size="small"
+                error={error}
             >
                 <TemagruppeActionMenuItems />
             </Select>
-            {error}
         </VStack>
     );
 }

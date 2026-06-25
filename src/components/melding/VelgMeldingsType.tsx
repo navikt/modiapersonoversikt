@@ -1,39 +1,41 @@
-import { Radio, RadioGroup, VStack } from '@navikt/ds-react';
+import { Radio, RadioGroup } from '@navikt/ds-react';
+import { Normaltekst } from 'nav-frontend-typografi';
+import type { ReactNode } from 'react';
 import { useDisableDialog } from 'src/lib/state/dialog';
 import { TraadType } from 'src/lib/types/modiapersonoversikt-api';
 
 interface VelgMeldingsTypeProps {
-    meldingsType: MeldingsType;
+    meldingsType?: MeldingsType;
     setMeldingsType: (meldingsType: MeldingsType) => void;
+    error?: ReactNode;
 }
 
-export function VelgMeldingsType({ meldingsType, setMeldingsType }: VelgMeldingsTypeProps) {
+export function VelgMeldingsType({ meldingsType, setMeldingsType, error }: VelgMeldingsTypeProps) {
     const disableDialog = useDisableDialog();
-
     return (
         <RadioGroup
-            legend="Type dialog"
-            hideLegend
+            error={error}
+            legend="Velg type dialog"
             onChange={setMeldingsType}
             value={meldingsType}
             size="small"
             disabled={disableDialog}
         >
-            <VStack gap="space-4">
-                <MeldingsTypeRadioKnapper valgtMeldingsType={meldingsType} />
-            </VStack>
+            <MeldingsTypeRadioKnapper />
         </RadioGroup>
     );
 }
 
-function MeldingsTypeRadioKnapper({ valgtMeldingsType }: { valgtMeldingsType: MeldingsType }) {
+function MeldingsTypeRadioKnapper() {
     return Object.entries(MeldingsType).map(([key, value]) => (
         <Radio
+            className="p-[0.3rem]"
             key={key}
             value={value}
-            description={valgtMeldingsType === value ? meldingsTyperTekst[value].beskrivelse : ''}
+            description={meldingsTyperTekst[value].beskrivelse}
+            size="small"
         >
-            {value}
+            <Normaltekst className="font-ax-bold">{value}</Normaltekst>
         </Radio>
     ));
 }
@@ -52,15 +54,15 @@ interface MeldingsTypeTekst {
 export const meldingsTyperTekst: Record<MeldingsType, MeldingsTypeTekst> = {
     Referat: {
         tittel: 'Referat',
-        beskrivelse: 'Bruker får ikke varsel, og kan ikke svare'
+        beskrivelse: 'Bruker mottar ikke varsel, og kan ikke svare'
     },
     Samtale: {
         tittel: 'Samtale',
-        beskrivelse: 'Brukeren mottar varsel, og kan svare'
+        beskrivelse: 'Bruker mottar varsel, og kan svare'
     },
     Infomelding: {
         tittel: 'Infomelding',
-        beskrivelse: 'Bruker mottar varsel, men kan ikke svare'
+        beskrivelse: 'Bruker mottar varsel, og kan ikke svare'
     }
 } as const;
 
