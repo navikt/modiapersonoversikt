@@ -19,11 +19,7 @@ type Props = {
     }>;
 };
 
-const DefaultWrapper: Props['wrapper'] = ({ children }) => {
-    return <>{children}</>;
-};
-
-export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Props) => {
+export const Meldinger = ({ meldinger }: Props) => {
     const { search } = useAtomValue(meldingerFilterAtom);
     const highlightRule = useMemo(() => createDynamicHighlightingRule((search ?? '').split(' ')), [search]);
     const theme = useAtomValue(themeAtom);
@@ -57,7 +53,7 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
                 {meldinger.map((m) => {
                     const erFraNav = erMeldingFraNav(m.meldingstype);
                     return (
-                        <Wrapper key={m.id} as="li" melding={m}>
+                        <li key={m.id}>
                             <Chat
                                 size="small"
                                 name={erFraNav ? m.skrevetAvTekst : undefined}
@@ -93,7 +89,7 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
                                     </HStack>
                                 )}
                             </Chat>
-                        </Wrapper>
+                        </li>
                     );
                 })}
             </VStack>
