@@ -193,7 +193,11 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
                     {visNotifikasjon && (
                         <Box marginBlock="space-4">
                             <Bleed marginInline="space-12">
-                                <CircleFillIcon title="" className="text-ax-text-accent-decoration" fontSize="0.5rem" />
+                                <CircleFillIcon
+                                    title={erTildeltVeileder ? 'Dialogen er tildelt deg' : 'Siste melding er ubesvart'}
+                                    className="text-ax-text-accent-decoration"
+                                    fontSize="0.5rem"
+                                />
                             </Bleed>
                         </Box>
                     )}

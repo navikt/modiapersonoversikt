@@ -18,7 +18,7 @@ export default function Flytting() {
             {person.innflyttingTilNorge.isNotEmpty() && (
                 <InfoElement
                     title="Flyttet fra"
-                    icon={<GlobeFillIcon fontSize="1.2rem" color="var(--ax-neutral-500)" />}
+                    icon={<GlobeFillIcon aria-hidden fontSize="1.2rem" color="var(--ax-neutral-500)" />}
                 >
                     {person.innflyttingTilNorge.map((innFlytting, index) => {
                         return (
@@ -37,7 +37,7 @@ export default function Flytting() {
             {person.utflyttingFraNorge.isNotEmpty() && (
                 <InfoElement
                     title="Flyttet til"
-                    icon={<GlobeFillIcon fontSize="1.2rem" color="var(--ax-neutral-500)" />}
+                    icon={<GlobeFillIcon aria-hidden fontSize="1.2rem" color="var(--ax-neutral-500)" />}
                 >
                     {person.utflyttingFraNorge.map((utflytting, index) => {
                         return (

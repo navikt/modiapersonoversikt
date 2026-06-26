@@ -27,7 +27,10 @@ function AdresseElement({ adresse, beskrivelse, erOppholdsadresse }: AdresseElem
         erOppholdsadresse || (!erOppholdsadresse && adresse.gyldighetsPeriode?.gyldigTilOgMed);
 
     return (
-        <InfoElement title={beskrivelse} icon={<LocationPinFillIcon fontSize="1.2rem" color="var(--ax-neutral-500)" />}>
+        <InfoElement
+            title={beskrivelse}
+            icon={<LocationPinFillIcon aria-hidden fontSize="1.2rem" color="var(--ax-neutral-500)" />}
+        >
             {skalViseGyldighetsPeriode && (
                 <ValidPeriod
                     from={adresse.gyldighetsPeriode?.gyldigFraOgMed}

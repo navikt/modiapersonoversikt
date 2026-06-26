@@ -52,22 +52,22 @@ export function ForelderBarnRelasjonVisning({
 
 function FamilierelasjonIkon({ relasjon, erBarn }: { relasjon: ForelderBarnRelasjon; erBarn: boolean }) {
     if (harDiskresjonskode(relasjon.adressebeskyttelse)) {
-        return <PersonCrossFillIcon title="Kjønn skult av diskresjonskode" />;
+        return <PersonCrossFillIcon aria-hidden fontSize="1.2rem" title="Kjønn skult av diskresjonskode" />;
     }
     const kjonn = relasjon.kjonn.firstOrNull();
     if (kjonn?.kode === 'M') {
         return erBarn ? (
-            <ChildEyesFillIcon fontSize="1.2rem" color="#66A5F4" />
+            <ChildEyesFillIcon aria-hidden fontSize="1.2rem" color="#66A5F4" />
         ) : (
-            <FigureInwardFillIcon fontSize="1.2rem" color="#66A5F4" />
+            <FigureInwardFillIcon aria-hidden fontSize="1.2rem" color="#66A5F4" />
         );
     }
     if (kjonn?.kode === 'K') {
         return erBarn ? (
-            <ChildEyesFillIcon fontSize="1.2rem" color="#F25C5C" />
+            <ChildEyesFillIcon aria-hidden fontSize="1.2rem" color="#F25C5C" />
         ) : (
-            <FigureOutwardFillIcon fontSize="1.2rem" color="v#F25C5C" />
+            <FigureOutwardFillIcon aria-hidden fontSize="1.2rem" color="v#F25C5C" />
         );
     }
-    return <FigureCombinationIcon />;
+    return <FigureCombinationIcon fontSize="1.2rem" aria-hidden />;
 }
