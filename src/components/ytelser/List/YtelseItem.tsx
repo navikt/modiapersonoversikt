@@ -54,41 +54,42 @@ export const YtelseItem = ({ ytelse }: { ytelse: YtelseVedtak }) => {
     };
 
     return (
-        <Link
-            data-color="neutral"
-            ref={linkRef}
-            className="hover:no-underline block"
-            underline={false}
-            onClick={(e) => {
-                e.preventDefault();
-                onClick();
-            }}
-            tabIndex={aktivYtelse === id ? 0 : -1}
-            aria-current={aktivYtelse === id ? true : undefined}
-            role="link"
-            onKeyDown={(e) => {
-                if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
-                e.preventDefault();
-                onClick();
-            }}
-        >
-            <Card
-                padding="space-8"
-                as="li"
-                className={twMerge(
-                    'cursor-pointer hover:bg-[var(--ax-bg-accent-moderate-hover)] group',
-                    aktivYtelse === id && 'bg-ax-bg-accent-moderate-pressed border-ax-bg-accent-moderate-pressed'
-                )}
+        <li>
+            <Link
+                data-color="neutral"
+                ref={linkRef}
+                className="hover:no-underline block"
+                underline={false}
+                onClick={(e) => {
+                    e.preventDefault();
+                    onClick();
+                }}
+                tabIndex={aktivYtelse === id ? 0 : -1}
+                aria-current={aktivYtelse === id ? true : undefined}
+                role="link"
+                onKeyDown={(e) => {
+                    if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+                    e.preventDefault();
+                    onClick();
+                }}
             >
-                <VStack justify="center" className="min-w-0">
-                    <Label size="small" as="h3" className="truncate">
-                        {getYtelseTittel()}
-                    </Label>
-                    <HStack gap="space-8">
-                        <Detail>{dayjs(getYtelseIdDato(ytelse)).format('DD.MM.YYYY')}</Detail>
-                    </HStack>
-                </VStack>
-            </Card>
-        </Link>
+                <Card
+                    padding="space-8"
+                    className={twMerge(
+                        'cursor-pointer hover:bg-[var(--ax-bg-accent-moderate-hover)] group',
+                        aktivYtelse === id && 'bg-ax-bg-accent-moderate-pressed border-ax-bg-accent-moderate-pressed'
+                    )}
+                >
+                    <VStack justify="center" className="min-w-0">
+                        <Label size="small" as="h3" className="truncate">
+                            {getYtelseTittel()}
+                        </Label>
+                        <HStack gap="space-8">
+                            <Detail>{dayjs(getYtelseIdDato(ytelse)).format('DD.MM.YYYY')}</Detail>
+                        </HStack>
+                    </VStack>
+                </Card>
+            </Link>
+        </li>
     );
 };
