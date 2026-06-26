@@ -94,7 +94,9 @@ export const VarslerListe = () => {
             <Table sort={sort} onSortChange={handleSort} size="medium">
                 <Table.Header>
                     <Table.Row>
-                        <Table.HeaderCell scope="col" />
+                        <Table.HeaderCell scope="col">
+                            <span className="sr-only">Utvid</span>
+                        </Table.HeaderCell>
                         <Table.ColumnHeader sortKey="tittel" sortable scope="col">
                             Varsel
                         </Table.ColumnHeader>

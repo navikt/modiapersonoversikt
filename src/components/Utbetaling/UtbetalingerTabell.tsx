@@ -68,13 +68,17 @@ export const UtbetalingerTabell = ({ utbetalinger }: { utbetalinger: Utbetaling[
         <Table>
             <Table.Header>
                 <Table.Row>
-                    <Table.HeaderCell />
+                    <Table.HeaderCell scope="col">
+                        <span className="sr-only">Utvid</span>
+                    </Table.HeaderCell>
                     <Table.HeaderCell scope="col">Beløp</Table.HeaderCell>
                     <Table.HeaderCell scope="col">Tema</Table.HeaderCell>
                     <Table.HeaderCell scope="col">Mottaker</Table.HeaderCell>
                     <Table.HeaderCell scope="col">Status</Table.HeaderCell>
                     <Table.HeaderCell scope="col">Dato</Table.HeaderCell>
-                    <Table.HeaderCell scope="col" />
+                    <Table.HeaderCell scope="col">
+                        <span className="sr-only">Skriv ut utbetaling</span>
+                    </Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
             {utbetalinger.map((utbetaling) => (

@@ -168,7 +168,7 @@ const ResetFilter = () => {
 
     return (
         <Button
-            icon={<ArrowCirclepathReverseIcon />}
+            icon={<ArrowCirclepathReverseIcon aria-hidden />}
             disabled={!isDirty}
             onClick={() => resetFilter()}
             variant="tertiary"
