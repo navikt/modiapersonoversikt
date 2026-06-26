@@ -40,6 +40,7 @@ import Speil from './img/speil.png';
 import SvarAvslutterDialog from './img/svar-avslutter-dialog.png';
 import TemaHelseBilde from './img/temaHelse.jpg';
 import UtenlandskIDBilde from './img/utenlandskID.jpg';
+import VelgDialog from './img/velg-dialog.png';
 import VisittkortV2 from './img/visittkortV2.png';
 
 export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
@@ -764,6 +765,20 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                     Ved journalføring på generell sak så trenger en kun å velge et tema. Det opprettes da en generell
                     sak i Joark på dette temaet. For å journalføre på eksisterende saker fra fagsystemer må det velges
                     en sak under fagsaker-fanen slik som tidligere.
+                </Normaltekst>
+            )
+        },
+        {
+            id: 45,
+            tittel: 'Fjernet forhåndsvalgt dialogtype ved oppretting av ny melding',
+            dato: new Date('2026-06-26 11:00'),
+            aktiv: true,
+            ingress: null,
+            src: VelgDialog,
+            beskrivelse: (
+                <Normaltekst>
+                    Dialogtypen er ikke lenger forhåndsvalgt til referat. Du må nå ta et aktivt valg av hvilken type
+                    dialog du ønsker å opprette. Dette er for å unngå at dialoger blir opprettet med feil type.
                 </Normaltekst>
             )
         }
