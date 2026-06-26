@@ -137,7 +137,7 @@ export const PersonSidebarMenu = () => {
                         as="nav"
                         id="sidebar-person"
                         ref={navRef}
-                        aria-label="Person"
+                        aria-label="Person sidenavigasjon"
                         padding="space-8"
                         className="divide-y divide-ax-border-neutral-subtle "
                         onKeyDown={handleNavKeyDown}
