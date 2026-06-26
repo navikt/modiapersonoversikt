@@ -97,7 +97,7 @@ function PersonLayout() {
             <VStack className="shrink-0 overflow-auto">
                 <PersonLinje />
             </VStack>
-            <HStack minHeight="0" gap="space-4" wrap={false} className="h-full">
+            <HStack minHeight="0" gap="space-4" wrap={false} className="h-full" as="main" id="main-content">
                 <VStack>
                     <PersonSidebarMenu />
                 </VStack>
@@ -106,13 +106,11 @@ function PersonLayout() {
                         {isMobile ? (
                             <VStack className="h-full overflow-auto" gap="space-4">
                                 {listPanel}
-                                <Box as="main" id="main-content">
-                                    <VStack gap="space-4">
-                                        <Suspense>
-                                            <Outlet />
-                                        </Suspense>
-                                    </VStack>
-                                </Box>
+                                <VStack gap="space-4">
+                                    <Suspense>
+                                        <Outlet />
+                                    </Suspense>
+                                </VStack>
                             </VStack>
                         ) : (
                             <PanelGroup
@@ -135,7 +133,7 @@ function PersonLayout() {
                                     </>
                                 )}
                                 <Panel id="main-content-panel" order={2} minSize={30} className="overflow-scroll">
-                                    <Box as="main" id="main-content" height="100%">
+                                    <Box height="100%">
                                         <VStack gap="space-4" height="100%">
                                             <Suspense>
                                                 <Outlet />
