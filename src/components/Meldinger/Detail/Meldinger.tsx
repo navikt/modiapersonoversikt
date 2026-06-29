@@ -1,7 +1,7 @@
 import { PersonIcon } from '@navikt/aksel-icons';
 import { BodyLong, Box, Chat, HStack, VStack } from '@navikt/ds-react';
 import { useAtomValue } from 'jotai';
-import { useLayoutEffect, useMemo, useRef } from 'react';
+import { type ElementType, type ReactNode, useLayoutEffect, useMemo, useRef } from 'react';
 import RichText, { createDynamicHighlightingRule, defaultRules, SladdRule } from 'src/components/RichText';
 import { themeAtom } from 'src/lib/state/theme';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
@@ -13,9 +13,16 @@ import { erMeldingFraNav } from '../List/utils';
 
 type Props = {
     meldinger: Traad['meldinger'];
+    wrapper?: ElementType<{
+        children: ReactNode;
+        melding: Traad['meldinger'][number];
+    }>;
+};
+const DefaultWrapper: Props['wrapper'] = ({ children }) => {
+    return <li>{children}</li>;
 };
 
-export const Meldinger = ({ meldinger }: Props) => {
+export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Props) => {
     const { search } = useAtomValue(meldingerFilterAtom);
     const highlightRule = useMemo(() => createDynamicHighlightingRule((search ?? '').split(' ')), [search]);
     const theme = useAtomValue(themeAtom);
@@ -50,7 +57,7 @@ export const Meldinger = ({ meldinger }: Props) => {
                 {meldinger.map((m) => {
                     const erFraNav = erMeldingFraNav(m.meldingstype);
                     return (
-                        <li key={m.id}>
+                        <Wrapper key={m.id} as="li" melding={m}>
                             <Chat
                                 size="small"
                                 name={erFraNav ? m.skrevetAvTekst : undefined}
@@ -86,7 +93,7 @@ export const Meldinger = ({ meldinger }: Props) => {
                                     </HStack>
                                 )}
                             </Chat>
-                        </li>
+                        </Wrapper>
                     );
                 })}
             </VStack>
