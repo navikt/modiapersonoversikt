@@ -24,7 +24,7 @@ function DemoBanner() {
     }
 
     return (
-        <DemoStyle>
+        <DemoStyle aria-hidden="true">
             <Systemtittel tag="p">Demo</Systemtittel>
             <Normaltekst>Syntetisk informasjon</Normaltekst>
         </DemoStyle>

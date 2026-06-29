@@ -94,7 +94,9 @@ export const DokumenterTabell = () => {
             >
                 <Table.Header>
                     <Table.Row>
-                        <Table.HeaderCell />
+                        <Table.HeaderCell scope="col">
+                            <span className="sr-only">Utvid</span>
+                        </Table.HeaderCell>
                         <Table.ColumnHeader sortKey="beskrivelse" scope="col" sortable>
                             Beskrivelse
                         </Table.ColumnHeader>
@@ -113,7 +115,9 @@ export const DokumenterTabell = () => {
                         <Table.ColumnHeader sortKey="tilhorendeFagsaksid" scope="col" sortable>
                             Saksnummer
                         </Table.ColumnHeader>
-                        <Table.ColumnHeader />
+                        <Table.ColumnHeader>
+                            <span className="sr-only">Antall dokumenter</span>
+                        </Table.ColumnHeader>
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>

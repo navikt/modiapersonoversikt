@@ -80,7 +80,7 @@ function Decorator() {
     const [open] = useOpenIntroduksjonsModal();
 
     return (
-        <nav>
+        <nav aria-label="Navigasjon og søk">
             <InternarbeidsflateDecoratorElement {...configV3} />
             <Personsok />
             <OppdateringsloggContainer />

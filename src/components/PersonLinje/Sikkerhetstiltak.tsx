@@ -24,7 +24,7 @@ export const Sikkerhetstiltak = ({ sikkerhetstiltak }: Props) => {
             ref={ref}
             header={{
                 heading: 'Sikkerhetstiltak',
-                icon: <ExclamationmarkTriangleFillIcon color="var(--ax-text-danger-decoration)" />,
+                icon: <ExclamationmarkTriangleFillIcon aria-hidden color="var(--ax-text-danger-decoration)" />,
                 closeButton: false
             }}
         >

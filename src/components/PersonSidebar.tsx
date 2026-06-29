@@ -109,7 +109,7 @@ export const PersonSidebarMenu = () => {
 
     return (
         <Card className="h-full overflow-auto">
-            <VStack justify="space-between" height="100%" as="nav">
+            <VStack justify="space-between" height="100%">
                 <Box>
                     <Box padding="space-8" className="flex">
                         <Button
@@ -137,8 +137,7 @@ export const PersonSidebarMenu = () => {
                         as="nav"
                         id="sidebar-person"
                         ref={navRef}
-                        role="menu"
-                        aria-label="Person"
+                        aria-label="Person sidenavigasjon"
                         padding="space-8"
                         className="divide-y divide-ax-border-neutral-subtle "
                         onKeyDown={handleNavKeyDown}
@@ -154,7 +153,6 @@ export const PersonSidebarMenu = () => {
                                     }}
                                     to={href}
                                     aria-label={title}
-                                    role="menuitem"
                                     activeProps={{ tabIndex: 0 }}
                                     inactiveProps={{ tabIndex: -1 }}
                                 >

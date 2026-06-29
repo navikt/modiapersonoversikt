@@ -105,7 +105,9 @@ export const MeldingActionMenu = ({ traad }: { traad: Traad }) => {
                             Ny oppgave
                         </ActionMenu.Item>
                         <ActionMenu.Sub>
-                            <ActionMenu.SubTrigger icon={<PrinterSmallIcon />}>Skriv ut</ActionMenu.SubTrigger>
+                            <ActionMenu.SubTrigger icon={<PrinterSmallIcon aria-hidden />}>
+                                Skriv ut
+                            </ActionMenu.SubTrigger>
                             <ActionMenu.SubContent>
                                 <ActionMenu.Item
                                     icon={<ChatElipsisIcon />}

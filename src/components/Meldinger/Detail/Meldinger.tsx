@@ -18,9 +18,8 @@ type Props = {
         melding: Traad['meldinger'][number];
     }>;
 };
-
 const DefaultWrapper: Props['wrapper'] = ({ children }) => {
-    return <>{children}</>;
+    return <li>{children}</li>;
 };
 
 export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Props) => {
@@ -52,6 +51,7 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
             borderWidth="2 0 2 0"
             marginBlock="space-8"
             padding="space-16"
+            tabIndex={0}
         >
             <VStack gap="space-32" align="baseline" paddingBlock="space-32 space-32" as="ol" aria-label="Meldinger">
                 {meldinger.map((m) => {

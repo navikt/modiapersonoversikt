@@ -161,72 +161,84 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
     };
 
     return (
-        <Link
-            data-color="neutral"
-            ref={linkRef}
-            data-testid="traaditem"
-            className="hover:no-underline block"
-            underline={false}
-            onClick={(e) => {
-                e.preventDefault();
-                onClick();
-            }}
-            tabIndex={aktivTraad === traad.traadId ? 0 : -1}
-            aria-current={aktivTraad === traad.traadId ? true : undefined}
-            role="link"
-            onKeyDown={(e) => {
-                if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
-                e.preventDefault();
-                onClick();
-            }}
-        >
-            <Card
-                paddingBlock="3"
-                className={twMerge(
-                    'cursor-pointer hover:bg-[var(--ax-bg-accent-moderate-hover)] group',
-                    aktivTraad === traad.traadId &&
-                        'bg-ax-bg-accent-moderate-pressed border-ax-bg-accent-moderate-pressed'
-                )}
-                as="li"
+        <li>
+            <Link
+                data-color="neutral"
+                ref={linkRef}
+                data-testid="traaditem"
+                className="hover:no-underline block"
+                underline={false}
+                onClick={(e) => {
+                    e.preventDefault();
+                    onClick();
+                }}
+                tabIndex={aktivTraad === traad.traadId ? 0 : -1}
+                aria-current={aktivTraad === traad.traadId ? true : undefined}
+                onKeyDown={(e) => {
+                    if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+                    e.preventDefault();
+                    onClick();
+                }}
             >
-                <HStack justify="start" align="stretch" wrap={false} paddingBlock="space-12" paddingInline="space-16">
-                    {visNotifikasjon && (
-                        <Box marginBlock="space-4">
-                            <Bleed marginInline="space-12">
-                                <CircleFillIcon title="" className="text-ax-text-accent-decoration" fontSize="0.5rem" />
-                            </Bleed>
-                        </Box>
+                <Card
+                    paddingBlock="3"
+                    className={twMerge(
+                        'cursor-pointer hover:bg-[var(--ax-bg-accent-moderate-hover)] group',
+                        aktivTraad === traad.traadId &&
+                            'bg-ax-bg-accent-moderate-pressed border-ax-bg-accent-moderate-pressed'
                     )}
-                    <VStack gap="space-0" width="100%">
-                        <HStack justify="space-between" gap="space-0" wrap={false}>
-                            <VStack gap="space-0" className="min-w-0">
-                                <Label size="small" as="h3" className="truncate">
-                                    <Detail className="text-nowrap" visuallyHidden>
-                                        Tema:
-                                    </Detail>
-                                    {temagruppeTekst(traad.temagruppe as Temagruppe)} ({tittel})
-                                </Label>
-                                <Detail truncate>{datoTekst}</Detail>
+                >
+                    <HStack
+                        justify="start"
+                        align="stretch"
+                        wrap={false}
+                        paddingBlock="space-12"
+                        paddingInline="space-16"
+                    >
+                        {visNotifikasjon && (
+                            <Box marginBlock="space-4">
+                                <Bleed marginInline="space-12">
+                                    <CircleFillIcon
+                                        title={
+                                            erTildeltVeileder ? 'Dialogen er tildelt deg' : 'Siste melding er ubesvart'
+                                        }
+                                        className="text-ax-text-accent-decoration"
+                                        fontSize="0.5rem"
+                                    />
+                                </Bleed>
+                            </Box>
+                        )}
+                        <VStack gap="space-0" width="100%">
+                            <HStack justify="space-between" gap="space-0" wrap={false}>
+                                <VStack gap="space-0" className="min-w-0">
+                                    <Label size="small" as="h3" className="truncate">
+                                        <Detail className="text-nowrap" visuallyHidden>
+                                            Tema:
+                                        </Detail>
+                                        {temagruppeTekst(traad.temagruppe as Temagruppe)} ({tittel})
+                                    </Label>
+                                    <Detail truncate>{datoTekst}</Detail>
+                                </VStack>
+                                <HStack align="start" justify="end" maxHeight="max-content">
+                                    <Antallmeldinger traad={traad} />
+                                </HStack>
+                            </HStack>
+                            <VStack gap="space-8">
+                                <Detail truncate>{sisteMelding.fritekst}</Detail>
+                                <HStack gap="space-4" align="start" justify="start" maxHeight="max-content">
+                                    <UbesvartMelding traad={traad} />
+                                    <UnderArbeid traadId={traad.traadId} />
+                                    <Feilsendt traad={traad} />
+                                    <Slettet melding={sisteMelding} />
+                                    <TildeltSaksbehandler traadId={traad.traadId} />
+                                    <AvsluttetMelding traad={traad} />
+                                    <Sladdet traad={traad} />
+                                </HStack>
                             </VStack>
-                            <HStack align="start" justify="end" maxHeight="max-content">
-                                <Antallmeldinger traad={traad} />
-                            </HStack>
-                        </HStack>
-                        <VStack gap="space-8">
-                            <Detail truncate>{sisteMelding.fritekst}</Detail>
-                            <HStack gap="space-4" align="start" justify="start" maxHeight="max-content">
-                                <UbesvartMelding traad={traad} />
-                                <UnderArbeid traadId={traad.traadId} />
-                                <Feilsendt traad={traad} />
-                                <Slettet melding={sisteMelding} />
-                                <TildeltSaksbehandler traadId={traad.traadId} />
-                                <AvsluttetMelding traad={traad} />
-                                <Sladdet traad={traad} />
-                            </HStack>
                         </VStack>
-                    </VStack>
-                </HStack>
-            </Card>
-        </Link>
+                    </HStack>
+                </Card>
+            </Link>
+        </li>
     );
 };

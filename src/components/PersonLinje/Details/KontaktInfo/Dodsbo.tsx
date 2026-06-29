@@ -90,7 +90,7 @@ function KontaktinformasjonDodsbo({ harFeilendeSystem, dodsbo }: { dodsbo: Dodsb
                     <InfoElement
                         key={`${dodsbo.adresse}-${index}`}
                         title="Kontaktinformasjon for dødsbo"
-                        icon={<LocationPinFillIcon fontSize="1.2rem" color="var(--ax-neutral-500)" />}
+                        icon={<LocationPinFillIcon fontSize="1.2rem" aria-hidden color="var(--ax-neutral-500)" />}
                     >
                         <BodyShort size="small">
                             Skifteform: {capitalizeFirstCharacterAndLowercaseRest(dodsbo.skifteform)}

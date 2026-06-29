@@ -34,7 +34,7 @@ const OppfolgingDetaljer = () => {
 
     return (
         <>
-            <Heading as="h4" size="small">
+            <Heading as="h3" size="small">
                 Arbeidsoppfølging
             </Heading>
             <HGrid gap="space-16" columns={{ sm: 1, md: 2, lg: 3 }} className="mt-2">
@@ -91,7 +91,7 @@ const Gjeldende14aVedtakDetaljer = () => {
 
     return (
         <>
-            <Heading as="h4" size="small">
+            <Heading as="h3" size="small">
                 § 14 a-vedtak
             </Heading>
             <HGrid gap="space-16" columns={{ sm: 1, md: 2 }} className="mt-4">
@@ -163,7 +163,7 @@ const SykefravaersoppfolgingDetaljer = () => {
     return (
         <Card padding="space-16">
             <VStack gap="space-16">
-                <Heading as="h4" size="small">
+                <Heading as="h3" size="small">
                     Sykefraværsoppfølging
                 </Heading>
                 <Table zebraStripes={true} sort={sort} onSortChange={handleSort} size="small">
@@ -210,7 +210,7 @@ const OppfolgingPageContent = () => {
     const hasErrors = arbeidsoppfolgingError || gjeldende14aVedtakErro;
     return (
         <VStack gap="space-4" minHeight="0" overflow="auto">
-            <Heading visuallyHidden size="small">
+            <Heading visuallyHidden as="h2" size="small">
                 Oppfølging
             </Heading>
             <AlertBanner

@@ -37,7 +37,7 @@ function ForeldreansvarElement(props: { harFeilendeSystem: boolean; foreldreansv
     return (
         <InfoElement
             title={`Ansvar: ${foreldreansvar.ansvar}`}
-            icon={<PersonTallShortFillIcon fontSize="1.2rem" color="var(--a-igray-400)" />}
+            icon={<PersonTallShortFillIcon aria-hidden fontSize="1.2rem" color="var(--a-igray-400)" />}
         >
             {ansvarlig && <BodyShort size="small">Ansvarlig: {ansvarlig}</BodyShort>}
             {ansvarsubject && <BodyShort size="small">Gjelder for: {ansvarsubject}</BodyShort>}
