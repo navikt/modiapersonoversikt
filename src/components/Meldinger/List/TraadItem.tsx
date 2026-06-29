@@ -174,7 +174,6 @@ export const TraadItem = ({ traad }: { traad: TraadDto }) => {
                 }}
                 tabIndex={aktivTraad === traad.traadId ? 0 : -1}
                 aria-current={aktivTraad === traad.traadId ? true : undefined}
-                role="link"
                 onKeyDown={(e) => {
                     if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
                     e.preventDefault();

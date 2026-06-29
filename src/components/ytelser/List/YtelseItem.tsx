@@ -66,7 +66,6 @@ export const YtelseItem = ({ ytelse }: { ytelse: YtelseVedtak }) => {
                 }}
                 tabIndex={aktivYtelse === id ? 0 : -1}
                 aria-current={aktivYtelse === id ? true : undefined}
-                role="link"
                 onKeyDown={(e) => {
                     if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
                     e.preventDefault();
