@@ -1,4 +1,4 @@
-import type { Foreldrepenger, PseudoDagpengerVedtak, SykepengerSpokelse } from 'src/generated/modiapersonoversikt-api';
+import type { Dagpenger, Foreldrepenger, SykepengerSpokelse } from 'src/generated/modiapersonoversikt-api';
 import {
     type Arbeidsavklaringspenger,
     getArbeidsavklaringspengerIdDato,
@@ -14,7 +14,7 @@ import { getTiltakspengerIdDato, getUnikTiltakspengerKey, type Tiltakspenger } f
 
 export enum YtelseVedtakYtelseType {
     Sykepenger = 'Sykepenger (Infotrygd)',
-    Tiltakspenge = 'Tiltakspenger',
+    Tiltakspenger = 'Tiltakspenger',
     Pensjon = 'Pensjon',
     Arbeidsavklaringspenger = 'Arbeidsavklaringspenger',
     Foreldrepenger = 'Foreldrepenger',
@@ -28,7 +28,7 @@ export type Ytelse =
     | Pensjon
     | Arbeidsavklaringspenger
     | Foreldrepenger
-    | PseudoDagpengerVedtak
+    | Dagpenger
     | SykepengerSpokelse;
 
 export function isSykepengerSpokelse(ytelse: Ytelse): ytelse is SykepengerSpokelse {
@@ -51,7 +51,7 @@ export function isForeldrePenger(ytelse: Ytelse): ytelse is Foreldrepenger {
     return 'ytelse' in ytelse;
 }
 // only used here, not imported in old modia
-function isDagpenger(ytelse: Ytelse): ytelse is PseudoDagpengerVedtak {
+function isDagpenger(ytelse: Ytelse): ytelse is Dagpenger {
     return 'ytelseType' in ytelse; // this one is unique... right now
 }
 

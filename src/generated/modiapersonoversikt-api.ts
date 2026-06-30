@@ -1312,6 +1312,10 @@ export interface components {
         LocalDate: {
             /** Format: date */
             value?: string;
+            /** Format: date */
+            value$kotlinx_datetime: string;
+            /** Format: int32 */
+            monthNumber: number;
             /** Format: int32 */
             year: number;
             /** Format: int32 */
@@ -1322,14 +1326,16 @@ export interface components {
             dayOfWeek: LocalDateDayOfWeek;
             /** Format: int32 */
             dayOfYear: number;
-            /** Format: date */
-            value$kotlinx_datetime: string;
-            /** Format: int32 */
-            monthNumber: number;
         };
         LocalDateTime: {
             /** Format: date-time */
             value?: string;
+            /** Format: date-time */
+            value$kotlinx_datetime: string;
+            /** Format: int32 */
+            monthNumber: number;
+            /** Format: int32 */
+            nanosecond: number;
             time: components['schemas']['LocalTime'];
             /** Format: int32 */
             year: number;
@@ -1348,24 +1354,18 @@ export interface components {
             /** Format: int32 */
             dayOfYear: number;
             date: components['schemas']['LocalDate'];
-            /** Format: date-time */
-            value$kotlinx_datetime: string;
-            /** Format: int32 */
-            monthNumber: number;
-            /** Format: int32 */
-            nanosecond: number;
         };
         LocalTime: {
             value?: string;
+            value$kotlinx_datetime: string;
+            /** Format: int32 */
+            nanosecond: number;
             /** Format: int32 */
             hour: number;
             /** Format: int32 */
             minute: number;
             /** Format: int32 */
             second: number;
-            value$kotlinx_datetime: string;
-            /** Format: int32 */
-            nanosecond: number;
         };
         ResultatSoknadsstatus: {
             resultat: components['schemas']['SoknadsstatusSakstema'][];

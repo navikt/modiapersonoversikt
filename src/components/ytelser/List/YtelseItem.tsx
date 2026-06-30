@@ -26,7 +26,7 @@ export const YtelseItem = ({ ytelse }: { ytelse: YtelseVedtak }) => {
     const getYtelseTittel = () => {
         switch (ytelse.ytelseType) {
             case YtelseVedtakYtelseType.Sykepenger:
-            case YtelseVedtakYtelseType.Tiltakspenge:
+            case YtelseVedtakYtelseType.Tiltakspenger:
             case YtelseVedtakYtelseType.Pensjon:
             case YtelseVedtakYtelseType.Arbeidsavklaringspenger:
             case YtelseVedtakYtelseType.Dagpenger:

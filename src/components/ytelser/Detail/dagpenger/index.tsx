@@ -3,10 +3,9 @@ import Card from 'src/components/Card';
 import { TitleValuePairsComponent } from 'src/components/ytelser/Detail';
 import { periodeEllerNull } from 'src/components/ytelser/utils';
 import type {
-    PeriodeDagpengerDto,
-    PeriodeDagpengerDtoKilde,
-    PeriodeDagpengerDtoYtelseType,
-    PseudoDagpengerVedtak
+    BeregnetDagDagpengerDto,
+    BeregnetDagDagpengerDtoKilde,
+    Dagpenger
 } from 'src/generated/modiapersonoversikt-api';
 import { datoEllerTomString, formaterDato } from 'src/utils/string-utils';
 
@@ -14,7 +13,7 @@ import { datoEllerTomString, formaterDato } from 'src/utils/string-utils';
  * name. Not as good as a hashmap or maybe a gettext PO based solution, ideally
  * maintained by somebody else, but likely to work reasonably well even if the
  * sets change. */
-const prettyEnum = (ytelseType: PeriodeDagpengerDtoKilde | PeriodeDagpengerDtoYtelseType) =>
+const prettyEnum = (ytelseType: BeregnetDagDagpengerDtoKilde) =>
     ytelseType
         .replace(/^DAGPENGER_/, '')
         .replace('ARBEIDSSOKER', 'ARBEIDSSØKER')
@@ -24,23 +23,22 @@ const prettyEnum = (ytelseType: PeriodeDagpengerDtoKilde | PeriodeDagpengerDtoYt
         .replace('_', ' ')
         .replace(/\b./, (initial: string) => initial.toUpperCase());
 
-const rowKey = (periode: PeriodeDagpengerDto) => periode.ytelseType + periode.fraOgMedDato;
+const rowKey = (ytelse: BeregnetDagDagpengerDto) => ytelse.fraOgMed;
 
 /**
  * Periods may not have an end. periodeEllerNull happens to format this just the
  * way we want.
  */
-const rowHeader = (periode: PeriodeDagpengerDto) =>
-    `${prettyEnum(periode.ytelseType)} ${periodeEllerNull({
-        fra: periode.fraOgMedDato,
-        til: periode.tilOgMedDato
+const rowHeader = (ytelse: BeregnetDagDagpengerDto) =>
+    `${periodeEllerNull({
+        fra: ytelse.fraOgMed,
+        til: ytelse.tilOgMed
     })}`;
 
-const PeriodeContent = ({ periode }: { periode: PeriodeDagpengerDto }) => {
+const PeriodeContent = ({ periode }: { periode: BeregnetDagDagpengerDto }) => {
     const entries = {
-        'Fra og med': formaterDato(periode.fraOgMedDato),
-        'Til og med': datoEllerTomString(periode.tilOgMedDato),
-        Type: prettyEnum(periode.ytelseType),
+        'Fra og med': formaterDato(periode.fraOgMed),
+        'Til og med': datoEllerTomString(periode.tilOgMed),
         Kilde: prettyEnum(periode.kilde)
     };
     return (
@@ -58,7 +56,7 @@ const PeriodeContent = ({ periode }: { periode: PeriodeDagpengerDto }) => {
  * Accordion seems like way overkill, but we use it to keep in theme with the
  * rest of the ytelser.
  */
-const Perioder = ({ perioder }: { perioder: PeriodeDagpengerDto[] }) => (
+const Perioder = ({ perioder }: { perioder: BeregnetDagDagpengerDto[] }) => (
     <Card paddingBlock="4">
         <Heading as="h4" size="small">
             Perioder
@@ -76,7 +74,7 @@ const Perioder = ({ perioder }: { perioder: PeriodeDagpengerDto[] }) => (
     </Card>
 );
 
-export const DagpengerDetails = ({ ytelse }: { ytelse: PseudoDagpengerVedtak }) => (
+export const DagpengerDetails = ({ ytelse }: { ytelse: Dagpenger }) => (
     <VStack gap="space-4" minHeight="0">
         <Card padding="space-16">
             <Heading as="h3" size="small">
