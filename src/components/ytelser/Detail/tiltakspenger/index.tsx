@@ -1,10 +1,10 @@
 import { Heading, VStack } from '@navikt/ds-react';
 import Card from 'src/components/Card';
 import { TitleValuePairsComponent } from 'src/components/ytelser/Detail';
-import type { BarnetilleggPeriode, VedtakDto } from 'src/generated/modiapersonoversikt-api';
+import type { Tiltakspenger, TiltakspengerBarnetilleggPeriode } from 'src/models/ytelse/tiltakspenger';
 import { formaterDato } from 'src/utils/string-utils';
 
-const TiltaksPengerRetten = ({ tiltaksPenger }: { tiltaksPenger: VedtakDto }) => {
+const TiltaksPengerRetten = ({ tiltaksPenger }: { tiltaksPenger: Tiltakspenger }) => {
     const entries = {
         'Fra og med': formaterDato(tiltaksPenger.periode.fraOgMed),
         'Til og med': formaterDato(tiltaksPenger.periode.tilOgMed),
@@ -24,14 +24,14 @@ const TiltaksPengerRetten = ({ tiltaksPenger }: { tiltaksPenger: VedtakDto }) =>
     );
 };
 
-const getBarneTilleggEntries = (barnetilleggPeriode: BarnetilleggPeriode) => {
+const getBarneTilleggEntries = (barnetilleggPeriode: TiltakspengerBarnetilleggPeriode) => {
     return {
         'Antall barn': barnetilleggPeriode.antallBarn,
         Periode: `${formaterDato(barnetilleggPeriode.periode.fraOgMed)} - ${formaterDato(barnetilleggPeriode.periode.tilOgMed)}`
     };
 };
 
-const TiltaksPengerBarneTillegg = ({ tiltaksPenger }: { tiltaksPenger: VedtakDto }) => {
+const TiltaksPengerBarneTillegg = ({ tiltaksPenger }: { tiltaksPenger: Tiltakspenger }) => {
     if (!tiltaksPenger.barnetillegg?.perioder.length) return null;
     return (
         <Card padding="space-16">
@@ -45,7 +45,7 @@ const TiltaksPengerBarneTillegg = ({ tiltaksPenger }: { tiltaksPenger: VedtakDto
     );
 };
 
-export const TiltaksPengerDetails = ({ tiltaksPenger }: { tiltaksPenger: VedtakDto }) => {
+export const TiltaksPengerDetails = ({ tiltaksPenger }: { tiltaksPenger: Tiltakspenger }) => {
     return (
         <VStack gap="space-4" minHeight="0">
             <TiltaksPengerRetten tiltaksPenger={tiltaksPenger} />

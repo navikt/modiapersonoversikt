@@ -2,14 +2,17 @@ import { fakerNB_NO as faker } from '@faker-js/faker';
 import dayjs from 'dayjs';
 
 import navfaker from 'nav-faker/dist/index';
-import { VedtakDTOKilde, VedtakDTORettighet } from 'src/generated/modiapersonoversikt-api';
-import type { Tiltakspenger, TiltakspengerResource } from 'src/models/ytelse/tiltakspenger';
+import {
+    HentVedtaksperioder200ResponseInnerKilde,
+    HentVedtaksperioder200ResponseInnerRettighet
+} from 'src/generated/modiapersonoversikt-api';
+import type { Tiltakspenger } from 'src/models/ytelse/tiltakspenger';
 import { backendDatoformat } from 'src/utils/date-utils';
 import { aremark } from '../persondata/aremark';
 import { fyllRandomListe } from '../utils/mock-utils';
 import { statiskTiltakspengerMock } from './statiskTiltakspengerMock';
 
-export function getMockTiltakspenger(fødselsnummer: string): TiltakspengerResource {
+export function getMockTiltakspenger(fødselsnummer: string): Tiltakspenger[] {
     if (fødselsnummer === aremark.personIdent) {
         return [statiskTiltakspengerMock];
     }
@@ -18,7 +21,7 @@ export function getMockTiltakspenger(fødselsnummer: string): TiltakspengerResou
     navfaker.seed(`${fødselsnummer}tiltakspenger`);
 
     if (navfaker.random.vektetSjanse(0.3)) {
-        return null;
+        return [];
     }
 
     return fyllRandomListe<Tiltakspenger>((i) => getMockTiltakspengerYtelser(fødselsnummer, i), 3);
@@ -32,13 +35,20 @@ function getMockTiltakspengerYtelser(fødselsnummer: string, i?: number): Tiltak
     const tom = dayjs(fom).add(faker.number.int(40), 'days').format(backendDatoformat);
 
     return {
-        kilde: navfaker.random.vektetSjanse(0.4) ? VedtakDTOKilde.ARENA : VedtakDTOKilde.TPSAK,
+        kilde: navfaker.random.vektetSjanse(0.4)
+            ? HentVedtaksperioder200ResponseInnerKilde.ARENA
+            : HentVedtaksperioder200ResponseInnerKilde.TPSAK,
         vedtakId: faker.string.alphanumeric(8),
-        rettighet: VedtakDTORettighet.TILTAKSPENGER,
+        rettighet: HentVedtaksperioder200ResponseInnerRettighet.TILTAKSPENGER,
+        vedtaksperiode: {
+            fraOgMed: fom,
+            tilOgMed: tom
+        },
         periode: {
             fraOgMed: fom,
             tilOgMed: tom
         },
+        innvilgelsesperioder: [],
         barnetillegg: navfaker.random.vektetSjanse(0.5)
             ? { perioder: fyllRandomListe(mockBarnetillegg, 3, false) }
             : undefined
