@@ -12,11 +12,13 @@ import {
 } from '@navikt/aksel-icons';
 import { Bleed, Box, Button, Heading, Tooltip, VStack } from '@navikt/ds-react';
 import { Link } from '@tanstack/react-router';
-import { type ComponentProps, type KeyboardEvent, type ReactElement, useRef, useState } from 'react';
+import { useAtom } from 'jotai';
+import { type ComponentProps, type KeyboardEvent, type ReactElement, useRef } from 'react';
 import { getOpenTabFromRouterPath, useOpenTab } from 'src/app/personside/infotabs/utils/useOpenTab';
 import { erUbesvartHenvendelseFraBruker, useTraader } from 'src/components/Meldinger/List/utils';
 import { usePersonSideBarKotkeys } from 'src/components/usePersonSidebarHotkeys';
 import { usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
+import { ekspanderSidebarAtom } from 'src/lib/state/dialog';
 import { trackFaneEndret } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
 import Card from './Card';
@@ -82,7 +84,8 @@ export const menuItems = [
 ] as const satisfies MenuItem[];
 
 export const PersonSidebarMenu = () => {
-    const [expanded, setExpanded] = useState(true);
+    const [ekspanderSidebarStorage, setEkspanderSidebarStorage] = useAtom(ekspanderSidebarAtom);
+
     const openTab = useOpenTab();
     usePersonSideBarKotkeys();
     const { data: traader = [] } = useTraader();
@@ -115,22 +118,22 @@ export const PersonSidebarMenu = () => {
                         <Button
                             data-color="neutral"
                             icon={
-                                expanded ? (
+                                ekspanderSidebarStorage ? (
                                     <ArrowLeftIcon className="group-hover:-translate-x-1" aria-hidden />
                                 ) : (
                                     <ArrowRightIcon className="group-hover:translate-x-1" aria-hidden />
                                 )
                             }
                             aria-controls="sidebar-person"
-                            aria-expanded={expanded}
+                            aria-expanded={ekspanderSidebarStorage}
                             variant="tertiary"
                             size="small"
-                            onClick={() => setExpanded((v) => !v)}
+                            onClick={() => setEkspanderSidebarStorage((v) => !v)}
                             className="flex-1 justify-end group p-0"
                             iconPosition="right"
                         >
-                            {expanded && <span className="font-normal">Skjul</span>}
-                            {!expanded && <span className="sr-only">Vis</span>}
+                            {ekspanderSidebarStorage && <span className="font-normal">Skjul</span>}
+                            {!ekspanderSidebarStorage && <span className="sr-only">Vis</span>}
                         </Button>
                     </Box>
                     <VStack
@@ -146,7 +149,7 @@ export const PersonSidebarMenu = () => {
                             Faner
                         </Heading>
                         {menuItems.map(({ title, href, Icon }) => (
-                            <ConditionalTooltip key={title} content={title} enabled={!expanded}>
+                            <ConditionalTooltip key={title} content={title} enabled={!ekspanderSidebarStorage}>
                                 <Link
                                     onClick={() => {
                                         trackFaneEndret(getOpenTabFromRouterPath(href).path, openTab.path);
@@ -168,7 +171,9 @@ export const PersonSidebarMenu = () => {
                                                         {visNotifikasjon(title) && (
                                                             <Box
                                                                 position="absolute"
-                                                                className={expanded ? 'left-6' : 'left-4'}
+                                                                className={
+                                                                    ekspanderSidebarStorage ? 'left-6' : 'left-4'
+                                                                }
                                                             >
                                                                 <Bleed marginBlock="space-2" asChild>
                                                                     <CircleFillIcon
@@ -187,7 +192,7 @@ export const PersonSidebarMenu = () => {
                                                     'my-1 relative',
                                                     'font-normal',
                                                     !isActive && ['hover:bg-ax-bg-accent-moderate-hover'],
-                                                    expanded && ['justify-start', 'min-w-42'],
+                                                    ekspanderSidebarStorage && ['justify-start', 'min-w-42'],
                                                     isActive && [
                                                         'bg-ax-bg-accent-moderate-pressed',
                                                         'text-ax-text-accent',
@@ -195,7 +200,9 @@ export const PersonSidebarMenu = () => {
                                                     ]
                                                 )}
                                             >
-                                                {expanded && <span className="font-normal">{title}</span>}
+                                                {ekspanderSidebarStorage && (
+                                                    <span className="font-normal">{title}</span>
+                                                )}
                                             </Button>
                                         </>
                                     )}
