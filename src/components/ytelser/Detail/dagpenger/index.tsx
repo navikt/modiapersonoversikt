@@ -25,10 +25,6 @@ const prettyEnum = (ytelseType: BeregnetDagDagpengerDtoKilde) =>
 
 const rowKey = (ytelse: BeregnetDagDagpengerDto) => ytelse.fraOgMed;
 
-/**
- * Periods may not have an end. periodeEllerNull happens to format this just the
- * way we want.
- */
 const rowHeader = (ytelse: BeregnetDagDagpengerDto) =>
     `${periodeEllerNull({
         fra: ytelse.fraOgMed,

@@ -52,7 +52,7 @@ export function isForeldrePenger(ytelse: Ytelse): ytelse is Foreldrepenger {
 }
 // only used here, not imported in old modia
 function isDagpenger(ytelse: Ytelse): ytelse is Dagpenger {
-    return 'ytelseType' in ytelse; // this one is unique... right now
+    return 'gjenståendeDager' in ytelse; // this one is unique... right now
 }
 
 export function getYtelseIdDato(ytelse: Ytelse) {
