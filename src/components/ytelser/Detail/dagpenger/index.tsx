@@ -1,4 +1,5 @@
 import { Accordion, Heading, VStack } from '@navikt/ds-react';
+import { Normaltekst } from 'nav-frontend-typografi';
 import Card from 'src/components/Card';
 import { TitleValuePairsComponent } from 'src/components/ytelser/Detail';
 import { periodeEllerNull } from 'src/components/ytelser/utils';
@@ -7,7 +8,6 @@ import type {
     BeregnetDagDagpengerDtoKilde,
     Dagpenger
 } from 'src/generated/modiapersonoversikt-api';
-import { datoEllerTomString, formaterDato } from 'src/utils/string-utils';
 
 /* Takes enum entry for benefit type and source and derives a human readable
  * name. Not as good as a hashmap or maybe a gettext PO based solution, ideally
@@ -37,16 +37,13 @@ const rowHeader = (ytelse: BeregnetDagDagpengerDto) =>
 
 const PeriodeContent = ({ periode }: { periode: BeregnetDagDagpengerDto }) => {
     const entries = {
-        'Fra og med': formaterDato(periode.fraOgMed),
-        'Til og med': datoEllerTomString(periode.tilOgMed),
-        Kilde: prettyEnum(periode.kilde)
+        Kilde: prettyEnum(periode.kilde),
+        Sats: periode.sats,
+        'Gjenstående dager': periode.gjenståendeDager
     };
     return (
         <Accordion.Content>
-            <Heading as="h5" size="small">
-                Anviste utbetalinger
-            </Heading>
-            <TitleValuePairsComponent entries={entries} columns={{ xs: 2, lg: 4 }} />
+            <TitleValuePairsComponent entries={entries} columns={{ xs: 2, md: 3 }} />
         </Accordion.Content>
     );
 };
@@ -61,10 +58,10 @@ const Perioder = ({ perioder }: { perioder: BeregnetDagDagpengerDto[] }) => (
         <Heading as="h4" size="small">
             Perioder
         </Heading>
-        <Accordion size="small" headingSize="xsmall">
-            {perioder.map((periode) => {
+        <Accordion size="small">
+            {perioder.map((periode, i) => {
                 return (
-                    <Accordion.Item key={rowKey(periode)} defaultOpen>
+                    <Accordion.Item key={rowKey(periode)} defaultOpen={i === 0}>
                         <Accordion.Header>{rowHeader(periode)}</Accordion.Header>
                         <PeriodeContent periode={periode} />
                     </Accordion.Item>
@@ -77,9 +74,14 @@ const Perioder = ({ perioder }: { perioder: BeregnetDagDagpengerDto[] }) => (
 export const DagpengerDetails = ({ ytelse }: { ytelse: Dagpenger }) => (
     <VStack gap="space-4" minHeight="0">
         <Card padding="space-16">
-            <Heading as="h3" size="small">
+            <Heading as="h3" size="small" spacing>
                 Om dagpenger
             </Heading>
+            <Normaltekst>
+                Dataen er basert på beregnede meldeperioder fra både Arena og DP-sak. Sats er inklusiv barnetillegg og
+                eventuelt redusert etter samordning. Gjenstående dager er dager med dagpengerettighet etter perioden.
+            </Normaltekst>
+
             <VStack gap="space-4" minHeight="0">
                 <Perioder perioder={ytelse.perioder} />
             </VStack>
