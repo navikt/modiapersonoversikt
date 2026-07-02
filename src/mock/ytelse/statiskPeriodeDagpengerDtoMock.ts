@@ -1,26 +1,31 @@
-import type { PeriodeDagpengerDtoKilde, PeriodeDagpengerDtoYtelseType } from 'src/generated/modiapersonoversikt-api';
+import { BeregnetDagDagpengerDtoKilde } from 'src/generated/modiapersonoversikt-api';
 
-//export const statiskPeriodeDagpengerDtoMock: PseudoDagpengerVedtak = {
 export const statiskPeriodeDagpengerDtoMock = {
     eldsteFraOgMedDato: '2025-06-06',
     perioder: [
         {
-            fraOgMedDato: '2025-06-06',
-            ytelseType: 'DAGPENGER_ARBEIDSSOKER_MOCKET' as PeriodeDagpengerDtoYtelseType,
-            tilOgMedDato: '2025-06-19',
-            kilde: 'STATISK_MOCKEKILDE' as PeriodeDagpengerDtoKilde
+            fraOgMed: '2025-06-06',
+            tilOgMed: '2025-06-19',
+            kilde: BeregnetDagDagpengerDtoKilde.ARENA,
+            sats: 100,
+            gjenståendeDager: 3,
+            utbetaltBeløp: 5000
         },
         {
-            fraOgMedDato: '2025-08-08',
-            ytelseType: 'DAGPENGER_ARBEIDSSOKER_MOCKET' as PeriodeDagpengerDtoYtelseType,
-            tilOgMedDato: '2025-08-21',
-            kilde: 'STATISK_MOCKEKILDE' as PeriodeDagpengerDtoKilde
+            fraOgMed: '2025-08-08',
+            tilOgMed: '2025-08-21',
+            kilde: BeregnetDagDagpengerDtoKilde.ARENA,
+            sats: 100,
+            gjenståendeDager: 10,
+            utbetaltBeløp: 50000
         },
         {
-            fraOgMedDato: '2025-10-10',
-            ytelseType: 'DAGPENGER_ARBEIDSSOKER_MOCKET' as PeriodeDagpengerDtoYtelseType,
-            tilOgMedDato: '2025-10-23',
-            kilde: 'STATISK_MOCKEKILDE' as PeriodeDagpengerDtoKilde
+            fraOgMed: '2025-10-10',
+            tilOgMed: '2025-10-23',
+            kilde: BeregnetDagDagpengerDtoKilde.DP_SAK,
+            sats: 100,
+            gjenståendeDager: 12,
+            utbetaltBeløp: 3000
         }
     ]
 };

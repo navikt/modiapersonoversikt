@@ -909,38 +909,38 @@ export interface components {
             fom?: string;
             tom?: string;
         };
-        Barnetillegg: {
-            perioder: components['schemas']['BarnetilleggPeriode'][];
-        };
-        BarnetilleggPeriode: {
-            /** Format: int32 */
-            antallBarn: number;
-            periode: components['schemas']['Periode'];
-        };
-        Periode: {
+        HentBehandlingsperioder200ResponseInnerPeriode: {
             /** Format: date */
             fraOgMed: string;
             /** Format: date */
             tilOgMed: string;
         };
-        VedtakDTO: {
+        HentVedtaksperioder200ResponseInner: {
             vedtakId: string;
             /** @enum {string} */
-            rettighet: VedtakDTORettighet;
-            periode: components['schemas']['Periode'];
+            rettighet: HentVedtaksperioder200ResponseInnerRettighet;
+            periode: components['schemas']['HentBehandlingsperioder200ResponseInnerPeriode'];
             /** @enum {string} */
-            kilde: VedtakDTOKilde;
-            barnetillegg?: components['schemas']['Barnetillegg'];
+            kilde: HentVedtaksperioder200ResponseInnerKilde;
+            barnetillegg?: components['schemas']['HentVedtaksperioder200ResponseInnerBarnetillegg'];
             /** Format: int32 */
             sats?: number;
             /** Format: int32 */
             satsBarnetillegg?: number;
-            vedtaksperiode?: components['schemas']['Periode'];
-            innvilgelsesperioder?: components['schemas']['Periode'][];
+            vedtaksperiode: components['schemas']['HentBehandlingsperioder200ResponseInnerPeriode'];
+            innvilgelsesperioder: components['schemas']['HentBehandlingsperioder200ResponseInnerPeriode'][];
             omgjortAvRammevedtakId?: string;
             omgjorRammevedtakId?: string;
             /** Format: date-time */
             vedtakstidspunkt?: string;
+        };
+        HentVedtaksperioder200ResponseInnerBarnetillegg: {
+            perioder: components['schemas']['HentVedtaksperioder200ResponseInnerBarnetilleggPerioderInner'][];
+        };
+        HentVedtaksperioder200ResponseInnerBarnetilleggPerioderInner: {
+            /** Format: int32 */
+            antallBarn: number;
+            periode: components['schemas']['HentBehandlingsperioder200ResponseInnerPeriode'];
         };
         CommonHistoriskUtbetaling: {
             vedtak?: components['schemas']['CommonPeriode'];
@@ -1104,18 +1104,22 @@ export interface components {
             /** Format: date */
             tilOgMedDato?: string;
         };
-        PeriodeDagpengerDto: {
+        BeregnetDagDagpengerDto: {
             /** Format: date */
-            fraOgMedDato: string;
-            /** @enum {string} */
-            kilde: PeriodeDagpengerDtoKilde;
-            /** @enum {string} */
-            ytelseType: PeriodeDagpengerDtoYtelseType;
+            fraOgMed: string;
             /** Format: date */
-            tilOgMedDato?: string;
+            tilOgMed: string;
+            /** Format: int32 */
+            sats: number;
+            /** Format: int32 */
+            'utbetaltBel\u00F8p': number;
+            /** Format: int32 */
+            'gjenst\u00E5endeDager': number;
+            /** @enum {string} */
+            kilde: BeregnetDagDagpengerDtoKilde;
         };
-        PseudoDagpengerVedtak: {
-            perioder: components['schemas']['PeriodeDagpengerDto'][];
+        Dagpenger: {
+            perioder: components['schemas']['BeregnetDagDagpengerDto'][];
             /** Format: date */
             eldsteFraOgMedDato?: string;
         };
@@ -1403,7 +1407,7 @@ export interface components {
         Sakstema: {
             temakode: string;
             temanavn: string;
-            harTilgang?: boolean;
+            harTilgang: boolean;
             /** Format: date-time */
             nyesteDokumentDato?: string;
         };
@@ -2071,7 +2075,7 @@ export interface components {
             sladding?: boolean;
             meldinger: components['schemas']['MeldingDTO'][];
             journalposter: components['schemas']['Journalpost'][];
-            journalforingFeilet?: boolean;
+            journalforingFeilet: boolean;
         };
         OpprettHenvendelseRequestV2: {
             fnr: string;
@@ -2171,10 +2175,13 @@ export interface components {
     pathItems: never;
 }
 export type FnrDatoRangeRequest = components['schemas']['FnrDatoRangeRequest'];
-export type Barnetillegg = components['schemas']['Barnetillegg'];
-export type BarnetilleggPeriode = components['schemas']['BarnetilleggPeriode'];
-export type Periode = components['schemas']['Periode'];
-export type VedtakDto = components['schemas']['VedtakDTO'];
+export type HentBehandlingsperioder200ResponseInnerPeriode =
+    components['schemas']['HentBehandlingsperioder200ResponseInnerPeriode'];
+export type HentVedtaksperioder200ResponseInner = components['schemas']['HentVedtaksperioder200ResponseInner'];
+export type HentVedtaksperioder200ResponseInnerBarnetillegg =
+    components['schemas']['HentVedtaksperioder200ResponseInnerBarnetillegg'];
+export type HentVedtaksperioder200ResponseInnerBarnetilleggPerioderInner =
+    components['schemas']['HentVedtaksperioder200ResponseInnerBarnetilleggPerioderInner'];
 export type CommonHistoriskUtbetaling = components['schemas']['CommonHistoriskUtbetaling'];
 export type CommonKommendeUtbetaling = components['schemas']['CommonKommendeUtbetaling'];
 export type CommonKreditortrekk = components['schemas']['CommonKreditortrekk'];
@@ -2193,8 +2200,8 @@ export type PensjonSak = components['schemas']['PensjonSak'];
 export type Foreldrepenger = components['schemas']['Foreldrepenger'];
 export type ForeldrepengerPeriode = components['schemas']['ForeldrepengerPeriode'];
 export type DatadelingRequestDagpengerDto = components['schemas']['DatadelingRequestDagpengerDto'];
-export type PeriodeDagpengerDto = components['schemas']['PeriodeDagpengerDto'];
-export type PseudoDagpengerVedtak = components['schemas']['PseudoDagpengerVedtak'];
+export type BeregnetDagDagpengerDto = components['schemas']['BeregnetDagDagpengerDto'];
+export type Dagpenger = components['schemas']['Dagpenger'];
 export type NonavaapapiinternPeriodeDto = components['schemas']['NonavaapapiinternPeriodeDTO'];
 export type NonavaapapiinternVedtakUtenUtbetalingDto =
     components['schemas']['NonavaapapiinternVedtakUtenUtbetalingDTO'];
@@ -2351,7 +2358,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    '*/*': components['schemas']['VedtakDTO'][];
+                    '*/*': components['schemas']['HentVedtaksperioder200ResponseInner'][];
                 };
             };
         };
@@ -2471,7 +2478,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    '*/*': components['schemas']['PseudoDagpengerVedtak'];
+                    '*/*': components['schemas']['Dagpenger'];
                 };
             };
         };
@@ -3664,12 +3671,12 @@ export interface operations {
         };
     };
 }
-export enum VedtakDTORettighet {
+export enum HentVedtaksperioder200ResponseInnerRettighet {
     TILTAKSPENGER = 'TILTAKSPENGER',
     TILTAKSPENGER_OG_BARNETILLEGG = 'TILTAKSPENGER_OG_BARNETILLEGG',
     INGENTING = 'INGENTING'
 }
-export enum VedtakDTOKilde {
+export enum HentVedtaksperioder200ResponseInnerKilde {
     TPSAK = 'TPSAK',
     ARENA = 'ARENA'
 }
@@ -3678,14 +3685,9 @@ export enum ForeldrepengerYtelse {
     FORELDREPENGER = 'FORELDREPENGER',
     SVANGERSKAPSPENGER = 'SVANGERSKAPSPENGER'
 }
-export enum PeriodeDagpengerDtoKilde {
+export enum BeregnetDagDagpengerDtoKilde {
     ARENA = 'ARENA',
     DP_SAK = 'DP_SAK'
-}
-export enum PeriodeDagpengerDtoYtelseType {
-    DAGPENGER_ARBEIDSSOKER_ORDINAER = 'DAGPENGER_ARBEIDSSOKER_ORDINAER',
-    DAGPENGER_PERMITTERING_ORDINAER = 'DAGPENGER_PERMITTERING_ORDINAER',
-    DAGPENGER_PERMITTERING_FISKEINDUSTRI = 'DAGPENGER_PERMITTERING_FISKEINDUSTRI'
 }
 export enum DokumentDokumentStatus {
     UNDER_REDIGERING = 'UNDER_REDIGERING',

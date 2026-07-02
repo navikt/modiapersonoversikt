@@ -38,8 +38,8 @@ const ForeldrepengerPerioder = ({ ytelse }: { ytelse: Foreldrepenger }) => {
             <Accordion size="small">
                 {ytelse.perioder.map((periode, index) => {
                     return (
-                        <Accordion.Item key={`${index}-${periode.fom}`}>
-                            <Accordion.Header>{`Periode - ${datoEllerTomString(periode.fom)}`}</Accordion.Header>
+                        <Accordion.Item key={`${index}-${periode.fom}`} defaultOpen={index === 0}>
+                            <Accordion.Header>{`${datoEllerTomString(periode.fom)} – ${datoEllerTomString(periode.tom)}`}</Accordion.Header>
                             <Accordion.Content>
                                 <TitleValuePairsComponent entries={getEntries(periode)} columns={{ xs: 2, md: 3 }} />
                             </Accordion.Content>

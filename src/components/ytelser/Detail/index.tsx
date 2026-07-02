@@ -11,14 +11,14 @@ import { TiltaksPengerDetails } from 'src/components/ytelser/Detail/tiltakspenge
 import { useSetIdQueryParam } from 'src/components/ytelser/useSetIdQueryParam';
 import { getUnikYtelseKey, useFilterYtelser, type YtelseVedtak } from 'src/components/ytelser/utils';
 import type {
+    Dagpenger,
     Foreldrepenger,
     PensjonSak,
-    PseudoDagpengerVedtak,
     Sykepenger,
-    SykepengerSpokelse,
-    VedtakDto
+    SykepengerSpokelse
 } from 'src/generated/modiapersonoversikt-api';
 import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaringspenger';
+import type { Tiltakspenger } from 'src/models/ytelse/tiltakspenger';
 import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
 
 const TitleValuePairComponent = ({ title, value }: { title: string; value: string | number | null | undefined }) => {
@@ -88,8 +88,8 @@ const YtelseDataDetails = ({ ytelser }: { ytelser: YtelseVedtak[] }) => {
     switch (selectedYtelse.ytelseType) {
         case YtelseVedtakYtelseType.Sykepenger:
             return <SykepengerDetails sykepenger={selectedYtelse.ytelseData.data as Sykepenger} />;
-        case YtelseVedtakYtelseType.Tiltakspenge:
-            return <TiltaksPengerDetails tiltaksPenger={selectedYtelse.ytelseData.data as VedtakDto} />;
+        case YtelseVedtakYtelseType.Tiltakspenger:
+            return <TiltaksPengerDetails tiltaksPenger={selectedYtelse.ytelseData.data as Tiltakspenger} />;
         case YtelseVedtakYtelseType.Pensjon:
             return <PensjonDetails pensjon={selectedYtelse.ytelseData.data as PensjonSak} />;
         case YtelseVedtakYtelseType.Arbeidsavklaringspenger:
@@ -97,7 +97,7 @@ const YtelseDataDetails = ({ ytelser }: { ytelser: YtelseVedtak[] }) => {
         case YtelseVedtakYtelseType.Foreldrepenger:
             return <ForeldrePengerDetails ytelse={selectedYtelse.ytelseData.data as Foreldrepenger} />;
         case YtelseVedtakYtelseType.Dagpenger:
-            return <DagpengerDetails ytelse={selectedYtelse.ytelseData.data as PseudoDagpengerVedtak} />;
+            return <DagpengerDetails ytelse={selectedYtelse.ytelseData.data as Dagpenger} />;
         case YtelseVedtakYtelseType.SykepengerSpokelse:
             return <SykePengerSpokelseDetails ytelse={selectedYtelse.ytelseData.data as SykepengerSpokelse} />;
         default:

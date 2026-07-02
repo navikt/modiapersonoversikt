@@ -14,12 +14,11 @@ import {
 } from 'src/lib/clients/modiapersonoversikt-api';
 import type {
     CommonPeriode,
+    Dagpenger,
     Foreldrepenger,
     PensjonSak,
-    PseudoDagpengerVedtak,
     Sykepenger,
-    SykepengerSpokelse,
-    VedtakDto
+    SykepengerSpokelse
 } from 'src/lib/types/modiapersonoversikt-api';
 import {
     type Arbeidsavklaringspenger,
@@ -39,7 +38,7 @@ type Ytelse =
     | Pensjon
     | Arbeidsavklaringspenger
     | Foreldrepenger
-    | PseudoDagpengerVedtak
+    | Dagpenger
     | SykepengerSpokelse;
 
 type Placeholder = { returnOnForbidden: string; returnOnError: string; returnOnNotFound: string };
@@ -84,8 +83,8 @@ export function getYtelseIdDato(ytelse: YtelseVedtak): string {
             return getSykepengerDato(ytelse.ytelseData.data as Sykepenger);
         case YtelseVedtakYtelseType.SykepengerSpokelse:
             return getSykepengerSpokelseIdDato(ytelse.ytelseData.data as SykepengerSpokelse);
-        case YtelseVedtakYtelseType.Tiltakspenge:
-            return getTiltakspengerDato(ytelse.ytelseData.data as VedtakDto);
+        case YtelseVedtakYtelseType.Tiltakspenger:
+            return getTiltakspengerDato(ytelse.ytelseData.data as Tiltakspenger);
         case YtelseVedtakYtelseType.Pensjon:
             return getPensjonDato(ytelse.ytelseData.data as PensjonSak);
         case YtelseVedtakYtelseType.Arbeidsavklaringspenger:
@@ -93,7 +92,7 @@ export function getYtelseIdDato(ytelse: YtelseVedtak): string {
         case YtelseVedtakYtelseType.Foreldrepenger:
             return getForeldrepengerIdDato(ytelse.ytelseData.data as Foreldrepenger);
         case YtelseVedtakYtelseType.Dagpenger:
-            return getDagpengerIdDato(ytelse.ytelseData.data as PseudoDagpengerVedtak);
+            return getDagpengerIdDato(ytelse.ytelseData.data as Dagpenger);
         default:
             return '';
     }
@@ -105,8 +104,8 @@ export function getUnikYtelseKey(ytelse: YtelseVedtak) {
             return getUnikSykepengerKey(ytelse.ytelseData.data as Sykepenger);
         case YtelseVedtakYtelseType.SykepengerSpokelse:
             return getUnikSykepengerSpokelseKey(ytelse.ytelseData.data as SykepengerSpokelse);
-        case YtelseVedtakYtelseType.Tiltakspenge:
-            return getUnikTiltakspengerKey(ytelse.ytelseData.data as VedtakDto);
+        case YtelseVedtakYtelseType.Tiltakspenger:
+            return getUnikTiltakspengerKey(ytelse.ytelseData.data as Tiltakspenger);
         case YtelseVedtakYtelseType.Pensjon:
             return getPensjonpengerKey(ytelse.ytelseData.data as PensjonSak);
         case YtelseVedtakYtelseType.Arbeidsavklaringspenger:
@@ -114,7 +113,7 @@ export function getUnikYtelseKey(ytelse: YtelseVedtak) {
         case YtelseVedtakYtelseType.Foreldrepenger:
             return getUnikForeldrepengerKey(ytelse.ytelseData.data as Foreldrepenger);
         case YtelseVedtakYtelseType.Dagpenger:
-            return getUnikDagpengerKey(ytelse.ytelseData.data as PseudoDagpengerVedtak);
+            return getUnikDagpengerKey(ytelse.ytelseData.data as Dagpenger);
         default:
             return 'ukjent ytelse';
     }
@@ -128,7 +127,7 @@ function getUnikSykepengerSpokelseKey(ytelse: SykepengerSpokelse) {
     return `spokelse-${ytelse.utbetaltePerioder.firstOrNull()?.fom}`;
 }
 
-function getUnikTiltakspengerKey(ytelse: VedtakDto) {
+function getUnikTiltakspengerKey(ytelse: Tiltakspenger) {
     return `tiltakspenger${ytelse.vedtakId}`;
 }
 
@@ -145,7 +144,7 @@ function getSykepengerSpokelseIdDato(ytelse: SykepengerSpokelse) {
     return ytelse.utbetaltePerioder.lastOrNull()?.fom ?? dayjs().format(backendDatoformat);
 }
 
-function getTiltakspengerDato(ytelse: VedtakDto) {
+function getTiltakspengerDato(ytelse: Tiltakspenger) {
     return ytelse.periode.fraOgMed ?? dayjs().format(backendDatoformat);
 }
 
@@ -252,7 +251,7 @@ export const useFilterYtelser = (): QueryResult<YtelseVedtak[]> => {
     tiltakspengerResponse?.data?.map((ytelse) =>
         ytelser.push({
             ytelseData: { data: ytelse },
-            ytelseType: YtelseVedtakYtelseType.Tiltakspenge
+            ytelseType: YtelseVedtakYtelseType.Tiltakspenger
         })
     );
     pensjonResponse.data?.map((ytelse) =>
