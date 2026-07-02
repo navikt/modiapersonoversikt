@@ -84,7 +84,7 @@ export const menuItems = [
 ] as const satisfies MenuItem[];
 
 export const PersonSidebarMenu = () => {
-    const [ekspanderSidebarStorage, setEkspanderSidebarStorage] = useAtom(ekspanderSidebarAtom);
+    const [ekspanderSidebarMedStorage, setEkspanderSidebarMedStorage] = useAtom(ekspanderSidebarAtom);
 
     const openTab = useOpenTab();
     usePersonSideBarKotkeys();
@@ -118,22 +118,22 @@ export const PersonSidebarMenu = () => {
                         <Button
                             data-color="neutral"
                             icon={
-                                ekspanderSidebarStorage ? (
+                                ekspanderSidebarMedStorage ? (
                                     <ArrowLeftIcon className="group-hover:-translate-x-1" aria-hidden />
                                 ) : (
                                     <ArrowRightIcon className="group-hover:translate-x-1" aria-hidden />
                                 )
                             }
                             aria-controls="sidebar-person"
-                            aria-expanded={ekspanderSidebarStorage}
+                            aria-expanded={ekspanderSidebarMedStorage}
                             variant="tertiary"
                             size="small"
-                            onClick={() => setEkspanderSidebarStorage((v) => !v)}
+                            onClick={() => setEkspanderSidebarMedStorage((v) => !v)}
                             className="flex-1 justify-end group p-0"
                             iconPosition="right"
                         >
-                            {ekspanderSidebarStorage && <span className="font-normal">Skjul</span>}
-                            {!ekspanderSidebarStorage && <span className="sr-only">Vis</span>}
+                            {ekspanderSidebarMedStorage && <span className="font-normal">Skjul</span>}
+                            {!ekspanderSidebarMedStorage && <span className="sr-only">Vis</span>}
                         </Button>
                     </Box>
                     <VStack
@@ -149,7 +149,7 @@ export const PersonSidebarMenu = () => {
                             Faner
                         </Heading>
                         {menuItems.map(({ title, href, Icon }) => (
-                            <ConditionalTooltip key={title} content={title} enabled={!ekspanderSidebarStorage}>
+                            <ConditionalTooltip key={title} content={title} enabled={!ekspanderSidebarMedStorage}>
                                 <Link
                                     onClick={() => {
                                         trackFaneEndret(getOpenTabFromRouterPath(href).path, openTab.path);
@@ -172,7 +172,7 @@ export const PersonSidebarMenu = () => {
                                                             <Box
                                                                 position="absolute"
                                                                 className={
-                                                                    ekspanderSidebarStorage ? 'left-6' : 'left-4'
+                                                                    ekspanderSidebarMedStorage ? 'left-6' : 'left-4'
                                                                 }
                                                             >
                                                                 <Bleed marginBlock="space-2" asChild>
@@ -192,7 +192,7 @@ export const PersonSidebarMenu = () => {
                                                     'my-1 relative',
                                                     'font-normal',
                                                     !isActive && ['hover:bg-ax-bg-accent-moderate-hover'],
-                                                    ekspanderSidebarStorage && ['justify-start', 'min-w-42'],
+                                                    ekspanderSidebarMedStorage && ['justify-start', 'min-w-42'],
                                                     isActive && [
                                                         'bg-ax-bg-accent-moderate-pressed',
                                                         'text-ax-text-accent',
@@ -200,7 +200,7 @@ export const PersonSidebarMenu = () => {
                                                     ]
                                                 )}
                                             >
-                                                {ekspanderSidebarStorage && (
+                                                {ekspanderSidebarMedStorage && (
                                                     <span className="font-normal">{title}</span>
                                                 )}
                                             </Button>
