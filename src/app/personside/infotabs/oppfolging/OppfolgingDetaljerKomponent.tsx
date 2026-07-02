@@ -6,7 +6,6 @@ import { useRef } from 'react';
 import Siste14aVedtakDetaljer from 'src/app/personside/infotabs/oppfolging/Gjeldende14aVedtakDetaljer';
 import type { DetaljertOppfolging } from 'src/models/oppfolging';
 import { pxToRem } from 'src/styles/personOversiktTheme';
-import { datoEllerNull } from 'src/utils/string-utils';
 import styled from 'styled-components';
 import DescriptionList from '../../../../components/DescriptionList';
 import { getErUnderOppfolging, getOppfolgingEnhet, getVeileder } from './oppfolging-utils';
@@ -26,7 +25,6 @@ interface Props {
 function VisOppfolgingDetaljer(props: Props) {
     const headerId = useRef(guid());
     const detaljer = props.detaljertOppfolging;
-    const meldeplikt = detaljer.meldeplikt ? 'Ja' : detaljer.meldeplikt === false ? 'Nei' : 'Meldeplikt Ukjent';
     const ikkeFullstendigData =
         detaljer.oppfolging === null ? (
             <AlertStripeAdvarsel>Kunne ikke hente ut all oppfølgings-informasjon</AlertStripeAdvarsel>
@@ -38,11 +36,7 @@ function VisOppfolgingDetaljer(props: Props) {
     const descriptionListProps = {
         'Er under oppfølging': getErUnderOppfolging(detaljer.oppfolging),
         Oppfølgingsenhet: getOppfolgingEnhet(detaljer.oppfolging),
-        Rettighetsgruppe: detaljer.rettighetsgruppe,
-        Veileder: getVeileder(detaljer.oppfolging?.veileder),
-        Meldeplikt: meldeplikt,
-        Formidlingsgruppe: detaljer.formidlingsgruppe,
-        Oppfølgingsvedtak: datoEllerNull(detaljer.vedtaksdato)
+        Veileder: getVeileder(detaljer.oppfolging?.veileder)
     };
 
     return (
