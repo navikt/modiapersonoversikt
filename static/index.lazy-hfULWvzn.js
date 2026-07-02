@@ -1,0 +1,2 @@
+import{V as r,W as o,Q as n,X as s}from"./main-C3gMTCTX.js";const c=r("/new/")({component:i});function i(){const t=o.c(1);let e;return t[0]===Symbol.for("react.memo_cache_sentinel")?(e=n.jsx("div",{className:"flex-1",children:n.jsx(s,{variant:"info",children:"Ingen aktiv bruker. Bruk menyen over for å søke etter person."})}),t[0]=e):e=t[0],e}export{c as Route};
+//# sourceMappingURL=index.lazy-hfULWvzn.js.map
