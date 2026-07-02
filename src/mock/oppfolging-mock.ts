@@ -1,7 +1,28 @@
 import { fakerNB_NO as faker } from '@faker-js/faker';
 import dayjs from 'dayjs';
 import navfaker from 'nav-faker';
-import type { Gjeldende14aVedtak, SykefravaerOppfolgingDto } from 'src/generated/modiapersonoversikt-api';
+import type {
+    AggregertPeriodeArbeidssoekerregisteretDto,
+    Gjeldende14aVedtak,
+    MetadataArbeidssoekerregisteretDto,
+    SykefravaerOppfolgingDto
+} from 'src/generated/modiapersonoversikt-api';
+import {
+    BekreftelseArbeidssoekerregisteretDtoBekreftelsesloesning,
+    BekreftelseArbeidssoekerregisteretDtoStatus,
+    BekreftelseArbeidssoekerregisteretDtoType,
+    BeskrivelseMedDetaljerArbeidssoekerregisteretDtoBeskrivelse,
+    BrukerArbeidssoekerregisteretDtoType,
+    EgenvurderingArbeidssoekerregisteretDtoEgenvurdering,
+    EgenvurderingArbeidssoekerregisteretDtoProfilertTil,
+    EgenvurderingArbeidssoekerregisteretDtoType,
+    OpplysningerOmArbeidssoekerArbeidssoekerregisteretDtoType,
+    PeriodeStartetArbeidssoekerregisteretDtoType,
+    ProfileringArbeidssoekerregisteretDtoProfilertTil,
+    ProfileringArbeidssoekerregisteretDtoType,
+    UtdanningArbeidssoekerregisteretDtoBestaatt,
+    UtdanningArbeidssoekerregisteretDtoGodkjent
+} from 'src/generated/modiapersonoversikt-api';
 import type {
     AnsattEnhet,
     Arbeidsoppfolging,
@@ -140,5 +161,107 @@ function getArbeidsoppfolging(fodselsnummer: string): Arbeidsoppfolging {
         formidlingsgruppe: `FMGRP${faker.number.int(5)}`,
         vedtaksdato: dayjs(faker.date.recent({ days: 10 })).format(backendDatoformat),
         rettighetsgruppe: `RGRP${faker.number.int(10)}`
+    };
+}
+
+function getMetadata(): MetadataArbeidssoekerregisteretDto {
+    return {
+        tidspunkt: dayjs(faker.date.recent({ days: 30 })).toISOString(),
+        utfoertAv: {
+            type: faker.helpers.arrayElement([
+                BrukerArbeidssoekerregisteretDtoType.SLUTTBRUKER,
+                BrukerArbeidssoekerregisteretDtoType.VEILEDER,
+                BrukerArbeidssoekerregisteretDtoType.SYSTEM
+            ]),
+            id: faker.string.uuid()
+        },
+        kilde: 'arbeidssokerregisteret',
+        aarsak: 'Bruker registrerte seg'
+    };
+}
+
+export function getMockOppslagArbeidssoekerregisteret(
+    fodselsnummer: string
+): AggregertPeriodeArbeidssoekerregisteretDto {
+    faker.seed(Number(fodselsnummer));
+
+    const opplysningId = faker.string.uuid();
+    const profileringId = faker.string.uuid();
+
+    return {
+        id: faker.string.uuid(),
+        identitetsnummer: fodselsnummer,
+        startet: {
+            type: PeriodeStartetArbeidssoekerregisteretDtoType.PERIODE_STARTET_V1,
+            sendtInnAv: getMetadata(),
+            tidspunkt: dayjs(faker.date.recent({ days: 60 })).toISOString()
+        },
+        opplysning: {
+            type: OpplysningerOmArbeidssoekerArbeidssoekerregisteretDtoType.OPPLYSNINGER_V4,
+            id: opplysningId,
+            sendtInnAv: getMetadata(),
+            tidspunkt: dayjs(faker.date.recent({ days: 50 })).toISOString(),
+            utdanning: {
+                nus: '6',
+                bestaatt: UtdanningArbeidssoekerregisteretDtoBestaatt.JA,
+                godkjent: UtdanningArbeidssoekerregisteretDtoGodkjent.JA
+            },
+            jobbsituasjon: {
+                beskrivelser: [
+                    {
+                        beskrivelse: faker.helpers.arrayElement([
+                            BeskrivelseMedDetaljerArbeidssoekerregisteretDtoBeskrivelse.HAR_SAGT_OPP,
+                            BeskrivelseMedDetaljerArbeidssoekerregisteretDtoBeskrivelse.HAR_BLITT_SAGT_OPP,
+                            BeskrivelseMedDetaljerArbeidssoekerregisteretDtoBeskrivelse.VIL_BYTTE_JOBB,
+                            BeskrivelseMedDetaljerArbeidssoekerregisteretDtoBeskrivelse.IKKE_VAERT_I_JOBB_SISTE_2_AAR
+                        ]),
+                        detaljer: {}
+                    }
+                ]
+            }
+        },
+        profilering: {
+            type: ProfileringArbeidssoekerregisteretDtoType.PROFILERING_V1,
+            id: profileringId,
+            opplysningerOmArbeidssokerId: opplysningId,
+            sendtInnAv: getMetadata(),
+            profilertTil: faker.helpers.arrayElement([
+                ProfileringArbeidssoekerregisteretDtoProfilertTil.ANTATT_GODE_MULIGHETER,
+                ProfileringArbeidssoekerregisteretDtoProfilertTil.ANTATT_BEHOV_FOR_VEILEDNING,
+                ProfileringArbeidssoekerregisteretDtoProfilertTil.OPPGITT_HINDRINGER
+            ]),
+            jobbetSammenhengendeSeksAvTolvSisteMnd: faker.datatype.boolean(),
+            tidspunkt: dayjs(faker.date.recent({ days: 45 })).toISOString(),
+            alder: faker.number.int({ min: 18, max: 67 })
+        },
+        egenvurdering: {
+            type: EgenvurderingArbeidssoekerregisteretDtoType.EGENVURDERING_V1,
+            id: faker.string.uuid(),
+            profileringId: profileringId,
+            sendtInnAv: getMetadata(),
+            profilertTil: faker.helpers.arrayElement([
+                EgenvurderingArbeidssoekerregisteretDtoProfilertTil.ANTATT_GODE_MULIGHETER,
+                EgenvurderingArbeidssoekerregisteretDtoProfilertTil.ANTATT_BEHOV_FOR_VEILEDNING
+            ]),
+            egenvurdering: faker.helpers.arrayElement([
+                EgenvurderingArbeidssoekerregisteretDtoEgenvurdering.ANTATT_GODE_MULIGHETER,
+                EgenvurderingArbeidssoekerregisteretDtoEgenvurdering.ANTATT_BEHOV_FOR_VEILEDNING
+            ]),
+            tidspunkt: dayjs(faker.date.recent({ days: 40 })).toISOString()
+        },
+        bekreftelse: {
+            type: BekreftelseArbeidssoekerregisteretDtoType.BEKREFTELSE_V1,
+            id: faker.string.uuid(),
+            bekreftelsesloesning: BekreftelseArbeidssoekerregisteretDtoBekreftelsesloesning.ARBEIDSSOEKERREGISTERET,
+            status: BekreftelseArbeidssoekerregisteretDtoStatus.GYLDIG,
+            svar: {
+                sendtInnAv: getMetadata(),
+                gjelderFra: dayjs(faker.date.recent({ days: 14 })).toISOString(),
+                gjelderTil: dayjs(faker.date.soon({ days: 14 })).toISOString(),
+                harJobbetIDennePerioden: faker.datatype.boolean(),
+                vilFortsetteSomArbeidssoeker: true
+            },
+            tidspunkt: dayjs(faker.date.recent({ days: 7 })).toISOString()
+        }
     };
 }
