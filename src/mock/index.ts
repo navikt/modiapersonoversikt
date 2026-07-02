@@ -37,6 +37,7 @@ import {
     getMock14aVedtak,
     getMockArbeidsoppfolging,
     getMockOppfolging,
+    getMockOppslagArbeidssoekerregisteret,
     getMockSykefravaersoppfolging,
     getMockYtelserOgKontrakter
 } from './oppfolging-mock';
@@ -254,6 +255,15 @@ const arbeidsoppfolgingHandler = http.post(
     )
 );
 
+const oppslagArbeidssoekerregisteretHandler = http.post(
+    `${apiBaseUri}/oppfolging/oppslag-arbeidssoekerregisteret`,
+    withDelayedResponse(
+        randomDelay(),
+        fodselsNummerErGyldigStatus,
+        mockGeneratorMedFodselsnummerV2((fodselsnummer) => getMockOppslagArbeidssoekerregisteret(fodselsnummer))
+    )
+);
+
 const varslerHandler = http.post<PathParams, { fnr: string }>(`${apiBaseUri}/varsler`, async ({ request }) => {
     const body = await request.json();
     const fnr = body.fnr;
@@ -412,6 +422,7 @@ export const handlers: (HttpHandler | WebSocketHandler)[] = [
     gjeldende14aVedtakHandler,
     sykefravaeroppfolgingHandler,
     arbeidsoppfolgingHandler,
+    oppslagArbeidssoekerregisteretHandler,
     varslerHandler,
     opprettOppgaveHandler,
     opprettSkjermetOppgaveHandler,
