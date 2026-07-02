@@ -42,7 +42,7 @@ const OppfolgingDetaljer = () => {
                     <InlineMessage status="info">Brukeren har ingen oppfølging.</InlineMessage>
                 </Box>
             ) : (
-                <HGrid gap="space-16" columns={{ sm: 1, md: 3, lg: 4 }} className="mt-2" align="start">
+                <HGrid gap="space-16" columns={{ sm: 1, md: 2, lg: 4 }} className="mt-2" align="start">
                     <VStack justify="space-between">
                         <BodyShort size="small" weight="semibold">
                             Status:
@@ -206,7 +206,7 @@ const SykefravaersoppfolgingDetaljer = () => {
     );
 };
 
-export const ArbeidssoekerregisteretDetaljer = () => {
+const ArbeidssoekerregisteretDetaljer = () => {
     const { data, isError } = useOppslagArbeidssoekerregisteret();
 
     if (isError) return;

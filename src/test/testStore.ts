@@ -91,7 +91,6 @@ export function setupReactQueryMocks() {
     mockReactQuery(featuretogglesResource.useFetch, {
         [FeatureToggles.JournalforUtenSvar]: true,
         [FeatureToggles.VisPromptMeldingSending]: true,
-        [FeatureToggles.VisSiste14aVedtak]: true,
         [FeatureToggles.NyModiaKnapp]: true,
         [FeatureToggles.InfotrygdSykepenger]: true,
         [FeatureToggles.SpokelseSykepenger]: true
