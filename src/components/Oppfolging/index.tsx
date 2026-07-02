@@ -1,8 +1,10 @@
 import {
-    Alert,
     BodyShort,
+    Box,
+    Detail,
     Heading,
     HGrid,
+    InlineMessage,
     Pagination,
     Skeleton,
     type SortState,
@@ -13,12 +15,14 @@ import { useState } from 'react';
 import { AlertBanner } from 'src/components/AlertBanner';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
-import { getMeldeplikt, getOppfolgingEnhet, getVeileder } from 'src/components/Oppfolging/utils';
+import { getOppfolgingEnhet, getVeileder } from 'src/components/Oppfolging/utils';
 import {
     useArbeidsoppfolging,
     useGjeldende14aVedtak,
+    useOppslagArbeidssoekerregisteret,
     useSykefravaersoppfolging
 } from 'src/lib/clients/modiapersonoversikt-api';
+import { formatterDato } from 'src/utils/date-utils';
 import { datoEllerNull } from 'src/utils/string-utils';
 
 const OppfolgingDetaljer = () => {
@@ -28,55 +32,44 @@ const OppfolgingDetaljer = () => {
 
     if (isLoading) return <Skeleton variant="rectangle" height={166} />;
 
-    if (!arbeidsOppfolging) {
-        return <Alert variant="info">Brukeren har ingen oppfølging.</Alert>;
-    }
-
     return (
         <>
             <Heading as="h3" size="small">
                 Arbeidsoppfølging
             </Heading>
-            <HGrid gap="space-16" columns={{ sm: 1, md: 2, lg: 3 }} className="mt-2">
-                <VStack justify="space-between">
-                    <BodyShort size="small" weight="semibold">
-                        Status:
-                    </BodyShort>
-                    <BodyShort size="small">
-                        {arbeidsOppfolging.oppfolging?.erUnderOppfolging ? 'Under oppfølging' : 'Ikke under oppfølging'}
-                    </BodyShort>
-                </VStack>
-                <VStack justify="space-between">
-                    <BodyShort size="small" weight="semibold">
-                        Oppfølgingsenhet:
-                    </BodyShort>
-                    <BodyShort size="small">{getOppfolgingEnhet(arbeidsOppfolging.oppfolging)}</BodyShort>
-                </VStack>
-                <VStack justify="space-between">
-                    <BodyShort size="small" weight="semibold">
-                        Veileder:
-                    </BodyShort>
-                    <BodyShort size="small">{getVeileder(arbeidsOppfolging.oppfolging?.veileder)}</BodyShort>
-                </VStack>
-                <VStack justify="space-between">
-                    <BodyShort size="small" weight="semibold">
-                        Meldeplikt:
-                    </BodyShort>
-                    <BodyShort size="small">{getMeldeplikt(arbeidsOppfolging.meldeplikt)}</BodyShort>
-                </VStack>
-                <VStack justify="space-between">
-                    <BodyShort size="small" weight="semibold">
-                        Formidlingsgruppe:
-                    </BodyShort>
-                    <BodyShort size="small">{arbeidsOppfolging.formidlingsgruppe}</BodyShort>
-                </VStack>
-                <VStack justify="space-between">
-                    <BodyShort size="small" weight="semibold">
-                        Oppfølgingsvedtak:
-                    </BodyShort>
-                    <BodyShort size="small">{datoEllerNull(arbeidsOppfolging.vedtaksdato)}</BodyShort>
-                </VStack>
-            </HGrid>
+            {!arbeidsOppfolging ? (
+                <Box paddingBlock="space-8">
+                    <InlineMessage status="info">Brukeren har ingen oppfølging.</InlineMessage>
+                </Box>
+            ) : (
+                <HGrid gap="space-16" columns={{ sm: 1, md: 2, lg: 4 }} className="mt-2" align="start">
+                    <VStack justify="space-between">
+                        <BodyShort size="small" weight="semibold">
+                            Status:
+                        </BodyShort>
+                        <BodyShort size="small">
+                            {arbeidsOppfolging.oppfolging?.erUnderOppfolging
+                                ? 'Under oppfølging'
+                                : 'Ikke under oppfølging'}
+                        </BodyShort>
+                    </VStack>
+                    <VStack justify="space-between">
+                        <BodyShort size="small" weight="semibold">
+                            Oppfølgingsenhet:
+                        </BodyShort>
+                        <BodyShort size="small">{getOppfolgingEnhet(arbeidsOppfolging.oppfolging)}</BodyShort>
+                    </VStack>
+                    <VStack justify="space-between">
+                        <BodyShort size="small" weight="semibold">
+                            Veileder:
+                        </BodyShort>
+                        <BodyShort size="small">{getVeileder(arbeidsOppfolging.oppfolging?.veileder)}</BodyShort>
+                    </VStack>
+                    <ErrorBoundary boundaryName="arbeidssoekerregisteretDetaljer">
+                        <ArbeidssoekerregisteretDetaljer />
+                    </ErrorBoundary>
+                </HGrid>
+            )}
         </>
     );
 };
@@ -103,24 +96,28 @@ const Gjeldende14aVedtakDetaljer = () => {
                         {gjeldende14aVedtak ? 'Har § 14 a-vedtak' : 'Har ikke § 14 a-vedtak'}
                     </BodyShort>
                 </VStack>
-                <VStack justify="space-between">
-                    <BodyShort size="small" weight="semibold">
-                        Innsatsgruppe:
-                    </BodyShort>
-                    <BodyShort size="small">{gjeldende14aVedtak?.innsatsgruppe.beskrivelse}</BodyShort>
-                </VStack>
-                <VStack justify="space-between">
-                    <BodyShort size="small" weight="semibold">
-                        Hovedmål:
-                    </BodyShort>
-                    <BodyShort size="small">{gjeldende14aVedtak?.hovedmal?.beskrivelse}</BodyShort>
-                </VStack>
-                <VStack justify="space-between">
-                    <BodyShort size="small" weight="semibold">
-                        Vedtaksdato:
-                    </BodyShort>
-                    <BodyShort size="small">{datoEllerNull(gjeldende14aVedtak?.fattetDato)}</BodyShort>
-                </VStack>
+                {gjeldende14aVedtak && (
+                    <>
+                        <VStack justify="space-between">
+                            <BodyShort size="small" weight="semibold">
+                                Innsatsgruppe:
+                            </BodyShort>
+                            <BodyShort size="small">{gjeldende14aVedtak?.innsatsgruppe.beskrivelse}</BodyShort>
+                        </VStack>
+                        <VStack justify="space-between">
+                            <BodyShort size="small" weight="semibold">
+                                Hovedmål:
+                            </BodyShort>
+                            <BodyShort size="small">{gjeldende14aVedtak?.hovedmal?.beskrivelse}</BodyShort>
+                        </VStack>
+                        <VStack justify="space-between">
+                            <BodyShort size="small" weight="semibold">
+                                Vedtaksdato:
+                            </BodyShort>
+                            <BodyShort size="small">{datoEllerNull(gjeldende14aVedtak?.fattetDato)}</BodyShort>
+                        </VStack>
+                    </>
+                )}
             </HGrid>
         </>
     );
@@ -137,7 +134,7 @@ const SykefravaersoppfolgingDetaljer = () => {
     if (isLoading) return <Skeleton variant="rectangle" height={166} />;
 
     if (!sykefravaersoppfolging || sykefravaersoppfolging.length === 0) {
-        return <Alert variant="info">Brukeren har ingen sykefraværs-oppfølging.</Alert>;
+        return <InlineMessage status="info">Brukeren har ingen sykefraværs-oppfølging</InlineMessage>;
     }
 
     const handleSort = (sortKey: string) => {
@@ -166,38 +163,77 @@ const SykefravaersoppfolgingDetaljer = () => {
                 <Heading as="h3" size="small">
                     Sykefraværsoppfølging
                 </Heading>
-                <Table zebraStripes={true} sort={sort} onSortChange={handleSort} size="small">
-                    <Table.Header>
-                        <Table.Row>
-                            <Table.ColumnHeader sortKey="dato" sortable>
-                                Innen
-                            </Table.ColumnHeader>
-                            <Table.HeaderCell scope="col">Hendelse</Table.HeaderCell>
-                            <Table.HeaderCell scope="col">Status</Table.HeaderCell>
-                        </Table.Row>
-                    </Table.Header>
-                    <Table.Body>
-                        {tabellData.map((element, index) => {
-                            return (
-                                <Table.Row shadeOnHover={true} key={index}>
-                                    <Table.DataCell>{datoEllerNull(element.dato) ?? 'Ikke angitt'}</Table.DataCell>
-                                    <Table.DataCell>{element.syfoHendelse ?? 'Ikke angitt'}</Table.DataCell>
-                                    <Table.DataCell>{element.status ?? 'Ikke angitt'}</Table.DataCell>
+                {!sykefravaersoppfolging || sykefravaersoppfolging.length === 0 ? (
+                    <InlineMessage status="info">Brukeren har ingen sykefraværs-oppfølging</InlineMessage>
+                ) : (
+                    <>
+                        <Table zebraStripes={true} sort={sort} onSortChange={handleSort} size="small">
+                            <Table.Header>
+                                <Table.Row>
+                                    <Table.ColumnHeader sortKey="dato" sortable>
+                                        Innen
+                                    </Table.ColumnHeader>
+                                    <Table.HeaderCell scope="col">Hendelse</Table.HeaderCell>
+                                    <Table.HeaderCell scope="col">Status</Table.HeaderCell>
                                 </Table.Row>
-                            );
-                        })}
-                    </Table.Body>
-                </Table>
-                {sortedData.length > rowsPerPage && (
-                    <Pagination
-                        page={page}
-                        onPageChange={setPage}
-                        count={Math.ceil(sortedData.length / rowsPerPage)}
-                        size="xsmall"
-                    />
+                            </Table.Header>
+                            <Table.Body>
+                                {tabellData.map((element, index) => {
+                                    return (
+                                        <Table.Row shadeOnHover={true} key={index}>
+                                            <Table.DataCell>
+                                                {datoEllerNull(element.dato) ?? 'Ikke angitt'}
+                                            </Table.DataCell>
+                                            <Table.DataCell>{element.syfoHendelse ?? 'Ikke angitt'}</Table.DataCell>
+                                            <Table.DataCell>{element.status ?? 'Ikke angitt'}</Table.DataCell>
+                                        </Table.Row>
+                                    );
+                                })}
+                            </Table.Body>
+                        </Table>
+                        {sortedData.length > rowsPerPage && (
+                            <Pagination
+                                page={page}
+                                onPageChange={setPage}
+                                count={Math.ceil(sortedData.length / rowsPerPage)}
+                                size="xsmall"
+                            />
+                        )}
+                    </>
                 )}
             </VStack>
         </Card>
+    );
+};
+
+const ArbeidssoekerregisteretDetaljer = () => {
+    const { data, isError } = useOppslagArbeidssoekerregisteret();
+
+    if (isError) return;
+
+    const erRegistrertSomArbeidssoker = data && !data.avsluttet;
+    const sendtInnAvOpplysinger = data?.startet.sendtInnAv;
+
+    return (
+        <VStack justify="space-between">
+            <BodyShort size="small" weight="semibold">
+                Arbeidssøkerstatus:
+            </BodyShort>
+            {erRegistrertSomArbeidssoker ? (
+                <BodyShort size="small">Er registrert som arbeidssøker</BodyShort>
+            ) : (
+                <BodyShort size="small">
+                    Er <span className="font-semibold">ikke</span> registrert som arbeidssøker
+                </BodyShort>
+            )}
+            {erRegistrertSomArbeidssoker && (
+                <Detail>
+                    Dato: {data?.opplysning?.tidspunkt ? formatterDato(data.opplysning.tidspunkt) : 'Ikke angitt'}{' '}
+                    <br />
+                    Kilde: {sendtInnAvOpplysinger?.kilde ?? 'Ikke angitt'} <br />
+                </Detail>
+            )}
+        </VStack>
     );
 };
 
@@ -205,6 +241,7 @@ const OppfolgingPageContent = () => {
     const { errorMessages: gjeldende14aVedtakErrorMessage, isError: gjeldende14aVedtakErro } = useGjeldende14aVedtak();
     const { errorMessages: arbeidsoppfolgingErrorMessage, isError: arbeidsoppfolgingError } = useArbeidsoppfolging();
     const { errorMessages: syfoErrorMessage } = useSykefravaersoppfolging();
+    const { errorMessages: arbeidssoekerregisteretErrorMessage } = useOppslagArbeidssoekerregisteret();
 
     const doubleErrors = arbeidsoppfolgingError && gjeldende14aVedtakErro;
     const hasErrors = arbeidsoppfolgingError || gjeldende14aVedtakErro;
@@ -214,7 +251,12 @@ const OppfolgingPageContent = () => {
                 Oppfølging
             </Heading>
             <AlertBanner
-                alerts={[...arbeidsoppfolgingErrorMessage, ...gjeldende14aVedtakErrorMessage, ...syfoErrorMessage]}
+                alerts={[
+                    ...arbeidsoppfolgingErrorMessage,
+                    ...gjeldende14aVedtakErrorMessage,
+                    ...syfoErrorMessage,
+                    ...arbeidssoekerregisteretErrorMessage
+                ]}
             />
             {!doubleErrors && (
                 <Card padding="space-16">
@@ -227,6 +269,7 @@ const OppfolgingPageContent = () => {
                     </ErrorBoundary>
                 </Card>
             )}
+
             <ErrorBoundary boundaryName="sykefraversoppfolgingDetaljer">
                 <SykefravaersoppfolgingDetaljer />
             </ErrorBoundary>
