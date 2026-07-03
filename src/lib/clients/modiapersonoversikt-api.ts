@@ -345,7 +345,7 @@ export const useOppslagArbeidssoekerregisteret = () => {
     const response = $api.useQuery('post', '/rest/oppfolging/oppslag-arbeidssoekerregisteret', {
         body: { fnr }
     });
-    const errorMessages = [errorPlaceholder(response, responseErrorMessage('data fra arbeidsøkerregisteret'))];
+    const errorMessages = [errorPlaceholder(response, responseErrorMessage('data fra arbeidssøkerregisteret'))];
     return {
         ...response,
         errorMessages: errorMessages.filter(Boolean)
