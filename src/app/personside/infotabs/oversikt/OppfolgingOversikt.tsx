@@ -81,15 +81,11 @@ function Veileder({ detaljertOppfolging }: { detaljertOppfolging: DetaljertOppfo
 }
 
 function OppfolgingVisning({ detaljertOppfolging }: { detaljertOppfolging: DetaljertOppfolging }) {
-    const innsatsgruppe = detaljertOppfolging.innsatsgruppe;
-
     return (
         <>
             <Element>Oppfølgende enhet:</Element>
             <Normaltekst>{getOppfolgingEnhet(detaljertOppfolging.oppfolging)}</Normaltekst>
             <Veileder detaljertOppfolging={detaljertOppfolging} />
-            <Element>Innsatsgruppe</Element>
-            <Normaltekst>{innsatsgruppe}</Normaltekst>
             <YtelserForBruker detaljertOppfolging={detaljertOppfolging} />
         </>
     );
