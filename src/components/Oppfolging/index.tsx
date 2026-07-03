@@ -27,10 +27,11 @@ import { datoEllerNull } from 'src/utils/string-utils';
 
 const OppfolgingDetaljer = () => {
     const { data: arbeidsOppfolging, isLoading, isError } = useArbeidsoppfolging();
+    const { isLoading: arbeidssoekerregisteretLoading } = useOppslagArbeidssoekerregisteret();
 
     if (isError) return;
 
-    if (isLoading) return <Skeleton variant="rectangle" height={166} />;
+    if (isLoading || arbeidssoekerregisteretLoading) return <Skeleton variant="rectangle" height={166} />;
 
     return (
         <>
@@ -125,7 +126,7 @@ const Gjeldende14aVedtakDetaljer = () => {
 
 const SykefravaersoppfolgingDetaljer = () => {
     const { data, isError, isLoading } = useSykefravaersoppfolging();
-    const sykefravaersoppfolging = data?.sykefravaersoppfolging;
+    const sykefravaersoppfolging = data?.sykefravaersoppfolging ?? [];
     const [sort, setSort] = useState<SortState | undefined>({ orderBy: 'dato', direction: 'descending' });
     const [page, setPage] = useState(1);
 
@@ -133,7 +134,7 @@ const SykefravaersoppfolgingDetaljer = () => {
 
     if (isLoading) return <Skeleton variant="rectangle" height={166} />;
 
-    if (!sykefravaersoppfolging || sykefravaersoppfolging.length === 0) {
+    if (sykefravaersoppfolging.length === 0) {
         return <InlineMessage status="info">Brukeren har ingen sykefraværs-oppfølging</InlineMessage>;
     }
 
@@ -212,7 +213,7 @@ const ArbeidssoekerregisteretDetaljer = () => {
     if (isError) return;
 
     const erRegistrertSomArbeidssoker = data && !data.avsluttet;
-    const sendtInnAvOpplysinger = data?.startet.sendtInnAv;
+    const detaljer = data?.opplysning;
 
     return (
         <VStack justify="space-between">
@@ -226,11 +227,10 @@ const ArbeidssoekerregisteretDetaljer = () => {
                     Er <span className="font-semibold">ikke</span> registrert som arbeidssøker
                 </BodyShort>
             )}
-            {erRegistrertSomArbeidssoker && (
+            {detaljer && (
                 <Detail>
-                    Dato: {data?.opplysning?.tidspunkt ? formatterDato(data.opplysning.tidspunkt) : 'Ikke angitt'}{' '}
-                    <br />
-                    Kilde: {sendtInnAvOpplysinger?.kilde ?? 'Ikke angitt'} <br />
+                    Dato: {detaljer?.tidspunkt ? formatterDato(detaljer.tidspunkt) : 'Ikke angitt'} <br />
+                    Kilde: {detaljer?.sendtInnAv.kilde ?? 'Ikke angitt'} <br />
                 </Detail>
             )}
         </VStack>

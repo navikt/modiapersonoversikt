@@ -45,7 +45,7 @@ function VisOppfolgingDetaljer(props: Props) {
     ) : null;
 
     const erRegistrertSomArbeidssoker = oppslagArbeidssoekerRegisteret && !oppslagArbeidssoekerRegisteret.avsluttet;
-    const sendtInnAvOpplysinger = oppslagArbeidssoekerRegisteret?.startet.sendtInnAv;
+    const arbeidssoekerregisteretOpplysinger = oppslagArbeidssoekerRegisteret?.opplysning;
 
     const descriptionListProps = {
         'Er under oppfølging': getErUnderOppfolging(detaljer.oppfolging),
@@ -53,19 +53,25 @@ function VisOppfolgingDetaljer(props: Props) {
         Veileder: getVeileder(detaljer.oppfolging?.veileder),
         ...(!errorLoadingDataArbeidssoekerRegisteret
             ? {
-                  Arbeidssøkerstatus: erRegistrertSomArbeidssoker ? (
+                  Arbeidssøkerstatus: (
                       <>
-                          Er registrert som arbeidssøker
-                          <Detail>Kilde: {sendtInnAvOpplysinger?.kilde ?? 'Ikke angitt'}</Detail>
-                          <Detail>
-                              Dato:{' '}
-                              {sendtInnAvOpplysinger?.tidspunkt
-                                  ? formatterDato(sendtInnAvOpplysinger.tidspunkt)
-                                  : 'Ikke angitt'}
-                          </Detail>
+                          {erRegistrertSomArbeidssoker
+                              ? 'Er registrert som arbeidssøker'
+                              : 'Er ikke registrert som arbeidssøker'}
+                          {arbeidssoekerregisteretOpplysinger && (
+                              <>
+                                  <Detail>
+                                      Dato:{' '}
+                                      {arbeidssoekerregisteretOpplysinger?.tidspunkt
+                                          ? formatterDato(arbeidssoekerregisteretOpplysinger.tidspunkt)
+                                          : 'Ikke angitt'}
+                                  </Detail>
+                                  <Detail>
+                                      Kilde: {arbeidssoekerregisteretOpplysinger?.sendtInnAv.kilde ?? 'Ikke angitt'}
+                                  </Detail>
+                              </>
+                          )}{' '}
                       </>
-                  ) : (
-                      'Er ikke registrert som arbeidssøker'
                   )
               }
             : {})
