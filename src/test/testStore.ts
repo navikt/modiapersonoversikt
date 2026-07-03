@@ -78,6 +78,7 @@ export function setupReactQueryMocks() {
     vi.spyOn(gsaktemaResource, 'useFetch');
     vi.spyOn(oppfolgingResource, 'useFetch');
     vi.spyOn(modiapersonoversiktApiClient, 'useSakerDokumenter');
+    vi.spyOn(modiapersonoversiktApiClient, 'useOppslagArbeidssoekerregisteret');
     vi.spyOn(utbetalingerResource, 'useFetch');
     vi.spyOn(persondataResource, 'useFetch');
     vi.spyOn(aktoridResource, 'useFetch');
