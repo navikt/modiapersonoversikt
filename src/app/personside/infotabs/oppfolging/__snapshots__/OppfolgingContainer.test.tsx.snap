@@ -435,18 +435,6 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
               <dt
                 class="typo-normal"
               >
-                Rettighetsgruppe
-              </dt>
-              <dd
-                class="typo-element"
-              >
-                RGRP8
-              </dd>
-            </div>
-            <div>
-              <dt
-                class="typo-normal"
-              >
                 Veileder
               </dt>
               <dd
@@ -459,36 +447,23 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
               <dt
                 class="typo-normal"
               >
-                Meldeplikt
+                Arbeidssøkerstatus
               </dt>
               <dd
                 class="typo-element"
               >
-                Nei
-              </dd>
-            </div>
-            <div>
-              <dt
-                class="typo-normal"
-              >
-                Formidlingsgruppe
-              </dt>
-              <dd
-                class="typo-element"
-              >
-                FMGRP2
-              </dd>
-            </div>
-            <div>
-              <dt
-                class="typo-normal"
-              >
-                Oppfølgingsvedtak
-              </dt>
-              <dd
-                class="typo-element"
-              >
-                24.04.2019
+                Er registrert som arbeidssøker
+                <p
+                  class="aksel-detail"
+                >
+                  Dato: 03.12.1969
+                </p>
+                <p
+                  class="aksel-detail"
+                >
+                  Kilde: arbeidssokerregisteret
+                </p>
+                 
               </dd>
             </div>
           </dl>
@@ -513,42 +488,6 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                   class="typo-element"
                 >
                   Nei
-                </dd>
-              </div>
-              <div>
-                <dt
-                  class="typo-normal"
-                >
-                  Innsatsgruppe
-                </dt>
-                <dd
-                  class="typo-element"
-                >
-                  —
-                </dd>
-              </div>
-              <div>
-                <dt
-                  class="typo-normal"
-                >
-                  Hovedmål
-                </dt>
-                <dd
-                  class="typo-element"
-                >
-                  —
-                </dd>
-              </div>
-              <div>
-                <dt
-                  class="typo-normal"
-                >
-                  Vedtaksdato
-                </dt>
-                <dd
-                  class="typo-element"
-                >
-                  —
                 </dd>
               </div>
             </dl>
