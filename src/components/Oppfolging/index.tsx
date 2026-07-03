@@ -27,11 +27,10 @@ import { datoEllerNull } from 'src/utils/string-utils';
 
 const OppfolgingDetaljer = () => {
     const { data: arbeidsOppfolging, isLoading, isError } = useArbeidsoppfolging();
-    const { isLoading: arbeidssoekerregisteretLoading } = useOppslagArbeidssoekerregisteret();
 
     if (isError) return;
 
-    if (isLoading || arbeidssoekerregisteretLoading) return <Skeleton variant="rectangle" height={166} />;
+    if (isLoading) return <Skeleton variant="rectangle" height={166} />;
 
     return (
         <>
@@ -208,9 +207,10 @@ const SykefravaersoppfolgingDetaljer = () => {
 };
 
 const ArbeidssoekerregisteretDetaljer = () => {
-    const { data, isError } = useOppslagArbeidssoekerregisteret();
+    const { data, isError, isLoading } = useOppslagArbeidssoekerregisteret();
 
     if (isError) return;
+    if (isLoading) return <Skeleton variant="rectangle" height={50} />;
 
     const erRegistrertSomArbeidssoker = data && !data.avsluttet;
     const detaljer = data?.opplysning;
