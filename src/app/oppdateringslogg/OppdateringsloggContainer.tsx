@@ -30,9 +30,9 @@ function useHoldUlestIndikatorOppdatert(
     useEffect(() => {
         if (element != null) {
             const ulest = harUleste(sistLesteId, oppdateringslogg);
-            element?.classList.remove('oppdateringslogg--uleste');
+            element.classList.remove('oppdateringslogg--uleste');
             if (ulest) {
-                element?.classList.add('oppdateringslogg--uleste');
+                element.classList.add('oppdateringslogg--uleste');
                 element.setAttribute('title', 'Oppdateringslogg (du har en eller flere uleste logginnslag)');
             } else {
                 element.setAttribute('title', 'Oppdateringslogg');
@@ -50,8 +50,8 @@ function OppdateringsloggContainer() {
     const element = useWaitForElement(`#${DecoratorButtonId}`);
 
     const aapne = useCallback(() => {
-        const nyesteId: number | undefined = oppdateringslogg.map((innslag) => innslag.id).sort((a, b) => b - a)[0];
-        settSistLesteId(nyesteId ?? -1);
+        const nyesteId = Math.max(-1, ...oppdateringslogg.map((innslag) => innslag.id));
+        settSistLesteId(nyesteId);
         settOpenKey((k) => k + 1);
         settApen(true);
     }, [oppdateringslogg, settSistLesteId]);
@@ -66,7 +66,7 @@ function OppdateringsloggContainer() {
             className={apen ? 'w-[1400px] max-w-[95vw]' : undefined}
             aria-label="Oppdateringslogg"
         >
-            <Modal.Body className="h-[700px]" style={{ padding: 0 }}>
+            <Modal.Body className="h-[700px] p-0">
                 <Oppdateringslogg key={openKey} oppdateringslogg={oppdateringslogg} />
             </Modal.Body>
             <Modal.Footer style={{ padding: 'var(--ax-space-8) var(--ax-space-16)' }}>

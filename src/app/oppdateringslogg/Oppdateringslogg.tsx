@@ -25,12 +25,12 @@ function MenyItem({
                         : 'oppdateringslogg-meny__knapp'
                 }
             >
-                <span className="oppdateringslogg-meny__knapp-innhold">
+                <VStack gap="space-4" align="start">
                     <BodyShort weight="semibold">{innslag.tittel}</BodyShort>
                     <BodyShort size="small" className="text-ax-text-neutral-subtle">
                         Lagt til {formatterDato(innslag.dato)}
                     </BodyShort>
-                </span>
+                </VStack>
             </Button>
         </li>
     );
@@ -67,7 +67,7 @@ function Oppdateringslogg(props: { oppdateringslogg: OppdateringsloggInnslag[] }
                         Her finner du en oversikt over oppdateringer som er gjort i Modia personoversikt siste året
                     </BodyShort>
                 </VStack>
-                <ul className="overflow-auto" onKeyDown={handleMenyKeyDown}>
+                <ul className="oppdateringslogg-meny-liste" onKeyDown={handleMenyKeyDown}>
                     {sortertOppdateringslogg.map((innslag) => (
                         <MenyItem
                             key={innslag.id}
