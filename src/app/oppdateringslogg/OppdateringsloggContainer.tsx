@@ -1,4 +1,4 @@
-import { Modal } from '@navikt/ds-react';
+import { Button, HStack, Modal } from '@navikt/ds-react';
 import type * as React from 'react';
 import { useCallback, useEffect, useState } from 'react';
 import useListener from '../../utils/hooks/use-listener';
@@ -60,10 +60,22 @@ function OppdateringsloggContainer() {
     useHoldUlestIndikatorOppdatert(element, sistLesteId, oppdateringslogg);
 
     return (
-        <Modal open={apen} onClose={() => settApen(false)} width="1400px" aria-label="Oppdateringslogg" style={{ maxWidth: '95vw' }}>
-            <Modal.Body style={{ padding: 0, overflow: 'hidden' }}>
-                <Oppdateringslogg key={openKey} oppdateringslogg={oppdateringslogg} onClose={() => settApen(false)} />
+        <Modal
+            open={apen}
+            onClose={() => settApen(false)}
+            className={apen ? 'w-[1400px] max-w-[95vw]' : undefined}
+            aria-label="Oppdateringslogg"
+        >
+            <Modal.Body className="h-[700px]" style={{ padding: 0 }}>
+                <Oppdateringslogg key={openKey} oppdateringslogg={oppdateringslogg} />
             </Modal.Body>
+            <Modal.Footer style={{ padding: 'var(--ax-space-8) var(--ax-space-16)' }}>
+                <HStack justify="end" className="w-full">
+                    <Button variant="tertiary" onClick={() => settApen(false)}>
+                        Lukk
+                    </Button>
+                </HStack>
+            </Modal.Footer>
         </Modal>
     );
 }

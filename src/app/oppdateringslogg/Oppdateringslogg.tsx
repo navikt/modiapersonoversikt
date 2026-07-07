@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Button, Heading } from '@navikt/ds-react';
+import { Alert, BodyShort, Button, Heading, HStack, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { datoSynkende, formatterDato } from '../../utils/date-utils';
 import EnkeltOppdateringslogg from './EnkeltOppdateringslogg';
@@ -27,7 +27,7 @@ function MenyItem({
             >
                 <span className="oppdateringslogg-meny__knapp-innhold">
                     <BodyShort weight="semibold">{innslag.tittel}</BodyShort>
-                    <BodyShort size="small" className="oppdateringslogg-meny__dato">
+                    <BodyShort size="small" className="text-ax-text-neutral-subtle">
                         Lagt til {formatterDato(innslag.dato)}
                     </BodyShort>
                 </span>
@@ -36,8 +36,18 @@ function MenyItem({
     );
 }
 
-function Oppdateringslogg(props: { oppdateringslogg: OppdateringsloggInnslag[]; onClose: () => void }) {
-    const { oppdateringslogg, onClose } = props;
+function handleMenyKeyDown(e: React.KeyboardEvent<HTMLUListElement>) {
+    if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return;
+    e.preventDefault();
+    const buttons = Array.from(e.currentTarget.querySelectorAll<HTMLElement>('button'));
+    const idx = buttons.findIndex((el) => el === document.activeElement);
+    if (idx === -1) return;
+    const next = e.key === 'ArrowDown' ? idx + 1 : idx - 1;
+    buttons[Math.max(0, Math.min(buttons.length - 1, next))]?.focus();
+}
+
+function Oppdateringslogg(props: { oppdateringslogg: OppdateringsloggInnslag[] }) {
+    const { oppdateringslogg } = props;
 
     const sortertOppdateringslogg = [...oppdateringslogg].sort(datoSynkende((innslag) => innslag.dato));
     const [selectedId, setSelectedId] = useState<number>(sortertOppdateringslogg[0]?.id ?? -1);
@@ -49,15 +59,15 @@ function Oppdateringslogg(props: { oppdateringslogg: OppdateringsloggInnslag[]; 
     const selectedEntry = sortertOppdateringslogg.find((i) => i.id === selectedId) ?? sortertOppdateringslogg[0];
 
     return (
-        <div className="oppdateringslogg">
+        <HStack height="100%" padding="space-24" wrap={false} align="stretch">
             <div className="oppdateringslogg__meny">
-                <Heading size="large" className="oppdateringslogg__tittel">
-                    Oppdateringslogg
-                </Heading>
-                <BodyShort size="small" className="oppdateringslogg__ingress">
-                    Her finner du en oversikt over oppdateringer som er gjort i Modia personoversikt siste året
-                </BodyShort>
-                <ul className="oppdateringslogg-meny-elementer">
+                <VStack paddingBlock="space-0 space-16" gap="space-8">
+                    <Heading size="large">Oppdateringslogg</Heading>
+                    <BodyShort size="small">
+                        Her finner du en oversikt over oppdateringer som er gjort i Modia personoversikt siste året
+                    </BodyShort>
+                </VStack>
+                <ul className="overflow-auto" onKeyDown={handleMenyKeyDown}>
                     {sortertOppdateringslogg.map((innslag) => (
                         <MenyItem
                             key={innslag.id}
@@ -70,16 +80,9 @@ function Oppdateringslogg(props: { oppdateringslogg: OppdateringsloggInnslag[]; 
             </div>
 
             <div className="oppdateringslogg__innhold">
-                <div className="oppdateringslogg__innhold-tekst">
-                    <EnkeltOppdateringslogg enOppdateringslogg={selectedEntry} />
-                </div>
-                <div className="oppdateringslogg__lukk-rad">
-                    <Button variant="tertiary" onClick={onClose}>
-                        Lukk
-                    </Button>
-                </div>
+                <EnkeltOppdateringslogg enOppdateringslogg={selectedEntry} />
             </div>
-        </div>
+        </HStack>
     );
 }
 
