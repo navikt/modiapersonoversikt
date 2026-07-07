@@ -14,7 +14,7 @@ function OppdateringsloggBilde({ src }: { src?: string }) {
 
 export default function EnkeltOppdateringslogg({ enOppdateringslogg }: Props) {
     return (
-        <VStack gap="space-8">
+        <VStack gap="space-8" className="h-full">
             <OppdateringsloggBilde src={enOppdateringslogg.src} />
             <Heading size="small" level="3">
                 {enOppdateringslogg.tittel}
