@@ -1,8 +1,6 @@
-import ModalWrapper from 'nav-frontend-modal';
-import { Systemtittel } from 'nav-frontend-typografi';
+import { Modal } from '@navikt/ds-react';
 import type * as React from 'react';
 import { useCallback, useEffect, useState } from 'react';
-import styled from 'styled-components';
 import useListener from '../../utils/hooks/use-listener';
 import useWaitForElement from '../../utils/hooks/use-wait-for-element';
 import { lagOppdateringsloggConfig } from './config/config';
@@ -19,17 +17,6 @@ export interface OppdateringsloggInnslag {
     beskrivelse: React.ReactNode;
     src?: string;
 }
-
-const StyledModalWrapper = styled(ModalWrapper)`
-    &.modal {
-        padding: 0.5rem;
-    }
-`;
-
-const StyledSystemtittel = styled(Systemtittel)`
-    text-align: center;
-    margin: 0.75rem 0rem 1rem 1rem;
-`;
 
 function harUleste(sistLesteId: number, oppdateringslogg: OppdateringsloggInnslag[]): boolean {
     return oppdateringslogg.some((innslag) => innslag.id > sistLesteId);
@@ -54,36 +41,30 @@ function useHoldUlestIndikatorOppdatert(
     }, [element, sistLesteId, oppdateringslogg]);
 }
 
-function useApneOppdateringsLoggModal(
-    settApen: (apen: boolean) => void,
-    oppdateringslogg: OppdateringsloggInnslag[],
-    settSistLesteId: (id: number) => void
-) {
-    const listener = useCallback(() => {
-        const nyesteId: number | undefined = oppdateringslogg.map((innslag) => innslag.id).sort((a, b) => b - a)[0];
-
-        settSistLesteId(nyesteId ?? -1);
-        settApen(true);
-    }, [settApen, oppdateringslogg, settSistLesteId]);
-
-    useListener(`#${DecoratorButtonId}`, 'click', listener, document.querySelector('internarbeidsflate-decorator'));
-}
-
 function OppdateringsloggContainer() {
     const oppdateringslogg: OppdateringsloggInnslag[] = lagOppdateringsloggConfig().filter((innslag) => innslag.aktiv);
 
     const [apen, settApen] = useState(false);
+    const [openKey, settOpenKey] = useState(0);
     const [sistLesteId, settSistLesteId] = useSisteLestOppdateringLogg();
     const element = useWaitForElement(`#${DecoratorButtonId}`);
 
-    useApneOppdateringsLoggModal(settApen, oppdateringslogg, settSistLesteId);
+    const aapne = useCallback(() => {
+        const nyesteId: number | undefined = oppdateringslogg.map((innslag) => innslag.id).sort((a, b) => b - a)[0];
+        settSistLesteId(nyesteId ?? -1);
+        settOpenKey((k) => k + 1);
+        settApen(true);
+    }, [oppdateringslogg, settSistLesteId]);
+
+    useListener(`#${DecoratorButtonId}`, 'click', aapne, document.querySelector('internarbeidsflate-decorator'));
     useHoldUlestIndikatorOppdatert(element, sistLesteId, oppdateringslogg);
 
     return (
-        <StyledModalWrapper contentLabel="Oppdateringslogg" isOpen={apen} onRequestClose={() => settApen(false)}>
-            <StyledSystemtittel>Oppdateringslogg</StyledSystemtittel>
-            <Oppdateringslogg oppdateringslogg={oppdateringslogg} />
-        </StyledModalWrapper>
+        <Modal open={apen} onClose={() => settApen(false)} width="1400px" aria-label="Oppdateringslogg" style={{ maxWidth: '95vw' }}>
+            <Modal.Body style={{ padding: 0, overflow: 'hidden' }}>
+                <Oppdateringslogg key={openKey} oppdateringslogg={oppdateringslogg} onClose={() => settApen(false)} />
+            </Modal.Body>
+        </Modal>
     );
 }
 

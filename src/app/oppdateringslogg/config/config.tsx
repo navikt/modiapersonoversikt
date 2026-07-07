@@ -1,5 +1,5 @@
-import { Heading, VStack } from '@navikt/ds-react';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { BodyShort, Heading, VStack } from '@navikt/ds-react';
+
 import type { OppdateringsloggInnslag } from '../OppdateringsloggContainer';
 import AutofullforBarnetrygd from './img/autofullfor-barnetrygd.png';
 import AvansertSokKnappBilde from './img/avansertSok-knapp.jpg';
@@ -51,19 +51,19 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             dato: new Date('2020-09-25 08:00'),
             aktiv: false,
             ingress: (
-                <Normaltekst>
+                <BodyShort>
                     Ved å trykke på bjelleikonet <img src={BjelleikonBilde} alt="bjelleikon" width="20em" /> vil du se
                     hva som er nytt i Modia personoversikt.
-                </Normaltekst>
+                </BodyShort>
             ),
             beskrivelse: (
                 <>
-                    <Normaltekst>Oppdateringene vil vises her fra den nyeste til den eldste.</Normaltekst>
-                    <Normaltekst>
+                    <BodyShort>Oppdateringene vil vises her fra den nyeste til den eldste.</BodyShort>
+                    <BodyShort>
                         Ved nye oppdateringer vil bjelleikonet
                         <img src={BjelleikonVarselBilde} alt="bjelleikon med varsel" width="20em" /> være markert med
                         rødt.
-                    </Normaltekst>
+                    </BodyShort>
                 </>
             ),
             src: OppdateringsloggKnappBilde
@@ -74,16 +74,16 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             dato: new Date('2020-10-12 10:00'),
             aktiv: false,
             ingress: (
-                <Normaltekst>
+                <BodyShort>
                     Infomelding er melding til bruker sin innboks. Det er ikke mulig for bruker å svare på denne
                     meldingen.
-                </Normaltekst>
+                </BodyShort>
             ),
             beskrivelse: (
-                <Normaltekst>
+                <BodyShort>
                     Bruker vil på lik linje med de andre meldingsformene i Modia personoversikt bli varslet om ny
                     melding fra NAV på SMS, e-post og når man logger seg på Ditt NAV.
-                </Normaltekst>
+                </BodyShort>
             ),
             src: InfomeldingBilde
         },
@@ -92,14 +92,14 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             tittel: 'Modia personoversikt har fått et nytt tema Helse',
             dato: new Date('2020-11-13 08:00'),
             aktiv: false,
-            ingress: <Normaltekst>Tema Helse er tilsvarende tema Syk i skriv til oss på ditt NAV.</Normaltekst>,
+            ingress: <BodyShort>Tema Helse er tilsvarende tema Syk i skriv til oss på ditt NAV.</BodyShort>,
             beskrivelse: (
-                <Normaltekst>
+                <BodyShort>
                     Når bruker sender melding til NAV vil meldinger fra tema Syk på Ditt NAV havne under tema Helse i
                     Modia Personoversikt. Nå kan man velge temagruppe Helse for nye meldinger relatert til helse. Dette
                     gjelder blant annet meldinger relatert til sykemelding, AAP, grunn- og hjelpestønad,
                     yrkesskade/menerstatning etc.
-                </Normaltekst>
+                </BodyShort>
             ),
             src: TemaHelseBilde
         },
@@ -108,12 +108,12 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             tittel: 'Nå kan du søke på Utenlandsk ID i Modia Personoversikt',
             dato: new Date('2020-11-20 11:00'),
             aktiv: false,
-            ingress: <Normaltekst>Nå kan det gjøres søk på Utenlandsk ID i Avansert Søk.</Normaltekst>,
+            ingress: <BodyShort>Nå kan det gjøres søk på Utenlandsk ID i Avansert Søk.</BodyShort>,
             beskrivelse: (
-                <Normaltekst>
+                <BodyShort>
                     Søk på Utenlandsk ID kan ikke kombineres med andre søk. Det er ett frittstående søkefelt. Du finner
                     funksjonaliteten under <img src={AvansertSokKnappBilde} alt="Avansert Søk" width="20em" />
-                </Normaltekst>
+                </BodyShort>
             ),
             src: UtenlandskIDBilde
         },
@@ -122,9 +122,9 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             tittel: 'Visning av foreldreansvar',
             dato: new Date('2021-04-08 13:00'),
             aktiv: false,
-            ingress: <Normaltekst>Nå vises foreldreansvar i visittkortet</Normaltekst>,
+            ingress: <BodyShort>Nå vises foreldreansvar i visittkortet</BodyShort>,
             beskrivelse: (
-                <Normaltekst>
+                <BodyShort>
                     Foreldreansvar handler om hvem som har ansvar for å ta seg av barnet og gi god omsorg, og om hvem
                     som har rett og plikt til å ta store personlige avgjørelser for barnet. Foreldreansvar er ikke
                     direkte knyttet til barnets bosted.
@@ -136,7 +136,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                         Les mer om Foreldreansvar på Navet.
                     </a>
                     Foreldreansvar vil kun bli vist på barnet og ikke foreldre.
-                </Normaltekst>
+                </BodyShort>
             ),
             src: ForeldreansvarBilde
         },
@@ -145,13 +145,13 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             tittel: 'Oppdatert oppdateringslogg-varslingen',
             dato: new Date('2021-05-03 15:00'),
             aktiv: false,
-            ingress: <Normaltekst>Oppdateringsloggen har fått fikset problemet med varsling.</Normaltekst>,
+            ingress: <BodyShort>Oppdateringsloggen har fått fikset problemet med varsling.</BodyShort>,
             beskrivelse: (
-                <Normaltekst>
+                <BodyShort>
                     Det var problemer med at det kom opp varsel om nye oppdateringer når det ikke var tilfellet. Dette
                     er nå løst. Hvis noen likevel opplever at dette skjer, så lag gjerne en sak i Porten slik at vi får
                     melding om det.
-                </Normaltekst>
+                </BodyShort>
             ),
             src: OppdateringsloggKnappBilde
         },
@@ -161,18 +161,16 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             dato: new Date('2021-07-21 12:00'),
             aktiv: false,
             ingress: (
-                <Normaltekst className="blokk-xxs">
-                    Ikonet gir en tidlig indikasjon på at man bør undersøke barns status nærmere.
-                </Normaltekst>
+                <BodyShort>Ikonet gir en tidlig indikasjon på at man bør undersøke barns status nærmere.</BodyShort>
             ),
             beskrivelse: (
                 <>
-                    <Normaltekst>
+                    <BodyShort>
                         Man sjekker i dag bare personens status, men dette vil muligens endres i fremtiden.
-                    </Normaltekst>
-                    <Normaltekst>
+                    </BodyShort>
+                    <BodyShort>
                         Det er derfor anbefalt å åpne visittkortet for en nærmere titt om ikonet dukker opp.
-                    </Normaltekst>
+                    </BodyShort>
                 </>
             ),
             src: MarkeringDodeBarnBilde
@@ -182,11 +180,11 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             tittel: 'Viser at dokument er kassert',
             dato: new Date('2021-08-19 10:00'),
             aktiv: false,
-            ingress: <Normaltekst>Vi viser nå at dokument er kassert i en sak.</Normaltekst>,
+            ingress: <BodyShort>Vi viser nå at dokument er kassert i en sak.</BodyShort>,
             beskrivelse: (
-                <Normaltekst>
+                <BodyShort>
                     Hvis et dokument er blitt kassert så står det i parentes bak det aktuelle dokumentet.
-                </Normaltekst>
+                </BodyShort>
             ),
             src: KassertDokumentBilde
         },
@@ -196,15 +194,15 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             dato: new Date('2021-11-17 10:00'),
             aktiv: false,
             ingress: (
-                <Normaltekst>
+                <BodyShort>
                     Visittkortet i Modia Personoversikt har frem til nå basert seg på NAVs eget personregister.
-                </Normaltekst>
+                </BodyShort>
             ),
             beskrivelse: (
-                <Normaltekst>
+                <BodyShort>
                     Vi har gått over til å hente opplysninger fra modernisert folkeregister. Denne overgangen medfører
                     mindre endringer i visittkortet.
-                </Normaltekst>
+                </BodyShort>
             ),
             src: VisittkortV2
         },
@@ -214,13 +212,13 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             dato: new Date('2021-12-17 09:00'),
             aktiv: false,
             ingress: (
-                <Normaltekst>Vi har lagt til to forkortelser for barnetrygd når man skal sende en melding.</Normaltekst>
+                <BodyShort>Vi har lagt til to forkortelser for barnetrygd når man skal sende en melding.</BodyShort>
             ),
             beskrivelse: (
-                <Normaltekst>
+                <BodyShort>
                     Forkortelsene er BAUT og BAOR for hhv. utvidet barnetrygd og ordinær barnetrygd. Trykk på
                     spørsmålstegnet i meldingsboksen for mer informasjon.
-                </Normaltekst>
+                </BodyShort>
             ),
             src: AutofullforBarnetrygd
         },
@@ -229,12 +227,12 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             tittel: 'Forkortelse for arbeidsgiver- og arbeidstakerregisteret',
             dato: new Date('2022-01-06 12:00'),
             aktiv: false,
-            ingress: <Normaltekst>Vi har lagt til en ny forkortelse for Aa-registeret.</Normaltekst>,
+            ingress: <BodyShort>Vi har lagt til en ny forkortelse for Aa-registeret.</BodyShort>,
             beskrivelse: (
-                <Normaltekst>
+                <BodyShort>
                     Forkortelsen er AAREG, som gir teksten "arbeidsgiver- og arbeidstakerregisteret". Trykk på
                     spørsmålstegnet i meldingsboksen for mer informasjon.
-                </Normaltekst>
+                </BodyShort>
             ),
             src: AutofullforBarnetrygd
         },
@@ -244,15 +242,15 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             dato: new Date('2022-01-21 12:00'),
             aktiv: false,
             ingress: (
-                <Normaltekst>
+                <BodyShort>
                     Hovedkilden til søket er endret, og dette kan medføre noen forskjeller på resultatet.
-                </Normaltekst>
+                </BodyShort>
             ),
             beskrivelse: (
-                <Normaltekst>
+                <BodyShort>
                     Det vil ikke lengre være mulig å kombinere søk på kontonummer med andre felter. Det åpnes opp for å
                     kombinere søk på utenlandsk id med andre felter.
-                </Normaltekst>
+                </BodyShort>
             ),
             src: AvansertsokPdlsok
         },
@@ -262,11 +260,9 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             dato: new Date('2022-01-31 12:00'),
             aktiv: false,
             ingress: (
-                <Normaltekst>
-                    Du kan nå velge standardvalget for hvor oppgave skal sendes når bruker svarer.
-                </Normaltekst>
+                <BodyShort>Du kan nå velge standardvalget for hvor oppgave skal sendes når bruker svarer.</BodyShort>
             ),
-            beskrivelse: <Normaltekst>Det vil fortsatt være mulig å overstyre dette ved utsending.</Normaltekst>,
+            beskrivelse: <BodyShort>Det vil fortsatt være mulig å overstyre dette ved utsending.</BodyShort>,
             src: OppgaveDestinasjon
         },
         {
@@ -275,16 +271,14 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             dato: new Date('2022-02-23 08:00'),
             aktiv: false,
             ingress: (
-                <Normaltekst>
-                    Salesforce åpner opp for fortløpende journalføring og oppretting av dokumenter.
-                </Normaltekst>
+                <BodyShort>Salesforce åpner opp for fortløpende journalføring og oppretting av dokumenter.</BodyShort>
             ),
             beskrivelse: (
                 <>
-                    <Normaltekst>
+                    <BodyShort>
                         Når en dialog blir journalført vil dokumenter bli tilgjengelig i Gosys etter kort tid. Mens en
                         dialog er åpen for videre meldinger vil dokumenttypen være "Notat"/"N".
-                    </Normaltekst>
+                    </BodyShort>
                 </>
             ),
             src: FortlopendeJournalforing
@@ -295,14 +289,14 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             dato: new Date('2022-02-25 16:00'),
             aktiv: false,
             ingress: (
-                <Normaltekst>Ved oppslag av bruker med sikkerhetstiltak vil det dukke opp et popup-vindu.</Normaltekst>
+                <BodyShort>Ved oppslag av bruker med sikkerhetstiltak vil det dukke opp et popup-vindu.</BodyShort>
             ),
             beskrivelse: (
                 <>
-                    <Normaltekst>
+                    <BodyShort>
                         Vinduet vil inneholde hvilke sikkerhetstiltak bruker har og gyldighetsperiode. Informasjonen om
                         sikkerhetstiltakene vil fortsatt være tilgjengelig i visittkortet.
-                    </Normaltekst>
+                    </BodyShort>
                 </>
             ),
             src: VisningSikkerhetstiltak
@@ -312,13 +306,13 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             tittel: 'Avslutt dialog',
             dato: new Date('2022-03-04 14:00'),
             aktiv: false,
-            ingress: <Normaltekst>Dialoger bestående av spørsmål og svar kan nå manuelt avsluttes.</Normaltekst>,
+            ingress: <BodyShort>Dialoger bestående av spørsmål og svar kan nå manuelt avsluttes.</BodyShort>,
             beskrivelse: (
                 <>
-                    <Normaltekst>
+                    <BodyShort>
                         Ved avslutting vil det ikke være mulig å skrive flere meldinger i dialogen for verken Nav eller
                         bruker.
-                    </Normaltekst>
+                    </BodyShort>
                 </>
             ),
             src: AvsluttDialog
@@ -328,13 +322,13 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             tittel: 'Filtrering på sakstema',
             dato: new Date('2022-03-30 08:00'),
             aktiv: false,
-            ingress: <Normaltekst>Du kan nå filtrere på flere ulike sakstemaer.</Normaltekst>,
+            ingress: <BodyShort>Du kan nå filtrere på flere ulike sakstemaer.</BodyShort>,
             beskrivelse: (
                 <>
-                    <Normaltekst>
+                    <BodyShort>
                         Det gjør det mulig å se journalposter fra flere sakstemaer samtidig ved å huke av på flere
                         sakstemaer i menyen til venstre.
-                    </Normaltekst>
+                    </BodyShort>
                 </>
             ),
             src: FiltreringSakstema
@@ -347,13 +341,13 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             ingress: null,
             beskrivelse: (
                 <>
-                    <Normaltekst>
+                    <BodyShort>
                         Det vil nå være mulig å journalføre en dialog selv om den allerede er journalført.
-                    </Normaltekst>
-                    <Normaltekst>
+                    </BodyShort>
+                    <BodyShort>
                         Informasjon om at melding er journalført er flyttet fra bunnen av melding til toppen av
                         meldingslisten.
-                    </Normaltekst>
+                    </BodyShort>
                 </>
             ),
             src: JournalforFlere
@@ -366,13 +360,11 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             ingress: null,
             beskrivelse: (
                 <>
-                    <Normaltekst>
+                    <BodyShort>
                         Ved bruk av "svar" vil dialogen automatisk avsluttes, og ingen flere meldinger kan sendes i
                         dialogen. Dette gjelder både ved bruk av svar fra bruker og fra veileder/saksbehandler.
-                    </Normaltekst>
-                    <Normaltekst>
-                        Det vil ikke bli opprettet "svar ikke mottatt" oppgaver for denne dialogen.
-                    </Normaltekst>
+                    </BodyShort>
+                    <BodyShort>Det vil ikke bli opprettet "svar ikke mottatt" oppgaver for denne dialogen.</BodyShort>
                 </>
             ),
             src: SvarAvslutterDialog
@@ -384,11 +376,11 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             aktiv: false,
             ingress: null,
             beskrivelse: (
-                <Normaltekst>
+                <BodyShort>
                     Ved å sette anførselstegn rundt de delene av navn/adresse du er sikker på kan du nå avgrense søk på
                     navn/adresse. Eksempel på søk på navn med det nye søket er: "Ola" Normann. Her spesifiserer du da at
                     navnet må inneholde Ola, og unngår å få opp treff på liknende navn.
-                </Normaltekst>
+                </BodyShort>
             ),
             src: ForbedretAvansertSok
         },
@@ -400,11 +392,11 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             ingress: null,
             beskrivelse: (
                 <>
-                    <Normaltekst>Det er nå mulig å se chatmeldinger fra Salesforce i Modia Personoversikt.</Normaltekst>
-                    <Normaltekst>
+                    <BodyShort>Det er nå mulig å se chatmeldinger fra Salesforce i Modia Personoversikt.</BodyShort>
+                    <BodyShort>
                         Disse kan ikke besvares fra Modia, men man kan journalføre, opprette oppgave og sende til
                         sladding.
-                    </Normaltekst>
+                    </BodyShort>
                 </>
             ),
             src: ChatModia
@@ -417,13 +409,13 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             ingress: null,
             beskrivelse: (
                 <>
-                    <Normaltekst>
+                    <BodyShort>
                         Notifikasjoner viser nå hvilke kanaler som har blitt brukt til å varsle bruker på lik linje som
                         tidligere varsler.
-                    </Normaltekst>
-                    <Normaltekst>
+                    </BodyShort>
+                    <BodyShort>
                         Informasjon om hvorvidt notifikasjonen er ferdigstilt er flyttet for å få plass til kanalene.
-                    </Normaltekst>
+                    </BodyShort>
                 </>
             ),
             src: NotifikasjonKanal
@@ -436,13 +428,13 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             ingress: null,
             beskrivelse: (
                 <>
-                    <Normaltekst>
+                    <BodyShort>
                         Valg av årsak dukker opp når man velger "Send til sladding" fra "Merk"-panelet.
-                    </Normaltekst>
-                    <Normaltekst>
+                    </BodyShort>
+                    <BodyShort>
                         Årsaken dukker opp for brukerstøtte ved håndtering av sladdingen, <br />
                         men det skal fortsatt meldes inn i porten.
-                    </Normaltekst>
+                    </BodyShort>
                 </>
             ),
             src: SladdeArsak
@@ -455,10 +447,10 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             ingress: null,
             beskrivelse: (
                 <>
-                    <Normaltekst>
+                    <BodyShort>
                         Velg hvilke meldinger du ønsker at brukerstøtte skal behandle for sladding. <br />
                         Huk av for en eller flere meldinger, og velg årsak som tidligere.
-                    </Normaltekst>
+                    </BodyShort>
                 </>
             ),
             src: SladdEnkeltmelding
@@ -471,14 +463,14 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             ingress: null,
             beskrivelse: (
                 <>
-                    <Normaltekst>
+                    <BodyShort>
                         Nå vil du kunne se dato for når utgående dokument er lest av bruker på
                         <a href="https://www.nav.no" target="_blank" rel="noreferrer">
                             nav.no
                         </a>
                         i saksoversikten. <br /> Alle dokument som er lest etter 12.10.22 vil få opp denne
                         informasjonen.
-                    </Normaltekst>
+                    </BodyShort>
                 </>
             ),
             src: LestDatoSak
@@ -491,10 +483,10 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             ingress: null,
             beskrivelse: (
                 <>
-                    <Normaltekst>
+                    <BodyShort>
                         Ved oppslag av bruker med inaktiv ident vil det dukke opp et popup-vindu. Dette vinduet
                         informerer deg om at identen er inaktiv og tar deg til den aktive identen istedet.
-                    </Normaltekst>
+                    </BodyShort>
                 </>
             ),
             src: OppslagPaaInaktivIdent
@@ -507,7 +499,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             ingress: null,
             beskrivelse: (
                 <>
-                    <Normaltekst>
+                    <BodyShort>
                         Det er gjort endringer på meldingsvisning. Nå er det kun tre valg, referat, samtale og
                         infomelding. Se fagmelding på
                         <a
@@ -517,7 +509,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                         >
                             navet
                         </a>
-                    </Normaltekst>
+                    </BodyShort>
                 </>
             ),
             src: MeldingsVisning
@@ -530,10 +522,10 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             ingress: null,
             beskrivelse: (
                 <>
-                    <Normaltekst>
+                    <BodyShort>
                         Informasjon om revarslinger som har skjedd etter 15. mars vil nå vises i varsler. Om varsling
                         eller revarsling har feilet vises årsaken til dette.
-                    </Normaltekst>
+                    </BodyShort>
                 </>
             ),
             src: Revarsling
@@ -546,9 +538,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             ingress: null,
             beskrivelse: (
                 <>
-                    <Normaltekst>
-                        Nå finner du lenke til Kunnskapsbasen NKS i hovedmenyen under andre systemer.
-                    </Normaltekst>
+                    <BodyShort>Nå finner du lenke til Kunnskapsbasen NKS i hovedmenyen under andre systemer.</BodyShort>
                 </>
             ),
             src: Kunnskapsbasen
@@ -561,10 +551,10 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             ingress: null,
             beskrivelse: (
                 <>
-                    <Normaltekst>
+                    <BodyShort>
                         Det er nå mulig å journalføre melding fra bruker uten svar fra NAV. Merk at man vil miste
                         tilgang til innholdet i samtaler når de journalføres på et tema du ikke har tilgang til.
-                    </Normaltekst>
+                    </BodyShort>
                 </>
             ),
             src: Journalforing
@@ -577,13 +567,13 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             ingress: null,
             beskrivelse: (
                 <>
-                    <Normaltekst>
+                    <BodyShort>
                         Søk etter person med kontonummer er nå fjernet fra "Avansert søk". For å søke etter personer med
                         et gitt kontonummer kan man benytte kontonummersøk i
                         <a href="https://utbetalingsportalen.intern.nav.no" target="_blank" rel="noreferrer">
                             utbetalingsportalen
                         </a>
-                    </Normaltekst>
+                    </BodyShort>
                 </>
             ),
             src: Kontonummersok
@@ -596,10 +586,10 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             ingress: null,
             beskrivelse: (
                 <>
-                    <Normaltekst>
+                    <BodyShort>
                         Nå er alle lenker i samtalemaler oppdatert, og skal fungere. Meld gjerne fra om feil eller
                         ønsker til maler i porten.
-                    </Normaltekst>
+                    </BodyShort>
                 </>
             ),
             src: Samtalemaler
@@ -612,10 +602,10 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             ingress: null,
             beskrivelse: (
                 <>
-                    <Normaltekst>
+                    <BodyShort>
                         Det er nå mulig å søke etter en bruker på telefonnummer. Søket støtter kun brukerens
                         telefonnummer lagret i persondataløsningen(PDL).
-                    </Normaltekst>
+                    </BodyShort>
                 </>
             ),
             src: AvansertsokTelefonnummer
@@ -628,7 +618,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             ingress: null,
             beskrivelse: (
                 <>
-                    <Normaltekst>Det er nå mulig å se om en bruker har 14a vedtak i oppfølgingsoversikten.</Normaltekst>
+                    <BodyShort>Det er nå mulig å se om en bruker har 14a vedtak i oppfølgingsoversikten.</BodyShort>
                 </>
             ),
             src: Gjeldende14aVedtak
@@ -678,7 +668,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             ingress: null,
             beskrivelse: (
                 <>
-                    <Normaltekst>
+                    <BodyShort>
                         <p className="mb-2 font-ax-bold">Dette er ikke gyldig lenger. Se ny oppdatering.</p>
                         Det er bestemt at sykepenger under ytelser vil være likt som i dag fram til 1. mars 2026.
                         <br />
@@ -687,7 +677,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                         Modia personoversikt. Mer informasjon finnes i andre fagsystem angående sykepenger og
                         sykefravær. Denne endringen skjer grunnet overgang fra Infotrygd til Speil. Vi jobber med å få
                         på plass mer informasjon om ytelsen på sikt.
-                    </Normaltekst>
+                    </BodyShort>
                 </>
             ),
             src: Speil
@@ -761,11 +751,11 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             ingress: null,
             src: JournalforingGenerellSak,
             beskrivelse: (
-                <Normaltekst>
+                <BodyShort>
                     Ved journalføring på generell sak så trenger en kun å velge et tema. Det opprettes da en generell
                     sak i Joark på dette temaet. For å journalføre på eksisterende saker fra fagsystemer må det velges
                     en sak under fagsaker-fanen slik som tidligere.
-                </Normaltekst>
+                </BodyShort>
             )
         },
         {
@@ -776,10 +766,10 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             ingress: null,
             src: VelgDialog,
             beskrivelse: (
-                <Normaltekst>
+                <BodyShort>
                     Dialogtypen er ikke lenger forhåndsvalgt til referat. Du må nå ta et aktivt valg av hvilken type
                     dialog du ønsker å opprette. Dette er for å unngå at dialoger blir opprettet med feil type.
-                </Normaltekst>
+                </BodyShort>
             )
         }
     ];

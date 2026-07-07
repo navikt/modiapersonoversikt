@@ -1,120 +1,85 @@
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
-import Stegindikator from 'nav-frontend-stegindikator';
-import type { StegindikatorStegProps } from 'nav-frontend-stegindikator/lib/stegindikator-steg';
+import { Alert, BodyShort, Button, Heading } from '@navikt/ds-react';
 import { useState } from 'react';
-import styled from 'styled-components';
-import { datoSynkende } from '../../utils/date-utils';
+import { datoSynkende, formatterDato } from '../../utils/date-utils';
 import EnkeltOppdateringslogg from './EnkeltOppdateringslogg';
 import type { OppdateringsloggInnslag } from './OppdateringsloggContainer';
 
-const StyledSection = styled.section`
-    display: flex;
-    height: 100%;
-    width: 40rem;
-    min-height: 20rem;
-    max-height: 40rem;
-    flex-direction: column;
-    justify-content: space-between;
-`;
-
-const StyledFooter = styled.footer`
-    display: flex;
-`;
-const StyledNesteknapp = styled(Nesteknapp)`
-    float: right;
-`;
-const HiddenNesteknapp = styled(Nesteknapp)`
-    float: right;
-    visibility: hidden;
-`;
-const StyledTilbakeknapp = styled(Tilbakeknapp)`
-    float: left;
-`;
-
-const HiddenTilbakeknapp = styled(Tilbakeknapp)`
-    float: left;
-    visibility: hidden;
-`;
-const StyledStegindikator = styled.div`
-    margin: 0 auto;
-    align-self: center;
-`;
-
-function ForrigeKnapp({ indeks, onClick }: { indeks: number; onClick: () => void }) {
-    if (indeks < 1) {
-        return <HiddenTilbakeknapp aria-hidden={true} />;
-    }
-    return <StyledTilbakeknapp onClick={onClick} />;
-}
-
-function NesteKnapp({ indeks, lengde, onClick }: { indeks: number; lengde: number; onClick: () => void }) {
-    if (indeks >= lengde - 1) {
-        return <HiddenNesteknapp aria-hidden={true} />;
-    }
-    return <StyledNesteknapp onClick={onClick} />;
-}
-
-function VisStegindikator({
-    steg,
-    onChange,
-    indeks
+function MenyItem({
+    innslag,
+    erAktiv,
+    onClick
 }: {
-    steg: StegindikatorStegProps[];
-    onChange: (indeks: number) => void;
-    indeks: number;
+    innslag: OppdateringsloggInnslag;
+    erAktiv: boolean;
+    onClick: () => void;
 }) {
     return (
-        <StyledStegindikator>
-            <Stegindikator steg={steg} aktivtSteg={indeks} onChange={onChange} visLabel={false} kompakt={true} />
-        </StyledStegindikator>
+        <li className="oppdateringslogg-meny__item">
+            <Button
+                variant="tertiary"
+                onClick={onClick}
+                aria-current={erAktiv ? true : undefined}
+                className={
+                    erAktiv
+                        ? 'oppdateringslogg-meny__knapp oppdateringslogg-meny__knapp--aktiv'
+                        : 'oppdateringslogg-meny__knapp'
+                }
+            >
+                <span className="oppdateringslogg-meny__knapp-innhold">
+                    <BodyShort weight="semibold">{innslag.tittel}</BodyShort>
+                    <BodyShort size="small" className="oppdateringslogg-meny__dato">
+                        Lagt til {formatterDato(innslag.dato)}
+                    </BodyShort>
+                </span>
+            </Button>
+        </li>
     );
 }
 
-function Oppdateringslogg(props: { oppdateringslogg: OppdateringsloggInnslag[] }) {
-    const { oppdateringslogg } = props;
+function Oppdateringslogg(props: { oppdateringslogg: OppdateringsloggInnslag[]; onClose: () => void }) {
+    const { oppdateringslogg, onClose } = props;
 
-    const [indeks, setIndeks] = useState(0);
-    const [visMer, setVisMer] = useState(false);
+    const sortertOppdateringslogg = [...oppdateringslogg].sort(datoSynkende((innslag) => innslag.dato));
+    const [selectedId, setSelectedId] = useState<number>(sortertOppdateringslogg[0]?.id ?? -1);
 
-    if (oppdateringslogg.length === 0) {
-        return <AlertStripeInfo>Fant ingen oppdateringer</AlertStripeInfo>;
+    if (sortertOppdateringslogg.length === 0) {
+        return <Alert variant="info">Fant ingen oppdateringer</Alert>;
     }
 
-    const sortertOppdateringslogg = oppdateringslogg.sort(
-        datoSynkende((enOppdateringslogg) => enOppdateringslogg.dato)
-    );
-
-    const neste = () => {
-        setIndeks(indeks + 1);
-        setVisMer(false);
-    };
-
-    const forrige = () => {
-        setIndeks(indeks - 1);
-        setVisMer(false);
-    };
-
-    const currentOppdateringslogg = sortertOppdateringslogg[indeks];
-
-    const stegListe = sortertOppdateringslogg.map((enOppdateringslogg, i) => {
-        const erAktiv = indeks === i;
-        return { label: enOppdateringslogg.tittel, index: i, aktiv: erAktiv, key: enOppdateringslogg.id };
-    });
+    const selectedEntry = sortertOppdateringslogg.find((i) => i.id === selectedId) ?? sortertOppdateringslogg[0];
 
     return (
-        <StyledSection>
-            <EnkeltOppdateringslogg
-                enOppdateringslogg={currentOppdateringslogg}
-                visMer={visMer}
-                setVisMer={setVisMer}
-            />
-            <StyledFooter>
-                <ForrigeKnapp indeks={indeks} onClick={forrige} />
-                <VisStegindikator steg={stegListe} indeks={indeks} onChange={setIndeks} />
-                <NesteKnapp indeks={indeks} lengde={sortertOppdateringslogg.length} onClick={neste} />
-            </StyledFooter>
-        </StyledSection>
+        <div className="oppdateringslogg">
+            <div className="oppdateringslogg__meny">
+                <Heading size="large" className="oppdateringslogg__tittel">
+                    Oppdateringslogg
+                </Heading>
+                <BodyShort size="small" className="oppdateringslogg__ingress">
+                    Her finner du en oversikt over oppdateringer som er gjort i Modia personoversikt siste året
+                </BodyShort>
+                <ul className="oppdateringslogg-meny-elementer">
+                    {sortertOppdateringslogg.map((innslag) => (
+                        <MenyItem
+                            key={innslag.id}
+                            innslag={innslag}
+                            erAktiv={innslag.id === selectedEntry.id}
+                            onClick={() => setSelectedId(innslag.id)}
+                        />
+                    ))}
+                </ul>
+            </div>
+
+            <div className="oppdateringslogg__innhold">
+                <div className="oppdateringslogg__innhold-tekst">
+                    <EnkeltOppdateringslogg enOppdateringslogg={selectedEntry} />
+                </div>
+                <div className="oppdateringslogg__lukk-rad">
+                    <Button variant="tertiary" onClick={onClose}>
+                        Lukk
+                    </Button>
+                </div>
+            </div>
+        </div>
     );
 }
 

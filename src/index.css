@@ -77,3 +77,109 @@
 .aksel-radio__description {
     font-style: italic;
 }
+
+/* Oppdateringslogg */
+.oppdateringslogg {
+    display: flex;
+    position: relative;
+    height: 760px;
+    padding: var(--ax-space-24);
+}
+
+.oppdateringslogg__meny {
+    width: 360px;
+    min-width: 360px;
+    display: flex;
+    flex-direction: column;
+    padding: var(--ax-space-24);
+}
+
+.oppdateringslogg__tittel {
+    margin-bottom: var(--ax-space-8);
+}
+
+.oppdateringslogg__ingress {
+    color: var(--ax-text-neutral-subtle);
+    margin-bottom: var(--ax-space-24);
+}
+
+.oppdateringslogg-meny-elementer {
+    padding: 0;
+    margin: 0;
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
+    flex: 1;
+}
+
+.oppdateringslogg-meny__item {
+    list-style: none;
+    margin-bottom: var(--ax-space-8);
+}
+
+.oppdateringslogg-meny__knapp.aksel-button {
+    width: 100%;
+    justify-content: flex-start;
+    text-align: left;
+    border-radius: var(--ax-radius-8);
+    border: 2px solid transparent;
+    padding: var(--ax-space-12);
+    height: auto;
+}
+
+.oppdateringslogg-meny__knapp.aksel-button:hover {
+    background-color: var(--ax-bg-neutral-soft);
+}
+
+.oppdateringslogg-meny__knapp--aktiv.aksel-button {
+    background-color: var(--ax-bg-accent-moderate-pressedA);
+}
+
+.oppdateringslogg-meny__knapp--aktiv.aksel-button:hover {
+    background-color: var(--ax-bg-accent-moderate-pressedA);
+}
+
+.oppdateringslogg-meny__knapp-innhold {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--ax-space-4);
+}
+
+.oppdateringslogg-meny__dato {
+    color: var(--ax-text-neutral-subtle);
+}
+
+.oppdateringslogg__enkelt {
+    height: 100%;
+}
+
+.oppdateringslogg__innhold-tekst {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.oppdateringslogg__bilde {
+    width: 100%;
+    display: block;
+    object-fit: contain;
+    object-position: top left;
+    border-radius: var(--ax-radius-8);
+    flex: 1;
+    min-height: 0;
+}
+
+.oppdateringslogg__innhold {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: var(--ax-space-32);
+    gap: var(--ax-space-16);
+}
+
+.oppdateringslogg__lukk-rad {
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
