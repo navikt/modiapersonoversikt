@@ -771,6 +771,19 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                     dialog du ønsker å opprette. Dette er for å unngå at dialoger blir opprettet med feil type.
                 </BodyShort>
             )
+        },
+        {
+            id: 46,
+            tittel: 'Nytt design for oppdateringsloggen',
+            dato: new Date('2026-07-08 10:30'),
+            aktiv: true,
+            ingress: null,
+            beskrivelse: (
+                <BodyShort>
+                    Oppdateringsloggen har fått et nytt og forbedret design. Formålet med endringen er å gjøre det
+                    enklere å navigere mellom innslag, enten med mus eller piltaster.
+                </BodyShort>
+            )
         }
     ];
 }
