@@ -668,7 +668,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             ingress: null,
             beskrivelse: (
                 <>
-                    <BodyShort as="div">
+                    <BodyShort>
                         <p className="mb-2 font-ax-bold">Dette er ikke gyldig lenger. Se ny oppdatering.</p>
                         Det er bestemt at sykepenger under ytelser vil være likt som i dag fram til 1. mars 2026.
                         <br />
