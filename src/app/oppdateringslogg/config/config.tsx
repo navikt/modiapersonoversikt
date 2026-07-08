@@ -29,7 +29,6 @@ import NyKommunikasjon from './img/ny-kommunikasjon-knapper.png';
 import NyeYtelser from './img/nye_ytelser.png';
 import NyModia from './img/nyModia.png';
 import OppdateringsloggKnappBilde from './img/oppdateringslogg-knapp.jpg';
-import OppdateringsloggNyttDesign from './img/oppdateringslogg-nytt-design.png';
 import OppgaveDestinasjon from './img/oppgave-destinasjon.png';
 import OppslagPaaInaktivIdent from './img/oppslag-paa-inaktiv-ident.png';
 import Revarsling from './img/revarsling.png';
@@ -779,7 +778,6 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             dato: new Date('2026-07-08 10:30'),
             aktiv: true,
             ingress: null,
-            src: OppdateringsloggNyttDesign,
             beskrivelse: (
                 <BodyShort>
                     Oppdateringsloggen har fått et nytt og forbedret design. Formålet med endringen er å gjøre det
