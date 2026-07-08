@@ -1,8 +1,6 @@
-import ModalWrapper from 'nav-frontend-modal';
-import { Systemtittel } from 'nav-frontend-typografi';
+import { Button, HStack, Modal } from '@navikt/ds-react';
 import type * as React from 'react';
 import { useCallback, useEffect, useState } from 'react';
-import styled from 'styled-components';
 import useListener from '../../utils/hooks/use-listener';
 import useWaitForElement from '../../utils/hooks/use-wait-for-element';
 import { lagOppdateringsloggConfig } from './config/config';
@@ -20,17 +18,6 @@ export interface OppdateringsloggInnslag {
     src?: string;
 }
 
-const StyledModalWrapper = styled(ModalWrapper)`
-    &.modal {
-        padding: 0.5rem;
-    }
-`;
-
-const StyledSystemtittel = styled(Systemtittel)`
-    text-align: center;
-    margin: 0.75rem 0rem 1rem 1rem;
-`;
-
 function harUleste(sistLesteId: number, oppdateringslogg: OppdateringsloggInnslag[]): boolean {
     return oppdateringslogg.some((innslag) => innslag.id > sistLesteId);
 }
@@ -43,9 +30,9 @@ function useHoldUlestIndikatorOppdatert(
     useEffect(() => {
         if (element != null) {
             const ulest = harUleste(sistLesteId, oppdateringslogg);
-            element?.classList.remove('oppdateringslogg--uleste');
+            element.classList.remove('oppdateringslogg--uleste');
             if (ulest) {
-                element?.classList.add('oppdateringslogg--uleste');
+                element.classList.add('oppdateringslogg--uleste');
                 element.setAttribute('title', 'Oppdateringslogg (du har en eller flere uleste logginnslag)');
             } else {
                 element.setAttribute('title', 'Oppdateringslogg');
@@ -54,36 +41,42 @@ function useHoldUlestIndikatorOppdatert(
     }, [element, sistLesteId, oppdateringslogg]);
 }
 
-function useApneOppdateringsLoggModal(
-    settApen: (apen: boolean) => void,
-    oppdateringslogg: OppdateringsloggInnslag[],
-    settSistLesteId: (id: number) => void
-) {
-    const listener = useCallback(() => {
-        const nyesteId: number | undefined = oppdateringslogg.map((innslag) => innslag.id).sort((a, b) => b - a)[0];
-
-        settSistLesteId(nyesteId ?? -1);
-        settApen(true);
-    }, [settApen, oppdateringslogg, settSistLesteId]);
-
-    useListener(`#${DecoratorButtonId}`, 'click', listener, document.querySelector('internarbeidsflate-decorator'));
-}
-
 function OppdateringsloggContainer() {
     const oppdateringslogg: OppdateringsloggInnslag[] = lagOppdateringsloggConfig().filter((innslag) => innslag.aktiv);
 
     const [apen, settApen] = useState(false);
+    const [openKey, settOpenKey] = useState(0);
     const [sistLesteId, settSistLesteId] = useSisteLestOppdateringLogg();
     const element = useWaitForElement(`#${DecoratorButtonId}`);
 
-    useApneOppdateringsLoggModal(settApen, oppdateringslogg, settSistLesteId);
+    const aapne = useCallback(() => {
+        const nyesteId = Math.max(-1, ...oppdateringslogg.map((innslag) => innslag.id));
+        settSistLesteId(nyesteId);
+        settOpenKey((k) => k + 1);
+        settApen(true);
+    }, [oppdateringslogg, settSistLesteId]);
+
+    useListener(`#${DecoratorButtonId}`, 'click', aapne, document.querySelector('internarbeidsflate-decorator'));
     useHoldUlestIndikatorOppdatert(element, sistLesteId, oppdateringslogg);
 
     return (
-        <StyledModalWrapper contentLabel="Oppdateringslogg" isOpen={apen} onRequestClose={() => settApen(false)}>
-            <StyledSystemtittel>Oppdateringslogg</StyledSystemtittel>
-            <Oppdateringslogg oppdateringslogg={oppdateringslogg} />
-        </StyledModalWrapper>
+        <Modal
+            open={apen}
+            onClose={() => settApen(false)}
+            className={apen ? 'w-[1400px] max-w-[95vw]' : undefined}
+            aria-label="Oppdateringslogg"
+        >
+            <Modal.Body className="h-[700px] p-0">
+                <Oppdateringslogg key={openKey} oppdateringslogg={oppdateringslogg} />
+            </Modal.Body>
+            <Modal.Footer style={{ padding: 'var(--ax-space-8) var(--ax-space-16)' }}>
+                <HStack justify="end" className="w-full">
+                    <Button variant="tertiary" onClick={() => settApen(false)}>
+                        Lukk
+                    </Button>
+                </HStack>
+            </Modal.Footer>
+        </Modal>
     );
 }
 

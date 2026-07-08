@@ -1,54 +1,26 @@
-import { Normaltekst, Undertekst, Undertittel } from 'nav-frontend-typografi';
-import styled from 'styled-components';
-import { formatterDatoTidMedMaanedsnavn } from '../../utils/date-utils';
+import { Heading, VStack } from '@navikt/ds-react';
 import type { OppdateringsloggInnslag } from './OppdateringsloggContainer';
 
 interface Props {
     enOppdateringslogg: OppdateringsloggInnslag;
-    visMer: boolean;
-    setVisMer: (visMer: boolean) => void;
 }
-
-const StyledArticle = styled.article`
-    text-align: center;
-    flex: 1;
-`;
-
-const StyledDiv = styled.div`
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 0 3px 3px #ccc;
-    align-content: center;
-`;
-
-const StyledUndertittel = styled(Undertittel)`
-    align-self: center;
-    margin: 0 auto;
-`;
 
 function OppdateringsloggBilde({ src }: { src?: string }) {
     if (!src) {
         return null;
     }
-    return (
-        <StyledDiv>
-            <img src={src} alt={''} width="100%" height="100%" />
-        </StyledDiv>
-    );
+    return <img src={src} alt="" className="oppdateringslogg__bilde" />;
 }
 
-export default function EnkeltOppdateringslogg(props: Props) {
+export default function EnkeltOppdateringslogg({ enOppdateringslogg }: Props) {
     return (
-        <article>
-            <OppdateringsloggBilde src={props.enOppdateringslogg.src} />
-            <StyledArticle>
-                <StyledUndertittel tag="h3">{props.enOppdateringslogg.tittel}</StyledUndertittel>
-                <Undertekst className="blokk-xxs">
-                    {formatterDatoTidMedMaanedsnavn(props.enOppdateringslogg.dato)}
-                </Undertekst>
-                {props.enOppdateringslogg.ingress}
-                <Normaltekst tag="div">{props.enOppdateringslogg.beskrivelse}</Normaltekst>
-            </StyledArticle>
-        </article>
+        <VStack gap="space-8" className="h-full">
+            <OppdateringsloggBilde src={enOppdateringslogg.src} />
+            <Heading size="small" level="3">
+                {enOppdateringslogg.tittel}
+            </Heading>
+            {enOppdateringslogg.ingress}
+            {enOppdateringslogg.beskrivelse}
+        </VStack>
     );
 }

@@ -77,3 +77,69 @@
 .aksel-radio__description {
     font-style: italic;
 }
+
+/* Oppdateringslogg */
+.oppdateringslogg__meny {
+    width: 360px;
+    min-width: 360px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: var(--ax-space-24);
+}
+
+.oppdateringslogg-meny-liste {
+    flex: 1;
+    min-height: 0;
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
+    padding: 0;
+    margin: 0;
+}
+
+.oppdateringslogg-meny__item {
+    list-style: none;
+    margin-bottom: var(--ax-space-8);
+}
+
+/* Kombinerer custom klasse med Aksels interne .aksel-button for tilstrekkelig spesifisitet */
+.oppdateringslogg-meny__knapp.aksel-button {
+    width: 100%;
+    justify-content: flex-start;
+    text-align: left;
+    border-radius: var(--ax-radius-8);
+    border: 2px solid transparent;
+    padding: var(--ax-space-12);
+    height: auto;
+}
+
+.oppdateringslogg-meny__knapp.aksel-button:hover {
+    background-color: var(--ax-bg-neutral-soft);
+}
+
+.oppdateringslogg-meny__knapp--aktiv.aksel-button {
+    background-color: var(--ax-bg-accent-moderate-pressedA);
+}
+
+.oppdateringslogg-meny__knapp--aktiv.aksel-button:hover {
+    background-color: var(--ax-bg-accent-moderate-pressedA);
+}
+
+.oppdateringslogg__innhold {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: var(--ax-space-32);
+}
+
+.oppdateringslogg__bilde {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    display: block;
+    object-fit: contain;
+    object-position: top left;
+    border-radius: var(--ax-radius-8);
+    max-height: 480px;
+}

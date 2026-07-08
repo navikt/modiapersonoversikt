@@ -107,9 +107,6 @@ importers:
       nav-frontend-ikoner-assets:
         specifier: ^2.0.10
         version: 2.0.10
-      nav-frontend-ikonknapper:
-        specifier: ^1.0.9
-        version: 1.1.4(nav-frontend-chevron@1.0.30(classnames@2.5.1)(nav-frontend-chevron-style@1.0.4)(prop-types@15.8.1)(react@19.2.1))(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-knapper@2.1.4(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.2.1))(nav-frontend-knapper-style@1.1.2(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(prop-types@15.8.1)(react@19.2.1))(react@19.2.1)
       nav-frontend-js-utils:
         specifier: ^1.0.20
         version: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.2.1)
@@ -173,9 +170,6 @@ importers:
       nav-frontend-spinner-style:
         specifier: ^1.0.2
         version: 1.0.2
-      nav-frontend-stegindikator:
-        specifier: 0.0.52
-        version: 0.0.52(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.2.1))(nav-frontend-stegindikator-style@1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(react@19.2.1)
       nav-frontend-stegindikator-style:
         specifier: ^1.0.31
         version: 1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)
@@ -3264,14 +3258,6 @@ packages:
   nav-frontend-ikoner-assets@2.0.10:
     resolution: {integrity: sha512-n/2qIk29rRkR8OZwZBnSIWRKdC25t/8lAhZXEvFZrqmjAC+U4xHHj5+VlCoN5O5VIzq4xtck1Flwj7mJehAj7g==}
 
-  nav-frontend-ikonknapper@1.1.4:
-    resolution: {integrity: sha512-qvrBlpSdsFF3WdiSzt49F9UhBGubHKugIEQeR1rXhDwThGIEbt8EcaxF6hFVa0cClZRg/lbqlZptAAE27741Ow==}
-    peerDependencies:
-      nav-frontend-chevron: ^1.0.27
-      nav-frontend-ikoner-assets: ^2.0.9
-      nav-frontend-knapper: ^2.0.29
-      react: ^16.8.0 || ^17.0.0
-
   nav-frontend-js-utils@1.0.20:
     resolution: {integrity: sha512-rCEbgtLmk/95TJeke3Njgm0lBJuBa0N8p8h5Oqhxjov529UjTT2Vx4XJzjQd7/ApgeCkdc5DB9GW5jGTEFoYTA==}
     peerDependencies:
@@ -3435,14 +3421,6 @@ packages:
     peerDependencies:
       nav-frontend-core: ^5.0.11
       nav-frontend-typografi-style: ^1.0.33
-
-  nav-frontend-stegindikator@0.0.52:
-    resolution: {integrity: sha512-AT7jP8NbdK+LOEAU40pjehkVUzsGxaLwRTFkG95QJravH4j+m3IbuBKZAv5MAlwNTnKF9AKSk++HEkvo13TNJw==}
-    peerDependencies:
-      classnames: ^2.2.5
-      nav-frontend-js-utils: ^1.0.9
-      nav-frontend-stegindikator-style: ^1.0.31
-      react: ^15.4.2 || ^16.0.0
 
   nav-frontend-tabs-style@1.1.1:
     resolution: {integrity: sha512-sKx7eNBDhtsAMQv6uquI6S94qthS6PmieF4JZ230xyP8SOX2WX8AFgOJYEeQ0iQ/MOkjx5F3KHeUTNVKaLFhEQ==}
@@ -7329,13 +7307,6 @@ snapshots:
 
   nav-frontend-ikoner-assets@2.0.10: {}
 
-  nav-frontend-ikonknapper@1.1.4(nav-frontend-chevron@1.0.30(classnames@2.5.1)(nav-frontend-chevron-style@1.0.4)(prop-types@15.8.1)(react@19.2.1))(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-knapper@2.1.4(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.2.1))(nav-frontend-knapper-style@1.1.2(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(prop-types@15.8.1)(react@19.2.1))(react@19.2.1):
-    dependencies:
-      nav-frontend-chevron: 1.0.30(classnames@2.5.1)(nav-frontend-chevron-style@1.0.4)(prop-types@15.8.1)(react@19.2.1)
-      nav-frontend-ikoner-assets: 2.0.10
-      nav-frontend-knapper: 2.1.4(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.2.1))(nav-frontend-knapper-style@1.1.2(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(prop-types@15.8.1)(react@19.2.1)
-      react: 19.2.1
-
   nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.2.1):
     dependencies:
       lodash.throttle: 4.1.1
@@ -7477,13 +7448,6 @@ snapshots:
     dependencies:
       nav-frontend-core: 5.1.1
       nav-frontend-typografi-style: 1.1.1
-
-  nav-frontend-stegindikator@0.0.52(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.2.1))(nav-frontend-stegindikator-style@1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(react@19.2.1):
-    dependencies:
-      classnames: 2.5.1
-      nav-frontend-js-utils: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.2.1)
-      nav-frontend-stegindikator-style: 1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)
-      react: 19.2.1
 
   nav-frontend-tabs-style@1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1):
     dependencies:
