@@ -340,6 +340,18 @@ export const useSykefravaersoppfolging = () => {
     };
 };
 
+export const useOppslagArbeidssoekerregisteret = () => {
+    const fnr = usePersonAtomValue();
+    const response = $api.useQuery('post', '/rest/oppfolging/oppslag-arbeidssoekerregisteret', {
+        body: { fnr }
+    });
+    const errorMessages = [errorPlaceholder(response, responseErrorMessage('data fra arbeidssøkerregisteret'))];
+    return {
+        ...response,
+        errorMessages: errorMessages.filter(Boolean)
+    };
+};
+
 export const useGsakTema = () => {
     const response = $api.useQuery('get', '/rest/dialogoppgave/tema');
     const errorMessages = [errorPlaceholder(response, responseErrorMessage('temaer for meldinger'))];
