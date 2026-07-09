@@ -18,8 +18,8 @@ type Props = {
         melding: Traad['meldinger'][number];
     }>;
 };
-const DefaultWrapper: Props['wrapper'] = ({ children }) => {
-    return <li>{children}</li>;
+const DefaultWrapper: Props['wrapper'] = ({ children, melding }) => {
+    return <li className={erMeldingFraNav(melding.meldingstype) ? 'self-end' : undefined}>{children}</li>;
 };
 
 export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Props) => {
@@ -76,7 +76,6 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
                                 }
                                 timestamp={formatterDatoTid(m.opprettetDato)}
                                 position={erFraNav ? 'right' : 'left'}
-                                className={erFraNav ? 'self-end' : undefined}
                                 data-color={erFraNav ? 'brand-blue' : 'neutral'}
                             >
                                 <Chat.Bubble className="text-wrap border-0">
