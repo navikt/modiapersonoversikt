@@ -139,7 +139,7 @@ const TemaFilter = () => {
             setFilter((prev) => ({ ...prev, temaer: gyldigeValg }));
             navigate({ search: { tema: gyldigeValg } });
         }
-    }, [alleTemaer]);
+    }, [alleTemaer, selectedTemaer, setFilter, navigate]);
 
     const onToggleSelected = useCallback(
         (option: string) => {
