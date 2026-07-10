@@ -127,7 +127,8 @@ const DateFilter = () => {
 
 const TemaFilter = () => {
     const navigate = routeApi.useNavigate();
-    const alleTemaer = useTemaerForPeriode();
+    const dateRange = useAtomValue(dokFilterDateRangeAtom);
+    const alleTemaer = useTemaerForPeriode(dateRange);
     const [selectedTemaer, setSelectedTemaer] = useAtom(dokFilterTemaAtom);
     const setFilter = useSetAtom(dokumenterFilterAtom);
 

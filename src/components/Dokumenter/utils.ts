@@ -16,9 +16,8 @@ import { useSakerDokumenter } from 'src/lib/clients/modiapersonoversikt-api';
 import { datoSynkende } from 'src/utils/date-utils';
 import { parseQueryString } from 'src/utils/url-utils';
 
-export const useTemaerForPeriode = () => {
+export const useTemaerForPeriode = (dateRange: DateRange | null) => {
     const { data } = useSakerDokumenter();
-    const { dateRange } = useAtomValue(dokumenterFilterAtom);
     const dokumenter = data?.dokumenter ?? [];
     const alleTemaer = data?.temaer ?? [];
 
