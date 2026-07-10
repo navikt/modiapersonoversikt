@@ -129,15 +129,13 @@ const TemaFilter = () => {
     const navigate = routeApi.useNavigate();
     const alleTemaer = useTemaerForPeriode();
     const [selectedTemaer, setSelectedTemaer] = useAtom(dokFilterTemaAtom);
+    const setFilter = useSetAtom(dokumenterFilterAtom);
 
     useEffect(() => {
         const gyldigeTemaKoder = new Set(alleTemaer.map((t) => t.temakode));
-        const ugyldigeValg = selectedTemaer.filter((t) => !gyldigeTemaKoder.has(t));
-        if (ugyldigeValg.length > 0) {
-            const gyldigeValg = selectedTemaer.filter((t) => gyldigeTemaKoder.has(t));
-            ugyldigeValg.forEach((tema) => {
-                setSelectedTemaer(tema);
-            });
+        const gyldigeValg = selectedTemaer.filter((t) => gyldigeTemaKoder.has(t));
+        if (gyldigeValg.length !== selectedTemaer.length) {
+            setFilter((prev) => ({ ...prev, temaer: gyldigeValg }));
             navigate({ search: { tema: gyldigeValg } });
         }
     }, [alleTemaer]);
