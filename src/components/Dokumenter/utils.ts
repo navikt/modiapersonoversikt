@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai';
 import { useMemo } from 'react';
 import { apiBaseUri } from 'src/api/config';
+import type { DateRange } from 'src/components/DateFilters/types';
 import { type DokumenterFilter, dokumenterFilterAtom } from 'src/components/Dokumenter/Filter';
 import { errorPlaceholder, type QueryResult, responseErrorMessage } from 'src/components/ytelser/utils';
 import {
@@ -15,11 +16,16 @@ import { useSakerDokumenter } from 'src/lib/clients/modiapersonoversikt-api';
 import { datoSynkende } from 'src/utils/date-utils';
 import { parseQueryString } from 'src/utils/url-utils';
 
-export const useTemaer = () => {
+export const useTemaerForPeriode = (dateRange: DateRange | null) => {
     const { data } = useSakerDokumenter();
-    const temaer = data?.temaer ?? [];
+    const dokumenter = data?.dokumenter ?? [];
+    const alleTemaer = data?.temaer ?? [];
 
-    return useMemo(() => temaer, [temaer]);
+    return useMemo(() => {
+        const periodFiltered = dateRange ? filterByDateRange(dokumenter, dateRange) : dokumenter;
+        const temakoder = new Set(periodFiltered.map((dok) => dok.temakode));
+        return alleTemaer.filter((t) => temakoder.has(t.temakode));
+    }, [dokumenter, dateRange, alleTemaer]);
 };
 
 export const feilmelding = (statusKode: number) => {
@@ -78,6 +84,14 @@ export const useFilterDokumenter = (): QueryResult<ResultatSaksDokumenter> => {
     } as QueryResult<ResultatSaksDokumenter>;
 };
 
+const filterByDateRange = (dokumenter: Dokumentmetadata[], dateRange: DateRange): Dokumentmetadata[] =>
+    dokumenter.filter((dok) => {
+        const dato = dayjs(dok.dato);
+        const afterFrom = !dateRange.from || dato.isSameOrAfter(dayjs(dateRange.from).startOf('day'), 'day');
+        const beforeTo = !dateRange.to || dato.isSameOrBefore(dayjs(dateRange.to).endOf('day'), 'day');
+        return afterFrom && beforeTo;
+    });
+
 const filterDokumenter = (dokumenter: Dokumentmetadata[], filters: DokumenterFilter): Dokumentmetadata[] => {
     const { temaer, dateRange, saksId } = filters;
 
@@ -97,12 +111,7 @@ const filterDokumenter = (dokumenter: Dokumentmetadata[], filters: DokumenterFil
     }
 
     if (dateRange?.from || dateRange?.to) {
-        filteredList = filteredList.filter((dok) => {
-            const dato = dayjs(dok.dato);
-            const afterFrom = !dateRange.from || dato.isSameOrAfter(dayjs(dateRange.from).startOf('day'), 'day');
-            const beforeTo = !dateRange.to || dato.isSameOrBefore(dayjs(dateRange.to).endOf('day'), 'day');
-            return afterFrom && beforeTo;
-        });
+        filteredList = filterByDateRange(filteredList, dateRange);
     }
 
     return filteredList;

@@ -9,7 +9,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { getOptionFromPeriod } from 'src/components/DateFilters/DatePeriodSelector';
 import { DateRangePickerWithDebounce } from 'src/components/DateFilters/DateRangePickerWithDebounce';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
-import { useTemaer } from 'src/components/Dokumenter/utils';
+import { useTemaerForPeriode } from 'src/components/Dokumenter/utils';
 import { aktivBrukerLastetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import { filterType, trackFilterEndret } from 'src/utils/analytics';
 
@@ -127,8 +127,19 @@ const DateFilter = () => {
 
 const TemaFilter = () => {
     const navigate = routeApi.useNavigate();
-    const alleTemaer = useTemaer();
+    const dateRange = useAtomValue(dokFilterDateRangeAtom);
+    const alleTemaer = useTemaerForPeriode(dateRange);
     const [selectedTemaer, setSelectedTemaer] = useAtom(dokFilterTemaAtom);
+    const setFilter = useSetAtom(dokumenterFilterAtom);
+
+    useEffect(() => {
+        const gyldigeTemaKoder = new Set(alleTemaer.map((t) => t.temakode));
+        const gyldigeValg = selectedTemaer.filter((t) => gyldigeTemaKoder.has(t));
+        if (gyldigeValg.length !== selectedTemaer.length) {
+            setFilter((prev) => ({ ...prev, temaer: gyldigeValg }));
+            navigate({ search: { tema: gyldigeValg } });
+        }
+    }, [alleTemaer, selectedTemaer, setFilter, navigate]);
 
     const onToggleSelected = useCallback(
         (option: string) => {
