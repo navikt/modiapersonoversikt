@@ -691,7 +691,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             beskrivelse: (
                 <>
                     <p className="font-ax-bold my-2">Oppdatering fra 13.januar er ikke lenger gjeldende.</p>
-                    Sykepenger fra Infotrygd vil fortsette å eksistere i Modia Personoversikt.
+                    Sykepenger fra Infotrygd vil fortsette å eksistere i Modia personoversikt.
                     <p>
                         Det er ikke satt bestemt dato når dette skal fases ut, men sykepenger fra Infotrygd forblir i
                         hvert fall ut året. Vi jobber med å få inn vedtak frå Speil også, men datagrunnlaget fra Speil
@@ -731,7 +731,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             beskrivelse: (
                 <>
                     <p className="my-2">
-                        Fra og med 18.mai vil ikke meldings-panelet lenger åpne seg automatisk i Modia Personoversikt.
+                        Fra og med 18.mai vil ikke meldings-panelet lenger åpne seg automatisk i Modia personoversikt.
                         Bruk "Skriv ny melding" øverst i høyre hjørne for nye meldinger, eller "Svar" på en eksisterende
                         dialog under Kommunikasjon-fanen.
                     </p>

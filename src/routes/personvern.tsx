@@ -42,7 +42,7 @@ function PersonvernPage() {
                         <VStack gap="space-32">
                             <Section title="Personvern og sikkerhet i Modia">
                                 <BodyLong>
-                                    Modia Personoversikt er en intern arbeidsflate for veiledere og saksbehandlere i
+                                    Modia personoversikt er en intern arbeidsflate for veiledere og saksbehandlere i
                                     NAV. Denne personvernerklæringen er knyttet til behandlingen av personopplysninger
                                     på dette nettstedet. For utfyllende informasjon om hvordan NAV behandler
                                     personopplysninger, kan du lese mer i{' '}
@@ -89,7 +89,7 @@ function PersonvernPage() {
                                     tjenesten basert på tilbakemeldingene vi mottar.
                                 </SubSection>
                                 <SubSection title="Umami">
-                                    Umami brukes til statistikk og analyse av hvordan Modia Personoversikt brukes. Umami
+                                    Umami brukes til statistikk og analyse av hvordan Modia personoversikt brukes. Umami
                                     bruker ikke informasjonskapsler, men henter inn opplysninger om nettleseren din for
                                     å lage en unik ID. Denne ID-en brukes for å skille deg fra andre brukere. For å
                                     hindre identifisering, bruker vi en egenutviklet proxy som vasker bort deler av

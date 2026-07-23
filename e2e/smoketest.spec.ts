@@ -16,7 +16,7 @@ test.beforeEach(async ({ page }) => {
 test('smoketest', async ({ page }) => {
     await page.goto('/');
 
-    await expect(page).toHaveTitle(/Modia Personoversikt/);
+    await expect(page).toHaveTitle(/Modia personoversikt/);
 });
 
 test('User pages', async ({ page }) => {
