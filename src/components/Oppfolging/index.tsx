@@ -228,10 +228,7 @@ const ArbeidssoekerregisteretDetaljer = () => {
                 </BodyShort>
             )}
             {detaljer && (
-                <>
-                    <Detail>Dato: {detaljer?.tidspunkt ? formatterDato(detaljer.tidspunkt) : 'Ikke angitt'} </Detail>
-                    <Detail>Kilde: {detaljer?.sendtInnAv.kilde ?? 'Ikke angitt'}</Detail>
-                </>
+                <Detail>Dato: {detaljer?.tidspunkt ? formatterDato(detaljer.tidspunkt) : 'Ikke angitt'} </Detail>
             )}
         </VStack>
     );

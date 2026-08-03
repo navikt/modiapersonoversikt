@@ -59,17 +59,12 @@ function VisOppfolgingDetaljer(props: Props) {
                               ? 'Er registrert som arbeidssøker'
                               : 'Er ikke registrert som arbeidssøker'}
                           {arbeidssoekerregisteretOpplysinger && (
-                              <>
-                                  <Detail>
-                                      Dato:{' '}
-                                      {arbeidssoekerregisteretOpplysinger?.tidspunkt
-                                          ? formatterDato(arbeidssoekerregisteretOpplysinger.tidspunkt)
-                                          : 'Ikke angitt'}
-                                  </Detail>
-                                  <Detail>
-                                      Kilde: {arbeidssoekerregisteretOpplysinger?.sendtInnAv.kilde ?? 'Ikke angitt'}
-                                  </Detail>
-                              </>
+                              <Detail>
+                                  Dato:{' '}
+                                  {arbeidssoekerregisteretOpplysinger?.tidspunkt
+                                      ? formatterDato(arbeidssoekerregisteretOpplysinger.tidspunkt)
+                                      : 'Ikke angitt'}
+                              </Detail>
                           )}{' '}
                       </>
                   )
