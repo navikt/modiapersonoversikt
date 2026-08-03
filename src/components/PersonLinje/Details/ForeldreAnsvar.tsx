@@ -1,5 +1,5 @@
 import { PersonTallShortFillIcon, PersonTallShortIcon } from '@navikt/aksel-icons';
-import { Alert, BodyShort } from '@navikt/ds-react';
+import { BodyShort, InlineMessage } from '@navikt/ds-react';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { type NavnOgIdent, type PersonData, PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
 import { harFeilendeSystemer, hentNavn } from '../utils';
@@ -25,9 +25,9 @@ function ForeldreansvarElement(props: { harFeilendeSystem: boolean; foreldreansv
         return (
             <InfoElement title={`Ansvar: ${foreldreansvar.ansvar}`} icon={<PersonTallShortIcon />}>
                 <BodyShort size="small">Ansvar: {foreldreansvar.ansvar}</BodyShort>
-                <Alert variant="warning" inline>
+                <InlineMessage status="warning" size="small">
                     Feilet ved uthenting av informasjon om barn
-                </Alert>
+                </InlineMessage>
             </InfoElement>
         );
     }

@@ -1,5 +1,5 @@
 import { LocationPinFillIcon } from '@navikt/aksel-icons';
-import { Alert, BodyShort, Box } from '@navikt/ds-react';
+import { Alert, BodyShort, Box, InlineMessage } from '@navikt/ds-react';
 import { KopierFnrKnapp } from 'src/components/PersonLinje/common/KopierFnrKnapp';
 import type { PersonData } from 'src/lib/types/modiapersonoversikt-api';
 import { capitalizeFirstCharacterAndLowercaseRest, formaterDato } from 'src/utils/string-utils';
@@ -63,7 +63,11 @@ function PersonSomAdressatInfo({
     harFeilendeSystem: boolean;
     adressat: NonNullable<Adressat['personSomAdressat']>;
 }) {
-    const manglerData = harFeilendeSystem ? <Alert variant="warning">Feilet ved uthenting av navn</Alert> : null;
+    const manglerData = harFeilendeSystem ? (
+        <InlineMessage status="warning" size="small">
+            Feilet ved uthenting av navn
+        </InlineMessage>
+    ) : null;
     const fodselsdato = adressat.fodselsdato ? (
         <BodyShort size="small">{formaterDato(adressat.fodselsdato)}</BodyShort>
     ) : null;

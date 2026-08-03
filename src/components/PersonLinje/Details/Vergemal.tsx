@@ -1,5 +1,5 @@
 import { ExclamationmarkTriangleFillIcon } from '@navikt/aksel-icons';
-import { Alert, BodyShort, Box, Detail, HelpText, HStack } from '@navikt/ds-react';
+import { BodyShort, Box, Detail, HelpText, HStack, InlineMessage } from '@navikt/ds-react';
 import { KopierFnrKnapp } from 'src/components/PersonLinje/common/KopierFnrKnapp';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { type PersonData, PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
@@ -14,7 +14,9 @@ function Verge(props: { feilendeSystemer: PersonDataFeilendeSystemer[]; verge: V
     const harFeilendeSystemOgIngenNavn =
         harFeilendeSystemer(props.feilendeSystemer, PersonDataFeilendeSystemer.PDL_TREDJEPARTSPERSONER) &&
         !verge.navn ? (
-            <Alert variant="warning">Feilet ved uthenting av navn på verge</Alert>
+            <InlineMessage status="warning" size="small">
+                Feilet ved uthenting av navn på verge
+            </InlineMessage>
         ) : (
             <BodyShort size="small">{hentNavn(verge.navn, 'Navn ikke tilgjengelig')}</BodyShort>
         );

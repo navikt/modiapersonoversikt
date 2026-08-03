@@ -1,4 +1,4 @@
-import { Alert, BodyShort } from '@navikt/ds-react';
+import { BodyShort, InlineMessage } from '@navikt/ds-react';
 import type { PersonData } from 'src/lib/types/modiapersonoversikt-api';
 import { formaterMobiltelefonnummer } from 'src/utils/telefon-utils';
 import { InfoElement, LastChanged } from '../components';
@@ -23,7 +23,9 @@ function NavKontaktinfo({ harFeilendeSystem, telefonnummer }: Props) {
     if (harFeilendeSystem) {
         return (
             <InfoElement title="Telefon til bruk for NAV">
-                <Alert variant="warning">Feilet ved uthenting av kontaktinformasjon</Alert>
+                <InlineMessage status="warning" size="small">
+                    Feilet ved uthenting av kontaktinformasjon
+                </InlineMessage>
             </InfoElement>
         );
     }

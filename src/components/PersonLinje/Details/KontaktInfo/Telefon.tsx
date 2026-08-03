@@ -1,5 +1,5 @@
 import { PhoneFillIcon } from '@navikt/aksel-icons';
-import { Alert } from '@navikt/ds-react';
+import { InlineMessage } from '@navikt/ds-react';
 import type { PersonData } from 'src/lib/types/modiapersonoversikt-api';
 import { formaterDato } from 'src/utils/string-utils';
 import { formaterMobiltelefonnummer } from 'src/utils/telefon-utils';
@@ -18,7 +18,9 @@ function Telefon({ harFeilendeSystem, kontaktinformasjon }: Props) {
                 title="Telefon"
                 icon={<PhoneFillIcon fontSize="1.2rem" color="var(--ax-neutral-500)" aria-hidden />}
             >
-                <Alert variant="warning">Feilet ved uthenting av data fra Kontakt- og reservasjonsregisteret</Alert>
+                <InlineMessage status="warning" size="small">
+                    Feilet ved uthenting av data fra Kontakt- og reservasjonsregisteret
+                </InlineMessage>
             </InfoElement>
         );
     }
