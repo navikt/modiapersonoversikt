@@ -356,6 +356,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    '/rest/oppfolging/oppslag-arbeidssoekerregisteret': {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations['hentOppslagArbeidssoekerregisteret'];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     '/rest/oppfolging/hent-gjeldende-14a-vedtak': {
         parameters: {
             query?: never;
@@ -1312,10 +1328,6 @@ export interface components {
         LocalDate: {
             /** Format: date */
             value?: string;
-            /** Format: date */
-            value$kotlinx_datetime: string;
-            /** Format: int32 */
-            monthNumber: number;
             /** Format: int32 */
             year: number;
             /** Format: int32 */
@@ -1326,16 +1338,14 @@ export interface components {
             dayOfWeek: LocalDateDayOfWeek;
             /** Format: int32 */
             dayOfYear: number;
+            /** Format: date */
+            value$kotlinx_datetime: string;
+            /** Format: int32 */
+            monthNumber: number;
         };
         LocalDateTime: {
             /** Format: date-time */
             value?: string;
-            /** Format: date-time */
-            value$kotlinx_datetime: string;
-            /** Format: int32 */
-            monthNumber: number;
-            /** Format: int32 */
-            nanosecond: number;
             time: components['schemas']['LocalTime'];
             /** Format: int32 */
             year: number;
@@ -1354,18 +1364,24 @@ export interface components {
             /** Format: int32 */
             dayOfYear: number;
             date: components['schemas']['LocalDate'];
+            /** Format: date-time */
+            value$kotlinx_datetime: string;
+            /** Format: int32 */
+            monthNumber: number;
+            /** Format: int32 */
+            nanosecond: number;
         };
         LocalTime: {
             value?: string;
-            value$kotlinx_datetime: string;
-            /** Format: int32 */
-            nanosecond: number;
             /** Format: int32 */
             hour: number;
             /** Format: int32 */
             minute: number;
             /** Format: int32 */
             second: number;
+            value$kotlinx_datetime: string;
+            /** Format: int32 */
+            nanosecond: number;
         };
         ResultatSoknadsstatus: {
             resultat: components['schemas']['SoknadsstatusSakstema'][];
@@ -1858,6 +1874,142 @@ export interface components {
         SykefravaerOppfolgingDTO: {
             sykefravaersoppfolging?: components['schemas']['SyfoPunktDTO'][];
         };
+        AggregertPeriodeArbeidssoekerregisteretDto: {
+            /** Format: uuid */
+            id: string;
+            identitetsnummer: string;
+            startet: components['schemas']['PeriodeStartetArbeidssoekerregisteretDto'];
+            avsluttet?: components['schemas']['PeriodeAvluttetArbeidssoekerregisteretDto'];
+            opplysning?: components['schemas']['OpplysningerOmArbeidssoekerArbeidssoekerregisteretDto'];
+            profilering?: components['schemas']['ProfileringArbeidssoekerregisteretDto'];
+            egenvurdering?: components['schemas']['EgenvurderingArbeidssoekerregisteretDto'];
+            bekreftelse?: components['schemas']['BekreftelseArbeidssoekerregisteretDto'];
+        };
+        AnnetArbeidssoekerregisteretDto: {
+            /** @enum {string} */
+            andreForholdHindrerArbeid?: AnnetArbeidssoekerregisteretDtoAndreForholdHindrerArbeid;
+        };
+        BekreftelseArbeidssoekerregisteretDto: {
+            /** @enum {string} */
+            type: BekreftelseArbeidssoekerregisteretDtoType;
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            bekreftelsesloesning: BekreftelseArbeidssoekerregisteretDtoBekreftelsesloesning;
+            /** @enum {string} */
+            status: BekreftelseArbeidssoekerregisteretDtoStatus;
+            svar: components['schemas']['SvarArbeidssoekerregisteretDto'];
+            /** Format: date-time */
+            tidspunkt: string;
+        };
+        BeskrivelseMedDetaljerArbeidssoekerregisteretDto: {
+            /** @enum {string} */
+            beskrivelse: BeskrivelseMedDetaljerArbeidssoekerregisteretDtoBeskrivelse;
+            detaljer: {
+                [key: string]: string;
+            };
+        };
+        BrukerArbeidssoekerregisteretDto: {
+            /** @enum {string} */
+            type: BrukerArbeidssoekerregisteretDtoType;
+            id: string;
+            sikkerhetsnivaa?: string;
+        };
+        EgenvurderingArbeidssoekerregisteretDto: {
+            /** @enum {string} */
+            type: EgenvurderingArbeidssoekerregisteretDtoType;
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            profileringId: string;
+            sendtInnAv: components['schemas']['MetadataArbeidssoekerregisteretDto'];
+            /** @enum {string} */
+            profilertTil: EgenvurderingArbeidssoekerregisteretDtoProfilertTil;
+            /** @enum {string} */
+            egenvurdering: EgenvurderingArbeidssoekerregisteretDtoEgenvurdering;
+            /** Format: date-time */
+            tidspunkt: string;
+        };
+        HelseArbeidssoekerregisteretDto: {
+            /** @enum {string} */
+            helsetilstandHindrerArbeid?: HelseArbeidssoekerregisteretDtoHelsetilstandHindrerArbeid;
+        };
+        JobbsituasjonArbeidssoekerregisteretDto: {
+            beskrivelser: components['schemas']['BeskrivelseMedDetaljerArbeidssoekerregisteretDto'][];
+        };
+        MetadataArbeidssoekerregisteretDto: {
+            /** Format: date-time */
+            tidspunkt: string;
+            utfoertAv: components['schemas']['BrukerArbeidssoekerregisteretDto'];
+            kilde: string;
+            aarsak: string;
+            tidspunktFraKilde?: components['schemas']['TidspunktFraKildeArbeidssoekerregisteretDto'];
+        };
+        OpplysningerOmArbeidssoekerArbeidssoekerregisteretDto: {
+            /** @enum {string} */
+            type: OpplysningerOmArbeidssoekerArbeidssoekerregisteretDtoType;
+            /** Format: uuid */
+            id: string;
+            sendtInnAv: components['schemas']['MetadataArbeidssoekerregisteretDto'];
+            /** Format: date-time */
+            tidspunkt: string;
+            utdanning?: components['schemas']['UtdanningArbeidssoekerregisteretDto'];
+            helse?: components['schemas']['HelseArbeidssoekerregisteretDto'];
+            jobbsituasjon?: components['schemas']['JobbsituasjonArbeidssoekerregisteretDto'];
+            annet?: components['schemas']['AnnetArbeidssoekerregisteretDto'];
+        };
+        PeriodeAvluttetArbeidssoekerregisteretDto: {
+            /** @enum {string} */
+            type: PeriodeAvluttetArbeidssoekerregisteretDtoType;
+            sendtInnAv: components['schemas']['MetadataArbeidssoekerregisteretDto'];
+            /** Format: date-time */
+            tidspunkt: string;
+        };
+        PeriodeStartetArbeidssoekerregisteretDto: {
+            /** @enum {string} */
+            type: PeriodeStartetArbeidssoekerregisteretDtoType;
+            sendtInnAv: components['schemas']['MetadataArbeidssoekerregisteretDto'];
+            /** Format: date-time */
+            tidspunkt: string;
+        };
+        ProfileringArbeidssoekerregisteretDto: {
+            /** @enum {string} */
+            type: ProfileringArbeidssoekerregisteretDtoType;
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            opplysningerOmArbeidssokerId: string;
+            sendtInnAv: components['schemas']['MetadataArbeidssoekerregisteretDto'];
+            /** @enum {string} */
+            profilertTil: ProfileringArbeidssoekerregisteretDtoProfilertTil;
+            jobbetSammenhengendeSeksAvTolvSisteMnd: boolean;
+            /** Format: date-time */
+            tidspunkt: string;
+            /** Format: int32 */
+            alder?: number;
+        };
+        SvarArbeidssoekerregisteretDto: {
+            sendtInnAv: components['schemas']['MetadataArbeidssoekerregisteretDto'];
+            /** Format: date-time */
+            gjelderFra: string;
+            /** Format: date-time */
+            gjelderTil: string;
+            harJobbetIDennePerioden: boolean;
+            vilFortsetteSomArbeidssoeker: boolean;
+        };
+        TidspunktFraKildeArbeidssoekerregisteretDto: {
+            /** Format: date-time */
+            tidspunkt: string;
+            /** @enum {string} */
+            avviksType: TidspunktFraKildeArbeidssoekerregisteretDtoAvviksType;
+        };
+        UtdanningArbeidssoekerregisteretDto: {
+            nus: string;
+            /** @enum {string} */
+            bestaatt?: UtdanningArbeidssoekerregisteretDtoBestaatt;
+            /** @enum {string} */
+            godkjent?: UtdanningArbeidssoekerregisteretDtoGodkjent;
+        };
         Gjeldende14aVedtak: {
             innsatsgruppe: components['schemas']['Innsatsgruppe'];
             hovedmal?: components['schemas']['Hovedmal'];
@@ -2298,6 +2450,28 @@ export type SyfoPunktDto = components['schemas']['SyfoPunktDTO'];
 export type UtvidetOppfolgingDto = components['schemas']['UtvidetOppfolgingDTO'];
 export type YtelseDto = components['schemas']['YtelseDTO'];
 export type SykefravaerOppfolgingDto = components['schemas']['SykefravaerOppfolgingDTO'];
+export type AggregertPeriodeArbeidssoekerregisteretDto =
+    components['schemas']['AggregertPeriodeArbeidssoekerregisteretDto'];
+export type AnnetArbeidssoekerregisteretDto = components['schemas']['AnnetArbeidssoekerregisteretDto'];
+export type BekreftelseArbeidssoekerregisteretDto = components['schemas']['BekreftelseArbeidssoekerregisteretDto'];
+export type BeskrivelseMedDetaljerArbeidssoekerregisteretDto =
+    components['schemas']['BeskrivelseMedDetaljerArbeidssoekerregisteretDto'];
+export type BrukerArbeidssoekerregisteretDto = components['schemas']['BrukerArbeidssoekerregisteretDto'];
+export type EgenvurderingArbeidssoekerregisteretDto = components['schemas']['EgenvurderingArbeidssoekerregisteretDto'];
+export type HelseArbeidssoekerregisteretDto = components['schemas']['HelseArbeidssoekerregisteretDto'];
+export type JobbsituasjonArbeidssoekerregisteretDto = components['schemas']['JobbsituasjonArbeidssoekerregisteretDto'];
+export type MetadataArbeidssoekerregisteretDto = components['schemas']['MetadataArbeidssoekerregisteretDto'];
+export type OpplysningerOmArbeidssoekerArbeidssoekerregisteretDto =
+    components['schemas']['OpplysningerOmArbeidssoekerArbeidssoekerregisteretDto'];
+export type PeriodeAvluttetArbeidssoekerregisteretDto =
+    components['schemas']['PeriodeAvluttetArbeidssoekerregisteretDto'];
+export type PeriodeStartetArbeidssoekerregisteretDto =
+    components['schemas']['PeriodeStartetArbeidssoekerregisteretDto'];
+export type ProfileringArbeidssoekerregisteretDto = components['schemas']['ProfileringArbeidssoekerregisteretDto'];
+export type SvarArbeidssoekerregisteretDto = components['schemas']['SvarArbeidssoekerregisteretDto'];
+export type TidspunktFraKildeArbeidssoekerregisteretDto =
+    components['schemas']['TidspunktFraKildeArbeidssoekerregisteretDto'];
+export type UtdanningArbeidssoekerregisteretDto = components['schemas']['UtdanningArbeidssoekerregisteretDto'];
 export type Gjeldende14aVedtak = components['schemas']['Gjeldende14aVedtak'];
 export type Gjeldende14aVedtakResponse = components['schemas']['Gjeldende14aVedtakResponse'];
 export type Hovedmal = components['schemas']['Hovedmal'];
@@ -2901,6 +3075,30 @@ export interface operations {
                 };
                 content: {
                     '*/*': components['schemas']['SykefravaerOppfolgingDTO'];
+                };
+            };
+        };
+    };
+    hentOppslagArbeidssoekerregisteret: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                'application/json': components['schemas']['FnrRequest'];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    '*/*': components['schemas']['AggregertPeriodeArbeidssoekerregisteretDto'];
                 };
             };
         };
@@ -3894,6 +4092,111 @@ export enum IdentInformasjonGruppe {
     FOLKEREGISTERIDENT = 'FOLKEREGISTERIDENT',
     NPID = 'NPID',
     __UNKNOWN_VALUE = '__UNKNOWN_VALUE'
+}
+export enum AnnetArbeidssoekerregisteretDtoAndreForholdHindrerArbeid {
+    UKJENT_VERDI = 'UKJENT_VERDI',
+    JA = 'JA',
+    NEI = 'NEI',
+    VET_IKKE = 'VET_IKKE'
+}
+export enum BekreftelseArbeidssoekerregisteretDtoType {
+    BEKREFTELSE_V1 = 'BEKREFTELSE_V1'
+}
+export enum BekreftelseArbeidssoekerregisteretDtoBekreftelsesloesning {
+    UKJENT_VERDI = 'UKJENT_VERDI',
+    ARBEIDSSOEKERREGISTERET = 'ARBEIDSSOEKERREGISTERET',
+    DAGPENGER = 'DAGPENGER',
+    FRISKMELDT_TIL_ARBEIDSFORMIDLING = 'FRISKMELDT_TIL_ARBEIDSFORMIDLING'
+}
+export enum BekreftelseArbeidssoekerregisteretDtoStatus {
+    GYLDIG = 'GYLDIG',
+    UVENTET_KILDE = 'UVENTET_KILDE',
+    UTENFOR_PERIODE = 'UTENFOR_PERIODE'
+}
+export enum BeskrivelseMedDetaljerArbeidssoekerregisteretDtoBeskrivelse {
+    UKJENT_VERDI = 'UKJENT_VERDI',
+    UDEFINERT = 'UDEFINERT',
+    HAR_SAGT_OPP = 'HAR_SAGT_OPP',
+    HAR_BLITT_SAGT_OPP = 'HAR_BLITT_SAGT_OPP',
+    ER_PERMITTERT = 'ER_PERMITTERT',
+    ALDRI_HATT_JOBB = 'ALDRI_HATT_JOBB',
+    IKKE_VAERT_I_JOBB_SISTE_2_AAR = 'IKKE_VAERT_I_JOBB_SISTE_2_AAR',
+    AKKURAT_FULLFORT_UTDANNING = 'AKKURAT_FULLFORT_UTDANNING',
+    VIL_BYTTE_JOBB = 'VIL_BYTTE_JOBB',
+    USIKKER_JOBBSITUASJON = 'USIKKER_JOBBSITUASJON',
+    MIDLERTIDIG_JOBB = 'MIDLERTIDIG_JOBB',
+    DELTIDSJOBB_VIL_MER = 'DELTIDSJOBB_VIL_MER',
+    NY_JOBB = 'NY_JOBB',
+    KONKURS = 'KONKURS',
+    ANNET = 'ANNET'
+}
+export enum BrukerArbeidssoekerregisteretDtoType {
+    SLUTTBRUKER = 'SLUTTBRUKER',
+    VEILEDER = 'VEILEDER',
+    SYSTEM = 'SYSTEM',
+    UDEFINERT = 'UDEFINERT',
+    UKJENT_VERDI = 'UKJENT_VERDI'
+}
+export enum EgenvurderingArbeidssoekerregisteretDtoType {
+    EGENVURDERING_V1 = 'EGENVURDERING_V1'
+}
+export enum EgenvurderingArbeidssoekerregisteretDtoProfilertTil {
+    UKJENT_VERDI = 'UKJENT_VERDI',
+    UDEFINERT = 'UDEFINERT',
+    ANTATT_GODE_MULIGHETER = 'ANTATT_GODE_MULIGHETER',
+    ANTATT_BEHOV_FOR_VEILEDNING = 'ANTATT_BEHOV_FOR_VEILEDNING',
+    OPPGITT_HINDRINGER = 'OPPGITT_HINDRINGER'
+}
+export enum EgenvurderingArbeidssoekerregisteretDtoEgenvurdering {
+    UKJENT_VERDI = 'UKJENT_VERDI',
+    UDEFINERT = 'UDEFINERT',
+    ANTATT_GODE_MULIGHETER = 'ANTATT_GODE_MULIGHETER',
+    ANTATT_BEHOV_FOR_VEILEDNING = 'ANTATT_BEHOV_FOR_VEILEDNING',
+    OPPGITT_HINDRINGER = 'OPPGITT_HINDRINGER'
+}
+export enum HelseArbeidssoekerregisteretDtoHelsetilstandHindrerArbeid {
+    UKJENT_VERDI = 'UKJENT_VERDI',
+    JA = 'JA',
+    NEI = 'NEI',
+    VET_IKKE = 'VET_IKKE'
+}
+export enum OpplysningerOmArbeidssoekerArbeidssoekerregisteretDtoType {
+    OPPLYSNINGER_V4 = 'OPPLYSNINGER_V4'
+}
+export enum PeriodeAvluttetArbeidssoekerregisteretDtoType {
+    PERIODE_AVSLUTTET_V1 = 'PERIODE_AVSLUTTET_V1'
+}
+export enum PeriodeStartetArbeidssoekerregisteretDtoType {
+    PERIODE_STARTET_V1 = 'PERIODE_STARTET_V1'
+}
+export enum ProfileringArbeidssoekerregisteretDtoType {
+    PROFILERING_V1 = 'PROFILERING_V1'
+}
+export enum ProfileringArbeidssoekerregisteretDtoProfilertTil {
+    UKJENT_VERDI = 'UKJENT_VERDI',
+    UDEFINERT = 'UDEFINERT',
+    ANTATT_GODE_MULIGHETER = 'ANTATT_GODE_MULIGHETER',
+    ANTATT_BEHOV_FOR_VEILEDNING = 'ANTATT_BEHOV_FOR_VEILEDNING',
+    OPPGITT_HINDRINGER = 'OPPGITT_HINDRINGER'
+}
+export enum TidspunktFraKildeArbeidssoekerregisteretDtoAvviksType {
+    UKJENT_VERDI = 'UKJENT_VERDI',
+    FORSINKELSE = 'FORSINKELSE',
+    RETTING = 'RETTING',
+    SLETTET = 'SLETTET',
+    TIDSPUNKT_KORRIGERT = 'TIDSPUNKT_KORRIGERT'
+}
+export enum UtdanningArbeidssoekerregisteretDtoBestaatt {
+    UKJENT_VERDI = 'UKJENT_VERDI',
+    JA = 'JA',
+    NEI = 'NEI',
+    VET_IKKE = 'VET_IKKE'
+}
+export enum UtdanningArbeidssoekerregisteretDtoGodkjent {
+    UKJENT_VERDI = 'UKJENT_VERDI',
+    JA = 'JA',
+    NEI = 'NEI',
+    VET_IKKE = 'VET_IKKE'
 }
 export enum EnhetStatus {
     UNDER_ETABLERING = 'UNDER_ETABLERING',

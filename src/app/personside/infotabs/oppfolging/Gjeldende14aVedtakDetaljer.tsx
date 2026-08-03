@@ -34,9 +34,13 @@ function Gjeldende14aVedtakDetaljer() {
 
     const gjeldende14aVedtakEntries = {
         'Har 14a vedtak': detaljer ? 'Ja' : 'Nei',
-        Innsatsgruppe: detaljer?.innsatsgruppe.beskrivelse,
-        Hovedmål: detaljer?.hovedmal?.beskrivelse,
-        Vedtaksdato: datoEllerNull(detaljer?.fattetDato)
+        ...(detaljer
+            ? {
+                  Innsatsgruppe: detaljer?.innsatsgruppe.beskrivelse,
+                  Hovedmål: detaljer?.hovedmal?.beskrivelse,
+                  Vedtaksdato: datoEllerNull(detaljer?.fattetDato)
+              }
+            : {})
     };
 
     return (

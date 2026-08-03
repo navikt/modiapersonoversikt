@@ -11,7 +11,3 @@ export function getOppfolgingEnhet(oppfolging?: OppfolgingDto): string {
 export function getVeileder(veileder?: Veileder): string {
     return veileder ? `${veileder.navn} (${veileder.ident})` : '-';
 }
-
-export function getMeldeplikt(meldeplikt?: boolean): string {
-    return meldeplikt ? 'Ja' : meldeplikt === false ? 'Nei' : 'Meldeplikt Ukjent';
-}
