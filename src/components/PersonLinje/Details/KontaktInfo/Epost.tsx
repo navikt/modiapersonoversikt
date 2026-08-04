@@ -1,5 +1,5 @@
 import { EnvelopeClosedFillIcon } from '@navikt/aksel-icons';
-import { Alert } from '@navikt/ds-react';
+import { InlineMessage } from '@navikt/ds-react';
 import type { PersonData } from 'src/lib/types/modiapersonoversikt-api';
 import { formaterDato } from 'src/utils/string-utils';
 import { InfoElement } from '../components';
@@ -17,7 +17,9 @@ function Email({ harFeilendeSystem, kontaktinformasjon }: Props) {
                 title="E-post"
                 icon={<EnvelopeClosedFillIcon aria-hidden fontSize="1.2rem" color="var(--ax-neutral-500)" />}
             >
-                <Alert variant="warning">Feilet ved uthenting av data fra Kontakt- og reservasjonsregisteret</Alert>
+                <InlineMessage status="warning" size="small">
+                    Feilet ved uthenting av data fra Kontakt- og reservasjonsregisteret
+                </InlineMessage>
             </InfoElement>
         );
     }

@@ -1,5 +1,5 @@
 import { Chat2Icon, GlassesIcon, PencilIcon } from '@navikt/aksel-icons';
-import { Alert, BodyShort, Detail, HelpText, ReadMore, Table } from '@navikt/ds-react';
+import { BodyShort, Detail, HelpText, InlineMessage, ReadMore, Table } from '@navikt/ds-react';
 import { KopierFnrKnapp } from 'src/components/PersonLinje/common/KopierFnrKnapp';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import {
@@ -84,7 +84,9 @@ function Fullmakt(props: { fullmakt: Fullmakt; harFeilendeSystem: boolean }) {
     const motpartsPersonNavn = hentNavn(props.fullmakt.motpartsPersonNavn);
     const beskrivelse = props.fullmakt.motpartsRolle === 'FULLMEKTIG' ? 'Fullmektig' : 'Fullmaktsgiver';
     const harFeilendeSystem = props.harFeilendeSystem ? (
-        <Alert variant="warning">Feilet ved uthenting av navn</Alert>
+        <InlineMessage status="warning" size="small">
+            Feilet ved uthenting av navn
+        </InlineMessage>
     ) : null;
 
     return (

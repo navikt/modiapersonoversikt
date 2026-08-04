@@ -1,5 +1,5 @@
 import { HeartFillIcon } from '@navikt/aksel-icons';
-import { Alert, BodyShort, Detail } from '@navikt/ds-react';
+import { BodyShort, Detail, InlineMessage } from '@navikt/ds-react';
 import { KopierFnrKnapp } from 'src/components/PersonLinje/common/KopierFnrKnapp';
 import { type PersonData, SivilstandType } from 'src/lib/types/modiapersonoversikt-api';
 import { formaterDato } from 'src/utils/string-utils';
@@ -36,7 +36,9 @@ function Partner(props: { partner: Sivilstand; harFeilendeSystem: boolean }) {
                 <BodyShort size="small">
                     <Sivilstand sivilstand={props.partner} />
                 </BodyShort>
-                <Alert variant="warning">Feilet ved uthenting av informasjon om partner</Alert>
+                <InlineMessage status="warning" size="small">
+                    Feilet ved uthenting av informasjon om partner
+                </InlineMessage>
             </>
         );
     }

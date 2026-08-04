@@ -1,4 +1,4 @@
-import { Accordion, Alert, BodyShort, Box, Link, Skeleton } from '@navikt/ds-react';
+import { Accordion, Alert, BodyShort, Box, InlineMessage, Link, Skeleton } from '@navikt/ds-react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { Fragment } from 'react';
 import QueryErrorBoundary from 'src/components/QueryErrorBoundary';
@@ -90,7 +90,9 @@ function NavKontor() {
         return (
             <Group title="NAV-kontor">
                 <InfoElement title="Ukjent NAV-kontor" icon={<NavLogo style={{ width: '2.5rem' }} />}>
-                    <Alert variant="warning">Feilet ved uthenting av informasjon om NAV-kontor</Alert>
+                    <InlineMessage status="warning" size="small">
+                        Feilet ved uthenting av informasjon om NAV-kontor
+                    </InlineMessage>
                 </InfoElement>
             </Group>
         );

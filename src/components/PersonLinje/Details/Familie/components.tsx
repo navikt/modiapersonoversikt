@@ -5,7 +5,7 @@ import {
     FigureOutwardFillIcon,
     PersonCrossFillIcon
 } from '@navikt/aksel-icons';
-import { Alert, BodyShort, Detail } from '@navikt/ds-react';
+import { BodyShort, Detail, InlineMessage } from '@navikt/ds-react';
 import { KopierFnrKnapp } from 'src/components/PersonLinje/common/KopierFnrKnapp';
 import type { PersonData } from 'src/lib/types/modiapersonoversikt-api';
 import BostedForRelasjon from '../../common/BostedForRelasjon';
@@ -29,7 +29,9 @@ export function ForelderBarnRelasjonVisning({
     if (harFeilendeSystem) {
         return (
             <InfoElement title={beskrivelse} icon={<FamilierelasjonIkon relasjon={relasjon} erBarn={erBarn} />}>
-                <Alert variant="warning">Feilet ved uthenting av informasjon om {relasjon.rolle.toLowerCase()}</Alert>
+                <InlineMessage status="warning" size="small">
+                    Feilet ved uthenting av informasjon om {relasjon.rolle.toLowerCase()}
+                </InlineMessage>
             </InfoElement>
         );
     }
