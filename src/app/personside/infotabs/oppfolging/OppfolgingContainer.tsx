@@ -48,9 +48,7 @@ function OppfolgingContainer() {
                     oppslagArbeidssoekerRegisteret={arbeidssoekerData}
                 />
             </DetaljertInfoWrapper>
-            <SykefraversoppfolgingEkspanderbartPanel
-                syfoPunkter={syfraversData?.sykefravaersoppfolging ?? []}
-            />
+            <SykefraversoppfolgingEkspanderbartPanel syfoPunkter={syfraversData?.sykefravaersoppfolging ?? []} />
             <OppfolgingYtelserEkspanderbartPanel ytelser={ytelsesData?.ytelser ?? []} />
         </OppfolgingStyle>
     );

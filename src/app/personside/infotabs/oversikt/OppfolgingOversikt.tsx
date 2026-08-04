@@ -67,7 +67,9 @@ function YtelserForBruker({ ytelser }: { ytelser: OppfolgingsYtelse[] }) {
         .filter((ytelse) => ytelse.status !== 'Avsluttet')
         .filter((ytelse) => ytelse.status !== 'Lukket')
         .map((ytelse) => `${ytelse.type} : ${ytelse.status}`);
-    const filtrerteYtelser = ytelserStrenger.filter((item, index) => ytelserStrenger.indexOf(item) === index).join(', ');
+    const filtrerteYtelser = ytelserStrenger
+        .filter((item, index) => ytelserStrenger.indexOf(item) === index)
+        .join(', ');
     return (
         <>
             <Element>Ytelser:</Element>
