@@ -50,7 +50,7 @@ function VisOppfolgingDetaljer(props: Props) {
     const arbeidssoekerregisteretOpplysinger = oppslagArbeidssoekerRegisteret?.opplysning;
 
     const descriptionListProps = {
-        'Er under oppfølging': getErUnderOppfolging(detaljer?.oppfolging),
+        'Er under arbeidsrettet oppfølging': getErUnderOppfolging(detaljer?.oppfolging),
         Oppfølgingsenhet: getOppfolgingEnhet(detaljer?.oppfolging),
         Veileder: getVeileder(detaljer?.oppfolging?.veileder),
         ...(!errorLoadingDataArbeidssoekerRegisteret
