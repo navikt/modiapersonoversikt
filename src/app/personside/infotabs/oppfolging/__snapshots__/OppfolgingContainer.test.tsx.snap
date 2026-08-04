@@ -2,130 +2,28 @@
 
 exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
 <DocumentFragment>
-  .c10 {
+  .c2 {
   display: flex;
   flex-wrap: wrap;
 }
 
-.c10 dt {
+.c2 dt {
   color: #645f5a;
 }
 
-.c10 >div {
+.c2 >div {
   margin: 0.5625rem 0;
   padding-right: 0.7rem;
   width: 13rem;
   overflow-wrap: break-word;
 }
 
-.c9 {
+.c1 {
   padding: 0.9375rem;
 }
 
-.c9 >*:first-child {
+.c1 >*:first-child {
   margin-bottom: 1rem;
-}
-
-.c8 {
-  display: flex;
-  gap: 20px;
-}
-
-.c5 {
-  display: flex;
-  flex-direction: column;
-  margin-top: 1.5rem;
-}
-
-.c5 >*:first-child {
-  margin-bottom: 0.5rem;
-}
-
-.c5 >* {
-  margin-top: 0.5rem;
-}
-
-.c5 .skjemaelement--horisontal {
-  margin-bottom: 0.4rem;
-}
-
-.c7 {
-  margin-bottom: 0.5rem;
-}
-
-.c6 {
-  border: none;
-  margin: 0;
-  padding: 0;
-}
-
-.c6 >*:first-child {
-  margin-bottom: 0.8rem;
-}
-
-.c6 >*:last-child {
-  margin-bottom: 0;
-}
-
-.c2 {
-  padding: 0.9375rem;
-}
-
-.c3 {
-  margin-bottom: .5rem;
-}
-
-.c3:focus {
-  outline: none;
-}
-
-.c4 {
-  display: flex;
-  flex-direction: column;
-  margin-top: 1.5rem;
-}
-
-.c4 >*:first-child {
-  margin-bottom: 0.5rem;
-}
-
-.c4 >* {
-  margin-top: 0.5rem;
-}
-
-.c4 .skjemaelement--horisontal {
-  margin-bottom: 0.4rem;
-}
-
-.c12 {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-}
-
-.c12 >*:first-child {
-  flex-basis: 10em;
-  flex-shrink: 0;
-}
-
-.c12 >* {
-  white-space: nowrap;
-}
-
-.c12 >*:not(:last-child) {
-  margin-right: 2rem;
-}
-
-.c11 {
-  padding: 0rem;
-}
-
-.c11 .ekspanderbartPanel__hode {
-  position: sticky;
-  top: 0;
-  border-bottom: solid 0.0625rem #b7b1a9;
-  z-index: 10;
-  background-color: white;
 }
 
 .c0 {
@@ -136,442 +34,273 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
   margin-bottom: .5rem;
 }
 
-.c1 {
-  display: flex;
-  flex-direction: row;
-}
-
-.c1 >*:last-child {
-  margin-left: .5rem;
-  flex-basis: 75%;
-}
-
 <div
     class="c0"
   >
     <div
-      class="c1"
+      aria-labelledby="Helt tilfeldig ID"
+      class="panel c1"
     >
-      <div
-        aria-labelledby="Helt tilfeldig ID"
-        class="panel c2"
-      >
-        <article>
+      <article>
+        <div
+          class="alertstripe alertstripe--advarsel"
+        >
+          <span
+            class="alertstripe__ikon"
+          >
+            <span
+              class="sr-only"
+            >
+              advarsel
+            </span>
+            <svg
+              aria-label="advarsel-ikon"
+              focusable="false"
+              height="1.5em"
+              kind="advarsel-sirkel-fyll"
+              role="img"
+              viewBox="0 0 24 24"
+              width="1.5em"
+            >
+              <g
+                fill="none"
+                fill-rule="evenodd"
+              >
+                <path
+                  d="M12.205-.004l-.214.002a12.225 12.225 0 0 0-8.517 3.659C1.179 5.977-.053 9.013.002 12.208c.115 6.613 5.296 11.793 11.795 11.793l.212-.002c6.726-.116 12.105-5.595 11.99-12.21C23.883 5.178 18.702-.003 12.204-.003z"
+                  fill="#FFA733"
+                  fill-rule="nonzero"
+                />
+                <path
+                  d="M12.027 19H12A1.499 1.499 0 0 1 11.973 16L12 16a1.501 1.501 0 0 1 .027 3z"
+                  fill="#3E3832"
+                />
+                <path
+                  d="M12 5a1 1 0 0 1 1 1v7a1 1 0 0 1-2 0V6a1 1 0 0 1 1-1z"
+                  fill="#3E3832"
+                  fill-rule="nonzero"
+                />
+              </g>
+            </svg>
+          </span>
           <div
-            class="c3"
+            class="typo-normal alertstripe__tekst"
           >
-            <h2
-              class="typo-undertittel"
-              id="Helt tilfeldig ID"
-            >
-              Oppfølging og ytelser vises for perioden:
-            </h2>
+            Kunne ikke laste inn informasjon om brukers oppfølging
           </div>
-          <form
-            class="c4"
+        </div>
+        <div
+          class="alertstripe alertstripe--advarsel"
+        >
+          <span
+            class="alertstripe__ikon"
           >
-            <form
-              class="c5"
+            <span
+              class="sr-only"
             >
-              <fieldset
-                class="c6"
+              advarsel
+            </span>
+            <svg
+              aria-label="advarsel-ikon"
+              focusable="false"
+              height="1.5em"
+              kind="advarsel-sirkel-fyll"
+              role="img"
+              viewBox="0 0 24 24"
+              width="1.5em"
+            >
+              <g
+                fill="none"
+                fill-rule="evenodd"
               >
-                <legend
-                  class="typo-element"
-                >
-                  Velg periode
-                </legend>
-                <div
-                  class="c7"
-                >
-                  <div
-                    class="skjemaelement"
-                  >
-                    <input
-                      aria-invalid="false"
-                      class="skjemaelement__input radioknapp"
-                      id="Helt tilfeldig ID"
-                      name="FiltreringsvalgGruppe"
-                      type="radio"
-                    />
-                    <label
-                      class="skjemaelement__label"
-                      for="Helt tilfeldig ID"
-                    >
-                      Siste 30 dager
-                    </label>
-                  </div>
-                </div>
-                <div
-                  class="c7"
-                >
-                  <div
-                    class="skjemaelement"
-                  >
-                    <input
-                      aria-invalid="false"
-                      class="skjemaelement__input radioknapp"
-                      id="Helt tilfeldig ID"
-                      name="FiltreringsvalgGruppe"
-                      type="radio"
-                    />
-                    <label
-                      class="skjemaelement__label"
-                      for="Helt tilfeldig ID"
-                    >
-                      Inneværende år
-                    </label>
-                  </div>
-                </div>
-                <div
-                  class="c7"
-                >
-                  <div
-                    class="skjemaelement"
-                  >
-                    <input
-                      aria-invalid="false"
-                      class="skjemaelement__input radioknapp"
-                      id="Helt tilfeldig ID"
-                      name="FiltreringsvalgGruppe"
-                      type="radio"
-                    />
-                    <label
-                      class="skjemaelement__label"
-                      for="Helt tilfeldig ID"
-                    >
-                      I fjor
-                    </label>
-                  </div>
-                </div>
-                <div
-                  class="c7"
-                >
-                  <div
-                    class="skjemaelement"
-                  >
-                    <input
-                      aria-invalid="false"
-                      checked=""
-                      class="skjemaelement__input radioknapp"
-                      id="Helt tilfeldig ID"
-                      name="FiltreringsvalgGruppe"
-                      type="radio"
-                    />
-                    <label
-                      class="skjemaelement__label"
-                      for="Helt tilfeldig ID"
-                    >
-                      Egendefinert
-                    </label>
-                  </div>
-                </div>
-              </fieldset>
-              <div
-                class="c8"
+                <path
+                  d="M12.205-.004l-.214.002a12.225 12.225 0 0 0-8.517 3.659C1.179 5.977-.053 9.013.002 12.208c.115 6.613 5.296 11.793 11.795 11.793l.212-.002c6.726-.116 12.105-5.595 11.99-12.21C23.883 5.178 18.702-.003 12.204-.003z"
+                  fill="#FFA733"
+                  fill-rule="nonzero"
+                />
+                <path
+                  d="M12.027 19H12A1.499 1.499 0 0 1 11.973 16L12 16a1.501 1.501 0 0 1 .027 3z"
+                  fill="#3E3832"
+                />
+                <path
+                  d="M12 5a1 1 0 0 1 1 1v7a1 1 0 0 1-2 0V6a1 1 0 0 1 1-1z"
+                  fill="#3E3832"
+                  fill-rule="nonzero"
+                />
+              </g>
+            </svg>
+          </span>
+          <div
+            class="typo-normal alertstripe__tekst"
+          >
+            Kunne ikke hente ut all oppfølgings-informasjon
+          </div>
+        </div>
+        <h2
+          class="typo-undertittel"
+          id="Helt tilfeldig ID"
+        >
+          Arbeidsoppfølging
+        </h2>
+        <dl
+          class="c2"
+        >
+          <div>
+            <dt
+              class="typo-normal"
+            >
+              Er under oppfølging
+            </dt>
+            <dd
+              class="typo-element"
+            >
+              —
+            </dd>
+          </div>
+          <div>
+            <dt
+              class="typo-normal"
+            >
+              Oppfølgingsenhet
+            </dt>
+            <dd
+              class="typo-element"
+            >
+              —
+            </dd>
+          </div>
+          <div>
+            <dt
+              class="typo-normal"
+            >
+              Veileder
+            </dt>
+            <dd
+              class="typo-element"
+            >
+              —
+            </dd>
+          </div>
+          <div>
+            <dt
+              class="typo-normal"
+            >
+              Arbeidssøkerstatus
+            </dt>
+            <dd
+              class="typo-element"
+            >
+              Er registrert som arbeidssøker
+              <p
+                class="aksel-detail"
               >
-                <div
-                  class="aksel-date__wrapper"
-                >
-                  <div
-                    class="aksel-form-field aksel-form-field--small aksel-date__field"
-                  >
-                    <label
-                      class="aksel-form-field__label aksel-label aksel-label--small"
-                      for="datepicker-input-_r_2_"
-                    >
-                      Fra
-                    </label>
-                    <div
-                      class="aksel-date__field-wrapper"
-                    >
-                      <input
-                        autocomplete="off"
-                        class="aksel-date__field-input aksel-text-field__input aksel-body-short aksel-body-short--small"
-                        id="datepicker-input-_r_2_"
-                        size="11"
-                        value="01.01.1968"
-                      />
-                      <button
-                        class="aksel-date__field-button"
-                        tabindex="0"
-                        type="button"
-                      >
-                        <svg
-                          aria-labelledby="title-_r_3_"
-                          fill="none"
-                          focusable="false"
-                          height="1em"
-                          role="img"
-                          viewBox="0 0 24 24"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <title
-                            id="title-_r_3_"
-                          >
-                            Åpne datovelger
-                          </title>
-                          <path
-                            clip-rule="evenodd"
-                            d="M9 2.25a.75.75 0 0 1 .75.75v1.25h4.5V3a.75.75 0 0 1 1.5 0v1.25h3.75c.69 0 1.25.56 1.25 1.25v13c0 .69-.56 1.25-1.25 1.25h-15c-.69 0-1.25-.56-1.25-1.25v-13c0-.69.56-1.25 1.25-1.25h3.75V3A.75.75 0 0 1 9 2.25M15.75 7a.75.75 0 0 1-1.5 0V5.75h-4.5V7a.75.75 0 0 1-1.5 0V5.75h-3.5v3.5h14.5v-3.5h-3.5zm-11 11.25v-7.5h14.5v7.5zm2-5.25a.75.75 0 0 1 .75-.75h1a.75.75 0 0 1 0 1.5h-1a.75.75 0 0 1-.75-.75m4 0a.75.75 0 0 1 .75-.75h1a.75.75 0 0 1 0 1.5h-1a.75.75 0 0 1-.75-.75m4.75-.75a.75.75 0 0 0 0 1.5h1a.75.75 0 0 0 0-1.5zM10.75 16a.75.75 0 0 1 .75-.75h1a.75.75 0 0 1 0 1.5h-1a.75.75 0 0 1-.75-.75m4.75-.75a.75.75 0 0 0 0 1.5h1a.75.75 0 0 0 0-1.5zM6.75 16a.75.75 0 0 1 .75-.75h1a.75.75 0 0 1 0 1.5h-1a.75.75 0 0 1-.75-.75"
-                            fill="currentColor"
-                            fill-rule="evenodd"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-                    <div
-                      aria-live="polite"
-                      aria-relevant="additions removals"
-                      class="aksel-form-field__error"
-                      id="datepicker-input-error-_r_2_"
-                    />
-                  </div>
-                </div>
-                <div
-                  class="aksel-date__wrapper"
-                >
-                  <div
-                    class="aksel-form-field aksel-form-field--small aksel-date__field"
-                  >
-                    <label
-                      class="aksel-form-field__label aksel-label aksel-label--small"
-                      for="datepicker-input-_r_6_"
-                    >
-                      Til
-                    </label>
-                    <div
-                      class="aksel-date__field-wrapper"
-                    >
-                      <input
-                        autocomplete="off"
-                        class="aksel-date__field-input aksel-text-field__input aksel-body-short aksel-body-short--small"
-                        id="datepicker-input-_r_6_"
-                        size="11"
-                        value="01.01.1970"
-                      />
-                      <button
-                        class="aksel-date__field-button"
-                        tabindex="0"
-                        type="button"
-                      >
-                        <svg
-                          aria-labelledby="title-_r_7_"
-                          fill="none"
-                          focusable="false"
-                          height="1em"
-                          role="img"
-                          viewBox="0 0 24 24"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <title
-                            id="title-_r_7_"
-                          >
-                            Åpne datovelger
-                          </title>
-                          <path
-                            clip-rule="evenodd"
-                            d="M9 2.25a.75.75 0 0 1 .75.75v1.25h4.5V3a.75.75 0 0 1 1.5 0v1.25h3.75c.69 0 1.25.56 1.25 1.25v13c0 .69-.56 1.25-1.25 1.25h-15c-.69 0-1.25-.56-1.25-1.25v-13c0-.69.56-1.25 1.25-1.25h3.75V3A.75.75 0 0 1 9 2.25M15.75 7a.75.75 0 0 1-1.5 0V5.75h-4.5V7a.75.75 0 0 1-1.5 0V5.75h-3.5v3.5h14.5v-3.5h-3.5zm-11 11.25v-7.5h14.5v7.5zm2-5.25a.75.75 0 0 1 .75-.75h1a.75.75 0 0 1 0 1.5h-1a.75.75 0 0 1-.75-.75m4 0a.75.75 0 0 1 .75-.75h1a.75.75 0 0 1 0 1.5h-1a.75.75 0 0 1-.75-.75m4.75-.75a.75.75 0 0 0 0 1.5h1a.75.75 0 0 0 0-1.5zM10.75 16a.75.75 0 0 1 .75-.75h1a.75.75 0 0 1 0 1.5h-1a.75.75 0 0 1-.75-.75m4.75-.75a.75.75 0 0 0 0 1.5h1a.75.75 0 0 0 0-1.5zM6.75 16a.75.75 0 0 1 .75-.75h1a.75.75 0 0 1 0 1.5h-1a.75.75 0 0 1-.75-.75"
-                            fill="currentColor"
-                            fill-rule="evenodd"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-                    <div
-                      aria-live="polite"
-                      aria-relevant="additions removals"
-                      class="aksel-form-field__error"
-                      id="datepicker-input-error-_r_6_"
-                    />
-                  </div>
-                </div>
-              </div>
-            </form>
-          </form>
-        </article>
-      </div>
-      <div
-        aria-labelledby="Helt tilfeldig ID"
-        class="panel c9"
-      >
+                Dato: 03.12.1969
+              </p>
+               
+            </dd>
+          </div>
+        </dl>
+        <br />
         <article>
           <h2
             class="typo-undertittel"
             id="Helt tilfeldig ID"
           >
-            Arbeidsoppfølging
+            14a vedtak
           </h2>
           <dl
-            class="c10"
+            class="c2"
           >
             <div>
               <dt
                 class="typo-normal"
               >
-                Er under oppfølging
+                Har 14a vedtak
               </dt>
               <dd
                 class="typo-element"
               >
-                Nei
+                Ja
               </dd>
             </div>
             <div>
               <dt
                 class="typo-normal"
               >
-                Oppfølgingsenhet
+                Innsatsgruppe
               </dt>
               <dd
                 class="typo-element"
               >
-                E0001 Tangen AS
+                Innsatsgruppe 3
               </dd>
             </div>
             <div>
               <dt
                 class="typo-normal"
               >
-                Veileder
+                Hovedmål
               </dt>
               <dd
                 class="typo-element"
               >
-                Testident Testidentesen (Z0000001)
+                —
               </dd>
             </div>
             <div>
               <dt
                 class="typo-normal"
               >
-                Arbeidssøkerstatus
+                Vedtaksdato
               </dt>
               <dd
                 class="typo-element"
               >
-                Er registrert som arbeidssøker
-                <p
-                  class="aksel-detail"
-                >
-                  Dato: 03.12.1969
-                </p>
-                 
+                15.01.2023
               </dd>
             </div>
           </dl>
-          <br />
-          <article>
-            <h2
-              class="typo-undertittel"
-              id="Helt tilfeldig ID"
-            >
-              14a vedtak
-            </h2>
-            <dl
-              class="c10"
-            >
-              <div>
-                <dt
-                  class="typo-normal"
-                >
-                  Har 14a vedtak
-                </dt>
-                <dd
-                  class="typo-element"
-                >
-                  Nei
-                </dd>
-              </div>
-            </dl>
-          </article>
         </article>
-      </div>
+      </article>
     </div>
     <div
-      class="panel c11"
+      class="alertstripe alertstripe--info"
     >
-      <div
-        class="ekspanderbartPanel test-ytelse-ytelselamell ekspanderbartPanel--lukket ekspanderbartPanel--border"
+      <span
+        class="alertstripe__ikon"
       >
-        <button
-          aria-controls="Helt tilfeldig ID"
-          aria-expanded="false"
-          aria-label="Sykefraværsoppfølging"
-          class="ekspanderbartPanel__hode"
-          id="Helt tilfeldig ID"
-          type="button"
+        <span
+          class="sr-only"
         >
-          <div
-            class="ekspanderbartPanel__flex-wrapper"
+          info
+        </span>
+        <svg
+          aria-label="info-ikon"
+          focusable="false"
+          height="1.5em"
+          kind="info-sirkel-fyll"
+          role="img"
+          viewBox="0 0 24 24"
+          width="1.5em"
+        >
+          <g
+            fill="none"
           >
-            <span
-              class="ekspanderbartPanel__tittel"
-            >
-              <div
-                class="c12"
-              >
-                <h2
-                  class="typo-undertittel"
-                >
-                  Sykefraværsoppfølging
-                </h2>
-              </div>
-            </span>
-            <span
-              class="ekspanderbartPanel__indikator"
+            <path
+              d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
+              fill="#337C9B"
             />
-          </div>
-        </button>
-        <div
-          aria-labelledby="Helt tilfeldig ID"
-          id="Helt tilfeldig ID"
-          role="region"
-        />
-      </div>
-    </div>
-    <div
-      class="panel c11"
-    >
+            <path
+              d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
+              fill="#FFF"
+            />
+          </g>
+        </svg>
+      </span>
       <div
-        class="ekspanderbartPanel test-ytelse-ytelselamell ekspanderbartPanel--lukket ekspanderbartPanel--border"
+        class="typo-normal alertstripe__tekst"
       >
-        <button
-          aria-controls="Helt tilfeldig ID"
-          aria-expanded="false"
-          aria-label="Ytelser"
-          class="ekspanderbartPanel__hode"
-          id="Helt tilfeldig ID"
-          type="button"
-        >
-          <div
-            class="ekspanderbartPanel__flex-wrapper"
-          >
-            <span
-              class="ekspanderbartPanel__tittel"
-            >
-              <div
-                class="c12"
-              >
-                <h2
-                  class="typo-undertittel"
-                >
-                  Ytelser
-                </h2>
-              </div>
-            </span>
-            <span
-              class="ekspanderbartPanel__indikator"
-            />
-          </div>
-        </button>
-        <div
-          aria-labelledby="Helt tilfeldig ID"
-          id="Helt tilfeldig ID"
-          role="region"
-        />
+        Det finnes ikke informasjon om sykefraværsoppfølging for valgt periode i Arena
       </div>
     </div>
   </div>
