@@ -3129,10 +3129,7 @@ export interface operations {
     };
     hentArbeidsOppfolging: {
         parameters: {
-            query?: {
-                startDato?: string;
-                sluttDato?: string;
-            };
+            query?: never;
             header?: never;
             path?: never;
             cookie?: never;
