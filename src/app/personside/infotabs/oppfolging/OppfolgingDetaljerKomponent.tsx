@@ -5,8 +5,10 @@ import Panel from 'nav-frontend-paneler';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useRef } from 'react';
 import Siste14aVedtakDetaljer from 'src/app/personside/infotabs/oppfolging/Gjeldende14aVedtakDetaljer';
-import type { AggregertPeriodeArbeidssoekerregisteretDto } from 'src/generated/modiapersonoversikt-api';
-import type { DetaljertOppfolging } from 'src/models/oppfolging';
+import type {
+    AggregertPeriodeArbeidssoekerregisteretDto,
+    ArbeidsOppfolgingDto
+} from 'src/generated/modiapersonoversikt-api';
 import { pxToRem } from 'src/styles/personOversiktTheme';
 import { formatterDato } from 'src/utils/date-utils';
 import styled from 'styled-components';
@@ -21,7 +23,7 @@ const StyledPanel = styled(Panel)`
 `;
 
 interface Props {
-    detaljertOppfolging: DetaljertOppfolging;
+    detaljertOppfolging?: ArbeidsOppfolgingDto;
     oppslagArbeidssoekerRegisteret?: AggregertPeriodeArbeidssoekerregisteretDto;
     isErrorOppfolging?: boolean;
     isErrorArbeidssoekerRegisteret?: boolean;
@@ -33,7 +35,7 @@ function VisOppfolgingDetaljer(props: Props) {
     const oppslagArbeidssoekerRegisteret = props.oppslagArbeidssoekerRegisteret;
 
     const ikkeFullstendigData =
-        detaljer.oppfolging === null ? (
+        detaljer?.oppfolging == null ? (
             <AlertStripeAdvarsel>Kunne ikke hente ut all oppfølgings-informasjon</AlertStripeAdvarsel>
         ) : null;
     const errorLoadingData = props.isErrorOppfolging ? (
@@ -48,9 +50,9 @@ function VisOppfolgingDetaljer(props: Props) {
     const arbeidssoekerregisteretOpplysinger = oppslagArbeidssoekerRegisteret?.opplysning;
 
     const descriptionListProps = {
-        'Er under oppfølging': getErUnderOppfolging(detaljer.oppfolging),
-        Oppfølgingsenhet: getOppfolgingEnhet(detaljer.oppfolging),
-        Veileder: getVeileder(detaljer.oppfolging?.veileder),
+        'Er under oppfølging': getErUnderOppfolging(detaljer?.oppfolging),
+        Oppfølgingsenhet: getOppfolgingEnhet(detaljer?.oppfolging),
+        Veileder: getVeileder(detaljer?.oppfolging?.veileder),
         ...(!errorLoadingDataArbeidssoekerRegisteret
             ? {
                   Arbeidssøkerstatus: (
