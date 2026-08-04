@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import navfaker from 'nav-faker';
 import type {
     AggregertPeriodeArbeidssoekerregisteretDto,
-    Gjeldende14aVedtak,
+    Gjeldende14aVedtakResponse,
     MetadataArbeidssoekerregisteretDto,
     SykefravaerOppfolgingDto
 } from 'src/generated/modiapersonoversikt-api';
@@ -80,15 +80,17 @@ export function getMockYtelserOgKontrakter(fodselsnummer: string): DetaljertOppf
     };
 }
 
-export function getMock14aVedtak(fodselsnummer: string): Gjeldende14aVedtak {
+export function getMock14aVedtak(fodselsnummer: string): Gjeldende14aVedtakResponse {
     faker.seed(Number(fodselsnummer));
     navfaker.seed(`${fodselsnummer}oppf`);
 
     return {
-        fattetDato: '2023-01-15',
-        innsatsgruppe: {
-            kode: 'INGRP3',
-            beskrivelse: 'Innsatsgruppe 3'
+        gjeldende14aVedtak: {
+            fattetDato: '2023-01-15',
+            innsatsgruppe: {
+                kode: 'INGRP3',
+                beskrivelse: 'Innsatsgruppe 3'
+            }
         }
     };
 }
