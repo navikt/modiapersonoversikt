@@ -35,7 +35,7 @@ const OppfolgingDetaljer = () => {
     return (
         <>
             <Heading as="h3" size="small">
-                Arbeidsrettetoppfølging
+                Arbeidsrettet oppfølging
             </Heading>
             {!arbeidsOppfolging ? (
                 <Box paddingBlock="space-8">
@@ -49,8 +49,8 @@ const OppfolgingDetaljer = () => {
                         </BodyShort>
                         <BodyShort size="small">
                             {arbeidsOppfolging.oppfolging?.erUnderOppfolging
-                                ? 'Under arbeidsrettetoppfølging'
-                                : 'Ikke under arbeidsrettetoppfølging'}
+                                ? 'Under arbeidsrettet oppfølging'
+                                : 'Ikke under arbeidsrettet oppfølging'}
                         </BodyShort>
                     </VStack>
                     <VStack justify="space-between">
