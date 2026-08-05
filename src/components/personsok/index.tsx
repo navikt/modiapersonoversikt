@@ -1,6 +1,7 @@
 import { BodyShort, Box, Heading, Modal } from '@navikt/ds-react';
 import { useCallback, useRef, useState } from 'react';
 import type { PersonsokRequest } from 'src/lib/types/modiapersonoversikt-api';
+import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import useListener from 'src/utils/hooks/use-listener';
 import { PersonsokForm } from './form';
 import { PersonsokResult } from './PersonsokResult';
@@ -25,7 +26,16 @@ const Personsok = () => {
                 </BodyShort>
             </Modal.Header>
             <Modal.Body>
-                <PersonsokForm onSubmit={setSearchQuery} onReset={() => setSearchQuery(undefined)} />
+                <PersonsokForm
+                    onSubmit={(query) => {
+                        setSearchQuery(query);
+                        const queryKeys = query
+                            ? Object.keys(query).filter((key) => query[key as keyof PersonsokRequest] !== undefined)
+                            : [];
+                        trackGenereltUmamiEvent(trackingEvents.avansertSok, { queryKeys: queryKeys });
+                    }}
+                    onReset={() => setSearchQuery(undefined)}
+                />
                 {searchQuery && (
                     <Box marginBlock="space-16">
                         <PersonsokResult query={searchQuery} onClick={() => ref.current?.close()} />
