@@ -70,7 +70,6 @@ const DokumentTab = ({
                         className="typo-element align-middle pl-2"
                     >
                         <ExternalLinkIcon
-                            aria-hidden
                             fontSize="1.2rem"
                             color="var(--ax-text-subtle)"
                             title="Åpne dokument i ny fane"

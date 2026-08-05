@@ -47,7 +47,7 @@ function DokumentLenke(props: Props) {
                 <Link
                     to="/dokument"
                     onClick={() => {
-                        trackVisDetaljvisning('dokumenter', 'åpnet dokument i ny fane');
+                        trackVisDetaljvisning('saker', 'åpnet dokument');
                     }}
                     search={{ dokument: dokumentReferanse, journalpost: journalpostId }}
                     target="_blank"
