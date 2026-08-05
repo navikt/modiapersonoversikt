@@ -11,7 +11,7 @@ import {
     DokumentmetadataMottaker
 } from 'src/generated/modiapersonoversikt-api';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
-import { trackingEvents, trackVisDetaljvisning } from 'src/utils/analytics';
+import { trackVisDetaljvisning } from 'src/utils/analytics';
 import { capitalizeName, formaterDato } from 'src/utils/string-utils';
 
 interface DokumenterSortState extends SortState {
@@ -177,9 +177,9 @@ export const DokumenterTabell = () => {
                                     <Link
                                         to="/new/dokument"
                                         target="_blank"
-                                        data-umami-event={trackingEvents.detaljvisningKlikket}
-                                        data-umami-event-fane="dokumenter"
-                                        data-umami-event-tekst="åpnet dokument i ny fane"
+                                        onClick={() => {
+                                            trackVisDetaljvisning('dokumenter', 'åpnet dokument i ny fane');
+                                        }}
                                         search={{
                                             dokument: journalpost.hoveddokument.dokumentreferanse,
                                             journalpost: journalpost.journalpostId
