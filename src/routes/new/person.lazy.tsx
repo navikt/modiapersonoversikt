@@ -44,7 +44,7 @@ function PersonRouteMedTilgang() {
     return <PersonLayout />;
 }
 
-const MOBILE_BREAKPOINT = '(max-width: 767px)';
+const MOBILE_BREAKPOINT = '(max-width: 479px)';
 
 const useIsMobile = () => {
     const [isMobile, setIsMobile] = useState(() => window.matchMedia(MOBILE_BREAKPOINT).matches);
@@ -77,14 +77,14 @@ function PersonLayout() {
     const isMobile = useIsMobile();
 
     const listPanel = isMeldinger ? (
-        <VStack height={{ md: '100%' }} overflow={{ md: 'hidden' }}>
+        <VStack height={{ sm: '100%' }} overflow={{ sm: 'hidden' }}>
             <Heading size="small" visuallyHidden level="2">
                 Dialoger
             </Heading>
             <TraadList />
         </VStack>
     ) : isYtelser ? (
-        <VStack height={{ md: '100%' }} overflow={{ md: 'hidden' }}>
+        <VStack height={{ sm: '100%' }} overflow={{ sm: 'hidden' }}>
             <Heading size="small" visuallyHidden level="2">
                 Ytelser
             </Heading>
