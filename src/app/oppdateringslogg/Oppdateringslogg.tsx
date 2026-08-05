@@ -59,14 +59,14 @@ function Oppdateringslogg(props: { oppdateringslogg: OppdateringsloggInnslag[] }
 
     return (
         <HStack height="100%" gap="space-64" padding="space-40" className="pt-0" wrap={false}>
-            <VStack flexGrow="1" width="360px" minWidth="360px">
+            <VStack width="360px" minWidth="360px">
                 <VStack paddingBlock="space-0 space-16" gap="space-8">
                     <Heading size="large">Oppdateringslogg</Heading>
                     <BodyShort size="small" className="pb-2">
                         Her finner du en oversikt over oppdateringer som er gjort i Modia personoversikt siste året
                     </BodyShort>
                 </VStack>
-                <ul className="overflow-scroll pr-10 pl-[5px]" onKeyDown={handleMenyKeyDown}>
+                <ul className="overflow-auto pr-10 pl-[5px]" onKeyDown={handleMenyKeyDown}>
                     {sortertOppdateringslogg.map((innslag) => (
                         <MenyItem
                             key={innslag.id}
