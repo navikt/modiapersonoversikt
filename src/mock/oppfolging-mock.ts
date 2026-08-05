@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import navfaker from 'nav-faker';
 import type {
     AggregertPeriodeArbeidssoekerregisteretDto,
+    ArbeidsOppfolgingDto,
     Gjeldende14aVedtakResponse,
     MetadataArbeidssoekerregisteretDto,
     SykefravaerOppfolgingDto
@@ -153,6 +154,24 @@ function getVedtak(): OppfolgingsVedtak {
         aktivitetsfase: 'Ikke spesif. aktivitetsfase',
         vedtakstatus: faker.helpers.arrayElement(['Iverksatt', 'Avsluttet']),
         vedtakstype: 'Ordinære dagpenger'
+    };
+}
+
+export function getArbeidsoppfolgingDTO(): ArbeidsOppfolgingDto {
+    return {
+        oppfolging: {
+            erUnderOppfolging: true,
+            veileder: {
+                navn: 'Test Veileder',
+                ident: 'Z0000001',
+                fornavn: 'Test',
+                etternavn: 'Veileder'
+            },
+            enhet: {
+                enhetId: 'E0001',
+                navn: 'Test Enhet'
+            }
+        }
     };
 }
 

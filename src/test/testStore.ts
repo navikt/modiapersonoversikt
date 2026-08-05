@@ -2,7 +2,7 @@ import type { UseQueryResult } from '@tanstack/react-query';
 import { applyMiddleware, createStore, type Dispatch, type Store } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import * as modiapersonoversiktApiClient from 'src/lib/clients/modiapersonoversikt-api';
-import { getMockOppslagArbeidssoekerregisteret } from 'src/mock/oppfolging-mock';
+import { getArbeidsoppfolgingDTO, getMockOppslagArbeidssoekerregisteret } from 'src/mock/oppfolging-mock';
 import { statiskArbeidsavklaringspengerMock } from 'src/mock/ytelse/statiskArbeidsavklaringspengerMock';
 import { statiskEngangstonadMock, statiskForeldrepengerMock } from 'src/mock/ytelse/statiskForeldrepengerMock';
 import { statiskPensjonMock } from 'src/mock/ytelse/statiskPensjonMock';
@@ -79,6 +79,7 @@ export function setupReactQueryMocks() {
     vi.spyOn(oppfolgingResource, 'useFetch');
     vi.spyOn(modiapersonoversiktApiClient, 'useSakerDokumenter');
     vi.spyOn(modiapersonoversiktApiClient, 'useOppslagArbeidssoekerregisteret');
+    vi.spyOn(modiapersonoversiktApiClient, 'useArbeidsoppfolging');
     vi.spyOn(utbetalingerResource, 'useFetch');
     vi.spyOn(persondataResource, 'useFetch');
     vi.spyOn(aktoridResource, 'useFetch');
@@ -129,4 +130,5 @@ export function setupReactQueryMocks() {
         modiapersonoversiktApiClient.useOppslagArbeidssoekerregisteret,
         getMockOppslagArbeidssoekerregisteret(aremark.personIdent)
     );
+    mockReactQuery(modiapersonoversiktApiClient.useArbeidsoppfolging, getArbeidsoppfolgingDTO());
 }

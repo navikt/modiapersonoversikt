@@ -3,28 +3,6 @@
 exports[`Viser oversikt med alt innhold 1`] = `
 <DocumentFragment>
   .c7 {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: edHiKw 0.3s ease-out;
-}
-
-.c7 >* {
-  flex: 0 1 25rem;
-  display: flex;
-  justify-content: center;
-}
-
-.c8 {
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  animation: edHiKw 0.3s ease-out;
-  padding: .5rem;
-}
-
-.c10 {
   position: relative;
   padding: .5rem;
   display: flex;
@@ -32,19 +10,19 @@ exports[`Viser oversikt med alt innhold 1`] = `
   cursor: pointer;
 }
 
-.c10:hover {
+.c7:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
 }
 
-.c10:hover >button:last-child {
+.c7:hover >button:last-child {
   padding-left: 0.5rem;
 }
 
-.c10 >*:first-child {
+.c7 >*:first-child {
   flex-grow: 1;
 }
 
-.c12 {
+.c10 {
   border: none;
   padding: 0;
   height: 2rem;
@@ -55,16 +33,16 @@ exports[`Viser oversikt med alt innhold 1`] = `
   transition: padding-left 0.3s;
 }
 
-.c12 .nav-frontend-chevron {
+.c10 .nav-frontend-chevron {
   width: 1.5625rem;
 }
 
-.c12:focus {
+.c10:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c12:focus::after {
+.c10:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -163,6 +141,49 @@ exports[`Viser oversikt med alt innhold 1`] = `
   border-top: solid 0.0625rem #78706a;
 }
 
+.c9 {
+  position: absolute;
+  position: absolute!important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+.c8 {
+  padding: 0 0 0 0.2rem;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 0.2rem;
+  transition: transform 0.2s;
+}
+
+.c8:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c8 svg {
+  width: 1rem;
+  color: #005b82;
+  stroke-width: 1.4;
+}
+
+.c8:hover {
+  transform: scale(1.2);
+}
+
+.c8:active {
+  opacity: 0.5;
+}
+
+.c8:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
 .c2 {
   padding: 0rem 0rem 0.3rem 0rem;
 }
@@ -201,11 +222,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
   border-top: solid 0.0625rem #78706a;
 }
 
-.c11 {
+.c12 {
   font-weight: 600;
 }
 
-.c9 >*:not(:first-child) {
+.c11 >*:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
@@ -416,44 +437,77 @@ exports[`Viser oversikt med alt innhold 1`] = `
             <div
               class="c7"
             >
-              <span
-                class="c8"
-                padding=".5rem"
-              >
-                <svg
-                  aria-label="Laster innhold"
-                  class="spinner spinner--l"
-                  focusable="false"
-                  height="32"
-                  kind="spinner-negativ"
-                  preserveAspectRatio="xMidYMid"
-                  viewBox="0 0 50 50"
-                  width="32"
+              <div>
+                <p
+                  class="typo-element"
                 >
-                  <title>
-                    Venter...
-                  </title>
-                  <circle
-                    cx="25"
-                    cy="25"
-                    fill="none"
-                    r="20"
-                    stroke="#eee"
-                    stroke-width="5"
-                    xmlns="http://www.w3.org/2000/svg"
-                  />
-                  <circle
-                    cx="25"
-                    cy="25"
-                    fill="none"
-                    r="20"
-                    stroke="#888"
-                    stroke-dasharray="50 155"
-                    stroke-linecap="round"
-                    stroke-width="5"
-                  />
-                </svg>
-              </span>
+                  Oppfølgende enhet:
+                </p>
+                <p
+                  class="typo-normal"
+                >
+                  E0001 Test Enhet
+                </p>
+                <p
+                  class="typo-element"
+                >
+                  Veileder:
+                </p>
+                <p
+                  class="typo-normal"
+                >
+                  Test Veileder (Z0000001)
+                </p>
+                <span>
+                  <button
+                    class="c8"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M15.5 23.5h-14v-20h9l5 5zm-5-20v5h5m-8-5v-3h9l5 5v15h-6m1-20v5h5"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-miterlimit="10"
+                      />
+                    </svg>
+                    <span
+                      class="sr-only"
+                    >
+                      Kopier veileder
+                    </span>
+                  </button>
+                  <textarea
+                    aria-hidden="true"
+                    class="c9"
+                    readonly=""
+                    tabindex="-1"
+                  >
+                    Test Veileder (Z0000001)
+                  </textarea>
+                </span>
+                <p
+                  class="typo-element"
+                >
+                  Ytelser:
+                </p>
+                <p
+                  class="typo-normal"
+                />
+              </div>
+              <button
+                aria-label="Gå til oppfølging"
+                aria-selected="false"
+                class="c10"
+              >
+                <span
+                  class="nav-frontend-chevron chevronboks chevron--hoyre"
+                />
+              </button>
             </div>
           </div>
         </div>
@@ -492,13 +546,13 @@ exports[`Viser oversikt med alt innhold 1`] = `
           >
             <ol
               aria-label="Oversikt brukers utbetalinger"
-              class="c9"
+              class="c11"
             >
               <li
                 class="test-utbetalinger-oversikt"
               >
                 <div
-                  class="c10"
+                  class="c7"
                 >
                   <div>
                     <p
@@ -510,7 +564,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       class="typo-normal"
                     >
                       <span
-                        class="c11"
+                        class="c12"
                       >
                         Barnetrygd
                       </span>
@@ -534,7 +588,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <button
                     aria-label="Vis utbetaling"
                     aria-selected="false"
-                    class="c12"
+                    class="c10"
                   >
                     <span
                       class="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -546,7 +600,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 class="test-utbetalinger-oversikt"
               >
                 <div
-                  class="c10"
+                  class="c7"
                 >
                   <div>
                     <p
@@ -558,7 +612,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       class="typo-normal"
                     >
                       <span
-                        class="c11"
+                        class="c12"
                       >
                         Diverse ytelser
                       </span>
@@ -582,7 +636,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <button
                     aria-label="Vis utbetaling"
                     aria-selected="false"
-                    class="c12"
+                    class="c10"
                   >
                     <span
                       class="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -639,7 +693,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 class="test-sakstema-list"
               >
                 <div
-                  class="c10"
+                  class="c7"
                 >
                   <div>
                     <p
@@ -651,7 +705,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <button
                     aria-label="Vis Medlemskap"
                     aria-selected="false"
-                    class="c12"
+                    class="c10"
                   >
                     <span
                       class="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -663,7 +717,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 class="test-sakstema-list"
               >
                 <div
-                  class="c10"
+                  class="c7"
                 >
                   <div>
                     <p
@@ -675,7 +729,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <button
                     aria-label="Vis Mobilitetsfremmende stønad"
                     aria-selected="false"
-                    class="c12"
+                    class="c10"
                   >
                     <span
                       class="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -735,7 +789,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
             >
               <li>
                 <div
-                  class="c10 test-meldinger-oversikt"
+                  class="c7 test-meldinger-oversikt"
                 >
                   <div>
                     <div
@@ -812,7 +866,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <button
                     aria-label="Vis meldinger for Spørsmål fra NAV - Arbeid"
                     aria-selected="false"
-                    class="c12"
+                    class="c10"
                   >
                     <span
                       class="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -860,7 +914,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
               class="c22"
             >
               <div
-                class="c10 test-ytelse-oversikt"
+                class="c7 test-ytelse-oversikt"
               >
                 <div>
                   <p
@@ -882,7 +936,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <button
                   aria-label="Vis engangsstønad"
                   aria-selected="false"
-                  class="c12"
+                  class="c10"
                 >
                   <span
                     class="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -890,7 +944,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 </button>
               </div>
               <div
-                class="c10 test-ytelse-oversikt"
+                class="c7 test-ytelse-oversikt"
               >
                 <div>
                   <p
@@ -912,7 +966,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <button
                   aria-label="Vis engangsstønad"
                   aria-selected="false"
-                  class="c12"
+                  class="c10"
                 >
                   <span
                     class="nav-frontend-chevron chevronboks chevron--hoyre"

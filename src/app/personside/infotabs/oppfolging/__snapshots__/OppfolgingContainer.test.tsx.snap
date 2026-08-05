@@ -398,100 +398,6 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
         class="panel c9"
       >
         <article>
-          <div
-            class="alertstripe alertstripe--advarsel"
-          >
-            <span
-              class="alertstripe__ikon"
-            >
-              <span
-                class="sr-only"
-              >
-                advarsel
-              </span>
-              <svg
-                aria-label="advarsel-ikon"
-                focusable="false"
-                height="1.5em"
-                kind="advarsel-sirkel-fyll"
-                role="img"
-                viewBox="0 0 24 24"
-                width="1.5em"
-              >
-                <g
-                  fill="none"
-                  fill-rule="evenodd"
-                >
-                  <path
-                    d="M12.205-.004l-.214.002a12.225 12.225 0 0 0-8.517 3.659C1.179 5.977-.053 9.013.002 12.208c.115 6.613 5.296 11.793 11.795 11.793l.212-.002c6.726-.116 12.105-5.595 11.99-12.21C23.883 5.178 18.702-.003 12.204-.003z"
-                    fill="#FFA733"
-                    fill-rule="nonzero"
-                  />
-                  <path
-                    d="M12.027 19H12A1.499 1.499 0 0 1 11.973 16L12 16a1.501 1.501 0 0 1 .027 3z"
-                    fill="#3E3832"
-                  />
-                  <path
-                    d="M12 5a1 1 0 0 1 1 1v7a1 1 0 0 1-2 0V6a1 1 0 0 1 1-1z"
-                    fill="#3E3832"
-                    fill-rule="nonzero"
-                  />
-                </g>
-              </svg>
-            </span>
-            <div
-              class="typo-normal alertstripe__tekst"
-            >
-              Kunne ikke laste inn informasjon om brukers oppfølging
-            </div>
-          </div>
-          <div
-            class="alertstripe alertstripe--advarsel"
-          >
-            <span
-              class="alertstripe__ikon"
-            >
-              <span
-                class="sr-only"
-              >
-                advarsel
-              </span>
-              <svg
-                aria-label="advarsel-ikon"
-                focusable="false"
-                height="1.5em"
-                kind="advarsel-sirkel-fyll"
-                role="img"
-                viewBox="0 0 24 24"
-                width="1.5em"
-              >
-                <g
-                  fill="none"
-                  fill-rule="evenodd"
-                >
-                  <path
-                    d="M12.205-.004l-.214.002a12.225 12.225 0 0 0-8.517 3.659C1.179 5.977-.053 9.013.002 12.208c.115 6.613 5.296 11.793 11.795 11.793l.212-.002c6.726-.116 12.105-5.595 11.99-12.21C23.883 5.178 18.702-.003 12.204-.003z"
-                    fill="#FFA733"
-                    fill-rule="nonzero"
-                  />
-                  <path
-                    d="M12.027 19H12A1.499 1.499 0 0 1 11.973 16L12 16a1.501 1.501 0 0 1 .027 3z"
-                    fill="#3E3832"
-                  />
-                  <path
-                    d="M12 5a1 1 0 0 1 1 1v7a1 1 0 0 1-2 0V6a1 1 0 0 1 1-1z"
-                    fill="#3E3832"
-                    fill-rule="nonzero"
-                  />
-                </g>
-              </svg>
-            </span>
-            <div
-              class="typo-normal alertstripe__tekst"
-            >
-              Kunne ikke hente ut all oppfølgings-informasjon
-            </div>
-          </div>
           <h2
             class="typo-undertittel"
             id="Helt tilfeldig ID"
@@ -510,7 +416,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
               <dd
                 class="typo-element"
               >
-                —
+                Ja
               </dd>
             </div>
             <div>
@@ -522,7 +428,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
               <dd
                 class="typo-element"
               >
-                —
+                E0001 Test Enhet
               </dd>
             </div>
             <div>
@@ -534,7 +440,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
               <dd
                 class="typo-element"
               >
-                —
+                Test Veileder (Z0000001)
               </dd>
             </div>
             <div>
