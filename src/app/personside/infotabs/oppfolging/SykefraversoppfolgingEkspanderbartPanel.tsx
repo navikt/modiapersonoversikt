@@ -11,7 +11,7 @@ interface Props {
 }
 
 function SykefraversoppfolgingTabell(props: { syfoPunkter: SyfoPunktDto[] }) {
-    const sortertPaDato = props.syfoPunkter.sort(datoSynkende((syfoPunkt) => syfoPunkt.dato ?? ''));
+    const sortertPaDato = [...props.syfoPunkter].sort(datoSynkende((syfoPunkt) => syfoPunkt.dato ?? ''));
 
     const tableHeaders = ['Innen', 'Hendelse', 'Status'];
 

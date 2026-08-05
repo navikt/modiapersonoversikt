@@ -51,7 +51,7 @@ function OppfolgingFilter() {
         <StyledPanel aria-labelledby={headerId.current}>
             <article>
                 <TittelWrapper>
-                    <Undertittel id={headerId.current}>Oppfølging og ytelser vises for perioden:</Undertittel>
+                    <Undertittel id={headerId.current}>Ytelser vises for perioden:</Undertittel>
                 </TittelWrapper>
                 <InputPanel>
                     <FiltreringPeriode

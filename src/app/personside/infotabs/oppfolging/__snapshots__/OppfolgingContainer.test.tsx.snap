@@ -164,7 +164,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
               class="typo-undertittel"
               id="Helt tilfeldig ID"
             >
-              Oppfølging og ytelser vises for perioden:
+              Ytelser vises for perioden:
             </h2>
           </div>
           <form
