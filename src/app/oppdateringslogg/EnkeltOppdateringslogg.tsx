@@ -9,18 +9,20 @@ function OppdateringsloggBilde({ src }: { src?: string }) {
     if (!src) {
         return null;
     }
-    return <img src={src} alt="" className="oppdateringslogg__bilde" />;
+    return <img src={src} alt="" className="rounded-[var(--ax-radius-12)] max-h-[480px]" />;
 }
 
 export default function EnkeltOppdateringslogg({ enOppdateringslogg }: Props) {
     return (
-        <VStack gap="space-8" className="h-full">
+        <VStack gap="space-28" className="h-full">
             <OppdateringsloggBilde src={enOppdateringslogg.src} />
-            <Heading size="small" level="3">
-                {enOppdateringslogg.tittel}
-            </Heading>
-            {enOppdateringslogg.ingress}
-            {enOppdateringslogg.beskrivelse}
+            <VStack>
+                <Heading size="small" level="3">
+                    {enOppdateringslogg.tittel}
+                </Heading>
+                {enOppdateringslogg.ingress}
+                {enOppdateringslogg.beskrivelse}
+            </VStack>
         </VStack>
     );
 }
