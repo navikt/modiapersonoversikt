@@ -1,6 +1,7 @@
 import { Alert, BodyShort, Button, Heading, HStack, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
-import { datoSynkende, formatterDato } from '../../utils/date-utils';
+import { datoSynkende, formatterDato } from 'src/utils/date-utils';
+import { twMerge } from 'tailwind-merge';
 import EnkeltOppdateringslogg from './EnkeltOppdateringslogg';
 import type { OppdateringsloggInnslag } from './OppdateringsloggContainer';
 
@@ -14,22 +15,20 @@ function MenyItem({
     onClick: () => void;
 }) {
     return (
-        <li className="oppdateringslogg-meny__item">
+        <li className="list-none mb-2">
             <Button
                 variant="tertiary"
                 onClick={onClick}
                 aria-current={erAktiv ? true : undefined}
-                className={
-                    erAktiv
-                        ? 'oppdateringslogg-meny__knapp oppdateringslogg-meny__knapp--aktiv'
-                        : 'oppdateringslogg-meny__knapp'
-                }
+                className={twMerge(
+                    erAktiv && 'bg-[var(--ax-bg-moderate-pressedA)]',
+                    !erAktiv && 'hover:bg-ax-bg-neutral-soft',
+                    'justify-start text-left rounded-[var(--ax-radius-8)] p-3 h-auto w-full'
+                )}
             >
                 <VStack gap="space-4" align="start">
                     <BodyShort weight="semibold">{innslag.tittel}</BodyShort>
-                    <BodyShort size="small" className="text-ax-text-neutral-subtle">
-                        Lagt til {formatterDato(innslag.dato)}
-                    </BodyShort>
+                    <BodyShort size="small">Lagt til {formatterDato(innslag.dato)}</BodyShort>
                 </VStack>
             </Button>
         </li>
@@ -59,15 +58,15 @@ function Oppdateringslogg(props: { oppdateringslogg: OppdateringsloggInnslag[] }
     const selectedEntry = sortertOppdateringslogg.find((i) => i.id === selectedId) ?? sortertOppdateringslogg[0];
 
     return (
-        <HStack height="100%" padding="space-24" wrap={false} align="stretch">
-            <div className="oppdateringslogg__meny">
+        <HStack height="100%" gap="space-64" padding="space-40" className="pt-0" wrap={false}>
+            <VStack width="360px" minWidth="360px">
                 <VStack paddingBlock="space-0 space-16" gap="space-8">
                     <Heading size="large">Oppdateringslogg</Heading>
-                    <BodyShort size="small">
+                    <BodyShort size="small" className="pb-2">
                         Her finner du en oversikt over oppdateringer som er gjort i Modia personoversikt siste året
                     </BodyShort>
                 </VStack>
-                <ul className="oppdateringslogg-meny-liste" onKeyDown={handleMenyKeyDown}>
+                <ul className="overflow-auto pr-10 pl-[5px]" onKeyDown={handleMenyKeyDown}>
                     {sortertOppdateringslogg.map((innslag) => (
                         <MenyItem
                             key={innslag.id}
@@ -77,11 +76,10 @@ function Oppdateringslogg(props: { oppdateringslogg: OppdateringsloggInnslag[] }
                         />
                     ))}
                 </ul>
-            </div>
-
-            <div className="oppdateringslogg__innhold">
+            </VStack>
+            <VStack className="overflow-auto">
                 <EnkeltOppdateringslogg enOppdateringslogg={selectedEntry} />
-            </div>
+            </VStack>
         </HStack>
     );
 }
