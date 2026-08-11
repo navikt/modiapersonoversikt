@@ -21,7 +21,7 @@ const Personsok = () => {
                     Avansert søk
                 </Heading>
                 <BodyShort textColor="subtle">
-                    Søk etter personer med navn, adrese, utenlandsk ID eller telefonnummer
+                    Søk etter personer med navn, adresse, utenlandsk ID eller telefonnummer
                 </BodyShort>
             </Modal.Header>
             <Modal.Body>
