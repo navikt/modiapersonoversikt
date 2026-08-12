@@ -39,7 +39,8 @@ export enum trackingEvents {
     startNyMelding = 'start ny melding',
     startSvar = 'start svar',
     avbrytMelding = 'avbryt melding',
-    notfoundRoute = 'route ikke funnet'
+    notfoundRoute = 'route ikke funnet',
+    avansertSok = 'avansert søk'
 }
 
 export enum filterType {

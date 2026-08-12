@@ -1,5 +1,6 @@
-import { EyeSlashIcon, FilesIcon } from '@navikt/aksel-icons';
+import { ExternalLinkIcon, EyeSlashIcon, FilesIcon } from '@navikt/aksel-icons';
 import { Box, HStack, InlineMessage, Pagination, type SortState, Table, Tag } from '@navikt/ds-react';
+import { Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { DokumentVisningExpandable } from 'src/components/Dokumenter/DokumentVisningExpandable';
 import { useSortedAndPaginatedDokumenter } from 'src/components/Dokumenter/useSortedAndPaginatedDokumenter';
@@ -89,6 +90,7 @@ export const DokumenterTabell = () => {
             <Table
                 id="dokumentertabell"
                 size="medium"
+                zebraStripes
                 sort={sort as SortState | undefined}
                 onSortChange={(sortKey) => handleSort(sortKey as DokumenterSortState['orderBy'])}
             >
@@ -118,6 +120,9 @@ export const DokumenterTabell = () => {
                         <Table.ColumnHeader>
                             <span className="sr-only">Antall dokumenter</span>
                         </Table.ColumnHeader>
+                        <Table.ColumnHeader>
+                            <span className="sr-only">Åpne hoveddokument</span>
+                        </Table.ColumnHeader>
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
@@ -138,12 +143,13 @@ export const DokumenterTabell = () => {
                                         journalpost.beskrivelse
                                     ) : (
                                         <HStack wrap={false} gap="space-4" align="center">
-                                            <EyeSlashIcon
-                                                color="var(--ax-text-neutral-subtle)"
-                                                fontSize="1.3rem"
-                                                aria-hidden
-                                            />{' '}
-                                            <Box className="text-[var(--ax-text-neutral-subtle)]">Ingen tilgang</Box>
+                                            <Tag
+                                                variant="moderate"
+                                                data-color="danger"
+                                                icon={<EyeSlashIcon aria-hidden />}
+                                            >
+                                                Ingen tilgang
+                                            </Tag>
                                         </HStack>
                                     )}
                                 </Table.HeaderCell>
@@ -161,11 +167,32 @@ export const DokumenterTabell = () => {
                                         data-color="info"
                                         size="small"
                                         variant="moderate"
-                                        title="Antall vedlegg"
+                                        title="Antall dokumenter"
                                         icon={<FilesIcon aria-hidden />}
                                     >
                                         {countVedleggMedReferanse(journalpost)}
                                     </Tag>
+                                </Table.DataCell>
+                                <Table.DataCell>
+                                    {journalpost.harTilgang && journalpost.hoveddokument && (
+                                        <Link
+                                            to="/new/dokument"
+                                            target="_blank"
+                                            onClick={() => {
+                                                trackVisDetaljvisning('dokumenter', 'åpnet dokument i ny fane');
+                                            }}
+                                            search={{
+                                                dokument: journalpost.hoveddokument.dokumentreferanse,
+                                                journalpost: journalpost.journalpostId
+                                            }}
+                                        >
+                                            <ExternalLinkIcon
+                                                fontSize="1.5rem"
+                                                color="var(--ax-text-subtle)"
+                                                title="Åpne hoveddokument i ny fane"
+                                            ></ExternalLinkIcon>
+                                        </Link>
+                                    )}
                                 </Table.DataCell>
                             </Table.ExpandableRow>
                         );

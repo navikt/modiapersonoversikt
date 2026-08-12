@@ -6,7 +6,7 @@ import Dokument from 'src/components/Dokumenter/Dokument';
 import { dokumentTekst } from 'src/components/Dokumenter/useSortedAndPaginatedDokumenter';
 import { dokumentKanVises } from 'src/components/Dokumenter/utils';
 import type { Dokumentmetadata, Dokument as DokumentType } from 'src/generated/modiapersonoversikt-api';
-import { trackingEvents } from 'src/utils/analytics';
+import { trackVisDetaljvisning } from 'src/utils/analytics';
 
 const DokumentTabInnhold = ({
     value,
@@ -60,9 +60,9 @@ const DokumentTab = ({
                     <Link
                         to="/new/dokument"
                         target="_blank"
-                        data-umami-event={trackingEvents.detaljvisningKlikket}
-                        data-umami-event-fane="dokumenter"
-                        data-umami-event-tekst="åpnet dokument i ny fane"
+                        onClick={() => {
+                            trackVisDetaljvisning('dokumenter', 'åpnet dokument i ny fane');
+                        }}
                         search={{
                             dokument: dokument.dokumentreferanse,
                             journalpost: journalpost.journalpostId
@@ -70,7 +70,6 @@ const DokumentTab = ({
                         className="typo-element align-middle pl-2"
                     >
                         <ExternalLinkIcon
-                            aria-hidden
                             fontSize="1.2rem"
                             color="var(--ax-text-subtle)"
                             title="Åpne dokument i ny fane"
