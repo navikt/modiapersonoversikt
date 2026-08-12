@@ -84,7 +84,7 @@ export const HvaErNyttStep = () => {
         <HStack wrap={false} gap="space-24" align="start">
             <VStack
                 ref={listboxRef}
-                aria-label="Hva er nytt i Modia Personoversikt?"
+                aria-label="Hva er nytt i Modia personoversikt?"
                 aria-orientation="vertical"
                 className="flex flex-col min-w-1/3"
                 aria-activedescendant={activeItem.id}
