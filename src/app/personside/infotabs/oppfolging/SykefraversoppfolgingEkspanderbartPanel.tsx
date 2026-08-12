@@ -1,22 +1,23 @@
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { useState } from 'react';
+import type { SyfoPunktDto } from 'src/generated/modiapersonoversikt-api';
+import { useSykefravaersoppfolging } from 'src/lib/clients/modiapersonoversikt-api';
 import { trackAccordionClosed, trackAccordionOpened } from 'src/utils/analytics';
-import type { SyfoPunkt } from '../../../../models/oppfolging';
 import { datoSynkende, formatterDato } from '../../../../utils/date-utils';
 import { StyledTable } from '../../../../utils/table/StyledTable';
 import EkspanderbartYtelserPanel from '../ytelser/felles-styling/EkspanderbartYtelserPanel';
 
 interface Props {
-    syfoPunkter: SyfoPunkt[];
+    syfoPunkter: SyfoPunktDto[];
 }
 
-function SykefraversoppfolgingTabell(props: { syfoPunkter: SyfoPunkt[] }) {
-    const sortertPaDato = props.syfoPunkter.sort(datoSynkende((syfoPunkt) => syfoPunkt.dato));
+function SykefraversoppfolgingTabell(props: { syfoPunkter: SyfoPunktDto[] }) {
+    const sortertPaDato = [...props.syfoPunkter].sort(datoSynkende((syfoPunkt) => syfoPunkt.dato ?? ''));
 
     const tableHeaders = ['Innen', 'Hendelse', 'Status'];
 
     const tableRows = sortertPaDato.map((syfopunkt) => [
-        formatterDato(syfopunkt.dato),
+        syfopunkt.dato ? formatterDato(syfopunkt.dato) : undefined,
         syfopunkt.syfoHendelse,
         syfopunkt.status
     ]);
@@ -30,8 +31,9 @@ function SykefraversoppfolgingEkspanderbartPanel(props: Props) {
         setOpen(open);
         return open ? trackAccordionOpened('Sykefraværsoppfølging') : trackAccordionClosed('Sykefraværsoppfølging');
     };
+    const { isLoading } = useSykefravaersoppfolging();
 
-    if (props.syfoPunkter.length === 0) {
+    if (props.syfoPunkter.length === 0 && !isLoading) {
         return (
             <AlertStripeInfo>
                 Det finnes ikke informasjon om sykefraværsoppfølging for valgt periode i Arena

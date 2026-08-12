@@ -2,6 +2,8 @@ import { getVeileder } from './oppfolging-utils';
 
 test('Viser informasjon om veileder dersom veileder finnes med navn og ident', () => {
     const veilederMedTommeFelter = {
+        fornavn: 'Ident',
+        etternavn: 'Identesen',
         navn: 'Ident Identesen',
         ident: 'Z999999'
     };
@@ -10,6 +12,8 @@ test('Viser informasjon om veileder dersom veileder finnes med navn og ident', (
 
 test('Viser informasjon om veileder dersom veileder finnes med bare ident', () => {
     const veilederMedTommeFelter = {
+        fornavn: '',
+        etternavn: '',
         navn: '',
         ident: 'Z999999'
     };
@@ -18,6 +22,8 @@ test('Viser informasjon om veileder dersom veileder finnes med bare ident', () =
 
 test('Viser ikke informasjon om veileder med et veilederobjekt med tomme feilter', () => {
     const veilederMedTommeFelter = {
+        fornavn: '',
+        etternavn: '',
         navn: '',
         ident: ''
     };

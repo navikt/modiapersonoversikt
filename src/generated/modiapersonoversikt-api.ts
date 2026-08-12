@@ -244,22 +244,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/rest/person/kontaktinformasjon': {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations['hentKontaktinformasjon'];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     '/rest/person/identer': {
         parameters: {
             query?: never;
@@ -1328,6 +1312,10 @@ export interface components {
         LocalDate: {
             /** Format: date */
             value?: string;
+            /** Format: date */
+            value$kotlinx_datetime: string;
+            /** Format: int32 */
+            monthNumber: number;
             /** Format: int32 */
             year: number;
             /** Format: int32 */
@@ -1338,14 +1326,16 @@ export interface components {
             dayOfWeek: LocalDateDayOfWeek;
             /** Format: int32 */
             dayOfYear: number;
-            /** Format: date */
-            value$kotlinx_datetime: string;
-            /** Format: int32 */
-            monthNumber: number;
         };
         LocalDateTime: {
             /** Format: date-time */
             value?: string;
+            /** Format: date-time */
+            value$kotlinx_datetime: string;
+            /** Format: int32 */
+            monthNumber: number;
+            /** Format: int32 */
+            nanosecond: number;
             time: components['schemas']['LocalTime'];
             /** Format: int32 */
             year: number;
@@ -1364,24 +1354,18 @@ export interface components {
             /** Format: int32 */
             dayOfYear: number;
             date: components['schemas']['LocalDate'];
-            /** Format: date-time */
-            value$kotlinx_datetime: string;
-            /** Format: int32 */
-            monthNumber: number;
-            /** Format: int32 */
-            nanosecond: number;
         };
         LocalTime: {
             value?: string;
+            value$kotlinx_datetime: string;
+            /** Format: int32 */
+            nanosecond: number;
             /** Format: int32 */
             hour: number;
             /** Format: int32 */
             minute: number;
             /** Format: int32 */
             second: number;
-            value$kotlinx_datetime: string;
-            /** Format: int32 */
-            nanosecond: number;
         };
         ResultatSoknadsstatus: {
             resultat: components['schemas']['SoknadsstatusSakstema'][];
@@ -1756,11 +1740,6 @@ export interface components {
             embete?: string;
             gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'];
         };
-        Kontaktinformasjon: {
-            epost?: components['schemas']['VerdiString'];
-            mobiltelefon?: components['schemas']['VerdiString'];
-            reservasjon?: components['schemas']['VerdiBoolean'];
-        };
         IdentInformasjon: {
             ident: string;
             /** @enum {string} */
@@ -2029,10 +2008,6 @@ export interface components {
         };
         ArbeidsOppfolgingDTO: {
             oppfolging?: components['schemas']['OppfolgingDTO'];
-            meldeplikt?: boolean;
-            formidlingsgruppe?: string;
-            vedtaksdato?: string;
-            rettighetsgruppe?: string;
         };
         JournalforingSak: {
             fnr?: string;
@@ -2436,7 +2411,6 @@ export type UtflyttingFraNorge = components['schemas']['UtflyttingFraNorge'];
 export type VerdiBoolean = components['schemas']['VerdiBoolean'];
 export type VerdiString = components['schemas']['VerdiString'];
 export type Verge = components['schemas']['Verge'];
-export type Kontaktinformasjon = components['schemas']['Kontaktinformasjon'];
 export type IdentInformasjon = components['schemas']['IdentInformasjon'];
 export type Identliste = components['schemas']['Identliste'];
 export type OppgaveDto = components['schemas']['OppgaveDTO'];
@@ -2905,30 +2879,6 @@ export interface operations {
             };
         };
     };
-    hentKontaktinformasjon: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                'application/json': components['schemas']['FnrRequest'];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    '*/*': components['schemas']['Kontaktinformasjon'];
-                };
-            };
-        };
-    };
     hentIdenter: {
         parameters: {
             query?: never;
@@ -3129,10 +3079,7 @@ export interface operations {
     };
     hentArbeidsOppfolging: {
         parameters: {
-            query?: {
-                startDato?: string;
-                sluttDato?: string;
-            };
+            query?: never;
             header?: never;
             path?: never;
             cookie?: never;

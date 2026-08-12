@@ -5,8 +5,12 @@ import Panel from 'nav-frontend-paneler';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useRef } from 'react';
 import Siste14aVedtakDetaljer from 'src/app/personside/infotabs/oppfolging/Gjeldende14aVedtakDetaljer';
-import type { AggregertPeriodeArbeidssoekerregisteretDto } from 'src/generated/modiapersonoversikt-api';
-import type { DetaljertOppfolging } from 'src/models/oppfolging';
+import LazySpinner from 'src/components/LazySpinner';
+import type {
+    AggregertPeriodeArbeidssoekerregisteretDto,
+    ArbeidsOppfolgingDto
+} from 'src/generated/modiapersonoversikt-api';
+import { useArbeidsoppfolging, useOppslagArbeidssoekerregisteret } from 'src/lib/clients/modiapersonoversikt-api';
 import { pxToRem } from 'src/styles/personOversiktTheme';
 import { formatterDato } from 'src/utils/date-utils';
 import styled from 'styled-components';
@@ -21,19 +25,22 @@ const StyledPanel = styled(Panel)`
 `;
 
 interface Props {
-    detaljertOppfolging: DetaljertOppfolging;
+    detaljertOppfolging?: ArbeidsOppfolgingDto;
     oppslagArbeidssoekerRegisteret?: AggregertPeriodeArbeidssoekerregisteretDto;
     isErrorOppfolging?: boolean;
     isErrorArbeidssoekerRegisteret?: boolean;
 }
 
 function VisOppfolgingDetaljer(props: Props) {
+    const { isLoading } = useArbeidsoppfolging();
+    const { isLoading: isLoadingArbeidssoekerRegisteret } = useOppslagArbeidssoekerregisteret();
+
     const headerId = useRef(guid());
     const detaljer = props.detaljertOppfolging;
     const oppslagArbeidssoekerRegisteret = props.oppslagArbeidssoekerRegisteret;
 
     const ikkeFullstendigData =
-        detaljer.oppfolging === null ? (
+        detaljer?.oppfolging == null ? (
             <AlertStripeAdvarsel>Kunne ikke hente ut all oppfølgings-informasjon</AlertStripeAdvarsel>
         ) : null;
     const errorLoadingData = props.isErrorOppfolging ? (
@@ -48,9 +55,9 @@ function VisOppfolgingDetaljer(props: Props) {
     const arbeidssoekerregisteretOpplysinger = oppslagArbeidssoekerRegisteret?.opplysning;
 
     const descriptionListProps = {
-        'Er under oppfølging': getErUnderOppfolging(detaljer.oppfolging),
-        Oppfølgingsenhet: getOppfolgingEnhet(detaljer.oppfolging),
-        Veileder: getVeileder(detaljer.oppfolging?.veileder),
+        'Er under arbeidsrettet oppfølging': getErUnderOppfolging(detaljer?.oppfolging),
+        Oppfølgingsenhet: getOppfolgingEnhet(detaljer?.oppfolging),
+        Veileder: getVeileder(detaljer?.oppfolging?.veileder),
         ...(!errorLoadingDataArbeidssoekerRegisteret
             ? {
                   Arbeidssøkerstatus: (
@@ -74,15 +81,19 @@ function VisOppfolgingDetaljer(props: Props) {
 
     return (
         <StyledPanel aria-labelledby={headerId.current}>
-            <article>
-                {errorLoadingData}
-                {errorLoadingDataArbeidssoekerRegisteret}
-                {ikkeFullstendigData}
-                <Undertittel id={headerId.current}>Arbeidsoppfølging</Undertittel>
-                <DescriptionList entries={descriptionListProps} />
-                <br />
-                <Siste14aVedtakDetaljer />
-            </article>
+            {isLoading || isLoadingArbeidssoekerRegisteret ? (
+                <LazySpinner type="L" />
+            ) : (
+                <article>
+                    {errorLoadingData}
+                    {errorLoadingDataArbeidssoekerRegisteret}
+                    {ikkeFullstendigData}
+                    <Undertittel id={headerId.current}>Arbeidsoppfølging</Undertittel>
+                    <DescriptionList entries={descriptionListProps} />
+                    <br />
+                    <Siste14aVedtakDetaljer />
+                </article>
+            )}
         </StyledPanel>
     );
 }

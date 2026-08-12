@@ -2,7 +2,7 @@
 
 exports[`Viser oversikt med alt innhold 1`] = `
 <DocumentFragment>
-  .c8 {
+  .c7 {
   position: relative;
   padding: .5rem;
   display: flex;
@@ -10,15 +10,15 @@ exports[`Viser oversikt med alt innhold 1`] = `
   cursor: pointer;
 }
 
-.c8:hover {
+.c7:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
 }
 
-.c8:hover >button:last-child {
+.c7:hover >button:last-child {
   padding-left: 0.5rem;
 }
 
-.c8 >*:first-child {
+.c7 >*:first-child {
   flex-grow: 1;
 }
 
@@ -53,17 +53,17 @@ exports[`Viser oversikt med alt innhold 1`] = `
   pointer-events: none;
 }
 
-.c14 {
+.c16 {
   position: relative;
 }
 
-.c14 svg {
+.c16 svg {
   height: 1.5625rem;
   width: 1.5625rem;
   opacity: 0.4;
 }
 
-.c15 {
+.c17 {
   position: absolute;
   top: -0.1875rem;
   right: -0.5rem;
@@ -77,7 +77,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   border-radius: 50%;
 }
 
-.c16 {
+.c18 {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -86,59 +86,102 @@ exports[`Viser oversikt med alt innhold 1`] = `
   overflow-wrap: break-word;
 }
 
-.c16 .order-first {
+.c18 .order-first {
   order: 0;
 }
 
-.c16 .order-second {
+.c18 .order-second {
   order: 1;
 }
 
-.c16 .order-third {
+.c18 .order-third {
   order: 3;
 }
 
-.c18 {
+.c20 {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   margin-top: 0.2rem;
 }
 
-.c18 >*:not(:last-child) {
+.c20 >*:not(:last-child) {
   margin-bottom: 0.2rem;
   margin-right: 0.2rem;
 }
 
-.c17 {
+.c19 {
   display: flex;
   flex-direction: column;
 }
 
-.c17 .order-first {
+.c19 .order-first {
   order: 0;
 }
 
-.c17 .order-second {
+.c19 .order-second {
   order: 1;
 }
 
-.c13 {
+.c15 {
   display: flex;
 }
 
-.c13 >*:last-child {
+.c15 >*:last-child {
   flex-grow: 1;
 }
 
-.c19 {
+.c21 {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
 
-.c12 >*:not(:first-child) {
+.c14 >*:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
+}
+
+.c9 {
+  position: absolute;
+  position: absolute!important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+.c8 {
+  padding: 0 0 0 0.2rem;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 0.2rem;
+  transition: transform 0.2s;
+}
+
+.c8:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c8 svg {
+  width: 1rem;
+  color: #005b82;
+  stroke-width: 1.4;
+}
+
+.c8:hover {
+  transform: scale(1.2);
+}
+
+.c8:active {
+  opacity: 0.5;
+}
+
+.c8:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
 .c2 {
@@ -175,19 +218,19 @@ exports[`Viser oversikt med alt innhold 1`] = `
   padding: 0 1rem;
 }
 
+.c13 >*:not(:first-child) {
+  border-top: solid 0.0625rem #78706a;
+}
+
+.c12 {
+  font-weight: 600;
+}
+
 .c11 >*:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
-.c9 {
-  font-weight: 600;
-}
-
-.c7 >*:not(:first-child) {
-  border-top: solid 0.0625rem #78706a;
-}
-
-.c28 {
+.c30 {
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -195,17 +238,17 @@ exports[`Viser oversikt med alt innhold 1`] = `
   border-radius: 0.5em;
 }
 
-.c28:focus {
+.c30:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c28:focus {
+.c30:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c28:focus::after {
+.c30:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -216,11 +259,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
   pointer-events: none;
 }
 
-.c22 {
+.c24 {
   padding: 0rem;
 }
 
-.c23 {
+.c25 {
   position: relative;
   display: -ms-grid;
   display: grid;
@@ -231,64 +274,64 @@ exports[`Viser oversikt med alt innhold 1`] = `
   cursor: pointer;
 }
 
-.c23 >*:nth-child(1) {
+.c25 >*:nth-child(1) {
   -ms-grid-column: 1;
 }
 
-.c23 >*:nth-child(2) {
+.c25 >*:nth-child(2) {
   -ms-grid-column: 2;
 }
 
-.c23 >*:nth-child(3) {
+.c25 >*:nth-child(3) {
   -ms-grid-column: 3;
 }
 
-.c23 >*:nth-child(4) {
+.c25 >*:nth-child(4) {
   -ms-grid-column: 4;
 }
 
-.c23:hover {
+.c25:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
 }
 
-.c23 >* {
+.c25 >* {
   padding: 0.7rem;
 }
 
-.c27 li {
+.c29 li {
   display: inline-block;
 }
 
-.c27 li:not(:last-child):after {
+.c29 li:not(:last-child):after {
   content: ',';
   margin-right: 0.5em;
 }
 
-.c24 {
+.c26 {
   display: flex;
 }
 
-.c26 {
+.c28 {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
 
-.c25 {
+.c27 {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.c29 {
+.c31 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
   box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
   padding: 1.25rem;
 }
 
-.c29 dt {
+.c31 dt {
   float: left;
   clear: left;
   font-weight: bold;
@@ -296,29 +339,29 @@ exports[`Viser oversikt med alt innhold 1`] = `
   width: 7rem;
 }
 
-.c29 dd {
+.c31 dd {
   margin-bottom: 0.5rem;
   margin-left: 7.125rem;
 }
 
-.c31 {
+.c33 {
   font-weight: bold;
 }
 
-.c32 {
+.c34 {
   margin-top: 0.5rem;
 }
 
-.c30 {
+.c32 {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
 
-.c21 >*:not(:first-child) {
+.c23 >*:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
-.c20 >*:not(:first-child) {
+.c22 >*:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
@@ -392,44 +435,79 @@ exports[`Viser oversikt med alt innhold 1`] = `
             class="c6"
           >
             <div
-              class="alertstripe alertstripe--info"
+              class="c7"
             >
-              <span
-                class="alertstripe__ikon"
+              <div>
+                <p
+                  class="typo-element"
+                >
+                  Oppfølgende enhet:
+                </p>
+                <p
+                  class="typo-normal"
+                >
+                  E0001 Test Enhet
+                </p>
+                <p
+                  class="typo-element"
+                >
+                  Veileder:
+                </p>
+                <p
+                  class="typo-normal"
+                >
+                  Test Veileder (Z0000001)
+                </p>
+                <span>
+                  <button
+                    class="c8"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M15.5 23.5h-14v-20h9l5 5zm-5-20v5h5m-8-5v-3h9l5 5v15h-6m1-20v5h5"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-miterlimit="10"
+                      />
+                    </svg>
+                    <span
+                      class="sr-only"
+                    >
+                      Kopier veileder
+                    </span>
+                  </button>
+                  <textarea
+                    aria-hidden="true"
+                    class="c9"
+                    readonly=""
+                    tabindex="-1"
+                  >
+                    Test Veileder (Z0000001)
+                  </textarea>
+                </span>
+                <p
+                  class="typo-element"
+                >
+                  Ytelser:
+                </p>
+                <p
+                  class="typo-normal"
+                />
+              </div>
+              <button
+                aria-label="Gå til oppfølging"
+                aria-selected="false"
+                class="c10"
               >
                 <span
-                  class="sr-only"
-                >
-                  info
-                </span>
-                <svg
-                  aria-label="info-ikon"
-                  focusable="false"
-                  height="1.5em"
-                  kind="info-sirkel-fyll"
-                  role="img"
-                  viewBox="0 0 24 24"
-                  width="1.5em"
-                >
-                  <g
-                    fill="none"
-                  >
-                    <path
-                      d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
-                      fill="#337C9B"
-                    />
-                    <path
-                      d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
-                      fill="#FFF"
-                    />
-                  </g>
-                </svg>
-              </span>
-              <div
-                class="typo-normal alertstripe__tekst"
-              >
-                Er ikke i arbeidsrettet oppfølging
-              </div>
+                  class="nav-frontend-chevron chevronboks chevron--hoyre"
+                />
+              </button>
             </div>
           </div>
         </div>
@@ -468,13 +546,13 @@ exports[`Viser oversikt med alt innhold 1`] = `
           >
             <ol
               aria-label="Oversikt brukers utbetalinger"
-              class="c7"
+              class="c11"
             >
               <li
                 class="test-utbetalinger-oversikt"
               >
                 <div
-                  class="c8"
+                  class="c7"
                 >
                   <div>
                     <p
@@ -486,7 +564,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       class="typo-normal"
                     >
                       <span
-                        class="c9"
+                        class="c12"
                       >
                         Barnetrygd
                       </span>
@@ -522,7 +600,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 class="test-utbetalinger-oversikt"
               >
                 <div
-                  class="c8"
+                  class="c7"
                 >
                   <div>
                     <p
@@ -534,7 +612,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       class="typo-normal"
                     >
                       <span
-                        class="c9"
+                        class="c12"
                       >
                         Diverse ytelser
                       </span>
@@ -609,13 +687,13 @@ exports[`Viser oversikt med alt innhold 1`] = `
             class="c6"
           >
             <ol
-              class="c11"
+              class="c13"
             >
               <li
                 class="test-sakstema-list"
               >
                 <div
-                  class="c8"
+                  class="c7"
                 >
                   <div>
                     <p
@@ -639,7 +717,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 class="test-sakstema-list"
               >
                 <div
-                  class="c8"
+                  class="c7"
                 >
                   <div>
                     <p
@@ -707,15 +785,15 @@ exports[`Viser oversikt med alt innhold 1`] = `
           >
             <ol
               aria-label="Oversikt brukers meldinger"
-              class="c12"
+              class="c14"
             >
               <li>
                 <div
-                  class="c8 test-meldinger-oversikt"
+                  class="c7 test-meldinger-oversikt"
                 >
                   <div>
                     <div
-                      class="c13"
+                      class="c15"
                     >
                       <span
                         class="sr-only"
@@ -723,7 +801,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                         (4)
                       </span>
                       <span
-                        class="c14"
+                        class="c16"
                       >
                         <svg
                           viewBox="0 0 24 24"
@@ -742,16 +820,16 @@ exports[`Viser oversikt med alt innhold 1`] = `
                         </svg>
                         <p
                           aria-hidden="true"
-                          class="typo-undertekst c15"
+                          class="typo-undertekst c17"
                         >
                           4
                         </p>
                       </span>
                       <div
-                        class="c16"
+                        class="c18"
                       >
                         <div
-                          class="c17 order-first"
+                          class="c19 order-first"
                         >
                           <p
                             class="typo-element order-second"
@@ -765,7 +843,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                           </p>
                         </div>
                         <div
-                          class="c18 order-third"
+                          class="c20 order-third"
                         >
                           <div
                             class="etikett etikett--fokus"
@@ -778,7 +856,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                           </div>
                         </div>
                         <p
-                          class="typo-normal c19 order-second"
+                          class="typo-normal c21 order-second"
                         >
                           Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
                         </p>
@@ -833,10 +911,10 @@ exports[`Viser oversikt med alt innhold 1`] = `
             class="c6"
           >
             <div
-              class="c20"
+              class="c22"
             >
               <div
-                class="c8 test-ytelse-oversikt"
+                class="c7 test-ytelse-oversikt"
               >
                 <div>
                   <p
@@ -866,7 +944,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 </button>
               </div>
               <div
-                class="c8 test-ytelse-oversikt"
+                class="c7 test-ytelse-oversikt"
               >
                 <div>
                   <p
@@ -938,34 +1016,34 @@ exports[`Viser oversikt med alt innhold 1`] = `
             class="c6"
           >
             <ol
-              class="c21"
+              class="c23"
             >
               <li>
                 <div
-                  class="panel c22"
+                  class="panel c24"
                 >
                   <article
                     aria-labelledby="Helt tilfeldig ID"
                   >
                     <div
-                      class="c23"
+                      class="c25"
                     >
                       <p
                         class="typo-normal"
                       >
                         <span
-                          class="c24"
+                          class="c26"
                         >
                           05.01.2026
                         </span>
                         <span
-                          class="c24"
+                          class="c26"
                         >
                           12.01.2026
                         </span>
                       </p>
                       <div
-                        class="c25"
+                        class="c27"
                       >
                         <svg
                           focusable="false"
@@ -984,14 +1062,14 @@ exports[`Viser oversikt med alt innhold 1`] = `
                         </svg>
                       </div>
                       <h4
-                        class="typo-element c26"
+                        class="typo-element c28"
                         id="Helt tilfeldig ID"
                       >
                         Et nytt samtalereferat er tilgjengelig i din innboks
                       </h4>
                       <ul
                         aria-label="Kommunikasjonskanaler"
-                        class="c27"
+                        class="c29"
                       >
                         <li
                           class="typo-normal"
@@ -1012,7 +1090,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       <button
                         aria-expanded="false"
                         aria-label="Vis mer informasjon om varsel/notifikasjon"
-                        class="c28"
+                        class="c30"
                         title="Vis mer informasjon om varsel/notifikasjon"
                       >
                         <span
@@ -1021,7 +1099,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </button>
                     </div>
                     <dl
-                      class="c29"
+                      class="c31"
                     >
                       <div>
                         <dt>
@@ -1056,15 +1134,15 @@ exports[`Viser oversikt med alt innhold 1`] = `
                         </dd>
                         <hr />
                         <div
-                          class="c30"
+                          class="c32"
                         >
                           <span
-                            class="c31"
+                            class="c33"
                           >
                             Varslingsfeil
                           </span>
                           <div
-                            class="c32"
+                            class="c34"
                           >
                             <li>
                               05.01.2026: Det oppsto en feil
@@ -1078,30 +1156,30 @@ exports[`Viser oversikt med alt innhold 1`] = `
               </li>
               <li>
                 <div
-                  class="panel c22"
+                  class="panel c24"
                 >
                   <article
                     aria-labelledby="Helt tilfeldig ID"
                   >
                     <div
-                      class="c23"
+                      class="c25"
                     >
                       <p
                         class="typo-normal"
                       >
                         <span
-                          class="c24"
+                          class="c26"
                         >
                           05.01.2026
                         </span>
                         <span
-                          class="c24"
+                          class="c26"
                         >
                           12.01.2026
                         </span>
                       </p>
                       <div
-                        class="c25"
+                        class="c27"
                       >
                         <svg
                           focusable="false"
@@ -1120,14 +1198,14 @@ exports[`Viser oversikt med alt innhold 1`] = `
                         </svg>
                       </div>
                       <h4
-                        class="typo-element c26"
+                        class="typo-element c28"
                         id="Helt tilfeldig ID"
                       >
                         Et nytt samtalereferat er tilgjengelig i din innboks
                       </h4>
                       <ul
                         aria-label="Kommunikasjonskanaler"
-                        class="c27"
+                        class="c29"
                       >
                         <li
                           class="typo-normal"
@@ -1148,7 +1226,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       <button
                         aria-expanded="false"
                         aria-label="Vis mer informasjon om varsel/notifikasjon"
-                        class="c28"
+                        class="c30"
                         title="Vis mer informasjon om varsel/notifikasjon"
                       >
                         <span
@@ -1157,7 +1235,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </button>
                     </div>
                     <dl
-                      class="c29"
+                      class="c31"
                     >
                       <div>
                         <dt>
@@ -1192,15 +1270,15 @@ exports[`Viser oversikt med alt innhold 1`] = `
                         </dd>
                         <hr />
                         <div
-                          class="c30"
+                          class="c32"
                         >
                           <span
-                            class="c31"
+                            class="c33"
                           >
                             Varslingsfeil
                           </span>
                           <div
-                            class="c32"
+                            class="c34"
                           >
                             <li>
                               05.01.2026: Det oppsto en feil

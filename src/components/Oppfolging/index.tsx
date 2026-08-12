@@ -35,7 +35,7 @@ const OppfolgingDetaljer = () => {
     return (
         <>
             <Heading as="h3" size="small">
-                Arbeidsoppfølging
+                Arbeidsrettet oppfølging
             </Heading>
             {!arbeidsOppfolging ? (
                 <Box paddingBlock="space-8">
@@ -49,8 +49,8 @@ const OppfolgingDetaljer = () => {
                         </BodyShort>
                         <BodyShort size="small">
                             {arbeidsOppfolging.oppfolging?.erUnderOppfolging
-                                ? 'Under oppfølging'
-                                : 'Ikke under oppfølging'}
+                                ? 'Under arbeidsrettet oppfølging'
+                                : 'Ikke under arbeidsrettet oppfølging'}
                         </BodyShort>
                     </VStack>
                     <VStack justify="space-between">
@@ -85,7 +85,7 @@ const Gjeldende14aVedtakDetaljer = () => {
     return (
         <>
             <Heading as="h3" size="small">
-                § 14 a-vedtak
+                Oppfølgingsvedtak § 14 a
             </Heading>
             <HGrid gap="space-16" columns={{ sm: 1, md: 2 }} className="mt-4">
                 <VStack justify="space-between">
@@ -93,7 +93,7 @@ const Gjeldende14aVedtakDetaljer = () => {
                         Status:
                     </BodyShort>
                     <BodyShort size="small">
-                        {gjeldende14aVedtak ? 'Har § 14 a-vedtak' : 'Har ikke § 14 a-vedtak'}
+                        {gjeldende14aVedtak ? 'Har oppfølgingsvedtak' : 'Har ikke oppfølgingsvedtak'}
                     </BodyShort>
                 </VStack>
                 {gjeldende14aVedtak && (

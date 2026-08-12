@@ -1,5 +1,8 @@
-import { useOppslagArbeidssoekerregisteret } from 'src/lib/clients/modiapersonoversikt-api';
-import type { DetaljertOppfolging } from 'src/models/oppfolging';
+import {
+    useArbeidsoppfolging,
+    useOppslagArbeidssoekerregisteret,
+    useSykefravaersoppfolging
+} from 'src/lib/clients/modiapersonoversikt-api';
 import { useOppfolgingFilter } from 'src/redux/oppfolging/reducer';
 import styled from 'styled-components';
 import oppfolgingResource from '../../../../rest/resources/oppfolgingResource';
@@ -28,24 +31,25 @@ const DetaljertInfoWrapper = styled.div`
 function OppfolgingContainer() {
     const periode = useOppfolgingFilter();
     const fraTilDato = periode.egendefinertPeriode;
-    const oppfolgingResponse = oppfolgingResource.useFetch(fraTilDato.fra, fraTilDato.til);
-    const oppfolging = oppfolgingResponse.data as DetaljertOppfolging;
+    const { data: ytelsesData, isLoading } = oppfolgingResource.useFetch(fraTilDato.fra, fraTilDato.til);
 
-    const { data, isError } = useOppslagArbeidssoekerregisteret();
+    const { data: arbeidsoppfolging, isError } = useArbeidsoppfolging();
+    const { data: sykefravaersData } = useSykefravaersoppfolging();
+    const { data: arbeidssoekerData, isError: isErrorArbeidssoekerRegisteret } = useOppslagArbeidssoekerregisteret();
 
     return (
         <OppfolgingStyle>
             <DetaljertInfoWrapper>
                 <OppfolgingFilter />
                 <VisOppfolgingDetaljer
-                    detaljertOppfolging={oppfolging ?? {}}
-                    isErrorOppfolging={oppfolgingResponse.isError}
-                    isErrorArbeidssoekerRegisteret={isError}
-                    oppslagArbeidssoekerRegisteret={data}
+                    detaljertOppfolging={arbeidsoppfolging}
+                    isErrorOppfolging={isError}
+                    isErrorArbeidssoekerRegisteret={isErrorArbeidssoekerRegisteret}
+                    oppslagArbeidssoekerRegisteret={arbeidssoekerData}
                 />
             </DetaljertInfoWrapper>
-            <SykefraversoppfolgingEkspanderbartPanel syfoPunkter={oppfolging?.sykefravaersoppfolging ?? []} />
-            <OppfolgingYtelserEkspanderbartPanel ytelser={oppfolging?.ytelser ?? []} />
+            <SykefraversoppfolgingEkspanderbartPanel syfoPunkter={sykefravaersData?.sykefravaersoppfolging ?? []} />
+            <OppfolgingYtelserEkspanderbartPanel ytelser={ytelsesData?.ytelser ?? []} isLoading={isLoading} />
         </OppfolgingStyle>
     );
 }

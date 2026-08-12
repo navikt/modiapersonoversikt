@@ -15,6 +15,7 @@ import OppfolgingsVedtakTabell from './OppfolgingVedtakKomponent';
 
 interface Props {
     ytelser: OppfolgingsYtelse[];
+    isLoading?: boolean;
 }
 
 const ListeStyle = styled.ol`
@@ -84,7 +85,7 @@ function dersomDagpengerLeggTilFelter(ytelse: OppfolgingsYtelse): DescriptionLis
 function OppfolgingYtelserEkspanderbartPanel(props: Props) {
     const [open, setOpen] = useState(false);
 
-    if (props.ytelser.length === 0) {
+    if (props.ytelser.length === 0 && !props.isLoading) {
         return <AlertStripeInfo>Det finnes ikke informasjon om ytelser for valgt periode i Arena</AlertStripeInfo>;
     }
 

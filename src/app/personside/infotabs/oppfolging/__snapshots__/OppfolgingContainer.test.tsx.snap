@@ -164,7 +164,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
               class="typo-undertittel"
               id="Helt tilfeldig ID"
             >
-              Oppfølging og ytelser vises for perioden:
+              Ytelser vises for perioden:
             </h2>
           </div>
           <form
@@ -411,12 +411,12 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
               <dt
                 class="typo-normal"
               >
-                Er under oppfølging
+                Er under arbeidsrettet oppfølging
               </dt>
               <dd
                 class="typo-element"
               >
-                Nei
+                Ja
               </dd>
             </div>
             <div>
@@ -428,7 +428,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
               <dd
                 class="typo-element"
               >
-                E0001 Tangen AS
+                E0001 Test Enhet
               </dd>
             </div>
             <div>
@@ -440,7 +440,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
               <dd
                 class="typo-element"
               >
-                Testident Testidentesen (Z0000001)
+                Test Veileder (Z0000001)
               </dd>
             </div>
             <div>
@@ -482,7 +482,43 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                 <dd
                   class="typo-element"
                 >
-                  Nei
+                  Ja
+                </dd>
+              </div>
+              <div>
+                <dt
+                  class="typo-normal"
+                >
+                  Innsatsgruppe
+                </dt>
+                <dd
+                  class="typo-element"
+                >
+                  Innsatsgruppe 3
+                </dd>
+              </div>
+              <div>
+                <dt
+                  class="typo-normal"
+                >
+                  Hovedmål
+                </dt>
+                <dd
+                  class="typo-element"
+                >
+                  —
+                </dd>
+              </div>
+              <div>
+                <dt
+                  class="typo-normal"
+                >
+                  Vedtaksdato
+                </dt>
+                <dd
+                  class="typo-element"
+                >
+                  15.01.2023
                 </dd>
               </div>
             </dl>
@@ -491,45 +527,43 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
       </div>
     </div>
     <div
-      class="panel c11"
+      class="alertstripe alertstripe--info"
     >
-      <div
-        class="ekspanderbartPanel test-ytelse-ytelselamell ekspanderbartPanel--lukket ekspanderbartPanel--border"
+      <span
+        class="alertstripe__ikon"
       >
-        <button
-          aria-controls="Helt tilfeldig ID"
-          aria-expanded="false"
-          aria-label="Sykefraværsoppfølging"
-          class="ekspanderbartPanel__hode"
-          id="Helt tilfeldig ID"
-          type="button"
+        <span
+          class="sr-only"
         >
-          <div
-            class="ekspanderbartPanel__flex-wrapper"
+          info
+        </span>
+        <svg
+          aria-label="info-ikon"
+          focusable="false"
+          height="1.5em"
+          kind="info-sirkel-fyll"
+          role="img"
+          viewBox="0 0 24 24"
+          width="1.5em"
+        >
+          <g
+            fill="none"
           >
-            <span
-              class="ekspanderbartPanel__tittel"
-            >
-              <div
-                class="c12"
-              >
-                <h2
-                  class="typo-undertittel"
-                >
-                  Sykefraværsoppfølging
-                </h2>
-              </div>
-            </span>
-            <span
-              class="ekspanderbartPanel__indikator"
+            <path
+              d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
+              fill="#337C9B"
             />
-          </div>
-        </button>
-        <div
-          aria-labelledby="Helt tilfeldig ID"
-          id="Helt tilfeldig ID"
-          role="region"
-        />
+            <path
+              d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
+              fill="#FFF"
+            />
+          </g>
+        </svg>
+      </span>
+      <div
+        class="typo-normal alertstripe__tekst"
+      >
+        Det finnes ikke informasjon om sykefraværsoppfølging for valgt periode i Arena
       </div>
     </div>
     <div
