@@ -1,6 +1,7 @@
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { useState } from 'react';
 import type { SyfoPunktDto } from 'src/generated/modiapersonoversikt-api';
+import { useSykefravaersoppfolging } from 'src/lib/clients/modiapersonoversikt-api';
 import { trackAccordionClosed, trackAccordionOpened } from 'src/utils/analytics';
 import { datoSynkende, formatterDato } from '../../../../utils/date-utils';
 import { StyledTable } from '../../../../utils/table/StyledTable';
@@ -30,8 +31,9 @@ function SykefraversoppfolgingEkspanderbartPanel(props: Props) {
         setOpen(open);
         return open ? trackAccordionOpened('Sykefraværsoppfølging') : trackAccordionClosed('Sykefraværsoppfølging');
     };
+    const { isLoading } = useSykefravaersoppfolging();
 
-    if (props.syfoPunkter.length === 0) {
+    if (props.syfoPunkter.length === 0 && !isLoading) {
         return (
             <AlertStripeInfo>
                 Det finnes ikke informasjon om sykefraværsoppfølging for valgt periode i Arena

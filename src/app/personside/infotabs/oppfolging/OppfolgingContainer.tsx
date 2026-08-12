@@ -31,7 +31,7 @@ const DetaljertInfoWrapper = styled.div`
 function OppfolgingContainer() {
     const periode = useOppfolgingFilter();
     const fraTilDato = periode.egendefinertPeriode;
-    const { data: ytelsesData } = oppfolgingResource.useFetch(fraTilDato.fra, fraTilDato.til);
+    const { data: ytelsesData, isLoading } = oppfolgingResource.useFetch(fraTilDato.fra, fraTilDato.til);
 
     const { data: arbeidsoppfolging, isError } = useArbeidsoppfolging();
     const { data: sykefravaersData } = useSykefravaersoppfolging();
@@ -49,7 +49,7 @@ function OppfolgingContainer() {
                 />
             </DetaljertInfoWrapper>
             <SykefraversoppfolgingEkspanderbartPanel syfoPunkter={sykefravaersData?.sykefravaersoppfolging ?? []} />
-            <OppfolgingYtelserEkspanderbartPanel ytelser={ytelsesData?.ytelser ?? []} />
+            <OppfolgingYtelserEkspanderbartPanel ytelser={ytelsesData?.ytelser ?? []} isLoading={isLoading} />
         </OppfolgingStyle>
     );
 }

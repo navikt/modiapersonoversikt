@@ -5,10 +5,12 @@ import Panel from 'nav-frontend-paneler';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useRef } from 'react';
 import Siste14aVedtakDetaljer from 'src/app/personside/infotabs/oppfolging/Gjeldende14aVedtakDetaljer';
+import LazySpinner from 'src/components/LazySpinner';
 import type {
     AggregertPeriodeArbeidssoekerregisteretDto,
     ArbeidsOppfolgingDto
 } from 'src/generated/modiapersonoversikt-api';
+import { useArbeidsoppfolging, useOppslagArbeidssoekerregisteret } from 'src/lib/clients/modiapersonoversikt-api';
 import { pxToRem } from 'src/styles/personOversiktTheme';
 import { formatterDato } from 'src/utils/date-utils';
 import styled from 'styled-components';
@@ -30,6 +32,9 @@ interface Props {
 }
 
 function VisOppfolgingDetaljer(props: Props) {
+    const { isLoading } = useArbeidsoppfolging();
+    const { isLoading: isLoadingArbeidssoekerRegisteret } = useOppslagArbeidssoekerregisteret();
+
     const headerId = useRef(guid());
     const detaljer = props.detaljertOppfolging;
     const oppslagArbeidssoekerRegisteret = props.oppslagArbeidssoekerRegisteret;
@@ -76,15 +81,19 @@ function VisOppfolgingDetaljer(props: Props) {
 
     return (
         <StyledPanel aria-labelledby={headerId.current}>
-            <article>
-                {errorLoadingData}
-                {errorLoadingDataArbeidssoekerRegisteret}
-                {ikkeFullstendigData}
-                <Undertittel id={headerId.current}>Arbeidsoppfølging</Undertittel>
-                <DescriptionList entries={descriptionListProps} />
-                <br />
-                <Siste14aVedtakDetaljer />
-            </article>
+            {isLoading || isLoadingArbeidssoekerRegisteret ? (
+                <LazySpinner type="L" />
+            ) : (
+                <article>
+                    {errorLoadingData}
+                    {errorLoadingDataArbeidssoekerRegisteret}
+                    {ikkeFullstendigData}
+                    <Undertittel id={headerId.current}>Arbeidsoppfølging</Undertittel>
+                    <DescriptionList entries={descriptionListProps} />
+                    <br />
+                    <Siste14aVedtakDetaljer />
+                </article>
+            )}
         </StyledPanel>
     );
 }
