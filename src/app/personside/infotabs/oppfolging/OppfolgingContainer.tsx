@@ -34,7 +34,7 @@ function OppfolgingContainer() {
     const { data: ytelsesData } = oppfolgingResource.useFetch(fraTilDato.fra, fraTilDato.til);
 
     const { data: arbeidsoppfolging, isError } = useArbeidsoppfolging();
-    const { data: syfraversData } = useSykefravaersoppfolging();
+    const { data: sykefravaersData } = useSykefravaersoppfolging();
     const { data: arbeidssoekerData, isError: isErrorArbeidssoekerRegisteret } = useOppslagArbeidssoekerregisteret();
 
     return (
@@ -48,7 +48,7 @@ function OppfolgingContainer() {
                     oppslagArbeidssoekerRegisteret={arbeidssoekerData}
                 />
             </DetaljertInfoWrapper>
-            <SykefraversoppfolgingEkspanderbartPanel syfoPunkter={syfraversData?.sykefravaersoppfolging ?? []} />
+            <SykefraversoppfolgingEkspanderbartPanel syfoPunkter={sykefravaersData?.sykefravaersoppfolging ?? []} />
             <OppfolgingYtelserEkspanderbartPanel ytelser={ytelsesData?.ytelser ?? []} />
         </OppfolgingStyle>
     );
