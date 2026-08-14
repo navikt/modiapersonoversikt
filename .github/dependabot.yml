@@ -6,6 +6,7 @@ registries:
     url: https://npm.pkg.github.com
     token: ${{ secrets.READER_TOKEN }}
     replaces-base: false
+    scope: "@navikt"
 
 updates:
   - package-ecosystem: npm
