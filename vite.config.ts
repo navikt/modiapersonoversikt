@@ -129,6 +129,7 @@ export default defineConfig({
         pool: 'threads',
         globals: true,
         environment: 'happy-dom',
+        execArgv: ['--no-experimental-webstorage'],
         setupFiles: './src/setupTests.ts',
         css: {
             modules: {
