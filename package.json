@@ -3,14 +3,15 @@
     "version": "0.4.2",
     "private": false,
     "license": "MIT",
+    "packageManager": "pnpm@11.6.0",
     "main": "build/dist/index.js",
     "type": "module",
-    "packageManager": "pnpm@11.6.0",
     "files": [
         "build/dist/"
     ],
     "engines": {
-        "node": "^24.0 || ^26.0"
+        "node": ">=26.0",
+        "pnpm": ">=11.6.0"
     },
     "repository": {
         "type": "git",
@@ -137,7 +138,7 @@
         "@testing-library/user-event": "^14.6.1",
         "@types/lodash": "^4.17.20",
         "@types/md5": "^2.3.6",
-        "@types/node": "^24.9.1",
+        "@types/node": "^26.2.0",
         "@types/prop-types": "^15.7.15",
         "@types/react": "19.2.1",
         "@types/react-collapse": "^5.0.4",
