@@ -1,8 +1,6 @@
 FROM node:26-slim AS builder
 
-ENV PNPM_HOME="/pnpm"
-ENV PATH="$PNPM_HOME:$PATH"
-RUN corepack enable && corepack prepare pnpm@11.6.0 --activate
+RUN npm install -g pnpm@11.6.0
 
 WORKDIR /app
 COPY pnpm-lock.yaml  /app
