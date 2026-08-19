@@ -3,11 +3,11 @@ import NavFrontendModal from 'nav-frontend-modal';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { useCallback } from 'react';
 import type { UseFormReturn } from 'react-hook-form';
-import { type FieldError, useForm } from 'react-hook-form';
+import { type FieldError, type Resolver, type ResolverError, useForm } from 'react-hook-form';
+import { buildFieldError } from 'src/components/form/formUtils';
+import { type PopupComponentProps, renderPopup } from 'src/components/popup-boxes/popup-boxes';
+import type { Traad } from 'src/models/meldinger/meldinger';
 import styled from 'styled-components';
-import { buildFieldError } from '../../../../../../../../components/form/formUtils';
-import { type PopupComponentProps, renderPopup } from '../../../../../../../../components/popup-boxes/popup-boxes';
-import type { Traad } from '../../../../../../../../models/meldinger/meldinger';
 import SladdMeldingerMedArsak from './SladdMeldingerMedArsak';
 import css from './Sladdvalg.module.css';
 import { useSladdeArsak } from './use-sladde-arsak';
@@ -42,18 +42,21 @@ type SladdeForm = {
     meldingIder: string[];
 };
 
-const resolver = (values: SladdeForm) => {
-    const errors: { [Property in keyof Partial<SladdeForm>]: FieldError } = {};
+const resolver: Resolver<SladdeForm> = (values: SladdeForm) => {
+    const errors: Record<string, FieldError> = {};
 
     if (!values.arsak || values.arsak === '') {
         errors.arsak = buildFieldError('Du må velge årsak');
     }
 
-    if (!values.meldingIder.length) {
+    if (!values.meldingIder?.length) {
         errors.meldingIder = buildFieldError('Du må velge minst en melding');
     }
 
-    return { values, errors };
+    if (Object.keys(errors).length > 0) {
+        return { values: {}, errors } as ResolverError<SladdeForm>;
+    }
+    return { values, errors: {} };
 };
 
 export interface SladdeComponentProps {
