@@ -11,7 +11,7 @@ export function useFieldState<
     TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 >(name: TFieldName, form: UseFormReturn<TFieldValues>): UseFieldStateReturn<TFieldName> {
     const showError =
-        form.formState.touchedFields[name as keyof typeof form.formState.touchedFields] ||
+        form.formState.touchedFields[name as unknown as keyof typeof form.formState.touchedFields] ||
         form.formState.submitCount > 0;
     const error = form.formState.errors[name]?.message?.toString();
     const { ref, onChange, ...input } = form.register(name);

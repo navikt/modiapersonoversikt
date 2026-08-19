@@ -1,4 +1,4 @@
-import type { FieldError } from 'react-hook-form';
+import type { FieldError, ResolverError } from 'react-hook-form';
 import { buildFieldError } from 'src/components/form/formUtils';
 import type { OppgaveSkjemaBegrensetTilgangForm, OppgaveSkjemaForm } from './oppgaveInterfaces';
 
@@ -60,14 +60,18 @@ export function resolverOppgaveSkjema(values: OppgaveSkjemaForm) {
         validatePartialField(field.key, values[field.key], field.errorMessage, errors)
     );
 
+    if (Object.keys(errors).length > 0) {
+        return { values: {}, errors } as ResolverError<OppgaveSkjemaForm>;
+    }
+
     return {
-        errors,
+        errors: {},
         values
     };
 }
 
 export function resolverOppgaveSkjemaBegrensetTilgang(values: OppgaveSkjemaBegrensetTilgangForm) {
-    const errors: ErrorObject = {};
+    const errors: Record<string, FieldError> = {};
     const gjelderErOblig = values.valgtTema === 'AAP';
 
     const allFieldsToValidate: { key: keyof OppgaveSkjemaBegrensetTilgangForm; errorMessage: string }[] = gjelderErOblig
@@ -78,8 +82,12 @@ export function resolverOppgaveSkjemaBegrensetTilgang(values: OppgaveSkjemaBegre
         validatePartialField(field.key, values[field.key], field.errorMessage, errors)
     );
 
+    if (Object.keys(errors).length > 0) {
+        return { values: {}, errors } as ResolverError<OppgaveSkjemaBegrensetTilgangForm>;
+    }
+
     return {
-        errors,
+        errors: {},
         values
     };
 }
