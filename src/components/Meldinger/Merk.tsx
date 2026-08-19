@@ -256,6 +256,7 @@ export const SladdTraadModal = ({ traad, onClose, open }: ModalProps) => {
                             <Meldinger
                                 meldinger={traad.meldinger}
                                 wrapper={({ children, melding }) => (
+                                    // meldig.meldingsId er id-en som er unik for melding og melding.id er en sammensetning av meldingsId og traadId. Den skal ikke brukes
                                     <Checkbox
                                         checked={!!melding.meldingsId && selected.includes(melding.meldingsId)}
                                         width="100%"
