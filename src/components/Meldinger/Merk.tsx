@@ -13,7 +13,7 @@ import {
     VStack
 } from '@navikt/ds-react';
 import { useAtomValue } from 'jotai';
-import { Suspense, useState } from 'react';
+import { type FormEvent, Suspense, useState } from 'react';
 import { AlertBanner } from 'src/components/AlertBanner';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import {
@@ -195,7 +195,7 @@ export const SladdTraadModal = ({ traad, onClose, open }: ModalProps) => {
         return;
     }
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         const result = sladdSchema.safeParse({ aarsak, meldinger: selected });
         if (!result.success) {
@@ -256,7 +256,7 @@ export const SladdTraadModal = ({ traad, onClose, open }: ModalProps) => {
                             <Meldinger
                                 meldinger={traad.meldinger}
                                 wrapper={({ children, melding }) => (
-                                    // meldig.meldingsId er id-en som er unik for melding og melding.id er en sammensetning av meldingsId og traadId. Den skal ikke brukes
+                                    // melding.meldingsId er id-en som er unik for melding og melding.id er en sammensetning av meldingsId og traadId. Den skal ikke brukes
                                     <Checkbox
                                         checked={!!melding.meldingsId && selected.includes(melding.meldingsId)}
                                         width="100%"
