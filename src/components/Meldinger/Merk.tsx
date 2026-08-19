@@ -3,6 +3,7 @@ import {
     Alert,
     Button,
     Checkbox,
+    ErrorMessage,
     HStack,
     InlineMessage,
     Link,
@@ -12,7 +13,7 @@ import {
     VStack
 } from '@navikt/ds-react';
 import { useAtomValue } from 'jotai';
-import { Suspense, useState } from 'react';
+import { type FormEvent, Suspense, useState } from 'react';
 import { AlertBanner } from 'src/components/AlertBanner';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import {
@@ -26,6 +27,7 @@ import {
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import type { OppgaveDto, Traad } from 'src/lib/types/modiapersonoversikt-api';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
+import { z } from 'zod';
 import { Meldinger } from './Detail/Meldinger';
 import { erMeldingFeilsendt } from './List/utils';
 
@@ -155,6 +157,13 @@ export const MarkerFeilsendtModal = ({ traad, open, onClose }: ModalProps) => {
     );
 };
 
+const sladdSchema = z.object({
+    aarsak: z.string().min(1, 'Du må velge en årsak'),
+    meldinger: z.array(z.string()).min(1, 'Du må velge minst én melding')
+});
+
+type SladdErrors = Partial<Record<keyof z.infer<typeof sladdSchema>, string>>;
+
 const SladdeAarsaker = ({ traadId }: { traadId: string }) => {
     const { data: sladdAarsaker, errorMessages, isPending } = useSladdeAarsaker(traadId);
 
@@ -174,6 +183,7 @@ export const SladdTraadModal = ({ traad, onClose, open }: ModalProps) => {
     const fnr = usePersonAtomValue();
     const [selected, setSelected] = useState<string[]>([]);
     const [aarsak, setAarsak] = useState('');
+    const [errors, setErrors] = useState<SladdErrors>({});
 
     const toggleMelding = (id: string) => {
         setSelected((list) => (list.includes(id) ? list.filter((m) => m !== id) : [...list, id]));
@@ -184,17 +194,22 @@ export const SladdTraadModal = ({ traad, onClose, open }: ModalProps) => {
     if (!traad) {
         return;
     }
-    const submit = () => {
+
+    const handleSubmit = (e: FormEvent) => {
+        e.preventDefault();
+        const result = sladdSchema.safeParse({ aarsak, meldinger: selected });
+        if (!result.success) {
+            const fieldErrors = result.error.flatten().fieldErrors;
+            setErrors({
+                aarsak: fieldErrors.aarsak?.[0],
+                meldinger: fieldErrors.meldinger?.[0]
+            });
+            return;
+        }
+        setErrors({});
         trackGenereltUmamiEvent(trackingEvents.merkDialog, { tekst: 'sladding' });
         mutate(
-            {
-                body: {
-                    fnr,
-                    traadId: traad.traadId,
-                    arsak: aarsak,
-                    meldingId: selected
-                }
-            },
+            { body: { fnr, traadId: traad.traadId, arsak: aarsak, meldingId: selected } },
             {
                 onSettled: () => {
                     onClose();
@@ -206,69 +221,78 @@ export const SladdTraadModal = ({ traad, onClose, open }: ModalProps) => {
     return (
         <Modal width="medium" open={open} onClose={onClose} header={{ heading: 'Send til sladding' }}>
             <Modal.Body>
-                <VStack gap="space-8">
-                    <Suspense fallback={<Skeleton variant="rectangle" height="16" />}>
-                        <ErrorBoundary boundaryName="sladding">
-                            <Select
-                                label="Velg årsak"
-                                size="small"
-                                value={aarsak}
-                                onChange={(e) => setAarsak(e.target.value)}
-                            >
-                                <option disabled value="">
-                                    Velg årsak
-                                </option>
-                                <SladdeAarsaker traadId={traad.traadId} />
-                            </Select>
-                        </ErrorBoundary>
-                    </Suspense>
-                    <Checkbox
-                        checked={selected.length === traad.meldinger.length}
-                        indeterminate={selected.length > 0 && selected.length !== traad.meldinger.length}
-                        onChange={() => {
-                            selected.length === traad.meldinger.length
-                                ? setSelected([])
-                                : setSelected(traad.meldinger.map((m) => m.id));
-                        }}
-                    >
-                        Velg alle
-                    </Checkbox>
-                    <VStack maxHeight="60vh" minHeight="0">
-                        <Meldinger
-                            meldinger={traad.meldinger}
-                            wrapper={({ children, melding }) => (
-                                <Checkbox
-                                    checked={selected.includes(melding.meldingsId ?? melding.id)}
-                                    width="100%"
-                                    onChange={() => toggleMelding(melding.meldingsId ?? melding.id)}
+                <form onSubmit={handleSubmit}>
+                    <VStack gap="space-8">
+                        <Suspense fallback={<Skeleton variant="rectangle" height="16" />}>
+                            <ErrorBoundary boundaryName="sladding">
+                                <Select
+                                    label="Velg årsak"
+                                    size="small"
+                                    value={aarsak}
+                                    onChange={(e) => {
+                                        setAarsak(e.target.value);
+                                        setErrors((prev) => ({ ...prev, aarsak: undefined }));
+                                    }}
+                                    error={errors.aarsak}
                                 >
-                                    {children}
-                                </Checkbox>
-                            )}
-                        />
-                    </VStack>
-
-                    <Alert variant="warning" size="small">
-                        Sak om feilregistrering/sladding må meldes i{' '}
-                        <Link
-                            href="https://jira.adeo.no/plugins/servlet/desk/portal/541/create/1481"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                                    <option disabled value="">
+                                        Velg årsak
+                                    </option>
+                                    <SladdeAarsaker traadId={traad.traadId} />
+                                </Select>
+                            </ErrorBoundary>
+                        </Suspense>
+                        <Checkbox
+                            checked={selected.length === traad.meldinger.length}
+                            onChange={() => {
+                                selected.length === traad.meldinger.length
+                                    ? setSelected([])
+                                    : setSelected(traad.meldinger.map((m) => m.meldingsId ?? m.id));
+                            }}
                         >
-                            porten
-                            <ExternalLinkIcon aria-hidden />
-                        </Link>
-                        .
-                    </Alert>
-                    <HStack justify="end" gap="space-16">
-                        <Button variant="secondary" onClick={onClose} size="small">
-                            Avbryt
-                        </Button>
-                        <Button onClick={submit} loading={isPending} size="small">
-                            Send til sladding
-                        </Button>
-                    </HStack>
-                </VStack>
+                            Velg alle
+                        </Checkbox>
+                        <VStack maxHeight="60vh" minHeight="0">
+                            <Meldinger
+                                meldinger={traad.meldinger}
+                                wrapper={({ children, melding }) => (
+                                    // melding.meldingsId er id-en som er unik for melding og melding.id er en sammensetning av meldingsId og traadId. Den skal ikke brukes
+                                    <Checkbox
+                                        checked={!!melding.meldingsId && selected.includes(melding.meldingsId)}
+                                        width="100%"
+                                        onChange={() => {
+                                            !!melding.meldingsId && toggleMelding(melding.meldingsId);
+                                        }}
+                                    >
+                                        {children}
+                                    </Checkbox>
+                                )}
+                            />
+                        </VStack>
+                        {errors.meldinger && <ErrorMessage>{errors.meldinger}</ErrorMessage>}
+
+                        <Alert variant="warning" size="small">
+                            Sak om feilregistrering/sladding må meldes i{' '}
+                            <Link
+                                href="https://jira.adeo.no/plugins/servlet/desk/portal/541/create/1481"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                porten
+                                <ExternalLinkIcon aria-hidden />
+                            </Link>
+                            .
+                        </Alert>
+                        <HStack justify="end" gap="space-16">
+                            <Button type="button" variant="secondary" onClick={onClose} size="small">
+                                Avbryt
+                            </Button>
+                            <Button type="submit" loading={isPending} size="small">
+                                Send til sladding
+                            </Button>
+                        </HStack>
+                    </VStack>
+                </form>
             </Modal.Body>
         </Modal>
     );
