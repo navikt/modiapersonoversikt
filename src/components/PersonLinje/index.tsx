@@ -102,16 +102,17 @@ const PersonlinjeHeader = () => {
                             activeText="Kopiert f.nr."
                             text={`F.nr.: ${`${person.personIdent.slice(0, 6)} ${person.personIdent.slice(6)}`}`}
                         />
-                        {data.person.kontaktInformasjon.mobil?.value && (
-                            <CopyButton
-                                className="p-0 text-ax-text-neutral-subtle"
-                                activeText="Kopiert tlf.nr"
-                                aria-label={`Kopier tlf.nr: ${formaterMobiltelefonnummer(data.person.kontaktInformasjon.mobil.value ?? '')}`}
-                                text={`Tlf: ${formaterMobiltelefonnummer(data.person.kontaktInformasjon.mobil?.value ?? '')}`}
-                                size="xsmall"
-                                copyText={data.person.kontaktInformasjon.mobil.value}
-                            />
-                        )}
+                        {data.person.kontaktInformasjon.mobil?.value &&
+                            data.person.kontaktInformasjon.erReservert?.value !== true && (
+                                <CopyButton
+                                    className="p-0 text-ax-text-neutral-subtle"
+                                    activeText="Kopiert tlf.nr"
+                                    aria-label={`Kopier tlf.nr: ${formaterMobiltelefonnummer(data.person.kontaktInformasjon.mobil.value ?? '')}`}
+                                    text={`Tlf: ${formaterMobiltelefonnummer(data.person.kontaktInformasjon.mobil?.value ?? '')}`}
+                                    size="xsmall"
+                                    copyText={data.person.kontaktInformasjon.mobil.value}
+                                />
+                            )}
                         <Statsborgerskap />
                     </HStack>
                     <PersonBadges />
