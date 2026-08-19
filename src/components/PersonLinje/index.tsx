@@ -103,7 +103,7 @@ const PersonlinjeHeader = () => {
                             text={`F.nr.: ${`${person.personIdent.slice(0, 6)} ${person.personIdent.slice(6)}`}`}
                         />
                         {data.person.kontaktInformasjon.mobil?.value &&
-                            !data.person.kontaktInformasjon.erReservert?.value && (
+                            data.person.kontaktInformasjon.erReservert?.value !== true && (
                                 <CopyButton
                                     className="p-0 text-ax-text-neutral-subtle"
                                     activeText="Kopiert tlf.nr"
