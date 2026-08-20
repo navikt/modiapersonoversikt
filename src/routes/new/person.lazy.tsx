@@ -10,6 +10,7 @@ import { PersonSidebarMenu } from 'src/components/PersonSidebar';
 import { YtelserList } from 'src/components/ytelser/List';
 import { useTilgangskontroll } from 'src/lib/clients/modiapersonoversikt-api';
 import { aktivBrukerAtom } from 'src/lib/state/context';
+import { meldingPanelIsOpenAtom } from 'src/lib/state/dialog';
 export const Route = createLazyFileRoute('/new/person')({
     component: PersonRoute
 });
@@ -85,6 +86,7 @@ function PersonLayout() {
     });
 
     const isMobile = useIsMobile();
+    const isOpen = useAtomValue(meldingPanelIsOpenAtom);
 
     const listPanel = isMeldinger ? (
         <VStack height={{ sm: '100%' }} overflow={{ sm: 'hidden' }}>
@@ -167,7 +169,7 @@ function PersonLayout() {
                             </Group>
                         )}
                     </Panel>
-                    <ResizeHandle />
+                    {isOpen && <ResizeHandle />}
                     <MeldingPanel />
                 </Group>
             </HStack>
