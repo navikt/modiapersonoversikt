@@ -2,7 +2,7 @@ import { Alert, Box, Heading, HStack, Skeleton, VStack } from '@navikt/ds-react'
 import { createLazyFileRoute, Navigate, Outlet, useRouterState } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
 import { Suspense, useEffect, useState } from 'react';
-import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
+import { Group, Panel, Separator, useDefaultLayout } from 'react-resizable-panels';
 import { TraadList } from 'src/components/Meldinger/List';
 import { MeldingPanel } from 'src/components/melding/MeldingPanel';
 import { PersonLinje } from 'src/components/PersonLinje';
@@ -10,6 +10,7 @@ import { PersonSidebarMenu } from 'src/components/PersonSidebar';
 import { YtelserList } from 'src/components/ytelser/List';
 import { useTilgangskontroll } from 'src/lib/clients/modiapersonoversikt-api';
 import { aktivBrukerAtom } from 'src/lib/state/context';
+import { meldingPanelIsOpenAtom } from 'src/lib/state/dialog';
 export const Route = createLazyFileRoute('/new/person')({
     component: PersonRoute
 });
@@ -60,9 +61,8 @@ const useIsMobile = () => {
 };
 
 const ResizeHandle = () => (
-    <PanelResizeHandle
-        aria-hidden
-        tabIndex={-1}
+    <Separator
+        aria-label="Dra for å endre størrelse på panel"
         className="hover:bg-ax-bg-neutral-moderate-hover w-1 cursor-col-resize focus:bg-ax-brand-blue-100"
     />
 );
@@ -74,7 +74,19 @@ function PersonLayout() {
     const isYtelser = useRouterState({
         select: (s) => s.matches.some((m) => m.routeId.includes('/ytelser'))
     });
+
+    const outerLayout = useDefaultLayout({
+        id: 'panel-layout-meldinger-outer',
+        storage: localStorage
+    });
+
+    const innerLayout = useDefaultLayout({
+        id: 'panel-layout-meldinger-inner', // Assign a new, unique key for the nested group
+        storage: localStorage
+    });
+
     const isMobile = useIsMobile();
+    const isOpen = useAtomValue(meldingPanelIsOpenAtom);
 
     const listPanel = isMeldinger ? (
         <VStack height={{ sm: '100%' }} overflow={{ sm: 'hidden' }}>
@@ -101,8 +113,14 @@ function PersonLayout() {
                 <VStack>
                     <PersonSidebarMenu />
                 </VStack>
-                <PanelGroup direction="horizontal" autoSaveId="person-outer">
-                    <Panel order={1} className="overflow-hidden" id="person-panel">
+                <Group
+                    defaultLayout={outerLayout.defaultLayout}
+                    orientation="horizontal"
+                    onLayoutChange={(layout) => {
+                        outerLayout.onLayoutChanged(layout, { isUserInteraction: true });
+                    }}
+                >
+                    <Panel className="overflow-hidden" id="person-panel">
                         {isMobile ? (
                             <VStack className="h-full overflow-auto" gap="space-4">
                                 {listPanel}
@@ -113,18 +131,20 @@ function PersonLayout() {
                                 </VStack>
                             </VStack>
                         ) : (
-                            <PanelGroup
-                                direction="horizontal"
-                                autoSaveId={listPanel ? 'person-content-list' : 'person-content'}
+                            <Group
+                                defaultLayout={innerLayout.defaultLayout}
+                                orientation="horizontal"
+                                onLayoutChange={(layout) => {
+                                    innerLayout.onLayoutChanged(layout, { isUserInteraction: true });
+                                }}
                             >
                                 {listPanel && (
                                     <>
                                         <Panel
                                             id="list-panel"
-                                            order={1}
-                                            defaultSize={20}
-                                            minSize={10}
-                                            maxSize={40}
+                                            defaultSize="20vh"
+                                            minSize="10vh"
+                                            maxSize="40vh"
                                             className="overflow-hidden"
                                         >
                                             {listPanel}
@@ -132,7 +152,12 @@ function PersonLayout() {
                                         <ResizeHandle />
                                     </>
                                 )}
-                                <Panel id="main-content-panel" order={2} minSize={30} className="overflow-scroll">
+                                <Panel
+                                    id="main-content-panel"
+                                    minSize="30vh"
+                                    className="overflow-scroll"
+                                    defaultSize="90%"
+                                >
                                     <Box height="100%">
                                         <VStack gap="space-4" height="100%">
                                             <Suspense>
@@ -141,12 +166,12 @@ function PersonLayout() {
                                         </VStack>
                                     </Box>
                                 </Panel>
-                            </PanelGroup>
+                            </Group>
                         )}
                     </Panel>
-                    <ResizeHandle />
+                    {isOpen && <ResizeHandle />}
                     <MeldingPanel />
-                </PanelGroup>
+                </Group>
             </HStack>
         </VStack>
     );
