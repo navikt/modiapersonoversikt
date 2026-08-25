@@ -1,15 +1,14 @@
-import { ExclamationmarkTriangleFillIcon } from '@navikt/aksel-icons';
-import { BodyShort, Box, Detail, HelpText, HStack, InlineMessage } from '@navikt/ds-react';
+import { Accordion, BodyShort, Box, Detail, HelpText, HStack, InlineMessage } from '@navikt/ds-react';
 import { KopierFnrKnapp } from 'src/components/PersonLinje/common/KopierFnrKnapp';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { type PersonData, PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
 import ValidPeriod from '../common/ValidPeriod';
 import { harFeilendeSystemer, hentNavn } from '../utils';
-import { Group, InfoElement } from './components';
+import { InfoElement } from './components';
 
 type Verge = PersonData['vergemal'][0];
 
-function Verge(props: { feilendeSystemer: PersonDataFeilendeSystemer[]; verge: Verge }) {
+function VergeDetaljer(props: { feilendeSystemer: PersonDataFeilendeSystemer[]; verge: Verge }) {
     const { verge } = props;
     const harFeilendeSystemOgIngenNavn =
         harFeilendeSystemer(props.feilendeSystemer, PersonDataFeilendeSystemer.PDL_TREDJEPARTSPERSONER) &&
@@ -22,7 +21,7 @@ function Verge(props: { feilendeSystemer: PersonDataFeilendeSystemer[]; verge: V
         );
 
     return (
-        <InfoElement title="Verge">
+        <InfoElement>
             <Box className="mb-2">
                 {harFeilendeSystemOgIngenNavn}
                 <KopierFnrKnapp fnr={verge.ident} />
@@ -55,12 +54,6 @@ function Verge(props: { feilendeSystemer: PersonDataFeilendeSystemer[]; verge: V
     );
 }
 
-function Vergesakstype(props: { vergemal: Verge[] }) {
-    const alleVergesakstyper = props.vergemal.map((verge) => verge.vergesakstype);
-    const unikeVergessakstyper = Array.from(new Set(alleVergesakstyper)).join(', ');
-    return <BodyShort size="small">Vergesakstyper: {unikeVergessakstyper}</BodyShort>;
-}
-
 function Vergemal() {
     const { data } = usePersonData();
     const person = data?.person;
@@ -72,15 +65,23 @@ function Vergemal() {
     }
 
     return (
-        <Group
-            icon={<ExclamationmarkTriangleFillIcon color="var(--ax-text-warning-decoration)" />}
-            title="Bruker er under vergemål"
-        >
-            <Vergesakstype vergemal={vergemal} />
-            {vergemal.map((verge, index) => (
-                <Verge feilendeSystemer={feilendeSystemer} verge={verge} key={`${verge.ident}-${index}`} />
-            ))}
-        </Group>
+        <Accordion size="small" indent={false}>
+            {vergemal.map((verge, index) => {
+                const vergenavn = hentNavn(verge.navn, 'Ukjent verge');
+                return (
+                    <Accordion.Item key={`${verge.ident}-${index}`}>
+                        <Accordion.Header>
+                            <HStack gap="space-2" align="center">
+                                {vergenavn}
+                            </HStack>
+                        </Accordion.Header>
+                        <Accordion.Content>
+                            <VergeDetaljer feilendeSystemer={feilendeSystemer} verge={verge} />
+                        </Accordion.Content>
+                    </Accordion.Item>
+                );
+            })}
+        </Accordion>
     );
 }
 

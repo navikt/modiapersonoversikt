@@ -1,68 +1,37 @@
-import { Accordion, Alert, BodyShort, Box, InlineMessage, Link, Skeleton } from '@navikt/ds-react';
-import { Normaltekst } from 'nav-frontend-typografi';
-import { Fragment } from 'react';
+import {
+    Alert,
+    BodyShort,
+    Detail,
+    Heading,
+    HGrid,
+    HStack,
+    InlineMessage,
+    Label,
+    Link,
+    Skeleton,
+    VStack
+} from '@navikt/ds-react';
+import type { ReactNode } from 'react';
 import QueryErrorBoundary from 'src/components/QueryErrorBoundary';
-import { useBaseUrls, usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
-import { PersonDataFeilendeSystemer, type Publikumsmottak } from 'src/lib/types/modiapersonoversikt-api';
-import NavLogo from 'src/svg/NavLogo';
+import { useArbeidsoppfolging, useBaseUrls, usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
+import { PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
+import NavLogoNy from 'src/svg/navLogoNy.svg';
 import { harFeilendeSystemer, mapUgyldigGT } from '../../utils';
-import { Adresseinfo, Group, InfoElement } from '../components';
+import { Adresseinfo } from '../components';
 
-function PublikumsmottakKontaktInfo(props: { publikumsmottak: Publikumsmottak }) {
-    const apningstider = props.publikumsmottak.apningstider.map((apningstid) => {
-        return (
-            <Fragment key={apningstid.ukedag}>
-                <dt className="basis-1/2 flex-1">
-                    <BodyShort className="capitalize">{apningstid.ukedag}</BodyShort>
-                </dt>
-                <dd className="basis-1/2 flex-1">
-                    <BodyShort>{apningstid.apningstid}</BodyShort>
-                </dd>
-            </Fragment>
-        );
-    });
+const IKKE_TILGJENGELIG = 'Ikke tilgjengelig';
 
-    return (
-        <div>
-            <br />
-            <BodyShort size="small" textColor="subtle">
-                Besøksadresse
-            </BodyShort>
-            <Adresseinfo adresse={props.publikumsmottak.besoksadresse} />
-            <br />
-            <BodyShort size="small" textColor="subtle">
-                Åpningstider
-            </BodyShort>
-            <dl className="flex flex-wrap max-w-80">{apningstider}</dl>
-            <br />
-        </div>
-    );
+function hentDagensApningstid(apningstider: { ukedag: string; apningstid: string }[]): string | null {
+    const dagensUkedag = new Date().toLocaleDateString('nb-NO', { weekday: 'long' }).toLowerCase();
+    return apningstider.find((a) => a.ukedag.toLowerCase() === dagensUkedag)?.apningstid ?? null;
 }
 
-function Publikumsmottak(props: { publikumsmottak: Publikumsmottak[] }) {
-    const publikumsmottak = props.publikumsmottak;
-    if (publikumsmottak.length === 0) {
-        return <BodyShort>ingen publikumsmottak</BodyShort>;
-    }
-
-    if (publikumsmottak.length === 1) {
-        return <PublikumsmottakKontaktInfo publikumsmottak={publikumsmottak[0]} />;
-    }
-
+function InfoFelt({ label, children }: { label: string; children: ReactNode }) {
     return (
-        <>
-            <Normaltekst className="p-2">Det finnes flere publikumsmottak</Normaltekst>
-            <Accordion size="small" className="max-w-96">
-                {publikumsmottak.map((mottak, index) => (
-                    <Accordion.Item defaultOpen={index === 0} key={mottak.besoksadresse.linje1}>
-                        <Accordion.Header>{mottak.besoksadresse.linje1}</Accordion.Header>
-                        <Accordion.Content>
-                            <PublikumsmottakKontaktInfo publikumsmottak={mottak} />
-                        </Accordion.Content>
-                    </Accordion.Item>
-                ))}
-            </Accordion>
-        </>
+        <VStack gap="space-4">
+            <Label size="small">{label}</Label>
+            {children}
+        </VStack>
     );
 }
 
@@ -72,10 +41,23 @@ function KontorLenke({ navEnhetId }: { navEnhetId: string }) {
 
     return (
         <QueryErrorBoundary loading={isLoading} error={error} loader={<Skeleton variant="text" />}>
-            <Link href={`${baseUrl}/#/startsok?enhetNr=${navEnhetId}`} target="_blank" rel="noopener noreferrer">
-                Mer informasjon om kontoret
-            </Link>
+            <Detail>
+                <Link href={`${baseUrl}/#/startsok?enhetNr=${navEnhetId}`} target="_blank" rel="noopener noreferrer">
+                    Fler detaljer om kontoret
+                </Link>
+            </Detail>
         </QueryErrorBoundary>
+    );
+}
+
+function Veileder() {
+    const { data } = useArbeidsoppfolging();
+    const veileder = data?.oppfolging?.veileder;
+    if (!veileder) return null;
+    return (
+        <InfoFelt label="Veileder - arbeidsoppfølging">
+            <BodyShort size="small">{veileder.navn}</BodyShort>
+        </InfoFelt>
     );
 }
 
@@ -88,13 +70,17 @@ function NavKontor() {
 
     if (harFeilendeSystemer(feilendeSystemer, PersonDataFeilendeSystemer.NORG_NAVKONTOR)) {
         return (
-            <Group title="NAV-kontor">
-                <InfoElement title="Ukjent NAV-kontor" icon={<NavLogo style={{ width: '2.5rem' }} />}>
-                    <InlineMessage status="warning" size="small">
-                        Feilet ved uthenting av informasjon om NAV-kontor
-                    </InlineMessage>
-                </InfoElement>
-            </Group>
+            <VStack gap="space-16">
+                <HStack justify="space-between" align="center">
+                    <Heading size="small" level="2">
+                        Ukjent NAV-kontor
+                    </Heading>
+                    <NavLogoNy style={{ height: '1.2rem', width: 'auto' }} aria-hidden />
+                </HStack>
+                <InlineMessage status="warning" size="small">
+                    Feilet ved uthenting av informasjon om NAV-kontor
+                </InlineMessage>
+            </VStack>
         );
     }
 
@@ -104,23 +90,75 @@ function NavKontor() {
 
     if (!navEnhet) {
         return (
-            <Group title="NAV-kontor">
-                <InfoElement title={mapUgyldigGT(geografiskTilknytning)} icon={<NavLogo style={{ width: '2.5rem' }} />}>
-                    <Alert variant="warning">Fant ikke geografisk tilknyttning for bruker</Alert>
-                </InfoElement>
-            </Group>
+            <VStack gap="space-16">
+                <HStack justify="space-between" align="center">
+                    <Heading size="small" level="2">
+                        {mapUgyldigGT(geografiskTilknytning)}
+                    </Heading>
+                    <NavLogoNy style={{ height: '1.2rem', width: 'auto' }} aria-hidden />
+                </HStack>
+                <Alert variant="warning" size="small">
+                    Fant ikke geografisk tilknyttning for bruker
+                </Alert>
+            </VStack>
         );
     }
 
+    const forsteMottakAdresse = navEnhet.publikumsmottak.at(0)?.besoksadresse;
+    const apningstider = navEnhet.publikumsmottak.at(0)?.apningstider ?? [];
+    const dagensApningstid = hentDagensApningstid(apningstider);
+
     return (
-        <Group title="NAV-kontor">
-            <InfoElement title={`${navEnhet?.id} ${navEnhet.navn}`} icon={<NavLogo style={{ width: '2.5rem' }} />}>
-                <Publikumsmottak publikumsmottak={navEnhet.publikumsmottak} />
-                <Box marginBlock="space-16">
-                    <KontorLenke navEnhetId={navEnhet.id} />
-                </Box>
-            </InfoElement>
-        </Group>
+        <VStack gap="space-24">
+            <HStack justify="space-between" align="center">
+                <Heading size="small" level="2">
+                    {navEnhet.navn}
+                </Heading>
+                <NavLogoNy style={{ height: '1.2rem', width: 'auto' }} aria-hidden />
+            </HStack>
+
+            <Veileder />
+
+            <VStack gap="space-6">
+                <HGrid columns={2} gap="space-16">
+                    <InfoFelt label="Kontaktadresse">
+                        {forsteMottakAdresse ? (
+                            <Adresseinfo adresse={forsteMottakAdresse} />
+                        ) : (
+                            <BodyShort size="small" textColor="subtle">
+                                {IKKE_TILGJENGELIG}
+                            </BodyShort>
+                        )}
+                    </InfoFelt>
+
+                    <InfoFelt label="E-post">
+                        <BodyShort size="small" textColor="subtle">
+                            {IKKE_TILGJENGELIG}
+                        </BodyShort>
+                    </InfoFelt>
+                </HGrid>
+
+                <HGrid columns={2} gap="space-16">
+                    <InfoFelt label="Åpent i dag">
+                        {dagensApningstid ? (
+                            <BodyShort size="small">{dagensApningstid}</BodyShort>
+                        ) : (
+                            <BodyShort size="small" textColor="subtle">
+                                {IKKE_TILGJENGELIG}
+                            </BodyShort>
+                        )}
+                    </InfoFelt>
+
+                    <InfoFelt label="Telefonnummer">
+                        <BodyShort size="small" textColor="subtle">
+                            {IKKE_TILGJENGELIG}
+                        </BodyShort>
+                    </InfoFelt>
+                </HGrid>
+            </VStack>
+
+            <KontorLenke navEnhetId={navEnhet.id} />
+        </VStack>
     );
 }
 

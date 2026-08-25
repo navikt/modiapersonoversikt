@@ -1,3 +1,4 @@
+import { VStack } from '@navikt/ds-react';
 import type { PersonData } from 'src/lib/types/modiapersonoversikt-api';
 import { capitalizeName } from 'src/utils/string-utils';
 import { harDiskresjonskode, hentBarnUnder22 } from '../../utils';
@@ -30,7 +31,7 @@ function Barn({ harFeilendeSystem, relasjoner }: Props) {
     const barnUnder22 = hentBarnUnder22(relasjoner);
 
     return (
-        <>
+        <VStack gap="space-32">
             {barnUnder22.map((barn, index) => (
                 <ForelderBarnRelasjonVisning
                     key={barn.ident ? barn.ident : index}
@@ -40,7 +41,7 @@ function Barn({ harFeilendeSystem, relasjoner }: Props) {
                     erBarn={true}
                 />
             ))}
-        </>
+        </VStack>
     );
 }
 

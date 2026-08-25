@@ -1,11 +1,11 @@
-import { HeartFillIcon } from '@navikt/aksel-icons';
-import { BodyShort, Detail, InlineMessage } from '@navikt/ds-react';
+import { CheckmarkIcon, XMarkOctagonIcon } from '@navikt/aksel-icons';
+import { BodyShort, Box, InlineMessage, Tag, VStack } from '@navikt/ds-react';
 import { KopierFnrKnapp } from 'src/components/PersonLinje/common/KopierFnrKnapp';
+import { InfoElement } from 'src/components/PersonLinje/Details/components';
 import { type PersonData, SivilstandType } from 'src/lib/types/modiapersonoversikt-api';
 import { formaterDato } from 'src/utils/string-utils';
 import Diskresjonskode from '../../common/DiskresjonsKode';
-import { erPartner, hentAlderEllerDod, hentNavn } from '../../utils';
-import { InfoElement } from '../components';
+import { hentNavn } from '../../utils';
 
 type Sivilstand = PersonData['sivilstand'][0];
 
@@ -14,7 +14,7 @@ interface Props {
     sivilstand: Sivilstand[];
 }
 
-function Sivilstand(props: { sivilstand: Sivilstand }) {
+function SivilstandTekst(props: { sivilstand: Sivilstand }) {
     if (props.sivilstand.type.kode === SivilstandType.UGIFT) {
         return <>{props.sivilstand.type.beskrivelse}</>;
     }
@@ -30,40 +30,70 @@ function Sivilstand(props: { sivilstand: Sivilstand }) {
 }
 
 function Partner(props: { partner: Sivilstand; harFeilendeSystem: boolean }) {
-    if (props.harFeilendeSystem) {
+    const partnerRelasjon = props.partner.sivilstandRelasjon;
+
+    if (props.harFeilendeSystem || !partnerRelasjon) {
         return (
-            <>
-                <BodyShort size="small">
-                    <Sivilstand sivilstand={props.partner} />
+            <VStack gap="space-4">
+                <BodyShort size="small" weight="semibold">
+                    <SivilstandTekst sivilstand={props.partner} />
                 </BodyShort>
-                <InlineMessage status="warning" size="small">
-                    Feilet ved uthenting av informasjon om partner
-                </InlineMessage>
-            </>
+                {props.harFeilendeSystem && (
+                    <InlineMessage status="warning" size="small">
+                        Feilet ved uthenting av informasjon om partner
+                    </InlineMessage>
+                )}
+            </VStack>
         );
     }
 
-    const partnerRelasjon = props.partner.sivilstandRelasjon;
-    if (!partnerRelasjon) {
-        return null;
-    }
     const navn = partnerRelasjon.navn.firstOrNull();
+    const erDod = partnerRelasjon.dodsdato.firstOrNull() !== undefined;
+    const dodsdato = partnerRelasjon.dodsdato.firstOrNull();
+    const alder = erDod ? 'Død' : partnerRelasjon.alder;
     const fnr = partnerRelasjon.fnr;
-    const alderEllerDod = hentAlderEllerDod(partnerRelasjon);
+
     return (
-        <>
-            <BodyShort size="small">
-                <Sivilstand sivilstand={props.partner} />
-            </BodyShort>
+        <VStack gap="space-4">
             <Diskresjonskode adressebeskyttelse={partnerRelasjon.adressebeskyttelse} />
-            <BodyShort size="small">
-                {navn && hentNavn(navn)} {alderEllerDod && `(${alderEllerDod})`}
+            {navn && (
+                <BodyShort size="small" weight="semibold">
+                    {hentNavn(navn)} ({alder})
+                </BodyShort>
+            )}
+            <BodyShort size="small" textColor="subtle">
+                <SivilstandTekst sivilstand={props.partner} />
             </BodyShort>
-            <KopierFnrKnapp fnr={fnr} />
-            <Detail textColor="subtle">
-                {partnerRelasjon.harSammeAdresse ? <>Bor med bruker</> : <>Bor ikke med bruker</>}
-            </Detail>
-        </>
+            <Box style={{ alignSelf: 'flex-start' }}>
+                <KopierFnrKnapp fnr={fnr} />
+            </Box>
+            {partnerRelasjon.harSammeAdresse ? (
+                <Tag
+                    data-color="success"
+                    variant="moderate"
+                    size="small"
+                    icon={<CheckmarkIcon aria-hidden />}
+                    style={{ alignSelf: 'flex-start' }}
+                >
+                    Bor med bruker
+                </Tag>
+            ) : (
+                <Tag
+                    data-color="danger"
+                    variant="moderate"
+                    size="small"
+                    icon={<XMarkOctagonIcon aria-hidden />}
+                    style={{ alignSelf: 'flex-start' }}
+                >
+                    Bor ikke med bruker
+                </Tag>
+            )}
+            {erDod && dodsdato && (
+                <Tag data-color="neutral" variant="moderate" size="small" style={{ alignSelf: 'flex-start' }}>
+                    Død ({formaterDato(dodsdato)})
+                </Tag>
+            )}
+        </VStack>
     );
 }
 
@@ -75,15 +105,12 @@ function SivilstandWrapper({ harFeilendeSystem, sivilstand: sivilstandList }: Pr
     }
 
     return (
-        <InfoElement
-            title="Sivilstand"
-            icon={<HeartFillIcon aria-hidden fontSize="1.2rem" color="var(--ax-danger-200)" />}
-        >
-            {erPartner(sivilstand) ? (
+        <InfoElement>
+            {sivilstand.type.kode !== SivilstandType.UGIFT ? (
                 <Partner harFeilendeSystem={harFeilendeSystem} partner={sivilstand} />
             ) : (
                 <BodyShort>
-                    <Sivilstand sivilstand={sivilstand} />
+                    <SivilstandTekst sivilstand={sivilstand} />
                 </BodyShort>
             )}
         </InfoElement>
