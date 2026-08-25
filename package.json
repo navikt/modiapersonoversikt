@@ -159,7 +159,7 @@
         "prop-types": "^15.8.1",
         "react-collapse": "^5.1.1",
         "redux-devtools-extension": "^2.13.9",
-        "tailwindcss": "^4.1.16",
+        "tailwindcss": "^4.3.3",
         "typescript": "^5.8.3",
         "typescript-eslint": "^8.67.0",
         "undici": "^7.29.0",
