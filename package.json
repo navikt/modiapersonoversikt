@@ -60,7 +60,7 @@
         "@tanstack/react-router": "^1.125.6",
         "@vitejs/plugin-react": "^5.0.4",
         "classnames": "^2.5.1",
-        "dayjs": "^1.11.20",
+        "dayjs": "^1.11.23",
         "detect-browser": "^5.3.0",
         "downshift": "^9.0.10",
         "jotai": "^2.20.2",
