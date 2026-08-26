@@ -316,8 +316,8 @@ importers:
         specifier: ^20.8.9
         version: 20.8.9
       jest-styled-components:
-        specifier: ^7.2.0
-        version: 7.2.0(styled-components@6.5.3(css-to-react-native@3.2.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))
+        specifier: ^7.4.0
+        version: 7.4.0(styled-components@6.5.3(css-to-react-native@3.2.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))
       knip:
         specifier: ^6.32.2
         version: 6.32.2
@@ -366,11 +366,11 @@ importers:
 
 packages:
 
-  '@adobe/css-tools@4.4.1':
-    resolution: {integrity: sha512-12WGKBQzjUAI4ayyF4IAtfw2QR/IDoqk6jTddXDhtYTJF9ASmoE1zst7cVtP0aL/F1jUJL5r+JxKXKEgHNbEUQ==}
-
   '@adobe/css-tools@4.4.4':
     resolution: {integrity: sha512-Elp+iwUx5rN5+Y8xLt5/GRoG20WGoDCQ/1Fb+1LiGtvwbDavuSk0jhD/eZdckHAuzcDzccnkv+rEjyWfRx18gg==}
+
+  '@adobe/css-tools@4.5.0':
+    resolution: {integrity: sha512-6OzddxPio9UiWTCemp4N8cYLV2ZN1ncRnV1cVGtve7dhPOtRkleRyx32GQCYSwDYgaHU3USMm84tNsvKzRCa1Q==}
 
   '@alloc/quick-lru@5.2.0':
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
@@ -3195,8 +3195,8 @@ packages:
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
 
-  jest-styled-components@7.2.0:
-    resolution: {integrity: sha512-gwyyveNjvuRA0pyhbQoydXZllLZESs2VuL5fXCabzh0buHPAOUfANtW7n5YMPmdC0sH3VB7h2eUGZ23+tjvaBA==}
+  jest-styled-components@7.4.0:
+    resolution: {integrity: sha512-VUkStCEG3ewwBTADMT9VyrZ5Pi5oPAzufcafyK6zREFeMv0fcU2LdYFpM5RZm78IrU+Fi6DhD+NVeiurVe3LKQ==}
     engines: {node: '>= 12'}
     peerDependencies:
       styled-components: '>= 5'
@@ -4606,9 +4606,9 @@ packages:
 
 snapshots:
 
-  '@adobe/css-tools@4.4.1': {}
-
   '@adobe/css-tools@4.4.4': {}
+
+  '@adobe/css-tools@4.5.0': {}
 
   '@alloc/quick-lru@5.2.0': {}
 
@@ -7495,9 +7495,9 @@ snapshots:
 
   isexe@2.0.0: {}
 
-  jest-styled-components@7.2.0(styled-components@6.5.3(css-to-react-native@3.2.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)):
+  jest-styled-components@7.4.0(styled-components@6.5.3(css-to-react-native@3.2.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)):
     dependencies:
-      '@adobe/css-tools': 4.4.1
+      '@adobe/css-tools': 4.5.0
       styled-components: 6.5.3(css-to-react-native@3.2.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
 
   jiti@2.7.0: {}

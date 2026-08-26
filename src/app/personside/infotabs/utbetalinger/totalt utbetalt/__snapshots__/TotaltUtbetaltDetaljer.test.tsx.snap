@@ -55,10 +55,6 @@ exports[`Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utb
   }
 }
 
-@media print {
-
-}
-
 <div
     class="c0"
   >
