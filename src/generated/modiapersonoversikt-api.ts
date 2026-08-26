@@ -1673,6 +1673,8 @@ export interface components {
             id: string;
             navn: string;
             publikumsmottak: components['schemas']['Publikumsmottak'][];
+            telefonnummer?: string;
+            epost?: string;
         };
         PersonSomAdressat: {
             fnr?: string;
