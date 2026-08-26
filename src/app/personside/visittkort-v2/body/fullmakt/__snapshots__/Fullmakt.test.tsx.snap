@@ -136,12 +136,12 @@ exports[`viser fullmakt 1`] = `
       </div>
       <div
         class="aksel-read-more aksel-read-more--medium"
-        data-volume="low"
+        data-state="closed"
+        data-variant="ghost"
       >
         <button
           aria-expanded="false"
           class="aksel-read-more__button aksel-body-short"
-          data-state="closed"
           type="button"
         >
           <svg
@@ -167,8 +167,7 @@ exports[`viser fullmakt 1`] = `
           </span>
         </button>
         <div
-          class="aksel-read-more__content aksel-read-more__content--closed aksel-body-long aksel-body-long--medium"
-          data-state="closed"
+          class="aksel-read-more__content aksel-body-long aksel-body-long--medium"
         >
           <table
             class="aksel-table aksel-table--small"
@@ -206,7 +205,7 @@ exports[`viser fullmakt 1`] = `
                         fill="none"
                         focusable="false"
                         height="1em"
-                        role="img"
+                        role="presentation"
                         viewBox="0 0 24 24"
                         width="1em"
                         xmlns="http://www.w3.org/2000/svg"
@@ -232,7 +231,7 @@ exports[`viser fullmakt 1`] = `
                         fill="none"
                         focusable="false"
                         height="1em"
-                        role="img"
+                        role="presentation"
                         viewBox="0 0 24 24"
                         width="1em"
                         xmlns="http://www.w3.org/2000/svg"
@@ -287,7 +286,7 @@ exports[`viser fullmakt 1`] = `
                         fill="none"
                         focusable="false"
                         height="1em"
-                        role="img"
+                        role="presentation"
                         viewBox="0 0 24 24"
                         width="1em"
                         xmlns="http://www.w3.org/2000/svg"
@@ -313,7 +312,7 @@ exports[`viser fullmakt 1`] = `
                         fill="none"
                         focusable="false"
                         height="1em"
-                        role="img"
+                        role="presentation"
                         viewBox="0 0 24 24"
                         width="1em"
                         xmlns="http://www.w3.org/2000/svg"
@@ -368,7 +367,7 @@ exports[`viser fullmakt 1`] = `
                         fill="none"
                         focusable="false"
                         height="1em"
-                        role="img"
+                        role="presentation"
                         viewBox="0 0 24 24"
                         width="1em"
                         xmlns="http://www.w3.org/2000/svg"
@@ -394,7 +393,7 @@ exports[`viser fullmakt 1`] = `
                         fill="none"
                         focusable="false"
                         height="1em"
-                        role="img"
+                        role="presentation"
                         viewBox="0 0 24 24"
                         width="1em"
                         xmlns="http://www.w3.org/2000/svg"
@@ -634,12 +633,12 @@ exports[`viser fullmakt 1`] = `
       </div>
       <div
         class="aksel-read-more aksel-read-more--medium"
-        data-volume="low"
+        data-state="closed"
+        data-variant="ghost"
       >
         <button
           aria-expanded="false"
           class="aksel-read-more__button aksel-body-short"
-          data-state="closed"
           type="button"
         >
           <svg
@@ -665,8 +664,7 @@ exports[`viser fullmakt 1`] = `
           </span>
         </button>
         <div
-          class="aksel-read-more__content aksel-read-more__content--closed aksel-body-long aksel-body-long--medium"
-          data-state="closed"
+          class="aksel-read-more__content aksel-body-long aksel-body-long--medium"
         >
           Gjelder alle statlige ytelser
         </div>
