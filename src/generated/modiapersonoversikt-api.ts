@@ -1314,11 +1314,19 @@ export interface components {
             value?: string;
             /** Format: date */
             value$kotlinx_datetime: string;
-            /** Format: int32 */
+            /**
+             * Format: int32
+             * @deprecated
+             * @description Use the 'month' property instead
+             */
             monthNumber: number;
             /** Format: int32 */
             year: number;
-            /** Format: int32 */
+            /**
+             * Format: int32
+             * @deprecated
+             * @description Use the 'day' property instead
+             */
             dayOfMonth: number;
             /** @enum {string} */
             month: LocalDateMonth;
@@ -1326,20 +1334,30 @@ export interface components {
             dayOfWeek: LocalDateDayOfWeek;
             /** Format: int32 */
             dayOfYear: number;
+            /** Format: int32 */
+            day: number;
         };
         LocalDateTime: {
             /** Format: date-time */
             value?: string;
             /** Format: date-time */
             value$kotlinx_datetime: string;
-            /** Format: int32 */
+            /**
+             * Format: int32
+             * @deprecated
+             * @description Use the 'month' property instead
+             */
             monthNumber: number;
             /** Format: int32 */
             nanosecond: number;
             time: components['schemas']['LocalTime'];
             /** Format: int32 */
             year: number;
-            /** Format: int32 */
+            /**
+             * Format: int32
+             * @deprecated
+             * @description Use the 'day' property instead
+             */
             dayOfMonth: number;
             /** Format: int32 */
             hour: number;
@@ -1354,6 +1372,8 @@ export interface components {
             /** Format: int32 */
             dayOfYear: number;
             date: components['schemas']['LocalDate'];
+            /** Format: int32 */
+            day: number;
         };
         LocalTime: {
             value?: string;
@@ -2057,19 +2077,19 @@ export interface components {
             boost?: number;
         };
         GraphQLClientError: {
+            locations?: components['schemas']['GraphQLClientSourceLocation'][];
             message: string;
             path?: unknown[];
             extensions?: {
                 [key: string]: unknown;
             };
-            locations?: components['schemas']['GraphQLClientSourceLocation'][];
         };
         GraphQLClientResponseResult: {
+            errors?: components['schemas']['GraphQLClientError'][];
             extensions?: {
                 [key: string]: unknown;
             };
             data?: components['schemas']['Result'];
-            errors?: components['schemas']['GraphQLClientError'][];
         };
         GraphQLClientSourceLocation: {
             /** Format: int32 */

@@ -132,9 +132,13 @@ function NavKontor() {
                     </InfoFelt>
 
                     <InfoFelt label="E-post">
-                        <BodyShort size="small" textColor="subtle">
-                            {IKKE_TILGJENGELIG}
-                        </BodyShort>
+                        {navEnhet.epost ? (
+                            <BodyShort size="small">{navEnhet.epost}</BodyShort>
+                        ) : (
+                            <BodyShort size="small" textColor="subtle">
+                                {IKKE_TILGJENGELIG}
+                            </BodyShort>
+                        )}
                     </InfoFelt>
                 </HGrid>
 
@@ -150,9 +154,13 @@ function NavKontor() {
                     </InfoFelt>
 
                     <InfoFelt label="Telefonnummer">
-                        <BodyShort size="small" textColor="subtle">
-                            {IKKE_TILGJENGELIG}
-                        </BodyShort>
+                        {navEnhet.telefonnummer ? (
+                            <BodyShort size="small">{navEnhet.telefonnummer}</BodyShort>
+                        ) : (
+                            <BodyShort size="small" textColor="subtle">
+                                {IKKE_TILGJENGELIG}
+                            </BodyShort>
+                        )}
                     </InfoFelt>
                 </HGrid>
             </VStack>
