@@ -8,6 +8,7 @@ import config from 'src/config';
 import { usePersonData, usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
 import { Kjonn, type KodeBeskrivelseKjonn } from 'src/lib/types/modiapersonoversikt-api';
 import { useGlobalHotkey } from 'src/utils/hooks/use-hotkey';
+import { capitalizeName } from 'src/utils/string-utils';
 import { formaterMobiltelefonnummer } from 'src/utils/telefon-utils';
 import Card from '../Card';
 import ErrorBoundary from '../ErrorBoundary';
@@ -172,9 +173,9 @@ const Personalia = ({ navn, alder, kjonn, erDod, farge }: PersonaliaProps) => {
                 size="xsmall"
                 as="h2"
                 style={{ color: farge }}
-                className="capitalize font-medium"
+                className="font-medium"
             >
-                {navn.toLowerCase()}
+                {capitalizeName(navn)}
             </Heading>
             <BodyShort style={{ color: farge }}>
                 ({kjonn.beskrivelse}, {erDod ? 'død' : (alder ?? 'Ukjent alder')})
