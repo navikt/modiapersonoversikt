@@ -57,7 +57,7 @@ function Partner(props: { partner: Sivilstand; harFeilendeSystem: boolean }) {
         <VStack gap="space-4">
             <Diskresjonskode adressebeskyttelse={partnerRelasjon.adressebeskyttelse} />
             {navn && (
-                <BodyShort size="small" weight="semibold">
+                <BodyShort size="small">
                     {hentNavn(navn)} ({alder})
                 </BodyShort>
             )}
@@ -101,7 +101,7 @@ function SivilstandWrapper({ harFeilendeSystem, sivilstand: sivilstandList }: Pr
     const sivilstand = sivilstandList.firstOrNull();
 
     if (!sivilstand) {
-        return null;
+        return 'Ingen registrert partner.';
     }
 
     return (
