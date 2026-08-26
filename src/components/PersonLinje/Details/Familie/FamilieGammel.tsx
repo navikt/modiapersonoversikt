@@ -26,7 +26,10 @@ function FamilieGammel() {
             <SivilstandGammel harFeilendeSystem={harFeilendeSystem} sivilstand={person.sivilstand} />
             <BarnGammel harFeilendeSystem={harFeilendeSystem} relasjoner={person.forelderBarnRelasjon} />
             {erUnder22 && (
-                <ForeldreGammel harFeilendeSystem={harFeilendeSystem} forelderBarnRelasjon={person.forelderBarnRelasjon} />
+                <ForeldreGammel
+                    harFeilendeSystem={harFeilendeSystem}
+                    forelderBarnRelasjon={person.forelderBarnRelasjon}
+                />
             )}
         </Group>
     );
