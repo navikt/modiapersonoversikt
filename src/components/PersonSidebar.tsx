@@ -47,7 +47,7 @@ const ConditionalTooltip = ({ content, enabled, children }: ConditionalTooltipPr
 
 export const menuItems = [
     {
-        title: 'Oversikt',
+        title: 'Hjem',
         href: '/new/person/oversikt',
         Icon: HouseIcon
     },
