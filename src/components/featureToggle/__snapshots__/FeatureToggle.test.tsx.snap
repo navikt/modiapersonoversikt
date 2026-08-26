@@ -5,7 +5,13 @@ exports[`viser LazySpinner dersom feature-toggle ikke er satt 1`] = `
   overflow: hidden;
   display: flex;
   justify-content: center;
-  animation: edHiKw 0.3s ease-out;
+  animation: k0 0.3s ease-out;
+}
+
+@keyframes k0 {
+  from {
+    opacity: 0;
+  }
 }
 
 <div>
