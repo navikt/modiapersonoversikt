@@ -2,9 +2,9 @@ import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
 import { harFeilendeSystemer } from '../../utils';
 import { Group } from '../components';
-import Barn from './Barn';
-import Foreldre from './Foreldre';
-import Sivilstand from './Sivilstand';
+import BarnGammel from './BarnGammel';
+import ForeldreGammel from './ForeldreGammel';
+import SivilstandGammel from './SivilstandGammel';
 
 function FamilieGammel() {
     const { data } = usePersonData();
@@ -23,10 +23,10 @@ function FamilieGammel() {
 
     return (
         <Group title="Familie">
-            <Sivilstand harFeilendeSystem={harFeilendeSystem} sivilstand={person.sivilstand} />
-            <Barn harFeilendeSystem={harFeilendeSystem} relasjoner={person.forelderBarnRelasjon} />
+            <SivilstandGammel harFeilendeSystem={harFeilendeSystem} sivilstand={person.sivilstand} />
+            <BarnGammel harFeilendeSystem={harFeilendeSystem} relasjoner={person.forelderBarnRelasjon} />
             {erUnder22 && (
-                <Foreldre harFeilendeSystem={harFeilendeSystem} forelderBarnRelasjon={person.forelderBarnRelasjon} />
+                <ForeldreGammel harFeilendeSystem={harFeilendeSystem} forelderBarnRelasjon={person.forelderBarnRelasjon} />
             )}
         </Group>
     );
