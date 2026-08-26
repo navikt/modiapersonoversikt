@@ -12,29 +12,46 @@ import type { PropsWithChildren, ReactNode } from 'react';
 import { AlertBanner } from 'src/components/AlertBanner';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
+import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
+import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { Kjonn } from 'src/lib/types/modiapersonoversikt-api';
+import DeltBosted from './DeltBosted';
+import DodsdatoInfo from './DodsdatoInfo';
 import Familie from './Familie';
+import FamilieGammel from './Familie/FamilieGammel';
 import Flytting from './Flytting';
+import ForeldreAnsvar from './ForeldreAnsvar';
+import Fullmakt from './Fullmakt';
+import KontaktInfo from './KontaktInfo';
 import NavKontor from './NavKontor';
+import NavKontorGammel from './NavKontor/NavKontorGammel';
 import OppfolgingOversikt from './OppfolgingOversikt';
 import OppgaverOversikt from './OppgaverOversikt';
+import PdlLenke from './PdlLenke';
+import RettsligHandleevne from './RettsligHandleevne';
+import Sikkerhetstiltak from './Sikkerhetstiltak';
+import TilrettelagtKommunikasjon from './TilrettelagtKommunikasjon';
 import TopKort from './TopKort';
 import UtbetalingerOversikt from './UtbetalingerOversikt';
 import Vergemal from './Vergemal';
+import VergemalGammel from './VergemalGammel';
 import YtelserOversikt from './YtelserOversikt';
 
 export const OversiktWrapper = () => {
     const { errorMessages, isLoading, isError } = usePersonData();
+    const featureToggle = useFeatureToggle(FeatureToggles.NyOversiktDesign);
 
     return (
         <ErrorBoundary boundaryName="personlinje">
-            {isLoading ? (
+            {isLoading || featureToggle.pending ? (
                 <Skeleton variant="rectangle" height="100%" />
             ) : isError ? (
                 <AlertBanner alerts={errorMessages} />
-            ) : (
+            ) : featureToggle.isOn ? (
                 <PersonlinjeDetails />
+            ) : (
+                <PersonlinjeDetailsGammel />
             )}
         </ErrorBoundary>
     );
@@ -113,6 +130,34 @@ const PersonlinjeDetails = () => {
                     </VStack>
                 </HStack>
             </VStack>
+        </Card>
+    );
+};
+
+const PersonlinjeDetailsGammel = () => {
+    return (
+        <Card className="overflow-auto">
+            <HStack gap="space-16" justify="space-between" padding="space-16">
+                <VStack flexBasis="30%" flexGrow="1">
+                    <DodsdatoInfo />
+                    <KontaktInfo />
+                    <Fullmakt />
+                </VStack>
+                <VStack flexBasis="30%" flexGrow="1">
+                    <FamilieGammel />
+                    <ForeldreAnsvar />
+                    <DeltBosted />
+                    <TilrettelagtKommunikasjon />
+                    <VergemalGammel />
+                    <RettsligHandleevne />
+                </VStack>
+                <VStack flexBasis="30%" flexGrow="1">
+                    <NavKontorGammel />
+                    <Sikkerhetstiltak />
+                    <Flytting />
+                    <PdlLenke />
+                </VStack>
+            </HStack>
         </Card>
     );
 };
