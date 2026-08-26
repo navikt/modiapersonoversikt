@@ -33,7 +33,7 @@ function Familie() {
                         style={{ paddingLeft: 'var(--ax-space-16)' }}
                     >
                         <VStack gap="space-8">
-                            <Heading size="xsmall">Sivilstand</Heading>
+                            <Heading size="xsmall">Partner</Heading>
                             <Sivilstand harFeilendeSystem={harFeilendeSystem} sivilstand={person.sivilstand} />
                             <Heading size="xsmall">Barn</Heading>
                             <Barn harFeilendeSystem={harFeilendeSystem} relasjoner={person.forelderBarnRelasjon} />
