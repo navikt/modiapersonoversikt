@@ -51,7 +51,7 @@
         "@navikt/aksel-icons": "^8.16.1",
         "@navikt/ds-css": "^8.7.0",
         "@navikt/ds-react": "^8.16.1",
-        "@navikt/ds-tailwind": "^8.7.0",
+        "@navikt/ds-tailwind": "^8.16.1",
         "@navikt/fnrvalidator": "^2.2.1",
         "@navikt/tag-input": "^2.0.2",
         "@navikt/textparser": "^2.5.0",
