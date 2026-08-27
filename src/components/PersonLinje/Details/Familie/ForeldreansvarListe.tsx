@@ -43,7 +43,7 @@ function ForeldreansvarElement({
     );
 }
 
-export function ForeldreansvarListe({
+function ForeldreansvarListe({
     harFeilendeSystem,
     foreldreansvar
 }: {
