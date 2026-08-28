@@ -38,7 +38,6 @@ function Barn({ harFeilendeSystem, relasjoner }: Props) {
                     harFeilendeSystem={harFeilendeSystem}
                     beskrivelse={capitalizeName(hentKjonnBeskrivelseForBarn(barn))}
                     relasjon={barn}
-                    erBarn={true}
                 />
             ))}
         </VStack>

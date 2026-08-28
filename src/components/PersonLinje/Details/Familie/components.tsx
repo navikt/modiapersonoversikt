@@ -16,7 +16,6 @@ export function ForelderBarnRelasjonVisning({
     harFeilendeSystem: boolean;
     relasjon: ForelderBarnRelasjon;
     beskrivelse: string;
-    erBarn: boolean;
 }) {
     const harDiskresjon = harDiskresjonskode(relasjon.adressebeskyttelse);
     const navn = relasjon.navn.firstOrNull();

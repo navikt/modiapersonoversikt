@@ -256,9 +256,10 @@ function YtelserOversikt() {
         );
     }
 
-    const ytelser = alleYtelser.filter(
-        (ytelse) => hentYtelseStatus(ytelse).label !== 'Avsluttet' && hentYtelseStatus(ytelse).label !== 'Stanset'
-    );
+    const ytelser = alleYtelser.filter((ytelse) => {
+        const label = hentYtelseStatus(ytelse).label;
+        return label !== 'Avsluttet' && label !== 'Stanset';
+    });
 
     if (ytelser.length === 0) {
         return (

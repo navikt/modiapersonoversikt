@@ -22,7 +22,6 @@ function Foreldre({ harFeilendeSystem, forelderBarnRelasjon }: Props) {
                     key={relasjon.ident ? relasjon.ident : index}
                     beskrivelse={capitalizeName(relasjon.rolle)}
                     relasjon={relasjon}
-                    erBarn={false}
                 />
             ))}
         </VStack>
