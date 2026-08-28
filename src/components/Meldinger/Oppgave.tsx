@@ -31,6 +31,7 @@ import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import { z } from 'zod';
 import ErrorBoundary from '../ErrorBoundary';
 import { eldsteMelding } from './List/utils';
+import { byggEnhetOptions } from './oppgave-utils';
 
 type Props = {
     open: boolean;
@@ -478,17 +479,7 @@ const EnhetSelect = ({
         underkategori
     });
 
-    const suggestedEnheter = foreslotteEnheter.map((enhet) => ({
-        ...enhet,
-        enhetNavn: `Foreslått: ${enhet.enhetNavn}`
-    }));
-
-    const otherEnheter = enheter.filter((e) => !suggestedEnheter.some((s) => s.enhetId === e.enhetId));
-
-    const enhetOptions = [...suggestedEnheter, ...otherEnheter].map((e) => ({
-        label: e.enhetNavn,
-        value: e.enhetId
-    }));
+    const enhetOptions = byggEnhetOptions(enheter, foreslotteEnheter);
 
     const selectedOption = enhetOptions.find((o) => o.value === value);
     return (
