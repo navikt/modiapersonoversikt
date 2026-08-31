@@ -1,7 +1,12 @@
 import { CheckmarkCircleIcon, ClockIcon } from '@navikt/aksel-icons';
 import { BodyShort, Skeleton, Table, Tag, VStack } from '@navikt/ds-react';
 import dayjs from 'dayjs';
-import { formaterNOK, getGjeldendeDatoForUtbetaling } from 'src/components/Utbetaling/utils';
+import {
+    formaterNOK,
+    getGjeldendeDatoForUtbetaling,
+    getUtbetalingId,
+    utbetalingDatoComparator
+} from 'src/components/Utbetaling/utils';
 import type { Utbetaling } from 'src/generated/modiapersonoversikt-api';
 import { useUtbetalinger } from 'src/lib/clients/modiapersonoversikt-api';
 import { formatterDato } from 'src/utils/date-utils';
@@ -33,11 +38,7 @@ function UtbetalingerOversikt() {
         );
     }
 
-    const utbetalinger = (data?.utbetalinger ?? [])
-        .toSorted(
-            (a, b) => dayjs(getGjeldendeDatoForUtbetaling(b)).unix() - dayjs(getGjeldendeDatoForUtbetaling(a)).unix()
-        )
-        .slice(0, 5);
+    const utbetalinger = (data?.utbetalinger ?? []).toSorted(utbetalingDatoComparator).slice(0, 5);
 
     if (utbetalinger.length === 0) {
         return (
@@ -50,11 +51,11 @@ function UtbetalingerOversikt() {
     return (
         <Table size="medium" zebraStripes>
             <Table.Body>
-                {utbetalinger.map((utbetaling: Utbetaling, index: number) => {
+                {utbetalinger.map((utbetaling: Utbetaling) => {
                     const dato = getGjeldendeDatoForUtbetaling(utbetaling);
                     const statusInfo = hentUtbetalingStatus(dato);
                     return (
-                        <Table.Row key={index}>
+                        <Table.Row key={getUtbetalingId(utbetaling)}>
                             <Table.DataCell style={{ width: '1%', whiteSpace: 'nowrap' }}>
                                 {formatterDato(dato)}
                             </Table.DataCell>

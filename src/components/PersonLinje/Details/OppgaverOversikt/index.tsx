@@ -12,7 +12,6 @@ import { BodyShort, Detail, HStack, Skeleton, Tag, VStack } from '@navikt/ds-rea
 import { useNavigate } from '@tanstack/react-router';
 import { atom, useAtomValue } from 'jotai';
 import { useMemo } from 'react';
-import Card from 'src/components/Card';
 import {
     erFeilsendt,
     erUbesvartHenvendelseFraBruker,
@@ -26,6 +25,7 @@ import { useMeldinger, usePersonOppgaver } from 'src/lib/clients/modiapersonover
 import { svarUnderArbeidAtom } from 'src/lib/state/dialog';
 import type { Melding } from 'src/lib/types/modiapersonoversikt-api';
 import { Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
+import KlikkbartKort from '../KlikkbartKort';
 
 function OppgaveKort({ traad, erTildelt }: { traad: TraadDto; erTildelt: boolean }) {
     const navigate = useNavigate();
@@ -44,20 +44,13 @@ function OppgaveKort({ traad, erTildelt }: { traad: TraadDto; erTildelt: boolean
     );
 
     return (
-        <Card
+        <KlikkbartKort
             padding="space-12"
             borderWidth="1"
             borderColor="neutral-subtle"
             borderRadius="8"
-            style={{ cursor: 'pointer' }}
-            onClick={() => navigate({ to: '/new/person/meldinger', search: { traadId: traad.traadId } })}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e: React.KeyboardEvent) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    navigate({ to: '/new/person/meldinger', search: { traadId: traad.traadId } });
-                }
-            }}
+            ariaLabel={`${tema} (${tittel}) – gå til meldinger`}
+            onAktiver={() => navigate({ to: '/new/person/meldinger', search: { traadId: traad.traadId } })}
         >
             <HStack justify="space-between" align="center" wrap={false} gap="space-8">
                 <VStack gap="space-24" style={{ minWidth: 0 }}>
@@ -127,7 +120,7 @@ function OppgaveKort({ traad, erTildelt }: { traad: TraadDto; erTildelt: boolean
                 </VStack>
                 <ChevronRightIcon fontSize="1.5rem" aria-hidden style={{ flexShrink: 0 }} />
             </HStack>
-        </Card>
+        </KlikkbartKort>
     );
 }
 

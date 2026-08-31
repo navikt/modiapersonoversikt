@@ -22,8 +22,7 @@ function ForeldreansvarElement({
 }) {
     if (harFeilendeSystem) {
         return (
-            <InfoElement title={`Ansvar: ${foreldreansvar.ansvar}`} icon={<PersonTallShortIcon />}>
-                <BodyShort size="small">Ansvar: {foreldreansvar.ansvar}</BodyShort>
+            <InfoElement title={`Ansvar: ${foreldreansvar.ansvar}`} icon={<PersonTallShortIcon aria-hidden />}>
                 <InlineMessage status="warning" size="small">
                     Feilet ved uthenting av informasjon om barn
                 </InlineMessage>

@@ -1,8 +1,8 @@
 import { CheckmarkCircleIcon, ChevronRightIcon, XMarkOctagonIcon } from '@navikt/aksel-icons';
 import { BodyShort, HStack, Skeleton, Tag, VStack } from '@navikt/ds-react';
 import { useNavigate } from '@tanstack/react-router';
-import Card from 'src/components/Card';
 import { useArbeidsoppfolging, useGjeldende14aVedtak } from 'src/lib/clients/modiapersonoversikt-api';
+import KlikkbartKort from '../KlikkbartKort';
 
 function OppfolgingOversikt() {
     const navigate = useNavigate();
@@ -26,17 +26,11 @@ function OppfolgingOversikt() {
     const veileder = oppfolging.veileder;
 
     return (
-        <Card
+        <KlikkbartKort
             padding="space-12"
-            style={{ backgroundColor: 'var(--ax-bg-warning-soft)', cursor: 'pointer' }}
-            onClick={() => navigate({ to: '/new/person/oppfolging' })}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e: React.KeyboardEvent) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    navigate({ to: '/new/person/oppfolging' });
-                }
-            }}
+            style={{ backgroundColor: 'var(--ax-bg-warning-soft)' }}
+            ariaLabel="Arbeidsoppfølging – gå til oppfølging"
+            onAktiver={() => navigate({ to: '/new/person/oppfolging' })}
         >
             <HStack justify="space-between" align="center" wrap={false} gap="space-8">
                 <VStack gap="space-24">
@@ -74,7 +68,7 @@ function OppfolgingOversikt() {
                 </VStack>
                 <ChevronRightIcon fontSize="1.5rem" aria-hidden style={{ flexShrink: 0 }} />
             </HStack>
-        </Card>
+        </KlikkbartKort>
     );
 }
 

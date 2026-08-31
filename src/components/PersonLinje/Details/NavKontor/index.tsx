@@ -20,10 +20,11 @@ import { harFeilendeSystemer, mapUgyldigGT } from '../../utils';
 import { Adresseinfo } from '../components';
 
 const IKKE_TILGJENGELIG = 'Ikke tilgjengelig';
+const STENGT = 'Stengt';
 
 function hentDagensApningstid(apningstider: { ukedag: string; apningstid: string }[]): string | null {
     const dagensUkedag = new Date().toLocaleDateString('nb-NO', { weekday: 'long' }).toLowerCase();
-    return apningstider.find((a) => a.ukedag.toLowerCase() === dagensUkedag)?.apningstid ?? null;
+    return apningstider.find((a) => a.ukedag.toLowerCase() === dagensUkedag)?.apningstid ?? STENGT;
 }
 
 function InfoFelt({ label, children }: { label: string; children: ReactNode }) {

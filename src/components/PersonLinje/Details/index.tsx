@@ -88,7 +88,7 @@ const PersonlinjeDetails = () => {
         <Card className="overflow-auto">
             <VStack gap="space-32">
                 <div
-                    className="flex items-stretch gap-0 pl-[69px] pr-8 py-6"
+                    className="flex items-stretch gap-0 pl-17 pr-8 py-6"
                     style={bakgrunn ? { backgroundColor: bakgrunn } : undefined}
                 >
                     <div className="flex-7 pr-8 pt-6">
@@ -100,7 +100,7 @@ const PersonlinjeDetails = () => {
                     </div>
                 </div>
 
-                <HStack gap="space-96" align="start" wrap={false} className="pl-[69px] pr-[133px] pt-8 pb-4">
+                <HStack gap="space-96" align="start" wrap={false} className="pl-17 pr-33 pt-8 pb-4">
                     <VStack gap="space-32" flexBasis="50%" flexGrow="1">
                         <SeksjonWrapper tittel="Oppfølging" icon={<PersonGroupIcon aria-hidden fontSize="2rem" />}>
                             <OppfolgingOversikt />

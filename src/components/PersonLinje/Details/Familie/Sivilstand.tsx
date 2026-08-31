@@ -5,7 +5,7 @@ import { InfoElement } from 'src/components/PersonLinje/Details/components';
 import { type PersonData, SivilstandType } from 'src/lib/types/modiapersonoversikt-api';
 import { formaterDato } from 'src/utils/string-utils';
 import Diskresjonskode from '../../common/DiskresjonsKode';
-import { hentNavn } from '../../utils';
+import { erDod, hentNavn } from '../../utils';
 
 type Sivilstand = PersonData['sivilstand'][0];
 
@@ -48,9 +48,9 @@ function Partner(props: { partner: Sivilstand; harFeilendeSystem: boolean }) {
     }
 
     const navn = partnerRelasjon.navn.firstOrNull();
-    const erDod = partnerRelasjon.dodsdato.firstOrNull() !== undefined;
     const dodsdato = partnerRelasjon.dodsdato.firstOrNull();
-    const alder = erDod ? 'Død' : partnerRelasjon.alder;
+    const erDød = erDod(partnerRelasjon.dodsdato);
+    const alder = erDød ? 'Død' : partnerRelasjon.alder;
     const fnr = partnerRelasjon.fnr;
 
     return (
@@ -88,7 +88,7 @@ function Partner(props: { partner: Sivilstand; harFeilendeSystem: boolean }) {
                     Bor ikke med bruker
                 </Tag>
             )}
-            {erDod && dodsdato && (
+            {erDød && dodsdato && (
                 <Tag data-color="neutral" variant="moderate" size="small" style={{ alignSelf: 'flex-start' }}>
                     Død ({formaterDato(dodsdato)})
                 </Tag>
@@ -101,7 +101,11 @@ function SivilstandWrapper({ harFeilendeSystem, sivilstand: sivilstandList }: Pr
     const sivilstand = sivilstandList.firstOrNull();
 
     if (!sivilstand) {
-        return 'Ingen registrert partner.';
+        return (
+            <BodyShort size="small" textColor="subtle">
+                Ingen registrert partner
+            </BodyShort>
+        );
     }
 
     return (

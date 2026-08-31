@@ -3,7 +3,6 @@ import { BodyShort, HStack, Skeleton, Tag, VStack } from '@navikt/ds-react';
 import { useNavigate } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import type { ReactNode } from 'react';
-import Card from 'src/components/Card';
 import { getUnikYtelseKey, useFilterYtelser, type YtelseVedtak } from 'src/components/ytelser/utils';
 import { type Foreldrepenger, ForeldrepengerYtelse } from 'src/generated/modiapersonoversikt-api';
 import type { Dagpenger, PensjonSak, Sykepenger, SykepengerSpokelse } from 'src/lib/types/modiapersonoversikt-api';
@@ -12,8 +11,12 @@ import type { Tiltakspenger } from 'src/models/ytelse/tiltakspenger';
 import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
 import { formatterDato } from 'src/utils/date-utils';
 import { NOKellerNull } from 'src/utils/string-utils';
+import KlikkbartKort from '../KlikkbartKort';
+
+type StatusKode = 'lopende' | 'tilBehandling' | 'stanset' | 'avsluttet';
 
 type StatusInfo = {
+    kode: StatusKode;
     label: string;
     dataColor: 'success' | 'warning' | 'neutral' | 'meta-purple';
     icon: ReactNode;
@@ -21,17 +24,29 @@ type StatusInfo = {
 
 function hentYtelseStatus(ytelse: YtelseVedtak): StatusInfo {
     const lopende: StatusInfo = {
+        kode: 'lopende',
         label: 'Løpende',
         dataColor: 'meta-purple',
         icon: <ArrowCirclepathIcon aria-hidden />
     };
     const tilBehandling: StatusInfo = {
+        kode: 'tilBehandling',
         label: 'Til behandling',
         dataColor: 'warning',
         icon: <ClockIcon aria-hidden />
     };
-    const stanset: StatusInfo = { label: 'Stanset', dataColor: 'warning', icon: <PauseIcon aria-hidden /> };
-    const avsluttet: StatusInfo = { label: 'Avsluttet', dataColor: 'neutral', icon: <XMarkOctagonIcon aria-hidden /> };
+    const stanset: StatusInfo = {
+        kode: 'stanset',
+        label: 'Stanset',
+        dataColor: 'warning',
+        icon: <PauseIcon aria-hidden />
+    };
+    const avsluttet: StatusInfo = {
+        kode: 'avsluttet',
+        label: 'Avsluttet',
+        dataColor: 'neutral',
+        icon: <XMarkOctagonIcon aria-hidden />
+    };
 
     switch (ytelse.ytelseType) {
         case YtelseVedtakYtelseType.Sykepenger: {
@@ -101,11 +116,10 @@ function hentYtelsePeriode(ytelse: YtelseVedtak): string | null {
             const sp = ytelse.ytelseData.data as SykepengerSpokelse;
             if (!sp.utbetaltePerioder.length) return null;
             const sortert = [...sp.utbetaltePerioder].sort((a, b) => dayjs(a.fom).diff(dayjs(b.fom)));
-            const forste = sortert.at(0)!;
-            const siste = sortert.at(-1)!;
-            return siste !== forste
-                ? `${formatterDato(forste.fom)} – ${formatterDato(siste.tom)}`
-                : `${formatterDato(forste.fom)} – ${formatterDato(forste.tom)}`;
+            const forste = sortert.at(0);
+            const siste = sortert.at(-1);
+            if (!forste || !siste) return null;
+            return `${formatterDato(forste.fom)} – ${formatterDato(siste.tom)}`;
         }
         case YtelseVedtakYtelseType.Foreldrepenger: {
             const fp = ytelse.ytelseData.data as Foreldrepenger;
@@ -197,25 +211,22 @@ function YtelseKort({ ytelse }: { ytelse: YtelseVedtak }) {
     const status = hentYtelseStatus(ytelse);
     const periode = hentYtelsePeriode(ytelse);
     const ekstraInfo = hentYtelseEkstraInfo(ytelse);
+    const tittel = getYtelseTittel(ytelse);
+
+    const aapneYtelse = () => navigate({ to: '/new/person/ytelser', search: { id: getUnikYtelseKey(ytelse) } });
 
     return (
-        <Card
+        <KlikkbartKort
             padding="space-12"
-            style={{ backgroundColor: 'var(--ax-bg-info-soft)', cursor: 'pointer' }}
-            onClick={() => navigate({ to: '/new/person/ytelser', search: { id: getUnikYtelseKey(ytelse) } })}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e: React.KeyboardEvent) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    navigate({ to: '/new/person/ytelser', search: { id: getUnikYtelseKey(ytelse) } });
-                }
-            }}
+            style={{ backgroundColor: 'var(--ax-bg-info-soft)' }}
+            ariaLabel={`${tittel} – gå til ytelse`}
+            onAktiver={aapneYtelse}
         >
             <HStack justify="space-between" align="center" wrap={false} gap="space-8">
                 <VStack gap="space-24">
                     <VStack gap="space-4">
                         <BodyShort size="small" weight="semibold">
-                            {getYtelseTittel(ytelse)}
+                            {tittel}
                         </BodyShort>
                         {periode && (
                             <BodyShort size="small" textColor="subtle">
@@ -240,7 +251,7 @@ function YtelseKort({ ytelse }: { ytelse: YtelseVedtak }) {
                 </VStack>
                 <ChevronRightIcon fontSize="1.5rem" aria-hidden style={{ flexShrink: 0 }} />
             </HStack>
-        </Card>
+        </KlikkbartKort>
     );
 }
 
@@ -257,8 +268,8 @@ function YtelserOversikt() {
     }
 
     const ytelser = alleYtelser.filter((ytelse) => {
-        const label = hentYtelseStatus(ytelse).label;
-        return label !== 'Avsluttet' && label !== 'Stanset';
+        const kode = hentYtelseStatus(ytelse).kode;
+        return kode !== 'avsluttet' && kode !== 'stanset';
     });
 
     if (ytelser.length === 0) {
