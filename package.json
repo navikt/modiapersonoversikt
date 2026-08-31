@@ -152,7 +152,7 @@
         "jest-styled-components": "^7.4.0",
         "knip": "^6.32.2",
         "less": "^4.4.2",
-        "lint-staged": "^16.2.7",
+        "lint-staged": "^17.4.1",
         "msw": "^2.12.7",
         "nav-faker": "^3.2.4",
         "openapi-typescript": "^7.10.1",
