@@ -21,7 +21,6 @@ export const Sikkerhetstiltak = ({ sikkerhetstiltak }: Props) => {
 
     return (
         <Modal
-            size="small"
             ref={ref}
             header={{
                 heading: 'Sikkerhetstiltak',
@@ -37,7 +36,7 @@ export const Sikkerhetstiltak = ({ sikkerhetstiltak }: Props) => {
                                 from={s.gyldighetsPeriode?.gyldigFraOgMed}
                                 to={s.gyldighetsPeriode?.gyldigTilOgMed}
                             />
-                            <BodyShort size="large">{s.beskrivelse}</BodyShort>
+                            <BodyShort>{s.beskrivelse}</BodyShort>
                         </li>
                     ))}
                 </ul>
