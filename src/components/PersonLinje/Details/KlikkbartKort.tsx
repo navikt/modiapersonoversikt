@@ -8,11 +8,22 @@ type Props = PropsWithChildren<{
     onAktiver: () => void;
     children: ReactNode;
 }> &
-    Omit<CardProps, 'onClick' | 'onKeyDown' | 'role' | 'tabIndex' | 'aria-label' | 'children'>;
+    Omit<CardProps, 'onClick' | 'onKeyDown' | 'onKeyUp' | 'role' | 'tabIndex' | 'aria-label' | 'children'>;
 
 function KlikkbartKort({ ariaLabel, onAktiver, children, style, ...rest }: Props) {
     const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-        if (event.key === 'Enter' || event.key === ' ') {
+        if (event.key === ' ') {
+            event.preventDefault();
+            return;
+        }
+        if (event.key === 'Enter' && !event.repeat) {
+            event.preventDefault();
+            onAktiver();
+        }
+    };
+
+    const handleKeyUp = (event: KeyboardEvent<HTMLDivElement>) => {
+        if (event.key === ' ') {
             event.preventDefault();
             onAktiver();
         }
@@ -27,6 +38,7 @@ function KlikkbartKort({ ariaLabel, onAktiver, children, style, ...rest }: Props
             aria-label={ariaLabel}
             onClick={onAktiver}
             onKeyDown={handleKeyDown}
+            onKeyUp={handleKeyUp}
         >
             {children}
         </Card>

@@ -23,6 +23,7 @@ const IKKE_TILGJENGELIG = 'Ikke tilgjengelig';
 const STENGT = 'Stengt';
 
 function hentDagensApningstid(apningstider: { ukedag: string; apningstid: string }[]): string | null {
+    if (apningstider.length === 0) return null;
     const dagensUkedag = new Date().toLocaleDateString('nb-NO', { weekday: 'long' }).toLowerCase();
     return apningstider.find((a) => a.ukedag.toLowerCase() === dagensUkedag)?.apningstid ?? STENGT;
 }

@@ -1,6 +1,7 @@
 import { CheckmarkCircleIcon, ClockIcon } from '@navikt/aksel-icons';
 import { BodyShort, Skeleton, Table, Tag, VStack } from '@navikt/ds-react';
 import dayjs from 'dayjs';
+import type { ReactNode } from 'react';
 import {
     formaterNOK,
     getGjeldendeDatoForUtbetaling,
@@ -17,7 +18,7 @@ const SLUTT_DATO = dayjs().add(3, 'month').format('YYYY-MM-DD');
 function hentUtbetalingStatus(dato: string | null | undefined): {
     label: string;
     dataColor: 'meta-lime' | 'info';
-    icon: React.ReactNode;
+    icon: ReactNode;
 } {
     if (dato && dayjs(dato).isAfter(dayjs())) {
         return { label: 'Kommende', dataColor: 'info', icon: <ClockIcon aria-hidden /> };
