@@ -223,7 +223,7 @@ function YtelseKort({ ytelse }: { ytelse: YtelseVedtak }) {
             onAktiver={aapneYtelse}
         >
             <HStack justify="space-between" align="center" wrap={false} gap="space-8">
-                <VStack gap="space-24">
+                <VStack gap="space-24" style={{ minWidth: 0 }}>
                     <VStack gap="space-4">
                         <BodyShort size="small" weight="semibold">
                             {tittel}

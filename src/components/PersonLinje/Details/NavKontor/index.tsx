@@ -28,6 +28,14 @@ function hentDagensApningstid(apningstider: { ukedag: string; apningstid: string
     return apningstider.find((a) => a.ukedag.toLowerCase() === dagensUkedag)?.apningstid ?? STENGT;
 }
 
+function IkkeTilgjengelig() {
+    return (
+        <BodyShort size="small" textColor="subtle">
+            {IKKE_TILGJENGELIG}
+        </BodyShort>
+    );
+}
+
 function InfoFelt({ label, children }: { label: string; children: ReactNode }) {
     return (
         <VStack gap="space-4">
@@ -112,60 +120,42 @@ function NavKontor() {
 
     return (
         <VStack gap="space-24">
-            <HStack justify="space-between" align="center">
+            <HStack justify="space-between" align="center" gap="space-8">
                 <Heading size="small" level="2">
                     {navEnhet.navn}
                 </Heading>
-                <NavLogoNy style={{ height: '1.2rem', width: 'auto' }} aria-hidden />
+                <NavLogoNy style={{ height: '1.2rem', width: 'auto', flexShrink: 0 }} aria-hidden />
             </HStack>
 
             <Veileder />
 
-            <VStack gap="space-6">
-                <HGrid columns={2} gap="space-16">
-                    <InfoFelt label="Kontaktadresse">
-                        {forsteMottakAdresse ? (
-                            <Adresseinfo adresse={forsteMottakAdresse} />
-                        ) : (
-                            <BodyShort size="small" textColor="subtle">
-                                {IKKE_TILGJENGELIG}
-                            </BodyShort>
-                        )}
-                    </InfoFelt>
+            <HGrid columns={{ xs: 1, sm: 2 }} gap={{ xs: 'space-16', sm: 'space-8 space-16' }} align="start">
+                <InfoFelt label="Kontaktadresse">
+                    {forsteMottakAdresse ? <Adresseinfo adresse={forsteMottakAdresse} /> : <IkkeTilgjengelig />}
+                </InfoFelt>
 
-                    <InfoFelt label="E-post">
-                        {navEnhet.epost ? (
-                            <BodyShort size="small">{navEnhet.epost}</BodyShort>
-                        ) : (
-                            <BodyShort size="small" textColor="subtle">
-                                {IKKE_TILGJENGELIG}
-                            </BodyShort>
-                        )}
-                    </InfoFelt>
-                </HGrid>
+                <InfoFelt label="E-post">
+                    {navEnhet.epost ? (
+                        <BodyShort size="small" className="break-words [overflow-wrap:anywhere]">
+                            {navEnhet.epost}
+                        </BodyShort>
+                    ) : (
+                        <IkkeTilgjengelig />
+                    )}
+                </InfoFelt>
 
-                <HGrid columns={2} gap="space-16">
-                    <InfoFelt label="Åpent i dag">
-                        {dagensApningstid ? (
-                            <BodyShort size="small">{dagensApningstid}</BodyShort>
-                        ) : (
-                            <BodyShort size="small" textColor="subtle">
-                                {IKKE_TILGJENGELIG}
-                            </BodyShort>
-                        )}
-                    </InfoFelt>
+                <InfoFelt label="Åpent i dag">
+                    {dagensApningstid ? <BodyShort size="small">{dagensApningstid}</BodyShort> : <IkkeTilgjengelig />}
+                </InfoFelt>
 
-                    <InfoFelt label="Telefonnummer">
-                        {navEnhet.telefonnummer ? (
-                            <BodyShort size="small">{navEnhet.telefonnummer}</BodyShort>
-                        ) : (
-                            <BodyShort size="small" textColor="subtle">
-                                {IKKE_TILGJENGELIG}
-                            </BodyShort>
-                        )}
-                    </InfoFelt>
-                </HGrid>
-            </VStack>
+                <InfoFelt label="Telefonnummer">
+                    {navEnhet.telefonnummer ? (
+                        <BodyShort size="small">{navEnhet.telefonnummer}</BodyShort>
+                    ) : (
+                        <IkkeTilgjengelig />
+                    )}
+                </InfoFelt>
+            </HGrid>
 
             <KontorLenke navEnhetId={navEnhet.id} />
         </VStack>

@@ -1,5 +1,5 @@
 import { CheckmarkCircleIcon, ClockIcon } from '@navikt/aksel-icons';
-import { BodyShort, Skeleton, Table, Tag, VStack } from '@navikt/ds-react';
+import { BodyShort, Box, Skeleton, Table, Tag, VStack } from '@navikt/ds-react';
 import dayjs from 'dayjs';
 import type { ReactNode } from 'react';
 import {
@@ -50,34 +50,36 @@ function UtbetalingerOversikt() {
     }
 
     return (
-        <Table size="medium" zebraStripes>
-            <Table.Body>
-                {utbetalinger.map((utbetaling: Utbetaling) => {
-                    const dato = getGjeldendeDatoForUtbetaling(utbetaling);
-                    const statusInfo = hentUtbetalingStatus(dato);
-                    return (
-                        <Table.Row key={getUtbetalingId(utbetaling)}>
-                            <Table.DataCell style={{ width: '1%', whiteSpace: 'nowrap' }}>
-                                {formatterDato(dato)}
-                            </Table.DataCell>
-                            <Table.DataCell style={{ width: '1%', whiteSpace: 'nowrap' }}>
-                                {formaterNOK(utbetaling.nettobelop)} NOK
-                            </Table.DataCell>
-                            <Table.DataCell style={{ width: '1%', whiteSpace: 'nowrap', verticalAlign: 'middle' }}>
-                                <Tag
-                                    data-color={statusInfo.dataColor}
-                                    variant="moderate"
-                                    size="small"
-                                    icon={statusInfo.icon}
-                                >
-                                    {statusInfo.label}
-                                </Tag>
-                            </Table.DataCell>
-                        </Table.Row>
-                    );
-                })}
-            </Table.Body>
-        </Table>
+        <Box className="overflow-x-auto">
+            <Table size="medium" zebraStripes>
+                <Table.Body>
+                    {utbetalinger.map((utbetaling: Utbetaling) => {
+                        const dato = getGjeldendeDatoForUtbetaling(utbetaling);
+                        const statusInfo = hentUtbetalingStatus(dato);
+                        return (
+                            <Table.Row key={getUtbetalingId(utbetaling)}>
+                                <Table.DataCell style={{ width: '1%', whiteSpace: 'nowrap' }}>
+                                    {formatterDato(dato)}
+                                </Table.DataCell>
+                                <Table.DataCell style={{ width: '1%', whiteSpace: 'nowrap' }}>
+                                    {formaterNOK(utbetaling.nettobelop)} NOK
+                                </Table.DataCell>
+                                <Table.DataCell style={{ width: '1%', whiteSpace: 'nowrap', verticalAlign: 'middle' }}>
+                                    <Tag
+                                        data-color={statusInfo.dataColor}
+                                        variant="moderate"
+                                        size="small"
+                                        icon={statusInfo.icon}
+                                    >
+                                        {statusInfo.label}
+                                    </Tag>
+                                </Table.DataCell>
+                            </Table.Row>
+                        );
+                    })}
+                </Table.Body>
+            </Table>
+        </Box>
     );
 }
 

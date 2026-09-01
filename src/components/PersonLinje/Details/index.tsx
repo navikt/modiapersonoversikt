@@ -7,7 +7,7 @@ import {
     PersonTallShortIcon,
     PiggybankIcon
 } from '@navikt/aksel-icons';
-import { Heading, HGrid, HStack, Skeleton, VStack } from '@navikt/ds-react';
+import { Box, Heading, HGrid, HStack, Skeleton, VStack } from '@navikt/ds-react';
 import type { PropsWithChildren, ReactNode } from 'react';
 import { AlertBanner } from 'src/components/AlertBanner';
 import Card from 'src/components/Card';
@@ -87,21 +87,27 @@ const PersonlinjeDetails = () => {
     return (
         <Card className="overflow-auto">
             <VStack gap="space-32">
-                <div
-                    className="flex items-stretch gap-0 pl-17 pr-8 py-6"
+                <Box
+                    className="px-4 py-4 lg:pl-17 lg:pr-8 lg:py-6"
                     style={bakgrunn ? { backgroundColor: bakgrunn } : undefined}
                 >
-                    <div className="flex-7 pr-8 pt-6">
-                        <TopKort />
-                    </div>
-                    <div style={{ borderLeft: '1px solid var(--ax-border-neutral-subtle)', margin: '0 1rem' }} />
-                    <div className="flex-3 pl-4 pt-6">
-                        <NavKontor />
-                    </div>
-                </div>
+                    <HGrid columns={{ xs: 1, lg: '7fr 3fr' }} gap={{ xs: 'space-24', lg: 'space-32' }} align="start">
+                        <Box className="lg:pr-8 lg:pt-6">
+                            <TopKort />
+                        </Box>
+                        <Box className="border-t border-ax-border-neutral-subtle pt-6 lg:border-t-0 lg:border-l lg:pl-8 lg:pt-6">
+                            <NavKontor />
+                        </Box>
+                    </HGrid>
+                </Box>
 
-                <HStack gap="space-96" align="start" wrap={false} className="pl-17 pr-33 pt-8 pb-4">
-                    <VStack gap="space-32" flexBasis="50%" flexGrow="1">
+                <HGrid
+                    columns={{ xs: 1, lg: 2 }}
+                    gap={{ xs: 'space-32', lg: 'space-96' }}
+                    align="start"
+                    className="px-4 pt-4 pb-4 lg:pl-17 lg:pr-33 lg:pt-8"
+                >
+                    <VStack gap="space-32">
                         <SeksjonWrapper tittel="Oppfølging" icon={<PersonGroupIcon aria-hidden fontSize="2rem" />}>
                             <OppfolgingOversikt />
                         </SeksjonWrapper>
@@ -112,11 +118,11 @@ const PersonlinjeDetails = () => {
                             <OppgaverOversikt />
                         </SeksjonWrapper>
                     </VStack>
-                    <VStack gap="space-32" flexBasis="50%" flexGrow="1">
+                    <VStack gap="space-32">
                         <SeksjonWrapper tittel="Utbetalinger" icon={<PiggybankIcon aria-hidden fontSize="2rem" />}>
                             <UtbetalingerOversikt />
                         </SeksjonWrapper>
-                        <HGrid columns={2} gap="space-64" align="start">
+                        <HGrid columns={{ xs: 1, sm: 2 }} gap={{ xs: 'space-32', lg: 'space-64' }} align="start">
                             <SeksjonWrapper tittel="Familie" icon={<PersonTallShortIcon aria-hidden fontSize="2rem" />}>
                                 <Familie />
                             </SeksjonWrapper>
@@ -128,7 +134,7 @@ const PersonlinjeDetails = () => {
                             <Flytting />
                         </SeksjonWrapper>
                     </VStack>
-                </HStack>
+                </HGrid>
             </VStack>
         </Card>
     );

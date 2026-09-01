@@ -11,11 +11,13 @@ import { Adresseinfo } from '../components';
 function FlatFelt({ label, verdi }: { label: string; verdi?: string | null }) {
     if (!verdi) return null;
     return (
-        <HStack gap="space-4" wrap={false} align="start">
+        <HStack gap="space-4" align="start">
             <Label size="small" className="whitespace-nowrap">
                 {label}:
             </Label>
-            <BodyShort size="small">{verdi}</BodyShort>
+            <BodyShort size="small" className="break-words [overflow-wrap:anywhere]">
+                {verdi}
+            </BodyShort>
         </HStack>
     );
 }
@@ -62,7 +64,7 @@ function TopKort() {
                 <Heading size="large">{navn}</Heading>
             </HStack>
 
-            <HGrid columns={3} gap="space-8" align="start">
+            <HGrid columns={{ xs: 1, md: 2, xl: 3 }} gap={{ xs: 'space-16', xl: 'space-8' }} align="start">
                 <VStack gap="space-16">
                     <VStack gap="space-2">
                         <FlatFelt label="Telefon" verdi={telefon} />
