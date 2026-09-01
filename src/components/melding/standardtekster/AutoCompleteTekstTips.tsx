@@ -1,7 +1,7 @@
-import { SparklesIcon } from '@navikt/aksel-icons';
 import { Button, Modal } from '@navikt/ds-react';
 import { useRef } from 'react';
 import { useDisableDialog } from 'src/lib/state/dialog';
+import TastaturIkon from '../../../svg/tastatur.svg';
 
 function AutoCompleteTekstTips() {
     const modalRef = useRef<HTMLDialogElement>(null);
@@ -12,7 +12,8 @@ function AutoCompleteTekstTips() {
                 variant="tertiary"
                 size="small"
                 disabled={disableDialog}
-                icon={<SparklesIcon title="Hurtigtast-tips" />}
+                icon={<TastaturIkon aria-hidden />}
+                title="Autofullfør-tips"
                 onClick={(e) => {
                     e.preventDefault();
                     modalRef?.current?.showModal();
