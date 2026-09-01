@@ -1,4 +1,5 @@
-import { Alert, Button, HStack, Link, Loader, Theme } from '@navikt/ds-react';
+import { ExternalLinkIcon } from '@navikt/aksel-icons';
+import { Alert, Button, GlobalAlert, HStack, Link, Loader, Theme } from '@navikt/ds-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createRootRoute, Outlet, useMatchRoute } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
@@ -116,6 +117,7 @@ function RootLayout() {
     const isLanding = matchRoute({ to: '/landingpage' });
     const isPersonvern = matchRoute({ to: '/personvern' });
     const isNewModia = matchRoute({ to: '/new/person', fuzzy: true }) !== false;
+    const erGamleModia = !isNewModia;
     const theme = useAtomValue(themeAtom);
 
     useEffect(() => {
@@ -136,6 +138,28 @@ function RootLayout() {
                             <HandleLegacyUrls>
                                 <DemoBanner />
                                 <Decorator />
+                                {erGamleModia && (
+                                    <GlobalAlert status="warning" centered={true} size="small">
+                                        <GlobalAlert.Header>
+                                            <GlobalAlert.Title>Gamle Modia fases ut 1. desember 2026</GlobalAlert.Title>
+                                        </GlobalAlert.Header>
+                                        <GlobalAlert.Content>
+                                            Etter denne datoen må du bruke Ny Modia. Vi anbefaler at du tar den i bruk
+                                            allerede nå, så du blir kjent med løsningen i god tid.
+                                        </GlobalAlert.Content>
+                                        <GlobalAlert.Content>
+                                            Ved mangler i Ny Modia, meld fra i{' '}
+                                            <Link
+                                                href="https://jira.adeo.no/plugins/servlet/desk/portal/541"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                Porten
+                                                <ExternalLinkIcon aria-hidden />
+                                            </Link>
+                                        </GlobalAlert.Content>
+                                    </GlobalAlert>
+                                )}
                                 <ErrorBoundary boundaryName="app-content">
                                     <App>
                                         <Outlet />
