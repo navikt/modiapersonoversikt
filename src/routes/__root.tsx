@@ -117,7 +117,7 @@ function RootLayout() {
     const isLanding = matchRoute({ to: '/landingpage' });
     const isPersonvern = matchRoute({ to: '/personvern' });
     const isNewModia = matchRoute({ to: '/new/person', fuzzy: true }) !== false;
-    const erGamleModia = !isNewModia;
+    const erGamleModia = matchRoute({ to: '/new', fuzzy: true }) === false;
     const theme = useAtomValue(themeAtom);
 
     useEffect(() => {
