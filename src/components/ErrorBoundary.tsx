@@ -14,7 +14,7 @@ const ErrorBoundary = ({
     children,
     //boundaryName,
     errorText
-}: React.PropsWithChildren<{ boundaryName: string; errorText?: string }>) => {
+}: React.PropsWithChildren<{ boundaryName?: string; errorText?: string }>) => {
     return (
         <FaroErrorBoundary fallback={<Alert variant="error">{errorText ?? 'Det skjedde en feil'}</Alert>}>
             {children}

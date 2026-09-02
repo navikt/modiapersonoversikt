@@ -20,11 +20,14 @@ const stripItem = (item: TransportItem): TransportItem | null => {
             /* ignore malformed URLs */
         }
     }
-
     // Drop items that may contain fødselsnummer (11-digit pattern)
-    const payload = JSON.stringify(item);
-    if (/\d{11}/.test(payload)) {
-        return null;
+    try {
+        const payload = JSON.stringify(item);
+        if (/\d{11}/.test(payload)) {
+            return null;
+        }
+    } catch {
+        // If serialization fails, don't break observability
     }
     return item;
 };
