@@ -1,7 +1,7 @@
 import { Button, Modal } from '@navikt/ds-react';
 import { useRef } from 'react';
 import { useDisableDialog } from 'src/lib/state/dialog';
-import TastaturIkon from '../../../svg/tastatur.svg';
+import TastaturIkon from 'src/svg/tastatur.svg';
 
 function AutoCompleteTekstTips() {
     const modalRef = useRef<HTMLDialogElement>(null);
