@@ -1,10 +1,11 @@
 import { ExternalLinkIcon, EyeSlashIcon, FilesIcon } from '@navikt/aksel-icons';
-import { Box, HStack, InlineMessage, Pagination, type SortState, Table, Tag } from '@navikt/ds-react';
+import { Box, HStack, InlineMessage, Pagination, type SortState, Table, Tag, VStack } from '@navikt/ds-react';
 import { Link } from '@tanstack/react-router';
 import { useState } from 'react';
+import { AntallTreff } from 'src/components/AntallTreff';
 import { DokumentVisningExpandable } from 'src/components/Dokumenter/DokumentVisningExpandable';
 import { useSortedAndPaginatedDokumenter } from 'src/components/Dokumenter/useSortedAndPaginatedDokumenter';
-import { hentBrukerNavn, useAntallDokumenter } from 'src/components/Dokumenter/utils';
+import { hentBrukerNavn } from 'src/components/Dokumenter/utils';
 import {
     type Dokumentmetadata,
     DokumentmetadataAvsender,
@@ -48,15 +49,8 @@ export const DokumenterTabell = () => {
     const [page, setPage] = useState(1);
     const rowsPerPage = 50;
 
-    const { antall: antallFiltrerte } = useAntallDokumenter();
-    const antallSider = Math.max(1, Math.ceil(antallFiltrerte / rowsPerPage));
-    const gjeldendeSide = Math.min(page, antallSider);
-
-    const { dokumenter, antallDokumenter } = useSortedAndPaginatedDokumenter({
-        page: gjeldendeSide,
-        rowsPerPage,
-        sort
-    });
+    const { dokumenterPaSide, antallFiltrerte, antallTotalt, antallSider, gjeldendeSide } =
+        useSortedAndPaginatedDokumenter({ page, rowsPerPage, sort });
 
     const { data } = usePersonData();
     const brukersNavn = hentBrukerNavn(data?.person ?? null);
@@ -83,18 +77,28 @@ export const DokumenterTabell = () => {
         );
     };
 
-    if (antallDokumenter === 0) {
+    const antallTreff = (
+        <HStack>
+            <AntallTreff antall={antallFiltrerte} totalt={antallTotalt} entall="dokument" flertall="dokumenter" />
+        </HStack>
+    );
+
+    if (antallFiltrerte === 0) {
         return (
-            <Box paddingBlock="space-16">
-                <InlineMessage status="info" aria-live="polite">
-                    Ingen resultat
-                </InlineMessage>
-            </Box>
+            <VStack gap="space-8">
+                {antallTreff}
+                <Box paddingBlock="space-16">
+                    <InlineMessage status="info" aria-live="polite">
+                        Ingen resultat
+                    </InlineMessage>
+                </Box>
+            </VStack>
         );
     }
 
     return (
-        <>
+        <VStack gap="space-8">
+            {antallTreff}
             <Table
                 id="dokumentertabell"
                 size="medium"
@@ -134,7 +138,7 @@ export const DokumenterTabell = () => {
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
-                    {dokumenter?.map((journalpost) => {
+                    {dokumenterPaSide.map((journalpost) => {
                         const isOpen = openMap[journalpost.id] ?? false;
 
                         return (
@@ -210,6 +214,6 @@ export const DokumenterTabell = () => {
             {antallSider > 1 && (
                 <Pagination page={gjeldendeSide} onPageChange={setPage} count={antallSider} size="small" />
             )}
-        </>
+        </VStack>
     );
 };

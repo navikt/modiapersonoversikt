@@ -84,21 +84,6 @@ export const useFilterDokumenter = (): QueryResult<ResultatSaksDokumenter> => {
     } as QueryResult<ResultatSaksDokumenter>;
 };
 
-/**
- * Antallet gjelder journalposter, som tilsvarer én rad i dokumenttabellen.
- * `totalt` er antallet før filtrering, slik at brukeren ser at filteret har skjult noe.
- */
-export const useAntallDokumenter = (): { antall: number; totalt: number; isLoading: boolean } => {
-    const { data: filtrerteData, isLoading } = useFilterDokumenter();
-    const { data: alleData } = useSakerDokumenter();
-
-    return {
-        antall: filtrerteData?.dokumenter?.length ?? 0,
-        totalt: alleData?.dokumenter?.length ?? 0,
-        isLoading
-    };
-};
-
 const filterByDateRange = (dokumenter: Dokumentmetadata[], dateRange: DateRange): Dokumentmetadata[] =>
     dokumenter.filter((dok) => {
         const dato = dayjs(dok.dato);

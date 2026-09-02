@@ -1,10 +1,9 @@
-import { Detail, Heading, HStack, Skeleton, type SortState, VStack } from '@navikt/ds-react';
+import { Detail, Heading, Skeleton, type SortState, VStack } from '@navikt/ds-react';
 import { AlertBanner } from 'src/components/AlertBanner';
-import { AntallTreff } from 'src/components/AntallTreff';
 import Card from 'src/components/Card';
 import { DokumenterTabell } from 'src/components/Dokumenter/DokumenterTabell';
 import { DokumenterFilter } from 'src/components/Dokumenter/Filter';
-import { useAntallDokumenter, useFilterDokumenter } from 'src/components/Dokumenter/utils';
+import { useFilterDokumenter } from 'src/components/Dokumenter/utils';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import type { Dokumentmetadata } from 'src/generated/modiapersonoversikt-api';
 
@@ -14,7 +13,6 @@ export interface DokumenterSortState extends SortState {
 
 export const DokumenterPage = () => {
     const { errorMessages, isError, isLoading } = useFilterDokumenter();
-    const { antall, totalt } = useAntallDokumenter();
 
     if (isError) {
         return <AlertBanner alerts={errorMessages} />;
@@ -37,28 +35,17 @@ export const DokumenterPage = () => {
                     </VStack>
                     <VStack gap="space-16">
                         <DokumenterFilter />
-                        <VStack gap="space-8">
-                            <HStack>
-                                <AntallTreff
-                                    antall={antall}
-                                    totalt={totalt}
-                                    entall="dokument"
-                                    flertall="dokumenter"
-                                    isLoading={isLoading}
-                                />
-                            </HStack>
-                            {isLoading ? (
-                                <VStack gap="space-8" marginInline="space-0 space-8">
-                                    {Array(12)
-                                        .keys()
-                                        .map((i) => (
-                                            <Skeleton key={i} variant="rectangle" height={68} />
-                                        ))}
-                                </VStack>
-                            ) : (
-                                <DokumenterTabell />
-                            )}
-                        </VStack>
+                        {isLoading ? (
+                            <VStack gap="space-8" marginInline="space-0 space-8">
+                                {Array(12)
+                                    .keys()
+                                    .map((i) => (
+                                        <Skeleton key={i} variant="rectangle" height={68} />
+                                    ))}
+                            </VStack>
+                        ) : (
+                            <DokumenterTabell />
+                        )}
                     </VStack>
                 </VStack>
             </Card>
