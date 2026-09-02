@@ -1,9 +1,10 @@
-import { Detail, Heading, Skeleton, type SortState, VStack } from '@navikt/ds-react';
+import { Detail, Heading, HStack, Skeleton, type SortState, VStack } from '@navikt/ds-react';
 import { AlertBanner } from 'src/components/AlertBanner';
+import { AntallTreff } from 'src/components/AntallTreff';
 import Card from 'src/components/Card';
 import { DokumenterTabell } from 'src/components/Dokumenter/DokumenterTabell';
 import { DokumenterFilter } from 'src/components/Dokumenter/Filter';
-import { useFilterDokumenter } from 'src/components/Dokumenter/utils';
+import { useAntallDokumenter, useFilterDokumenter } from 'src/components/Dokumenter/utils';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import type { Dokumentmetadata } from 'src/generated/modiapersonoversikt-api';
 
@@ -13,6 +14,7 @@ export interface DokumenterSortState extends SortState {
 
 export const DokumenterPage = () => {
     const { errorMessages, isError, isLoading } = useFilterDokumenter();
+    const { antall, totalt } = useAntallDokumenter();
 
     if (isError) {
         return <AlertBanner alerts={errorMessages} />;
@@ -24,9 +26,18 @@ export const DokumenterPage = () => {
                 <AlertBanner alerts={errorMessages} />
                 <VStack gap="space-32">
                     <VStack gap="space-8">
-                        <Heading level="2" size="medium">
-                            Dokumenter
-                        </Heading>
+                        <HStack align="center" gap="space-8">
+                            <Heading level="2" size="medium">
+                                Dokumenter
+                            </Heading>
+                            <AntallTreff
+                                antall={antall}
+                                totalt={totalt}
+                                entall="dokument"
+                                flertall="dokumenter"
+                                isLoading={isLoading}
+                            />
+                        </HStack>
                         <Detail className="text-ax-text-neutral-subtle" spacing={false}>
                             Modia viser elektroniske dokumenter brukeren har sendt inn via nav.no etter 9. desember
                             2014.

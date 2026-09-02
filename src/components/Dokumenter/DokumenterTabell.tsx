@@ -4,7 +4,7 @@ import { Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { DokumentVisningExpandable } from 'src/components/Dokumenter/DokumentVisningExpandable';
 import { useSortedAndPaginatedDokumenter } from 'src/components/Dokumenter/useSortedAndPaginatedDokumenter';
-import { hentBrukerNavn } from 'src/components/Dokumenter/utils';
+import { hentBrukerNavn, useAntallDokumenter } from 'src/components/Dokumenter/utils';
 import {
     type Dokumentmetadata,
     DokumentmetadataAvsender,
@@ -48,7 +48,15 @@ export const DokumenterTabell = () => {
     const [page, setPage] = useState(1);
     const rowsPerPage = 50;
 
-    const { dokumenter, antallDokumenter } = useSortedAndPaginatedDokumenter({ page, rowsPerPage, sort });
+    const { antall: antallFiltrerte } = useAntallDokumenter();
+    const antallSider = Math.max(1, Math.ceil(antallFiltrerte / rowsPerPage));
+    const gjeldendeSide = Math.min(page, antallSider);
+
+    const { dokumenter, antallDokumenter } = useSortedAndPaginatedDokumenter({
+        page: gjeldendeSide,
+        rowsPerPage,
+        sort
+    });
 
     const { data } = usePersonData();
     const brukersNavn = hentBrukerNavn(data?.person ?? null);
@@ -199,13 +207,8 @@ export const DokumenterTabell = () => {
                     })}
                 </Table.Body>
             </Table>
-            {antallDokumenter >= rowsPerPage && (
-                <Pagination
-                    page={page}
-                    onPageChange={setPage}
-                    count={Math.ceil(antallDokumenter / rowsPerPage)}
-                    size="small"
-                />
+            {antallSider > 1 && (
+                <Pagination page={gjeldendeSide} onPageChange={setPage} count={antallSider} size="small" />
             )}
         </>
     );
