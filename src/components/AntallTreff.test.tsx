@@ -21,11 +21,11 @@ describe('antallTreffTekst', () => {
     });
 
     test('viser "av totalt" når filteret har fjernet treff', () => {
-        expect(antallTreffTekst({ antall: 12, totalt: 143, ...dokumenter })).toBe('12 av 143 dokumenter');
+        expect(antallTreffTekst({ antall: 12, totalt: 143, ...dokumenter })).toBe('Viser 12 av 143 dokumenter');
     });
 
     test('bruker flertallsform ved ett filtrert treff av flere', () => {
-        expect(antallTreffTekst({ antall: 1, totalt: 143, ...dokumenter })).toBe('1 av 143 dokumenter');
+        expect(antallTreffTekst({ antall: 1, totalt: 143, ...dokumenter })).toBe('Viser 1 av 143 dokumenter');
     });
 });
 
@@ -33,7 +33,7 @@ describe('AntallTreff', () => {
     test('annonserer antallet i en aria-live-region', () => {
         render(<AntallTreff antall={12} totalt={143} {...dokumenter} />);
 
-        const liveRegion = screen.getByText('12 av 143 dokumenter').closest('[aria-live]');
+        const liveRegion = screen.getByText('Viser 12 av 143 dokumenter').closest('[aria-live]');
 
         expect(liveRegion).toHaveAttribute('aria-live', 'polite');
         expect(liveRegion).toHaveAttribute('aria-atomic', 'true');

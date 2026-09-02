@@ -26,18 +26,9 @@ export const DokumenterPage = () => {
                 <AlertBanner alerts={errorMessages} />
                 <VStack gap="space-32">
                     <VStack gap="space-8">
-                        <HStack align="center" gap="space-8">
-                            <Heading level="2" size="medium">
-                                Dokumenter
-                            </Heading>
-                            <AntallTreff
-                                antall={antall}
-                                totalt={totalt}
-                                entall="dokument"
-                                flertall="dokumenter"
-                                isLoading={isLoading}
-                            />
-                        </HStack>
+                        <Heading level="2" size="medium">
+                            Dokumenter
+                        </Heading>
                         <Detail className="text-ax-text-neutral-subtle" spacing={false}>
                             Modia viser elektroniske dokumenter brukeren har sendt inn via nav.no etter 9. desember
                             2014.
@@ -46,17 +37,28 @@ export const DokumenterPage = () => {
                     </VStack>
                     <VStack gap="space-16">
                         <DokumenterFilter />
-                        {isLoading ? (
-                            <VStack gap="space-8" marginInline="space-0 space-8">
-                                {Array(12)
-                                    .keys()
-                                    .map((i) => (
-                                        <Skeleton key={i} variant="rectangle" height={68} />
-                                    ))}
-                            </VStack>
-                        ) : (
-                            <DokumenterTabell />
-                        )}
+                        <VStack gap="space-8">
+                            <HStack>
+                                <AntallTreff
+                                    antall={antall}
+                                    totalt={totalt}
+                                    entall="dokument"
+                                    flertall="dokumenter"
+                                    isLoading={isLoading}
+                                />
+                            </HStack>
+                            {isLoading ? (
+                                <VStack gap="space-8" marginInline="space-0 space-8">
+                                    {Array(12)
+                                        .keys()
+                                        .map((i) => (
+                                            <Skeleton key={i} variant="rectangle" height={68} />
+                                        ))}
+                                </VStack>
+                            ) : (
+                                <DokumenterTabell />
+                            )}
+                        </VStack>
                     </VStack>
                 </VStack>
             </Card>

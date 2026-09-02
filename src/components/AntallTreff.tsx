@@ -13,7 +13,7 @@ export const antallTreffTekst = ({ antall, totalt, entall, flertall }: Omit<Prop
     const substantiv = antall === 1 ? entall : flertall;
     const erFiltrert = totalt !== undefined && totalt !== antall;
 
-    return erFiltrert ? `${antall} av ${totalt} ${flertall}` : `${antall} ${substantiv}`;
+    return erFiltrert ? `Viser ${antall} av ${totalt} ${flertall}` : `${antall} ${substantiv}`;
 };
 
 export const AntallTreff = ({ antall, totalt, entall, flertall, isLoading = false }: Props) => (

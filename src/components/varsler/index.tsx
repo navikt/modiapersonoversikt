@@ -27,10 +27,16 @@ const VarslerPageContent = () => {
                 <AlertBanner alerts={errorMessages} />
                 <VStack gap="space-16" minHeight="0" overflow="auto">
                     <VStack gap="space-8">
-                        <HStack align="center" gap="space-8">
-                            <Heading level="2" size="small">
-                                Varsler
-                            </Heading>
+                        <Heading level="2" size="small">
+                            Varsler
+                        </Heading>
+                        <Detail className="text-ax-text-neutral-subtle" spacing={false}>
+                            Varsler vises kun ett år tilbake i tid. For eldre varsler, opprett sak i porten for manuell
+                            uthenting.
+                        </Detail>
+                    </VStack>
+                    <VStack gap="space-8">
+                        <HStack>
                             <AntallTreff
                                 antall={varsler.length}
                                 entall="varsel"
@@ -38,12 +44,6 @@ const VarslerPageContent = () => {
                                 isLoading={isLoading}
                             />
                         </HStack>
-                        <Detail className="text-ax-text-neutral-subtle" spacing={false}>
-                            Varsler vises kun ett år tilbake i tid. For eldre varsler, opprett sak i porten for manuell
-                            uthenting.
-                        </Detail>
-                    </VStack>
-                    <VStack gap="space-16">
                         {isLoading ? (
                             <VStack gap="space-8" marginInline="space-0 space-8">
                                 {Array(12)
