@@ -1,8 +1,6 @@
+import { FaroErrorBoundary } from '@grafana/faro-react';
 import { Alert } from '@navikt/ds-react';
 import type * as React from 'react';
-import { ErrorBoundary as ReactErrorBoundary } from 'react-error-boundary';
-import { FetchError } from 'src/api/api';
-import { FetchErrorRenderer } from './QueryErrorBoundary';
 
 /*
  * Error håndtering for enkelt-widgets.
@@ -18,15 +16,9 @@ const ErrorBoundary = ({
     errorText
 }: React.PropsWithChildren<{ boundaryName: string; errorText?: string }>) => {
     return (
-        <ReactErrorBoundary
-            fallbackRender={({ error }) => {
-                if (error instanceof FetchError) return <FetchErrorRenderer error={error} errorText={errorText} />;
-
-                return <Alert variant="error">{errorText ?? 'Det skjedde en feil'}</Alert>;
-            }}
-        >
+        <FaroErrorBoundary fallback={<Alert variant="error">{errorText ?? 'Det skjedde en feil'}</Alert>}>
             {children}
-        </ReactErrorBoundary>
+        </FaroErrorBoundary>
     );
 };
 export default ErrorBoundary;
