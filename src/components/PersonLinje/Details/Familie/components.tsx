@@ -1,75 +1,75 @@
-import {
-    ChildEyesFillIcon,
-    FigureCombinationIcon,
-    FigureInwardFillIcon,
-    FigureOutwardFillIcon,
-    PersonCrossFillIcon
-} from '@navikt/aksel-icons';
-import { BodyShort, Detail, InlineMessage } from '@navikt/ds-react';
+import { CheckmarkIcon, XMarkOctagonIcon } from '@navikt/aksel-icons';
+import { BodyShort, Box, InlineMessage, Tag, VStack } from '@navikt/ds-react';
 import { KopierFnrKnapp } from 'src/components/PersonLinje/common/KopierFnrKnapp';
 import type { PersonData } from 'src/lib/types/modiapersonoversikt-api';
-import BostedForRelasjon from '../../common/BostedForRelasjon';
+import { formaterDato } from 'src/utils/string-utils';
 import Diskresjonskode from '../../common/DiskresjonsKode';
-import { harDiskresjonskode, hentAlderEllerDod, hentNavn } from '../../utils';
-import { InfoElement } from '../components';
+import { erDod, harDiskresjonskode, hentNavn } from '../../utils';
 
 type ForelderBarnRelasjon = PersonData['forelderBarnRelasjon'][0];
 
 export function ForelderBarnRelasjonVisning({
     harFeilendeSystem,
     relasjon,
-    beskrivelse,
-    erBarn
+    beskrivelse
 }: {
     harFeilendeSystem: boolean;
     relasjon: ForelderBarnRelasjon;
     beskrivelse: string;
-    erBarn: boolean;
 }) {
-    if (harFeilendeSystem) {
-        return (
-            <InfoElement title={beskrivelse} icon={<FamilierelasjonIkon relasjon={relasjon} erBarn={erBarn} />}>
+    const harDiskresjon = harDiskresjonskode(relasjon.adressebeskyttelse);
+    const navn = relasjon.navn.firstOrNull();
+    const fnr = relasjon.ident;
+    const erDød = erDod(relasjon.dodsdato);
+    const alder = erDød ? 'Død' : relasjon.alder;
+    const dodsdato = relasjon.dodsdato.firstOrNull();
+
+    return (
+        <VStack gap="space-4">
+            {harDiskresjon ? (
+                <Diskresjonskode adressebeskyttelse={relasjon.adressebeskyttelse} />
+            ) : (
+                <BodyShort size="small">
+                    {navn ? hentNavn(navn) : 'Ukjent navn'} ({alder}, {beskrivelse})
+                </BodyShort>
+            )}
+            {fnr && !harDiskresjon && (
+                <Box>
+                    <KopierFnrKnapp fnr={fnr} />
+                </Box>
+            )}
+            {harFeilendeSystem && (
                 <InlineMessage status="warning" size="small">
                     Feilet ved uthenting av informasjon om {relasjon.rolle.toLowerCase()}
                 </InlineMessage>
-            </InfoElement>
-        );
-    }
-    const alder = hentAlderEllerDod(relasjon) ? `(${hentAlderEllerDod(relasjon)})` : null;
-    const navn = relasjon.navn.firstOrNull();
-    const fnr = relasjon.ident;
-    return (
-        <InfoElement title={beskrivelse} icon={<FamilierelasjonIkon relasjon={relasjon} erBarn={erBarn} />}>
-            <Diskresjonskode adressebeskyttelse={relasjon.adressebeskyttelse} />
-            <BodyShort size="small">
-                {navn && hentNavn(navn)} {alder}
-            </BodyShort>
-            <KopierFnrKnapp fnr={fnr} />
-            <Detail textColor="subtle">
-                <BostedForRelasjon relasjon={relasjon} />
-            </Detail>
-        </InfoElement>
+            )}
+            {!erDød &&
+                (relasjon.harSammeAdresse ? (
+                    <Tag
+                        data-color="success"
+                        variant="moderate"
+                        size="small"
+                        icon={<CheckmarkIcon aria-hidden />}
+                        style={{ alignSelf: 'flex-start' }}
+                    >
+                        Bor med bruker
+                    </Tag>
+                ) : (
+                    <Tag
+                        data-color="danger"
+                        variant="moderate"
+                        size="small"
+                        icon={<XMarkOctagonIcon aria-hidden />}
+                        style={{ alignSelf: 'flex-start' }}
+                    >
+                        Bor ikke med bruker
+                    </Tag>
+                ))}
+            {erDød && dodsdato && (
+                <Tag data-color="neutral" variant="moderate" size="small" style={{ alignSelf: 'flex-start' }}>
+                    Død ({formaterDato(dodsdato)})
+                </Tag>
+            )}
+        </VStack>
     );
-}
-
-function FamilierelasjonIkon({ relasjon, erBarn }: { relasjon: ForelderBarnRelasjon; erBarn: boolean }) {
-    if (harDiskresjonskode(relasjon.adressebeskyttelse)) {
-        return <PersonCrossFillIcon aria-hidden fontSize="1.2rem" title="Kjønn skjult av diskresjonskode" />;
-    }
-    const kjonn = relasjon.kjonn.firstOrNull();
-    if (kjonn?.kode === 'M') {
-        return erBarn ? (
-            <ChildEyesFillIcon aria-hidden fontSize="1.2rem" color="#66A5F4" />
-        ) : (
-            <FigureInwardFillIcon aria-hidden fontSize="1.2rem" color="#66A5F4" />
-        );
-    }
-    if (kjonn?.kode === 'K') {
-        return erBarn ? (
-            <ChildEyesFillIcon aria-hidden fontSize="1.2rem" color="#F25C5C" />
-        ) : (
-            <FigureOutwardFillIcon aria-hidden fontSize="1.2rem" color="#F25C5C" />
-        );
-    }
-    return <FigureCombinationIcon fontSize="1.2rem" aria-hidden />;
 }

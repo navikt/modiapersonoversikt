@@ -1,7 +1,7 @@
 import { GlobeFillIcon } from '@navikt/aksel-icons';
-import { BodyShort, Box } from '@navikt/ds-react';
+import { Accordion, BodyShort, Box, HStack } from '@navikt/ds-react';
 import ValidPeriod from 'src/components/PersonLinje/common/ValidPeriod';
-import { Group, InfoElement, LastChanged } from 'src/components/PersonLinje/Details/components';
+import { LastChanged } from 'src/components/PersonLinje/Details/components';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { formaterDato } from 'src/utils/string-utils';
 
@@ -14,37 +14,43 @@ export default function Flytting() {
     }
 
     return (
-        <Group title="Flytting">
+        <Accordion size="small" indent={false}>
             {person.innflyttingTilNorge.isNotEmpty() && (
-                <InfoElement
-                    title="Flyttet fra"
-                    icon={<GlobeFillIcon aria-hidden fontSize="1.2rem" color="var(--ax-neutral-500)" />}
-                >
-                    {person.innflyttingTilNorge.map((innFlytting, index) => {
-                        return (
+                <Accordion.Item>
+                    <Accordion.Header>
+                        <HStack gap="space-2" align="center">
+                            <GlobeFillIcon aria-hidden fontSize="1rem" color="var(--ax-neutral-500)" />
+                            Flyttet fra
+                        </HStack>
+                    </Accordion.Header>
+                    <Accordion.Content>
+                        {person.innflyttingTilNorge.map((innFlytting, index) => (
                             <Box key={`${innFlytting.fraflyttingsland}-${index}`} marginBlock="space-8">
-                                <BodyShort>{innFlytting.fraflyttingsland} </BodyShort>
+                                <BodyShort size="small">{innFlytting.fraflyttingsland}</BodyShort>
                                 <LastChanged sistEndret={innFlytting.sistEndret} />
                                 <ValidPeriod
                                     from={innFlytting.gyldighetsPeriode?.gyldigFraOgMed}
                                     to={innFlytting.gyldighetsPeriode?.gyldigTilOgMed}
                                 />
                             </Box>
-                        );
-                    })}
-                </InfoElement>
+                        ))}
+                    </Accordion.Content>
+                </Accordion.Item>
             )}
             {person.utflyttingFraNorge.isNotEmpty() && (
-                <InfoElement
-                    title="Flyttet til"
-                    icon={<GlobeFillIcon aria-hidden fontSize="1.2rem" color="var(--ax-neutral-500)" />}
-                >
-                    {person.utflyttingFraNorge.map((utflytting, index) => {
-                        return (
+                <Accordion.Item>
+                    <Accordion.Header>
+                        <HStack gap="space-2" align="center">
+                            <GlobeFillIcon aria-hidden fontSize="1rem" color="var(--ax-neutral-500)" />
+                            Flyttet til
+                        </HStack>
+                    </Accordion.Header>
+                    <Accordion.Content>
+                        {person.utflyttingFraNorge.map((utflytting, index) => (
                             <Box key={`${utflytting.utflyttingsdato}-${index}`} marginBlock="space-8">
-                                <BodyShort>{utflytting.tilflyttingsland} </BodyShort>
+                                <BodyShort size="small">{utflytting.tilflyttingsland}</BodyShort>
                                 {utflytting.utflyttingsdato && (
-                                    <BodyShort>
+                                    <BodyShort size="small">
                                         Utflyttingsdato: {formaterDato(new Date(utflytting.utflyttingsdato))}
                                     </BodyShort>
                                 )}
@@ -54,10 +60,10 @@ export default function Flytting() {
                                 />
                                 <LastChanged sistEndret={utflytting.sistEndret} />
                             </Box>
-                        );
-                    })}
-                </InfoElement>
+                        ))}
+                    </Accordion.Content>
+                </Accordion.Item>
             )}
-        </Group>
+        </Accordion>
     );
 }

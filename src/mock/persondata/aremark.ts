@@ -134,6 +134,8 @@ export const aremark: Person = {
     navEnhet: {
         id: '0219',
         navn: 'NAV Bærum',
+        telefonnummer: '55 55 33 33',
+        epost: 'nav.baerum@nav.no',
         publikumsmottak: [
             {
                 besoksadresse: {
