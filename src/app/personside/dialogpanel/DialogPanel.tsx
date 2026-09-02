@@ -30,7 +30,7 @@ function DialogPanel() {
     }
 
     return (
-        <ErrorBoundary boundaryName="Dialogpanel">
+        <ErrorBoundary>
             <DialogPanelWrapper>
                 {dialogpanelTraad ? (
                     <FortsettDialogContainer

@@ -43,7 +43,7 @@ function SykepengerPerioder({ perioder }: { perioder: Utbetalingsperiode[] }) {
 
 function SykepengerPerioderSpokelse(props: Props) {
     return (
-        <ErrorBoundary boundaryName="SykepengerSpokelse">
+        <ErrorBoundary>
             <article>
                 <StyledPanel>
                     <h2 className="sr-only">Sykepenger (Speil)</h2>

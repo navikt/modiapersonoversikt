@@ -61,7 +61,7 @@ export const OppgaveModal = ({ open, setOpen, traad }: Props) => {
                             </HStack>
                         }
                     >
-                        <ErrorBoundary boundaryName="oppgaveForm">
+                        <ErrorBoundary>
                             {open && <OppgaveForm traad={traad} onSuccess={() => setOpen(false)} />}
                         </ErrorBoundary>
                     </Suspense>

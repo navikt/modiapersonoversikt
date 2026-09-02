@@ -160,7 +160,7 @@ function RootLayout() {
                                         </GlobalAlert.Content>
                                     </GlobalAlert>
                                 )}
-                                <ErrorBoundary boundaryName="app-content">
+                                <ErrorBoundary>
                                     <App>
                                         <Outlet />
                                     </App>

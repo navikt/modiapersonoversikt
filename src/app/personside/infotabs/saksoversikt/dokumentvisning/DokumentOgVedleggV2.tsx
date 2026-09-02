@@ -120,7 +120,7 @@ function DokumentOgVedlegg(props: Props) {
         props.valgtDokument.dokumentreferanse
     );
     return (
-        <ErrorBoundary boundaryName="Dokumentvisning">
+        <ErrorBoundary>
             <Content>
                 <HeaderStyle
                     ref={() => {

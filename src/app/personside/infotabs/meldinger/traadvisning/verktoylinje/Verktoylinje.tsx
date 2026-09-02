@@ -102,7 +102,7 @@ function Verktoylinje(props: Props) {
     const visMerk = aktivtPanel === VerktøyPanel.MERK;
 
     return (
-        <ErrorBoundary boundaryName="Verktøylinje">
+        <ErrorBoundary>
             <article aria-labelledby={tittelId.current} aria-label="Verktøylinje">
                 <StyledPanel
                     className={props.className}

@@ -10,11 +10,7 @@ import type * as React from 'react';
  * </ErrorBoundary>
  *
  */
-const ErrorBoundary = ({
-    children,
-    //boundaryName,
-    errorText
-}: React.PropsWithChildren<{ boundaryName?: string; errorText?: string }>) => {
+const ErrorBoundary = ({ children, errorText }: React.PropsWithChildren<{ errorText?: string }>) => {
     return (
         <FaroErrorBoundary fallback={<Alert variant="error">{errorText ?? 'Det skjedde en feil'}</Alert>}>
             {children}

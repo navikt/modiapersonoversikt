@@ -56,10 +56,10 @@ function InfoTabs() {
     const storeCroll = useKeepScroll(openTabRef, `Opentab-${openTab.path}`);
 
     return (
-        <ErrorBoundary boundaryName="InfoTabs">
+        <ErrorBoundary>
             <HandleInfotabsHotkeys />
             <TabKnapper openTab={openTab} onTabChange={updateRouterPath} />
-            <ErrorBoundary boundaryName={`Open tab: ${openTab.tittel}`}>
+            <ErrorBoundary>
                 <StyledArticle ref={openTabRef} onScroll={storeCroll} aria-labelledby={articleId.current}>
                     <h2 id={articleId.current} ref={headerRef} tabIndex={-1} className="sr-only" aria-live="assertive">
                         {openTab.tittel} - Fane

@@ -139,7 +139,7 @@ function VisittkortBody({ persondata }: Props) {
     const columnLayOut = getColumnLayout(numberOfColumns);
 
     return (
-        <ErrorBoundary boundaryName="Visittkort detaljer">
+        <ErrorBoundary>
             {/*biome-ignore lint/a11y/useSemanticElements: biome migration*/}
             <VisittkortBodyWrapper role="region" aria-label="Visittkortdetaljer">
                 <VisuallyHiddenAutoFokusHeader tittel="Visittkortdetaljer" />

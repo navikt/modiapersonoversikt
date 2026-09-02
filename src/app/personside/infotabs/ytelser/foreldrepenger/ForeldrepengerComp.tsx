@@ -59,7 +59,7 @@ function ForeldrepengerComp(props: Props) {
     };
 
     return (
-        <ErrorBoundary boundaryName="FpYtelse">
+        <ErrorBoundary>
             <article>
                 <StyledPanel>
                     <h2 className="sr-only">{props.foreldrepenger.ytelse}</h2>

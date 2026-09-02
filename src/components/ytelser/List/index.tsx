@@ -6,7 +6,7 @@ import { getUnikYtelseKey, useFilterYtelser } from 'src/components/ytelser/utils
 import { YtelserListFilter } from './Filter';
 
 export const YtelserList = () => (
-    <ErrorBoundary boundaryName="YtelserList" errorText="Det oppstod en feil under visning av ytelser liste">
+    <ErrorBoundary errorText="Det oppstod en feil under visning av ytelser liste">
         <YtelseList />
     </ErrorBoundary>
 );

@@ -24,7 +24,7 @@ export const PersonLinje = () => {
     const { errorMessages, isLoading, isError } = usePersonData();
 
     return (
-        <ErrorBoundary boundaryName="personlinje">
+        <ErrorBoundary>
             {isLoading ? (
                 <Skeleton variant="rectangle" height={40} />
             ) : isError ? (

@@ -39,7 +39,7 @@ const KolonneStyle = styled.div`
 
 function Oversikt() {
     return (
-        <ErrorBoundary boundaryName="Oversikt">
+        <ErrorBoundary>
             <Style>
                 <KolonneStyle>
                     <Oversiktskomponent
