@@ -5,6 +5,8 @@ import {
     ReactIntegration,
     type TransportItem
 } from '@grafana/faro-react';
+import { TracingInstrumentation } from '@grafana/faro-web-tracing';
+import { apiBaseUri, apiBaseUriWithoutRest } from 'src/api/config';
 import { getEnvFromHost } from './environment';
 
 const stripItem = (item: TransportItem): TransportItem | null => {
@@ -27,6 +29,10 @@ const stripItem = (item: TransportItem): TransportItem | null => {
     return item;
 };
 
+function escapeRegExp(str: string): string {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 export const initializeObservability = () => {
     const env = getEnvFromHost();
 
@@ -40,9 +46,18 @@ export const initializeObservability = () => {
                 namespace: 'personoversikt'
             },
             paused: window.location.hostname === 'localhost' || import.meta.env.VITE_GH_PAGES,
-            instrumentations: [...getWebInstrumentations(), new ReactIntegration()].filter(
-                (v): v is Instrumentation => !!v
-            ),
+            instrumentations: [
+                ...getWebInstrumentations(),
+                new TracingInstrumentation({
+                    instrumentationOptions: {
+                        propagateTraceHeaderCorsUrls: [
+                            new RegExp(`${escapeRegExp(apiBaseUri)}/.*`),
+                            new RegExp(`${escapeRegExp(apiBaseUriWithoutRest)}/.*`)
+                        ]
+                    }
+                }),
+                new ReactIntegration()
+            ].filter((v): v is Instrumentation => !!v),
             ignoreUrls: [/\d{11}/],
             beforeSend: stripItem
         });
