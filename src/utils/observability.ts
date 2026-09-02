@@ -43,7 +43,8 @@ export const initializeObservability = () => {
                 (env === 'prod' ? 'https://telemetry.nav.no/collect' : 'https://telemetry.ekstern.dev.nav.no/collect'),
             app: {
                 name: 'modiapersonoversikt',
-                namespace: 'personoversikt'
+                namespace: 'personoversikt',
+                version: process.env.COMMIT_SHA || 'local'
             },
             paused: window.location.hostname === 'localhost' || import.meta.env.VITE_GH_PAGES,
             instrumentations: [
