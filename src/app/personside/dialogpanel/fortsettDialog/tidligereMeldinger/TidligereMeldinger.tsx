@@ -83,7 +83,7 @@ function TidligereMeldinger(props: Props) {
     const defaultApen = props.traad.meldinger.length === 1;
 
     return (
-        <ErrorBoundary boundaryName="Tidligere meldinger">
+        <ErrorBoundary>
             <StyledArticle>
                 <Traadpanel traad={props.traad} tittel="Tidligere meldinger" defaultApen={defaultApen} />
             </StyledArticle>

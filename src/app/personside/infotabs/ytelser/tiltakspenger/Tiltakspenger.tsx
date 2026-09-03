@@ -44,7 +44,7 @@ function Tiltakspenger(props: Props) {
     };
 
     return (
-        <ErrorBoundary boundaryName="Tiltakspenger">
+        <ErrorBoundary>
             <article>
                 <StyledPanel aria-labelledby={titleId.current}>
                     <h2 className="sr-only" id={titleId.current}>

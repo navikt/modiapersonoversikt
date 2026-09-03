@@ -101,7 +101,7 @@ export function DialogpanelKvittering(props: {
     meldingstatus: SendNyMeldingStatus;
 }) {
     return (
-        <ErrorBoundary boundaryName="DialogpanelKvittering">
+        <ErrorBoundary>
             <DialogpanelKvitteringStyling>
                 <VisuallyHiddenAutoFokusHeader tittel={props.tittel} />
                 <VarselTilBrukerOmStatus
@@ -110,11 +110,11 @@ export function DialogpanelKvittering(props: {
                     journalforingFeilet={props.traad?.journalforingFeilet}
                 />
                 {props.traad && props.traad.meldinger.length > 1 && (
-                    <ErrorBoundary boundaryName="Tidligere meldinger Dialogpanelkvittering">
+                    <ErrorBoundary>
                         <TidligereMeldinger traad={props.traad} />
                     </ErrorBoundary>
                 )}
-                <ErrorBoundary boundaryName="Sendt melding preview">
+                <ErrorBoundary>
                     <Preview
                         fritekst={props.fritekst}
                         tittel={props.traad ? traadstittel(props.traad) : props.tittel}
@@ -123,7 +123,7 @@ export function DialogpanelKvittering(props: {
                     />
                 </ErrorBoundary>
                 {props.meldingstatus !== SendNyMeldingStatus.ERROR && (
-                    <ErrorBoundary boundaryName="Sendt melding verktøylinje">
+                    <ErrorBoundary>
                         <MeldingSendtVerktoyLinje traad={props.traad} />
                     </ErrorBoundary>
                 )}

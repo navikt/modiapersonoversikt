@@ -13,7 +13,7 @@ function OpprettOppgaveContainer(props: Props) {
     return gsaktemaResource.useRenderer({
         ifPending: <CenteredLazySpinner aria-label="Laster tema" type="L" />,
         ifData: (gsaktema) => (
-            <ErrorBoundary boundaryName="OpprettOppgaveContainer">
+            <ErrorBoundary>
                 <OppgaveSkjema gsakTema={gsaktema} lukkPanel={props.lukkPanel} valgtTraad={props.valgtTraad} />
             </ErrorBoundary>
         )

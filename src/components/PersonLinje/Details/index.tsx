@@ -21,7 +21,7 @@ export const OversiktWrapper = () => {
     const { errorMessages, isLoading, isError } = usePersonData();
 
     return (
-        <ErrorBoundary boundaryName="personlinje">
+        <ErrorBoundary>
             {isLoading ? (
                 <Skeleton variant="rectangle" height="100%" />
             ) : isError ? (

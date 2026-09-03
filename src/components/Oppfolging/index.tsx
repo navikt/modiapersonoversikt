@@ -65,7 +65,7 @@ const OppfolgingDetaljer = () => {
                         </BodyShort>
                         <BodyShort size="small">{getVeileder(arbeidsOppfolging.oppfolging?.veileder)}</BodyShort>
                     </VStack>
-                    <ErrorBoundary boundaryName="arbeidssoekerregisteretDetaljer">
+                    <ErrorBoundary>
                         <ArbeidssoekerregisteretDetaljer />
                     </ErrorBoundary>
                 </HGrid>
@@ -257,17 +257,17 @@ const OppfolgingPageContent = () => {
             />
             {!doubleErrors && (
                 <Card padding="space-16">
-                    <ErrorBoundary boundaryName="oppfolgingDetaljer">
+                    <ErrorBoundary>
                         <OppfolgingDetaljer />
                     </ErrorBoundary>
                     {!hasErrors && <div className="my-4 border border-ax-border-neutral-subtle" />}
-                    <ErrorBoundary boundaryName="gjeldende14aVedtakDetaljer">
+                    <ErrorBoundary>
                         <Gjeldende14aVedtakDetaljer />
                     </ErrorBoundary>
                 </Card>
             )}
 
-            <ErrorBoundary boundaryName="sykefraversoppfolgingDetaljer">
+            <ErrorBoundary>
                 <SykefravaersoppfolgingDetaljer />
             </ErrorBoundary>
         </VStack>
@@ -276,7 +276,7 @@ const OppfolgingPageContent = () => {
 
 export const OppfolgingPage = () => {
     return (
-        <ErrorBoundary boundaryName="OppfolgingPage" errorText="Det oppstod en feil under lasting av Oppfolging.">
+        <ErrorBoundary errorText="Det oppstod en feil under lasting av Oppfolging.">
             <OppfolgingPageContent />
         </ErrorBoundary>
     );

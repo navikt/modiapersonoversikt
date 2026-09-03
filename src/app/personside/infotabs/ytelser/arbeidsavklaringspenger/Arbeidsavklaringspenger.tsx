@@ -65,7 +65,7 @@ function Arbeidsavklaringspenger(props: Props) {
     };
 
     return (
-        <ErrorBoundary boundaryName="Arbeidsavklaringspenger">
+        <ErrorBoundary>
             <article>
                 <StyledPanel>
                     <h2 className="sr-only">Arbeidsavklaringspenger</h2>

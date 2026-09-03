@@ -79,7 +79,7 @@ function Oversiktskomponent(props: Props) {
     const Component = props.component;
 
     return (
-        <ErrorBoundary boundaryName={`Oversikt ${props.tittel}`}>
+        <ErrorBoundary>
             <article>
                 <StyledPanel aria-labelledby={headerId.current}>
                     <OverskriftStyle title={`Alt + ${props.hurtigtast}`} onClick={handleClick}>

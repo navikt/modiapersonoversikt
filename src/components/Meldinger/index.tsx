@@ -7,7 +7,7 @@ import { TraadDetail } from './Detail';
 
 export const MeldingerPage = () => {
     return (
-        <ErrorBoundary boundaryName="traadlist" errorText="Det oppstod en feil under lasting av meldinger.">
+        <ErrorBoundary errorText="Det oppstod en feil under lasting av meldinger.">
             <MeldingerPageContent />
         </ErrorBoundary>
     );

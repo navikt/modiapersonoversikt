@@ -52,7 +52,7 @@ function DecoratorEasterEgg() {
 
 function DecoratorEasterEggContainer() {
     return (
-        <ErrorBoundary boundaryName="EasterEggs">
+        <ErrorBoundary>
             <DelayRender delay={1500}>
                 <DecoratorEasterEgg />
             </DelayRender>

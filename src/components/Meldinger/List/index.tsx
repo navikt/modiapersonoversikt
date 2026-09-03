@@ -6,7 +6,7 @@ import { TraadItem } from './TraadItem';
 import { useFilterMeldinger, useTraader } from './utils';
 
 export const TraadList = () => (
-    <ErrorBoundary boundaryName="MeldingerList" errorText="Det oppstod en feil under visning av meldinger">
+    <ErrorBoundary errorText="Det oppstod en feil under visning av meldinger">
         <Traader />
     </ErrorBoundary>
 );

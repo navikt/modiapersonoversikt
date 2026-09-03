@@ -8,7 +8,7 @@ import { useFilterVarsler } from 'src/components/varsler/List/utils';
 
 export const VarslerPage = () => {
     return (
-        <ErrorBoundary boundaryName="varslerList" errorText="Det oppstod en feil under lasting av varsler">
+        <ErrorBoundary errorText="Det oppstod en feil under lasting av varsler">
             <VarslerPageContent />
         </ErrorBoundary>
     );
@@ -22,7 +22,7 @@ const VarslerPageContent = () => {
     }
 
     return (
-        <ErrorBoundary boundaryName="VarslerTabell" errorText="Det oppstod en feil undervisning av varsler">
+        <ErrorBoundary errorText="Det oppstod en feil undervisning av varsler">
             <Card padding="space-16" className="h-full overflow-auto">
                 <AlertBanner alerts={errorMessages} />
                 <VStack gap="space-16" minHeight="0" overflow="auto">

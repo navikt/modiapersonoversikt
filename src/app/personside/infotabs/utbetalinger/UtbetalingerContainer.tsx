@@ -51,7 +51,7 @@ function UtbetalingerContainer() {
         content = <Utbetalinger utbetalingerData={utbetalinger.data} />;
     }
     return (
-        <ErrorBoundary boundaryName={'UtbetalingerContainer'}>
+        <ErrorBoundary>
             <UtbetalingerStyle>
                 <ScrollBar keepScrollId="utbetalinger-filter">
                     <Arenalenke />
