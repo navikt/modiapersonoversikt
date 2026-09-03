@@ -1,4 +1,6 @@
 import dayjs from 'dayjs';
+import isSameOrAfterPlugin from 'dayjs/plugin/isSameOrAfter';
+import isSameOrBeforePlugin from 'dayjs/plugin/isSameOrBefore';
 import { useAtomValue } from 'jotai';
 import { useMemo } from 'react';
 import { apiBaseUri } from 'src/api/config';
@@ -8,6 +10,7 @@ import { errorPlaceholder, type QueryResult, responseErrorMessage } from 'src/co
 import {
     type Dokument,
     type Dokumentmetadata,
+    DokumentmetadataAvsender,
     FeilFeilmelding,
     type Person,
     type ResultatSaksDokumenter
@@ -15,6 +18,23 @@ import {
 import { useSakerDokumenter } from 'src/lib/clients/modiapersonoversikt-api';
 import { datoSynkende } from 'src/utils/date-utils';
 import { parseQueryString } from 'src/utils/url-utils';
+
+dayjs.extend(isSameOrBeforePlugin);
+dayjs.extend(isSameOrAfterPlugin);
+
+export const avsenderLabel: Record<DokumentmetadataAvsender, string> = {
+    [DokumentmetadataAvsender.SLUTTBRUKER]: 'Bruker',
+    [DokumentmetadataAvsender.NAV]: 'Nav',
+    [DokumentmetadataAvsender.EKSTERN_PART]: 'Ekstern',
+    [DokumentmetadataAvsender.UKJENT]: 'Ukjent'
+};
+
+const avsenderRekkefolge: DokumentmetadataAvsender[] = [
+    DokumentmetadataAvsender.SLUTTBRUKER,
+    DokumentmetadataAvsender.NAV,
+    DokumentmetadataAvsender.EKSTERN_PART,
+    DokumentmetadataAvsender.UKJENT
+];
 
 export const useTemaerForPeriode = (dateRange: DateRange | null) => {
     const { data } = useSakerDokumenter();
@@ -26,6 +46,17 @@ export const useTemaerForPeriode = (dateRange: DateRange | null) => {
         const temakoder = new Set(periodFiltered.map((dok) => dok.temakode));
         return alleTemaer.filter((t) => temakoder.has(t.temakode));
     }, [dokumenter, dateRange, alleTemaer]);
+};
+
+export const useAvsendereForPeriode = (dateRange: DateRange | null) => {
+    const { data } = useSakerDokumenter();
+    const dokumenter = data?.dokumenter ?? [];
+
+    return useMemo(() => {
+        const periodFiltered = dateRange ? filterByDateRange(dokumenter, dateRange) : dokumenter;
+        const avsendere = new Set(periodFiltered.map((dok) => dok.avsender));
+        return avsenderRekkefolge.filter((avsender) => avsendere.has(avsender));
+    }, [dokumenter, dateRange]);
 };
 
 export const feilmelding = (statusKode: number) => {
@@ -92,8 +123,8 @@ const filterByDateRange = (dokumenter: Dokumentmetadata[], dateRange: DateRange)
         return afterFrom && beforeTo;
     });
 
-const filterDokumenter = (dokumenter: Dokumentmetadata[], filters: DokumenterFilter): Dokumentmetadata[] => {
-    const { temaer, dateRange, saksId } = filters;
+export const filterDokumenter = (dokumenter: Dokumentmetadata[], filters: DokumenterFilter): Dokumentmetadata[] => {
+    const { temaer, avsendere, dateRange, saksId } = filters;
 
     if (!dokumenter || dokumenter.length === 0) {
         return [];
@@ -108,6 +139,10 @@ const filterDokumenter = (dokumenter: Dokumentmetadata[], filters: DokumenterFil
     }
     if (temaer?.length) {
         filteredList = filteredList.filter((dok) => temaer.includes(dok.temakode));
+    }
+
+    if (avsendere?.length) {
+        filteredList = filteredList.filter((dok) => avsendere.includes(dok.avsender));
     }
 
     if (dateRange?.from || dateRange?.to) {

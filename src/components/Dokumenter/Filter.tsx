@@ -9,7 +9,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { getOptionFromPeriod } from 'src/components/DateFilters/DatePeriodSelector';
 import { DateRangePickerWithDebounce } from 'src/components/DateFilters/DateRangePickerWithDebounce';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
-import { useTemaerForPeriode } from 'src/components/Dokumenter/utils';
+import { avsenderLabel, useAvsendereForPeriode, useTemaerForPeriode } from 'src/components/Dokumenter/utils';
+import type { DokumentmetadataAvsender } from 'src/generated/modiapersonoversikt-api';
 import { aktivBrukerLastetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import { filterType, trackFilterEndret } from 'src/utils/analytics';
 
@@ -19,12 +20,14 @@ export type DokumenterFilter = {
     dateRange: DateRange | null;
     periodType: PeriodType;
     temaer: string[];
+    avsendere: DokumentmetadataAvsender[];
     saksId?: string;
 };
 
 export const dokumenterFilterAtom = atomWithReset<DokumenterFilter>({
     dateRange: null,
     temaer: [],
+    avsendere: [],
     saksId: '',
     periodType: PeriodType.UNSET
 });
@@ -35,6 +38,16 @@ const dokFilterTemaAtom = atom(
         set(dokumenterFilterAtom, (filters) => ({
             ...filters,
             temaer: filters.temaer ? xor(filters.temaer, [newVal]) : [newVal]
+        }));
+    }
+);
+
+const dokFilterAvsenderAtom = atom(
+    (get) => get(dokumenterFilterAtom).avsendere,
+    (_get, set, newVal: DokumentmetadataAvsender) => {
+        set(dokumenterFilterAtom, (filters) => ({
+            ...filters,
+            avsendere: filters.avsendere ? xor(filters.avsendere, [newVal]) : [newVal]
         }));
     }
 );
@@ -165,16 +178,62 @@ const TemaFilter = () => {
     );
 };
 
+const AvsenderFilter = () => {
+    const navigate = routeApi.useNavigate();
+    const dateRange = useAtomValue(dokFilterDateRangeAtom);
+    const alleAvsendere = useAvsendereForPeriode(dateRange);
+    const [selectedAvsendere, setSelectedAvsendere] = useAtom(dokFilterAvsenderAtom);
+    const setFilter = useSetAtom(dokumenterFilterAtom);
+
+    useEffect(() => {
+        const gyldigeAvsendere = new Set(alleAvsendere);
+        const gyldigeValg = selectedAvsendere.filter((a) => gyldigeAvsendere.has(a));
+        if (gyldigeValg.length !== selectedAvsendere.length) {
+            setFilter((prev) => ({ ...prev, avsendere: gyldigeValg }));
+            navigate({ search: { avsendere: gyldigeValg } });
+        }
+    }, [alleAvsendere, selectedAvsendere, setFilter, navigate]);
+
+    const onToggleSelected = useCallback(
+        (option: string) => {
+            const avsender = option as DokumentmetadataAvsender;
+            setSelectedAvsendere(avsender);
+            trackFilterEndret('dokumenter', filterType.AVSENDER);
+            navigate({
+                search: { avsendere: selectedAvsendere ? xor(selectedAvsendere, [avsender]) : [avsender] }
+            });
+        },
+        [selectedAvsendere]
+    );
+
+    return (
+        <UNSAFE_Combobox
+            size="small"
+            label="Avsender"
+            options={alleAvsendere.map((avsender) => ({
+                label: avsenderLabel[avsender],
+                value: avsender
+            }))}
+            isMultiSelect
+            selectedOptions={selectedAvsendere.map((avsender) => ({
+                label: avsenderLabel[avsender],
+                value: avsender
+            }))}
+            onToggleSelected={onToggleSelected}
+        />
+    );
+};
+
 const ResetFilter = () => {
     const [filter, setFilter] = useAtom(dokumenterFilterAtom);
     const navigate = routeApi.useNavigate();
 
     const datoErlik = filter.dateRange === null;
-    const isDirty = !filter.temaer.isEmpty() || filter.saksId !== '' || !datoErlik;
+    const isDirty = !filter.temaer.isEmpty() || !filter.avsendere.isEmpty() || !!filter.saksId || !datoErlik;
 
     const resetFilter = () => {
         setFilter(RESET);
-        navigate({ search: { tema: [], saksid: '', fra: '', til: '' }, replace: true });
+        navigate({ search: { tema: [], avsendere: [], saksid: '', fra: '', til: '' }, replace: true });
     };
 
     return (
@@ -210,6 +269,7 @@ export const DokumenterFilter = () => {
             {
                 dateRange: dateRange,
                 temaer: queries.tema ?? [],
+                avsendere: queries.avsendere ?? [],
                 saksId: queries.saksid ?? '',
                 periodType: dateRange ? getOptionFromPeriod(dateRange) : PeriodType.UNSET
             }
@@ -231,6 +291,9 @@ export const DokumenterFilter = () => {
         <HStack gap="space-8" justify="start">
             <Box>
                 <DateFilter />
+            </Box>
+            <Box flexGrow="1">
+                <AvsenderFilter />
             </Box>
             <Box flexGrow="1">
                 <TemaFilter />

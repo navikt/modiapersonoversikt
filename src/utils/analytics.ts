@@ -50,7 +50,8 @@ export enum filterType {
     YTELSE_TYPE = 'ytelsetype',
     STATUS = 'status',
     SOK = 'søk',
-    TEMA = 'tema'
+    TEMA = 'tema',
+    AVSENDER = 'avsender'
 }
 
 let _referrer = document.referrer;
