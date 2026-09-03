@@ -229,7 +229,7 @@ const ResetFilter = () => {
     const navigate = routeApi.useNavigate();
 
     const datoErlik = filter.dateRange === null;
-    const isDirty = !filter.temaer.isEmpty() || !filter.avsendere.isEmpty() || filter.saksId !== '' || !datoErlik;
+    const isDirty = !filter.temaer.isEmpty() || !filter.avsendere.isEmpty() || !!filter.saksId || !datoErlik;
 
     const resetFilter = () => {
         setFilter(RESET);
