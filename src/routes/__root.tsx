@@ -118,8 +118,8 @@ function RootLayout() {
     const isPersonvern = matchRoute({ to: '/personvern' });
     const isNewModia = matchRoute({ to: '/new/person', fuzzy: true }) !== false;
     const aktivBruker = useAtomValue(aktivBrukerAtom);
-    const harValgtNyModia = useAtomValue(nyModiaAtom);
-    const visUtfasingVarsel = !!aktivBruker && !harValgtNyModia && matchRoute({ to: '/new', fuzzy: true }) === false;
+    const nyModiaEnabled = useAtomValue(nyModiaAtom);
+    const visUtfasingVarsel = !!aktivBruker && !nyModiaEnabled && matchRoute({ to: '/new', fuzzy: true }) === false;
     const theme = useAtomValue(themeAtom);
 
     useEffect(() => {
