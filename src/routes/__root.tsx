@@ -12,10 +12,10 @@ import VelgEnhet from 'src/app/VelgEnhet';
 import DemoBanner from 'src/components/DemoBanner';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import NotFound from 'src/components/NotFound';
-import { useNavigateToNewOrOldModia } from 'src/components/NyModia';
+import { nyModiaAtom, useNavigateToNewOrOldModia } from 'src/components/NyModia';
 import { SkyraHandler } from 'src/components/SkyraHandler';
 import { ValgtEnhetProvider } from 'src/context/valgtenhet-state';
-import { aktivBrukerLastetAtom, aktivEnhetAtom } from 'src/lib/state/context';
+import { aktivBrukerAtom, aktivBrukerLastetAtom, aktivEnhetAtom } from 'src/lib/state/context';
 import { ThemeProvider, themeAtom } from 'src/lib/state/theme';
 import { usePersistentWWLogin } from 'src/login/use-persistent-ww-login';
 import HandleLegacyUrls from 'src/utils/HandleLegacyUrls';
@@ -117,7 +117,9 @@ function RootLayout() {
     const isLanding = matchRoute({ to: '/landingpage' });
     const isPersonvern = matchRoute({ to: '/personvern' });
     const isNewModia = matchRoute({ to: '/new/person', fuzzy: true }) !== false;
-    const erGamleModia = matchRoute({ to: '/new', fuzzy: true }) === false;
+    const aktivBruker = useAtomValue(aktivBrukerAtom);
+    const harValgtNyModia = useAtomValue(nyModiaAtom);
+    const visUtfasingVarsel = !!aktivBruker && !harValgtNyModia && matchRoute({ to: '/new', fuzzy: true }) === false;
     const theme = useAtomValue(themeAtom);
 
     useEffect(() => {
@@ -138,7 +140,7 @@ function RootLayout() {
                             <HandleLegacyUrls>
                                 <DemoBanner />
                                 <Decorator />
-                                {erGamleModia && (
+                                {visUtfasingVarsel && (
                                     <GlobalAlert status="warning" centered={true} size="small">
                                         <GlobalAlert.Header>
                                             <GlobalAlert.Title>Gamle Modia fases ut 1. desember 2026</GlobalAlert.Title>
