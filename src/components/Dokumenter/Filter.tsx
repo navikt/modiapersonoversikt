@@ -215,7 +215,10 @@ const AvsenderFilter = () => {
                 value: avsender
             }))}
             isMultiSelect
-            selectedOptions={selectedAvsendere}
+            selectedOptions={selectedAvsendere.map((avsender) => ({
+                label: avsenderLabel[avsender],
+                value: avsender
+            }))}
             onToggleSelected={onToggleSelected}
         />
     );
