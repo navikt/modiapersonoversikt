@@ -34,6 +34,9 @@ interface Markup {
 interface Enhet {
     readonly enhetId: string;
     readonly navn: string;
+    readonly type?: string;
+    readonly gruppeId?: string;
+    readonly oppgavebehandler?: boolean;
 }
 
 type Environment = 'q0' | 'q1' | 'q2' | 'q3' | 'q4' | 'prod' | 'local' | 'mock';
