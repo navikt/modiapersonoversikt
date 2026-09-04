@@ -1,13 +1,13 @@
 import { XMarkIcon } from '@navikt/aksel-icons';
-import { Alert, Button, Heading, HStack, InlineMessage, Skeleton, VStack } from '@navikt/ds-react';
-import { useAtom, useAtomValue } from 'jotai';
+import { Alert, Button, Heading, HStack, Skeleton, VStack } from '@navikt/ds-react';
+import { useAtom } from 'jotai';
 import { useEffect, useMemo, useState } from 'react';
 import { traadTypeTekst } from 'src/components/Meldinger/List/tekster';
 import { nyesteMelding, useTraader } from 'src/components/Meldinger/List/utils';
 import { dialogFeilMeldingAtom, dialogSuksessMeldingAtom } from 'src/components/melding/MeldingPanel';
-import { useMeldinger, usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
-import { aktivBrukerAtom } from 'src/lib/state/context';
-import { overskridKontaktReservasjonAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
+import { ReservertIKRRAlert } from 'src/components/melding/ReservertIKRRAlert';
+import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
+import { svarUnderArbeidAtom } from 'src/lib/state/dialog';
 import { type Traad, type TraadDto, TraadType } from 'src/lib/types/modiapersonoversikt-api';
 import { type Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
@@ -20,34 +20,6 @@ export const SendMelding = () => {
     const { data: traader, isLoading } = useTraader();
 
     return <>{isLoading ? <Skeleton variant="rectangle" height="100%" /> : <SendMeldingContent traader={traader} />}</>;
-};
-
-const ReservertIKRR = () => {
-    const { data } = usePersonData();
-    const reservertIKRR = !!data?.person.kontaktInformasjon?.erReservert?.value;
-    const [overskridReservasjon, setOverskridReservasjon] = useAtom(overskridKontaktReservasjonAtom);
-
-    const aktivBruker = useAtomValue(aktivBrukerAtom);
-
-    useEffect(() => {
-        setOverskridReservasjon(false);
-    }, [aktivBruker]);
-
-    if (!reservertIKRR) return null;
-    return (
-        <InlineMessage size="small" status="error" className="mb-4">
-            Bruker er reservert fra digital utsendelse, og skal ikke kontaktes via dialogen i Modia personoversikt.
-            {!overskridReservasjon && (
-                <button
-                    type="button"
-                    className="aksel-link text-ax-text-danger cursor-pointer"
-                    onClick={() => setOverskridReservasjon((prev) => !prev)}
-                >
-                    Overskrid
-                </button>
-            )}
-        </InlineMessage>
-    );
 };
 
 const meldingsHeader = (traad?: TraadDto) => {
@@ -115,7 +87,7 @@ const SendMeldingContent = ({ traader }: { traader: Traad[] }) => {
                     />
                 )}
             </HStack>
-            <ReservertIKRR />
+            <ReservertIKRRAlert />
             {feedbackMelding ? (
                 <Card padding="space-8" as="section" aria-label="Dialogpanel">
                     <VStack gap="space-4">
