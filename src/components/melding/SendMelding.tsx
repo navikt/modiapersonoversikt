@@ -4,6 +4,7 @@ import { useAtom } from 'jotai';
 import { useEffect, useMemo, useState } from 'react';
 import { traadTypeTekst } from 'src/components/Meldinger/List/tekster';
 import { nyesteMelding, useTraader } from 'src/components/Meldinger/List/utils';
+import { IkkeOppgavebehandlendeEnhetAlert } from 'src/components/melding/IkkeOppgavebehandlendeEnhetAlert';
 import { dialogFeilMeldingAtom, dialogSuksessMeldingAtom } from 'src/components/melding/MeldingPanel';
 import { ReservertIKRRAlert } from 'src/components/melding/ReservertIKRRAlert';
 import { useMeldinger } from 'src/lib/clients/modiapersonoversikt-api';
@@ -88,6 +89,7 @@ const SendMeldingContent = ({ traader }: { traader: Traad[] }) => {
                 )}
             </HStack>
             <ReservertIKRRAlert />
+            <IkkeOppgavebehandlendeEnhetAlert />
             {feedbackMelding ? (
                 <Card padding="space-8" as="section" aria-label="Dialogpanel">
                     <VStack gap="space-4">
