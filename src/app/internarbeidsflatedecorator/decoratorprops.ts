@@ -31,7 +31,7 @@ interface Markup {
     etterSokefelt?: string; // Gir muligheten for å sende inn egen HTML som blir en del av dekoratøren
 }
 
-interface Enhet {
+export interface Enhet {
     readonly enhetId: string;
     readonly navn: string;
     readonly type?: string;
