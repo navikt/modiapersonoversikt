@@ -240,6 +240,7 @@ exports[`viser send ny melding 1`] = `
                         aria-describedby="Helt tilfeldig ID"
                         aria-invalid="false"
                         class="skjemaelement__input textarea--medMeta"
+                        disabled=""
                         id="Helt tilfeldig ID"
                         placeholder="Alt du skriver i denne boksen blir synlig for Aremark når du trykker "Del med Aremark""
                         style="height: 25px;"
@@ -420,6 +421,7 @@ exports[`viser send ny melding 1`] = `
                 aria-invalid="false"
                 checked=""
                 class="skjemaelement__input radioknapp"
+                disabled=""
                 id="Helt tilfeldig ID"
                 name="dialogtype"
                 type="radio"
@@ -437,6 +439,7 @@ exports[`viser send ny melding 1`] = `
               <input
                 aria-invalid="false"
                 class="skjemaelement__input radioknapp"
+                disabled=""
                 id="Helt tilfeldig ID"
                 name="dialogtype"
                 type="radio"
@@ -454,6 +457,7 @@ exports[`viser send ny melding 1`] = `
               <input
                 aria-invalid="false"
                 class="skjemaelement__input radioknapp"
+                disabled=""
                 id="Helt tilfeldig ID"
                 name="dialogtype"
                 type="radio"
@@ -486,6 +490,7 @@ exports[`viser send ny melding 1`] = `
                   <select
                     aria-invalid="false"
                     class="skjemaelement__input"
+                    disabled=""
                     id="Helt tilfeldig ID"
                   >
                     <option
@@ -605,6 +610,7 @@ exports[`viser send ny melding 1`] = `
                   <select
                     aria-invalid="false"
                     class="skjemaelement__input"
+                    disabled=""
                     id="Helt tilfeldig ID"
                   >
                     <option
@@ -682,7 +688,8 @@ exports[`viser send ny melding 1`] = `
             class="c17"
           >
             <button
-              class="knapp knapp--hoved"
+              class="knapp knapp--hoved knapp--disabled"
+              disabled=""
               type="submit"
             >
               Del med Aremark
