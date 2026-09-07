@@ -1,6 +1,7 @@
 import { SkjemaGruppe } from 'nav-frontend-skjema';
 import SkjemaelementFeilmelding from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 import { useRef } from 'react';
+import { useDisableDialog } from 'src/lib/state/dialog';
 import styled from 'styled-components';
 import AutocompleteTextarea from '../../../../components/autocomplete-textarea/autocomplete-textarea';
 import theme from '../../../../styles/personOversiktTheme';
@@ -47,7 +48,7 @@ function appendTekst(
 
 function TekstFelt(props: Props) {
     const textareaRef = useRef<HTMLTextAreaElement>(null);
-
+    const disableDialog = useDisableDialog();
     return (
         <StyledSkjemagruppe
             feil={
@@ -57,6 +58,7 @@ function TekstFelt(props: Props) {
             <StandardTekstModal appendTekst={appendTekst(props.tekst, props.updateTekst, textareaRef.current)} />
             <TextareaWrapper>
                 <AutocompleteTextarea
+                    disabled={disableDialog}
                     value={props.tekst}
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     //biome-ignore lint/suspicious/noAssignInExpressions: biome migration

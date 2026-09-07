@@ -1,6 +1,7 @@
 import { Select, SkjemaGruppe } from 'nav-frontend-skjema';
 import SkjemaelementFeilmelding from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 import { type ChangeEvent, useEffect } from 'react';
+import { useDisableDialog } from 'src/lib/state/dialog';
 import styled from 'styled-components';
 import { type Temagruppe, temagruppeTekst } from '../../../../models/temagrupper';
 import theme from '../../../../styles/personOversiktTheme';
@@ -20,7 +21,7 @@ const StyledSelect = styled(Select)`
 
 function Temavelger(props: Props) {
     let selectRef: HTMLSelectElement | null = null;
-
+    const disableDialog = useDisableDialog();
     useEffect(() => {
         if (props.visFeilmelding) {
             if (selectRef) selectRef.focus();
@@ -49,6 +50,7 @@ function Temavelger(props: Props) {
                 label="Tema"
                 onChange={velgTemaHandler}
                 value={props.valgtTema ? props.valgtTema : ''}
+                disabled={disableDialog}
             >
                 <option value="" disabled>
                     Velg temagruppe
