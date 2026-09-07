@@ -2,6 +2,7 @@ import { Accordion, Box, Heading, VStack } from '@navikt/ds-react';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
 import { harFeilendeSystemer } from '../../utils';
+import { IngenInfo } from '../components';
 import Barn from './Barn';
 import Foreldre from './Foreldre';
 import ForeldreansvarListe from './ForeldreansvarListe';
@@ -19,7 +20,16 @@ function Familie() {
     );
 
     if (!person) {
-        return <></>;
+        return <IngenInfo tekst="Ingen info om familie" />;
+    }
+
+    const harFamilieinfo =
+        person.sivilstand.isNotEmpty() ||
+        person.forelderBarnRelasjon.isNotEmpty() ||
+        person.foreldreansvar.isNotEmpty();
+
+    if (!harFamilieinfo) {
+        return <IngenInfo tekst="Ingen info om familie" />;
     }
 
     return (

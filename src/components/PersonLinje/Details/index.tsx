@@ -91,11 +91,11 @@ const PersonlinjeDetails = () => {
                     className="px-4 py-4 lg:pl-17 lg:pr-8 lg:py-6"
                     style={bakgrunn ? { backgroundColor: bakgrunn } : undefined}
                 >
-                    <HGrid columns={{ xs: 1, lg: '7fr 3fr' }} gap={{ xs: 'space-24', lg: 'space-32' }} align="start">
+                    <HGrid columns={{ xs: 1, lg: '7fr 3fr' }} gap={{ xs: 'space-24', lg: 'space-32' }}>
                         <Box className="lg:pr-8 lg:pt-6">
                             <TopKort />
                         </Box>
-                        <Box className="border-t border-ax-border-neutral-subtle pt-6 lg:border-t-0 lg:border-l lg:pl-8 lg:pt-6">
+                        <Box className="border-t border-ax-border-neutral-subtle pt-6 empty:hidden lg:border-t-0 lg:border-l lg:pl-8 lg:pt-6">
                             <NavKontor />
                         </Box>
                     </HGrid>

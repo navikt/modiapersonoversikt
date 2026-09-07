@@ -1,7 +1,6 @@
-import { GlobeFillIcon } from '@navikt/aksel-icons';
 import { Accordion, BodyShort, Box, HStack } from '@navikt/ds-react';
 import ValidPeriod from 'src/components/PersonLinje/common/ValidPeriod';
-import { LastChanged } from 'src/components/PersonLinje/Details/components';
+import { IngenInfo, LastChanged } from 'src/components/PersonLinje/Details/components';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { formaterDato } from 'src/utils/string-utils';
 
@@ -10,7 +9,7 @@ export default function Flytting() {
     const person = data?.person;
 
     if (!person || (person.innflyttingTilNorge.isEmpty() && person.utflyttingFraNorge.isEmpty())) {
-        return <></>;
+        return <IngenInfo tekst="Ingen info om flytting" />;
     }
 
     return (
@@ -19,7 +18,6 @@ export default function Flytting() {
                 <Accordion.Item>
                     <Accordion.Header>
                         <HStack gap="space-2" align="center">
-                            <GlobeFillIcon aria-hidden fontSize="1rem" color="var(--ax-neutral-500)" />
                             Flyttet fra
                         </HStack>
                     </Accordion.Header>
@@ -41,7 +39,6 @@ export default function Flytting() {
                 <Accordion.Item>
                     <Accordion.Header>
                         <HStack gap="space-2" align="center">
-                            <GlobeFillIcon aria-hidden fontSize="1rem" color="var(--ax-neutral-500)" />
                             Flyttet til
                         </HStack>
                     </Accordion.Header>

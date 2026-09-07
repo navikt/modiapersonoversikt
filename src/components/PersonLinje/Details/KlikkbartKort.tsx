@@ -10,7 +10,7 @@ type Props = PropsWithChildren<{
 }> &
     Omit<CardProps, 'onClick' | 'onKeyDown' | 'onKeyUp' | 'role' | 'tabIndex' | 'aria-label' | 'children'>;
 
-function KlikkbartKort({ ariaLabel, onAktiver, children, style, ...rest }: Props) {
+function KlikkbartKort({ ariaLabel, onAktiver, children, style, borderRadius = '8', ...rest }: Props) {
     const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
         if (event.key === ' ') {
             event.preventDefault();
@@ -32,6 +32,7 @@ function KlikkbartKort({ ariaLabel, onAktiver, children, style, ...rest }: Props
     return (
         <Card
             {...rest}
+            borderRadius={borderRadius}
             style={{ cursor: 'pointer', ...style }}
             role="button"
             tabIndex={0}

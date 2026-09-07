@@ -4,7 +4,7 @@ import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { type PersonData, PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
 import ValidPeriod from '../common/ValidPeriod';
 import { harFeilendeSystemer, hentNavn } from '../utils';
-import { InfoElement } from './components';
+import { InfoElement, IngenInfo } from './components';
 
 type Verge = PersonData['vergemal'][0];
 
@@ -61,7 +61,7 @@ function Vergemal() {
     const feilendeSystemer = data?.feilendeSystemer ?? [];
 
     if (!vergemal || vergemal.isEmpty()) {
-        return null;
+        return <IngenInfo tekst="Ingen info om verge" />;
     }
 
     return (

@@ -11,6 +11,7 @@ import type { Tiltakspenger } from 'src/models/ytelse/tiltakspenger';
 import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
 import { formatterDato } from 'src/utils/date-utils';
 import { NOKellerNull } from 'src/utils/string-utils';
+import { SeksjonFeil } from '../components';
 import KlikkbartKort from '../KlikkbartKort';
 
 type StatusKode = 'lopende' | 'tilBehandling' | 'stanset' | 'avsluttet';
@@ -256,7 +257,7 @@ function YtelseKort({ ytelse }: { ytelse: YtelseVedtak }) {
 }
 
 function YtelserOversikt() {
-    const { data: alleYtelser = [], isLoading } = useFilterYtelser();
+    const { data: alleYtelser = [], isLoading, errorMessages } = useFilterYtelser();
 
     if (isLoading) {
         return (
@@ -273,7 +274,9 @@ function YtelserOversikt() {
     });
 
     if (ytelser.length === 0) {
-        return (
+        return errorMessages.length > 0 ? (
+            <SeksjonFeil feilmeldinger={errorMessages} />
+        ) : (
             <BodyShort size="small" textColor="subtle">
                 Ingen aktive ytelser
             </BodyShort>
@@ -281,12 +284,15 @@ function YtelserOversikt() {
     }
 
     return (
-        <VStack gap="space-16" as="ul" style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-            {ytelser.map((ytelse) => (
-                <li key={getUnikYtelseKey(ytelse)}>
-                    <YtelseKort ytelse={ytelse} />
-                </li>
-            ))}
+        <VStack gap="space-16">
+            {errorMessages.length > 0 && <SeksjonFeil feilmeldinger={errorMessages} />}
+            <VStack gap="space-16" as="ul" style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                {ytelser.map((ytelse) => (
+                    <li key={getUnikYtelseKey(ytelse)}>
+                        <YtelseKort ytelse={ytelse} />
+                    </li>
+                ))}
+            </VStack>
         </VStack>
     );
 }

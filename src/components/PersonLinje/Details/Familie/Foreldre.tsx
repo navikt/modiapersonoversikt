@@ -2,6 +2,7 @@ import { VStack } from '@navikt/ds-react';
 import type { PersonData } from 'src/lib/types/modiapersonoversikt-api';
 import { capitalizeName } from 'src/utils/string-utils';
 import { hentForeldre } from '../../utils';
+import { IngenInfo } from '../components';
 import { ForelderBarnRelasjonVisning } from './components';
 
 type ForelderBarnRelasjon = PersonData['forelderBarnRelasjon'][0];
@@ -13,6 +14,10 @@ type Props = {
 
 function Foreldre({ harFeilendeSystem, forelderBarnRelasjon }: Props) {
     const foreldre = hentForeldre(forelderBarnRelasjon);
+
+    if (foreldre.isEmpty()) {
+        return <IngenInfo tekst="Ingen registrerte foreldre" />;
+    }
 
     return (
         <VStack gap="space-8">

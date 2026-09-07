@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { guid } from 'nav-frontend-js-utils';
 import type { OpprettOppgaveRequestDto, OpprettOppgaveResponseDto } from 'src/generated/modiapersonoversikt-api';
 import type { Oppgave } from '../../models/meldinger/oppgave';
@@ -26,7 +27,15 @@ export class OppgaverBackendMock {
                 oppgaveId: id,
                 fnr: oppgave.fnr,
                 erSTOOppgave: false,
-                traadId: traad?.traadId ?? oppgave.behandlingskjedeId
+                traadId: traad?.traadId ?? oppgave.behandlingskjedeId,
+                tema: oppgave.temaKode,
+                oppgavetype: oppgave.oppgaveTypeKode,
+                prioritet: oppgave.prioritetKode,
+                // Frontend sender kun `dagerFrist`; ekte frist beregnes av backend.
+                // Merk: her regnes kalenderdager, mens backend trolig bruker virkedager.
+                fristFerdigstillelse: dayjs()
+                    .add(oppgave.dagerFrist ?? 0, 'day')
+                    .format('YYYY-MM-DD')
             });
         }
 

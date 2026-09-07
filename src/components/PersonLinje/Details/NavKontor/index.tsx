@@ -1,5 +1,4 @@
 import {
-    Alert,
     BodyShort,
     Detail,
     Heading,
@@ -16,16 +15,25 @@ import QueryErrorBoundary from 'src/components/QueryErrorBoundary';
 import { useArbeidsoppfolging, useBaseUrls, usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
 import NavLogoNy from 'src/svg/navLogoNy.svg';
-import { harFeilendeSystemer, mapUgyldigGT } from '../../utils';
+import { harFeilendeSystemer } from '../../utils';
 import { Adresseinfo } from '../components';
 
 const IKKE_TILGJENGELIG = 'Ikke tilgjengelig';
 const STENGT = 'Stengt';
+const UKJENT = 'Ukjent';
+
+/** Om vi mottar "Ukjent" for både åpning og stenging av Nav-kontor settes verdien til "Ukjent" */
+function formaterApningstid(apningstid: string): string {
+    const deler = apningstid.split('-').map((del) => del.trim());
+    const alleUkjente = deler.length > 1 && deler.every((del) => del.toLowerCase() === UKJENT.toLowerCase());
+    return alleUkjente ? UKJENT : apningstid;
+}
 
 function hentDagensApningstid(apningstider: { ukedag: string; apningstid: string }[]): string | null {
     if (apningstider.length === 0) return null;
     const dagensUkedag = new Date().toLocaleDateString('nb-NO', { weekday: 'long' }).toLowerCase();
-    return apningstider.find((a) => a.ukedag.toLowerCase() === dagensUkedag)?.apningstid ?? STENGT;
+    const apningstid = apningstider.find((a) => a.ukedag.toLowerCase() === dagensUkedag)?.apningstid;
+    return apningstid === undefined ? STENGT : formaterApningstid(apningstid);
 }
 
 function IkkeTilgjengelig() {
@@ -53,7 +61,7 @@ function KontorLenke({ navEnhetId }: { navEnhetId: string }) {
         <QueryErrorBoundary loading={isLoading} error={error} loader={<Skeleton variant="text" />}>
             <Detail>
                 <Link href={`${baseUrl}/#/startsok?enhetNr=${navEnhetId}`} target="_blank" rel="noopener noreferrer">
-                    Fler detaljer om kontoret
+                    Flere detaljer om kontoret
                 </Link>
             </Detail>
         </QueryErrorBoundary>
@@ -83,12 +91,12 @@ function NavKontor() {
             <VStack gap="space-16">
                 <HStack justify="space-between" align="center">
                     <Heading size="small" level="2">
-                        Ukjent NAV-kontor
+                        Ukjent Nav-kontor
                     </Heading>
                     <NavLogoNy style={{ height: '1.2rem', width: 'auto' }} aria-hidden />
                 </HStack>
                 <InlineMessage status="warning" size="small">
-                    Feilet ved uthenting av informasjon om NAV-kontor
+                    Feilet ved uthenting av informasjon om Nav-kontor
                 </InlineMessage>
             </VStack>
         );
@@ -103,13 +111,13 @@ function NavKontor() {
             <VStack gap="space-16">
                 <HStack justify="space-between" align="center">
                     <Heading size="small" level="2">
-                        {mapUgyldigGT(geografiskTilknytning)}
+                        Ukjent Nav-kontor
                     </Heading>
                     <NavLogoNy style={{ height: '1.2rem', width: 'auto' }} aria-hidden />
                 </HStack>
-                <Alert variant="warning" size="small">
-                    Fant ikke geografisk tilknyttning for bruker
-                </Alert>
+                <InlineMessage status="warning" size="small">
+                    Fant ikke geografisk tilknytning for bruker
+                </InlineMessage>
             </VStack>
         );
     }

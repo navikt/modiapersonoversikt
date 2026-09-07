@@ -2,6 +2,7 @@ import { VStack } from '@navikt/ds-react';
 import type { PersonData } from 'src/lib/types/modiapersonoversikt-api';
 import { capitalizeName } from 'src/utils/string-utils';
 import { harDiskresjonskode, hentBarnUnder22 } from '../../utils';
+import { IngenInfo } from '../components';
 import { ForelderBarnRelasjonVisning } from './components';
 
 type ForelderBarnRelasjon = PersonData['forelderBarnRelasjon'][0];
@@ -29,6 +30,10 @@ function hentKjonnBeskrivelseForBarn(barn: ForelderBarnRelasjon) {
 
 function Barn({ harFeilendeSystem, relasjoner }: Props) {
     const barnUnder22 = hentBarnUnder22(relasjoner);
+
+    if (barnUnder22.isEmpty()) {
+        return <IngenInfo tekst="Ingen registrerte barn" />;
+    }
 
     return (
         <VStack gap="space-32">

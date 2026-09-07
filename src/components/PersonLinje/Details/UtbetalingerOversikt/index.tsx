@@ -8,9 +8,11 @@ import {
     getUtbetalingId,
     utbetalingDatoComparator
 } from 'src/components/Utbetaling/utils';
+import { errorPlaceholder, responseErrorMessage } from 'src/components/ytelser/utils';
 import type { Utbetaling } from 'src/generated/modiapersonoversikt-api';
 import { useUtbetalinger } from 'src/lib/clients/modiapersonoversikt-api';
 import { formatterDato } from 'src/utils/date-utils';
+import { SeksjonFeil } from '../components';
 
 const START_DATO = dayjs().subtract(1, 'year').format('YYYY-MM-DD');
 const SLUTT_DATO = dayjs().add(3, 'month').format('YYYY-MM-DD');
@@ -27,7 +29,8 @@ function hentUtbetalingStatus(dato: string | null | undefined): {
 }
 
 function UtbetalingerOversikt() {
-    const { data, isLoading } = useUtbetalinger(START_DATO, SLUTT_DATO);
+    const utbetalingerResponse = useUtbetalinger(START_DATO, SLUTT_DATO);
+    const { data, isLoading } = utbetalingerResponse;
 
     if (isLoading) {
         return (
@@ -39,12 +42,17 @@ function UtbetalingerOversikt() {
         );
     }
 
+    const feilmelding = errorPlaceholder(utbetalingerResponse, responseErrorMessage('utbetalinger'));
+    if (feilmelding) {
+        return <SeksjonFeil feilmeldinger={[feilmelding]} />;
+    }
+
     const utbetalinger = (data?.utbetalinger ?? []).toSorted(utbetalingDatoComparator).slice(0, 5);
 
     if (utbetalinger.length === 0) {
         return (
             <BodyShort size="small" textColor="subtle">
-                Ingen utbetalinger i perioden
+                Ingen utbetalinger
             </BodyShort>
         );
     }
