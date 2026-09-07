@@ -3,7 +3,7 @@ import { useAtom, useAtomValue } from 'jotai';
 import { useEffect } from 'react';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { aktivBrukerAtom } from 'src/lib/state/context';
-import { overskridKontaktReservasjonAtom } from 'src/lib/state/dialog';
+import { overskridKontaktReservasjonAtom, useErAktivEnhetErOppgavebehandler } from 'src/lib/state/dialog';
 
 export const ReservertIKRRAlert = () => {
     const { data } = usePersonData();
@@ -11,6 +11,9 @@ export const ReservertIKRRAlert = () => {
     const [overskridReservasjon, setOverskridReservasjon] = useAtom(overskridKontaktReservasjonAtom);
 
     const aktivBruker = useAtomValue(aktivBrukerAtom);
+    const aktivEnhetErOppgavebehandler = useErAktivEnhetErOppgavebehandler();
+
+    const visOverskridKnapp = !overskridReservasjon && aktivEnhetErOppgavebehandler;
 
     useEffect(() => {
         setOverskridReservasjon(false);
@@ -20,7 +23,7 @@ export const ReservertIKRRAlert = () => {
     return (
         <InlineMessage size="small" status="error" className="mb-4">
             Bruker er reservert fra digital utsendelse, og skal ikke kontaktes via dialogen i Modia personoversikt.
-            {!overskridReservasjon && (
+            {visOverskridKnapp && (
                 <button
                     type="button"
                     className="aksel-link text-ax-text-danger cursor-pointer"

@@ -13,12 +13,16 @@ export const meldingPanelIsOpenAtom = atom(
 
 export const ekspanderSidebarAtom = atomWithStorage<boolean>('ekspander-sidebar', true);
 
+export const useErAktivEnhetErOppgavebehandler = () => {
+    const aktivEnhet = useAtomValue(aktivEnhetObjektAtom);
+    return aktivEnhet?.oppgavebehandler;
+};
+
 export const useDisableDialog = () => {
     const { data } = usePersonData();
     const reservertIKRR = !!data?.person.kontaktInformasjon?.erReservert?.value;
     const overskridReservasjon = useAtomValue(overskridKontaktReservasjonAtom);
-    const aktivEnhet = useAtomValue(aktivEnhetObjektAtom);
-    const aktivEnhetErIkkeOppgavebehandlende = !aktivEnhet?.oppgavebehandler;
+    const aktivEnhetErOppgavebehandler = useErAktivEnhetErOppgavebehandler();
 
-    return (reservertIKRR && !overskridReservasjon) || aktivEnhetErIkkeOppgavebehandlende;
+    return (reservertIKRR && !overskridReservasjon) || !aktivEnhetErOppgavebehandler;
 };
