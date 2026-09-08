@@ -20,7 +20,7 @@ export interface Enhet {
     enhetId: string;
     type?: string | null;
     gruppeId?: string | null;
-    oppgaveBehandler?: boolean | null;
+    oppgavebehandler?: boolean | null;
 }
 
 export interface SaksbehandlersEnheter {
