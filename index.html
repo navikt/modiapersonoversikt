@@ -14,21 +14,29 @@
     <link rel="preload" href="https://cdn.nav.no/aksel/fonts/SourceSans3-normal.woff2" as="font" type="font/woff2" crossorigin/>
     <script>
         window.beforeSendAnalytics = (_event, payload) => {
-            const clearSearchParam = (href) => {
+            // fnr kan forekomme i url som f.eks /person/12345678901 eller /person/12345678901/meldinger.
+            const FNR_I_STI = /\/\d{11}(?=[/?#]|$)/g;
+            const FNR_MASKE = '/***********';
+
+            const vaskUrl = (href) => {
+                if (typeof href !== 'string' || href === '') {
+                    return href;
+                }
                 try {
-                    const url = new URL(href);
+                    const url = new URL(href, window.location.origin);
                     url.search = '';
+                    url.pathname = url.pathname.replace(FNR_I_STI, FNR_MASKE);
                     return url.toString();
                 } catch {
-                    return href;
+                    return href.replace(/\?[^#]*/, '').replace(FNR_I_STI, FNR_MASKE);
                 }
             }
 
             if (payload.url.includes('localhost')) return false;
             return {
             ...payload,
-                    url: clearSearchParam(payload.url),
-                    referrer: clearSearchParam(payload.referrer)
+                    url: vaskUrl(payload.url),
+                    referrer: vaskUrl(payload.referrer)
             }
     };
     </script>
