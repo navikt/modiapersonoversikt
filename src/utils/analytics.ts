@@ -19,6 +19,7 @@ export enum trackingEvents {
     expansionCardLukket = 'expansion card lukket',
     faneEndret = 'fane endret',
     lenkeKlikketFraOversikt = 'linke klikket fra oversikt',
+    lenkeKlikketFraHjem = 'linke klikket fra hjem',
     hotkeyBrukt = 'hotkey brukt',
 
     // Denne er også i bruk i internflatedekoratøren

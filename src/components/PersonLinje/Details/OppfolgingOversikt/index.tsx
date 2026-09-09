@@ -2,6 +2,7 @@ import { CheckmarkCircleIcon, XMarkOctagonIcon } from '@navikt/aksel-icons';
 import { BodyShort, LinkCard, Skeleton, Tag, VStack } from '@navikt/ds-react';
 import { Link } from '@tanstack/react-router';
 import { useArbeidsoppfolging, useGjeldende14aVedtak } from 'src/lib/clients/modiapersonoversikt-api';
+import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import { twMerge } from 'tailwind-merge';
 import { SeksjonFeil } from '../components';
 
@@ -35,7 +36,17 @@ function OppfolgingOversikt() {
             <LinkCard size="small" className={twMerge('rounded-(--ax-radius-8)!', 'bg-ax-bg-warning-soft!')}>
                 <LinkCard.Title as="span">
                     <LinkCard.Anchor asChild>
-                        <Link to="/new/person/oppfolging" aria-label="Arbeidsoppfølging – gå til oppfølging">
+                        <Link
+                            to="/new/person/oppfolging"
+                            aria-label="Arbeidsoppfølging – gå til oppfølging"
+                            onClick={() =>
+                                trackGenereltUmamiEvent(trackingEvents.lenkeKlikketFraHjem, {
+                                    fane: 'hjem',
+                                    kort: 'oppfølging',
+                                    tekst: 'lenke til oppfolging'
+                                })
+                            }
+                        >
                             Arbeidsoppfølging
                         </Link>
                     </LinkCard.Anchor>

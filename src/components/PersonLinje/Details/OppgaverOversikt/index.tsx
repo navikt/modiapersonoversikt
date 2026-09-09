@@ -27,6 +27,7 @@ import { useMeldinger, usePersonOppgaver } from 'src/lib/clients/modiapersonover
 import { svarUnderArbeidAtom } from 'src/lib/state/dialog';
 import type { Melding } from 'src/lib/types/modiapersonoversikt-api';
 import { Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
+import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import { datoEllerNull } from 'src/utils/string-utils';
 import { SeksjonFeil } from '../components';
 
@@ -102,7 +103,18 @@ function OppgaveKort({ traad, oppgave, erTildelt }: { traad: TraadDto; oppgave?:
         <LinkCard size="small" className="rounded-(--ax-radius-8)!">
             <LinkCard.Title as="span" className="min-w-0 truncate">
                 <LinkCard.Anchor asChild>
-                    <Link to="/new/person/meldinger" search={{ traadId: traad.traadId }} aria-label={ariaLabel}>
+                    <Link
+                        to="/new/person/meldinger"
+                        search={{ traadId: traad.traadId }}
+                        aria-label={ariaLabel}
+                        onClick={() =>
+                            trackGenereltUmamiEvent(trackingEvents.lenkeKlikketFraHjem, {
+                                fane: 'hjem',
+                                kort: 'oppgaver',
+                                tekst: `lenke til meldinger (${tema})`
+                            })
+                        }
+                    >
                         {tema} ({tittel})
                     </Link>
                 </LinkCard.Anchor>

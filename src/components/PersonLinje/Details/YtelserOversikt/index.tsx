@@ -7,6 +7,7 @@ import type { Dagpenger, PensjonSak, Sykepenger, SykepengerSpokelse } from 'src/
 import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaringspenger';
 import type { Tiltakspenger } from 'src/models/ytelse/tiltakspenger';
 import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
+import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import { formatterDato } from 'src/utils/date-utils';
 import { NOKellerNull } from 'src/utils/string-utils';
 import { twMerge } from 'tailwind-merge';
@@ -128,6 +129,13 @@ function YtelseKort({ ytelse }: { ytelse: YtelseVedtak }) {
                         to="/new/person/ytelser"
                         search={{ id: getUnikYtelseKey(ytelse) }}
                         aria-label={`${tittel} – gå til ytelse`}
+                        onClick={() =>
+                            trackGenereltUmamiEvent(trackingEvents.lenkeKlikketFraHjem, {
+                                fane: 'hjem',
+                                kort: 'ytelser',
+                                tekst: `lenke til ytelser (${tittel})`
+                            })
+                        }
                     >
                         {tittel}
                     </Link>
