@@ -1,12 +1,11 @@
-import { CheckmarkCircleIcon, ChevronRightIcon, XMarkOctagonIcon } from '@navikt/aksel-icons';
-import { BodyShort, HStack, Skeleton, Tag, VStack } from '@navikt/ds-react';
-import { useNavigate } from '@tanstack/react-router';
+import { CheckmarkCircleIcon, XMarkOctagonIcon } from '@navikt/aksel-icons';
+import { BodyShort, LinkCard, Skeleton, Tag, VStack } from '@navikt/ds-react';
+import { Link } from '@tanstack/react-router';
 import { useArbeidsoppfolging, useGjeldende14aVedtak } from 'src/lib/clients/modiapersonoversikt-api';
+import { twMerge } from 'tailwind-merge';
 import { SeksjonFeil } from '../components';
-import KlikkbartKort from '../KlikkbartKort';
 
 function OppfolgingOversikt() {
-    const navigate = useNavigate();
     const { data, isLoading, errorMessages: oppfolgingFeil } = useArbeidsoppfolging();
     const { data: vedtakData, isLoading: isLoadingVedtak, errorMessages: vedtakFeil } = useGjeldende14aVedtak();
 
@@ -33,31 +32,29 @@ function OppfolgingOversikt() {
     return (
         <VStack gap="space-8">
             {vedtakFeil.length > 0 && <SeksjonFeil feilmeldinger={vedtakFeil} />}
-            <KlikkbartKort
-                padding="space-12"
-                className="bg-ax-bg-warning-soft"
-                ariaLabel="Arbeidsoppfølging – gå til oppfølging"
-                onAktiver={() => navigate({ to: '/new/person/oppfolging' })}
-            >
-                <HStack justify="space-between" align="center" wrap={false} gap="space-8">
-                    <VStack gap="space-24" minWidth="0">
-                        <VStack gap="space-4">
-                            <BodyShort size="small" weight="semibold">
-                                Arbeidsoppfølging
-                            </BodyShort>
-                            {veileder && (
-                                <BodyShort size="small" textColor="subtle">
-                                    Veileder: {veileder.navn} ({veileder.ident})
-                                </BodyShort>
-                            )}
-                        </VStack>
-                        {vedtakFeil.length > 0 ? null : vedtakData?.gjeldende14aVedtak ? (
+            <LinkCard size="small" className={twMerge('rounded-(--ax-radius-8)!', 'bg-ax-bg-warning-soft!')}>
+                <LinkCard.Title as="span">
+                    <LinkCard.Anchor asChild>
+                        <Link to="/new/person/oppfolging" aria-label="Arbeidsoppfølging – gå til oppfølging">
+                            Arbeidsoppfølging
+                        </Link>
+                    </LinkCard.Anchor>
+                </LinkCard.Title>
+                {veileder && (
+                    <LinkCard.Description>
+                        <BodyShort size="small" textColor="subtle">
+                            Veileder: {veileder.navn} ({veileder.ident})
+                        </BodyShort>
+                    </LinkCard.Description>
+                )}
+                {vedtakFeil.length === 0 && (
+                    <LinkCard.Footer>
+                        {vedtakData?.gjeldende14aVedtak ? (
                             <Tag
                                 data-color="success"
                                 variant="moderate"
                                 size="small"
                                 icon={<CheckmarkCircleIcon aria-hidden />}
-                                className="w-fit"
                             >
                                 § 14 a-vedtak
                             </Tag>
@@ -67,15 +64,13 @@ function OppfolgingOversikt() {
                                 variant="moderate"
                                 size="small"
                                 icon={<XMarkOctagonIcon aria-hidden />}
-                                className="w-fit"
                             >
                                 Ikke § 14 a-vedtak
                             </Tag>
                         )}
-                    </VStack>
-                    <ChevronRightIcon fontSize="1.5rem" aria-hidden className="shrink-0" />
-                </HStack>
-            </KlikkbartKort>
+                    </LinkCard.Footer>
+                )}
+            </LinkCard>
         </VStack>
     );
 }

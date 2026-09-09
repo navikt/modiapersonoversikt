@@ -10,10 +10,13 @@ import {
     Skeleton,
     VStack
 } from '@navikt/ds-react';
+import { useAtomValue } from 'jotai';
 import type { ReactNode } from 'react';
 import QueryErrorBoundary from 'src/components/QueryErrorBoundary';
 import { useArbeidsoppfolging, useBaseUrls, usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
+import { themeAtom } from 'src/lib/state/theme';
 import { PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
+import NavLogoWhite from 'src/svg/NavLogoWhite.svg';
 import NavLogoNy from 'src/svg/navLogoNy.svg';
 import { harFeilendeSystemer } from '../../utils';
 import { Adresseinfo } from '../components';
@@ -81,6 +84,7 @@ function Veileder() {
 
 function NavKontor() {
     const { data } = usePersonData();
+    const theme = useAtomValue(themeAtom);
     const person = data?.person;
     const feilendeSystemer = data?.feilendeSystemer ?? [];
     const geografiskTilknytning = person?.geografiskTilknytning;
@@ -93,7 +97,15 @@ function NavKontor() {
                     <Heading size="small" level="2">
                         Ukjent Nav-kontor
                     </Heading>
-                    <NavLogoNy className="h-[1.2rem] w-auto" aria-hidden />
+                    {theme === 'light' ? (
+                        <NavLogoNy className="h-[1.2rem] w-auto shrink-0" aria-hidden />
+                    ) : (
+                        <NavLogoWhite
+                            viewBox="325.1 269.8 191.2 56.8"
+                            className="h-[1.2rem] w-auto shrink-0"
+                            aria-hidden
+                        />
+                    )}
                 </HStack>
                 <InlineMessage status="warning" size="small">
                     Feilet ved uthenting av informasjon om Nav-kontor
@@ -113,7 +125,15 @@ function NavKontor() {
                     <Heading size="small" level="2">
                         Ukjent Nav-kontor
                     </Heading>
-                    <NavLogoNy className="h-[1.2rem] w-auto" aria-hidden />
+                    {theme === 'light' ? (
+                        <NavLogoNy className="h-[1.2rem] w-auto shrink-0" aria-hidden />
+                    ) : (
+                        <NavLogoWhite
+                            viewBox="325.1 269.8 191.2 56.8"
+                            className="h-[1.2rem] w-auto shrink-0"
+                            aria-hidden
+                        />
+                    )}
                 </HStack>
                 <InlineMessage status="warning" size="small">
                     Fant ikke geografisk tilknytning for bruker
@@ -132,7 +152,11 @@ function NavKontor() {
                 <Heading size="small" level="2">
                     {navEnhet.navn}
                 </Heading>
-                <NavLogoNy className="h-[1.2rem] w-auto shrink-0" aria-hidden />
+                {theme === 'light' ? (
+                    <NavLogoNy className="h-[1.2rem] w-auto shrink-0" aria-hidden />
+                ) : (
+                    <NavLogoWhite viewBox="325.1 269.8 191.2 56.8" className="h-[1.2rem] w-auto shrink-0" aria-hidden />
+                )}
             </HStack>
 
             <Veileder />

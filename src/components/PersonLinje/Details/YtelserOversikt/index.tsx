@@ -1,6 +1,5 @@
-import { ChevronRightIcon } from '@navikt/aksel-icons';
-import { BodyShort, HStack, Skeleton, VStack } from '@navikt/ds-react';
-import { useNavigate } from '@tanstack/react-router';
+import { BodyShort, LinkCard, Skeleton, VStack } from '@navikt/ds-react';
+import { Link } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import { getUnikYtelseKey, useFilterYtelser, type YtelseVedtak } from 'src/components/ytelser/utils';
 import { type Foreldrepenger, ForeldrepengerYtelse } from 'src/generated/modiapersonoversikt-api';
@@ -10,8 +9,8 @@ import type { Tiltakspenger } from 'src/models/ytelse/tiltakspenger';
 import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
 import { formatterDato } from 'src/utils/date-utils';
 import { NOKellerNull } from 'src/utils/string-utils';
+import { twMerge } from 'tailwind-merge';
 import { SeksjonFeil } from '../components';
-import KlikkbartKort from '../KlikkbartKort';
 
 function hentYtelsePeriode(ytelse: YtelseVedtak): string | null {
     switch (ytelse.ytelseType) {
@@ -117,26 +116,26 @@ function getYtelseTittel(ytelse: YtelseVedtak): string {
 }
 
 function YtelseKort({ ytelse }: { ytelse: YtelseVedtak }) {
-    const navigate = useNavigate();
     const periode = hentYtelsePeriode(ytelse);
     const ekstraInfo = hentYtelseEkstraInfo(ytelse);
     const tittel = getYtelseTittel(ytelse);
 
-    const aapneYtelse = () => navigate({ to: '/new/person/ytelser', search: { id: getUnikYtelseKey(ytelse) } });
-
     return (
-        <KlikkbartKort
-            padding="space-12"
-            className="bg-ax-bg-info-soft"
-            ariaLabel={`${tittel} – gå til ytelse`}
-            onAktiver={aapneYtelse}
-        >
-            <HStack justify="space-between" align="center" wrap={false} gap="space-8">
-                <VStack gap="space-24" className="min-w-0">
+        <LinkCard size="small" className={twMerge('rounded-(--ax-radius-8)!', 'bg-ax-bg-info-soft!')}>
+            <LinkCard.Title as="span">
+                <LinkCard.Anchor asChild>
+                    <Link
+                        to="/new/person/ytelser"
+                        search={{ id: getUnikYtelseKey(ytelse) }}
+                        aria-label={`${tittel} – gå til ytelse`}
+                    >
+                        {tittel}
+                    </Link>
+                </LinkCard.Anchor>
+            </LinkCard.Title>
+            {(periode || ekstraInfo.length > 0) && (
+                <LinkCard.Description>
                     <VStack gap="space-4">
-                        <BodyShort size="small" weight="semibold">
-                            {tittel}
-                        </BodyShort>
                         {periode && (
                             <BodyShort size="small" textColor="subtle">
                                 {periode}
@@ -148,10 +147,9 @@ function YtelseKort({ ytelse }: { ytelse: YtelseVedtak }) {
                             </BodyShort>
                         ))}
                     </VStack>
-                </VStack>
-                <ChevronRightIcon fontSize="1.5rem" aria-hidden className="shrink-0" />
-            </HStack>
-        </KlikkbartKort>
+                </LinkCard.Description>
+            )}
+        </LinkCard>
     );
 }
 

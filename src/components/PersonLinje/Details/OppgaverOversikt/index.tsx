@@ -1,6 +1,5 @@
 import {
     BellIcon,
-    ChevronRightIcon,
     EnterIcon,
     PencilIcon,
     TabsRemoveIcon,
@@ -8,8 +7,8 @@ import {
     TrashIcon,
     XMarkOctagonIcon
 } from '@navikt/aksel-icons';
-import { BodyShort, Detail, HStack, Skeleton, Tag, VStack } from '@navikt/ds-react';
-import { useNavigate } from '@tanstack/react-router';
+import { BodyShort, Detail, HStack, LinkCard, Skeleton, Tag, VStack } from '@navikt/ds-react';
+import { Link } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import { atom, useAtomValue } from 'jotai';
 import { useMemo } from 'react';
@@ -30,7 +29,6 @@ import type { Melding } from 'src/lib/types/modiapersonoversikt-api';
 import { Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
 import { datoEllerNull } from 'src/utils/string-utils';
 import { SeksjonFeil } from '../components';
-import KlikkbartKort from '../KlikkbartKort';
 
 /** Maks antall oppgavekort i oversikten. Resten må saksbehandler se i Kommunikasjon. */
 const MAKS_ANTALL_OPPGAVER = 3;
@@ -70,7 +68,6 @@ function MetaFelt({ label, verdi }: { label: string; verdi?: string | null }) {
 }
 
 function OppgaveKort({ traad, oppgave, erTildelt }: { traad: TraadDto; oppgave?: OppgaveDto; erTildelt: boolean }) {
-    const navigate = useNavigate();
     const sisteMelding = nyesteMelding(traad) as Melding;
     const dato = getFormattertMeldingsDato(sisteMelding);
     const tittel = traadstittel(traad);
@@ -98,20 +95,21 @@ function OppgaveKort({ traad, oppgave, erTildelt }: { traad: TraadDto; oppgave?:
         .join(', ');
     const ariaLabel = `${tema} (${tittel})${metaBeskrivelse ? `, ${metaBeskrivelse}` : ''} – gå til meldinger`;
 
+    const avsluttet = Boolean(avsluttetDato) && !kanBesvares;
+    const harTags = Boolean(ubesvart || erUnderArbeid || feilsendt || slettet || erTildelt || avsluttet || sladdet);
+
     return (
-        <KlikkbartKort
-            padding="space-12"
-            borderWidth="1"
-            borderColor="neutral-subtle"
-            ariaLabel={ariaLabel}
-            onAktiver={() => navigate({ to: '/new/person/meldinger', search: { traadId: traad.traadId } })}
-        >
-            <HStack justify="space-between" align="center" wrap={false} gap="space-8">
+        <LinkCard size="small" className="rounded-(--ax-radius-8)!">
+            <LinkCard.Title as="span" className="min-w-0 truncate">
+                <LinkCard.Anchor asChild>
+                    <Link to="/new/person/meldinger" search={{ traadId: traad.traadId }} aria-label={ariaLabel}>
+                        {tema} ({tittel})
+                    </Link>
+                </LinkCard.Anchor>
+            </LinkCard.Title>
+            <LinkCard.Description>
                 <VStack gap="space-12" className="min-w-0">
                     <VStack gap="space-4" className="min-w-0">
-                        <BodyShort size="small" weight="semibold" truncate>
-                            {tema} ({tittel})
-                        </BodyShort>
                         <Detail textColor="subtle">{dato}</Detail>
                         {sisteMelding.fritekst && (
                             <Detail textColor="subtle" truncate>
@@ -126,62 +124,58 @@ function OppgaveKort({ traad, oppgave, erTildelt }: { traad: TraadDto; oppgave?:
                             <MetaFelt label="Frist" verdi={frist} />
                         </HStack>
                     )}
-                    <HStack gap="space-4" wrap>
-                        {ubesvart && (
-                            <Tag data-color="success" size="small" variant="moderate" icon={<BellIcon aria-hidden />}>
-                                Ny melding
-                            </Tag>
-                        )}
-                        {erUnderArbeid && (
-                            <Tag data-color="info" size="small" variant="moderate" icon={<PencilIcon aria-hidden />}>
-                                Under arbeid
-                            </Tag>
-                        )}
-                        {feilsendt && (
-                            <Tag
-                                data-color="meta-purple"
-                                size="small"
-                                variant="moderate"
-                                icon={<XMarkOctagonIcon aria-hidden />}
-                            >
-                                Feilsendt
-                            </Tag>
-                        )}
-                        {slettet && (
-                            <Tag data-color="danger" size="small" variant="moderate" icon={<TrashIcon aria-hidden />}>
-                                Slettet
-                            </Tag>
-                        )}
-                        {erTildelt && (
-                            <Tag
-                                data-color="meta-lime"
-                                size="small"
-                                variant="moderate"
-                                icon={<TasklistIcon aria-hidden />}
-                            >
-                                Tildelt meg
-                            </Tag>
-                        )}
-                        {avsluttetDato && !kanBesvares && (
-                            <Tag data-color="info" size="small" variant="moderate" icon={<EnterIcon aria-hidden />}>
-                                Avsluttet
-                            </Tag>
-                        )}
-                        {sladdet && (
-                            <Tag
-                                data-color="brand-magenta"
-                                size="small"
-                                variant="moderate"
-                                icon={<TabsRemoveIcon aria-hidden />}
-                            >
-                                Sladding
-                            </Tag>
-                        )}
-                    </HStack>
                 </VStack>
-                <ChevronRightIcon fontSize="1.5rem" aria-hidden className="shrink-0" />
-            </HStack>
-        </KlikkbartKort>
+            </LinkCard.Description>
+            {harTags && (
+                <LinkCard.Footer>
+                    {ubesvart && (
+                        <Tag data-color="success" size="small" variant="moderate" icon={<BellIcon aria-hidden />}>
+                            Ny melding
+                        </Tag>
+                    )}
+                    {erUnderArbeid && (
+                        <Tag data-color="info" size="small" variant="moderate" icon={<PencilIcon aria-hidden />}>
+                            Under arbeid
+                        </Tag>
+                    )}
+                    {feilsendt && (
+                        <Tag
+                            data-color="meta-purple"
+                            size="small"
+                            variant="moderate"
+                            icon={<XMarkOctagonIcon aria-hidden />}
+                        >
+                            Feilsendt
+                        </Tag>
+                    )}
+                    {slettet && (
+                        <Tag data-color="danger" size="small" variant="moderate" icon={<TrashIcon aria-hidden />}>
+                            Slettet
+                        </Tag>
+                    )}
+                    {erTildelt && (
+                        <Tag data-color="meta-lime" size="small" variant="moderate" icon={<TasklistIcon aria-hidden />}>
+                            Tildelt meg
+                        </Tag>
+                    )}
+                    {avsluttet && (
+                        <Tag data-color="info" size="small" variant="moderate" icon={<EnterIcon aria-hidden />}>
+                            Avsluttet
+                        </Tag>
+                    )}
+                    {sladdet && (
+                        <Tag
+                            data-color="brand-magenta"
+                            size="small"
+                            variant="moderate"
+                            icon={<TabsRemoveIcon aria-hidden />}
+                        >
+                            Sladding
+                        </Tag>
+                    )}
+                </LinkCard.Footer>
+            )}
+        </LinkCard>
     );
 }
 
