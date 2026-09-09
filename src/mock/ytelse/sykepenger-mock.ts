@@ -78,7 +78,7 @@ function getForsikring(): Forsikring {
 
 export function getMockSykmelding(): Sykmelding {
     return {
-        sykmelder: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        sykmelder: `${faker.person.firstName()} ${faker.person.lastName()}`,
         behandlet: dayjs(faker.date.past({ years: 1 })).format(backendDatoformat),
         sykmeldt: getPeriode(),
         sykmeldingsgrad: navfaker.random.integer(100),
