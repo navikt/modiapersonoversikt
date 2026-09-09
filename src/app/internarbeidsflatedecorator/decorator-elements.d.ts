@@ -3,7 +3,13 @@
 
 interface EnhetChangedDetail {
     enhet?: string | null;
-    enhetObjekt?: { enhetId: string; navn: string };
+    enhetObjekt?: {
+        enhetId: string;
+        navn: string;
+        type?: string | null;
+        gruppeId?: string | null;
+        oppgavebehandler?: boolean | null;
+    };
 }
 
 interface FnrChangedDetail {

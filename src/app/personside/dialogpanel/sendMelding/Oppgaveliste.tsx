@@ -1,4 +1,5 @@
 import Select from 'nav-frontend-skjema/lib/select';
+import { useDisableDialog } from 'src/lib/state/dialog';
 import styled from 'styled-components';
 import { useValgtenhet } from '../../../../context/valgtenhet-state';
 import saksbehandlersEnheter from '../../../../rest/resources/saksbehandlersEnheterResource';
@@ -25,8 +26,11 @@ function Oppgaveliste(props: Props) {
     const valgtEnhet = enheter.find((enhet) => enhet.enhetId === valgtEnhetId);
     const enhet = valgtEnhet?.navn ?? 'valgt enhet';
 
+    const disableDialog = useDisableDialog();
+
     return (
         <StyledSelect
+            disabled={disableDialog}
             label="Oppgaveliste"
             value={props.oppgaveliste}
             onChange={(event) => props.setOppgaveliste(event.target.value as OppgavelisteValg)}

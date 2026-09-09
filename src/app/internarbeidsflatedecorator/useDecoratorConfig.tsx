@@ -2,8 +2,7 @@ import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useCallback, useRef } from 'react';
 import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
 import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
-import { aktivBrukerAtom, aktivBrukerLastetAtom, aktivEnhetAtom } from 'src/lib/state/context';
-import type { Enhet } from 'src/rest/resources/saksbehandlersEnheterResource';
+import { aktivBrukerAtom, aktivBrukerLastetAtom, aktivEnhetAtom, aktivEnhetObjektAtom } from 'src/lib/state/context';
 import {
     identifyEnhetOgTypeUmami,
     trackBrukerEndret,
@@ -18,11 +17,12 @@ import { parseQueryString } from 'src/utils/url-utils';
 import config from '../../config';
 import bjelleIkon from '../../svg/bjelle.svg?raw';
 import { DecoratorButtonId as OppdateringsloggButtonId } from '../oppdateringslogg/OppdateringsloggContainer';
-import type { DecoratorPropsV3, Hotkey } from './decoratorprops';
+import type { DecoratorPropsV3, Enhet, Hotkey } from './decoratorprops';
 import { etterSokeFeltStyles } from './EtterSokeFeltStyles';
 
 export function useDecoratorConfig() {
     const [aktivEnhet, setAktivEnhet] = useAtom(aktivEnhetAtom);
+    const setAktivEnhetObjekt = useSetAtom(aktivEnhetObjektAtom);
     const settAktivBruker = useSettAktivBruker();
 
     const isMountedEnhet = useRef(false);
@@ -46,8 +46,9 @@ export function useDecoratorConfig() {
             }
             isMountedEnhet.current = true;
             setAktivEnhet(enhet);
+            setAktivEnhetObjekt(enhetValue);
         },
-        [setAktivEnhet]
+        [setAktivEnhet, setAktivEnhetObjekt]
     );
 
     const handleSetBruker = useCallback(

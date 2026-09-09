@@ -171,6 +171,79 @@ exports[`viser dialogpanel 1`] = `
 <div
     class="c0"
   >
+    <div
+      class="aksel-r-pi aksel-stack aksel-vstack aksel-stack-direction"
+      style="--__axc-r-pi-xs: var(--ax-space-8); --__axc-stack-direction-xs: column;"
+    >
+      <div
+        class="aksel-inline-message mb-4 aksel-body-long aksel-body-long--small"
+        data-color="danger"
+        data-size="small"
+      >
+        <svg
+          aria-hidden="true"
+          class="aksel-inline-message__icon"
+          fill="none"
+          focusable="false"
+          height="1em"
+          role="img"
+          viewBox="0 0 24 24"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M7.742 2.47a.75.75 0 0 1 .53-.22h7.456a.75.75 0 0 1 .53.22l5.272 5.272c.141.14.22.331.22.53v7.456a.75.75 0 0 1-.22.53l-5.272 5.272a.75.75 0 0 1-.53.22H8.272a.75.75 0 0 1-.53-.22L2.47 16.258a.75.75 0 0 1-.22-.53V8.272a.75.75 0 0 1 .22-.53zm1.288 5.5a.75.75 0 0 0-1.06 1.06L10.94 12l-2.97 2.97a.75.75 0 1 0 1.06 1.06L12 13.06l2.97 2.97a.75.75 0 1 0 1.06-1.06L13.06 12l2.97-2.97a.75.75 0 0 0-1.06-1.06L12 10.94z"
+            fill="currentColor"
+            fill-rule="evenodd"
+          />
+        </svg>
+        <span
+          class="aksel-body-long aksel-body-long--medium aksel-typo--visually-hidden"
+        >
+          Feil: 
+        </span>
+        <span
+          data-color="accent"
+        >
+          Bruker er reservert fra digital utsendelse, og skal ikke kontaktes via dialogen i Modia personoversikt.
+        </span>
+      </div>
+      <div
+        class="aksel-inline-message mb-4 aksel-body-long aksel-body-long--small"
+        data-color="warning"
+        data-size="small"
+      >
+        <svg
+          aria-hidden="true"
+          class="aksel-inline-message__icon"
+          fill="none"
+          focusable="false"
+          height="1em"
+          role="img"
+          viewBox="0 0 24 24"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M12 2.25a.75.75 0 0 1 .656.387l9.527 17.25A.75.75 0 0 1 21.526 21H2.474a.75.75 0 0 1-.657-1.113l9.526-17.25A.75.75 0 0 1 12 2.25M12 8.75a.75.75 0 0 1 .75.75v4a.75.75 0 0 1-1.5 0v-4a.75.75 0 0 1 .75-.75m-1 7.75a1 1 0 1 1 2 0 1 1 0 0 1-2 0"
+            fill="currentColor"
+            fill-rule="evenodd"
+          />
+        </svg>
+        <span
+          class="aksel-body-long aksel-body-long--medium aksel-typo--visually-hidden"
+        >
+          Advarsel: 
+        </span>
+        <span
+          data-color="accent"
+        >
+          undefined undefined har ikke en oppgavebenk. Skal du sende melding til bruker må du bytte enhet.
+        </span>
+      </div>
+    </div>
     <article
       aria-labelledby="Helt tilfeldig ID"
       class="c1"
@@ -248,6 +321,7 @@ exports[`viser dialogpanel 1`] = `
                           aria-describedby="Helt tilfeldig ID"
                           aria-invalid="false"
                           class="skjemaelement__input textarea--medMeta"
+                          disabled=""
                           id="Helt tilfeldig ID"
                           placeholder="Alt du skriver i denne boksen blir synlig for Aremark når du trykker "Del med Aremark""
                           style="height: 25px;"
@@ -428,6 +502,7 @@ exports[`viser dialogpanel 1`] = `
                   aria-invalid="false"
                   checked=""
                   class="skjemaelement__input radioknapp"
+                  disabled=""
                   id="Helt tilfeldig ID"
                   name="dialogtype"
                   type="radio"
@@ -445,6 +520,7 @@ exports[`viser dialogpanel 1`] = `
                 <input
                   aria-invalid="false"
                   class="skjemaelement__input radioknapp"
+                  disabled=""
                   id="Helt tilfeldig ID"
                   name="dialogtype"
                   type="radio"
@@ -462,6 +538,7 @@ exports[`viser dialogpanel 1`] = `
                 <input
                   aria-invalid="false"
                   class="skjemaelement__input radioknapp"
+                  disabled=""
                   id="Helt tilfeldig ID"
                   name="dialogtype"
                   type="radio"
@@ -494,6 +571,7 @@ exports[`viser dialogpanel 1`] = `
                     <select
                       aria-invalid="false"
                       class="skjemaelement__input"
+                      disabled=""
                       id="Helt tilfeldig ID"
                     >
                       <option
@@ -613,6 +691,7 @@ exports[`viser dialogpanel 1`] = `
                     <select
                       aria-invalid="false"
                       class="skjemaelement__input"
+                      disabled=""
                       id="Helt tilfeldig ID"
                     >
                       <option
@@ -690,7 +769,8 @@ exports[`viser dialogpanel 1`] = `
               class="c18"
             >
               <button
-                class="knapp knapp--hoved"
+                class="knapp knapp--hoved knapp--disabled"
+                disabled=""
                 type="submit"
               >
                 Del med Aremark
