@@ -26,6 +26,11 @@ export function ForelderBarnRelasjonVisning({
 
     return (
         <VStack gap="space-4">
+            {harFeilendeSystem && (
+                <InlineMessage status="warning" size="small">
+                    Feilet ved uthenting av informasjon om {relasjon.rolle.toLowerCase()}
+                </InlineMessage>
+            )}
             {harDiskresjon ? (
                 <Diskresjonskode adressebeskyttelse={relasjon.adressebeskyttelse} />
             ) : (
@@ -38,10 +43,10 @@ export function ForelderBarnRelasjonVisning({
                     <KopierFnrKnapp fnr={fnr} />
                 </Box>
             )}
-            {harFeilendeSystem && (
-                <InlineMessage status="warning" size="small">
-                    Feilet ved uthenting av informasjon om {relasjon.rolle.toLowerCase()}
-                </InlineMessage>
+            {erDød && dodsdato && (
+                <Tag data-color="neutral" variant="moderate" size="small" className="self-start">
+                    Død ({formaterDato(dodsdato)})
+                </Tag>
             )}
             {!erDød &&
                 (relasjon.harSammeAdresse ? (
@@ -50,7 +55,7 @@ export function ForelderBarnRelasjonVisning({
                         variant="moderate"
                         size="small"
                         icon={<CheckmarkIcon aria-hidden />}
-                        style={{ alignSelf: 'flex-start' }}
+                        className="self-start"
                     >
                         Bor med bruker
                     </Tag>
@@ -60,16 +65,11 @@ export function ForelderBarnRelasjonVisning({
                         variant="moderate"
                         size="small"
                         icon={<XMarkOctagonIcon aria-hidden />}
-                        style={{ alignSelf: 'flex-start' }}
+                        className="self-start"
                     >
                         Bor ikke med bruker
                     </Tag>
                 ))}
-            {erDød && dodsdato && (
-                <Tag data-color="neutral" variant="moderate" size="small" style={{ alignSelf: 'flex-start' }}>
-                    Død ({formaterDato(dodsdato)})
-                </Tag>
-            )}
         </VStack>
     );
 }

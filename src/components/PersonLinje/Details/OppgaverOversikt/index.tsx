@@ -107,8 +107,8 @@ function OppgaveKort({ traad, oppgave, erTildelt }: { traad: TraadDto; oppgave?:
             onAktiver={() => navigate({ to: '/new/person/meldinger', search: { traadId: traad.traadId } })}
         >
             <HStack justify="space-between" align="center" wrap={false} gap="space-8">
-                <VStack gap="space-12" style={{ minWidth: 0 }}>
-                    <VStack gap="space-4" style={{ minWidth: 0 }}>
+                <VStack gap="space-12" className="min-w-0">
+                    <VStack gap="space-4" className="min-w-0">
                         <BodyShort size="small" weight="semibold" truncate>
                             {tema} ({tittel})
                         </BodyShort>
@@ -179,7 +179,7 @@ function OppgaveKort({ traad, oppgave, erTildelt }: { traad: TraadDto; oppgave?:
                         )}
                     </HStack>
                 </VStack>
-                <ChevronRightIcon fontSize="1.5rem" aria-hidden style={{ flexShrink: 0 }} />
+                <ChevronRightIcon fontSize="1.5rem" aria-hidden className="shrink-0" />
             </HStack>
         </KlikkbartKort>
     );
@@ -224,7 +224,7 @@ function OppgaverOversikt() {
     }
 
     return (
-        <VStack gap="space-8" as="ul" style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+        <VStack gap="space-8" as="ul" className="list-none p-0 m-0">
             {synligeTraader.map((traad) => (
                 <li key={traad.traadId}>
                     <OppgaveKort

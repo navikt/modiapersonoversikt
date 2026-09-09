@@ -37,11 +37,7 @@ function Familie() {
             <Accordion.Item>
                 <Accordion.Header>Familiemedlemmer</Accordion.Header>
                 <Accordion.Content>
-                    <Box
-                        borderWidth="0 0 0 2"
-                        borderColor="neutral-subtle"
-                        style={{ paddingLeft: 'var(--ax-space-16)' }}
-                    >
+                    <Box borderWidth="0 0 0 2" borderColor="neutral-subtle" paddingInline="space-16 space-0">
                         <VStack gap="space-8">
                             <Heading size="xsmall">Partner</Heading>
                             <Sivilstand harFeilendeSystem={harFeilendeSystem} sivilstand={person.sivilstand} />

@@ -1,8 +1,7 @@
-import { ArrowCirclepathIcon, ChevronRightIcon, ClockIcon, PauseIcon, XMarkOctagonIcon } from '@navikt/aksel-icons';
-import { BodyShort, HStack, Skeleton, Tag, VStack } from '@navikt/ds-react';
+import { ChevronRightIcon } from '@navikt/aksel-icons';
+import { BodyShort, HStack, Skeleton, VStack } from '@navikt/ds-react';
 import { useNavigate } from '@tanstack/react-router';
 import dayjs from 'dayjs';
-import type { ReactNode } from 'react';
 import { getUnikYtelseKey, useFilterYtelser, type YtelseVedtak } from 'src/components/ytelser/utils';
 import { type Foreldrepenger, ForeldrepengerYtelse } from 'src/generated/modiapersonoversikt-api';
 import type { Dagpenger, PensjonSak, Sykepenger, SykepengerSpokelse } from 'src/lib/types/modiapersonoversikt-api';
@@ -13,96 +12,6 @@ import { formatterDato } from 'src/utils/date-utils';
 import { NOKellerNull } from 'src/utils/string-utils';
 import { SeksjonFeil } from '../components';
 import KlikkbartKort from '../KlikkbartKort';
-
-type StatusKode = 'lopende' | 'tilBehandling' | 'stanset' | 'avsluttet';
-
-type StatusInfo = {
-    kode: StatusKode;
-    label: string;
-    dataColor: 'success' | 'warning' | 'neutral' | 'meta-purple';
-    icon: ReactNode;
-};
-
-function hentYtelseStatus(ytelse: YtelseVedtak): StatusInfo {
-    const lopende: StatusInfo = {
-        kode: 'lopende',
-        label: 'Løpende',
-        dataColor: 'meta-purple',
-        icon: <ArrowCirclepathIcon aria-hidden />
-    };
-    const tilBehandling: StatusInfo = {
-        kode: 'tilBehandling',
-        label: 'Til behandling',
-        dataColor: 'warning',
-        icon: <ClockIcon aria-hidden />
-    };
-    const stanset: StatusInfo = {
-        kode: 'stanset',
-        label: 'Stanset',
-        dataColor: 'warning',
-        icon: <PauseIcon aria-hidden />
-    };
-    const avsluttet: StatusInfo = {
-        kode: 'avsluttet',
-        label: 'Avsluttet',
-        dataColor: 'neutral',
-        icon: <XMarkOctagonIcon aria-hidden />
-    };
-
-    switch (ytelse.ytelseType) {
-        case YtelseVedtakYtelseType.Sykepenger: {
-            const sp = ytelse.ytelseData.data as Sykepenger;
-            if (sp.utbetalingerPaaVent && sp.utbetalingerPaaVent.length > 0) return tilBehandling;
-            if (sp.midlertidigStanset) return stanset;
-            if (sp.slutt && dayjs(sp.slutt).isBefore(dayjs())) return avsluttet;
-            return lopende;
-        }
-        case YtelseVedtakYtelseType.SykepengerSpokelse: {
-            const sp = ytelse.ytelseData.data as SykepengerSpokelse;
-            if (!sp.utbetaltePerioder.length) return avsluttet;
-            const sisteTom = [...sp.utbetaltePerioder].sort((a, b) => dayjs(b.tom).diff(dayjs(a.tom))).at(0)?.tom;
-            if (sisteTom && dayjs(sisteTom).isBefore(dayjs())) return avsluttet;
-            return lopende;
-        }
-        case YtelseVedtakYtelseType.Arbeidsavklaringspenger: {
-            const aap = ytelse.ytelseData.data as Arbeidsavklaringspenger;
-            const s = aap.status?.toUpperCase() ?? '';
-            if (s.includes('AVSL') || s.includes('OPPH')) return avsluttet;
-            if (s.includes('BEH') || s.includes('VURDERES')) return tilBehandling;
-            return lopende;
-        }
-        case YtelseVedtakYtelseType.Pensjon: {
-            const p = ytelse.ytelseData.data as PensjonSak;
-            const s = p.sakStatus?.toUpperCase() ?? '';
-            if (s.includes('AVSL')) return avsluttet;
-            if (s.includes('BEH') || s.includes('OPPRET')) return tilBehandling;
-            return lopende;
-        }
-        case YtelseVedtakYtelseType.Foreldrepenger: {
-            const fp = ytelse.ytelseData.data as Foreldrepenger;
-            if (fp.tom && dayjs(fp.tom).isBefore(dayjs())) return avsluttet;
-            return lopende;
-        }
-        case YtelseVedtakYtelseType.Tiltakspenger: {
-            const tp = ytelse.ytelseData.data as Tiltakspenger;
-            const sistePeriode = [...tp.innvilgelsesperioder]
-                .sort((a, b) => dayjs(b.tilOgMed).diff(dayjs(a.tilOgMed)))
-                .at(0);
-            if (!sistePeriode || dayjs(sistePeriode.tilOgMed).isBefore(dayjs())) return avsluttet;
-            return lopende;
-        }
-        case YtelseVedtakYtelseType.Dagpenger: {
-            const dp = ytelse.ytelseData.data as Dagpenger;
-            const sistePeriode = [...(dp.perioder ?? [])]
-                .sort((a, b) => dayjs(b.tilOgMed).diff(dayjs(a.tilOgMed)))
-                .at(0);
-            if (!sistePeriode || dayjs(sistePeriode.tilOgMed).isBefore(dayjs())) return avsluttet;
-            return lopende;
-        }
-        default:
-            return lopende;
-    }
-}
 
 function hentYtelsePeriode(ytelse: YtelseVedtak): string | null {
     switch (ytelse.ytelseType) {
@@ -209,7 +118,6 @@ function getYtelseTittel(ytelse: YtelseVedtak): string {
 
 function YtelseKort({ ytelse }: { ytelse: YtelseVedtak }) {
     const navigate = useNavigate();
-    const status = hentYtelseStatus(ytelse);
     const periode = hentYtelsePeriode(ytelse);
     const ekstraInfo = hentYtelseEkstraInfo(ytelse);
     const tittel = getYtelseTittel(ytelse);
@@ -219,12 +127,12 @@ function YtelseKort({ ytelse }: { ytelse: YtelseVedtak }) {
     return (
         <KlikkbartKort
             padding="space-12"
-            style={{ backgroundColor: 'var(--ax-bg-info-soft)' }}
+            className="bg-ax-bg-info-soft"
             ariaLabel={`${tittel} – gå til ytelse`}
             onAktiver={aapneYtelse}
         >
             <HStack justify="space-between" align="center" wrap={false} gap="space-8">
-                <VStack gap="space-24" style={{ minWidth: 0 }}>
+                <VStack gap="space-24" className="min-w-0">
                     <VStack gap="space-4">
                         <BodyShort size="small" weight="semibold">
                             {tittel}
@@ -240,17 +148,8 @@ function YtelseKort({ ytelse }: { ytelse: YtelseVedtak }) {
                             </BodyShort>
                         ))}
                     </VStack>
-                    <Tag
-                        data-color={status.dataColor}
-                        variant="moderate"
-                        size="small"
-                        icon={status.icon}
-                        style={{ width: 'fit-content' }}
-                    >
-                        {status.label}
-                    </Tag>
                 </VStack>
-                <ChevronRightIcon fontSize="1.5rem" aria-hidden style={{ flexShrink: 0 }} />
+                <ChevronRightIcon fontSize="1.5rem" aria-hidden className="shrink-0" />
             </HStack>
         </KlikkbartKort>
     );
@@ -268,12 +167,7 @@ function YtelserOversikt() {
         );
     }
 
-    const ytelser = alleYtelser.filter((ytelse) => {
-        const kode = hentYtelseStatus(ytelse).kode;
-        return kode !== 'avsluttet' && kode !== 'stanset';
-    });
-
-    if (ytelser.length === 0) {
+    if (alleYtelser.length === 0) {
         return errorMessages.length > 0 ? (
             <SeksjonFeil feilmeldinger={errorMessages} />
         ) : (
@@ -286,8 +180,8 @@ function YtelserOversikt() {
     return (
         <VStack gap="space-16">
             {errorMessages.length > 0 && <SeksjonFeil feilmeldinger={errorMessages} />}
-            <VStack gap="space-16" as="ul" style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                {ytelser.map((ytelse) => (
+            <VStack gap="space-16" as="ul" className="list-none p-0 m-0">
+                {alleYtelser.map((ytelse) => (
                     <li key={getUnikYtelseKey(ytelse)}>
                         <YtelseKort ytelse={ytelse} />
                     </li>

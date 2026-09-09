@@ -1,5 +1,6 @@
 import type { ComponentProps, KeyboardEvent, PropsWithChildren, ReactNode } from 'react';
 import Card from 'src/components/Card';
+import { twMerge } from 'tailwind-merge';
 
 type CardProps = ComponentProps<typeof Card>;
 
@@ -10,7 +11,7 @@ type Props = PropsWithChildren<{
 }> &
     Omit<CardProps, 'onClick' | 'onKeyDown' | 'onKeyUp' | 'role' | 'tabIndex' | 'aria-label' | 'children'>;
 
-function KlikkbartKort({ ariaLabel, onAktiver, children, style, borderRadius = '8', ...rest }: Props) {
+function KlikkbartKort({ ariaLabel, onAktiver, children, className, borderRadius = '8', ...rest }: Props) {
     const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
         if (event.key === ' ') {
             event.preventDefault();
@@ -33,7 +34,7 @@ function KlikkbartKort({ ariaLabel, onAktiver, children, style, borderRadius = '
         <Card
             {...rest}
             borderRadius={borderRadius}
-            style={{ cursor: 'pointer', ...style }}
+            className={twMerge('cursor-pointer', className)}
             role="button"
             tabIndex={0}
             aria-label={ariaLabel}

@@ -64,7 +64,7 @@ function Partner(props: { partner: Sivilstand; harFeilendeSystem: boolean }) {
             <BodyShort size="small" textColor="subtle">
                 <SivilstandTekst sivilstand={props.partner} />
             </BodyShort>
-            <Box style={{ alignSelf: 'flex-start' }}>
+            <Box className="self-start">
                 <KopierFnrKnapp fnr={fnr} />
             </Box>
             {partnerRelasjon.harSammeAdresse ? (
@@ -73,7 +73,7 @@ function Partner(props: { partner: Sivilstand; harFeilendeSystem: boolean }) {
                     variant="moderate"
                     size="small"
                     icon={<CheckmarkIcon aria-hidden />}
-                    style={{ alignSelf: 'flex-start' }}
+                    className="self-start"
                 >
                     Bor med bruker
                 </Tag>
@@ -83,13 +83,13 @@ function Partner(props: { partner: Sivilstand; harFeilendeSystem: boolean }) {
                     variant="moderate"
                     size="small"
                     icon={<XMarkOctagonIcon aria-hidden />}
-                    style={{ alignSelf: 'flex-start' }}
+                    className="self-start"
                 >
                     Bor ikke med bruker
                 </Tag>
             )}
             {erDød && dodsdato && (
-                <Tag data-color="neutral" variant="moderate" size="small" style={{ alignSelf: 'flex-start' }}>
+                <Tag data-color="neutral" variant="moderate" size="small" className="self-start">
                     Død ({formaterDato(dodsdato)})
                 </Tag>
             )}

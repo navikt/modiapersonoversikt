@@ -66,13 +66,13 @@ function UtbetalingerOversikt() {
                         const statusInfo = hentUtbetalingStatus(dato);
                         return (
                             <Table.Row key={getUtbetalingId(utbetaling)}>
-                                <Table.DataCell style={{ width: '1%', whiteSpace: 'nowrap' }}>
+                                <Table.DataCell className="w-[1%] whitespace-nowrap">
                                     {formatterDato(dato)}
                                 </Table.DataCell>
-                                <Table.DataCell style={{ width: '1%', whiteSpace: 'nowrap' }}>
+                                <Table.DataCell className="w-[1%] whitespace-nowrap">
                                     {formaterNOK(utbetaling.nettobelop)} NOK
                                 </Table.DataCell>
-                                <Table.DataCell style={{ width: '1%', whiteSpace: 'nowrap', verticalAlign: 'middle' }}>
+                                <Table.DataCell className="w-[1%] whitespace-nowrap align-middle">
                                     <Tag
                                         data-color={statusInfo.dataColor}
                                         variant="moderate"

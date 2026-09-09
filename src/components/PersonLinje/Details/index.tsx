@@ -71,10 +71,10 @@ function SeksjonWrapper({ tittel, icon, children }: PropsWithChildren<{ tittel: 
     );
 }
 
-function hentToppkortBakgrunn(kjonn: string | undefined, erDod: boolean): string | undefined {
+function hentToppkortBakgrunnsklasse(kjonn: string | undefined, erDod: boolean): string | undefined {
     if (erDod) return undefined;
-    if (kjonn === Kjonn.K) return 'var(--ax-bg-brand-magenta-soft)';
-    if (kjonn === Kjonn.M) return 'var(--ax-bg-info-soft)';
+    if (kjonn === Kjonn.K) return 'bg-ax-bg-brand-magenta-soft';
+    if (kjonn === Kjonn.M) return 'bg-ax-bg-info-soft';
     return undefined;
 }
 
@@ -82,14 +82,15 @@ const PersonlinjeDetails = () => {
     const { data } = usePersonData();
     const kjonn = data?.person?.kjonn.firstOrNull()?.kode;
     const erDod = data?.person?.dodsdato?.isNotEmpty() ?? false;
-    const bakgrunn = hentToppkortBakgrunn(kjonn, erDod);
+    const bakgrunnsklasse = hentToppkortBakgrunnsklasse(kjonn, erDod);
 
     return (
         <Card className="overflow-auto">
             <VStack gap="space-32">
                 <Box
-                    className="px-4 py-4 lg:pl-17 lg:pr-8 lg:py-6"
-                    style={bakgrunn ? { backgroundColor: bakgrunn } : undefined}
+                    paddingInline={{ xs: 'space-16', lg: 'space-64 space-32' }}
+                    paddingBlock={{ xs: 'space-16', lg: 'space-24' }}
+                    className={bakgrunnsklasse}
                 >
                     <HGrid columns={{ xs: 1, lg: '7fr 3fr' }} gap={{ xs: 'space-24', lg: 'space-32' }}>
                         <Box className="lg:pr-8 lg:pt-6">
@@ -105,7 +106,8 @@ const PersonlinjeDetails = () => {
                     columns={{ xs: 1, lg: 2 }}
                     gap={{ xs: 'space-32', lg: 'space-96' }}
                     align="start"
-                    className="px-4 pt-4 pb-4 lg:pl-17 lg:pr-33 lg:pt-8"
+                    paddingInline={{ xs: 'space-16', lg: 'space-64 space-128' }}
+                    paddingBlock={{ xs: 'space-16', lg: 'space-32 space-16' }}
                 >
                     <VStack gap="space-32">
                         <SeksjonWrapper tittel="Oppfølging" icon={<PersonGroupIcon aria-hidden fontSize="2rem" />}>

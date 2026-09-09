@@ -93,7 +93,7 @@ function NavKontor() {
                     <Heading size="small" level="2">
                         Ukjent Nav-kontor
                     </Heading>
-                    <NavLogoNy style={{ height: '1.2rem', width: 'auto' }} aria-hidden />
+                    <NavLogoNy className="h-[1.2rem] w-auto" aria-hidden />
                 </HStack>
                 <InlineMessage status="warning" size="small">
                     Feilet ved uthenting av informasjon om Nav-kontor
@@ -113,7 +113,7 @@ function NavKontor() {
                     <Heading size="small" level="2">
                         Ukjent Nav-kontor
                     </Heading>
-                    <NavLogoNy style={{ height: '1.2rem', width: 'auto' }} aria-hidden />
+                    <NavLogoNy className="h-[1.2rem] w-auto" aria-hidden />
                 </HStack>
                 <InlineMessage status="warning" size="small">
                     Fant ikke geografisk tilknytning for bruker
@@ -132,7 +132,7 @@ function NavKontor() {
                 <Heading size="small" level="2">
                     {navEnhet.navn}
                 </Heading>
-                <NavLogoNy style={{ height: '1.2rem', width: 'auto', flexShrink: 0 }} aria-hidden />
+                <NavLogoNy className="h-[1.2rem] w-auto shrink-0" aria-hidden />
             </HStack>
 
             <Veileder />

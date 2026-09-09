@@ -35,12 +35,12 @@ function OppfolgingOversikt() {
             {vedtakFeil.length > 0 && <SeksjonFeil feilmeldinger={vedtakFeil} />}
             <KlikkbartKort
                 padding="space-12"
-                style={{ backgroundColor: 'var(--ax-bg-warning-soft)' }}
+                className="bg-ax-bg-warning-soft"
                 ariaLabel="Arbeidsoppfølging – gå til oppfølging"
                 onAktiver={() => navigate({ to: '/new/person/oppfolging' })}
             >
                 <HStack justify="space-between" align="center" wrap={false} gap="space-8">
-                    <VStack gap="space-24" style={{ minWidth: 0 }}>
+                    <VStack gap="space-24" minWidth="0">
                         <VStack gap="space-4">
                             <BodyShort size="small" weight="semibold">
                                 Arbeidsoppfølging
@@ -57,7 +57,7 @@ function OppfolgingOversikt() {
                                 variant="moderate"
                                 size="small"
                                 icon={<CheckmarkCircleIcon aria-hidden />}
-                                style={{ width: 'fit-content' }}
+                                className="w-fit"
                             >
                                 § 14 a-vedtak
                             </Tag>
@@ -67,13 +67,13 @@ function OppfolgingOversikt() {
                                 variant="moderate"
                                 size="small"
                                 icon={<XMarkOctagonIcon aria-hidden />}
-                                style={{ width: 'fit-content' }}
+                                className="w-fit"
                             >
                                 Ikke § 14 a-vedtak
                             </Tag>
                         )}
                     </VStack>
-                    <ChevronRightIcon fontSize="1.5rem" aria-hidden style={{ flexShrink: 0 }} />
+                    <ChevronRightIcon fontSize="1.5rem" aria-hidden className="shrink-0" />
                 </HStack>
             </KlikkbartKort>
         </VStack>
