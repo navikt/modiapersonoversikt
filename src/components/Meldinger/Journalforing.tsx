@@ -1,4 +1,4 @@
-import { Alert, Button, Modal } from '@navikt/ds-react';
+import { Alert, Button, Modal, Provider } from '@navikt/ds-react';
 import { useAtomValue } from 'jotai';
 import { useState } from 'react';
 import { FetchError } from 'src/api/api';
@@ -22,6 +22,8 @@ export const JournalForingModal = ({ traad, close, isOpen }: Props) => {
     const fnr = usePersonAtomValue();
     const enhet = useAtomValue(aktivEnhetAtom) as string;
     const [valgtSak, setValgtSak] = useState<JournalforingSak | undefined>();
+    // Portal-rot for popovers (Lookup) slik at de havner i dialogens top layer, ikke bak modalen
+    const [dialogEl, setDialogEl] = useState<HTMLDialogElement | null>(null);
 
     const kanJournalfores = kanTraadJournalforesV2(traad);
 
@@ -44,6 +46,7 @@ export const JournalForingModal = ({ traad, close, isOpen }: Props) => {
 
     return (
         <Modal
+            ref={setDialogEl}
             // Må conditionally sette bredde for å passe playwright test
             className={twMerge(isOpen && 'w-[50rem]')}
             open={isOpen}
@@ -53,7 +56,9 @@ export const JournalForingModal = ({ traad, close, isOpen }: Props) => {
         >
             <Modal.Body className="overflow-y-hidden">
                 {kanJournalfores ? (
-                    <SakVelger setSak={(sak) => setValgtSak(sak)} valgtSak={valgtSak} />
+                    <Provider rootElement={dialogEl}>
+                        <SakVelger setSak={(sak) => setValgtSak(sak)} valgtSak={valgtSak} traad={traad} />
+                    </Provider>
                 ) : (
                     <Alert variant="warning">Dialogen kan ikke journalføres</Alert>
                 )}

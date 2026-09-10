@@ -2,12 +2,14 @@ import { Alert, HGrid, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
 import Spinner from 'nav-frontend-spinner';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { SakKategori } from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
+import { InformasjonsTekstJournalforing } from 'src/components/sakVelger/InformasjonsTekstJournalforing';
 import { useFokusVedPiltaster } from 'src/components/sakVelger/keyboardHooks';
 import SakVelgerSakList from 'src/components/sakVelger/SakVelgerSakList';
 import SakVelgerTemaList from 'src/components/sakVelger/SakVelgerTemaList';
 import SakVelgerToggleGroup from 'src/components/sakVelger/SakVelgerToggleGroup';
 import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
 import { useJournalforingSaker } from 'src/lib/clients/modiapersonoversikt-api';
+import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
 import { datoSynkende } from 'src/utils/date-utils';
 import { type Group, groupBy } from 'src/utils/groupArray';
 
@@ -17,9 +19,10 @@ export type Kategorier = { [key in SakKategori]: Tema[] };
 interface SakVelgerProps {
     setSak: (sak: JournalforingSak, kategori: SakKategori, tema?: Tema) => void;
     valgtSak?: JournalforingSak;
+    traad?: Traad;
 }
 
-const SakVelger: React.FC<SakVelgerProps> = ({ setSak, valgtSak }) => {
+const SakVelger: React.FC<SakVelgerProps> = ({ setSak, valgtSak, traad }) => {
     const { data, isPending, isError } = useJournalforingSaker();
 
     const [valgtSakKategori, setSakKategori] = useState<SakKategori>(SakKategori.FAG);
@@ -67,6 +70,7 @@ const SakVelger: React.FC<SakVelgerProps> = ({ setSak, valgtSak }) => {
 
     return (
         <VStack gap="space-8">
+            <InformasjonsTekstJournalforing traad={traad} />
             <SakVelgerToggleGroup valgtSakKategori={valgtSakKategori} setSakKategori={setSakKategori} />
             {valgtSakKategori === SakKategori.GEN ? (
                 <GenerelleSakerListe

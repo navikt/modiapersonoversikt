@@ -1,4 +1,4 @@
-import { Button, Modal, Tag, VStack } from '@navikt/ds-react';
+import { Button, Modal, Provider, Tag, VStack } from '@navikt/ds-react';
 import { type ReactNode, useState } from 'react';
 import SakVelger from 'src/components/sakVelger/SakVelger';
 import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
@@ -13,6 +13,8 @@ interface VelgSakProps {
 
 export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
     const [velgSakModalOpen, setVelgSakModalOpen] = useState(false);
+    // Portal-rot for popovers (Lookup) slik at de havner i dialogens top layer, ikke bak modalen
+    const [dialogEl, setDialogEl] = useState<HTMLDialogElement | null>(null);
     const disableDialog = useDisableDialog();
 
     return (
@@ -47,6 +49,7 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
                 {error}
             </VStack>
             <Modal
+                ref={setDialogEl}
                 header={{ heading: 'Velg sak' }}
                 open={velgSakModalOpen}
                 width="50rem"
@@ -54,15 +57,17 @@ export default function VelgSak({ setSak, valgtSak, error }: VelgSakProps) {
                 closeOnBackdropClick
             >
                 <Modal.Body className="overflow-y-hidden">
-                    <SakVelger
-                        setSak={(sak) => {
-                            const normalized = Object.fromEntries(
-                                Object.entries(sak).map(([k, v]) => [k, v ?? undefined])
-                            ) as JournalforingSak;
-                            setSak({ ...normalized, fnr: undefined });
-                            setVelgSakModalOpen(false);
-                        }}
-                    />
+                    <Provider rootElement={dialogEl}>
+                        <SakVelger
+                            setSak={(sak) => {
+                                const normalized = Object.fromEntries(
+                                    Object.entries(sak).map(([k, v]) => [k, v ?? undefined])
+                                ) as JournalforingSak;
+                                setSak({ ...normalized, fnr: undefined });
+                                setVelgSakModalOpen(false);
+                            }}
+                        />
+                    </Provider>
                 </Modal.Body>
             </Modal>
         </VStack>
