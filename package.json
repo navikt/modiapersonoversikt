@@ -107,7 +107,7 @@
         "nav-frontend-typografi-style": "^1.0.22",
         "openapi-fetch": "^0.13.8",
         "openapi-react-query": "^0.4.2",
-        "react": "19.2.1",
+        "react": "19.2.8",
         "react-dom": "19.2.1",
         "react-hook-form": "^7.87.0",
         "react-modal": "^3.16.3",
