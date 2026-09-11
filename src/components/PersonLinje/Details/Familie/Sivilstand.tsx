@@ -58,7 +58,8 @@ function Partner(props: { partner: Sivilstand; harFeilendeSystem: boolean }) {
             <Diskresjonskode adressebeskyttelse={partnerRelasjon.adressebeskyttelse} />
             {navn && (
                 <BodyShort size="small">
-                    {hentNavn(navn)} ({alderEllerDød})
+                    {hentNavn(navn)}
+                    {alderEllerDød != null ? ` (${alderEllerDød})` : ''}
                 </BodyShort>
             )}
             <BodyShort size="small" textColor="subtle">
