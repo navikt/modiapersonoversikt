@@ -73,7 +73,7 @@ function formatterYtelsePeriode(periode: YtelsePeriode | null): string | null {
     return periode.tom ? `${formatterDato(periode.fom)} – ${formatterDato(periode.tom)}` : formatterDato(periode.fom);
 }
 
-export function erYtelsenAktiv(ytelse: YtelseVedtak, iDag = dayjs()): boolean {
+function erYtelsenAktiv(ytelse: YtelseVedtak, iDag = dayjs()): boolean {
     const periode = hentYtelsePeriode(ytelse);
     if (!periode) return true;
 
