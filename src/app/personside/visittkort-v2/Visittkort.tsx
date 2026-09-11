@@ -19,7 +19,7 @@ function Visittkort() {
         );
     }
     return (
-        <ErrorBoundary boundaryName="Visittkort">
+        <ErrorBoundary>
             {persondataResponse.data && <VisittkortVisning persondata={persondataResponse.data} />}
         </ErrorBoundary>
     );

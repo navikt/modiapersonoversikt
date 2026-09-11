@@ -27,7 +27,7 @@ const StyledEtikketter = styled.section`
 
 function Etiketter({ person }: Props) {
     return (
-        <ErrorBoundary boundaryName="Etiketter">
+        <ErrorBoundary>
             {/*biome-ignore lint/a11y/useSemanticElements: biome migration*/}
             <StyledEtikketter role="region" aria-label="etiketter">
                 <DiskresjonskodeEtikett adressebeskyttelser={person.adressebeskyttelse} />

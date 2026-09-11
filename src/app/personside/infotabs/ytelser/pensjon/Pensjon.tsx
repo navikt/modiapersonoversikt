@@ -40,7 +40,7 @@ function Pensjon(props: Props) {
     };
 
     return (
-        <ErrorBoundary boundaryName="Pensjon">
+        <ErrorBoundary>
             <article>
                 <StyledPanel>
                     <h2 className="sr-only">Pensjon</h2>

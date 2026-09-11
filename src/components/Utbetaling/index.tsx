@@ -8,7 +8,7 @@ import { useFilterUtbetalinger } from 'src/components/Utbetaling/utils';
 
 export const UtbetalingPage = () => {
     return (
-        <ErrorBoundary boundaryName="UtbetalingPage" errorText="Det oppstod en feil under lasting av utbetalinger.">
+        <ErrorBoundary errorText="Det oppstod en feil under lasting av utbetalinger.">
             <UtbetalingPageContent />
         </ErrorBoundary>
     );
@@ -22,7 +22,7 @@ const UtbetalingPageContent = () => {
     }
 
     return (
-        <ErrorBoundary boundaryName="Dokumentertabell" errorText="Det oppstod en feil under visning av utbetalinger">
+        <ErrorBoundary errorText="Det oppstod en feil under visning av utbetalinger">
             <Card padding="space-16" className="h-full overflow-auto">
                 <AlertBanner alerts={errorMessages} />
                 <VStack gap="space-32">

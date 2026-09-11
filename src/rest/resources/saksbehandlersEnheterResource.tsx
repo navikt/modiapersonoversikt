@@ -18,7 +18,9 @@ const defaults: DefaultConfig = {
 export interface Enhet {
     navn: string;
     enhetId: string;
-    type?: string;
+    type?: string | null;
+    gruppeId?: string | null;
+    oppgavebehandler?: boolean | null;
 }
 
 export interface SaksbehandlersEnheter {

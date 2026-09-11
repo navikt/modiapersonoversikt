@@ -20,7 +20,7 @@ export function MeldingPanel() {
     const panel = (
         <Panel id="ikke-lukkbar-ny-melding" defaultSize={PANEL_SIZE} minSize="20vh" maxSize="60vh">
             <VStack height="100%" gap="space-4" overflow="auto">
-                <ErrorBoundary boundaryName="sendmelding">
+                <ErrorBoundary>
                     <SendMelding />
                 </ErrorBoundary>
             </VStack>

@@ -13,12 +13,6 @@ const baseUrl = () => {
     return `${import.meta.env.BASE_URL}/`;
 };
 
-if (import.meta.env.DEV) {
-    window.applicationFeatureToggles = {
-        enableFaro: true
-    };
-}
-
 initializeObservability();
 
 export const router = createRouter();

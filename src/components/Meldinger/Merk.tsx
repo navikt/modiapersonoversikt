@@ -224,7 +224,7 @@ export const SladdTraadModal = ({ traad, onClose, open }: ModalProps) => {
                 <form onSubmit={handleSubmit}>
                     <VStack gap="space-8">
                         <Suspense fallback={<Skeleton variant="rectangle" height="16" />}>
-                            <ErrorBoundary boundaryName="sladding">
+                            <ErrorBoundary>
                                 <Select
                                     label="Velg årsak"
                                     size="small"

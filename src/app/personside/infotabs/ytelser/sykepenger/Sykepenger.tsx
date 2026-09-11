@@ -49,7 +49,7 @@ function Sykepenger(props: Props) {
         datoSynkende((sykmelding) => sykmelding.sykmeldt.til)
     )[0];
     return (
-        <ErrorBoundary boundaryName="Sykepenger">
+        <ErrorBoundary>
             <article>
                 <StyledPanel aria-labelledby={titleId.current}>
                     <h2 className="sr-only" id={titleId.current}>

@@ -6,6 +6,7 @@ import { Checkbox, SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import { Undertittel } from 'nav-frontend-typografi';
 import { type FormEvent, useRef } from 'react';
 import { UnmountClosed } from 'react-collapse';
+import { useDisableDialog } from 'src/lib/state/dialog';
 import styled from 'styled-components';
 import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
 import type { TraadType } from '../../../../models/meldinger/meldinger';
@@ -98,6 +99,9 @@ function SendNyMelding(props: Props) {
     const erReferat = MeldingValidator.erReferat(state);
     const erSamtale = MeldingValidator.erSamtale(state);
     const visFeilmelding = !MeldingValidator.sak(state) && state.visFeilmeldinger;
+
+    const disableDialog = useDisableDialog();
+
     return (
         <StyledArticle aria-labelledby={tittelId.current}>
             <ReflowBoundry>
@@ -168,6 +172,7 @@ function SendNyMelding(props: Props) {
                     <Feilmelding sendNyMeldingPanelState={props.sendNyMeldingPanelState.type} />
                     <KnappWrapper>
                         <KnappBase
+                            disabled={disableDialog}
                             type="hoved"
                             spinner={props.sendNyMeldingPanelState.type === SendNyMeldingStatus.POSTING}
                             htmlType="submit"

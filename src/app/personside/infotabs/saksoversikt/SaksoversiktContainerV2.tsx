@@ -59,16 +59,16 @@ function SaksoversiktContainer() {
     }
 
     return (
-        <ErrorBoundary boundaryName="Saksoversikt">
+        <ErrorBoundary>
             <SaksoversiktStyle>
                 <ScrollBar keepScrollId="saker-sakstema">
-                    <ErrorBoundary boundaryName="Sakstemaliste">
+                    <ErrorBoundary>
                         <SakerFullscreenLenkeV2 />
                         <SakstemaListeV2 />
                     </ErrorBoundary>
                 </ScrollBar>
                 <ScrollBar keepScrollId="saker-saksdokumenter">
-                    <ErrorBoundary boundaryName="Journalposter">
+                    <ErrorBoundary>
                         <JournalPosterV2 />
                     </ErrorBoundary>
                 </ScrollBar>

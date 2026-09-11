@@ -1,4 +1,5 @@
-import { Alert, Button, HStack, Link, Loader, Theme } from '@navikt/ds-react';
+import { ExternalLinkIcon } from '@navikt/aksel-icons';
+import { Alert, Button, GlobalAlert, HStack, Link, Loader, Theme } from '@navikt/ds-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createRootRoute, Outlet, useMatchRoute } from '@tanstack/react-router';
 import { useAtomValue } from 'jotai';
@@ -11,10 +12,10 @@ import VelgEnhet from 'src/app/VelgEnhet';
 import DemoBanner from 'src/components/DemoBanner';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import NotFound from 'src/components/NotFound';
-import { useNavigateToNewOrOldModia } from 'src/components/NyModia';
+import { nyModiaAtom, useNavigateToNewOrOldModia } from 'src/components/NyModia';
 import { SkyraHandler } from 'src/components/SkyraHandler';
 import { ValgtEnhetProvider } from 'src/context/valgtenhet-state';
-import { aktivBrukerLastetAtom, aktivEnhetAtom } from 'src/lib/state/context';
+import { aktivBrukerAtom, aktivBrukerLastetAtom, aktivEnhetAtom } from 'src/lib/state/context';
 import { ThemeProvider, themeAtom } from 'src/lib/state/theme';
 import { usePersistentWWLogin } from 'src/login/use-persistent-ww-login';
 import HandleLegacyUrls from 'src/utils/HandleLegacyUrls';
@@ -116,6 +117,9 @@ function RootLayout() {
     const isLanding = matchRoute({ to: '/landingpage' });
     const isPersonvern = matchRoute({ to: '/personvern' });
     const isNewModia = matchRoute({ to: '/new/person', fuzzy: true }) !== false;
+    const aktivBruker = useAtomValue(aktivBrukerAtom);
+    const nyModiaEnabled = useAtomValue(nyModiaAtom);
+    const visUtfasingVarsel = !!aktivBruker && !nyModiaEnabled && matchRoute({ to: '/new', fuzzy: true }) === false;
     const theme = useAtomValue(themeAtom);
 
     useEffect(() => {
@@ -136,7 +140,29 @@ function RootLayout() {
                             <HandleLegacyUrls>
                                 <DemoBanner />
                                 <Decorator />
-                                <ErrorBoundary boundaryName="app-content">
+                                {visUtfasingVarsel && (
+                                    <GlobalAlert status="warning" centered={true} size="small">
+                                        <GlobalAlert.Header>
+                                            <GlobalAlert.Title>Gamle Modia fases ut 1. desember 2026</GlobalAlert.Title>
+                                        </GlobalAlert.Header>
+                                        <GlobalAlert.Content>
+                                            Etter denne datoen må du bruke Ny Modia. Vi anbefaler at du tar den i bruk
+                                            allerede nå, så du blir kjent med løsningen i god tid.
+                                        </GlobalAlert.Content>
+                                        <GlobalAlert.Content>
+                                            Ved mangler i Ny Modia, meld fra i{' '}
+                                            <Link
+                                                href="https://jira.adeo.no/plugins/servlet/desk/portal/541"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                Porten
+                                                <ExternalLinkIcon aria-hidden />
+                                            </Link>
+                                        </GlobalAlert.Content>
+                                    </GlobalAlert>
+                                )}
+                                <ErrorBoundary>
                                     <App>
                                         <Outlet />
                                     </App>

@@ -181,7 +181,7 @@ function TotaltUtbetaltDetaljer(props: Props) {
             toggle={props.toggleVisDetaljer}
             tittel={props.visDetaljer ? 'Skjul sammendrag' : 'Vis sammendrag'}
         >
-            <ErrorBoundary boundaryName="Utbetalinger sammendrag">
+            <ErrorBoundary>
                 <DetaljerStyle aria-label="Sammendrag utbetalinger">
                     <Normaltekst tag="div">
                         <table>

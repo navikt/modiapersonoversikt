@@ -4,9 +4,6 @@ import type { AnyRouter } from '@tanstack/react-router';
 declare global {
     interface Window {
         erChatvisning: boolean;
-        applicationFeatureToggles: {
-            enableFaro: boolean;
-        };
         __ENV__: Record<string, string>;
         faro?: Faro;
         __router: AnyRouter;

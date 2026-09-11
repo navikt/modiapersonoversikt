@@ -1,4 +1,7 @@
+import { VStack } from '@navikt/ds-react';
 import { memo } from 'react';
+import { IkkeOppgavebehandlendeEnhetAlert } from 'src/components/melding/IkkeOppgavebehandlendeEnhetAlert';
+import { ReservertIKRRAlert } from 'src/components/melding/ReservertIKRRAlert';
 import styled from 'styled-components';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 import LazySpinner from '../../../components/LazySpinner';
@@ -30,8 +33,12 @@ function DialogPanel() {
     }
 
     return (
-        <ErrorBoundary boundaryName="Dialogpanel">
+        <ErrorBoundary>
             <DialogPanelWrapper>
+                <VStack paddingInline="space-8">
+                    <ReservertIKRRAlert />
+                    <IkkeOppgavebehandlendeEnhetAlert />
+                </VStack>
                 {dialogpanelTraad ? (
                     <FortsettDialogContainer
                         traad={dialogpanelTraad}

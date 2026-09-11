@@ -4,6 +4,7 @@ import Panel from 'nav-frontend-paneler';
 import { Checkbox, SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import type { FormEvent } from 'react';
 import { UnmountClosed } from 'react-collapse';
+import { useDisableDialog } from 'src/lib/state/dialog';
 import styled from 'styled-components';
 import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
 import { type Traad, TraadType } from '../../../../models/meldinger/meldinger';
@@ -82,6 +83,8 @@ function FortsettDialog(props: Props) {
     const visVelgSak = !erJournalfort(props.traad) && !erOksosTraad;
     const draftState = props.draftState;
 
+    const disableDialog = useDisableDialog();
+
     return (
         <FormStyle onSubmit={handleSubmit}>
             <TidligereMeldinger traad={props.traad} />
@@ -122,6 +125,7 @@ function FortsettDialog(props: Props) {
                             <StyledAlertStripeInfo>Bruker kan ikke skrive mer i denne samtalen</StyledAlertStripeInfo>
                         )}
                         <StyledCheckbox
+                            disabled={disableDialog}
                             label={'Avslutt samtale etter sending'}
                             checked={state.avsluttet}
                             onChange={() => updateState({ avsluttet: !state.avsluttet })}
@@ -130,7 +134,11 @@ function FortsettDialog(props: Props) {
                 </UnmountClosed>
             </div>
             <Feilmelding status={props.fortsettDialogPanelState.type} errors={props.state.errors} />
-            <SubmitKnapp htmlType="submit" spinner={props.fortsettDialogPanelState.type === DialogPanelStatus.POSTING}>
+            <SubmitKnapp
+                htmlType="submit"
+                disabled={disableDialog}
+                spinner={props.fortsettDialogPanelState.type === DialogPanelStatus.POSTING}
+            >
                 {delMedBrukerTekst}
             </SubmitKnapp>
             <StyledKnappMedBekreftPopup
