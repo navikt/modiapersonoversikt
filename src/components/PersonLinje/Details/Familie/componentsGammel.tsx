@@ -55,17 +55,17 @@ function FamilierelasjonIkon({ relasjon, erBarn }: { relasjon: ForelderBarnRelas
     const kjonn = relasjon.kjonn.firstOrNull();
     if (kjonn?.kode === 'M') {
         return erBarn ? (
-            <ChildEyesFillIcon fontSize="1.2rem" color="#66A5F4" />
+            <ChildEyesFillIcon title="Mann" fontSize="1.2rem" color="#66A5F4" />
         ) : (
-            <FigureInwardFillIcon fontSize="1.2rem" color="#66A5F4" />
+            <FigureInwardFillIcon title="Mann" fontSize="1.2rem" color="#66A5F4" />
         );
     }
     if (kjonn?.kode === 'K') {
         return erBarn ? (
-            <ChildEyesFillIcon fontSize="1.2rem" color="#F25C5C" />
+            <ChildEyesFillIcon title="Kvinne" fontSize="1.2rem" color="#F25C5C" />
         ) : (
-            <FigureOutwardFillIcon fontSize="1.2rem" color="#F25C5C" />
+            <FigureOutwardFillIcon title="Kvinne" fontSize="1.2rem" color="#F25C5C" />
         );
     }
-    return <FigureCombinationIcon />;
+    return <FigureCombinationIcon title="Ukjent kjønn" />;
 }

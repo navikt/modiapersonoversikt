@@ -66,7 +66,10 @@ function SivilstandGammel({ harFeilendeSystem, sivilstand: sivilstandList }: Pro
         return null;
     }
     return (
-        <InfoElement title="Sivilstand" icon={<HeartFillIcon fontSize="1.2rem" color="var(--ax-danger-200)" />}>
+        <InfoElement
+            title="Sivilstand"
+            icon={<HeartFillIcon aria-hidden fontSize="1.2rem" color="var(--ax-danger-200)" />}
+        >
             {erPartner(sivilstand) ? (
                 <Partner harFeilendeSystem={harFeilendeSystem} partner={sivilstand} />
             ) : (

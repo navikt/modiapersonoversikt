@@ -70,7 +70,7 @@ function VergemalGammel() {
 
     return (
         <Group
-            icon={<ExclamationmarkTriangleFillIcon color="var(--ax-text-warning-decoration)" />}
+            icon={<ExclamationmarkTriangleFillIcon aria-hidden color="var(--ax-text-warning-decoration)" />}
             title="Bruker er under vergemål"
         >
             <Vergesakstype vergemal={vergemal} />
