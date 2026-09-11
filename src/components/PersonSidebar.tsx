@@ -10,11 +10,13 @@ import {
     PersonGroupIcon,
     PiggybankIcon
 } from '@navikt/aksel-icons';
-import { Bleed, Box, Button, Heading, Tooltip, VStack } from '@navikt/ds-react';
+import { Bleed, Box, Button, Heading, HStack, Tag, Tooltip, VStack } from '@navikt/ds-react';
 import { Link } from '@tanstack/react-router';
 import { useAtom } from 'jotai';
 import { type ComponentProps, type KeyboardEvent, type ReactElement, useRef } from 'react';
 import { getOpenTabFromRouterPath, useOpenTab } from 'src/app/personside/infotabs/utils/useOpenTab';
+import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
+import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 import { erUbesvartHenvendelseFraBruker, useTraader } from 'src/components/Meldinger/List/utils';
 import { usePersonSideBarKotkeys } from 'src/components/usePersonSidebarHotkeys';
 import { usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
@@ -28,6 +30,8 @@ type MenuItem = {
     title: string;
     href: ComponentProps<typeof Link>['to'];
     Icon: React.ExoticComponent;
+    krevFeatureToggle?: FeatureToggles;
+    beta?: boolean;
 };
 
 type ConditionalTooltipProps = {
@@ -48,6 +52,13 @@ const ConditionalTooltip = ({ content, enabled, children }: ConditionalTooltipPr
 export const menuItems = [
     {
         title: 'Hjem',
+        href: '/new/person/hjem',
+        Icon: HouseIcon,
+        krevFeatureToggle: FeatureToggles.NyOversiktDesign,
+        beta: true
+    },
+    {
+        title: 'Oversikt',
         href: '/new/person/oversikt',
         Icon: HouseIcon
     },
@@ -90,9 +101,17 @@ export const PersonSidebarMenu = () => {
     usePersonSideBarKotkeys();
     const { data: traader = [] } = useTraader();
     const { data: oppgaver = [] } = usePersonOppgaver();
+    const nyOversiktDesign = useFeatureToggle(FeatureToggles.NyOversiktDesign);
     const harOppgaverPaaEnTraad = oppgaver.some((oppgave) => oppgave.traadId !== null);
     const harUbesvarteTraader = traader.some((traad) => erUbesvartHenvendelseFraBruker(traad));
     const navRef = useRef<HTMLDivElement>(null);
+
+    const featureToggleStatus: Partial<Record<FeatureToggles, boolean>> = {
+        [FeatureToggles.NyOversiktDesign]: nyOversiktDesign.isOn === true
+    };
+    const synligeMenuItems = menuItems.filter(
+        (item) => !('krevFeatureToggle' in item) || featureToggleStatus[item.krevFeatureToggle]
+    );
 
     const visNotifikasjon = (tab: string) => {
         if (tab !== 'Kommunikasjon') return false;
@@ -148,67 +167,87 @@ export const PersonSidebarMenu = () => {
                         <Heading visuallyHidden size="small" level="2">
                             Faner
                         </Heading>
-                        {menuItems.map(({ title, href, Icon }) => (
-                            <ConditionalTooltip key={title} content={title} enabled={!ekspanderSidebarMedStorage}>
-                                <Link
-                                    onClick={() => {
-                                        trackFaneEndret(getOpenTabFromRouterPath(href).path, openTab.path);
-                                    }}
-                                    to={href}
-                                    aria-label={title}
-                                    activeProps={{ tabIndex: 0 }}
-                                    inactiveProps={{ tabIndex: -1 }}
+                        {synligeMenuItems.map((item) => {
+                            const { title, href, Icon } = item;
+                            const beta = 'beta' in item && item.beta;
+                            const tittelMedBeta = beta ? `${title} (beta)` : title;
+                            return (
+                                <ConditionalTooltip
+                                    key={title}
+                                    content={tittelMedBeta}
+                                    enabled={!ekspanderSidebarMedStorage}
                                 >
-                                    {({ isActive }) => (
-                                        <>
-                                            <Button
-                                                data-color="neutral"
-                                                aria-hidden
-                                                tabIndex={-1}
-                                                icon={
-                                                    <>
-                                                        <Icon aria-hidden />
-                                                        {visNotifikasjon(title) && (
-                                                            <Box
-                                                                position="absolute"
-                                                                className={
-                                                                    ekspanderSidebarMedStorage ? 'left-6' : 'left-4'
-                                                                }
-                                                            >
-                                                                <Bleed marginBlock="space-2" asChild>
-                                                                    <CircleFillIcon
-                                                                        fontSize="0.8rem"
-                                                                        color="var(--ax-text-logo)"
-                                                                        title="Brukeren har ubesvarte meldinger og/eller oppgave må løses"
-                                                                    />
-                                                                </Bleed>
-                                                            </Box>
-                                                        )}
-                                                    </>
-                                                }
-                                                variant="tertiary"
-                                                size="small"
-                                                className={twMerge(
-                                                    'my-1 relative',
-                                                    'font-normal',
-                                                    !isActive && ['hover:bg-ax-bg-accent-moderate-hover'],
-                                                    ekspanderSidebarMedStorage && ['justify-start', 'min-w-42'],
-                                                    isActive && [
-                                                        'bg-ax-bg-accent-moderate-pressed',
-                                                        'text-ax-text-accent',
-                                                        'hover:text-ax-text-accent'
-                                                    ]
-                                                )}
-                                            >
-                                                {ekspanderSidebarMedStorage && (
-                                                    <span className="font-normal">{title}</span>
-                                                )}
-                                            </Button>
-                                        </>
-                                    )}
-                                </Link>
-                            </ConditionalTooltip>
-                        ))}
+                                    <Link
+                                        onClick={() => {
+                                            trackFaneEndret(getOpenTabFromRouterPath(href).path, openTab.path);
+                                        }}
+                                        to={href}
+                                        aria-label={tittelMedBeta}
+                                        activeProps={{ tabIndex: 0 }}
+                                        inactiveProps={{ tabIndex: -1 }}
+                                    >
+                                        {({ isActive }) => (
+                                            <>
+                                                <Button
+                                                    data-color="neutral"
+                                                    aria-hidden
+                                                    tabIndex={-1}
+                                                    icon={
+                                                        <>
+                                                            <Icon aria-hidden />
+                                                            {visNotifikasjon(title) && (
+                                                                <Box
+                                                                    position="absolute"
+                                                                    className={
+                                                                        ekspanderSidebarMedStorage ? 'left-6' : 'left-4'
+                                                                    }
+                                                                >
+                                                                    <Bleed marginBlock="space-2" asChild>
+                                                                        <CircleFillIcon
+                                                                            fontSize="0.8rem"
+                                                                            color="var(--ax-text-logo)"
+                                                                            title="Brukeren har ubesvarte meldinger og/eller oppgave må løses"
+                                                                        />
+                                                                    </Bleed>
+                                                                </Box>
+                                                            )}
+                                                        </>
+                                                    }
+                                                    variant="tertiary"
+                                                    size="small"
+                                                    className={twMerge(
+                                                        'my-1 relative',
+                                                        'font-normal',
+                                                        !isActive && ['hover:bg-ax-bg-accent-moderate-hover'],
+                                                        ekspanderSidebarMedStorage && ['justify-start', 'min-w-42'],
+                                                        isActive && [
+                                                            'bg-ax-bg-accent-moderate-pressed',
+                                                            'text-ax-text-accent',
+                                                            'hover:text-ax-text-accent'
+                                                        ]
+                                                    )}
+                                                >
+                                                    {ekspanderSidebarMedStorage && (
+                                                        <HStack gap="space-8" align="center" wrap={false}>
+                                                            <span className="font-normal">{title}</span>
+                                                            {beta && (
+                                                                <Tag
+                                                                    data-color="success"
+                                                                    variant="moderate"
+                                                                    size="small"
+                                                                >
+                                                                    Beta
+                                                                </Tag>
+                                                            )}
+                                                        </HStack>
+                                                    )}
+                                                </Button>
+                                            </>
+                                        )}
+                                    </Link>
+                                </ConditionalTooltip>
+                            );
+                        })}
                     </VStack>
                 </Box>
                 <Box padding="space-8">

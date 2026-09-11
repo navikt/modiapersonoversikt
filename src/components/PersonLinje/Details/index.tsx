@@ -8,6 +8,7 @@ import {
     PiggybankIcon
 } from '@navikt/aksel-icons';
 import { Box, Heading, HGrid, HStack, Skeleton, VStack } from '@navikt/ds-react';
+import { Navigate } from '@tanstack/react-router';
 import type { PropsWithChildren, ReactNode } from 'react';
 import { AlertBanner } from 'src/components/AlertBanner';
 import Card from 'src/components/Card';
@@ -38,24 +39,45 @@ import Vergemal from './Vergemal';
 import VergemalGammel from './VergemalGammel';
 import YtelserOversikt from './YtelserOversikt';
 
-export const OversiktWrapper = () => {
-    const { errorMessages, isLoading, isError } = usePersonData();
+export const HjemWrapper = () => {
     const featureToggle = useFeatureToggle(FeatureToggles.NyOversiktDesign);
+
+    if (featureToggle.pending) {
+        return <Skeleton variant="rectangle" height="100%" />;
+    }
+
+    if (!featureToggle.isOn) {
+        return <Navigate to="/new/person/oversikt" replace />;
+    }
+
+    return (
+        <PersondataWrapper>
+            <PersonlinjeDetails />
+        </PersondataWrapper>
+    );
+};
+
+export const OversiktWrapper = () => (
+    <PersondataWrapper>
+        <PersonlinjeDetailsGammel />
+    </PersondataWrapper>
+);
+
+function PersondataWrapper({ children }: PropsWithChildren) {
+    const { errorMessages, isLoading, isError } = usePersonData();
 
     return (
         <ErrorBoundary boundaryName="personlinje">
-            {isLoading || featureToggle.pending ? (
+            {isLoading ? (
                 <Skeleton variant="rectangle" height="100%" />
             ) : isError ? (
                 <AlertBanner alerts={errorMessages} />
-            ) : featureToggle.isOn ? (
-                <PersonlinjeDetails />
             ) : (
-                <PersonlinjeDetailsGammel />
+                children
             )}
         </ErrorBoundary>
     );
-};
+}
 
 function SeksjonWrapper({ tittel, icon, children }: PropsWithChildren<{ tittel: string; icon?: ReactNode }>) {
     return (
