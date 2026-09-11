@@ -8,61 +8,80 @@ import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaring
 import type { Tiltakspenger } from 'src/models/ytelse/tiltakspenger';
 import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
-import { formatterDato } from 'src/utils/date-utils';
+import { formatterDato, getNewestDate, getOldestDate } from 'src/utils/date-utils';
 import { NOKellerNull } from 'src/utils/string-utils';
 import { twMerge } from 'tailwind-merge';
 import { SeksjonFeil } from '../components';
 
-function hentYtelsePeriode(ytelse: YtelseVedtak): string | null {
+type YtelsePeriode = { fom: string; tom: string | null };
+
+function hentYtelsePeriode(ytelse: YtelseVedtak): YtelsePeriode | null {
     switch (ytelse.ytelseType) {
         case YtelseVedtakYtelseType.Sykepenger: {
             const sp = ytelse.ytelseData.data as Sykepenger;
             if (!sp.sykmeldtFom) return null;
-            return sp.slutt
-                ? `${formatterDato(sp.sykmeldtFom)} – ${formatterDato(sp.slutt)}`
-                : formatterDato(sp.sykmeldtFom);
+            return { fom: sp.sykmeldtFom, tom: sp.slutt ?? null };
         }
         case YtelseVedtakYtelseType.SykepengerSpokelse: {
             const sp = ytelse.ytelseData.data as SykepengerSpokelse;
             if (!sp.utbetaltePerioder.length) return null;
-            const sortert = [...sp.utbetaltePerioder].sort((a, b) => dayjs(a.fom).diff(dayjs(b.fom)));
-            const forste = sortert.at(0);
-            const siste = sortert.at(-1);
-            if (!forste || !siste) return null;
-            return `${formatterDato(forste.fom)} – ${formatterDato(siste.tom)}`;
+            const fom = sp.utbetaltePerioder.reduce(
+                (eldst, p) => getOldestDate(eldst, p.fom),
+                sp.utbetaltePerioder[0].fom
+            );
+            const tom = sp.utbetaltePerioder.reduce(
+                (nyest, p) => getNewestDate(nyest, p.tom),
+                sp.utbetaltePerioder[0].tom
+            );
+            return { fom, tom };
         }
         case YtelseVedtakYtelseType.Foreldrepenger: {
             const fp = ytelse.ytelseData.data as Foreldrepenger;
             if (!fp.fom) return null;
-            return fp.tom ? `${formatterDato(fp.fom)} – ${formatterDato(fp.tom)}` : formatterDato(fp.fom);
+            return { fom: fp.fom, tom: fp.tom ?? null };
         }
         case YtelseVedtakYtelseType.Arbeidsavklaringspenger: {
             const aap = ytelse.ytelseData.data as Arbeidsavklaringspenger;
             const fom = aap.periode?.fraOgMedDato;
-            const tom = aap.periode?.tilOgMedDato;
             if (!fom) return null;
-            return tom ? `${formatterDato(fom)} – ${formatterDato(tom)}` : formatterDato(fom);
+            return { fom, tom: aap.periode?.tilOgMedDato ?? null };
         }
         case YtelseVedtakYtelseType.Pensjon: {
             const p = ytelse.ytelseData.data as PensjonSak;
             if (!p.fomDato) return null;
-            return p.tomDato ? `${formatterDato(p.fomDato)} – ${formatterDato(p.tomDato)}` : formatterDato(p.fomDato);
+            return { fom: p.fomDato, tom: p.tomDato ?? null };
         }
         case YtelseVedtakYtelseType.Tiltakspenger: {
             const tp = ytelse.ytelseData.data as Tiltakspenger;
-            return `${formatterDato(tp.periode.fraOgMed)} – ${formatterDato(tp.periode.tilOgMed)}`;
+            return { fom: tp.periode.fraOgMed, tom: tp.periode.tilOgMed };
         }
         case YtelseVedtakYtelseType.Dagpenger: {
             const dp = ytelse.ytelseData.data as Dagpenger;
             if (!dp.eldsteFraOgMedDato) return null;
-            const sistePeriode = dp.perioder.at(-1);
-            return sistePeriode
-                ? `${formatterDato(dp.eldsteFraOgMedDato)} – ${formatterDato(sistePeriode.tilOgMed)}`
-                : formatterDato(dp.eldsteFraOgMedDato);
+            const perioder = dp.perioder ?? [];
+            if (!perioder.length) return { fom: dp.eldsteFraOgMedDato, tom: null };
+            const tom = perioder.reduce((nyest, p) => getNewestDate(nyest, p.tilOgMed), perioder[0].tilOgMed);
+            return { fom: dp.eldsteFraOgMedDato, tom };
         }
         default:
             return null;
     }
+}
+
+function formatterYtelsePeriode(periode: YtelsePeriode | null): string | null {
+    if (!periode) return null;
+    return periode.tom ? `${formatterDato(periode.fom)} – ${formatterDato(periode.tom)}` : formatterDato(periode.fom);
+}
+
+export function erYtelsenAktiv(ytelse: YtelseVedtak, iDag = dayjs()): boolean {
+    const periode = hentYtelsePeriode(ytelse);
+    if (!periode) return true;
+
+    const dagensDato = iDag.startOf('day');
+    const harStartet = !dayjs(periode.fom).startOf('day').isAfter(dagensDato);
+    const ikkeAvsluttet = !periode.tom || !dayjs(periode.tom).startOf('day').isBefore(dagensDato);
+
+    return harStartet && ikkeAvsluttet;
 }
 
 function hentYtelseEkstraInfo(ytelse: YtelseVedtak): string[] {
@@ -117,7 +136,7 @@ function getYtelseTittel(ytelse: YtelseVedtak): string {
 }
 
 function YtelseKort({ ytelse }: { ytelse: YtelseVedtak }) {
-    const periode = hentYtelsePeriode(ytelse);
+    const periode = formatterYtelsePeriode(hentYtelsePeriode(ytelse));
     const ekstraInfo = hentYtelseEkstraInfo(ytelse);
     const tittel = getYtelseTittel(ytelse);
 
@@ -163,6 +182,7 @@ function YtelseKort({ ytelse }: { ytelse: YtelseVedtak }) {
 
 function YtelserOversikt() {
     const { data: alleYtelser = [], isLoading, errorMessages } = useFilterYtelser();
+    const aktiveYtelser = alleYtelser.filter((ytelse) => erYtelsenAktiv(ytelse));
 
     if (isLoading) {
         return (
@@ -173,7 +193,7 @@ function YtelserOversikt() {
         );
     }
 
-    if (alleYtelser.length === 0) {
+    if (aktiveYtelser.length === 0) {
         return errorMessages.length > 0 ? (
             <SeksjonFeil feilmeldinger={errorMessages} />
         ) : (
@@ -187,7 +207,7 @@ function YtelserOversikt() {
         <VStack gap="space-16">
             {errorMessages.length > 0 && <SeksjonFeil feilmeldinger={errorMessages} />}
             <VStack gap="space-16" as="ul" className="list-none p-0 m-0">
-                {alleYtelser.map((ytelse) => (
+                {aktiveYtelser.map((ytelse) => (
                     <li key={getUnikYtelseKey(ytelse)}>
                         <YtelseKort ytelse={ytelse} />
                     </li>
