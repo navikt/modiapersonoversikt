@@ -77,12 +77,15 @@ function PersonLayout() {
 
     const outerLayout = useDefaultLayout({
         id: 'panel-layout-meldinger-outer',
-        storage: localStorage
+        storage: localStorage,
+        // Rekkefølgen må matche rekkefølgen panelene rendres i, ellers blir lagre- og lesenøkkelen ulik
+        panelIds: ['person-panel', 'ikke-lukkbar-ny-melding']
     });
 
     const innerLayout = useDefaultLayout({
-        id: 'panel-layout-meldinger-inner', // Assign a new, unique key for the nested group
-        storage: localStorage
+        id: 'panel-layout-meldinger-inner',
+        storage: localStorage,
+        panelIds: ['list-panel', 'main-content-panel']
     });
 
     const isMobile = useIsMobile();
