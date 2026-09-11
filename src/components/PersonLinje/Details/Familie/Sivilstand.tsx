@@ -50,7 +50,7 @@ function Partner(props: { partner: Sivilstand; harFeilendeSystem: boolean }) {
     const navn = partnerRelasjon.navn.firstOrNull();
     const dodsdato = partnerRelasjon.dodsdato.firstOrNull();
     const erDød = erDod(partnerRelasjon.dodsdato);
-    const alder = erDød ? 'Død' : partnerRelasjon.alder;
+    const alderEllerDød = erDød ? 'Død' : partnerRelasjon.alder;
     const fnr = partnerRelasjon.fnr;
 
     return (
@@ -58,7 +58,7 @@ function Partner(props: { partner: Sivilstand; harFeilendeSystem: boolean }) {
             <Diskresjonskode adressebeskyttelse={partnerRelasjon.adressebeskyttelse} />
             {navn && (
                 <BodyShort size="small">
-                    {hentNavn(navn)} ({alder})
+                    {hentNavn(navn)} ({alderEllerDød})
                 </BodyShort>
             )}
             <BodyShort size="small" textColor="subtle">
@@ -67,7 +67,7 @@ function Partner(props: { partner: Sivilstand; harFeilendeSystem: boolean }) {
             <Box className="self-start">
                 <KopierFnrKnapp fnr={fnr} />
             </Box>
-            {partnerRelasjon.harSammeAdresse ? (
+            {partnerRelasjon.harSammeAdresse && !erDød ? (
                 <Tag
                     data-color="success"
                     variant="moderate"

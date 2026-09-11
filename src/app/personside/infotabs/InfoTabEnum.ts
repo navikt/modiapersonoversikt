@@ -14,6 +14,7 @@ export interface InfotabConfig {
 }
 
 export const INFOTABS = {
+    HJEM: { tittel: 'Hjem', path: 'hjem' },
     OVERSIKT: { tittel: 'Oversikt', path: 'oversikt' },
     OPPFOLGING: { tittel: 'Oppfølging', path: 'oppfolging' },
     MELDINGER: { tittel: 'Kommunikasjon', path: 'meldinger' },

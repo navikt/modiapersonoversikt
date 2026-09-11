@@ -49,6 +49,7 @@ export function ForelderBarnRelasjonVisning({
                 </Tag>
             )}
             {!erDød &&
+                !harFeilendeSystem &&
                 (relasjon.harSammeAdresse ? (
                     <Tag
                         data-color="success"
