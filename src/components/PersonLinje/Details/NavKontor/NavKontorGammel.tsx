@@ -1,0 +1,125 @@
+import { Accordion, Alert, BodyShort, Box, Link, Skeleton } from '@navikt/ds-react';
+import { Normaltekst } from 'nav-frontend-typografi';
+import { Fragment } from 'react';
+import QueryErrorBoundary from 'src/components/QueryErrorBoundary';
+import { useBaseUrls, usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
+import { PersonDataFeilendeSystemer, type Publikumsmottak } from 'src/lib/types/modiapersonoversikt-api';
+import NavLogo from 'src/svg/NavLogo';
+import { harFeilendeSystemer, mapUgyldigGT } from '../../utils';
+import { Adresseinfo, Group, InfoElement } from '../components';
+
+function PublikumsmottakKontaktInfo(props: { publikumsmottak: Publikumsmottak }) {
+    const apningstider = props.publikumsmottak.apningstider.map((apningstid) => {
+        return (
+            <Fragment key={apningstid.ukedag}>
+                <dt className="basis-1/2 flex-1">
+                    <BodyShort className="capitalize">{apningstid.ukedag}</BodyShort>
+                </dt>
+                <dd className="basis-1/2 flex-1">
+                    <BodyShort>{apningstid.apningstid}</BodyShort>
+                </dd>
+            </Fragment>
+        );
+    });
+
+    return (
+        <div>
+            <br />
+            <BodyShort size="small" textColor="subtle">
+                Besøksadresse
+            </BodyShort>
+            <Adresseinfo adresse={props.publikumsmottak.besoksadresse} />
+            <br />
+            <BodyShort size="small" textColor="subtle">
+                Åpningstider
+            </BodyShort>
+            <dl className="flex flex-wrap max-w-80">{apningstider}</dl>
+            <br />
+        </div>
+    );
+}
+
+function PublikumsmottakListe(props: { publikumsmottak: Publikumsmottak[] }) {
+    const publikumsmottak = props.publikumsmottak;
+    if (publikumsmottak.length === 0) {
+        return <BodyShort>ingen publikumsmottak</BodyShort>;
+    }
+
+    if (publikumsmottak.length === 1) {
+        return <PublikumsmottakKontaktInfo publikumsmottak={publikumsmottak[0]} />;
+    }
+
+    return (
+        <>
+            <Normaltekst className="p-2">Det finnes flere publikumsmottak</Normaltekst>
+            <Accordion size="small" className="max-w-96">
+                {publikumsmottak.map((mottak, index) => (
+                    <Accordion.Item defaultOpen={index === 0} key={mottak.besoksadresse.linje1}>
+                        <Accordion.Header>{mottak.besoksadresse.linje1}</Accordion.Header>
+                        <Accordion.Content>
+                            <PublikumsmottakKontaktInfo publikumsmottak={mottak} />
+                        </Accordion.Content>
+                    </Accordion.Item>
+                ))}
+            </Accordion>
+        </>
+    );
+}
+
+function KontorLenke({ navEnhetId }: { navEnhetId: string }) {
+    const { data, isLoading, error } = useBaseUrls();
+    const baseUrl = data?.norg2Frontend ?? '';
+
+    return (
+        <QueryErrorBoundary loading={isLoading} error={error} loader={<Skeleton variant="text" />}>
+            <Link href={`${baseUrl}/#/startsok?enhetNr=${navEnhetId}`} target="_blank" rel="noopener noreferrer">
+                Mer informasjon om kontoret
+            </Link>
+        </QueryErrorBoundary>
+    );
+}
+
+function NavKontorGammel() {
+    const { data } = usePersonData();
+    const person = data?.person;
+    const feilendeSystemer = data?.feilendeSystemer ?? [];
+    const geografiskTilknytning = person?.geografiskTilknytning;
+    const navEnhet = person?.navEnhet;
+
+    if (harFeilendeSystemer(feilendeSystemer, PersonDataFeilendeSystemer.NORG_NAVKONTOR)) {
+        return (
+            <Group title="NAV-kontor">
+                <InfoElement title="Ukjent NAV-kontor" icon={<NavLogo style={{ width: '2.5rem' }} />}>
+                    <Alert variant="warning">Feilet ved uthenting av informasjon om NAV-kontor</Alert>
+                </InfoElement>
+            </Group>
+        );
+    }
+
+    if (!geografiskTilknytning) {
+        return null;
+    }
+
+    if (!navEnhet) {
+        return (
+            <Group title="NAV-kontor">
+                <InfoElement title={mapUgyldigGT(geografiskTilknytning)} icon={<NavLogo style={{ width: '2.5rem' }} />}>
+                    <Alert variant="warning">Fant ikke geografisk tilknyttning for bruker</Alert>
+                </InfoElement>
+            </Group>
+        );
+    }
+
+    return (
+        <Group title="NAV-kontor">
+            <InfoElement title={`${navEnhet?.id} ${navEnhet.navn}`} icon={<NavLogo style={{ width: '2.5rem' }} />}>
+                <PublikumsmottakListe publikumsmottak={navEnhet.publikumsmottak} />
+                <Box marginBlock="space-16">
+                    <KontorLenke navEnhetId={navEnhet.id} />
+                </Box>
+            </InfoElement>
+        </Group>
+    );
+}
+
+export default NavKontorGammel;

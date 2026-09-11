@@ -1,7 +1,7 @@
 import { OversiktWrapper } from 'src/components/PersonLinje/Details';
 
-function OversiktNy() {
+function Oversikt() {
     return <OversiktWrapper />;
 }
 
-export default OversiktNy;
+export default Oversikt;

@@ -129,6 +129,8 @@ export interface Enhet {
     id: string;
     navn: string;
     publikumsmottak: Array<Publikumsmottak>;
+    telefonnummer?: string;
+    epost?: string;
 }
 
 export interface Publikumsmottak {

@@ -1,4 +1,4 @@
-import { BodyShort, Box, Heading, HStack } from '@navikt/ds-react';
+import { BodyShort, Box, Heading, HStack, InlineMessage, VStack } from '@navikt/ds-react';
 import type { PropsWithChildren, ReactElement } from 'react';
 import type { Adresse, SistEndret } from 'src/lib/types/modiapersonoversikt-api';
 import { formaterDato } from 'src/utils/string-utils';
@@ -80,3 +80,19 @@ export const LastChanged = ({ sistEndret }: { sistEndret?: SistEndret }) => {
         </BodyShort>
     );
 };
+
+export const IngenInfo = ({ tekst }: { tekst: string }) => (
+    <BodyShort size="small" textColor="subtle">
+        {tekst}
+    </BodyShort>
+);
+
+export const SeksjonFeil = ({ feilmeldinger }: { feilmeldinger: (string | undefined)[] }) => (
+    <VStack gap="space-4">
+        {feilmeldinger.filter(Boolean).map((feilmelding) => (
+            <InlineMessage key={feilmelding} status="warning" size="small">
+                {feilmelding}
+            </InlineMessage>
+        ))}
+    </VStack>
+);

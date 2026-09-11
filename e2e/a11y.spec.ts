@@ -4,7 +4,7 @@ import { expect, test } from '@playwright/test';
 type AxeViolation = Awaited<ReturnType<AxeBuilder['analyze']>>['violations'][number];
 type A11yViolation = AxeViolation & { tab: string };
 
-const faner = ['oversikt', 'oppfolging', 'meldinger', 'utbetaling', 'dokumenter', 'ytelser', 'varsler'];
+const faner = ['hjem', 'oversikt', 'oppfolging', 'meldinger', 'utbetaling', 'dokumenter', 'ytelser', 'varsler'];
 
 test.describe.configure({ mode: 'serial', retries: 0 });
 
