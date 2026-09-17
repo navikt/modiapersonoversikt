@@ -11,6 +11,8 @@ export interface Innstillinger {
     [key: string]: string;
 }
 
+export const INNSTILLINGER_KEY_SAKSBEHANDLER_NAVN = 'saksbehandlerNavn';
+
 const queryKey = ['innstillinger'];
 const url = `${import.meta.env.BASE_URL}proxy/modia-innstillinger/api/innstillinger`;
 

@@ -9,6 +9,7 @@ import useDraft from 'src/app/personside/dialogpanel/use-draft';
 import { Link } from 'src/components/Link';
 import { getFormattertMeldingsDato, nyesteMelding, traadstittel } from 'src/components/Meldinger/List/utils';
 import { AvbrytAlert } from 'src/components/melding/AvbrytAlert';
+import { SaksbehandlerNavnDialog } from 'src/components/melding/SaksbehandlerNavnDialog';
 import AutoCompleteTekstTips from 'src/components/melding/standardtekster/AutoCompleteTekstTips';
 import StandardTekstModal from 'src/components/melding/standardtekster/StandardTeksterModal';
 import { settInnStandardTekst } from 'src/components/melding/standardtekster/settInnStandardTekst';
@@ -230,6 +231,7 @@ export const FortsettDialog = ({ traad }: Props) => {
                                         )
                                     }
                                 />
+                                <SaksbehandlerNavnDialog />
                             </HStack>
                             <HStack
                                 justify="end"

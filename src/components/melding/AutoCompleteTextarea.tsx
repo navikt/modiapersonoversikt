@@ -39,7 +39,8 @@ function autoFullfor(autofullforData: AutofullforData, parsedText: string) {
         Locale.nb_NO,
         autofullforData.enhet,
         autofullforData.person,
-        autofullforData.saksbehandler
+        autofullforData.saksbehandler,
+        autofullforData.egendefinertSaksbehandlerNavn
     );
 
     return autofullfor(parsedText, autofullforMap);
