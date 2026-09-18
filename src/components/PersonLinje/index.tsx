@@ -161,7 +161,7 @@ type PersonaliaProps = {
     farge: string;
     kjonn: KodeBeskrivelseKjonn;
     erDod: boolean;
-    alder?: number;
+    alder?: number | null;
 };
 
 const Personalia = ({ navn, alder, kjonn, erDod, farge }: PersonaliaProps) => {

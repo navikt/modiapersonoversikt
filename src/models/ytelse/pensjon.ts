@@ -8,8 +8,8 @@ export interface Pensjon {
     enhetsId: string;
     sakType: string;
     sakStatus: string;
-    fomDato?: string;
-    tomDato?: string;
+    fomDato?: string | null;
+    tomDato?: string | null;
 }
 
 export function getPensjonIdDato(ytelse: Pensjon) {

@@ -24,7 +24,7 @@ const getForsikringEntries = (forsikring?: GjeldendeForsikring | null) => {
     };
 };
 
-const getYrkesskadeEntries = (sykeMeldinger?: SykmeldingItem[]) => {
+const getYrkesskadeEntries = (sykeMeldinger?: SykmeldingItem[] | null) => {
     if (!sykeMeldinger) {
         return {};
     }

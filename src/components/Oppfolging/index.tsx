@@ -102,7 +102,7 @@ const Gjeldende14aVedtakDetaljer = () => {
                             <BodyShort size="small" weight="semibold">
                                 Innsatsgruppe:
                             </BodyShort>
-                            <BodyShort size="small">{gjeldende14aVedtak?.innsatsgruppe.beskrivelse}</BodyShort>
+                            <BodyShort size="small">{gjeldende14aVedtak?.innsatsgruppe?.beskrivelse}</BodyShort>
                         </VStack>
                         <VStack justify="space-between">
                             <BodyShort size="small" weight="semibold">
