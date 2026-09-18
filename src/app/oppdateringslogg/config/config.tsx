@@ -784,6 +784,20 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                     enklere å navigere mellom innslag, enten med mus eller piltaster.
                 </BodyShort>
             )
+        },
+        {
+            id: 47,
+            tittel: 'Velg navn i signaturen',
+            dato: new Date('2026-09-18 10:59'),
+            aktiv: true,
+            ingress: null,
+            beskrivelse: (
+                <BodyShort>
+                    Du kan nå velge hvilket navn som brukes i signaturen når du skriver en melding. Åpne innstillingene
+                    med tannhjulet ved siden av standardtekstene. Hvis du ikke velger et navn, brukes navnet ditt som
+                    før.
+                </BodyShort>
+            )
         }
     ];
 }

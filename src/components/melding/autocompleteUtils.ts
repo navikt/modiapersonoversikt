@@ -1,5 +1,6 @@
 import { useAtomValue } from 'jotai';
 import type { Me, VeiledersEnhet } from 'src/generated/modiapersonoversikt-api';
+import { INNSTILLINGER_KEY_SAKSBEHANDLER_NAVN, useInnstillinger } from 'src/lib/clients/innstillinger';
 import { useEnheter, useInnloggetSaksbehandler, usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { aktivEnhetAtom } from 'src/lib/state/context';
 import { Kjonn, type PersonData } from 'src/lib/types/modiapersonoversikt-api';
@@ -12,6 +13,7 @@ export type AutofullforData = {
     enhet?: VeiledersEnhet;
     person?: PersonData;
     saksbehandler?: Me;
+    egendefinertSaksbehandlerNavn?: string;
 };
 
 type AutofullforMap = {
@@ -66,7 +68,8 @@ export function byggAutofullforMap(
     locale: string,
     enhet?: VeiledersEnhet,
     person?: PersonData,
-    saksbehandler?: Me
+    saksbehandler?: Me,
+    egendefinertSaksbehandlerNavn?: string
 ): AutofullforMap {
     let personData = {
         'bruker.fnr': '[bruker.fnr]',
@@ -97,7 +100,7 @@ export function byggAutofullforMap(
         'bruker.navkontor': person?.navEnhet?.navn || 'Ukjent kontor',
         'saksbehandler.fornavn': saksbehandler?.fornavn || '[saksbehandler.fornavn]',
         'saksbehandler.etternavn': saksbehandler?.etternavn || '[saksbehandler.etternavn]',
-        'saksbehandler.navn': saksbehandler?.navn || '[saksbehandler.navn]'
+        'saksbehandler.navn': egendefinertSaksbehandlerNavn?.trim() || saksbehandler?.navn || '[saksbehandler.navn]'
     };
 }
 
@@ -123,6 +126,7 @@ export function useAutoFullforData() {
     const { data: personData } = usePersonData();
     const { data: veilederData } = useInnloggetSaksbehandler();
     const { data: veilederEnheterData } = useEnheter();
+    const innstillinger = useInnstillinger();
 
     const enheter = veilederEnheterData?.enhetliste ?? [];
     const enhetId = useAtomValue(aktivEnhetAtom);
@@ -131,6 +135,7 @@ export function useAutoFullforData() {
     return {
         enhet: valgtEnhet,
         person: personData?.person,
-        saksbehandler: veilederData
+        saksbehandler: veilederData,
+        egendefinertSaksbehandlerNavn: innstillinger.data?.innstillinger[INNSTILLINGER_KEY_SAKSBEHANDLER_NAVN]
     };
 }
