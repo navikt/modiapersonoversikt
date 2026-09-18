@@ -1,10 +1,14 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { type FetchError, get, post } from 'src/api/api';
 
-interface SaksbehandlerInnstillinger {
+export interface SaksbehandlerInnstillinger {
     sistLagret: string;
-    innstillinger: Record<string, string>;
+    innstillinger: Innstillinger;
 }
+
+export type Innstillinger = Record<string, string>;
+
+export const INNSTILLINGER_KEY_SAKSBEHANDLER_NAVN = 'saksbehandlerNavn';
 
 const queryKey = ['innstillinger'];
 
@@ -22,7 +26,7 @@ export const useInnstillinger = () => {
 export const useOppdaterInnstillinger = () => {
     const queryClient = useQueryClient();
 
-    return useMutation<SaksbehandlerInnstillinger, FetchError, Record<string, string>>({
+    return useMutation<SaksbehandlerInnstillinger, FetchError, Innstillinger>({
         mutationFn: (innstillinger) => post(url(), innstillinger),
         onSuccess(data) {
             queryClient.setQueryData(queryKey, data);

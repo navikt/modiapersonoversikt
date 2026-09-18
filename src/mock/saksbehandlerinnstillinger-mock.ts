@@ -3,7 +3,7 @@ import {
     INNSTILLINGER_KEY_SAKSBEHANDLER_NAVN,
     type Innstillinger,
     type SaksbehandlerInnstillinger
-} from '../rest/resources/innstillingerResource';
+} from 'src/lib/clients/innstillinger';
 
 const localstoreageKey = 'modia-innstillinger-mock';
 const finnesILocalStorage = localStorage.getItem(localstoreageKey);

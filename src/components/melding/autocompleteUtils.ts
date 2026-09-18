@@ -1,10 +1,10 @@
 import { useAtomValue } from 'jotai';
 import type { Me, VeiledersEnhet } from 'src/generated/modiapersonoversikt-api';
+import { INNSTILLINGER_KEY_SAKSBEHANDLER_NAVN, useInnstillinger } from 'src/lib/clients/innstillinger';
 import { useEnheter, useInnloggetSaksbehandler, usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { aktivEnhetAtom } from 'src/lib/state/context';
 import { Kjonn, type PersonData } from 'src/lib/types/modiapersonoversikt-api';
 import { Locale } from 'src/lib/types/skrivestotte';
-import innstillingerResource, { INNSTILLINGER_KEY_SAKSBEHANDLER_NAVN } from 'src/rest/resources/innstillingerResource';
 import { loggEvent, loggWarning } from 'src/utils/logger/frontendLogger';
 import { capitalizeName } from 'src/utils/string-utils';
 import { hentNavn } from '../PersonLinje/utils';
@@ -126,7 +126,7 @@ export function useAutoFullforData() {
     const { data: personData } = usePersonData();
     const { data: veilederData } = useInnloggetSaksbehandler();
     const { data: veilederEnheterData } = useEnheter();
-    const innstillinger = innstillingerResource.useFetch();
+    const innstillinger = useInnstillinger();
 
     const enheter = veilederEnheterData?.enhetliste ?? [];
     const enhetId = useAtomValue(aktivEnhetAtom);

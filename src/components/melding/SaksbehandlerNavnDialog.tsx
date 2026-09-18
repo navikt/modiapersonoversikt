@@ -1,17 +1,22 @@
 import { CogIcon } from '@navikt/aksel-icons';
 import { Alert, Button, Dialog, HStack, TextField, VStack } from '@navikt/ds-react';
 import { useEffect, useState } from 'react';
+import {
+    INNSTILLINGER_KEY_SAKSBEHANDLER_NAVN,
+    useInnstillinger,
+    useOppdaterInnstillinger
+} from 'src/lib/clients/innstillinger';
+import { useInnloggetSaksbehandler } from 'src/lib/clients/modiapersonoversikt-api';
 import { useDisableDialog } from 'src/lib/state/dialog';
-import innloggetSaksbehandler from 'src/rest/resources/innloggetSaksbehandlerResource';
-import innstillingerResource, { INNSTILLINGER_KEY_SAKSBEHANDLER_NAVN } from 'src/rest/resources/innstillingerResource';
+import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 
 export function SaksbehandlerNavnDialog() {
     const [open, setOpen] = useState(false);
     const [navn, setNavn] = useState('');
     const [feil, setFeil] = useState<string>();
-    const innstillinger = innstillingerResource.useFetch();
-    const saksbehandler = innloggetSaksbehandler.useFetch();
-    const oppdaterInnstillinger = innstillingerResource.useMutation();
+    const innstillinger = useInnstillinger();
+    const saksbehandler = useInnloggetSaksbehandler();
+    const oppdaterInnstillinger = useOppdaterInnstillinger();
     const disableDialog = useDisableDialog();
 
     useEffect(() => {
@@ -30,6 +35,7 @@ export function SaksbehandlerNavnDialog() {
                 ...innstillinger.data.innstillinger,
                 [INNSTILLINGER_KEY_SAKSBEHANDLER_NAVN]: navn.trim()
             });
+            trackGenereltUmamiEvent(trackingEvents.signaturnavnEndret);
             setOpen(false);
         } catch {
             setFeil('Kunne ikke lagre navnet. Prøv igjen.');
@@ -50,7 +56,7 @@ export function SaksbehandlerNavnDialog() {
                 }}
                 disabled={disableDialog || innstillinger.isPending}
             />
-            <Dialog open={open} onOpenChange={setOpen} size="small">
+            <Dialog open={open} onOpenChange={setOpen}>
                 <Dialog.Popup>
                     <Dialog.Header>
                         <Dialog.Title>Navn i signatur</Dialog.Title>
@@ -71,16 +77,32 @@ export function SaksbehandlerNavnDialog() {
                                 onChange={(event) => setNavn(event.target.value)}
                                 autoFocus
                             />
+                            <HStack justify="end">
+                                <Button
+                                    type="button"
+                                    variant="tertiary"
+                                    size="small"
+                                    onClick={() => setNavn('')}
+                                    disabled={navn.length === 0}
+                                >
+                                    Nullstill
+                                </Button>
+                            </HStack>
                         </VStack>
                     </Dialog.Body>
                     <Dialog.Footer>
                         <HStack gap="space-8" justify="end">
                             <Dialog.CloseTrigger>
-                                <Button type="button" variant="secondary">
+                                <Button type="button" variant="secondary" size="small">
                                     Avbryt
                                 </Button>
                             </Dialog.CloseTrigger>
-                            <Button type="button" onClick={lagre} loading={oppdaterInnstillinger.isPending}>
+                            <Button
+                                type="button"
+                                onClick={lagre}
+                                loading={oppdaterInnstillinger.isPending}
+                                size="small"
+                            >
                                 Lagre
                             </Button>
                         </HStack>
