@@ -906,8 +906,8 @@ export interface components {
     schemas: {
         FnrDatoRangeRequest: {
             fnr: string;
-            fom?: string;
-            tom?: string;
+            fom?: string | null;
+            tom?: string | null;
         };
         HentBehandlingsperioder200ResponseInnerPeriode: {
             /** Format: date */
@@ -922,17 +922,17 @@ export interface components {
             periode: components['schemas']['HentBehandlingsperioder200ResponseInnerPeriode'];
             /** @enum {string} */
             kilde: HentVedtaksperioder200ResponseInnerKilde;
-            barnetillegg?: components['schemas']['HentVedtaksperioder200ResponseInnerBarnetillegg'];
+            barnetillegg?: components['schemas']['HentVedtaksperioder200ResponseInnerBarnetillegg'] | null;
             /** Format: int32 */
-            sats?: number;
+            sats?: number | null;
             /** Format: int32 */
-            satsBarnetillegg?: number;
+            satsBarnetillegg?: number | null;
             vedtaksperiode: components['schemas']['HentBehandlingsperioder200ResponseInnerPeriode'];
             innvilgelsesperioder: components['schemas']['HentBehandlingsperioder200ResponseInnerPeriode'][];
-            omgjortAvRammevedtakId?: string;
-            omgjorRammevedtakId?: string;
+            omgjortAvRammevedtakId?: string | null;
+            omgjorRammevedtakId?: string | null;
             /** Format: date-time */
-            vedtakstidspunkt?: string;
+            vedtakstidspunkt?: string | null;
         };
         HentVedtaksperioder200ResponseInnerBarnetillegg: {
             perioder: components['schemas']['HentVedtaksperioder200ResponseInnerBarnetilleggPerioderInner'][];
@@ -943,119 +943,119 @@ export interface components {
             periode: components['schemas']['HentBehandlingsperioder200ResponseInnerPeriode'];
         };
         CommonHistoriskUtbetaling: {
-            vedtak?: components['schemas']['CommonPeriode'];
+            vedtak?: components['schemas']['CommonPeriode'] | null;
             /** Format: double */
-            utbetalingsgrad?: number;
-            utbetalingsdato?: string;
+            utbetalingsgrad?: number | null;
+            utbetalingsdato?: string | null;
             /** Format: double */
-            nettobelop?: number;
+            nettobelop?: number | null;
             /** Format: double */
-            bruttobelop?: number;
+            bruttobelop?: number | null;
             /** Format: double */
-            skattetrekk?: number;
-            arbeidsgiverNavn?: string;
-            arbeidsgiverOrgNr?: string;
+            skattetrekk?: number | null;
+            arbeidsgiverNavn?: string | null;
+            arbeidsgiverOrgNr?: string | null;
             /** Format: double */
-            dagsats?: number;
-            type?: string;
-            trekk?: components['schemas']['CommonKreditortrekk'][];
+            dagsats?: number | null;
+            type?: string | null;
+            trekk?: components['schemas']['CommonKreditortrekk'][] | null;
         };
         CommonKommendeUtbetaling: {
-            vedtak?: components['schemas']['CommonPeriode'];
+            vedtak?: components['schemas']['CommonPeriode'] | null;
             /** Format: double */
-            utbetalingsgrad?: number;
-            utbetalingsdato?: string;
+            utbetalingsgrad?: number | null;
+            utbetalingsdato?: string | null;
             /** Format: double */
-            bruttobelop?: number;
-            arbeidsgiverNavn?: string;
-            arbeidsgiverOrgNr?: string;
-            arbeidsgiverKontonr?: string;
+            bruttobelop?: number | null;
+            arbeidsgiverNavn?: string | null;
+            arbeidsgiverOrgNr?: string | null;
+            arbeidsgiverKontonr?: string | null;
             /** Format: double */
-            dagsats?: number;
-            type?: string;
-            saksbehandler?: string;
+            dagsats?: number | null;
+            type?: string | null;
+            saksbehandler?: string | null;
         };
         CommonKreditortrekk: {
-            kreditorsNavn?: string;
+            kreditorsNavn?: string | null;
             /** Format: double */
-            belop?: number;
+            belop?: number | null;
         };
         CommonPeriode: {
-            fra?: string;
-            til?: string;
+            fra?: string | null;
+            til?: string | null;
         };
         GjeldendeForsikring: {
-            forsikringsordning?: string;
+            forsikringsordning?: string | null;
             /** Format: double */
-            premiegrunnlag?: number;
-            erGyldig?: boolean;
-            forsikret?: components['schemas']['CommonPeriode'];
+            premiegrunnlag?: number | null;
+            erGyldig?: boolean | null;
+            forsikret?: components['schemas']['CommonPeriode'] | null;
         };
         GjelderYrkesskade: {
-            yrkesskadeart?: string;
-            skadet?: string;
-            vedtatt?: string;
+            yrkesskadeart?: string | null;
+            skadet?: string | null;
+            vedtatt?: string | null;
         };
         GradAvSykmelding: {
-            gradert?: components['schemas']['CommonPeriode'];
+            gradert?: components['schemas']['CommonPeriode'] | null;
             /** Format: double */
-            sykmeldingsgrad?: number;
+            sykmeldingsgrad?: number | null;
         };
         Sykepenger: {
-            fodselsnummer?: string;
-            sykmeldtFom?: string;
+            fodselsnummer?: string | null;
+            sykmeldtFom?: string | null;
             /** Format: int32 */
-            forbrukteDager?: number;
-            ferie1?: components['schemas']['CommonPeriode'];
-            ferie2?: components['schemas']['CommonPeriode'];
-            sanksjon?: components['schemas']['CommonPeriode'];
-            stansaarsak?: string;
-            unntakAktivitet?: string;
-            forsikring?: components['schemas']['GjeldendeForsikring'];
-            sykmeldinger?: components['schemas']['SykmeldingItem'][];
-            historiskeUtbetalinger?: components['schemas']['CommonHistoriskUtbetaling'][];
-            kommendeUtbetalinger?: components['schemas']['CommonKommendeUtbetaling'][];
-            utbetalingerPaaVent?: components['schemas']['SykmeldingUtbetalingPaVent'][];
-            bruker?: string;
-            midlertidigStanset?: string;
-            slutt?: string;
-            arbeidsforholdListe?: components['schemas']['SykmeldingArbeidsforhold'][];
-            erArbeidsgiverperiode?: boolean;
-            arbeidskategori?: string;
+            forbrukteDager?: number | null;
+            ferie1?: components['schemas']['CommonPeriode'] | null;
+            ferie2?: components['schemas']['CommonPeriode'] | null;
+            sanksjon?: components['schemas']['CommonPeriode'] | null;
+            stansaarsak?: string | null;
+            unntakAktivitet?: string | null;
+            forsikring?: components['schemas']['GjeldendeForsikring'] | null;
+            sykmeldinger?: components['schemas']['SykmeldingItem'][] | null;
+            historiskeUtbetalinger?: components['schemas']['CommonHistoriskUtbetaling'][] | null;
+            kommendeUtbetalinger?: components['schemas']['CommonKommendeUtbetaling'][] | null;
+            utbetalingerPaaVent?: components['schemas']['SykmeldingUtbetalingPaVent'][] | null;
+            bruker?: string | null;
+            midlertidigStanset?: string | null;
+            slutt?: string | null;
+            arbeidsforholdListe?: components['schemas']['SykmeldingArbeidsforhold'][] | null;
+            erArbeidsgiverperiode?: boolean | null;
+            arbeidskategori?: string | null;
         };
         SykepengerResponse: {
-            sykepenger?: components['schemas']['Sykepenger'][];
+            sykepenger?: components['schemas']['Sykepenger'][] | null;
         };
         SykmeldingArbeidsforhold: {
-            arbeidsgiverNavn?: string;
-            arbeidsgiverKontonr?: string;
-            inntektsperiode?: string;
+            arbeidsgiverNavn?: string | null;
+            arbeidsgiverKontonr?: string | null;
+            inntektsperiode?: string | null;
             /** Format: double */
-            inntektForPerioden?: number;
-            refusjonTom?: string;
-            refusjonstype?: string;
-            sykepengerFom?: string;
+            inntektForPerioden?: number | null;
+            refusjonTom?: string | null;
+            refusjonstype?: string | null;
+            sykepengerFom?: string | null;
         };
         SykmeldingItem: {
-            sykmelder?: string;
-            behandlet?: string;
-            sykmeldt?: components['schemas']['CommonPeriode'];
+            sykmelder?: string | null;
+            behandlet?: string | null;
+            sykmeldt?: components['schemas']['CommonPeriode'] | null;
             /** Format: double */
-            sykmeldingsgrad?: number;
-            gjelderYrkesskade?: components['schemas']['GjelderYrkesskade'];
-            gradAvSykmeldingListe?: components['schemas']['GradAvSykmelding'][];
+            sykmeldingsgrad?: number | null;
+            gjelderYrkesskade?: components['schemas']['GjelderYrkesskade'] | null;
+            gradAvSykmeldingListe?: components['schemas']['GradAvSykmelding'][] | null;
         };
         SykmeldingUtbetalingPaVent: {
-            vedtak?: components['schemas']['CommonPeriode'];
+            vedtak?: components['schemas']['CommonPeriode'] | null;
             /** Format: double */
-            utbetalingsgrad?: number;
-            oppgjorstype?: string;
-            arbeidskategori?: string;
-            stansaarsak?: string;
-            ferie1?: components['schemas']['CommonPeriode'];
-            ferie2?: components['schemas']['CommonPeriode'];
-            sanksjon?: components['schemas']['CommonPeriode'];
-            sykmeldt?: components['schemas']['CommonPeriode'];
+            utbetalingsgrad?: number | null;
+            oppgjorstype?: string | null;
+            arbeidskategori?: string | null;
+            stansaarsak?: string | null;
+            ferie1?: components['schemas']['CommonPeriode'] | null;
+            ferie2?: components['schemas']['CommonPeriode'] | null;
+            sanksjon?: components['schemas']['CommonPeriode'] | null;
+            sykmeldt?: components['schemas']['CommonPeriode'] | null;
         };
         SykepengerSpokelse: {
             utbetaltePerioder: components['schemas']['Utbetalingsperiode'][];
@@ -1075,9 +1075,9 @@ export interface components {
             sakType: string;
             sakStatus: string;
             /** Format: date */
-            fomDato?: string;
+            fomDato?: string | null;
             /** Format: date */
-            tomDato?: string;
+            tomDato?: string | null;
             enhetsId: string;
         };
         Foreldrepenger: {
@@ -1102,7 +1102,7 @@ export interface components {
             /** Format: date */
             fraOgMedDato: string;
             /** Format: date */
-            tilOgMedDato?: string;
+            tilOgMedDato?: string | null;
         };
         BeregnetDagDagpengerDto: {
             /** Format: date */
@@ -1121,13 +1121,13 @@ export interface components {
         Dagpenger: {
             perioder: components['schemas']['BeregnetDagDagpengerDto'][];
             /** Format: date */
-            eldsteFraOgMedDato?: string;
+            eldsteFraOgMedDato?: string | null;
         };
         NonavaapapiinternPeriodeDTO: {
             /** Format: date */
-            fraOgMedDato?: string;
+            fraOgMedDato?: string | null;
             /** Format: date */
-            tilOgMedDato?: string;
+            tilOgMedDato?: string | null;
         };
         NonavaapapiinternVedtakUtenUtbetalingDTO: {
             /** Format: int32 */
@@ -1147,11 +1147,11 @@ export interface components {
             /** Format: date */
             vedtaksdato: string;
             /** Format: int32 */
-            'dagsatsEtterUf\u00F8reReduksjon'?: number;
-            opphorsAarsak?: string;
-            samordningsId?: string;
-            vedtaksTypeKode?: string;
-            vedtaksTypeNavn?: string;
+            'dagsatsEtterUf\u00F8reReduksjon'?: number | null;
+            opphorsAarsak?: string | null;
+            samordningsId?: string | null;
+            vedtaksTypeKode?: string | null;
+            vedtaksTypeNavn?: string | null;
         };
         FnrRequest: {
             fnr: string;
@@ -1163,7 +1163,7 @@ export interface components {
         };
         Innhold: {
             tekst: string;
-            link?: string;
+            link?: string | null;
         };
         Result: {
             feil: string[];
@@ -1186,7 +1186,7 @@ export interface components {
             sendtTidspunkt: string;
             renotifikasjonSendt: boolean;
             /** Format: date-time */
-            renotifikasjonTidspunkt?: string;
+            renotifikasjonTidspunkt?: string | null;
             sendteKanaler: string[];
             feilhistorikk: components['schemas']['Feilhistorikk'][];
             /** Format: date-time */
@@ -1194,7 +1194,7 @@ export interface components {
         };
         Arbeidgiver: {
             orgnr: string;
-            navn?: string;
+            navn?: string | null;
         };
         Skatt: {
             /** Format: double */
@@ -1204,22 +1204,22 @@ export interface components {
             trekktype: string;
             /** Format: double */
             trekkbelop: number;
-            kreditor?: string;
+            kreditor?: string | null;
         };
         Utbetaling: {
             posteringsdato: string;
-            utbetalingsdato?: string;
-            forfallsdato?: string;
-            utbetaltTil?: string;
+            utbetalingsdato?: string | null;
+            forfallsdato?: string | null;
+            utbetaltTil?: string | null;
             erUtbetaltTilPerson: boolean;
             erUtbetaltTilOrganisasjon: boolean;
             erUtbetaltTilSamhandler: boolean;
             /** Format: double */
             nettobelop: number;
-            melding?: string;
+            melding?: string | null;
             metode: string;
             status: string;
-            konto?: string;
+            konto?: string | null;
             ytelser: components['schemas']['Ytelse'][];
         };
         UtbetalingerPeriodeDTO: {
@@ -1233,7 +1233,7 @@ export interface components {
             periode: components['schemas']['UtbetalingerPeriodeDTO'];
         };
         Ytelse: {
-            type?: string;
+            type?: string | null;
             ytelseskomponentListe: components['schemas']['YtelseKomponent'][];
             /** Format: double */
             ytelseskomponentersum: number;
@@ -1243,19 +1243,19 @@ export interface components {
             skattListe: components['schemas']['Skatt'][];
             /** Format: double */
             skattsum: number;
-            periode?: components['schemas']['YtelsePeriode'];
+            periode?: components['schemas']['YtelsePeriode'] | null;
             /** Format: double */
             nettobelop: number;
-            bilagsnummer?: string;
-            arbeidsgiver?: components['schemas']['Arbeidgiver'];
+            bilagsnummer?: string | null;
+            arbeidsgiver?: components['schemas']['Arbeidgiver'] | null;
         };
         YtelseKomponent: {
             ytelseskomponenttype: string;
             /** Format: double */
-            satsbelop?: number;
-            satstype?: string;
+            satsbelop?: number | null;
+            satstype?: string | null;
             /** Format: double */
-            satsantall?: number;
+            satsantall?: number | null;
             /** Format: double */
             ytelseskomponentbelop: number;
         };
@@ -1266,16 +1266,16 @@ export interface components {
         DenyCause: unknown;
         TilgangDTO: {
             harTilgang: boolean;
-            ikkeTilgangArsak?: components['schemas']['DenyCause'];
-            message?: string;
-            aktivIdent?: string;
+            ikkeTilgangArsak?: components['schemas']['DenyCause'] | null;
+            message?: string | null;
+            aktivIdent?: string | null;
         };
         Dokument: {
             tittel: string;
-            dokumentreferanse?: string;
+            dokumentreferanse?: string | null;
             logiskDokument: boolean;
-            skjerming?: string;
-            /** @enum {string} */
+            skjerming?: string | null;
+            /** @enum {string|null} */
             dokumentStatus?: DokumentDokumentStatus;
             saksbehandlerHarTilgang: boolean;
         };
@@ -1286,7 +1286,7 @@ export interface components {
             /** Format: date-time */
             dato: string;
             /** Format: date-time */
-            lestDato?: string;
+            lestDato?: string | null;
             navn: string;
             journalpostId: string;
             hoveddokument: components['schemas']['Dokument'];
@@ -1296,7 +1296,7 @@ export interface components {
             /** @enum {string} */
             mottaker: DokumentmetadataMottaker;
             tilhorendeSaksid: string;
-            tilhorendeFagsaksid?: string;
+            tilhorendeFagsaksid?: string | null;
             baksystem: DokumentmetadataBaksystem[];
             temakode: string;
             temakodeVisning: string;
@@ -1306,7 +1306,7 @@ export interface components {
         };
         Feil: {
             inneholderFeil: boolean;
-            /** @enum {string} */
+            /** @enum {string|null} */
             feilmelding?: FeilFeilmelding;
         };
         LocalDate: {
@@ -1314,11 +1314,19 @@ export interface components {
             value?: string;
             /** Format: date */
             value$kotlinx_datetime: string;
-            /** Format: int32 */
+            /**
+             * Format: int32
+             * @deprecated
+             * @description Use the 'month' property instead
+             */
             monthNumber: number;
             /** Format: int32 */
             year: number;
-            /** Format: int32 */
+            /**
+             * Format: int32
+             * @deprecated
+             * @description Use the 'day' property instead
+             */
             dayOfMonth: number;
             /** @enum {string} */
             month: LocalDateMonth;
@@ -1326,20 +1334,30 @@ export interface components {
             dayOfWeek: LocalDateDayOfWeek;
             /** Format: int32 */
             dayOfYear: number;
+            /** Format: int32 */
+            day: number;
         };
         LocalDateTime: {
             /** Format: date-time */
             value?: string;
             /** Format: date-time */
             value$kotlinx_datetime: string;
-            /** Format: int32 */
+            /**
+             * Format: int32
+             * @deprecated
+             * @description Use the 'month' property instead
+             */
             monthNumber: number;
             /** Format: int32 */
             nanosecond: number;
             time: components['schemas']['LocalTime'];
             /** Format: int32 */
             year: number;
-            /** Format: int32 */
+            /**
+             * Format: int32
+             * @deprecated
+             * @description Use the 'day' property instead
+             */
             dayOfMonth: number;
             /** Format: int32 */
             hour: number;
@@ -1354,6 +1372,8 @@ export interface components {
             /** Format: int32 */
             dayOfYear: number;
             date: components['schemas']['LocalDate'];
+            /** Format: int32 */
+            day: number;
         };
         LocalTime: {
             value?: string;
@@ -1372,11 +1392,11 @@ export interface components {
         };
         Sak: {
             temakode: string;
-            fagsaksnummer?: string;
+            fagsaksnummer?: string | null;
             /** Format: date-time */
-            avsluttet?: string;
+            avsluttet?: string | null;
             fagsystem: string;
-            fagsystemNavn?: string;
+            fagsystemNavn?: string | null;
             /** @enum {string} */
             baksystem: SakBaksystem;
         };
@@ -1387,7 +1407,7 @@ export interface components {
             ferdigBehandlet: number;
             /** Format: int32 */
             avbrutt: number;
-            sistOppdatert?: components['schemas']['LocalDateTime'];
+            sistOppdatert?: components['schemas']['LocalDateTime'] | null;
         };
         SoknadsstatusSakstema: {
             temakode: string;
@@ -1409,50 +1429,52 @@ export interface components {
             temanavn: string;
             harTilgang: boolean;
             /** Format: date-time */
-            nyesteDokumentDato?: string;
+            nyesteDokumentDato?: string | null;
         };
         PersonsokRequestV3: {
-            enhet?: string;
-            navn?: string;
-            utenlandskID?: string;
+            enhet?: string | null;
+            navn?: string | null;
+            fornavn?: string | null;
+            etternavn?: string | null;
+            utenlandskID?: string | null;
             /** Format: int32 */
-            alderFra?: number;
+            alderFra?: number | null;
             /** Format: int32 */
-            alderTil?: number;
-            fodselsdatoFra?: string;
-            fodselsdatoTil?: string;
-            kjonn?: string;
-            adresse?: string;
-            telefonnummer?: string;
+            alderTil?: number | null;
+            fodselsdatoFra?: string | null;
+            fodselsdatoTil?: string | null;
+            kjonn?: string | null;
+            adresse?: string | null;
+            telefonnummer?: string | null;
         };
         BrukerinfoDTO: {
-            gjeldendePostadresseType?: components['schemas']['KodeverdiDTO'];
-            midlertidigPostadresse?: string;
-            ansvarligEnhet?: string;
+            gjeldendePostadresseType?: components['schemas']['KodeverdiDTO'] | null;
+            midlertidigPostadresse?: string | null;
+            ansvarligEnhet?: string | null;
         };
         KodeverdiDTO: {
-            kodeRef?: string;
-            beskrivelse?: string;
+            kodeRef?: string | null;
+            beskrivelse?: string | null;
         };
         NorskIdentDTO: {
             ident: string;
-            type?: components['schemas']['KodeverdiDTO'];
+            type?: components['schemas']['KodeverdiDTO'] | null;
         };
         PersonSokResponsDTO: {
             ident: components['schemas']['NorskIdentDTO'];
             navn: components['schemas']['PersonnavnDTO'];
-            diskresjonskode?: components['schemas']['KodeverdiDTO'];
-            postadresse?: string;
-            bostedsadresse?: string;
-            kjonn?: components['schemas']['KodeverdiDTO'];
-            status?: components['schemas']['KodeverdiDTO'];
-            brukerinfo?: components['schemas']['BrukerinfoDTO'];
-            utenlandskID?: components['schemas']['UtenlandskIdDTO'][];
+            diskresjonskode?: components['schemas']['KodeverdiDTO'] | null;
+            postadresse?: string | null;
+            bostedsadresse?: string | null;
+            kjonn?: components['schemas']['KodeverdiDTO'] | null;
+            status?: components['schemas']['KodeverdiDTO'] | null;
+            brukerinfo?: components['schemas']['BrukerinfoDTO'] | null;
+            utenlandskID?: components['schemas']['UtenlandskIdDTO'][] | null;
         };
         PersonnavnDTO: {
             fornavn: string;
             etternavn: string;
-            mellomnavn?: string;
+            mellomnavn?: string | null;
             sammensatt: string;
         };
         UtenlandskIdDTO: {
@@ -1460,24 +1482,24 @@ export interface components {
             utstederland: string;
         };
         Adressat: {
-            advokatSomAdressat?: components['schemas']['AdvokatSomAdressat'];
-            personSomAdressat?: components['schemas']['PersonSomAdressat'];
-            organisasjonSomAdressat?: components['schemas']['OrganisasjonSomAdressat'];
+            advokatSomAdressat?: components['schemas']['AdvokatSomAdressat'] | null;
+            personSomAdressat?: components['schemas']['PersonSomAdressat'] | null;
+            organisasjonSomAdressat?: components['schemas']['OrganisasjonSomAdressat'] | null;
         };
         Adresse: {
-            coAdresse?: string;
+            coAdresse?: string | null;
             linje1: string;
-            linje2?: string;
-            linje3?: string;
+            linje2?: string | null;
+            linje3?: string | null;
             /** Format: date */
-            angittFlyttedato?: string;
-            sistEndret?: components['schemas']['SistEndret'];
-            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'];
+            angittFlyttedato?: string | null;
+            sistEndret?: components['schemas']['SistEndret'] | null;
+            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'] | null;
         };
         AdvokatSomAdressat: {
             kontaktperson: components['schemas']['Navn'];
-            organisasjonsnavn?: string;
-            organisasjonsnummer?: string;
+            organisasjonsnavn?: string | null;
+            organisasjonsnummer?: string | null;
         };
         Apningstid: {
             ukedag: string;
@@ -1485,14 +1507,14 @@ export interface components {
         };
         Bankkonto: {
             kontonummer: string;
-            banknavn?: string;
-            sistEndret?: components['schemas']['SistEndret'];
-            bankkode?: string;
-            swift?: string;
-            landkode?: components['schemas']['KodeBeskrivelseString'];
-            adresse?: components['schemas']['Adresse'];
-            valuta?: components['schemas']['KodeBeskrivelseString'];
-            kilde?: string;
+            banknavn?: string | null;
+            sistEndret?: components['schemas']['SistEndret'] | null;
+            bankkode?: string | null;
+            swift?: string | null;
+            landkode?: components['schemas']['KodeBeskrivelseString'] | null;
+            adresse?: components['schemas']['Adresse'] | null;
+            valuta?: components['schemas']['KodeBeskrivelseString'] | null;
+            kilde?: string | null;
             opprettetAv: string;
         };
         Data: {
@@ -1500,12 +1522,12 @@ export interface components {
             person: components['schemas']['Person'];
         };
         DeltBosted: {
-            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'];
-            adresse?: components['schemas']['Adresse'];
+            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'] | null;
+            adresse?: components['schemas']['Adresse'] | null;
         };
         DigitalKontaktinformasjonTredjepartsperson: {
-            reservasjon?: boolean;
-            mobiltelefonnummer?: string;
+            reservasjon?: boolean | null;
+            mobiltelefonnummer?: string | null;
         };
         Dodsbo: {
             adressat: components['schemas']['Adressat'];
@@ -1514,35 +1536,35 @@ export interface components {
             registrert: string;
             /** @enum {string} */
             skifteform: DodsboSkifteform;
-            sistEndret?: components['schemas']['SistEndret'];
+            sistEndret?: components['schemas']['SistEndret'] | null;
         };
         Dodsdato: {
             /** Format: date */
             dodsdato: string;
-            sistEndret?: components['schemas']['SistEndret'];
+            sistEndret?: components['schemas']['SistEndret'] | null;
         };
         Fodested: {
-            land?: components['schemas']['KodeBeskrivelseString'];
-            kommune?: string;
-            fodested?: string;
+            land?: components['schemas']['KodeBeskrivelseString'] | null;
+            kommune?: string | null;
+            fodested?: string | null;
         };
         ForelderBarnRelasjon: {
-            ident?: string;
+            ident?: string | null;
             /** @enum {string} */
             rolle: ForelderBarnRelasjonRolle;
             navn: components['schemas']['Navn'][];
             fodselsdato: string[];
             kjonn: components['schemas']['KodeBeskrivelseKjonn'][];
             /** Format: int32 */
-            alder?: number;
+            alder?: number | null;
             adressebeskyttelse: components['schemas']['KodeBeskrivelseAdresseBeskyttelse'][];
             harSammeAdresse: boolean;
             dodsdato: string[];
         };
         Foreldreansvar: {
             ansvar: string;
-            ansvarlig?: components['schemas']['NavnOgIdent'];
-            ansvarsubject?: components['schemas']['NavnOgIdent'];
+            ansvarlig?: components['schemas']['NavnOgIdent'] | null;
+            ansvarsubject?: components['schemas']['NavnOgIdent'] | null;
         };
         Fullmakt: {
             motpartsPersonident: string;
@@ -1550,20 +1572,22 @@ export interface components {
             /** @enum {string} */
             motpartsRolle: FullmaktMotpartsRolle;
             omrade: components['schemas']['OmraadeMedHandlingString'][];
-            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'];
-            digitalKontaktinformasjonTredjepartsperson?: components['schemas']['DigitalKontaktinformasjonTredjepartsperson'];
-            kilde?: string;
+            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'] | null;
+            digitalKontaktinformasjonTredjepartsperson?:
+                | components['schemas']['DigitalKontaktinformasjonTredjepartsperson']
+                | null;
+            kilde?: string | null;
         };
         GyldighetsPeriode: {
             /** Format: date */
-            gyldigFraOgMed?: string;
+            gyldigFraOgMed?: string | null;
             /** Format: date */
-            gyldigTilOgMed?: string;
+            gyldigTilOgMed?: string | null;
         };
         InnflyttingTilNorge: {
-            fraflyttingsland?: string;
-            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'];
-            sistEndret?: components['schemas']['SistEndret'];
+            fraflyttingsland?: string | null;
+            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'] | null;
+            sistEndret?: components['schemas']['SistEndret'] | null;
         };
         KodeBeskrivelseAdresseBeskyttelse: {
             /** @enum {string} */
@@ -1590,28 +1614,28 @@ export interface components {
             beskrivelse: string;
         };
         KontaktInformasjon: {
-            erManuell?: boolean;
-            erReservert?: components['schemas']['VerdiBoolean'];
-            epost?: components['schemas']['VerdiString'];
-            mobil?: components['schemas']['VerdiString'];
+            erManuell?: boolean | null;
+            erReservert?: components['schemas']['VerdiBoolean'] | null;
+            epost?: components['schemas']['VerdiString'] | null;
+            mobil?: components['schemas']['VerdiString'] | null;
         };
         Navn: {
             fornavn: string;
-            mellomnavn?: string;
+            mellomnavn?: string | null;
             etternavn: string;
         };
         NavnOgIdent: {
-            navn?: components['schemas']['Navn'];
-            ident?: string;
+            navn?: components['schemas']['Navn'] | null;
+            ident?: string | null;
         };
         OmraadeMedHandlingString: {
             omraade: components['schemas']['KodeBeskrivelseString'];
             handling: OmraadeMedHandlingStringHandling[];
         };
         OrganisasjonSomAdressat: {
-            kontaktperson?: components['schemas']['Navn'];
+            kontaktperson?: components['schemas']['Navn'] | null;
             organisasjonsnavn: string;
-            organisasjonsnummer?: string;
+            organisasjonsnummer?: string | null;
         };
         Person: {
             fnr: string;
@@ -1620,14 +1644,14 @@ export interface components {
             kjonn: components['schemas']['KodeBeskrivelseKjonn'][];
             fodselsdato: string[];
             fodested: components['schemas']['Fodested'][];
-            geografiskTilknytning?: string;
+            geografiskTilknytning?: string | null;
             /** Format: int32 */
-            alder?: number;
+            alder?: number | null;
             dodsdato: components['schemas']['Dodsdato'][];
             bostedAdresse: components['schemas']['Adresse'][];
             kontaktAdresse: components['schemas']['Adresse'][];
             oppholdsAdresse: components['schemas']['Adresse'][];
-            navEnhet?: components['schemas']['PersonDataEnhet'];
+            navEnhet?: components['schemas']['PersonDataEnhet'] | null;
             statsborgerskap: components['schemas']['Statsborgerskap'][];
             adressebeskyttelse: components['schemas']['KodeBeskrivelseAdresseBeskyttelse'][];
             sikkerhetstiltak: components['schemas']['Sikkerhetstiltak'][];
@@ -1640,11 +1664,12 @@ export interface components {
             dodsbo: components['schemas']['Dodsbo'][];
             fullmakt: components['schemas']['Fullmakt'][];
             vergemal: components['schemas']['Verge'][];
+            historiskeVergemal: components['schemas']['Verge'][];
             tilrettelagtKommunikasjon: components['schemas']['TilrettelagtKommunikasjon'];
             rettsligHandleevne: components['schemas']['RettsligHandleevne'][];
             telefonnummer: components['schemas']['Telefon'][];
             kontaktInformasjon: components['schemas']['KontaktInformasjon'];
-            bankkonto?: components['schemas']['Bankkonto'];
+            bankkonto?: components['schemas']['Bankkonto'] | null;
             forelderBarnRelasjon: components['schemas']['ForelderBarnRelasjon'][];
             innflyttingTilNorge: components['schemas']['InnflyttingTilNorge'][];
             utflyttingFraNorge: components['schemas']['UtflyttingFraNorge'][];
@@ -1653,25 +1678,27 @@ export interface components {
             id: string;
             navn: string;
             publikumsmottak: components['schemas']['Publikumsmottak'][];
+            telefonnummer?: string | null;
+            epost?: string | null;
         };
         PersonSomAdressat: {
-            fnr?: string;
+            fnr?: string | null;
             navn: components['schemas']['Navn'][];
             /** Format: date */
-            fodselsdato?: string;
+            fodselsdato?: string | null;
         };
         Publikumsmottak: {
             besoksadresse: components['schemas']['Adresse'];
             apningstider: components['schemas']['Apningstid'][];
         };
         RettsligHandleevne: {
-            omfang?: string;
-            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'];
+            omfang?: string | null;
+            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'] | null;
         };
         Sikkerhetstiltak: {
             type: string;
             beskrivelse: string;
-            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'];
+            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'] | null;
         };
         SistEndret: {
             ident: string;
@@ -1683,26 +1710,26 @@ export interface components {
         Sivilstand: {
             type: components['schemas']['KodeBeskrivelseSivilstandType'];
             /** Format: date */
-            gyldigFraOgMed?: string;
-            sivilstandRelasjon?: components['schemas']['SivilstandRelasjon'];
+            gyldigFraOgMed?: string | null;
+            sivilstandRelasjon?: components['schemas']['SivilstandRelasjon'] | null;
         };
         SivilstandRelasjon: {
             fnr: string;
             navn: components['schemas']['Navn'][];
             /** Format: int32 */
-            alder?: number;
+            alder?: number | null;
             adressebeskyttelse: components['schemas']['KodeBeskrivelseAdresseBeskyttelse'][];
             harSammeAdresse: boolean;
             dodsdato: string[];
         };
         Statsborgerskap: {
             land: components['schemas']['KodeBeskrivelseString'];
-            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'];
+            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'] | null;
         };
         Telefon: {
-            retningsnummer?: components['schemas']['KodeBeskrivelseString'];
+            retningsnummer?: components['schemas']['KodeBeskrivelseString'] | null;
             identifikator: string;
-            sistEndret?: components['schemas']['SistEndret'];
+            sistEndret?: components['schemas']['SistEndret'] | null;
             /** Format: int32 */
             prioritet: number;
         };
@@ -1711,34 +1738,35 @@ export interface components {
             tegnsprak: components['schemas']['KodeBeskrivelseString'][];
         };
         UtflyttingFraNorge: {
-            tilflyttingsland?: string;
+            tilflyttingsland?: string | null;
             /** Format: date */
-            utflyttingsdato?: string;
-            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'];
-            sistEndret?: components['schemas']['SistEndret'];
+            utflyttingsdato?: string | null;
+            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'] | null;
+            sistEndret?: components['schemas']['SistEndret'] | null;
         };
         VerdiBoolean: {
-            value?: boolean;
+            value?: boolean | null;
             /** Format: date */
-            sistOppdatert?: string;
+            sistOppdatert?: string | null;
             /** Format: date */
-            sistVerifisert?: string;
+            sistVerifisert?: string | null;
         };
         VerdiString: {
-            value?: string;
+            value?: string | null;
             /** Format: date */
-            sistOppdatert?: string;
+            sistOppdatert?: string | null;
             /** Format: date */
-            sistVerifisert?: string;
+            sistVerifisert?: string | null;
         };
         Verge: {
-            ident?: string;
-            navn?: components['schemas']['Navn'];
+            ident?: string | null;
+            navn?: components['schemas']['Navn'] | null;
             vergesakstype: string;
             omfang: string;
-            tjenesteOppgaver?: string[];
-            embete?: string;
-            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'];
+            tjenesteOppgaver?: string[] | null;
+            embete?: string | null;
+            gyldighetsPeriode?: components['schemas']['GyldighetsPeriode'] | null;
+            historisk: boolean;
         };
         IdentInformasjon: {
             ident: string;
@@ -1751,30 +1779,30 @@ export interface components {
         };
         OppgaveDTO: {
             oppgaveId: string;
-            traadId?: string;
-            fnr?: string;
+            traadId?: string | null;
+            fnr?: string | null;
             erSTOOppgave: boolean;
             tildeltEnhetsnr: string;
             tema: string;
-            temagruppe?: string;
+            temagruppe?: string | null;
             oppgavetype: string;
             prioritet: string;
             status: string;
             /** Format: date */
             aktivDato: string;
-            endretAvEnhetsnr?: string;
-            opprettetAvEnhetsnr?: string;
-            saksreferanse?: string;
-            beskrivelse?: string;
+            endretAvEnhetsnr?: string | null;
+            opprettetAvEnhetsnr?: string | null;
+            saksreferanse?: string | null;
+            beskrivelse?: string | null;
             /** Format: date */
-            fristFerdigstillelse?: string;
+            fristFerdigstillelse?: string | null;
             /** Format: date-time */
-            opprettetTidspunkt?: string;
+            opprettetTidspunkt?: string | null;
         };
         OppfolgingDTO: {
-            erUnderOppfolging?: boolean;
-            veileder?: components['schemas']['Veileder'];
-            enhet?: components['schemas']['OppfolgingsEnhet'];
+            erUnderOppfolging?: boolean | null;
+            veileder?: components['schemas']['Veileder'] | null;
+            enhet?: components['schemas']['OppfolgingsEnhet'] | null;
         };
         OppfolgingsEnhet: {
             enhetId: string;
@@ -1784,88 +1812,90 @@ export interface components {
             fornavn: string;
             etternavn: string;
             ident: string;
-            enhet?: string;
+            enhet?: string | null;
             navn: string;
         };
         DagpengeytelseDTO: {
             type: 'DagpengeytelseDTO';
         } & (Omit<components['schemas']['YtelseDTO'], 'type'> & {
-            type?: string;
-            status?: string;
-            datoKravMottatt?: string;
-            vedtak?: components['schemas']['OppfolgingYtelseVedtakDTO'][];
-            fom?: string;
-            tom?: string;
+            type?: string | null;
+            status?: string | null;
+            datoKravMottatt?: string | null;
+            vedtak?: components['schemas']['OppfolgingYtelseVedtakDTO'][] | null;
+            fom?: string | null;
+            tom?: string | null;
             /** Format: int32 */
-            dagerIgjenMedBortfall?: number;
+            dagerIgjenMedBortfall?: number | null;
             /** Format: int32 */
-            ukerIgjenMedBortfall?: number;
+            ukerIgjenMedBortfall?: number | null;
             /** Format: int32 */
-            dagerIgjenPermittering?: number;
+            dagerIgjenPermittering?: number | null;
             /** Format: int32 */
-            ukerIgjenPermittering?: number;
+            ukerIgjenPermittering?: number | null;
             /** Format: int32 */
-            dagerIgjen?: number;
+            dagerIgjen?: number | null;
             /** Format: int32 */
-            ukerIgjen?: number;
+            ukerIgjen?: number | null;
         });
         OppfolgingYtelseVedtakDTO: {
-            aktivFra?: string;
-            aktivTil?: string;
-            aktivitetsfase?: string;
-            vedtakstatus?: string;
-            vedtakstype?: string;
+            aktivFra?: string | null;
+            aktivTil?: string | null;
+            aktivitetsfase?: string | null;
+            vedtakstatus?: string | null;
+            vedtakstype?: string | null;
         };
         OppfolgingsYtelseDTO: {
             type: 'OppfolgingsYtelseDTO';
         } & (Omit<components['schemas']['YtelseDTO'], 'type'> & {
-            type?: string;
-            status?: string;
-            datoKravMottatt?: string;
-            vedtak?: components['schemas']['OppfolgingYtelseVedtakDTO'][];
-            fom?: string;
-            tom?: string;
+            type?: string | null;
+            status?: string | null;
+            datoKravMottatt?: string | null;
+            vedtak?: components['schemas']['OppfolgingYtelseVedtakDTO'][] | null;
+            fom?: string | null;
+            tom?: string | null;
             /** Format: int32 */
-            dagerIgjenMedBortfall?: number;
+            dagerIgjenMedBortfall?: number | null;
             /** Format: int32 */
-            ukerIgjenMedBortfall?: number;
+            ukerIgjenMedBortfall?: number | null;
         });
         SyfoPunktDTO: {
-            fastOppfolgingspunkt?: boolean;
-            dato?: string;
-            status?: string;
-            syfoHendelse?: string;
+            fastOppfolgingspunkt?: boolean | null;
+            dato?: string | null;
+            status?: string | null;
+            syfoHendelse?: string | null;
         };
         UtvidetOppfolgingDTO: {
-            oppfolging?: components['schemas']['OppfolgingDTO'];
-            meldeplikt?: boolean;
-            formidlingsgruppe?: string;
-            innsatsgruppe?: string;
-            sykmeldtFra?: string;
-            rettighetsgruppe?: string;
-            vedtaksdato?: string;
-            sykefravaersoppfolging?: components['schemas']['SyfoPunktDTO'][];
-            ytelser?: (components['schemas']['DagpengeytelseDTO'] | components['schemas']['OppfolgingsYtelseDTO'])[];
+            oppfolging?: components['schemas']['OppfolgingDTO'] | null;
+            meldeplikt?: boolean | null;
+            formidlingsgruppe?: string | null;
+            innsatsgruppe?: string | null;
+            sykmeldtFra?: string | null;
+            rettighetsgruppe?: string | null;
+            vedtaksdato?: string | null;
+            sykefravaersoppfolging?: components['schemas']['SyfoPunktDTO'][] | null;
+            ytelser?:
+                | (components['schemas']['DagpengeytelseDTO'] | components['schemas']['OppfolgingsYtelseDTO'])[]
+                | null;
         };
         YtelseDTO: {
             type: string;
         };
         SykefravaerOppfolgingDTO: {
-            sykefravaersoppfolging?: components['schemas']['SyfoPunktDTO'][];
+            sykefravaersoppfolging?: components['schemas']['SyfoPunktDTO'][] | null;
         };
         AggregertPeriodeArbeidssoekerregisteretDto: {
             /** Format: uuid */
             id: string;
             identitetsnummer: string;
             startet: components['schemas']['PeriodeStartetArbeidssoekerregisteretDto'];
-            avsluttet?: components['schemas']['PeriodeAvluttetArbeidssoekerregisteretDto'];
-            opplysning?: components['schemas']['OpplysningerOmArbeidssoekerArbeidssoekerregisteretDto'];
-            profilering?: components['schemas']['ProfileringArbeidssoekerregisteretDto'];
-            egenvurdering?: components['schemas']['EgenvurderingArbeidssoekerregisteretDto'];
-            bekreftelse?: components['schemas']['BekreftelseArbeidssoekerregisteretDto'];
+            avsluttet?: components['schemas']['PeriodeAvluttetArbeidssoekerregisteretDto'] | null;
+            opplysning?: components['schemas']['OpplysningerOmArbeidssoekerArbeidssoekerregisteretDto'] | null;
+            profilering?: components['schemas']['ProfileringArbeidssoekerregisteretDto'] | null;
+            egenvurdering?: components['schemas']['EgenvurderingArbeidssoekerregisteretDto'] | null;
+            bekreftelse?: components['schemas']['BekreftelseArbeidssoekerregisteretDto'] | null;
         };
         AnnetArbeidssoekerregisteretDto: {
-            /** @enum {string} */
+            /** @enum {string|null} */
             andreForholdHindrerArbeid?: AnnetArbeidssoekerregisteretDtoAndreForholdHindrerArbeid;
         };
         BekreftelseArbeidssoekerregisteretDto: {
@@ -1892,7 +1922,7 @@ export interface components {
             /** @enum {string} */
             type: BrukerArbeidssoekerregisteretDtoType;
             id: string;
-            sikkerhetsnivaa?: string;
+            sikkerhetsnivaa?: string | null;
         };
         EgenvurderingArbeidssoekerregisteretDto: {
             /** @enum {string} */
@@ -1910,7 +1940,7 @@ export interface components {
             tidspunkt: string;
         };
         HelseArbeidssoekerregisteretDto: {
-            /** @enum {string} */
+            /** @enum {string|null} */
             helsetilstandHindrerArbeid?: HelseArbeidssoekerregisteretDtoHelsetilstandHindrerArbeid;
         };
         JobbsituasjonArbeidssoekerregisteretDto: {
@@ -1922,7 +1952,7 @@ export interface components {
             utfoertAv: components['schemas']['BrukerArbeidssoekerregisteretDto'];
             kilde: string;
             aarsak: string;
-            tidspunktFraKilde?: components['schemas']['TidspunktFraKildeArbeidssoekerregisteretDto'];
+            tidspunktFraKilde?: components['schemas']['TidspunktFraKildeArbeidssoekerregisteretDto'] | null;
         };
         OpplysningerOmArbeidssoekerArbeidssoekerregisteretDto: {
             /** @enum {string} */
@@ -1932,10 +1962,10 @@ export interface components {
             sendtInnAv: components['schemas']['MetadataArbeidssoekerregisteretDto'];
             /** Format: date-time */
             tidspunkt: string;
-            utdanning?: components['schemas']['UtdanningArbeidssoekerregisteretDto'];
-            helse?: components['schemas']['HelseArbeidssoekerregisteretDto'];
-            jobbsituasjon?: components['schemas']['JobbsituasjonArbeidssoekerregisteretDto'];
-            annet?: components['schemas']['AnnetArbeidssoekerregisteretDto'];
+            utdanning?: components['schemas']['UtdanningArbeidssoekerregisteretDto'] | null;
+            helse?: components['schemas']['HelseArbeidssoekerregisteretDto'] | null;
+            jobbsituasjon?: components['schemas']['JobbsituasjonArbeidssoekerregisteretDto'] | null;
+            annet?: components['schemas']['AnnetArbeidssoekerregisteretDto'] | null;
         };
         PeriodeAvluttetArbeidssoekerregisteretDto: {
             /** @enum {string} */
@@ -1965,7 +1995,7 @@ export interface components {
             /** Format: date-time */
             tidspunkt: string;
             /** Format: int32 */
-            alder?: number;
+            alder?: number | null;
         };
         SvarArbeidssoekerregisteretDto: {
             sendtInnAv: components['schemas']['MetadataArbeidssoekerregisteretDto'];
@@ -1984,19 +2014,19 @@ export interface components {
         };
         UtdanningArbeidssoekerregisteretDto: {
             nus: string;
-            /** @enum {string} */
+            /** @enum {string|null} */
             bestaatt?: UtdanningArbeidssoekerregisteretDtoBestaatt;
-            /** @enum {string} */
+            /** @enum {string|null} */
             godkjent?: UtdanningArbeidssoekerregisteretDtoGodkjent;
         };
         Gjeldende14aVedtak: {
-            innsatsgruppe: components['schemas']['Innsatsgruppe'];
-            hovedmal?: components['schemas']['Hovedmal'];
+            innsatsgruppe?: components['schemas']['Innsatsgruppe'] | null;
+            hovedmal?: components['schemas']['Hovedmal'] | null;
             /** Format: date-time */
             fattetDato: string;
         };
         Gjeldende14aVedtakResponse: {
-            gjeldende14aVedtak?: components['schemas']['Gjeldende14aVedtak'];
+            gjeldende14aVedtak?: components['schemas']['Gjeldende14aVedtak'] | null;
         };
         Hovedmal: {
             kode: string;
@@ -2007,7 +2037,7 @@ export interface components {
             beskrivelse: string;
         };
         ArbeidsOppfolgingDTO: {
-            oppfolging?: components['schemas']['OppfolgingDTO'];
+            oppfolging?: components['schemas']['OppfolgingDTO'] | null;
         };
         JournalforingSak: {
             fnr?: string;
@@ -2025,51 +2055,51 @@ export interface components {
             feiledeSystemer: string[];
         };
         Criterion: {
-            fieldName?: string;
-            and?: components['schemas']['Criterion'][];
-            or?: components['schemas']['Criterion'][];
-            not?: components['schemas']['Criterion'][];
-            searchRule?: components['schemas']['SearchRule'];
-            searchHistorical?: boolean;
+            fieldName?: string | null;
+            and?: components['schemas']['Criterion'][] | null;
+            or?: components['schemas']['Criterion'][] | null;
+            not?: components['schemas']['Criterion'][] | null;
+            searchRule?: components['schemas']['SearchRule'] | null;
+            searchHistorical?: boolean | null;
         };
         SearchRule: {
-            exists?: boolean;
-            notEquals?: string;
-            equals?: string;
-            contains?: string;
-            fuzzy?: string;
+            exists?: boolean | null;
+            notEquals?: string | null;
+            equals?: string | null;
+            contains?: string | null;
+            fuzzy?: string | null;
             /** Format: double */
-            random?: number;
-            wildcard?: string;
-            startsWith?: string;
-            regex?: string;
-            after?: string;
-            before?: string;
-            lessThan?: string;
-            greaterThan?: string;
-            from?: string;
-            to?: string;
-            fromExcluding?: string;
-            toExcluding?: string;
-            caseSensitive?: boolean;
-            disablePhonetic?: boolean;
+            random?: number | null;
+            wildcard?: string | null;
+            startsWith?: string | null;
+            regex?: string | null;
+            after?: string | null;
+            before?: string | null;
+            lessThan?: string | null;
+            greaterThan?: string | null;
+            from?: string | null;
+            to?: string | null;
+            fromExcluding?: string | null;
+            toExcluding?: string | null;
+            caseSensitive?: boolean | null;
+            disablePhonetic?: boolean | null;
             /** Format: double */
-            boost?: number;
+            boost?: number | null;
         };
         GraphQLClientError: {
             message: string;
-            path?: unknown[];
+            path?: unknown[] | null;
             extensions?: {
                 [key: string]: unknown;
-            };
-            locations?: components['schemas']['GraphQLClientSourceLocation'][];
+            } | null;
+            locations?: components['schemas']['GraphQLClientSourceLocation'][] | null;
         };
         GraphQLClientResponseResult: {
             extensions?: {
                 [key: string]: unknown;
-            };
-            data?: components['schemas']['Result'];
-            errors?: components['schemas']['GraphQLClientError'][];
+            } | null;
+            data?: components['schemas']['Result'] | null;
+            errors?: components['schemas']['GraphQLClientError'][] | null;
         };
         GraphQLClientSourceLocation: {
             /** Format: int32 */
@@ -2081,7 +2111,7 @@ export interface components {
             fnr: string;
             temakode: string;
             typekode: string;
-            underkategorikode?: string;
+            underkategorikode?: string | null;
         };
         Enhet: {
             enhetId: string;
@@ -2095,7 +2125,7 @@ export interface components {
             fnr: string;
             beskrivelse: string;
             temaKode: string;
-            underkategoriKode?: string;
+            underkategoriKode?: string | null;
             oppgaveTypeKode: string;
             /** @enum {string} */
             prioritetKode: OpprettSkjermetOppgaveDTOPrioritetKode;
@@ -2111,10 +2141,10 @@ export interface components {
             /** Format: int32 */
             dagerFrist: number;
             ansvarligEnhetId: string;
-            ansvarligIdent?: string;
+            ansvarligIdent?: string | null;
             beskrivelse: string;
             temaKode: string;
-            underkategoriKode?: string;
+            underkategoriKode?: string | null;
             oppgaveTypeKode: string;
             /** @enum {string} */
             prioritetKode: OpprettOppgaveRequestDTOPrioritetKode;
@@ -2123,13 +2153,13 @@ export interface components {
             fnr: string;
             traadId: string;
             arsak: string;
-            meldingId?: string[];
+            meldingId?: string[] | null;
         };
         LukkTraadRequest: {
             fnr: string;
             saksbehandlerValgtEnhet: string;
             traadId: string;
-            oppgaveId?: string;
+            oppgaveId?: string | null;
         };
         MerkSomFeilsendtRequest: {
             fnr: string;
@@ -2143,48 +2173,48 @@ export interface components {
         };
         SendMeldingRequestV2: {
             fnr: string;
-            traadId?: string;
+            traadId?: string | null;
             /** @enum {string} */
             traadType: SendMeldingRequestV2TraadType;
             enhet: string;
             fritekst: string;
-            temagruppe?: string;
-            sak?: components['schemas']['JournalforingSak'];
-            erOppgaveTilknyttetAnsatt?: boolean;
-            avsluttet?: boolean;
-            behandlingsId?: string;
-            oppgaveId?: string;
+            temagruppe?: string | null;
+            sak?: components['schemas']['JournalforingSak'] | null;
+            erOppgaveTilknyttetAnsatt?: boolean | null;
+            avsluttet?: boolean | null;
+            behandlingsId?: string | null;
+            oppgaveId?: string | null;
         };
         Journalpost: {
-            journalfortAv?: components['schemas']['Veileder'];
+            journalfortAv?: components['schemas']['Veileder'] | null;
             /** Format: date-time */
             journalfortDato: string;
             journalfortTema: string;
             journalfortTemanavn: string;
-            journalfortSaksid?: string;
-            journalforendeEnhet?: string;
-            journalfortFagsaksystem?: string;
+            journalfortSaksid?: string | null;
+            journalforendeEnhet?: string | null;
+            journalfortFagsaksystem?: string | null;
         };
         MeldingDTO: {
             id: string;
-            meldingsId?: string;
+            meldingsId?: string | null;
             /** @enum {string} */
             meldingstype: MeldingDTOMeldingstype;
             temagruppe: string;
             skrevetAvTekst: string;
             fritekst: string;
             /** Format: date-time */
-            lestDato?: string;
+            lestDato?: string | null;
             /** @enum {string} */
             status: MeldingDTOStatus;
             /** Format: date-time */
             opprettetDato: string;
             /** Format: date-time */
-            avsluttetDato?: string;
+            avsluttetDato?: string | null;
             /** Format: date-time */
             ferdigstiltDato: string;
             sendtTilSladding: boolean;
-            markertSomFeilsendtAv?: components['schemas']['Veileder'];
+            markertSomFeilsendtAv?: components['schemas']['Veileder'] | null;
         };
         TraadDTO: {
             traadId: string;
@@ -2193,25 +2223,25 @@ export interface components {
             traadType: TraadDTOTraadType;
             temagruppe: string;
             /** Format: date-time */
-            opprettetDato?: string;
+            opprettetDato?: string | null;
             feilsendt: boolean;
             /** Format: date-time */
-            avsluttetDato?: string;
-            avsluttetAv?: string;
-            sattTilSladdingAv?: string;
-            sladding?: boolean;
+            avsluttetDato?: string | null;
+            avsluttetAv?: string | null;
+            sattTilSladdingAv?: string | null;
+            sladding?: boolean | null;
             meldinger: components['schemas']['MeldingDTO'][];
             journalposter: components['schemas']['Journalpost'][];
             journalforingFeilet: boolean;
         };
         OpprettHenvendelseRequestV2: {
             fnr: string;
-            enhet?: string;
+            enhet?: string | null;
             traadId: string;
         };
         FortsettDialogDTO: {
             behandlingsId: string;
-            oppgaveId?: string;
+            oppgaveId?: string | null;
         };
         AuthIntropectionDTO: {
             /** Format: int64 */
@@ -2225,6 +2255,36 @@ export interface components {
             /** Format: int32 */
             errors: number;
             lastException?: {
+                cause?: {
+                    stackTrace?: {
+                        classLoaderName?: string;
+                        moduleName?: string;
+                        moduleVersion?: string;
+                        methodName?: string;
+                        fileName?: string;
+                        /** Format: int32 */
+                        lineNumber?: number;
+                        className?: string;
+                        nativeMethod?: boolean;
+                    }[];
+                    message?: string;
+                    suppressed?: {
+                        stackTrace?: {
+                            classLoaderName?: string;
+                            moduleName?: string;
+                            moduleVersion?: string;
+                            methodName?: string;
+                            fileName?: string;
+                            /** Format: int32 */
+                            lineNumber?: number;
+                            className?: string;
+                            nativeMethod?: boolean;
+                        }[];
+                        message?: string;
+                        localizedMessage?: string;
+                    }[];
+                    localizedMessage?: string;
+                };
                 stackTrace?: {
                     classLoaderName?: string;
                     moduleName?: string;
@@ -2237,15 +2297,30 @@ export interface components {
                     nativeMethod?: boolean;
                 }[];
                 message?: string;
+                suppressed?: {
+                    stackTrace?: {
+                        classLoaderName?: string;
+                        moduleName?: string;
+                        moduleVersion?: string;
+                        methodName?: string;
+                        fileName?: string;
+                        /** Format: int32 */
+                        lineNumber?: number;
+                        className?: string;
+                        nativeMethod?: boolean;
+                    }[];
+                    message?: string;
+                    localizedMessage?: string;
+                }[];
                 localizedMessage?: string;
-            };
+            } | null;
             /** Format: double */
             confidence: number;
         };
         Tokens: {
             user: string;
-            obs?: string;
-            system?: string;
+            obs?: string | null;
+            system?: string | null;
         };
         Me: {
             ident: string;

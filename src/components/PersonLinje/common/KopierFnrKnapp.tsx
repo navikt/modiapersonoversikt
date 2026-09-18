@@ -1,7 +1,7 @@
 import { CopyButton, Detail } from '@navikt/ds-react';
 import { erGyldigishFnr } from 'src/utils/fnr-utils';
 
-export const KopierFnrKnapp = ({ fnr }: { fnr?: string }) => {
+export const KopierFnrKnapp = ({ fnr }: { fnr?: string | null }) => {
     const fnrOppdelt = fnr ? `${fnr.slice(0, 6)} ${fnr.slice(6)}` : null;
 
     return fnr && erGyldigishFnr(fnr) ? (

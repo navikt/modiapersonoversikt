@@ -1,6 +1,6 @@
 import type { OppfolgingDto, Veileder } from 'src/generated/modiapersonoversikt-api';
 
-export function getOppfolgingEnhet(oppfolging?: OppfolgingDto): string {
+export function getOppfolgingEnhet(oppfolging?: OppfolgingDto | null): string {
     return oppfolging
         ? oppfolging.enhet
             ? `${oppfolging.enhet.enhetId} ${oppfolging.enhet.navn}`
@@ -8,6 +8,6 @@ export function getOppfolgingEnhet(oppfolging?: OppfolgingDto): string {
         : '-';
 }
 
-export function getVeileder(veileder?: Veileder): string {
+export function getVeileder(veileder?: Veileder | null): string {
     return veileder ? `${veileder.navn} (${veileder.ident})` : '-';
 }

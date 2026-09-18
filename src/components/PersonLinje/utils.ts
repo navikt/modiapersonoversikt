@@ -52,7 +52,7 @@ export function erPartner(sivilstand: Sivilstand): boolean {
     return sivilstand?.type && aktuelleRelasjoner.includes(sivilstand?.type.kode);
 }
 
-export function hentNavn(navn?: Navn, feilmelding = 'Ukjent navn'): string {
+export function hentNavn(navn?: Navn | null, feilmelding = 'Ukjent navn'): string {
     if (!navn) {
         return feilmelding;
     }

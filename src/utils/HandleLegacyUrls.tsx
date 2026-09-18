@@ -80,9 +80,9 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
         }
     };
 
-    const navigerTilTraadOgApneSvar = (traadId?: string) => {
+    const navigerTilTraadOgApneSvar = (traadId?: string | null) => {
         const linkTilValgtHenvendelse = `${paths.personUri}/${INFOTABS.MELDINGER.path}` as const;
-        const newQuery = { traadId: traadId };
+        const newQuery = { traadId: traadId ?? undefined };
 
         navigate({
             to: linkTilValgtHenvendelse,
