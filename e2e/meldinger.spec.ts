@@ -89,7 +89,7 @@ test('Journalfore dialog', async ({ page }) => {
     await page.getByRole('menuitem', { name: 'Journalfør' }).click();
 
     const modal = page.getByRole('dialog', { name: 'Journalfør dialog' });
-    const submitButton = modal.getByRole('button', { name: 'Journalfør' });
+    const submitButton = modal.getByLabel('Journalfør', { exact: true });
     await expect(submitButton).toBeDisabled();
 
     const temaRow = modal.getByRole('option', { name: 'Dagpenger' });
