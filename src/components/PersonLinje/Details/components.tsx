@@ -67,7 +67,7 @@ export const Adresseinfo = ({ adresse }: { adresse: Adresse }) => {
     );
 };
 
-export const LastChanged = ({ sistEndret }: { sistEndret?: SistEndret }) => {
+export const LastChanged = ({ sistEndret }: { sistEndret?: SistEndret | null }) => {
     if (!sistEndret) return null;
 
     const formatertDato = formaterDato(new Date(sistEndret.tidspunkt));

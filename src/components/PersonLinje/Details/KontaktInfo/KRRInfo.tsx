@@ -1,7 +1,7 @@
 import { BodyShort } from '@navikt/ds-react';
 
 interface Props {
-    erReservert?: boolean;
+    erReservert?: boolean | null;
     reservasjonOppdatert?: string | null;
     kontaktinformasjonVerdi: string | null;
     sistOppdatert: string | null;

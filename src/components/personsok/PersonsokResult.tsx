@@ -3,7 +3,6 @@ import { useAtomValue } from 'jotai';
 import { $api } from 'src/lib/clients/modiapersonoversikt-api';
 import { aktivEnhetAtom } from 'src/lib/state/context';
 import type { PersonsokRequest, PersonsokResponse } from 'src/lib/types/modiapersonoversikt-api';
-import type { Kodeverk } from 'src/models/kodeverk';
 import { useSettAktivBruker } from 'src/utils/customHooks';
 
 export function PersonsokResult({ query, onClick }: { query: PersonsokRequest; onClick: () => void }) {
@@ -107,7 +106,7 @@ function MidlertidigAdresseCelle(props: { brukerinfo: PersonsokResponse['brukeri
     return null;
 }
 
-function PostadresseCelle(props: { postadresse?: string }) {
+function PostadresseCelle(props: { postadresse?: string | null }) {
     if (props.postadresse) {
         const celletekst = `(P) ${props.postadresse}`;
         return <BodyShort size="small">{celletekst}</BodyShort>;
@@ -115,7 +114,7 @@ function PostadresseCelle(props: { postadresse?: string }) {
     return null;
 }
 
-function BostedsadresseCelle(props: { bostedsadresse?: string }) {
+function BostedsadresseCelle(props: { bostedsadresse?: string | null }) {
     if (props.bostedsadresse) {
         const celletekst = `(B) ${props.bostedsadresse}`;
         return <BodyShort size="small">{celletekst}</BodyShort>;
@@ -137,11 +136,11 @@ function UtenlandskIDCelle(props: { utenlandskID?: PersonsokResponse['utenlandsk
     return null;
 }
 
-function formatNullableString(str?: string, prefixWithSpace?: boolean) {
+function formatNullableString(str?: string | null, prefixWithSpace?: boolean) {
     return str ? (prefixWithSpace ? ' ' : `${str}`) : '';
 }
 
-function formatterNavn(navn: PersonsokResponse['navn'], status?: Partial<Kodeverk>) {
+function formatterNavn(navn: PersonsokResponse['navn'], status?: PersonsokResponse['status']) {
     let personNavn = `${navn.etternavn}, ${navn.fornavn}${formatNullableString(navn.mellomnavn, true)}`;
     if (status?.beskrivelse === 'DØD') {
         personNavn += ' (død)';

@@ -7,7 +7,7 @@ import { Group, InfoElement } from './components';
 
 type Foreldreansvar = PersonData['foreldreansvar'][0];
 
-function kombinerNavnOgIdent(personInfo?: NavnOgIdent): string | null {
+function kombinerNavnOgIdent(personInfo?: NavnOgIdent | null): string | null {
     if (!personInfo) {
         return null;
     }
