@@ -1,5 +1,5 @@
 import { CogIcon } from '@navikt/aksel-icons';
-import { Alert, Button, Dialog, HStack, TextField, Tooltip, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, Button, Dialog, HStack, TextField, Tooltip, VStack } from '@navikt/ds-react';
 import { useEffect, useState } from 'react';
 import {
     INNSTILLINGER_KEY_SAKSBEHANDLER_NAVN,
@@ -14,6 +14,8 @@ export function SaksbehandlerNavnDialog() {
     const [open, setOpen] = useState(false);
     const [navn, setNavn] = useState('');
     const [feil, setFeil] = useState<string>();
+    const [visBekreftLukk, setVisBekreftLukk] = useState(false);
+    const [opprinneligNavn, setOpprinneligNavn] = useState('');
     const innstillinger = useInnstillinger();
     const saksbehandler = useInnloggetSaksbehandler();
     const oppdaterInnstillinger = useOppdaterInnstillinger();
@@ -21,8 +23,21 @@ export function SaksbehandlerNavnDialog() {
 
     useEffect(() => {
         if (!open) return;
-        setNavn(innstillinger.data?.innstillinger[INNSTILLINGER_KEY_SAKSBEHANDLER_NAVN] ?? '');
+        const lagretNavn = innstillinger.data?.innstillinger[INNSTILLINGER_KEY_SAKSBEHANDLER_NAVN] ?? '';
+        setNavn(lagretNavn);
+        setOpprinneligNavn(lagretNavn);
     }, [innstillinger.data, open]);
+
+    const erEndret = navn !== opprinneligNavn;
+
+    const handleOpenChange = (nesteOpen: boolean, event?: Event) => {
+        if (!nesteOpen && erEndret) {
+            event?.preventDefault();
+            setVisBekreftLukk(true);
+            return;
+        }
+        setOpen(nesteOpen);
+    };
 
     const lagre = async () => {
         if (!innstillinger.data) {
@@ -58,7 +73,7 @@ export function SaksbehandlerNavnDialog() {
                     disabled={disableDialog || innstillinger.isPending}
                 />
             </Tooltip>
-            <Dialog open={open} onOpenChange={setOpen}>
+            <Dialog open={open} onOpenChange={handleOpenChange}>
                 <Dialog.Popup>
                     <Dialog.Header>
                         <Dialog.Title>Navn i signatur</Dialog.Title>
@@ -108,6 +123,34 @@ export function SaksbehandlerNavnDialog() {
                                 Lagre
                             </Button>
                         </HStack>
+                    </Dialog.Footer>
+                </Dialog.Popup>
+            </Dialog>
+            <Dialog open={visBekreftLukk} onOpenChange={setVisBekreftLukk}>
+                <Dialog.Popup role="alertdialog" closeOnOutsideClick={false}>
+                    <Dialog.Header withClosebutton={false}>
+                        <Dialog.Title>Er du sikker?</Dialog.Title>
+                    </Dialog.Header>
+                    <Dialog.Body>
+                        <BodyLong>Du har endret navnet uten å lagre. Endringen blir borte hvis du lukker nå.</BodyLong>
+                    </Dialog.Body>
+                    <Dialog.Footer>
+                        <Dialog.CloseTrigger>
+                            <Button type="button" variant="secondary" size="medium">
+                                Avbryt
+                            </Button>
+                        </Dialog.CloseTrigger>
+                        <Button
+                            type="button"
+                            variant="danger"
+                            size="medium"
+                            onClick={() => {
+                                setVisBekreftLukk(false);
+                                setOpen(false);
+                            }}
+                        >
+                            Forkast endringer
+                        </Button>
                     </Dialog.Footer>
                 </Dialog.Popup>
             </Dialog>
