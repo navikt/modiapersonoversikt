@@ -9,6 +9,7 @@ import AvsluttDialog from './img/avslutt-dialog.png';
 import BjelleikonBilde from './img/bjelleikon.jpg';
 import BjelleikonVarselBilde from './img/bjelleikon-varsel.jpg';
 import ChatModia from './img/chat-modia.png';
+import EndreSignatur from './img/endre-signatur.png';
 import FiltreringSakstema from './img/filtrering-sakstema.png';
 import ForbedretAvansertSok from './img/forbedret-avansertsok.jpg';
 import ForeldreansvarBilde from './img/foreldreansvar1.png';
@@ -797,7 +798,8 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                     med tannhjulet ved siden av standardtekstene. Hvis du ikke velger et navn, brukes navnet ditt som
                     før.
                 </BodyShort>
-            )
+            ),
+            src: EndreSignatur
         }
     ];
 }
