@@ -62,7 +62,7 @@ describe('PersonsokForm', () => {
     });
 });
 
-describe('normaliserSokeverdi', () => {
+describe('trimInput', () => {
     test('trimmer bort mellomrom rundt verdien', () => {
         expect(trimInput('  Aremark  ')).toBe('Aremark');
     });
