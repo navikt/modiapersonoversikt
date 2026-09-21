@@ -2,6 +2,7 @@ import { Heading, Table, VStack } from '@navikt/ds-react';
 import Card from 'src/components/Card';
 import { TitleValuePairsComponent } from 'src/components/ytelser/Detail';
 import ArbeidsForholdListe from 'src/components/ytelser/Detail/ArbeidsforholdListe';
+import { InfotrygdUtbetalinger } from 'src/components/ytelser/Detail/sykepenger/InfotrygdUtbetalinger';
 import {
     fjernEntriesUtenVerdi,
     formaterBoolean,
@@ -108,9 +109,9 @@ const SykemeldingListe = ({ sykmelding }: { sykmelding: SykmeldingItem }) => {
                 </Table.Row>
             </Table.Header>
             <Table.Body>
-                {tableEntries.map((entry, i) => {
+                {tableEntries.map((entry) => {
                     return (
-                        <Table.Row key={i}>
+                        <Table.Row key={`${entry.period ?? 'ukjent'}-${entry.gradering ?? 'ukjent'}`}>
                             <Table.DataCell>{entry.period}</Table.DataCell>
                             <Table.DataCell>{entry.gradering}</Table.DataCell>
                         </Table.Row>
@@ -149,6 +150,7 @@ export const SykepengerDetails = ({ sykepenger }: { sykepenger: Sykepenger }) =>
             <Sykepengertilfellet sykepenger={sykepenger} />
             {aktuellSykmelding && <Sykemelding sykmelding={aktuellSykmelding} />}
             <Arbeidssituasjon sykepenger={sykepenger} />
+            <InfotrygdUtbetalinger sykepenger={sykepenger} />
         </VStack>
     );
 };
