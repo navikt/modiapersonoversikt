@@ -2,7 +2,60 @@
 
 exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 <DocumentFragment>
-  .c1 {
+  .c35 {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.c17 {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.c32 {
+  text-transform: uppercase;
+}
+
+.c36 {
+  font-weight: 600;
+}
+
+.c21 {
+  position: relative;
+  border: none;
+  padding: 0;
+  border-radius: .35rem;
+  cursor: pointer;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  color: #0067c5;
+}
+
+.c21:after {
+  border-bottom: 1px #b7b1a9 solid;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.c21:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c21:hover {
+  opacity: 0.8;
+}
+
+.c21:hover:after {
+  content: '';
+  border-color: #0067c5;
+}
+
+.c1 {
   overflow: auto;
   max-height: 100%;
   padding: .5rem;
@@ -89,59 +142,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 
 .c26:focus {
   outline: none;
-}
-
-.c35 {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.c17 {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.c32 {
-  text-transform: uppercase;
-}
-
-.c36 {
-  font-weight: 600;
-}
-
-.c21 {
-  position: relative;
-  border: none;
-  padding: 0;
-  border-radius: .35rem;
-  cursor: pointer;
-  background-color: transparent;
-  display: flex;
-  align-items: center;
-  color: #0067c5;
-}
-
-.c21:after {
-  border-bottom: 1px #b7b1a9 solid;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
-
-.c21:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.1875rem #254b6d;
-}
-
-.c21:hover {
-  opacity: 0.8;
-}
-
-.c21:hover:after {
-  content: '';
-  border-color: #0067c5;
 }
 
 .c22 {

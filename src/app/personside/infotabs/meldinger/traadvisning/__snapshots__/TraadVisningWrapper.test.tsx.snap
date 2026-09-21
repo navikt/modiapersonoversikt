@@ -43,6 +43,40 @@ exports[`Viser traad med verktøylinje 1`] = `
   padding-top: 1rem;
 }
 
+.c4 {
+  position: relative;
+  border: none;
+  padding: 0;
+  border-radius: .35rem;
+  cursor: pointer;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  color: #0067c5;
+}
+
+.c4:after {
+  border-bottom: 1px #b7b1a9 solid;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.c4:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c4:hover {
+  opacity: 0.8;
+}
+
+.c4:hover:after {
+  content: '';
+  border-color: #0067c5;
+}
+
 .c26 .snakkeboble-panel {
   flex-basis: 40rem;
   padding: 0.5rem 0.5rem 0.3rem;
@@ -109,40 +143,6 @@ exports[`Viser traad med verktøylinje 1`] = `
 
 .c25 .ekspanderbartPanel__tittel {
   color: #0067c5;
-}
-
-.c4 {
-  position: relative;
-  border: none;
-  padding: 0;
-  border-radius: .35rem;
-  cursor: pointer;
-  background-color: transparent;
-  display: flex;
-  align-items: center;
-  color: #0067c5;
-}
-
-.c4:after {
-  border-bottom: 1px #b7b1a9 solid;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
-
-.c4:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.1875rem #254b6d;
-}
-
-.c4:hover {
-  opacity: 0.8;
-}
-
-.c4:hover:after {
-  content: '';
-  border-color: #0067c5;
 }
 
 .c6 {
