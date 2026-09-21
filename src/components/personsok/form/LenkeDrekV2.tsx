@@ -2,6 +2,7 @@ import { Link } from '@navikt/ds-react';
 import { pickBy } from 'lodash';
 import baseurls from 'src/rest/resources/baseurlsResource';
 import { formaterDato } from 'src/utils/string-utils';
+import { trimInput } from './utils';
 
 type Props = {
     birthDateFrom?: string;
@@ -15,8 +16,8 @@ function LenkeDrekV2({ birthDateFrom, gender, firstName, lastName }: Props) {
     const drekUrl = baseUrlResource.data?.drek ?? '';
 
     const searchParams = pickBy({
-        fornavn: firstName,
-        etternavn: lastName,
+        fornavn: trimInput(firstName),
+        etternavn: trimInput(lastName),
         kjoenn: gender,
         foedselsdato: birthDateFrom ? formaterDato(birthDateFrom) : undefined
     }) as Record<string, string>;

@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import type { PersonsokRequest } from 'src/lib/types/modiapersonoversikt-api';
 import { vi } from 'vitest';
 import { PersonsokForm } from './index';
+import { trimInput } from './utils';
 
 vi.mock('./LenkeDrekV2', () => ({
     default: () => null
@@ -58,5 +59,17 @@ describe('PersonsokForm', () => {
         const onSubmit = await fyllUtOgSok('Fornavn', '   ');
 
         expect(onSubmit).not.toHaveBeenCalled();
+    });
+});
+
+describe('normaliserSokeverdi', () => {
+    test('trimmer bort mellomrom rundt verdien', () => {
+        expect(trimInput('  Aremark  ')).toBe('Aremark');
+    });
+
+    test('gir undefined for tom streng og bare mellomrom', () => {
+        expect(trimInput('')).toBeUndefined();
+        expect(trimInput('   ')).toBeUndefined();
+        expect(trimInput(undefined)).toBeUndefined();
     });
 });

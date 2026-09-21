@@ -19,6 +19,7 @@ import { usePrevious } from 'src/utils/customHooks';
 import { backendDatoformat } from 'src/utils/date-utils';
 import { z } from 'zod';
 import LenkeDrekV2 from './LenkeDrekV2';
+import { trimInput } from './utils';
 
 const FIELD_GROUP_ERROR =
     'Minst en av fornavn, etternavn, adresse, telefonnummer, eller utenlandsk ID må fylles ut for å kunne søke';
@@ -58,11 +59,11 @@ const personSokSchema = z
     .partial()
     .superRefine((val, ctx) => {
         if (
-            !val.firstName?.trim() &&
-            !val.lastName?.trim() &&
-            !val.dnr?.trim() &&
-            !val.address?.trim() &&
-            !val.phoneNumber?.trim()
+            !trimInput(val.firstName) &&
+            !trimInput(val.lastName) &&
+            !trimInput(val.dnr) &&
+            !trimInput(val.address) &&
+            !trimInput(val.phoneNumber)
         ) {
             ctx.addIssue({
                 code: z.ZodIssueCode.custom,
@@ -71,10 +72,6 @@ const personSokSchema = z
             });
         }
     });
-
-function emptyString(input?: string): string | undefined {
-    return input?.trim() || undefined;
-}
 
 type Props = {
     onSubmit: (value: PersonsokRequest | undefined) => void;
@@ -93,18 +90,18 @@ export function PersonsokForm({ onSubmit, onReset }: Props) {
         },
         onSubmit: ({ value: v }) => {
             onSubmit({
-                fornavn: emptyString(v.firstName),
-                etternavn: emptyString(v.lastName),
-                adresse: emptyString(v.address),
-                utenlandskID: emptyString(v.dnr),
-                fodselsdatoFra: emptyString(
+                fornavn: trimInput(v.firstName),
+                etternavn: trimInput(v.lastName),
+                adresse: trimInput(v.address),
+                utenlandskID: trimInput(v.dnr),
+                fodselsdatoFra: trimInput(
                     v.birthDateFrom ? dayjs(v.birthDateFrom).format(backendDatoformat) : undefined
                 ),
-                fodselsdatoTil: emptyString(v.birthDateTo ? dayjs(v.birthDateTo).format(backendDatoformat) : undefined),
+                fodselsdatoTil: trimInput(v.birthDateTo ? dayjs(v.birthDateTo).format(backendDatoformat) : undefined),
                 alderFra: z.coerce.number().optional().catch(undefined).parse(v.ageFrom),
                 alderTil: z.coerce.number().optional().catch(undefined).parse(v.ageTo),
-                kjonn: emptyString(v.gender),
-                telefonnummer: emptyString(v.phoneNumber)
+                kjonn: trimInput(v.gender),
+                telefonnummer: trimInput(v.phoneNumber)
             });
         }
     });
