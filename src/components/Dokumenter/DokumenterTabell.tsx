@@ -132,9 +132,6 @@ export const DokumenterTabell = () => {
                         <Table.ColumnHeader>
                             <span className="sr-only">Antall dokumenter</span>
                         </Table.ColumnHeader>
-                        <Table.ColumnHeader>
-                            <span className="sr-only">Åpne hoveddokument</span>
-                        </Table.ColumnHeader>
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
@@ -152,7 +149,28 @@ export const DokumenterTabell = () => {
                             >
                                 <Table.HeaderCell scope="row" className="font-extralight align-top">
                                     {journalpost.harTilgang ? (
-                                        journalpost.beskrivelse
+                                        <HStack justify="space-between" wrap={false}>
+                                            <div>{journalpost.beskrivelse}</div>
+                                            {journalpost.harTilgang && journalpost.hoveddokument && (
+                                                <Link
+                                                    to="/new/dokument"
+                                                    target="_blank"
+                                                    onClick={() => {
+                                                        trackVisDetaljvisning('dokumenter', 'åpnet dokument i ny fane');
+                                                    }}
+                                                    search={{
+                                                        dokument: journalpost.hoveddokument.dokumentreferanse,
+                                                        journalpost: journalpost.journalpostId
+                                                    }}
+                                                >
+                                                    <ExternalLinkIcon
+                                                        fontSize="1.5rem"
+                                                        color="var(--ax-text-subtle)"
+                                                        title="Åpne hoveddokument i ny fane"
+                                                    ></ExternalLinkIcon>
+                                                </Link>
+                                            )}
+                                        </HStack>
                                     ) : (
                                         <HStack wrap={false} gap="space-4" align="center">
                                             <Tag
@@ -165,6 +183,7 @@ export const DokumenterTabell = () => {
                                         </HStack>
                                     )}
                                 </Table.HeaderCell>
+
                                 <Table.DataCell className="align-top">{formaterDato(journalpost.dato)}</Table.DataCell>
                                 <Table.DataCell className="align-top">
                                     {avsenderMottaker(brukersNavn, journalpost.avsender)}
@@ -184,27 +203,6 @@ export const DokumenterTabell = () => {
                                     >
                                         {countVedleggMedReferanse(journalpost)}
                                     </Tag>
-                                </Table.DataCell>
-                                <Table.DataCell>
-                                    {journalpost.harTilgang && journalpost.hoveddokument && (
-                                        <Link
-                                            to="/new/dokument"
-                                            target="_blank"
-                                            onClick={() => {
-                                                trackVisDetaljvisning('dokumenter', 'åpnet dokument i ny fane');
-                                            }}
-                                            search={{
-                                                dokument: journalpost.hoveddokument.dokumentreferanse,
-                                                journalpost: journalpost.journalpostId
-                                            }}
-                                        >
-                                            <ExternalLinkIcon
-                                                fontSize="1.5rem"
-                                                color="var(--ax-text-subtle)"
-                                                title="Åpne hoveddokument i ny fane"
-                                            ></ExternalLinkIcon>
-                                        </Link>
-                                    )}
                                 </Table.DataCell>
                             </Table.ExpandableRow>
                         );
