@@ -20,11 +20,13 @@ import { backendDatoformat } from 'src/utils/date-utils';
 import { z } from 'zod';
 import LenkeDrekV2 from './LenkeDrekV2';
 
-const FIELD_GROUP_ERROR = 'Minst en av navn, adresse, telefonnummer, eller utenlandsk ID må fylles ut for å kunne søke';
-const fieldGroup = ['name', 'dnr', 'address', 'phoneNumber'] as const;
+const FIELD_GROUP_ERROR =
+    'Minst en av fornavn, etternavn, adresse, telefonnummer, eller utenlandsk ID må fylles ut for å kunne søke';
+const fieldGroup = ['firstName', 'lastName', 'address', 'phoneNumber', 'dnr'] as const;
 
 const fieldLabels: Record<keyof z.infer<typeof personSokSchema>, [string, ReactNode] | [string]> = {
-    name: ['Navn (fonetisk søk)'],
+    firstName: ['Fornavn'],
+    lastName: ['Etternavn'],
     dnr: ['Utenlandsk ID', 'Husk å inkludere alle tegn. Eksempel: 010101-12345'],
     address: ['Adresse', ''],
     phoneNumber: ['Telefonnummer', 'Telefonnummer uten landskode'],
@@ -38,7 +40,8 @@ const fieldLabels: Record<keyof z.infer<typeof personSokSchema>, [string, ReactN
 
 const personSokSchema = z
     .object({
-        name: z.string(),
+        firstName: z.string(),
+        lastName: z.string(),
         dnr: z.string(),
         birthDateFrom: z.date().optional(),
         birthDateTo: z.date().optional(),
@@ -54,7 +57,13 @@ const personSokSchema = z
     })
     .partial()
     .superRefine((val, ctx) => {
-        if (!val.name && !val.dnr && !val.address && !val.phoneNumber) {
+        if (
+            !val.firstName?.trim() &&
+            !val.lastName?.trim() &&
+            !val.dnr?.trim() &&
+            !val.address?.trim() &&
+            !val.phoneNumber?.trim()
+        ) {
             ctx.addIssue({
                 code: z.ZodIssueCode.custom,
                 message: FIELD_GROUP_ERROR,
@@ -64,10 +73,7 @@ const personSokSchema = z
     });
 
 function emptyString(input?: string): string | undefined {
-    if (!input || input.length === 0) {
-        return undefined;
-    }
-    return input;
+    return input?.trim() || undefined;
 }
 
 type Props = {
@@ -78,7 +84,8 @@ type Props = {
 export function PersonsokForm({ onSubmit, onReset }: Props) {
     const form = useForm({
         defaultValues: {
-            name: '',
+            firstName: '',
+            lastName: '',
             dnr: ''
         } as z.infer<typeof personSokSchema>,
         validators: {
@@ -86,7 +93,8 @@ export function PersonsokForm({ onSubmit, onReset }: Props) {
         },
         onSubmit: ({ value: v }) => {
             onSubmit({
-                navn: emptyString(v.name),
+                fornavn: emptyString(v.firstName),
+                etternavn: emptyString(v.lastName),
                 adresse: emptyString(v.address),
                 utenlandskID: emptyString(v.dnr),
                 fodselsdatoFra: emptyString(
@@ -234,16 +242,22 @@ export function PersonsokForm({ onSubmit, onReset }: Props) {
                 <div>
                     <form.Subscribe
                         selector={(state) =>
-                            [state.values.name, state.values.birthDateFrom, state.values.gender] as const
+                            [
+                                state.values.firstName,
+                                state.values.lastName,
+                                state.values.birthDateFrom,
+                                state.values.gender
+                            ] as const
                         }
                     >
-                        {([name, birthDateFrom, gender]) => (
+                        {([firstName, lastName, birthDateFrom, gender]) => (
                             <LenkeDrekV2
                                 birthDateFrom={
                                     birthDateFrom ? dayjs(birthDateFrom).format(backendDatoformat) : undefined
                                 }
                                 gender={gender}
-                                name={name}
+                                firstName={firstName}
+                                lastName={lastName}
                             />
                         )}
                     </form.Subscribe>
