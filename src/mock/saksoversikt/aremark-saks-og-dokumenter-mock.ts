@@ -20,7 +20,7 @@ export const getAremarkSaksOgDokumenterListe = () => {
                     id: 'b591a83e-d673-48ff-8fd0-19a6633171d8',
                     retning: DokumentmetadataRetning.UT,
                     dato: '2025-03-24T00:30:06',
-
+                    lestDato: '2025-03-24T00:30:06',
                     navn: 'AREMARK TESTFAMILIEN',
                     journalpostId: '453977012',
                     hoveddokument: {
@@ -50,7 +50,7 @@ export const getAremarkSaksOgDokumenterListe = () => {
                     id: '031b6e8e-d334-413f-9071-372e3a9e61c2',
                     retning: DokumentmetadataRetning.INN,
                     dato: '2021-05-19T14:16:25',
-
+                    lestDato: '2021-05-19T14:16:25',
                     navn: 'SEDAT SLØVENDE MULDVARP',
                     journalpostId: '453649830',
                     hoveddokument: {
@@ -80,7 +80,7 @@ export const getAremarkSaksOgDokumenterListe = () => {
                     id: '029948a5-0c08-4d6f-a01d-75a94a72df9e',
                     retning: DokumentmetadataRetning.INN,
                     dato: '2019-02-11T00:00:00',
-
+                    lestDato: '2019-02-11T00:00:00',
                     navn: 'AREMARK TESTFAMILIEN',
                     journalpostId: '453506779',
                     hoveddokument: {
@@ -137,6 +137,7 @@ export const getAremarkSaksOgDokumenterListe = () => {
                     id: 'f285238f-acfa-4d9e-a43c-9e4b6c9f1ce1',
                     retning: DokumentmetadataRetning.UT,
                     dato: '2024-02-09T14:16:11',
+                    lestDato: '2024-02-09T14:16:11',
 
                     navn: 'AREMARK TESTFAMILIEN',
                     journalpostId: '453860078',

@@ -114,6 +114,9 @@ export const DokumenterTabell = () => {
                         <Table.ColumnHeader sortKey="beskrivelse" scope="col" sortable>
                             Beskrivelse
                         </Table.ColumnHeader>
+                        <Table.ColumnHeader sortKey="lestDato" scope="col" sortable>
+                            <div className="text-nowrap">Lest dato</div>
+                        </Table.ColumnHeader>
                         <Table.ColumnHeader sortKey="dato" scope="col" sortable>
                             Dato
                         </Table.ColumnHeader>
@@ -183,7 +186,9 @@ export const DokumenterTabell = () => {
                                         </HStack>
                                     )}
                                 </Table.HeaderCell>
-
+                                <Table.DataCell className="align-top">
+                                    {journalpost.lestDato ? formaterDato(journalpost.lestDato) : 'Ulest'}
+                                </Table.DataCell>
                                 <Table.DataCell className="align-top">{formaterDato(journalpost.dato)}</Table.DataCell>
                                 <Table.DataCell className="align-top">
                                     {avsenderMottaker(brukersNavn, journalpost.avsender)}
