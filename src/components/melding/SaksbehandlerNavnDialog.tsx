@@ -1,5 +1,5 @@
 import { CogIcon } from '@navikt/aksel-icons';
-import { Alert, Button, Dialog, HStack, TextField, VStack } from '@navikt/ds-react';
+import { Alert, Button, Dialog, HStack, TextField, Tooltip, VStack } from '@navikt/ds-react';
 import { useEffect, useState } from 'react';
 import {
     INNSTILLINGER_KEY_SAKSBEHANDLER_NAVN,
@@ -44,18 +44,20 @@ export function SaksbehandlerNavnDialog() {
 
     return (
         <>
-            <Button
-                type="button"
-                variant="tertiary"
-                size="small"
-                icon={<CogIcon aria-hidden />}
-                aria-label="Åpne innstillinger for signatur"
-                onClick={() => {
-                    setFeil(undefined);
-                    setOpen(true);
-                }}
-                disabled={disableDialog || innstillinger.isPending}
-            />
+            <Tooltip content="Endre navn som brukes i meldingssignatur">
+                <Button
+                    type="button"
+                    variant="tertiary"
+                    size="small"
+                    icon={<CogIcon aria-hidden />}
+                    aria-label="Endre navn som brukes i meldingssignatur"
+                    onClick={() => {
+                        setFeil(undefined);
+                        setOpen(true);
+                    }}
+                    disabled={disableDialog || innstillinger.isPending}
+                />
+            </Tooltip>
             <Dialog open={open} onOpenChange={setOpen}>
                 <Dialog.Popup>
                     <Dialog.Header>
