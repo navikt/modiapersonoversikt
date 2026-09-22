@@ -2,22 +2,22 @@ import { Link } from '@navikt/ds-react';
 import { pickBy } from 'lodash';
 import baseurls from 'src/rest/resources/baseurlsResource';
 import { formaterDato } from 'src/utils/string-utils';
-import { fjernAnforselstegn, splitNavn } from './utils';
+import { trimInput } from './utils';
 
 type Props = {
     birthDateFrom?: string;
     gender?: string;
-    name?: string;
+    firstName?: string;
+    lastName?: string;
 };
 
-function LenkeDrekV2({ birthDateFrom, gender, name }: Props) {
+function LenkeDrekV2({ birthDateFrom, gender, firstName, lastName }: Props) {
     const baseUrlResource = baseurls.useFetch();
     const drekUrl = baseUrlResource.data?.drek ?? '';
-    const { fornavn, etternavn } = splitNavn(fjernAnforselstegn(name));
 
     const searchParams = pickBy({
-        fornavn,
-        etternavn,
+        fornavn: trimInput(firstName),
+        etternavn: trimInput(lastName),
         kjoenn: gender,
         foedselsdato: birthDateFrom ? formaterDato(birthDateFrom) : undefined
     }) as Record<string, string>;
