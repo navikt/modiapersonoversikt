@@ -1,11 +1,18 @@
 import { HttpResponse, http, type PathParams } from 'msw';
-import type { Innstillinger, SaksbehandlerInnstillinger } from '../rest/resources/innstillingerResource';
+import {
+    INNSTILLINGER_KEY_SAKSBEHANDLER_NAVN,
+    type Innstillinger,
+    type SaksbehandlerInnstillinger
+} from 'src/lib/clients/innstillinger';
 
 const localstoreageKey = 'modia-innstillinger-mock';
 const finnesILocalStorage = localStorage.getItem(localstoreageKey);
 const defaultInnstillinger: SaksbehandlerInnstillinger = {
     sistLagret: '2020-04-07T12:12:54',
-    innstillinger: { 'har-sett-ny-modia-dialog': 'true' }
+    innstillinger: {
+        'har-sett-ny-modia-dialog': 'true',
+        [INNSTILLINGER_KEY_SAKSBEHANDLER_NAVN]: ''
+    }
 };
 
 let innstillinger =

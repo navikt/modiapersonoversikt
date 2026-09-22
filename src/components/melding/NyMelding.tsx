@@ -7,6 +7,7 @@ import useDraft, { type Draft, type DraftContext } from 'src/app/personside/dial
 import { AvbrytAlert } from 'src/components/melding/AvbrytAlert';
 import nyMeldingSchema, { maksLengdeMelding } from 'src/components/melding/nyMeldingSchema';
 import { Oppgaveliste } from 'src/components/melding/OppgavelisteOptions';
+import { SaksbehandlerNavnDialog } from 'src/components/melding/SaksbehandlerNavnDialog';
 import AutoCompleteTekstTips from 'src/components/melding/standardtekster/AutoCompleteTekstTips';
 import StandardTekstModal from 'src/components/melding/standardtekster/StandardTeksterModal';
 import { settInnStandardTekst } from 'src/components/melding/standardtekster/settInnStandardTekst';
@@ -215,6 +216,7 @@ function NyMelding() {
                                         )
                                     }
                                 />
+                                <SaksbehandlerNavnDialog />
                             </HStack>
                             <HStack
                                 justify="end"

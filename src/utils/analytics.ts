@@ -20,6 +20,7 @@ export enum trackingEvents {
     faneEndret = 'fane endret',
     lenkeKlikketFraOversikt = 'linke klikket fra oversikt',
     hotkeyBrukt = 'hotkey brukt',
+    signaturnavnEndret = 'navn i signatur endret',
 
     // Denne er også i bruk i internflatedekoratøren
     // Siden vi ikke tracker automatisk så må vi legge på event på lenker i dekoratøren

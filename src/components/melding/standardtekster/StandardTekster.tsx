@@ -2,15 +2,15 @@ import { Box, Button, HGrid, HStack, VStack } from '@navikt/ds-react';
 import { atom } from 'jotai';
 import { useAtom } from 'jotai/index';
 import { type DependencyList, type RefObject, useEffect, useRef } from 'react';
+import type * as StandardTeksterModels from 'src/app/personside/dialogpanel/sendMelding/standardTekster/domain';
+import type * as StandardTeksterType from 'src/app/personside/dialogpanel/sendMelding/standardTekster/domain.ts';
+import { erGyldigValg, rapporterBruk } from 'src/app/personside/dialogpanel/sendMelding/standardTekster/sokUtils';
 import {
     type AutofullforData,
     autofullfor,
     byggAutofullforMap,
     useAutoFullforData
-} from 'src/app/personside/dialogpanel/sendMelding/autofullforUtils';
-import type * as StandardTeksterModels from 'src/app/personside/dialogpanel/sendMelding/standardTekster/domain';
-import type * as StandardTeksterType from 'src/app/personside/dialogpanel/sendMelding/standardTekster/domain.ts';
-import { erGyldigValg, rapporterBruk } from 'src/app/personside/dialogpanel/sendMelding/standardTekster/sokUtils';
+} from 'src/components/melding/autocompleteUtils';
 import LocaleVelger from 'src/components/melding/standardtekster/LocaleVelger';
 import SokeFelt from 'src/components/melding/standardtekster/SokeFelt';
 import StandardtekstListe from 'src/components/melding/standardtekster/StandardTekstListe';
@@ -40,7 +40,8 @@ function submitTekst(values: standardTekstSok, velgTekst: (tekst: string) => voi
                 values.locale,
                 autofullforData.enhet,
                 autofullforData.person,
-                autofullforData.saksbehandler
+                autofullforData.saksbehandler,
+                autofullforData.egendefinertSaksbehandlerNavn
             );
             const ferdigTekst = autofullfor(localeTekst, nokler);
             velgTekst(ferdigTekst);
