@@ -53,7 +53,7 @@ export const JournalForingModal = ({ traad, close, isOpen }: Props) => {
         >
             <Modal.Body className="overflow-y-hidden">
                 {kanJournalfores ? (
-                    <SakVelger setSak={(sak) => setValgtSak(sak)} valgtSak={valgtSak} />
+                    <SakVelger setSak={(sak) => setValgtSak(sak)} valgtSak={valgtSak} traad={traad} />
                 ) : (
                     <Alert variant="warning">Dialogen kan ikke journalføres</Alert>
                 )}
