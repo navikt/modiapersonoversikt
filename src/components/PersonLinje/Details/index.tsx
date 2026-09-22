@@ -94,7 +94,7 @@ function SeksjonWrapper({ tittel, icon, children }: PropsWithChildren<{ tittel: 
 }
 
 function hentToppkortBakgrunnsklasse(kjonn: string | undefined, erDod: boolean): string | undefined {
-    if (erDod) return undefined;
+    if (erDod) return 'bg-ax-bg-neutral-soft';
     if (kjonn === Kjonn.K) return 'bg-ax-bg-brand-magenta-soft';
     if (kjonn === Kjonn.M) return 'bg-ax-bg-info-soft';
     return undefined;
