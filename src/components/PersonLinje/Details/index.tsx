@@ -133,7 +133,7 @@ const PersonlinjeDetails = () => {
                 >
                     <VStack gap="space-32">
                         <SeksjonWrapper
-                            tittel="Arbeidsoppfølging"
+                            tittel="Arbeidsrettet oppfølging"
                             icon={<PersonGroupIcon aria-hidden fontSize="2rem" />}
                         >
                             <OppfolgingOversikt />

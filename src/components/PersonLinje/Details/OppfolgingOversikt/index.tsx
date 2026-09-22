@@ -44,7 +44,7 @@ function OppfolgingOversikt() {
                                 })
                             }
                         >
-                            Arbeidsoppfølging
+                            Arbeidsrettet oppfølging
                         </Link>
                     </LinkCard.Anchor>
                 </LinkCard.Title>
