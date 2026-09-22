@@ -90,7 +90,7 @@ const tilgangsKontrollHandler = [
         `${apiBaseUri}/tilgang`,
         withDelayedResponse(
             randomDelay(),
-            () => Promise.resolve(Math.random() > 0.98 ? 400 : 200),
+            () => Promise.resolve(!import.meta.env.VITE_E2E && Math.random() > 0.98 ? 400 : 200),
             mockGeneratorMedFodselsnummer(tilgangskontrollMock)
         )
     ),
@@ -99,7 +99,7 @@ const tilgangsKontrollHandler = [
         `${apiBaseUri}/tilgang`,
         withDelayedResponse(
             randomDelay(),
-            () => Promise.resolve(Math.random() > 0.98 ? 400 : 200),
+            () => Promise.resolve(!import.meta.env.VITE_E2E && Math.random() > 0.98 ? 400 : 200),
             mockGeneratorMedFodselsnummerV2(tilgangskontrollMock)
         )
     )

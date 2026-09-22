@@ -5,7 +5,7 @@ export function authMock(): AuthIntropectionDto {
     return { expirationDate: new Date().getTime() + 2.5 * 60 * 1000 };
 }
 export function tilgangskontrollMock(fnr: string | undefined) {
-    const ikkeTilgang = Math.random() > 0.98 || fnr === '21042900076';
+    const ikkeTilgang = (!import.meta.env.VITE_E2E && Math.random() > 0.98) || fnr === '21042900076';
     const dto: TilgangDTO = ikkeTilgang
         ? {
               harTilgang: false,
