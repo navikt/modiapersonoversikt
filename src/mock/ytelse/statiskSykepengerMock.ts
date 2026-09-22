@@ -83,3 +83,10 @@ export const statiskSykepengerMock = {
     erArbeidsgiverperiode: true,
     arbeidskategori: 'Ærlig arbeid'
 };
+
+export const statiskSykepengerUtenUtbetalingerMock = {
+    ...statiskSykepengerMock,
+    sykmeldtFom: '2020-02-06',
+    kommendeUtbetalinger: [],
+    utbetalingerPaaVent: []
+};

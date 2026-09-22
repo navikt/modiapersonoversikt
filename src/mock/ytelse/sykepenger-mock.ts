@@ -16,7 +16,7 @@ import { backendDatoformat } from 'src/utils/date-utils';
 import { getPeriode } from '../periodeMock';
 import { aremark } from '../persondata/aremark';
 import { fyllRandomListe } from '../utils/mock-utils';
-import { statiskSykepengerMock } from './statiskSykepengerMock';
+import { statiskSykepengerMock, statiskSykepengerUtenUtbetalingerMock } from './statiskSykepengerMock';
 import { getKommendeUtbetaling, getUtbetalingPåVent } from './ytelse-utbetalinger-mock';
 
 export function getMockSykepengerRespons(fødselsnummer: string): SykepengerResponse {
@@ -25,7 +25,7 @@ export function getMockSykepengerRespons(fødselsnummer: string): SykepengerResp
 
     if (fødselsnummer === aremark.personIdent) {
         return {
-            sykepenger: [statiskSykepengerMock]
+            sykepenger: [statiskSykepengerMock, statiskSykepengerUtenUtbetalingerMock]
         };
     }
 
