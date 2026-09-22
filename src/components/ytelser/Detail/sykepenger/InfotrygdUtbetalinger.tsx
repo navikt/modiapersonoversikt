@@ -1,4 +1,5 @@
 import { Heading, InlineMessage, Table, VStack } from '@navikt/ds-react';
+import { utledUtbetalingPåVentÅrsak } from 'src/app/personside/infotabs/ytelser/sykepenger/utbetalingerpåvent/utledUtbetalingerPåVentÅrsak';
 import Card from 'src/components/Card';
 import { formaterPeriode, formaterProsent } from 'src/components/ytelser/utils';
 import type {
@@ -6,6 +7,7 @@ import type {
     Sykepenger,
     SykmeldingUtbetalingPaVent
 } from 'src/generated/modiapersonoversikt-api';
+import type { UtbetalingPaaVent } from 'src/models/ytelse/ytelse-utbetalinger';
 import { datoEllerNull, NOKellerNull } from 'src/utils/string-utils';
 
 const EmptyMessage = () => (
@@ -78,7 +80,9 @@ const UtbetalingerPåVent = ({ utbetalinger }: { utbetalinger: SykmeldingUtbetal
                     <Table.Body>
                         {utbetalinger.map((utbetaling, index) => (
                             <Table.Row key={`${utbetaling.vedtak?.fra ?? 'ukjent'}-${index}`}>
-                                <Table.DataCell>{utbetaling.stansaarsak}</Table.DataCell>
+                                <Table.DataCell>
+                                    {utledUtbetalingPåVentÅrsak(utbetaling as UtbetalingPaaVent)}
+                                </Table.DataCell>
                                 <Table.DataCell>{formaterPeriode(utbetaling.vedtak)}</Table.DataCell>
                                 <Table.DataCell>{formaterProsent(utbetaling.utbetalingsgrad)}</Table.DataCell>
                             </Table.Row>
