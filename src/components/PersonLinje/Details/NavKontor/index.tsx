@@ -23,7 +23,7 @@ import { Adresseinfo } from '../components';
 
 const IKKE_TILGJENGELIG = 'Ikke tilgjengelig';
 const STENGT = 'Stengt';
-const UKJENT = 'Ukjent';
+const UKJENT = 'Ukjent åpningstid';
 
 /** Om vi mottar "Ukjent" for både åpning og stenging av Nav-kontor settes verdien til "Ukjent" */
 function formaterApningstid(apningstid: string): string {

@@ -86,30 +86,18 @@ function OppgaveKort({ traad, oppgave, erTildelt }: { traad: TraadDto; oppgave?:
     const oppgavetype = oppgave ? (oppgaveTyper[oppgave.oppgavetype as keyof typeof oppgaveTyper] ?? null) : null;
     const prioritet = oppgave ? (oppgavePrioritet[oppgave.prioritet as keyof typeof oppgavePrioritet] ?? null) : null;
     const frist = datoEllerNull(oppgave?.fristFerdigstillelse);
-
-    const metaBeskrivelse = [
-        oppgavetype && `type ${oppgavetype}`,
-        prioritet && `prioritet ${prioritet}`,
-        frist && `frist ${frist}`
-    ]
-        .filter(Boolean)
-        .join(', ');
-    const ariaLabel = `${tema} (${tittel})${metaBeskrivelse ? `, ${metaBeskrivelse}` : ''} – gå til meldinger`;
-
     const avsluttet = Boolean(avsluttetDato) && !kanBesvares;
     const harTags = Boolean(ubesvart || erUnderArbeid || feilsendt || slettet || erTildelt || avsluttet || sladdet);
 
     return (
-        <LinkCard size="small" className="rounded-(--ax-radius-8)!">
+        <LinkCard size="small" className="rounded-(--ax-radius-8)">
             <LinkCard.Title as="span" className="min-w-0 truncate">
                 <LinkCard.Anchor asChild>
                     <Link
                         to="/new/person/meldinger"
                         search={{ traadId: traad.traadId }}
-                        aria-label={ariaLabel}
                         onClick={() =>
                             trackGenereltUmamiEvent(trackingEvents.lenkeKlikketFraHjem, {
-                                fane: 'hjem',
                                 kort: 'oppgaver',
                                 tekst: `lenke til meldinger (${tema})`
                             })

@@ -132,7 +132,10 @@ const PersonlinjeDetails = () => {
                     paddingBlock={{ xs: 'space-16', lg: 'space-32 space-16' }}
                 >
                     <VStack gap="space-32">
-                        <SeksjonWrapper tittel="Oppfølging" icon={<PersonGroupIcon aria-hidden fontSize="2rem" />}>
+                        <SeksjonWrapper
+                            tittel="Arbeidsoppfølging"
+                            icon={<PersonGroupIcon aria-hidden fontSize="2rem" />}
+                        >
                             <OppfolgingOversikt />
                         </SeksjonWrapper>
                         <SeksjonWrapper tittel="Ytelser" icon={<HandHeartIcon aria-hidden fontSize="2rem" />}>

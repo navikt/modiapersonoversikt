@@ -1,6 +1,6 @@
 import { Accordion, BodyShort, Box, HStack } from '@navikt/ds-react';
 import ValidPeriod from 'src/components/PersonLinje/common/ValidPeriod';
-import { IngenInfo, LastChanged } from 'src/components/PersonLinje/Details/components';
+import { LastChanged } from 'src/components/PersonLinje/Details/components';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { formaterDato } from 'src/utils/string-utils';
 
@@ -9,7 +9,7 @@ export default function Flytting() {
     const person = data?.person;
 
     if (!person || (person.innflyttingTilNorge.isEmpty() && person.utflyttingFraNorge.isEmpty())) {
-        return <IngenInfo tekst="Ingen info om flytting" />;
+        return <></>;
     }
 
     return (

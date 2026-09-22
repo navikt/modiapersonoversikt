@@ -1,19 +1,22 @@
 import dayjs from 'dayjs';
 import { guid } from 'nav-frontend-js-utils';
-import type { OpprettOppgaveRequestDto, OpprettOppgaveResponseDto } from 'src/generated/modiapersonoversikt-api';
-import type { Oppgave } from '../../models/meldinger/oppgave';
+import type {
+    OppgaveDto,
+    OpprettOppgaveRequestDto,
+    OpprettOppgaveResponseDto
+} from 'src/generated/modiapersonoversikt-api';
 import { simulateSf } from '../dialoger/sf-dialoger-mock';
 import type { MeldingerBackendMock } from './meldingerBackendMock';
 
 export class OppgaverBackendMock {
-    private tildelteOppgaver: Oppgave[] = [];
+    private tildelteOppgaver: OppgaveDto[] = [];
     private meldingerBackend: MeldingerBackendMock | null = null;
 
     public setMeldingerBackend(backend: MeldingerBackendMock) {
         this.meldingerBackend = backend;
     }
 
-    public getTildelteOppgaver(): Oppgave[] {
+    public getTildelteOppgaver(): OppgaveDto[] {
         return this.tildelteOppgaver;
     }
 
@@ -25,17 +28,24 @@ export class OppgaverBackendMock {
             );
             this.tildelteOppgaver.push({
                 oppgaveId: id,
+                traadId: traad?.traadId ?? oppgave.behandlingskjedeId,
                 fnr: oppgave.fnr,
                 erSTOOppgave: false,
-                traadId: traad?.traadId ?? oppgave.behandlingskjedeId,
+                tildeltEnhetsnr: '',
                 tema: oppgave.temaKode,
+                temagruppe: '',
                 oppgavetype: oppgave.oppgaveTypeKode,
                 prioritet: oppgave.prioritetKode,
-                // Frontend sender kun `dagerFrist`; ekte frist beregnes av backend.
-                // Merk: her regnes kalenderdager, mens backend trolig bruker virkedager.
+                status: '',
+                aktivDato: '',
+                endretAvEnhetsnr: '',
+                opprettetAvEnhetsnr: '',
+                saksreferanse: '',
+                beskrivelse: '',
                 fristFerdigstillelse: dayjs()
                     .add(oppgave.dagerFrist ?? 0, 'day')
-                    .format('YYYY-MM-DD')
+                    .format('YYYY-MM-DD'),
+                opprettetTidspunkt: ''
             });
         }
 

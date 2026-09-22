@@ -61,7 +61,7 @@ function TopKort() {
 
     const erReservert = person.kontaktInformasjon.erReservert?.value === true;
     const mobil = person.kontaktInformasjon.mobil?.value;
-    const telefon = erReservert ? RESERVERT : mobil ? formaterMobiltelefonnummer(mobil) : IKKE_REGISTRERT;
+    const telefon = erReservert ? `${mobil} (Reservert)` : mobil ? formaterMobiltelefonnummer(mobil) : IKKE_REGISTRERT;
     const epost = erReservert ? RESERVERT : person.kontaktInformasjon.epost?.value || IKKE_REGISTRERT;
 
     const kontonummer = person.bankkonto?.kontonummer ?? IKKE_REGISTRERT;

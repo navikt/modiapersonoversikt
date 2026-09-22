@@ -6,6 +6,7 @@ import {
     CircleFillIcon,
     FolderIcon,
     HandShakeHeartIcon,
+    HouseFillIcon,
     HouseIcon,
     PersonGroupIcon,
     PiggybankIcon
@@ -53,7 +54,7 @@ export const menuItems = [
     {
         title: 'Hjem',
         href: '/new/person/hjem',
-        Icon: HouseIcon,
+        Icon: HouseFillIcon,
         krevFeatureToggle: FeatureToggles.NyOversiktDesign,
         beta: true
     },

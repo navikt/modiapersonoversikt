@@ -28,10 +28,6 @@ export interface Oppgave {
     fnr: string;
     erSTOOppgave: boolean;
     traadId?: string;
-    tema?: string;
-    oppgavetype?: string;
-    prioritet?: string;
-    fristFerdigstillelse?: string;
 }
 
 export interface OpprettOppgaveRequest {

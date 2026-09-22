@@ -10,7 +10,6 @@ import { YtelseVedtakYtelseType } from 'src/models/ytelse/ytelse-utils';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import { formatterDato, getNewestDate, getOldestDate } from 'src/utils/date-utils';
 import { NOKellerNull } from 'src/utils/string-utils';
-import { twMerge } from 'tailwind-merge';
 import { SeksjonFeil } from '../components';
 
 type YtelsePeriode = { fom: string; tom: string | null };
@@ -141,16 +140,14 @@ function YtelseKort({ ytelse }: { ytelse: YtelseVedtak }) {
     const tittel = getYtelseTittel(ytelse);
 
     return (
-        <LinkCard size="small" className={twMerge('rounded-(--ax-radius-8)!', 'bg-ax-bg-info-soft!')}>
+        <LinkCard size="small" className="bg-ax-bg-info-soft">
             <LinkCard.Title as="span">
                 <LinkCard.Anchor asChild>
                     <Link
                         to="/new/person/ytelser"
                         search={{ id: getUnikYtelseKey(ytelse) }}
-                        aria-label={`${tittel} – gå til ytelse`}
                         onClick={() =>
                             trackGenereltUmamiEvent(trackingEvents.lenkeKlikketFraHjem, {
-                                fane: 'hjem',
                                 kort: 'ytelser',
                                 tekst: `lenke til ytelser (${tittel})`
                             })
