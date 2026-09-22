@@ -6,7 +6,7 @@ import { InfoElement } from '../components';
 
 type Foreldreansvar = PersonData['foreldreansvar'][0];
 
-function kombinerNavnOgIdent(personInfo?: NavnOgIdent): string | null {
+function kombinerNavnOgIdent(personInfo?: NavnOgIdent | null): string | null {
     if (!personInfo) return null;
     const navn = hentNavn(personInfo.navn);
     const ident = personInfo.ident ? personInfo.ident : 'Ukjent fnr/dnr';

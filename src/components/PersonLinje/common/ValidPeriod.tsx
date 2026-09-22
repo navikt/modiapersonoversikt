@@ -2,8 +2,8 @@ import { Detail } from '@navikt/ds-react';
 import { hentPeriodeTekst } from '../utils';
 
 type Props = {
-    from?: string;
-    to?: string;
+    from?: string | null;
+    to?: string | null;
 };
 
 function ValidPeriod({ from, to }: Props) {

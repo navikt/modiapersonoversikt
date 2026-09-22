@@ -34,7 +34,7 @@ import { SeksjonFeil } from '../components';
 /** Maks antall oppgavekort i oversikten. Resten må saksbehandler se i Kommunikasjon. */
 const MAKS_ANTALL_OPPGAVER = 3;
 
-function harTidligereFrist(kandidat?: string, gjeldende?: string): boolean {
+function harTidligereFrist(kandidat?: string | null, gjeldende?: string | null): boolean {
     if (!kandidat) return false;
     if (!gjeldende) return true;
     return dayjs(kandidat).isBefore(dayjs(gjeldende));

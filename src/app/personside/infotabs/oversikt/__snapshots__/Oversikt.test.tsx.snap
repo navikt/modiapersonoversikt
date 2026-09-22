@@ -2,7 +2,11 @@
 
 exports[`Viser oversikt med alt innhold 1`] = `
 <DocumentFragment>
-  .c7 {
+  .c12 {
+  font-weight: 600;
+}
+
+.c7 {
   position: relative;
   padding: .5rem;
   display: flex;
@@ -220,10 +224,6 @@ exports[`Viser oversikt med alt innhold 1`] = `
 
 .c13 >*:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
-}
-
-.c12 {
-  font-weight: 600;
 }
 
 .c11 >*:not(:first-child) {

@@ -100,7 +100,7 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
     );
 };
 
-const ReadStatus = ({ date }: { date?: string }) =>
+const ReadStatus = ({ date }: { date?: string | null }) =>
     date ? (
         <BodyLong as="span" size="small" className="aksel-inline-message" data-color="success">
             Lest ({formatterDatoTid(date)})
