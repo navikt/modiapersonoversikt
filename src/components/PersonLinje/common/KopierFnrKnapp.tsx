@@ -14,6 +14,6 @@ export const KopierFnrKnapp = ({ fnr }: { fnr?: string | null }) => {
             text={`F.nr.: ${fnrOppdelt}`}
         />
     ) : (
-        <Detail className="p-0">Ukjent</Detail>
+        <Detail className="p-0">Ukjent fødselsnummer</Detail>
     );
 };
