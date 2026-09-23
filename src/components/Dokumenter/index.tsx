@@ -28,9 +28,7 @@ export const DokumenterPage = () => {
                             Dokumenter
                         </Heading>
                         <Detail className="text-ax-text-neutral-subtle" spacing={false}>
-                            Modia viser elektroniske dokumenter brukeren har sendt inn via nav.no etter 9. desember
-                            2014.
-                            <br /> Dokumenter som er journalført vises fra og med 4.juni 2016
+                            Bruker har ikke innsyn i dokumenter som er journalført før 4.juni 2016.
                         </Detail>
                     </VStack>
                     <VStack gap="space-16">
