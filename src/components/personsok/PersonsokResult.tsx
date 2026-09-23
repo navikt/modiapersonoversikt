@@ -55,7 +55,7 @@ export function PersonsokResult({ query, onClick }: { query: PersonsokRequest; o
     if (data) {
         const treff = data.treff;
         const totaltAntallTreff = data.totalHits ?? treff.length;
-        const antallSider = data.totalPages ?? 1;
+        const antallSider = data.totalPages ?? Math.ceil(totaltAntallTreff / RESULTATER_PER_SIDE);
         const harUtenlandskID = treff.some((person) =>
             person.utenlandskID?.some((utenlandskID) => utenlandskID.identifikasjonsnummer !== undefined)
         );

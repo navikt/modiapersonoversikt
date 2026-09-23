@@ -85,6 +85,15 @@ describe('PersonsokResult', () => {
         expect(scrollIntoView.mock.contexts.at(-1)).toBe(screen.getByRole('navigation'));
     });
 
+    test('beregner antall sider fra totalHits når totalPages mangler', async () => {
+        lyttPaaV4((body) => HttpResponse.json({ ...mockPersonsokResponseV4(body), totalPages: null }));
+        await renderWithProviders(<PersonsokResult query={lagQuery('utensider')} onClick={vi.fn()} />);
+
+        await screen.findByText('Viser 1–50 av 132 treff');
+        expect(screen.getByRole('navigation')).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: '3' })).toBeInTheDocument();
+    });
+
     test('viser ikke paginering når det bare er én side', async () => {
         lyttPaaV4((body) => HttpResponse.json(mockPersonsokResponseV4({ ...body, resultsPerPage: 200 })));
         await renderWithProviders(<PersonsokResult query={lagQuery('enside')} onClick={vi.fn()} />);
