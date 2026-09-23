@@ -21,8 +21,7 @@ import { z } from 'zod';
 import LenkeDrekV2 from './LenkeDrekV2';
 import { trimInput } from './utils';
 
-const FIELD_GROUP_ERROR =
-    'Minst en av fornavn, etternavn, adresse, telefonnummer, eller utenlandsk ID må fylles ut for å kunne søke';
+const FIELD_GROUP_ERROR = 'Fyll ut navn, adresse, telefonnummer, utenlandsk ID eller fødselsdato fra og til';
 const fieldGroup = ['firstName', 'lastName', 'address', 'phoneNumber', 'dnr'] as const;
 
 const fieldLabels: Record<keyof z.infer<typeof personSokSchema>, [string, ReactNode] | [string]> = {
@@ -58,17 +57,34 @@ const personSokSchema = z
     })
     .partial()
     .superRefine((val, ctx) => {
-        if (
-            !trimInput(val.firstName) &&
-            !trimInput(val.lastName) &&
-            !trimInput(val.dnr) &&
-            !trimInput(val.address) &&
-            !trimInput(val.phoneNumber)
-        ) {
+        const harFeltIGruppe =
+            !!trimInput(val.firstName) ||
+            !!trimInput(val.lastName) ||
+            !!trimInput(val.dnr) ||
+            !!trimInput(val.address) ||
+            !!trimInput(val.phoneNumber);
+        if (harFeltIGruppe) return;
+
+        const harDobFra = !!val.birthDateFrom;
+        const harDobTil = !!val.birthDateTo;
+
+        if (!harDobFra && !harDobTil) {
             ctx.addIssue({
                 code: z.ZodIssueCode.custom,
                 message: FIELD_GROUP_ERROR,
                 path: ['_fieldgroup']
+            });
+        } else if (!harDobFra) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: 'Fyll ut fødselsdato fra',
+                path: ['birthDateFrom']
+            });
+        } else if (!harDobTil) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: 'Fyll ut fødselsdato til',
+                path: ['birthDateTo']
             });
         }
     });
@@ -128,7 +144,7 @@ export function PersonsokForm({ onSubmit, onReset }: Props) {
                             {(field) => (
                                 <TextField
                                     error={
-                                        field.form.state.errorMap.onChange?._fieldgroup.length
+                                        field.form.state.errorMap.onChange?._fieldgroup?.length
                                             ? true
                                             : field.state.meta.errors.join(', ')
                                     }
@@ -200,6 +216,11 @@ export function PersonsokForm({ onSubmit, onReset }: Props) {
                                     label={fieldLabels[field.name][0]}
                                     onChange={field.handleChange}
                                     value={field.state.value}
+                                    error={
+                                        field.form.state.errorMap.onChange?._fieldgroup?.length
+                                            ? true
+                                            : field.state.meta.errors.map((e) => e?.message).join(', ')
+                                    }
                                 />
                             )}
                         </form.Field>
@@ -209,6 +230,11 @@ export function PersonsokForm({ onSubmit, onReset }: Props) {
                                     label={fieldLabels[field.name][0]}
                                     onChange={field.handleChange}
                                     value={field.state.value}
+                                    error={
+                                        field.form.state.errorMap.onChange?._fieldgroup?.length
+                                            ? true
+                                            : field.state.meta.errors.map((e) => e?.message).join(', ')
+                                    }
                                 />
                             )}
                         </form.Field>
@@ -301,7 +327,17 @@ export function PersonsokForm({ onSubmit, onReset }: Props) {
     );
 }
 
-const DateInput = ({ onChange, value, label }: { onChange: (val?: Date) => void; value?: Date; label: string }) => {
+const DateInput = ({
+    onChange,
+    value,
+    label,
+    error
+}: {
+    onChange: (val?: Date) => void;
+    value?: Date;
+    label: string;
+    error?: ReactNode;
+}) => {
     const { inputProps, datepickerProps, reset } = useDatepicker({
         onDateChange: onChange,
         defaultSelected: value,
@@ -318,7 +354,7 @@ const DateInput = ({ onChange, value, label }: { onChange: (val?: Date) => void;
 
     return (
         <DatePicker {...datepickerProps} dropdownCaption>
-            <DatePicker.Input label={label} size="small" {...inputProps} />
+            <DatePicker.Input label={label} size="small" error={error || undefined} {...inputProps} />
         </DatePicker>
     );
 };
