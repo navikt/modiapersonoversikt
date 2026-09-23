@@ -31,6 +31,7 @@ export type OmraadeMedHandling = components['schemas']['OmraadeMedHandlingString
 
 export type PersonsokRequest = components['schemas']['PersonsokRequestV3'];
 export type PersonsokResponse = components['schemas']['PersonSokResponsDTO'];
+export type PersonsokResponseV4 = components['schemas']['PersonSokResponsV4'];
 
 export type Varsel = components['schemas']['Varsel'];
 

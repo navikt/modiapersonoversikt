@@ -28,6 +28,27 @@ export function mockPersonsokResponse(request: PersonsokRequestV3): PersonsokRes
     return fyltRandomListe;
 }
 
+const MOCK_TOTALT_ANTALL_TREFF = 132;
+let mockTreffV4: PersonsokResponse[] | undefined;
+
+export function mockPersonsokResponseV4(request?: { pageNumber?: number | null; resultsPerPage?: number | null }) {
+    if (!mockTreffV4) {
+        navfaker.seed('personsok-v4');
+        faker.seed(4);
+        mockTreffV4 = Array.from({ length: MOCK_TOTALT_ANTALL_TREFF }, () => getPersonsokResponse());
+    }
+    const pageNumber = request?.pageNumber ?? 1;
+    const resultsPerPage = request?.resultsPerPage ?? 50;
+    const start = (pageNumber - 1) * resultsPerPage;
+
+    return {
+        treff: mockTreffV4.slice(start, start + resultsPerPage),
+        pageNumber,
+        totalHits: mockTreffV4.length,
+        totalPages: Math.ceil(mockTreffV4.length / resultsPerPage)
+    };
+}
+
 function getPersonsokResponse(): PersonsokResponse {
     const fodselsnummer = navfaker.personIdentifikator.fødselsnummer();
     const diskresjonskode = vektetSjanse(faker, 0.5) ? getDiskresjonskode() : null;

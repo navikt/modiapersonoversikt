@@ -42,7 +42,7 @@ import {
     getMockYtelserOgKontrakter
 } from './oppfolging-mock';
 import { hentPersondata } from './persondata/persondata';
-import { mockPersonsokResponse, mockStaticPersonsokRequest } from './personsok/personsokMock';
+import { mockPersonsokResponse, mockPersonsokResponseV4, mockStaticPersonsokRequest } from './personsok/personsokMock';
 import { saksbehandlerInnstillingerHandlers } from './saksbehandlerinnstillinger-mock';
 import { getStaticMockSaksoOgDokumenter } from './saksoversikt/saksoversikt-mock';
 import { skrivestotteMock } from './skrivestotte';
@@ -305,6 +305,13 @@ const personsokHandler = [
     http.post(
         `${apiBaseUri}/personsok/v3`,
         withDelayedResponse(randomDelay(), STATUS_OK, () => mockPersonsokResponse(mockStaticPersonsokRequest()))
+    ),
+    http.post(
+        `${apiBaseUri}/personsok/v4`,
+        withDelayedResponse<
+            ReturnType<typeof mockPersonsokResponseV4>,
+            { pageNumber?: number | null; resultsPerPage?: number | null }
+        >(randomDelay(), STATUS_OK, (_req, _params, body) => mockPersonsokResponseV4(body))
     )
 ];
 

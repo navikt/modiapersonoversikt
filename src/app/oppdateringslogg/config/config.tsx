@@ -1,7 +1,8 @@
-import { BodyShort, Heading, VStack } from '@navikt/ds-react';
+import { BodyShort, Heading, List, VStack } from '@navikt/ds-react';
 
 import type { OppdateringsloggInnslag } from '../OppdateringsloggContainer';
 import AutofullforBarnetrygd from './img/autofullfor-barnetrygd.png';
+import AvansertsokForbedringer from './img/avansert-sok-forbedringer.png';
 import AvansertSokKnappBilde from './img/avansertSok-knapp.jpg';
 import AvansertsokPdlsok from './img/avansertsok-pdlsok.png';
 import AvansertsokTelefonnummer from './img/avansertsok-telefonnummer.png';
@@ -817,6 +818,29 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                 </BodyShort>
             ),
             src: DokumenterTabell
+        },
+        {
+            id: 49,
+            tittel: 'Forbedringer i Avansert søk',
+            dato: new Date('2026-09-28 12:00'),
+            aktiv: true,
+            ingress: null,
+            beskrivelse: (
+                <BodyShort>
+                    <List>
+                        <List.Item>Navn-feltet er splittet i for- og etternavn for mer nøyaktig søk.</List.Item>
+                        <List.Item>
+                            Det er nå mulig å søke kun med fødselsdato. For å gjøre dette må både "Fødselsdato fra" og
+                            "Fødselsdato til" fylles ut.
+                        </List.Item>
+                        <List.Item>
+                            Hver side viser nå 50 treff i stedet for 30. Får søket flere treff, kan du bla til neste
+                            side nederst i listen. Gir søket mer enn 200 treff, må du legge til flere søkekriterier.
+                        </List.Item>
+                    </List>
+                </BodyShort>
+            ),
+            src: AvansertsokForbedringer
         }
     ];
 }

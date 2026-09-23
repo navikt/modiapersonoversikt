@@ -1,38 +1,80 @@
-import { Alert, BodyShort, Button, Loader, Table } from '@navikt/ds-react';
+import { Alert, BodyShort, Button, HStack, Loader, Pagination, Table, Tag, VStack } from '@navikt/ds-react';
+import { keepPreviousData } from '@tanstack/react-query';
 import { useAtomValue } from 'jotai';
+import { useLayoutEffect, useRef, useState } from 'react';
+import { FetchError } from 'src/api/api';
 import { $api } from 'src/lib/clients/modiapersonoversikt-api';
 import { aktivEnhetAtom } from 'src/lib/state/context';
 import type { PersonsokRequest, PersonsokResponse } from 'src/lib/types/modiapersonoversikt-api';
 import { useSettAktivBruker } from 'src/utils/customHooks';
+import { lagTreffTekst, RESULTATER_PER_SIDE } from './utils';
+
+export const FOR_MANGE_TREFF_TEKST = 'Søket gav for mange treff. Legg til flere søkekriterier og prøv igjen.';
 
 export function PersonsokResult({ query, onClick }: { query: PersonsokRequest; onClick: () => void }) {
     const enhet = useAtomValue(aktivEnhetAtom);
     const settAktivBruker = useSettAktivBruker();
+    const [valgtSide, setValgtSide] = useState(1);
 
-    const { isLoading, data, error } = $api.useQuery('post', '/rest/personsok/v3', {
-        body: { enhet, ...query }
-    });
+    // Én side per query-nøkkel: PDL kalles bare når saksbehandler blar til en side som ikke er hentet før.
+    const { isLoading, isPlaceholderData, data, error } = $api.useQuery(
+        'post',
+        '/rest/personsok/v4',
+        {
+            body: { enhet, ...query, pageNumber: valgtSide, resultsPerPage: RESULTATER_PER_SIDE }
+        },
+        { placeholderData: keepPreviousData }
+    );
+
+    // Mens en ny side lastes, viser tabellen fortsatt forrige side. sideSomVises følger treffene i tabellen.
+    const sideSomVises = data?.pageNumber ?? valgtSide;
+    const paginering = useRef<HTMLElement>(null);
+    const brukerHarByttetSide = useRef(false);
+    useLayoutEffect(() => {
+        if (!brukerHarByttetSide.current || isPlaceholderData || !data) return;
+        paginering.current?.scrollIntoView?.({ block: 'nearest' });
+    }, [isPlaceholderData, data]);
+
+    const byttSide = (nySide: number) => {
+        brukerHarByttetSide.current = true;
+        setValgtSide(nySide);
+    };
+
     if (isLoading) return <Loader />;
-    if (error) return <Alert variant="error">En feil oppsto under søket</Alert>;
-    if (data && data.length === 0) {
+    if (error) {
+        const fetchError: unknown = error;
+        if (fetchError instanceof FetchError && fetchError.response.status === 400) {
+            return <Alert variant="warning">{FOR_MANGE_TREFF_TEKST}</Alert>;
+        }
+        return <Alert variant="error">En feil oppsto under søket</Alert>;
+    }
+    if (data && data.treff.length === 0) {
         return <BodyShort>Fant ingen resultater</BodyShort>;
     }
 
     if (data) {
-        const hasUtenlandskID = data.some((person) =>
+        const treff = data.treff;
+        const totaltAntallTreff = data.totalHits ?? treff.length;
+        const antallSider = data.totalPages ?? 1;
+        const harUtenlandskID = treff.some((person) =>
             person.utenlandskID?.some((utenlandskID) => utenlandskID.identifikasjonsnummer !== undefined)
         );
 
         return (
-            <>
-                <span tabIndex={-1} className="sr-only" aria-live="polite">
-                    Søket fant {data.length} treff
-                </span>
-                <Table size="small" zebraStripes aria-label="Søkeresultat">
+            <VStack gap="space-8">
+                <HStack gap="space-8" align="center">
+                    <span aria-live="polite" aria-atomic="true">
+                        <Tag size="small" variant="moderate" data-color="neutral">
+                            {lagTreffTekst(sideSomVises, totaltAntallTreff)}
+                        </Tag>
+                    </span>
+                    {isPlaceholderData && <Loader size="xsmall" title="Henter treff" />}
+                </HStack>
+                <Table size="small" zebraStripes aria-label="Søkeresultat" aria-busy={isPlaceholderData}>
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell scope="col">Fødselsnummer</Table.HeaderCell>
-                            {hasUtenlandskID && <Table.HeaderCell scope="col">Utenlandsk ID</Table.HeaderCell>}
+                            {harUtenlandskID && <Table.HeaderCell scope="col">Utenlandsk ID</Table.HeaderCell>}
                             <Table.HeaderCell scope="col">Navn</Table.HeaderCell>
                             <Table.HeaderCell scope="col">Adresser</Table.HeaderCell>
                             <Table.HeaderCell scope="col">Bosted</Table.HeaderCell>
@@ -42,7 +84,7 @@ export function PersonsokResult({ query, onClick }: { query: PersonsokRequest; o
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
-                        {data.map((res) => (
+                        {treff.map((res) => (
                             <Table.Row
                                 className="cursor-pointer"
                                 key={res.ident.ident}
@@ -52,7 +94,7 @@ export function PersonsokResult({ query, onClick }: { query: PersonsokRequest; o
                                 }}
                             >
                                 <Table.HeaderCell scope="row">{res.ident.ident}</Table.HeaderCell>
-                                {hasUtenlandskID && (
+                                {harUtenlandskID && (
                                     <Table.DataCell>
                                         <UtenlandskIDCelle utenlandskID={res.utenlandskID} />
                                     </Table.DataCell>
@@ -78,7 +120,17 @@ export function PersonsokResult({ query, onClick }: { query: PersonsokRequest; o
                         ))}
                     </Table.Body>
                 </Table>
-            </>
+                {antallSider > 1 && (
+                    <Pagination
+                        ref={paginering}
+                        page={valgtSide}
+                        onPageChange={byttSide}
+                        count={antallSider}
+                        size="xsmall"
+                        srHeading={{ tag: 'h2', text: 'Sidenavigasjon for søkeresultat' }}
+                    />
+                )}
+            </VStack>
         );
     }
     return null;
