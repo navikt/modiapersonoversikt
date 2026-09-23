@@ -1278,6 +1278,7 @@ export interface components {
             /** @enum {string|null} */
             dokumentStatus?: DokumentDokumentStatus;
             saksbehandlerHarTilgang: boolean;
+            brukerHarTilgang: boolean;
         };
         Dokumentmetadata: {
             id: string;
@@ -1312,14 +1313,14 @@ export interface components {
         LocalDate: {
             /** Format: date */
             value?: string;
-            /** Format: date */
-            value$kotlinx_datetime: string;
             /**
              * Format: int32
              * @deprecated
              * @description Use the 'month' property instead
              */
             monthNumber: number;
+            /** Format: date */
+            value$kotlinx_datetime: string;
             /** Format: int32 */
             year: number;
             /**
@@ -1340,8 +1341,6 @@ export interface components {
         LocalDateTime: {
             /** Format: date-time */
             value?: string;
-            /** Format: date-time */
-            value$kotlinx_datetime: string;
             /**
              * Format: int32
              * @deprecated
@@ -1350,6 +1349,8 @@ export interface components {
             monthNumber: number;
             /** Format: int32 */
             nanosecond: number;
+            /** Format: date-time */
+            value$kotlinx_datetime: string;
             time: components['schemas']['LocalTime'];
             /** Format: int32 */
             year: number;
@@ -1377,9 +1378,9 @@ export interface components {
         };
         LocalTime: {
             value?: string;
-            value$kotlinx_datetime: string;
             /** Format: int32 */
             nanosecond: number;
+            value$kotlinx_datetime: string;
             /** Format: int32 */
             hour: number;
             /** Format: int32 */
@@ -1434,8 +1435,6 @@ export interface components {
         PersonsokRequestV3: {
             enhet?: string | null;
             navn?: string | null;
-            fornavn?: string | null;
-            etternavn?: string | null;
             utenlandskID?: string | null;
             /** Format: int32 */
             alderFra?: number | null;

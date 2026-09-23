@@ -28,7 +28,10 @@ export const useSortedAndPaginatedDokumenter = ({
 
     const dokumenter = filtrertDokumentmetadata?.map((journalpost) => {
         const alleTilhorendeDokumenter = [...journalpost.vedlegg, journalpost.hoveddokument];
-        const harTilgangTilNoenDokumenter = alleTilhorendeDokumenter.some((dok) => dok.saksbehandlerHarTilgang);
+        const saksbehandlerHarTilgangTilNoenDokumenter = alleTilhorendeDokumenter.some(
+            (dok) => dok.saksbehandlerHarTilgang
+        );
+        const brukerHarTilgangTilNoenDokumenter = alleTilhorendeDokumenter.some((dok) => dok.brukerHarTilgang);
 
         return {
             ...journalpost,
@@ -36,7 +39,8 @@ export const useSortedAndPaginatedDokumenter = ({
                 journalpost.hoveddokument,
                 journalpost.id === null || journalpost.hoveddokument.dokumentreferanse === null
             ),
-            harTilgang: harTilgangTilNoenDokumenter,
+            saksbehandlerHarTilgang: saksbehandlerHarTilgangTilNoenDokumenter,
+            brukerHarTilgang: brukerHarTilgangTilNoenDokumenter,
             antallVedlegg: journalpost.vedlegg.length
         };
     });
