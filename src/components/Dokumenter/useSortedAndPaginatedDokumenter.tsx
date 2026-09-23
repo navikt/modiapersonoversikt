@@ -28,7 +28,7 @@ export const useSortedAndPaginatedDokumenter = ({
 
     const dokumenter = filtrertDokumentmetadata?.map((journalpost) => {
         const alleTilhorendeDokumenter = [...journalpost.vedlegg, journalpost.hoveddokument];
-        const saksbehhandlerHarTilgangTilNoenDokumenter = alleTilhorendeDokumenter.some(
+        const saksbehandlerHarTilgangTilNoenDokumenter = alleTilhorendeDokumenter.some(
             (dok) => dok.saksbehandlerHarTilgang
         );
         const brukerHarTilgangTilNoenDokumenter = alleTilhorendeDokumenter.some((dok) => dok.brukerHarTilgang);
@@ -39,7 +39,7 @@ export const useSortedAndPaginatedDokumenter = ({
                 journalpost.hoveddokument,
                 journalpost.id === null || journalpost.hoveddokument.dokumentreferanse === null
             ),
-            saksBehandlerHarTilgang: saksbehhandlerHarTilgangTilNoenDokumenter,
+            saksBehandlerHarTilgang: saksbehandlerHarTilgangTilNoenDokumenter,
             brukerHarTilgang: brukerHarTilgangTilNoenDokumenter,
             antallVedlegg: journalpost.vedlegg.length
         };
