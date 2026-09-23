@@ -30,7 +30,8 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         logiskDokument: false,
 
                         dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
-                        saksbehandlerHarTilgang: false
+                        saksbehandlerHarTilgang: false,
+                        brukerHarTilgang: true
                     },
                     vedlegg: [],
                     avsender: DokumentmetadataAvsender.NAV,
@@ -60,7 +61,8 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         logiskDokument: false,
 
                         dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
-                        saksbehandlerHarTilgang: false
+                        saksbehandlerHarTilgang: false,
+                        brukerHarTilgang: true
                     },
                     vedlegg: [],
                     avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -90,7 +92,8 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         logiskDokument: false,
 
                         dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
-                        saksbehandlerHarTilgang: false
+                        saksbehandlerHarTilgang: false,
+                        brukerHarTilgang: true
                     },
                     vedlegg: [],
                     avsender: DokumentmetadataAvsender.SLUTTBRUKER,
@@ -148,7 +151,8 @@ export const getAremarkSaksOgDokumenterListe = () => {
                         logiskDokument: false,
 
                         dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
-                        saksbehandlerHarTilgang: false
+                        saksbehandlerHarTilgang: false,
+                        brukerHarTilgang: true
                     },
                     vedlegg: [],
                     avsender: DokumentmetadataAvsender.NAV,
@@ -13623,7 +13627,37 @@ export const getAremarkSaksOgDokumenterListe = () => {
         }
     ];
 
-    const dokumenter: Dokumentmetadata[] = saker.flatMap((sak) => sak.tilhorendeDokumenter);
+    const tilgangsgrense = '2016-11-01';
+    let dokumentIndex = 0;
+    let dokumentMedTilgangIndex = 0;
+
+    const sakerMedTilgang = saker.map((sak) => ({
+        ...sak,
+        tilhorendeDokumenter: sak.tilhorendeDokumenter.map((dokument) => {
+            const gjeldendeDokumentIndex = dokumentIndex++;
+            const brukerHarTilgang = dokument.dato >= tilgangsgrense && gjeldendeDokumentIndex % 7 !== 0;
+            const skalHaLestDato = brukerHarTilgang && dokumentMedTilgangIndex++ % 2 === 0;
+            const dokumentUtenLestDato = { ...dokument };
+            if ('lestDato' in dokumentUtenLestDato) {
+                delete dokumentUtenLestDato.lestDato;
+            }
+
+            return {
+                ...dokumentUtenLestDato,
+                ...(skalHaLestDato ? { lestDato: dokument.dato } : {}),
+                hoveddokument: {
+                    ...dokument.hoveddokument,
+                    brukerHarTilgang
+                },
+                vedlegg: dokument.vedlegg.map((vedlegg) => ({
+                    ...vedlegg,
+                    brukerHarTilgang
+                }))
+            };
+        })
+    }));
+
+    const dokumenter: Dokumentmetadata[] = sakerMedTilgang.flatMap((sak) => sak.tilhorendeDokumenter);
 
     const nyesteDatoPrTema = dokumenter.reduce<Record<string, string>>((acc, dok) => {
         const existing = acc[dok.temakode];
