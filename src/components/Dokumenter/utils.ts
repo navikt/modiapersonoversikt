@@ -12,7 +12,6 @@ import {
     type Dokumentmetadata,
     DokumentmetadataAvsender,
     FeilFeilmelding,
-    type Person,
     type ResultatSaksDokumenter
 } from 'src/generated/modiapersonoversikt-api';
 import { useSakerDokumenter } from 'src/lib/clients/modiapersonoversikt-api';
@@ -84,14 +83,6 @@ const harTilgangTilJournalpost = (journalpost: Dokumentmetadata) => {
     const saksid = journalpost.tilhorendeFagsaksid || journalpost.tilhorendeSaksid || '';
     return journalpost.feil?.feilmelding !== FeilFeilmelding.SIKKERHETSBEGRENSNING && saksid.length !== 0;
 };
-
-export function hentBrukerNavn(person: Person | null): string {
-    const navn = person?.navn.firstOrNull();
-    if (!navn) {
-        return 'Ukjent navn';
-    }
-    return navn.fornavn + (navn.mellomnavn ? ` ${navn.mellomnavn} ` : ' ') + navn.etternavn;
-}
 
 export function getSaksdokumentUrl(journalpostId?: string, dokumentreferanse?: string) {
     return `journalpost=${journalpostId}&dokument=${dokumentreferanse}`;
