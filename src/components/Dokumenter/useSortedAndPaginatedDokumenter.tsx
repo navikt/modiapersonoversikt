@@ -39,7 +39,7 @@ export const useSortedAndPaginatedDokumenter = ({
                 journalpost.hoveddokument,
                 journalpost.id === null || journalpost.hoveddokument.dokumentreferanse === null
             ),
-            saksBehandlerHarTilgang: saksbehandlerHarTilgangTilNoenDokumenter,
+            saksbehandlerHarTilgang: saksbehandlerHarTilgangTilNoenDokumenter,
             brukerHarTilgang: brukerHarTilgangTilNoenDokumenter,
             antallVedlegg: journalpost.vedlegg.length
         };

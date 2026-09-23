@@ -136,14 +136,14 @@ export const DokumenterTabell = () => {
                         return (
                             <Table.ExpandableRow
                                 contentGutter="none"
-                                expansionDisabled={!journalpost.saksBehandlerHarTilgang}
+                                expansionDisabled={!journalpost.saksbehandlerHarTilgang}
                                 onOpenChange={(open) => handleOnExpand(journalpost.id, open)}
                                 expandOnRowClick
                                 key={journalpost.id}
                                 content={<DokumentVisningExpandable journalpost={journalpost} isOpen={isOpen} />}
                             >
                                 <Table.HeaderCell scope="row" className="font-extralight align-top">
-                                    {journalpost.saksBehandlerHarTilgang ? (
+                                    {journalpost.saksbehandlerHarTilgang ? (
                                         <HStack justify="space-between" wrap={false}>
                                             <VStack gap="space-4">
                                                 <div>{journalpost.beskrivelse}</div>
@@ -160,7 +160,7 @@ export const DokumenterTabell = () => {
                                                     )}
                                                 </div>
                                             </VStack>
-                                            {journalpost.saksBehandlerHarTilgang && journalpost.hoveddokument && (
+                                            {journalpost.saksbehandlerHarTilgang && journalpost.hoveddokument && (
                                                 <Link
                                                     to="/new/dokument"
                                                     target="_blank"
