@@ -1,32 +1,27 @@
-import { ExternalLinkIcon, EyeSlashIcon, FilesIcon } from '@navikt/aksel-icons';
+import { ExclamationmarkTriangleIcon, ExternalLinkIcon, EyeSlashIcon, FilesIcon } from '@navikt/aksel-icons';
 import { Box, HStack, InlineMessage, Pagination, type SortState, Table, Tag, VStack } from '@navikt/ds-react';
 import { Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { AntallTreff } from 'src/components/AntallTreff';
 import { DokumentVisningExpandable } from 'src/components/Dokumenter/DokumentVisningExpandable';
 import { useSortedAndPaginatedDokumenter } from 'src/components/Dokumenter/useSortedAndPaginatedDokumenter';
-import { hentBrukerNavn } from 'src/components/Dokumenter/utils';
 import {
     type Dokumentmetadata,
     DokumentmetadataAvsender,
     DokumentmetadataMottaker
 } from 'src/generated/modiapersonoversikt-api';
-import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { trackVisDetaljvisning } from 'src/utils/analytics';
-import { capitalizeName, formaterDato } from 'src/utils/string-utils';
+import { formaterDato } from 'src/utils/string-utils';
 
 interface DokumenterSortState extends SortState {
     orderBy: keyof Dokumentmetadata;
 }
 
-const avsenderMottaker = (
-    brukernavn: string,
-    avsenderMottaker: DokumentmetadataAvsender | DokumentmetadataMottaker
-) => {
+const avsenderMottaker = (avsenderMottaker: DokumentmetadataAvsender | DokumentmetadataMottaker) => {
     switch (avsenderMottaker) {
         case DokumentmetadataAvsender.SLUTTBRUKER:
         case DokumentmetadataMottaker.SLUTTBRUKER:
-            return capitalizeName(brukernavn);
+            return 'Bruker';
         case DokumentmetadataAvsender.NAV:
         case DokumentmetadataMottaker.NAV:
             return 'Nav';
@@ -51,9 +46,6 @@ export const DokumenterTabell = () => {
 
     const { dokumenterPaSide, antallFiltrerte, antallTotalt, antallSider, gjeldendeSide } =
         useSortedAndPaginatedDokumenter({ page, rowsPerPage, sort });
-
-    const { data } = usePersonData();
-    const brukersNavn = hentBrukerNavn(data?.person ?? null);
 
     const handleOnExpand = (id: string, isOpen: boolean) => {
         setOpenMap({
@@ -114,11 +106,11 @@ export const DokumenterTabell = () => {
                         <Table.ColumnHeader sortKey="beskrivelse" scope="col" sortable>
                             Beskrivelse
                         </Table.ColumnHeader>
-                        <Table.ColumnHeader sortKey="lestDato" scope="col" sortable>
-                            <div className="text-nowrap">Lest dato</div>
-                        </Table.ColumnHeader>
                         <Table.ColumnHeader sortKey="dato" scope="col" sortable>
                             Dato
+                        </Table.ColumnHeader>
+                        <Table.ColumnHeader sortKey="temakodeVisning" scope="col" sortable>
+                            Tema
                         </Table.ColumnHeader>
                         <Table.ColumnHeader sortKey="avsender" scope="col" sortable>
                             Avsender
@@ -126,8 +118,8 @@ export const DokumenterTabell = () => {
                         <Table.ColumnHeader sortKey="mottaker" scope="col" sortable>
                             Mottaker
                         </Table.ColumnHeader>
-                        <Table.ColumnHeader sortKey="temakodeVisning" scope="col" sortable>
-                            Tema
+                        <Table.ColumnHeader sortKey="lestDato" scope="col" sortable>
+                            <div className="text-nowrap">Lest av bruker</div>
                         </Table.ColumnHeader>
                         <Table.ColumnHeader sortKey="tilhorendeFagsaksid" scope="col" sortable>
                             Saksnummer
@@ -144,17 +136,31 @@ export const DokumenterTabell = () => {
                         return (
                             <Table.ExpandableRow
                                 contentGutter="none"
-                                expansionDisabled={!journalpost.harTilgang}
+                                expansionDisabled={!journalpost.saksBehandlerHarTilgang}
                                 onOpenChange={(open) => handleOnExpand(journalpost.id, open)}
                                 expandOnRowClick
                                 key={journalpost.id}
                                 content={<DokumentVisningExpandable journalpost={journalpost} isOpen={isOpen} />}
                             >
                                 <Table.HeaderCell scope="row" className="font-extralight align-top">
-                                    {journalpost.harTilgang ? (
+                                    {journalpost.saksBehandlerHarTilgang ? (
                                         <HStack justify="space-between" wrap={false}>
-                                            <div>{journalpost.beskrivelse}</div>
-                                            {journalpost.harTilgang && journalpost.hoveddokument && (
+                                            <VStack gap="space-4">
+                                                <div>{journalpost.beskrivelse}</div>
+                                                <div className="justify-start">
+                                                    {!journalpost.brukerHarTilgang && (
+                                                        <Tag
+                                                            variant="moderate"
+                                                            data-color="warning"
+                                                            size="xsmall"
+                                                            icon={<ExclamationmarkTriangleIcon aria-hidden />}
+                                                        >
+                                                            Bruker har ikke tilgang til dokumentet
+                                                        </Tag>
+                                                    )}
+                                                </div>
+                                            </VStack>
+                                            {journalpost.saksBehandlerHarTilgang && journalpost.hoveddokument && (
                                                 <Link
                                                     to="/new/dokument"
                                                     target="_blank"
@@ -181,29 +187,29 @@ export const DokumenterTabell = () => {
                                                 data-color="danger"
                                                 icon={<EyeSlashIcon aria-hidden />}
                                             >
-                                                Ingen tilgang
+                                                Du har ikke tilgang til tema
                                             </Tag>
                                         </HStack>
                                     )}
                                 </Table.HeaderCell>
+                                <Table.DataCell className="align-top">{formaterDato(journalpost.dato)}</Table.DataCell>
+                                <Table.DataCell className="align-top">{journalpost.temakodeVisning} </Table.DataCell>
+                                <Table.DataCell className="align-top">
+                                    {avsenderMottaker(journalpost.avsender)}
+                                </Table.DataCell>
+                                <Table.DataCell className="align-top">
+                                    {avsenderMottaker(journalpost.mottaker)}
+                                </Table.DataCell>
                                 <Table.DataCell className="align-top">
                                     {journalpost.lestDato ? formaterDato(journalpost.lestDato) : 'Ulest'}
                                 </Table.DataCell>
-                                <Table.DataCell className="align-top">{formaterDato(journalpost.dato)}</Table.DataCell>
-                                <Table.DataCell className="align-top">
-                                    {avsenderMottaker(brukersNavn, journalpost.avsender)}
-                                </Table.DataCell>
-                                <Table.DataCell className="align-top">
-                                    {avsenderMottaker(brukersNavn, journalpost.mottaker)}
-                                </Table.DataCell>
-                                <Table.DataCell className="align-top">{journalpost.temakodeVisning} </Table.DataCell>
                                 <Table.DataCell className="align-top">{journalpost.tilhorendeFagsaksid}</Table.DataCell>
                                 <Table.DataCell>
                                     <Tag
                                         data-color="info"
                                         size="small"
                                         variant="moderate"
-                                        title="Antall dokumenter"
+                                        title={`${countVedleggMedReferanse(journalpost)} dokumenter`}
                                         icon={<FilesIcon aria-hidden />}
                                     >
                                         {countVedleggMedReferanse(journalpost)}
