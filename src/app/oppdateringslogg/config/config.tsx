@@ -9,6 +9,7 @@ import AvsluttDialog from './img/avslutt-dialog.png';
 import BjelleikonBilde from './img/bjelleikon.jpg';
 import BjelleikonVarselBilde from './img/bjelleikon-varsel.jpg';
 import ChatModia from './img/chat-modia.png';
+import DokumenterTabell from './img/dok-tabell.png';
 import EndreSignatur from './img/endre-signatur.png';
 import FiltreringSakstema from './img/filtrering-sakstema.png';
 import ForbedretAvansertSok from './img/forbedret-avansertsok.jpg';
@@ -800,6 +801,27 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                 </BodyShort>
             ),
             src: EndreSignatur
+        },
+        {
+            id: 48,
+            tittel: 'Ny informasjon i dokumentertabllen',
+            dato: new Date('2026-09-24 14:59'),
+            aktiv: true,
+            ingress: null,
+            beskrivelse: (
+                <>
+                    <BodyShort spacing>
+                        Om bruker ikke har tilgang til dokumenter på min side vil det vises en tag på beskrivelsen på
+                        dokumentet. Dette gjelder blant annet dokumenter til eksterne mottakere og dokumenter som er
+                        journalført før 4.juni 2016.
+                    </BodyShort>
+                    <BodyShort>
+                        En ny kolonne "Lest av mottaker" er også lagt til. Denne datoen er satt dersom mottaker har lest
+                        dokumentet på nav.no, eller lest av virksomhet på Altinn
+                    </BodyShort>
+                </>
+            ),
+            src: DokumenterTabell
         }
     ];
 }
