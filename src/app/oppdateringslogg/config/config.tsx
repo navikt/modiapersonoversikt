@@ -9,6 +9,7 @@ import AvsluttDialog from './img/avslutt-dialog.png';
 import BjelleikonBilde from './img/bjelleikon.jpg';
 import BjelleikonVarselBilde from './img/bjelleikon-varsel.jpg';
 import ChatModia from './img/chat-modia.png';
+import DokumenterTabell from './img/dok-tabell.png';
 import EndreSignatur from './img/endre-signatur.png';
 import FiltreringSakstema from './img/filtrering-sakstema.png';
 import ForbedretAvansertSok from './img/forbedret-avansertsok.jpg';
@@ -800,6 +801,22 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                 </BodyShort>
             ),
             src: EndreSignatur
+        },
+        {
+            id: 48,
+            tittel: 'Oppdateringer i dokumentertabell',
+            dato: new Date('2026-09-24 11:59'),
+            aktiv: true,
+            ingress: null,
+            beskrivelse: (
+                <BodyShort>
+                    Dersom brukeren ikke har tilgang til dokumentet, vil dette vises som en tag ved beskrivelsen. I
+                    tillegg er knappen for å åpne hoveddokumentet i en ny fane flyttet ved siden av beskrivelsen, slik
+                    at den er mer synlig. Rekkefølgen på kolonnene er også endret slik at den viktigste informasjonen
+                    kommer først.
+                </BodyShort>
+            ),
+            src: DokumenterTabell
         }
     ];
 }
