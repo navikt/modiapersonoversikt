@@ -118,9 +118,6 @@ export const DokumenterTabell = () => {
                         <Table.ColumnHeader sortKey="mottaker" scope="col" sortable>
                             Mottaker
                         </Table.ColumnHeader>
-                        <Table.ColumnHeader sortKey="lestDato" scope="col" sortable>
-                            <div className="text-nowrap">Lest av bruker</div>
-                        </Table.ColumnHeader>
                         <Table.ColumnHeader sortKey="tilhorendeFagsaksid" scope="col" sortable>
                             Saksnummer
                         </Table.ColumnHeader>
@@ -199,9 +196,6 @@ export const DokumenterTabell = () => {
                                 </Table.DataCell>
                                 <Table.DataCell className="align-top">
                                     {avsenderMottaker(journalpost.mottaker)}
-                                </Table.DataCell>
-                                <Table.DataCell className="align-top">
-                                    {journalpost.lestDato ? formaterDato(journalpost.lestDato) : 'Ulest'}
                                 </Table.DataCell>
                                 <Table.DataCell className="align-top">{journalpost.tilhorendeFagsaksid}</Table.DataCell>
                                 <Table.DataCell>
