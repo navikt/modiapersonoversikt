@@ -1,5 +1,11 @@
-import { ExclamationmarkTriangleIcon, ExternalLinkIcon, EyeSlashIcon, FilesIcon } from '@navikt/aksel-icons';
-import { Box, HStack, InlineMessage, Pagination, type SortState, Table, Tag, VStack } from '@navikt/ds-react';
+import {
+    ExclamationmarkTriangleIcon,
+    ExternalLinkIcon,
+    EyeSlashIcon,
+    FilesIcon,
+    QuestionmarkCircleIcon
+} from '@navikt/aksel-icons';
+import { Box, HStack, InlineMessage, Pagination, type SortState, Table, Tag, Tooltip, VStack } from '@navikt/ds-react';
 import { Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { AntallTreff } from 'src/components/AntallTreff';
@@ -118,9 +124,16 @@ export const DokumenterTabell = () => {
                         <Table.ColumnHeader sortKey="mottaker" scope="col" sortable>
                             Mottaker
                         </Table.ColumnHeader>
-                        <Table.ColumnHeader sortKey="lestDato" scope="col" sortable>
-                            <div className="text-nowrap">Lest av bruker</div>
-                        </Table.ColumnHeader>
+                        <Tooltip
+                            id="lest-dato-tooltip"
+                            content="Dato satt dersom mottaker har lest dokumentet på nav.no, eller lest av
+                                    virksomhet på Altinn"
+                        >
+                            <Table.ColumnHeader sortKey="lestDato" scope="col" sortable>
+                                <div className="text-nowrap">Lest av mottaker</div>
+                                <QuestionmarkCircleIcon aria-describedby="lest-dato-tooltip" />
+                            </Table.ColumnHeader>
+                        </Tooltip>
                         <Table.ColumnHeader sortKey="tilhorendeFagsaksid" scope="col" sortable>
                             Saksnummer
                         </Table.ColumnHeader>
@@ -201,7 +214,7 @@ export const DokumenterTabell = () => {
                                     {avsenderMottaker(journalpost.mottaker)}
                                 </Table.DataCell>
                                 <Table.DataCell className="align-top">
-                                    {journalpost.lestDato ? formaterDato(journalpost.lestDato) : 'Ulest'}
+                                    {journalpost.lestDato ? formaterDato(journalpost.lestDato) : '—'}
                                 </Table.DataCell>
                                 <Table.DataCell className="align-top">{journalpost.tilhorendeFagsaksid}</Table.DataCell>
                                 <Table.DataCell>
