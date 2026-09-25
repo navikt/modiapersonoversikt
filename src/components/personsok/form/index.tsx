@@ -40,7 +40,7 @@ const fieldLabels: Record<keyof z.infer<typeof personSokSchema>, [string, ReactN
     _fieldgroup: ['']
 };
 
-export const TIDLIGSTE_FODSELSDATO = new Date(1900, 0, 1);
+const TIDLIGSTE_FODSELSDATO = new Date(1900, 0, 1);
 
 const datoFeil = z.enum(['ugyldig', 'forTidlig', 'fremtid']);
 type DatoFeil = z.infer<typeof datoFeil>;
