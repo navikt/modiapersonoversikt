@@ -1451,6 +1451,8 @@ export interface components {
         PersonsokRequestV3: {
             enhet?: string | null;
             navn?: string | null;
+            fornavn?: string | null;
+            etternavn?: string | null;
             utenlandskID?: string | null;
             /** Format: int32 */
             alderFra?: number | null;
