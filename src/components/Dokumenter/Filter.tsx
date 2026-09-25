@@ -276,6 +276,17 @@ export const DokumenterFilter = () => {
         ]
     ]);
 
+    // Brukes for å sette filteret ved navigasjon fra bla. hjemsiden
+    useEffect(() => {
+        setFilter({
+            dateRange,
+            temaer: queries.tema ?? [],
+            avsendere: queries.avsendere ?? [],
+            saksId: queries.saksid ?? '',
+            periodType: dateRange ? getOptionFromPeriod(dateRange) : PeriodType.UNSET
+        });
+    }, [queries.tema?.join(','), queries.avsendere?.join(','), queries.saksid, queries.fra, queries.til]);
+
     useEffect(() => {
         if (!aktivBrukerLastet) return;
         const prev = prevFnrRef.current;

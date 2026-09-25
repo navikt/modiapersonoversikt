@@ -1,5 +1,6 @@
 import {
     EnvelopeClosedIcon,
+    FileTextIcon,
     GavelSoundBlockIcon,
     HandHeartIcon,
     HouseIcon,
@@ -19,6 +20,7 @@ import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { Kjonn } from 'src/lib/types/modiapersonoversikt-api';
 import DeltBosted from './DeltBosted';
 import DodsdatoInfo from './DodsdatoInfo';
+import DokumenterTemaOversikt from './DokumenterTemaOversikt';
 import Familie from './Familie';
 import FamilieGammel from './Familie/FamilieGammel';
 import Flytting from './Flytting';
@@ -132,6 +134,12 @@ const PersonlinjeDetails = () => {
                     paddingBlock={{ xs: 'space-16', lg: 'space-32 space-16' }}
                 >
                     <VStack gap="space-32">
+                        <SeksjonWrapper
+                            tittel="Tema for dokumenter"
+                            icon={<FileTextIcon aria-hidden fontSize="2rem" />}
+                        >
+                            <DokumenterTemaOversikt />
+                        </SeksjonWrapper>
                         <SeksjonWrapper
                             tittel="Arbeidsrettet oppfølging"
                             icon={<PersonGroupIcon aria-hidden fontSize="2rem" />}
