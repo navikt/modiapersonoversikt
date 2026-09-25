@@ -16,7 +16,7 @@ import { useForm } from '@tanstack/react-form';
 import dayjs from 'dayjs';
 import { type ReactNode, useState } from 'react';
 import type { PersonsokRequest } from 'src/lib/types/modiapersonoversikt-api';
-import { backendDatoformat } from 'src/utils/date-utils';
+import { backendDatoformat, formatterDato } from 'src/utils/date-utils';
 import { z } from 'zod';
 import LenkeDrekV2 from './LenkeDrekV2';
 import { trimInput } from './utils';
@@ -47,7 +47,7 @@ type DatoFeil = z.infer<typeof datoFeil>;
 
 export const DATO_FEILTEKST: Record<DatoFeil, string> = {
     ugyldig: 'Ugyldig dato. Skriv datoen som dd.mm.åååå',
-    forTidlig: `Datoen kan ikke være før ${TIDLIGSTE_FODSELSDATO}`,
+    forTidlig: `Datoen kan ikke være før ${formatterDato(TIDLIGSTE_FODSELSDATO)}`,
     fremtid: 'Datoen kan ikke være frem i tid'
 };
 export const DATO_REKKEFOLGE_FEIL = 'Fødselsdato til kan ikke være før fødselsdato fra';

@@ -156,6 +156,7 @@ describe('PersonsokForm med fødselsdato', () => {
         await skrivDato('Fødselsdato fra', '31.12.1899');
 
         expect(screen.getByText(DATO_FEILTEKST.forTidlig)).toBeInTheDocument();
+        expect(DATO_FEILTEKST.forTidlig).toBe('Datoen kan ikke være før 01.01.1900');
     });
 
     test('godtar 01.01.1900 som tidligste dato', async () => {
