@@ -835,7 +835,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                         </List.Item>
                         <List.Item>
                             Hver side viser nå 50 treff i stedet for 30. Får søket flere treff, kan du bla til neste
-                            side nederst i listen. Gir søket mer enn 200 treff, må du legge til flere søkekriterier.
+                            side nederst i listen. Du kan bla gjennom opptil 1000 treff.
                         </List.Item>
                     </List>
                 </BodyShort>

@@ -1,5 +1,6 @@
 import {
     type DefaultBodyType,
+    delay,
     type HttpHandler,
     HttpResponse,
     http,
@@ -42,7 +43,12 @@ import {
     getMockYtelserOgKontrakter
 } from './oppfolging-mock';
 import { hentPersondata } from './persondata/persondata';
-import { mockPersonsokResponse, mockPersonsokResponseV4, mockStaticPersonsokRequest } from './personsok/personsokMock';
+import {
+    mockPersonsokResponse,
+    mockPersonsokResponseV4,
+    mockPersonsokV4Lastetid,
+    mockStaticPersonsokRequest
+} from './personsok/personsokMock';
 import { saksbehandlerInnstillingerHandlers } from './saksbehandlerinnstillinger-mock';
 import { getStaticMockSaksoOgDokumenter } from './saksoversikt/saksoversikt-mock';
 import { skrivestotteMock } from './skrivestotte';
@@ -306,13 +312,11 @@ const personsokHandler = [
         `${apiBaseUri}/personsok/v3`,
         withDelayedResponse(randomDelay(), STATUS_OK, () => mockPersonsokResponse(mockStaticPersonsokRequest()))
     ),
-    http.post(
-        `${apiBaseUri}/personsok/v4`,
-        withDelayedResponse<
-            ReturnType<typeof mockPersonsokResponseV4>,
-            { pageNumber?: number | null; resultsPerPage?: number | null }
-        >(randomDelay(), STATUS_OK, (_req, _params, body) => mockPersonsokResponseV4(body))
-    )
+    http.post(`${apiBaseUri}/personsok/v4`, async ({ request }) => {
+        const body = (await request.json()) as Parameters<typeof mockPersonsokResponseV4>[0];
+        if (import.meta.env.MODE !== 'test' && !import.meta.env.VITE_E2E) await delay(mockPersonsokV4Lastetid());
+        return HttpResponse.json(mockPersonsokResponseV4(body));
+    })
 ];
 
 const tildelteOppgaverHandler = http.post(

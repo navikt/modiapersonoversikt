@@ -20,12 +20,7 @@ const Personsok = () => {
     const [sokNummer, setSokNummer] = useState(0);
 
     return (
-        <Modal
-            ref={ref}
-            aria-labelledby="personsok-modalheader"
-            width={MODAL_BREDDE}
-            className="max-w-[calc(100%-2em)]!"
-        >
+        <Modal ref={ref} aria-labelledby="personsok-modalheader" width={MODAL_BREDDE}>
             <Modal.Header>
                 <Heading size="medium" id="personsok-modalheader">
                     Avansert søk

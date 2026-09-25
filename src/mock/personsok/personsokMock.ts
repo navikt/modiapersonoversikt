@@ -29,23 +29,39 @@ export function mockPersonsokResponse(request: PersonsokRequestV3): PersonsokRes
 }
 
 const MOCK_TOTALT_ANTALL_TREFF = 132;
-let mockTreffV4: PersonsokResponse[] | undefined;
+const MOCK_MAKS_ANTALL_TREFF = 1000;
+const mockTreffV4 = new Map<number, PersonsokResponse[]>();
 
-export function mockPersonsokResponseV4(request?: { pageNumber?: number | null; resultsPerPage?: number | null }) {
-    if (!mockTreffV4) {
-        navfaker.seed('personsok-v4');
-        faker.seed(4);
-        mockTreffV4 = Array.from({ length: MOCK_TOTALT_ANTALL_TREFF }, () => getPersonsokResponse());
+type PersonsokV4MockRequest = {
+    fornavn?: string | null;
+    etternavn?: string | null;
+    pageNumber?: number | null;
+    resultsPerPage?: number | null;
+};
+
+export function mockPersonsokV4Lastetid() {
+    return 300 + Math.floor(Math.random() * 2200);
+}
+
+export function mockPersonsokResponseV4(request?: PersonsokV4MockRequest) {
+    const erStortSok = [request?.fornavn, request?.etternavn].some((navn) => navn?.toLowerCase() === 'mange');
+    const antall = erStortSok ? MOCK_MAKS_ANTALL_TREFF : MOCK_TOTALT_ANTALL_TREFF;
+    let alleTreff = mockTreffV4.get(antall);
+    if (!alleTreff) {
+        navfaker.seed(`personsok-v4-${antall}`);
+        faker.seed(antall);
+        alleTreff = Array.from({ length: antall }, () => getPersonsokResponse());
+        mockTreffV4.set(antall, alleTreff);
     }
     const pageNumber = request?.pageNumber ?? 1;
     const resultsPerPage = request?.resultsPerPage ?? 50;
     const start = (pageNumber - 1) * resultsPerPage;
 
     return {
-        treff: mockTreffV4.slice(start, start + resultsPerPage),
+        treff: alleTreff.slice(start, start + resultsPerPage),
         pageNumber,
-        totalHits: mockTreffV4.length,
-        totalPages: Math.ceil(mockTreffV4.length / resultsPerPage)
+        totalHits: alleTreff.length,
+        totalPages: Math.ceil(alleTreff.length / resultsPerPage)
     };
 }
 

@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Button, HStack, Loader, Pagination, Table, Tag, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Button, InlineMessage, Pagination, Skeleton, Table, Tag, VStack } from '@navikt/ds-react';
 import { keepPreviousData } from '@tanstack/react-query';
 import { useAtomValue } from 'jotai';
 import { useLayoutEffect, useRef, useState } from 'react';
@@ -7,9 +7,10 @@ import { $api } from 'src/lib/clients/modiapersonoversikt-api';
 import { aktivEnhetAtom } from 'src/lib/state/context';
 import type { PersonsokRequest, PersonsokResponse } from 'src/lib/types/modiapersonoversikt-api';
 import { useSettAktivBruker } from 'src/utils/customHooks';
-import { lagTreffTekst, RESULTATER_PER_SIDE } from './utils';
+import { lagTreffTekst, MAKS_ANTALL_SIDER, MAKS_ANTALL_TREFF, RESULTATER_PER_SIDE } from './utils';
 
 export const FOR_MANGE_TREFF_TEKST = 'Søket gav for mange treff. Legg til flere søkekriterier og prøv igjen.';
+export const MAKS_TREFF_ADVARSEL = `Søket gav ${MAKS_ANTALL_TREFF} treff eller flere, og du kan bare bla gjennom de ${MAKS_ANTALL_TREFF} første. Legg til flere søkekriterier for å spisse resultatet.`;
 
 export function PersonsokResult({ query, onClick }: { query: PersonsokRequest; onClick: () => void }) {
     const enhet = useAtomValue(aktivEnhetAtom);
@@ -26,8 +27,6 @@ export function PersonsokResult({ query, onClick }: { query: PersonsokRequest; o
         { placeholderData: keepPreviousData }
     );
 
-    // Mens en ny side lastes, viser tabellen fortsatt forrige side. sideSomVises følger treffene i tabellen.
-    const sideSomVises = data?.pageNumber ?? valgtSide;
     const paginering = useRef<HTMLElement>(null);
     const brukerHarByttetSide = useRef(false);
     useLayoutEffect(() => {
@@ -40,7 +39,7 @@ export function PersonsokResult({ query, onClick }: { query: PersonsokRequest; o
         setValgtSide(nySide);
     };
 
-    if (isLoading) return <Loader />;
+    if (isLoading) return <SokeresultatSkjelett />;
     if (error) {
         const fetchError: unknown = error;
         if (fetchError instanceof FetchError && fetchError.response.status === 400) {
@@ -55,21 +54,24 @@ export function PersonsokResult({ query, onClick }: { query: PersonsokRequest; o
     if (data) {
         const treff = data.treff;
         const totaltAntallTreff = data.totalHits ?? treff.length;
-        const antallSider = data.totalPages ?? Math.ceil(totaltAntallTreff / RESULTATER_PER_SIDE);
+        const antallSider = Math.min(
+            data.totalPages ?? Math.ceil(totaltAntallTreff / RESULTATER_PER_SIDE),
+            MAKS_ANTALL_SIDER
+        );
         const harUtenlandskID = treff.some((person) =>
             person.utenlandskID?.some((utenlandskID) => utenlandskID.identifikasjonsnummer !== undefined)
         );
 
         return (
             <VStack gap="space-8">
-                <HStack gap="space-8" align="center">
-                    <span aria-live="polite" aria-atomic="true">
-                        <Tag size="small" variant="moderate" data-color="neutral">
-                            {lagTreffTekst(sideSomVises, totaltAntallTreff)}
-                        </Tag>
-                    </span>
-                    {isPlaceholderData && <Loader size="xsmall" title="Henter treff" />}
-                </HStack>
+                {totaltAntallTreff >= MAKS_ANTALL_TREFF && (
+                    <InlineMessage status="warning">{MAKS_TREFF_ADVARSEL}</InlineMessage>
+                )}
+                <span aria-live="polite" aria-atomic="true">
+                    <Tag size="small" variant="moderate" data-color="neutral">
+                        {lagTreffTekst(valgtSide, totaltAntallTreff)}
+                    </Tag>
+                </span>
                 <Table size="small" zebraStripes aria-label="Søkeresultat" aria-busy={isPlaceholderData}>
                     <Table.Header>
                         <Table.Row>
@@ -84,40 +86,44 @@ export function PersonsokResult({ query, onClick }: { query: PersonsokRequest; o
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
-                        {treff.map((res) => (
-                            <Table.Row
-                                className="cursor-pointer"
-                                key={res.ident.ident}
-                                onClick={() => {
-                                    settAktivBruker(res.ident.ident);
-                                    onClick();
-                                }}
-                            >
-                                <Table.HeaderCell scope="row">{res.ident.ident}</Table.HeaderCell>
-                                {harUtenlandskID && (
+                        {isPlaceholderData ? (
+                            <SkjelettRader antallSynligeKolonner={harUtenlandskID ? 5 : 4} />
+                        ) : (
+                            treff.map((res) => (
+                                <Table.Row
+                                    className="cursor-pointer"
+                                    key={res.ident.ident}
+                                    onClick={() => {
+                                        settAktivBruker(res.ident.ident);
+                                        onClick();
+                                    }}
+                                >
+                                    <Table.HeaderCell scope="row">{res.ident.ident}</Table.HeaderCell>
+                                    {harUtenlandskID && (
+                                        <Table.DataCell>
+                                            <UtenlandskIDCelle utenlandskID={res.utenlandskID} />
+                                        </Table.DataCell>
+                                    )}
+                                    <Table.DataCell>{formatterNavn(res.navn, res.status)}</Table.DataCell>
                                     <Table.DataCell>
-                                        <UtenlandskIDCelle utenlandskID={res.utenlandskID} />
+                                        <Address person={res} />
                                     </Table.DataCell>
-                                )}
-                                <Table.DataCell>{formatterNavn(res.navn, res.status)}</Table.DataCell>
-                                <Table.DataCell>
-                                    <Address person={res} />
-                                </Table.DataCell>
-                                <Table.DataCell>{res.brukerinfo?.ansvarligEnhet}</Table.DataCell>
-                                <Table.DataCell className="sr-only">
-                                    <Button
-                                        size="xsmall"
-                                        variant="secondary"
-                                        onClick={() => {
-                                            settAktivBruker(res.ident.ident);
-                                            onClick();
-                                        }}
-                                    >
-                                        Velg
-                                    </Button>
-                                </Table.DataCell>
-                            </Table.Row>
-                        ))}
+                                    <Table.DataCell>{res.brukerinfo?.ansvarligEnhet}</Table.DataCell>
+                                    <Table.DataCell className="sr-only">
+                                        <Button
+                                            size="xsmall"
+                                            variant="secondary"
+                                            onClick={() => {
+                                                settAktivBruker(res.ident.ident);
+                                                onClick();
+                                            }}
+                                        >
+                                            Velg
+                                        </Button>
+                                    </Table.DataCell>
+                                </Table.Row>
+                            ))
+                        )}
                     </Table.Body>
                 </Table>
                 {antallSider > 1 && (
@@ -134,6 +140,46 @@ export function PersonsokResult({ query, onClick }: { query: PersonsokRequest; o
         );
     }
     return null;
+}
+
+// Like mange rader som en full side, så tabellen ikke endrer høyde når treffene kommer.
+function SkjelettRader({ antallSynligeKolonner }: { antallSynligeKolonner: number }) {
+    return Array.from({ length: RESULTATER_PER_SIDE }, (_, rad) => (
+        // biome-ignore lint/suspicious/noArrayIndexKey: skjelettradene har ingen egen identitet
+        <Table.Row key={rad} data-testid="skjelettrad">
+            {Array.from({ length: antallSynligeKolonner }, (_, kolonne) => (
+                // biome-ignore lint/suspicious/noArrayIndexKey: skjelettcellene har ingen egen identitet
+                <Table.DataCell key={kolonne}>
+                    <Skeleton variant="text" />
+                </Table.DataCell>
+            ))}
+            <Table.DataCell className="sr-only" />
+        </Table.Row>
+    ));
+}
+
+function SokeresultatSkjelett() {
+    return (
+        <VStack gap="space-8">
+            <Skeleton variant="rounded" width="12rem" height="1.5rem" />
+            <Table size="small" aria-label="Søkeresultat" aria-busy>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell scope="col">Fødselsnummer</Table.HeaderCell>
+                        <Table.HeaderCell scope="col">Navn</Table.HeaderCell>
+                        <Table.HeaderCell scope="col">Adresser</Table.HeaderCell>
+                        <Table.HeaderCell scope="col">Bosted</Table.HeaderCell>
+                        <Table.HeaderCell scope="col" className="sr-only">
+                            Velg
+                        </Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
+                <Table.Body>
+                    <SkjelettRader antallSynligeKolonner={4} />
+                </Table.Body>
+            </Table>
+        </VStack>
+    );
 }
 
 function Address({ person }: { person: PersonsokResponse }) {

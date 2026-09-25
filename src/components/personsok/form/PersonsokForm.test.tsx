@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import type { PersonsokRequest } from 'src/lib/types/modiapersonoversikt-api';
 import { vi } from 'vitest';
-import { PersonsokForm } from './index';
+import { DATO_FEILTEKST, DATO_REKKEFOLGE_FEIL, PersonsokForm } from './index';
 import { trimInput } from './utils';
 
 vi.mock('./LenkeDrekV2', () => ({
@@ -136,6 +136,86 @@ describe('PersonsokForm med fødselsdato', () => {
         await userEvent.clear(screen.getByLabelText('Fornavn'));
 
         expect(screen.getByText('Fyll ut fødselsdato til')).toBeInTheDocument();
+    });
+
+    test('viser egen feil for dato frem i tid', async () => {
+        const onSubmit = renderSkjema();
+
+        await skrivDato('Fødselsdato fra', '01.01.1980');
+        await skrivDato('Fødselsdato til', '31.01.1980');
+        await sok();
+
+        expect(onSubmit).not.toHaveBeenCalled();
+        expect(screen.getAllByText(DATO_FEILTEKST.fremtid)).toHaveLength(2);
+        expect(screen.queryByText('Fyll ut fødselsdato fra')).not.toBeInTheDocument();
+    });
+
+    test('viser egen feil for dato før 01.01.1900', async () => {
+        renderSkjema();
+
+        await skrivDato('Fødselsdato fra', '31.12.1899');
+
+        expect(screen.getByText(DATO_FEILTEKST.forTidlig)).toBeInTheDocument();
+    });
+
+    test('godtar 01.01.1900 som tidligste dato', async () => {
+        const onSubmit = renderSkjema();
+
+        await skrivDato('Fødselsdato fra', '01.01.1900');
+        await skrivDato('Fødselsdato til', '31.01.1900');
+        await sok();
+
+        expect(onSubmit).toHaveBeenCalledWith(
+            expect.objectContaining({ fodselsdatoFra: '1900-01-01', fodselsdatoTil: '1900-01-31' })
+        );
+    });
+
+    test('viser egen feil for ugyldig dato', async () => {
+        renderSkjema();
+
+        await skrivDato('Fødselsdato til', '32.13.1960');
+
+        expect(screen.getByText(DATO_FEILTEKST.ugyldig)).toBeInTheDocument();
+    });
+
+    test('viser ikke formatfeil mens brukeren skriver', async () => {
+        renderSkjema();
+
+        await userEvent.type(screen.getByLabelText('Fødselsdato fra'), '01.0');
+
+        expect(screen.queryByText(DATO_FEILTEKST.ugyldig)).not.toBeInTheDocument();
+    });
+
+    test('viser feil når fødselsdato til er før fødselsdato fra', async () => {
+        const onSubmit = renderSkjema();
+
+        await skrivDato('Fødselsdato fra', '31.01.1960');
+        await skrivDato('Fødselsdato til', '01.01.1960');
+        await sok();
+
+        expect(onSubmit).not.toHaveBeenCalled();
+        expect(screen.getByText(DATO_REKKEFOLGE_FEIL)).toBeInTheDocument();
+    });
+
+    test('søker ikke med ugyldig dato selv om navn er fylt ut', async () => {
+        const onSubmit = renderSkjema();
+
+        await userEvent.type(screen.getByLabelText('Fornavn'), 'Ola');
+        await skrivDato('Fødselsdato fra', '01.01.1980');
+        await sok();
+
+        expect(onSubmit).not.toHaveBeenCalled();
+        expect(screen.getByText(DATO_FEILTEKST.fremtid)).toBeInTheDocument();
+    });
+
+    test('Resett tømmer ugyldig dato og feilmeldingen', async () => {
+        renderSkjema();
+
+        await skrivDato('Fødselsdato fra', '01.01.1980');
+        await userEvent.click(screen.getByRole('button', { name: 'Resett' }));
+
+        expect(screen.getByLabelText('Fødselsdato fra')).toHaveValue('');
+        expect(screen.queryByText(DATO_FEILTEKST.fremtid)).not.toBeInTheDocument();
     });
 });
 

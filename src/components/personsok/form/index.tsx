@@ -3,6 +3,7 @@ import {
     Box,
     Button,
     DatePicker,
+    type DateValidationT,
     ErrorMessage,
     HStack,
     Link,
@@ -13,9 +14,8 @@ import {
 } from '@navikt/ds-react';
 import { useForm } from '@tanstack/react-form';
 import dayjs from 'dayjs';
-import { type ReactNode, useEffect } from 'react';
+import { type ReactNode, useState } from 'react';
 import type { PersonsokRequest } from 'src/lib/types/modiapersonoversikt-api';
-import { usePrevious } from 'src/utils/customHooks';
 import { backendDatoformat } from 'src/utils/date-utils';
 import { z } from 'zod';
 import LenkeDrekV2 from './LenkeDrekV2';
@@ -32,11 +32,32 @@ const fieldLabels: Record<keyof z.infer<typeof personSokSchema>, [string, ReactN
     phoneNumber: ['Telefonnummer', 'Telefonnummer uten landskode'],
     birthDateFrom: ['Fødselsdato fra'],
     birthDateTo: ['Fødselsdato til'],
+    birthDateFromFeil: [''],
+    birthDateToFeil: [''],
     gender: ['Kjønn'],
     ageFrom: ['Alder fra'],
     ageTo: ['Alder til'],
     _fieldgroup: ['']
 };
+
+export const TIDLIGSTE_FODSELSDATO = new Date(1900, 0, 1);
+
+const datoFeil = z.enum(['ugyldig', 'forTidlig', 'fremtid']);
+type DatoFeil = z.infer<typeof datoFeil>;
+
+export const DATO_FEILTEKST: Record<DatoFeil, string> = {
+    ugyldig: 'Ugyldig dato. Skriv datoen som dd.mm.åååå',
+    forTidlig: `Datoen kan ikke være før ${TIDLIGSTE_FODSELSDATO}`,
+    fremtid: 'Datoen kan ikke være frem i tid'
+};
+export const DATO_REKKEFOLGE_FEIL = 'Fødselsdato til kan ikke være før fødselsdato fra';
+
+function tilDatoFeil(validering: DateValidationT): DatoFeil | undefined {
+    if (validering.isValidDate || validering.isEmpty) return undefined;
+    if (validering.isBefore) return 'forTidlig';
+    if (validering.isAfter) return 'fremtid';
+    return 'ugyldig';
+}
 
 const personSokSchema = z
     .object({
@@ -45,6 +66,8 @@ const personSokSchema = z
         dnr: z.string(),
         birthDateFrom: z.date().optional(),
         birthDateTo: z.date().optional(),
+        birthDateFromFeil: datoFeil.optional(),
+        birthDateToFeil: datoFeil.optional(),
         ageFrom: z.number({ coerce: true, message: 'Må være et gyldig tall' }).min(0).optional(),
         ageTo: z.number({ coerce: true, message: 'Må være et gyldig tall' }).min(0).optional(),
         gender: z.enum(['M', 'K', '']),
@@ -57,6 +80,28 @@ const personSokSchema = z
     })
     .partial()
     .superRefine((val, ctx) => {
+        if (val.birthDateFromFeil) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: DATO_FEILTEKST[val.birthDateFromFeil],
+                path: ['birthDateFromFeil']
+            });
+        }
+        if (val.birthDateToFeil) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: DATO_FEILTEKST[val.birthDateToFeil],
+                path: ['birthDateToFeil']
+            });
+        }
+        if (val.birthDateFrom && val.birthDateTo && val.birthDateFrom.getTime() > val.birthDateTo.getTime()) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: DATO_REKKEFOLGE_FEIL,
+                path: ['birthDateTo']
+            });
+        }
+
         const harFeltIGruppe =
             !!trimInput(val.firstName) ||
             !!trimInput(val.lastName) ||
@@ -65,8 +110,8 @@ const personSokSchema = z
             !!trimInput(val.phoneNumber);
         if (harFeltIGruppe) return;
 
-        const harDobFra = !!val.birthDateFrom;
-        const harDobTil = !!val.birthDateTo;
+        const harDobFra = !!val.birthDateFrom || !!val.birthDateFromFeil;
+        const harDobTil = !!val.birthDateTo || !!val.birthDateToFeil;
 
         if (!harDobFra && !harDobTil) {
             ctx.addIssue({
@@ -95,6 +140,7 @@ type Props = {
 };
 
 export function PersonsokForm({ onSubmit, onReset }: Props) {
+    const [skjemaNummer, setSkjemaNummer] = useState(0);
     const form = useForm({
         defaultValues: {
             firstName: '',
@@ -212,30 +258,44 @@ export function PersonsokForm({ onSubmit, onReset }: Props) {
                     <HStack gap="space-16">
                         <form.Field name="birthDateFrom">
                             {(field) => (
-                                <DateInput
-                                    label={fieldLabels[field.name][0]}
-                                    onChange={field.handleChange}
-                                    value={field.state.value}
-                                    error={
-                                        field.form.state.errorMap.onChange?._fieldgroup?.length
-                                            ? true
-                                            : field.state.meta.errors.map((e) => e?.message).join(', ')
-                                    }
-                                />
+                                <form.Field name="birthDateFromFeil">
+                                    {(feilField) => (
+                                        <DateInput
+                                            key={skjemaNummer}
+                                            label={fieldLabels[field.name][0]}
+                                            onChange={field.handleChange}
+                                            onValidate={feilField.handleChange}
+                                            datoFeil={feilField.state.value}
+                                            value={field.state.value}
+                                            error={
+                                                field.form.state.errorMap.onChange?._fieldgroup?.length
+                                                    ? true
+                                                    : field.state.meta.errors.map((e) => e?.message).join(', ')
+                                            }
+                                        />
+                                    )}
+                                </form.Field>
                             )}
                         </form.Field>
                         <form.Field name="birthDateTo">
                             {(field) => (
-                                <DateInput
-                                    label={fieldLabels[field.name][0]}
-                                    onChange={field.handleChange}
-                                    value={field.state.value}
-                                    error={
-                                        field.form.state.errorMap.onChange?._fieldgroup?.length
-                                            ? true
-                                            : field.state.meta.errors.map((e) => e?.message).join(', ')
-                                    }
-                                />
+                                <form.Field name="birthDateToFeil">
+                                    {(feilField) => (
+                                        <DateInput
+                                            key={skjemaNummer}
+                                            label={fieldLabels[field.name][0]}
+                                            onChange={field.handleChange}
+                                            onValidate={feilField.handleChange}
+                                            datoFeil={feilField.state.value}
+                                            value={field.state.value}
+                                            error={
+                                                field.form.state.errorMap.onChange?._fieldgroup?.length
+                                                    ? true
+                                                    : field.state.meta.errors.map((e) => e?.message).join(', ')
+                                            }
+                                        />
+                                    )}
+                                </form.Field>
                             )}
                         </form.Field>
                     </HStack>
@@ -317,6 +377,7 @@ export function PersonsokForm({ onSubmit, onReset }: Props) {
                     variant="tertiary"
                     onClick={() => {
                         form.reset();
+                        setSkjemaNummer((n) => n + 1);
                         onReset();
                     }}
                 >
@@ -329,32 +390,47 @@ export function PersonsokForm({ onSubmit, onReset }: Props) {
 
 const DateInput = ({
     onChange,
+    onValidate,
+    datoFeil,
     value,
     label,
     error
 }: {
     onChange: (val?: Date) => void;
+    onValidate: (feil?: DatoFeil) => void;
+    datoFeil?: DatoFeil;
     value?: Date;
     label: string;
     error?: ReactNode;
 }) => {
-    const { inputProps, datepickerProps, reset } = useDatepicker({
+    const { inputProps, datepickerProps } = useDatepicker({
         onDateChange: onChange,
+        onValidate: (validering) => onValidate(tilDatoFeil(validering)),
         defaultSelected: value,
-        fromDate: new Date(1900, 1, 1),
+        fromDate: TIDLIGSTE_FODSELSDATO,
         toDate: new Date()
     });
-    const prevValue = usePrevious(value);
-
-    useEffect(() => {
-        if (value === undefined && prevValue !== undefined) {
-            reset();
-        }
-    }, [value, prevValue, reset]);
+    const [erFerdigMedFeltet, setErFerdigMedFeltet] = useState(false);
 
     return (
         <DatePicker {...datepickerProps} dropdownCaption>
-            <DatePicker.Input label={label} size="small" error={error || undefined} {...inputProps} />
+            <DatePicker.Input
+                label={label}
+                size="small"
+                error={(erFerdigMedFeltet && datoFeil ? DATO_FEILTEKST[datoFeil] : undefined) || error || undefined}
+                {...inputProps}
+                onChange={(e) => {
+                    setErFerdigMedFeltet(false);
+                    inputProps.onChange?.(e);
+                }}
+                onBlur={(e) => {
+                    setErFerdigMedFeltet(true);
+                    inputProps.onBlur?.(e);
+                }}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter') setErFerdigMedFeltet(true);
+                }}
+            />
         </DatePicker>
     );
 };
