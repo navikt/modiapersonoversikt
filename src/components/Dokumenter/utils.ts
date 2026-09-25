@@ -40,11 +40,14 @@ export const useTemaerForPeriode = (dateRange: DateRange | null) => {
     const dokumenter = data?.dokumenter ?? [];
     const alleTemaer = data?.temaer ?? [];
 
-    return useMemo(() => {
-        const periodFiltered = dateRange ? filterByDateRange(dokumenter, dateRange) : dokumenter;
-        const temakoder = new Set(periodFiltered.map((dok) => dok.temakode));
-        return alleTemaer.filter((t) => temakoder.has(t.temakode));
-    }, [dokumenter, dateRange, alleTemaer]);
+    const periodFiltered = dateRange ? filterByDateRange(dokumenter, dateRange) : dokumenter;
+    const temakoderNyesteForst = [
+        ...new Set(periodFiltered.toSorted(datoSynkende((dok) => dok.dato)).map((dok) => dok.temakode))
+    ];
+
+    return temakoderNyesteForst
+        .map((temakode) => alleTemaer.find((tema) => tema.temakode === temakode))
+        .filter((tema) => tema !== undefined);
 };
 
 export const useAvsendereForPeriode = (dateRange: DateRange | null) => {
