@@ -4,6 +4,7 @@ import type {
     Adresse,
     GyldighetsPeriode,
     InnflyttingTilNorge,
+    SistEndret,
     UtflyttingFraNorge
 } from 'src/lib/types/modiapersonoversikt-api';
 import { datoEllerNull, ENDASH } from 'src/utils/string-utils';
@@ -14,6 +15,7 @@ type Utenlandsflytting = {
     tilLand?: string | null;
     gyldighetsPeriode?: GyldighetsPeriode | null;
     flyttedato?: string | null;
+    sistEndret?: SistEndret | null;
 };
 
 function sorterNyesteForst<T>(liste: T[], hentDato: (element: T) => string | null | undefined): T[] {
@@ -45,10 +47,10 @@ function InnenlandsflyttingTabell({ flyttinger }: { flyttinger: Adresse[] }) {
                 <Table.Row>
                     <Table.HeaderCell scope="col">Ny adresse</Table.HeaderCell>
                     <Table.HeaderCell scope="col">Angitt flyttedato</Table.HeaderCell>
-                    <Table.HeaderCell scope="col">Sist endret</Table.HeaderCell>
                     <Table.HeaderCell scope="col">Kilde</Table.HeaderCell>
                     <Table.HeaderCell scope="col">Gyldig fra</Table.HeaderCell>
                     <Table.HeaderCell scope="col">Gyldig til</Table.HeaderCell>
+                    <Table.HeaderCell scope="col">Sist endret</Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
             <Table.Body>
@@ -61,12 +63,12 @@ function InnenlandsflyttingTabell({ flyttinger }: { flyttinger: Adresse[] }) {
                             <Adresseinfo adresse={skjulNorgeFraAdresse(flytting)} size="medium" />
                         </Table.HeaderCell>
                         <Table.DataCell>{formaterDato(flytting.angittFlyttedato)}</Table.DataCell>
-                        <Table.DataCell>{formaterDato(flytting.sistEndret?.tidspunkt)}</Table.DataCell>
                         <Table.DataCell>{formaterKilde(flytting)}</Table.DataCell>
                         <Table.DataCell>
                             {formaterDato(flytting.gyldighetsPeriode?.gyldigFraOgMed ?? flytting.angittFlyttedato)}
                         </Table.DataCell>
                         <Table.DataCell>{formaterDato(flytting.gyldighetsPeriode?.gyldigTilOgMed)}</Table.DataCell>
+                        <Table.DataCell>{formaterDato(flytting.sistEndret?.tidspunkt)}</Table.DataCell>
                     </Table.Row>
                 ))}
             </Table.Body>
@@ -85,13 +87,15 @@ function UtenlandsflyttingTabell({
         ...innflyttinger.map((flytting) => ({
             fraLand: flytting.fraflyttingsland,
             tilLand: 'Norge',
-            gyldighetsPeriode: flytting.gyldighetsPeriode
+            gyldighetsPeriode: flytting.gyldighetsPeriode,
+            sistEndret: flytting.sistEndret
         })),
         ...utflyttinger.map((flytting) => ({
             fraLand: 'Norge',
             tilLand: flytting.tilflyttingsland,
             gyldighetsPeriode: flytting.gyldighetsPeriode,
-            flyttedato: flytting.utflyttingsdato
+            flyttedato: flytting.utflyttingsdato,
+            sistEndret: flytting.sistEndret
         }))
     ];
     const sorterteFlyttinger = sorterNyesteForst(
@@ -108,6 +112,7 @@ function UtenlandsflyttingTabell({
                     <Table.HeaderCell scope="col">Dato</Table.HeaderCell>
                     <Table.HeaderCell scope="col">Gyldig fra</Table.HeaderCell>
                     <Table.HeaderCell scope="col">Gyldig til</Table.HeaderCell>
+                    <Table.HeaderCell scope="col">Sist endret</Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
             <Table.Body>
@@ -121,6 +126,7 @@ function UtenlandsflyttingTabell({
                         <Table.DataCell>{formaterDato(flytting.flyttedato)}</Table.DataCell>
                         <Table.DataCell>{formaterDato(flytting.gyldighetsPeriode?.gyldigFraOgMed)}</Table.DataCell>
                         <Table.DataCell>{formaterDato(flytting.gyldighetsPeriode?.gyldigTilOgMed)}</Table.DataCell>
+                        <Table.DataCell>{formaterDato(flytting.sistEndret?.tidspunkt)}</Table.DataCell>
                     </Table.Row>
                 ))}
             </Table.Body>
