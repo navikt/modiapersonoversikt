@@ -109,6 +109,25 @@ function lagPerson(fnr: string): Person {
                 }
             }
         ],
+        historiskeBostedAdresser: [
+            {
+                coAdresse: null,
+                linje1: 'Testveien 2',
+                linje2: '0123 Oslo',
+                linje3: null,
+                angittFlyttedato: '2020-01-01' as LocalDate,
+                sistEndret: {
+                    ident: 'Folkeregisteret',
+                    tidspunkt: '2020-01-02T10:00:00' as LocalDateTime,
+                    system: 'Folkeregisteret',
+                    kilde: 'Bruker'
+                },
+                gyldighetsPeriode: {
+                    gyldigFraOgMed: '2020-01-01' as LocalDate,
+                    gyldigTilOgMed: '2021-01-01' as LocalDate
+                }
+            }
+        ],
         kontaktAdresse: [
             {
                 coAdresse: null,

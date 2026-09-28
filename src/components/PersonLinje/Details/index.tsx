@@ -165,10 +165,12 @@ const PersonlinjeDetails = () => {
                                 <Vergemal />
                             </SeksjonWrapper>
                         </HGrid>
+                    </VStack>
+                    <Box className="lg:col-span-2">
                         <SeksjonWrapper tittel="Flytting" icon={<HouseIcon aria-hidden fontSize="2rem" />}>
                             <Flytting />
                         </SeksjonWrapper>
-                    </VStack>
+                    </Box>
                 </HGrid>
             </VStack>
         </Card>
