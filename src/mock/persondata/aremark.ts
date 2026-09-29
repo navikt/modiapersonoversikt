@@ -403,13 +403,17 @@ export const aremark: Person = {
                 etternavn: 'Solli'
             },
             vergesakstype: 'Voksen',
-            omfang: 'Ivareta personens interesser innenfor det personlige og økonomiske området',
+            omfang: '',
+            tjenesteOppgaver: ['Arbeid', 'Familie', 'Hjelpemidler', 'Sosiale Tjenester'],
             embete: 'Fylkesmannen i Troms og Finnmark',
             gyldighetsPeriode: {
-                gyldigFraOgMed: '2021-06-01' as LocalDate,
-                gyldigTilOgMed: '2022-05-10' as LocalDate
-            }
-        },
+                gyldigFraOgMed: '2024-06-01' as LocalDate,
+                gyldigTilOgMed: '2027-05-10' as LocalDate
+            },
+            historisk: false
+        }
+    ],
+    historiskeVergemal: [
         {
             ident: '123456799',
             navn: {
@@ -419,12 +423,12 @@ export const aremark: Person = {
             },
             vergesakstype: 'Fremtidsfullmakt',
             omfang: 'Ivareta personens interesser innenfor det økonomiske området',
-            tjenesteOppgaver: ['Arbeid', 'Familie', 'Hjelpemidler', 'Sosiale Tjenester'],
             embete: 'Fylkesmannen i Troms og Finnmark',
             gyldighetsPeriode: {
-                gyldigFraOgMed: '2021-02-10' as LocalDate,
+                gyldigFraOgMed: '2022-02-10' as LocalDate,
                 gyldigTilOgMed: '2022-05-01' as LocalDate
-            }
+            },
+            historisk: true
         }
     ],
     tilrettelagtKommunikasjon: {
