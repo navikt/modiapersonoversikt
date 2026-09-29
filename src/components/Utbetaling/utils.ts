@@ -26,11 +26,7 @@ const filterUtbetalinger = (utbetalinger: Utbetaling[], filters: UtbetalingFilte
     if (dateRange?.from && dateRange?.to) {
         filteredList = filteredList.filter((utbetaling) => {
             const dato = dayjs(utbetaling.posteringsdato);
-            return (
-                dato.isValid() &&
-                dato.isSameOrAfter(dayjs(dateRange.from), 'day') &&
-                dato.isSameOrBefore(dayjs(dateRange.to), 'day')
-            );
+            return dato.isValid() && !dato.isBefore(dateRange.from, 'day') && !dato.isAfter(dateRange.to, 'day');
         });
     }
 

@@ -111,9 +111,10 @@ it('viser samme datotekst som utbetalingsfanen for forfall og postering', () => 
     ]);
     render(<UtbetalingerOversikt />);
 
-    expect(screen.getByRole('rowheader', { name: '01.10.2026 (forfall)' })).toBeInTheDocument();
-    expect(screen.getByRole('rowheader', { name: '27.09.2026 (postering)' })).toBeInTheDocument();
-    expect(screen.getByRole('rowheader', { name: '26.09.2026' })).toBeInTheDocument();
+    expect(screen.getByRole('rowheader', { name: 'Kommende' })).toBeInTheDocument();
+    expect(screen.getByRole('cell', { name: '01.10.2026 (forfall)' })).toBeInTheDocument();
+    expect(screen.getByRole('cell', { name: '27.09.2026 (postering)' })).toBeInTheDocument();
+    expect(screen.getByRole('cell', { name: '26.09.2026' })).toBeInTheDocument();
 });
 
 it('teller bare skjulte rader med posteringsdato innenfor Siste 30 dager', () => {
@@ -122,7 +123,7 @@ it('teller bare skjulte rader med posteringsdato innenfor Siste 30 dager', () =>
         ...[28, 27, 26, 25, 24, 23].map((dag) => utbetaling(`2026-09-${dag}`, [ytelse('Sykepenger', 50)]))
     ]);
     render(<UtbetalingerOversikt />);
-    expect(screen.getByText('Kommende')).toBeInTheDocument();
+    expect(screen.getByRole('rowheader', { name: 'Kommende' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /2 flere utbetalinger siste 30 dager/ })).toHaveAttribute(
         'href',
         '/new/person/utbetaling?periode=siste30'
