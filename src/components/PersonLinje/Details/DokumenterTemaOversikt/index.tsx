@@ -62,7 +62,9 @@ function DokumenterTemaOversikt() {
                                         search={{
                                             tema: [tema.temakode],
                                             fra: dateRange.from?.format(DATE_FORMAT),
-                                            til: dateRange.to?.format(DATE_FORMAT)
+                                            til: dateRange.to?.format(DATE_FORMAT),
+                                            avsendere: [],
+                                            saksid: ''
                                         }}
                                         onClick={() =>
                                             trackGenereltUmamiEvent(trackingEvents.lenkeKlikketFraHjem, {
@@ -86,7 +88,9 @@ function DokumenterTemaOversikt() {
                     search={{
                         tema: [],
                         fra: dateRange.from?.format(DATE_FORMAT),
-                        til: dateRange.to?.format(DATE_FORMAT)
+                        til: dateRange.to?.format(DATE_FORMAT),
+                        avsendere: [],
+                        saksid: ''
                     }}
                     onClick={() =>
                         trackGenereltUmamiEvent(trackingEvents.lenkeKlikketFraHjem, {
