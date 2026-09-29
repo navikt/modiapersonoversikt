@@ -12,7 +12,21 @@ import { fyllRandomListe } from '../utils/mock-utils';
 
 export function getMockArbeidsavklaringspengerResponse(fnr: string): ArbeidsavklaringspengerResponse {
     if (fnr === aremark.personIdent) {
-        return [statiskArbeidsavklaringspengerMock];
+        if (import.meta.env.VITE_E2E) {
+            return [statiskArbeidsavklaringspengerMock];
+        }
+        return [
+            statiskArbeidsavklaringspengerMock,
+            {
+                ...statiskArbeidsavklaringspengerMock,
+                vedtakId: 'hjem-aktiv-aap',
+                status: 'LØPENDE',
+                periode: {
+                    fraOgMedDato: dayjs().subtract(60, 'day').format(backendDatoformat),
+                    tilOgMedDato: dayjs().add(60, 'day').format(backendDatoformat)
+                }
+            }
+        ];
     }
 
     faker.seed(Number(fnr));

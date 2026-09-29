@@ -2,7 +2,7 @@ import { BodyShort, LinkCard, Skeleton, VStack } from '@navikt/ds-react';
 import { Link } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import { getUnikYtelseKey, useFilterYtelser, type YtelseVedtak } from 'src/components/ytelser/utils';
-import { type Foreldrepenger, ForeldrepengerYtelse } from 'src/generated/modiapersonoversikt-api';
+import { type Foreldrepenger, ForeldrepengerYtelse, type SykmeldingItem } from 'src/generated/modiapersonoversikt-api';
 import type { Dagpenger, PensjonSak, Sykepenger, SykepengerSpokelse } from 'src/lib/types/modiapersonoversikt-api';
 import type { Arbeidsavklaringspenger } from 'src/models/ytelse/arbeidsavklaringspenger';
 import type { Tiltakspenger } from 'src/models/ytelse/tiltakspenger';
@@ -14,12 +14,31 @@ import { SeksjonFeil } from '../components';
 
 type YtelsePeriode = { fom: string; tom: string | null };
 
+export function aktivSykmeldingsperiode(
+    sykmeldinger: SykmeldingItem[] | null | undefined,
+    iDag = dayjs()
+): YtelsePeriode | null {
+    const dagensDato = iDag.startOf('day');
+    const aktiv = sykmeldinger?.find(({ sykmeldt }) => {
+        const fra = sykmeldt?.fra;
+        const til = sykmeldt?.til;
+        return (
+            fra &&
+            til &&
+            dayjs(fra).isValid() &&
+            dayjs(til).isValid() &&
+            !dayjs(fra).startOf('day').isAfter(dagensDato) &&
+            !dayjs(til).startOf('day').isBefore(dagensDato)
+        );
+    });
+    return aktiv?.sykmeldt?.fra && aktiv.sykmeldt.til ? { fom: aktiv.sykmeldt.fra, tom: aktiv.sykmeldt.til } : null;
+}
+
 function hentYtelsePeriode(ytelse: YtelseVedtak): YtelsePeriode | null {
     switch (ytelse.ytelseType) {
         case YtelseVedtakYtelseType.Sykepenger: {
             const sp = ytelse.ytelseData.data as Sykepenger;
-            if (!sp.sykmeldtFom) return null;
-            return { fom: sp.sykmeldtFom, tom: sp.slutt ?? null };
+            return aktivSykmeldingsperiode(sp.sykmeldinger);
         }
         case YtelseVedtakYtelseType.SykepengerSpokelse: {
             const sp = ytelse.ytelseData.data as SykepengerSpokelse;
@@ -73,6 +92,9 @@ function formatterYtelsePeriode(periode: YtelsePeriode | null): string | null {
 }
 
 function erYtelsenAktiv(ytelse: YtelseVedtak, iDag = dayjs()): boolean {
+    if (ytelse.ytelseType === YtelseVedtakYtelseType.Sykepenger) {
+        return aktivSykmeldingsperiode((ytelse.ytelseData.data as Sykepenger).sykmeldinger, iDag) !== null;
+    }
     const periode = hentYtelsePeriode(ytelse);
     if (!periode) return true;
 

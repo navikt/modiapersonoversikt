@@ -1,32 +1,10 @@
-import {
-    BellIcon,
-    EnterIcon,
-    PencilIcon,
-    TabsRemoveIcon,
-    TasklistIcon,
-    TrashIcon,
-    XMarkOctagonIcon
-} from '@navikt/aksel-icons';
-import { BodyShort, Detail, HStack, LinkCard, Skeleton, Tag, VStack } from '@navikt/ds-react';
+import { BodyShort, Detail, HStack, LinkCard, Skeleton, VStack } from '@navikt/ds-react';
 import { Link } from '@tanstack/react-router';
 import dayjs from 'dayjs';
-import { atom, useAtomValue } from 'jotai';
-import { useMemo } from 'react';
-import {
-    erFeilsendt,
-    erUbesvartHenvendelseFraBruker,
-    getFormattertMeldingsDato,
-    nyesteMelding,
-    traadKanBesvares,
-    traadstittel
-} from 'src/components/Meldinger/List/utils';
 import { oppgavePrioritet, oppgaveTyper } from 'src/components/Meldinger/oppgave-utils';
 import { errorPlaceholder, responseErrorMessage } from 'src/components/ytelser/utils';
 import type { OppgaveDto, TraadDto } from 'src/generated/modiapersonoversikt-api';
-import { useMeldinger, usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
-import { svarUnderArbeidAtom } from 'src/lib/state/dialog';
-import type { Melding } from 'src/lib/types/modiapersonoversikt-api';
-import { Temagruppe, temagruppeTekst } from 'src/lib/types/temagruppe';
+import { useGsakTema, useMeldinger, usePersonOppgaver } from 'src/lib/clients/modiapersonoversikt-api';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import { datoEllerNull } from 'src/utils/string-utils';
 import { SeksjonFeil } from '../components';
@@ -68,26 +46,10 @@ function MetaFelt({ label, verdi }: { label: string; verdi?: string | null }) {
     );
 }
 
-function OppgaveKort({ traad, oppgave, erTildelt }: { traad: TraadDto; oppgave?: OppgaveDto; erTildelt: boolean }) {
-    const sisteMelding = nyesteMelding(traad) as Melding;
-    const dato = getFormattertMeldingsDato(sisteMelding);
-    const tittel = traadstittel(traad);
-    const tema = temagruppeTekst(traad.temagruppe as Temagruppe);
-    const ubesvart = erUbesvartHenvendelseFraBruker(traad);
-    const feilsendt = erFeilsendt(traad);
-    const avsluttetDato = traad.avsluttetDato || sisteMelding.avsluttetDato;
-    const kanBesvares = traadKanBesvares(traad);
-    const sladdet = traad.sattTilSladdingAv || sisteMelding.sendtTilSladding;
-    const slettet = sisteMelding.temagruppe === Temagruppe.InnholdSlettet;
-    const erUnderArbeid = useAtomValue(
-        useMemo(() => atom((get) => get(svarUnderArbeidAtom) === traad.traadId), [traad.traadId])
-    );
-
-    const oppgavetype = oppgave ? (oppgaveTyper[oppgave.oppgavetype as keyof typeof oppgaveTyper] ?? null) : null;
-    const prioritet = oppgave ? (oppgavePrioritet[oppgave.prioritet as keyof typeof oppgavePrioritet] ?? null) : null;
-    const frist = datoEllerNull(oppgave?.fristFerdigstillelse);
-    const avsluttet = Boolean(avsluttetDato) && !kanBesvares;
-    const harTags = Boolean(ubesvart || erUnderArbeid || feilsendt || slettet || erTildelt || avsluttet || sladdet);
+function OppgaveKort({ traad, oppgave, tema }: { traad: TraadDto; oppgave: OppgaveDto; tema: string }) {
+    const oppgavetype = oppgaveTyper[oppgave.oppgavetype as keyof typeof oppgaveTyper] ?? oppgave.oppgavetype;
+    const prioritet = oppgavePrioritet[oppgave.prioritet as keyof typeof oppgavePrioritet] ?? null;
+    const frist = datoEllerNull(oppgave.fristFerdigstillelse);
 
     return (
         <LinkCard size="small" className="rounded-(--ax-radius-8)">
@@ -103,77 +65,17 @@ function OppgaveKort({ traad, oppgave, erTildelt }: { traad: TraadDto; oppgave?:
                             })
                         }
                     >
-                        {tema} ({tittel})
+                        {tema} – {oppgavetype}
                     </Link>
                 </LinkCard.Anchor>
             </LinkCard.Title>
-            <LinkCard.Description>
-                <VStack gap="space-12" className="min-w-0">
-                    <VStack gap="space-4" className="min-w-0">
-                        <Detail textColor="subtle">{dato}</Detail>
-                        {sisteMelding.fritekst && (
-                            <Detail textColor="subtle" truncate>
-                                {sisteMelding.fritekst}
-                            </Detail>
-                        )}
-                    </VStack>
-                    {(oppgavetype || prioritet || frist) && (
-                        <HStack gap="space-12" wrap>
-                            <MetaFelt label="Type" verdi={oppgavetype} />
-                            <MetaFelt label="Prioritet" verdi={prioritet} />
-                            <MetaFelt label="Frist" verdi={frist} />
-                        </HStack>
-                    )}
-                </VStack>
-            </LinkCard.Description>
-            {harTags && (
-                <LinkCard.Footer>
-                    {ubesvart && (
-                        <Tag data-color="success" size="small" variant="moderate" icon={<BellIcon aria-hidden />}>
-                            Ny melding
-                        </Tag>
-                    )}
-                    {erUnderArbeid && (
-                        <Tag data-color="info" size="small" variant="moderate" icon={<PencilIcon aria-hidden />}>
-                            Under arbeid
-                        </Tag>
-                    )}
-                    {feilsendt && (
-                        <Tag
-                            data-color="meta-purple"
-                            size="small"
-                            variant="moderate"
-                            icon={<XMarkOctagonIcon aria-hidden />}
-                        >
-                            Feilsendt
-                        </Tag>
-                    )}
-                    {slettet && (
-                        <Tag data-color="danger" size="small" variant="moderate" icon={<TrashIcon aria-hidden />}>
-                            Slettet
-                        </Tag>
-                    )}
-                    {erTildelt && (
-                        <Tag data-color="meta-lime" size="small" variant="moderate" icon={<TasklistIcon aria-hidden />}>
-                            Tildelt meg
-                        </Tag>
-                    )}
-                    {avsluttet && (
-                        <Tag data-color="info" size="small" variant="moderate" icon={<EnterIcon aria-hidden />}>
-                            Avsluttet
-                        </Tag>
-                    )}
-                    {sladdet && (
-                        <Tag
-                            data-color="brand-magenta"
-                            size="small"
-                            variant="moderate"
-                            icon={<TabsRemoveIcon aria-hidden />}
-                        >
-                            Sladding
-                        </Tag>
-                    )}
-                </LinkCard.Footer>
+            {(prioritet || frist) && (
+                <LinkCard.Description>
+                    <HStack gap="space-12" wrap>
+                        <MetaFelt label="Prioritet" verdi={prioritet} />
+                        <MetaFelt label="Frist" verdi={frist} />
+                    </HStack>
+                </LinkCard.Description>
             )}
         </LinkCard>
     );
@@ -182,10 +84,11 @@ function OppgaveKort({ traad, oppgave, erTildelt }: { traad: TraadDto; oppgave?:
 function OppgaverOversikt() {
     const meldingerResponse = useMeldinger();
     const oppgaverResponse = usePersonOppgaver();
+    const temaResponse = useGsakTema();
     const { data: traader, isLoading: meldingerLoading } = meldingerResponse;
     const { data: oppgaver = [], isLoading: oppgaverLoading } = oppgaverResponse;
 
-    if (meldingerLoading || oppgaverLoading) {
+    if (meldingerLoading || oppgaverLoading || temaResponse.isLoading) {
         return (
             <VStack gap="space-8">
                 <Skeleton variant="rectangle" height={100} />
@@ -196,7 +99,8 @@ function OppgaverOversikt() {
 
     const feilmeldinger = [
         errorPlaceholder(meldingerResponse, responseErrorMessage('meldinger')),
-        errorPlaceholder(oppgaverResponse, responseErrorMessage('oppgaver'))
+        errorPlaceholder(oppgaverResponse, responseErrorMessage('oppgaver')),
+        ...temaResponse.errorMessages
     ].filter(Boolean);
 
     if (feilmeldinger.length > 0) {
@@ -219,15 +123,18 @@ function OppgaverOversikt() {
 
     return (
         <VStack gap="space-8" as="ul" className="list-none p-0 m-0">
-            {synligeTraader.map((traad) => (
-                <li key={traad.traadId}>
-                    <OppgaveKort
-                        traad={traad}
-                        oppgave={oppgavePerTraad.get(traad.traadId)}
-                        erTildelt={oppgavePerTraad.has(traad.traadId)}
-                    />
-                </li>
-            ))}
+            {synligeTraader.map((traad) => {
+                const oppgave = oppgavePerTraad.get(traad.traadId);
+                return oppgave ? (
+                    <li key={traad.traadId}>
+                        <OppgaveKort
+                            traad={traad}
+                            oppgave={oppgave}
+                            tema={temaResponse.data.find((item) => item.kode === oppgave.tema)?.tekst ?? 'Ukjent tema'}
+                        />
+                    </li>
+                ) : null;
+            })}
         </VStack>
     );
 }

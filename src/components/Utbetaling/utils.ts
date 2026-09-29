@@ -1,12 +1,19 @@
+import { useSearch } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai';
+import { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
+import { PeriodType } from 'src/components/DateFilters/types';
 import { type UtbetalingFilter, utbetalingFilterAtom } from 'src/components/Utbetaling/Filter';
 import { errorPlaceholder, type QueryResult, responseErrorMessage } from 'src/components/ytelser/utils';
 import { useUtbetalinger } from 'src/lib/clients/modiapersonoversikt-api';
 import type { Utbetaling, UtbetalingerResponseDto, Ytelse } from 'src/lib/types/modiapersonoversikt-api';
 import { datoSynkende, datoVerbose } from 'src/utils/date-utils';
 
-const filterUtbetalinger = (utbetalinger: Utbetaling[], filters: UtbetalingFilter): Utbetaling[] => {
+const filterUtbetalinger = (
+    utbetalinger: Utbetaling[],
+    filters: UtbetalingFilter,
+    datoForFilter: (utbetaling: Utbetaling) => string = (utbetaling) => utbetaling.posteringsdato
+): Utbetaling[] => {
     const { ytelseTyper, dateRange } = filters;
 
     if (!utbetalinger || utbetalinger.length === 0) {
@@ -22,8 +29,12 @@ const filterUtbetalinger = (utbetalinger: Utbetaling[], filters: UtbetalingFilte
 
     if (dateRange?.from && dateRange?.to) {
         filteredList = filteredList.filter((utbetaling) => {
-            const dato = dayjs(utbetaling.posteringsdato);
-            return dato.isSameOrAfter(dayjs(dateRange.from), 'day') && dato.isSameOrBefore(dayjs(dateRange.to), 'day');
+            const dato = dayjs(datoForFilter(utbetaling));
+            return (
+                dato.isValid() &&
+                dato.isSameOrAfter(dayjs(dateRange.from), 'day') &&
+                dato.isSameOrBefore(dayjs(dateRange.to), 'day')
+            );
         });
     }
 
@@ -34,19 +45,30 @@ type FilteredUtbetalingerResponse = UtbetalingerResponseDto & { alleUtbetalinger
 
 export const useFilterUtbetalinger = (): QueryResult<FilteredUtbetalingerResponse> => {
     const filters = useAtomValue(utbetalingFilterAtom);
-    const startDato = (filters.dateRange.from ?? dayjs().subtract(2, 'year')).startOf('day').format('YYYY-MM-DD');
-    const sluttDato = (filters.dateRange.to ?? dayjs()).endOf('day').format('YYYY-MM-DD');
+    const { periode } = useSearch({ from: '/new/person/utbetaling' });
+    const lenketPeriode = periode === 'siste30' ? getPeriodFromOption(PeriodType.LAST_30_DAYS) : null;
+    const effektivtFilter = lenketPeriode ? { ...filters, dateRange: lenketPeriode } : filters;
+    const startDato = (effektivtFilter.dateRange.from ?? dayjs().subtract(2, 'year'))
+        .startOf('day')
+        .format('YYYY-MM-DD');
+    const sluttDato = (effektivtFilter.dateRange.to ?? dayjs()).endOf('day').format('YYYY-MM-DD');
     const utbetalingerResponse = useUtbetalinger(startDato, sluttDato);
 
     const utbetalinger = utbetalingerResponse?.data?.utbetalinger ?? [];
     const errorMessages = [errorPlaceholder(utbetalingerResponse, responseErrorMessage('utbetalinger'))];
-    const sortedUtbetalinger = utbetalinger.toSorted(datoSynkende((t) => t.posteringsdato));
+    const sortedUtbetalinger = utbetalinger.toSorted(
+        lenketPeriode ? utbetalingDatoComparator : datoSynkende((t) => t.posteringsdato)
+    );
 
     return {
         ...utbetalingerResponse,
         data: {
             ...utbetalingerResponse.data,
-            utbetalinger: filterUtbetalinger(sortedUtbetalinger, filters) ?? [],
+            utbetalinger: filterUtbetalinger(
+                sortedUtbetalinger,
+                effektivtFilter,
+                lenketPeriode ? getGjeldendeDatoForUtbetaling : undefined
+            ),
             alleUtbetalinger: sortedUtbetalinger ?? []
         },
         errorMessages: errorMessages.filter(Boolean)

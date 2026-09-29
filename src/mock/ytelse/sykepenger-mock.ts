@@ -24,8 +24,36 @@ export function getMockSykepengerRespons(fødselsnummer: string): SykepengerResp
     navfaker.seed(`${fødselsnummer}sykepenger`);
 
     if (fødselsnummer === aremark.personIdent) {
+        if (import.meta.env.VITE_E2E) {
+            return { sykepenger: [statiskSykepengerMock, statiskSykepengerUtenUtbetalingerMock] };
+        }
+        const inaktivFom = dayjs().subtract(40, 'day').format(backendDatoformat);
+        const inaktivSykmelding = {
+            ...getMockSykmelding(),
+            sykmeldt: { fra: inaktivFom, til: dayjs().subtract(32, 'day').format(backendDatoformat) }
+        };
+        const aktivFom = dayjs().subtract(14, 'day').format(backendDatoformat);
+        const aktivSykmelding = {
+            ...getMockSykmelding(),
+            sykmeldt: { fra: aktivFom, til: dayjs().add(14, 'day').format(backendDatoformat) }
+        };
         return {
-            sykepenger: [statiskSykepengerMock, statiskSykepengerUtenUtbetalingerMock]
+            sykepenger: [
+                statiskSykepengerMock,
+                statiskSykepengerUtenUtbetalingerMock,
+                {
+                    ...statiskSykepengerMock,
+                    sykmeldtFom: inaktivFom,
+                    slutt: null,
+                    sykmeldinger: [inaktivSykmelding]
+                },
+                {
+                    ...statiskSykepengerMock,
+                    sykmeldtFom: aktivFom,
+                    slutt: null,
+                    sykmeldinger: [inaktivSykmelding, aktivSykmelding]
+                }
+            ]
         };
     }
 
