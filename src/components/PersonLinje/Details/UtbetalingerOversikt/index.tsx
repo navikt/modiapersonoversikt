@@ -16,7 +16,7 @@ const MAKS_ANTALL_RADER = 5;
 export function utbetalingerForHjem(utbetalinger: Utbetaling[], fra: string, til: string): Utbetaling[] {
     return utbetalinger
         .filter((utbetaling) => {
-            const dato = dayjs(getGjeldendeDatoForUtbetaling(utbetaling));
+            const dato = dayjs(utbetaling.posteringsdato);
             return dato.isValid() && !dato.isBefore(fra, 'day') && !dato.isAfter(til, 'day');
         })
         .toSorted(utbetalingDatoComparator);
@@ -70,7 +70,7 @@ function UtbetalingerOversikt() {
     const rader = alleRader.slice(0, MAKS_ANTALL_RADER);
     const antallFlere = alleRader
         .slice(MAKS_ANTALL_RADER)
-        .filter(({ utbetaling }) => !dayjs(getGjeldendeDatoForUtbetaling(utbetaling)).isAfter(iDag, 'day')).length;
+        .filter(({ utbetaling }) => !dayjs(utbetaling.posteringsdato).isAfter(iDag, 'day')).length;
 
     if (rader.length === 0) {
         return (

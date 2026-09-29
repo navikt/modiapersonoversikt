@@ -103,15 +103,32 @@ it('oppgir perioden når det ikke finnes utbetalinger', () => {
     expect(screen.getByText(/siste 30 dager/)).toBeInTheDocument();
 });
 
-it('teller bare eldre utbetalinger som finnes under Siste 30 dager', () => {
+it('teller bare skjulte utbetalingslinjer med posteringsdato innenfor Siste 30 dager', () => {
     giUtbetalinger([
         utbetaling('2026-10-01', [ytelse('Kommende', 100)]),
         ...[28, 27, 26, 25, 24, 23].map((dag) => utbetaling(`2026-09-${dag}`, [ytelse('Sykepenger', 50)]))
     ]);
     render(<UtbetalingerOversikt />);
     expect(screen.getByText('Kommende')).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /2 flere utbetalingslinjer siste 30 dager/ })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /2 flere utbetalingslinjer postert siste 30 dager/ })).toHaveAttribute(
         'href',
         '/new/person/utbetaling?periode=siste30'
     );
+});
+
+it('teller en skjult kommende utbetaling dersom den ble postert de siste 30 dagene', () => {
+    giUtbetalinger(
+        [6, 5, 4, 3, 2, 1].map((dag) => ({
+            ...utbetaling(`2026-10-0${dag}`, [ytelse(`Kommende ${dag}`, 100)]),
+            posteringsdato: '2026-09-28',
+            utbetalingsdato: null,
+            forfallsdato: `2026-10-0${dag}`
+        }))
+    );
+    render(<UtbetalingerOversikt />);
+
+    expect(screen.getAllByRole('row')).toHaveLength(6);
+    expect(screen.getByText('Kommende 6')).toBeInTheDocument();
+    expect(screen.queryByText('Kommende 1')).not.toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /1 flere utbetalingslinjer postert siste 30 dager/ })).toBeInTheDocument();
 });

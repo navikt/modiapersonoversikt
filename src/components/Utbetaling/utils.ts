@@ -9,14 +9,10 @@ import { useUtbetalinger } from 'src/lib/clients/modiapersonoversikt-api';
 import type { Utbetaling, UtbetalingerResponseDto, Ytelse } from 'src/lib/types/modiapersonoversikt-api';
 import { datoSynkende, datoVerbose } from 'src/utils/date-utils';
 
-const filterUtbetalinger = (
-    utbetalinger: Utbetaling[],
-    filters: UtbetalingFilter,
-    datoForFilter: (utbetaling: Utbetaling) => string = (utbetaling) => utbetaling.posteringsdato
-): Utbetaling[] => {
+const filterUtbetalinger = (utbetalinger: Utbetaling[], filters: UtbetalingFilter): Utbetaling[] => {
     const { ytelseTyper, dateRange } = filters;
 
-    if (!utbetalinger || utbetalinger.length === 0) {
+    if (utbetalinger.length === 0) {
         return [];
     }
 
@@ -29,7 +25,7 @@ const filterUtbetalinger = (
 
     if (dateRange?.from && dateRange?.to) {
         filteredList = filteredList.filter((utbetaling) => {
-            const dato = dayjs(datoForFilter(utbetaling));
+            const dato = dayjs(utbetaling.posteringsdato);
             return (
                 dato.isValid() &&
                 dato.isSameOrAfter(dayjs(dateRange.from), 'day') &&
@@ -46,30 +42,21 @@ type FilteredUtbetalingerResponse = UtbetalingerResponseDto & { alleUtbetalinger
 export const useFilterUtbetalinger = (): QueryResult<FilteredUtbetalingerResponse> => {
     const filters = useAtomValue(utbetalingFilterAtom);
     const { periode } = useSearch({ from: '/new/person/utbetaling' });
-    const lenketPeriode = periode === 'siste30' ? getPeriodFromOption(PeriodType.LAST_30_DAYS) : null;
-    const effektivtFilter = lenketPeriode ? { ...filters, dateRange: lenketPeriode } : filters;
-    const startDato = (effektivtFilter.dateRange.from ?? dayjs().subtract(2, 'year'))
-        .startOf('day')
-        .format('YYYY-MM-DD');
-    const sluttDato = (effektivtFilter.dateRange.to ?? dayjs()).endOf('day').format('YYYY-MM-DD');
+    const dateRange = periode === 'siste30' ? getPeriodFromOption(PeriodType.LAST_30_DAYS) : filters.dateRange;
+    const startDato = (dateRange.from ?? dayjs().subtract(2, 'year')).startOf('day').format('YYYY-MM-DD');
+    const sluttDato = (dateRange.to ?? dayjs()).endOf('day').format('YYYY-MM-DD');
     const utbetalingerResponse = useUtbetalinger(startDato, sluttDato);
 
     const utbetalinger = utbetalingerResponse?.data?.utbetalinger ?? [];
     const errorMessages = [errorPlaceholder(utbetalingerResponse, responseErrorMessage('utbetalinger'))];
-    const sortedUtbetalinger = utbetalinger.toSorted(
-        lenketPeriode ? utbetalingDatoComparator : datoSynkende((t) => t.posteringsdato)
-    );
+    const sortedUtbetalinger = utbetalinger.toSorted(datoSynkende((t) => t.posteringsdato));
 
     return {
         ...utbetalingerResponse,
         data: {
             ...utbetalingerResponse.data,
-            utbetalinger: filterUtbetalinger(
-                sortedUtbetalinger,
-                effektivtFilter,
-                lenketPeriode ? getGjeldendeDatoForUtbetaling : undefined
-            ),
-            alleUtbetalinger: sortedUtbetalinger ?? []
+            utbetalinger: filterUtbetalinger(sortedUtbetalinger, { ...filters, dateRange }),
+            alleUtbetalinger: sortedUtbetalinger
         },
         errorMessages: errorMessages.filter(Boolean)
     } as QueryResult<FilteredUtbetalingerResponse>;
