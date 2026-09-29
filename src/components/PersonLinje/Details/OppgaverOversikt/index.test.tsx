@@ -40,7 +40,7 @@ vi.mock('src/lib/clients/modiapersonoversikt-api', () => ({
 
 it('viser oppgavens tema og type uten meldingsinnhold eller tags', () => {
     render(<OppgaverOversikt />);
-    expect(screen.getByRole('link', { name: 'Sykepenger - Vurder svar' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Sykepenger – Vurder svar' })).toBeInTheDocument();
     expect(screen.getByText('Høy')).toBeInTheDocument();
     expect(screen.getByText('01.10.2026')).toBeInTheDocument();
     expect(screen.queryByText('Denne meldingsteksten skal ikke vises')).not.toBeInTheDocument();

@@ -63,7 +63,7 @@ it('viser maks fem ytelsesrader med riktig beløp og teller skjulte rader', () =
     expect(screen.getByRole('columnheader', { name: 'Ytelse' })).toBeInTheDocument();
     expect(within(screen.getAllByRole('row')[1]).getByText('100,00 NOK')).toBeInTheDocument();
     expect(screen.getByText('200,00 NOK')).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /2 flere utbetalingslinjer/ })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /2 flere utbetalinger/ })).toHaveAttribute(
         'href',
         '/new/person/utbetaling?periode=siste30'
     );
@@ -80,7 +80,7 @@ it('teller den sjette ytelsen selv når den tilhører en utbetaling som allerede
     expect(screen.getAllByRole('row')).toHaveLength(6);
     expect(screen.getByText('Dagpenger')).toBeInTheDocument();
     expect(screen.queryByText('Barnetrygd')).not.toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /1 flere utbetalingslinjer/ })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /1 flere utbetalinger/ })).toHaveAttribute(
         'href',
         '/new/person/utbetaling?periode=siste30'
     );
@@ -103,20 +103,33 @@ it('oppgir perioden når det ikke finnes utbetalinger', () => {
     expect(screen.getByText(/siste 30 dager/)).toBeInTheDocument();
 });
 
-it('teller bare skjulte utbetalingslinjer med posteringsdato innenfor Siste 30 dager', () => {
+it('viser samme datotekst som utbetalingsfanen for forfall og postering', () => {
+    giUtbetalinger([
+        { ...utbetaling('2026-09-28', [ytelse('Kommende', 100)]), utbetalingsdato: null, forfallsdato: '2026-10-01' },
+        { ...utbetaling('2026-09-27', [ytelse('Postert', 200)]), utbetalingsdato: null },
+        utbetaling('2026-09-26', [ytelse('Utbetalt', 300)])
+    ]);
+    render(<UtbetalingerOversikt />);
+
+    expect(screen.getByRole('rowheader', { name: '01.10.2026 (forfall)' })).toBeInTheDocument();
+    expect(screen.getByRole('rowheader', { name: '27.09.2026 (postering)' })).toBeInTheDocument();
+    expect(screen.getByRole('rowheader', { name: '26.09.2026' })).toBeInTheDocument();
+});
+
+it('teller bare skjulte rader med posteringsdato innenfor Siste 30 dager', () => {
     giUtbetalinger([
         utbetaling('2026-10-01', [ytelse('Kommende', 100)]),
         ...[28, 27, 26, 25, 24, 23].map((dag) => utbetaling(`2026-09-${dag}`, [ytelse('Sykepenger', 50)]))
     ]);
     render(<UtbetalingerOversikt />);
     expect(screen.getByText('Kommende')).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /2 flere utbetalingslinjer postert siste 30 dager/ })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /2 flere utbetalinger siste 30 dager/ })).toHaveAttribute(
         'href',
         '/new/person/utbetaling?periode=siste30'
     );
 });
 
-it('teller en skjult kommende utbetaling dersom den ble postert de siste 30 dagene', () => {
+it('teller en skjult kommende rad dersom den ble postert de siste 30 dagene', () => {
     giUtbetalinger(
         [6, 5, 4, 3, 2, 1].map((dag) => ({
             ...utbetaling(`2026-10-0${dag}`, [ytelse(`Kommende ${dag}`, 100)]),
@@ -130,5 +143,5 @@ it('teller en skjult kommende utbetaling dersom den ble postert de siste 30 dage
     expect(screen.getAllByRole('row')).toHaveLength(6);
     expect(screen.getByText('Kommende 6')).toBeInTheDocument();
     expect(screen.queryByText('Kommende 1')).not.toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /1 flere utbetalingslinjer postert siste 30 dager/ })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /1 flere utbetalinger siste 30 dager/ })).toBeInTheDocument();
 });

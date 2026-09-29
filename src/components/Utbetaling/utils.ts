@@ -7,7 +7,7 @@ import { type UtbetalingFilter, utbetalingFilterAtom } from 'src/components/Utbe
 import { errorPlaceholder, type QueryResult, responseErrorMessage } from 'src/components/ytelser/utils';
 import { useUtbetalinger } from 'src/lib/clients/modiapersonoversikt-api';
 import type { Utbetaling, UtbetalingerResponseDto, Ytelse } from 'src/lib/types/modiapersonoversikt-api';
-import { datoSynkende, datoVerbose } from 'src/utils/date-utils';
+import { datoSynkende, datoVerbose, formatterDato } from 'src/utils/date-utils';
 
 const filterUtbetalinger = (utbetalinger: Utbetaling[], filters: UtbetalingFilter): Utbetaling[] => {
     const { ytelseTyper, dateRange } = filters;
@@ -120,6 +120,11 @@ export const getUtbetalingId = (utbetaling: Utbetaling) =>
 
 export function getGjeldendeDatoForUtbetaling(utbetaling: Utbetaling): string {
     return utbetaling.utbetalingsdato || utbetaling.forfallsdato || utbetaling.posteringsdato;
+}
+export function datoVisning(utbetaling: Utbetaling): string {
+    const dato = formatterDato(getGjeldendeDatoForUtbetaling(utbetaling));
+    if (utbetaling.utbetalingsdato) return dato;
+    return `${dato} ${utbetaling.forfallsdato ? '(forfall)' : '(postering)'}`;
 }
 export function utbetalingDatoComparator(a: Utbetaling, b: Utbetaling) {
     return dayjs(getGjeldendeDatoForUtbetaling(b)).unix() - dayjs(getGjeldendeDatoForUtbetaling(a)).unix();
