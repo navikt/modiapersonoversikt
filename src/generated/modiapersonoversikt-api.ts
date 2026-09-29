@@ -1313,14 +1313,14 @@ export interface components {
         LocalDate: {
             /** Format: date */
             value?: string;
+            /** Format: date */
+            value$kotlinx_datetime: string;
             /**
              * Format: int32
              * @deprecated
              * @description Use the 'month' property instead
              */
             monthNumber: number;
-            /** Format: date */
-            value$kotlinx_datetime: string;
             /** Format: int32 */
             year: number;
             /**
@@ -1341,6 +1341,8 @@ export interface components {
         LocalDateTime: {
             /** Format: date-time */
             value?: string;
+            /** Format: date-time */
+            value$kotlinx_datetime: string;
             /**
              * Format: int32
              * @deprecated
@@ -1349,8 +1351,6 @@ export interface components {
             monthNumber: number;
             /** Format: int32 */
             nanosecond: number;
-            /** Format: date-time */
-            value$kotlinx_datetime: string;
             time: components['schemas']['LocalTime'];
             /** Format: int32 */
             year: number;
@@ -1378,9 +1378,9 @@ export interface components {
         };
         LocalTime: {
             value?: string;
+            value$kotlinx_datetime: string;
             /** Format: int32 */
             nanosecond: number;
-            value$kotlinx_datetime: string;
             /** Format: int32 */
             hour: number;
             /** Format: int32 */
@@ -1435,6 +1435,8 @@ export interface components {
         PersonsokRequestV3: {
             enhet?: string | null;
             navn?: string | null;
+            fornavn?: string | null;
+            etternavn?: string | null;
             utenlandskID?: string | null;
             /** Format: int32 */
             alderFra?: number | null;
@@ -1648,6 +1650,7 @@ export interface components {
             alder?: number | null;
             dodsdato: components['schemas']['Dodsdato'][];
             bostedAdresse: components['schemas']['Adresse'][];
+            historiskeBostedAdresser: components['schemas']['Adresse'][];
             kontaktAdresse: components['schemas']['Adresse'][];
             oppholdsAdresse: components['schemas']['Adresse'][];
             navEnhet?: components['schemas']['PersonDataEnhet'] | null;
