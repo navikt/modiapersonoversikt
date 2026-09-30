@@ -212,6 +212,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    '/rest/personsok/v4': {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations['sokPdlV4'];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     '/rest/personsok/v3': {
         parameters: {
             query?: never;
@@ -1432,7 +1448,7 @@ export interface components {
             /** Format: date-time */
             nyesteDokumentDato?: string | null;
         };
-        PersonsokRequestV3: {
+        PersonsokRequest: {
             enhet?: string | null;
             navn?: string | null;
             fornavn?: string | null;
@@ -1447,6 +1463,10 @@ export interface components {
             kjonn?: string | null;
             adresse?: string | null;
             telefonnummer?: string | null;
+            /** Format: int32 */
+            pageNumber?: number | null;
+            /** Format: int32 */
+            resultsPerPage?: number | null;
         };
         BrukerinfoDTO: {
             gjeldendePostadresseType?: components['schemas']['KodeverdiDTO'] | null;
@@ -1471,6 +1491,15 @@ export interface components {
             status?: components['schemas']['KodeverdiDTO'] | null;
             brukerinfo?: components['schemas']['BrukerinfoDTO'] | null;
             utenlandskID?: components['schemas']['UtenlandskIdDTO'][] | null;
+        };
+        PersonSokResponsV4: {
+            treff: components['schemas']['PersonSokResponsDTO'][];
+            /** Format: int32 */
+            pageNumber?: number | null;
+            /** Format: int32 */
+            totalHits?: number | null;
+            /** Format: int32 */
+            totalPages?: number | null;
         };
         PersonnavnDTO: {
             fornavn: string;
@@ -2438,11 +2467,12 @@ export type Soknadsstatus = components['schemas']['Soknadsstatus'];
 export type SoknadsstatusSakstema = components['schemas']['SoknadsstatusSakstema'];
 export type ResultatSaksDokumenter = components['schemas']['ResultatSaksDokumenter'];
 export type Sakstema = components['schemas']['Sakstema'];
-export type PersonsokRequestV3 = components['schemas']['PersonsokRequestV3'];
+export type PersonsokRequest = components['schemas']['PersonsokRequest'];
 export type BrukerinfoDto = components['schemas']['BrukerinfoDTO'];
 export type KodeverdiDto = components['schemas']['KodeverdiDTO'];
 export type NorskIdentDto = components['schemas']['NorskIdentDTO'];
 export type PersonSokResponsDto = components['schemas']['PersonSokResponsDTO'];
+export type PersonSokResponsV4 = components['schemas']['PersonSokResponsV4'];
 export type PersonnavnDto = components['schemas']['PersonnavnDTO'];
 export type UtenlandskIdDto = components['schemas']['UtenlandskIdDTO'];
 export type Adressat = components['schemas']['Adressat'];
@@ -2908,6 +2938,30 @@ export interface operations {
             };
         };
     };
+    sokPdlV4: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                'application/json': components['schemas']['PersonsokRequest'];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    '*/*': components['schemas']['PersonSokResponsV4'];
+                };
+            };
+        };
+    };
     sokPdlV3: {
         parameters: {
             query?: never;
@@ -2917,7 +2971,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                'application/json': components['schemas']['PersonsokRequestV3'];
+                'application/json': components['schemas']['PersonsokRequest'];
             };
         };
         responses: {

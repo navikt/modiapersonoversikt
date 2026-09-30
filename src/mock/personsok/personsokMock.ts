@@ -28,6 +28,43 @@ export function mockPersonsokResponse(request: PersonsokRequestV3): PersonsokRes
     return fyltRandomListe;
 }
 
+const MOCK_TOTALT_ANTALL_TREFF = 132;
+const MOCK_MAKS_ANTALL_TREFF = 1000;
+const mockTreffV4 = new Map<number, PersonsokResponse[]>();
+
+type PersonsokV4MockRequest = {
+    fornavn?: string | null;
+    etternavn?: string | null;
+    pageNumber?: number | null;
+    resultsPerPage?: number | null;
+};
+
+export function mockPersonsokV4Lastetid() {
+    return 300 + Math.floor(Math.random() * 2200);
+}
+
+export function mockPersonsokResponseV4(request?: PersonsokV4MockRequest) {
+    const erStortSok = [request?.fornavn, request?.etternavn].some((navn) => navn?.toLowerCase() === 'mange');
+    const antall = erStortSok ? MOCK_MAKS_ANTALL_TREFF : MOCK_TOTALT_ANTALL_TREFF;
+    let alleTreff = mockTreffV4.get(antall);
+    if (!alleTreff) {
+        navfaker.seed(`personsok-v4-${antall}`);
+        faker.seed(antall);
+        alleTreff = Array.from({ length: antall }, () => getPersonsokResponse());
+        mockTreffV4.set(antall, alleTreff);
+    }
+    const pageNumber = request?.pageNumber ?? 1;
+    const resultsPerPage = request?.resultsPerPage ?? 50;
+    const start = (pageNumber - 1) * resultsPerPage;
+
+    return {
+        treff: alleTreff.slice(start, start + resultsPerPage),
+        pageNumber,
+        totalHits: alleTreff.length,
+        totalPages: Math.ceil(alleTreff.length / resultsPerPage)
+    };
+}
+
 function getPersonsokResponse(): PersonsokResponse {
     const fodselsnummer = navfaker.personIdentifikator.fødselsnummer();
     const diskresjonskode = vektetSjanse(faker, 0.5) ? getDiskresjonskode() : null;
