@@ -1448,7 +1448,7 @@ export interface components {
             /** Format: date-time */
             nyesteDokumentDato?: string | null;
         };
-        PersonsokRequestV3: {
+        PersonsokRequest: {
             enhet?: string | null;
             navn?: string | null;
             fornavn?: string | null;
@@ -2466,7 +2466,7 @@ export type Soknadsstatus = components['schemas']['Soknadsstatus'];
 export type SoknadsstatusSakstema = components['schemas']['SoknadsstatusSakstema'];
 export type ResultatSaksDokumenter = components['schemas']['ResultatSaksDokumenter'];
 export type Sakstema = components['schemas']['Sakstema'];
-export type PersonsokRequestV3 = components['schemas']['PersonsokRequestV3'];
+export type PersonsokRequest = components['schemas']['PersonsokRequest'];
 export type BrukerinfoDto = components['schemas']['BrukerinfoDTO'];
 export type KodeverdiDto = components['schemas']['KodeverdiDTO'];
 export type NorskIdentDto = components['schemas']['NorskIdentDTO'];
@@ -2946,7 +2946,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                'application/json': components['schemas']['PersonsokRequestV3'];
+                'application/json': components['schemas']['PersonsokRequest'];
             };
         };
         responses: {
@@ -2970,7 +2970,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                'application/json': components['schemas']['PersonsokRequestV3'];
+                'application/json': components['schemas']['PersonsokRequest'];
             };
         };
         responses: {
