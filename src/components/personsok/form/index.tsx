@@ -413,24 +413,26 @@ const DateInput = ({
     const [erFerdigMedFeltet, setErFerdigMedFeltet] = useState(false);
 
     return (
-        <DatePicker {...datepickerProps} dropdownCaption>
-            <DatePicker.Input
-                label={label}
-                size="small"
-                error={(erFerdigMedFeltet && datoFeil ? DATO_FEILTEKST[datoFeil] : undefined) || error || undefined}
-                {...inputProps}
-                onChange={(e) => {
-                    setErFerdigMedFeltet(false);
-                    inputProps.onChange?.(e);
-                }}
-                onBlur={(e) => {
-                    setErFerdigMedFeltet(true);
-                    inputProps.onBlur?.(e);
-                }}
-                onKeyDown={(e) => {
-                    if (e.key === 'Enter') setErFerdigMedFeltet(true);
-                }}
-            />
-        </DatePicker>
+        <Box width="9rem">
+            <DatePicker {...datepickerProps} dropdownCaption>
+                <DatePicker.Input
+                    label={label}
+                    size="small"
+                    error={(erFerdigMedFeltet && datoFeil ? DATO_FEILTEKST[datoFeil] : undefined) || error || undefined}
+                    {...inputProps}
+                    onChange={(e) => {
+                        setErFerdigMedFeltet(false);
+                        inputProps.onChange?.(e);
+                    }}
+                    onBlur={(e) => {
+                        setErFerdigMedFeltet(true);
+                        inputProps.onBlur?.(e);
+                    }}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') setErFerdigMedFeltet(true);
+                    }}
+                />
+            </DatePicker>
+        </Box>
     );
 };

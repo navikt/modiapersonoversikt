@@ -190,12 +190,18 @@ describe('PersonsokForm med fødselsdato', () => {
     test('viser feil når fødselsdato til er før fødselsdato fra', async () => {
         const onSubmit = renderSkjema();
 
+        const fraFelt = screen.getByLabelText('Fødselsdato fra').closest('.aksel-date__wrapper');
+        const tilFelt = screen.getByLabelText('Fødselsdato til').closest('.aksel-date__wrapper');
+        expect(fraFelt?.parentElement).toHaveStyle({ '--__axc-r-w-xs': '9rem' });
+        expect(tilFelt?.parentElement).toHaveStyle({ '--__axc-r-w-xs': '9rem' });
+
         await skrivDato('Fødselsdato fra', '31.01.1960');
         await skrivDato('Fødselsdato til', '01.01.1960');
         await sok();
 
         expect(onSubmit).not.toHaveBeenCalled();
         expect(screen.getByText(DATO_REKKEFOLGE_FEIL)).toBeInTheDocument();
+        expect(tilFelt?.parentElement).toHaveStyle({ '--__axc-r-w-xs': '9rem' });
     });
 
     test('søker ikke med ugyldig dato selv om navn er fylt ut', async () => {
