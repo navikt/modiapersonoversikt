@@ -42,10 +42,10 @@ function PersonvernPage() {
                         <VStack gap="space-32">
                             <Section title="Personvern og sikkerhet i Modia">
                                 <BodyLong>
-                                    Modia personoversikt er en intern arbeidsflate for veiledere og saksbehandlere i
-                                    NAV. Denne personvernerklæringen er knyttet til behandlingen av personopplysninger
-                                    på dette nettstedet. For utfyllende informasjon om hvordan NAV behandler
-                                    personopplysninger, kan du lese mer i{' '}
+                                    Modia er en intern arbeidsflate for veiledere og saksbehandlere i NAV. Denne
+                                    personvernerklæringen er knyttet til behandlingen av personopplysninger på dette
+                                    nettstedet. For utfyllende informasjon om hvordan NAV behandler personopplysninger,
+                                    kan du lese mer i{' '}
                                     <Link href="https://www.nav.no/personvern">NAVs generelle personvernerklæring</Link>
                                     .
                                 </BodyLong>

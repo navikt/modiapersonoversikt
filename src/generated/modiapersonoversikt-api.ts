@@ -1435,6 +1435,8 @@ export interface components {
         PersonsokRequestV3: {
             enhet?: string | null;
             navn?: string | null;
+            fornavn?: string | null;
+            etternavn?: string | null;
             utenlandskID?: string | null;
             /** Format: int32 */
             alderFra?: number | null;
@@ -2086,19 +2088,19 @@ export interface components {
             boost?: number | null;
         };
         GraphQLClientError: {
+            locations?: components['schemas']['GraphQLClientSourceLocation'][] | null;
             message: string;
             path?: unknown[] | null;
             extensions?: {
                 [key: string]: unknown;
             } | null;
-            locations?: components['schemas']['GraphQLClientSourceLocation'][] | null;
         };
         GraphQLClientResponseResult: {
+            errors?: components['schemas']['GraphQLClientError'][] | null;
             extensions?: {
                 [key: string]: unknown;
             } | null;
             data?: components['schemas']['Result'] | null;
-            errors?: components['schemas']['GraphQLClientError'][] | null;
         };
         GraphQLClientSourceLocation: {
             /** Format: int32 */
