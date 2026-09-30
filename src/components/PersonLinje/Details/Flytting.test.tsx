@@ -63,7 +63,7 @@ describe('Flytting', () => {
 
         expect(innenlandsoverskrifter).toEqual([
             'Ny adresse',
-            'Angitt flyttedato',
+            'Angitt flyttedato til ny bolig',
             'Kilde',
             'Gyldig fra',
             'Gyldig til',
@@ -72,7 +72,9 @@ describe('Flytting', () => {
         expect(within(innenlandsrader[1]).getByText('Islandsgate 49')).toBeInTheDocument();
         expect(within(innenlandsrader[2]).getByText('Aremarkveien 7')).toBeInTheDocument();
         expect(within(innenlandsflytting).queryByText('Norge')).not.toBeInTheDocument();
-        expect(within(innenlandsflytting).getByRole('columnheader', { name: 'Angitt flyttedato' })).toBeInTheDocument();
+        expect(
+            within(innenlandsflytting).getByRole('columnheader', { name: 'Angitt flyttedato til ny bolig' })
+        ).toBeInTheDocument();
         expect(within(innenlandsflytting).getByRole('columnheader', { name: 'Sist endret' })).toBeInTheDocument();
         expect(within(innenlandsflytting).getByRole('columnheader', { name: 'Kilde' })).toBeInTheDocument();
         expect(within(innenlandsrader[1]).getByText('Folkeregisteret / Bruker')).toBeInTheDocument();
