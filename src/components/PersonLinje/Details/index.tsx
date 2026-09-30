@@ -16,6 +16,7 @@ import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
 import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
+import { Representasjon } from 'src/components/PersonLinje/Details/Representasjon';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { Kjonn } from 'src/lib/types/modiapersonoversikt-api';
 import DeltBosted from './DeltBosted';
@@ -39,7 +40,6 @@ import SikkerhetstiltakBanner from './SikkerhetstiltakBanner';
 import TilrettelagtKommunikasjon from './TilrettelagtKommunikasjon';
 import TopKort from './TopKort';
 import UtbetalingerOversikt from './UtbetalingerOversikt';
-import Vergemal from './Vergemal';
 import VergemalGammel from './VergemalGammel';
 import YtelserOversikt from './YtelserOversikt';
 
@@ -86,8 +86,8 @@ function PersondataWrapper({ children }: PropsWithChildren) {
 function SeksjonWrapper({ tittel, icon, children }: PropsWithChildren<{ tittel: string; icon?: ReactNode }>) {
     return (
         <VStack gap="space-4" as="section">
-            <HStack gap="space-2" align="center">
-                {icon}
+            <HStack gap="space-2" align="center" wrap={false}>
+                <div>{icon}</div>
                 <Heading size="small" level="2">
                     {tittel}
                 </Heading>
@@ -162,16 +162,15 @@ const PersonlinjeDetails = () => {
                         <SeksjonWrapper tittel="Utbetalinger" icon={<PiggybankIcon aria-hidden fontSize="2rem" />}>
                             <UtbetalingerOversikt />
                         </SeksjonWrapper>
-                        <HGrid columns={{ xs: 1, sm: 2 }} gap={{ xs: 'space-32', lg: 'space-64' }} align="start">
-                            <SeksjonWrapper tittel="Familie" icon={<PersonTallShortIcon aria-hidden fontSize="2rem" />}>
-                                <Familie />
-                            </SeksjonWrapper>
-                            <SeksjonWrapper tittel="Verge" icon={<GavelSoundBlockIcon aria-hidden fontSize="2rem" />}>
-                                <Vergemal />
-                            </SeksjonWrapper>
-                        </HGrid>
-                    </VStack>
-                    <VStack className="lg:col-span-2">
+                        <SeksjonWrapper tittel="Familie" icon={<PersonTallShortIcon aria-hidden fontSize="2rem" />}>
+                            <Familie />
+                        </SeksjonWrapper>
+                        <SeksjonWrapper
+                            tittel="Representasjon og rettslig handleevne"
+                            icon={<GavelSoundBlockIcon aria-hidden fontSize="2rem" />}
+                        >
+                            <Representasjon />
+                        </SeksjonWrapper>
                         <SeksjonWrapper tittel="Flytting" icon={<HouseIcon aria-hidden fontSize="2rem" />}>
                             <Flytting />
                         </SeksjonWrapper>
