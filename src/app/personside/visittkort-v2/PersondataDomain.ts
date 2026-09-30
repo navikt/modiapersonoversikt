@@ -30,6 +30,7 @@ export interface Person extends PersonMedAlderOgDodsdato {
     dodsbo: Array<Dodsbo>;
     fullmakt: Array<Fullmakt>;
     vergemal: Array<Verge>;
+    historiskeVergemal: Array<Verge>;
     tilrettelagtKommunikasjon: TilrettelagtKommunikasjon;
     telefonnummer: Array<Telefon>;
     kontaktInformasjon: KontaktInformasjon;
@@ -230,6 +231,7 @@ export interface Verge {
     tjenesteOppgaver?: string[];
     embete: string | null;
     gyldighetsPeriode: GyldighetsPeriode | null;
+    historisk: boolean;
 }
 
 export interface Foreldreansvar {
