@@ -1,4 +1,4 @@
-import { BodyLong, Box, Heading, InternalHeader, Link, VStack } from '@navikt/ds-react';
+import { BodyLong, BodyShort, Box, Heading, InternalHeader, Link, VStack } from '@navikt/ds-react';
 import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/personvern')({
@@ -63,14 +63,15 @@ function PersonvernPage() {
                                 </BodyLong>
                                 <BodyLong>
                                     Vi bruker informasjonskapsler til å forbedre brukeropplevelsen og innholdet. Når du
-                                    besøker oss sender nettleseren din opplysninger til NAVs analyseverktøy. For hver
+                                    besøker oss sender nettleseren din opplysninger til Navs analyseverktøy. For hver
                                     side du åpner, lagres opplysninger om hvilken side du er på, hvilken side du kommer
                                     fra og går til, hvilken nettleser du bruker, om du bruker PC eller mobile løsninger
                                     m.m. Slik kan vi forbedre flyten og opplevelsen for alle som bruker nettsiden.
                                 </BodyLong>
                                 <BodyLong>
                                     Opplysningene brukes til å kartlegge hvordan og hvor mye Modia brukes, uten å
-                                    identifisere IP-adresser. Vi bruker verktøyet Umami og Skyra i analysearbeidet.
+                                    identifisere IP-adresser. Vi bruker verktøyet Innblikk (internt Nav verktøy) og
+                                    Skyra i analysearbeidet.
                                 </BodyLong>
                                 <SubSection title="Skyra">
                                     Skyra benyttes for å hente inn tilbakemeldinger fra brukerne. Når du sender inn en
@@ -88,12 +89,34 @@ function PersonvernPage() {
                                     personlig. Vi bruker denne informasjonen for å forstå brukernes behov og forbedre
                                     tjenesten basert på tilbakemeldingene vi mottar.
                                 </SubSection>
-                                <SubSection title="Umami">
-                                    Umami brukes til statistikk og analyse av hvordan Modia personoversikt brukes. Umami
-                                    bruker ikke informasjonskapsler, men henter inn opplysninger om nettleseren din for
-                                    å lage en unik ID. Denne ID-en brukes for å skille deg fra andre brukere. For å
-                                    hindre identifisering, bruker vi en egenutviklet proxy som vasker bort deler av
-                                    IP-adressen din før dataene sendes til verktøyet.
+                                <SubSection title="Statistikk og analyseverktøy (Innblikk)">
+                                    <BodyLong spacing>
+                                        Vi bruker et verktøy laget internt i Nav, Innblikk, til å samle inn data til
+                                        bruk i statistikk og analyse. Vi samler inn, analyserer og tolker data for å se
+                                        hvordan brukerene beveger seg gjennom systemet, hvilke handlinger og valg de
+                                        gjør underveis. Ved å følge atferden over tid, kan vi identifisere utfordringer,
+                                        teste forbedringer og måle effekten av endringer.
+                                    </BodyLong>
+                                    <BodyLong spacing>
+                                        <BodyShort>Dataene vi samler inn omfatter blant annet:</BodyShort>
+                                        <VStack as="ul" gap="space-8">
+                                            <li>Hvor mange som besøker ulike sider, og hvor lenge besøket varer.</li>
+                                            <li>Hvordan folk navigerer mellom sider eller steg i en prosess.</li>
+                                            <li>Hvilke knapper, menyer og lenker folk klikker på.</li>
+                                            <li>Hvordan de fant frem til Modia, for eksempel via andre fagsystemer.</li>
+                                            <li>
+                                                {' '}
+                                                Hvilke nettlesere som brukes, hvilket språk nettleseren bruker, hva
+                                                slags enhet som blir brukt (mobil eller pc).
+                                            </li>
+                                        </VStack>
+                                    </BodyLong>
+                                    <BodyLong>
+                                        Data og opplysninger kobles ikke til deg som person, og analysene gjøres kun på
+                                        gruppenivå. Vi kartlegger ikke enkeltpersoners bruksmønstre, og sammenstiller
+                                        aldri data og opplysninger som kan identifisere enkeltindivider. Alt vi samler
+                                        inn lagres sikkert internt i Nav.
+                                    </BodyLong>
                                 </SubSection>
                             </Section>
                         </VStack>
