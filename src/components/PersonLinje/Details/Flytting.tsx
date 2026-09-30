@@ -46,7 +46,7 @@ function InnenlandsflyttingTabell({ flyttinger }: { flyttinger: Adresse[] }) {
             <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell scope="col">Ny adresse</Table.HeaderCell>
-                    <Table.HeaderCell scope="col">Angitt flyttedato</Table.HeaderCell>
+                    <Table.HeaderCell scope="col">Angitt flyttedato til ny bolig</Table.HeaderCell>
                     <Table.HeaderCell scope="col">Kilde</Table.HeaderCell>
                     <Table.HeaderCell scope="col">Gyldig fra</Table.HeaderCell>
                     <Table.HeaderCell scope="col">Gyldig til</Table.HeaderCell>
@@ -162,7 +162,7 @@ export default function Flytting() {
             )}
             {harUtenlandsflytting && (
                 <Accordion.Item>
-                    <Accordion.Header>Inn- og utflytting</Accordion.Header>
+                    <Accordion.Header>Inn- og utflytting Norge</Accordion.Header>
                     <Accordion.Content className="overflow-x-auto">
                         <UtenlandsflyttingTabell
                             innflyttinger={person.innflyttingTilNorge}

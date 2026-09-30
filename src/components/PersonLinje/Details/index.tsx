@@ -128,7 +128,7 @@ const PersonlinjeDetails = () => {
 
                 <HGrid
                     columns={{ xs: 1, lg: 2 }}
-                    gap={{ xs: 'space-32', lg: 'space-96' }}
+                    gap={{ xs: 'space-32', lg: 'space-32 space-96' }}
                     align="start"
                     paddingInline={{ xs: 'space-16', lg: 'space-64 space-128' }}
                     paddingBlock={{ xs: 'space-16', lg: 'space-32 space-16' }}
@@ -166,11 +166,11 @@ const PersonlinjeDetails = () => {
                             </SeksjonWrapper>
                         </HGrid>
                     </VStack>
-                    <Box className="lg:col-span-2">
+                    <VStack className="lg:col-span-2">
                         <SeksjonWrapper tittel="Flytting" icon={<HouseIcon aria-hidden fontSize="2rem" />}>
                             <Flytting />
                         </SeksjonWrapper>
-                    </Box>
+                    </VStack>
                 </HGrid>
             </VStack>
         </Card>
