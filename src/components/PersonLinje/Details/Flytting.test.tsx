@@ -132,6 +132,6 @@ describe('Flytting', () => {
 
         render(<Flytting />);
 
-        expect(screen.getByText('Ingen inn- og utflytting til Norge')).toBeInTheDocument();
+        expect(screen.getByText('Ingen info om flytting og bostedsadresser')).toBeInTheDocument();
     });
 });
