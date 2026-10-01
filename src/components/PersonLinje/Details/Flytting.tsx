@@ -8,7 +8,7 @@ import type {
     UtflyttingFraNorge
 } from 'src/lib/types/modiapersonoversikt-api';
 import { datoEllerNull, ENDASH } from 'src/utils/string-utils';
-import { Adresseinfo } from './components';
+import { Adresseinfo, IngenInfo } from './components';
 
 type Utenlandsflytting = {
     fraLand?: string | null;
@@ -147,7 +147,7 @@ export default function Flytting() {
     const harUtenlandsflytting = person.innflyttingTilNorge.isNotEmpty() || person.utflyttingFraNorge.isNotEmpty();
 
     if (!harInnenlandsflytting && !harUtenlandsflytting) {
-        return null;
+        return <IngenInfo tekst="Ingen info om flytting og bostedsadresser" />;
     }
 
     return (
@@ -160,17 +160,19 @@ export default function Flytting() {
                     </Accordion.Content>
                 </Accordion.Item>
             )}
-            {harUtenlandsflytting && (
-                <Accordion.Item>
-                    <Accordion.Header>Inn- og utflytting Norge</Accordion.Header>
-                    <Accordion.Content className="overflow-x-auto">
+            <Accordion.Item>
+                <Accordion.Header>Inn- og utflytting Norge</Accordion.Header>
+                <Accordion.Content className="overflow-x-auto">
+                    {harUtenlandsflytting ? (
                         <UtenlandsflyttingTabell
                             innflyttinger={person.innflyttingTilNorge}
                             utflyttinger={person.utflyttingFraNorge}
                         />
-                    </Accordion.Content>
-                </Accordion.Item>
-            )}
+                    ) : (
+                        <IngenInfo tekst="Ingen inn- og utflytting til Norge" />
+                    )}
+                </Accordion.Content>
+            </Accordion.Item>
         </Accordion>
     );
 }

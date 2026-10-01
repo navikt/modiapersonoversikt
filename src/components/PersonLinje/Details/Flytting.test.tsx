@@ -98,4 +98,40 @@ describe('Flytting', () => {
         expect(within(utenlandsrader[2]).getAllByRole('cell')[1]).toHaveTextContent('Norge');
         expect(within(utenlandsrader[2]).getAllByRole('cell')[5]).toHaveTextContent('05.04.2024');
     });
+
+    it('viser en stedfortreder når inn- og utflytting til Norge mangler', () => {
+        usePersonDataMock.mockReturnValue({
+            data: {
+                person: {
+                    ...aremark,
+                    innflyttingTilNorge: [],
+                    utflyttingFraNorge: []
+                }
+            }
+        });
+
+        render(<Flytting />);
+
+        fireEvent.click(screen.getByRole('button', { name: 'Inn- og utflytting Norge' }));
+
+        expect(screen.getByText('Ingen inn- og utflytting til Norge')).toBeInTheDocument();
+        expect(screen.queryByRole('table', { name: 'Inn- og Utflytting' })).not.toBeInTheDocument();
+    });
+
+    it('viser en stedfortreder når alle flyttedata mangler', () => {
+        usePersonDataMock.mockReturnValue({
+            data: {
+                person: {
+                    ...aremark,
+                    historiskeBostedAdresser: [],
+                    innflyttingTilNorge: [],
+                    utflyttingFraNorge: []
+                }
+            }
+        });
+
+        render(<Flytting />);
+
+        expect(screen.getByText('Ingen inn- og utflytting til Norge')).toBeInTheDocument();
+    });
 });
