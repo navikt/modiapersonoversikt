@@ -1,6 +1,6 @@
 import { FigureInwardIcon, FigureOutwardIcon } from '@navikt/aksel-icons';
 import { BodyShort, Heading, HGrid, HStack, InlineMessage, Label, VStack } from '@navikt/ds-react';
-import type { PropsWithChildren, ReactNode } from 'react';
+import type { PropsWithChildren } from 'react';
 import { harFeilendeSystemer, hentNavn } from 'src/components/PersonLinje/utils';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { Kjonn, PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
@@ -11,37 +11,23 @@ import { Adresseinfo, LastChanged } from '../components';
 import KRRInfo from '../KontaktInfo/KRRInfo';
 import { tilrettelagtKommunikasjonTekst } from '../TilrettelagtKommunikasjon';
 
-const RESERVERT = 'Reservert';
 const IKKE_REGISTRERT = 'Ikke registrert';
 const KRR_FEILET = 'Feilet ved uthenting fra KRR';
 const KONTONUMMER_FEILET = 'Feilet ved uthenting av kontonummer';
 const NAV_KONTAKTINFO_FEILET = 'Feilet ved uthenting av kontaktinformasjon';
 
-function FlatFelt({ label, verdi, feilmelding }: { label: string; verdi?: ReactNode; feilmelding?: string }) {
-    if (!feilmelding && !verdi) return null;
+function Seksjon({ tittel, feilmelding, children }: PropsWithChildren<{ tittel: string; feilmelding?: string }>) {
+    if (!feilmelding && !children) return null;
     return (
-        <VStack gap="space-2">
-            <Label size="small" className="whitespace-nowrap">
-                {label}
-            </Label>
+        <VStack gap="space-2" className="wrap-break-word">
+            <Label size="small">{tittel}</Label>
             {feilmelding ? (
                 <InlineMessage status="warning" size="small">
                     {feilmelding}
                 </InlineMessage>
             ) : (
-                <VStack gap="space-2" className="wrap-break-word">
-                    {verdi}
-                </VStack>
+                children
             )}
-        </VStack>
-    );
-}
-
-function Seksjon({ tittel, children }: PropsWithChildren<{ tittel: string }>) {
-    return (
-        <VStack gap="space-2">
-            <Label size="small">{tittel}</Label>
-            {children}
         </VStack>
     );
 }
@@ -66,10 +52,7 @@ function TopKort() {
     const mobil = person.kontaktInformasjon.mobil;
     const epost = person.kontaktInformasjon.epost;
     const reservasjonOppdatert = person.kontaktInformasjon.erReservert?.sistOppdatert;
-    const telefon = erReservert ? RESERVERT : mobil?.value ? formaterMobiltelefonnummer(mobil.value) : IKKE_REGISTRERT;
-    const epostVerdi = erReservert ? RESERVERT : epost?.value || IKKE_REGISTRERT;
-
-    const kontonummer = person.bankkonto?.kontonummer ?? IKKE_REGISTRERT;
+    const kontonummer = person.bankkonto?.kontonummer;
     const navTelefon = [...person.telefonnummer].sort((a, b) => a.prioritet - b.prioritet).at(0);
 
     const harTolkebehov =
@@ -88,72 +71,48 @@ function TopKort() {
 
             <HGrid columns={{ xs: 1, md: 2, xl: 3 }} gap={{ xs: 'space-16', xl: 'space-8' }} align="start">
                 <VStack gap="space-16">
-                    <FlatFelt
-                        label="Telefon"
-                        verdi={
-                            erReservert && reservasjonOppdatert ? (
-                                <KRRInfo
-                                    erReservert
-                                    reservasjonOppdatert={formaterDato(reservasjonOppdatert)}
-                                    kontaktinformasjonVerdi={null}
-                                    sistOppdatert={null}
-                                />
-                            ) : !erReservert && mobil?.sistOppdatert && mobil.value ? (
-                                <KRRInfo
-                                    kontaktinformasjonVerdi={telefon}
-                                    sistOppdatert={formaterDato(mobil.sistOppdatert)}
-                                />
-                            ) : (
-                                <BodyShort size="small">{telefon}</BodyShort>
-                            )
-                        }
-                        feilmelding={krrFeiler ? KRR_FEILET : undefined}
-                    />
-                    <FlatFelt
-                        label="Telefon til bruk for Nav"
-                        verdi={
-                            navTelefon && (
-                                <>
-                                    <BodyShort size="small">
-                                        {formaterMobiltelefonnummer(navTelefon.identifikator)}
-                                    </BodyShort>
-                                    <LastChanged sistEndret={navTelefon.sistEndret} />
-                                </>
-                            )
-                        }
+                    <Seksjon tittel="Telefon" feilmelding={krrFeiler ? KRR_FEILET : undefined}>
+                        <KRRInfo
+                            erReservert={erReservert}
+                            reservasjonOppdatert={reservasjonOppdatert ? formaterDato(reservasjonOppdatert) : null}
+                            kontaktinformasjonVerdi={mobil?.value ? formaterMobiltelefonnummer(mobil.value) : null}
+                            sistOppdatert={mobil?.sistOppdatert ? formaterDato(mobil.sistOppdatert) : null}
+                            visVedReservasjon
+                        />
+                    </Seksjon>
+                    <Seksjon
+                        tittel="Telefon til bruk for Nav"
                         feilmelding={navKontaktinfoFeiler ? NAV_KONTAKTINFO_FEILET : undefined}
-                    />
-                    <FlatFelt
-                        label="E-post"
-                        verdi={
-                            erReservert && reservasjonOppdatert ? (
-                                <KRRInfo
-                                    erReservert
-                                    reservasjonOppdatert={formaterDato(reservasjonOppdatert)}
-                                    kontaktinformasjonVerdi={null}
-                                    sistOppdatert={null}
-                                />
-                            ) : !erReservert && epost?.sistOppdatert && epost.value ? (
-                                <KRRInfo
-                                    kontaktinformasjonVerdi={epostVerdi}
-                                    sistOppdatert={formaterDato(epost.sistOppdatert)}
-                                />
-                            ) : (
-                                <BodyShort size="small">{epostVerdi}</BodyShort>
-                            )
-                        }
-                        feilmelding={krrFeiler ? KRR_FEILET : undefined}
-                    />
-                    <FlatFelt
-                        label="Kontonummer"
-                        verdi={
+                    >
+                        {navTelefon && (
                             <>
-                                <BodyShort size="small">{formatertKontonummerString(kontonummer)}</BodyShort>
-                                <LastChanged sistEndret={person.bankkonto?.sistEndret} />
+                                <BodyShort size="small">
+                                    {[
+                                        navTelefon.retningsnummer?.kode,
+                                        formaterMobiltelefonnummer(navTelefon.identifikator)
+                                    ]
+                                        .filter(Boolean)
+                                        .join(' ')}
+                                </BodyShort>
+                                <LastChanged sistEndret={navTelefon.sistEndret} />
                             </>
-                        }
-                        feilmelding={bankkontoFeiler ? KONTONUMMER_FEILET : undefined}
-                    />
+                        )}
+                    </Seksjon>
+                    <Seksjon tittel="E-post" feilmelding={krrFeiler ? KRR_FEILET : undefined}>
+                        <KRRInfo
+                            erReservert={erReservert}
+                            reservasjonOppdatert={reservasjonOppdatert ? formaterDato(reservasjonOppdatert) : null}
+                            kontaktinformasjonVerdi={epost?.value ?? null}
+                            sistOppdatert={epost?.sistOppdatert ? formaterDato(epost.sistOppdatert) : null}
+                            visVedReservasjon
+                        />
+                    </Seksjon>
+                    <Seksjon tittel="Kontonummer" feilmelding={bankkontoFeiler ? KONTONUMMER_FEILET : undefined}>
+                        <BodyShort size="small">
+                            {kontonummer ? formatertKontonummerString(kontonummer) : IKKE_REGISTRERT}
+                        </BodyShort>
+                        <LastChanged sistEndret={person.bankkonto?.sistEndret} />
+                    </Seksjon>
                 </VStack>
 
                 <VStack gap="space-16">

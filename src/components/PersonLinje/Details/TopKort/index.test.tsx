@@ -22,19 +22,34 @@ describe('TopKort', () => {
 
         expect(screen.getByText('99 99 99 99')).toBeInTheDocument();
         expect(screen.getByText('test@example.no')).toBeInTheDocument();
-        expect(screen.getByText('77777777')).toBeInTheDocument();
+        expect(screen.getByText('77 77 77 77')).toBeInTheDocument();
         expect(screen.queryByText('88888888')).not.toBeInTheDocument();
         expect(screen.getByText('Testgata 1')).toBeInTheDocument();
+    });
+
+    it('viser landskode for prioritert Nav-telefon og formaterer KRR-telefonen', () => {
+        person.telefonnummer[1].retningsnummer = { kode: '+47', beskrivelse: 'Norge' };
+        render(<TopKort />);
+
+        expect(screen.getByText('+47 77 77 77 77')).toBeInTheDocument();
+        expect(screen.getByText('99 99 99 99')).toBeInTheDocument();
+    });
+
+    it('beholder landskode som er del av KRR-telefonnummeret', () => {
+        person.kontaktInformasjon.mobil = { value: '+4799999999', sistOppdatert: '2024-01-02' };
+        render(<TopKort />);
+
+        expect(screen.getByText('+47 99 99 99 99')).toBeInTheDocument();
     });
 
     it('viser etiketten over verdien og endringsdatoen med avstand mellom feltene', () => {
         render(<TopKort />);
 
-        const telefonFelt = screen.getByText('Telefon:').parentElement;
+        const telefonFelt = screen.getByText('Telefon').parentElement;
         const kontaktKolonne = telefonFelt?.parentElement;
         expect(telefonFelt).toHaveClass('aksel-vstack');
-        expect(telefonFelt?.children[1]).toHaveTextContent('99 99 99 99');
-        expect(telefonFelt?.children[1]).toHaveTextContent('Endret 02.01.2024');
+        expect(telefonFelt).toHaveTextContent('99 99 99 99');
+        expect(telefonFelt).toHaveTextContent('Endret 02.01.2024');
         expect(kontaktKolonne?.style.getPropertyValue('--__axc-stack-gap-xs')).toBe('var(--ax-space-16)');
         expect(kontaktKolonne?.children).toHaveLength(4);
     });
@@ -46,7 +61,7 @@ describe('TopKort', () => {
         };
         render(<TopKort />);
 
-        const kontonummer = screen.getByText('00000000000');
+        const kontonummer = screen.getByText('0000.00.00000');
         const adresse = screen.getByText('Testgata 1');
         const tolk = screen.getByText('Tegnspråk: Norsk (NO)');
         expect(kontonummer.compareDocumentPosition(adresse) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
@@ -81,13 +96,13 @@ describe('TopKort', () => {
         expect(screen.queryByText(/Endret null|Endret undefined/)).not.toBeInTheDocument();
     });
 
-    it('skjuler kontaktverdier ved reservasjon og viser reservasjonsdato', () => {
+    it('viser reservert telefonnummer med dato, men skjuler e-post', () => {
         person.kontaktInformasjon.erReservert = { value: true, sistOppdatert: '2024-03-05' };
         render(<TopKort />);
 
-        expect(screen.getAllByText('Reservert')).toHaveLength(2);
+        expect(screen.getByText('99 99 99 99 (Reservert)')).toBeInTheDocument();
+        expect(screen.getByText('Reservert')).toBeInTheDocument();
         expect(screen.getAllByText('Endret 05.03.2024 i Kontakt- og reservasjonsregisteret')).toHaveLength(2);
-        expect(screen.queryByText('99 99 99 99')).not.toBeInTheDocument();
         expect(screen.queryByText('test@example.no')).not.toBeInTheDocument();
     });
 
@@ -102,7 +117,7 @@ describe('TopKort', () => {
         expect(screen.getAllByText('Feilet ved uthenting fra KRR')).toHaveLength(2);
         expect(screen.getByText('Feilet ved uthenting av kontaktinformasjon')).toBeInTheDocument();
         expect(screen.getByText('Feilet ved uthenting av kontonummer')).toBeInTheDocument();
-        expect(screen.queryByText('00000000000')).not.toBeInTheDocument();
+        expect(screen.queryByText('0000.00.00000')).not.toBeInTheDocument();
         expect(screen.queryByText('test@example.no')).not.toBeInTheDocument();
         expect(screen.queryByText(/Endret 02.01.2024/)).not.toBeInTheDocument();
     });
