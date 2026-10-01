@@ -6,7 +6,10 @@ import { Group, InfoElement } from './components';
 
 type TilrettelagtKommunikasjon = PersonData['tilrettelagtKommunikasjon']['tegnsprak' | 'talesprak'];
 
-function tilrettelagtKommunikasjonTekst(beskrivelse: string, tilrettelagtKommunikasjon: TilrettelagtKommunikasjon) {
+export function tilrettelagtKommunikasjonTekst(
+    beskrivelse: string,
+    tilrettelagtKommunikasjon: TilrettelagtKommunikasjon
+) {
     return tilrettelagtKommunikasjon.map((element) => (
         <BodyShort size="small" key={element.kode}>
             {beskrivelse}: {element.beskrivelse} ({element.kode})
