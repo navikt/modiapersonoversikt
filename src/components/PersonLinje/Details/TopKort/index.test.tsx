@@ -96,14 +96,13 @@ describe('TopKort', () => {
         expect(screen.queryByText(/Endret null|Endret undefined/)).not.toBeInTheDocument();
     });
 
-    it('viser reservert telefonnummer med dato, men skjuler e-post', () => {
+    it('viser reservert telefonnummer og e-post med reservasjonsdato', () => {
         person.kontaktInformasjon.erReservert = { value: true, sistOppdatert: '2024-03-05' };
         render(<TopKort />);
 
         expect(screen.getByText('99 99 99 99 (Reservert)')).toBeInTheDocument();
-        expect(screen.getByText('Reservert')).toBeInTheDocument();
+        expect(screen.getByText('test@example.no (Reservert)')).toBeInTheDocument();
         expect(screen.getAllByText('Endret 05.03.2024 i Kontakt- og reservasjonsregisteret')).toHaveLength(2);
-        expect(screen.queryByText('test@example.no')).not.toBeInTheDocument();
     });
 
     it('lar feilmelding gå foran verdi og endringsdato for feilende kilder', () => {
