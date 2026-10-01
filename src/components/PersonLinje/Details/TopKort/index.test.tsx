@@ -23,7 +23,7 @@ describe('TopKort', () => {
         expect(screen.getByText('99 99 99 99')).toBeInTheDocument();
         expect(screen.getByText('test@example.no')).toBeInTheDocument();
         expect(screen.getByText('77 77 77 77')).toBeInTheDocument();
-        expect(screen.queryByText('88888888')).not.toBeInTheDocument();
+        expect(screen.queryByText('88 88 88 88')).not.toBeInTheDocument();
         expect(screen.getByText('Testgata 1')).toBeInTheDocument();
     });
 
