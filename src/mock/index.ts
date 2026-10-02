@@ -310,7 +310,11 @@ const personsokHandler = [
 
 const tildelteOppgaverHandler = http.post(
     `${apiBaseUri}/oppgaver/tildelt`,
-    withDelayedResponse(randomDelay(), STATUS_OK, () => oppgaveBackendMock.getTildelteOppgaver())
+    withDelayedResponse(
+        randomDelay(),
+        STATUS_OK,
+        mockGeneratorMedFodselsnummerV2((fnr) => oppgaveBackendMock.getTildelteOppgaver(fnr))
+    )
 );
 
 const baseUrlsHandler = http.get(`${apiBaseUri}/baseurls`, withDelayedResponse(randomDelay(), STATUS_OK, mockBaseUrls));

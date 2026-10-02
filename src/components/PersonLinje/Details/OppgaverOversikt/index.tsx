@@ -52,7 +52,7 @@ function OppgaveKort({ traad, oppgave, tema }: { traad: TraadDto; oppgave: Oppga
     const frist = datoEllerNull(oppgave.fristFerdigstillelse);
 
     return (
-        <LinkCard size="small" className="rounded-(--ax-radius-8)">
+        <LinkCard size="small" className="bg-ax-bg-meta-purple-soft">
             <LinkCard.Title as="span" className="min-w-0 truncate">
                 <LinkCard.Anchor asChild>
                     <Link

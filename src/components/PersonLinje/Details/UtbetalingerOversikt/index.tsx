@@ -3,12 +3,7 @@ import { BodyShort, Box, Skeleton, Table, Tag, VStack } from '@navikt/ds-react';
 import { Link } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import type { ReactNode } from 'react';
-import {
-    datoVisning,
-    formaterNOK,
-    getGjeldendeDatoForUtbetaling,
-    utbetalingDatoComparator
-} from 'src/components/Utbetaling/utils';
+import { formaterNOK, getGjeldendeDatoForUtbetaling, utbetalingDatoComparator } from 'src/components/Utbetaling/utils';
 import { errorPlaceholder, responseErrorMessage } from 'src/components/ytelser/utils';
 import type { Utbetaling } from 'src/generated/modiapersonoversikt-api';
 import { useUtbetalinger } from 'src/lib/clients/modiapersonoversikt-api';
@@ -92,7 +87,6 @@ function UtbetalingerOversikt() {
                         <Table.Row>
                             <Table.HeaderCell scope="col">Ytelse</Table.HeaderCell>
                             <Table.HeaderCell scope="col">Beløp</Table.HeaderCell>
-                            <Table.HeaderCell scope="col">Dato</Table.HeaderCell>
                             <Table.HeaderCell scope="col">Status</Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
@@ -107,9 +101,6 @@ function UtbetalingerOversikt() {
                                     </Table.HeaderCell>
                                     <Table.DataCell className="whitespace-nowrap">
                                         {formaterNOK(ytelse.nettobelop)} NOK
-                                    </Table.DataCell>
-                                    <Table.DataCell className="whitespace-nowrap">
-                                        {datoVisning(utbetaling)}
                                     </Table.DataCell>
                                     <Table.DataCell className="whitespace-nowrap align-middle">
                                         <Tag
