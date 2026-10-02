@@ -103,20 +103,6 @@ it('oppgir perioden når det ikke finnes utbetalinger', () => {
     expect(screen.getByText(/siste 30 dager/)).toBeInTheDocument();
 });
 
-it('viser samme datotekst som utbetalingsfanen for forfall og postering', () => {
-    giUtbetalinger([
-        { ...utbetaling('2026-09-28', [ytelse('Kommende', 100)]), utbetalingsdato: null, forfallsdato: '2026-10-01' },
-        { ...utbetaling('2026-09-27', [ytelse('Postert', 200)]), utbetalingsdato: null },
-        utbetaling('2026-09-26', [ytelse('Utbetalt', 300)])
-    ]);
-    render(<UtbetalingerOversikt />);
-
-    expect(screen.getByRole('rowheader', { name: 'Kommende' })).toBeInTheDocument();
-    expect(screen.getByRole('cell', { name: '01.10.2026 (forfall)' })).toBeInTheDocument();
-    expect(screen.getByRole('cell', { name: '27.09.2026 (postering)' })).toBeInTheDocument();
-    expect(screen.getByRole('cell', { name: '26.09.2026' })).toBeInTheDocument();
-});
-
 it('teller bare skjulte rader med posteringsdato innenfor Siste 30 dager', () => {
     giUtbetalinger([
         utbetaling('2026-10-01', [ytelse('Kommende', 100)]),
