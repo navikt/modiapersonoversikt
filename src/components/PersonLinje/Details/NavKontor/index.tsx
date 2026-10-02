@@ -198,9 +198,6 @@ function NavKontor() {
                             const dagensApningstid = hentDagensApningstid(mottak.apningstider);
                             return (
                                 <VStack gap="space-8" key={`${mottak.besoksadresse.linje1}-${index}`}>
-                                    <Heading size="xsmall" level="3">
-                                        Publikumsmottak {index + 2}
-                                    </Heading>
                                     <HGrid
                                         columns={{ xs: 1, sm: 2 }}
                                         gap={{ xs: 'space-16', sm: 'space-8 space-16' }}
