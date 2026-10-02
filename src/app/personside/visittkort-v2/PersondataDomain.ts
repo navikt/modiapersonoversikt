@@ -15,6 +15,7 @@ export interface Person extends PersonMedAlderOgDodsdato {
     alder: number | null;
     dodsdato: Array<Dodsdato>;
     bostedAdresse: Array<Adresse>;
+    historiskeBostedAdresser: Array<Adresse>;
     kontaktAdresse: Array<Adresse>;
     oppholdsAdresse: Array<Adresse>;
     navEnhet: Enhet | null;
@@ -116,6 +117,7 @@ export interface Adresse {
     linje1: string;
     linje2: string | null;
     linje3: string | null;
+    angittFlyttedato?: LocalDate | null;
     sistEndret: SistEndret | null;
     gyldighetsPeriode: GyldighetsPeriode | null;
 }

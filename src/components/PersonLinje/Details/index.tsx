@@ -24,6 +24,7 @@ import DokumenterTemaOversikt from './DokumenterTemaOversikt';
 import Familie from './Familie';
 import FamilieGammel from './Familie/FamilieGammel';
 import Flytting from './Flytting';
+import FlyttingGammel from './FlyttingGammel';
 import ForeldreAnsvar from './ForeldreAnsvar';
 import Fullmakt from './Fullmakt';
 import KontaktInfo from './KontaktInfo';
@@ -128,7 +129,7 @@ const PersonlinjeDetails = () => {
 
                 <HGrid
                     columns={{ xs: 1, lg: 2 }}
-                    gap={{ xs: 'space-32', lg: 'space-96' }}
+                    gap={{ xs: 'space-32', lg: 'space-32 space-96' }}
                     align="start"
                     paddingInline={{ xs: 'space-16', lg: 'space-64 space-128' }}
                     paddingBlock={{ xs: 'space-16', lg: 'space-32 space-16' }}
@@ -165,6 +166,8 @@ const PersonlinjeDetails = () => {
                                 <Vergemal />
                             </SeksjonWrapper>
                         </HGrid>
+                    </VStack>
+                    <VStack className="lg:col-span-2">
                         <SeksjonWrapper tittel="Flytting" icon={<HouseIcon aria-hidden fontSize="2rem" />}>
                             <Flytting />
                         </SeksjonWrapper>
@@ -195,7 +198,7 @@ const PersonlinjeDetailsGammel = () => {
                 <VStack flexBasis="30%" flexGrow="1">
                     <NavKontorGammel />
                     <Sikkerhetstiltak />
-                    <Flytting />
+                    <FlyttingGammel />
                     <PdlLenke />
                 </VStack>
             </HStack>

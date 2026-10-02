@@ -1367,7 +1367,6 @@ export interface components {
             monthNumber: number;
             /** Format: int32 */
             nanosecond: number;
-            time: components['schemas']['LocalTime'];
             /** Format: int32 */
             year: number;
             /**
@@ -1382,6 +1381,7 @@ export interface components {
             minute: number;
             /** Format: int32 */
             second: number;
+            time: components['schemas']['LocalTime'];
             /** @enum {string} */
             month: LocalDateTimeMonth;
             /** @enum {string} */
@@ -2118,18 +2118,18 @@ export interface components {
             boost?: number | null;
         };
         GraphQLClientError: {
+            extensions?: {
+                [key: string]: unknown;
+            } | null;
             locations?: components['schemas']['GraphQLClientSourceLocation'][] | null;
             message: string;
             path?: unknown[] | null;
-            extensions?: {
-                [key: string]: unknown;
-            } | null;
         };
         GraphQLClientResponseResult: {
-            errors?: components['schemas']['GraphQLClientError'][] | null;
             extensions?: {
                 [key: string]: unknown;
             } | null;
+            errors?: components['schemas']['GraphQLClientError'][] | null;
             data?: components['schemas']['Result'] | null;
         };
         GraphQLClientSourceLocation: {

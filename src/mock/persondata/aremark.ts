@@ -103,6 +103,42 @@ export const aremark: Person = {
             gyldighetsPeriode: null
         }
     ],
+    historiskeBostedAdresser: [
+        {
+            coAdresse: null,
+            linje1: 'Islandsgate 49',
+            linje2: '7693 Hovedøya',
+            linje3: 'Norge',
+            angittFlyttedato: null,
+            sistEndret: {
+                ident: 'Folkeregisteret',
+                tidspunkt: '2021-10-01T10:00:00' as LocalDateTime,
+                system: 'Folkeregisteret',
+                kilde: 'Bruker'
+            },
+            gyldighetsPeriode: {
+                gyldigFraOgMed: '2021-10-01' as LocalDate,
+                gyldigTilOgMed: null
+            }
+        },
+        {
+            coAdresse: null,
+            linje1: 'Aremarkveien 7',
+            linje2: '1798 Aremark',
+            linje3: 'Norge',
+            angittFlyttedato: '2020-01-01' as LocalDate,
+            sistEndret: {
+                ident: 'Folkeregisteret',
+                tidspunkt: '2020-01-02T10:00:00' as LocalDateTime,
+                system: 'Folkeregisteret',
+                kilde: 'Bruker'
+            },
+            gyldighetsPeriode: {
+                gyldigFraOgMed: '2020-01-01' as LocalDate,
+                gyldigTilOgMed: '2021-01-01' as LocalDate
+            }
+        }
+    ],
     kontaktAdresse: [
         {
             coAdresse: 'C/O Annet navn',
