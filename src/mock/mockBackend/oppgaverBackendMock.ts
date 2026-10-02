@@ -20,8 +20,9 @@ export class OppgaverBackendMock {
     }
 
     public getTildelteOppgaver(fnr?: string): OppgaveDto[] {
+        const tildelteOppgaver = this.tildelteOppgaver.filter((oppgave) => oppgave.fnr === fnr);
         if (fnr !== aremark.personIdent || this.aremarkOppgaveFerdigstilt) {
-            return this.tildelteOppgaver;
+            return tildelteOppgaver;
         }
 
         return [
@@ -39,7 +40,7 @@ export class OppgaverBackendMock {
                 aktivDato: dayjs().format('YYYY-MM-DD'),
                 fristFerdigstillelse: dayjs().add(3, 'day').format('YYYY-MM-DD')
             },
-            ...this.tildelteOppgaver
+            ...tildelteOppgaver
         ];
     }
 
