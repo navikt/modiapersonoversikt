@@ -24,7 +24,7 @@ const mottak = (adresse: string): Publikumsmottak => ({
 });
 
 function mottakGrid(nummer: number): HTMLElement {
-    const grid = screen.getByRole('heading', { name: `Publikumsmottak ${nummer}` }).nextElementSibling;
+    const grid = screen.getByText(`Testgata ${nummer}`).closest('.aksel-hgrid');
     if (!(grid instanceof HTMLElement)) throw new Error(`Mangler grid for publikumsmottak ${nummer}`);
     return grid;
 }
@@ -74,8 +74,8 @@ describe('NavKontor', () => {
         expect(readMore).toHaveAttribute('aria-expanded', 'true');
         for (let nummer = 2; nummer <= antall; nummer++) {
             expect(screen.getByText(`Testgata ${nummer}`)).toBeVisible();
-            expect(screen.getByText(`Publikumsmottak ${nummer}`)).toBeVisible();
         }
+        expect(screen.queryByRole('heading', { name: /^Publikumsmottak \d+$/ })).not.toBeInTheDocument();
         expect(screen.getAllByText('09:00 - 15:00')).toHaveLength(antall);
         for (let nummer = 2; nummer <= antall; nummer++) {
             const grid = mottakGrid(nummer);
