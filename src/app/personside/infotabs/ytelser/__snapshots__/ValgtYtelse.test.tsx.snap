@@ -231,7 +231,7 @@ exports[`Om sykepenger matcher snapshot 1`] = `
                   <dd
                     class="typo-element"
                   >
-                    19.01.2014 - 14.01.2014
+                    05.10.2018 - 29.10.2018
                   </dd>
                 </div>
                 <div>
@@ -557,31 +557,12 @@ exports[`Om sykepenger matcher snapshot 1`] = `
                   <td
                     role="cell"
                   >
-                    Pga mistenkelig oppførsel
+                    Ferie
                   </td>
                   <td
                     role="cell"
                   >
-                    13.10.2017 - 10.10.2018
-                  </td>
-                  <td
-                    role="cell"
-                  >
-                    62%
-                  </td>
-                </tr>
-                <tr
-                  role="row"
-                >
-                  <td
-                    role="cell"
-                  >
-                    Pga mistenkelig oppførsel
-                  </td>
-                  <td
-                    role="cell"
-                  >
-                    13.10.2017 - 10.10.2018
+                    01.10.2018 - 10.10.2018
                   </td>
                   <td
                     role="cell"

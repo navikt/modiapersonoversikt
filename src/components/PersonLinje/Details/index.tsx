@@ -1,5 +1,6 @@
 import {
     EnvelopeClosedIcon,
+    FileTextIcon,
     GavelSoundBlockIcon,
     HandHeartIcon,
     HouseIcon,
@@ -19,9 +20,11 @@ import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { Kjonn } from 'src/lib/types/modiapersonoversikt-api';
 import DeltBosted from './DeltBosted';
 import DodsdatoInfo from './DodsdatoInfo';
+import DokumenterTemaOversikt from './DokumenterTemaOversikt';
 import Familie from './Familie';
 import FamilieGammel from './Familie/FamilieGammel';
 import Flytting from './Flytting';
+import FlyttingGammel from './FlyttingGammel';
 import ForeldreAnsvar from './ForeldreAnsvar';
 import Fullmakt from './Fullmakt';
 import KontaktInfo from './KontaktInfo';
@@ -126,12 +129,18 @@ const PersonlinjeDetails = () => {
 
                 <HGrid
                     columns={{ xs: 1, lg: 2 }}
-                    gap={{ xs: 'space-32', lg: 'space-96' }}
+                    gap={{ xs: 'space-32', lg: 'space-32 space-96' }}
                     align="start"
                     paddingInline={{ xs: 'space-16', lg: 'space-64 space-128' }}
                     paddingBlock={{ xs: 'space-16', lg: 'space-32 space-16' }}
                 >
                     <VStack gap="space-32">
+                        <SeksjonWrapper
+                            tittel="Tema for dokumenter"
+                            icon={<FileTextIcon aria-hidden fontSize="2rem" />}
+                        >
+                            <DokumenterTemaOversikt />
+                        </SeksjonWrapper>
                         <SeksjonWrapper
                             tittel="Arbeidsrettet oppfølging"
                             icon={<PersonGroupIcon aria-hidden fontSize="2rem" />}
@@ -157,6 +166,8 @@ const PersonlinjeDetails = () => {
                                 <Vergemal />
                             </SeksjonWrapper>
                         </HGrid>
+                    </VStack>
+                    <VStack className="lg:col-span-2">
                         <SeksjonWrapper tittel="Flytting" icon={<HouseIcon aria-hidden fontSize="2rem" />}>
                             <Flytting />
                         </SeksjonWrapper>
@@ -187,7 +198,7 @@ const PersonlinjeDetailsGammel = () => {
                 <VStack flexBasis="30%" flexGrow="1">
                     <NavKontorGammel />
                     <Sikkerhetstiltak />
-                    <Flytting />
+                    <FlyttingGammel />
                     <PdlLenke />
                 </VStack>
             </HStack>

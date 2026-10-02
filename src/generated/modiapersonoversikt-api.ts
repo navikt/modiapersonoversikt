@@ -212,6 +212,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    '/rest/personsok/v4': {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations['sokPdlV4'];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     '/rest/personsok/v3': {
         parameters: {
             query?: never;
@@ -1313,14 +1329,14 @@ export interface components {
         LocalDate: {
             /** Format: date */
             value?: string;
+            /** Format: date */
+            value$kotlinx_datetime: string;
             /**
              * Format: int32
              * @deprecated
              * @description Use the 'month' property instead
              */
             monthNumber: number;
-            /** Format: date */
-            value$kotlinx_datetime: string;
             /** Format: int32 */
             year: number;
             /**
@@ -1341,6 +1357,8 @@ export interface components {
         LocalDateTime: {
             /** Format: date-time */
             value?: string;
+            /** Format: date-time */
+            value$kotlinx_datetime: string;
             /**
              * Format: int32
              * @deprecated
@@ -1349,9 +1367,6 @@ export interface components {
             monthNumber: number;
             /** Format: int32 */
             nanosecond: number;
-            /** Format: date-time */
-            value$kotlinx_datetime: string;
-            time: components['schemas']['LocalTime'];
             /** Format: int32 */
             year: number;
             /**
@@ -1366,6 +1381,7 @@ export interface components {
             minute: number;
             /** Format: int32 */
             second: number;
+            time: components['schemas']['LocalTime'];
             /** @enum {string} */
             month: LocalDateTimeMonth;
             /** @enum {string} */
@@ -1378,9 +1394,9 @@ export interface components {
         };
         LocalTime: {
             value?: string;
+            value$kotlinx_datetime: string;
             /** Format: int32 */
             nanosecond: number;
-            value$kotlinx_datetime: string;
             /** Format: int32 */
             hour: number;
             /** Format: int32 */
@@ -1432,7 +1448,7 @@ export interface components {
             /** Format: date-time */
             nyesteDokumentDato?: string | null;
         };
-        PersonsokRequestV3: {
+        PersonsokRequest: {
             enhet?: string | null;
             navn?: string | null;
             fornavn?: string | null;
@@ -1447,6 +1463,10 @@ export interface components {
             kjonn?: string | null;
             adresse?: string | null;
             telefonnummer?: string | null;
+            /** Format: int32 */
+            pageNumber?: number | null;
+            /** Format: int32 */
+            resultsPerPage?: number | null;
         };
         BrukerinfoDTO: {
             gjeldendePostadresseType?: components['schemas']['KodeverdiDTO'] | null;
@@ -1471,6 +1491,15 @@ export interface components {
             status?: components['schemas']['KodeverdiDTO'] | null;
             brukerinfo?: components['schemas']['BrukerinfoDTO'] | null;
             utenlandskID?: components['schemas']['UtenlandskIdDTO'][] | null;
+        };
+        PersonSokResponsV4: {
+            treff: components['schemas']['PersonSokResponsDTO'][];
+            /** Format: int32 */
+            pageNumber?: number | null;
+            /** Format: int32 */
+            totalHits?: number | null;
+            /** Format: int32 */
+            totalPages?: number | null;
         };
         PersonnavnDTO: {
             fornavn: string;
@@ -1650,6 +1679,7 @@ export interface components {
             alder?: number | null;
             dodsdato: components['schemas']['Dodsdato'][];
             bostedAdresse: components['schemas']['Adresse'][];
+            historiskeBostedAdresser: components['schemas']['Adresse'][];
             kontaktAdresse: components['schemas']['Adresse'][];
             oppholdsAdresse: components['schemas']['Adresse'][];
             navEnhet?: components['schemas']['PersonDataEnhet'] | null;
@@ -2088,18 +2118,18 @@ export interface components {
             boost?: number | null;
         };
         GraphQLClientError: {
+            extensions?: {
+                [key: string]: unknown;
+            } | null;
             locations?: components['schemas']['GraphQLClientSourceLocation'][] | null;
             message: string;
             path?: unknown[] | null;
-            extensions?: {
-                [key: string]: unknown;
-            } | null;
         };
         GraphQLClientResponseResult: {
-            errors?: components['schemas']['GraphQLClientError'][] | null;
             extensions?: {
                 [key: string]: unknown;
             } | null;
+            errors?: components['schemas']['GraphQLClientError'][] | null;
             data?: components['schemas']['Result'] | null;
         };
         GraphQLClientSourceLocation: {
@@ -2437,11 +2467,12 @@ export type Soknadsstatus = components['schemas']['Soknadsstatus'];
 export type SoknadsstatusSakstema = components['schemas']['SoknadsstatusSakstema'];
 export type ResultatSaksDokumenter = components['schemas']['ResultatSaksDokumenter'];
 export type Sakstema = components['schemas']['Sakstema'];
-export type PersonsokRequestV3 = components['schemas']['PersonsokRequestV3'];
+export type PersonsokRequest = components['schemas']['PersonsokRequest'];
 export type BrukerinfoDto = components['schemas']['BrukerinfoDTO'];
 export type KodeverdiDto = components['schemas']['KodeverdiDTO'];
 export type NorskIdentDto = components['schemas']['NorskIdentDTO'];
 export type PersonSokResponsDto = components['schemas']['PersonSokResponsDTO'];
+export type PersonSokResponsV4 = components['schemas']['PersonSokResponsV4'];
 export type PersonnavnDto = components['schemas']['PersonnavnDTO'];
 export type UtenlandskIdDto = components['schemas']['UtenlandskIdDTO'];
 export type Adressat = components['schemas']['Adressat'];
@@ -2907,6 +2938,30 @@ export interface operations {
             };
         };
     };
+    sokPdlV4: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                'application/json': components['schemas']['PersonsokRequest'];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    '*/*': components['schemas']['PersonSokResponsV4'];
+                };
+            };
+        };
+    };
     sokPdlV3: {
         parameters: {
             query?: never;
@@ -2916,7 +2971,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                'application/json': components['schemas']['PersonsokRequestV3'];
+                'application/json': components['schemas']['PersonsokRequest'];
             };
         };
         responses: {

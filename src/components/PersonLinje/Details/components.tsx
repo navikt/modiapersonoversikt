@@ -1,5 +1,5 @@
 import { BodyShort, Box, Heading, HStack, InlineMessage, VStack } from '@navikt/ds-react';
-import type { PropsWithChildren, ReactElement } from 'react';
+import type { ComponentProps, PropsWithChildren, ReactElement } from 'react';
 import type { Adresse, SistEndret } from 'src/lib/types/modiapersonoversikt-api';
 import { formaterDato } from 'src/utils/string-utils';
 import { twMerge } from 'tailwind-merge';
@@ -52,15 +52,21 @@ export const InfoElement = ({
     </Box>
 );
 
-export const Adresseinfo = ({ adresse }: { adresse: Adresse }) => {
-    const coAdresse = adresse.coAdresse ? <BodyShort size="small">{adresse.coAdresse}</BodyShort> : null;
-    const adresselinje2 = adresse.linje2 ? <BodyShort size="small">{adresse.linje2}</BodyShort> : null;
-    const adresselinje3 = adresse.linje3 ? <BodyShort size="small">{adresse.linje3}</BodyShort> : null;
+export const Adresseinfo = ({
+    adresse,
+    size = 'small'
+}: {
+    adresse: Adresse;
+    size?: ComponentProps<typeof BodyShort>['size'];
+}) => {
+    const coAdresse = adresse.coAdresse ? <BodyShort size={size}>{adresse.coAdresse}</BodyShort> : null;
+    const adresselinje2 = adresse.linje2 ? <BodyShort size={size}>{adresse.linje2}</BodyShort> : null;
+    const adresselinje3 = adresse.linje3 ? <BodyShort size={size}>{adresse.linje3}</BodyShort> : null;
 
     return (
         <>
             {coAdresse}
-            <BodyShort size="small">{adresse.linje1}</BodyShort>
+            <BodyShort size={size}>{adresse.linje1}</BodyShort>
             {adresselinje2}
             {adresselinje3}
         </>

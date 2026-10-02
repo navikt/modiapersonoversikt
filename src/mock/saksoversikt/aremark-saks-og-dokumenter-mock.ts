@@ -19,16 +19,13 @@ export const getAremarkSaksOgDokumenterListe = () => {
                 {
                     id: 'b591a83e-d673-48ff-8fd0-19a6633171d8',
                     retning: DokumentmetadataRetning.UT,
-                    dato: '2025-03-24T00:30:06',
-                    lestDato: '2025-03-24T00:30:06',
+                    dato: '2026-09-24T00:30:06',
                     navn: 'AREMARK TESTFAMILIEN',
                     journalpostId: '453977012',
                     hoveddokument: {
                         tittel: '*****',
                         dokumentreferanse: '454381764',
-
                         logiskDokument: false,
-
                         dokumentStatus: DokumentDokumentStatus.FERDIGSTILT,
                         saksbehandlerHarTilgang: false,
                         brukerHarTilgang: true
@@ -50,8 +47,8 @@ export const getAremarkSaksOgDokumenterListe = () => {
                 {
                     id: '031b6e8e-d334-413f-9071-372e3a9e61c2',
                     retning: DokumentmetadataRetning.INN,
-                    dato: '2021-05-19T14:16:25',
-                    lestDato: '2021-05-19T14:16:25',
+                    dato: '2026-09-23T00:30:06',
+                    lestDato: '2026-09-23T00:30:06',
                     navn: 'SEDAT SLØVENDE MULDVARP',
                     journalpostId: '453649830',
                     hoveddokument: {
@@ -81,8 +78,8 @@ export const getAremarkSaksOgDokumenterListe = () => {
                 {
                     id: '029948a5-0c08-4d6f-a01d-75a94a72df9e',
                     retning: DokumentmetadataRetning.INN,
-                    dato: '2019-02-11T00:00:00',
-                    lestDato: '2019-02-11T00:00:00',
+                    dato: '2026-09-28T00:30:06',
+                    lestDato: '2026-09-28T00:30:06',
                     navn: 'AREMARK TESTFAMILIEN',
                     journalpostId: '453506779',
                     hoveddokument: {
@@ -271,7 +268,7 @@ export const getAremarkSaksOgDokumenterListe = () => {
                 {
                     id: 'cc066c0b-a85e-4224-9048-41b40e7d4b8a',
                     retning: DokumentmetadataRetning.INN,
-                    dato: '2024-09-04T14:37:33',
+                    dato: '2026-09-15T14:37:33',
 
                     navn: 'VAKKER FASTTELEFONI',
                     journalpostId: '453887321',
@@ -341,7 +338,7 @@ export const getAremarkSaksOgDokumenterListe = () => {
                 {
                     id: 'd82e9e4c-03f6-471c-a9bf-811d6acb58a4',
                     retning: DokumentmetadataRetning.INN,
-                    dato: '2025-06-21T00:30:26',
+                    dato: '2026-09-15T14:37:33',
 
                     navn: 'TESTFAMILIEN AREMARK',
                     journalpostId: '453998253',
@@ -371,7 +368,7 @@ export const getAremarkSaksOgDokumenterListe = () => {
                 {
                     id: 'd4c88d73-2eeb-4ca5-9c08-fbc119f96fe7',
                     retning: DokumentmetadataRetning.INTERN,
-                    dato: '2025-06-13T13:58:56',
+                    dato: '2026-09-15T14:37:33',
 
                     navn: 'TESTFAMILIEN AREMARK',
                     journalpostId: '453996560',
@@ -502,7 +499,7 @@ export const getAremarkSaksOgDokumenterListe = () => {
                 {
                     id: '26bef0e8-8ce1-4904-bba8-64495e08b62f',
                     retning: DokumentmetadataRetning.INN,
-                    dato: '2021-01-06T12:15:20',
+                    dato: '2026-09-24T00:30:06',
 
                     navn: 'AREMARK  TESTFAMILIEN',
                     journalpostId: '453641937',
@@ -546,7 +543,7 @@ export const getAremarkSaksOgDokumenterListe = () => {
                 {
                     id: '71b51ddc-01f7-4721-be66-0c87c3708783',
                     retning: DokumentmetadataRetning.INN,
-                    dato: '2025-01-06T09:57:39',
+                    dato: '2026-09-24T00:30:06',
 
                     navn: 'TESTFAMILIEN AREMARK',
                     journalpostId: '453913026',
@@ -689,7 +686,7 @@ export const getAremarkSaksOgDokumenterListe = () => {
                 {
                     id: 'd29e409c-2720-4f2d-b1dc-8229d32902c1',
                     retning: DokumentmetadataRetning.INTERN,
-                    dato: '2024-12-02T09:58:53',
+                    dato: '2026-09-24T00:30:06',
 
                     navn: 'ukjent',
                     journalpostId: '453904327',
