@@ -21,7 +21,7 @@ export class OppgaverBackendMock {
 
     public getTildelteOppgaver(fnr?: string): OppgaveDto[] {
         const tildelteOppgaver = this.tildelteOppgaver.filter((oppgave) => oppgave.fnr === fnr);
-        if (fnr !== aremark.personIdent || this.aremarkOppgaveFerdigstilt) {
+        if (import.meta.env.VITE_E2E || fnr !== aremark.personIdent || this.aremarkOppgaveFerdigstilt) {
             return tildelteOppgaver;
         }
 
