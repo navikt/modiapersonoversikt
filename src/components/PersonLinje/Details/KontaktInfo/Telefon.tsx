@@ -41,9 +41,14 @@ function Telefon({ harFeilendeSystem, kontaktinformasjon }: Props) {
         >
             <KRRInfo
                 erReservert={kontaktinformasjon.erReservert?.value}
-                reservasjonOppdatert={kontaktinformasjon.erReservert?.sistOppdatert}
-                kontaktinformasjonVerdi={telefonnummer}
+                reservasjonOppdatert={
+                    kontaktinformasjon.erReservert?.sistOppdatert
+                        ? formaterDato(kontaktinformasjon.erReservert.sistOppdatert)
+                        : null
+                }
+                kontaktinformasjonVerdi={kontaktinformasjon.mobil?.value ? telefonnummer : null}
                 sistOppdatert={sistOppdatert}
+                visVedReservasjon
             />
         </InfoElement>
     );

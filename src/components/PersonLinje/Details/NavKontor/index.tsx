@@ -7,6 +7,7 @@ import {
     InlineMessage,
     Label,
     Link,
+    ReadMore,
     Skeleton,
     VStack
 } from '@navikt/ds-react';
@@ -142,8 +143,9 @@ function NavKontor() {
         );
     }
 
-    const forsteMottakAdresse = navEnhet.publikumsmottak.at(0)?.besoksadresse;
-    const apningstider = navEnhet.publikumsmottak.at(0)?.apningstider ?? [];
+    const [forsteMottak, ...ovrigeMottak] = navEnhet.publikumsmottak;
+    const forsteMottakAdresse = forsteMottak?.besoksadresse;
+    const apningstider = forsteMottak?.apningstider ?? [];
     const dagensApningstid = hentDagensApningstid(apningstider);
 
     return (
@@ -162,7 +164,7 @@ function NavKontor() {
             <Veileder />
 
             <HGrid columns={{ xs: 1, sm: 2 }} gap={{ xs: 'space-16', sm: 'space-8 space-16' }} align="start">
-                <InfoFelt label="Kontaktadresse">
+                <InfoFelt label="Besøksadresse">
                     {forsteMottakAdresse ? <Adresseinfo adresse={forsteMottakAdresse} /> : <IkkeTilgjengelig />}
                 </InfoFelt>
 
@@ -188,6 +190,36 @@ function NavKontor() {
                     )}
                 </InfoFelt>
             </HGrid>
+
+            {ovrigeMottak.length > 0 && (
+                <ReadMore header="Det finnes flere publikumsmottak" size="small">
+                    <VStack gap="space-16">
+                        {ovrigeMottak.map((mottak, index) => {
+                            const dagensApningstid = hentDagensApningstid(mottak.apningstider);
+                            return (
+                                <VStack gap="space-8" key={`${mottak.besoksadresse.linje1}-${index}`}>
+                                    <HGrid
+                                        columns={{ xs: 1, sm: 2 }}
+                                        gap={{ xs: 'space-16', sm: 'space-8 space-16' }}
+                                        align="start"
+                                    >
+                                        <InfoFelt label="Besøksadresse">
+                                            <Adresseinfo adresse={mottak.besoksadresse} />
+                                        </InfoFelt>
+                                        <InfoFelt label="Åpent i dag">
+                                            {dagensApningstid ? (
+                                                <BodyShort size="small">{dagensApningstid}</BodyShort>
+                                            ) : (
+                                                <IkkeTilgjengelig />
+                                            )}
+                                        </InfoFelt>
+                                    </HGrid>
+                                </VStack>
+                            );
+                        })}
+                    </VStack>
+                </ReadMore>
+            )}
 
             <KontorLenke navEnhetId={navEnhet.id} />
         </VStack>

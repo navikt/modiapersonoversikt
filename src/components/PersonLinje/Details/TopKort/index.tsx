@@ -1,44 +1,33 @@
 import { FigureInwardIcon, FigureOutwardIcon } from '@navikt/aksel-icons';
-import { BodyShort, Detail, Heading, HGrid, HStack, InlineMessage, Label, VStack } from '@navikt/ds-react';
+import { BodyShort, Heading, HGrid, HStack, InlineMessage, Label, VStack } from '@navikt/ds-react';
 import type { PropsWithChildren } from 'react';
 import { harFeilendeSystemer, hentNavn } from 'src/components/PersonLinje/utils';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { Kjonn, PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
+import { formatertKontonummerString } from 'src/utils/FormatertKontonummer';
 import { formaterDato } from 'src/utils/string-utils';
 import { formaterMobiltelefonnummer } from 'src/utils/telefon-utils';
-import { Adresseinfo } from '../components';
+import { Adresseinfo, LastChanged } from '../components';
+import KRRInfo from '../KontaktInfo/KRRInfo';
+import { tilrettelagtKommunikasjonTekst } from '../TilrettelagtKommunikasjon';
 
-const RESERVERT = 'Reservert';
 const IKKE_REGISTRERT = 'Ikke registrert';
 const KRR_FEILET = 'Feilet ved uthenting fra KRR';
 const KONTONUMMER_FEILET = 'Feilet ved uthenting av kontonummer';
 const NAV_KONTAKTINFO_FEILET = 'Feilet ved uthenting av kontaktinformasjon';
 
-function FlatFelt({ label, verdi, feilmelding }: { label: string; verdi?: string | null; feilmelding?: string }) {
-    if (!feilmelding && !verdi) return null;
+function Seksjon({ tittel, feilmelding, children }: PropsWithChildren<{ tittel: string; feilmelding?: string }>) {
+    if (!feilmelding && !children) return null;
     return (
-        <HStack gap="space-4" align="start">
-            <Label size="small" className="whitespace-nowrap">
-                {label}:
-            </Label>
+        <VStack gap="space-2" className="wrap-break-word">
+            <Label size="small">{tittel}</Label>
             {feilmelding ? (
                 <InlineMessage status="warning" size="small">
                     {feilmelding}
                 </InlineMessage>
             ) : (
-                <BodyShort size="small" className="break-words [overflow-wrap:anywhere]">
-                    {verdi}
-                </BodyShort>
+                children
             )}
-        </HStack>
-    );
-}
-
-function Seksjon({ tittel, children }: PropsWithChildren<{ tittel: string }>) {
-    return (
-        <VStack gap="space-2">
-            <Label size="small">{tittel}</Label>
-            {children}
         </VStack>
     );
 }
@@ -60,12 +49,11 @@ function TopKort() {
     );
 
     const erReservert = person.kontaktInformasjon.erReservert?.value === true;
-    const mobil = person.kontaktInformasjon.mobil?.value;
-    const telefon = erReservert ? `${mobil} (Reservert)` : mobil ? formaterMobiltelefonnummer(mobil) : IKKE_REGISTRERT;
-    const epost = erReservert ? RESERVERT : person.kontaktInformasjon.epost?.value || IKKE_REGISTRERT;
-
-    const kontonummer = person.bankkonto?.kontonummer ?? IKKE_REGISTRERT;
-    const navTelefon = [...person.telefonnummer].sort((a, b) => a.prioritet - b.prioritet).at(0)?.identifikator ?? null;
+    const mobil = person.kontaktInformasjon.mobil;
+    const epost = person.kontaktInformasjon.epost;
+    const reservasjonOppdatert = person.kontaktInformasjon.erReservert?.sistOppdatert;
+    const kontonummer = person.bankkonto?.kontonummer;
+    const navTelefon = [...person.telefonnummer].sort((a, b) => a.prioritet - b.prioritet).at(0);
 
     const harTolkebehov =
         person.tilrettelagtKommunikasjon.tegnsprak.isNotEmpty() ||
@@ -83,42 +71,66 @@ function TopKort() {
 
             <HGrid columns={{ xs: 1, md: 2, xl: 3 }} gap={{ xs: 'space-16', xl: 'space-8' }} align="start">
                 <VStack gap="space-16">
-                    <VStack gap="space-2">
-                        <FlatFelt label="Telefon" verdi={telefon} feilmelding={krrFeiler ? KRR_FEILET : undefined} />
-                        <FlatFelt
-                            label="Telefon bruk Nav"
-                            verdi={navTelefon}
-                            feilmelding={navKontaktinfoFeiler ? NAV_KONTAKTINFO_FEILET : undefined}
+                    <Seksjon tittel="Telefon" feilmelding={krrFeiler ? KRR_FEILET : undefined}>
+                        <KRRInfo
+                            erReservert={erReservert}
+                            reservasjonOppdatert={reservasjonOppdatert ? formaterDato(reservasjonOppdatert) : null}
+                            kontaktinformasjonVerdi={mobil?.value ? formaterMobiltelefonnummer(mobil.value) : null}
+                            sistOppdatert={mobil?.sistOppdatert ? formaterDato(mobil.sistOppdatert) : null}
+                            visVedReservasjon
                         />
-                        <FlatFelt label="E-post" verdi={epost} feilmelding={krrFeiler ? KRR_FEILET : undefined} />
-                    </VStack>
-                    {harTolkebehov && (
-                        <Seksjon tittel="Tolkebehov">
-                            <BodyShort size="small">Ja</BodyShort>
-                        </Seksjon>
-                    )}
+                    </Seksjon>
+                    <Seksjon
+                        tittel="Telefon til bruk for Nav"
+                        feilmelding={navKontaktinfoFeiler ? NAV_KONTAKTINFO_FEILET : undefined}
+                    >
+                        {navTelefon && (
+                            <>
+                                <BodyShort size="small">
+                                    {[
+                                        navTelefon.retningsnummer?.kode,
+                                        formaterMobiltelefonnummer(navTelefon.identifikator)
+                                    ]
+                                        .filter(Boolean)
+                                        .join(' ')}
+                                </BodyShort>
+                                <LastChanged sistEndret={navTelefon.sistEndret} />
+                            </>
+                        )}
+                    </Seksjon>
+                    <Seksjon tittel="E-post" feilmelding={krrFeiler ? KRR_FEILET : undefined}>
+                        <KRRInfo
+                            erReservert={erReservert}
+                            reservasjonOppdatert={reservasjonOppdatert ? formaterDato(reservasjonOppdatert) : null}
+                            kontaktinformasjonVerdi={epost?.value ?? null}
+                            sistOppdatert={epost?.sistOppdatert ? formaterDato(epost.sistOppdatert) : null}
+                            visVedReservasjon
+                        />
+                    </Seksjon>
+                    <Seksjon tittel="Kontonummer" feilmelding={bankkontoFeiler ? KONTONUMMER_FEILET : undefined}>
+                        <BodyShort size="small">
+                            {kontonummer ? formatertKontonummerString(kontonummer) : IKKE_REGISTRERT}
+                        </BodyShort>
+                        <LastChanged sistEndret={person.bankkonto?.sistEndret} />
+                    </Seksjon>
                 </VStack>
 
                 <VStack gap="space-16">
                     {bostedAdresse && (
                         <Seksjon tittel="Bostedsadresse">
                             <Adresseinfo adresse={bostedAdresse} />
-                            {bostedAdresse.sistEndret && (
-                                <Detail>
-                                    Endret {formaterDato(bostedAdresse.sistEndret.tidspunkt)} av{' '}
-                                    {bostedAdresse.sistEndret.ident}
-                                </Detail>
-                            )}
+                            <LastChanged sistEndret={bostedAdresse.sistEndret} />
                         </Seksjon>
                     )}
                 </VStack>
 
-                <VStack gap="space-8">
-                    <FlatFelt
-                        label="Kontonummer"
-                        verdi={kontonummer}
-                        feilmelding={bankkontoFeiler ? KONTONUMMER_FEILET : undefined}
-                    />
+                <VStack gap="space-16">
+                    {harTolkebehov && (
+                        <Seksjon tittel="Tolkebehov">
+                            {tilrettelagtKommunikasjonTekst('Tegnspråk', person.tilrettelagtKommunikasjon.tegnsprak)}
+                            {tilrettelagtKommunikasjonTekst('Talespråk', person.tilrettelagtKommunikasjon.talesprak)}
+                        </Seksjon>
+                    )}
                 </VStack>
             </HGrid>
         </VStack>
