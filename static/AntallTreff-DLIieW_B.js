@@ -1,0 +1,2 @@
+import{a6 as a,af as n,at as o}from"./main-D_cxwIJs.js";const c=({antall:r,totalt:e,entall:t,flertall:s})=>e!==void 0&&e!==r?`Viser ${r} av ${e} ${s}`:`${r} ${r===1?t:s}`,u=({antall:r,totalt:e,entall:t,flertall:s,isLoading:i=!1})=>a.jsx("span",{"aria-live":"polite","aria-atomic":"true",children:i?a.jsx(n,{variant:"rounded",width:"8rem",height:"1.5rem"}):a.jsx(o,{size:"small",variant:"moderate","data-color":"neutral",children:c({antall:r,totalt:e,entall:t,flertall:s})})});export{u as A};
+//# sourceMappingURL=AntallTreff-DLIieW_B.js.map
