@@ -1,15 +1,18 @@
+import { useSearch } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai';
+import { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
+import { PeriodType } from 'src/components/DateFilters/types';
 import { type UtbetalingFilter, utbetalingFilterAtom } from 'src/components/Utbetaling/Filter';
 import { errorPlaceholder, type QueryResult, responseErrorMessage } from 'src/components/ytelser/utils';
 import { useUtbetalinger } from 'src/lib/clients/modiapersonoversikt-api';
 import type { Utbetaling, UtbetalingerResponseDto, Ytelse } from 'src/lib/types/modiapersonoversikt-api';
-import { datoSynkende, datoVerbose } from 'src/utils/date-utils';
+import { datoSynkende, datoVerbose, formatterDato } from 'src/utils/date-utils';
 
 const filterUtbetalinger = (utbetalinger: Utbetaling[], filters: UtbetalingFilter): Utbetaling[] => {
     const { ytelseTyper, dateRange } = filters;
 
-    if (!utbetalinger || utbetalinger.length === 0) {
+    if (utbetalinger.length === 0) {
         return [];
     }
 
@@ -23,7 +26,7 @@ const filterUtbetalinger = (utbetalinger: Utbetaling[], filters: UtbetalingFilte
     if (dateRange?.from && dateRange?.to) {
         filteredList = filteredList.filter((utbetaling) => {
             const dato = dayjs(utbetaling.posteringsdato);
-            return dato.isSameOrAfter(dayjs(dateRange.from), 'day') && dato.isSameOrBefore(dayjs(dateRange.to), 'day');
+            return dato.isValid() && !dato.isBefore(dateRange.from, 'day') && !dato.isAfter(dateRange.to, 'day');
         });
     }
 
@@ -34,8 +37,10 @@ type FilteredUtbetalingerResponse = UtbetalingerResponseDto & { alleUtbetalinger
 
 export const useFilterUtbetalinger = (): QueryResult<FilteredUtbetalingerResponse> => {
     const filters = useAtomValue(utbetalingFilterAtom);
-    const startDato = (filters.dateRange.from ?? dayjs().subtract(2, 'year')).startOf('day').format('YYYY-MM-DD');
-    const sluttDato = (filters.dateRange.to ?? dayjs()).endOf('day').format('YYYY-MM-DD');
+    const { periode } = useSearch({ from: '/new/person/utbetaling' });
+    const dateRange = periode === 'siste30' ? getPeriodFromOption(PeriodType.LAST_30_DAYS) : filters.dateRange;
+    const startDato = (dateRange.from ?? dayjs().subtract(2, 'year')).startOf('day').format('YYYY-MM-DD');
+    const sluttDato = (dateRange.to ?? dayjs()).endOf('day').format('YYYY-MM-DD');
     const utbetalingerResponse = useUtbetalinger(startDato, sluttDato);
 
     const utbetalinger = utbetalingerResponse?.data?.utbetalinger ?? [];
@@ -46,8 +51,8 @@ export const useFilterUtbetalinger = (): QueryResult<FilteredUtbetalingerRespons
         ...utbetalingerResponse,
         data: {
             ...utbetalingerResponse.data,
-            utbetalinger: filterUtbetalinger(sortedUtbetalinger, filters) ?? [],
-            alleUtbetalinger: sortedUtbetalinger ?? []
+            utbetalinger: filterUtbetalinger(sortedUtbetalinger, { ...filters, dateRange }),
+            alleUtbetalinger: sortedUtbetalinger
         },
         errorMessages: errorMessages.filter(Boolean)
     } as QueryResult<FilteredUtbetalingerResponse>;
@@ -111,6 +116,11 @@ export const getUtbetalingId = (utbetaling: Utbetaling) =>
 
 export function getGjeldendeDatoForUtbetaling(utbetaling: Utbetaling): string {
     return utbetaling.utbetalingsdato || utbetaling.forfallsdato || utbetaling.posteringsdato;
+}
+export function datoVisning(utbetaling: Utbetaling): string {
+    const dato = formatterDato(getGjeldendeDatoForUtbetaling(utbetaling));
+    if (utbetaling.utbetalingsdato) return dato;
+    return `${dato} ${utbetaling.forfallsdato ? '(forfall)' : '(postering)'}`;
 }
 export function utbetalingDatoComparator(a: Utbetaling, b: Utbetaling) {
     return dayjs(getGjeldendeDatoForUtbetaling(b)).unix() - dayjs(getGjeldendeDatoForUtbetaling(a)).unix();
