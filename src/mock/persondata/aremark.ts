@@ -410,7 +410,6 @@ export const aremark: Person = {
                         kilde: FullmaktEndringKilde.BRUKER,
                         hendelse: FullmaktEndringHendelse.OPPRETTELSE_AV_BRUKER,
                         gyldigFraOgMed: '2026-01-01',
-                        gyldigTilOgMed: '2027-12-31',
                         leserettigheter: [
                             {
                                 kode: 'AAP',
@@ -447,6 +446,7 @@ export const aremark: Person = {
                 fullmaktsgiver: '10108000398',
                 fullmektig: '12345678111',
                 gyldigFraOgMed: '2026-01-01',
+                gyldigTilOgMed: '2026-10-04',
                 leserettigheter: [],
                 skriverettigheter: [
                     {

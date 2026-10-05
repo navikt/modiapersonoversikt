@@ -11,7 +11,7 @@ export const Representasjon = () => {
     const ingenData =
         person?.vergemal?.isEmpty() &&
         person?.historiskeVergemal?.isEmpty() &&
-        person.fullmakt.isEmpty() &&
+        person?.fullmektige?.isEmpty() &&
         person.rettsligHandleevne.isEmpty();
 
     if (ingenData) {
