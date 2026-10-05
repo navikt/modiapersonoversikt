@@ -26,7 +26,7 @@ function SingleColumnLayout(persondata: PersonData) {
         <Kolonne>
             <DodsdatoInfo person={persondata.person} />
             <Kontaktinformasjon persondata={persondata} />
-            <Fullmakter feilendeSystemer={persondata.feilendeSystemer} fullmakter={persondata.person.fullmakt} />
+            <Fullmakter feilendeSystemer={persondata.feilendeSystemer} fullmektige={persondata.person.fullmektige} />
             <Familie feilendeSystemer={persondata.feilendeSystemer} person={persondata.person} />
             <DeltBosted deltBosted={persondata.person.deltBosted} />
             <Foreldreansvar
@@ -54,7 +54,10 @@ function DoubleColumnLayout(persondata: PersonData) {
             <Kolonne>
                 <DodsdatoInfo person={persondata.person} />
                 <Kontaktinformasjon persondata={persondata} />
-                <Fullmakter feilendeSystemer={persondata.feilendeSystemer} fullmakter={persondata.person.fullmakt} />
+                <Fullmakter
+                    feilendeSystemer={persondata.feilendeSystemer}
+                    fullmektige={persondata.person.fullmektige}
+                />
                 <Familie feilendeSystemer={persondata.feilendeSystemer} person={persondata.person} />
                 <DeltBosted deltBosted={persondata.person.deltBosted} />
                 <Foreldreansvar
@@ -85,7 +88,10 @@ function TripleColumnLayout(persondata: PersonData) {
             <Kolonne>
                 <DodsdatoInfo person={persondata.person} />
                 <Kontaktinformasjon persondata={persondata} />
-                <Fullmakter feilendeSystemer={persondata.feilendeSystemer} fullmakter={persondata.person.fullmakt} />
+                <Fullmakter
+                    feilendeSystemer={persondata.feilendeSystemer}
+                    fullmektige={persondata.person.fullmektige}
+                />
             </Kolonne>
             <Kolonne>
                 <Familie feilendeSystemer={persondata.feilendeSystemer} person={persondata.person} />

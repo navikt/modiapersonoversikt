@@ -1,3 +1,5 @@
+import type { Fullmektig } from 'src/lib/types/modiapersonoversikt-api';
+
 export interface Data {
     feilendeSystemer: Array<InformasjonElement>;
     person: Person;
@@ -28,7 +30,7 @@ export interface Person extends PersonMedAlderOgDodsdato {
     foreldreansvar: Array<Foreldreansvar>;
     deltBosted: Array<DeltBosted>;
     dodsbo: Array<Dodsbo>;
-    fullmakt: Array<Fullmakt>;
+    fullmektige: Array<Fullmektig>;
     vergemal: Array<Verge>;
     historiskeVergemal: Array<Verge>;
     tilrettelagtKommunikasjon: TilrettelagtKommunikasjon;
@@ -196,26 +198,6 @@ export interface TilrettelagtKommunikasjon {
     tegnsprak: Array<KodeBeskrivelse<string>>;
 }
 
-export enum Handling {
-    LES = 'LES',
-    KOMMUNISER = 'KOMMUNISER',
-    SKRIV = 'SKRIV'
-}
-
-export interface OmraadeMedHandling<T> {
-    omraade: KodeBeskrivelse<T>;
-    handling: Array<Handling>;
-}
-
-export interface Fullmakt {
-    motpartsPersonident: string;
-    motpartsPersonNavn: Navn;
-    motpartsRolle: FullmaktsRolle;
-    omrade: Array<OmraadeMedHandling<string>>;
-    gyldighetsPeriode: GyldighetsPeriode | null;
-    digitalKontaktinformasjonTredjepartsperson: DigitalKontaktinformasjonTredjepartsperson | null;
-}
-
 export interface Telefon {
     retningsnummer: KodeBeskrivelse<string> | null;
     identifikator: string;
@@ -314,12 +296,6 @@ export enum Skifteform {
     UKJENT = 'UKJENT'
 }
 
-export enum FullmaktsRolle {
-    FULLMAKTSGIVER = 'FULLMAKTSGIVER',
-    FULLMEKTIG = 'FULLMEKTIG',
-    UKJENT = 'UKJENT'
-}
-
 export enum ForelderBarnRelasjonRolle {
     BARN = 'BARN',
     MOR = 'MOR',
@@ -340,11 +316,6 @@ interface DkifVerdi<T = string> {
     sistVerifisert: LocalDate | null;
 }
 
-export interface DigitalKontaktinformasjonTredjepartsperson {
-    reservasjon: string | null;
-    mobiltelefonnummer: string | null;
-}
-
 /**
  * Feilende systemer
  */
@@ -358,5 +329,5 @@ export enum InformasjonElement {
     VEILEDER_ROLLER = 'VEILEDER_ROLLER',
     NORG_NAVKONTOR = 'NORG_NAVKONTOR',
     NORG_KONTAKTINFORMASJON = 'NORG_KONTAKTINFORMASJON',
-    FULLMAKT = 'FULLMAKT'
+    REPR_API = 'REPR_API'
 }

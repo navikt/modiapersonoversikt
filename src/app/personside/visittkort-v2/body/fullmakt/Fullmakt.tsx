@@ -1,26 +1,22 @@
-import { Chat2Icon, GlassesIcon, PencilIcon } from '@navikt/aksel-icons';
-import { HelpText, ReadMore, Table } from '@navikt/ds-react';
+import { ReadMore } from '@navikt/ds-react';
 import { Feilmelding, Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import Fullmaktlogo from '../../../../../svg/Utropstegn';
+import { formaterRettighetstemaer } from '../../../../../utils/fullmakt-utils';
 import { formaterMobiltelefonnummer } from '../../../../../utils/telefon-utils';
 import { harFeilendeSystemer } from '../../harFeilendeSystemer';
-import {
-    type DigitalKontaktinformasjonTredjepartsperson,
-    type Fullmakt as FullmaktInterface,
-    Handling,
-    InformasjonElement,
-    type OmraadeMedHandling
-} from '../../PersondataDomain';
-import { hentNavn } from '../../visittkort-utils';
-import GyldighetsPeriode from '../GyldighetsPeriode';
+import { InformasjonElement, type Person } from '../../PersondataDomain';
+import { hentNavn, hentPeriodeTekst } from '../../visittkort-utils';
 import VisittkortElement from '../VisittkortElement';
 import { VisittkortGruppe } from '../VisittkortStyles';
 
+type Fullmektig = Person['fullmektige'][number];
+type FullmaktRepresentasjon = Fullmektig['fullmakter'][number];
+
 interface Props {
     feilendeSystemer: Array<InformasjonElement>;
-    fullmakter: FullmaktInterface[];
+    fullmektige: Fullmektig[];
 }
 
 const GraTekst = styled.div`
@@ -31,12 +27,14 @@ const GraTekst = styled.div`
     }
 `;
 
-function KontaktinformasjonFullmakt(props: { kontaktinformasjon: DigitalKontaktinformasjonTredjepartsperson | null }) {
+function KontaktinformasjonFullmakt(props: {
+    kontaktinformasjon: Fullmektig['digitalKontaktinformasjonTredjepartsperson'];
+}) {
     if (!props.kontaktinformasjon) {
         return null;
     }
 
-    const erReservert = props.kontaktinformasjon.reservasjon === 'true';
+    const erReservert = props.kontaktinformasjon.reservasjon === true;
     const mobilnummer = formaterMobiltelefonnummer(
         props.kontaktinformasjon.mobiltelefonnummer ?? 'Fant ikke telefonnummer'
     );
@@ -50,92 +48,66 @@ function KontaktinformasjonFullmakt(props: { kontaktinformasjon: DigitalKontakti
         </>
     );
 }
-const FullmaktTilgangerTabell = ({ omraader }: { omraader: OmraadeMedHandling<string>[] }) => {
-    if (omraader.map((omrade) => omrade.omraade.kode).includes('*')) {
-        return 'Gjelder alle statlige ytelser';
-    }
-
+const FullmaktTilganger = ({ fullmakt }: { fullmakt: FullmaktRepresentasjon }) => {
+    const leserettigheter = formaterRettighetstemaer(fullmakt.leserettigheter);
+    const skriverettigheter = formaterRettighetstemaer(fullmakt.skriverettigheter);
     return (
-        <Table size="small">
-            <Table.Header>
-                <Table.Row>
-                    <Table.HeaderCell scope="col">Område</Table.HeaderCell>
-                    <Table.HeaderCell scope="col">
-                        <HelpText title="Hva betyr lese/innsyn?">
-                            Fullmektig kan lese dokumenter på de områdene det er gitt fullmakt til
-                        </HelpText>
-                    </Table.HeaderCell>
-                    <Table.HeaderCell scope="col">
-                        <HelpText title="Hva betyr snakke/kommunisere?">
-                            Fullmektig kan snakke med NAV og hjelpe til i kontakten med NAV, både på telefon, nav.no og
-                            NAV-kontor. Tilgangen innebærer at fullmektig også kan lese dokumenter i sakene
-                        </HelpText>
-                    </Table.HeaderCell>
-                    <Table.HeaderCell scope="col">
-                        <HelpText title="Hva betyr Søke/klage?">
-                            Fullmektig kan søke og klage. Tilgangen innebærer at fullmektig også kan lese dokumenter og
-                            snakke med NAV
-                        </HelpText>
-                    </Table.HeaderCell>
-                </Table.Row>
-            </Table.Header>
-            <Table.Body>
-                {omraader.map((o) => {
-                    const les = o.handling.find((h) => h === Handling.LES);
-                    const kommuniser = o.handling.find((h) => h === Handling.KOMMUNISER);
-                    const skriv = o.handling.find((h) => h === Handling.SKRIV);
-                    return (
-                        //biome-ignore lint/correctness/useJsxKeyInIterable: biome migration
-                        <Table.Row>
-                            <Table.DataCell>{o.omraade.beskrivelse}</Table.DataCell>
-                            <Table.DataCell>{les && <GlassesIcon title="Lese/innsyn" />}</Table.DataCell>
-                            <Table.DataCell>{kommuniser && <Chat2Icon title="Snakke/kommunisere" />}</Table.DataCell>
-                            <Table.DataCell>{skriv && <PencilIcon title="Søke/klage" />}</Table.DataCell>
-                        </Table.Row>
-                    );
-                })}
-            </Table.Body>
-        </Table>
+        <>
+            {leserettigheter && <Normaltekst>Leserettigheter: {leserettigheter}</Normaltekst>}
+            {skriverettigheter && <Normaltekst>Skriverettigheter: {skriverettigheter}</Normaltekst>}
+        </>
     );
 };
 
-function Fullmakt(props: { fullmakt: FullmaktInterface; harFeilendeSystem: boolean }) {
-    const motpartsPersonNavn = hentNavn(props.fullmakt.motpartsPersonNavn);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
-    const beskrivelse = props.fullmakt.motpartsRolle === 'FULLMEKTIG' ? 'Fullmektig' : 'Fullmaktsgiver';
-    const harFeilendeSystem = props.harFeilendeSystem ? <Feilmelding>Feilet ved uthenting av navn</Feilmelding> : null;
+function Fullmektig(props: { fullmektig: Fullmektig; harFeilendeSystem: boolean }) {
+    const fullmektigNavn = props.fullmektig.navn
+        ? hentNavn({
+              ...props.fullmektig.navn,
+              mellomnavn: props.fullmektig.navn.mellomnavn ?? null
+          })
+        : hentNavn();
+    const harFeilendeSystem =
+        props.harFeilendeSystem && !props.fullmektig.navn ? (
+            <Feilmelding>Feilet ved uthenting av navn</Feilmelding>
+        ) : null;
 
     return (
-        <VisittkortElement beskrivelse={beskrivelse}>
+        <VisittkortElement beskrivelse="Fullmektig">
             {harFeilendeSystem}
             <Normaltekst>
-                {motpartsPersonNavn} {`(${props.fullmakt.motpartsPersonident})`}
+                {fullmektigNavn} {`(${props.fullmektig.ident})`}
             </Normaltekst>
             <KontaktinformasjonFullmakt
-                kontaktinformasjon={props.fullmakt.digitalKontaktinformasjonTredjepartsperson}
+                kontaktinformasjon={props.fullmektig.digitalKontaktinformasjonTredjepartsperson}
             />
-            <GyldighetsPeriode gyldighetsPeriode={props.fullmakt.gyldighetsPeriode} />
-            <ReadMore header="Detaljer">
-                <FullmaktTilgangerTabell omraader={props.fullmakt.omrade} />
-            </ReadMore>
+            {props.fullmektig.fullmakter.map((fullmakt) => (
+                <div key={fullmakt.fullmaktId}>
+                    <Normaltekst>
+                        Gyldig: {hentPeriodeTekst(fullmakt.gyldigFraOgMed, fullmakt.gyldigTilOgMed)}
+                    </Normaltekst>
+                    <ReadMore header="Detaljer" size="small">
+                        <FullmaktTilganger fullmakt={fullmakt} />
+                    </ReadMore>
+                </div>
+            ))}
         </VisittkortElement>
     );
 }
 
-function Fullmakter({ feilendeSystemer, fullmakter }: Props) {
-    if (fullmakter.isEmpty()) {
+function Fullmakter({ feilendeSystemer, fullmektige }: Props) {
+    if (fullmektige.isEmpty()) {
         return null;
     }
 
     return (
-        <VisittkortGruppe tittel={'Fullmakter'} ikon={<Fullmaktlogo />}>
-            {fullmakter.map((fullmakt, index) => (
-                <Fullmakt
-                    key={index}
-                    fullmakt={fullmakt}
+        <VisittkortGruppe tittel="Fullmakter" ikon={<Fullmaktlogo />}>
+            {fullmektige.map((fullmektig) => (
+                <Fullmektig
+                    key={fullmektig.ident}
+                    fullmektig={fullmektig}
                     harFeilendeSystem={
                         harFeilendeSystemer(feilendeSystemer, InformasjonElement.PDL_TREDJEPARTSPERSONER) ||
-                        harFeilendeSystemer(feilendeSystemer, InformasjonElement.FULLMAKT)
+                        harFeilendeSystemer(feilendeSystemer, InformasjonElement.REPR_API)
                     }
                 />
             ))}

@@ -4,8 +4,6 @@ import {
     EgenAnsatt,
     type ForelderBarnRelasjon,
     ForelderBarnRelasjonRolle,
-    FullmaktsRolle,
-    Handling,
     InformasjonElement,
     Kjonn,
     type LocalDate,
@@ -346,33 +344,36 @@ function lagPerson(fnr: string): Person {
                   }
               ]
             : [],
-        fullmakt: visEtiketter
+        fullmektige: visEtiketter
             ? [
                   {
-                      motpartsPersonident: '123456789',
-                      motpartsPersonNavn: {
+                      ident: '123456789',
+                      navn: {
                           fornavn: 'Navn',
                           mellomnavn: null,
                           etternavn: 'Navnesen'
                       },
-                      motpartsRolle: FullmaktsRolle.FULLMEKTIG,
-                      omrade: [
-                          {
-                              omraade: {
-                                  kode: '*',
-                                  beskrivelse: ''
-                              },
-                              handling: [Handling.LES]
-                          }
-                      ],
-                      gyldighetsPeriode: {
-                          gyldigFraOgMed: '2021-02-01' as LocalDate,
-                          gyldigTilOgMed: '2022-05-01' as LocalDate
-                      },
                       digitalKontaktinformasjonTredjepartsperson: {
                           mobiltelefonnummer: '90909090',
-                          reservasjon: 'false'
-                      }
+                          reservasjon: false
+                      },
+                      fullmakter: [
+                          {
+                              fullmaktId: '123e4567-e89b-12d3-a456-426614174002',
+                              fullmaktsgiver: fnr,
+                              fullmektig: '123456789',
+                              gyldigFraOgMed: '2026-01-01',
+                              gyldigTilOgMed: '2027-12-31',
+                              leserettigheter: [
+                                  {
+                                      kode: 'AAP',
+                                      beskrivelse: 'Arbeidsavklaringspenger'
+                                  }
+                              ],
+                              skriverettigheter: [],
+                              endringslogg: []
+                          }
+                      ]
                   }
               ]
             : [],
@@ -387,25 +388,29 @@ function lagPerson(fnr: string): Person {
                       gyldighetsPeriode: {
                           gyldigFraOgMed: '2021-02-01' as LocalDate,
                           gyldigTilOgMed: '2022-05-01' as LocalDate
-                      }
-                  },
-                  {
-                      ident: '123456799',
-                      navn: {
-                          fornavn: 'Truls',
-                          mellomnavn: null,
-                          etternavn: 'Tøffel'
                       },
-                      vergesakstype: 'Fremtidsfullmakt',
-                      omfang: 'Ivareta personens interesser innenfor det økonomiske området',
-                      embete: 'Fylkesmannen i Troms og Finnmark',
-                      gyldighetsPeriode: {
-                          gyldigFraOgMed: '2021-02-01' as LocalDate,
-                          gyldigTilOgMed: null
-                      }
+                      historisk: false
                   }
               ]
             : [],
+        historiskeVergemal: [
+            {
+                ident: '123456799',
+                navn: {
+                    fornavn: 'Truls',
+                    mellomnavn: null,
+                    etternavn: 'Tøffel'
+                },
+                vergesakstype: 'Fremtidsfullmakt',
+                omfang: 'Ivareta personens interesser innenfor det økonomiske området',
+                embete: 'Fylkesmannen i Troms og Finnmark',
+                gyldighetsPeriode: {
+                    gyldigFraOgMed: '2021-02-01' as LocalDate,
+                    gyldigTilOgMed: null
+                },
+                historisk: true
+            }
+        ],
         tilrettelagtKommunikasjon: {
             talesprak: visEtiketter
                 ? [

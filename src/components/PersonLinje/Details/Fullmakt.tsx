@@ -1,19 +1,16 @@
-import { Chat2Icon, GlassesIcon, PencilIcon } from '@navikt/aksel-icons';
-import { BodyShort, Detail, HelpText, InlineMessage, ReadMore, Table } from '@navikt/ds-react';
+import { BodyShort, Detail, InlineMessage, ReadMore, VStack } from '@navikt/ds-react';
 import { KopierFnrKnapp } from 'src/components/PersonLinje/common/KopierFnrKnapp';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
-import {
-    type OmraadeMedHandling,
-    type PersonData,
-    PersonDataFeilendeSystemer
-} from 'src/lib/types/modiapersonoversikt-api';
+import { type PersonData, PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
+import { formaterRettighetstemaer } from 'src/utils/fullmakt-utils';
 import { formaterMobiltelefonnummer } from 'src/utils/telefon-utils';
 import ValidPeriod from '../common/ValidPeriod';
 import { harFeilendeSystemer, hentNavn } from '../utils';
 import { Group, InfoElement } from './components';
 
-type Fullmakt = PersonData['fullmakt'][number];
-type DigitalKontaktTredjepart = PersonData['fullmakt'][0]['digitalKontaktinformasjonTredjepartsperson'];
+type Fullmektig = PersonData['fullmektige'][number];
+type Fullmakt = Fullmektig['fullmakter'][number];
+type DigitalKontaktTredjepart = Fullmektig['digitalKontaktinformasjonTredjepartsperson'];
 
 function KontaktinformasjonFullmakt(props: { kontaktinformasjon?: DigitalKontaktTredjepart }) {
     if (!props.kontaktinformasjon) {
@@ -32,57 +29,19 @@ function KontaktinformasjonFullmakt(props: { kontaktinformasjon?: DigitalKontakt
         </>
     );
 }
-const FullmaktTilgangerTabell = ({ omraader }: { omraader: OmraadeMedHandling[] }) => {
-    if (omraader.map((omrade) => omrade.omraade.kode).includes('*')) {
-        return 'Gjelder alle statlige ytelser';
-    }
-
+const FullmaktTilganger = ({ fullmakt }: { fullmakt: Fullmakt }) => {
+    const leserettigheter = formaterRettighetstemaer(fullmakt.leserettigheter);
+    const skriverettigheter = formaterRettighetstemaer(fullmakt.skriverettigheter);
     return (
-        <Table size="small">
-            <Table.Header>
-                <Table.Row>
-                    <Table.HeaderCell scope="col">Område</Table.HeaderCell>
-                    <Table.HeaderCell scope="col">
-                        <HelpText title="Hva betyr lese/innsyn?">
-                            Fullmektig kan lese dokumenter på de områdene det er gitt fullmakt til
-                        </HelpText>
-                    </Table.HeaderCell>
-                    <Table.HeaderCell scope="col">
-                        <HelpText title="Hva betyr snakke/kommunisere?">
-                            Fullmektig kan snakke med NAV og hjelpe til i kontakten med NAV, både på telefon, nav.no og
-                            NAV-kontor. Tilgangen innebærer at fullmektig også kan lese dokumenter i sakene
-                        </HelpText>
-                    </Table.HeaderCell>
-                    <Table.HeaderCell scope="col">
-                        <HelpText title="Hva betyr Søke/klage?">
-                            Fullmektig kan søke og klage. Tilgangen innebærer at fullmektig også kan lese dokumenter og
-                            snakke med NAV
-                        </HelpText>
-                    </Table.HeaderCell>
-                </Table.Row>
-            </Table.Header>
-            <Table.Body>
-                {omraader.map((o) => {
-                    const les = o.handling.find((h) => h === 'LES');
-                    const kommuniser = o.handling.find((h) => h === 'KOMMUNISER');
-                    const skriv = o.handling.find((h) => h === 'SKRIV');
-                    return (
-                        <Table.Row key={o.omraade.kode}>
-                            <Table.DataCell>{o.omraade.beskrivelse}</Table.DataCell>
-                            <Table.DataCell>{les && <GlassesIcon title="Lese/innsyn" />}</Table.DataCell>
-                            <Table.DataCell>{kommuniser && <Chat2Icon title="Snakke/kommunisere" />}</Table.DataCell>
-                            <Table.DataCell>{skriv && <PencilIcon title="Søke/klage" />}</Table.DataCell>
-                        </Table.Row>
-                    );
-                })}
-            </Table.Body>
-        </Table>
+        <VStack gap="space-8">
+            {leserettigheter && <BodyShort size="small">Leserettigheter: {leserettigheter}</BodyShort>}
+            {skriverettigheter && <BodyShort size="small">Skriverettigheter: {skriverettigheter}</BodyShort>}
+        </VStack>
     );
 };
 
-function Fullmakt(props: { fullmakt: Fullmakt; harFeilendeSystem: boolean }) {
-    const motpartsPersonNavn = hentNavn(props.fullmakt.motpartsPersonNavn);
-    const beskrivelse = props.fullmakt.motpartsRolle === 'FULLMEKTIG' ? 'Fullmektig' : 'Fullmaktsgiver';
+function Fullmakt(props: { fullmektig: Fullmektig; harFeilendeSystem: boolean }) {
+    const fullmektigNavn = hentNavn(props.fullmektig.navn);
     const harFeilendeSystem = props.harFeilendeSystem ? (
         <InlineMessage status="warning" size="small">
             Feilet ved uthenting av navn
@@ -90,20 +49,21 @@ function Fullmakt(props: { fullmakt: Fullmakt; harFeilendeSystem: boolean }) {
     ) : null;
 
     return (
-        <InfoElement title={beskrivelse}>
+        <InfoElement title="Fullmektig">
             {harFeilendeSystem}
-            <BodyShort size="small">{motpartsPersonNavn}</BodyShort>
-            <KopierFnrKnapp fnr={props.fullmakt.motpartsPersonident} />
+            <BodyShort size="small">{fullmektigNavn}</BodyShort>
+            <KopierFnrKnapp fnr={props.fullmektig.ident} />
             <KontaktinformasjonFullmakt
-                kontaktinformasjon={props.fullmakt.digitalKontaktinformasjonTredjepartsperson}
+                kontaktinformasjon={props.fullmektig.digitalKontaktinformasjonTredjepartsperson}
             />
-            <ValidPeriod
-                from={props.fullmakt.gyldighetsPeriode?.gyldigFraOgMed}
-                to={props.fullmakt.gyldighetsPeriode?.gyldigTilOgMed}
-            />
-            <ReadMore header="Detaljer">
-                <FullmaktTilgangerTabell omraader={props.fullmakt.omrade} />
-            </ReadMore>
+            {props.fullmektig.fullmakter.map((fullmakt) => (
+                <div key={fullmakt.fullmaktId}>
+                    <ValidPeriod from={fullmakt.gyldigFraOgMed} to={fullmakt.gyldigTilOgMed} />
+                    <ReadMore header="Detaljer">
+                        <FullmaktTilganger fullmakt={fullmakt} />
+                    </ReadMore>
+                </div>
+            ))}
         </InfoElement>
     );
 }
@@ -112,22 +72,22 @@ function Fullmakter() {
     const { data } = usePersonData();
     const person = data?.person;
     const feilendeSystemer = data?.feilendeSystemer ?? [];
-    const fullmakter = person?.fullmakt;
+    const fullmektige = person?.fullmektige;
 
-    if (!fullmakter || fullmakter.isEmpty()) {
+    if (!fullmektige || fullmektige.isEmpty()) {
         return null;
     }
 
     return (
         <Group title="Fullmakter">
             <InfoElement>
-                {fullmakter.map((fullmakt) => (
+                {fullmektige.map((fullmektig) => (
                     <Fullmakt
-                        key={fullmakt.motpartsPersonident}
-                        fullmakt={fullmakt}
+                        key={fullmektig.ident}
+                        fullmektig={fullmektig}
                         harFeilendeSystem={
                             harFeilendeSystemer(feilendeSystemer, PersonDataFeilendeSystemer.PDL_TREDJEPARTSPERSONER) ||
-                            harFeilendeSystemer(feilendeSystemer, PersonDataFeilendeSystemer.FULLMAKT)
+                            harFeilendeSystemer(feilendeSystemer, PersonDataFeilendeSystemer.REPR_API)
                         }
                     />
                 ))}

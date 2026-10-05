@@ -3,8 +3,6 @@ import {
     EgenAnsatt,
     type ForelderBarnRelasjon,
     ForelderBarnRelasjonRolle,
-    FullmaktsRolle,
-    Handling,
     Kjonn,
     type LocalDate,
     type LocalDateTime,
@@ -14,6 +12,7 @@ import {
     Skifteform
 } from '../../app/personside/visittkort-v2/PersondataDomain';
 import { harDiskresjonskode } from '../../app/personside/visittkort-v2/visittkort-utils';
+import { FullmaktEndringHendelse, FullmaktEndringKilde } from '../../generated/modiapersonoversikt-api';
 
 function hentBarnAremark(): ForelderBarnRelasjon[] {
     return [
@@ -369,65 +368,99 @@ export const aremark: Person = {
             }
         }
     ],
-    fullmakt: [
+    fullmektige: [
         {
-            motpartsPersonident: '123456789',
-            motpartsPersonNavn: {
+            ident: '123456789',
+            navn: {
                 fornavn: 'Navn',
                 mellomnavn: null,
                 etternavn: 'Navnesen'
             },
-            motpartsRolle: FullmaktsRolle.FULLMEKTIG,
-            omrade: [
-                {
-                    omraade: {
-                        kode: 'AAP',
-                        beskrivelse: 'Arbeidsavklaringspenger'
-                    },
-                    handling: [Handling.LES, Handling.KOMMUNISER]
-                },
-                {
-                    omraade: {
-                        kode: 'DAG',
-                        beskrivelse: 'Dagpenger'
-                    },
-                    handling: [Handling.LES, Handling.KOMMUNISER, Handling.SKRIV]
-                }
-            ],
-            gyldighetsPeriode: {
-                gyldigFraOgMed: '2021-06-01' as LocalDate,
-                gyldigTilOgMed: '2022-05-01' as LocalDate
-            },
             digitalKontaktinformasjonTredjepartsperson: {
                 mobiltelefonnummer: '90909090',
-                reservasjon: 'false'
-            }
+                reservasjon: false
+            },
+            fullmakter: [
+                {
+                    fullmaktId: '123e4567-e89b-12d3-a456-426614174000',
+                    fullmaktsgiver: '10108000398',
+                    fullmektig: '123456789',
+                    gyldigFraOgMed: '2026-01-01',
+                    gyldigTilOgMed: '2027-12-31',
+                    leserettigheter: [
+                        {
+                            kode: 'AAP',
+                            beskrivelse: 'Arbeidsavklaringspenger'
+                        },
+                        {
+                            kode: 'DAG',
+                            beskrivelse: 'Dagpenger'
+                        }
+                    ],
+                    skriverettigheter: [
+                        {
+                            kode: 'DAG',
+                            beskrivelse: 'Dagpenger'
+                        }
+                    ],
+                    endringslogg: [
+                        {
+                            endringId: 1,
+                            registrert: '2026-01-01T10:00:00',
+                            registrertAv: '10108000398',
+                            kilde: FullmaktEndringKilde.BRUKER,
+                            hendelse: FullmaktEndringHendelse.OPPRETTELSE_AV_BRUKER,
+                            gyldigFraOgMed: '2026-01-01',
+                            gyldigTilOgMed: '2027-12-31',
+                            leserettigheter: [
+                                {
+                                    kode: 'AAP',
+                                    beskrivelse: 'Arbeidsavklaringspenger'
+                                },
+                                {
+                                    kode: 'DAG',
+                                    beskrivelse: 'Dagpenger'
+                                }
+                            ],
+                            skriverettigheter: [
+                                {
+                                    kode: 'DAG',
+                                    beskrivelse: 'Dagpenger'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
-            motpartsPersonident: '12345678111',
-            motpartsPersonNavn: {
+            ident: '12345678111',
+            navn: {
                 fornavn: 'Navn2',
                 mellomnavn: null,
                 etternavn: 'Navnesen2'
             },
-            motpartsRolle: FullmaktsRolle.FULLMEKTIG,
-            omrade: [
-                {
-                    omraade: {
-                        kode: '*',
-                        beskrivelse: ''
-                    },
-                    handling: [Handling.KOMMUNISER, Handling.LES, Handling.SKRIV]
-                }
-            ],
-            gyldighetsPeriode: {
-                gyldigFraOgMed: '2021-06-01' as LocalDate,
-                gyldigTilOgMed: '2022-05-01' as LocalDate
-            },
             digitalKontaktinformasjonTredjepartsperson: {
                 mobiltelefonnummer: null,
-                reservasjon: 'true'
-            }
+                reservasjon: true
+            },
+            fullmakter: [
+                {
+                    fullmaktId: '123e4567-e89b-12d3-a456-426614174001',
+                    fullmaktsgiver: '10108000398',
+                    fullmektig: '12345678111',
+                    gyldigFraOgMed: '2026-01-01',
+                    gyldigTilOgMed: '2027-12-31',
+                    leserettigheter: [],
+                    skriverettigheter: [
+                        {
+                            kode: 'AAP',
+                            beskrivelse: 'Arbeidsavklaringspenger'
+                        }
+                    ],
+                    endringslogg: []
+                }
+            ]
         }
     ],
     vergemal: [

@@ -24,7 +24,7 @@ export const PersonBadges = () => {
             <VergemalBadge vergemal={person.vergemal} />
             <TilrettelagtKommunikasjonsBadge tilrettelagtKommunikasjon={person.tilrettelagtKommunikasjon} />
             <DodsboBadge dodsbo={person.dodsbo} />
-            <FullmaktBadge fullmakt={person.fullmakt} />
+            <FullmaktBadge fullmektige={person.fullmektige} />
         </>
     );
 };
@@ -159,8 +159,8 @@ function DodsboBadge({ dodsbo }: { dodsbo: PersonData['dodsbo'] }) {
     );
 }
 
-function FullmaktBadge({ fullmakt }: { fullmakt: PersonData['fullmakt'] }) {
-    if (fullmakt.isEmpty()) {
+function FullmaktBadge({ fullmektige }: { fullmektige: PersonData['fullmektige'] }) {
+    if (fullmektige.isEmpty()) {
         return null;
     }
 

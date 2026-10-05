@@ -38,7 +38,7 @@ function Etiketter({ person }: Props) {
                 <VergemalsEtikett vergemal={person.vergemal} />
                 <TilrettelagtKommunikasjonsEtiketter tilrettelagtKommunikasjon={person.tilrettelagtKommunikasjon} />
                 <DodsboEtikett dodsbo={person.dodsbo} />
-                <FullmaktEtikett fullmakt={person.fullmakt} />
+                <FullmaktEtikett fullmektige={person.fullmektige} />
             </StyledEtikketter>
         </ErrorBoundary>
     );
