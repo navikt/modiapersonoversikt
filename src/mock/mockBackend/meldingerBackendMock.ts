@@ -98,7 +98,9 @@ export class MeldingerBackendMock {
     }
 
     public opprettHenvendelse(request: OpprettHenvendelseRequest): OpprettHenvendelseResponse {
-        const oppgave = this.oppgaveBackendMock.getTildelteOppgaver().find((it) => it.traadId === request.traadId);
+        const oppgave = this.oppgaveBackendMock
+            .getTildelteOppgaver(this.fnr)
+            .find((it) => it.traadId === request.traadId);
         return {
             behandlingsId: guid(),
             oppgaveId: oppgave?.oppgaveId

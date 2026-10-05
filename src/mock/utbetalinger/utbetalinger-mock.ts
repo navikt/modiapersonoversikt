@@ -26,7 +26,9 @@ export function getMockUtbetalinger(fodselsnummer: string, startDato: string, sl
 
     return {
         utbetalinger: getUtbetalinger(fodselsnummer).filter(
-            (u) => dayjs(u.posteringsdato).isAfter(startDato) && dayjs(u.posteringsdato).isBefore(sluttDato)
+            (u) =>
+                !dayjs(u.posteringsdato).isBefore(startDato, 'day') &&
+                !dayjs(u.posteringsdato).isAfter(sluttDato, 'day')
         ),
         periode: {
             startDato: startDato,
@@ -38,9 +40,38 @@ export function getMockUtbetalinger(fodselsnummer: string, startDato: string, sl
 const fjernDuplikatePosteringsdato = (utbetaling: Utbetaling, index: number, list: Utbetaling[]) =>
     list.findIndex((u) => u.posteringsdato === utbetaling.posteringsdato) === index;
 
+function getHjemUtbetalinger(): Utbetaling[] {
+    const typer = [
+        'Sykepenger',
+        'Barnetrygd',
+        'Arbeidsavklaringspenger',
+        'Dagpenger',
+        'Pensjon',
+        'Foreldrepenger',
+        'Tiltakspenger'
+    ];
+    return [5, -1, -4, -8, -12, -18, -25].map((dager, index) => {
+        const dato = dayjs().add(dager, 'day').format(backendDatoformat);
+        const kommende = dager > 0;
+        const ytelser = [
+            { ...getMockYtelse(), type: typer[index] },
+            ...(kommende ? [{ ...getMockYtelse(), type: 'Foreldrepenger' }] : [])
+        ];
+        return {
+            ...getMockUtbetaling(),
+            posteringsdato: kommende ? dayjs().format(backendDatoformat) : dato,
+            utbetalingsdato: kommende ? null : dato,
+            forfallsdato: kommende ? dato : null,
+            status: kommende ? 'Ligger hos banken' : 'Utbetalt',
+            nettobelop: ytelser.reduce((sum, ytelse) => sum + ytelse.nettobelop, 0),
+            ytelser
+        };
+    });
+}
+
 function getUtbetalinger(fodselsnummer: string) {
     if (fodselsnummer === aremark.personIdent) {
-        return [...(new Array(5) as number[])].map(() => getMockUtbetaling());
+        return getHjemUtbetalinger();
     }
     if (navfaker.random.vektetSjanse(0.2)) {
         return [];

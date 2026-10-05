@@ -2,20 +2,9 @@ import { PrinterSmallIcon } from '@navikt/aksel-icons';
 import { Button, Table } from '@navikt/ds-react';
 import usePrinter from 'src/components/Print/usePrinter';
 import { UtbetalingDetail } from 'src/components/Utbetaling/Detail';
-import { formaterNOK, getGjeldendeDatoForUtbetaling, getUtbetalingId } from 'src/components/Utbetaling/utils';
+import { datoVisning, formaterNOK, getUtbetalingId } from 'src/components/Utbetaling/utils';
 import type { Utbetaling } from 'src/generated/modiapersonoversikt-api';
 import { trackVisDetaljvisning } from 'src/utils/analytics';
-import { formatterDato } from 'src/utils/date-utils';
-
-const datoVisning = (utbetaling: Utbetaling) => {
-    return `${formatterDato(getGjeldendeDatoForUtbetaling(utbetaling))} ${
-        utbetaling.forfallsdato && !utbetaling.utbetalingsdato
-            ? '(forfall)'
-            : !utbetaling.forfallsdato && !utbetaling.utbetalingsdato && utbetaling.posteringsdato
-              ? '(postering)'
-              : ''
-    }`;
-};
 
 const getUtbetalingsDetaljer = (utbetaling: Utbetaling) => {
     const alleYtelseTyper = utbetaling.ytelser.map((ytelse) => ytelse.type).unique();

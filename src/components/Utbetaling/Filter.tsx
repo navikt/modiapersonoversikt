@@ -1,9 +1,10 @@
 import { ArrowCirclepathReverseIcon } from '@navikt/aksel-icons';
 import { Box, Button, HStack, UNSAFE_Combobox } from '@navikt/ds-react';
+import { useNavigate, useSearch } from '@tanstack/react-router';
 import { atom, useAtom, useSetAtom } from 'jotai';
 import { atomWithReset, RESET } from 'jotai/utils';
 import { xor } from 'lodash';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
 import { DateRangePickerWithDebounce } from 'src/components/DateFilters/DateRangePickerWithDebounce';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
@@ -58,15 +59,24 @@ const utbetalingFilterDateRangeAtom = atom(
     }
 );
 
-const DateFilter = () => {
+export const DateFilter = () => {
     const [value, setValue] = useAtom(utbetalingFilterDateRangeAtom);
     const [periodType, setPeriodType] = useAtom(utbetalingFilterPeriodTypeAtom);
+    const { periode } = useSearch({ from: '/new/person/utbetaling' });
+    const navigate = useNavigate({ from: '/new/person/utbetaling' });
+    const lenketPeriode = periode === 'siste30' ? getPeriodFromOption(PeriodType.LAST_30_DAYS) : null;
     return (
         <DateRangePickerWithDebounce
-            dateRange={value}
-            onPeriodChange={setPeriodType}
-            period={periodType}
-            onRangeChange={(range) => setValue(range ?? null)}
+            dateRange={lenketPeriode ?? value}
+            onPeriodChange={(type) => {
+                setPeriodType(type);
+                if (lenketPeriode) void navigate({ search: {} });
+            }}
+            period={lenketPeriode ? PeriodType.LAST_30_DAYS : periodType}
+            onRangeChange={(range) => {
+                setValue(range ?? null);
+                if (lenketPeriode) void navigate({ search: {} });
+            }}
         />
     );
 };
@@ -106,15 +116,20 @@ const UtbetalingYtelserFilter = () => {
 
 const ResetFilter = () => {
     const [filter, setFilter] = useAtom(utbetalingFilterAtom);
+    const { periode } = useSearch({ from: '/new/person/utbetaling' });
+    const navigate = useNavigate({ from: '/new/person/utbetaling' });
 
     const datoErlik = filter.dateRange.from?.isSame(defaultDate.from) && filter.dateRange.to?.isSame(defaultDate.to);
-    const isDirty = filter.ytelseTyper.isNotEmpty() || !datoErlik;
+    const isDirty = Boolean(periode) || filter.ytelseTyper.isNotEmpty() || !datoErlik;
 
     return (
         <Button
             icon={<ArrowCirclepathReverseIcon aria-hidden />}
             disabled={!isDirty}
-            onClick={() => setFilter(RESET)}
+            onClick={() => {
+                setFilter(RESET);
+                if (periode) void navigate({ search: {} });
+            }}
             variant="tertiary"
             size="small"
         >
@@ -126,10 +141,17 @@ const ResetFilter = () => {
 export const UtbetalingListFilter = () => {
     const setFilter = useSetAtom(utbetalingFilterAtom);
     const fnr = usePersonAtomValue();
+    const forrigePerson = useRef<string | undefined>(undefined);
+    const { periode } = useSearch({ from: '/new/person/utbetaling' });
+    const navigate = useNavigate({ from: '/new/person/utbetaling' });
 
     useEffect(() => {
-        setFilter(RESET);
-    }, [fnr]);
+        if (forrigePerson.current !== fnr) {
+            setFilter(RESET);
+            if (forrigePerson.current !== undefined && periode) void navigate({ search: {} });
+            forrigePerson.current = fnr;
+        }
+    }, [fnr, periode, navigate, setFilter]);
 
     return (
         <HStack gap="space-8" justify="start">
