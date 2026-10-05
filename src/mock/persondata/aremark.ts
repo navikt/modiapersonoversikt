@@ -380,58 +380,56 @@ export const aremark: Person = {
                 mobiltelefonnummer: '90909090',
                 reservasjon: false
             },
-            fullmakter: [
-                {
-                    fullmaktId: '123e4567-e89b-12d3-a456-426614174000',
-                    fullmaktsgiver: '10108000398',
-                    fullmektig: '123456789',
-                    gyldigFraOgMed: '2026-01-01',
-                    gyldigTilOgMed: '2027-12-31',
-                    leserettigheter: [
-                        {
-                            kode: 'AAP',
-                            beskrivelse: 'Arbeidsavklaringspenger'
-                        },
-                        {
-                            kode: 'DAG',
-                            beskrivelse: 'Dagpenger'
-                        }
-                    ],
-                    skriverettigheter: [
-                        {
-                            kode: 'DAG',
-                            beskrivelse: 'Dagpenger'
-                        }
-                    ],
-                    endringslogg: [
-                        {
-                            endringId: 1,
-                            registrert: '2026-01-01T10:00:00',
-                            registrertAv: '10108000398',
-                            kilde: FullmaktEndringKilde.BRUKER,
-                            hendelse: FullmaktEndringHendelse.OPPRETTELSE_AV_BRUKER,
-                            gyldigFraOgMed: '2026-01-01',
-                            gyldigTilOgMed: '2027-12-31',
-                            leserettigheter: [
-                                {
-                                    kode: 'AAP',
-                                    beskrivelse: 'Arbeidsavklaringspenger'
-                                },
-                                {
-                                    kode: 'DAG',
-                                    beskrivelse: 'Dagpenger'
-                                }
-                            ],
-                            skriverettigheter: [
-                                {
-                                    kode: 'DAG',
-                                    beskrivelse: 'Dagpenger'
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
+            fullmakt: {
+                fullmaktId: '123e4567-e89b-12d3-a456-426614174000',
+                fullmaktsgiver: '10108000398',
+                fullmektig: '123456789',
+                gyldigFraOgMed: '2026-01-01',
+                gyldigTilOgMed: '2027-12-31',
+                leserettigheter: [
+                    {
+                        kode: 'AAP',
+                        beskrivelse: 'Arbeidsavklaringspenger'
+                    },
+                    {
+                        kode: 'DAG',
+                        beskrivelse: 'Dagpenger'
+                    }
+                ],
+                skriverettigheter: [
+                    {
+                        kode: 'DAG',
+                        beskrivelse: 'Dagpenger'
+                    }
+                ],
+                endringslogg: [
+                    {
+                        endringId: 1,
+                        registrert: '2026-01-01T10:00:00',
+                        registrertAv: '10108000398',
+                        kilde: FullmaktEndringKilde.BRUKER,
+                        hendelse: FullmaktEndringHendelse.OPPRETTELSE_AV_BRUKER,
+                        gyldigFraOgMed: '2026-01-01',
+                        gyldigTilOgMed: '2027-12-31',
+                        leserettigheter: [
+                            {
+                                kode: 'AAP',
+                                beskrivelse: 'Arbeidsavklaringspenger'
+                            },
+                            {
+                                kode: 'DAG',
+                                beskrivelse: 'Dagpenger'
+                            }
+                        ],
+                        skriverettigheter: [
+                            {
+                                kode: 'DAG',
+                                beskrivelse: 'Dagpenger'
+                            }
+                        ]
+                    }
+                ]
+            }
         },
         {
             ident: '12345678111',
@@ -444,23 +442,20 @@ export const aremark: Person = {
                 mobiltelefonnummer: null,
                 reservasjon: true
             },
-            fullmakter: [
-                {
-                    fullmaktId: '123e4567-e89b-12d3-a456-426614174001',
-                    fullmaktsgiver: '10108000398',
-                    fullmektig: '12345678111',
-                    gyldigFraOgMed: '2026-01-01',
-                    gyldigTilOgMed: '2027-12-31',
-                    leserettigheter: [],
-                    skriverettigheter: [
-                        {
-                            kode: 'AAP',
-                            beskrivelse: 'Arbeidsavklaringspenger'
-                        }
-                    ],
-                    endringslogg: []
-                }
-            ]
+            fullmakt: {
+                fullmaktId: '123e4567-e89b-12d3-a456-426614174001',
+                fullmaktsgiver: '10108000398',
+                fullmektig: '12345678111',
+                gyldigFraOgMed: '2026-01-01',
+                leserettigheter: [],
+                skriverettigheter: [
+                    {
+                        kode: 'AAP',
+                        beskrivelse: 'Arbeidsavklaringspenger'
+                    }
+                ],
+                endringslogg: []
+            }
         }
     ],
     vergemal: [

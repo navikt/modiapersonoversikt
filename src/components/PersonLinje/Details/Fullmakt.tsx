@@ -9,7 +9,7 @@ import { harFeilendeSystemer, hentNavn } from '../utils';
 import { Group, InfoElement } from './components';
 
 type Fullmektig = PersonData['fullmektige'][number];
-type Fullmakt = Fullmektig['fullmakter'][number];
+type Fullmakt = Fullmektig['fullmakt'];
 type DigitalKontaktTredjepart = Fullmektig['digitalKontaktinformasjonTredjepartsperson'];
 
 function KontaktinformasjonFullmakt(props: { kontaktinformasjon?: DigitalKontaktTredjepart }) {
@@ -56,14 +56,13 @@ function Fullmakt(props: { fullmektig: Fullmektig; harFeilendeSystem: boolean })
             <KontaktinformasjonFullmakt
                 kontaktinformasjon={props.fullmektig.digitalKontaktinformasjonTredjepartsperson}
             />
-            {props.fullmektig.fullmakter.map((fullmakt) => (
-                <div key={fullmakt.fullmaktId}>
-                    <ValidPeriod from={fullmakt.gyldigFraOgMed} to={fullmakt.gyldigTilOgMed} />
-                    <ReadMore header="Detaljer">
-                        <FullmaktTilganger fullmakt={fullmakt} />
-                    </ReadMore>
-                </div>
-            ))}
+            <ValidPeriod
+                from={props.fullmektig.fullmakt.gyldigFraOgMed}
+                to={props.fullmektig.fullmakt.gyldigTilOgMed}
+            />
+            <ReadMore header="Detaljer">
+                <FullmaktTilganger fullmakt={props.fullmektig.fullmakt} />
+            </ReadMore>
         </InfoElement>
     );
 }

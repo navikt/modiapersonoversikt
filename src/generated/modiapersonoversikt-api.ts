@@ -1329,14 +1329,14 @@ export interface components {
         LocalDate: {
             /** Format: date */
             value?: string;
-            /** Format: int32 */
-            year: number;
+            /** Format: date */
+            value$kotlinx_datetime: string;
             /**
              * Format: int32
              * @deprecated
-             * @description Use the 'day' property instead
+             * @description Use the 'month' property instead
              */
-            dayOfMonth: number;
+            monthNumber: number;
             /** Format: int32 */
             day: number;
             /** @enum {string} */
@@ -1345,20 +1345,37 @@ export interface components {
             dayOfWeek: LocalDateDayOfWeek;
             /** Format: int32 */
             dayOfYear: number;
+            /** Format: int32 */
+            year: number;
+            /**
+             * Format: int32
+             * @deprecated
+             * @description Use the 'day' property instead
+             */
+            dayOfMonth: number;
+        };
+        LocalDateTime: {
+            /** Format: date-time */
+            value?: string;
+            /** Format: date-time */
+            value$kotlinx_datetime: string;
             /**
              * Format: int32
              * @deprecated
              * @description Use the 'month' property instead
              */
             monthNumber: number;
-            /** Format: date */
-            value$kotlinx_datetime: string;
-        };
-        LocalDateTime: {
-            /** Format: date-time */
-            value?: string;
+            /** Format: int32 */
+            nanosecond: number;
+            /** Format: int32 */
+            day: number;
+            /** @enum {string} */
+            month: LocalDateTimeMonth;
+            /** @enum {string} */
+            dayOfWeek: LocalDateTimeDayOfWeek;
+            /** Format: int32 */
+            dayOfYear: number;
             time: components['schemas']['LocalTime'];
-            date: components['schemas']['LocalDate'];
             /** Format: int32 */
             year: number;
             /**
@@ -1373,36 +1390,19 @@ export interface components {
             minute: number;
             /** Format: int32 */
             second: number;
-            /** Format: int32 */
-            day: number;
-            /** @enum {string} */
-            month: LocalDateTimeMonth;
-            /** @enum {string} */
-            dayOfWeek: LocalDateTimeDayOfWeek;
-            /** Format: int32 */
-            dayOfYear: number;
-            /**
-             * Format: int32
-             * @deprecated
-             * @description Use the 'month' property instead
-             */
-            monthNumber: number;
-            /** Format: int32 */
-            nanosecond: number;
-            /** Format: date-time */
-            value$kotlinx_datetime: string;
+            date: components['schemas']['LocalDate'];
         };
         LocalTime: {
             value?: string;
+            value$kotlinx_datetime: string;
+            /** Format: int32 */
+            nanosecond: number;
             /** Format: int32 */
             hour: number;
             /** Format: int32 */
             minute: number;
             /** Format: int32 */
             second: number;
-            /** Format: int32 */
-            nanosecond: number;
-            value$kotlinx_datetime: string;
         };
         ResultatSoknadsstatus: {
             resultat: components['schemas']['SoknadsstatusSakstema'][];
@@ -1632,7 +1632,7 @@ export interface components {
             digitalKontaktinformasjonTredjepartsperson?:
                 | components['schemas']['DigitalKontaktinformasjonTredjepartsperson']
                 | null;
-            fullmakter: components['schemas']['Fullmakt'][];
+            fullmakt: components['schemas']['Fullmakt'];
         };
         GyldighetsPeriode: {
             /** Format: date */
@@ -2140,19 +2140,19 @@ export interface components {
             boost?: number | null;
         };
         GraphQLClientError: {
+            locations?: components['schemas']['GraphQLClientSourceLocation'][] | null;
             message: string;
             path?: unknown[] | null;
             extensions?: {
                 [key: string]: unknown;
             } | null;
-            locations?: components['schemas']['GraphQLClientSourceLocation'][] | null;
         };
         GraphQLClientResponseResult: {
-            data?: components['schemas']['Result'] | null;
+            errors?: components['schemas']['GraphQLClientError'][] | null;
             extensions?: {
                 [key: string]: unknown;
             } | null;
-            errors?: components['schemas']['GraphQLClientError'][] | null;
+            data?: components['schemas']['Result'] | null;
         };
         GraphQLClientSourceLocation: {
             /** Format: int32 */

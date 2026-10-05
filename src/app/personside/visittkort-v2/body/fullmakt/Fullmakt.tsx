@@ -12,7 +12,7 @@ import VisittkortElement from '../VisittkortElement';
 import { VisittkortGruppe } from '../VisittkortStyles';
 
 type Fullmektig = Person['fullmektige'][number];
-type FullmaktRepresentasjon = Fullmektig['fullmakter'][number];
+type FullmaktRepresentasjon = Fullmektig['fullmakt'];
 
 interface Props {
     feilendeSystemer: Array<InformasjonElement>;
@@ -80,16 +80,13 @@ function Fullmektig(props: { fullmektig: Fullmektig; harFeilendeSystem: boolean 
             <KontaktinformasjonFullmakt
                 kontaktinformasjon={props.fullmektig.digitalKontaktinformasjonTredjepartsperson}
             />
-            {props.fullmektig.fullmakter.map((fullmakt) => (
-                <div key={fullmakt.fullmaktId}>
-                    <Normaltekst>
-                        Gyldig: {hentPeriodeTekst(fullmakt.gyldigFraOgMed, fullmakt.gyldigTilOgMed)}
-                    </Normaltekst>
-                    <ReadMore header="Detaljer" size="small">
-                        <FullmaktTilganger fullmakt={fullmakt} />
-                    </ReadMore>
-                </div>
-            ))}
+            <Normaltekst>
+                Gyldig:{' '}
+                {hentPeriodeTekst(props.fullmektig.fullmakt.gyldigFraOgMed, props.fullmektig.fullmakt.gyldigTilOgMed)}
+            </Normaltekst>
+            <ReadMore header="Detaljer" size="small">
+                <FullmaktTilganger fullmakt={props.fullmektig.fullmakt} />
+            </ReadMore>
         </VisittkortElement>
     );
 }

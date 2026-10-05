@@ -357,23 +357,20 @@ function lagPerson(fnr: string): Person {
                           mobiltelefonnummer: '90909090',
                           reservasjon: false
                       },
-                      fullmakter: [
-                          {
-                              fullmaktId: '123e4567-e89b-12d3-a456-426614174002',
-                              fullmaktsgiver: fnr,
-                              fullmektig: '123456789',
-                              gyldigFraOgMed: '2026-01-01',
-                              gyldigTilOgMed: '2027-12-31',
-                              leserettigheter: [
-                                  {
-                                      kode: 'AAP',
-                                      beskrivelse: 'Arbeidsavklaringspenger'
-                                  }
-                              ],
-                              skriverettigheter: [],
-                              endringslogg: []
-                          }
-                      ]
+                      fullmakt: {
+                          fullmaktId: '123e4567-e89b-12d3-a456-426614174002',
+                          fullmaktsgiver: fnr,
+                          fullmektig: '123456789',
+                          gyldigFraOgMed: '2026-01-01',
+                          leserettigheter: [
+                              {
+                                  kode: 'AAP',
+                                  beskrivelse: 'Arbeidsavklaringspenger'
+                              }
+                          ],
+                          skriverettigheter: [],
+                          endringslogg: []
+                      }
                   }
               ]
             : [],
