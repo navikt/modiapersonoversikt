@@ -35,6 +35,7 @@ import OppgaverOversikt from './OppgaverOversikt';
 import PdlLenke from './PdlLenke';
 import RettsligHandleevne from './RettsligHandleevne';
 import Sikkerhetstiltak from './Sikkerhetstiltak';
+import SikkerhetstiltakBanner from './SikkerhetstiltakBanner';
 import TilrettelagtKommunikasjon from './TilrettelagtKommunikasjon';
 import TopKort from './TopKort';
 import UtbetalingerOversikt from './UtbetalingerOversikt';
@@ -112,20 +113,23 @@ const PersonlinjeDetails = () => {
     return (
         <Card className="overflow-auto">
             <VStack gap="space-32">
-                <Box
-                    paddingInline={{ xs: 'space-16', lg: 'space-64 space-32' }}
-                    paddingBlock={{ xs: 'space-16', lg: 'space-24' }}
-                    className={bakgrunnsklasse}
-                >
-                    <HGrid columns={{ xs: 1, lg: '7fr 3fr' }} gap={{ xs: 'space-24', lg: 'space-32' }}>
-                        <Box className="lg:pr-8 lg:pt-6">
-                            <TopKort />
-                        </Box>
-                        <Box className="border-t border-ax-border-neutral-subtle pt-6 empty:hidden lg:border-t-0 lg:border-l lg:pl-8 lg:pt-6">
-                            <NavKontor />
-                        </Box>
-                    </HGrid>
-                </Box>
+                <VStack gap="space-0">
+                    <Box
+                        paddingInline={{ xs: 'space-16', lg: 'space-64 space-32' }}
+                        paddingBlock={{ xs: 'space-16', lg: 'space-24' }}
+                        className={bakgrunnsklasse}
+                    >
+                        <HGrid columns={{ xs: 1, lg: '7fr 3fr' }} gap={{ xs: 'space-24', lg: 'space-32' }}>
+                            <Box className="lg:pr-8 lg:pt-6">
+                                <TopKort />
+                            </Box>
+                            <Box className="border-t border-ax-border-neutral-subtle pt-6 empty:hidden lg:border-t-0 lg:border-l lg:pl-8 lg:pt-6">
+                                <NavKontor />
+                            </Box>
+                        </HGrid>
+                    </Box>
+                    <SikkerhetstiltakBanner />
+                </VStack>
 
                 <HGrid
                     columns={{ xs: 1, lg: 2 }}
