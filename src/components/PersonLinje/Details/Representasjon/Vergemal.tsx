@@ -41,7 +41,7 @@ function VergeDetaljer(props: { feilendeSystemer: PersonDataFeilendeSystemer[]; 
                     {hentPeriodeTekst(verge.gyldighetsPeriode?.gyldigFraOgMed, verge.gyldighetsPeriode?.gyldigTilOgMed)}
                 </BodyShort>
                 <BodyShort size="small">Type: {verge.vergesakstype}</BodyShort>
-                <BodyShort size="small">
+                <BodyShort size="small" as="div">
                     <HStack wrap={false}>
                         <span>Tjenesteområde</span> {hjelpeTekst}:
                     </HStack>

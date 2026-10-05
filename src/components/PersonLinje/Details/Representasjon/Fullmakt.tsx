@@ -35,13 +35,15 @@ function FullmektigDetaljer(props: { feilendeSystemer: PersonDataFeilendeSysteme
                 {harFeilendeSystemOgIngenNavn}
                 <KopierFnrKnapp fnr={fullmektig.ident} />
                 {fullmektig.digitalKontaktinformasjonTredjepartsperson && (
-                    <BodyShort size="small">
-                        Tlf.:{' '}
-                        {fullmektig.digitalKontaktinformasjonTredjepartsperson?.reservasjon === true
-                            ? 'Reservert'
-                            : mobilnummer}
+                    <>
+                        <BodyShort size="small">
+                            Tlf.:{' '}
+                            {fullmektig.digitalKontaktinformasjonTredjepartsperson?.reservasjon === true
+                                ? 'Reservert'
+                                : mobilnummer}
+                        </BodyShort>
                         <Detail textColor="subtle">Kontakt- og reservasjonsregisteret</Detail>
-                    </BodyShort>
+                    </>
                 )}
             </Box>
             <VStack gap="space-8">

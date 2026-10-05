@@ -82,7 +82,7 @@ function Fullmakter() {
             <InfoElement>
                 {fullmektige.map((fullmektig) => (
                     <Fullmakt
-                        key={fullmektig.ident}
+                        key={fullmektig.fullmakt.fullmaktId}
                         fullmektig={fullmektig}
                         harFeilendeSystem={
                             harFeilendeSystemer(feilendeSystemer, PersonDataFeilendeSystemer.PDL_TREDJEPARTSPERSONER) ||

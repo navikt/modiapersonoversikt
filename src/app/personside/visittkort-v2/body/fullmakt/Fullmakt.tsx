@@ -100,7 +100,7 @@ function Fullmakter({ feilendeSystemer, fullmektige }: Props) {
         <VisittkortGruppe tittel="Fullmakter" ikon={<Fullmaktlogo />}>
             {fullmektige.map((fullmektig) => (
                 <Fullmektig
-                    key={fullmektig.ident}
+                    key={fullmektig.fullmakt.fullmaktId}
                     fullmektig={fullmektig}
                     harFeilendeSystem={
                         harFeilendeSystemer(feilendeSystemer, InformasjonElement.PDL_TREDJEPARTSPERSONER) ||

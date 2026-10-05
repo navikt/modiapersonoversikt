@@ -3,12 +3,15 @@ import { Fullmakt } from 'src/components/PersonLinje/Details/Representasjon/Full
 import { RettsligHandleevne } from 'src/components/PersonLinje/Details/Representasjon/RettsligHandleevne';
 import Vergemal from 'src/components/PersonLinje/Details/Representasjon/Vergemal';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
+import { PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
 
 export const Representasjon = () => {
     const { data } = usePersonData();
     const person = data?.person;
+    const reprApiFeil = data?.feilendeSystemer.includes(PersonDataFeilendeSystemer.REPR_API) ?? false;
 
     const ingenData =
+        !reprApiFeil &&
         person?.vergemal?.isEmpty() &&
         person?.historiskeVergemal?.isEmpty() &&
         person?.fullmektige?.isEmpty() &&
