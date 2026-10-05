@@ -8,7 +8,7 @@ describe('formaterRettighetstemaer', () => {
                 { kode: 'AAP', beskrivelse: 'Arbeidsavklaringspenger' },
                 { kode: 'DAG', beskrivelse: 'Dagpenger' }
             ])
-        ).toBe('Arbeidsavklaringspenger, Dagpenger');
+        ).toBe('arbeidsavklaringspenger, dagpenger');
     });
 
     it('returnerer tom tekst uten rettigheter', () => {
