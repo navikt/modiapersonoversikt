@@ -1,6 +1,7 @@
 import { FigureInwardIcon, FigureOutwardIcon } from '@navikt/aksel-icons';
 import { BodyShort, Heading, HGrid, HStack, InlineMessage, Label, ReadMore, VStack } from '@navikt/ds-react';
 import type { PropsWithChildren } from 'react';
+import { capitalizeStatsborgerskap } from 'src/components/PersonLinje/Details/Familie/Statsborgerskap';
 import { harFeilendeSystemer, hentNavn } from 'src/components/PersonLinje/utils';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import {
@@ -203,6 +204,30 @@ function TopKort() {
                             {tilrettelagtKommunikasjonTekst('Talespråk', person.tilrettelagtKommunikasjon.talesprak)}
                         </Seksjon>
                     )}
+                    {person.statsborgerskap.isNotEmpty() && (
+                        <Seksjon tittel="Statsborgerskap">
+                            <BodyShort size="small">
+                                {person.statsborgerskap
+                                    .map(({ land }) => capitalizeStatsborgerskap(land.beskrivelse))
+                                    .join(', ')}
+                            </BodyShort>
+                        </Seksjon>
+                    )}
+                    {person.opphold?.map((opphold, index) => (
+                        <Seksjon key={`${opphold.type}-${index}`} tittel="Oppholdstillatelse">
+                            <BodyShort size="small">Type: {opphold.type}</BodyShort>
+                            {opphold.oppholdFra && (
+                                <BodyShort textColor="subtle" className="text-sm">
+                                    Opphold fra: {formaterDato(opphold.oppholdFra)}
+                                </BodyShort>
+                            )}
+                            {opphold.oppholdTil && (
+                                <BodyShort textColor="subtle" className="text-sm">
+                                    Opphold til: {formaterDato(opphold.oppholdTil)}
+                                </BodyShort>
+                            )}
+                        </Seksjon>
+                    ))}
                 </VStack>
             </HGrid>
         </VStack>

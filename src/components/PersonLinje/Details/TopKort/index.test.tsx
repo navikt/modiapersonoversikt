@@ -278,4 +278,34 @@ describe('TopKort', () => {
         expect(screen.queryByText('Bostedsadresse')).not.toBeInTheDocument();
         expect(screen.queryByRole('button', { name: 'Personen har flere adresser' })).not.toBeInTheDocument();
     });
+
+    it('viser statsborgerskap over oppholdstillatelse i høyre kolonne', () => {
+        person.statsborgerskap = [{ land: { kode: 'NOR', beskrivelse: 'NORGE' }, gyldighetsPeriode: null }];
+        person.opphold = [
+            {
+                type: 'Midlertidig',
+                oppholdFra: '2024-01-15',
+                oppholdTil: '2026-12-31'
+            }
+        ];
+        render(<TopKort />);
+
+        const statsborgerskap = screen.getByText('Statsborgerskap');
+        const opphold = screen.getByText('Oppholdstillatelse');
+        const hoyreKolonne = statsborgerskap.parentElement?.parentElement;
+        expect(hoyreKolonne).toBe(hoyreKolonne?.parentElement?.lastElementChild);
+        expect(opphold.parentElement?.parentElement).toBe(hoyreKolonne);
+        expect(screen.getByText('Norge')).toBeInTheDocument();
+        expect(screen.getByText('Type: Midlertidig')).toBeInTheDocument();
+        expect(screen.getByText('Opphold fra: 15.01.2024')).toBeInTheDocument();
+        expect(screen.getByText('Opphold til: 31.12.2026')).toBeInTheDocument();
+        expect(statsborgerskap.compareDocumentPosition(opphold) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    });
+
+    it('viser ikke oppholdstillatelse når listen er tom', () => {
+        person.opphold = [];
+        render(<TopKort />);
+
+        expect(screen.queryByText('Oppholdstillatelse')).not.toBeInTheDocument();
+    });
 });

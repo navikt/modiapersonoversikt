@@ -258,6 +258,13 @@ export const aremark: Person = {
             }
         }
     ],
+    opphold: [
+        {
+            type: 'Midlertidig',
+            oppholdFra: '2025-01-01' as LocalDate,
+            oppholdTil: '2027-12-31' as LocalDate
+        }
+    ],
     adressebeskyttelse: [
         {
             kode: AdresseBeskyttelse.KODE6,

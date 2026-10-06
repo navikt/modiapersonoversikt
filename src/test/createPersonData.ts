@@ -14,6 +14,7 @@ export function createPersonData(): PersonData {
         kontaktAdresse: [],
         oppholdsAdresse: [],
         statsborgerskap: [],
+        opphold: [],
         adressebeskyttelse: [],
         sikkerhetstiltak: [],
         erEgenAnsatt: PersonErEgenAnsatt.NEI,
