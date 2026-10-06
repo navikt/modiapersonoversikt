@@ -77,3 +77,6 @@
 .aksel-radio__description {
     font-style: italic;
 }
+#ytelser-tabell-xsmall th,td{
+    font-size: 1rem;
+}
