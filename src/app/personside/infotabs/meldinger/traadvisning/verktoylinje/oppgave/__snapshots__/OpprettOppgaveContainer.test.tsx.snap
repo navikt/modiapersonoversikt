@@ -2,7 +2,7 @@
 
 exports[`Viser oppgavecontainer med alt innhold 1`] = `
 <DocumentFragment>
-  .c3 {
+  .c4 {
   position: relative;
   border: none;
   padding: 0;
@@ -14,7 +14,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
   color: #0067c5;
 }
 
-.c3:after {
+.c4:after {
   border-bottom: 1px #b7b1a9 solid;
   position: absolute;
   bottom: 0;
@@ -22,33 +22,39 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
   width: 100%;
 }
 
-.c3:focus {
+.c4:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c3:hover {
+.c4:hover {
   opacity: 0.8;
 }
 
-.c3:hover:after {
+.c4:hover:after {
   content: '';
   border-color: #0067c5;
 }
 
 .c1 {
-  position: relative;
+  border-bottom: solid 0.0625rem #78706a;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .c2 {
   position: relative;
 }
 
-.c2 .skjemaelement {
+.c3 {
+  position: relative;
+}
+
+.c3 .skjemaelement {
   margin-bottom: 0;
 }
 
-.c4 {
+.c5 {
   display: inline-block;
   float: right;
 }
@@ -74,18 +80,51 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
   margin-bottom: 0.7rem;
 }
 
-.c5 {
+.c6 {
   display: flex;
   justify-content: space-between;
 }
 
-.c5 button {
+.c6 button {
   margin: 0;
 }
 
 <div
     class="c0"
   >
+    <article
+      class="c1"
+    >
+      <div
+        class="ekspanderbartPanel ekspanderbartPanel--lukket ekspanderbartPanel--border"
+      >
+        <button
+          aria-controls="Helt tilfeldig ID"
+          aria-expanded="false"
+          class="ekspanderbartPanel__hode"
+          id="Helt tilfeldig ID"
+          type="button"
+        >
+          <div
+            class="ekspanderbartPanel__flex-wrapper"
+          >
+            <span
+              class="ekspanderbartPanel__tittel"
+            >
+              Avslutt aktiv oppgave fra GOSYS
+            </span>
+            <span
+              class="ekspanderbartPanel__indikator"
+            />
+          </div>
+        </button>
+        <div
+          aria-labelledby="Helt tilfeldig ID"
+          id="Helt tilfeldig ID"
+          role="region"
+        />
+      </div>
+    </article>
     <form>
       <p
         class="typo-element"
@@ -191,11 +230,11 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
         aria-expanded="false"
         aria-haspopup="listbox"
         aria-labelledby="downshift-0-label"
-        class="c1"
+        class="c2"
         role="combobox"
       >
         <div
-          class="c2"
+          class="c3"
         >
           <div
             class="skjemaelement"
@@ -208,7 +247,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
                 Velg enhet
               </span>
               <button
-                class="c3 c4"
+                class="c4 c5"
                 type="button"
               >
                 Sett til min oppgaveliste
@@ -232,11 +271,11 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
         aria-expanded="false"
         aria-haspopup="listbox"
         aria-labelledby="downshift-1-label"
-        class="c1"
+        class="c2"
         role="combobox"
       >
         <div
-          class="c2"
+          class="c3"
         >
           <div
             class="skjemaelement"
@@ -317,7 +356,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
         </div>
       </div>
       <div
-        class="c5"
+        class="c6"
       >
         <button
           class="knapp knapp--hoved"
@@ -326,7 +365,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
           Opprett oppgave
         </button>
         <button
-          class="c3"
+          class="c4"
           type="button"
         >
           Avbryt
