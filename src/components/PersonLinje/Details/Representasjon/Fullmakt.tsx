@@ -109,7 +109,7 @@ export const Fullmakt = () => {
                             const gyldigFraOgMed = dayjs(fullmektig.fullmakt.gyldigFraOgMed);
 
                             return (
-                                <Accordion.Item key={fullmektig.ident}>
+                                <Accordion.Item key={fullmektig.fullmakt.fullmaktId}>
                                     <Accordion.Header>
                                         <VStack className="justify-start items-start">
                                             {capitalizeName(fullmektigNavn)}
