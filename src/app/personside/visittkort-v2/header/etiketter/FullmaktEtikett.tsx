@@ -1,16 +1,16 @@
 import EtikettBase from 'nav-frontend-etiketter';
-import type { Fullmakt } from './../../PersondataDomain';
+import type { Person } from '../../PersondataDomain';
 
 interface Props {
-    fullmakt: Fullmakt[];
+    fullmektige: Person['fullmektige'];
 }
 
-function FullmaktEtikett({ fullmakt }: Props) {
-    if (fullmakt.isEmpty()) {
+function FullmaktEtikett({ fullmektige }: Props) {
+    if (fullmektige.isEmpty()) {
         return null;
     }
 
-    return <EtikettBase type={'fokus'}>Fullmakt</EtikettBase>;
+    return <EtikettBase type="fokus">Fullmakt</EtikettBase>;
 }
 
 export default FullmaktEtikett;

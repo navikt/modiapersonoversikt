@@ -27,8 +27,6 @@ export type RelasjonPerson =
 
 export type AdresseBeskyttelse = KodeBeskrivelseAdresseBeskyttelse;
 
-export type OmraadeMedHandling = components['schemas']['OmraadeMedHandlingString'];
-
 export type PersonsokRequest = components['schemas']['PersonsokRequest'];
 export type PersonsokResponse = components['schemas']['PersonSokResponsDTO'];
 

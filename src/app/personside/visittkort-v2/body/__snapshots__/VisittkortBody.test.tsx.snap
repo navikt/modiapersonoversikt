@@ -765,23 +765,19 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               I Kontakt- og reservasjonsregisteret
             </p>
           </div>
-          <div
-            class="c7"
+          <p
+            class="typo-normal"
           >
-            <p
-              class="typo-undertekst"
-            >
-              Gyldig: 01.06.2021 – 01.05.2022
-            </p>
-          </div>
+            Gyldig: 01.01.2026 – 31.12.2027
+          </p>
           <div
-            class="aksel-read-more aksel-read-more--medium"
+            class="aksel-read-more aksel-read-more--small"
             data-state="closed"
             data-variant="ghost"
           >
             <button
               aria-expanded="false"
-              class="aksel-read-more__button aksel-body-short"
+              class="aksel-read-more__button aksel-body-short aksel-body-short--small"
               type="button"
             >
               <svg
@@ -807,427 +803,18 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               </span>
             </button>
             <div
-              class="aksel-read-more__content aksel-body-long aksel-body-long--medium"
+              class="aksel-read-more__content aksel-body-long aksel-body-long--small"
             >
-              <table
-                class="aksel-table aksel-table--small"
+              <p
+                class="typo-normal"
               >
-                <thead
-                  class="aksel-table__header"
-                >
-                  <tr
-                    class="aksel-table__row aksel-table__row--shade-on-hover"
-                    data-interactive="false"
-                  >
-                    <th
-                      class="aksel-table__header-cell aksel-label"
-                      scope="col"
-                    >
-                      Område
-                    </th>
-                    <th
-                      class="aksel-table__header-cell aksel-label"
-                      scope="col"
-                    >
-                      <div
-                        class="aksel-help-text"
-                        data-color="info"
-                      >
-                        <button
-                          aria-expanded="false"
-                          aria-label="Hva betyr lese/innsyn?"
-                          class="aksel-help-text__button"
-                          type="button"
-                        >
-                          <svg
-                            aria-hidden="true"
-                            class="aksel-help-text__icon"
-                            fill="none"
-                            focusable="false"
-                            height="1em"
-                            role="presentation"
-                            viewBox="0 0 24 24"
-                            width="1em"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <circle
-                              cx="12"
-                              cy="12"
-                              fill="transparent"
-                              r="11"
-                              stroke="currentColor"
-                              stroke-width="1.5"
-                            />
-                            <path
-                              clip-rule="evenodd"
-                              d="M9.75 9C9.75 7.75736 10.7574 6.75 12 6.75H12.1716C13.3195 6.75 14.25 7.68054 14.25 8.82843C14.25 9.37966 14.031 9.90832 13.6412 10.2981L12.6412 11.2981C11.7504 12.1889 11.25 13.3971 11.25 14.6569C11.25 15.0711 11.5858 15.4069 12 15.4069C12.4142 15.4069 12.75 15.0711 12.75 14.6569C12.75 13.7949 13.0924 12.9682 13.7019 12.3588L14.7019 11.3588C15.373 10.6877 15.75 9.77748 15.75 8.82843C15.75 6.85212 14.1479 5.25 12.1716 5.25H12C9.92893 5.25 8.25 6.92893 8.25 9V9.5C8.25 9.91421 8.58579 10.25 9 10.25C9.41421 10.25 9.75 9.91421 9.75 9.5V9ZM12 16.5C11.4477 16.5 11 16.9477 11 17.5C11 18.0523 11.4477 18.5 12 18.5C12.5523 18.5 13 18.0523 13 17.5C13 16.9477 12.5523 16.5 12 16.5Z"
-                              fill="currentColor"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                          <svg
-                            aria-hidden="true"
-                            class="aksel-help-text__icon aksel-help-text__icon--filled"
-                            fill="none"
-                            focusable="false"
-                            height="1em"
-                            role="presentation"
-                            viewBox="0 0 24 24"
-                            width="1em"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <circle
-                              cx="12"
-                              cy="12"
-                              fill="currentColor"
-                              r="11"
-                              stroke="currentColor"
-                              stroke-width="1.5"
-                            />
-                            <path
-                              clip-rule="evenodd"
-                              d="M9.75 9C9.75 7.75736 10.7574 6.75 12 6.75H12.1716C13.3195 6.75 14.25 7.68054 14.25 8.82843C14.25 9.37966 14.031 9.90832 13.6412 10.2981L12.6412 11.2981C11.7504 12.1889 11.25 13.3971 11.25 14.6569C11.25 15.0711 11.5858 15.4069 12 15.4069C12.4142 15.4069 12.75 15.0711 12.75 14.6569C12.75 13.7949 13.0924 12.9682 13.7019 12.3588L14.7019 11.3588C15.373 10.6877 15.75 9.77748 15.75 8.82843C15.75 6.85212 14.1479 5.25 12.1716 5.25H12C9.92893 5.25 8.25 6.92893 8.25 9V9.5C8.25 9.91421 8.58579 10.25 9 10.25C9.41421 10.25 9.75 9.91421 9.75 9.5V9ZM12 16.5C11.4477 16.5 11 16.9477 11 17.5C11 18.0523 11.4477 18.5 12 18.5C12.5523 18.5 13 18.0523 13 17.5C13 16.9477 12.5523 16.5 12 16.5Z"
-                              fill="var(--ax-text-accent-contrast)"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </button>
-                        <div
-                          aria-hidden="true"
-                          class="aksel-popover aksel-help-text__popover aksel-popover--hidden"
-                          data-placement="top"
-                          style="position: absolute; left: 0px; top: 0px; transform: translate(0px, 0px);"
-                        >
-                          <div
-                            class="aksel-popover__content aksel-body-short"
-                          >
-                            Fullmektig kan lese dokumenter på de områdene det er gitt fullmakt til
-                          </div>
-                        </div>
-                      </div>
-                    </th>
-                    <th
-                      class="aksel-table__header-cell aksel-label"
-                      scope="col"
-                    >
-                      <div
-                        class="aksel-help-text"
-                        data-color="info"
-                      >
-                        <button
-                          aria-expanded="false"
-                          aria-label="Hva betyr snakke/kommunisere?"
-                          class="aksel-help-text__button"
-                          type="button"
-                        >
-                          <svg
-                            aria-hidden="true"
-                            class="aksel-help-text__icon"
-                            fill="none"
-                            focusable="false"
-                            height="1em"
-                            role="presentation"
-                            viewBox="0 0 24 24"
-                            width="1em"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <circle
-                              cx="12"
-                              cy="12"
-                              fill="transparent"
-                              r="11"
-                              stroke="currentColor"
-                              stroke-width="1.5"
-                            />
-                            <path
-                              clip-rule="evenodd"
-                              d="M9.75 9C9.75 7.75736 10.7574 6.75 12 6.75H12.1716C13.3195 6.75 14.25 7.68054 14.25 8.82843C14.25 9.37966 14.031 9.90832 13.6412 10.2981L12.6412 11.2981C11.7504 12.1889 11.25 13.3971 11.25 14.6569C11.25 15.0711 11.5858 15.4069 12 15.4069C12.4142 15.4069 12.75 15.0711 12.75 14.6569C12.75 13.7949 13.0924 12.9682 13.7019 12.3588L14.7019 11.3588C15.373 10.6877 15.75 9.77748 15.75 8.82843C15.75 6.85212 14.1479 5.25 12.1716 5.25H12C9.92893 5.25 8.25 6.92893 8.25 9V9.5C8.25 9.91421 8.58579 10.25 9 10.25C9.41421 10.25 9.75 9.91421 9.75 9.5V9ZM12 16.5C11.4477 16.5 11 16.9477 11 17.5C11 18.0523 11.4477 18.5 12 18.5C12.5523 18.5 13 18.0523 13 17.5C13 16.9477 12.5523 16.5 12 16.5Z"
-                              fill="currentColor"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                          <svg
-                            aria-hidden="true"
-                            class="aksel-help-text__icon aksel-help-text__icon--filled"
-                            fill="none"
-                            focusable="false"
-                            height="1em"
-                            role="presentation"
-                            viewBox="0 0 24 24"
-                            width="1em"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <circle
-                              cx="12"
-                              cy="12"
-                              fill="currentColor"
-                              r="11"
-                              stroke="currentColor"
-                              stroke-width="1.5"
-                            />
-                            <path
-                              clip-rule="evenodd"
-                              d="M9.75 9C9.75 7.75736 10.7574 6.75 12 6.75H12.1716C13.3195 6.75 14.25 7.68054 14.25 8.82843C14.25 9.37966 14.031 9.90832 13.6412 10.2981L12.6412 11.2981C11.7504 12.1889 11.25 13.3971 11.25 14.6569C11.25 15.0711 11.5858 15.4069 12 15.4069C12.4142 15.4069 12.75 15.0711 12.75 14.6569C12.75 13.7949 13.0924 12.9682 13.7019 12.3588L14.7019 11.3588C15.373 10.6877 15.75 9.77748 15.75 8.82843C15.75 6.85212 14.1479 5.25 12.1716 5.25H12C9.92893 5.25 8.25 6.92893 8.25 9V9.5C8.25 9.91421 8.58579 10.25 9 10.25C9.41421 10.25 9.75 9.91421 9.75 9.5V9ZM12 16.5C11.4477 16.5 11 16.9477 11 17.5C11 18.0523 11.4477 18.5 12 18.5C12.5523 18.5 13 18.0523 13 17.5C13 16.9477 12.5523 16.5 12 16.5Z"
-                              fill="var(--ax-text-accent-contrast)"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </button>
-                        <div
-                          aria-hidden="true"
-                          class="aksel-popover aksel-help-text__popover aksel-popover--hidden"
-                          data-placement="top"
-                          style="position: absolute; left: 0px; top: 0px; transform: translate(0px, 0px);"
-                        >
-                          <div
-                            class="aksel-popover__content aksel-body-short"
-                          >
-                            Fullmektig kan snakke med NAV og hjelpe til i kontakten med NAV, både på telefon, nav.no og NAV-kontor. Tilgangen innebærer at fullmektig også kan lese dokumenter i sakene
-                          </div>
-                        </div>
-                      </div>
-                    </th>
-                    <th
-                      class="aksel-table__header-cell aksel-label"
-                      scope="col"
-                    >
-                      <div
-                        class="aksel-help-text"
-                        data-color="info"
-                      >
-                        <button
-                          aria-expanded="false"
-                          aria-label="Hva betyr Søke/klage?"
-                          class="aksel-help-text__button"
-                          type="button"
-                        >
-                          <svg
-                            aria-hidden="true"
-                            class="aksel-help-text__icon"
-                            fill="none"
-                            focusable="false"
-                            height="1em"
-                            role="presentation"
-                            viewBox="0 0 24 24"
-                            width="1em"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <circle
-                              cx="12"
-                              cy="12"
-                              fill="transparent"
-                              r="11"
-                              stroke="currentColor"
-                              stroke-width="1.5"
-                            />
-                            <path
-                              clip-rule="evenodd"
-                              d="M9.75 9C9.75 7.75736 10.7574 6.75 12 6.75H12.1716C13.3195 6.75 14.25 7.68054 14.25 8.82843C14.25 9.37966 14.031 9.90832 13.6412 10.2981L12.6412 11.2981C11.7504 12.1889 11.25 13.3971 11.25 14.6569C11.25 15.0711 11.5858 15.4069 12 15.4069C12.4142 15.4069 12.75 15.0711 12.75 14.6569C12.75 13.7949 13.0924 12.9682 13.7019 12.3588L14.7019 11.3588C15.373 10.6877 15.75 9.77748 15.75 8.82843C15.75 6.85212 14.1479 5.25 12.1716 5.25H12C9.92893 5.25 8.25 6.92893 8.25 9V9.5C8.25 9.91421 8.58579 10.25 9 10.25C9.41421 10.25 9.75 9.91421 9.75 9.5V9ZM12 16.5C11.4477 16.5 11 16.9477 11 17.5C11 18.0523 11.4477 18.5 12 18.5C12.5523 18.5 13 18.0523 13 17.5C13 16.9477 12.5523 16.5 12 16.5Z"
-                              fill="currentColor"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                          <svg
-                            aria-hidden="true"
-                            class="aksel-help-text__icon aksel-help-text__icon--filled"
-                            fill="none"
-                            focusable="false"
-                            height="1em"
-                            role="presentation"
-                            viewBox="0 0 24 24"
-                            width="1em"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <circle
-                              cx="12"
-                              cy="12"
-                              fill="currentColor"
-                              r="11"
-                              stroke="currentColor"
-                              stroke-width="1.5"
-                            />
-                            <path
-                              clip-rule="evenodd"
-                              d="M9.75 9C9.75 7.75736 10.7574 6.75 12 6.75H12.1716C13.3195 6.75 14.25 7.68054 14.25 8.82843C14.25 9.37966 14.031 9.90832 13.6412 10.2981L12.6412 11.2981C11.7504 12.1889 11.25 13.3971 11.25 14.6569C11.25 15.0711 11.5858 15.4069 12 15.4069C12.4142 15.4069 12.75 15.0711 12.75 14.6569C12.75 13.7949 13.0924 12.9682 13.7019 12.3588L14.7019 11.3588C15.373 10.6877 15.75 9.77748 15.75 8.82843C15.75 6.85212 14.1479 5.25 12.1716 5.25H12C9.92893 5.25 8.25 6.92893 8.25 9V9.5C8.25 9.91421 8.58579 10.25 9 10.25C9.41421 10.25 9.75 9.91421 9.75 9.5V9ZM12 16.5C11.4477 16.5 11 16.9477 11 17.5C11 18.0523 11.4477 18.5 12 18.5C12.5523 18.5 13 18.0523 13 17.5C13 16.9477 12.5523 16.5 12 16.5Z"
-                              fill="var(--ax-text-accent-contrast)"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </button>
-                        <div
-                          aria-hidden="true"
-                          class="aksel-popover aksel-help-text__popover aksel-popover--hidden"
-                          data-placement="top"
-                          style="position: absolute; left: 0px; top: 0px; transform: translate(0px, 0px);"
-                        >
-                          <div
-                            class="aksel-popover__content aksel-body-short"
-                          >
-                            Fullmektig kan søke og klage. Tilgangen innebærer at fullmektig også kan lese dokumenter og snakke med NAV
-                          </div>
-                        </div>
-                      </div>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody
-                  class="aksel-table__body"
-                >
-                  <tr
-                    class="aksel-table__row aksel-table__row--shade-on-hover"
-                    data-interactive="false"
-                  >
-                    <td
-                      class="aksel-table__data-cell aksel-body-short aksel-body-short--medium"
-                    >
-                      Arbeidsavklaringspenger
-                    </td>
-                    <td
-                      class="aksel-table__data-cell aksel-body-short aksel-body-short--medium"
-                    >
-                      <svg
-                        aria-labelledby="title-_r_f_"
-                        fill="none"
-                        focusable="false"
-                        height="1em"
-                        role="img"
-                        viewBox="0 0 24 24"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <title
-                          id="title-_r_f_"
-                        >
-                          Lese/innsyn
-                        </title>
-                        <path
-                          clip-rule="evenodd"
-                          d="M3.75 6a1.25 1.25 0 1 1 2.5 0v2a.75.75 0 0 0 1.5 0V6a2.75 2.75 0 0 0-5.5 0v12c0 .966.784 1.75 1.75 1.75h5.5A1.75 1.75 0 0 0 11.25 18v-4.25h1.5V18c0 .966.784 1.75 1.75 1.75H20A1.75 1.75 0 0 0 21.75 18V6a2.75 2.75 0 1 0-5.5 0v2a.75.75 0 0 0 1.5 0V6a1.25 1.25 0 1 1 2.5 0v6.25H3.75zM9.5 18.25a.25.25 0 0 0 .25-.25v-4.25h-6V18c0 .138.112.25.25.25zm10.5 0a.25.25 0 0 0 .25-.25v-4.25h-6V18c0 .138.112.25.25.25z"
-                          fill="currentColor"
-                          fill-rule="evenodd"
-                        />
-                      </svg>
-                    </td>
-                    <td
-                      class="aksel-table__data-cell aksel-body-short aksel-body-short--medium"
-                    >
-                      <svg
-                        aria-labelledby="title-_r_g_"
-                        fill="none"
-                        focusable="false"
-                        height="1em"
-                        role="img"
-                        viewBox="0 0 24 24"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <title
-                          id="title-_r_g_"
-                        >
-                          Snakke/kommunisere
-                        </title>
-                        <path
-                          clip-rule="evenodd"
-                          d="M4.75 5A.25.25 0 0 1 5 4.75h11a.25.25 0 0 1 .25.25v.5a.75.75 0 0 0 1.5 0V5A1.75 1.75 0 0 0 16 3.25H5A1.75 1.75 0 0 0 3.25 5v10a.75.75 0 0 0 1.085.67l1.502-.75a.75.75 0 0 0-.671-1.341l-.416.207zM9 8.75a.25.25 0 0 0-.25.25v8c0 .138.112.25.25.25h7a.75.75 0 0 1 .335.08l2.915 1.457V9a.25.25 0 0 0-.25-.25zM7.25 9c0-.966.784-1.75 1.75-1.75h10c.966 0 1.75.784 1.75 1.75v11a.75.75 0 0 1-1.085.67l-3.842-1.92H9A1.75 1.75 0 0 1 7.25 17zm3 4a.75.75 0 0 1 .75-.75h.01a.75.75 0 0 1 0 1.5H11a.75.75 0 0 1-.75-.75m3.75-.75a.75.75 0 0 0 0 1.5h.01a.75.75 0 0 0 0-1.5zm2.25.75a.75.75 0 0 1 .75-.75h.01a.75.75 0 0 1 0 1.5H17a.75.75 0 0 1-.75-.75"
-                          fill="currentColor"
-                          fill-rule="evenodd"
-                        />
-                      </svg>
-                    </td>
-                    <td
-                      class="aksel-table__data-cell aksel-body-short aksel-body-short--medium"
-                    />
-                  </tr>
-                  <tr
-                    class="aksel-table__row aksel-table__row--shade-on-hover"
-                    data-interactive="false"
-                  >
-                    <td
-                      class="aksel-table__data-cell aksel-body-short aksel-body-short--medium"
-                    >
-                      Dagpenger
-                    </td>
-                    <td
-                      class="aksel-table__data-cell aksel-body-short aksel-body-short--medium"
-                    >
-                      <svg
-                        aria-labelledby="title-_r_h_"
-                        fill="none"
-                        focusable="false"
-                        height="1em"
-                        role="img"
-                        viewBox="0 0 24 24"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <title
-                          id="title-_r_h_"
-                        >
-                          Lese/innsyn
-                        </title>
-                        <path
-                          clip-rule="evenodd"
-                          d="M3.75 6a1.25 1.25 0 1 1 2.5 0v2a.75.75 0 0 0 1.5 0V6a2.75 2.75 0 0 0-5.5 0v12c0 .966.784 1.75 1.75 1.75h5.5A1.75 1.75 0 0 0 11.25 18v-4.25h1.5V18c0 .966.784 1.75 1.75 1.75H20A1.75 1.75 0 0 0 21.75 18V6a2.75 2.75 0 1 0-5.5 0v2a.75.75 0 0 0 1.5 0V6a1.25 1.25 0 1 1 2.5 0v6.25H3.75zM9.5 18.25a.25.25 0 0 0 .25-.25v-4.25h-6V18c0 .138.112.25.25.25zm10.5 0a.25.25 0 0 0 .25-.25v-4.25h-6V18c0 .138.112.25.25.25z"
-                          fill="currentColor"
-                          fill-rule="evenodd"
-                        />
-                      </svg>
-                    </td>
-                    <td
-                      class="aksel-table__data-cell aksel-body-short aksel-body-short--medium"
-                    >
-                      <svg
-                        aria-labelledby="title-_r_i_"
-                        fill="none"
-                        focusable="false"
-                        height="1em"
-                        role="img"
-                        viewBox="0 0 24 24"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <title
-                          id="title-_r_i_"
-                        >
-                          Snakke/kommunisere
-                        </title>
-                        <path
-                          clip-rule="evenodd"
-                          d="M4.75 5A.25.25 0 0 1 5 4.75h11a.25.25 0 0 1 .25.25v.5a.75.75 0 0 0 1.5 0V5A1.75 1.75 0 0 0 16 3.25H5A1.75 1.75 0 0 0 3.25 5v10a.75.75 0 0 0 1.085.67l1.502-.75a.75.75 0 0 0-.671-1.341l-.416.207zM9 8.75a.25.25 0 0 0-.25.25v8c0 .138.112.25.25.25h7a.75.75 0 0 1 .335.08l2.915 1.457V9a.25.25 0 0 0-.25-.25zM7.25 9c0-.966.784-1.75 1.75-1.75h10c.966 0 1.75.784 1.75 1.75v11a.75.75 0 0 1-1.085.67l-3.842-1.92H9A1.75 1.75 0 0 1 7.25 17zm3 4a.75.75 0 0 1 .75-.75h.01a.75.75 0 0 1 0 1.5H11a.75.75 0 0 1-.75-.75m3.75-.75a.75.75 0 0 0 0 1.5h.01a.75.75 0 0 0 0-1.5zm2.25.75a.75.75 0 0 1 .75-.75h.01a.75.75 0 0 1 0 1.5H17a.75.75 0 0 1-.75-.75"
-                          fill="currentColor"
-                          fill-rule="evenodd"
-                        />
-                      </svg>
-                    </td>
-                    <td
-                      class="aksel-table__data-cell aksel-body-short aksel-body-short--medium"
-                    >
-                      <svg
-                        aria-labelledby="title-_r_j_"
-                        fill="none"
-                        focusable="false"
-                        height="1em"
-                        role="img"
-                        viewBox="0 0 24 24"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <title
-                          id="title-_r_j_"
-                        >
-                          Søke/klage
-                        </title>
-                        <path
-                          clip-rule="evenodd"
-                          d="M19.638 4.417a3.25 3.25 0 0 0-4.608-.008l-9.378 9.379a.75.75 0 0 0-.191.324l-1.414 4.95a.75.75 0 0 0 .925.927l4.94-1.398a.75.75 0 0 0 .327-.191l9.39-9.391a3.25 3.25 0 0 0 .01-4.592M16.091 5.47a1.752 1.752 0 1 1 2.478 2.478l-.23.23-2.477-2.479zM14.8 6.76 6.85 14.71l-.991 3.47 3.457-.979 7.963-7.963z"
-                          fill="currentColor"
-                          fill-rule="evenodd"
-                        />
-                      </svg>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                Leserettigheter: arbeidsavklaringspenger, dagpenger
+              </p>
+              <p
+                class="typo-normal"
+              >
+                Skriverettigheter: dagpenger
+              </p>
             </div>
           </div>
         </div>
@@ -1262,23 +849,19 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               I Kontakt- og reservasjonsregisteret
             </p>
           </div>
-          <div
-            class="c7"
+          <p
+            class="typo-normal"
           >
-            <p
-              class="typo-undertekst"
-            >
-              Gyldig: 01.06.2021 – 01.05.2022
-            </p>
-          </div>
+            Gyldig: 01.01.2026 – 04.10.2026
+          </p>
           <div
-            class="aksel-read-more aksel-read-more--medium"
+            class="aksel-read-more aksel-read-more--small"
             data-state="closed"
             data-variant="ghost"
           >
             <button
               aria-expanded="false"
-              class="aksel-read-more__button aksel-body-short"
+              class="aksel-read-more__button aksel-body-short aksel-body-short--small"
               type="button"
             >
               <svg
@@ -1304,9 +887,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               </span>
             </button>
             <div
-              class="aksel-read-more__content aksel-body-long aksel-body-long--medium"
+              class="aksel-read-more__content aksel-body-long aksel-body-long--small"
             >
-              Gjelder alle statlige ytelser
+              <p
+                class="typo-normal"
+              >
+                Skriverettigheter: arbeidsavklaringspenger
+              </p>
             </div>
           </div>
         </div>
@@ -1725,7 +1312,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <p
           class="typo-normal"
         >
-          Vergesakstyper: Voksen, Fremtidsfullmakt
+          Vergesakstyper: Voksen
         </p>
         <div
           class="c4"
@@ -1751,61 +1338,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               class="typo-normal"
             >
               21042900076
-            </p>
-          </div>
-          <p
-            class="typo-element"
-          >
-            Omfang
-          </p>
-          <p
-            class="typo-normal"
-          >
-            Ivareta personens interesser innenfor det personlige og økonomiske området
-          </p>
-          <div
-            class="c7"
-          >
-            <p
-              class="typo-undertekst"
-            >
-              Fylkesmannen i Troms og Finnmark
-            </p>
-          </div>
-          <div
-            class="c7"
-          >
-            <p
-              class="typo-undertekst"
-            >
-              Gyldig: 01.06.2021 – 10.05.2022
-            </p>
-          </div>
-        </div>
-        <div
-          class="c4"
-        >
-          <div
-            class="c2"
-          >
-            <h4
-              class="typo-element"
-            >
-              Verge
-            </h4>
-          </div>
-          <div
-            class="c10"
-          >
-            <p
-              class="typo-normal"
-            >
-              Truls Tøffel
-            </p>
-            <p
-              class="typo-normal"
-            >
-              123456799
             </p>
           </div>
           <p
@@ -1893,7 +1425,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             <p
               class="typo-undertekst"
             >
-              Gyldig: 10.02.2021 – 01.05.2022
+              Gyldig: 01.06.2024 – 10.05.2027
             </p>
           </div>
         </div>

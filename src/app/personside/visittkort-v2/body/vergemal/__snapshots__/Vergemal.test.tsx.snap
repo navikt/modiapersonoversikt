@@ -92,7 +92,7 @@ exports[`viser vergemål 1`] = `
     <p
       class="typo-normal"
     >
-      Vergesakstyper: Voksen, Fremtidsfullmakt
+      Vergesakstyper: Voksen
     </p>
     <div
       class="c3"
@@ -118,61 +118,6 @@ exports[`viser vergemål 1`] = `
           class="typo-normal"
         >
           21042900076
-        </p>
-      </div>
-      <p
-        class="typo-element"
-      >
-        Omfang
-      </p>
-      <p
-        class="typo-normal"
-      >
-        Ivareta personens interesser innenfor det personlige og økonomiske området
-      </p>
-      <div
-        class="c5"
-      >
-        <p
-          class="typo-undertekst"
-        >
-          Fylkesmannen i Troms og Finnmark
-        </p>
-      </div>
-      <div
-        class="c5"
-      >
-        <p
-          class="typo-undertekst"
-        >
-          Gyldig: 01.06.2021 – 10.05.2022
-        </p>
-      </div>
-    </div>
-    <div
-      class="c3"
-    >
-      <div
-        class="c0"
-      >
-        <h4
-          class="typo-element"
-        >
-          Verge
-        </h4>
-      </div>
-      <div
-        class="c4"
-      >
-        <p
-          class="typo-normal"
-        >
-          Truls Tøffel
-        </p>
-        <p
-          class="typo-normal"
-        >
-          123456799
         </p>
       </div>
       <p
@@ -260,7 +205,7 @@ exports[`viser vergemål 1`] = `
         <p
           class="typo-undertekst"
         >
-          Gyldig: 10.02.2021 – 01.05.2022
+          Gyldig: 01.06.2024 – 10.05.2027
         </p>
       </div>
     </div>

@@ -22,7 +22,7 @@ export function createPersonData(): PersonData {
         foreldreansvar: [],
         deltBosted: [],
         dodsbo: [],
-        fullmakt: [],
+        fullmektige: [],
         vergemal: [],
         historiskeVergemal: [],
         tilrettelagtKommunikasjon: { talesprak: [], tegnsprak: [] },
