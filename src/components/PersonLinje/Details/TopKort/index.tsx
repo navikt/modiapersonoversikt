@@ -23,6 +23,11 @@ const IKKE_REGISTRERT = 'Ikke registrert';
 const KRR_FEILET = 'Feilet ved uthenting fra KRR';
 const KONTONUMMER_FEILET = 'Feilet ved uthenting av kontonummer';
 const NAV_KONTAKTINFO_FEILET = 'Feilet ved uthenting av kontaktinformasjon';
+const OPPHOLDSTYPE_TEKSTER: Record<string, string> = {
+    MIDLERTIDIG: 'Midlertidig',
+    PERMANENT: 'Permanent',
+    OPPLYSNING_MANGLER: 'Opplysning mangler'
+};
 
 function Seksjon({ tittel, feilmelding, children }: PropsWithChildren<{ tittel: string; feilmelding?: string }>) {
     if (!feilmelding && !children) return null;
@@ -215,7 +220,9 @@ function TopKort() {
                     )}
                     {person.opphold?.map((opphold, index) => (
                         <Seksjon key={`${opphold.type}-${index}`} tittel="Oppholdstillatelse">
-                            <BodyShort size="small">Type: {opphold.type}</BodyShort>
+                            <BodyShort size="small">
+                                Type: {OPPHOLDSTYPE_TEKSTER[opphold.type] ?? opphold.type}
+                            </BodyShort>
                             {opphold.oppholdFra && (
                                 <BodyShort textColor="subtle" className="text-sm">
                                     Opphold fra: {formaterDato(opphold.oppholdFra)}

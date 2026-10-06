@@ -283,7 +283,7 @@ describe('TopKort', () => {
         person.statsborgerskap = [{ land: { kode: 'NOR', beskrivelse: 'NORGE' }, gyldighetsPeriode: null }];
         person.opphold = [
             {
-                type: 'Midlertidig',
+                type: 'MIDLERTIDIG',
                 oppholdFra: '2024-01-15',
                 oppholdTil: '2026-12-31'
             }
@@ -300,6 +300,19 @@ describe('TopKort', () => {
         expect(screen.getByText('Opphold fra: 15.01.2024')).toBeInTheDocument();
         expect(screen.getByText('Opphold til: 31.12.2026')).toBeInTheDocument();
         expect(statsborgerskap.compareDocumentPosition(opphold) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    });
+
+    it('oversetter alle kjente oppholdstyper til lesbar tekst', () => {
+        person.opphold = [
+            { type: 'MIDLERTIDIG', oppholdFra: null, oppholdTil: null },
+            { type: 'PERMANENT', oppholdFra: null, oppholdTil: null },
+            { type: 'OPPLYSNING_MANGLER', oppholdFra: null, oppholdTil: null }
+        ];
+        render(<TopKort />);
+
+        expect(screen.getByText('Type: Midlertidig')).toBeInTheDocument();
+        expect(screen.getByText('Type: Permanent')).toBeInTheDocument();
+        expect(screen.getByText('Type: Opplysning mangler')).toBeInTheDocument();
     });
 
     it('viser ikke oppholdstillatelse når listen er tom', () => {
