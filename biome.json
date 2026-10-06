@@ -11,7 +11,7 @@
         "lineWidth": 120,
         "attributePosition": "auto",
         "bracketSpacing": true,
-        "includes": ["**", "!**/*.gen.ts"]
+        "includes": ["**", "!**/*.gen.ts", "!**/generated/modiapersonoversikt-api.ts"]
     },
     "assist": { "actions": { "source": { "organizeImports": "on" } } },
     "linter": {
