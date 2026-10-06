@@ -22,7 +22,7 @@ export interface Person extends PersonMedAlderOgDodsdato {
     oppholdsAdresse: Array<Adresse>;
     navEnhet: Enhet | null;
     statsborgerskap: Array<Statsborgerskap>;
-    opphold: Array<Ophold>;
+    opphold: Array<Opphold>;
     adressebeskyttelse: Array<KodeBeskrivelse<AdresseBeskyttelse>>;
     sikkerhetstiltak: Array<Sikkerhetstiltak>;
     erEgenAnsatt: EgenAnsatt;
@@ -88,7 +88,7 @@ interface Statsborgerskap {
     gyldighetsPeriode: GyldighetsPeriode | null;
 }
 
-interface Ophold {
+interface Opphold {
     type: string;
     oppholdFra: LocalDate | null;
     oppholdTil: LocalDate | null;
