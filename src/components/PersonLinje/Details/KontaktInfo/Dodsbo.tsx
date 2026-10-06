@@ -9,7 +9,7 @@ import { Adresseinfo, InfoElement, LastChanged } from '../components';
 type Dodsbo = PersonData['dodsbo'][number];
 type Adressat = Dodsbo['adressat'];
 
-function Adressatinfo({ harFeilendeSystem, adressat }: { harFeilendeSystem: boolean; adressat: Adressat }) {
+export function Adressatinfo({ harFeilendeSystem, adressat }: { harFeilendeSystem: boolean; adressat: Adressat }) {
     if (adressat.advokatSomAdressat) {
         return <AdvokatSomAdressatInfo adressat={adressat.advokatSomAdressat} />;
     }

@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { type PersonData, PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
+import userEvent from '@testing-library/user-event';
+import { DodsboSkifteform, type PersonData, PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
 import { createPersonData } from 'src/test/createPersonData';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import TopKort from './index';
@@ -130,5 +131,151 @@ describe('TopKort', () => {
         expect(screen.getAllByText('Reservert')).toHaveLength(2);
         expect(screen.getByText('Ikke registrert')).toBeInTheDocument();
         expect(screen.queryByText(/Endret null|Endret undefined/)).not.toBeInTheDocument();
+    });
+
+    it('viser første bostedsadresse og legger øvrige adresser i ReadMore i API-rekkefølge', async () => {
+        person.bostedAdresse.push(
+            {
+                linje1: 'Bosted 2',
+                gyldighetsPeriode: { gyldigFraOgMed: '2024-01-01', gyldigTilOgMed: '2024-02-01' },
+                sistEndret: { tidspunkt: '2024-03-01T12:00:00', ident: 'test', system: 'Folkeregisteret', kilde: '' }
+            },
+            { linje1: 'Bosted 3' }
+        );
+        person.kontaktAdresse = [{ linje1: 'Kontakt 1' }, { linje1: 'Kontakt 2' }];
+        person.oppholdsAdresse = [{ linje1: 'Opphold 1' }];
+        render(<TopKort />);
+
+        expect(screen.getByText('Testgata 1')).toBeInTheDocument();
+        const knapp = screen.getByRole('button', { name: 'Personen har flere adresser' });
+        expect(knapp).toHaveAttribute('aria-expanded', 'false');
+        await userEvent.setup().click(knapp);
+        expect(knapp).toHaveAttribute('aria-expanded', 'true');
+
+        const linjer = ['Bosted 2', 'Bosted 3', 'Kontakt 1', 'Kontakt 2', 'Opphold 1'];
+        const elementer = linjer.map((linje) => screen.getByText(linje));
+        for (let index = 1; index < elementer.length; index++) {
+            expect(
+                elementer[index - 1].compareDocumentPosition(elementer[index]) & Node.DOCUMENT_POSITION_FOLLOWING
+            ).toBeTruthy();
+        }
+        expect(screen.getByText('Bosted 2').parentElement).toHaveTextContent('Endret 01.03.2024');
+        expect(screen.getByText('Bosted 2').parentElement).toHaveTextContent('01.01.2024');
+        expect(screen.getByText('Bosted 2').parentElement).toHaveTextContent('01.02.2024');
+    });
+
+    it('bruker kontaktadresse når bostedsadresse mangler', () => {
+        person.bostedAdresse = [];
+        person.kontaktAdresse = [{ linje1: 'Kontakt 1' }];
+        person.oppholdsAdresse = [{ linje1: 'Opphold 1' }];
+        render(<TopKort />);
+
+        expect(screen.getByText('Kontakt 1')).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: 'Personen har flere adresser' })).toBeInTheDocument();
+        expect(screen.getByText('Kontaktadresse').parentElement).toHaveTextContent('Kontakt 1');
+    });
+
+    it('bruker oppholdsadresse når bosteds- og kontaktadresse mangler', () => {
+        person.bostedAdresse = [];
+        person.kontaktAdresse = [];
+        person.oppholdsAdresse = [{ linje1: 'Opphold 1' }];
+        render(<TopKort />);
+
+        expect(screen.getByText('Oppholdsadresse').parentElement).toHaveTextContent('Opphold 1');
+        expect(screen.queryByRole('button', { name: 'Personen har flere adresser' })).not.toBeInTheDocument();
+    });
+
+    it('legger delt bosted først i ReadMore, også når det er eneste øvrige adresse', async () => {
+        person.deltBosted = [
+            { adresse: null },
+            {
+                adresse: { linje1: 'Delt bosted 1' },
+                gyldighetsPeriode: { gyldigFraOgMed: '2024-04-01', gyldigTilOgMed: null }
+            },
+            { adresse: { linje1: 'Delt bosted 2' } }
+        ];
+        person.kontaktAdresse = [{ linje1: 'Kontakt 1' }];
+        render(<TopKort />);
+
+        const knapp = screen.getByRole('button', { name: 'Personen har flere adresser' });
+        await userEvent.setup().click(knapp);
+        expect(knapp).toHaveAttribute('aria-expanded', 'true');
+        expect(screen.getAllByText('Delt bosted')).toHaveLength(2);
+        const delt = screen.getByText('Delt bosted 1');
+        expect(delt.parentElement).toHaveTextContent('01.04.2024');
+        expect(
+            delt.compareDocumentPosition(screen.getByText('Delt bosted 2')) & Node.DOCUMENT_POSITION_FOLLOWING
+        ).toBeTruthy();
+        expect(
+            delt.compareDocumentPosition(screen.getByText('Kontakt 1')) & Node.DOCUMENT_POSITION_FOLLOWING
+        ).toBeTruthy();
+        expect(screen.getByText('Testgata 1')).toBeInTheDocument();
+    });
+
+    it('viser dødsbo først og samler alle andre adresser i ReadMore uten å endre de andre kolonnene', async () => {
+        person.dodsdato = [{ dodsdato: '2024-01-01' }];
+        person.dodsbo = [
+            {
+                skifteform: DodsboSkifteform.OFFENTLIG,
+                registrert: '2024-02-01',
+                adressat: { organisasjonSomAdressat: { organisasjonsnavn: 'Dødsboet AS' } },
+                adresse: { linje1: 'Bobestyrerveien 1' }
+            }
+        ];
+        person.kontaktAdresse = [{ linje1: 'Kontakt 1' }];
+        render(<TopKort />);
+
+        expect(screen.getByText('Kontaktinformasjon for dødsbo').parentElement).toHaveTextContent('Dødsboet AS');
+        expect(screen.getByText('Bobestyrerveien 1')).toBeInTheDocument();
+        const knapp = screen.getByRole('button', { name: 'Personen har flere adresser' });
+        await userEvent.setup().click(knapp);
+        expect(screen.getByText('Testgata 1')).toBeInTheDocument();
+        expect(screen.getByText('Kontakt 1')).toBeInTheDocument();
+        expect(screen.getByText('99 99 99 99')).toBeInTheDocument();
+        expect(screen.getByText('0000.00.00000')).toBeInTheDocument();
+    });
+
+    it('viser alle dødsbooppføringer og feilmelding når navn på adressaten ikke kunne hentes', () => {
+        person.dodsdato = [{ dodsdato: '2024-01-01' }];
+        person.dodsbo = [
+            {
+                skifteform: DodsboSkifteform.OFFENTLIG,
+                registrert: '2024-02-01',
+                adressat: { personSomAdressat: { fnr: '00000000000', navn: [] } },
+                adresse: { linje1: 'Bobestyrerveien 1' },
+                sistEndret: { tidspunkt: '2024-02-02T12:00:00', ident: 'test', system: 'Folkeregisteret', kilde: '' }
+            },
+            {
+                skifteform: DodsboSkifteform.UKJENT,
+                registrert: '2024-03-01',
+                adressat: { organisasjonSomAdressat: { organisasjonsnavn: 'Andre dødsbo' } },
+                adresse: { linje1: 'Bobestyrerveien 2' }
+            }
+        ];
+        feilendeSystemer = [PersonDataFeilendeSystemer.PDL_TREDJEPARTSPERSONER];
+        render(<TopKort />);
+
+        expect(screen.getAllByText('Kontaktinformasjon for dødsbo')).toHaveLength(2);
+        expect(screen.getByText('Feilet ved uthenting av navn')).toBeInTheDocument();
+        expect(screen.getByText('Bobestyrerveien 2')).toBeInTheDocument();
+        expect(screen.getByText('Bobestyrerveien 1').parentElement).toHaveTextContent('Endret 02.02.2024');
+    });
+
+    it('bruker vanlige adresseregler ved død uten dødsboinformasjon', () => {
+        person.dodsdato = [{ dodsdato: '2024-01-01' }];
+        person.kontaktAdresse = [{ linje1: 'Kontakt 1' }];
+        render(<TopKort />);
+
+        expect(screen.getByText('Bostedsadresse').parentElement).toHaveTextContent('Testgata 1');
+        expect(screen.getByRole('button', { name: 'Personen har flere adresser' })).toBeInTheDocument();
+        expect(screen.queryByText('Kontaktinformasjon for dødsbo')).not.toBeInTheDocument();
+    });
+
+    it('utelater adresse og ReadMore når ingen adresse er registrert', () => {
+        person.bostedAdresse = [];
+        render(<TopKort />);
+
+        expect(screen.queryByText('Bostedsadresse')).not.toBeInTheDocument();
+        expect(screen.queryByRole('button', { name: 'Personen har flere adresser' })).not.toBeInTheDocument();
     });
 });
