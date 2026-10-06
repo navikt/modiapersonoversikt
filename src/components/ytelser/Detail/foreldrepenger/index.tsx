@@ -1,13 +1,10 @@
-import { Accordion, Heading, VStack } from '@navikt/ds-react';
+import { Heading, VStack } from '@navikt/ds-react';
 import { capitalize } from 'lodash';
 import Card from 'src/components/Card';
 import { TitleValuePairsComponent } from 'src/components/ytelser/Detail';
-import {
-    type Foreldrepenger,
-    type ForeldrepengerPeriode,
-    ForeldrepengerYtelse
-} from 'src/generated/modiapersonoversikt-api';
-import { datoEllerTomString, formaterDato, prosentEllerNull } from 'src/utils/string-utils';
+import { PerioderMedGradTable } from 'src/components/ytelser/Detail/PerioderMedGradTable';
+import { type Foreldrepenger, ForeldrepengerYtelse } from 'src/generated/modiapersonoversikt-api';
+import { formaterDato } from 'src/utils/string-utils';
 
 const getForeldrePengerEntries = (ytelse: Foreldrepenger) => {
     const perioder = { 'Fra og med': formaterDato(ytelse.fom), 'Til og med': formaterDato(ytelse.tom) };
@@ -22,31 +19,12 @@ const getForeldrePengerEntries = (ytelse: Foreldrepenger) => {
 const ForeldrepengerPerioder = ({ ytelse }: { ytelse: Foreldrepenger }) => {
     if (ytelse.perioder.length === 0 || ytelse.ytelse === ForeldrepengerYtelse.ENGANGSST_NAD) return <></>;
 
-    const getEntries = (periode: ForeldrepengerPeriode) => {
-        return {
-            'Fra og med': formaterDato(periode.fom),
-            'Til og med': formaterDato(periode.tom),
-            Grad: prosentEllerNull(periode.grad)
-        };
-    };
-
     return (
         <Card padding="space-16">
             <Heading as="h4" size="small">
                 Perioder
             </Heading>
-            <Accordion size="small">
-                {ytelse.perioder.map((periode, index) => {
-                    return (
-                        <Accordion.Item key={`${index}-${periode.fom}`} defaultOpen={index === 0}>
-                            <Accordion.Header>{`${datoEllerTomString(periode.fom)} – ${datoEllerTomString(periode.tom)}`}</Accordion.Header>
-                            <Accordion.Content>
-                                <TitleValuePairsComponent entries={getEntries(periode)} columns={{ xs: 2, md: 3 }} />
-                            </Accordion.Content>
-                        </Accordion.Item>
-                    );
-                })}
-            </Accordion>
+            <PerioderMedGradTable perioder={ytelse.perioder} />
         </Card>
     );
 };
