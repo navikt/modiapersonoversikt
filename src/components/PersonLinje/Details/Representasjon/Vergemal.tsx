@@ -99,18 +99,24 @@ function Vergemal() {
             <Accordion size="small" indent={false}>
                 {sammenSattVerger.map((verge, index) => {
                     const vergenavn = hentNavn(verge.navn, 'Ukjent verge');
+                    const gyldigFraOgMed = verge.gyldighetsPeriode?.gyldigFraOgMed
+                        ? dayjs(verge.gyldighetsPeriode.gyldigFraOgMed)
+                        : null;
+                    const fremtidig = gyldigFraOgMed?.isAfter(dayjs(), 'day');
                     return (
                         <Accordion.Item key={`${verge.ident}-${index}`}>
                             <Accordion.Header>
                                 <VStack className="justify-start items-start">
                                     {vergenavn} - {verge.vergesakstype}
-                                    <Tag
-                                        variant="moderate"
-                                        size="xsmall"
-                                        data-color={verge.historisk ? 'neutral' : 'success'}
-                                    >
-                                        {verge.historisk ? 'Historisk' : 'Aktiv'}
-                                    </Tag>
+                                    {!!gyldigFraOgMed && (
+                                        <Tag
+                                            variant="moderate"
+                                            size="xsmall"
+                                            data-color={verge.historisk || fremtidig ? 'neutral' : 'success'}
+                                        >
+                                            {verge.historisk ? 'Historisk' : fremtidig ? 'Fremtidig' : 'Aktiv'}
+                                        </Tag>
+                                    )}
                                 </VStack>
                             </Accordion.Header>
                             <Accordion.Content>
