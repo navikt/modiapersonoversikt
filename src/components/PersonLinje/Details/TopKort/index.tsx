@@ -1,13 +1,20 @@
 import { FigureInwardIcon, FigureOutwardIcon } from '@navikt/aksel-icons';
-import { BodyShort, Heading, HGrid, HStack, InlineMessage, Label, VStack } from '@navikt/ds-react';
+import { BodyShort, Heading, HGrid, HStack, InlineMessage, Label, ReadMore, VStack } from '@navikt/ds-react';
 import type { PropsWithChildren } from 'react';
 import { harFeilendeSystemer, hentNavn } from 'src/components/PersonLinje/utils';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
-import { Kjonn, PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
+import {
+    type Adresse,
+    Kjonn,
+    type PersonData,
+    PersonDataFeilendeSystemer
+} from 'src/lib/types/modiapersonoversikt-api';
 import { formatertKontonummerString } from 'src/utils/FormatertKontonummer';
-import { formaterDato } from 'src/utils/string-utils';
+import { capitalizeFirstCharacterAndLowercaseRest, formaterDato } from 'src/utils/string-utils';
 import { formaterMobiltelefonnummer } from 'src/utils/telefon-utils';
+import ValidPeriod from '../../common/ValidPeriod';
 import { Adresseinfo, LastChanged } from '../components';
+import { Adressatinfo } from '../KontaktInfo/Dodsbo';
 import KRRInfo from '../KontaktInfo/KRRInfo';
 import { tilrettelagtKommunikasjonTekst } from '../TilrettelagtKommunikasjon';
 
@@ -29,6 +36,46 @@ function Seksjon({ tittel, feilmelding, children }: PropsWithChildren<{ tittel: 
                 children
             )}
         </VStack>
+    );
+}
+
+type AdresseOppforing = {
+    tittel: string;
+    adresse: Adresse;
+    gyldighetsPeriode?: Adresse['gyldighetsPeriode'];
+};
+
+function AdresseFelt({ oppforing }: { oppforing: AdresseOppforing }) {
+    const { tittel, adresse, gyldighetsPeriode = adresse.gyldighetsPeriode } = oppforing;
+    return (
+        <Seksjon tittel={tittel}>
+            <ValidPeriod from={gyldighetsPeriode?.gyldigFraOgMed} to={gyldighetsPeriode?.gyldigTilOgMed} />
+            <Adresseinfo adresse={adresse} />
+            <LastChanged sistEndret={adresse.sistEndret} />
+        </Seksjon>
+    );
+}
+
+function DodsboFelt({
+    dodsbo,
+    harFeilendeSystem
+}: {
+    dodsbo: PersonData['dodsbo'][number];
+    harFeilendeSystem: boolean;
+}) {
+    return (
+        <Seksjon tittel="Kontaktinformasjon for dødsbo">
+            <BodyShort size="small">
+                Skifteform: {capitalizeFirstCharacterAndLowercaseRest(dodsbo.skifteform)}
+            </BodyShort>
+            <Adressatinfo harFeilendeSystem={harFeilendeSystem} adressat={dodsbo.adressat} />
+            <ValidPeriod
+                from={dodsbo.adresse.gyldighetsPeriode?.gyldigFraOgMed}
+                to={dodsbo.adresse.gyldighetsPeriode?.gyldigTilOgMed}
+            />
+            <Adresseinfo adresse={dodsbo.adresse} />
+            <LastChanged sistEndret={dodsbo.sistEndret} />
+        </Seksjon>
     );
 }
 
@@ -59,7 +106,17 @@ function TopKort() {
         person.tilrettelagtKommunikasjon.tegnsprak.isNotEmpty() ||
         person.tilrettelagtKommunikasjon.talesprak.isNotEmpty();
 
-    const bostedAdresse = person.bostedAdresse.firstOrNull();
+    const adresser: AdresseOppforing[] = [
+        ...person.bostedAdresse.map((adresse) => ({ tittel: 'Bostedsadresse', adresse })),
+        ...person.kontaktAdresse.map((adresse) => ({ tittel: 'Kontaktadresse', adresse })),
+        ...person.oppholdsAdresse.map((adresse) => ({ tittel: 'Oppholdsadresse', adresse }))
+    ];
+    const deltBosted: AdresseOppforing[] = person.deltBosted.flatMap(({ adresse, gyldighetsPeriode }) =>
+        adresse ? [{ tittel: 'Delt bosted', adresse, gyldighetsPeriode }] : []
+    );
+    const harDodsbo = person.dodsdato.length > 0 && person.dodsbo.length > 0;
+    const hovedadresse = harDodsbo ? undefined : adresser[0];
+    const flereAdresser = [...deltBosted, ...(harDodsbo ? adresser : adresser.slice(1))];
 
     return (
         <VStack gap="space-28">
@@ -116,11 +173,26 @@ function TopKort() {
                 </VStack>
 
                 <VStack gap="space-16">
-                    {bostedAdresse && (
-                        <Seksjon tittel="Bostedsadresse">
-                            <Adresseinfo adresse={bostedAdresse} />
-                            <LastChanged sistEndret={bostedAdresse.sistEndret} />
-                        </Seksjon>
+                    {harDodsbo &&
+                        person.dodsbo.map((dodsbo) => (
+                            <DodsboFelt
+                                key={`${dodsbo.registrert}-${dodsbo.adresse.linje1}`}
+                                dodsbo={dodsbo}
+                                harFeilendeSystem={harFeilendeSystemer(
+                                    feilendeSystemer,
+                                    PersonDataFeilendeSystemer.PDL_TREDJEPARTSPERSONER
+                                )}
+                            />
+                        ))}
+                    {hovedadresse && <AdresseFelt oppforing={hovedadresse} />}
+                    {flereAdresser.length > 0 && (
+                        <ReadMore header="Personen har flere adresser" size="small">
+                            <VStack gap="space-16">
+                                {flereAdresser.map((oppforing, index) => (
+                                    <AdresseFelt key={`${oppforing.tittel}-${index}`} oppforing={oppforing} />
+                                ))}
+                            </VStack>
+                        </ReadMore>
                     )}
                 </VStack>
 
