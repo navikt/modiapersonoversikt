@@ -1,8 +1,20 @@
-import { Accordion, BodyShort, Box, Heading, HelpText, HStack, InlineMessage, Tag, VStack } from '@navikt/ds-react';
+import {
+    Accordion,
+    BodyShort,
+    Box,
+    Detail,
+    Heading,
+    HelpText,
+    HStack,
+    InlineMessage,
+    Tag,
+    VStack
+} from '@navikt/ds-react';
 import dayjs from 'dayjs';
 import { KopierFnrKnapp } from 'src/components/PersonLinje/common/KopierFnrKnapp';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { type PersonData, PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
+import { capitalizeName } from 'src/utils/string-utils';
 import { harFeilendeSystemer, hentNavn, hentPeriodeTekst } from '../../utils';
 
 type Verge = PersonData['vergemal'][0];
@@ -64,6 +76,10 @@ function Vergemal() {
     const vergemal = person?.vergemal ?? [];
     const historiskeVergeMal = person?.historiskeVergemal ?? [];
     const feilendeSystemer = data?.feilendeSystemer ?? [];
+    const navnObjekt = person?.navn.firstOrNull();
+    const brukersNavn = navnObjekt
+        ? `${navnObjekt.fornavn} ${navnObjekt.mellomnavn ?? ''} ${navnObjekt.etternavn}`
+        : null;
 
     if (vergemal?.isEmpty() && historiskeVergeMal.isEmpty()) {
         return null;
@@ -74,8 +90,12 @@ function Vergemal() {
     return (
         <VStack gap="space-8">
             <Heading size="xsmall" as="h3">
-                Vergemål
+                Verger
             </Heading>
+            <Detail>
+                En verge har myndighet til å opptre på vegne av vergehaver,{' '}
+                {brukersNavn ? capitalizeName(brukersNavn) : 'ukjent navn'}.
+            </Detail>
             <Accordion size="small" indent={false}>
                 {sammenSattVerger.map((verge, index) => {
                     const vergenavn = hentNavn(verge.navn, 'Ukjent verge');

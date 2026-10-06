@@ -36,12 +36,12 @@ function FullmektigDetaljer(props: { feilendeSystemer: PersonDataFeilendeSysteme
                 <KopierFnrKnapp fnr={fullmektig.ident} />
                 {fullmektig.digitalKontaktinformasjonTredjepartsperson && (
                     <>
-                        <BodyShort size="small">
-                            Tlf.:{' '}
-                            {fullmektig.digitalKontaktinformasjonTredjepartsperson?.reservasjon === true
-                                ? 'Reservert'
-                                : mobilnummer}
-                        </BodyShort>
+                        <BodyShort size="small">Tlf.: {mobilnummer}</BodyShort>
+                        {fullmektig.digitalKontaktinformasjonTredjepartsperson?.reservasjon === true && (
+                            <Tag variant="moderate" data-color="warning" size="xsmall">
+                                Reservert i KRR
+                            </Tag>
+                        )}
                         <Detail textColor="subtle">Kontakt- og reservasjonsregisteret</Detail>
                     </>
                 )}
@@ -73,7 +73,10 @@ export const Fullmakt = () => {
     const person = data?.person;
     const fullmektige = person?.fullmektige ?? [];
     const feilendeSystemer = data?.feilendeSystemer ?? [];
-
+    const navnObjekt = person?.navn.firstOrNull();
+    const brukersNavn = navnObjekt
+        ? `${navnObjekt.fornavn} ${navnObjekt.mellomnavn ?? ''} ${navnObjekt.etternavn}`
+        : null;
     const reprApiFeil = harFeilendeSystemer(feilendeSystemer, PersonDataFeilendeSystemer.REPR_API);
 
     if (fullmektige?.isEmpty() && !reprApiFeil) {
@@ -83,43 +86,59 @@ export const Fullmakt = () => {
     return (
         <VStack gap="space-8">
             <Heading size="xsmall" as="h3">
-                Fullmakter
+                Fullmektige
             </Heading>
+
             {reprApiFeil ? (
                 <InlineMessage status="warning" size="small">
                     Feilet ved uthenting av fullmakter
                 </InlineMessage>
             ) : (
-                <Accordion size="small" indent={false}>
-                    {fullmektige.map((fullmektig) => {
-                        const fullmektigNavn = hentNavn(fullmektig.navn, 'Ukjent fullmektig');
-                        const gyldigTilOgMed = fullmektig.fullmakt.gyldigTilOgMed
-                            ? dayjs(fullmektig.fullmakt.gyldigTilOgMed)
-                            : null;
+                <>
+                    <Detail>
+                        En fullmektig har myndighet til å opptre på vegne av fullmaktsgiver,{' '}
+                        {brukersNavn ? capitalizeName(brukersNavn) : 'ukjent navn'}.
+                    </Detail>
+                    <Accordion size="small" indent={false}>
+                        {fullmektige.map((fullmektig) => {
+                            const fullmektigNavn = hentNavn(fullmektig.navn, 'Ukjent fullmektig');
+                            const gyldigTilOgMed = fullmektig.fullmakt.gyldigTilOgMed
+                                ? dayjs(fullmektig.fullmakt.gyldigTilOgMed)
+                                : null;
 
-                        return (
-                            <Accordion.Item key={fullmektig.ident}>
-                                <Accordion.Header>
-                                    <VStack className="justify-start items-start">
-                                        {capitalizeName(fullmektigNavn)}
-                                        {gyldigTilOgMed?.isBefore(dayjs(), 'day') ? (
-                                            <Tag variant="moderate" size="xsmall">
-                                                Historisk
-                                            </Tag>
-                                        ) : (
-                                            <Tag variant="moderate" size="xsmall" data-color="success">
-                                                Aktiv
-                                            </Tag>
-                                        )}
-                                    </VStack>
-                                </Accordion.Header>
-                                <Accordion.Content>
-                                    <FullmektigDetaljer feilendeSystemer={feilendeSystemer} fullmektig={fullmektig} />
-                                </Accordion.Content>
-                            </Accordion.Item>
-                        );
-                    })}
-                </Accordion>
+                            const gyldigFraOgMed = dayjs(fullmektig.fullmakt.gyldigFraOgMed);
+
+                            return (
+                                <Accordion.Item key={fullmektig.ident}>
+                                    <Accordion.Header>
+                                        <VStack className="justify-start items-start">
+                                            {capitalizeName(fullmektigNavn)}
+                                            {gyldigFraOgMed.isAfter(dayjs(), 'day') ? (
+                                                <Tag variant="moderate" size="xsmall">
+                                                    Fremtidig
+                                                </Tag>
+                                            ) : gyldigTilOgMed?.isBefore(dayjs(), 'day') ? (
+                                                <Tag variant="moderate" size="xsmall">
+                                                    Historisk
+                                                </Tag>
+                                            ) : (
+                                                <Tag variant="moderate" size="xsmall" data-color="success">
+                                                    Aktiv
+                                                </Tag>
+                                            )}
+                                        </VStack>
+                                    </Accordion.Header>
+                                    <Accordion.Content>
+                                        <FullmektigDetaljer
+                                            feilendeSystemer={feilendeSystemer}
+                                            fullmektig={fullmektig}
+                                        />
+                                    </Accordion.Content>
+                                </Accordion.Item>
+                            );
+                        })}
+                    </Accordion>
+                </>
             )}
         </VStack>
     );
