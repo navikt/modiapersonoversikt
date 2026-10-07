@@ -15,6 +15,7 @@ import {
     Skifteform
 } from '../../app/personside/visittkort-v2/PersondataDomain';
 import { harDiskresjonskode } from '../../app/personside/visittkort-v2/visittkort-utils';
+import { OppholdType } from '../../generated/modiapersonoversikt-api';
 import { aremark } from './aremark';
 
 // Til bruk under testing av funksjonalitet
@@ -236,7 +237,7 @@ function lagPerson(fnr: string): Person {
         ],
         opphold: [
             {
-                type: 'Midlertidig',
+                type: OppholdType.MIDLERTIDIG,
                 oppholdFra: '2025-01-01' as LocalDate,
                 oppholdTil: '2027-12-31' as LocalDate
             }
