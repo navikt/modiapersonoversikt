@@ -1,7 +1,6 @@
-import { Accordion, Heading, VStack } from '@navikt/ds-react';
+import { Heading, Table, VStack } from '@navikt/ds-react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import Card from 'src/components/Card';
-import { TitleValuePairsComponent } from 'src/components/ytelser/Detail';
 import { periodeEllerNull } from 'src/components/ytelser/utils';
 import type {
     BeregnetDagDagpengerDto,
@@ -23,47 +22,45 @@ const prettyEnum = (ytelseType: BeregnetDagDagpengerDtoKilde) =>
         .replace('_', ' ')
         .replace(/\b./, (initial: string) => initial.toUpperCase());
 
-const rowKey = (ytelse: BeregnetDagDagpengerDto) => ytelse.fraOgMed;
-
 const rowHeader = (ytelse: BeregnetDagDagpengerDto) =>
     `${periodeEllerNull({
         fra: ytelse.fraOgMed,
         til: ytelse.tilOgMed
     })}`;
 
-const PeriodeContent = ({ periode }: { periode: BeregnetDagDagpengerDto }) => {
-    const entries = {
-        Kilde: prettyEnum(periode.kilde),
-        Sats: periode.sats,
-        'Gjenstående dager': periode.gjenståendeDager
-    };
-    return (
-        <Accordion.Content>
-            <TitleValuePairsComponent entries={entries} columns={{ xs: 2, md: 3 }} />
-        </Accordion.Content>
-    );
-};
-
-/**
- * More or less stolen from PleiepengerPerioder.
- * Accordion seems like way overkill, but we use it to keep in theme with the
- * rest of the ytelser.
- */
 const Perioder = ({ perioder }: { perioder: BeregnetDagDagpengerDto[] }) => (
-    <Card paddingBlock="4">
-        <Heading as="h4" size="small">
-            Perioder
-        </Heading>
-        <Accordion size="small">
-            {perioder.map((periode, i) => {
-                return (
-                    <Accordion.Item key={rowKey(periode)} defaultOpen={i === 0}>
-                        <Accordion.Header>{rowHeader(periode)}</Accordion.Header>
-                        <PeriodeContent periode={periode} />
-                    </Accordion.Item>
-                );
-            })}
-        </Accordion>
+    <Card paddingBlock="space-16">
+        <VStack gap="space-4">
+            <Heading as="h4" size="small">
+                Perioder
+            </Heading>
+            <div className="overflow-x-auto">
+                <Table size="small" zebraStripes aria-label="Perioder">
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell scope="col">Periode</Table.HeaderCell>
+                            <Table.HeaderCell scope="col">Kilde</Table.HeaderCell>
+                            <Table.HeaderCell scope="col" align="right">
+                                Sats
+                            </Table.HeaderCell>
+                            <Table.HeaderCell scope="col" align="right">
+                                Gjenstående dager
+                            </Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
+                    <Table.Body>
+                        {perioder.map((periode, index) => (
+                            <Table.Row key={`${periode.fraOgMed}-${periode.kilde}-${index}`}>
+                                <Table.DataCell>{rowHeader(periode)}</Table.DataCell>
+                                <Table.DataCell>{prettyEnum(periode.kilde)}</Table.DataCell>
+                                <Table.DataCell align="right">{periode.sats}</Table.DataCell>
+                                <Table.DataCell align="right">{periode.gjenståendeDager}</Table.DataCell>
+                            </Table.Row>
+                        ))}
+                    </Table.Body>
+                </Table>
+            </div>
+        </VStack>
     </Card>
 );
 

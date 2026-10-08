@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Detail, Heading, Loader } from '@navikt/ds-react';
+import { BodyShort, Detail, Heading, InlineMessage, Loader } from '@navikt/ds-react';
 import type { PropsWithChildren, ReactNode } from 'react';
 import type { FetchError } from 'src/api/api';
 
@@ -26,11 +26,11 @@ export const FetchErrorRenderer = ({
 }) => {
     const errText = errorText ?? getErrorText(error);
     return (
-        <Alert variant="error">
+        <InlineMessage status="error" size="small">
             <Heading size="xsmall">{title}</Heading>
             <BodyShort size="small">{errText}</BodyShort>
             {error.traceId && <Detail>ID: {error.traceId}</Detail>}
-        </Alert>
+        </InlineMessage>
     );
 };
 

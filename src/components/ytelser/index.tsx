@@ -1,4 +1,5 @@
 import { VStack } from '@navikt/ds-react';
+
 import { AlertBanner } from 'src/components/AlertBanner';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { ValgteYtelseDetailPage } from 'src/components/ytelser/Detail';
@@ -16,7 +17,7 @@ const YtelserPageContent = () => {
     const { errorMessages } = useFilterYtelser();
 
     return (
-        <VStack height="100%">
+        <VStack height="100%" gap="space-4">
             <AlertBanner alerts={errorMessages} />
             <ValgteYtelseDetailPage />
         </VStack>

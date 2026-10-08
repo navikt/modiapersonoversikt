@@ -1,37 +1,17 @@
-import { Accordion, Heading, VStack } from '@navikt/ds-react';
+import { Heading, VStack } from '@navikt/ds-react';
 import Card from 'src/components/Card';
-import { TitleValuePairsComponent } from 'src/components/ytelser/Detail';
-import type { SykepengerSpokelse, Utbetalingsperiode } from 'src/generated/modiapersonoversikt-api';
-import { datoEllerTomString, formaterDato, prosentEllerNull } from 'src/utils/string-utils';
+import { PerioderMedGradTable } from 'src/components/ytelser/Detail/PerioderMedGradTable';
+import type { SykepengerSpokelse } from 'src/generated/modiapersonoversikt-api';
 
 const SykpengerPerioder = ({ ytelse }: { ytelse: SykepengerSpokelse }) => {
     if (ytelse.utbetaltePerioder.length === 0) return <></>;
-
-    const getEntries = (periode: Utbetalingsperiode) => {
-        return {
-            'Fra og med': formaterDato(periode.fom),
-            'Til og med': formaterDato(periode.tom),
-            Grad: prosentEllerNull(periode.grad)
-        };
-    };
 
     return (
         <>
             <Heading as="h3" size="xsmall">
                 Perioder
             </Heading>
-            <Accordion size="small">
-                {ytelse.utbetaltePerioder.map((periode, index) => {
-                    return (
-                        <Accordion.Item key={`${index}-${periode.fom}`}>
-                            <Accordion.Header>{`Periode - ${datoEllerTomString(periode.fom)}`}</Accordion.Header>
-                            <Accordion.Content>
-                                <TitleValuePairsComponent entries={getEntries(periode)} columns={{ xs: 2, md: 3 }} />
-                            </Accordion.Content>
-                        </Accordion.Item>
-                    );
-                })}
-            </Accordion>
+            <PerioderMedGradTable perioder={ytelse.utbetaltePerioder} />
         </>
     );
 };

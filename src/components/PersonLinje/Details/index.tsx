@@ -83,9 +83,14 @@ function PersondataWrapper({ children }: PropsWithChildren) {
     );
 }
 
-function SeksjonWrapper({ tittel, icon, children }: PropsWithChildren<{ tittel: string; icon?: ReactNode }>) {
+function SeksjonWrapper({
+    tittel,
+    icon,
+    children,
+    className
+}: PropsWithChildren<{ tittel: string; icon?: ReactNode; className?: string }>) {
     return (
-        <VStack gap="space-4" as="section">
+        <VStack gap="space-4" as="section" className={className}>
             <HStack gap="space-2" align="center" wrap={false}>
                 <div>{icon}</div>
                 <Heading size="small" level="2">
@@ -171,10 +176,14 @@ const PersonlinjeDetails = () => {
                         >
                             <Representasjon />
                         </SeksjonWrapper>
-                        <SeksjonWrapper tittel="Flytting" icon={<HouseIcon aria-hidden fontSize="2rem" />}>
-                            <Flytting />
-                        </SeksjonWrapper>
                     </VStack>
+                    <SeksjonWrapper
+                        tittel="Flytting"
+                        icon={<HouseIcon aria-hidden fontSize="2rem" />}
+                        className="lg:col-span-2"
+                    >
+                        <Flytting />
+                    </SeksjonWrapper>
                 </HGrid>
             </VStack>
         </Card>

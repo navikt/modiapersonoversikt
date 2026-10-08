@@ -4,12 +4,12 @@ export const statiskPeriodeDagpengerDtoMock = {
     eldsteFraOgMedDato: '2025-06-06',
     perioder: [
         {
-            fraOgMed: '2025-06-06',
-            tilOgMed: '2025-06-19',
-            kilde: BeregnetDagDagpengerDtoKilde.ARENA,
+            fraOgMed: '2025-10-10',
+            tilOgMed: '2025-10-23',
+            kilde: BeregnetDagDagpengerDtoKilde.DP_SAK,
             sats: 100,
-            gjenståendeDager: 3,
-            utbetaltBeløp: 5000
+            gjenståendeDager: 12,
+            utbetaltBeløp: 3000
         },
         {
             fraOgMed: '2025-08-08',
@@ -20,12 +20,12 @@ export const statiskPeriodeDagpengerDtoMock = {
             utbetaltBeløp: 50000
         },
         {
-            fraOgMed: '2025-10-10',
-            tilOgMed: '2025-10-23',
-            kilde: BeregnetDagDagpengerDtoKilde.DP_SAK,
+            fraOgMed: '2025-06-06',
+            tilOgMed: '2025-06-19',
+            kilde: BeregnetDagDagpengerDtoKilde.ARENA,
             sats: 100,
-            gjenståendeDager: 12,
-            utbetaltBeløp: 3000
+            gjenståendeDager: 3,
+            utbetaltBeløp: 5000
         }
     ]
 };
