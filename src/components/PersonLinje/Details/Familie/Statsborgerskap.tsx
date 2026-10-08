@@ -3,7 +3,7 @@ import { BodyShort, HStack } from '@navikt/ds-react';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { capitalizeName } from 'src/utils/string-utils';
 
-const capitalizeStatsborgerskap = (statsborgerskap: string): string => {
+export const capitalizeStatsborgerskap = (statsborgerskap: string): string => {
     return statsborgerskap
         .toLowerCase()
         .split(' ')

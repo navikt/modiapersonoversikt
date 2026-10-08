@@ -12,7 +12,7 @@ import {
     Skifteform
 } from '../../app/personside/visittkort-v2/PersondataDomain';
 import { harDiskresjonskode } from '../../app/personside/visittkort-v2/visittkort-utils';
-import { FullmaktEndringHendelse, FullmaktEndringKilde } from '../../generated/modiapersonoversikt-api';
+import { FullmaktEndringHendelse, FullmaktEndringKilde, OppholdType } from '../../generated/modiapersonoversikt-api';
 
 function hentBarnAremark(): ForelderBarnRelasjon[] {
     return [
@@ -256,6 +256,13 @@ export const aremark: Person = {
                 gyldigFraOgMed: '2021-02-01' as LocalDate,
                 gyldigTilOgMed: '2022-05-01' as LocalDate
             }
+        }
+    ],
+    opphold: [
+        {
+            type: OppholdType.MIDLERTIDIG,
+            oppholdFra: '2025-01-01' as LocalDate,
+            oppholdTil: '2027-12-31' as LocalDate
         }
     ],
     adressebeskyttelse: [

@@ -1,6 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { DodsboSkifteform, type PersonData, PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
+import {
+    DodsboSkifteform,
+    OppholdType,
+    type PersonData,
+    PersonDataFeilendeSystemer
+} from 'src/lib/types/modiapersonoversikt-api';
 import { createPersonData } from 'src/test/createPersonData';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import TopKort from './index';
@@ -277,5 +282,57 @@ describe('TopKort', () => {
 
         expect(screen.queryByText('Bostedsadresse')).not.toBeInTheDocument();
         expect(screen.queryByRole('button', { name: 'Personen har flere adresser' })).not.toBeInTheDocument();
+    });
+
+    it('viser statsborgerskap over oppholdstillatelse i høyre kolonne', () => {
+        person.statsborgerskap = [{ land: { kode: 'NOR', beskrivelse: 'NORGE' }, gyldighetsPeriode: null }];
+        person.opphold = [
+            {
+                type: OppholdType.MIDLERTIDIG,
+                oppholdFra: '2024-01-15',
+                oppholdTil: '2026-12-31'
+            }
+        ];
+        render(<TopKort />);
+
+        const statsborgerskap = screen.getByText('Statsborgerskap');
+        const opphold = screen.getByText('Oppholdstillatelse');
+        const hoyreKolonne = statsborgerskap.parentElement?.parentElement;
+        expect(hoyreKolonne).toBe(hoyreKolonne?.parentElement?.lastElementChild);
+        expect(opphold.parentElement?.parentElement).toBe(hoyreKolonne);
+        expect(screen.getByText('Norge')).toBeInTheDocument();
+        expect(screen.getByText('Type: Midlertidig')).toBeInTheDocument();
+        expect(screen.getByText('Opphold fra: 15.01.2024')).toBeInTheDocument();
+        expect(screen.getByText('Opphold til: 31.12.2026')).toBeInTheDocument();
+        expect(statsborgerskap.compareDocumentPosition(opphold) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    });
+
+    it('oversetter alle kjente oppholdstyper til lesbar tekst', () => {
+        person.opphold = [
+            { type: OppholdType.MIDLERTIDIG, oppholdFra: null, oppholdTil: null },
+            { type: OppholdType.PERMANENT, oppholdFra: null, oppholdTil: null },
+            { type: OppholdType.OPPLYSNING_MANGLER, oppholdFra: null, oppholdTil: null }
+        ];
+        render(<TopKort />);
+
+        expect(screen.getByText('Type: Midlertidig')).toBeInTheDocument();
+        expect(screen.getByText('Type: Permanent')).toBeInTheDocument();
+        expect(screen.getByText('Type: Opplysning mangler')).toBeInTheDocument();
+    });
+
+    it('viser lesbar tekst for ukjent oppholdstype uten interne enumverdier eller manglende datoer', () => {
+        person.opphold = [{ type: OppholdType.__UNKNOWN_VALUE, oppholdFra: null, oppholdTil: null }];
+        render(<TopKort />);
+
+        expect(screen.getByText('Type: Ukjent')).toBeInTheDocument();
+        expect(screen.queryByText(/__UNKNOWN_VALUE/)).not.toBeInTheDocument();
+        expect(screen.queryByText(/Opphold fra:|Opphold til:/)).not.toBeInTheDocument();
+    });
+
+    it('viser ikke oppholdstillatelse når listen er tom', () => {
+        person.opphold = [];
+        render(<TopKort />);
+
+        expect(screen.queryByText('Oppholdstillatelse')).not.toBeInTheDocument();
     });
 });

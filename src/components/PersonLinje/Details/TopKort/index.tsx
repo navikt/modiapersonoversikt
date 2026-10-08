@@ -1,11 +1,13 @@
 import { FigureInwardIcon, FigureOutwardIcon } from '@navikt/aksel-icons';
-import { BodyShort, Heading, HGrid, HStack, InlineMessage, Label, ReadMore, VStack } from '@navikt/ds-react';
+import { BodyShort, Detail, Heading, HGrid, HStack, InlineMessage, Label, ReadMore, VStack } from '@navikt/ds-react';
 import type { PropsWithChildren } from 'react';
+import { capitalizeStatsborgerskap } from 'src/components/PersonLinje/Details/Familie/Statsborgerskap';
 import { harFeilendeSystemer, hentNavn } from 'src/components/PersonLinje/utils';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import {
     type Adresse,
     Kjonn,
+    OppholdType,
     type PersonData,
     PersonDataFeilendeSystemer
 } from 'src/lib/types/modiapersonoversikt-api';
@@ -22,6 +24,12 @@ const IKKE_REGISTRERT = 'Ikke registrert';
 const KRR_FEILET = 'Feilet ved uthenting fra KRR';
 const KONTONUMMER_FEILET = 'Feilet ved uthenting av kontonummer';
 const NAV_KONTAKTINFO_FEILET = 'Feilet ved uthenting av kontaktinformasjon';
+const OPPHOLDSTYPE_TEKSTER: Record<OppholdType, string> = {
+    [OppholdType.MIDLERTIDIG]: 'Midlertidig',
+    [OppholdType.PERMANENT]: 'Permanent',
+    [OppholdType.OPPLYSNING_MANGLER]: 'Opplysning mangler',
+    [OppholdType.__UNKNOWN_VALUE]: 'Ukjent'
+};
 
 function Seksjon({ tittel, feilmelding, children }: PropsWithChildren<{ tittel: string; feilmelding?: string }>) {
     if (!feilmelding && !children) return null;
@@ -203,6 +211,22 @@ function TopKort() {
                             {tilrettelagtKommunikasjonTekst('Talespråk', person.tilrettelagtKommunikasjon.talesprak)}
                         </Seksjon>
                     )}
+                    {person.statsborgerskap.isNotEmpty() && (
+                        <Seksjon tittel="Statsborgerskap">
+                            <BodyShort size="small">
+                                {person.statsborgerskap
+                                    .map(({ land }) => capitalizeStatsborgerskap(land.beskrivelse))
+                                    .join(', ')}
+                            </BodyShort>
+                        </Seksjon>
+                    )}
+                    {person.opphold?.map((opphold, index) => (
+                        <Seksjon key={`${opphold.type}-${index}`} tittel="Oppholdstillatelse">
+                            <BodyShort size="small">Type: {OPPHOLDSTYPE_TEKSTER[opphold.type]}</BodyShort>
+                            {opphold.oppholdFra && <Detail>Opphold fra: {formaterDato(opphold.oppholdFra)}</Detail>}
+                            {opphold.oppholdTil && <Detail>Opphold til: {formaterDato(opphold.oppholdTil)}</Detail>}
+                        </Seksjon>
+                    ))}
                 </VStack>
             </HGrid>
         </VStack>

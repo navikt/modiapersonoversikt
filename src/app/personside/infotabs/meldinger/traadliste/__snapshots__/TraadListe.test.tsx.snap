@@ -708,15 +708,6 @@ exports[`Viser Traadliste 1`] = `
                         Under arbeid
                       </span>
                     </div>
-                    <div
-                      class="etikett etikett--suksess"
-                    >
-                      <span
-                        class="typo-normal"
-                      >
-                        Tildelt meg
-                      </span>
-                    </div>
                   </div>
                   <p
                     class="typo-normal c20 order-second"
