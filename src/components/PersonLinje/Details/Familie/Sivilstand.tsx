@@ -1,7 +1,6 @@
 import { CheckmarkIcon, XMarkOctagonIcon } from '@navikt/aksel-icons';
-import { BodyShort, Box, InlineMessage, Tag, VStack } from '@navikt/ds-react';
+import { BodyShort, InlineMessage, Tag, VStack } from '@navikt/ds-react';
 import { KopierFnrKnapp } from 'src/components/PersonLinje/common/KopierFnrKnapp';
-import { InfoElement } from 'src/components/PersonLinje/Details/components';
 import { type PersonData, SivilstandType } from 'src/lib/types/modiapersonoversikt-api';
 import { formaterDato } from 'src/utils/string-utils';
 import Diskresjonskode from '../../common/DiskresjonsKode';
@@ -54,7 +53,7 @@ function Partner(props: { partner: Sivilstand; harFeilendeSystem: boolean }) {
     const fnr = partnerRelasjon.fnr;
 
     return (
-        <VStack gap="space-4">
+        <VStack gap="space-4" className="items-start">
             <Diskresjonskode adressebeskyttelse={partnerRelasjon.adressebeskyttelse} />
             {navn && (
                 <BodyShort size="small">
@@ -65,14 +64,12 @@ function Partner(props: { partner: Sivilstand; harFeilendeSystem: boolean }) {
             <BodyShort size="small" textColor="subtle">
                 <SivilstandTekst sivilstand={props.partner} />
             </BodyShort>
-            <Box className="self-start">
-                <KopierFnrKnapp fnr={fnr} />
-            </Box>
+            <KopierFnrKnapp fnr={fnr} />
             {partnerRelasjon.harSammeAdresse && !erDød ? (
                 <Tag
                     data-color="success"
                     variant="moderate"
-                    size="small"
+                    size="xsmall"
                     icon={<CheckmarkIcon aria-hidden />}
                     className="self-start"
                 >
@@ -82,7 +79,7 @@ function Partner(props: { partner: Sivilstand; harFeilendeSystem: boolean }) {
                 <Tag
                     data-color="danger"
                     variant="moderate"
-                    size="small"
+                    size="xsmall"
                     icon={<XMarkOctagonIcon aria-hidden />}
                     className="self-start"
                 >
@@ -110,15 +107,13 @@ function SivilstandWrapper({ harFeilendeSystem, sivilstand: sivilstandList }: Pr
     }
 
     return (
-        <InfoElement>
+        <>
             {sivilstand.type.kode !== SivilstandType.UGIFT ? (
                 <Partner harFeilendeSystem={harFeilendeSystem} partner={sivilstand} />
             ) : (
-                <BodyShort>
-                    <SivilstandTekst sivilstand={sivilstand} />
-                </BodyShort>
+                <SivilstandTekst sivilstand={sivilstand} />
             )}
-        </InfoElement>
+        </>
     );
 }
 

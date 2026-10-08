@@ -1,4 +1,4 @@
-import { Accordion, Box, Heading, VStack } from '@navikt/ds-react';
+import { Accordion, Heading, VStack } from '@navikt/ds-react';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
 import { harFeilendeSystemer } from '../../utils';
@@ -37,23 +37,21 @@ function Familie() {
             <Accordion.Item>
                 <Accordion.Header>Familiemedlemmer</Accordion.Header>
                 <Accordion.Content>
-                    <Box borderWidth="0 0 0 2" borderColor="neutral-subtle" paddingInline="space-16 space-0">
-                        <VStack gap="space-8">
-                            <Heading size="xsmall">Partner</Heading>
-                            <Sivilstand harFeilendeSystem={harFeilendeSystem} sivilstand={person.sivilstand} />
-                            <Heading size="xsmall">Barn</Heading>
-                            <Barn harFeilendeSystem={harFeilendeSystem} relasjoner={person.forelderBarnRelasjon} />
-                            {erUnder22 && (
-                                <>
-                                    <Heading size="xsmall">Foreldre</Heading>
-                                    <Foreldre
-                                        harFeilendeSystem={harFeilendeSystem}
-                                        forelderBarnRelasjon={person.forelderBarnRelasjon}
-                                    />
-                                </>
-                            )}
-                        </VStack>
-                    </Box>
+                    <VStack gap="space-8">
+                        <Heading size="xsmall">Partner</Heading>
+                        <Sivilstand harFeilendeSystem={harFeilendeSystem} sivilstand={person.sivilstand} />
+                        <Heading size="xsmall">Barn</Heading>
+                        <Barn harFeilendeSystem={harFeilendeSystem} relasjoner={person.forelderBarnRelasjon} />
+                        {erUnder22 && (
+                            <>
+                                <Heading size="xsmall">Foreldre</Heading>
+                                <Foreldre
+                                    harFeilendeSystem={harFeilendeSystem}
+                                    forelderBarnRelasjon={person.forelderBarnRelasjon}
+                                />
+                            </>
+                        )}
+                    </VStack>
                 </Accordion.Content>
             </Accordion.Item>
             {person.foreldreansvar.isNotEmpty() && (
