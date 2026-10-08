@@ -58,19 +58,19 @@ export const InfoOmYtelser = () => {
                             </Table.Body>
                         </Table>
                     </Box>
+                    <BodyShort size="small" className="pt-2">
+                        Meld gjerne fra om endringsbehov til informasjon om ytelser i{' '}
+                        <Link
+                            href="https://jira.adeo.no/plugins/servlet/desk/portal/541"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Porten
+                            <ExternalLinkIcon aria-hidden />
+                        </Link>
+                    </BodyShort>
                 </VStack>
             </ReadMore>
-            <BodyShort size="small" className="pt-2">
-                Meld gjerne fra om endringsbehov til informasjon om ytelser i{' '}
-                <Link
-                    href="https://jira.adeo.no/plugins/servlet/desk/portal/541"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Porten
-                    <ExternalLinkIcon aria-hidden />
-                </Link>
-            </BodyShort>
         </Box>
     );
 };
