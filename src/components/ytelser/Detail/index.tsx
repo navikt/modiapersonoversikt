@@ -8,6 +8,7 @@ import { PensjonDetails } from 'src/components/ytelser/Detail/pensjon';
 import { SykepengerDetails } from 'src/components/ytelser/Detail/sykepenger';
 import { SykePengerSpokelseDetails } from 'src/components/ytelser/Detail/sykepenger-spokelse';
 import { TiltaksPengerDetails } from 'src/components/ytelser/Detail/tiltakspenger';
+import { InfoOmYtelser } from 'src/components/ytelser/InfoOmYtelser';
 import { useSetIdQueryParam } from 'src/components/ytelser/useSetIdQueryParam';
 import { getUnikYtelseKey, useFilterYtelser, type YtelseVedtak } from 'src/components/ytelser/utils';
 import type {
@@ -112,7 +113,8 @@ export const ValgteYtelseDetailPage = () => {
             {isLoading ? (
                 <Skeleton variant="rectangle" height="4rem" />
             ) : (
-                <VStack flexGrow="1" minHeight="0" maxHeight="100%" className="overflow-auto">
+                <VStack flexGrow="1" minHeight="0" maxHeight="100%" className="overflow-auto" gap="space-4">
+                    <InfoOmYtelser />
                     <YtelseDataDetails ytelser={ytelser} />
                 </VStack>
             )}
