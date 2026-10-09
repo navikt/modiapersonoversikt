@@ -1,17 +1,11 @@
 import { PersonTallShortFillIcon, PersonTallShortIcon } from '@navikt/aksel-icons';
-import { BodyShort, InlineMessage } from '@navikt/ds-react';
-import type { NavnOgIdent, PersonData } from 'src/lib/types/modiapersonoversikt-api';
+import { BodyShort, HStack, InlineMessage, VStack } from '@navikt/ds-react';
+import { KopierFnrKnapp } from 'src/components/PersonLinje/common/KopierFnrKnapp';
+import type { PersonData } from 'src/lib/types/modiapersonoversikt-api';
 import { hentNavn } from '../../utils';
 import { InfoElement } from '../components';
 
 type Foreldreansvar = PersonData['foreldreansvar'][0];
-
-function kombinerNavnOgIdent(personInfo?: NavnOgIdent | null): string | null {
-    if (!personInfo) return null;
-    const navn = hentNavn(personInfo.navn);
-    const ident = personInfo.ident ? personInfo.ident : 'Ukjent fnr/dnr';
-    return personInfo.navn ? `${navn} (${ident})` : navn;
-}
 
 function ForeldreansvarElement({
     harFeilendeSystem,
@@ -29,16 +23,20 @@ function ForeldreansvarElement({
             </InfoElement>
         );
     }
-    const ansvarlig = kombinerNavnOgIdent(foreldreansvar.ansvarlig);
-    const ansvarsubject = kombinerNavnOgIdent(foreldreansvar.ansvarsubject);
+    const ansvarlig = foreldreansvar.ansvarlig;
+    const ansvarsubject = foreldreansvar.ansvarsubject;
+
     return (
-        <InfoElement
-            title={`Ansvar: ${foreldreansvar.ansvar}`}
-            icon={<PersonTallShortFillIcon aria-hidden fontSize="1.2rem" color="var(--a-igray-400)" />}
-        >
-            {ansvarlig && <BodyShort size="small">Ansvarlig: {ansvarlig}</BodyShort>}
-            {ansvarsubject && <BodyShort size="small">Gjelder for: {ansvarsubject}</BodyShort>}
-        </InfoElement>
+        <VStack gap="space-4" justify="start" className="items-start">
+            <HStack>
+                <PersonTallShortFillIcon aria-hidden fontSize="1.2rem" color="var(--a-igray-400)" />
+                <BodyShort size="small">Ansvar: {foreldreansvar.ansvar} </BodyShort>
+            </HStack>
+            {ansvarlig?.navn && <BodyShort size="small">Ansvarlig: {hentNavn(ansvarlig.navn)}</BodyShort>}
+            {ansvarlig?.ident && <KopierFnrKnapp fnr={ansvarlig?.ident} />}
+            {ansvarsubject?.navn && <BodyShort size="small">Gjelder for: {hentNavn(ansvarsubject.navn)}</BodyShort>}
+            {ansvarsubject?.ident && <KopierFnrKnapp fnr={ansvarsubject?.ident} />}
+        </VStack>
     );
 }
 
@@ -50,7 +48,7 @@ function ForeldreansvarListe({
     foreldreansvar: Foreldreansvar[];
 }) {
     return (
-        <>
+        <VStack gap="space-32">
             {foreldreansvar.map((fa, index) => (
                 <ForeldreansvarElement
                     key={`${fa.ansvar}-${index}`}
@@ -58,7 +56,7 @@ function ForeldreansvarListe({
                     foreldreansvar={fa}
                 />
             ))}
-        </>
+        </VStack>
     );
 }
 

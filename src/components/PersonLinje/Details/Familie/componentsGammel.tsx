@@ -1,15 +1,9 @@
-import {
-    ChildEyesFillIcon,
-    FigureCombinationIcon,
-    FigureInwardFillIcon,
-    FigureOutwardFillIcon,
-    PersonCrossFillIcon
-} from '@navikt/aksel-icons';
 import { Alert, BodyShort, Detail } from '@navikt/ds-react';
+import { FamilierelasjonIkon } from 'src/components/PersonLinje/Details/Familie/utils';
 import type { PersonData } from 'src/lib/types/modiapersonoversikt-api';
 import BostedForRelasjon from '../../common/BostedForRelasjon';
 import Diskresjonskode from '../../common/DiskresjonsKode';
-import { harDiskresjonskode, hentAlderEllerDod, hentNavn } from '../../utils';
+import { hentAlderEllerDod, hentNavn } from '../../utils';
 import { InfoElement } from '../components';
 
 type ForelderBarnRelasjon = PersonData['forelderBarnRelasjon'][0];
@@ -46,26 +40,4 @@ export function ForelderBarnRelasjonVisningGammel({
             </Detail>
         </InfoElement>
     );
-}
-
-function FamilierelasjonIkon({ relasjon, erBarn }: { relasjon: ForelderBarnRelasjon; erBarn: boolean }) {
-    if (harDiskresjonskode(relasjon.adressebeskyttelse)) {
-        return <PersonCrossFillIcon title="Kjønn skjult av diskresjonskode" />;
-    }
-    const kjonn = relasjon.kjonn.firstOrNull();
-    if (kjonn?.kode === 'M') {
-        return erBarn ? (
-            <ChildEyesFillIcon title="Mann" fontSize="1.2rem" color="#66A5F4" />
-        ) : (
-            <FigureInwardFillIcon title="Mann" fontSize="1.2rem" color="#66A5F4" />
-        );
-    }
-    if (kjonn?.kode === 'K') {
-        return erBarn ? (
-            <ChildEyesFillIcon title="Kvinne" fontSize="1.2rem" color="#F25C5C" />
-        ) : (
-            <FigureOutwardFillIcon title="Kvinne" fontSize="1.2rem" color="#F25C5C" />
-        );
-    }
-    return <FigureCombinationIcon title="Ukjent kjønn" />;
 }

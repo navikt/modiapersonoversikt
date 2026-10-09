@@ -8,7 +8,7 @@ import {
     type RelasjonPerson,
     SivilstandType
 } from 'src/lib/types/modiapersonoversikt-api';
-import { ENDASH, formaterDato } from 'src/utils/string-utils';
+import { capitalizeName, ENDASH, formaterDato } from 'src/utils/string-utils';
 
 type ForelderBarnRelasjon = PersonData['forelderBarnRelasjon'][0];
 type Sivilstand = PersonData['sivilstand'][0];
@@ -56,7 +56,8 @@ export function hentNavn(navn?: Navn | null, feilmelding = 'Ukjent navn'): strin
     if (!navn) {
         return feilmelding;
     }
-    return navn.fornavn + (navn.mellomnavn ? ` ${navn.mellomnavn} ` : ' ') + navn.etternavn;
+    const fulltnavn = navn.fornavn + (navn.mellomnavn ? ` ${navn.mellomnavn} ` : ' ') + navn.etternavn;
+    return capitalizeName(fulltnavn);
 }
 
 export function hentAlderEllerDod(person: RelasjonPerson): string | undefined {

@@ -92,7 +92,7 @@ function TopKort() {
     const person = data?.person;
     if (!person) return null;
 
-    const navn = hentNavn(person.navn.firstOrNull() ?? undefined);
+    const navn = hentNavn(person.navn.firstOrNull() ?? undefined).toUpperCase();
     const kjonn = person.kjonn.firstOrNull()?.kode;
 
     const feilendeSystemer = data?.feilendeSystemer ?? [];

@@ -20,7 +20,7 @@ function Foreldre({ harFeilendeSystem, forelderBarnRelasjon }: Props) {
     }
 
     return (
-        <VStack gap="space-8">
+        <VStack gap="space-32">
             {foreldre.map((relasjon, index) => (
                 <ForelderBarnRelasjonVisning
                     harFeilendeSystem={harFeilendeSystem}

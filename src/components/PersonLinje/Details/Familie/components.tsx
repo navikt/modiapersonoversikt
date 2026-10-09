@@ -1,6 +1,7 @@
 import { CheckmarkIcon, XMarkOctagonIcon } from '@navikt/aksel-icons';
-import { BodyShort, Box, InlineMessage, Tag, VStack } from '@navikt/ds-react';
+import { BodyShort, HStack, InlineMessage, Tag, VStack } from '@navikt/ds-react';
 import { KopierFnrKnapp } from 'src/components/PersonLinje/common/KopierFnrKnapp';
+import { FamilierelasjonIkon } from 'src/components/PersonLinje/Details/Familie/utils';
 import type { PersonData } from 'src/lib/types/modiapersonoversikt-api';
 import { formaterDato } from 'src/utils/string-utils';
 import Diskresjonskode from '../../common/DiskresjonsKode';
@@ -25,7 +26,7 @@ export function ForelderBarnRelasjonVisning({
     const dodsdato = relasjon.dodsdato.firstOrNull();
 
     return (
-        <VStack gap="space-4">
+        <VStack gap="space-4" className="items-start">
             {harFeilendeSystem && (
                 <InlineMessage status="warning" size="small">
                     Feilet ved uthenting av informasjon om {relasjon.rolle.toLowerCase()}
@@ -34,15 +35,14 @@ export function ForelderBarnRelasjonVisning({
             {harDiskresjon ? (
                 <Diskresjonskode adressebeskyttelse={relasjon.adressebeskyttelse} />
             ) : (
-                <BodyShort size="small">
-                    {navn ? hentNavn(navn) : 'Ukjent navn'} ({alder}, {beskrivelse})
-                </BodyShort>
+                <HStack>
+                    <FamilierelasjonIkon relasjon={relasjon} erBarn={relasjon.rolle === 'BARN'} />
+                    <BodyShort size="small">
+                        {navn ? hentNavn(navn) : 'Ukjent navn'} ({alder}, {beskrivelse})
+                    </BodyShort>
+                </HStack>
             )}
-            {fnr && !harDiskresjon && (
-                <Box>
-                    <KopierFnrKnapp fnr={fnr} />
-                </Box>
-            )}
+            {fnr && !harDiskresjon && <KopierFnrKnapp fnr={fnr} />}
             {erDød && dodsdato && (
                 <Tag data-color="neutral" variant="moderate" size="small" className="self-start">
                     Død ({formaterDato(dodsdato)})
@@ -54,7 +54,7 @@ export function ForelderBarnRelasjonVisning({
                     <Tag
                         data-color="success"
                         variant="moderate"
-                        size="small"
+                        size="xsmall"
                         icon={<CheckmarkIcon aria-hidden />}
                         className="self-start"
                     >
@@ -64,7 +64,7 @@ export function ForelderBarnRelasjonVisning({
                     <Tag
                         data-color="danger"
                         variant="moderate"
-                        size="small"
+                        size="xsmall"
                         icon={<XMarkOctagonIcon aria-hidden />}
                         className="self-start"
                     >
