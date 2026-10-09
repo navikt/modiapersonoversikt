@@ -33,8 +33,8 @@ function ForeldreansvarElement({
                 <BodyShort size="small">Ansvar: {foreldreansvar.ansvar} </BodyShort>
             </HStack>
             {ansvarlig?.navn && <BodyShort size="small">Ansvarlig: {hentNavn(ansvarlig.navn)}</BodyShort>}
-            {ansvarsubject?.navn && <BodyShort size="small">Gjelder for: {hentNavn(ansvarsubject.navn)}</BodyShort>}
             {ansvarlig?.ident && <KopierFnrKnapp fnr={ansvarlig?.ident} />}
+            {ansvarsubject?.navn && <BodyShort size="small">Gjelder for: {hentNavn(ansvarsubject.navn)}</BodyShort>}
             {ansvarsubject?.ident && <KopierFnrKnapp fnr={ansvarsubject?.ident} />}
         </VStack>
     );

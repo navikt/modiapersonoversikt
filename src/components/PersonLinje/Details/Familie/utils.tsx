@@ -23,8 +23,8 @@ export function FamilierelasjonIkon({ relasjon, erBarn }: { relasjon: ForelderBa
     }
 
     return erBarn ? (
-        <ChildEyesFillIcon title="Mann" fontSize="1.2rem" color={farge} />
+        <ChildEyesFillIcon title={kjonnKode !== 'K' ? 'Jente' : 'Gutt'} fontSize="1.2rem" color={farge} />
     ) : (
-        <FigureInwardFillIcon title="Mann" fontSize="1.2rem" color={farge} />
+        <FigureInwardFillIcon title={kjonnKode !== 'K' ? 'Kvinne' : 'Mann'} fontSize="1.2rem" color={farge} />
     );
 }

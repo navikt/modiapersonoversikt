@@ -36,7 +36,7 @@ export function ForelderBarnRelasjonVisning({
                 <Diskresjonskode adressebeskyttelse={relasjon.adressebeskyttelse} />
             ) : (
                 <HStack>
-                    <FamilierelasjonIkon relasjon={relasjon} erBarn={true} />
+                    <FamilierelasjonIkon relasjon={relasjon} erBarn={relasjon.rolle === 'BARN'} />
                     <BodyShort size="small">
                         {navn ? hentNavn(navn) : 'Ukjent navn'} ({alder}, {beskrivelse})
                     </BodyShort>
