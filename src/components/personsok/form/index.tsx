@@ -7,6 +7,7 @@ import {
     ErrorMessage,
     HStack,
     Link,
+    Lookup,
     Select,
     TextField,
     useDatepicker,
@@ -29,7 +30,16 @@ const fieldLabels: Record<keyof z.infer<typeof personSokSchema>, [string, ReactN
     lastName: ['Etternavn'],
     dnr: ['Utenlandsk ID', 'Husk å inkludere alle tegn. Eksempel: 010101-12345'],
     address: ['Adresse', ''],
-    phoneNumber: ['Telefonnummer', 'Telefonnummer uten landskode'],
+    phoneNumber: [
+        'Telefonnummer',
+        <>
+            Telefonnummer uten landskode. Søker kun i{' '}
+            <Lookup word="PDL" strategy="fixed">
+                Persondata-løsningen
+            </Lookup>
+            , ikke i KRR
+        </>
+    ],
     birthDateFrom: ['Fødselsdato fra'],
     birthDateTo: ['Fødselsdato til'],
     birthDateFromFeil: [''],
