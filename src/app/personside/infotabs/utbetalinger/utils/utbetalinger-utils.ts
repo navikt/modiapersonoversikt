@@ -167,21 +167,28 @@ export function flatMapYtelser(utbetalinger?: Utbetaling[]): Ytelse[] {
     }
 }
 
-export function getPeriodeFromYtelser(ytelser: Ytelse[]): Periode {
-    return ytelser.reduce(
-        (acc: Periode, ytelse: Ytelse) => {
+export function getPeriodeFromYtelser<T extends { periode?: { start: string; slutt: string } | null }>(
+    ytelser: T[]
+): Periode {
+    return (
+        ytelser.reduce<Periode | null>((acc, ytelse) => {
             if (!ytelse.periode) {
                 return acc;
             }
+            const fra = dayjs(ytelse.periode.start).isBefore(dayjs(ytelse.periode.slutt))
+                ? ytelse.periode.start
+                : ytelse.periode.slutt;
+            const til = dayjs(ytelse.periode.start).isAfter(dayjs(ytelse.periode.slutt))
+                ? ytelse.periode.start
+                : ytelse.periode.slutt;
+            if (!acc) {
+                return { fra, til };
+            }
             return {
-                fra: dayjs(ytelse.periode.start).isBefore(dayjs(acc.fra)) ? ytelse.periode.start : acc.fra,
-                til: dayjs(ytelse.periode.slutt).isAfter(dayjs(acc.til)) ? ytelse.periode.slutt : acc.til
+                fra: dayjs(fra).isBefore(dayjs(acc.fra)) ? fra : acc.fra,
+                til: dayjs(til).isAfter(dayjs(acc.til)) ? til : acc.til
             };
-        },
-        {
-            fra: dayjs().format(),
-            til: dayjs(0).format()
-        }
+        }, null) ?? { fra: dayjs().format(), til: dayjs(0).format() }
     );
 }
 

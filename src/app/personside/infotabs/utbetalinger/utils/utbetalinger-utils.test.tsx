@@ -340,6 +340,30 @@ test('finner riktig periode fra ytelser', () => {
     expect(result).toEqual(expextedResult);
 });
 
+test('viser den nyeste datoen sist også når en periode har datoene i omvendt rekkefølge', () => {
+    const ytelser = [
+        {
+            ...statiskMockYtelse,
+            periode: {
+                start: '2030-06-01',
+                slutt: '2030-01-01'
+            }
+        },
+        {
+            ...statiskMockYtelse,
+            periode: {
+                start: '2031-03-01',
+                slutt: '2031-09-01'
+            }
+        }
+    ];
+
+    expect(getPeriodeFromYtelser(ytelser)).toEqual({
+        fra: '2030-01-01',
+        til: '2031-09-01'
+    });
+});
+
 test('returnerer liste med ytelser fra liste med utbetalinger', () => {
     const utbetalinger: Utbetaling[] = [
         {
