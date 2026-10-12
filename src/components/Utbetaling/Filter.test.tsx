@@ -26,7 +26,7 @@ vi.mock('@tanstack/react-router', () => ({
 vi.mock('src/lib/state/context', () => ({ usePersonAtomValue: () => routeSearch.person }));
 vi.mock('src/components/Utbetaling/utils', () => ({
     useFilterUtbetalinger: () => ({ data: { alleUtbetalinger: [] } }),
-    reduceUtbetlingerTilYtelser: () => []
+    getAlleYtelseTyper: () => []
 }));
 
 beforeEach(() => {

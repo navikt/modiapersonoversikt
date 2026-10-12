@@ -22,7 +22,7 @@ const filterUtbetalinger = (utbetalinger: Utbetaling[], filters: UtbetalingFilte
     let filteredList = utbetalinger;
     if (ytelseTyper?.length) {
         filteredList = filteredList.filter((utbetaling) =>
-            utbetaling.ytelser.some((item) => item.type && ytelseTyper.includes(item.type))
+            utbetaling.ytelser.some((item) => ytelseTyper.includes(getYtelseTema(item)))
         );
     }
 
@@ -81,7 +81,7 @@ const getTrekkSumYtelser = (ytelser: Ytelse[]): number => {
     return ytelser.reduce((acc: number, ytelse: Ytelse) => acc + ytelse.trekksum, 0);
 };
 
-export const reduceUtbetlingerTilYtelser = (utbetalinger: Utbetaling[]): Ytelse[] => {
+const reduceUtbetlingerTilYtelser = (utbetalinger: Utbetaling[]): Ytelse[] => {
     return utbetalinger.flatMap((utbetaling) => utbetaling.ytelser ?? []);
 };
 
@@ -94,16 +94,12 @@ export interface YtelseOppsummering {
     periode: Periode | null;
 }
 
+export const getYtelseTema = (ytelse: Pick<Ytelse, 'type'>): string => ytelse.type?.trim() || 'Mangler tema';
+
 export const oppsummerYtelserPerType = (utbetalinger: Utbetaling[]): YtelseOppsummering[] => {
-    const ytelser = reduceUtbetlingerTilYtelser(utbetalinger).filter((ytelse): ytelse is Ytelse & { type: string } =>
-        Boolean(ytelse.type?.trim())
-    );
-    type YtelseMedType = Ytelse & { type: string };
-    const grupper: Group<YtelseMedType> = Object.create(null);
-    const ytelserGruppertPaaType = ytelser.reduce<Group<YtelseMedType>>(
-        groupBy<YtelseMedType>((ytelse) => ytelse.type.trim()),
-        grupper
-    );
+    const ytelser = reduceUtbetlingerTilYtelser(utbetalinger);
+    const grupper: Group<Ytelse> = Object.create(null);
+    const ytelserGruppertPaaType = ytelser.reduce<Group<Ytelse>>(groupBy<Ytelse>(getYtelseTema), grupper);
 
     return Object.entries(ytelserGruppertPaaType).map(([type, ytelser]) => {
         const oppsummering = ytelser.reduce(
@@ -140,7 +136,7 @@ export const summertBruttobelopFraUtbetalinger = (utbetalinger: Utbetaling[]): n
 
 export const getAlleYtelseTyper = (utbetalinger: Utbetaling[]): string[] => {
     const ytelser = reduceUtbetlingerTilYtelser(utbetalinger);
-    return ytelser.flatMap((ytelse) => ytelse.type?.trim() || []).unique();
+    return ytelser.map(getYtelseTema).unique();
 };
 
 export const summertSkattBelopFraUtbetalinger = (utbetalinger: Utbetaling[]): number => {

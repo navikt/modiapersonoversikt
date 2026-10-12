@@ -6,7 +6,16 @@ import { PeriodType } from 'src/components/DateFilters/types';
 import type { Utbetaling, Ytelse } from 'src/generated/modiapersonoversikt-api';
 import { useUtbetalinger } from 'src/lib/clients/modiapersonoversikt-api';
 import { utbetalingFilterAtom } from './Filter';
-import { oppsummerYtelserPerType, useFilterUtbetalinger } from './utils';
+import {
+    getAlleYtelseTyper,
+    getYtelseTema,
+    oppsummerYtelserPerType,
+    summertBruttobelopFraUtbetalinger,
+    summertNettobelopFraUtbetalinger,
+    summertSkattBelopFraUtbetalinger,
+    summertTrekkBelopFraUtbetalinger,
+    useFilterUtbetalinger
+} from './utils';
 
 const routeSearch = vi.hoisted(() => ({ periode: 'siste30' as string | undefined }));
 
@@ -52,7 +61,27 @@ afterEach(() => {
     vi.clearAllMocks();
 });
 
-it('summerer beløp per ytelsestype og utelater ytelser uten type', () => {
+it.each([null, undefined, '', '   '])('viser Mangler tema for typen %s', (type) => {
+    expect(getYtelseTema({ type })).toBe('Mangler tema');
+});
+
+it('viser samme temanavn i oversikten og betalingslisten', () => {
+    const betalinger = [
+        {
+            ...utbetaling('2026-09-20', '2026-09-20'),
+            ytelser: [
+                ytelse(null, 100, 0, 0, 100),
+                ytelse('   ', 200, 0, 0, 200),
+                ytelse(' Sykepenger ', 300, 0, 0, 300)
+            ]
+        }
+    ];
+
+    expect(getAlleYtelseTyper(betalinger)).toEqual(['Mangler tema', 'Sykepenger']);
+    expect(oppsummerYtelserPerType(betalinger).map((rad) => rad.type)).toEqual(getAlleYtelseTyper(betalinger));
+});
+
+it('summerer beløp per ytelsestype og inkluderer ytelser uten type', () => {
     const betalinger = [
         {
             ...utbetaling('2026-09-20', '2026-09-20'),
@@ -86,8 +115,45 @@ it('summerer beløp per ytelsestype og utelater ytelser uten type', () => {
             trekk: 0,
             netto: 450,
             periode: { fra: '2026-02-01', til: '2026-04-30' }
+        },
+        {
+            type: 'Mangler tema',
+            brutto: 300,
+            skatt: -30,
+            trekk: 0,
+            netto: 270,
+            periode: null
         }
     ]);
+});
+
+it('samler manglende og tomme typer slik at radene stemmer med hovedsummene', () => {
+    const betalinger = [
+        {
+            ...utbetaling('2026-09-20', '2026-09-20'),
+            ytelser: [
+                ytelse('Sykepenger', 1000, -200, -50, 750),
+                ytelse(null, 300, -30, -10, 260),
+                { ...ytelse(null, 200, -20, -5, 175), type: undefined },
+                ytelse('', 100, -10, 0, 90),
+                ytelse('   ', 50, -5, 0, 45)
+            ]
+        }
+    ];
+    const rader = oppsummerYtelserPerType(betalinger);
+
+    expect(rader.find((rad) => rad.type === 'Mangler tema')).toEqual({
+        type: 'Mangler tema',
+        brutto: 650,
+        skatt: -65,
+        trekk: -15,
+        netto: 570,
+        periode: null
+    });
+    expect(rader.reduce((sum, rad) => sum + rad.brutto, 0)).toBe(summertBruttobelopFraUtbetalinger(betalinger));
+    expect(rader.reduce((sum, rad) => sum + rad.skatt, 0)).toBe(summertSkattBelopFraUtbetalinger(betalinger));
+    expect(rader.reduce((sum, rad) => sum + rad.trekk, 0)).toBe(summertTrekkBelopFraUtbetalinger(betalinger));
+    expect(rader.reduce((sum, rad) => sum + rad.netto, 0)).toBe(summertNettobelopFraUtbetalinger(betalinger));
 });
 
 it('filtrerer lenket periode på posteringsdato, også når vist dato er en annen', () => {
