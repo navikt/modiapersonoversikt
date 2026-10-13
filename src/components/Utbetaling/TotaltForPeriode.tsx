@@ -18,8 +18,8 @@ import { formaterPeriode } from 'src/components/ytelser/utils';
 import { formatterDato } from 'src/utils/date-utils';
 
 const YtelseOppsummeringTabell = ({ rader }: { rader: YtelseOppsummering[] }) => (
-    <div className="overflow-x-auto">
-        <Table size="small" aria-label="Oppsummering per ytelse">
+    <div className="overflow-x-auto print:overflow-visible">
+        <Table size="small" aria-label="Oppsummering per ytelse" className="utbetalinger-oppsummering-tabell">
             <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell scope="col">Ytelse</Table.HeaderCell>
@@ -95,7 +95,12 @@ export const TotaltForPeriode = () => {
                     >
                         <VStack gap="space-16">
                             <HStack gap="space-24" justify="space-between">
-                                <HStack gap="space-8" justify="space-between" flexGrow="1">
+                                <HStack
+                                    gap="space-8"
+                                    justify="space-between"
+                                    flexGrow="1"
+                                    className="utbetalinger-oppsummering"
+                                >
                                     <VStack gap="space-8">
                                         <BodyShort weight="semibold">Ytelser</BodyShort>
                                         <BodyShort>{getAlleYtelseTyper(data.utbetalinger).join(', ')}</BodyShort>{' '}

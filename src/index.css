@@ -23,6 +23,32 @@
     .print-hide {
         display: none !important;
     }
+
+    .utbetalinger-oppsummering {
+        flex-direction: column;
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+
+    .utbetalinger-oppsummering-tabell {
+        table-layout: auto;
+        width: 100%;
+
+        th,
+        td {
+            white-space: nowrap;
+        }
+
+        tbody th,
+        tbody td:nth-child(2) {
+            overflow-wrap: anywhere;
+            white-space: normal;
+        }
+
+        thead th:nth-child(-n + 2) {
+            width: 20%;
+        }
+    }
 }
 
 @media not print {
