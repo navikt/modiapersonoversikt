@@ -1,7 +1,9 @@
 import { CheckmarkCircleIcon, ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
-import { Alert, Pagination, Skeleton, type SortState, Table, Tag, VStack } from '@navikt/ds-react';
+import { Alert, HStack, Pagination, Skeleton, type SortState, Table, Tag, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
+import { AntallTreff } from 'src/components/AntallTreff';
 import { VarselDetail } from 'src/components/varsler/Details';
+import { VarslerPrint } from 'src/components/varsler/VarslerPrint';
 import { trackVisDetaljvisning } from 'src/utils/analytics';
 import { ENDASH, emptyReplacement, formaterDato } from 'src/utils/string-utils';
 import { useFilterVarsler, type VarselData } from './utils';
@@ -82,6 +84,10 @@ export const VarslerListe = () => {
 
     return (
         <VStack gap="space-16">
+            <HStack justify="space-between" align="center">
+                <AntallTreff antall={varsler.length} entall="varsel" flertall="varsler" isLoading={isLoading} />
+                <VarslerPrint alleVarsler={sortedData} gjeldendeSide={paginatedData} />
+            </HStack>
             <Table sort={sort} onSortChange={handleSort} size="medium">
                 <Table.Header>
                     <Table.Row>
