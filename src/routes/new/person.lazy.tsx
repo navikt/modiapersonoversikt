@@ -92,7 +92,11 @@ function PersonLayout() {
     const isOpen = useAtomValue(meldingPanelIsOpenAtom);
 
     const listPanel = isMeldinger ? (
-        <VStack height={{ sm: '100%' }} overflow={{ sm: 'hidden' }}>
+        <VStack
+            height={{ sm: '100%' }}
+            overflow={{ sm: 'hidden' }}
+            className={isMobile ? 'h-full min-h-0 overflow-hidden' : undefined}
+        >
             <Heading size="small" visuallyHidden level="2">
                 Dialoger
             </Heading>
@@ -124,7 +128,28 @@ function PersonLayout() {
                     }}
                 >
                     <Panel className="overflow-hidden" id="person-panel">
-                        {isMobile ? (
+                        {isMobile && isMeldinger ? (
+                            <VStack className="h-full min-h-0 overflow-hidden" gap="space-4">
+                                {listPanel && (
+                                    <div
+                                        className="min-h-0 flex-1 overflow-y-auto overscroll-contain [@media(max-height:600px)]:grow-[0.75]"
+                                        data-testid="mobile-meldinger-list-pane"
+                                    >
+                                        {listPanel}
+                                    </div>
+                                )}
+                                <div
+                                    className="min-h-0 flex-1 overflow-y-auto overscroll-contain [@media(max-height:600px)]:grow-[1.25]"
+                                    data-testid="mobile-meldinger-detail-pane"
+                                >
+                                    <VStack className="h-full min-h-0" gap="space-4">
+                                        <Suspense>
+                                            <Outlet />
+                                        </Suspense>
+                                    </VStack>
+                                </div>
+                            </VStack>
+                        ) : isMobile ? (
                             <VStack className="h-full overflow-auto" gap="space-4">
                                 {listPanel}
                                 <VStack gap="space-4">
