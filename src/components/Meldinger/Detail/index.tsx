@@ -20,7 +20,13 @@ const TraadDetailContent = ({ traad }: { traad: Traad }) => {
     const avsluttetAv = traad.avsluttetAv || melding.skrevetAvTekst;
 
     return (
-        <Card as={VStack} padding="space-8" overflow="auto" className="bg-[var(--ax-bg-neutral-soft)]">
+        <Card
+            as={VStack}
+            background="neutral-soft"
+            padding="space-8"
+            overflow="auto"
+            className="max-[479px]:h-full max-[479px]:min-h-0 max-[479px]:flex-1"
+        >
             <VStack as="section" gap="space-4" padding="space-8" height="100%" aria-label="Dialogdetaljer">
                 <MeldingActionMenu traad={traad} />
                 <Journalposter journalposter={traad.journalposter} />

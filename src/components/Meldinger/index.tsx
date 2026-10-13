@@ -1,4 +1,4 @@
-import { VStack } from '@navikt/ds-react';
+import { Box, VStack } from '@navikt/ds-react';
 import { AlertBanner } from 'src/components/AlertBanner';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { useTraader } from 'src/components/Meldinger/List/utils';
@@ -16,10 +16,19 @@ export const MeldingerPage = () => {
 const MeldingerPageContent = () => {
     const { errorMessages: traadErrorMessages } = useTraader();
     const { errorMessages: temaErrorMessages } = useGsakTema();
+    const alerts = [...traadErrorMessages, ...temaErrorMessages];
 
     return (
-        <VStack height="100%">
-            <AlertBanner alerts={[...traadErrorMessages, ...temaErrorMessages]} />
+        <VStack height="100%" minHeight={{ xs: '0', sm: 'auto' }}>
+            {alerts.length > 0 && (
+                <Box
+                    flexShrink={{ xs: '0', sm: '1' }}
+                    maxHeight={{ xs: '30%', sm: 'none' }}
+                    overflowY={{ xs: 'auto', sm: 'visible' }}
+                >
+                    <AlertBanner alerts={alerts} />
+                </Box>
+            )}
             <TraadDetail />
         </VStack>
     );

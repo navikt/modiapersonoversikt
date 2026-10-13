@@ -28,6 +28,104 @@ test('Select melding', async ({ page }) => {
     await expect(meldingerDetails).toBeVisible();
 });
 
+test('Mobile meldinger keep the list and selected dialog independently scrollable', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 560 });
+    await page.goto('/new/person/meldinger');
+
+    const listPane = page.getByTestId('mobile-meldinger-list-pane');
+    const detailPane = page.getByTestId('mobile-meldinger-detail-pane');
+    const firstThread = page.getByTestId('traaditem').first();
+    await expect(listPane).toBeVisible();
+    await expect(detailPane).toBeVisible();
+    await expect(firstThread).toBeVisible();
+
+    await firstThread.focus();
+    await firstThread.press('Enter');
+    const dialogDetails = page.getByRole('region', { name: 'Dialogdetaljer' });
+    await expect(dialogDetails).toBeVisible();
+
+    const initialGeometry = await page.evaluate(() => {
+        const rect = (testId: string) => {
+            const element = document.querySelector(`[data-testid="${testId}"]`);
+            if (!element) throw new Error(`Missing ${testId}`);
+            const { x, y, width, height } = element.getBoundingClientRect();
+            return { x, y, width, height };
+        };
+        return {
+            list: rect('mobile-meldinger-list-pane'),
+            detail: rect('mobile-meldinger-detail-pane'),
+            viewportHeight: window.innerHeight
+        };
+    });
+    expect(initialGeometry.list.y).toBeGreaterThanOrEqual(0);
+    expect(initialGeometry.list.y + initialGeometry.list.height).toBeLessThanOrEqual(initialGeometry.viewportHeight);
+    expect(initialGeometry.detail.y).toBeGreaterThanOrEqual(0);
+    expect(initialGeometry.detail.y + initialGeometry.detail.height).toBeLessThanOrEqual(
+        initialGeometry.viewportHeight
+    );
+    expect(initialGeometry.detail.height).toBeGreaterThan(initialGeometry.list.height);
+
+    const dialogBox = await dialogDetails.boundingBox();
+    if (!dialogBox) throw new Error('Dialogdetaljer has no bounding box');
+    expect(dialogBox.y + dialogBox.height).toBeLessThanOrEqual(initialGeometry.viewportHeight);
+
+    const listScroll = await listPane.evaluate((pane) => {
+        const scrollable = [pane, ...pane.querySelectorAll<HTMLElement>('*')].find(
+            (element) =>
+                element.scrollHeight > element.clientHeight + 1 &&
+                ['auto', 'scroll'].includes(getComputedStyle(element).overflowY)
+        );
+        if (!scrollable) return null;
+        scrollable.scrollTop = Math.min(120, scrollable.scrollHeight - scrollable.clientHeight);
+        return scrollable.scrollTop;
+    });
+    if (listScroll === null) throw new Error('The dialog list has no scrollable content');
+    expect(listScroll).toBeGreaterThan(0);
+
+    const detailAfterListScroll = await detailPane.boundingBox();
+    if (!detailAfterListScroll) throw new Error('The dialog pane has no bounding box');
+    expect(detailAfterListScroll.y).toBe(initialGeometry.detail.y);
+    await expect(dialogDetails).toBeVisible();
+
+    const detailScroll = await dialogDetails.evaluate((region) => {
+        let scrollable = region.parentElement;
+        while (scrollable) {
+            const overflowY = getComputedStyle(scrollable).overflowY;
+            if (['auto', 'scroll'].includes(overflowY) && scrollable.scrollHeight > scrollable.clientHeight + 1) {
+                const before = scrollable.scrollTop;
+                scrollable.scrollTop = Math.min(120, scrollable.scrollHeight - scrollable.clientHeight);
+                return { before, after: scrollable.scrollTop };
+            }
+            scrollable = scrollable.parentElement;
+        }
+        return null;
+    });
+    if (!detailScroll) throw new Error('The selected dialog has no independently scrollable content');
+    expect(detailScroll.after).toBeGreaterThan(detailScroll.before);
+
+    const detailPaneAfterScroll = await detailPane.boundingBox();
+    if (!detailPaneAfterScroll) throw new Error('The dialog pane has no bounding box');
+    expect(detailPaneAfterScroll.y).toBe(initialGeometry.detail.y);
+    expect(detailPaneAfterScroll.y + detailPaneAfterScroll.height).toBeLessThanOrEqual(initialGeometry.viewportHeight);
+    await expect(dialogDetails).toBeVisible();
+});
+
+test('Meldinger keep the side-by-side layout on wide viewports', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto('/new/person/meldinger?traadId=sg838exr');
+
+    const meldingerList = page.getByRole('region', { name: 'Tråder', exact: true });
+    const dialogDetails = page.getByRole('region', { name: 'Dialogdetaljer' });
+    await expect(meldingerList).toBeVisible();
+    await expect(dialogDetails).toBeVisible();
+    await expect(page.getByTestId('mobile-meldinger-list-pane')).toHaveCount(0);
+
+    const listBox = await meldingerList.boundingBox();
+    const detailBox = await dialogDetails.boundingBox();
+    if (!listBox || !detailBox) throw new Error('Meldinger panes have no bounding boxes');
+    expect(detailBox.x).toBeGreaterThanOrEqual(listBox.x + listBox.width);
+});
+
 test('Send melding i tråd', async ({ page }) => {
     await page.goto('/new/person/meldinger');
     const traadToClick = page.getByTestId('traaditem').nth(4);
