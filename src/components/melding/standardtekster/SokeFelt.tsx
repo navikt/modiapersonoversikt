@@ -1,5 +1,5 @@
 import { Search } from '@navikt/ds-react';
-import { useAtom } from 'jotai/index';
+import { useAtom } from 'jotai';
 import { debounce } from 'lodash';
 import { type RefObject, useState } from 'react';
 import { sokEtterTekster } from 'src/app/personside/dialogpanel/sendMelding/standardTekster/sokUtils';

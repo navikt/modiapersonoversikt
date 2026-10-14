@@ -1,6 +1,5 @@
 import { Box, Button, HGrid, HStack, VStack } from '@navikt/ds-react';
-import { atom } from 'jotai';
-import { useAtom } from 'jotai/index';
+import { atom, useAtom } from 'jotai';
 import { type DependencyList, type RefObject, useEffect, useRef } from 'react';
 import type * as StandardTeksterModels from 'src/app/personside/dialogpanel/sendMelding/standardTekster/domain';
 import type * as StandardTeksterType from 'src/app/personside/dialogpanel/sendMelding/standardTekster/domain.ts';
