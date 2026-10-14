@@ -76,7 +76,7 @@ const DittNavInformasjonsLinjer = ({ varsel, kanaler }: { varsel: Varsel; kanale
                     />
                 )}
                 <VStack gap="space-4" className="print-only">
-                    <DittNavInformasjonsLinje tittel="Ferdigstillt: " tekst={varsel.aktiv ? 'Nei' : 'Ja'} />
+                    <DittNavInformasjonsLinje tittel="Ferdigstilt: " tekst={varsel.aktiv ? 'Nei' : 'Ja'} />
                     <DittNavInformasjonsLinje
                         tittel="Status: "
                         tekst={(eksternVarsling.feilhistorikk.length ?? 0) > 0 ? 'Feilet' : 'Vellykket'}
