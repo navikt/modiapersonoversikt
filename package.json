@@ -161,7 +161,7 @@
         "tailwindcss": "^4.3.3",
         "typescript": "^5.9.3",
         "typescript-eslint": "^8.67.0",
-        "undici": "^7.29.1",
+        "undici": "^8.11.2",
         "vite-require": "^0.2.3",
         "vitest": "^4.1.11"
     },
