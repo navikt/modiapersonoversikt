@@ -5,7 +5,6 @@ import useOpenIntroduksjonsModal from 'src/components/NyModia/useHarSettNyModiaD
 import Personsok from 'src/components/personsok';
 import OppdateringsloggContainer from '../oppdateringslogg/OppdateringsloggContainer';
 import type { DecoratorPropsV3 } from './decoratorprops';
-import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
 import { useDecoratorConfig } from './useDecoratorConfig';
 
 function InternarbeidsflateDecoratorElement(props: DecoratorPropsV3) {
@@ -86,7 +85,6 @@ function Decorator() {
             <OppdateringsloggContainer />
             <NyModiaPortal />
             {open && <OppstartNyModiaDialog />}
-            <DecoratorEasterEgg />
         </nav>
     );
 }
