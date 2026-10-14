@@ -74,7 +74,7 @@ export function getMockAnsatte(enhetId: string): Ansatt[] {
 function mockAnsatt(): Ansatt {
     return {
         fornavn: navfaker.navn.fornavn(),
-        etternavn: faker.name.lastName(),
+        etternavn: faker.person.lastName(),
         ident: faker.string.alphanumeric(7).toUpperCase()
     };
 }

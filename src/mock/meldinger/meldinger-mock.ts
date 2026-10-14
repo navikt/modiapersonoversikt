@@ -69,12 +69,36 @@ function getMockTraad(): Traad {
 }
 
 function getHardKodetTraader(): Traad[] {
+    const opprettetDato = dayjs().subtract(41, 'days').format(backendDatoTidformat);
+    const svarbarTraad: Traad = {
+        traadId: 'e2e-svarbar-meldingskjede',
+        traadType: TraadType.MELDINGSKJEDE,
+        temagruppe: Temagruppe.Pensjon,
+        meldinger: [
+            {
+                id: 'e2e-svarbar-meldingskjede',
+                meldingsId: 'e2e-svarbar-melding',
+                meldingstype: Meldingstype.SPORSMAL_SKRIFTLIG,
+                temagruppe: Temagruppe.Arbeid,
+                skrevetAvTekst: 'Syntetisk testbruker',
+                fritekst: 'Jeg ønsker veiledning om arbeid.',
+                lestDato: opprettetDato,
+                status: LestStatus.Lest,
+                opprettetDato,
+                ferdigstiltDato: opprettetDato,
+                sendtTilSladding: false
+            }
+        ],
+        journalposter: []
+    };
+
     return [
         ...standardTraader.map((traad) => ({
             ...traad,
             traadId: faker.string.alphanumeric(8)
         })),
-        statiskTraadMock
+        statiskTraadMock,
+        svarbarTraad
     ];
 }
 

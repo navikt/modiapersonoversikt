@@ -123,7 +123,7 @@ function getPostadresse(): string {
 }
 
 function getBostedsadresse(): string {
-    return faker.address.streetAddress(true);
+    return faker.location.streetAddress(true);
 }
 
 function getDiskresjonskode(): Kodeverk {
