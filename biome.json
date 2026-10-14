@@ -1,5 +1,5 @@
 {
-    "$schema": "https://biomejs.dev/schemas/2.3.8/schema.json",
+    "$schema": "https://biomejs.dev/schemas/2.5.15/schema.json",
     "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
     "files": { "ignoreUnknown": true, "includes": ["**", "!**/*.css"] },
     "formatter": {
@@ -18,7 +18,7 @@
         "enabled": true,
         "rules": {
             "nursery": {},
-            "recommended": true,
+            "preset": "recommended",
             "suspicious": {
                 "noArrayIndexKey": "warn"
             },

@@ -6,6 +6,7 @@ export {
     HighlightRule
 } from '@navikt/textparser';
 export * from './rules';
+
 import './styles.css';
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
