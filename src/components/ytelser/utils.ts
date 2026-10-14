@@ -1,6 +1,6 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import dayjs from 'dayjs';
-import { useAtomValue } from 'jotai/index';
+import { useAtomValue } from 'jotai';
 import type { FetchError } from 'src/api/api';
 import { type YtelseFilter, ytelseFilterAtom } from 'src/components/ytelser/List/Filter';
 import {

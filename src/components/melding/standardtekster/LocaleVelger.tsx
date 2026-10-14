@@ -1,5 +1,5 @@
 import { Select } from '@navikt/ds-react';
-import { useAtom } from 'jotai/index';
+import { useAtom } from 'jotai';
 import { localeString } from 'src/app/personside/dialogpanel/sendMelding/standardTekster/domain';
 import type * as StandardTeksterType from 'src/app/personside/dialogpanel/sendMelding/standardTekster/domain.ts';
 import { standardTekstSokAtom } from 'src/components/melding/standardtekster/StandardTekster';

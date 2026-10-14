@@ -1,5 +1,5 @@
 import { Heading } from '@navikt/ds-react';
-import { useAtom } from 'jotai/index';
+import { useAtom } from 'jotai';
 import { standardTekstSokAtom } from 'src/components/melding/standardtekster/StandardTekster';
 import RichText, { defaultRules, HighlightRule, SladdRule } from 'src/components/RichText';
 
