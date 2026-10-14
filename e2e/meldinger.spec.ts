@@ -127,12 +127,12 @@ test('Meldinger keep the side-by-side layout on wide viewports', async ({ page }
 });
 
 test('Send melding i tråd', async ({ page }) => {
-    await page.goto('/new/person/meldinger');
-    const traadToClick = page.getByTestId('traaditem').nth(4);
-    await expect(traadToClick).toBeVisible();
-    await traadToClick.click();
+    await page.goto('/new/person/meldinger?traadId=e2e-svarbar-meldingskjede');
+    await expect(page.getByRole('region', { name: 'Dialogdetaljer' })).toBeVisible();
 
-    await page.getByRole('button', { name: 'Svar' }).click();
+    const svarKnapp = page.getByRole('button', { name: 'Svar' });
+    await expect(svarKnapp).toBeVisible();
+    await svarKnapp.click();
 
     await page.getByRole('button', { name: 'Overskrid' }).click();
     await page.getByRole('textbox').fill('playwright test melding');
@@ -220,7 +220,7 @@ test('Autocomplete textarea', async ({ page }) => {
 });
 
 test('Avslutt dialog', async ({ page }) => {
-    await page.goto('/new/person/meldinger?traadId=0DjWfYnF');
+    await page.goto('/new/person/meldinger?traadId=e2e-svarbar-meldingskjede');
     await page.getByRole('button', { name: 'Åpne menyvalg for tråd' }).click();
     const avsluttItem = page.getByRole('menuitem', { name: 'Avslutt' });
     await expect(avsluttItem).toBeVisible();
@@ -236,7 +236,7 @@ test('Avslutt dialog', async ({ page }) => {
 });
 
 test('Lag ny oppgave', async ({ page }) => {
-    await page.goto('/new/person/meldinger?traadId=0DjWfYnF');
+    await page.goto('/new/person/meldinger?traadId=e2e-svarbar-meldingskjede');
     await page.getByRole('button', { name: 'Åpne menyvalg for tråd' }).click();
     await page.getByRole('menuitem', { name: 'Ny oppgave' }).click();
 
