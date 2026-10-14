@@ -1,6 +1,5 @@
-import { Detail, Heading, HStack, Skeleton, VStack } from '@navikt/ds-react';
+import { Detail, Heading, Skeleton, VStack } from '@navikt/ds-react';
 import { AlertBanner } from 'src/components/AlertBanner';
-import { AntallTreff } from 'src/components/AntallTreff';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
 import { VarslerListe } from 'src/components/varsler/List';
@@ -15,7 +14,7 @@ export const VarslerPage = () => {
 };
 
 const VarslerPageContent = () => {
-    const { errorMessages, isError, isLoading, varsler } = useFilterVarsler();
+    const { errorMessages, isError, isLoading } = useFilterVarsler();
 
     if (isError) {
         return <AlertBanner alerts={errorMessages} />;
@@ -36,14 +35,6 @@ const VarslerPageContent = () => {
                         </Detail>
                     </VStack>
                     <VStack gap="space-8">
-                        <HStack>
-                            <AntallTreff
-                                antall={varsler.length}
-                                entall="varsel"
-                                flertall="varsler"
-                                isLoading={isLoading}
-                            />
-                        </HStack>
                         {isLoading ? (
                             <VStack gap="space-8" marginInline="space-0 space-8">
                                 {Array(12)
