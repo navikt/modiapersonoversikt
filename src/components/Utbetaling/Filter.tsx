@@ -8,8 +8,8 @@ import { useCallback, useEffect, useRef } from 'react';
 import { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
 import { DateRangePickerWithDebounce } from 'src/components/DateFilters/DateRangePickerWithDebounce';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
-import { reduceUtbetlingerTilYtelser, useFilterUtbetalinger } from 'src/components/Utbetaling/utils';
-import type { Utbetaling, Ytelse } from 'src/generated/modiapersonoversikt-api';
+import { getAlleYtelseTyper, useFilterUtbetalinger } from 'src/components/Utbetaling/utils';
+import type { Utbetaling } from 'src/generated/modiapersonoversikt-api';
 import { usePersonAtomValue } from 'src/lib/state/context';
 import { filterType, trackFilterEndret } from 'src/utils/analytics';
 import { sorterAlfabetisk } from 'src/utils/string-utils';
@@ -95,9 +95,7 @@ const UtbetalingYtelserFilter = () => {
     );
 
     const getUnikeYtelser = (data: Utbetaling[]): string[] => {
-        const getTypeFromYtelse = (ytelse: Ytelse) => ytelse.type || 'Mangler beskrivelse';
-        const fjernDuplikater = (ytelse: string, index: number, self: Array<string>) => self.indexOf(ytelse) === index;
-        return reduceUtbetlingerTilYtelser(data).map(getTypeFromYtelse).filter(fjernDuplikater).sort(sorterAlfabetisk);
+        return getAlleYtelseTyper(data).sort(sorterAlfabetisk);
     };
 
     const unikeYtelser = getUnikeYtelser(utbetalinger);

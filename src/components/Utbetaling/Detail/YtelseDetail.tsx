@@ -3,7 +3,7 @@ import Card from 'src/components/Card';
 import { BruttoTabell } from 'src/components/Utbetaling/Detail/BruttoTabell';
 import { SkattTabell } from 'src/components/Utbetaling/Detail/SkattTabell';
 import { TrekkTabell } from 'src/components/Utbetaling/Detail/TrekkTabell';
-import { fargePaBelop, formaterNOK } from 'src/components/Utbetaling/utils';
+import { fargePaBelop, formaterNOK, getYtelseTema } from 'src/components/Utbetaling/utils';
 import { formaterPeriode } from 'src/components/ytelser/utils';
 import type { Ytelse } from 'src/generated/modiapersonoversikt-api';
 import { twMerge } from 'tailwind-merge';
@@ -12,7 +12,7 @@ export const YtelseDetail = ({ ytelse }: { ytelse: Ytelse }) => (
     <VStack gap="space-8">
         <VStack>
             <Heading size="xsmall" level="4">
-                Utbetaling {ytelse.type}
+                Utbetaling {getYtelseTema(ytelse)}
             </Heading>
             <BodyShort size="small">
                 Periode: {formaterPeriode({ fra: ytelse.periode?.start, til: ytelse.periode?.slutt })}

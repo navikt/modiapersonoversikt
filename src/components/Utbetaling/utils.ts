@@ -1,13 +1,16 @@
 import { useSearch } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai';
+import { getPeriodeFromYtelser } from 'src/app/personside/infotabs/utbetalinger/utils/utbetalinger-utils';
 import { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
 import { PeriodType } from 'src/components/DateFilters/types';
 import { type UtbetalingFilter, utbetalingFilterAtom } from 'src/components/Utbetaling/Filter';
 import { errorPlaceholder, type QueryResult, responseErrorMessage } from 'src/components/ytelser/utils';
 import { useUtbetalinger } from 'src/lib/clients/modiapersonoversikt-api';
 import type { Utbetaling, UtbetalingerResponseDto, Ytelse } from 'src/lib/types/modiapersonoversikt-api';
+import type { Periode } from 'src/models/tid';
 import { datoSynkende, datoVerbose, formatterDato } from 'src/utils/date-utils';
+import { type Group, groupBy } from 'src/utils/groupArray';
 
 const filterUtbetalinger = (utbetalinger: Utbetaling[], filters: UtbetalingFilter): Utbetaling[] => {
     const { ytelseTyper, dateRange } = filters;
@@ -19,7 +22,7 @@ const filterUtbetalinger = (utbetalinger: Utbetaling[], filters: UtbetalingFilte
     let filteredList = utbetalinger;
     if (ytelseTyper?.length) {
         filteredList = filteredList.filter((utbetaling) =>
-            utbetaling.ytelser.some((item) => item.type && ytelseTyper.includes(item.type))
+            utbetaling.ytelser.some((item) => ytelseTyper.includes(getYtelseTema(item)))
         );
     }
 
@@ -78,8 +81,43 @@ const getTrekkSumYtelser = (ytelser: Ytelse[]): number => {
     return ytelser.reduce((acc: number, ytelse: Ytelse) => acc + ytelse.trekksum, 0);
 };
 
-export const reduceUtbetlingerTilYtelser = (utbetalinger: Utbetaling[]): Ytelse[] => {
+const reduceUtbetlingerTilYtelser = (utbetalinger: Utbetaling[]): Ytelse[] => {
     return utbetalinger.flatMap((utbetaling) => utbetaling.ytelser ?? []);
+};
+
+export interface YtelseOppsummering {
+    type: string;
+    brutto: number;
+    skatt: number;
+    trekk: number;
+    netto: number;
+    periode: Periode | null;
+}
+
+export const getYtelseTema = (ytelse: Pick<Ytelse, 'type'>): string => ytelse.type?.trim() || 'Mangler tema';
+
+export const oppsummerYtelserPerType = (utbetalinger: Utbetaling[]): YtelseOppsummering[] => {
+    const ytelser = reduceUtbetlingerTilYtelser(utbetalinger);
+    const grupper: Group<Ytelse> = Object.create(null);
+    const ytelserGruppertPaaType = ytelser.reduce<Group<Ytelse>>(groupBy<Ytelse>(getYtelseTema), grupper);
+
+    return Object.entries(ytelserGruppertPaaType).map(([type, ytelser]) => {
+        const oppsummering = ytelser.reduce(
+            (sum, ytelse) => ({
+                type,
+                brutto: sum.brutto + ytelse.ytelseskomponentersum,
+                skatt: sum.skatt + ytelse.skattsum,
+                trekk: sum.trekk + ytelse.trekksum,
+                netto: sum.netto + ytelse.nettobelop
+            }),
+            { type, brutto: 0, skatt: 0, trekk: 0, netto: 0 }
+        );
+        const ytelserMedPeriode = ytelser.filter((ytelse) => ytelse.periode);
+        return {
+            ...oppsummering,
+            periode: ytelserMedPeriode.length > 0 ? getPeriodeFromYtelser(ytelserMedPeriode) : null
+        };
+    });
 };
 
 export const formaterNOK = (belop: number): string => {
@@ -98,7 +136,7 @@ export const summertBruttobelopFraUtbetalinger = (utbetalinger: Utbetaling[]): n
 
 export const getAlleYtelseTyper = (utbetalinger: Utbetaling[]): string[] => {
     const ytelser = reduceUtbetlingerTilYtelser(utbetalinger);
-    return ytelser.flatMap((ytelse) => ytelse.type?.trim() || []).unique();
+    return ytelser.map(getYtelseTema).unique();
 };
 
 export const summertSkattBelopFraUtbetalinger = (utbetalinger: Utbetaling[]): number => {

@@ -55,7 +55,9 @@ function getHjemUtbetalinger(): Utbetaling[] {
         const kommende = dager > 0;
         const ytelser = [
             { ...getMockYtelse(), type: typer[index] },
-            ...(kommende ? [{ ...getMockYtelse(), type: 'Foreldrepenger' }] : [])
+            ...(kommende ? [{ ...getMockYtelse(), type: 'Foreldrepenger' }] : []),
+            ...(index === 1 ? [{ ...getMockYtelse(), type: null }] : []),
+            ...(index === 2 ? [{ ...getMockYtelse(), type: '   ' }] : [])
         ];
         return {
             ...getMockUtbetaling(),

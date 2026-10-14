@@ -2,13 +2,12 @@ import { PrinterSmallIcon } from '@navikt/aksel-icons';
 import { Button, Table } from '@navikt/ds-react';
 import usePrinter from 'src/components/Print/usePrinter';
 import { UtbetalingDetail } from 'src/components/Utbetaling/Detail';
-import { datoVisning, formaterNOK, getUtbetalingId } from 'src/components/Utbetaling/utils';
+import { datoVisning, formaterNOK, getAlleYtelseTyper, getUtbetalingId } from 'src/components/Utbetaling/utils';
 import type { Utbetaling } from 'src/generated/modiapersonoversikt-api';
 import { trackVisDetaljvisning } from 'src/utils/analytics';
 
 const getUtbetalingsDetaljer = (utbetaling: Utbetaling) => {
-    const alleYtelseTyper = utbetaling.ytelser.map((ytelse) => ytelse.type).unique();
-    return alleYtelseTyper.join(', ');
+    return getAlleYtelseTyper([utbetaling]).join(', ');
 };
 
 const UtbetalingRad = ({ utbetaling }: { utbetaling: Utbetaling }) => {
