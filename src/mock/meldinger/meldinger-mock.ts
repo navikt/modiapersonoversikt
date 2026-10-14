@@ -73,7 +73,7 @@ function getHardKodetTraader(): Traad[] {
     const svarbarTraad: Traad = {
         traadId: 'e2e-svarbar-meldingskjede',
         traadType: TraadType.MELDINGSKJEDE,
-        temagruppe: Temagruppe.Arbeid,
+        temagruppe: Temagruppe.Pensjon,
         meldinger: [
             {
                 id: 'e2e-svarbar-meldingskjede',
