@@ -18,7 +18,7 @@
         "enabled": true,
         "rules": {
             "nursery": {},
-            "recommended": true,
+            "preset": "recommended",
             "suspicious": {
                 "noArrayIndexKey": "warn"
             },

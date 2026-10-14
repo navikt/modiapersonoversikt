@@ -1,4 +1,5 @@
 export {};
+
 declare global {
     interface Array<T> {
         firstOrNull(): T | null;

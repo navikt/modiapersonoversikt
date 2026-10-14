@@ -66,7 +66,7 @@ export function useDecoratorConfig() {
         trackGenereltUmamiEvent(trackingEvents.lenkeKlikket, data);
     };
 
-    const configV3 = useCallback(lagConfigV3, [])(aktivEnhet, handleSetBruker, handleSetEnhet, handleLenkeKlikket);
+    const configV3 = useConfigV3(aktivEnhet, handleSetBruker, handleSetEnhet, handleLenkeKlikket);
 
     return { configV3 };
 }
@@ -88,7 +88,7 @@ const etterSokefelt = `
         </div>
     `;
 
-function lagConfigV3(
+function useConfigV3(
     enhet: string | undefined | null,
     settAktivBruker: (fnr: string | null) => void,
     settEnhet: (enhet: string, enhetValue?: Enhet) => void,
@@ -107,6 +107,7 @@ function lagConfigV3(
           : 'NAV_NO';
 
     const contextProxy = 'modiacontextholder';
+    const hotkeys = useHotkeys();
 
     return {
         appName: 'Modia personoversikt',
@@ -133,7 +134,7 @@ function lagConfigV3(
         markup: {
             etterSokefelt: etterSokefelt
         },
-        hotkeys: getHotkeys(),
+        hotkeys,
         enableHotkeys: true,
         proxy: (import.meta.env.VITE_CONTEXTHOLDER_URL as string) ?? `${import.meta.env.BASE_URL}proxy/${contextProxy}`,
         environment,
@@ -155,7 +156,7 @@ function getFnrFraUrl() {
     };
 }
 
-function getHotkeys(): Hotkey[] {
+function useHotkeys(): Hotkey[] {
     const { isOn } = useFeatureToggle(FeatureToggles.NyModiaKnapp);
     /**
      * TODO ønskelig å fjerne dobbelt-bokføring her og ved bruken av useHook

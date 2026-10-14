@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" class="navLogo" width="90" viewBox="0 0 269 169">
+<svg xmlns="http://www.w3.org/2000/svg" class="navLogo" width="90" viewBox="0 0 269 169" aria-hidden="true">
     <g fill="none" fill-rule="evenodd">
         <path fill="#C30000"
               d="M125.3 169a84.5 84.5 0 1 1 0-169 84.5 84.5 0 0 1 0 169zM0 121.3l17.3-42.8h16.6l-17.3 42.8zm213 0l17-42.8h9.1l-17 42.8z"/>
