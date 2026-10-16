@@ -1,7 +1,4 @@
 .printWrapper {
-  @page {
-    size: auto;
-  }
   @media print {
     margin: 5mm;
     display: block;
