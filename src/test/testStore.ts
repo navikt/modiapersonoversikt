@@ -97,7 +97,8 @@ export function setupReactQueryMocks() {
         [FeatureToggles.NyModiaKnapp]: true,
         [FeatureToggles.InfotrygdSykepenger]: true,
         [FeatureToggles.SpokelseSykepenger]: true,
-        [FeatureToggles.NyOversiktDesign]: true
+        [FeatureToggles.NyOversiktDesign]: true,
+        [FeatureToggles.NyttDokumentTemaFilter]: false
     });
     mockReactQuery(gsaktemaResource.useFetch, getMockGsakTema());
     mockReactQuery(sykepengerResource.useSykepenger, {
