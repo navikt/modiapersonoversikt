@@ -1,12 +1,13 @@
 import dayjs from 'dayjs';
 import { PeriodType } from 'src/components/DateFilters/types';
 import type { DokumenterFilter } from 'src/components/Dokumenter/Filter';
-import { filterDokumenter } from 'src/components/Dokumenter/utils';
+import { filterDokumenter, getTemaDokumentStatistikk } from 'src/components/Dokumenter/utils';
 import {
     type Dokumentmetadata,
     DokumentmetadataAvsender,
     DokumentmetadataMottaker,
-    DokumentmetadataRetning
+    DokumentmetadataRetning,
+    type Sakstema
 } from 'src/generated/modiapersonoversikt-api';
 import { describe, expect, it } from 'vitest';
 
@@ -114,5 +115,74 @@ describe('filterDokumenter - avsender', () => {
         });
 
         expect(idene(resultat)).toEqual(['treff']);
+    });
+});
+
+describe('getTemaDokumentStatistikk', () => {
+    it('beregner antall og nyeste dato etter øvrige filtre, uten å bruke valgte tema', () => {
+        const dokumenter = [
+            lagDokument({
+                id: 'dag-nyest',
+                temakode: 'DAG',
+                dato: '2024-03-10T12:00:00',
+                avsender: DokumentmetadataAvsender.NAV
+            }),
+            lagDokument({
+                id: 'dag-eldst',
+                temakode: 'DAG',
+                dato: '2024-02-01T12:00:00',
+                avsender: DokumentmetadataAvsender.NAV
+            }),
+            lagDokument({
+                id: 'syk-nav',
+                temakode: 'SYK',
+                dato: '2024-01-15T12:00:00',
+                avsender: DokumentmetadataAvsender.NAV
+            }),
+            lagDokument({
+                id: 'syk-bruker',
+                temakode: 'SYK',
+                dato: '2024-03-01T12:00:00',
+                avsender: DokumentmetadataAvsender.SLUTTBRUKER
+            }),
+            lagDokument({
+                id: 'aap-utenfor-periode',
+                temakode: 'AAP',
+                dato: '2023-12-30T12:00:00',
+                avsender: DokumentmetadataAvsender.NAV
+            }),
+            lagDokument({
+                id: 'dag-utenfor-periode',
+                temakode: 'DAG',
+                dato: '2023-12-30T12:00:00',
+                avsender: DokumentmetadataAvsender.NAV
+            })
+        ];
+        const temaer: Sakstema[] = [
+            { temakode: 'DAG', temanavn: 'Dagpenger', harTilgang: true },
+            { temakode: 'SYK', temanavn: 'Sykepenger', harTilgang: true },
+            { temakode: 'AAP', temanavn: 'Arbeidsavklaringspenger', harTilgang: true },
+            { temakode: 'ANNET', temanavn: 'Annet tema', harTilgang: true }
+        ];
+
+        const statistikk = getTemaDokumentStatistikk(dokumenter, temaer, {
+            ...tomtFilter,
+            temaer: ['DAG'],
+            avsendere: [DokumentmetadataAvsender.NAV],
+            dateRange: { from: dayjs('2024-01-01'), to: dayjs('2024-12-31') }
+        });
+
+        expect(
+            statistikk.map(({ temakode, antallDokumenter, nyesteDokumentDato }) => ({
+                temakode,
+                antallDokumenter,
+                nyesteDokumentDato
+            }))
+        ).toEqual([
+            { temakode: 'DAG', antallDokumenter: 2, nyesteDokumentDato: '2024-03-10T12:00:00' },
+            { temakode: 'SYK', antallDokumenter: 1, nyesteDokumentDato: '2024-01-15T12:00:00' },
+            { temakode: 'AAP', antallDokumenter: 0, nyesteDokumentDato: null }
+        ]);
+        expect(statistikk.map(({ temakode }) => temakode)).not.toContain('ANNET');
     });
 });

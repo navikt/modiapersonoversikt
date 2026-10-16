@@ -4,6 +4,7 @@ export enum FeatureToggles {
     NyModiaKnapp = 'modiapersonoversikt.ny-modia-knapp',
     InfotrygdSykepenger = 'modiapersonoversikt.infotrygd-sykepenger',
     SpokelseSykepenger = 'modiapersonoversikt.spokelse-sykepenger',
+    NyttDokumentTemaFilter = 'modiapersonoversikt.nytt-dokument-tema-filter',
     /**
      * Styrer ny vs. gammel oversikt-side (`PersonlinjeDetails` vs. `PersonlinjeDetailsGammel`).
      *
