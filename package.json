@@ -108,7 +108,7 @@
         "openapi-fetch": "^0.13.8",
         "openapi-react-query": "^0.4.2",
         "react": "19.3.0",
-        "react-dom": "19.2.1",
+        "react-dom": "19.3.0",
         "react-hook-form": "^7.87.0",
         "react-modal": "^3.16.3",
         "react-redux": "^7.2.0",
