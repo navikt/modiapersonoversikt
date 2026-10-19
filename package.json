@@ -132,7 +132,7 @@
         "@tanstack/router-cli": "^1.167.41",
         "@tanstack/router-devtools": "^1.124.0",
         "@tanstack/router-plugin": "^1.124.0",
-        "@testing-library/jest-dom": "^6.9.1",
+        "@testing-library/jest-dom": "^7.0.1",
         "@testing-library/react": "^16.3.2",
         "@testing-library/user-event": "^14.6.7",
         "@types/lodash": "^4.17.20",
