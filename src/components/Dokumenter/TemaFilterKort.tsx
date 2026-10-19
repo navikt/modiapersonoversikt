@@ -106,7 +106,7 @@ export const TemaFilterKort = ({ temaer, selectedTemaer, onChange, dataLoaded }:
                                         inert={skjult}
                                         style={{ visibility: skjult ? 'hidden' : 'visible' }}
                                     >
-                                        <TemaValg tema={tema} />
+                                        <TemaValg tema={tema} valgt={selectedTemaer.includes(tema.temakode)} />
                                     </Box>
                                 );
                             })}
@@ -134,16 +134,16 @@ export const TemaFilterKort = ({ temaer, selectedTemaer, onChange, dataLoaded }:
     );
 };
 
-const TemaValg = ({ tema }: { tema: TemaDokumentStatistikk }) => {
-    const deaktivert = tema.antallDokumenter === 0;
-    const beskrivelse = deaktivert ? ingenDokumenterTekst : formaterDato(tema.nyesteDokumentDato ?? '');
+const TemaValg = ({ tema, valgt }: { tema: TemaDokumentStatistikk; valgt: boolean }) => {
+    const deaktivert = tema.antallDokumenter === 0 && !valgt;
+    const beskrivelse = tema.nyesteDokumentDato ? formaterDato(tema.nyesteDokumentDato) : undefined;
 
     return (
         <Box>
             {deaktivert ? (
                 <Tooltip content={ingenDokumenterTekst} describesChild>
                     <Box>
-                        <Checkbox value={tema.temakode} disabled description={beskrivelse} size="small">
+                        <Checkbox value={tema.temakode} disabled aria-description={ingenDokumenterTekst} size="small">
                             {`${tema.temanavn} (${numberFormatter.format(tema.antallDokumenter)})`}
                         </Checkbox>
                     </Box>

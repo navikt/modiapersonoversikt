@@ -152,18 +152,6 @@ const NyttTemaFilter = () => {
     const selectedTemaer = useAtomValue(dokFilterTemaAtom);
     const setFilter = useSetAtom(dokumenterFilterAtom);
 
-    useEffect(() => {
-        if (!dataLoaded) return;
-        const gyldigeTemaKoder = new Set(
-            temaer.filter((tema) => tema.antallDokumenter > 0).map((tema) => tema.temakode)
-        );
-        const gyldigeValg = selectedTemaer.filter((t) => gyldigeTemaKoder.has(t));
-        if (gyldigeValg.length !== selectedTemaer.length) {
-            setFilter((prev) => ({ ...prev, temaer: gyldigeValg }));
-            navigate({ search: { tema: gyldigeValg } });
-        }
-    }, [dataLoaded, temaer, selectedTemaer, setFilter, navigate]);
-
     const onChange = useCallback(
         (newTemaer: string[]) => {
             setFilter((prev) => ({ ...prev, temaer: newTemaer }));

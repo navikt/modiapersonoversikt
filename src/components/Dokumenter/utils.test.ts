@@ -119,6 +119,29 @@ describe('filterDokumenter - avsender', () => {
 });
 
 describe('getTemaDokumentStatistikk', () => {
+    it('sorterer valgte tema først blant tema uten treff, etter tema med treff', () => {
+        const temaer: Sakstema[] = [
+            { temakode: 'AAP', temanavn: 'Arbeidsavklaringspenger', harTilgang: true },
+            { temakode: 'DAG', temanavn: 'Dagpenger', harTilgang: true },
+            { temakode: 'FOR', temanavn: 'Foreldrepenger', harTilgang: true },
+            { temakode: 'SYK', temanavn: 'Sykepenger', harTilgang: true }
+        ];
+        const dokumenter = temaer.map((tema) =>
+            lagDokument({ id: tema.temakode, temakode: tema.temakode, tilhorendeFagsaksid: tema.temakode })
+        );
+        const filter = { ...tomtFilter, saksId: 'FOR', temaer: ['SYK', 'DAG'] };
+
+        expect(getTemaDokumentStatistikk(dokumenter, temaer, filter).map((tema) => tema.temakode)).toEqual([
+            'FOR',
+            'DAG',
+            'SYK',
+            'AAP'
+        ]);
+        expect(
+            getTemaDokumentStatistikk(dokumenter, temaer, { ...filter, temaer: [] }).map((tema) => tema.temakode)
+        ).toEqual(['FOR', 'AAP', 'DAG', 'SYK']);
+    });
+
     it('beregner antall og nyeste dato etter øvrige filtre, uten å bruke valgte tema', () => {
         const dokumenter = [
             lagDokument({

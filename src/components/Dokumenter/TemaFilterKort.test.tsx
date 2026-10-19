@@ -56,7 +56,10 @@ describe('TemaFilterKort', () => {
         expect(screen.getByRole('checkbox', { name: 'Dagpenger (2)' })).toBeEnabled();
         expect(screen.getByText('10.03.2024')).toBeInTheDocument();
         expect(screen.getByRole('checkbox', { name: 'Arbeidsavklaringspenger (0)' })).toBeDisabled();
-        expect(screen.getByText('Ingen dokumenter fra temaet med nåværende filtrering.')).toBeInTheDocument();
+        expect(screen.queryByText('Ingen dokumenter fra temaet med nåværende filtrering.')).not.toBeInTheDocument();
+        expect(screen.getByRole('checkbox', { name: 'Arbeidsavklaringspenger (0)' })).toHaveAccessibleDescription(
+            'Ingen dokumenter fra temaet med nåværende filtrering.'
+        );
     });
 
     it('sender det oppdaterte temavalget videre', async () => {
@@ -67,6 +70,31 @@ describe('TemaFilterKort', () => {
         await user.click(screen.getByRole('checkbox', { name: 'Dagpenger (2)' }));
 
         expect(onChange).toHaveBeenCalledWith(['DAG']);
+    });
+
+    it('beholder valgte tema uten treff og lar brukeren fjerne valget', async () => {
+        const user = userEvent.setup();
+        const onChange = vi.fn();
+        const { rerender } = render(
+            <TemaFilterKort temaer={temaer} selectedTemaer={['DAG']} onChange={onChange} dataLoaded />
+        );
+        const temaerUtenTreff = temaer.map((tema) => ({
+            ...tema,
+            antallDokumenter: 0,
+            nyesteDokumentDato: null
+        }));
+
+        rerender(<TemaFilterKort temaer={temaerUtenTreff} selectedTemaer={['DAG']} onChange={onChange} dataLoaded />);
+
+        const valgtTema = screen.getByRole('checkbox', { name: 'Dagpenger (0)' });
+        expect(valgtTema).toBeChecked();
+        expect(valgtTema).toBeEnabled();
+        expect(screen.getByRole('checkbox', { name: 'Arbeidsavklaringspenger (0)' })).toBeDisabled();
+        expect(onChange).not.toHaveBeenCalled();
+
+        await user.click(valgtTema);
+
+        expect(onChange).toHaveBeenCalledWith([]);
     });
 
     it('viser en knapp for temaene som ikke får plass på første linje', async () => {

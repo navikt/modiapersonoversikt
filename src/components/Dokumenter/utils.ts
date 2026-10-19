@@ -183,6 +183,11 @@ export const getTemaDokumentStatistikk = (
             nyesteDokumentDato: statistikkPerTema.get(tema.temakode)?.nyesteDokumentDato ?? null
         }))
         .toSorted((a, b) => {
+            if (a.antallDokumenter === 0 && b.antallDokumenter === 0) {
+                const valgteFørst =
+                    Number(filters.temaer.includes(b.temakode)) - Number(filters.temaer.includes(a.temakode));
+                if (valgteFørst !== 0) return valgteFørst;
+            }
             if (!a.nyesteDokumentDato && !b.nyesteDokumentDato) {
                 return a.temanavn.localeCompare(b.temanavn, 'nb');
             }
