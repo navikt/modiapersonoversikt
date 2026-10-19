@@ -51,28 +51,17 @@ export type YtelseVedtak = {
 };
 
 const filterYtelser = (ytelser: YtelseVedtak[], filters: YtelseFilter): YtelseVedtak[] => {
-    const { ytelseTyper, dateRange } = filters;
+    const { ytelseTyper } = filters;
 
     if (!ytelser || ytelser.length === 0) {
         return [];
     }
 
-    let filteredList = ytelser;
     if (ytelseTyper?.length) {
-        filteredList = filteredList.filter((ytelse) => ytelseTyper.includes(ytelse.ytelseType));
+        return ytelser.filter((ytelse) => ytelseTyper.includes(ytelse.ytelseType));
     }
 
-    if (dateRange?.from && dateRange?.to) {
-        filteredList = filteredList.filter((ytelse) => {
-            // Dagpenger er allerede filtrert etter dato av backenden
-            if (ytelse.ytelseType === YtelseVedtakYtelseType.Dagpenger) return true;
-            const ytelseDato = getYtelseIdDato(ytelse);
-            const dato = dayjs(ytelseDato);
-            return dato.isSameOrAfter(dayjs(dateRange.from), 'day') && dato.isSameOrBefore(dayjs(dateRange.to), 'day');
-        });
-    }
-
-    return filteredList;
+    return ytelser;
 };
 
 /**
