@@ -17,9 +17,10 @@ import {
     useTemaerForPeriode
 } from 'src/components/Dokumenter/utils';
 import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
-import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
+import QueryErrorBoundary from 'src/components/QueryErrorBoundary';
 import type { DokumentmetadataAvsender } from 'src/generated/modiapersonoversikt-api';
 import { aktivBrukerLastetAtom, usePersonAtomValue } from 'src/lib/state/context';
+import featuretoggles from 'src/rest/resources/featuretogglesResource';
 import { filterType, trackFilterEndret } from 'src/utils/analytics';
 
 const routeApi = getRouteApi('/new/person/dokumenter');
@@ -282,7 +283,7 @@ export const DokumenterFilter = () => {
     const queries = routeApi.useSearch();
     const fnr = usePersonAtomValue();
     const aktivBrukerLastet = useAtomValue(aktivBrukerLastetAtom);
-    const { isOn: nyttTemaFilterErPå } = useFeatureToggle(FeatureToggles.NyttDokumentTemaFilter);
+    const { data: toggles, isLoading: lasterToggles, error: toggleFeil } = featuretoggles.useFetch();
     const prevFnrRef = useRef<string | undefined>(undefined);
     const dateRange: DateRange | null =
         queries.fra && queries.til
@@ -327,7 +328,11 @@ export const DokumenterFilter = () => {
         }
     }, [fnr, aktivBrukerLastet, setFilter]);
 
-    if (nyttTemaFilterErPå === true) {
+    if (lasterToggles || toggleFeil) {
+        return <QueryErrorBoundary loading={lasterToggles} error={toggleFeil} />;
+    }
+
+    if (toggles?.[FeatureToggles.NyttDokumentTemaFilter] === true) {
         return (
             <VStack gap="space-16">
                 <NyttTemaFilter />
