@@ -22,7 +22,7 @@ const fixNavFrontendStyle = (packages: string[]) =>
 
 const fixNavFrontendStyleNoCss = (packages: string[]) =>
     packages.map((name) => ({
-        find: new RegExp(`${name}`),
+        find: new RegExp(`^${name}$`),
         replacement: fileURLToPath(new URL(`src/nav-style/${name}.css`, import.meta.url))
     }));
 
@@ -43,6 +43,9 @@ const modiaFrontendCompat = (): {
 };
 
 export default defineConfig({
+    legacy: {
+        inconsistentCjsInterop: true
+    },
     base: process.env.VITE_APP_BASE_PATH || '/',
     server: {
         port: 3000,
