@@ -119,6 +119,25 @@ describe('filterDokumenter - avsender', () => {
 });
 
 describe('getTemaDokumentStatistikk', () => {
+    it('skjuler tema uten dokumenter selv om de er valgt', () => {
+        const temaer: Sakstema[] = [
+            { temakode: 'DAG', temanavn: 'Dagpenger', harTilgang: true },
+            { temakode: 'ANNET', temanavn: 'Annet tema', harTilgang: true },
+            { temakode: 'AAP', temanavn: 'Arbeidsavklaringspenger', harTilgang: true }
+        ];
+        const dokumenter = [fraNav];
+        const filter = {
+            ...tomtFilter,
+            temaer: ['ANNET'],
+            avsendere: [DokumentmetadataAvsender.NAV],
+            saksId: 'fagsak-1'
+        };
+
+        expect(getTemaDokumentStatistikk(dokumenter, temaer, filter)).toEqual([
+            { ...temaer[0], antallDokumenter: 1, nyesteDokumentDato: fraNav.dato }
+        ]);
+    });
+
     it('sorterer valgte tema først blant tema uten treff, etter tema med treff', () => {
         const temaer: Sakstema[] = [
             { temakode: 'AAP', temanavn: 'Arbeidsavklaringspenger', harTilgang: true },
