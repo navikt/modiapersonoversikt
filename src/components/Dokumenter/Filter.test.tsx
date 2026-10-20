@@ -141,29 +141,29 @@ it('viser feil uten å slette URL-valgte tema når togglene ikke kan lastes', as
     expect(route.navigate).not.toHaveBeenCalled();
 });
 
-it.each([
-    { valgteTemaer: ['DAG', 'ANNET', 'UKJENT'] },
-    { valgteTemaer: ['ANNET', 'UKJENT'] }
-])('fjerner ugyldige temavalg $valgteTemaer først etter at dokumentdataene er lastet', async ({ valgteTemaer }) => {
-    route.search = { tema: valgteTemaer };
-    dokumentdata.loaded = false;
-    queryClient.setQueryData(featuretoggles.queryKey, toggles(true));
-    const store = renderFilter();
+it.each([{ valgteTemaer: ['DAG', 'ANNET', 'UKJENT'] }, { valgteTemaer: ['ANNET', 'UKJENT'] }])(
+    'fjerner ugyldige temavalg $valgteTemaer først etter at dokumentdataene er lastet',
+    async ({ valgteTemaer }) => {
+        route.search = { tema: valgteTemaer };
+        dokumentdata.loaded = false;
+        queryClient.setQueryData(featuretoggles.queryKey, toggles(true));
+        const store = renderFilter();
 
-    expect(store.get(dokumenterFilterAtom).temaer).toEqual(valgteTemaer);
-    expect(route.navigate).not.toHaveBeenCalled();
+        expect(store.get(dokumenterFilterAtom).temaer).toEqual(valgteTemaer);
+        expect(route.navigate).not.toHaveBeenCalled();
 
-    await act(async () => {
-        dokumentdata.loaded = true;
-        dokumentdata.listeners.forEach((listener) => {
-            listener();
+        await act(async () => {
+            dokumentdata.loaded = true;
+            dokumentdata.listeners.forEach((listener) => {
+                listener();
+            });
         });
-    });
 
-    const gyldigeValg = valgteTemaer.filter((tema) => tema === 'DAG');
-    expect(store.get(dokumenterFilterAtom).temaer).toEqual(gyldigeValg);
-    expect(route.navigate).toHaveBeenCalledExactlyOnceWith({
-        search: { tema: gyldigeValg },
-        replace: true
-    });
-});
+        const gyldigeValg = valgteTemaer.filter((tema) => tema === 'DAG');
+        expect(store.get(dokumenterFilterAtom).temaer).toEqual(gyldigeValg);
+        expect(route.navigate).toHaveBeenCalledExactlyOnceWith({
+            search: { tema: gyldigeValg },
+            replace: true
+        });
+    }
+);
