@@ -31,6 +31,7 @@ import NotifikasjonKanal from './img/notifikasjon-kanal.png';
 import NyKommunikasjon from './img/ny-kommunikasjon-knapper.png';
 import NyeYtelser from './img/nye_ytelser.png';
 import NyModia from './img/nyModia.png';
+import NyttDokumentFilter from './img/nyttdokumentfilter.png';
 import OppdateringsloggKnappBilde from './img/oppdateringslogg-knapp.jpg';
 import OppgaveDestinasjon from './img/oppgave-destinasjon.png';
 import OppslagPaaInaktivIdent from './img/oppslag-paa-inaktiv-ident.png';
@@ -841,6 +842,30 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                 </BodyShort>
             ),
             src: AvansertsokForbedringer
+        },
+        {
+            id: 50,
+            tittel: 'Nytt temafilter på dokumentersiden',
+            dato: new Date('2026-10-20 09:40'),
+            aktiv: true,
+            ingress: (
+                <BodyShort>
+                    Du kan nå filtrere dokumenter med avkryssinger i temakortet øverst på dokumentersiden.
+                </BodyShort>
+            ),
+            beskrivelse: (
+                <List>
+                    <List.Item>Velg ett eller flere tema. Ingen avkryssinger betyr at alle tema vises.</List.Item>
+                    <List.Item>
+                        Hvert tema viser antall dokumenter og nyeste dokumentdato ut fra de øvrige filtrene.
+                    </List.Item>
+                    <List.Item>
+                        Tema uten treff er grået ut. Valgte tema forblir valgt ved null treff, men du kan fjerne
+                        avkryssingen.
+                    </List.Item>
+                </List>
+            ),
+            src: NyttDokumentFilter
         }
     ];
 }
