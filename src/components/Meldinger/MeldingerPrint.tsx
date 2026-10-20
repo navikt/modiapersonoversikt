@@ -4,7 +4,8 @@ import { usePersonAtomValue } from 'src/lib/state/context';
 import type { Journalpost, Melding, Traad } from 'src/lib/types/modiapersonoversikt-api';
 import { datoStigende, formatterDato, formatterDatoTid } from 'src/utils/date-utils';
 import { formaterDato } from 'src/utils/string-utils';
-import RichText, { defaultRules, HighlightRule, SladdRule } from '../RichText';
+import RichText, { HighlightRule, LinkRule, SladdRule } from '../RichText';
+import { normalizeMessageText } from '../RichText/normalizeMessageText';
 import { meldingstittel } from './List/utils';
 
 const Element = ({ children }: PropsWithChildren) => <BodyShort weight="semibold">{children}</BodyShort>;
@@ -72,7 +73,9 @@ function EnkeltMeldingMarkup({ melding }: { melding: Melding }) {
             </HStack>
             <VStack gap="space-8" marginBlock="space-0 space-16">
                 <Element>Innhold:</Element>
-                <RichText rules={[SladdRule, HighlightRule, ...defaultRules]}>{melding.fritekst}</RichText>
+                <RichText className="whitespace-pre-wrap" rules={[SladdRule, HighlightRule, LinkRule]}>
+                    {normalizeMessageText(melding.fritekst)}
+                </RichText>
             </VStack>
         </Box>
     );

@@ -391,10 +391,10 @@ exports[`Viser Traadliste 1`] = `
                 >
                   Innhold:
                 </p>
-                <div>
-                  <p
-                    class="typo-normal"
-                  >
+                <div
+                  style="white-space: pre-wrap;"
+                >
+                  <p>
                     Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
                   </p>
                 </div>
@@ -459,10 +459,10 @@ exports[`Viser Traadliste 1`] = `
                 >
                   Innhold:
                 </p>
-                <div>
-                  <p
-                    class="typo-normal"
-                  >
+                <div
+                  style="white-space: pre-wrap;"
+                >
+                  <p>
                     Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
                   </p>
                 </div>
@@ -527,10 +527,10 @@ exports[`Viser Traadliste 1`] = `
                 >
                   Innhold:
                 </p>
-                <div>
-                  <p
-                    class="typo-normal"
-                  >
+                <div
+                  style="white-space: pre-wrap;"
+                >
+                  <p>
                     Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
                   </p>
                 </div>
@@ -595,10 +595,10 @@ exports[`Viser Traadliste 1`] = `
                 >
                   Innhold:
                 </p>
-                <div>
-                  <p
-                    class="typo-normal"
-                  >
+                <div
+                  style="white-space: pre-wrap;"
+                >
+                  <p>
                     Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
                   </p>
                 </div>
