@@ -65,8 +65,7 @@ const TraadDetailContent = ({ traad }: { traad: Traad }) => {
 
 const routeApi = getRouteApi('/new/person/meldinger');
 
-const TraadDetailSection = () => {
-    const { traadId } = routeApi.useSearch();
+const TraadDetailSection = ({ traadId }: { traadId?: string }) => {
     const filteredTraader = useFilterMeldinger();
     const selectedTraad = traadId ? filteredTraader.find((t) => t.traadId === traadId) : undefined;
 
@@ -87,10 +86,11 @@ const TraadDetailSection = () => {
 };
 
 export const TraadDetail = () => {
+    const { traadId } = routeApi.useSearch();
     const { isLoading } = useTraader();
     return (
-        <ErrorBoundary errorText="Det oppstod en feil under visning av melding detaljer">
-            {isLoading ? <Skeleton variant="rectangle" height="4rem" /> : <TraadDetailSection />}
+        <ErrorBoundary key={traadId} errorText="Det oppstod en feil under visning av melding detaljer">
+            {isLoading ? <Skeleton variant="rectangle" height="4rem" /> : <TraadDetailSection traadId={traadId} />}
         </ErrorBoundary>
     );
 };

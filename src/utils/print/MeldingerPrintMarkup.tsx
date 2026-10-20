@@ -1,6 +1,8 @@
-import Tekstomrade, { defaultRules } from 'nav-frontend-tekstomrade';
+import Tekstomrade, { LinkRule } from 'nav-frontend-tekstomrade';
 import { Element, Ingress, Normaltekst } from 'nav-frontend-typografi';
 import { meldingstittel } from 'src/app/personside/infotabs/meldinger/utils/meldingerUtils';
+import { ParagraphRuleOverride } from 'src/components/RichText';
+import { normalizeMessageText } from 'src/components/RichText/normalizeMessageText';
 import { usePersonAtomValue } from 'src/lib/state/context';
 import type { Melding, MeldingJournalpost, Traad } from 'src/models/meldinger/meldinger';
 import styled from 'styled-components';
@@ -92,7 +94,9 @@ function EnkeltMeldingMarkup({ melding }: { melding: Melding }) {
             </Flex>
             <StyledInnhold>
                 <Element>Innhold:</Element>
-                <Tekstomrade rules={[sladdRule, ...defaultRules]}>{melding.fritekst}</Tekstomrade>
+                <Tekstomrade style={{ whiteSpace: 'pre-wrap' }} rules={[sladdRule, LinkRule, ParagraphRuleOverride]}>
+                    {normalizeMessageText(melding.fritekst)}
+                </Tekstomrade>
             </StyledInnhold>
         </StyledEnkeltMelding>
     );

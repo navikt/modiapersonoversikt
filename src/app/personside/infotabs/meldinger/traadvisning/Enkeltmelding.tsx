@@ -9,8 +9,8 @@ import { formatterDatoTid } from '../../../../../utils/date-utils';
 import { rule as sladdRule } from '../../../../../utils/sladdrule';
 import { erMeldingFraBruker, erMeldingFraNav } from '../utils/meldingerUtils';
 import './enkeltmelding.less';
-import { LinebreakRule } from '@navikt/textparser';
 import { LinkRule, ParagraphRuleOverride } from 'src/components/RichText';
+import { normalizeMessageText } from 'src/components/RichText/normalizeMessageText';
 import ReadIcon from '../../../../../svg/ReadIcon';
 import UnReadIcon from '../../../../../svg/UnReadIcon';
 
@@ -112,8 +112,11 @@ function EnkeltMelding(props: Props) {
             <article aria-labelledby={tittelId.current}>
                 <Snakkeboble pilHoyre={fraNav} ikonClass={fraNav ? 'nav-ikon' : 'bruker-ikon'}>
                     <SnakkebobleWrapper>
-                        <Tekstomrade rules={[sladdRule, highlightRule, LinebreakRule, LinkRule, ParagraphRuleOverride]}>
-                            {props.melding.fritekst}
+                        <Tekstomrade
+                            style={{ whiteSpace: 'pre-wrap' }}
+                            rules={[sladdRule, highlightRule, LinkRule, ParagraphRuleOverride]}
+                        >
+                            {normalizeMessageText(props.melding.fritekst)}
                         </Tekstomrade>
                         <div>
                             <MeldingInfoWrapper>

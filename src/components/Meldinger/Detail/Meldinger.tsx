@@ -2,7 +2,8 @@ import { PersonIcon } from '@navikt/aksel-icons';
 import { BodyLong, Box, Chat, HStack, VStack } from '@navikt/ds-react';
 import { useAtomValue } from 'jotai';
 import { type ElementType, type ReactNode, useLayoutEffect, useMemo, useRef } from 'react';
-import RichText, { createDynamicHighlightingRule, defaultRules, SladdRule } from 'src/components/RichText';
+import RichText, { createDynamicHighlightingRule, LinkRule, SladdRule } from 'src/components/RichText';
+import { normalizeMessageText } from 'src/components/RichText/normalizeMessageText';
 import { themeAtom } from 'src/lib/state/theme';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
 import NavLogoBlack from 'src/svg/NavLogoBlack.svg';
@@ -80,10 +81,10 @@ export const Meldinger = ({ meldinger, wrapper: Wrapper = DefaultWrapper }: Prop
                             >
                                 <Chat.Bubble className="text-wrap border-0">
                                     <RichText
-                                        className="wrap-anywhere"
-                                        rules={[SladdRule, highlightRule, ...defaultRules]}
+                                        className="wrap-anywhere whitespace-pre-wrap"
+                                        rules={[SladdRule, highlightRule, LinkRule]}
                                     >
-                                        {m.fritekst}
+                                        {normalizeMessageText(m.fritekst)}
                                     </RichText>
                                 </Chat.Bubble>
                                 {erFraNav && (
