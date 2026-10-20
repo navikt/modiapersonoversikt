@@ -11,6 +11,8 @@ export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleRespon
             return true;
         case FeatureToggles.NyOversiktDesign:
             return true;
+        case FeatureToggles.NyttDokumentTemaFilter:
+            return true;
         default:
             return Math.random() > 0.5;
     }

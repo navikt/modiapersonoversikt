@@ -12,7 +12,8 @@ import {
     type Dokumentmetadata,
     DokumentmetadataAvsender,
     FeilFeilmelding,
-    type ResultatSaksDokumenter
+    type ResultatSaksDokumenter,
+    type Sakstema
 } from 'src/generated/modiapersonoversikt-api';
 import { useSakerDokumenter } from 'src/lib/clients/modiapersonoversikt-api';
 import { datoSynkende } from 'src/utils/date-utils';
@@ -34,6 +35,11 @@ const avsenderRekkefolge: DokumentmetadataAvsender[] = [
     DokumentmetadataAvsender.EKSTERN_PART,
     DokumentmetadataAvsender.UKJENT
 ];
+
+export type TemaDokumentStatistikk = Sakstema & {
+    antallDokumenter: number;
+    nyesteDokumentDato: string | null;
+};
 
 export const useTemaerForPeriode = (dateRange: DateRange | null) => {
     const { data } = useSakerDokumenter();
@@ -144,4 +150,61 @@ export const filterDokumenter = (dokumenter: Dokumentmetadata[], filters: Dokume
     }
 
     return filteredList;
+};
+
+export const getTemaDokumentStatistikk = (
+    dokumenter: Dokumentmetadata[],
+    temaer: Sakstema[],
+    filters: DokumenterFilter
+): TemaDokumentStatistikk[] => {
+    const dokumenterEtterAndreFilter = filterDokumenter(dokumenter, { ...filters, temaer: [] }).toSorted(
+        datoSynkende((dok) => dok.dato || new Date(0))
+    );
+    const temakoderMedDokumenter = new Set(dokumenter.map((dokument) => dokument.temakode));
+    const statistikkPerTema = new Map<string, { antallDokumenter: number; nyesteDokumentDato: string | null }>();
+
+    for (const dokument of dokumenterEtterAndreFilter) {
+        const statistikk = statistikkPerTema.get(dokument.temakode);
+        if (statistikk) {
+            statistikk.antallDokumenter += 1;
+        } else {
+            statistikkPerTema.set(dokument.temakode, {
+                antallDokumenter: 1,
+                nyesteDokumentDato: dokument.dato
+            });
+        }
+    }
+
+    return temaer
+        .filter((tema) => temakoderMedDokumenter.has(tema.temakode))
+        .map((tema) => ({
+            ...tema,
+            antallDokumenter: statistikkPerTema.get(tema.temakode)?.antallDokumenter ?? 0,
+            nyesteDokumentDato: statistikkPerTema.get(tema.temakode)?.nyesteDokumentDato ?? null
+        }))
+        .toSorted((a, b) => {
+            if (a.antallDokumenter === 0 && b.antallDokumenter === 0) {
+                const valgteFørst =
+                    Number(filters.temaer.includes(b.temakode)) - Number(filters.temaer.includes(a.temakode));
+                if (valgteFørst !== 0) return valgteFørst;
+            }
+            if (!a.nyesteDokumentDato && !b.nyesteDokumentDato) {
+                return a.temanavn.localeCompare(b.temanavn, 'nb');
+            }
+            if (!a.nyesteDokumentDato) return 1;
+            if (!b.nyesteDokumentDato) return -1;
+            return new Date(b.nyesteDokumentDato).getTime() - new Date(a.nyesteDokumentDato).getTime();
+        });
+};
+
+export const useTemaDokumentStatistikk = () => {
+    const filters = useAtomValue(dokumenterFilterAtom);
+    const { data } = useSakerDokumenter();
+    const dokumenter = data?.dokumenter ?? [];
+    const temaer = data?.temaer ?? [];
+
+    return {
+        dataLoaded: data !== undefined,
+        temaer: useMemo(() => getTemaDokumentStatistikk(dokumenter, temaer, filters), [dokumenter, temaer, filters])
+    };
 };

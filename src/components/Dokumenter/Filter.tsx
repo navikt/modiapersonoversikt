@@ -1,5 +1,5 @@
 import { ArrowCirclepathReverseIcon } from '@navikt/aksel-icons';
-import { Box, Button, HStack, Search, UNSAFE_Combobox } from '@navikt/ds-react';
+import { Box, Button, HStack, Search, UNSAFE_Combobox, VStack } from '@navikt/ds-react';
 import { getRouteApi } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai';
@@ -9,9 +9,18 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { getOptionFromPeriod } from 'src/components/DateFilters/DatePeriodSelector';
 import { DateRangePickerWithDebounce } from 'src/components/DateFilters/DateRangePickerWithDebounce';
 import { type DateRange, PeriodType } from 'src/components/DateFilters/types';
-import { avsenderLabel, useAvsendereForPeriode, useTemaerForPeriode } from 'src/components/Dokumenter/utils';
+import { TemaFilterKort } from 'src/components/Dokumenter/TemaFilterKort';
+import {
+    avsenderLabel,
+    useAvsendereForPeriode,
+    useTemaDokumentStatistikk,
+    useTemaerForPeriode
+} from 'src/components/Dokumenter/utils';
+import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
+import QueryErrorBoundary from 'src/components/QueryErrorBoundary';
 import type { DokumentmetadataAvsender } from 'src/generated/modiapersonoversikt-api';
 import { aktivBrukerLastetAtom, usePersonAtomValue } from 'src/lib/state/context';
+import featuretoggles from 'src/rest/resources/featuretogglesResource';
 import { filterType, trackFilterEndret } from 'src/utils/analytics';
 
 const routeApi = getRouteApi('/new/person/dokumenter');
@@ -138,7 +147,37 @@ const DateFilter = () => {
     );
 };
 
-const TemaFilter = () => {
+const NyttTemaFilter = () => {
+    const navigate = routeApi.useNavigate();
+    const { temaer, dataLoaded } = useTemaDokumentStatistikk();
+    const selectedTemaer = useAtomValue(dokFilterTemaAtom);
+    const setFilter = useSetAtom(dokumenterFilterAtom);
+
+    useEffect(() => {
+        if (!dataLoaded) return;
+        const gyldigeTemaKoder = new Set(temaer.map((tema) => tema.temakode));
+        const gyldigeValg = selectedTemaer.filter((tema) => gyldigeTemaKoder.has(tema));
+        if (gyldigeValg.length !== selectedTemaer.length) {
+            setFilter((prev) => ({ ...prev, temaer: gyldigeValg }));
+            navigate({ search: { tema: gyldigeValg }, replace: true });
+        }
+    }, [temaer, dataLoaded, selectedTemaer, setFilter, navigate]);
+
+    const onChange = useCallback(
+        (newTemaer: string[]) => {
+            setFilter((prev) => ({ ...prev, temaer: newTemaer }));
+            trackFilterEndret('dokumenter', filterType.TEMA);
+            navigate({ search: { tema: newTemaer } });
+        },
+        [navigate, setFilter]
+    );
+
+    return (
+        <TemaFilterKort temaer={temaer} selectedTemaer={selectedTemaer} onChange={onChange} dataLoaded={dataLoaded} />
+    );
+};
+
+const GammeltTemaFilter = () => {
     const navigate = routeApi.useNavigate();
     const dateRange = useAtomValue(dokFilterDateRangeAtom);
     const alleTemaer = useTemaerForPeriode(dateRange);
@@ -146,8 +185,8 @@ const TemaFilter = () => {
     const setFilter = useSetAtom(dokumenterFilterAtom);
 
     useEffect(() => {
-        const gyldigeTemaKoder = new Set(alleTemaer.map((t) => t.temakode));
-        const gyldigeValg = selectedTemaer.filter((t) => gyldigeTemaKoder.has(t));
+        const gyldigeTemaKoder = new Set(alleTemaer.map((tema) => tema.temakode));
+        const gyldigeValg = selectedTemaer.filter((tema) => gyldigeTemaKoder.has(tema));
         if (gyldigeValg.length !== selectedTemaer.length) {
             setFilter((prev) => ({ ...prev, temaer: gyldigeValg }));
             navigate({ search: { tema: gyldigeValg } });
@@ -160,16 +199,16 @@ const TemaFilter = () => {
             trackFilterEndret('dokumenter', filterType.TEMA);
             navigate({ search: { tema: selectedTemaer ? xor(selectedTemaer, [option]) : [option] } });
         },
-        [selectedTemaer]
+        [selectedTemaer, setSelectedTemaer, navigate]
     );
 
     return (
         <UNSAFE_Combobox
             size="small"
             label="Tema"
-            options={alleTemaer.map((o) => ({
-                label: `${o.temanavn} [${o.temakode}]`,
-                value: o.temakode
+            options={alleTemaer.map((tema) => ({
+                label: `${tema.temanavn} [${tema.temakode}]`,
+                value: tema.temakode
             }))}
             isMultiSelect
             selectedOptions={selectedTemaer}
@@ -254,6 +293,7 @@ export const DokumenterFilter = () => {
     const queries = routeApi.useSearch();
     const fnr = usePersonAtomValue();
     const aktivBrukerLastet = useAtomValue(aktivBrukerLastetAtom);
+    const { data: toggles, isLoading: lasterToggles, error: toggleFeil } = featuretoggles.useFetch();
     const prevFnrRef = useRef<string | undefined>(undefined);
     const dateRange: DateRange | null =
         queries.fra && queries.til
@@ -298,6 +338,32 @@ export const DokumenterFilter = () => {
         }
     }, [fnr, aktivBrukerLastet, setFilter]);
 
+    if (lasterToggles || toggleFeil) {
+        return <QueryErrorBoundary loading={lasterToggles} error={toggleFeil} />;
+    }
+
+    if (toggles?.[FeatureToggles.NyttDokumentTemaFilter] === true) {
+        return (
+            <VStack gap="space-16">
+                <NyttTemaFilter />
+                <HStack gap="space-8" justify="start">
+                    <Box>
+                        <DateFilter />
+                    </Box>
+                    <Box flexGrow="1">
+                        <AvsenderFilter />
+                    </Box>
+                    <Box>
+                        <SaksIdSearchField />
+                    </Box>
+                    <HStack align="end">
+                        <ResetFilter />
+                    </HStack>
+                </HStack>
+            </VStack>
+        );
+    }
+
     return (
         <HStack gap="space-8" justify="start">
             <Box>
@@ -307,7 +373,7 @@ export const DokumenterFilter = () => {
                 <AvsenderFilter />
             </Box>
             <Box flexGrow="1">
-                <TemaFilter />
+                <GammeltTemaFilter />
             </Box>
             <Box>
                 <SaksIdSearchField />
