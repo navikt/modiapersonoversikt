@@ -49,7 +49,7 @@ importers:
         version: 1.125.6(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@vitejs/plugin-react':
         specifier: ^5.2.0
-        version: 5.2.0(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.0))
+        version: 5.2.0(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.1))
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
@@ -229,10 +229,10 @@ importers:
         version: 3.5.0
       vite:
         specifier: ^8.3.4
-        version: 8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.0)
+        version: 8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.1)
       vite-plugin-svgr:
         specifier: ^5.2.0
-        version: 5.2.0(rollup@4.62.4)(typescript@5.9.3)(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.0))
+        version: 5.2.0(rollup@4.62.4)(typescript@5.9.3)(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.1))
       zod:
         specifier: ^3.25.76
         version: 3.25.76
@@ -263,10 +263,10 @@ importers:
         version: 1.124.0(@tanstack/react-router@1.125.6(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(@tanstack/router-core@1.171.35)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.7)(tiny-invariant@1.3.3)
       '@tanstack/router-plugin':
         specifier: ^1.124.0
-        version: 1.124.0(@tanstack/react-router@1.125.6(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(supports-color@10.2.2)(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.0))
+        version: 1.124.0(@tanstack/react-router@1.125.6(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(supports-color@10.2.2)(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.1))
       '@testing-library/jest-dom':
         specifier: ^7.0.1
-        version: 7.0.1(@testing-library/dom@10.4.0)(vitest@4.1.11(@opentelemetry/api@1.9.1)(@types/node@26.2.0)(happy-dom@20.14.6)(msw@2.15.0(@types/node@26.2.0)(typescript@5.9.3))(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.0)))
+        version: 7.0.1(@testing-library/dom@10.4.0)(vitest@4.1.11(@opentelemetry/api@1.9.1)(@types/node@26.2.0)(happy-dom@20.14.6)(msw@2.15.0(@types/node@26.2.0)(typescript@5.9.3))(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.1)))
       '@testing-library/react':
         specifier: ^16.3.2
         version: 16.3.2(@testing-library/dom@10.4.0)(@types/react-dom@19.2.1(@types/react@19.2.1))(@types/react@19.2.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -322,8 +322,8 @@ importers:
         specifier: ^4.9.1
         version: 4.9.1
       lint-staged:
-        specifier: ^17.4.1
-        version: 17.4.1
+        specifier: ^17.6.0
+        version: 17.6.0
       msw:
         specifier: ^2.15.0
         version: 2.15.0(@types/node@26.2.0)(typescript@5.9.3)
@@ -359,7 +359,7 @@ importers:
         version: 0.2.3
       vitest:
         specifier: ^4.1.11
-        version: 4.1.11(@opentelemetry/api@1.9.1)(@types/node@26.2.0)(happy-dom@20.14.6)(msw@2.15.0(@types/node@26.2.0)(typescript@5.9.3))(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.0))
+        version: 4.1.11(@opentelemetry/api@1.9.1)(@types/node@26.2.0)(happy-dom@20.14.6)(msw@2.15.0(@types/node@26.2.0)(typescript@5.9.3))(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.1))
 
 packages:
 
@@ -3404,8 +3404,8 @@ packages:
   lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
 
-  lint-staged@17.4.1:
-    resolution: {integrity: sha512-FmJeudcalbSfg1du+JCfvi5vS6Qt08KgbfLWiHinbef+2JJwUZwAWVoaO1AcJVUTWPfk0t30PMQNwPAeCzYQ+Q==}
+  lint-staged@17.6.0:
+    resolution: {integrity: sha512-nOhBfYkZEwkFtNzD5pK9s9LkcWoxJ+whLzEnhqi9nl7zTB5n7tg8+9iYgMGx2Wm3VlLu8cbNj0RACzY+nWi5iQ==}
     engines: {node: '>=22.22.1'}
     hasBin: true
 
@@ -4321,6 +4321,10 @@ packages:
     resolution: {integrity: sha512-QKAl9m8gWWGHV8jZcPeym6j+XULi6tOf1mT83WYJ4Lk2ytW/uwAWkrP0uFsdoYMdueVJ0qs26wZ+23xeB4ibNQ==}
     engines: {node: '>=18'}
 
+  tinyexec@1.3.1:
+    resolution: {integrity: sha512-GCvB3aoys96IuDFBMcTB46JOR6mdMtAToqwiW8JlWhsoh1mhHi/xn9ss/Dg7N555GiJyEt2qzoG/NHCwM6h1EA==}
+    engines: {node: '>=18'}
+
   tinyglobby@0.2.17:
     resolution: {integrity: sha512-wXR/dYpcqKmfWpEdZjiKJOwCNFndD0DMnrW/cYjVGttEkBfVgcLFHoNrlj47mjOVic9yyNu65alsgF4NQyTa2g==}
     engines: {node: '>=12.0.0'}
@@ -4594,11 +4598,6 @@ packages:
 
   yaml-ast-parser@0.0.43:
     resolution: {integrity: sha512-2PTINUwsRqSd+s8XxKaJWQlUuEMHJQyEuh2edBbW8KNJz0SJPwUSD2zRWqezFEdN7IzAgeuYHFUCF7o8zRdZ0A==}
-
-  yaml@2.9.0:
-    resolution: {integrity: sha512-2AvhNX3mb8zd6Zy7INTtSpl1F15HW6Wnqj0srWlkKLcpYl/gMIMJiyuGq2KeI2YFxUPjdlB+3Lc10seMLtL4cA==}
-    engines: {node: '>= 14.6'}
-    hasBin: true
 
   yaml@2.9.1:
     resolution: {integrity: sha512-3NxN8+78OdzbT7C/WjGsyfPAtJaN3FNDsWxv7Y7mcDsT/oOmgW8BpyQQFFBnvZE3j9Y2Sdz1ULFLezL7Eb2yFw==}
@@ -6330,7 +6329,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@tanstack/router-plugin@1.124.0(@tanstack/react-router@1.125.6(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(supports-color@10.2.2)(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.0))':
+  '@tanstack/router-plugin@1.124.0(@tanstack/react-router@1.125.6(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(supports-color@10.2.2)(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.1))':
     dependencies:
       '@babel/core': 7.28.0(supports-color@10.2.2)
       '@babel/plugin-syntax-jsx': 7.27.1(@babel/core@7.28.0(supports-color@10.2.2))
@@ -6348,7 +6347,7 @@ snapshots:
       zod: 3.25.76
     optionalDependencies:
       '@tanstack/react-router': 1.125.6(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      vite: 8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.0)
+      vite: 8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -6397,7 +6396,7 @@ snapshots:
       lz-string: 1.5.0
       pretty-format: 27.5.1
 
-  '@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.0)(vitest@4.1.11(@opentelemetry/api@1.9.1)(@types/node@26.2.0)(happy-dom@20.14.6)(msw@2.15.0(@types/node@26.2.0)(typescript@5.9.3))(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.0)))':
+  '@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.0)(vitest@4.1.11(@opentelemetry/api@1.9.1)(@types/node@26.2.0)(happy-dom@20.14.6)(msw@2.15.0(@types/node@26.2.0)(typescript@5.9.3))(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.1)))':
     dependencies:
       '@adobe/css-tools': 4.5.0
       '@testing-library/dom': 10.4.0
@@ -6407,7 +6406,7 @@ snapshots:
       picocolors: 1.1.1
       redent: 3.0.0
     optionalDependencies:
-      vitest: 4.1.11(@opentelemetry/api@1.9.1)(@types/node@26.2.0)(happy-dom@20.14.6)(msw@2.15.0(@types/node@26.2.0)(typescript@5.9.3))(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.0))
+      vitest: 4.1.11(@opentelemetry/api@1.9.1)(@types/node@26.2.0)(happy-dom@20.14.6)(msw@2.15.0(@types/node@26.2.0)(typescript@5.9.3))(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.1))
 
   '@testing-library/react@16.3.2(@testing-library/dom@10.4.0)(@types/react-dom@19.2.1(@types/react@19.2.1))(@types/react@19.2.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
@@ -6607,7 +6606,7 @@ snapshots:
       '@typescript-eslint/types': 8.67.0
       eslint-visitor-keys: 5.0.1
 
-  '@vitejs/plugin-react@5.2.0(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.0))':
+  '@vitejs/plugin-react@5.2.0(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.1))':
     dependencies:
       '@babel/core': 7.29.7
       '@babel/plugin-transform-react-jsx-self': 7.29.7(@babel/core@7.29.7)
@@ -6615,7 +6614,7 @@ snapshots:
       '@rolldown/pluginutils': 1.0.0-rc.3
       '@types/babel__core': 7.20.5
       react-refresh: 0.18.0
-      vite: 8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.0)
+      vite: 8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -6628,14 +6627,14 @@ snapshots:
       chai: 6.2.2
       tinyrainbow: 3.1.1
 
-  '@vitest/mocker@4.1.11(msw@2.15.0(@types/node@26.2.0)(typescript@5.9.3))(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.0))':
+  '@vitest/mocker@4.1.11(msw@2.15.0(@types/node@26.2.0)(typescript@5.9.3))(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.1))':
     dependencies:
       '@vitest/spy': 4.1.11
       estree-walker: 3.0.3
       magic-string: 0.30.21
     optionalDependencies:
       msw: 2.15.0(@types/node@26.2.0)(typescript@5.9.3)
-      vite: 8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.0)
+      vite: 8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.1)
 
   '@vitest/pretty-format@4.1.11':
     dependencies:
@@ -7509,13 +7508,13 @@ snapshots:
 
   lines-and-columns@1.2.4: {}
 
-  lint-staged@17.4.1:
+  lint-staged@17.6.0:
     dependencies:
       picomatch: 4.0.7
       string-argv: 0.3.2
-      tinyexec: 1.3.0
+      tinyexec: 1.3.1
     optionalDependencies:
-      yaml: 2.9.0
+      yaml: 2.9.1
 
   locate-path@6.0.0:
     dependencies:
@@ -8395,6 +8394,8 @@ snapshots:
 
   tinyexec@1.3.0: {}
 
+  tinyexec@1.3.1: {}
+
   tinyglobby@0.2.17:
     dependencies:
       fdir: 6.5.0(picomatch@4.0.7)
@@ -8515,12 +8516,12 @@ snapshots:
       fast-glob: 3.3.3
       magic-string: 0.30.21
 
-  vite-plugin-svgr@5.2.0(rollup@4.62.4)(typescript@5.9.3)(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.0)):
+  vite-plugin-svgr@5.2.0(rollup@4.62.4)(typescript@5.9.3)(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.1)):
     dependencies:
       '@rollup/pluginutils': 5.4.0(rollup@4.62.4)
       '@svgr/core': 8.1.0(typescript@5.9.3)
       '@svgr/plugin-jsx': 8.1.0(@svgr/core@8.1.0(typescript@5.9.3))
-      vite: 8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.0)
+      vite: 8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.1)
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -8531,7 +8532,7 @@ snapshots:
       fast-glob: 3.3.2
       vite-plugin-dynamic-import: 1.6.0
 
-  vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.0):
+  vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.1):
     dependencies:
       lightningcss: 1.33.0
       picomatch: 4.0.7
@@ -8545,12 +8546,12 @@ snapshots:
       jiti: 2.7.0
       less: 4.9.1
       tsx: 4.20.6
-      yaml: 2.9.0
+      yaml: 2.9.1
 
-  vitest@4.1.11(@opentelemetry/api@1.9.1)(@types/node@26.2.0)(happy-dom@20.14.6)(msw@2.15.0(@types/node@26.2.0)(typescript@5.9.3))(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.0)):
+  vitest@4.1.11(@opentelemetry/api@1.9.1)(@types/node@26.2.0)(happy-dom@20.14.6)(msw@2.15.0(@types/node@26.2.0)(typescript@5.9.3))(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.1)):
     dependencies:
       '@vitest/expect': 4.1.11
-      '@vitest/mocker': 4.1.11(msw@2.15.0(@types/node@26.2.0)(typescript@5.9.3))(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.0))
+      '@vitest/mocker': 4.1.11(msw@2.15.0(@types/node@26.2.0)(typescript@5.9.3))(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.1))
       '@vitest/pretty-format': 4.1.11
       '@vitest/runner': 4.1.11
       '@vitest/snapshot': 4.1.11
@@ -8567,7 +8568,7 @@ snapshots:
       tinyexec: 1.3.0
       tinyglobby: 0.2.17
       tinyrainbow: 3.1.1
-      vite: 8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.0)
+      vite: 8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.1)
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@opentelemetry/api': 1.9.1
@@ -8612,9 +8613,6 @@ snapshots:
   yallist@3.1.1: {}
 
   yaml-ast-parser@0.0.43: {}
-
-  yaml@2.9.0:
-    optional: true
 
   yaml@2.9.1: {}
 
