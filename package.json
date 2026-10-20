@@ -50,7 +50,7 @@
         "@grafana/faro-web-tracing": "^2.12.1",
         "@navikt/aksel-icons": "^8.19.2",
         "@navikt/ds-css": "^8.16.2",
-        "@navikt/ds-react": "^8.19.1",
+        "@navikt/ds-react": "^8.19.2",
         "@navikt/ds-tailwind": "^8.16.1",
         "@navikt/fnrvalidator": "^2.2.1",
         "@navikt/tag-input": "^2.0.2",
