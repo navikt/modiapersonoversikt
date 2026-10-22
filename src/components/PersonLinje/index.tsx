@@ -107,7 +107,7 @@ const PersonlinjeHeader = () => {
                             <CopyButton
                                 className="p-0 text-ax-text-neutral-subtle"
                                 activeText="Kopiert tlf.nr"
-                                aria-label={`Kopier tlf.nr: ${formaterMobiltelefonnummer(data.person.kontaktInformasjon.mobil.value ?? '')}`}
+                                aria-label={`Tlf: ${formaterMobiltelefonnummer(data.person.kontaktInformasjon.mobil.value ?? '')}, kopier`}
                                 text={`Tlf: ${formaterMobiltelefonnummer(data.person.kontaktInformasjon.mobil?.value ?? '')}`}
                                 size="xsmall"
                                 copyText={data.person.kontaktInformasjon.mobil.value}
