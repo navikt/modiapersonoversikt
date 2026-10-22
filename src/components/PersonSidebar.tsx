@@ -171,7 +171,7 @@ export const PersonSidebarMenu = () => {
                         {synligeMenuItems.map((item) => {
                             const { title, href, Icon } = item;
                             const beta = 'beta' in item && item.beta;
-                            const tittelMedBeta = beta ? `${title} (beta)` : title;
+                            const tittelMedBeta = beta ? `${title} Beta` : title;
                             return (
                                 <ConditionalTooltip
                                     key={title}
@@ -231,6 +231,7 @@ export const PersonSidebarMenu = () => {
                                                     {ekspanderSidebarMedStorage && (
                                                         <HStack gap="space-8" align="center" wrap={false}>
                                                             <span className="font-normal">{title}</span>
+                                                            {beta && ' '}
                                                             {beta && (
                                                                 <Tag
                                                                     data-color="success"
