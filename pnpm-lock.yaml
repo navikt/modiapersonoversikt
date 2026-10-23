@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@grafana/faro-react':
         specifier: ^2.11.0
-        version: 2.11.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        version: 2.11.0(react-dom@19.3.0(react@19.3.1))(react@19.3.1)
       '@grafana/faro-web-sdk':
         specifier: ^2.12.1
         version: 2.12.1
@@ -25,7 +25,7 @@ importers:
         version: 8.19.2
       '@navikt/ds-react':
         specifier: ^8.19.2
-        version: 8.19.2(@types/react@19.2.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        version: 8.19.2(@types/react@19.2.1)(react-dom@19.3.0(react@19.3.1))(react@19.3.1)
       '@navikt/ds-tailwind':
         specifier: ^8.19.2
         version: 8.19.2
@@ -34,19 +34,19 @@ importers:
         version: 2.2.1
       '@navikt/tag-input':
         specifier: ^2.0.2
-        version: 2.0.2(e31fe20a1fb99164f59cb48a330c645d)
+        version: 2.0.2(760d386ac5de68ce8e80d73249a21dcf)
       '@navikt/textparser':
         specifier: ^2.5.0
-        version: 2.5.0(react@19.3.0)
+        version: 2.5.0(react@19.3.1)
       '@tanstack/react-form':
         specifier: ^1.33.5
-        version: 1.33.5(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        version: 1.33.5(react-dom@19.3.0(react@19.3.1))(react@19.3.1)
       '@tanstack/react-query':
         specifier: ^5.104.5
-        version: 5.104.5(@types/react@19.2.1)(react@19.3.0)
+        version: 5.104.5(@types/react@19.2.1)(react@19.3.1)
       '@tanstack/react-router':
         specifier: ^1.170.45
-        version: 1.170.45(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        version: 1.170.45(react-dom@19.3.0(react@19.3.1))(react@19.3.1)
       '@vitejs/plugin-react':
         specifier: ^5.2.0
         version: 5.2.0(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.1))
@@ -61,10 +61,10 @@ importers:
         version: 5.3.0
       downshift:
         specifier: ^9.4.0
-        version: 9.4.0(react@19.3.0)
+        version: 9.4.0(react@19.3.1)
       jotai:
         specifier: ^3.0.1
-        version: 3.0.1(@types/react@19.2.1)(react@19.3.0)
+        version: 3.0.1(@types/react@19.2.1)(react@19.3.1)
       lodash:
         specifier: ^4.18.1
         version: 4.18.1
@@ -73,13 +73,13 @@ importers:
         version: 2.3.0
       nav-frontend-alertstriper:
         specifier: ^3.1.1
-        version: 3.1.2(classnames@2.5.1)(nav-frontend-alertstriper-style@2.1.1(nav-frontend-core@5.1.1)(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.0))(prop-types@15.8.1)(react@19.3.0)
+        version: 3.1.2(classnames@2.5.1)(nav-frontend-alertstriper-style@2.1.1(nav-frontend-core@5.1.1)(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.1))(prop-types@15.8.1)(react@19.3.1)
       nav-frontend-alertstriper-style:
         specifier: ^2.1.1
         version: 2.1.1(nav-frontend-core@5.1.1)(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)
       nav-frontend-chevron:
         specifier: ^1.0.13
-        version: 1.0.30(classnames@2.5.1)(nav-frontend-chevron-style@1.0.4)(prop-types@15.8.1)(react@19.3.0)
+        version: 1.0.30(classnames@2.5.1)(nav-frontend-chevron-style@1.0.4)(prop-types@15.8.1)(react@19.3.1)
       nav-frontend-chevron-style:
         specifier: ^1.0.4
         version: 1.0.4
@@ -88,19 +88,19 @@ importers:
         version: 5.1.1
       nav-frontend-ekspanderbartpanel:
         specifier: ^3.1.2
-        version: 3.1.4(@types/react-collapse@5.0.4)(classnames@2.5.1)(nav-frontend-ekspanderbartpanel-style@1.1.2(nav-frontend-chevron-style@1.0.4)(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.0))(react-collapse@5.1.1(react@19.3.0))(react@19.3.0)
+        version: 3.1.4(@types/react-collapse@5.0.4)(classnames@2.5.1)(nav-frontend-ekspanderbartpanel-style@1.1.2(nav-frontend-chevron-style@1.0.4)(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.1))(react-collapse@5.1.1(react@19.3.1))(react@19.3.1)
       nav-frontend-ekspanderbartpanel-style:
         specifier: ^1.1.2
         version: 1.1.2(nav-frontend-chevron-style@1.0.4)(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)
       nav-frontend-etiketter:
         specifier: ^2.1.1
-        version: 2.1.3(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-etiketter-style@1.1.2(nav-frontend-core@5.1.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.0))(prop-types@15.8.1)(react@19.3.0)
+        version: 2.1.3(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-etiketter-style@1.1.2(nav-frontend-core@5.1.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.1))(prop-types@15.8.1)(react@19.3.1)
       nav-frontend-etiketter-style:
         specifier: ^1.1.2
         version: 1.1.2(nav-frontend-core@5.1.1)
       nav-frontend-hjelpetekst:
         specifier: ^2.1.1
-        version: 2.1.4(classnames@2.5.1)(nav-frontend-hjelpetekst-style@2.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.0))(nav-frontend-popover@1.1.1(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.0))(nav-frontend-popover-style@1.1.1)(prop-types@15.8.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(prop-types@15.8.1)(react@19.3.0)
+        version: 2.1.4(classnames@2.5.1)(nav-frontend-hjelpetekst-style@2.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.1))(nav-frontend-popover@1.1.1(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.1))(nav-frontend-popover-style@1.1.1)(prop-types@15.8.1)(react-dom@19.3.0(react@19.3.1))(react@19.3.1))(prop-types@15.8.1)(react@19.3.1)
       nav-frontend-hjelpetekst-style:
         specifier: ^2.1.1
         version: 2.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)
@@ -109,64 +109,64 @@ importers:
         version: 2.0.10
       nav-frontend-js-utils:
         specifier: ^1.0.20
-        version: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.0)
+        version: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.1)
       nav-frontend-knapper:
         specifier: ^2.1.1
-        version: 2.1.4(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.0))(nav-frontend-knapper-style@1.1.2(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(prop-types@15.8.1)(react@19.3.0)
+        version: 2.1.4(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.1))(nav-frontend-knapper-style@1.1.2(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(prop-types@15.8.1)(react@19.3.1)
       nav-frontend-knapper-style:
         specifier: ^1.1.2
         version: 1.1.2(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)
       nav-frontend-lenkepanel:
         specifier: ^1.1.1
-        version: 1.1.2(classnames@2.5.1)(nav-frontend-lenkepanel-style@1.1.1(nav-frontend-chevron-style@1.0.4)(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1)))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.0))(prop-types@15.8.1)(react@19.3.0)
+        version: 1.1.2(classnames@2.5.1)(nav-frontend-lenkepanel-style@1.1.1(nav-frontend-chevron-style@1.0.4)(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1)))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.1))(prop-types@15.8.1)(react@19.3.1)
       nav-frontend-lenkepanel-style:
         specifier: ^1.1.1
         version: 1.1.1(nav-frontend-chevron-style@1.0.4)(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))
       nav-frontend-lenker:
         specifier: ^1.1.1
-        version: 1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.3.0)
+        version: 1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.3.1)
       nav-frontend-lenker-style:
         specifier: ^1.1.1
         version: 1.1.1(nav-frontend-core@5.1.1)
       nav-frontend-lukknapp:
         specifier: ^1.1.1
-        version: 1.2.2(classnames@2.5.1)(nav-frontend-lukknapp-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.3.0)
+        version: 1.2.2(classnames@2.5.1)(nav-frontend-lukknapp-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.3.1)
       nav-frontend-lukknapp-style:
         specifier: ^1.1.1
         version: 1.1.1(nav-frontend-core@5.1.1)
       nav-frontend-modal:
         specifier: ^1.1.2
-        version: 1.2.2(@types/react-modal@3.16.3)(classnames@2.5.1)(nav-frontend-lukknapp@1.2.2(classnames@2.5.1)(nav-frontend-lukknapp-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.3.0))(nav-frontend-modal-style@1.1.1(nav-frontend-core@5.1.1)(nav-frontend-lukknapp-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1)))(prop-types@15.8.1)(react-modal@3.16.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react@19.3.0)
+        version: 1.2.2(@types/react-modal@3.16.3)(classnames@2.5.1)(nav-frontend-lukknapp@1.2.2(classnames@2.5.1)(nav-frontend-lukknapp-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.3.1))(nav-frontend-modal-style@1.1.1(nav-frontend-core@5.1.1)(nav-frontend-lukknapp-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1)))(prop-types@15.8.1)(react-modal@3.16.3(react-dom@19.3.0(react@19.3.1))(react@19.3.1))(react@19.3.1)
       nav-frontend-modal-style:
         specifier: ^1.1.1
         version: 1.1.1(nav-frontend-core@5.1.1)(nav-frontend-lukknapp-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))
       nav-frontend-paneler:
         specifier: ^2.1.1
-        version: 2.1.2(classnames@2.5.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.0))(prop-types@15.8.1)(react@19.3.0)
+        version: 2.1.2(classnames@2.5.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.1))(prop-types@15.8.1)(react@19.3.1)
       nav-frontend-paneler-style:
         specifier: ^1.1.1
         version: 1.1.1(nav-frontend-core@5.1.1)
       nav-frontend-popover:
         specifier: 1.1.1
-        version: 1.1.1(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.0))(nav-frontend-popover-style@1.1.1)(prop-types@15.8.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        version: 1.1.1(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.1))(nav-frontend-popover-style@1.1.1)(prop-types@15.8.1)(react-dom@19.3.0(react@19.3.1))(react@19.3.1)
       nav-frontend-popover-style:
         specifier: 1.1.1
         version: 1.1.1
       nav-frontend-skjema:
         specifier: ^3.2.1
-        version: 3.2.6(@navikt/fnrvalidator@2.2.1)(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.0))(nav-frontend-lenker@1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.3.0))(nav-frontend-skjema-style@2.2.3(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.0))(prop-types@15.8.1)(react@19.3.0)
+        version: 3.2.6(@navikt/fnrvalidator@2.2.1)(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.1))(nav-frontend-lenker@1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.3.1))(nav-frontend-skjema-style@2.2.3(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.1))(prop-types@15.8.1)(react@19.3.1)
       nav-frontend-skjema-style:
         specifier: ^2.2.3
         version: 2.2.3(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)
       nav-frontend-snakkeboble:
         specifier: ^2.1.1
-        version: 2.1.2(classnames@2.5.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-paneler@2.1.2(classnames@2.5.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.0))(prop-types@15.8.1)(react@19.3.0))(nav-frontend-snakkeboble-style@1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.0))(prop-types@15.8.1)(react@19.3.0)
+        version: 2.1.2(classnames@2.5.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-paneler@2.1.2(classnames@2.5.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.1))(prop-types@15.8.1)(react@19.3.1))(nav-frontend-snakkeboble-style@1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.1))(prop-types@15.8.1)(react@19.3.1)
       nav-frontend-snakkeboble-style:
         specifier: ^1.1.1
         version: 1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)
       nav-frontend-spinner:
         specifier: ^2.0.16
-        version: 2.0.17(classnames@2.5.1)(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-spinner-style@1.0.2)(prop-types@15.8.1)(react@19.3.0)
+        version: 2.0.17(classnames@2.5.1)(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-spinner-style@1.0.2)(prop-types@15.8.1)(react@19.3.1)
       nav-frontend-spinner-style:
         specifier: ^1.0.2
         version: 1.0.2
@@ -175,16 +175,16 @@ importers:
         version: 1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)
       nav-frontend-tabs:
         specifier: ^1.1.1
-        version: 1.1.3(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.0))(nav-frontend-tabs-style@1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(react@19.3.0)
+        version: 1.1.3(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.1))(nav-frontend-tabs-style@1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(react@19.3.1)
       nav-frontend-tabs-style:
         specifier: ^1.1.1
         version: 1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)
       nav-frontend-tekstomrade:
         specifier: ^2.1.1
-        version: 2.1.3(nav-frontend-lenker@1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.3.0))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.0))(prop-types@15.8.1)(react@19.3.0)
+        version: 2.1.3(nav-frontend-lenker@1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.3.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.1))(prop-types@15.8.1)(react@19.3.1)
       nav-frontend-typografi:
         specifier: ^3.1.1
-        version: 3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.0)
+        version: 3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.1)
       nav-frontend-typografi-style:
         specifier: ^1.0.22
         version: 1.1.1
@@ -193,25 +193,25 @@ importers:
         version: 0.13.8
       openapi-react-query:
         specifier: ^0.4.2
-        version: 0.4.2(@tanstack/react-query@5.104.5(@types/react@19.2.1)(react@19.3.0))(openapi-fetch@0.13.8)
+        version: 0.4.2(@tanstack/react-query@5.104.5(@types/react@19.2.1)(react@19.3.1))(openapi-fetch@0.13.8)
       react:
-        specifier: 19.3.0
-        version: 19.3.0
+        specifier: 19.3.1
+        version: 19.3.1
       react-dom:
         specifier: 19.3.0
-        version: 19.3.0(react@19.3.0)
+        version: 19.3.0(react@19.3.1)
       react-hook-form:
         specifier: ^7.90.0
-        version: 7.90.0(@types/react@19.2.1)(react@19.3.0)
+        version: 7.90.0(@types/react@19.2.1)(react@19.3.1)
       react-modal:
         specifier: ^3.16.3
-        version: 3.16.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        version: 3.16.3(react-dom@19.3.0(react@19.3.1))(react@19.3.1)
       react-redux:
         specifier: ^7.2.0
-        version: 7.2.9(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        version: 7.2.9(react-dom@19.3.0(react@19.3.1))(react@19.3.1)
       react-resizable-panels:
         specifier: ^4.14.7
-        version: 4.14.7(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        version: 4.14.7(react-dom@19.3.0(react@19.3.1))(react@19.3.1)
       redux:
         specifier: ^4.2.1
         version: 4.2.1
@@ -220,10 +220,10 @@ importers:
         version: 2.4.2(redux@4.2.1)
       sonner:
         specifier: ^2.0.8
-        version: 2.0.8(@types/react@19.2.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        version: 2.0.8(@types/react@19.2.1)(react-dom@19.3.0(react@19.3.1))(react@19.3.1)
       styled-components:
         specifier: ^6.6.0
-        version: 6.6.0(css-to-react-native@3.2.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        version: 6.6.0(css-to-react-native@3.2.0)(react-dom@19.3.0(react@19.3.1))(react@19.3.1)
       tailwind-merge:
         specifier: ^3.5.0
         version: 3.5.0
@@ -260,16 +260,16 @@ importers:
         version: 1.167.45(supports-color@10.2.2)
       '@tanstack/router-devtools':
         specifier: ^1.167.2
-        version: 1.167.2(@tanstack/react-router@1.170.45(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(@tanstack/router-core@1.171.38)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        version: 1.167.2(@tanstack/react-router@1.170.45(react-dom@19.3.0(react@19.3.1))(react@19.3.1))(@tanstack/router-core@1.171.38)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.1))(react@19.3.1)
       '@tanstack/router-plugin':
         specifier: ^1.124.0
-        version: 1.124.0(@tanstack/react-router@1.170.45(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(supports-color@10.2.2)(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.1))
+        version: 1.124.0(@tanstack/react-router@1.170.45(react-dom@19.3.0(react@19.3.1))(react@19.3.1))(supports-color@10.2.2)(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.1))
       '@testing-library/jest-dom':
         specifier: ^7.0.1
         version: 7.0.1(@testing-library/dom@10.4.0)(vitest@5.0.5(@opentelemetry/api@1.9.1)(@types/node@26.2.0)(happy-dom@21.0.3)(msw@2.15.0(@types/node@26.2.0)(typescript@5.9.3))(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.1)))
       '@testing-library/react':
         specifier: ^16.3.3
-        version: 16.3.3(@testing-library/dom@10.4.0)(@types/react-dom@19.2.1(@types/react@19.2.1))(@types/react@19.2.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        version: 16.3.3(@testing-library/dom@10.4.0)(@types/react-dom@19.2.1(@types/react@19.2.1))(@types/react@19.2.1)(react-dom@19.3.0(react@19.3.1))(react@19.3.1)
       '@testing-library/user-event':
         specifier: ^14.6.7
         version: 14.6.7(@testing-library/dom@10.4.0)
@@ -305,16 +305,16 @@ importers:
         version: 19.0.0-beta-714736e-20250131
       eslint:
         specifier: ^10.13.0
-        version: 10.13.0(jiti@2.7.0)
+        version: 10.13.0(jiti@2.7.0)(supports-color@10.2.2)
       eslint-plugin-react-compiler:
         specifier: 19.0.0-beta-714736e-20250131
-        version: 19.0.0-beta-714736e-20250131(eslint@10.13.0(jiti@2.7.0))(supports-color@10.2.2)
+        version: 19.0.0-beta-714736e-20250131(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)
       happy-dom:
         specifier: ^21.0.3
         version: 21.0.3
       jest-styled-components:
         specifier: ^7.4.0
-        version: 7.4.0(styled-components@6.6.0(css-to-react-native@3.2.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))
+        version: 7.4.0(styled-components@6.6.0(css-to-react-native@3.2.0)(react-dom@19.3.0(react@19.3.1))(react@19.3.1))
       knip:
         specifier: ^6.41.0
         version: 6.41.0
@@ -338,7 +338,7 @@ importers:
         version: 15.8.1
       react-collapse:
         specifier: ^5.1.1
-        version: 5.1.1(react@19.3.0)
+        version: 5.1.1(react@19.3.1)
       redux-devtools-extension:
         specifier: ^2.13.9
         version: 2.13.9(redux@4.2.1)
@@ -350,7 +350,7 @@ importers:
         version: 5.9.3
       typescript-eslint:
         specifier: ^8.67.0
-        version: 8.67.0(eslint@10.13.0(jiti@2.7.0))(supports-color@10.2.2)(typescript@5.9.3)
+        version: 8.67.0(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3)
       undici:
         specifier: ^8.12.2
         version: 8.12.2
@@ -4041,8 +4041,8 @@ packages:
       react: ^18.0.0 || ^19.0.0
       react-dom: ^18.0.0 || ^19.0.0
 
-  react@19.3.0:
-    resolution: {integrity: sha512-E8LUcbtBWt20bbl2YoHfx4ZDBdxVTfOKtCZn9cDSJ4l6/nuoApcpIBcj47t2wZoVX8g2ZHuMHbiShgCR1T5Sog==}
+  react@19.3.1:
+    resolution: {integrity: sha512-QNhWdt7nrgVWWQG58QuGsAR3jv3Hbe4mb4vz7w2csnHavciZJgda1CPNaldF6eVxv90ud3jUXpKlHL69gO38yw==}
     engines: {node: '>=0.10.0'}
 
   readdirp@3.6.0:
@@ -5315,14 +5315,14 @@ snapshots:
   '@esbuild/win32-x64@0.27.7':
     optional: true
 
-  '@eslint-community/eslint-utils@4.10.1(eslint@10.13.0(jiti@2.7.0))':
+  '@eslint-community/eslint-utils@4.10.1(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))':
     dependencies:
-      eslint: 10.13.0(jiti@2.7.0)
+      eslint: 10.13.0(jiti@2.7.0)(supports-color@10.2.2)
       eslint-visitor-keys: 3.4.3
 
   '@eslint-community/regexpp@4.12.2': {}
 
-  '@eslint/config-array@0.23.5':
+  '@eslint/config-array@0.23.5(supports-color@10.2.2)':
     dependencies:
       '@eslint/object-schema': 3.0.5
       debug: 4.4.3(supports-color@10.2.2)
@@ -5358,18 +5358,18 @@ snapshots:
       '@floating-ui/core': 1.8.0
       '@floating-ui/utils': 0.2.12
 
-  '@floating-ui/react-dom@2.1.9(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@floating-ui/react-dom@2.1.9(react-dom@19.3.0(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@floating-ui/dom': 1.8.0
-      react: 19.3.0
-      react-dom: 19.3.0(react@19.3.0)
+      react: 19.3.1
+      react-dom: 19.3.0(react@19.3.1)
 
-  '@floating-ui/react@0.27.20(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@floating-ui/react@0.27.20(react-dom@19.3.0(react@19.3.1))(react@19.3.1)':
     dependencies:
-      '@floating-ui/react-dom': 2.1.9(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@floating-ui/react-dom': 2.1.9(react-dom@19.3.0(react@19.3.1))(react@19.3.1)
       '@floating-ui/utils': 0.2.12
-      react: 19.3.0
-      react-dom: 19.3.0(react@19.3.0)
+      react: 19.3.1
+      react-dom: 19.3.0(react@19.3.1)
       tabbable: 6.5.0
 
   '@floating-ui/utils@0.2.12': {}
@@ -5379,14 +5379,14 @@ snapshots:
       '@opentelemetry/api': 1.9.1
       '@opentelemetry/otlp-transformer': 0.222.0(@opentelemetry/api@1.9.1)
 
-  '@grafana/faro-react@2.11.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@grafana/faro-react@2.11.0(react-dom@19.3.0(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@grafana/faro-web-sdk': 2.12.1
       '@grafana/faro-web-tracing': 2.12.1
       hoist-non-react-statics: 3.3.2
-      react: 19.3.0
+      react: 19.3.1
     optionalDependencies:
-      react-dom: 19.3.0(react@19.3.0)
+      react-dom: 19.3.0(react@19.3.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -5523,17 +5523,17 @@ snapshots:
 
   '@navikt/ds-css@8.19.2': {}
 
-  '@navikt/ds-react@8.19.2(@types/react@19.2.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@navikt/ds-react@8.19.2(@types/react@19.2.1)(react-dom@19.3.0(react@19.3.1))(react@19.3.1)':
     dependencies:
-      '@floating-ui/react': 0.27.20(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      '@floating-ui/react-dom': 2.1.9(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@floating-ui/react': 0.27.20(react-dom@19.3.0(react@19.3.1))(react@19.3.1)
+      '@floating-ui/react-dom': 2.1.9(react-dom@19.3.0(react@19.3.1))(react@19.3.1)
       '@navikt/aksel-icons': 8.19.2
       '@navikt/ds-tokens': 8.19.2
       '@types/react': 19.2.1
       date-fns: 4.4.0
-      react: 19.3.0
-      react-day-picker: 10.0.1(@types/react@19.2.1)(react@19.3.0)
-      react-dom: 19.3.0(react@19.3.0)
+      react: 19.3.1
+      react-day-picker: 10.0.1(@types/react@19.2.1)(react@19.3.1)
+      react-dom: 19.3.0(react@19.3.1)
 
   '@navikt/ds-tailwind@8.19.2': {}
 
@@ -5541,18 +5541,18 @@ snapshots:
 
   '@navikt/fnrvalidator@2.2.1': {}
 
-  '@navikt/tag-input@2.0.2(e31fe20a1fb99164f59cb48a330c645d)':
+  '@navikt/tag-input@2.0.2(760d386ac5de68ce8e80d73249a21dcf)':
     dependencies:
       classnames: 2.5.1
-      nav-frontend-js-utils: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.0)
-      nav-frontend-knapper: 2.1.4(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.0))(nav-frontend-knapper-style@1.1.2(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(prop-types@15.8.1)(react@19.3.0)
-      nav-frontend-skjema: 3.2.6(@navikt/fnrvalidator@2.2.1)(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.0))(nav-frontend-lenker@1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.3.0))(nav-frontend-skjema-style@2.2.3(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.0))(prop-types@15.8.1)(react@19.3.0)
+      nav-frontend-js-utils: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.1)
+      nav-frontend-knapper: 2.1.4(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.1))(nav-frontend-knapper-style@1.1.2(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(prop-types@15.8.1)(react@19.3.1)
+      nav-frontend-skjema: 3.2.6(@navikt/fnrvalidator@2.2.1)(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.1))(nav-frontend-lenker@1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.3.1))(nav-frontend-skjema-style@2.2.3(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.1))(prop-types@15.8.1)(react@19.3.1)
       nav-frontend-skjema-style: 2.2.3(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)
-      react: 19.3.0
+      react: 19.3.1
 
-  '@navikt/textparser@2.5.0(react@19.3.0)':
+  '@navikt/textparser@2.5.0(react@19.3.1)':
     dependencies:
-      react: 19.3.0
+      react: 19.3.1
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -6149,54 +6149,54 @@ snapshots:
 
   '@tanstack/query-core@5.104.5': {}
 
-  '@tanstack/react-form@1.33.5(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@tanstack/react-form@1.33.5(react-dom@19.3.0(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@tanstack/form-core': 1.33.5
-      '@tanstack/react-store': 0.11.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      react: 19.3.0
+      '@tanstack/react-store': 0.11.1(react-dom@19.3.0(react@19.3.1))(react@19.3.1)
+      react: 19.3.1
     transitivePeerDependencies:
       - react-dom
 
-  '@tanstack/react-query@5.104.5(@types/react@19.2.1)(react@19.3.0)':
+  '@tanstack/react-query@5.104.5(@types/react@19.2.1)(react@19.3.1)':
     dependencies:
       '@tanstack/query-core': 5.104.5
-      react: 19.3.0
+      react: 19.3.1
     optionalDependencies:
       '@types/react': 19.2.1
 
-  '@tanstack/react-router-devtools@1.167.2(@tanstack/react-router@1.170.45(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(@tanstack/router-core@1.171.38)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@tanstack/react-router-devtools@1.167.2(@tanstack/react-router@1.170.45(react-dom@19.3.0(react@19.3.1))(react@19.3.1))(@tanstack/router-core@1.171.38)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.1))(react@19.3.1)':
     dependencies:
-      '@tanstack/react-router': 1.170.45(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@tanstack/react-router': 1.170.45(react-dom@19.3.0(react@19.3.1))(react@19.3.1)
       '@tanstack/router-devtools-core': 1.168.2(@tanstack/router-core@1.171.38)(csstype@3.2.3)
-      react: 19.3.0
-      react-dom: 19.3.0(react@19.3.0)
+      react: 19.3.1
+      react-dom: 19.3.0(react@19.3.1)
     optionalDependencies:
       '@tanstack/router-core': 1.171.38
     transitivePeerDependencies:
       - csstype
 
-  '@tanstack/react-router@1.170.45(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@tanstack/react-router@1.170.45(react-dom@19.3.0(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@tanstack/history': 1.162.5
-      '@tanstack/react-store': 0.11.2(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@tanstack/react-store': 0.11.2(react-dom@19.3.0(react@19.3.1))(react@19.3.1)
       '@tanstack/router-core': 1.171.38
       isbot: 5.2.2
-      react: 19.3.0
-      react-dom: 19.3.0(react@19.3.0)
+      react: 19.3.1
+      react-dom: 19.3.0(react@19.3.1)
 
-  '@tanstack/react-store@0.11.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@tanstack/react-store@0.11.1(react-dom@19.3.0(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@tanstack/store': 0.11.1
-      react: 19.3.0
-      react-dom: 19.3.0(react@19.3.0)
-      use-sync-external-store: 1.6.0(react@19.3.0)
+      react: 19.3.1
+      react-dom: 19.3.0(react@19.3.1)
+      use-sync-external-store: 1.6.0(react@19.3.1)
 
-  '@tanstack/react-store@0.11.2(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@tanstack/react-store@0.11.2(react-dom@19.3.0(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@tanstack/store': 0.11.2
-      react: 19.3.0
-      react-dom: 19.3.0(react@19.3.0)
-      use-sync-external-store: 1.7.0(react@19.3.0)
+      react: 19.3.1
+      react-dom: 19.3.0(react@19.3.1)
+      use-sync-external-store: 1.7.0(react@19.3.1)
 
   '@tanstack/router-cli@1.167.45(supports-color@10.2.2)':
     dependencies:
@@ -6230,12 +6230,12 @@ snapshots:
     optionalDependencies:
       csstype: 3.2.3
 
-  '@tanstack/router-devtools@1.167.2(@tanstack/react-router@1.170.45(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(@tanstack/router-core@1.171.38)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@tanstack/router-devtools@1.167.2(@tanstack/react-router@1.170.45(react-dom@19.3.0(react@19.3.1))(react@19.3.1))(@tanstack/router-core@1.171.38)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.1))(react@19.3.1)':
     dependencies:
-      '@tanstack/react-router': 1.170.45(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      '@tanstack/react-router-devtools': 1.167.2(@tanstack/react-router@1.170.45(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(@tanstack/router-core@1.171.38)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      react: 19.3.0
-      react-dom: 19.3.0(react@19.3.0)
+      '@tanstack/react-router': 1.170.45(react-dom@19.3.0(react@19.3.1))(react@19.3.1)
+      '@tanstack/react-router-devtools': 1.167.2(@tanstack/react-router@1.170.45(react-dom@19.3.0(react@19.3.1))(react@19.3.1))(@tanstack/router-core@1.171.38)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.1))(react@19.3.1)
+      react: 19.3.1
+      react-dom: 19.3.0(react@19.3.1)
     optionalDependencies:
       csstype: 3.2.3
     transitivePeerDependencies:
@@ -6267,7 +6267,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@tanstack/router-plugin@1.124.0(@tanstack/react-router@1.170.45(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(supports-color@10.2.2)(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.1))':
+  '@tanstack/router-plugin@1.124.0(@tanstack/react-router@1.170.45(react-dom@19.3.0(react@19.3.1))(react@19.3.1))(supports-color@10.2.2)(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.1))':
     dependencies:
       '@babel/core': 7.28.0(supports-color@10.2.2)
       '@babel/plugin-syntax-jsx': 7.27.1(@babel/core@7.28.0(supports-color@10.2.2))
@@ -6284,7 +6284,7 @@ snapshots:
       unplugin: 2.3.5
       zod: 3.25.76
     optionalDependencies:
-      '@tanstack/react-router': 1.170.45(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@tanstack/react-router': 1.170.45(react-dom@19.3.0(react@19.3.1))(react@19.3.1)
       vite: 8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.1)
     transitivePeerDependencies:
       - supports-color
@@ -6346,12 +6346,12 @@ snapshots:
     optionalDependencies:
       vitest: 5.0.5(@opentelemetry/api@1.9.1)(@types/node@26.2.0)(happy-dom@21.0.3)(msw@2.15.0(@types/node@26.2.0)(typescript@5.9.3))(vite@8.3.4(@types/node@26.2.0)(esbuild@0.27.7)(jiti@2.7.0)(less@4.9.1)(tsx@4.20.6)(yaml@2.9.1))
 
-  '@testing-library/react@16.3.3(@testing-library/dom@10.4.0)(@types/react-dom@19.2.1(@types/react@19.2.1))(@types/react@19.2.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@testing-library/react@16.3.3(@testing-library/dom@10.4.0)(@types/react-dom@19.2.1(@types/react@19.2.1))(@types/react@19.2.1)(react-dom@19.3.0(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@babel/runtime': 7.29.10
       '@testing-library/dom': 10.4.0
-      react: 19.3.0
-      react-dom: 19.3.0(react@19.3.0)
+      react: 19.3.1
+      react-dom: 19.3.0(react@19.3.1)
     optionalDependencies:
       '@types/react': 19.2.1
       '@types/react-dom': 19.2.1(@types/react@19.2.1)
@@ -6453,15 +6453,15 @@ snapshots:
     dependencies:
       '@types/node': 26.2.0
 
-  '@typescript-eslint/eslint-plugin@8.67.0(@typescript-eslint/parser@8.67.0(eslint@10.13.0(jiti@2.7.0))(supports-color@10.2.2)(typescript@5.9.3))(eslint@10.13.0(jiti@2.7.0))(supports-color@10.2.2)(typescript@5.9.3)':
+  '@typescript-eslint/eslint-plugin@8.67.0(@typescript-eslint/parser@8.67.0(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3))(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3)':
     dependencies:
       '@eslint-community/regexpp': 4.12.2
-      '@typescript-eslint/parser': 8.67.0(eslint@10.13.0(jiti@2.7.0))(supports-color@10.2.2)(typescript@5.9.3)
+      '@typescript-eslint/parser': 8.67.0(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3)
       '@typescript-eslint/scope-manager': 8.67.0
-      '@typescript-eslint/type-utils': 8.67.0(eslint@10.13.0(jiti@2.7.0))(supports-color@10.2.2)(typescript@5.9.3)
-      '@typescript-eslint/utils': 8.67.0(eslint@10.13.0(jiti@2.7.0))(typescript@5.9.3)
+      '@typescript-eslint/type-utils': 8.67.0(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3)
+      '@typescript-eslint/utils': 8.67.0(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(typescript@5.9.3)
       '@typescript-eslint/visitor-keys': 8.67.0
-      eslint: 10.13.0(jiti@2.7.0)
+      eslint: 10.13.0(jiti@2.7.0)(supports-color@10.2.2)
       ignore: 7.0.13
       natural-compare: 1.4.0
       ts-api-utils: 2.5.0(typescript@5.9.3)
@@ -6469,14 +6469,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/parser@8.67.0(eslint@10.13.0(jiti@2.7.0))(supports-color@10.2.2)(typescript@5.9.3)':
+  '@typescript-eslint/parser@8.67.0(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3)':
     dependencies:
       '@typescript-eslint/scope-manager': 8.67.0
       '@typescript-eslint/types': 8.67.0
       '@typescript-eslint/typescript-estree': 8.67.0(typescript@5.9.3)
       '@typescript-eslint/visitor-keys': 8.67.0
       debug: 4.4.3(supports-color@10.2.2)
-      eslint: 10.13.0(jiti@2.7.0)
+      eslint: 10.13.0(jiti@2.7.0)(supports-color@10.2.2)
       typescript: 5.9.3
     transitivePeerDependencies:
       - supports-color
@@ -6499,13 +6499,13 @@ snapshots:
     dependencies:
       typescript: 5.9.3
 
-  '@typescript-eslint/type-utils@8.67.0(eslint@10.13.0(jiti@2.7.0))(supports-color@10.2.2)(typescript@5.9.3)':
+  '@typescript-eslint/type-utils@8.67.0(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3)':
     dependencies:
       '@typescript-eslint/types': 8.67.0
       '@typescript-eslint/typescript-estree': 8.67.0(typescript@5.9.3)
-      '@typescript-eslint/utils': 8.67.0(eslint@10.13.0(jiti@2.7.0))(typescript@5.9.3)
+      '@typescript-eslint/utils': 8.67.0(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(typescript@5.9.3)
       debug: 4.4.3(supports-color@10.2.2)
-      eslint: 10.13.0(jiti@2.7.0)
+      eslint: 10.13.0(jiti@2.7.0)(supports-color@10.2.2)
       ts-api-utils: 2.5.0(typescript@5.9.3)
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -6528,13 +6528,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/utils@8.67.0(eslint@10.13.0(jiti@2.7.0))(typescript@5.9.3)':
+  '@typescript-eslint/utils@8.67.0(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(typescript@5.9.3)':
     dependencies:
-      '@eslint-community/eslint-utils': 4.10.1(eslint@10.13.0(jiti@2.7.0))
+      '@eslint-community/eslint-utils': 4.10.1(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))
       '@typescript-eslint/scope-manager': 8.67.0
       '@typescript-eslint/types': 8.67.0
       '@typescript-eslint/typescript-estree': 8.67.0(typescript@5.9.3)
-      eslint: 10.13.0(jiti@2.7.0)
+      eslint: 10.13.0(jiti@2.7.0)(supports-color@10.2.2)
       typescript: 5.9.3
     transitivePeerDependencies:
       - supports-color
@@ -6851,12 +6851,12 @@ snapshots:
       no-case: 3.0.4
       tslib: 2.8.1
 
-  downshift@9.4.0(react@19.3.0):
+  downshift@9.4.0(react@19.3.1):
     dependencies:
       '@babel/runtime': 7.29.7
       compute-scroll-into-view: 3.1.1
       prop-types: 15.8.1
-      react: 19.3.0
+      react: 19.3.1
       react-is: 18.3.1
       tslib: 2.8.1
 
@@ -6955,12 +6955,12 @@ snapshots:
 
   escape-string-regexp@4.0.0: {}
 
-  eslint-plugin-react-compiler@19.0.0-beta-714736e-20250131(eslint@10.13.0(jiti@2.7.0))(supports-color@10.2.2):
+  eslint-plugin-react-compiler@19.0.0-beta-714736e-20250131(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2):
     dependencies:
       '@babel/core': 7.26.10(supports-color@10.2.2)
       '@babel/parser': 7.27.0
       '@babel/plugin-proposal-private-methods': 7.18.6(@babel/core@7.26.10(supports-color@10.2.2))(supports-color@10.2.2)
-      eslint: 10.13.0(jiti@2.7.0)
+      eslint: 10.13.0(jiti@2.7.0)(supports-color@10.2.2)
       hermes-parser: 0.25.1
       zod: 3.25.76
       zod-validation-error: 3.4.0(zod@3.25.76)
@@ -6978,11 +6978,11 @@ snapshots:
 
   eslint-visitor-keys@5.0.1: {}
 
-  eslint@10.13.0(jiti@2.7.0):
+  eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2):
     dependencies:
-      '@eslint-community/eslint-utils': 4.10.1(eslint@10.13.0(jiti@2.7.0))
+      '@eslint-community/eslint-utils': 4.10.1(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))
       '@eslint-community/regexpp': 4.12.2
-      '@eslint/config-array': 0.23.5
+      '@eslint/config-array': 0.23.5(supports-color@10.2.2)
       '@eslint/config-helpers': 0.7.0
       '@eslint/core': 1.2.1
       '@eslint/plugin-kit': 0.7.3
@@ -7247,17 +7247,17 @@ snapshots:
 
   isexe@2.0.0: {}
 
-  jest-styled-components@7.4.0(styled-components@6.6.0(css-to-react-native@3.2.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)):
+  jest-styled-components@7.4.0(styled-components@6.6.0(css-to-react-native@3.2.0)(react-dom@19.3.0(react@19.3.1))(react@19.3.1)):
     dependencies:
       '@adobe/css-tools': 4.5.0
-      styled-components: 6.6.0(css-to-react-native@3.2.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      styled-components: 6.6.0(css-to-react-native@3.2.0)(react-dom@19.3.0(react@19.3.1))(react@19.3.1)
 
   jiti@2.7.0: {}
 
-  jotai@3.0.1(@types/react@19.2.1)(react@19.3.0):
+  jotai@3.0.1(@types/react@19.2.1)(react@19.3.1):
     optionalDependencies:
       '@types/react': 19.2.1
-      react: 19.3.0
+      react: 19.3.1
 
   js-levenshtein@1.1.6: {}
 
@@ -7543,23 +7543,23 @@ snapshots:
       nav-frontend-paneler-style: 1.1.1(nav-frontend-core@5.1.1)
       nav-frontend-typografi-style: 1.1.1
 
-  nav-frontend-alertstriper@3.1.2(classnames@2.5.1)(nav-frontend-alertstriper-style@2.1.1(nav-frontend-core@5.1.1)(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.0))(prop-types@15.8.1)(react@19.3.0):
+  nav-frontend-alertstriper@3.1.2(classnames@2.5.1)(nav-frontend-alertstriper-style@2.1.1(nav-frontend-core@5.1.1)(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.1))(prop-types@15.8.1)(react@19.3.1):
     dependencies:
       classnames: 2.5.1
       nav-frontend-alertstriper-style: 2.1.1(nav-frontend-core@5.1.1)(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)
       nav-frontend-ikoner-assets: 2.0.10
-      nav-frontend-typografi: 3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.0)
+      nav-frontend-typografi: 3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.1)
       prop-types: 15.8.1
-      react: 19.3.0
+      react: 19.3.1
 
   nav-frontend-chevron-style@1.0.4: {}
 
-  nav-frontend-chevron@1.0.30(classnames@2.5.1)(nav-frontend-chevron-style@1.0.4)(prop-types@15.8.1)(react@19.3.0):
+  nav-frontend-chevron@1.0.30(classnames@2.5.1)(nav-frontend-chevron-style@1.0.4)(prop-types@15.8.1)(react@19.3.1):
     dependencies:
       classnames: 2.5.1
       nav-frontend-chevron-style: 1.0.4
       prop-types: 15.8.1
-      react: 19.3.0
+      react: 19.3.1
 
   nav-frontend-core@5.1.1: {}
 
@@ -7570,63 +7570,63 @@ snapshots:
       nav-frontend-paneler-style: 1.1.1(nav-frontend-core@5.1.1)
       nav-frontend-typografi-style: 1.1.1
 
-  nav-frontend-ekspanderbartpanel@3.1.4(@types/react-collapse@5.0.4)(classnames@2.5.1)(nav-frontend-ekspanderbartpanel-style@1.1.2(nav-frontend-chevron-style@1.0.4)(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.0))(react-collapse@5.1.1(react@19.3.0))(react@19.3.0):
+  nav-frontend-ekspanderbartpanel@3.1.4(@types/react-collapse@5.0.4)(classnames@2.5.1)(nav-frontend-ekspanderbartpanel-style@1.1.2(nav-frontend-chevron-style@1.0.4)(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.1))(react-collapse@5.1.1(react@19.3.1))(react@19.3.1):
     dependencies:
       '@types/react-collapse': 5.0.4
       classnames: 2.5.1
       nav-frontend-ekspanderbartpanel-style: 1.1.2(nav-frontend-chevron-style@1.0.4)(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)
-      nav-frontend-js-utils: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.0)
-      react: 19.3.0
-      react-collapse: 5.1.1(react@19.3.0)
+      nav-frontend-js-utils: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.1)
+      react: 19.3.1
+      react-collapse: 5.1.1(react@19.3.1)
 
   nav-frontend-etiketter-style@1.1.2(nav-frontend-core@5.1.1):
     dependencies:
       nav-frontend-core: 5.1.1
 
-  nav-frontend-etiketter@2.1.3(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-etiketter-style@1.1.2(nav-frontend-core@5.1.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.0))(prop-types@15.8.1)(react@19.3.0):
+  nav-frontend-etiketter@2.1.3(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-etiketter-style@1.1.2(nav-frontend-core@5.1.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.1))(prop-types@15.8.1)(react@19.3.1):
     dependencies:
       classnames: 2.5.1
       nav-frontend-core: 5.1.1
       nav-frontend-etiketter-style: 1.1.2(nav-frontend-core@5.1.1)
-      nav-frontend-typografi: 3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.0)
+      nav-frontend-typografi: 3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.1)
       prop-types: 15.8.1
-      react: 19.3.0
+      react: 19.3.1
 
   nav-frontend-hjelpetekst-style@2.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1):
     dependencies:
       nav-frontend-core: 5.1.1
       nav-frontend-typografi-style: 1.1.1
 
-  nav-frontend-hjelpetekst@2.1.4(classnames@2.5.1)(nav-frontend-hjelpetekst-style@2.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.0))(nav-frontend-popover@1.1.1(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.0))(nav-frontend-popover-style@1.1.1)(prop-types@15.8.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(prop-types@15.8.1)(react@19.3.0):
+  nav-frontend-hjelpetekst@2.1.4(classnames@2.5.1)(nav-frontend-hjelpetekst-style@2.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.1))(nav-frontend-popover@1.1.1(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.1))(nav-frontend-popover-style@1.1.1)(prop-types@15.8.1)(react-dom@19.3.0(react@19.3.1))(react@19.3.1))(prop-types@15.8.1)(react@19.3.1):
     dependencies:
       classnames: 2.5.1
       nav-frontend-hjelpetekst-style: 2.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)
       nav-frontend-ikoner-assets: 2.0.10
-      nav-frontend-js-utils: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.0)
-      nav-frontend-popover: 1.1.1(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.0))(nav-frontend-popover-style@1.1.1)(prop-types@15.8.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      nav-frontend-js-utils: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.1)
+      nav-frontend-popover: 1.1.1(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.1))(nav-frontend-popover-style@1.1.1)(prop-types@15.8.1)(react-dom@19.3.0(react@19.3.1))(react@19.3.1)
       prop-types: 15.8.1
-      react: 19.3.0
+      react: 19.3.1
 
   nav-frontend-ikoner-assets@2.0.10: {}
 
-  nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.0):
+  nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.1):
     dependencies:
       lodash.throttle: 4.1.1
       prop-types: 15.8.1
-      react: 19.3.0
+      react: 19.3.1
 
   nav-frontend-knapper-style@1.1.2(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1):
     dependencies:
       nav-frontend-core: 5.1.1
       nav-frontend-typografi-style: 1.1.1
 
-  nav-frontend-knapper@2.1.4(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.0))(nav-frontend-knapper-style@1.1.2(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(prop-types@15.8.1)(react@19.3.0):
+  nav-frontend-knapper@2.1.4(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.1))(nav-frontend-knapper-style@1.1.2(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(prop-types@15.8.1)(react@19.3.1):
     dependencies:
       classnames: 2.5.1
-      nav-frontend-js-utils: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.0)
+      nav-frontend-js-utils: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.1)
       nav-frontend-knapper-style: 1.1.2(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)
       prop-types: 15.8.1
-      react: 19.3.0
+      react: 19.3.1
 
   nav-frontend-lenkepanel-style@1.1.1(nav-frontend-chevron-style@1.0.4)(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1)):
     dependencies:
@@ -7634,35 +7634,35 @@ snapshots:
       nav-frontend-core: 5.1.1
       nav-frontend-paneler-style: 1.1.1(nav-frontend-core@5.1.1)
 
-  nav-frontend-lenkepanel@1.1.2(classnames@2.5.1)(nav-frontend-lenkepanel-style@1.1.1(nav-frontend-chevron-style@1.0.4)(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1)))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.0))(prop-types@15.8.1)(react@19.3.0):
+  nav-frontend-lenkepanel@1.1.2(classnames@2.5.1)(nav-frontend-lenkepanel-style@1.1.1(nav-frontend-chevron-style@1.0.4)(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1)))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.1))(prop-types@15.8.1)(react@19.3.1):
     dependencies:
       classnames: 2.5.1
       nav-frontend-lenkepanel-style: 1.1.1(nav-frontend-chevron-style@1.0.4)(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))
-      nav-frontend-typografi: 3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.0)
+      nav-frontend-typografi: 3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.1)
       prop-types: 15.8.1
-      react: 19.3.0
+      react: 19.3.1
 
   nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1):
     dependencies:
       nav-frontend-core: 5.1.1
 
-  nav-frontend-lenker@1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.3.0):
+  nav-frontend-lenker@1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.3.1):
     dependencies:
       classnames: 2.5.1
       nav-frontend-lenker-style: 1.1.1(nav-frontend-core@5.1.1)
       prop-types: 15.8.1
-      react: 19.3.0
+      react: 19.3.1
 
   nav-frontend-lukknapp-style@1.1.1(nav-frontend-core@5.1.1):
     dependencies:
       nav-frontend-core: 5.1.1
 
-  nav-frontend-lukknapp@1.2.2(classnames@2.5.1)(nav-frontend-lukknapp-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.3.0):
+  nav-frontend-lukknapp@1.2.2(classnames@2.5.1)(nav-frontend-lukknapp-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.3.1):
     dependencies:
       classnames: 2.5.1
       nav-frontend-lukknapp-style: 1.1.1(nav-frontend-core@5.1.1)
       prop-types: 15.8.1
-      react: 19.3.0
+      react: 19.3.1
 
   nav-frontend-modal-style@1.1.1(nav-frontend-core@5.1.1)(nav-frontend-lukknapp-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1)):
     dependencies:
@@ -7670,39 +7670,39 @@ snapshots:
       nav-frontend-lukknapp-style: 1.1.1(nav-frontend-core@5.1.1)
       nav-frontend-paneler-style: 1.1.1(nav-frontend-core@5.1.1)
 
-  nav-frontend-modal@1.2.2(@types/react-modal@3.16.3)(classnames@2.5.1)(nav-frontend-lukknapp@1.2.2(classnames@2.5.1)(nav-frontend-lukknapp-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.3.0))(nav-frontend-modal-style@1.1.1(nav-frontend-core@5.1.1)(nav-frontend-lukknapp-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1)))(prop-types@15.8.1)(react-modal@3.16.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react@19.3.0):
+  nav-frontend-modal@1.2.2(@types/react-modal@3.16.3)(classnames@2.5.1)(nav-frontend-lukknapp@1.2.2(classnames@2.5.1)(nav-frontend-lukknapp-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.3.1))(nav-frontend-modal-style@1.1.1(nav-frontend-core@5.1.1)(nav-frontend-lukknapp-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1)))(prop-types@15.8.1)(react-modal@3.16.3(react-dom@19.3.0(react@19.3.1))(react@19.3.1))(react@19.3.1):
     dependencies:
       '@types/react-modal': 3.16.3
       classnames: 2.5.1
-      nav-frontend-lukknapp: 1.2.2(classnames@2.5.1)(nav-frontend-lukknapp-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.3.0)
+      nav-frontend-lukknapp: 1.2.2(classnames@2.5.1)(nav-frontend-lukknapp-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.3.1)
       nav-frontend-modal-style: 1.1.1(nav-frontend-core@5.1.1)(nav-frontend-lukknapp-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))
       prop-types: 15.8.1
-      react: 19.3.0
-      react-modal: 3.16.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      react: 19.3.1
+      react-modal: 3.16.3(react-dom@19.3.0(react@19.3.1))(react@19.3.1)
 
   nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1):
     dependencies:
       nav-frontend-core: 5.1.1
 
-  nav-frontend-paneler@2.1.2(classnames@2.5.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.0))(prop-types@15.8.1)(react@19.3.0):
+  nav-frontend-paneler@2.1.2(classnames@2.5.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.1))(prop-types@15.8.1)(react@19.3.1):
     dependencies:
       classnames: 2.5.1
       nav-frontend-paneler-style: 1.1.1(nav-frontend-core@5.1.1)
-      nav-frontend-typografi: 3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.0)
+      nav-frontend-typografi: 3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.1)
       nav-frontend-typografi-style: 1.1.1
       prop-types: 15.8.1
-      react: 19.3.0
+      react: 19.3.1
 
   nav-frontend-popover-style@1.1.1: {}
 
-  nav-frontend-popover@1.1.1(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.0))(nav-frontend-popover-style@1.1.1)(prop-types@15.8.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
+  nav-frontend-popover@1.1.1(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.1))(nav-frontend-popover-style@1.1.1)(prop-types@15.8.1)(react-dom@19.3.0(react@19.3.1))(react@19.3.1):
     dependencies:
       classnames: 2.5.1
-      nav-frontend-js-utils: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.0)
+      nav-frontend-js-utils: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.1)
       nav-frontend-popover-style: 1.1.1
       prop-types: 15.8.1
-      react: 19.3.0
-      react-dom: 19.3.0(react@19.3.0)
+      react: 19.3.1
+      react-dom: 19.3.0(react@19.3.1)
 
   nav-frontend-skjema-style@2.2.3(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1):
     dependencies:
@@ -7710,41 +7710,41 @@ snapshots:
       nav-frontend-paneler-style: 1.1.1(nav-frontend-core@5.1.1)
       nav-frontend-typografi-style: 1.1.1
 
-  nav-frontend-skjema@3.2.6(@navikt/fnrvalidator@2.2.1)(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.0))(nav-frontend-lenker@1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.3.0))(nav-frontend-skjema-style@2.2.3(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.0))(prop-types@15.8.1)(react@19.3.0):
+  nav-frontend-skjema@3.2.6(@navikt/fnrvalidator@2.2.1)(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.1))(nav-frontend-lenker@1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.3.1))(nav-frontend-skjema-style@2.2.3(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.1))(prop-types@15.8.1)(react@19.3.1):
     dependencies:
       '@navikt/fnrvalidator': 2.2.1
       classnames: 2.5.1
-      nav-frontend-js-utils: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.0)
-      nav-frontend-lenker: 1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.3.0)
+      nav-frontend-js-utils: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.1)
+      nav-frontend-lenker: 1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.3.1)
       nav-frontend-skjema-style: 2.2.3(nav-frontend-core@5.1.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)
-      nav-frontend-typografi: 3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.0)
+      nav-frontend-typografi: 3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.1)
       prop-types: 15.8.1
-      react: 19.3.0
+      react: 19.3.1
 
   nav-frontend-snakkeboble-style@1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1):
     dependencies:
       nav-frontend-core: 5.1.1
       nav-frontend-typografi-style: 1.1.1
 
-  nav-frontend-snakkeboble@2.1.2(classnames@2.5.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-paneler@2.1.2(classnames@2.5.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.0))(prop-types@15.8.1)(react@19.3.0))(nav-frontend-snakkeboble-style@1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.0))(prop-types@15.8.1)(react@19.3.0):
+  nav-frontend-snakkeboble@2.1.2(classnames@2.5.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-paneler@2.1.2(classnames@2.5.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.1))(prop-types@15.8.1)(react@19.3.1))(nav-frontend-snakkeboble-style@1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.1))(prop-types@15.8.1)(react@19.3.1):
     dependencies:
       classnames: 2.5.1
-      nav-frontend-paneler: 2.1.2(classnames@2.5.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.0))(prop-types@15.8.1)(react@19.3.0)
+      nav-frontend-paneler: 2.1.2(classnames@2.5.1)(nav-frontend-paneler-style@1.1.1(nav-frontend-core@5.1.1))(nav-frontend-typografi-style@1.1.1)(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.1))(prop-types@15.8.1)(react@19.3.1)
       nav-frontend-paneler-style: 1.1.1(nav-frontend-core@5.1.1)
       nav-frontend-snakkeboble-style: 1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)
-      nav-frontend-typografi: 3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.0)
+      nav-frontend-typografi: 3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.1)
       prop-types: 15.8.1
-      react: 19.3.0
+      react: 19.3.1
 
   nav-frontend-spinner-style@1.0.2: {}
 
-  nav-frontend-spinner@2.0.17(classnames@2.5.1)(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-spinner-style@1.0.2)(prop-types@15.8.1)(react@19.3.0):
+  nav-frontend-spinner@2.0.17(classnames@2.5.1)(nav-frontend-ikoner-assets@2.0.10)(nav-frontend-spinner-style@1.0.2)(prop-types@15.8.1)(react@19.3.1):
     dependencies:
       classnames: 2.5.1
       nav-frontend-ikoner-assets: 2.0.10
       nav-frontend-spinner-style: 1.0.2
       prop-types: 15.8.1
-      react: 19.3.0
+      react: 19.3.1
 
   nav-frontend-stegindikator-style@1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1):
     dependencies:
@@ -7756,32 +7756,32 @@ snapshots:
       nav-frontend-core: 5.1.1
       nav-frontend-typografi-style: 1.1.1
 
-  nav-frontend-tabs@1.1.3(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.0))(nav-frontend-tabs-style@1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(react@19.3.0):
+  nav-frontend-tabs@1.1.3(classnames@2.5.1)(nav-frontend-js-utils@1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.1))(nav-frontend-tabs-style@1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1))(react@19.3.1):
     dependencies:
       classnames: 2.5.1
-      nav-frontend-js-utils: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.0)
+      nav-frontend-js-utils: 1.0.20(lodash.throttle@4.1.1)(prop-types@15.8.1)(react@19.3.1)
       nav-frontend-tabs-style: 1.1.1(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)
-      react: 19.3.0
+      react: 19.3.1
 
-  nav-frontend-tekstomrade@2.1.3(nav-frontend-lenker@1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.3.0))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.0))(prop-types@15.8.1)(react@19.3.0):
+  nav-frontend-tekstomrade@2.1.3(nav-frontend-lenker@1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.3.1))(nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.1))(prop-types@15.8.1)(react@19.3.1):
     dependencies:
-      '@navikt/textparser': 2.5.0(react@19.3.0)
-      nav-frontend-lenker: 1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.3.0)
-      nav-frontend-typografi: 3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.0)
+      '@navikt/textparser': 2.5.0(react@19.3.1)
+      nav-frontend-lenker: 1.1.2(classnames@2.5.1)(nav-frontend-lenker-style@1.1.1(nav-frontend-core@5.1.1))(prop-types@15.8.1)(react@19.3.1)
+      nav-frontend-typografi: 3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.1)
       prop-types: 15.8.1
-      react: 19.3.0
+      react: 19.3.1
 
   nav-frontend-typografi-style@1.1.1:
     dependencies:
       nav-frontend-core: 5.1.1
 
-  nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.0):
+  nav-frontend-typografi@3.1.2(classnames@2.5.1)(nav-frontend-core@5.1.1)(nav-frontend-typografi-style@1.1.1)(prop-types@15.8.1)(react@19.3.1):
     dependencies:
       classnames: 2.5.1
       nav-frontend-core: 5.1.1
       nav-frontend-typografi-style: 1.1.1
       prop-types: 15.8.1
-      react: 19.3.0
+      react: 19.3.1
 
   needle@2.9.1:
     dependencies:
@@ -7819,9 +7819,9 @@ snapshots:
     dependencies:
       openapi-typescript-helpers: 0.0.15
 
-  openapi-react-query@0.4.2(@tanstack/react-query@5.104.5(@types/react@19.2.1)(react@19.3.0))(openapi-fetch@0.13.8):
+  openapi-react-query@0.4.2(@tanstack/react-query@5.104.5(@types/react@19.2.1)(react@19.3.1))(openapi-fetch@0.13.8):
     dependencies:
-      '@tanstack/react-query': 5.104.5(@types/react@19.2.1)(react@19.3.0)
+      '@tanstack/react-query': 5.104.5(@types/react@19.2.1)(react@19.3.1)
       openapi-fetch: 0.13.8
       openapi-typescript-helpers: 0.0.15
 
@@ -8002,26 +8002,26 @@ snapshots:
 
   queue-microtask@1.2.3: {}
 
-  react-collapse@5.1.1(react@19.3.0):
+  react-collapse@5.1.1(react@19.3.1):
     dependencies:
-      react: 19.3.0
+      react: 19.3.1
 
-  react-day-picker@10.0.1(@types/react@19.2.1)(react@19.3.0):
+  react-day-picker@10.0.1(@types/react@19.2.1)(react@19.3.1):
     dependencies:
       '@date-fns/tz': 1.5.0
       date-fns: 4.4.0
-      react: 19.3.0
+      react: 19.3.1
     optionalDependencies:
       '@types/react': 19.2.1
 
-  react-dom@19.3.0(react@19.3.0):
+  react-dom@19.3.0(react@19.3.1):
     dependencies:
-      react: 19.3.0
+      react: 19.3.1
       scheduler: 0.28.0
 
-  react-hook-form@7.90.0(@types/react@19.2.1)(react@19.3.0):
+  react-hook-form@7.90.0(@types/react@19.2.1)(react@19.3.1):
     dependencies:
-      react: 19.3.0
+      react: 19.3.1
     optionalDependencies:
       '@types/react': 19.2.1
 
@@ -8033,35 +8033,35 @@ snapshots:
 
   react-lifecycles-compat@3.0.4: {}
 
-  react-modal@3.16.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
+  react-modal@3.16.3(react-dom@19.3.0(react@19.3.1))(react@19.3.1):
     dependencies:
       exenv: 1.2.2
       prop-types: 15.8.1
-      react: 19.3.0
-      react-dom: 19.3.0(react@19.3.0)
+      react: 19.3.1
+      react-dom: 19.3.0(react@19.3.1)
       react-lifecycles-compat: 3.0.4
       warning: 4.0.3
 
-  react-redux@7.2.9(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
+  react-redux@7.2.9(react-dom@19.3.0(react@19.3.1))(react@19.3.1):
     dependencies:
       '@babel/runtime': 7.29.2
       '@types/react-redux': 7.1.34
       hoist-non-react-statics: 3.3.2
       loose-envify: 1.4.0
       prop-types: 15.8.1
-      react: 19.3.0
+      react: 19.3.1
       react-is: 17.0.2
     optionalDependencies:
-      react-dom: 19.3.0(react@19.3.0)
+      react-dom: 19.3.0(react@19.3.1)
 
   react-refresh@0.18.0: {}
 
-  react-resizable-panels@4.14.7(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
+  react-resizable-panels@4.14.7(react-dom@19.3.0(react@19.3.1))(react@19.3.1):
     dependencies:
-      react: 19.3.0
-      react-dom: 19.3.0(react@19.3.0)
+      react: 19.3.1
+      react-dom: 19.3.0(react@19.3.1)
 
-  react@19.3.0: {}
+  react@19.3.1: {}
 
   readdirp@3.6.0:
     dependencies:
@@ -8210,10 +8210,10 @@ snapshots:
       dot-case: 3.0.4
       tslib: 2.8.1
 
-  sonner@2.0.8(@types/react@19.2.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
+  sonner@2.0.8(@types/react@19.2.1)(react-dom@19.3.0(react@19.3.1))(react@19.3.1):
     dependencies:
-      react: 19.3.0
-      react-dom: 19.3.0(react@19.3.0)
+      react: 19.3.1
+      react-dom: 19.3.0(react@19.3.1)
     optionalDependencies:
       '@types/react': 19.2.1
 
@@ -8256,16 +8256,16 @@ snapshots:
 
   strip-json-comments@5.0.3: {}
 
-  styled-components@6.6.0(css-to-react-native@3.2.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
+  styled-components@6.6.0(css-to-react-native@3.2.0)(react-dom@19.3.0(react@19.3.1))(react@19.3.1):
     dependencies:
       '@emotion/is-prop-valid': 1.4.0
       '@types/stylis': 4.2.7
       csstype: 3.2.3
-      react: 19.3.0
+      react: 19.3.1
       stylis: 4.3.6
     optionalDependencies:
       css-to-react-native: 3.2.0
-      react-dom: 19.3.0(react@19.3.0)
+      react-dom: 19.3.0(react@19.3.1)
 
   stylis@4.3.6: {}
 
@@ -8345,13 +8345,13 @@ snapshots:
     dependencies:
       tagged-tag: 1.0.0
 
-  typescript-eslint@8.67.0(eslint@10.13.0(jiti@2.7.0))(supports-color@10.2.2)(typescript@5.9.3):
+  typescript-eslint@8.67.0(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3):
     dependencies:
-      '@typescript-eslint/eslint-plugin': 8.67.0(@typescript-eslint/parser@8.67.0(eslint@10.13.0(jiti@2.7.0))(supports-color@10.2.2)(typescript@5.9.3))(eslint@10.13.0(jiti@2.7.0))(supports-color@10.2.2)(typescript@5.9.3)
-      '@typescript-eslint/parser': 8.67.0(eslint@10.13.0(jiti@2.7.0))(supports-color@10.2.2)(typescript@5.9.3)
+      '@typescript-eslint/eslint-plugin': 8.67.0(@typescript-eslint/parser@8.67.0(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3))(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3)
+      '@typescript-eslint/parser': 8.67.0(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3)
       '@typescript-eslint/typescript-estree': 8.67.0(typescript@5.9.3)
-      '@typescript-eslint/utils': 8.67.0(eslint@10.13.0(jiti@2.7.0))(typescript@5.9.3)
-      eslint: 10.13.0(jiti@2.7.0)
+      '@typescript-eslint/utils': 8.67.0(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(typescript@5.9.3)
+      eslint: 10.13.0(jiti@2.7.0)(supports-color@10.2.2)
       typescript: 5.9.3
     transitivePeerDependencies:
       - supports-color
@@ -8398,13 +8398,13 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  use-sync-external-store@1.6.0(react@19.3.0):
+  use-sync-external-store@1.6.0(react@19.3.1):
     dependencies:
-      react: 19.3.0
+      react: 19.3.1
 
-  use-sync-external-store@1.7.0(react@19.3.0):
+  use-sync-external-store@1.7.0(react@19.3.1):
     dependencies:
-      react: 19.3.0
+      react: 19.3.1
 
   vite-plugin-dynamic-import@1.6.0:
     dependencies:
