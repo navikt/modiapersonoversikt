@@ -63,10 +63,19 @@ export const TemaFilterKort = ({ temaer, selectedTemaer, onChange, dataLoaded }:
     }, [temaer]);
 
     const antallSkjulteTemaer = temaer.length - antallTemaerPåFørsteLinje;
+    const maksAntallKolonner = Math.max(1, Math.min(5, temaer.length));
 
     return (
-        <Card background="neutral-soft" padding="space-16" borderRadius="16">
+        <Card
+            background="neutral-soft"
+            padding="space-16"
+            borderRadius="16"
+            flexGrow="0"
+            width="100%"
+            maxWidth={`calc(${maksAntallKolonner} * 11rem + ${maksAntallKolonner - 1} * var(--ax-space-24) + 2 * var(--ax-space-16))`}
+        >
             <CheckboxGroup
+                style={{ padding: 'var(--ax-space-0)', minInlineSize: 0 }}
                 legend="Velg tema for å filtrere dokumenter"
                 description={
                     <BodyShort size="small">
@@ -84,7 +93,7 @@ export const TemaFilterKort = ({ temaer, selectedTemaer, onChange, dataLoaded }:
                             id={listeId}
                             ref={listeRef}
                             data-tema-filter-liste
-                            columns="repeat(auto-fit, minmax(min(100%, 14rem), 1fr))"
+                            columns="repeat(auto-fit, minmax(min(100%, 11rem), 1fr))"
                             gap="space-24"
                             maxHeight={
                                 visAlleTemaer || høydePåFørsteLinje === 0 ? undefined : `${høydePåFørsteLinje}px`
@@ -100,8 +109,10 @@ export const TemaFilterKort = ({ temaer, selectedTemaer, onChange, dataLoaded }:
                                             temaRefs.current[index] = element;
                                         }}
                                         data-tema-filter-element
+                                        minWidth="0"
                                         maxWidth="100%"
-                                        className="wrap-break-word"
+                                        className="hyphens-auto wrap-anywhere"
+                                        lang="nb"
                                         aria-hidden={skjult || undefined}
                                         inert={skjult}
                                         style={{ visibility: skjult ? 'hidden' : 'visible' }}
@@ -143,13 +154,13 @@ const TemaValg = ({ tema, valgt }: { tema: TemaDokumentStatistikk; valgt: boolea
             {deaktivert ? (
                 <Tooltip content={ingenDokumenterTekst} describesChild>
                     <Box>
-                        <Checkbox value={tema.temakode} disabled aria-description={ingenDokumenterTekst} size="small">
+                        <Checkbox value={tema.temakode} disabled aria-description={ingenDokumenterTekst} size="medium">
                             {`${tema.temanavn} (${numberFormatter.format(tema.antallDokumenter)})`}
                         </Checkbox>
                     </Box>
                 </Tooltip>
             ) : (
-                <Checkbox value={tema.temakode} description={beskrivelse} size="small">
+                <Checkbox value={tema.temakode} description={beskrivelse} size="medium">
                     {`${tema.temanavn} (${numberFormatter.format(tema.antallDokumenter)})`}
                 </Checkbox>
             )}
