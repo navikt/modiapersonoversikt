@@ -17,12 +17,30 @@ vi.mock('src/lib/clients/modiapersonoversikt-api', () => ({
     usePersonData: () => ({ data: { person, feilendeSystemer } })
 }));
 
+vi.mock('src/app/brukerprofil/useUrlNyPersonforvalter', () => ({
+    default: () => 'https://pdl-web.test.nav.no/?aktoerId=123'
+}));
+
 beforeEach(() => {
     feilendeSystemer = [];
     person = createPersonData();
 });
 
 describe('TopKort', () => {
+    it('viser lenken til PDL-web høyrejustert under alle kolonnene', () => {
+        render(<TopKort />);
+
+        const lenke = screen.getByRole('link', { name: 'Endre personopplysninger' });
+        expect(lenke).toHaveAttribute('href', 'https://pdl-web.test.nav.no/?aktoerId=123');
+        expect(lenke).toHaveAttribute('target', '_blank');
+        expect(lenke).toHaveAttribute('rel', 'noreferrer noopener');
+        expect(lenke.parentElement).toHaveClass('aksel-hstack');
+        expect(lenke.parentElement).not.toHaveClass('pb-12');
+        const toppkort = lenke.parentElement?.parentElement;
+        expect(toppkort?.children[1]).toHaveClass('aksel-hgrid');
+        expect(toppkort?.lastElementChild).toBe(lenke.parentElement);
+    });
+
     it('viser eksisterende kontaktverdier, prioritert Nav-telefon og bostedsadresse', () => {
         render(<TopKort />);
 
