@@ -18,6 +18,7 @@ import ValidPeriod from '../../common/ValidPeriod';
 import { Adresseinfo, LastChanged } from '../components';
 import { Adressatinfo } from '../KontaktInfo/Dodsbo';
 import KRRInfo from '../KontaktInfo/KRRInfo';
+import PdlLenke from '../PdlLenke';
 import { tilrettelagtKommunikasjonTekst } from '../TilrettelagtKommunikasjon';
 
 const IKKE_REGISTRERT = 'Ikke registrert';
@@ -134,7 +135,7 @@ function TopKort() {
                 <Heading size="large">{navn}</Heading>
             </HStack>
 
-            <HGrid columns={{ xs: 1, md: 2, xl: 3 }} gap={{ xs: 'space-16', xl: 'space-64' }} align="start">
+            <HGrid columns={{ xs: 1, md: 2, xl: 3 }} gap={{ xs: 'space-16', xl: 'space-64' }}>
                 <VStack gap="space-16">
                     <Seksjon tittel="Telefon" feilmelding={krrFeiler ? KRR_FEILET : undefined}>
                         <KRRInfo
@@ -229,6 +230,7 @@ function TopKort() {
                     ))}
                 </VStack>
             </HGrid>
+            <PdlLenke utenBunnpadding />
         </VStack>
     );
 }
