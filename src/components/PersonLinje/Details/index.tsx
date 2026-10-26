@@ -10,7 +10,7 @@ import {
 } from '@navikt/aksel-icons';
 import { Box, Heading, HGrid, HStack, Skeleton, VStack } from '@navikt/ds-react';
 import { Navigate } from '@tanstack/react-router';
-import type { PropsWithChildren, ReactNode } from 'react';
+import type { ComponentProps, PropsWithChildren, ReactNode } from 'react';
 import { AlertBanner } from 'src/components/AlertBanner';
 import Card from 'src/components/Card';
 import ErrorBoundary from 'src/components/ErrorBoundary';
@@ -87,10 +87,16 @@ function SeksjonWrapper({
     tittel,
     icon,
     children,
-    className
-}: PropsWithChildren<{ tittel: string; icon?: ReactNode; className?: string }>) {
+    className,
+    gap = 'space-4'
+}: PropsWithChildren<{
+    tittel: string;
+    icon?: ReactNode;
+    className?: string;
+    gap?: ComponentProps<typeof VStack>['gap'];
+}>) {
     return (
-        <VStack gap="space-4" as="section" className={className}>
+        <VStack gap={gap} as="section" className={className}>
             <HStack gap="space-2" align="center" wrap={false}>
                 <div>{icon}</div>
                 <Heading size="small" level="2">
@@ -118,7 +124,7 @@ const PersonlinjeDetails = () => {
     return (
         <Card className="overflow-auto">
             <VStack gap="space-32">
-                <VStack gap="space-0">
+                <VStack gap="space-16">
                     <Box
                         paddingInline={{ xs: 'space-16', lg: 'space-64 space-32' }}
                         paddingBlock={{ xs: 'space-16', lg: 'space-24' }}
@@ -173,6 +179,7 @@ const PersonlinjeDetails = () => {
                         <SeksjonWrapper
                             tittel="Representasjon og rettslig handleevne"
                             icon={<GavelSoundBlockIcon aria-hidden fontSize="2rem" />}
+                            gap="space-16"
                         >
                             <Representasjon />
                         </SeksjonWrapper>

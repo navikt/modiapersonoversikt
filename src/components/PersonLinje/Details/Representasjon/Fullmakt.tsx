@@ -84,7 +84,7 @@ export const Fullmakt = () => {
     }
 
     return (
-        <VStack gap="space-8">
+        <VStack gap="space-4">
             <Heading size="xsmall" as="h3">
                 Fullmektige
             </Heading>

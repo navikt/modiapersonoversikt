@@ -32,7 +32,7 @@ function OppfolgingOversikt() {
     return (
         <VStack gap="space-8">
             {vedtakFeil.length > 0 && <SeksjonFeil feilmeldinger={vedtakFeil} />}
-            <LinkCard size="small" className="bg-ax-bg-warning-soft">
+            <LinkCard size="small" className="bg-ax-bg-meta-purple-soft">
                 <LinkCard.Title as="span">
                     <LinkCard.Anchor asChild>
                         <Link
