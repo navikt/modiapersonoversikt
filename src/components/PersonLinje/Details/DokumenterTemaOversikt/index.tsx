@@ -53,7 +53,7 @@ function DokumenterTemaOversikt() {
             <VStack gap="space-8" as="ul" className="list-none p-0 m-0">
                 {synligeTemaer.map((tema) => (
                     <li key={tema.temakode}>
-                        <LinkCard size="small" className="bg-ax-bg-brand-magenta-soft">
+                        <LinkCard size="small" className="bg-ax-bg-info-soft">
                             <LinkCard.Title as="span">
                                 <LinkCard.Anchor asChild>
                                     <Link

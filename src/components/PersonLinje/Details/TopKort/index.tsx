@@ -134,7 +134,7 @@ function TopKort() {
                 <Heading size="large">{navn}</Heading>
             </HStack>
 
-            <HGrid columns={{ xs: 1, md: 2, xl: 3 }} gap={{ xs: 'space-16', xl: 'space-8' }} align="start">
+            <HGrid columns={{ xs: 1, md: 2, xl: 3 }} gap={{ xs: 'space-16', xl: 'space-64' }} align="start">
                 <VStack gap="space-16">
                     <Seksjon tittel="Telefon" feilmelding={krrFeiler ? KRR_FEILET : undefined}>
                         <KRRInfo

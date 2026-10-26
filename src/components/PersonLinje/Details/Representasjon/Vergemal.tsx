@@ -88,7 +88,7 @@ function Vergemal() {
     const sammenSattVerger = [...vergemal, ...historiskeVergeMal];
 
     return (
-        <VStack gap="space-8">
+        <VStack gap="space-4">
             <Heading size="xsmall" as="h3">
                 Verger
             </Heading>
