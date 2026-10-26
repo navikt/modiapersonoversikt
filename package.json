@@ -49,7 +49,7 @@
         "@grafana/faro-web-sdk": "^2.12.1",
         "@grafana/faro-web-tracing": "^2.12.1",
         "@navikt/aksel-icons": "^8.19.2",
-        "@navikt/ds-css": "^8.19.2",
+        "@navikt/ds-css": "^8.20.0",
         "@navikt/ds-react": "^8.19.2",
         "@navikt/ds-tailwind": "^8.19.2",
         "@navikt/fnrvalidator": "^2.2.1",
