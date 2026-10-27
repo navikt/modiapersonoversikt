@@ -17,6 +17,8 @@ jobs:
         id-token: write
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
 
     steps:
     - uses: actions/checkout@v7
@@ -32,9 +34,6 @@ jobs:
       run: pnpm install
       env:
         NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
-
-    - name: Install Playwright Browsers
-      run: pnpm exec playwright install --with-deps
 
     - name: Run Playwright tests
       run: pnpm exec playwright test --grep-invert "Universell utforming"
