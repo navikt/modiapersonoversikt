@@ -1,0 +1,2 @@
+import{p as e,t}from"./compiler-runtime-CA6pJ8jX.js";import{n}from"./Details-D3wGUH28.js";import{Ma as r}from"./main-rEK0aVsd.js";var i=t(),a=e();function o(){let e=(0,i.c)(1),t;return e[0]===Symbol.for(`react.memo_cache_sentinel`)?(t=(0,a.jsx)(n,{}),e[0]=t):t=e[0],t}var s=r(`/new/person/oversikt`)({component:o});export{s as Route};
+//# sourceMappingURL=oversikt.lazy-Bh_41mfe.js.map

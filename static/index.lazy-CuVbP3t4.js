@@ -1,0 +1,2 @@
+import{p as e,t}from"./compiler-runtime-CA6pJ8jX.js";import{Ki as n,Ma as r}from"./main-rEK0aVsd.js";var i=t(),a=e(),o=r(`/`)({component:s});function s(){let e=(0,i.c)(1),t;return e[0]===Symbol.for(`react.memo_cache_sentinel`)?(t=(0,a.jsx)(`div`,{className:`flex-1`,children:(0,a.jsx)(n,{variant:`info`,children:`Ingen aktiv bruker. Bruk menyen over for å søke etter person.`})}),e[0]=t):t=e[0],t}export{o as Route};
+//# sourceMappingURL=index.lazy-CuVbP3t4.js.map
