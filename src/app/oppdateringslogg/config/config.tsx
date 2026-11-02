@@ -875,8 +875,8 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             aktiv: true,
             ingress: (
                 <BodyShort>
-                    Den nye Hjem-siden samler informasjon om brukeren og gir deg oversikt over blant annet
-                    dokumenter, arbeidsrettet oppfølging, ytelser og utbetalinger.
+                    Den nye Hjem-siden samler informasjon om brukeren og gir deg oversikt over blant annet dokumenter,
+                    arbeidsrettet oppfølging, ytelser og utbetalinger.
                 </BodyShort>
             ),
             beskrivelse: (
