@@ -31,9 +31,9 @@ import NotifikasjonKanal from './img/notifikasjon-kanal.png';
 import NyKommunikasjon from './img/ny-kommunikasjon-knapper.png';
 import NyeYtelser from './img/nye_ytelser.png';
 import NyModia from './img/nyModia.png';
-import NyHjemSide from './img/oppdateringslogg-ny-hjemside.png';
 import NyttDokumentFilter from './img/nyttdokumentfilter.png';
 import OppdateringsloggKnappBilde from './img/oppdateringslogg-knapp.jpg';
+import NyHjemSide from './img/oppdateringslogg-ny-hjemside.png';
 import OppgaveDestinasjon from './img/oppgave-destinasjon.png';
 import OppslagPaaInaktivIdent from './img/oppslag-paa-inaktiv-ident.png';
 import Revarsling from './img/revarsling.png';
@@ -880,10 +880,24 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                 </BodyShort>
             ),
             beskrivelse: (
-                <BodyShort>
-                    Den gamle Oversikt-siden er fortsatt tilgjengelig i en periode fremover, slik at du også kan bruke
-                    den ved behov.
-                </BodyShort>
+                <>
+                    <List>
+                        <List.Item>
+                            Se nylige dokumenter gruppert på tema, og gå rett til dokumenter fra de siste 30 dagene.
+                        </List.Item>
+                        <List.Item>
+                            Se nylige og kommende utbetalinger direkte på Hjem-siden, uten å åpne Utbetaling-siden.
+                        </List.Item>
+                        <List.Item>
+                            Få oversikt over oppgaver knyttet til meldinger, med frist, prioritet og snarvei til
+                            dialogen.
+                        </List.Item>
+                    </List>
+                    <BodyShort>
+                        Den gamle Oversikt-siden er fortsatt tilgjengelig i en periode fremover, slik at du også kan
+                        bruke den ved behov.
+                    </BodyShort>
+                </>
             ),
             src: NyHjemSide
         }
