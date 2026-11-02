@@ -31,6 +31,7 @@ import NotifikasjonKanal from './img/notifikasjon-kanal.png';
 import NyKommunikasjon from './img/ny-kommunikasjon-knapper.png';
 import NyeYtelser from './img/nye_ytelser.png';
 import NyModia from './img/nyModia.png';
+import NyHjemSide from './img/oppdateringslogg-ny-hjemside.png';
 import NyttDokumentFilter from './img/nyttdokumentfilter.png';
 import OppdateringsloggKnappBilde from './img/oppdateringslogg-knapp.jpg';
 import OppgaveDestinasjon from './img/oppgave-destinasjon.png';
@@ -866,6 +867,25 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                 </List>
             ),
             src: NyttDokumentFilter
+        },
+        {
+            id: 51,
+            tittel: 'Ny Hjem-side i Modia personoversikt',
+            dato: new Date('2026-11-02 14:30'),
+            aktiv: true,
+            ingress: (
+                <BodyShort>
+                    Den nye Hjem-siden samler informasjon om brukeren og gir deg oversikt over blant annet
+                    dokumenter, arbeidsrettet oppfølging, ytelser og utbetalinger.
+                </BodyShort>
+            ),
+            beskrivelse: (
+                <BodyShort>
+                    Den gamle Oversikt-siden er fortsatt tilgjengelig i en periode fremover, slik at du også kan bruke
+                    den ved behov.
+                </BodyShort>
+            ),
+            src: NyHjemSide
         }
     ];
 }
