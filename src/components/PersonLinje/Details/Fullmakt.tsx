@@ -1,5 +1,6 @@
 import { BodyShort, Detail, InlineMessage, ReadMore, VStack } from '@navikt/ds-react';
 import { KopierFnrKnapp } from 'src/components/PersonLinje/common/KopierFnrKnapp';
+import Personopplysninger from 'src/components/PersonLinje/Personopplysninger';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { type PersonData, PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
 import { formaterRettighetstemaer } from 'src/utils/fullmakt-utils';
@@ -50,12 +51,14 @@ function Fullmakt(props: { fullmektig: Fullmektig; harFeilendeSystem: boolean })
 
     return (
         <InfoElement title="Fullmektig">
-            {harFeilendeSystem}
-            <BodyShort size="small">{fullmektigNavn}</BodyShort>
-            <KopierFnrKnapp fnr={props.fullmektig.ident} />
-            <KontaktinformasjonFullmakt
-                kontaktinformasjon={props.fullmektig.digitalKontaktinformasjonTredjepartsperson}
-            />
+            <Personopplysninger skjulingsaarsak={props.fullmektig.skjulingsaarsak}>
+                {harFeilendeSystem}
+                <BodyShort size="small">{fullmektigNavn}</BodyShort>
+                <KopierFnrKnapp fnr={props.fullmektig.ident} />
+                <KontaktinformasjonFullmakt
+                    kontaktinformasjon={props.fullmektig.digitalKontaktinformasjonTredjepartsperson}
+                />
+            </Personopplysninger>
             <ValidPeriod
                 from={props.fullmektig.fullmakt.gyldigFraOgMed}
                 to={props.fullmektig.fullmakt.gyldigTilOgMed}

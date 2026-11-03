@@ -1,5 +1,6 @@
 import { PersonTallShortFillIcon, PersonTallShortIcon } from '@navikt/aksel-icons';
 import { BodyShort, InlineMessage } from '@navikt/ds-react';
+import { hentSkjulingsaarsakTekst } from 'src/components/PersonLinje/skjulingsaarsak';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { type NavnOgIdent, type PersonData, PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
 import { harFeilendeSystemer, hentNavn } from '../utils';
@@ -11,6 +12,9 @@ function kombinerNavnOgIdent(personInfo?: NavnOgIdent | null): string | null {
     if (!personInfo) {
         return null;
     }
+    if (personInfo.skjulingsaarsak) {
+        return hentSkjulingsaarsakTekst(personInfo.skjulingsaarsak);
+    }
 
     const navn = hentNavn(personInfo.navn);
     const ident = personInfo.ident ? personInfo.ident : 'Ukjent fnr/dnr';
@@ -21,7 +25,11 @@ function kombinerNavnOgIdent(personInfo?: NavnOgIdent | null): string | null {
 function ForeldreansvarElement(props: { harFeilendeSystem: boolean; foreldreansvar: Foreldreansvar }) {
     const { foreldreansvar } = props;
 
-    if (props.harFeilendeSystem) {
+    if (
+        props.harFeilendeSystem &&
+        !foreldreansvar.ansvarlig?.skjulingsaarsak &&
+        !foreldreansvar.ansvarsubject?.skjulingsaarsak
+    ) {
         return (
             <InfoElement title={`Ansvar: ${foreldreansvar.ansvar}`} icon={<PersonTallShortIcon />}>
                 <BodyShort size="small">Ansvar: {foreldreansvar.ansvar}</BodyShort>

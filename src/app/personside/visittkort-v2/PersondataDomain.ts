@@ -1,3 +1,4 @@
+import type { Skjulingsaarsak } from 'src/components/PersonLinje/skjulingsaarsak';
 import type { Fullmektig } from 'src/lib/types/modiapersonoversikt-api';
 
 export interface Data {
@@ -95,6 +96,7 @@ interface Opphold {
 }
 
 interface SivilstandRelasjon extends PersonMedAlderOgDodsdato {
+    skjulingsaarsak?: Skjulingsaarsak | null;
     fnr: string;
     navn: Array<Navn>;
     alder: number | null;
@@ -176,6 +178,7 @@ export interface AdvokatSomAdressat {
 }
 
 export interface PersonSomAdressat {
+    skjulingsaarsak?: Skjulingsaarsak | null;
     fnr: string | null;
     navn: Array<Navn>;
     fodselsdato: LocalDate | null;
@@ -213,6 +216,7 @@ export interface Telefon {
 }
 
 export interface Verge {
+    skjulingsaarsak?: Skjulingsaarsak | null;
     ident: string | null;
     navn: Navn | null;
     vergesakstype: string;
@@ -230,6 +234,7 @@ export interface Foreldreansvar {
 }
 
 export interface NavnOgIdent {
+    skjulingsaarsak?: Skjulingsaarsak | null;
     navn: Navn | null;
     ident: string | null;
 }
@@ -240,6 +245,7 @@ export interface DeltBosted {
 }
 
 export interface ForelderBarnRelasjon extends PersonMedAlderOgDodsdato {
+    skjulingsaarsak?: Skjulingsaarsak | null;
     ident: string | null;
     rolle: ForelderBarnRelasjonRolle;
     navn: Array<Navn>;
@@ -330,6 +336,7 @@ interface DkifVerdi<T = string> {
 export enum InformasjonElement {
     PDL_GT = 'PDL_GT',
     PDL_TREDJEPARTSPERSONER = 'PDL_TREDJEPARTSPERSONER',
+    TILGANGSMASKINEN_TREDJEPARTSPERSONER = 'TILGANGSMASKINEN_TREDJEPARTSPERSONER',
     EGEN_ANSATT = 'EGEN_ANSATT',
     DKIF = 'DKIF',
     BANKKONTO = 'BANKKONTO',

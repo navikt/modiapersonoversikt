@@ -1,5 +1,6 @@
 import { HeartFillIcon } from '@navikt/aksel-icons';
 import { Alert, BodyShort, Detail } from '@navikt/ds-react';
+import Personopplysninger from 'src/components/PersonLinje/Personopplysninger';
 import { type PersonData, SivilstandType } from 'src/lib/types/modiapersonoversikt-api';
 import { formaterDato } from 'src/utils/string-utils';
 import Diskresjonskode from '../../common/DiskresjonsKode';
@@ -28,7 +29,7 @@ function SivilstandTekst(props: { sivilstand: Sivilstand }) {
 }
 
 function Partner(props: { partner: Sivilstand; harFeilendeSystem: boolean }) {
-    if (props.harFeilendeSystem) {
+    if (props.harFeilendeSystem && !props.partner.sivilstandRelasjon?.skjulingsaarsak) {
         return (
             <>
                 <BodyShort size="small">
@@ -48,14 +49,16 @@ function Partner(props: { partner: Sivilstand; harFeilendeSystem: boolean }) {
             <BodyShort size="small">
                 <SivilstandTekst sivilstand={props.partner} />
             </BodyShort>
-            <Diskresjonskode adressebeskyttelse={partnerRelasjon.adressebeskyttelse} />
-            <BodyShort size="small">
-                {navn && hentNavn(navn)} ({hentAlderEllerDod(partnerRelasjon)})
-            </BodyShort>
-            <Detail>{partnerRelasjon.fnr}</Detail>
-            <Detail textColor="subtle">
-                {partnerRelasjon.harSammeAdresse ? <>Bor med bruker</> : <>Bor ikke med bruker</>}
-            </Detail>
+            <Personopplysninger skjulingsaarsak={partnerRelasjon.skjulingsaarsak}>
+                <Diskresjonskode adressebeskyttelse={partnerRelasjon.adressebeskyttelse} />
+                <BodyShort size="small">
+                    {navn && hentNavn(navn)} ({hentAlderEllerDod(partnerRelasjon)})
+                </BodyShort>
+                <Detail>{partnerRelasjon.fnr}</Detail>
+                <Detail textColor="subtle">
+                    {partnerRelasjon.harSammeAdresse ? <>Bor med bruker</> : <>Bor ikke med bruker</>}
+                </Detail>
+            </Personopplysninger>
         </>
     );
 }

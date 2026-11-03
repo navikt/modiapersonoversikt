@@ -1,4 +1,5 @@
 import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
+import Personopplysninger from 'src/components/PersonLinje/Personopplysninger';
 import type { ForelderBarnRelasjon } from '../../PersondataDomain';
 import { hentAlderEllerDod, hentNavn } from '../../visittkort-utils';
 import VisittkortElement from '../VisittkortElement';
@@ -14,28 +15,29 @@ interface Props {
 }
 
 function ForelderBarnRelasjonVisning({ harFeilendeSystem, relasjon, beskrivelse, erBarn }: Props) {
-    if (harFeilendeSystem) {
-        return (
-            <VisittkortElement
-                beskrivelse={beskrivelse}
-                ikon={<FamilierelasjonIkon relasjon={relasjon} erBarn={erBarn} />}
-            >
-                <Feilmelding>Feilet ved uthenting av informasjon om {relasjon.rolle.toLowerCase()}</Feilmelding>
-            </VisittkortElement>
-        );
-    }
     const alder = hentAlderEllerDod(relasjon) ? `(${hentAlderEllerDod(relasjon)})` : null;
     const navn = relasjon.navn.firstOrNull();
     return (
-        <VisittkortElement beskrivelse={beskrivelse} ikon={<FamilierelasjonIkon relasjon={relasjon} erBarn={erBarn} />}>
-            <Diskresjonskode adressebeskyttelse={relasjon.adressebeskyttelse} />
-            <Normaltekst>
-                {navn && hentNavn(navn)} {alder}
-            </Normaltekst>
-            <Normaltekst>{relasjon.ident ? relasjon.ident : 'Ukjent'}</Normaltekst>
-            <Normaltekst>
-                <BostedForRelasjon relasjon={relasjon} />
-            </Normaltekst>
+        <VisittkortElement
+            beskrivelse={relasjon.skjulingsaarsak && erBarn ? 'Barn' : beskrivelse}
+            ikon={relasjon.skjulingsaarsak ? undefined : <FamilierelasjonIkon relasjon={relasjon} erBarn={erBarn} />}
+        >
+            <Personopplysninger skjulingsaarsak={relasjon.skjulingsaarsak} tekstKomponent={Normaltekst}>
+                {harFeilendeSystem ? (
+                    <Feilmelding>Feilet ved uthenting av informasjon om {relasjon.rolle.toLowerCase()}</Feilmelding>
+                ) : (
+                    <>
+                        <Diskresjonskode adressebeskyttelse={relasjon.adressebeskyttelse} />
+                        <Normaltekst>
+                            {navn && hentNavn(navn)} {alder}
+                        </Normaltekst>
+                        <Normaltekst>{relasjon.ident ? relasjon.ident : 'Ukjent'}</Normaltekst>
+                        <Normaltekst>
+                            <BostedForRelasjon relasjon={relasjon} />
+                        </Normaltekst>
+                    </>
+                )}
+            </Personopplysninger>
         </VisittkortElement>
     );
 }

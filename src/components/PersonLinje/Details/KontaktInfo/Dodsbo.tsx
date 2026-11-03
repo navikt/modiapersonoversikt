@@ -1,6 +1,7 @@
 import { LocationPinFillIcon } from '@navikt/aksel-icons';
 import { Alert, BodyShort, Box, InlineMessage } from '@navikt/ds-react';
 import { KopierFnrKnapp } from 'src/components/PersonLinje/common/KopierFnrKnapp';
+import Personopplysninger from 'src/components/PersonLinje/Personopplysninger';
 import type { PersonData } from 'src/lib/types/modiapersonoversikt-api';
 import { capitalizeFirstCharacterAndLowercaseRest, formaterDato } from 'src/utils/string-utils';
 import { hentNavn } from '../../utils';
@@ -77,12 +78,12 @@ function PersonSomAdressatInfo({
     ) : null;
 
     return (
-        <>
+        <Personopplysninger skjulingsaarsak={adressat.skjulingsaarsak} prefiks="Dødsbokontakt">
             {manglerData}
             {navnKomp}
             {fodselsdato}
             <KopierFnrKnapp fnr={adressat.fnr} />
-        </>
+        </Personopplysninger>
     );
 }
 
@@ -103,7 +104,9 @@ function KontaktinformasjonDodsbo({ harFeilendeSystem, dodsbo }: { dodsbo: Dodsb
                             <Adressatinfo harFeilendeSystem={harFeilendeSystem} adressat={dodsbo.adressat} />
                         </Box>
                         <Box marginBlock="space-8">
-                            <Adresseinfo adresse={dodsbo.adresse} />
+                            {!dodsbo.adressat.personSomAdressat?.skjulingsaarsak && (
+                                <Adresseinfo adresse={dodsbo.adresse} />
+                            )}
                             {/* TODO: Her ble det tidligere brukt dodsbo.registrert. Hva ønsker vi å bruke? */}
                             <LastChanged sistEndret={dodsbo.sistEndret} />
                         </Box>

@@ -1579,6 +1579,7 @@ export interface components {
             fodested?: string | null;
         };
         ForelderBarnRelasjon: {
+            skjulingsaarsak?: "MANGLER_TILGANG" | "UAVKLART" | null;
             ident?: string | null;
             /** @enum {string} */
             rolle: ForelderBarnRelasjonRolle;
@@ -1627,6 +1628,7 @@ export interface components {
             skriverettigheter: components["schemas"]["KodeBeskrivelseString"][];
         };
         Fullmektig: {
+            skjulingsaarsak?: "MANGLER_TILGANG" | "UAVKLART" | null;
             ident: string;
             navn?: components["schemas"]["Navn"] | null;
             digitalKontaktinformasjonTredjepartsperson?: components["schemas"]["DigitalKontaktinformasjonTredjepartsperson"] | null;
@@ -1679,6 +1681,7 @@ export interface components {
             etternavn: string;
         };
         NavnOgIdent: {
+            skjulingsaarsak?: "MANGLER_TILGANG" | "UAVKLART" | null;
             navn?: components["schemas"]["Navn"] | null;
             ident?: string | null;
         };
@@ -1742,6 +1745,7 @@ export interface components {
             epost?: string | null;
         };
         PersonSomAdressat: {
+            skjulingsaarsak?: "MANGLER_TILGANG" | "UAVKLART" | null;
             fnr?: string | null;
             navn: components["schemas"]["Navn"][];
             /** Format: date */
@@ -1774,6 +1778,7 @@ export interface components {
             sivilstandRelasjon?: components["schemas"]["SivilstandRelasjon"] | null;
         };
         SivilstandRelasjon: {
+            skjulingsaarsak?: "MANGLER_TILGANG" | "UAVKLART" | null;
             fnr: string;
             navn: components["schemas"]["Navn"][];
             /** Format: int32 */
@@ -1819,6 +1824,7 @@ export interface components {
             sistVerifisert?: string | null;
         };
         Verge: {
+            skjulingsaarsak?: "MANGLER_TILGANG" | "UAVKLART" | null;
             ident?: string | null;
             navn?: components["schemas"]["Navn"] | null;
             vergesakstype: string;
@@ -4110,6 +4116,7 @@ export enum DataFeilendeSystemer {
     PROVIDED_VALUE = "PROVIDED_VALUE",
     PDL_GT = "PDL_GT",
     PDL_TREDJEPARTSPERSONER = "PDL_TREDJEPARTSPERSONER",
+    TILGANGSMASKINEN_TREDJEPARTSPERSONER = "TILGANGSMASKINEN_TREDJEPARTSPERSONER",
     EGEN_ANSATT = "EGEN_ANSATT",
     DKIF = "DKIF",
     DKIF_TREDJEPARTSPERSONER = "DKIF_TREDJEPARTSPERSONER",

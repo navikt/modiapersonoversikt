@@ -78,11 +78,15 @@ function DodsboFelt({
                 Skifteform: {capitalizeFirstCharacterAndLowercaseRest(dodsbo.skifteform)}
             </BodyShort>
             <Adressatinfo harFeilendeSystem={harFeilendeSystem} adressat={dodsbo.adressat} />
-            <ValidPeriod
-                from={dodsbo.adresse.gyldighetsPeriode?.gyldigFraOgMed}
-                to={dodsbo.adresse.gyldighetsPeriode?.gyldigTilOgMed}
-            />
-            <Adresseinfo adresse={dodsbo.adresse} />
+            {!dodsbo.adressat.personSomAdressat?.skjulingsaarsak && (
+                <>
+                    <ValidPeriod
+                        from={dodsbo.adresse.gyldighetsPeriode?.gyldigFraOgMed}
+                        to={dodsbo.adresse.gyldighetsPeriode?.gyldigTilOgMed}
+                    />
+                    <Adresseinfo adresse={dodsbo.adresse} />
+                </>
+            )}
             <LastChanged sistEndret={dodsbo.sistEndret} />
         </Seksjon>
     );
@@ -183,9 +187,9 @@ function TopKort() {
 
                 <VStack gap="space-16">
                     {harDodsbo &&
-                        person.dodsbo.map((dodsbo) => (
+                        person.dodsbo.map((dodsbo, index) => (
                             <DodsboFelt
-                                key={`${dodsbo.registrert}-${dodsbo.adresse.linje1}`}
+                                key={`${dodsbo.registrert}-${dodsbo.adresse.linje1}-${index}`}
                                 dodsbo={dodsbo}
                                 harFeilendeSystem={harFeilendeSystemer(
                                     feilendeSystemer,

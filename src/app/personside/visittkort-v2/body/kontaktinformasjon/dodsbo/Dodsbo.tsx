@@ -1,5 +1,6 @@
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
+import Personopplysninger from 'src/components/PersonLinje/Personopplysninger';
 import styled from 'styled-components';
 import LocationPin from '../../../../../../svg/LocationPin';
 import { capitalizeFirstCharacterAndLowercaseRest, formaterDato } from '../../../../../../utils/string-utils';
@@ -82,12 +83,16 @@ function PersonSomAdressatInfo({
     const navn = adressat.navn ? <Normaltekst>{hentNavn(adressat.navn.firstOrNull())}</Normaltekst> : null;
 
     return (
-        <>
+        <Personopplysninger
+            skjulingsaarsak={adressat.skjulingsaarsak}
+            prefiks="Dødsbokontakt"
+            tekstKomponent={Normaltekst}
+        >
             {manglerData}
             {navn}
             {fnr}
             {fodselsdato}
-        </>
+        </Personopplysninger>
     );
 }
 
@@ -105,9 +110,11 @@ function KontaktinformasjonDodsbo({ harFeilendeSystem, dodsbo }: Props) {
                             Skifteform: {capitalizeFirstCharacterAndLowercaseRest(dodsbo.skifteform)}
                         </Normaltekst>
                         <Adressatinfo harFeilendeSystem={harFeilendeSystem} adressat={dodsbo.adressat} />
-                        <AdresseStyle>
-                            <Adresseinfo adresse={dodsbo.adresse} />
-                        </AdresseStyle>
+                        {!dodsbo.adressat.personSomAdressat?.skjulingsaarsak && (
+                            <AdresseStyle>
+                                <Adresseinfo adresse={dodsbo.adresse} />
+                            </AdresseStyle>
+                        )}
                         {/* TODO: Her ble det tidligere brukt dodsbo.registrert. Hva ønsker vi å bruke? */}
                         <Endringstekst sistEndret={dodsbo.sistEndret} />
                     </VisittkortElement>

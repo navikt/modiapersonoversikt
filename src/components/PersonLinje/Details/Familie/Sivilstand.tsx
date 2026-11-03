@@ -1,6 +1,7 @@
 import { CheckmarkIcon, XMarkOctagonIcon } from '@navikt/aksel-icons';
 import { BodyShort, InlineMessage, Tag, VStack } from '@navikt/ds-react';
 import { KopierFnrKnapp } from 'src/components/PersonLinje/common/KopierFnrKnapp';
+import Personopplysninger from 'src/components/PersonLinje/Personopplysninger';
 import { type PersonData, SivilstandType } from 'src/lib/types/modiapersonoversikt-api';
 import { formaterDato } from 'src/utils/string-utils';
 import Diskresjonskode from '../../common/DiskresjonsKode';
@@ -31,6 +32,16 @@ function SivilstandTekst(props: { sivilstand: Sivilstand }) {
 function Partner(props: { partner: Sivilstand; harFeilendeSystem: boolean }) {
     const partnerRelasjon = props.partner.sivilstandRelasjon;
 
+    if (partnerRelasjon?.skjulingsaarsak) {
+        return (
+            <>
+                <BodyShort size="small">
+                    <SivilstandTekst sivilstand={props.partner} />
+                </BodyShort>
+                <Personopplysninger skjulingsaarsak={partnerRelasjon.skjulingsaarsak} />
+            </>
+        );
+    }
     if (props.harFeilendeSystem || !partnerRelasjon) {
         return (
             <VStack gap="space-4">

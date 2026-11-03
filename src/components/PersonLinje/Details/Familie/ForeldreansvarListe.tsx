@@ -1,6 +1,7 @@
 import { PersonTallShortFillIcon, PersonTallShortIcon } from '@navikt/aksel-icons';
 import { BodyShort, HStack, InlineMessage, VStack } from '@navikt/ds-react';
 import { KopierFnrKnapp } from 'src/components/PersonLinje/common/KopierFnrKnapp';
+import Personopplysninger from 'src/components/PersonLinje/Personopplysninger';
 import type { PersonData } from 'src/lib/types/modiapersonoversikt-api';
 import { hentNavn } from '../../utils';
 import { InfoElement } from '../components';
@@ -14,7 +15,11 @@ function ForeldreansvarElement({
     harFeilendeSystem: boolean;
     foreldreansvar: Foreldreansvar;
 }) {
-    if (harFeilendeSystem) {
+    if (
+        harFeilendeSystem &&
+        !foreldreansvar.ansvarlig?.skjulingsaarsak &&
+        !foreldreansvar.ansvarsubject?.skjulingsaarsak
+    ) {
         return (
             <InfoElement title={`Ansvar: ${foreldreansvar.ansvar}`} icon={<PersonTallShortIcon aria-hidden />}>
                 <InlineMessage status="warning" size="small">
@@ -32,10 +37,14 @@ function ForeldreansvarElement({
                 <PersonTallShortFillIcon aria-hidden fontSize="1.2rem" color="var(--a-igray-400)" />
                 <BodyShort size="small">Ansvar: {foreldreansvar.ansvar} </BodyShort>
             </HStack>
-            {ansvarlig?.navn && <BodyShort size="small">Ansvarlig: {hentNavn(ansvarlig.navn)}</BodyShort>}
-            {ansvarlig?.ident && <KopierFnrKnapp fnr={ansvarlig?.ident} />}
-            {ansvarsubject?.navn && <BodyShort size="small">Gjelder for: {hentNavn(ansvarsubject.navn)}</BodyShort>}
-            {ansvarsubject?.ident && <KopierFnrKnapp fnr={ansvarsubject?.ident} />}
+            <Personopplysninger skjulingsaarsak={ansvarlig?.skjulingsaarsak} prefiks="Ansvarlig">
+                {ansvarlig?.navn && <BodyShort size="small">Ansvarlig: {hentNavn(ansvarlig.navn)}</BodyShort>}
+                {ansvarlig?.ident && <KopierFnrKnapp fnr={ansvarlig.ident} />}
+            </Personopplysninger>
+            <Personopplysninger skjulingsaarsak={ansvarsubject?.skjulingsaarsak} prefiks="Gjelder for">
+                {ansvarsubject?.navn && <BodyShort size="small">Gjelder for: {hentNavn(ansvarsubject.navn)}</BodyShort>}
+                {ansvarsubject?.ident && <KopierFnrKnapp fnr={ansvarsubject.ident} />}
+            </Personopplysninger>
         </VStack>
     );
 }
