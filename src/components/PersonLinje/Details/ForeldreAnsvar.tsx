@@ -13,7 +13,7 @@ function kombinerNavnOgIdent(personInfo?: NavnOgIdent | null): string | null {
         return null;
     }
     if (personInfo.skjulingsaarsak) {
-        return hentSkjulingsaarsakTekst(personInfo.skjulingsaarsak);
+        return hentSkjulingsaarsakTekst(personInfo.skjulingsaarsak, personInfo.tilgangsavslag);
     }
 
     const navn = hentNavn(personInfo.navn);
@@ -27,6 +27,10 @@ function ForeldreansvarElement(props: { harFeilendeSystem: boolean; foreldreansv
 
     if (
         props.harFeilendeSystem &&
+        !foreldreansvar.ansvarlig?.navn &&
+        !foreldreansvar.ansvarlig?.ident &&
+        !foreldreansvar.ansvarsubject?.navn &&
+        !foreldreansvar.ansvarsubject?.ident &&
         !foreldreansvar.ansvarlig?.skjulingsaarsak &&
         !foreldreansvar.ansvarsubject?.skjulingsaarsak
     ) {
@@ -47,8 +51,16 @@ function ForeldreansvarElement(props: { harFeilendeSystem: boolean; foreldreansv
             title={`Ansvar: ${foreldreansvar.ansvar}`}
             icon={<PersonTallShortFillIcon aria-hidden fontSize="1.2rem" color="var(--a-igray-400)" />}
         >
-            {ansvarlig && <BodyShort size="small">Ansvarlig: {ansvarlig}</BodyShort>}
-            {ansvarsubject && <BodyShort size="small">Gjelder for: {ansvarsubject}</BodyShort>}
+            {ansvarlig && (
+                <BodyShort size="small" className="wrap-anywhere">
+                    Ansvarlig: {ansvarlig}
+                </BodyShort>
+            )}
+            {ansvarsubject && (
+                <BodyShort size="small" className="wrap-anywhere">
+                    Gjelder for: {ansvarsubject}
+                </BodyShort>
+            )}
         </InfoElement>
     );
 }

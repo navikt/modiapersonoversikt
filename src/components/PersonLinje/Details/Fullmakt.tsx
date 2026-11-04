@@ -51,14 +51,20 @@ function Fullmakt(props: { fullmektig: Fullmektig; harFeilendeSystem: boolean })
 
     return (
         <InfoElement title="Fullmektig">
-            <Personopplysninger skjulingsaarsak={props.fullmektig.skjulingsaarsak}>
+            <Personopplysninger
+                skjulingsaarsak={props.fullmektig.skjulingsaarsak}
+                tilgangsavslag={props.fullmektig.tilgangsavslag}
+            >
                 {harFeilendeSystem}
                 <BodyShort size="small">{fullmektigNavn}</BodyShort>
-                <KopierFnrKnapp fnr={props.fullmektig.ident} />
+                <KopierFnrKnapp fnr={props.fullmektig.ident || props.fullmektig.fullmakt.fullmektig} />
                 <KontaktinformasjonFullmakt
                     kontaktinformasjon={props.fullmektig.digitalKontaktinformasjonTredjepartsperson}
                 />
             </Personopplysninger>
+            {props.fullmektig.skjulingsaarsak && props.fullmektig.fullmakt.fullmektig && (
+                <KopierFnrKnapp fnr={props.fullmektig.fullmakt.fullmektig} />
+            )}
             <ValidPeriod
                 from={props.fullmektig.fullmakt.gyldigFraOgMed}
                 to={props.fullmektig.fullmakt.gyldigTilOgMed}

@@ -33,10 +33,10 @@ function FullmektigDetaljer(props: { feilendeSystemer: PersonDataFeilendeSysteme
 
     return (
         <>
-            <Personopplysninger skjulingsaarsak={fullmektig.skjulingsaarsak}>
+            <Personopplysninger skjulingsaarsak={fullmektig.skjulingsaarsak} tilgangsavslag={fullmektig.tilgangsavslag}>
                 <Box className="mb-2">
                     {harFeilendeSystemOgIngenNavn}
-                    <KopierFnrKnapp fnr={fullmektig.ident} />
+                    <KopierFnrKnapp fnr={fullmektig.ident || fullmektig.fullmakt.fullmektig} />
                     {fullmektig.digitalKontaktinformasjonTredjepartsperson && (
                         <>
                             <BodyShort size="small">Tlf.: {mobilnummer}</BodyShort>
@@ -50,6 +50,9 @@ function FullmektigDetaljer(props: { feilendeSystemer: PersonDataFeilendeSysteme
                     )}
                 </Box>
             </Personopplysninger>
+            {fullmektig.skjulingsaarsak && fullmektig.fullmakt.fullmektig && (
+                <KopierFnrKnapp fnr={fullmektig.fullmakt.fullmektig} />
+            )}
             <VStack gap="space-8">
                 <FullmaktDetaljer fullmakt={fullmektig.fullmakt} />
             </VStack>
@@ -106,7 +109,7 @@ export const Fullmakt = () => {
                     <Accordion size="small" indent={false}>
                         {fullmektige.map((fullmektig) => {
                             const fullmektigNavn = fullmektig.skjulingsaarsak
-                                ? `Fullmektig: ${hentSkjulingsaarsakTekst(fullmektig.skjulingsaarsak)}`
+                                ? `Fullmektig: ${hentSkjulingsaarsakTekst(fullmektig.skjulingsaarsak, fullmektig.tilgangsavslag)}`
                                 : hentNavn(fullmektig.navn, 'Ukjent fullmektig');
                             const gyldigTilOgMed = fullmektig.fullmakt.gyldigTilOgMed
                                 ? dayjs(fullmektig.fullmakt.gyldigTilOgMed)
@@ -117,7 +120,7 @@ export const Fullmakt = () => {
                             return (
                                 <Accordion.Item key={fullmektig.fullmakt.fullmaktId}>
                                     <Accordion.Header>
-                                        <VStack className="justify-start items-start">
+                                        <VStack className="justify-start items-start wrap-anywhere">
                                             {fullmektig.skjulingsaarsak
                                                 ? fullmektigNavn
                                                 : capitalizeName(fullmektigNavn)}

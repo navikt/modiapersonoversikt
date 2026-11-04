@@ -22,7 +22,7 @@ function Verge(props: { feilendeSystemer: PersonDataFeilendeSystemer[]; verge: V
     return (
         <InfoElement title="Verge">
             <Box className="mb-2">
-                <Personopplysninger skjulingsaarsak={verge.skjulingsaarsak}>
+                <Personopplysninger skjulingsaarsak={verge.skjulingsaarsak} tilgangsavslag={verge.tilgangsavslag}>
                     {harFeilendeSystemOgIngenNavn}
                     <Detail>{verge.ident}</Detail>
                 </Personopplysninger>

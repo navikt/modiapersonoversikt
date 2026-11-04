@@ -78,7 +78,11 @@ function PersonSomAdressatInfo({
     ) : null;
 
     return (
-        <Personopplysninger skjulingsaarsak={adressat.skjulingsaarsak} prefiks="Dødsbokontakt">
+        <Personopplysninger
+            skjulingsaarsak={adressat.skjulingsaarsak}
+            tilgangsavslag={adressat.tilgangsavslag}
+            prefiks="Dødsbokontakt"
+        >
             {manglerData}
             {navnKomp}
             {fodselsdato}

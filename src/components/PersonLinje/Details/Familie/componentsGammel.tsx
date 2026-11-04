@@ -27,8 +27,8 @@ export function ForelderBarnRelasjonVisningGammel({
             title={relasjon.skjulingsaarsak && erBarn ? 'Barn' : beskrivelse}
             icon={relasjon.skjulingsaarsak ? undefined : <FamilierelasjonIkon relasjon={relasjon} erBarn={erBarn} />}
         >
-            <Personopplysninger skjulingsaarsak={relasjon.skjulingsaarsak}>
-                {harFeilendeSystem ? (
+            <Personopplysninger skjulingsaarsak={relasjon.skjulingsaarsak} tilgangsavslag={relasjon.tilgangsavslag}>
+                {harFeilendeSystem && !navn && !relasjon.ident && !alder ? (
                     <Alert variant="warning">
                         Feilet ved uthenting av informasjon om {relasjon.rolle.toLowerCase()}
                     </Alert>

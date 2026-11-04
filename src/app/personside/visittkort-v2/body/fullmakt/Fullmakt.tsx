@@ -74,15 +74,22 @@ function Fullmektig(props: { fullmektig: Fullmektig; harFeilendeSystem: boolean 
 
     return (
         <VisittkortElement beskrivelse="Fullmektig">
-            <Personopplysninger skjulingsaarsak={props.fullmektig.skjulingsaarsak} tekstKomponent={Normaltekst}>
+            <Personopplysninger
+                skjulingsaarsak={props.fullmektig.skjulingsaarsak}
+                tilgangsavslag={props.fullmektig.tilgangsavslag}
+                tekstKomponent={Normaltekst}
+            >
                 {harFeilendeSystem}
                 <Normaltekst>
-                    {fullmektigNavn} {`(${props.fullmektig.ident})`}
+                    {fullmektigNavn} {`(${props.fullmektig.ident || props.fullmektig.fullmakt.fullmektig})`}
                 </Normaltekst>
                 <KontaktinformasjonFullmakt
                     kontaktinformasjon={props.fullmektig.digitalKontaktinformasjonTredjepartsperson}
                 />
             </Personopplysninger>
+            {props.fullmektig.skjulingsaarsak && props.fullmektig.fullmakt.fullmektig && (
+                <Normaltekst>F.nr.: {props.fullmektig.fullmakt.fullmektig}</Normaltekst>
+            )}
             <Normaltekst>
                 Gyldig:{' '}
                 {hentPeriodeTekst(props.fullmektig.fullmakt.gyldigFraOgMed, props.fullmektig.fullmakt.gyldigTilOgMed)}

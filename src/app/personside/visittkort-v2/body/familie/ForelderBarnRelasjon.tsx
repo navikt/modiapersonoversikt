@@ -22,8 +22,12 @@ function ForelderBarnRelasjonVisning({ harFeilendeSystem, relasjon, beskrivelse,
             beskrivelse={relasjon.skjulingsaarsak && erBarn ? 'Barn' : beskrivelse}
             ikon={relasjon.skjulingsaarsak ? undefined : <FamilierelasjonIkon relasjon={relasjon} erBarn={erBarn} />}
         >
-            <Personopplysninger skjulingsaarsak={relasjon.skjulingsaarsak} tekstKomponent={Normaltekst}>
-                {harFeilendeSystem ? (
+            <Personopplysninger
+                skjulingsaarsak={relasjon.skjulingsaarsak}
+                tilgangsavslag={relasjon.tilgangsavslag}
+                tekstKomponent={Normaltekst}
+            >
+                {harFeilendeSystem && !navn && !relasjon.ident && !alder ? (
                     <Feilmelding>Feilet ved uthenting av informasjon om {relasjon.rolle.toLowerCase()}</Feilmelding>
                 ) : (
                     <>

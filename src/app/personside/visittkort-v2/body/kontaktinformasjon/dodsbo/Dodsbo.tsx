@@ -85,6 +85,7 @@ function PersonSomAdressatInfo({
     return (
         <Personopplysninger
             skjulingsaarsak={adressat.skjulingsaarsak}
+            tilgangsavslag={adressat.tilgangsavslag}
             prefiks="Dødsbokontakt"
             tekstKomponent={Normaltekst}
         >

@@ -29,6 +29,7 @@ export function ForelderBarnRelasjonVisning({
     return (
         <Personopplysninger
             skjulingsaarsak={relasjon.skjulingsaarsak}
+            tilgangsavslag={relasjon.tilgangsavslag}
             prefiks={relasjon.rolle === 'BARN' ? 'Barn' : beskrivelse}
         >
             <VStack gap="space-4" className="items-start">

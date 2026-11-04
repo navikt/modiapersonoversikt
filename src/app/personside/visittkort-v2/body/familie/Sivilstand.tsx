@@ -49,7 +49,11 @@ function Partner(props: { partner: SivilstandInterface; harFeilendeSystem: boole
             <Normaltekst>
                 <Sivilstand sivilstand={props.partner} />
             </Normaltekst>
-            <Personopplysninger skjulingsaarsak={partnerRelasjon.skjulingsaarsak} tekstKomponent={Normaltekst}>
+            <Personopplysninger
+                skjulingsaarsak={partnerRelasjon.skjulingsaarsak}
+                tilgangsavslag={partnerRelasjon.tilgangsavslag}
+                tekstKomponent={Normaltekst}
+            >
                 <Diskresjonskode adressebeskyttelse={partnerRelasjon.adressebeskyttelse} />
                 <Normaltekst>
                     {navn && hentNavn(navn)} ({hentAlderEllerDod(partnerRelasjon)})

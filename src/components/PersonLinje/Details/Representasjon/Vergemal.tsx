@@ -46,7 +46,7 @@ function VergeDetaljer(props: { feilendeSystemer: PersonDataFeilendeSystemer[]; 
     return (
         <>
             <Box className="mb-2">
-                <Personopplysninger skjulingsaarsak={verge.skjulingsaarsak}>
+                <Personopplysninger skjulingsaarsak={verge.skjulingsaarsak} tilgangsavslag={verge.tilgangsavslag}>
                     {harFeilendeSystemOgIngenNavn}
                     <KopierFnrKnapp fnr={verge.ident} />
                 </Personopplysninger>
@@ -103,7 +103,7 @@ function Vergemal() {
             <Accordion size="small" indent={false}>
                 {sammenSattVerger.map((verge, index) => {
                     const vergenavn = verge.skjulingsaarsak
-                        ? `Verge: ${hentSkjulingsaarsakTekst(verge.skjulingsaarsak)}`
+                        ? `Verge: ${hentSkjulingsaarsakTekst(verge.skjulingsaarsak, verge.tilgangsavslag)}`
                         : hentNavn(verge.navn, 'Ukjent verge');
                     const gyldigFraOgMed = verge.gyldighetsPeriode?.gyldigFraOgMed
                         ? dayjs(verge.gyldighetsPeriode.gyldigFraOgMed)
@@ -112,7 +112,7 @@ function Vergemal() {
                     return (
                         <Accordion.Item key={`${verge.ident}-${index}`}>
                             <Accordion.Header>
-                                <VStack className="justify-start items-start">
+                                <VStack className="justify-start items-start wrap-anywhere">
                                     {vergenavn} - {verge.vergesakstype}
                                     {!!gyldigFraOgMed && (
                                         <Tag

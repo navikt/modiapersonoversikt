@@ -33,7 +33,11 @@ function Verge(props: { feilendeSystemer: Array<InformasjonElement>; verge: Verg
     return (
         <VisittkortElement beskrivelse="Verge">
             <Vergeinformasjon>
-                <Personopplysninger skjulingsaarsak={verge.skjulingsaarsak} tekstKomponent={Normaltekst}>
+                <Personopplysninger
+                    skjulingsaarsak={verge.skjulingsaarsak}
+                    tilgangsavslag={verge.tilgangsavslag}
+                    tekstKomponent={Normaltekst}
+                >
                     {harFeilendeSystemOgIngenNavn}
                     <Normaltekst>{verge.ident}</Normaltekst>
                 </Personopplysninger>

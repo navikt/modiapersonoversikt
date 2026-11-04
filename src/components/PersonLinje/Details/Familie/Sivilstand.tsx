@@ -38,7 +38,10 @@ function Partner(props: { partner: Sivilstand; harFeilendeSystem: boolean }) {
                 <BodyShort size="small">
                     <SivilstandTekst sivilstand={props.partner} />
                 </BodyShort>
-                <Personopplysninger skjulingsaarsak={partnerRelasjon.skjulingsaarsak} />
+                <Personopplysninger
+                    skjulingsaarsak={partnerRelasjon.skjulingsaarsak}
+                    tilgangsavslag={partnerRelasjon.tilgangsavslag}
+                />
             </>
         );
     }

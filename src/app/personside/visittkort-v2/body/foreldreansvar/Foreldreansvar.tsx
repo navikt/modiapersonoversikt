@@ -17,7 +17,7 @@ function kombinerNavnOgIdent(personInfo: NavnOgIdent | null): string | null {
         return null;
     }
     if (personInfo.skjulingsaarsak) {
-        return hentSkjulingsaarsakTekst(personInfo.skjulingsaarsak);
+        return hentSkjulingsaarsakTekst(personInfo.skjulingsaarsak, personInfo.tilgangsavslag);
     }
 
     const navn = hentNavn(personInfo.navn);
@@ -31,6 +31,10 @@ function ForeldreansvarElement(props: { harFeilendeSystem: boolean; foreldreansv
 
     if (
         props.harFeilendeSystem &&
+        !foreldreansvar.ansvarlig?.navn &&
+        !foreldreansvar.ansvarlig?.ident &&
+        !foreldreansvar.ansvarsubject?.navn &&
+        !foreldreansvar.ansvarsubject?.ident &&
         !foreldreansvar.ansvarlig?.skjulingsaarsak &&
         !foreldreansvar.ansvarsubject?.skjulingsaarsak
     ) {
@@ -47,8 +51,8 @@ function ForeldreansvarElement(props: { harFeilendeSystem: boolean; foreldreansv
     return (
         <VisittkortElement>
             <Normaltekst>Ansvar: {foreldreansvar.ansvar}</Normaltekst>
-            {ansvarlig && <Normaltekst>Ansvarlig: {ansvarlig}</Normaltekst>}
-            {ansvarsubject && <Normaltekst>Gjelder for: {ansvarsubject}</Normaltekst>}
+            {ansvarlig && <Normaltekst className="wrap-anywhere">Ansvarlig: {ansvarlig}</Normaltekst>}
+            {ansvarsubject && <Normaltekst className="wrap-anywhere">Gjelder for: {ansvarsubject}</Normaltekst>}
         </VisittkortElement>
     );
 }

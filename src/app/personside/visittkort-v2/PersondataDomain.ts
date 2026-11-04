@@ -1,5 +1,5 @@
 import type { Skjulingsaarsak } from 'src/components/PersonLinje/skjulingsaarsak';
-import type { Fullmektig } from 'src/lib/types/modiapersonoversikt-api';
+import type { Fullmektig, Tilgangsavslag } from 'src/lib/types/modiapersonoversikt-api';
 
 export interface Data {
     feilendeSystemer: Array<InformasjonElement>;
@@ -97,6 +97,7 @@ interface Opphold {
 
 interface SivilstandRelasjon extends PersonMedAlderOgDodsdato {
     skjulingsaarsak?: Skjulingsaarsak | null;
+    tilgangsavslag?: Tilgangsavslag | null;
     fnr: string;
     navn: Array<Navn>;
     alder: number | null;
@@ -179,6 +180,7 @@ export interface AdvokatSomAdressat {
 
 export interface PersonSomAdressat {
     skjulingsaarsak?: Skjulingsaarsak | null;
+    tilgangsavslag?: Tilgangsavslag | null;
     fnr: string | null;
     navn: Array<Navn>;
     fodselsdato: LocalDate | null;
@@ -217,6 +219,7 @@ export interface Telefon {
 
 export interface Verge {
     skjulingsaarsak?: Skjulingsaarsak | null;
+    tilgangsavslag?: Tilgangsavslag | null;
     ident: string | null;
     navn: Navn | null;
     vergesakstype: string;
@@ -235,6 +238,7 @@ export interface Foreldreansvar {
 
 export interface NavnOgIdent {
     skjulingsaarsak?: Skjulingsaarsak | null;
+    tilgangsavslag?: Tilgangsavslag | null;
     navn: Navn | null;
     ident: string | null;
 }
@@ -246,6 +250,7 @@ export interface DeltBosted {
 
 export interface ForelderBarnRelasjon extends PersonMedAlderOgDodsdato {
     skjulingsaarsak?: Skjulingsaarsak | null;
+    tilgangsavslag?: Tilgangsavslag | null;
     ident: string | null;
     rolle: ForelderBarnRelasjonRolle;
     navn: Array<Navn>;

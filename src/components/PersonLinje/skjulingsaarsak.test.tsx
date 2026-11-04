@@ -3,9 +3,12 @@ import userEvent from '@testing-library/user-event';
 import {
     DodsboSkifteform,
     ForelderBarnRelasjonRolle,
+    FullmaktEndringHendelse,
+    FullmaktEndringKilde,
     type PersonData,
     PersonDataFeilendeSystemer,
-    SivilstandType
+    SivilstandType,
+    type Tilgangsavslag
 } from 'src/lib/types/modiapersonoversikt-api';
 import { createPersonData } from 'src/test/createPersonData';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
@@ -21,6 +24,7 @@ import KontaktinformasjonDodsbo from './Details/KontaktInfo/Dodsbo';
 import { Fullmakt } from './Details/Representasjon/Fullmakt';
 import Vergemal from './Details/Representasjon/Vergemal';
 import VergemalGammel from './Details/VergemalGammel';
+import Personopplysninger from './Personopplysninger';
 import type { Skjulingsaarsak } from './skjulingsaarsak';
 
 let person: PersonData;
@@ -35,7 +39,10 @@ beforeEach(() => {
     feilendeSystemer = [];
 });
 
-function barn(skjulingsaarsak?: Skjulingsaarsak | null): PersonData['forelderBarnRelasjon'][number] {
+function barn(
+    skjulingsaarsak?: Skjulingsaarsak | null,
+    tilgangsavslag?: Tilgangsavslag
+): PersonData['forelderBarnRelasjon'][number] {
     return {
         ident: null,
         rolle: ForelderBarnRelasjonRolle.BARN,
@@ -46,7 +53,8 @@ function barn(skjulingsaarsak?: Skjulingsaarsak | null): PersonData['forelderBar
         adressebeskyttelse: [],
         harSammeAdresse: false,
         dodsdato: [],
-        skjulingsaarsak
+        skjulingsaarsak,
+        tilgangsavslag
     };
 }
 
@@ -55,11 +63,24 @@ const aarsaker: [Skjulingsaarsak, string][] = [
     ['UAVKLART', 'Personopplysninger kunne ikke hentes']
 ];
 
-describe.each(aarsaker)('%s', (skjulingsaarsak, tekst) => {
+const detaljertAvslag: [Skjulingsaarsak, string, Tilgangsavslag] = [
+    'MANGLER_TILGANG',
+    'Tilgangskontroll: AVVIST_SKJERMING: Du har ikke tilgang til skjermet person',
+    { title: 'AVVIST_SKJERMING', message: 'Du har ikke tilgang til skjermet person' }
+];
+
+describe.each([...aarsaker, detaljertAvslag])('%s: %s', (skjulingsaarsak, tekst, tilgangsavslag?: Tilgangsavslag) => {
     it.each([ForelderBarnRelasjonVisning, ForelderBarnRelasjonVisningGammel])(
         'beholder barn uten å utlede navn, alder, kjønn eller bosted fra tomme felt (%s)',
         (Komponent) => {
-            render(<Komponent harFeilendeSystem relasjon={barn(skjulingsaarsak)} beskrivelse="Ukjent" erBarn />);
+            render(
+                <Komponent
+                    harFeilendeSystem
+                    relasjon={barn(skjulingsaarsak, tilgangsavslag)}
+                    beskrivelse="Ukjent"
+                    erBarn
+                />
+            );
             expect(screen.getByText(/Barn/)).toBeInTheDocument();
             expect(screen.getByText(new RegExp(tekst))).toBeInTheDocument();
             expect(screen.queryByText(/Ukjent|Bor ikke med bruker|Feilet ved uthenting/)).not.toBeInTheDocument();
@@ -80,7 +101,8 @@ describe.each(aarsaker)('%s', (skjulingsaarsak, tekst) => {
                             adressebeskyttelse: [],
                             harSammeAdresse: false,
                             dodsdato: [],
-                            skjulingsaarsak
+                            skjulingsaarsak,
+                            tilgangsavslag
                         }
                     }
                 ]}
@@ -97,7 +119,7 @@ describe.each(aarsaker)('%s', (skjulingsaarsak, tekst) => {
             {
                 ansvar: 'felles',
                 ansvarlig: { navn: { fornavn: 'Test', etternavn: 'Forelder' }, ident: '01010112345' },
-                ansvarsubject: { navn: null, ident: null, skjulingsaarsak }
+                ansvarsubject: { navn: null, ident: null, skjulingsaarsak, tilgangsavslag }
             }
         ];
         render(<ForeldreansvarListe harFeilendeSystem foreldreansvar={person.foreldreansvar} />);
@@ -111,7 +133,7 @@ describe.each(aarsaker)('%s', (skjulingsaarsak, tekst) => {
         person.foreldreansvar = [
             {
                 ansvar: 'felles',
-                ansvarlig: { ident: null, navn: null, skjulingsaarsak },
+                ansvarlig: { ident: null, navn: null, skjulingsaarsak, tilgangsavslag },
                 ansvarsubject: { ident: null, navn: { fornavn: 'Test', etternavn: 'Barn' } }
             }
         ];
@@ -128,6 +150,7 @@ describe.each(aarsaker)('%s', (skjulingsaarsak, tekst) => {
                 ident: '',
                 navn: null,
                 skjulingsaarsak,
+                tilgangsavslag,
                 fullmakt: {
                     fullmaktId: 'test-fullmakt',
                     fullmaktsgiver: person.fnr,
@@ -147,7 +170,56 @@ describe.each(aarsaker)('%s', (skjulingsaarsak, tekst) => {
         expect(screen.getByText(/Gyldig:/)).toBeInTheDocument();
         expect(screen.queryByText(/Ukjent|Navn ikke tilgjengelig/)).not.toBeInTheDocument();
         expect(screen.queryByRole('button', { name: /Kopier/ })).not.toBeInTheDocument();
+        expect(screen.queryByRole('button', { name: 'Endringslogg' })).not.toBeInTheDocument();
     });
+
+    it.each([Fullmakt, Fullmakter])(
+        'viser fullmaktens ident uten skjult profil eller endringslogg (%s)',
+        async (Komponent) => {
+            person.fullmektige = [
+                {
+                    ident: '',
+                    navn: { fornavn: 'Skjult', etternavn: 'Fullmektig' },
+                    digitalKontaktinformasjonTredjepartsperson: { mobiltelefonnummer: '99999999' },
+                    skjulingsaarsak,
+                    tilgangsavslag,
+                    fullmakt: {
+                        fullmaktId: 'test-fullmakt',
+                        fullmaktsgiver: person.fnr,
+                        fullmektig: '01010112345',
+                        gyldigFraOgMed: '2020-01-01',
+                        leserettigheter: [{ kode: 'AAP', beskrivelse: 'Arbeidsavklaringspenger' }],
+                        skriverettigheter: [],
+                        endringslogg: [
+                            {
+                                endringId: 1,
+                                registrert: '2020-01-01T10:30:00',
+                                registrertAv: 'testsystem',
+                                kilde: FullmaktEndringKilde.SYSTEM,
+                                hendelse: FullmaktEndringHendelse.OPPRETTELSE_AV_BRUKER,
+                                gyldigFraOgMed: '2020-01-01',
+                                gyldigTilOgMed: '2020-12-31',
+                                leserettigheter: [{ kode: 'AAP', beskrivelse: 'Arbeidsavklaringspenger' }],
+                                skriverettigheter: []
+                            }
+                        ]
+                    }
+                }
+            ];
+            feilendeSystemer = [PersonDataFeilendeSystemer.PDL_TREDJEPARTSPERSONER];
+            render(<Komponent />);
+            const utvid = screen.queryByRole('button', { name: /Fullmektig:/ });
+            if (utvid) await userEvent.click(utvid);
+
+            expect(screen.getByRole('button', { name: 'Kopier f.nr.: 010101 12345' })).toBeVisible();
+            expect(screen.queryByText(/Skjult Fullmektig|99999999/)).not.toBeInTheDocument();
+            const detaljer = screen.queryByRole('button', { name: 'Detaljer' });
+            if (detaljer) await userEvent.click(detaljer);
+            expect(screen.queryByRole('button', { name: 'Endringslogg' })).not.toBeInTheDocument();
+            expect(screen.queryByText('Registrert av: testsystem')).not.toBeInTheDocument();
+            expect(screen.getAllByText('Leserettigheter: arbeidsavklaringspenger').length).toBeGreaterThan(0);
+        }
+    );
 
     it.each([Vergemal, VergemalGammel])(
         'beholder vergemålsmetadata uten personopplysninger (%s)',
@@ -157,6 +229,7 @@ describe.each(aarsaker)('%s', (skjulingsaarsak, tekst) => {
                     ident: null,
                     navn: null,
                     skjulingsaarsak,
+                    tilgangsavslag,
                     vergesakstype: 'Voksen',
                     omfang: 'Økonomiske forhold',
                     historisk: false
@@ -175,7 +248,7 @@ describe.each(aarsaker)('%s', (skjulingsaarsak, tekst) => {
     it('beholder dødsbokontakten og skifteformen uten tom adresse', () => {
         const dodsbo: PersonData['dodsbo'] = [
             {
-                adressat: { personSomAdressat: { navn: [], fnr: null, skjulingsaarsak } },
+                adressat: { personSomAdressat: { navn: [], fnr: null, skjulingsaarsak, tilgangsavslag } },
                 adresse: { linje1: '' },
                 registrert: '2024-01-01',
                 skifteform: DodsboSkifteform.OFFENTLIG
@@ -187,6 +260,42 @@ describe.each(aarsaker)('%s', (skjulingsaarsak, tekst) => {
         expect(screen.queryByText(/Ukjent|Feilet ved uthenting|Ingen adressat/)).not.toBeInTheDocument();
         expect(screen.queryByRole('button')).not.toBeInTheDocument();
     });
+});
+
+it.each([
+    [{ title: ' ', message: '' }, 'Personopplysninger skjult'],
+    [{ title: null, message: 'Begrunnelse uten tittel' }, 'Tilgangskontroll: Begrunnelse uten tittel'],
+    [{ title: 'NY_AVSLAGSKODE', message: null }, 'Tilgangskontroll: NY_AVSLAGSKODE']
+])('viser tilgjengelige avslagsdetaljer eller generell årsak (%s)', (tilgangsavslag, tekst) => {
+    render(
+        <Personopplysninger skjulingsaarsak="MANGLER_TILGANG" tilgangsavslag={tilgangsavslag}>
+            Skjult personprofil
+        </Personopplysninger>
+    );
+    expect(screen.getByText(tekst)).toBeVisible();
+    expect(screen.queryByText('Skjult personprofil')).not.toBeInTheDocument();
+});
+
+it('viser tittel og melding som tekst, ikke HTML', () => {
+    const title = '<img src=x onerror=alert(1)>';
+    const message = '<script>alert(2)</script>';
+    const { container } = render(
+        <Personopplysninger skjulingsaarsak="MANGLER_TILGANG" tilgangsavslag={{ title, message }} />
+    );
+    expect(screen.getByText(`Tilgangskontroll: ${title}: ${message}`)).toBeVisible();
+    expect(container.querySelector('img, script')).toBeNull();
+});
+
+it.each([null, 'UAVKLART'] as const)('bruker ikke avslagsdetaljer ved %s', (skjulingsaarsak) => {
+    render(
+        <Personopplysninger skjulingsaarsak={skjulingsaarsak} tilgangsavslag={detaljertAvslag[2]}>
+            Innebygd personnavn
+        </Personopplysninger>
+    );
+    expect(
+        screen.getByText(skjulingsaarsak ? 'Personopplysninger kunne ikke hentes' : 'Innebygd personnavn')
+    ).toBeVisible();
+    expect(screen.queryByText(/AVVIST_SKJERMING/)).not.toBeInTheDocument();
 });
 
 it('beholder flere skjulte barn og tilgjengelige barn ved delvis tilgang', () => {
@@ -236,4 +345,39 @@ it.each([null, undefined])('beholder tidligere mapping for barn uten ident og ut
     );
     expect(screen.getByText(/Test Barn/)).toBeInTheDocument();
     expect(screen.queryByText(/Personopplysninger/)).not.toBeInTheDocument();
+});
+
+it.each([ForelderBarnRelasjonVisning, ForelderBarnRelasjonVisningGammel])(
+    'viser innebygde barneopplysninger selv ved teknisk PDL-feil (%s)',
+    (Komponent) => {
+        render(
+            <Komponent
+                harFeilendeSystem
+                relasjon={{ ...barn(), navn: [{ fornavn: 'Innebygd', etternavn: 'Barn' }], alder: 10 }}
+                beskrivelse="Barn"
+                erBarn
+            />
+        );
+        expect(screen.getByText(/Innebygd Barn/)).toBeVisible();
+    }
+);
+
+it.each(['ny', 'eldre'])('viser innebygd ansvarlig ved teknisk PDL-feil i %s visning', (visning) => {
+    person.foreldreansvar = [
+        {
+            ansvar: 'felles',
+            ansvarlig: { navn: { fornavn: 'Innebygd', etternavn: 'Forelder' }, ident: null },
+            ansvarsubject: null
+        }
+    ];
+    feilendeSystemer = [PersonDataFeilendeSystemer.PDL_TREDJEPARTSPERSONER];
+    render(
+        visning === 'ny' ? (
+            <ForeldreansvarListe harFeilendeSystem foreldreansvar={person.foreldreansvar} />
+        ) : (
+            <ForeldreAnsvar />
+        )
+    );
+    expect(screen.getByText(/Ansvarlig: Innebygd Forelder/)).toBeVisible();
+    expect(screen.queryByText(/Feilet ved uthenting/)).not.toBeInTheDocument();
 });
