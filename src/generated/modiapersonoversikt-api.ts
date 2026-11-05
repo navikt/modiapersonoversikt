@@ -1590,7 +1590,7 @@ export interface components {
             /** Format: int32 */
             alder?: number | null;
             adressebeskyttelse: components["schemas"]["KodeBeskrivelseAdresseBeskyttelse"][];
-            harSammeAdresse: boolean;
+            harSammeAdresse?: boolean | null;
             dodsdato: string[];
         };
         Foreldreansvar: {
@@ -1789,7 +1789,7 @@ export interface components {
             /** Format: int32 */
             alder?: number | null;
             adressebeskyttelse: components["schemas"]["KodeBeskrivelseAdresseBeskyttelse"][];
-            harSammeAdresse: boolean;
+            harSammeAdresse?: boolean | null;
             dodsdato: string[];
         };
         Statsborgerskap: {

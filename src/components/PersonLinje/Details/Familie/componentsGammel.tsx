@@ -39,9 +39,11 @@ export function ForelderBarnRelasjonVisningGammel({
                             {navn && hentNavn(navn)} {alder}
                         </BodyShort>
                         <Detail>{relasjon.ident ? relasjon.ident : 'Ukjent'}</Detail>
-                        <Detail textColor="subtle">
-                            <BostedForRelasjon relasjon={relasjon} />
-                        </Detail>
+                        {relasjon.harSammeAdresse != null && (
+                            <Detail textColor="subtle">
+                                <BostedForRelasjon relasjon={relasjon} />
+                            </Detail>
+                        )}
                     </>
                 )}
             </Personopplysninger>

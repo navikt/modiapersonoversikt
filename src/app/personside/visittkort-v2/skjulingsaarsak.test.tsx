@@ -9,7 +9,7 @@ import Foreldreansvar from './body/foreldreansvar/Foreldreansvar';
 import Fullmakter from './body/fullmakt/Fullmakt';
 import Dodsbo from './body/kontaktinformasjon/dodsbo/Dodsbo';
 import Vergemal from './body/vergemal/Vergemal';
-import { type ForelderBarnRelasjon, InformasjonElement } from './PersondataDomain';
+import { type ForelderBarnRelasjon, InformasjonElement, SivilstandType } from './PersondataDomain';
 
 const aarsaker: [Skjulingsaarsak, string][] = [
     ['MANGLER_TILGANG', 'Personopplysninger skjult'],
@@ -180,6 +180,7 @@ test('viser innebygde barne- og foreldreansvarsopplysninger ved teknisk PDL-feil
                     ...aremark.forelderBarnRelasjon[0],
                     ident: null,
                     navn: [{ fornavn: 'Innebygd', mellomnavn: null, etternavn: 'Barn' }],
+                    harSammeAdresse: null,
                     skjulingsaarsak: null
                 }}
                 beskrivelse="Barn"
@@ -204,4 +205,53 @@ test('viser innebygde barne- og foreldreansvarsopplysninger ved teknisk PDL-feil
     expect(screen.getByText(/Innebygd Barn/)).toBeVisible();
     expect(screen.getByText(/Ansvarlig: Innebygd Forelder/)).toBeVisible();
     expect(screen.queryByText(/Feilet ved uthenting/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Bor (ikke )?med bruker/)).not.toBeInTheDocument();
+});
+
+test.each([null, true, false])('viser bosted bare når adressene kan sammenlignes (%s)', (harSammeAdresse) => {
+    const { container } = render(
+        <>
+            <ForelderBarnRelasjonVisning
+                harFeilendeSystem={false}
+                relasjon={{
+                    ...aremark.forelderBarnRelasjon[0],
+                    ident: '01010112345',
+                    navn: [{ fornavn: 'Test', mellomnavn: null, etternavn: 'Barn' }],
+                    adressebeskyttelse: [],
+                    dodsdato: [],
+                    harSammeAdresse
+                }}
+                beskrivelse="Barn"
+                erBarn
+            />
+            <Sivilstand
+                harFeilendeSystem={false}
+                sivilstandListe={[
+                    {
+                        ...aremark.sivilstand[0],
+                        type: { kode: SivilstandType.GIFT, beskrivelse: 'Gift' },
+                        sivilstandRelasjon: {
+                            fnr: '02020212345',
+                            navn: [{ fornavn: 'Test', mellomnavn: null, etternavn: 'Partner' }],
+                            alder: 35,
+                            adressebeskyttelse: [],
+                            dodsdato: [],
+                            harSammeAdresse
+                        }
+                    }
+                ]}
+            />
+        </>
+    );
+
+    expect(screen.getByText(/Test Barn/)).toBeVisible();
+    expect(screen.getByText(/Test Partner/)).toBeVisible();
+    if (harSammeAdresse == null) {
+        expect(screen.queryByText(/Bor (ikke )?med bruker/)).not.toBeInTheDocument();
+        expect(
+            Array.from(container.querySelectorAll('p')).filter((paragraph) => !paragraph.hasChildNodes())
+        ).toHaveLength(0);
+    } else {
+        expect(screen.getAllByText(harSammeAdresse ? 'Bor med bruker' : 'Bor ikke med bruker')).toHaveLength(2);
+    }
 });

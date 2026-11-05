@@ -303,7 +303,7 @@ it.each([null, 'UAVKLART'] as const)('bruker ikke avslagsdetaljer ved %s', (skju
 it('beholder flere skjulte barn og tilgjengelige barn ved delvis tilgang', () => {
     render(
         <Barn
-            harFeilendeSystem={false}
+            harFeilendeSystem
             relasjoner={[
                 barn('MANGLER_TILGANG'),
                 barn('UAVKLART'),
@@ -315,6 +315,52 @@ it('beholder flere skjulte barn og tilgjengelige barn ved delvis tilgang', () =>
     expect(screen.getByText('Barn: Personopplysninger kunne ikke hentes')).toBeInTheDocument();
     expect(screen.getByText(/Test Barn/)).toBeInTheDocument();
     expect(screen.getAllByText('Bor ikke med bruker')).toHaveLength(1);
+});
+
+it.each([null, undefined, true, false])('viser bosted bare når adressene kan sammenlignes (%s)', (harSammeAdresse) => {
+    const relasjon = {
+        ...barn(),
+        ident: '01010112345',
+        navn: [{ fornavn: 'Test', etternavn: 'Barn' }],
+        alder: 10,
+        harSammeAdresse
+    };
+    const sivilstand: PersonData['sivilstand'] = [
+        {
+            type: { kode: SivilstandType.GIFT, beskrivelse: 'Gift' },
+            sivilstandRelasjon: {
+                fnr: '02020212345',
+                navn: [{ fornavn: 'Test', etternavn: 'Partner' }],
+                adressebeskyttelse: [],
+                harSammeAdresse,
+                dodsdato: []
+            }
+        }
+    ];
+    const { container } = render(
+        <>
+            <ForelderBarnRelasjonVisning harFeilendeSystem={false} relasjon={relasjon} beskrivelse="Barn" />
+            <ForelderBarnRelasjonVisningGammel
+                harFeilendeSystem={false}
+                relasjon={relasjon}
+                beskrivelse="Barn"
+                erBarn
+            />
+            <Sivilstand harFeilendeSystem={false} sivilstand={sivilstand} />
+            <SivilstandGammel harFeilendeSystem={false} sivilstand={sivilstand} />
+        </>
+    );
+
+    expect(screen.getAllByText(/Test Barn/)).toHaveLength(2);
+    expect(screen.getAllByText(/Test Partner/)).toHaveLength(2);
+    if (harSammeAdresse == null) {
+        expect(screen.queryByText(/Bor (ikke )?med bruker/)).not.toBeInTheDocument();
+        expect(
+            Array.from(container.querySelectorAll('p')).filter((paragraph) => !paragraph.hasChildNodes())
+        ).toHaveLength(0);
+    } else {
+        expect(screen.getAllByText(harSammeAdresse ? 'Bor med bruker' : 'Bor ikke med bruker')).toHaveLength(4);
+    }
 });
 
 it('beholder historiske vergemål selv når flere vergers ident er skjult', async () => {
@@ -355,12 +401,18 @@ it.each([ForelderBarnRelasjonVisning, ForelderBarnRelasjonVisningGammel])(
         render(
             <Komponent
                 harFeilendeSystem
-                relasjon={{ ...barn(), navn: [{ fornavn: 'Innebygd', etternavn: 'Barn' }], alder: 10 }}
+                relasjon={{
+                    ...barn(),
+                    navn: [{ fornavn: 'Innebygd', etternavn: 'Barn' }],
+                    alder: 10,
+                    harSammeAdresse: null
+                }}
                 beskrivelse="Barn"
                 erBarn
             />
         );
         expect(screen.getByText(/Innebygd Barn/)).toBeVisible();
+        expect(screen.queryByText(/Bor (ikke )?med bruker/)).not.toBeInTheDocument();
     }
 );
 

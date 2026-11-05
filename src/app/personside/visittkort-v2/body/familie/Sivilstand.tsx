@@ -59,9 +59,11 @@ function Partner(props: { partner: SivilstandInterface; harFeilendeSystem: boole
                     {navn && hentNavn(navn)} ({hentAlderEllerDod(partnerRelasjon)})
                 </Normaltekst>
                 <Normaltekst>{partnerRelasjon.fnr}</Normaltekst>
-                <Normaltekst>
-                    {partnerRelasjon.harSammeAdresse ? <>Bor med bruker</> : <>Bor ikke med bruker</>}
-                </Normaltekst>
+                {partnerRelasjon.harSammeAdresse != null && (
+                    <Normaltekst>
+                        {partnerRelasjon.harSammeAdresse ? <>Bor med bruker</> : <>Bor ikke med bruker</>}
+                    </Normaltekst>
+                )}
             </Personopplysninger>
         </>
     );

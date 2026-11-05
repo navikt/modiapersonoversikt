@@ -102,7 +102,7 @@ interface SivilstandRelasjon extends PersonMedAlderOgDodsdato {
     navn: Array<Navn>;
     alder: number | null;
     adressebeskyttelse: Array<KodeBeskrivelse<AdresseBeskyttelse>>;
-    harSammeAdresse: boolean;
+    harSammeAdresse: boolean | null;
     dodsdato: Array<LocalDate>;
 }
 
@@ -258,7 +258,7 @@ export interface ForelderBarnRelasjon extends PersonMedAlderOgDodsdato {
     kjonn: Array<KodeBeskrivelse<Kjonn>>;
     alder: number | null;
     adressebeskyttelse: Array<KodeBeskrivelse<AdresseBeskyttelse>>;
-    harSammeAdresse: boolean;
+    harSammeAdresse: boolean | null;
     dodsdato: Array<LocalDate>;
 }
 

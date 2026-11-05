@@ -36,9 +36,11 @@ function ForelderBarnRelasjonVisning({ harFeilendeSystem, relasjon, beskrivelse,
                             {navn && hentNavn(navn)} {alder}
                         </Normaltekst>
                         <Normaltekst>{relasjon.ident ? relasjon.ident : 'Ukjent'}</Normaltekst>
-                        <Normaltekst>
-                            <BostedForRelasjon relasjon={relasjon} />
-                        </Normaltekst>
+                        {relasjon.harSammeAdresse != null && (
+                            <Normaltekst>
+                                <BostedForRelasjon relasjon={relasjon} />
+                            </Normaltekst>
+                        )}
                     </>
                 )}
             </Personopplysninger>

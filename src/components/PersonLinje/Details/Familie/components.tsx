@@ -55,7 +55,7 @@ export function ForelderBarnRelasjonVisning({
                     </Tag>
                 )}
                 {!erDød &&
-                    !harFeilendeSystem &&
+                    relasjon.harSammeAdresse != null &&
                     (relasjon.harSammeAdresse ? (
                         <Tag
                             data-color="success"
