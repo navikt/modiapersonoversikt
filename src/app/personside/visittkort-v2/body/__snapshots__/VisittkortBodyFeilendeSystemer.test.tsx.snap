@@ -902,9 +902,19 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             </h4>
           </div>
           <p
-            class="typo-feilmelding"
+            class="typo-normal"
           >
-            Feilet ved uthenting av informasjon om barn
+            BARN1 BARNESEN (13)
+          </p>
+          <p
+            class="typo-normal"
+          >
+            12345678910
+          </p>
+          <p
+            class="typo-normal"
+          >
+            Bor ikke med bruker
           </p>
         </div>
         <div
@@ -951,10 +961,18 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             </h4>
           </div>
           <p
-            class="typo-feilmelding"
+            class="typo-normal"
           >
-            Feilet ved uthenting av informasjon om barn
+            BARN1 BARNESEN (Død)
           </p>
+          <p
+            class="typo-normal"
+          >
+            12345678911
+          </p>
+          <p
+            class="typo-normal"
+          />
         </div>
       </section>
       <section>
@@ -1000,9 +1018,9 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             Ansvar: felles
           </p>
           <p
-            class="typo-feilmelding"
+            class="typo-normal wrap-anywhere"
           >
-            Feilet ved uthenting av informasjon om barn
+            Gjelder for: BARN1 BARNESEN (12345678910)
           </p>
         </div>
         <div
@@ -1017,9 +1035,9 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             Ansvar: felles
           </p>
           <p
-            class="typo-feilmelding"
+            class="typo-normal wrap-anywhere"
           >
-            Feilet ved uthenting av informasjon om barn
+            Gjelder for: BARN1 BARNESEN (12345678911)
           </p>
         </div>
       </section>
