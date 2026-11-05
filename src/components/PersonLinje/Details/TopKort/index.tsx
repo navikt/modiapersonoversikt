@@ -78,15 +78,11 @@ function DodsboFelt({
                 Skifteform: {capitalizeFirstCharacterAndLowercaseRest(dodsbo.skifteform)}
             </BodyShort>
             <Adressatinfo harFeilendeSystem={harFeilendeSystem} adressat={dodsbo.adressat} />
-            {!dodsbo.adressat.personSomAdressat?.skjulingsaarsak && (
-                <>
-                    <ValidPeriod
-                        from={dodsbo.adresse.gyldighetsPeriode?.gyldigFraOgMed}
-                        to={dodsbo.adresse.gyldighetsPeriode?.gyldigTilOgMed}
-                    />
-                    <Adresseinfo adresse={dodsbo.adresse} />
-                </>
-            )}
+            <ValidPeriod
+                from={dodsbo.adresse.gyldighetsPeriode?.gyldigFraOgMed}
+                to={dodsbo.adresse.gyldighetsPeriode?.gyldigTilOgMed}
+            />
+            <Adresseinfo adresse={dodsbo.adresse} />
             <LastChanged sistEndret={dodsbo.sistEndret} />
         </Seksjon>
     );

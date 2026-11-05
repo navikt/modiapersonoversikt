@@ -108,9 +108,7 @@ function KontaktinformasjonDodsbo({ harFeilendeSystem, dodsbo }: { dodsbo: Dodsb
                             <Adressatinfo harFeilendeSystem={harFeilendeSystem} adressat={dodsbo.adressat} />
                         </Box>
                         <Box marginBlock="space-8">
-                            {!dodsbo.adressat.personSomAdressat?.skjulingsaarsak && (
-                                <Adresseinfo adresse={dodsbo.adresse} />
-                            )}
+                            <Adresseinfo adresse={dodsbo.adresse} />
                             {/* TODO: Her ble det tidligere brukt dodsbo.registrert. Hva ønsker vi å bruke? */}
                             <LastChanged sistEndret={dodsbo.sistEndret} />
                         </Box>

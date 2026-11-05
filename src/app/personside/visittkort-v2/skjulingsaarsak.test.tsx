@@ -111,8 +111,8 @@ test.each([...aarsaker, detaljertAvslag])(
                             },
                             adresse: {
                                 coAdresse: null,
-                                linje1: '',
-                                linje2: null,
+                                linje1: 'Gateveien',
+                                linje2: '9988 Poststed',
                                 linje3: null,
                                 sistEndret: null,
                                 gyldighetsPeriode: null
@@ -132,6 +132,8 @@ test.each([...aarsaker, detaljertAvslag])(
         expect(screen.getByRole('heading', { name: 'Verge' })).toBeInTheDocument();
         expect(screen.getAllByText(/Gyldig:/)).toHaveLength(2);
         expect(screen.getByText('Skifteform: Offentlig')).toBeInTheDocument();
+        expect(screen.getByText('Gateveien')).toBeVisible();
+        expect(screen.getByText('9988 Poststed')).toBeVisible();
         expect(screen.getAllByText(new RegExp(tekst))).toHaveLength(7);
         expect(
             screen.queryByText(/Ukjent|Bor ikke med bruker|Feilet ved uthenting|Navn ikke tilgjengelig/)

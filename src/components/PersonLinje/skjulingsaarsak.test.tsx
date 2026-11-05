@@ -245,11 +245,11 @@ describe.each([...aarsaker, detaljertAvslag])('%s: %s', (skjulingsaarsak, tekst,
         }
     );
 
-    it('beholder dødsbokontakten og skifteformen uten tom adresse', () => {
+    it('beholder dødsboadressen og skifteformen når kontaktpersonen er skjult', () => {
         const dodsbo: PersonData['dodsbo'] = [
             {
                 adressat: { personSomAdressat: { navn: [], fnr: null, skjulingsaarsak, tilgangsavslag } },
-                adresse: { linje1: '' },
+                adresse: { linje1: 'Gateveien', linje2: '9988 Poststed' },
                 registrert: '2024-01-01',
                 skifteform: DodsboSkifteform.OFFENTLIG
             }
@@ -257,6 +257,8 @@ describe.each([...aarsaker, detaljertAvslag])('%s: %s', (skjulingsaarsak, tekst,
         render(<KontaktinformasjonDodsbo dodsbo={dodsbo} harFeilendeSystem />);
         expect(screen.getByText(`Dødsbokontakt: ${tekst}`)).toBeInTheDocument();
         expect(screen.getByText('Skifteform: Offentlig')).toBeInTheDocument();
+        expect(screen.getByText('Gateveien')).toBeVisible();
+        expect(screen.getByText('9988 Poststed')).toBeVisible();
         expect(screen.queryByText(/Ukjent|Feilet ved uthenting|Ingen adressat/)).not.toBeInTheDocument();
         expect(screen.queryByRole('button')).not.toBeInTheDocument();
     });

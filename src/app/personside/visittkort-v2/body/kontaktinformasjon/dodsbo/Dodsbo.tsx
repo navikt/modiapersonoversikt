@@ -111,11 +111,9 @@ function KontaktinformasjonDodsbo({ harFeilendeSystem, dodsbo }: Props) {
                             Skifteform: {capitalizeFirstCharacterAndLowercaseRest(dodsbo.skifteform)}
                         </Normaltekst>
                         <Adressatinfo harFeilendeSystem={harFeilendeSystem} adressat={dodsbo.adressat} />
-                        {!dodsbo.adressat.personSomAdressat?.skjulingsaarsak && (
-                            <AdresseStyle>
-                                <Adresseinfo adresse={dodsbo.adresse} />
-                            </AdresseStyle>
-                        )}
+                        <AdresseStyle>
+                            <Adresseinfo adresse={dodsbo.adresse} />
+                        </AdresseStyle>
                         {/* TODO: Her ble det tidligere brukt dodsbo.registrert. Hva ønsker vi å bruke? */}
                         <Endringstekst sistEndret={dodsbo.sistEndret} />
                     </VisittkortElement>
