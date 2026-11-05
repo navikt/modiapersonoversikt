@@ -54,8 +54,13 @@ describe('Flytting', () => {
 
         render(<Flytting />);
 
+        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+        expect(screen.queryByRole('table')).not.toBeInTheDocument();
+
         fireEvent.click(screen.getByRole('button', { name: 'Bosteder' }));
-        const innenlandsflytting = screen.getByRole('table', { name: 'Bosteder' });
+        const bostederDialog = screen.getByRole('dialog', { name: 'Bosteder' });
+        const innenlandsflytting = within(bostederDialog).getByRole('table', { name: 'Bosteder' });
+        expect(within(bostederDialog).getAllByRole('table')).toHaveLength(1);
         const innenlandsrader = within(innenlandsflytting).getAllByRole('row');
         const innenlandsoverskrifter = within(innenlandsflytting)
             .getAllByRole('columnheader')
@@ -80,8 +85,15 @@ describe('Flytting', () => {
         expect(within(innenlandsrader[1]).getByText('Folkeregisteret / Bruker')).toBeInTheDocument();
         expect(within(innenlandsrader[1]).getAllByRole('cell')[4]).toHaveTextContent('01.10.2021');
 
-        fireEvent.click(screen.getByRole('button', { name: /Inn- og utflytting/i }));
-        const utenlandsflytting = screen.getByRole('table', { name: 'Inn- og Utflytting' });
+        fireEvent.click(within(bostederDialog).getByRole('button', { name: /lukk/i }));
+        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+        expect(screen.queryByRole('table')).not.toBeInTheDocument();
+
+        fireEvent.click(screen.getByRole('button', { name: 'Inn- og utflytting Norge' }));
+        const utenlandsDialog = screen.getByRole('dialog', { name: 'Inn- og utflytting Norge' });
+        const utenlandsflytting = within(utenlandsDialog).getByRole('table', { name: 'Inn- og Utflytting' });
+        expect(within(utenlandsDialog).getAllByRole('table')).toHaveLength(1);
+        expect(within(utenlandsDialog).queryByRole('table', { name: 'Bosteder' })).not.toBeInTheDocument();
 
         expect(within(utenlandsflytting).getByRole('columnheader', { name: 'Fra' })).toBeInTheDocument();
         expect(within(utenlandsflytting).getByRole('columnheader', { name: 'Til' })).toBeInTheDocument();
@@ -114,7 +126,8 @@ describe('Flytting', () => {
 
         fireEvent.click(screen.getByRole('button', { name: 'Inn- og utflytting Norge' }));
 
-        expect(screen.getByText('Ingen inn- og utflytting til Norge')).toBeInTheDocument();
+        const dialog = screen.getByRole('dialog', { name: 'Inn- og utflytting Norge' });
+        expect(within(dialog).getByText('Ingen inn- og utflytting til Norge')).toBeInTheDocument();
         expect(screen.queryByRole('table', { name: 'Inn- og Utflytting' })).not.toBeInTheDocument();
     });
 
@@ -133,5 +146,35 @@ describe('Flytting', () => {
         render(<Flytting />);
 
         expect(screen.getByText('Ingen info om flytting og bostedsadresser')).toBeInTheDocument();
+        expect(screen.queryByRole('button')).not.toBeInTheDocument();
+        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    });
+
+    it('skjuler Bosteder når historiske adresser mangler', () => {
+        usePersonDataMock.mockReturnValue({
+            data: {
+                person: {
+                    ...aremark,
+                    historiskeBostedAdresser: [],
+                    innflyttingTilNorge: [{ fraflyttingsland: 'Sverige' }],
+                    utflyttingFraNorge: []
+                }
+            }
+        });
+
+        render(<Flytting />);
+
+        expect(screen.queryByRole('button', { name: 'Bosteder' })).not.toBeInTheDocument();
+        fireEvent.click(screen.getByRole('button', { name: 'Inn- og utflytting Norge' }));
+        const dialog = screen.getByRole('dialog', { name: 'Inn- og utflytting Norge' });
+        expect(within(dialog).getByRole('table', { name: 'Inn- og Utflytting' })).toBeInTheDocument();
+    });
+
+    it('viser ingenting uten persondata', () => {
+        usePersonDataMock.mockReturnValue({ data: undefined });
+
+        const { container } = render(<Flytting />);
+
+        expect(container).toBeEmptyDOMElement();
     });
 });
