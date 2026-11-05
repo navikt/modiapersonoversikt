@@ -4,9 +4,9 @@ export type Skjulingsaarsak = NonNullable<Fullmektig['skjulingsaarsak']>;
 
 export function hentSkjulingsaarsakTekst(aarsak: Skjulingsaarsak, avslag?: Tilgangsavslag | null): string {
     if (aarsak === 'MANGLER_TILGANG') {
-        const detaljer = [avslag?.title?.trim(), avslag?.message?.trim()].filter(Boolean).join(': ');
-        if (detaljer) {
-            return `Tilgangskontroll: ${detaljer}`;
+        const melding = avslag?.message?.trim();
+        if (melding) {
+            return `Personopplysninger er skjult: ${melding}`;
         }
     }
 

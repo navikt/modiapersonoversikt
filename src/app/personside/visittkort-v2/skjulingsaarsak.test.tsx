@@ -18,7 +18,7 @@ const aarsaker: [Skjulingsaarsak, string][] = [
 
 const detaljertAvslag: [Skjulingsaarsak, string, Tilgangsavslag] = [
     'MANGLER_TILGANG',
-    'Tilgangskontroll: AVVIST_HABILITET: Du har ikke tilgang på grunn av habilitet',
+    'Personopplysninger er skjult: Du har ikke tilgang på grunn av habilitet',
     { title: 'AVVIST_HABILITET', message: 'Du har ikke tilgang på grunn av habilitet' }
 ];
 

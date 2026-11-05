@@ -65,7 +65,7 @@ const aarsaker: [Skjulingsaarsak, string][] = [
 
 const detaljertAvslag: [Skjulingsaarsak, string, Tilgangsavslag] = [
     'MANGLER_TILGANG',
-    'Tilgangskontroll: AVVIST_SKJERMING: Du har ikke tilgang til skjermet person',
+    'Personopplysninger er skjult: Du har ikke tilgang til skjermet person',
     { title: 'AVVIST_SKJERMING', message: 'Du har ikke tilgang til skjermet person' }
 ];
 
@@ -264,9 +264,10 @@ describe.each([...aarsaker, detaljertAvslag])('%s: %s', (skjulingsaarsak, tekst,
 
 it.each([
     [{ title: ' ', message: '' }, 'Personopplysninger skjult'],
-    [{ title: null, message: 'Begrunnelse uten tittel' }, 'Tilgangskontroll: Begrunnelse uten tittel'],
-    [{ title: 'NY_AVSLAGSKODE', message: null }, 'Tilgangskontroll: NY_AVSLAGSKODE']
-])('viser tilgjengelige avslagsdetaljer eller generell årsak (%s)', (tilgangsavslag, tekst) => {
+    [{ title: 'AVVIST_SKJERMING', message: '  ' }, 'Personopplysninger skjult'],
+    [{ title: null, message: 'Begrunnelse uten tittel' }, 'Personopplysninger er skjult: Begrunnelse uten tittel'],
+    [{ title: 'NY_AVSLAGSKODE', message: null }, 'Personopplysninger skjult']
+])('viser meldingen eller generell årsak, aldri tittelen (%s)', (tilgangsavslag, tekst) => {
     render(
         <Personopplysninger skjulingsaarsak="MANGLER_TILGANG" tilgangsavslag={tilgangsavslag}>
             Skjult personprofil
@@ -276,13 +277,14 @@ it.each([
     expect(screen.queryByText('Skjult personprofil')).not.toBeInTheDocument();
 });
 
-it('viser tittel og melding som tekst, ikke HTML', () => {
+it('skjuler tittelen og viser meldingen som tekst, ikke HTML', () => {
     const title = '<img src=x onerror=alert(1)>';
     const message = '<script>alert(2)</script>';
     const { container } = render(
         <Personopplysninger skjulingsaarsak="MANGLER_TILGANG" tilgangsavslag={{ title, message }} />
     );
-    expect(screen.getByText(`Tilgangskontroll: ${title}: ${message}`)).toBeVisible();
+    expect(screen.getByText(`Personopplysninger er skjult: ${message}`)).toBeVisible();
+    expect(screen.queryByText(title, { exact: false })).not.toBeInTheDocument();
     expect(container.querySelector('img, script')).toBeNull();
 });
 
