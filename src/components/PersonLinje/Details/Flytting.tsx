@@ -1,4 +1,5 @@
-import { Accordion, Table } from '@navikt/ds-react';
+import { Button, Modal, Table } from '@navikt/ds-react';
+import { useState } from 'react';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import type {
     Adresse,
@@ -136,6 +137,7 @@ function UtenlandsflyttingTabell({
 
 export default function Flytting() {
     const { data } = usePersonData();
+    const [valgtKategori, setValgtKategori] = useState<'Bosteder' | 'Inn- og utflytting Norge' | null>(null);
     const person = data?.person;
 
     if (!person) {
@@ -151,28 +153,45 @@ export default function Flytting() {
     }
 
     return (
-        <Accordion size="small" indent={false}>
+        <div className="flex flex-col items-start gap-2">
             {harInnenlandsflytting && (
-                <Accordion.Item>
-                    <Accordion.Header>Bosteder</Accordion.Header>
-                    <Accordion.Content className="overflow-x-auto">
-                        <InnenlandsflyttingTabell flyttinger={historiskeBostedAdresser} />
-                    </Accordion.Content>
-                </Accordion.Item>
+                <Button
+                    variant="tertiary"
+                    size="small"
+                    aria-haspopup="dialog"
+                    onClick={() => setValgtKategori('Bosteder')}
+                >
+                    Bosteder
+                </Button>
             )}
-            <Accordion.Item>
-                <Accordion.Header>Inn- og utflytting Norge</Accordion.Header>
-                <Accordion.Content className="overflow-x-auto">
-                    {harUtenlandsflytting ? (
-                        <UtenlandsflyttingTabell
-                            innflyttinger={person.innflyttingTilNorge}
-                            utflyttinger={person.utflyttingFraNorge}
-                        />
-                    ) : (
-                        <IngenInfo tekst="Ingen inn- og utflytting til Norge" />
-                    )}
-                </Accordion.Content>
-            </Accordion.Item>
-        </Accordion>
+            <Button
+                variant="tertiary"
+                size="small"
+                aria-haspopup="dialog"
+                onClick={() => setValgtKategori('Inn- og utflytting Norge')}
+            >
+                Inn- og utflytting Norge
+            </Button>
+            <Modal
+                open={valgtKategori !== null}
+                onClose={() => setValgtKategori(null)}
+                header={{ heading: valgtKategori ?? 'Flytting' }}
+                width="80rem"
+                closeOnBackdropClick
+            >
+                <Modal.Body className="overflow-x-auto" tabIndex={0} role="region" aria-label="Flyttehistorikk">
+                    {valgtKategori === 'Bosteder' && <InnenlandsflyttingTabell flyttinger={historiskeBostedAdresser} />}
+                    {valgtKategori === 'Inn- og utflytting Norge' &&
+                        (harUtenlandsflytting ? (
+                            <UtenlandsflyttingTabell
+                                innflyttinger={person.innflyttingTilNorge}
+                                utflyttinger={person.utflyttingFraNorge}
+                            />
+                        ) : (
+                            <IngenInfo tekst="Ingen inn- og utflytting til Norge" />
+                        ))}
+                </Modal.Body>
+            </Modal>
+        </div>
     );
 }

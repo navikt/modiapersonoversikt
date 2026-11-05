@@ -183,14 +183,10 @@ const PersonlinjeDetails = () => {
                         >
                             <Representasjon />
                         </SeksjonWrapper>
+                        <SeksjonWrapper tittel="Flytting" icon={<HouseIcon aria-hidden fontSize="2rem" />}>
+                            <Flytting />
+                        </SeksjonWrapper>
                     </VStack>
-                    <SeksjonWrapper
-                        tittel="Flytting"
-                        icon={<HouseIcon aria-hidden fontSize="2rem" />}
-                        className="lg:col-span-2"
-                    >
-                        <Flytting />
-                    </SeksjonWrapper>
                 </HGrid>
             </VStack>
         </Card>
