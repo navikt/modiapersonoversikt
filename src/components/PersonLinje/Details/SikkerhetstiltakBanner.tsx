@@ -36,7 +36,7 @@ function SikkerhetstiltakBanner() {
     return (
         <LocalAlert status="warning" className="w-full">
             <LocalAlert.Header className="justify-center">
-                <LocalAlert.Title>Sikkerhetstiltak</LocalAlert.Title>
+                <LocalAlert.Title as="h3">Sikkerhetstiltak</LocalAlert.Title>
             </LocalAlert.Header>
             <LocalAlert.Content className="text-center">
                 <VStack gap="space-12">

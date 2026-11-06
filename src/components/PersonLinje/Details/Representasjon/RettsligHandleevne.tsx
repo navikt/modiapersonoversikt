@@ -11,7 +11,7 @@ export const RettsligHandleevne = () => {
     }
     return (
         <VStack>
-            <Heading size="xsmall" as="h3">
+            <Heading size="xsmall" level="4">
                 Rettslig handleevne
             </Heading>
             {rettsligHandleevne?.map((rettsligHandleevne, index) => {

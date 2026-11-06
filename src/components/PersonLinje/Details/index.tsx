@@ -99,7 +99,7 @@ function SeksjonWrapper({
         <VStack gap={gap} as="section" className={className}>
             <HStack gap="space-2" align="center" wrap={false}>
                 <div>{icon}</div>
-                <Heading size="small" level="2">
+                <Heading size="small" level="3">
                     {tittel}
                 </Heading>
             </HStack>
