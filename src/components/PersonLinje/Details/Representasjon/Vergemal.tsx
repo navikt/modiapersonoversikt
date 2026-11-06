@@ -12,6 +12,8 @@ import {
 } from '@navikt/ds-react';
 import dayjs from 'dayjs';
 import { KopierFnrKnapp } from 'src/components/PersonLinje/common/KopierFnrKnapp';
+import Personopplysninger from 'src/components/PersonLinje/Personopplysninger';
+import { hentSkjulingsaarsakTekst } from 'src/components/PersonLinje/skjulingsaarsak';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { type PersonData, PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
 import { capitalizeName } from 'src/utils/string-utils';
@@ -44,8 +46,10 @@ function VergeDetaljer(props: { feilendeSystemer: PersonDataFeilendeSystemer[]; 
     return (
         <>
             <Box className="mb-2">
-                {harFeilendeSystemOgIngenNavn}
-                <KopierFnrKnapp fnr={verge.ident} />
+                <Personopplysninger skjulingsaarsak={verge.skjulingsaarsak} tilgangsavslag={verge.tilgangsavslag}>
+                    {harFeilendeSystemOgIngenNavn}
+                    <KopierFnrKnapp fnr={verge.ident} />
+                </Personopplysninger>
             </Box>
             <VStack gap="space-8">
                 <BodyShort size="small">
@@ -98,7 +102,9 @@ function Vergemal() {
             </Detail>
             <Accordion size="small" indent={false}>
                 {sammenSattVerger.map((verge, index) => {
-                    const vergenavn = hentNavn(verge.navn, 'Ukjent verge');
+                    const vergenavn = verge.skjulingsaarsak
+                        ? `Verge: ${hentSkjulingsaarsakTekst(verge.skjulingsaarsak, verge.tilgangsavslag)}`
+                        : hentNavn(verge.navn, 'Ukjent verge');
                     const gyldigFraOgMed = verge.gyldighetsPeriode?.gyldigFraOgMed
                         ? dayjs(verge.gyldighetsPeriode.gyldigFraOgMed)
                         : null;
@@ -106,7 +112,7 @@ function Vergemal() {
                     return (
                         <Accordion.Item key={`${verge.ident}-${index}`}>
                             <Accordion.Header>
-                                <VStack className="justify-start items-start">
+                                <VStack className="justify-start items-start wrap-anywhere">
                                     {vergenavn} - {verge.vergesakstype}
                                     {!!gyldigFraOgMed && (
                                         <Tag

@@ -1579,6 +1579,8 @@ export interface components {
             fodested?: string | null;
         };
         ForelderBarnRelasjon: {
+            skjulingsaarsak?: "MANGLER_TILGANG" | "UAVKLART" | null;
+            tilgangsavslag?: components["schemas"]["Tilgangsavslag"] | null;
             ident?: string | null;
             /** @enum {string} */
             rolle: ForelderBarnRelasjonRolle;
@@ -1588,7 +1590,7 @@ export interface components {
             /** Format: int32 */
             alder?: number | null;
             adressebeskyttelse: components["schemas"]["KodeBeskrivelseAdresseBeskyttelse"][];
-            harSammeAdresse: boolean;
+            harSammeAdresse?: boolean | null;
             dodsdato: string[];
         };
         Foreldreansvar: {
@@ -1627,6 +1629,8 @@ export interface components {
             skriverettigheter: components["schemas"]["KodeBeskrivelseString"][];
         };
         Fullmektig: {
+            skjulingsaarsak?: "MANGLER_TILGANG" | "UAVKLART" | null;
+            tilgangsavslag?: components["schemas"]["Tilgangsavslag"] | null;
             ident: string;
             navn?: components["schemas"]["Navn"] | null;
             digitalKontaktinformasjonTredjepartsperson?: components["schemas"]["DigitalKontaktinformasjonTredjepartsperson"] | null;
@@ -1679,6 +1683,8 @@ export interface components {
             etternavn: string;
         };
         NavnOgIdent: {
+            skjulingsaarsak?: "MANGLER_TILGANG" | "UAVKLART" | null;
+            tilgangsavslag?: components["schemas"]["Tilgangsavslag"] | null;
             navn?: components["schemas"]["Navn"] | null;
             ident?: string | null;
         };
@@ -1742,6 +1748,8 @@ export interface components {
             epost?: string | null;
         };
         PersonSomAdressat: {
+            skjulingsaarsak?: "MANGLER_TILGANG" | "UAVKLART" | null;
+            tilgangsavslag?: components["schemas"]["Tilgangsavslag"] | null;
             fnr?: string | null;
             navn: components["schemas"]["Navn"][];
             /** Format: date */
@@ -1774,12 +1782,14 @@ export interface components {
             sivilstandRelasjon?: components["schemas"]["SivilstandRelasjon"] | null;
         };
         SivilstandRelasjon: {
+            skjulingsaarsak?: "MANGLER_TILGANG" | "UAVKLART" | null;
+            tilgangsavslag?: components["schemas"]["Tilgangsavslag"] | null;
             fnr: string;
             navn: components["schemas"]["Navn"][];
             /** Format: int32 */
             alder?: number | null;
             adressebeskyttelse: components["schemas"]["KodeBeskrivelseAdresseBeskyttelse"][];
-            harSammeAdresse: boolean;
+            harSammeAdresse?: boolean | null;
             dodsdato: string[];
         };
         Statsborgerskap: {
@@ -1792,6 +1802,10 @@ export interface components {
             sistEndret?: components["schemas"]["SistEndret"] | null;
             /** Format: int32 */
             prioritet: number;
+        };
+        Tilgangsavslag: {
+            title?: string | null;
+            message?: string | null;
         };
         TilrettelagtKommunikasjon: {
             talesprak: components["schemas"]["KodeBeskrivelseString"][];
@@ -1819,6 +1833,8 @@ export interface components {
             sistVerifisert?: string | null;
         };
         Verge: {
+            skjulingsaarsak?: "MANGLER_TILGANG" | "UAVKLART" | null;
+            tilgangsavslag?: components["schemas"]["Tilgangsavslag"] | null;
             ident?: string | null;
             navn?: components["schemas"]["Navn"] | null;
             vergesakstype: string;
@@ -2537,6 +2553,7 @@ export type Sivilstand = components['schemas']['Sivilstand'];
 export type SivilstandRelasjon = components['schemas']['SivilstandRelasjon'];
 export type Statsborgerskap = components['schemas']['Statsborgerskap'];
 export type Telefon = components['schemas']['Telefon'];
+export type Tilgangsavslag = components['schemas']['Tilgangsavslag'];
 export type TilrettelagtKommunikasjon = components['schemas']['TilrettelagtKommunikasjon'];
 export type UtflyttingFraNorge = components['schemas']['UtflyttingFraNorge'];
 export type VerdiBoolean = components['schemas']['VerdiBoolean'];
@@ -4110,6 +4127,7 @@ export enum DataFeilendeSystemer {
     PROVIDED_VALUE = "PROVIDED_VALUE",
     PDL_GT = "PDL_GT",
     PDL_TREDJEPARTSPERSONER = "PDL_TREDJEPARTSPERSONER",
+    TILGANGSMASKINEN_TREDJEPARTSPERSONER = "TILGANGSMASKINEN_TREDJEPARTSPERSONER",
     EGEN_ANSATT = "EGEN_ANSATT",
     DKIF = "DKIF",
     DKIF_TREDJEPARTSPERSONER = "DKIF_TREDJEPARTSPERSONER",

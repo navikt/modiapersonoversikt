@@ -1,6 +1,8 @@
 import { Accordion, BodyShort, Box, Detail, Heading, InlineMessage, Tag, VStack } from '@navikt/ds-react';
 import dayjs from 'dayjs';
 import { KopierFnrKnapp } from 'src/components/PersonLinje/common/KopierFnrKnapp';
+import Personopplysninger from 'src/components/PersonLinje/Personopplysninger';
+import { hentSkjulingsaarsakTekst } from 'src/components/PersonLinje/skjulingsaarsak';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { type PersonData, PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
 import { formaterRettighetstemaer } from 'src/utils/fullmakt-utils';
@@ -31,21 +33,26 @@ function FullmektigDetaljer(props: { feilendeSystemer: PersonDataFeilendeSysteme
 
     return (
         <>
-            <Box className="mb-2">
-                {harFeilendeSystemOgIngenNavn}
-                <KopierFnrKnapp fnr={fullmektig.ident} />
-                {fullmektig.digitalKontaktinformasjonTredjepartsperson && (
-                    <>
-                        <BodyShort size="small">Tlf.: {mobilnummer}</BodyShort>
-                        {fullmektig.digitalKontaktinformasjonTredjepartsperson?.reservasjon === true && (
-                            <Tag variant="moderate" data-color="warning" size="xsmall">
-                                Reservert i KRR
-                            </Tag>
-                        )}
-                        <Detail textColor="subtle">Kontakt- og reservasjonsregisteret</Detail>
-                    </>
-                )}
-            </Box>
+            <Personopplysninger skjulingsaarsak={fullmektig.skjulingsaarsak} tilgangsavslag={fullmektig.tilgangsavslag}>
+                <Box className="mb-2">
+                    {harFeilendeSystemOgIngenNavn}
+                    <KopierFnrKnapp fnr={fullmektig.ident || fullmektig.fullmakt.fullmektig} />
+                    {fullmektig.digitalKontaktinformasjonTredjepartsperson && (
+                        <>
+                            <BodyShort size="small">Tlf.: {mobilnummer}</BodyShort>
+                            {fullmektig.digitalKontaktinformasjonTredjepartsperson?.reservasjon === true && (
+                                <Tag variant="moderate" data-color="warning" size="xsmall">
+                                    Reservert i KRR
+                                </Tag>
+                            )}
+                            <Detail textColor="subtle">Kontakt- og reservasjonsregisteret</Detail>
+                        </>
+                    )}
+                </Box>
+            </Personopplysninger>
+            {fullmektig.skjulingsaarsak && fullmektig.fullmakt.fullmektig && (
+                <KopierFnrKnapp fnr={fullmektig.fullmakt.fullmektig} />
+            )}
             <VStack gap="space-8">
                 <FullmaktDetaljer fullmakt={fullmektig.fullmakt} />
             </VStack>
@@ -101,7 +108,9 @@ export const Fullmakt = () => {
                     </Detail>
                     <Accordion size="small" indent={false}>
                         {fullmektige.map((fullmektig) => {
-                            const fullmektigNavn = hentNavn(fullmektig.navn, 'Ukjent fullmektig');
+                            const fullmektigNavn = fullmektig.skjulingsaarsak
+                                ? `Fullmektig: ${hentSkjulingsaarsakTekst(fullmektig.skjulingsaarsak, fullmektig.tilgangsavslag)}`
+                                : hentNavn(fullmektig.navn, 'Ukjent fullmektig');
                             const gyldigTilOgMed = fullmektig.fullmakt.gyldigTilOgMed
                                 ? dayjs(fullmektig.fullmakt.gyldigTilOgMed)
                                 : null;
@@ -111,8 +120,10 @@ export const Fullmakt = () => {
                             return (
                                 <Accordion.Item key={fullmektig.fullmakt.fullmaktId}>
                                     <Accordion.Header>
-                                        <VStack className="justify-start items-start">
-                                            {capitalizeName(fullmektigNavn)}
+                                        <VStack className="justify-start items-start wrap-anywhere">
+                                            {fullmektig.skjulingsaarsak
+                                                ? fullmektigNavn
+                                                : capitalizeName(fullmektigNavn)}
                                             {gyldigFraOgMed.isAfter(dayjs(), 'day') ? (
                                                 <Tag variant="moderate" size="xsmall">
                                                     Fremtidig

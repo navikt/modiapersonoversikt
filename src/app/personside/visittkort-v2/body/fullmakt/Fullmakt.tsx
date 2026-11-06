@@ -1,5 +1,6 @@
 import { ReadMore } from '@navikt/ds-react';
 import { Feilmelding, Normaltekst, Undertekst } from 'nav-frontend-typografi';
+import Personopplysninger from 'src/components/PersonLinje/Personopplysninger';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import Fullmaktlogo from '../../../../../svg/Utropstegn';
@@ -73,13 +74,22 @@ function Fullmektig(props: { fullmektig: Fullmektig; harFeilendeSystem: boolean 
 
     return (
         <VisittkortElement beskrivelse="Fullmektig">
-            {harFeilendeSystem}
-            <Normaltekst>
-                {fullmektigNavn} {`(${props.fullmektig.ident})`}
-            </Normaltekst>
-            <KontaktinformasjonFullmakt
-                kontaktinformasjon={props.fullmektig.digitalKontaktinformasjonTredjepartsperson}
-            />
+            <Personopplysninger
+                skjulingsaarsak={props.fullmektig.skjulingsaarsak}
+                tilgangsavslag={props.fullmektig.tilgangsavslag}
+                tekstKomponent={Normaltekst}
+            >
+                {harFeilendeSystem}
+                <Normaltekst>
+                    {fullmektigNavn} {`(${props.fullmektig.ident || props.fullmektig.fullmakt.fullmektig})`}
+                </Normaltekst>
+                <KontaktinformasjonFullmakt
+                    kontaktinformasjon={props.fullmektig.digitalKontaktinformasjonTredjepartsperson}
+                />
+            </Personopplysninger>
+            {props.fullmektig.skjulingsaarsak && props.fullmektig.fullmakt.fullmektig && (
+                <Normaltekst>F.nr.: {props.fullmektig.fullmakt.fullmektig}</Normaltekst>
+            )}
             <Normaltekst>
                 Gyldig:{' '}
                 {hentPeriodeTekst(props.fullmektig.fullmakt.gyldigFraOgMed, props.fullmektig.fullmakt.gyldigTilOgMed)}

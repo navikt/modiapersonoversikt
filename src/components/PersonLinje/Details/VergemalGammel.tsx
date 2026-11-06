@@ -1,5 +1,6 @@
 import { ExclamationmarkTriangleFillIcon } from '@navikt/aksel-icons';
 import { Alert, BodyShort, Box, Detail, HelpText, HStack } from '@navikt/ds-react';
+import Personopplysninger from 'src/components/PersonLinje/Personopplysninger';
 import { usePersonData } from 'src/lib/clients/modiapersonoversikt-api';
 import { type PersonData, PersonDataFeilendeSystemer } from 'src/lib/types/modiapersonoversikt-api';
 import ValidPeriod from '../common/ValidPeriod';
@@ -21,8 +22,10 @@ function Verge(props: { feilendeSystemer: PersonDataFeilendeSystemer[]; verge: V
     return (
         <InfoElement title="Verge">
             <Box className="mb-2">
-                {harFeilendeSystemOgIngenNavn}
-                <Detail>{verge.ident}</Detail>
+                <Personopplysninger skjulingsaarsak={verge.skjulingsaarsak} tilgangsavslag={verge.tilgangsavslag}>
+                    {harFeilendeSystemOgIngenNavn}
+                    <Detail>{verge.ident}</Detail>
+                </Personopplysninger>
             </Box>
             {verge.tjenesteOppgaver && verge.tjenesteOppgaver?.length > 0 ? (
                 <>

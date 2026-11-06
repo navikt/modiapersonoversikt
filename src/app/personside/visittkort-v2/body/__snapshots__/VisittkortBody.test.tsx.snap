@@ -1124,7 +1124,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             Ansvar: felles
           </p>
           <p
-            class="typo-normal"
+            class="typo-normal wrap-anywhere"
           >
             Gjelder for: BARN1 BARNESEN (12345678910)
           </p>
@@ -1141,7 +1141,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             Ansvar: felles
           </p>
           <p
-            class="typo-normal"
+            class="typo-normal wrap-anywhere"
           >
             Gjelder for: BARN1 BARNESEN (12345678911)
           </p>
