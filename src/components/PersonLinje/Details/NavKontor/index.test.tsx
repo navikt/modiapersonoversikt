@@ -40,6 +40,12 @@ beforeEach(() => {
 });
 
 describe('NavKontor', () => {
+    it('viser kontornummer i parentes etter kontornavnet', () => {
+        render(<NavKontor />);
+
+        expect(screen.getByRole('heading', { level: 2, name: 'Nav test (0001)' })).toBeInTheDocument();
+    });
+
     it('viser besøksadressen til første publikumsmottak', () => {
         render(<NavKontor />);
 

@@ -152,7 +152,7 @@ function NavKontor() {
         <VStack gap="space-24">
             <HStack justify="space-between" align="center" gap="space-8">
                 <Heading size="small" level="2">
-                    {navEnhet.navn}
+                    {navEnhet.navn} ({navEnhet.id})
                 </Heading>
                 {theme === 'light' ? (
                     <NavLogoNy className="h-[1.2rem] w-auto shrink-0" aria-hidden />
