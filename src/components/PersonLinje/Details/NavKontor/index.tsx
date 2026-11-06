@@ -95,7 +95,7 @@ function NavKontor() {
         return (
             <VStack gap="space-16">
                 <HStack justify="space-between" align="center">
-                    <Heading size="small" level="2">
+                    <Heading size="small" level="3">
                         Ukjent Nav-kontor
                     </Heading>
                     {theme === 'light' ? (
@@ -123,7 +123,7 @@ function NavKontor() {
         return (
             <VStack gap="space-16">
                 <HStack justify="space-between" align="center">
-                    <Heading size="small" level="2">
+                    <Heading size="small" level="3">
                         Ukjent Nav-kontor
                     </Heading>
                     {theme === 'light' ? (
@@ -151,7 +151,7 @@ function NavKontor() {
     return (
         <VStack gap="space-24">
             <HStack justify="space-between" align="center" gap="space-8">
-                <Heading size="small" level="2">
+                <Heading size="small" level="3">
                     {navEnhet.navn} ({navEnhet.id})
                 </Heading>
                 {theme === 'light' ? (
