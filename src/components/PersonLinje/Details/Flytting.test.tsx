@@ -61,6 +61,8 @@ describe('Flytting', () => {
         const bostederDialog = screen.getByRole('dialog', { name: 'Bosteder' });
         const innenlandsflytting = within(bostederDialog).getByRole('table', { name: 'Bosteder' });
         expect(within(bostederDialog).getAllByRole('table')).toHaveLength(1);
+        expect(within(bostederDialog).queryByRole('region')).not.toBeInTheDocument();
+        expect(innenlandsflytting.parentElement).not.toHaveAttribute('tabindex');
         const innenlandsrader = within(innenlandsflytting).getAllByRole('row');
         const innenlandsoverskrifter = within(innenlandsflytting)
             .getAllByRole('columnheader')
@@ -93,22 +95,27 @@ describe('Flytting', () => {
         const utenlandsDialog = screen.getByRole('dialog', { name: 'Inn- og utflytting Norge' });
         const utenlandsflytting = within(utenlandsDialog).getByRole('table', { name: 'Inn- og Utflytting' });
         expect(within(utenlandsDialog).getAllByRole('table')).toHaveLength(1);
+        expect(within(utenlandsDialog).queryByRole('region')).not.toBeInTheDocument();
+        expect(utenlandsflytting.parentElement).not.toHaveAttribute('tabindex');
         expect(within(utenlandsDialog).queryByRole('table', { name: 'Bosteder' })).not.toBeInTheDocument();
 
-        expect(within(utenlandsflytting).getByRole('columnheader', { name: 'Fra' })).toBeInTheDocument();
-        expect(within(utenlandsflytting).getByRole('columnheader', { name: 'Til' })).toBeInTheDocument();
-        expect(within(utenlandsflytting).getByRole('columnheader', { name: 'Dato' })).toBeInTheDocument();
-        expect(within(utenlandsflytting).getByRole('columnheader', { name: 'Sist endret' })).toBeInTheDocument();
-        expect(within(utenlandsflytting).getByRole('columnheader', { name: 'Gyldig fra' })).toBeInTheDocument();
-        expect(within(utenlandsflytting).getByRole('columnheader', { name: 'Gyldig til' })).toBeInTheDocument();
+        expect(
+            within(utenlandsflytting)
+                .getAllByRole('columnheader')
+                .map((overskrift) => overskrift.textContent)
+        ).toEqual(['Fra - Til', 'Dato', 'Gyldig fra', 'Gyldig til', 'Sist endret']);
         const utenlandsrader = within(utenlandsflytting).getAllByRole('row');
-        expect(within(utenlandsrader[1]).getAllByRole('cell')[0]).toHaveTextContent('Norge');
-        expect(within(utenlandsrader[1]).getAllByRole('cell')[1]).toHaveTextContent('Danmark');
-        expect(within(utenlandsrader[1]).getAllByRole('cell')[2]).toHaveTextContent('01.01.2025');
-        expect(within(utenlandsrader[1]).getAllByRole('cell')[5]).toHaveTextContent('06.02.2025');
-        expect(within(utenlandsrader[2]).getAllByRole('cell')[0]).toHaveTextContent('Sverige');
-        expect(within(utenlandsrader[2]).getAllByRole('cell')[1]).toHaveTextContent('Norge');
-        expect(within(utenlandsrader[2]).getAllByRole('cell')[5]).toHaveTextContent('05.04.2024');
+        expect(within(utenlandsrader[1]).getByRole('rowheader', { name: 'Norge - Danmark' })).toHaveAttribute(
+            'scope',
+            'row'
+        );
+        expect(within(utenlandsrader[1]).getAllByRole('cell')[0]).toHaveTextContent('01.01.2025');
+        expect(within(utenlandsrader[1]).getAllByRole('cell')[3]).toHaveTextContent('06.02.2025');
+        expect(within(utenlandsrader[2]).getByRole('rowheader', { name: 'Sverige - Norge' })).toHaveAttribute(
+            'scope',
+            'row'
+        );
+        expect(within(utenlandsrader[2]).getAllByRole('cell')[3]).toHaveTextContent('05.04.2024');
     });
 
     it('viser en stedfortreder når inn- og utflytting til Norge mangler', () => {

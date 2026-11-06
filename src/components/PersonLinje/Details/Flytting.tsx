@@ -108,8 +108,7 @@ function UtenlandsflyttingTabell({
         <Table size="small" zebraStripes aria-label="Inn- og Utflytting">
             <Table.Header>
                 <Table.Row>
-                    <Table.HeaderCell scope="col">Fra</Table.HeaderCell>
-                    <Table.HeaderCell scope="col">Til</Table.HeaderCell>
+                    <Table.HeaderCell scope="col">Fra - Til</Table.HeaderCell>
                     <Table.HeaderCell scope="col">Dato</Table.HeaderCell>
                     <Table.HeaderCell scope="col">Gyldig fra</Table.HeaderCell>
                     <Table.HeaderCell scope="col">Gyldig til</Table.HeaderCell>
@@ -122,8 +121,9 @@ function UtenlandsflyttingTabell({
                         key={`${flytting.fraLand}-${flytting.tilLand}-${flytting.gyldighetsPeriode?.gyldigFraOgMed ?? index}`}
                         shadeOnHover={false}
                     >
-                        <Table.DataCell>{flytting.fraLand ?? ENDASH}</Table.DataCell>
-                        <Table.DataCell>{flytting.tilLand ?? ENDASH}</Table.DataCell>
+                        <Table.HeaderCell scope="row">
+                            {flytting.fraLand ?? ENDASH} - {flytting.tilLand ?? ENDASH}
+                        </Table.HeaderCell>
                         <Table.DataCell>{formaterDato(flytting.flyttedato)}</Table.DataCell>
                         <Table.DataCell>{formaterDato(flytting.gyldighetsPeriode?.gyldigFraOgMed)}</Table.DataCell>
                         <Table.DataCell>{formaterDato(flytting.gyldighetsPeriode?.gyldigTilOgMed)}</Table.DataCell>
@@ -179,7 +179,7 @@ export default function Flytting() {
                 width="80rem"
                 closeOnBackdropClick
             >
-                <Modal.Body className="overflow-x-auto" tabIndex={0} role="region" aria-label="Flyttehistorikk">
+                <Modal.Body className="overflow-x-auto">
                     {valgtKategori === 'Bosteder' && <InnenlandsflyttingTabell flyttinger={historiskeBostedAdresser} />}
                     {valgtKategori === 'Inn- og utflytting Norge' &&
                         (harUtenlandsflytting ? (
