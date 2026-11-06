@@ -63,6 +63,7 @@ describe('Flytting', () => {
         expect(within(bostederDialog).getAllByRole('table')).toHaveLength(1);
         expect(within(bostederDialog).queryByRole('region')).not.toBeInTheDocument();
         expect(innenlandsflytting.parentElement).not.toHaveAttribute('tabindex');
+        expect(innenlandsflytting).toHaveAttribute('tabindex', '0');
         const innenlandsrader = within(innenlandsflytting).getAllByRole('row');
         const innenlandsoverskrifter = within(innenlandsflytting)
             .getAllByRole('columnheader')
@@ -97,6 +98,7 @@ describe('Flytting', () => {
         expect(within(utenlandsDialog).getAllByRole('table')).toHaveLength(1);
         expect(within(utenlandsDialog).queryByRole('region')).not.toBeInTheDocument();
         expect(utenlandsflytting.parentElement).not.toHaveAttribute('tabindex');
+        expect(utenlandsflytting).toHaveAttribute('tabindex', '0');
         expect(within(utenlandsDialog).queryByRole('table', { name: 'Bosteder' })).not.toBeInTheDocument();
 
         expect(

@@ -32,10 +32,6 @@ test('hjemsiden har én hovedoverskrift og et sammenhengende overskriftshierarki
     await page.getByTestId('person-route').waitFor();
 
     const main = page.getByRole('main');
-    await page
-        .getByRole('dialog', { name: 'Sikkerhetstiltak', exact: true })
-        .getByRole('button', { name: 'Ok' })
-        .click();
     await expect(main.getByRole('heading', { name: 'AREMARK TESTFAMILIEN', exact: true })).toBeVisible();
     await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1);
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(/Modia personoversikt/i);

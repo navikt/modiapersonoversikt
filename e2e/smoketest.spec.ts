@@ -76,8 +76,10 @@ test.describe('Flytting på ny hjemside', () => {
             await bosteder.press('Enter');
             const dialog = page.getByRole('dialog', { name: 'Bosteder', exact: true });
             await expect(dialog).toBeVisible();
-            await expect(dialog.getByRole('table', { name: 'Bosteder' })).toBeVisible();
+            const bostederTabell = dialog.getByRole('table', { name: 'Bosteder' });
+            await expect(bostederTabell).toBeVisible();
             await expect(dialog.getByRole('table')).toHaveCount(1);
+            await expect(dialog.getByRole('region')).toHaveCount(0);
             await expect(dialog.getByRole('rowheader').first()).toContainText('Islandsgate 49');
             expect((await new AxeBuilder({ page }).include('dialog').analyze()).violations).toEqual([]);
             const dialogPosisjon = await dialog.boundingBox();
@@ -87,10 +89,12 @@ test.describe('Flytting på ny hjemside', () => {
             expect(dialogPosisjon.x).toBeGreaterThanOrEqual(0);
             expect(dialogPosisjon.x + dialogPosisjon.width).toBeLessThanOrEqual(width);
             if (width === 600) {
-                const historikk = dialog.getByRole('region', { name: 'Flyttehistorikk' });
-                await historikk.focus();
-                await historikk.press('ArrowRight');
-                await expect.poll(() => historikk.evaluate((element) => element.scrollLeft)).toBeGreaterThan(0);
+                await bostederTabell.focus();
+                await expect(bostederTabell).toBeFocused();
+                await bostederTabell.press('ArrowRight');
+                await expect
+                    .poll(() => bostederTabell.evaluate((element) => element.parentElement?.scrollLeft))
+                    .toBeGreaterThan(0);
             }
             await dialog.getByRole('button', { name: /lukk/i }).click();
             await expect(dialog).not.toBeVisible();
@@ -103,6 +107,7 @@ test.describe('Flytting på ny hjemside', () => {
             await expect(utenlandsDialog).toBeVisible();
             await expect(utenlandsDialog.getByRole('table', { name: 'Bosteder' })).toHaveCount(0);
             await expect(utenlandsDialog.getByRole('table', { name: 'Inn- og Utflytting' })).toBeVisible();
+            await expect(utenlandsDialog.getByRole('region')).toHaveCount(0);
             expect((await new AxeBuilder({ page }).include('dialog').analyze()).violations).toEqual([]);
             await utenlandsDialog.getByRole('button', { name: /lukk/i }).focus();
             await page.keyboard.press('Escape');

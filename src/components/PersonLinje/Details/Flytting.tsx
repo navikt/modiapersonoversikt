@@ -43,7 +43,7 @@ function InnenlandsflyttingTabell({ flyttinger }: { flyttinger: Adresse[] }) {
     );
 
     return (
-        <Table size="small" zebraStripes aria-label="Bosteder">
+        <Table size="small" zebraStripes aria-label="Bosteder" tabIndex={0}>
             <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell scope="col">Ny adresse</Table.HeaderCell>
@@ -105,7 +105,7 @@ function UtenlandsflyttingTabell({
     );
 
     return (
-        <Table size="small" zebraStripes aria-label="Inn- og Utflytting">
+        <Table size="small" zebraStripes aria-label="Inn- og Utflytting" tabIndex={0}>
             <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell scope="col">Fra - Til</Table.HeaderCell>
