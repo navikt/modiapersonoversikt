@@ -1,6 +1,7 @@
 import { CheckmarkIcon, XMarkOctagonIcon } from '@navikt/aksel-icons';
 import { BodyShort, InlineMessage, Tag, VStack } from '@navikt/ds-react';
 import { KopierFnrKnapp } from 'src/components/PersonLinje/common/KopierFnrKnapp';
+import Personopplysninger from 'src/components/PersonLinje/Personopplysninger';
 import { type PersonData, SivilstandType } from 'src/lib/types/modiapersonoversikt-api';
 import { formaterDato } from 'src/utils/string-utils';
 import Diskresjonskode from '../../common/DiskresjonsKode';
@@ -31,6 +32,19 @@ function SivilstandTekst(props: { sivilstand: Sivilstand }) {
 function Partner(props: { partner: Sivilstand; harFeilendeSystem: boolean }) {
     const partnerRelasjon = props.partner.sivilstandRelasjon;
 
+    if (partnerRelasjon?.skjulingsaarsak) {
+        return (
+            <>
+                <BodyShort size="small">
+                    <SivilstandTekst sivilstand={props.partner} />
+                </BodyShort>
+                <Personopplysninger
+                    skjulingsaarsak={partnerRelasjon.skjulingsaarsak}
+                    tilgangsavslag={partnerRelasjon.tilgangsavslag}
+                />
+            </>
+        );
+    }
     if (props.harFeilendeSystem || !partnerRelasjon) {
         return (
             <VStack gap="space-4">
@@ -65,27 +79,28 @@ function Partner(props: { partner: Sivilstand; harFeilendeSystem: boolean }) {
                 <SivilstandTekst sivilstand={props.partner} />
             </BodyShort>
             <KopierFnrKnapp fnr={fnr} />
-            {partnerRelasjon.harSammeAdresse && !erDød ? (
-                <Tag
-                    data-color="success"
-                    variant="moderate"
-                    size="xsmall"
-                    icon={<CheckmarkIcon aria-hidden />}
-                    className="self-start"
-                >
-                    Bor med bruker
-                </Tag>
-            ) : (
-                <Tag
-                    data-color="danger"
-                    variant="moderate"
-                    size="xsmall"
-                    icon={<XMarkOctagonIcon aria-hidden />}
-                    className="self-start"
-                >
-                    Bor ikke med bruker
-                </Tag>
-            )}
+            {partnerRelasjon.harSammeAdresse != null &&
+                (partnerRelasjon.harSammeAdresse && !erDød ? (
+                    <Tag
+                        data-color="success"
+                        variant="moderate"
+                        size="xsmall"
+                        icon={<CheckmarkIcon aria-hidden />}
+                        className="self-start"
+                    >
+                        Bor med bruker
+                    </Tag>
+                ) : (
+                    <Tag
+                        data-color="danger"
+                        variant="moderate"
+                        size="xsmall"
+                        icon={<XMarkOctagonIcon aria-hidden />}
+                        className="self-start"
+                    >
+                        Bor ikke med bruker
+                    </Tag>
+                ))}
             {erDød && dodsdato && (
                 <Tag data-color="neutral" variant="moderate" size="small" className="self-start">
                     Død ({formaterDato(dodsdato)})

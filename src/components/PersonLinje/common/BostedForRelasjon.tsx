@@ -6,7 +6,7 @@ interface Props {
 }
 
 function BostedForRelasjon({ relasjon }: Props) {
-    if (erDod(relasjon.dodsdato)) {
+    if (erDod(relasjon.dodsdato) || relasjon.harSammeAdresse == null) {
         return null;
     }
     if (relasjon.harSammeAdresse) {

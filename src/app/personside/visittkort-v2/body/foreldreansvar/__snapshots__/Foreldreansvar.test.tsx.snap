@@ -76,7 +76,7 @@ exports[`viser foreldreansvar 1`] = `
         Ansvar: felles
       </p>
       <p
-        class="typo-normal"
+        class="typo-normal wrap-anywhere"
       >
         Gjelder for: BARN1 BARNESEN (12345678910)
       </p>
@@ -93,7 +93,7 @@ exports[`viser foreldreansvar 1`] = `
         Ansvar: felles
       </p>
       <p
-        class="typo-normal"
+        class="typo-normal wrap-anywhere"
       >
         Gjelder for: BARN1 BARNESEN (12345678911)
       </p>

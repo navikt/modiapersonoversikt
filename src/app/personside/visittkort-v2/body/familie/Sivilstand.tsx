@@ -1,4 +1,5 @@
 import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
+import Personopplysninger from 'src/components/PersonLinje/Personopplysninger';
 import HeartIkon from '../../../../../svg/Heart';
 import { formaterDato } from '../../../../../utils/string-utils';
 import { type Sivilstand as SivilstandInterface, SivilstandType } from '../../PersondataDomain';
@@ -27,7 +28,7 @@ function Sivilstand(props: { sivilstand: SivilstandInterface }) {
 }
 
 function Partner(props: { partner: SivilstandInterface; harFeilendeSystem: boolean }) {
-    if (props.harFeilendeSystem) {
+    if (props.harFeilendeSystem && !props.partner.sivilstandRelasjon?.skjulingsaarsak) {
         return (
             <>
                 <Normaltekst>
@@ -48,14 +49,22 @@ function Partner(props: { partner: SivilstandInterface; harFeilendeSystem: boole
             <Normaltekst>
                 <Sivilstand sivilstand={props.partner} />
             </Normaltekst>
-            <Diskresjonskode adressebeskyttelse={partnerRelasjon.adressebeskyttelse} />
-            <Normaltekst>
-                {navn && hentNavn(navn)} ({hentAlderEllerDod(partnerRelasjon)})
-            </Normaltekst>
-            <Normaltekst>{partnerRelasjon.fnr}</Normaltekst>
-            <Normaltekst>
-                {partnerRelasjon.harSammeAdresse ? <>Bor med bruker</> : <>Bor ikke med bruker</>}
-            </Normaltekst>
+            <Personopplysninger
+                skjulingsaarsak={partnerRelasjon.skjulingsaarsak}
+                tilgangsavslag={partnerRelasjon.tilgangsavslag}
+                tekstKomponent={Normaltekst}
+            >
+                <Diskresjonskode adressebeskyttelse={partnerRelasjon.adressebeskyttelse} />
+                <Normaltekst>
+                    {navn && hentNavn(navn)} ({hentAlderEllerDod(partnerRelasjon)})
+                </Normaltekst>
+                <Normaltekst>{partnerRelasjon.fnr}</Normaltekst>
+                {partnerRelasjon.harSammeAdresse != null && (
+                    <Normaltekst>
+                        {partnerRelasjon.harSammeAdresse ? <>Bor med bruker</> : <>Bor ikke med bruker</>}
+                    </Normaltekst>
+                )}
+            </Personopplysninger>
         </>
     );
 }

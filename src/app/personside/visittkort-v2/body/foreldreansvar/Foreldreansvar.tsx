@@ -1,4 +1,5 @@
 import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
+import { hentSkjulingsaarsakTekst } from 'src/components/PersonLinje/skjulingsaarsak';
 import Infotegn from '../../../../../svg/Info';
 import { harFeilendeSystemer } from '../../harFeilendeSystemer';
 import { type Foreldreansvar, InformasjonElement, type NavnOgIdent } from '../../PersondataDomain';
@@ -15,6 +16,9 @@ function kombinerNavnOgIdent(personInfo: NavnOgIdent | null): string | null {
     if (!personInfo) {
         return null;
     }
+    if (personInfo.skjulingsaarsak) {
+        return hentSkjulingsaarsakTekst(personInfo.skjulingsaarsak, personInfo.tilgangsavslag);
+    }
 
     const navn = hentNavn(personInfo.navn);
     const ident = personInfo.ident ? personInfo.ident : 'Ukjent fnr/dnr';
@@ -25,7 +29,15 @@ function kombinerNavnOgIdent(personInfo: NavnOgIdent | null): string | null {
 function ForeldreansvarElement(props: { harFeilendeSystem: boolean; foreldreansvar: Foreldreansvar }) {
     const { foreldreansvar } = props;
 
-    if (props.harFeilendeSystem) {
+    if (
+        props.harFeilendeSystem &&
+        !foreldreansvar.ansvarlig?.navn &&
+        !foreldreansvar.ansvarlig?.ident &&
+        !foreldreansvar.ansvarsubject?.navn &&
+        !foreldreansvar.ansvarsubject?.ident &&
+        !foreldreansvar.ansvarlig?.skjulingsaarsak &&
+        !foreldreansvar.ansvarsubject?.skjulingsaarsak
+    ) {
         return (
             <VisittkortElement>
                 <Normaltekst>Ansvar: {foreldreansvar.ansvar}</Normaltekst>
@@ -39,8 +51,8 @@ function ForeldreansvarElement(props: { harFeilendeSystem: boolean; foreldreansv
     return (
         <VisittkortElement>
             <Normaltekst>Ansvar: {foreldreansvar.ansvar}</Normaltekst>
-            {ansvarlig && <Normaltekst>Ansvarlig: {ansvarlig}</Normaltekst>}
-            {ansvarsubject && <Normaltekst>Gjelder for: {ansvarsubject}</Normaltekst>}
+            {ansvarlig && <Normaltekst className="wrap-anywhere">Ansvarlig: {ansvarlig}</Normaltekst>}
+            {ansvarsubject && <Normaltekst className="wrap-anywhere">Gjelder for: {ansvarsubject}</Normaltekst>}
         </VisittkortElement>
     );
 }

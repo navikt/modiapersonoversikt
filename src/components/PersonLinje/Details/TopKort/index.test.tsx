@@ -27,6 +27,40 @@ beforeEach(() => {
 });
 
 describe('TopKort', () => {
+    it('beholder dødsboadressene når kontaktpersonene er skjult, uten tom kopieringsknapp', () => {
+        person.dodsdato = [{ dodsdato: '2024-01-01' }];
+        person.dodsbo = [
+            {
+                adressat: {
+                    personSomAdressat: { fnr: null, navn: [], skjulingsaarsak: 'MANGLER_TILGANG' }
+                },
+                adresse: { linje1: 'Gateveien 1' },
+                skifteform: DodsboSkifteform.OFFENTLIG,
+                registrert: '2024-01-01'
+            },
+            {
+                adressat: {
+                    personSomAdressat: { fnr: null, navn: [], skjulingsaarsak: 'UAVKLART' }
+                },
+                adresse: { linje1: 'Gateveien 2' },
+                skifteform: DodsboSkifteform.ANNET,
+                registrert: '2024-01-01'
+            }
+        ];
+        feilendeSystemer = [PersonDataFeilendeSystemer.PDL_TREDJEPARTSPERSONER];
+        render(<TopKort />);
+
+        for (const tekst of ['Personopplysninger skjult', 'Personopplysninger kunne ikke hentes']) {
+            const kontakt = screen.getByText(`Dødsbokontakt: ${tekst}`);
+            expect(kontakt.parentElement).not.toHaveTextContent(/Ukjent|Ikke registrert|Feilet ved uthenting/);
+            expect(kontakt.parentElement?.querySelector('button')).toBeNull();
+        }
+        expect(screen.getByText('Skifteform: Offentlig')).toBeInTheDocument();
+        expect(screen.getByText('Skifteform: Annet')).toBeInTheDocument();
+        expect(screen.getByText('Gateveien 1')).toBeVisible();
+        expect(screen.getByText('Gateveien 2')).toBeVisible();
+    });
+
     it('viser lenken til PDL-web høyrejustert under alle kolonnene', () => {
         render(<TopKort />);
 

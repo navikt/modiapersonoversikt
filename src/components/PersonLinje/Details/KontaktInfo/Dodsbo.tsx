@@ -1,6 +1,7 @@
 import { LocationPinFillIcon } from '@navikt/aksel-icons';
 import { Alert, BodyShort, Box, InlineMessage } from '@navikt/ds-react';
 import { KopierFnrKnapp } from 'src/components/PersonLinje/common/KopierFnrKnapp';
+import Personopplysninger from 'src/components/PersonLinje/Personopplysninger';
 import type { PersonData } from 'src/lib/types/modiapersonoversikt-api';
 import { capitalizeFirstCharacterAndLowercaseRest, formaterDato } from 'src/utils/string-utils';
 import { hentNavn } from '../../utils';
@@ -77,12 +78,16 @@ function PersonSomAdressatInfo({
     ) : null;
 
     return (
-        <>
+        <Personopplysninger
+            skjulingsaarsak={adressat.skjulingsaarsak}
+            tilgangsavslag={adressat.tilgangsavslag}
+            prefiks="Dødsbokontakt"
+        >
             {manglerData}
             {navnKomp}
             {fodselsdato}
             <KopierFnrKnapp fnr={adressat.fnr} />
-        </>
+        </Personopplysninger>
     );
 }
 

@@ -1,6 +1,7 @@
 import Hjelpetekst from 'nav-frontend-hjelpetekst';
 import { Element, Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import { Fragment } from 'react';
+import Personopplysninger from 'src/components/PersonLinje/Personopplysninger';
 import styled from 'styled-components';
 import EtikettGraa from '../../../../../components/EtikettGraa';
 import VergemalLogo from '../../../../../svg/Utropstegn';
@@ -32,8 +33,14 @@ function Verge(props: { feilendeSystemer: Array<InformasjonElement>; verge: Verg
     return (
         <VisittkortElement beskrivelse="Verge">
             <Vergeinformasjon>
-                {harFeilendeSystemOgIngenNavn}
-                <Normaltekst>{verge.ident}</Normaltekst>
+                <Personopplysninger
+                    skjulingsaarsak={verge.skjulingsaarsak}
+                    tilgangsavslag={verge.tilgangsavslag}
+                    tekstKomponent={Normaltekst}
+                >
+                    {harFeilendeSystemOgIngenNavn}
+                    <Normaltekst>{verge.ident}</Normaltekst>
+                </Personopplysninger>
             </Vergeinformasjon>
             {verge.tjenesteOppgaver && verge.tjenesteOppgaver?.length > 0 ? (
                 <Fragment>

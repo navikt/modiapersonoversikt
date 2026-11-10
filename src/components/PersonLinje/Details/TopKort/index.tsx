@@ -183,9 +183,9 @@ function TopKort() {
 
                 <VStack gap="space-16">
                     {harDodsbo &&
-                        person.dodsbo.map((dodsbo) => (
+                        person.dodsbo.map((dodsbo, index) => (
                             <DodsboFelt
-                                key={`${dodsbo.registrert}-${dodsbo.adresse.linje1}`}
+                                key={`${dodsbo.registrert}-${dodsbo.adresse.linje1}-${index}`}
                                 dodsbo={dodsbo}
                                 harFeilendeSystem={harFeilendeSystemer(
                                     feilendeSystemer,
