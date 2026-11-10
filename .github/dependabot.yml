@@ -12,21 +12,39 @@ updates:
   - package-ecosystem: npm
     directory: "/"
     schedule:
-      interval: daily
-      time: "05:00"
+      interval: weekly
+      day: monday
+      time: "06:00"
       timezone: Europe/Oslo
+    open-pull-requests-limit: 5
+    groups:
+      npm:
+        patterns:
+          - '*'
     registries: "*"
 
   - package-ecosystem: docker
     directory: "/"
     schedule:
-      interval: daily
-      time: "05:00"
+      interval: weekly
+      day: monday
+      time: "06:00"
       timezone: Europe/Oslo
+    open-pull-requests-limit: 5
+    groups:
+      docker:
+        patterns:
+          - '*'
 
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
-      interval: daily
-      time: "05:00"
+      interval: weekly
+      day: monday
+      time: "06:00"
       timezone: Europe/Oslo
+    open-pull-requests-limit: 5
+    groups:
+      github-actions:
+        patterns:
+          - '*'

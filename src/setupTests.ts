@@ -36,7 +36,7 @@ vi.mock('react-collapse', () => {
 });
 
 vi.setSystemTime(0);
-beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
+beforeAll(() => server.listen({ onUnhandledFrame: 'error' }));
 afterEach(() => {
     setGlobalOrigin(window.location.href);
     server.resetHandlers();
