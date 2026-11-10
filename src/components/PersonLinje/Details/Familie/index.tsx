@@ -38,13 +38,19 @@ function Familie() {
                 <Accordion.Header>Familiemedlemmer</Accordion.Header>
                 <Accordion.Content>
                     <VStack gap="space-8">
-                        <Heading size="xsmall">Partner</Heading>
+                        <Heading size="xsmall" level="4">
+                            Partner
+                        </Heading>
                         <Sivilstand harFeilendeSystem={harFeilendeSystem} sivilstand={person.sivilstand} />
-                        <Heading size="xsmall">Barn</Heading>
+                        <Heading size="xsmall" level="4">
+                            Barn
+                        </Heading>
                         <Barn harFeilendeSystem={harFeilendeSystem} relasjoner={person.forelderBarnRelasjon} />
                         {erUnder22 && (
                             <>
-                                <Heading size="xsmall">Foreldre</Heading>
+                                <Heading size="xsmall" level="4">
+                                    Foreldre
+                                </Heading>
                                 <Foreldre
                                     harFeilendeSystem={harFeilendeSystem}
                                     forelderBarnRelasjon={person.forelderBarnRelasjon}

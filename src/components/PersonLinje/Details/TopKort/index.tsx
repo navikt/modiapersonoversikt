@@ -132,7 +132,9 @@ function TopKort() {
             <HStack gap="space-2" align="center">
                 {kjonn === Kjonn.K && <FigureOutwardIcon fontSize="2.2rem" aria-hidden />}
                 {kjonn === Kjonn.M && <FigureInwardIcon fontSize="2.2rem" aria-hidden />}
-                <Heading size="large">{navn}</Heading>
+                <Heading size="large" level="2">
+                    {navn}
+                </Heading>
             </HStack>
 
             <HGrid columns={{ xs: 1, md: 2, xl: 3 }} gap={{ xs: 'space-16', xl: 'space-64' }}>

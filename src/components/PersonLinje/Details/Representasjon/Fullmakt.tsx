@@ -92,7 +92,7 @@ export const Fullmakt = () => {
 
     return (
         <VStack gap="space-4">
-            <Heading size="xsmall" as="h3">
+            <Heading size="xsmall" level="4">
                 Fullmektige
             </Heading>
 

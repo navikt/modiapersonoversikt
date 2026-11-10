@@ -93,7 +93,7 @@ function Vergemal() {
 
     return (
         <VStack gap="space-4">
-            <Heading size="xsmall" as="h3">
+            <Heading size="xsmall" level="4">
                 Verger
             </Heading>
             <Detail>

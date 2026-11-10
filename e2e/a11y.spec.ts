@@ -27,6 +27,34 @@ test.beforeEach(async ({ page }) => {
     });
 });
 
+test('hjemsiden har én hovedoverskrift og et sammenhengende overskriftshierarki', async ({ page }) => {
+    await page.goto('/new/person/hjem');
+    await page.getByTestId('person-route').waitFor();
+
+    const main = page.getByRole('main');
+    await expect(main.getByRole('heading', { name: 'AREMARK TESTFAMILIEN', exact: true })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1);
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(/Modia personoversikt/i);
+
+    await expect(main.getByRole('heading', { name: 'Familie', exact: true, level: 3 })).toBeVisible();
+    await main.getByRole('button', { name: 'Familiemedlemmer', exact: true }).click();
+
+    await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1);
+    await expect(main.getByRole('heading', { name: 'AREMARK TESTFAMILIEN', exact: true, level: 2 })).toBeVisible();
+    await expect(main.getByRole('heading', { name: 'Partner', exact: true, level: 4 })).toBeVisible();
+    await expect(main.getByRole('heading', { name: 'Barn', exact: true, level: 4 })).toBeVisible();
+
+    const overskriftsnivaer = await main
+        .getByRole('heading')
+        .evaluateAll((overskrifter) => overskrifter.map((overskrift) => Number(overskrift.tagName.slice(1))));
+
+    let forrigeNiva = 1;
+    for (const niva of overskriftsnivaer) {
+        expect(niva).toBeLessThanOrEqual(forrigeNiva + 1);
+        forrigeNiva = niva;
+    }
+});
+
 faner.forEach((fane) => {
     test(`Universell utforming: Analyse av new/person/${fane}`, async ({ page }) => {
         await page.goto(`/new/person/${fane}`);
