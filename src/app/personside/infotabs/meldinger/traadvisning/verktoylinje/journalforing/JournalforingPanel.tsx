@@ -4,34 +4,16 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { FeatureToggles } from '../../../../../../../components/featureToggle/toggleIDs';
 import useFeatureToggle from '../../../../../../../components/featureToggle/useFeatureToggle';
+import type { JournalforingsSak } from '../../../../../../../models/meldinger/journalforing';
 import type { Traad } from '../../../../../../../models/meldinger/meldinger';
 import { kanTraadJournalfores, kanTraadJournalforesV2 } from '../../../utils/meldingerUtils';
 import { JournalforSak } from './JournalforSak';
 import VelgSak from './VelgSak';
 
-export enum SakKategori {
-    FAG = 'Fagsaker',
-    GEN = 'Generelle saker'
-}
-
 enum AktivtVindu {
     SAKLISTE = 0,
     SAKVISNING = 1
 }
-
-export interface JournalforingsSak {
-    fagsystemKode: string;
-    fagsystemNavn: string;
-    fagsystemSaksId: string | null;
-    opprettetDato: string | null;
-    sakstype: string | null;
-    temaKode: string;
-    temaNavn: string;
-}
-
-export type Result = { saker: Array<JournalforingsSak>; feiledeSystemer: Array<string> };
-export type Tema = { tema: string; saker: Array<JournalforingsSak> };
-export type Kategorier = { [key in SakKategori]: Tema[] };
 
 interface Props {
     lukkPanel: () => void;

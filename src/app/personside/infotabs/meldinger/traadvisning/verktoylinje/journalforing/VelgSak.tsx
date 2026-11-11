@@ -2,12 +2,12 @@ import { Detail } from '@navikt/ds-react';
 import { AlertStripeAdvarsel, AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { Radio, type RadioProps } from 'nav-frontend-skjema';
 import Spinner from 'nav-frontend-spinner';
+import { type JournalforingsSak, type Kategorier, SakKategori, type Tema } from 'src/models/meldinger/journalforing';
 import { datoSynkende } from 'src/utils/date-utils';
 import { type Group, groupBy } from 'src/utils/groupArray';
 import styled from 'styled-components';
 import journalsakResource from '../../../../../../../rest/resources/journalsakResource';
 import useFieldState, { type FieldState } from '../../../../../../../utils/hooks/use-field-state';
-import { type JournalforingsSak, type Kategorier, SakKategori, type Tema } from './JournalforingPanel';
 import TemaTable from './TemaTabell';
 
 const Form = styled.form`
