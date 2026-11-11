@@ -1,7 +1,7 @@
 import { act } from '@testing-library/react';
 import { statiskMockUtbetaling, statiskMockYtelse } from '../../../../../mock/utbetalinger/statiskMockUtbetaling';
 import type { Utbetaling } from '../../../../../models/utbetalinger';
-import { renderWithProviders } from '../../../../../test/Testprovider';
+import { renderWithProviders } from '../../../../../test/LegacyTestprovider';
 import SammensattUtbetaling from './SammensattUtbetaling';
 
 const sammensattUtbetaling: Utbetaling = {

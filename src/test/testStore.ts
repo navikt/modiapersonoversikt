@@ -1,4 +1,3 @@
-import type { UseQueryResult } from '@tanstack/react-query';
 import { applyMiddleware, createStore, type Dispatch, type Store } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import * as modiapersonoversiktApiClient from 'src/lib/clients/modiapersonoversikt-api';
@@ -7,8 +6,7 @@ import { statiskArbeidsavklaringspengerMock } from 'src/mock/ytelse/statiskArbei
 import { statiskEngangstonadMock, statiskForeldrepengerMock } from 'src/mock/ytelse/statiskForeldrepengerMock';
 import { statiskPensjonMock } from 'src/mock/ytelse/statiskPensjonMock';
 import { statiskSykepengerSpokelseMock } from 'src/mock/ytelse/statiskSykepengerSpokelseMock';
-import { type MockInstance, vi } from 'vitest';
-import type { FetchError } from '../api/api';
+import { vi } from 'vitest';
 import { FeatureToggles } from '../components/featureToggle/toggleIDs';
 import { mockBaseUrls } from '../mock/baseUrls-mock';
 import { getMockGsakTema } from '../mock/meldinger/oppgave-mock';
@@ -38,6 +36,7 @@ import * as sykepengerSpokelseResource from '../rest/resources/sykepengerSpokels
 import * as tiltakspengerResource from '../rest/resources/tiltakspengerResource';
 import utbetalingerResource from '../rest/resources/utbetalingerResource';
 import varselResource from '../rest/resources/varselResource';
+import { mockReactQuery } from './mockReactQuery';
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers(), applyMiddleware(thunkMiddleware));
@@ -51,19 +50,6 @@ export function getTestStore(): Store<AppState> {
     return testStore;
 }
 
-export function mockReactQuery<A extends unknown[], R>(
-    resource: (...args: A) => UseQueryResult<R>,
-    data: R,
-    extra?: Partial<Omit<UseQueryResult<R>, 'data'>>
-) {
-    (resource as unknown as MockInstance<(...args: A) => Partial<UseQueryResult<R>>>).mockImplementation(
-        () =>
-            ({
-                data,
-                ...extra
-            }) as Partial<UseQueryResult<R, FetchError>>
-    );
-}
 export function setupReactQueryMocks() {
     vi.spyOn(innstillingerResource, 'useFetch');
     vi.spyOn(dialogResource, 'useFetch');

@@ -1,7 +1,8 @@
 import { act } from '@testing-library/react';
+import { vi } from 'vitest';
 import featuretogglesResource, { type FeatureTogglesResponse } from '../../rest/resources/featuretogglesResource';
+import { mockReactQuery } from '../../test/mockReactQuery';
 import { renderWithProviders } from '../../test/Testprovider';
-import { mockReactQuery, setupReactQueryMocks } from '../../test/testStore';
 import IfFeatureToggleOff from './IfFeatureToggleOff';
 import IfFeatureToggleOn from './IfFeatureToggleOn';
 import type { FeatureToggles } from './toggleIDs';
@@ -9,7 +10,7 @@ import type { FeatureToggles } from './toggleIDs';
 const toggleId = 'toggleId' as FeatureToggles;
 
 test('viser innhold i FeatureToggle dersom feature-toggle er på', async () => {
-    setupReactQueryMocks();
+    vi.spyOn(featuretogglesResource, 'useFetch');
     mockReactQuery(featuretogglesResource.useFetch, {
         [toggleId]: true
     } as FeatureTogglesResponse);
@@ -27,7 +28,7 @@ test('viser innhold i FeatureToggle dersom feature-toggle er på', async () => {
 });
 
 test('viser innhold i IfFeatureToggleOff dersom feature-toggle er av', async () => {
-    setupReactQueryMocks();
+    vi.spyOn(featuretogglesResource, 'useFetch');
     mockReactQuery(featuretogglesResource.useFetch, {
         [toggleId]: false
     } as FeatureTogglesResponse);
@@ -45,7 +46,7 @@ test('viser innhold i IfFeatureToggleOff dersom feature-toggle er av', async () 
 });
 
 test('viser LazySpinner dersom feature-toggle ikke er satt', async () => {
-    setupReactQueryMocks();
+    vi.spyOn(featuretogglesResource, 'useFetch');
     mockReactQuery(featuretogglesResource.useFetch, { [toggleId]: false } as FeatureTogglesResponse, {
         isLoading: true
     });

@@ -1,6 +1,6 @@
 import { act } from '@testing-library/react';
 import { aremark } from '../../../../../mock/persondata/aremark';
-import { renderWithProviders } from '../../../../../test/Testprovider';
+import { renderWithProviders } from '../../../../../test/LegacyTestprovider';
 import DeltBosted from './DeltBosted';
 
 test('viser deltbosted', async () => {

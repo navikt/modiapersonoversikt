@@ -2,7 +2,7 @@ import { act, screen } from '@testing-library/react';
 import { type Dokumentmetadata, FeilFeilmelding } from 'src/generated/modiapersonoversikt-api';
 import { aremark } from 'src/mock/persondata/aremark';
 import { getStaticMockSaksoOgDokumenter } from '../../../../../../mock/saksoversikt/saksoversikt-mock';
-import { renderWithProviders } from '../../../../../../test/Testprovider';
+import { renderWithProviders } from '../../../../../../test/LegacyTestprovider';
 import { getTestStore } from '../../../../../../test/testStore';
 import { aggregertSakstemaV2 } from '../../utils/saksoversiktUtilsV2';
 import JournalpostListeElementV2 from './JournalpostListeElementV2';

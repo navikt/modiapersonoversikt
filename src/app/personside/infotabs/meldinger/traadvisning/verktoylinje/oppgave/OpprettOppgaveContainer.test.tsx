@@ -1,6 +1,6 @@
 import { act, screen } from '@testing-library/react';
 import { statiskTraadMock } from '../../../../../../../mock/meldinger/statiskTraadMock';
-import { renderWithProviders } from '../../../../../../../test/Testprovider';
+import { renderWithProviders } from '../../../../../../../test/LegacyTestprovider';
 import { setupReactQueryMocks } from '../../../../../../../test/testStore';
 import OpprettOppgaveContainer from './OpprettOppgaveContainer';
 
