@@ -14,8 +14,8 @@ import {
 import { useDialogpanelState } from 'src/context/dialogpanel-state';
 import type { Traad } from 'src/models/meldinger/meldinger';
 import { setValgtTraadDialogpanel } from 'src/redux/oppgave/actions';
+import { useAppState } from 'src/redux/useAppState';
 import theme from 'src/styles/personOversiktTheme';
-import { useAppState } from 'src/utils/customHooks';
 import { datoSynkende, formatterDato, formatterDatoTid } from 'src/utils/date-utils';
 import { loggEvent } from 'src/utils/logger/frontendLogger';
 import type { Printer } from 'src/utils/print/usePrinter';

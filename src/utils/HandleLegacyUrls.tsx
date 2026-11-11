@@ -1,14 +1,14 @@
 import { Loader } from '@navikt/ds-react';
 import { useMatchRoute, useNavigate, useSearch } from '@tanstack/react-router';
 import { type PropsWithChildren, useEffect, useRef, useState } from 'react';
-import { paths } from 'src/app/routes/routing';
 import type { OppgaveDto } from 'src/generated/modiapersonoversikt-api';
 import { useSetUserContext } from 'src/lib/clients/contextholder';
 import { useOppgave } from 'src/lib/clients/modiapersonoversikt-api';
+import { useSettAktivBruker } from 'src/lib/hooks/useSettAktivBruker';
 import { INFOTABS } from 'src/models/infotabs';
 import { trackDyplenkeFraEksternKilde } from 'src/utils/analytics';
-import { useSettAktivBruker } from 'src/utils/customHooks';
 import { erGyldigishFnr } from 'src/utils/fnr-utils';
+import { paths } from 'src/utils/paths';
 
 function HandleLegacyUrls({ children }: PropsWithChildren) {
     const { oppgaveId, sokFnr, sokFnrCode, henvendelseId, behandlingsId } = useSearch({ strict: false });

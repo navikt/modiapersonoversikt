@@ -2,6 +2,7 @@ import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useCallback, useRef } from 'react';
 import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
 import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
+import { useSettAktivBruker } from 'src/lib/hooks/useSettAktivBruker';
 import { aktivBrukerAtom, aktivBrukerLastetAtom, aktivEnhetAtom, aktivEnhetObjektAtom } from 'src/lib/state/context';
 import {
     identifyEnhetOgTypeUmami,
@@ -10,7 +11,7 @@ import {
     trackGenereltUmamiEvent,
     trackingEvents
 } from 'src/utils/analytics';
-import { useOnMount, useSettAktivBruker } from 'src/utils/customHooks';
+import { useOnMount } from 'src/utils/customHooks';
 import { getDomainFromHost, getEnvFromHost } from 'src/utils/environment';
 import { loggEvent } from 'src/utils/logger/frontendLogger';
 import { parseQueryString } from 'src/utils/url-utils';

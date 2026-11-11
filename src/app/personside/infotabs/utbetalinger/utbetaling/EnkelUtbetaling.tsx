@@ -1,6 +1,7 @@
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
+import { useAppState } from 'src/redux/useAppState';
 import { trackVisDetaljvisning } from 'src/utils/analytics';
 import { formaterNOK } from 'src/utils/string-utils';
 import styled from 'styled-components';
@@ -10,7 +11,7 @@ import PrintKnapp from '../../../../../components/PrintKnapp';
 import type { Utbetaling as UtbetalingInterface, Ytelse } from '../../../../../models/utbetalinger';
 import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../../redux/utbetalinger/actions';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
-import { useAppState, useOnMount, useOnUpdate, usePrevious } from '../../../../../utils/customHooks';
+import { useOnMount, useOnUpdate, usePrevious } from '../../../../../utils/customHooks';
 import { datoVerbose } from '../../../../../utils/date-utils';
 import { cancelIfHighlighting } from '../../../../../utils/function-utils';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
