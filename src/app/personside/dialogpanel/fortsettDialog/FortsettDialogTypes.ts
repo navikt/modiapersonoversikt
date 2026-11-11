@@ -1,6 +1,6 @@
+import type { JournalforingsSak } from 'src/models/meldinger/journalforing';
 import type { Traad, TraadType } from '../../../../models/meldinger/meldinger';
 import type { Temagruppe } from '../../../../models/temagrupper';
-import type { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import type { OppgavelisteValg } from '../sendMelding/SendNyMelding';
 
 export enum DialogPanelStatus {

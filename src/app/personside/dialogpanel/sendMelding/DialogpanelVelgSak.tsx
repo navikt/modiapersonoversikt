@@ -2,11 +2,11 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import ModalWrapper from 'nav-frontend-modal';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { createRef, useState } from 'react';
+import type { JournalforingsSak } from 'src/models/meldinger/journalforing';
 import { formatterDatoMedMaanedsnavn } from 'src/utils/date-utils';
 import styled from 'styled-components';
 import journalsakResource from '../../../../rest/resources/journalsakResource';
 import theme from '../../../../styles/personOversiktTheme';
-import type { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import VelgSak from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/VelgSak';
 
 interface Props {

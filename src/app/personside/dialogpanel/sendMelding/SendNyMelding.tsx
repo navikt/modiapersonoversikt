@@ -7,6 +7,7 @@ import { Undertittel } from 'nav-frontend-typografi';
 import { type FormEvent, useRef } from 'react';
 import { UnmountClosed } from 'react-collapse';
 import { useDisableDialog } from 'src/lib/state/dialog';
+import type { JournalforingsSak } from 'src/models/meldinger/journalforing';
 import styled from 'styled-components';
 import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
 import type { TraadType } from '../../../../models/meldinger/meldinger';
@@ -14,7 +15,6 @@ import { type Temagruppe, TemaSamtalereferat } from '../../../../models/temagrup
 import persondataResource from '../../../../rest/resources/persondataResource';
 import theme from '../../../../styles/personOversiktTheme';
 import { capitalizeName } from '../../../../utils/string-utils';
-import type { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import Temavelger from '../component/Temavelger';
 import DraftStatus from '../DraftStatus';
 import { DialogpanelFeilmelding, FormStyle } from '../fellesStyling';
