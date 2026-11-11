@@ -1,46 +1,19 @@
-import dayjs, { type Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import { useSetAtom } from 'jotai';
 import { debounce } from 'lodash';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FetchError } from 'src/api/api';
-import { draftAtom } from 'src/lib/state/dialog';
+import config from 'src/config';
+import { draftAtom } from 'src/lib/state/draft';
+import type { Draft, DraftContext, DraftState, WsConfirmation, WsEvent } from 'src/models/meldinger/draft';
 import { getEnvFromHost } from 'src/utils/environment';
 import { loggError, loggInfo } from 'src/utils/logger/frontendLogger';
-import config from '../../../config';
-import WebSocketImpl, { Status } from '../../../utils/websocket-impl';
-
-export interface DraftContext {
-    [key: string]: string;
-}
-
-export interface Draft {
-    owner: string;
-    content: string;
-    context: DraftContext;
-    created: string;
-}
-
-export type DraftState = {
-    ok: boolean;
-    loading: boolean;
-    saveTime: Dayjs | null;
-};
+import WebSocketImpl, { Status } from 'src/utils/websocket-impl';
 
 interface DraftSystem {
     update(content: string): void;
     remove(): void;
     status: DraftState;
-}
-
-export interface WsEvent {
-    type: 'UPDATE' | 'DELETE';
-    context: DraftContext;
-    content: string | null;
-}
-
-export interface WsConfirmation {
-    type: 'OK';
-    time: string;
 }
 
 const okCloseCodes = Object.values(WebSocketImpl.Codes);

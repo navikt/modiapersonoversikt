@@ -10,13 +10,14 @@ import FortsettDialog from 'src/app/personside/dialogpanel/fortsettDialog/Fortse
 import { SvarSendtKvittering } from 'src/app/personside/dialogpanel/fortsettDialog/FortsettDialogKvittering';
 import ReflowBoundry from 'src/app/personside/dialogpanel/ReflowBoundry';
 import { OppgavelisteValg } from 'src/app/personside/dialogpanel/sendMelding/SendNyMelding';
-import useDraft, { type Draft } from 'src/app/personside/dialogpanel/use-draft';
 import { useAlertOnNavigation } from 'src/app/personside/dialogpanel/useAlertOnNavigation';
 import { erJournalfort } from 'src/app/personside/infotabs/meldinger/utils/meldingerUtils';
 import IfFeatureToggleOn from 'src/components/featureToggle/IfFeatureToggleOn';
 import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
 import { useValgtenhet } from 'src/context/valgtenhet-state';
+import useDraft from 'src/lib/hooks/useDraft';
 import { usePersonAtomValue } from 'src/lib/state/context';
+import type { Draft } from 'src/models/meldinger/draft';
 import { type SendMeldingRequestV2, type Traad, TraadType } from 'src/models/meldinger/meldinger';
 import type { Oppgave } from 'src/models/meldinger/oppgave';
 import { Temagruppe } from 'src/models/temagrupper';

@@ -1,6 +1,6 @@
 import { HttpResponse, type HttpResponseResolver, http, type WebSocketData, ws } from 'msw';
 import { delayed, randomDelay } from 'src/mock/utils-mock';
-import type { Draft, DraftContext, WsConfirmation, WsEvent } from '../app/personside/dialogpanel/use-draft';
+import type { Draft, DraftContext, WsConfirmation, WsEvent } from 'src/models/meldinger/draft';
 import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
 
 const innloggetSaksbehandler = getMockInnloggetSaksbehandler();
