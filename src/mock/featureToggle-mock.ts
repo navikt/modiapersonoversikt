@@ -3,6 +3,8 @@ import type { FeatureToggleResponse } from '../models/featureToggle';
 
 export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleResponse {
     switch (toggleId) {
+        case FeatureToggles.DeaktiverGammelModia:
+            return false;
         case FeatureToggles.JournalforUtenSvar:
             return true;
         case FeatureToggles.NyModiaKnapp:

@@ -81,6 +81,7 @@ export function setupReactQueryMocks() {
         [FeatureToggles.JournalforUtenSvar]: true,
         [FeatureToggles.VisPromptMeldingSending]: true,
         [FeatureToggles.NyModiaKnapp]: true,
+        [FeatureToggles.DeaktiverGammelModia]: false,
         [FeatureToggles.InfotrygdSykepenger]: true,
         [FeatureToggles.SpokelseSykepenger]: true,
         [FeatureToggles.NyOversiktDesign]: true,
