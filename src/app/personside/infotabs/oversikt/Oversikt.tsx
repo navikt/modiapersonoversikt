@@ -1,7 +1,7 @@
+import { INFOTABS } from 'src/models/infotabs';
 import styled from 'styled-components';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
-import { INFOTABS } from '../InfoTabEnum';
 import MeldingerOversikt from './MeldingerOversikt';
 import OppfolgingOversikt from './OppfolgingOversikt';
 import Oversiktskomponent from './Oversiktskomponent';

@@ -1,19 +1,18 @@
 import dayjs from 'dayjs';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { Fragment } from 'react';
+import { getPeriodeFromYtelser } from 'src/utils/date-utils';
 import styled from 'styled-components';
 import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import type { Utbetaling, Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
 import theme from '../../../../../styles/personOversiktTheme';
 import { groupArray } from '../../../../../utils/groupArray';
-import { formaterDato, sorterAlfabetisk } from '../../../../../utils/string-utils';
+import { formaterDato, formaterNOK, sorterAlfabetisk } from '../../../../../utils/string-utils';
 import {
     filtrerBortUtbetalingerSomIkkeErUtbetalt,
-    formaterNOK,
     getBruttoSumYtelser,
     getNettoSumYtelser,
-    getPeriodeFromYtelser,
     getTrekkSumYtelser,
     getTypeFromYtelse,
     reduceUtbetlingerTilYtelser

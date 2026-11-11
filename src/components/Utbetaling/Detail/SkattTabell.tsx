@@ -1,6 +1,6 @@
 import { BodyShort, Box, Heading, HStack, Table } from '@navikt/ds-react';
-import { formaterNOK } from 'src/components/Utbetaling/utils';
 import type { Ytelse } from 'src/generated/modiapersonoversikt-api';
+import { formaterNOK } from 'src/utils/string-utils';
 
 export const SkattTabell = ({ ytelse }: { ytelse: Ytelse }) => {
     if (!ytelse.skattListe || ytelse.skattListe.isEmpty()) return null;

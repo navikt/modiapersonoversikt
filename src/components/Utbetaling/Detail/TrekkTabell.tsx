@@ -1,6 +1,6 @@
 import { BodyShort, Box, Heading, HStack, Table } from '@navikt/ds-react';
-import { formaterNOK } from 'src/components/Utbetaling/utils';
 import type { Ytelse } from 'src/generated/modiapersonoversikt-api';
+import { formaterNOK } from 'src/utils/string-utils';
 
 export const TrekkTabell = ({ ytelse }: { ytelse: Ytelse }) => {
     if (!ytelse.trekkListe || ytelse.trekkListe?.isEmpty()) return null;

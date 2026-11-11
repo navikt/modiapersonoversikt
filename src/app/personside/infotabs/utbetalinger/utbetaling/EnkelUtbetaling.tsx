@@ -2,6 +2,7 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { trackVisDetaljvisning } from 'src/utils/analytics';
+import { formaterNOK } from 'src/utils/string-utils';
 import styled from 'styled-components';
 import { Bold, SpaceBetween } from '../../../../../components/common-styled-components';
 import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
@@ -17,7 +18,7 @@ import usePrinter from '../../../../../utils/print/usePrinter';
 import { eventTagetIsInsideRef } from '../../../../../utils/reactRef-utils';
 import { utbetalingerTest } from '../../dyplenkeTest/utils-dyplenker-test';
 import { UtbetalingTabellStyling } from '../utils/CommonStyling';
-import { formaterNOK, getGjeldendeDatoForUtbetaling, periodeStringFromYtelse } from '../utils/utbetalinger-utils';
+import { getGjeldendeDatoForUtbetaling, periodeStringFromYtelse } from '../utils/utbetalinger-utils';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
 
 interface Props {

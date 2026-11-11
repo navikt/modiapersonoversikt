@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { meldingerTest, sakerTest, ytelserTest } from 'src/app/personside/infotabs/dyplenkeTest/utils-dyplenker-test';
-import { INFOTABS } from 'src/app/personside/infotabs/InfoTabEnum';
+import { INFOTABS } from 'src/models/infotabs';
 
 test.beforeEach(async ({ page }) => {
     await page.addInitScript(() => {

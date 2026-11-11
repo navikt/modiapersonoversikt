@@ -1,6 +1,7 @@
 import { useLocation } from '@tanstack/react-router';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { memo, useCallback, useEffect, useState } from 'react';
+import { getMockableUrl } from 'src/utils/mockable-dokument-url';
 import styled from 'styled-components';
 import { apiBaseUri } from '../../../../../api/config';
 import { ObjectHttpFeilHandtering } from '../../../../../components/ObjectHttpFeilHandtering';
@@ -9,7 +10,6 @@ import { erIE11 } from '../../../../../utils/erIE11';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { parseQueryString } from '../../../../../utils/url-utils';
 import { erSakerFullscreen } from '../utils/erSakerFullscreen';
-import { getMockableUrl } from './mockable-dokument-url';
 
 interface Props {
     fnr: string;
