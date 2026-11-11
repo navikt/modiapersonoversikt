@@ -18,6 +18,7 @@
         "url": "git+https://github.com/navikt/modiapersonoversikt"
     },
     "scripts": {
+        "postinstall": "msw init public --no-save",
         "start": "vite",
         "start:dev": "VITE_MOCK_ENABLED=false vite",
         "build": "vite build",
