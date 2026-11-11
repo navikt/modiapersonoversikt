@@ -1,11 +1,11 @@
 import { type UseQueryResult, useQuery } from '@tanstack/react-query';
 import AlertStripe from 'nav-frontend-alertstriper';
+import { useAppState } from 'src/redux/useAppState';
 import { type FetchError, post } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import { useValgtenhet } from '../../context/valgtenhet-state';
 import type { Traad } from '../../models/meldinger/meldinger';
-import { useAppState } from '../../utils/customHooks';
 import { applyDefaults, type DefaultConfig, type RendererOrConfig, useRest } from '../useRest';
 
 function urlUtenFnrIPath(enhet?: string) {
