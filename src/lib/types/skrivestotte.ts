@@ -13,8 +13,7 @@ export enum Locale {
     ur = 'ur'
 }
 
-// @ts-expect-error: Will be used
-const _localeString: { [key in Locale]: string } = {
+export const localeString: { [key in Locale]: string } = {
     nb_NO: 'Norsk (Bokmål)',
     nn_NO: 'Norsk (Nynorsk)',
     en_US: 'Engelsk',

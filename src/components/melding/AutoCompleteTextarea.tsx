@@ -7,11 +7,11 @@ import {
     useCallback,
     useState
 } from 'react';
-import { rapporterBruk } from 'src/app/personside/dialogpanel/sendMelding/standardTekster/sokUtils';
 import { useStandardTekster } from 'src/lib/clients/skrivestotte';
 import { Locale, type Tekst } from 'src/lib/types/skrivestotte';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import { loggEvent } from 'src/utils/logger/frontendLogger';
+import { rapporterBruk } from 'src/utils/standardtekster';
 import { rules } from './autocompleteRules';
 import { type AutofullforData, autofullfor, byggAutofullforMap, useAutoFullforData } from './autocompleteUtils';
 

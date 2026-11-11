@@ -1,9 +1,6 @@
 import { Box, Button, HGrid, HStack, VStack } from '@navikt/ds-react';
 import { atom, useAtom } from 'jotai';
 import { type DependencyList, type RefObject, useEffect, useRef } from 'react';
-import type * as StandardTeksterModels from 'src/app/personside/dialogpanel/sendMelding/standardTekster/domain';
-import type * as StandardTeksterType from 'src/app/personside/dialogpanel/sendMelding/standardTekster/domain.ts';
-import { erGyldigValg, rapporterBruk } from 'src/app/personside/dialogpanel/sendMelding/standardTekster/sokUtils';
 import {
     type AutofullforData,
     autofullfor,
@@ -15,8 +12,10 @@ import SokeFelt from 'src/components/melding/standardtekster/SokeFelt';
 import StandardtekstListe from 'src/components/melding/standardtekster/StandardTekstListe';
 import StandardTekstPreview from 'src/components/melding/standardtekster/StandardTekstPreview';
 import { useStandardTekster } from 'src/lib/clients/skrivestotte';
+import type * as StandardTeksterType from 'src/lib/types/skrivestotte';
 import { Locale } from 'src/lib/types/skrivestotte';
 import { useHotkey } from 'src/utils/hooks/use-hotkey';
+import { erGyldigValg, rapporterBruk } from 'src/utils/standardtekster';
 
 type standardTekstSok = {
     filtrerteTekster: StandardTeksterType.Tekst[];
@@ -32,7 +31,7 @@ export const standardTekstSokAtom = atom<standardTekstSok>({
 function submitTekst(values: standardTekstSok, velgTekst: (tekst: string) => void, autofullforData?: AutofullforData) {
     if (erGyldigValg(values.tekst, values.locale)) {
         rapporterBruk(values.tekst);
-        const localeTekst = values.tekst.innhold[values.locale as StandardTeksterModels.Locale]?.trim();
+        const localeTekst = values.tekst.innhold[values.locale as StandardTeksterType.Locale]?.trim();
         if (!localeTekst) return;
         if (autofullforData) {
             const nokler = byggAutofullforMap(

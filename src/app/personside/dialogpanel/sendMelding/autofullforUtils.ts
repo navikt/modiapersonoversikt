@@ -1,3 +1,4 @@
+import { Locale } from 'src/lib/types/skrivestotte';
 import { Kjonn, type Data as PersonData } from 'src/models/person/persondata';
 import { useValgtenhet } from '../../../../context/valgtenhet-state';
 import innloggetSaksbehandler, {
@@ -8,7 +9,6 @@ import saksbehandlersEnheter, { type Enhet } from '../../../../rest/resources/sa
 import { loggEvent, loggWarning } from '../../../../utils/logger/frontendLogger';
 import { capitalizeName } from '../../../../utils/string-utils';
 import { hentNavn } from '../../visittkort-v2/visittkort-utils';
-import { Locale } from './standardTekster/domain';
 
 export type AutofullforData = {
     enhet?: Enhet;
