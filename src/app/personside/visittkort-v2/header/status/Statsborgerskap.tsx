@@ -1,5 +1,5 @@
+import type { Person } from 'src/models/person/persondata';
 import { capitalizeName } from '../../../../../utils/string-utils';
-import type { Person } from '../../PersondataDomain';
 
 interface Props {
     person: Person;

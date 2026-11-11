@@ -1,7 +1,7 @@
 import { Normaltekst } from 'nav-frontend-typografi';
+import { type Person, PersonStatus as Status } from 'src/models/person/persondata';
 import styled from 'styled-components';
 import { formaterDato } from '../../../../../utils/string-utils';
-import { type Person, PersonStatus as Status } from '../../PersondataDomain';
 import { AntallBarn } from './AntallBarn';
 import CopyToClipboard from './CopyToClipboard';
 import { Sivilstand } from './Sivilstand';

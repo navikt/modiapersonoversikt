@@ -10,7 +10,7 @@ import {
     PersonStatus,
     SivilstandType,
     Skifteform
-} from '../../app/personside/visittkort-v2/PersondataDomain';
+} from 'src/models/person/persondata';
 import { harDiskresjonskode } from '../../app/personside/visittkort-v2/visittkort-utils';
 import { FullmaktEndringHendelse, FullmaktEndringKilde, OppholdType } from '../../generated/modiapersonoversikt-api';
 

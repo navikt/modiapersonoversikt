@@ -1,6 +1,6 @@
 import { Normaltekst } from 'nav-frontend-typografi';
+import type { Person, Adresse as PersonAdresse } from 'src/models/person/persondata';
 import LocationPin from '../../../../../../svg/LocationPin';
-import type { Person, Adresse as PersonAdresse } from '../../../PersondataDomain';
 import Adresseinfo from '../../AdresseInfo';
 import Endringstekst from '../../Endringstekst';
 import GyldighetsPeriode from '../../GyldighetsPeriode';

@@ -1,3 +1,4 @@
+import { Kjonn, type Data as PersonData } from 'src/models/person/persondata';
 import { useValgtenhet } from '../../../../context/valgtenhet-state';
 import innloggetSaksbehandler, {
     type InnloggetSaksbehandler
@@ -6,7 +7,6 @@ import persondataResource from '../../../../rest/resources/persondataResource';
 import saksbehandlersEnheter, { type Enhet } from '../../../../rest/resources/saksbehandlersEnheterResource';
 import { loggEvent, loggWarning } from '../../../../utils/logger/frontendLogger';
 import { capitalizeName } from '../../../../utils/string-utils';
-import { Kjonn, type Data as PersonData } from '../../visittkort-v2/PersondataDomain';
 import { hentNavn } from '../../visittkort-v2/visittkort-utils';
 import { Locale } from './standardTekster/domain';
 

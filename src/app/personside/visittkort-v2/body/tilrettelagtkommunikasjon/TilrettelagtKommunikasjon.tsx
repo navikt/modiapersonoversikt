@@ -1,10 +1,9 @@
 import { Normaltekst } from 'nav-frontend-typografi';
-
-import UtropstegnIkon from '../../../../../svg/Utropstegn';
 import type {
     KodeBeskrivelse,
     TilrettelagtKommunikasjon as TilrettelagtKommunikasjonInterface
-} from '../../PersondataDomain';
+} from 'src/models/person/persondata';
+import UtropstegnIkon from '../../../../../svg/Utropstegn';
 import VisittkortElement from '../VisittkortElement';
 import { VisittkortGruppe } from '../VisittkortStyles';
 

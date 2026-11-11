@@ -3,13 +3,13 @@ import userEvent from '@testing-library/user-event';
 import type { Skjulingsaarsak } from 'src/components/PersonLinje/skjulingsaarsak';
 import type { Tilgangsavslag } from 'src/lib/types/modiapersonoversikt-api';
 import { aremark } from 'src/mock/persondata/aremark';
+import { type ForelderBarnRelasjon, InformasjonElement, SivilstandType } from 'src/models/person/persondata';
 import ForelderBarnRelasjonVisning from './body/familie/ForelderBarnRelasjon';
 import Sivilstand from './body/familie/Sivilstand';
 import Foreldreansvar from './body/foreldreansvar/Foreldreansvar';
 import Fullmakter from './body/fullmakt/Fullmakt';
 import Dodsbo from './body/kontaktinformasjon/dodsbo/Dodsbo';
 import Vergemal from './body/vergemal/Vergemal';
-import { type ForelderBarnRelasjon, InformasjonElement, SivilstandType } from './PersondataDomain';
 
 const aarsaker: [Skjulingsaarsak, string][] = [
     ['MANGLER_TILGANG', 'Personopplysninger skjult'],

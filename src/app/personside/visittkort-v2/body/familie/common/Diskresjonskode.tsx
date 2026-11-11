@@ -1,5 +1,5 @@
 import { Normaltekst } from 'nav-frontend-typografi';
-import type { AdresseBeskyttelse, KodeBeskrivelse } from '../../../PersondataDomain';
+import type { AdresseBeskyttelse, KodeBeskrivelse } from 'src/models/person/persondata';
 import { harDiskresjonskode } from '../../../visittkort-utils';
 
 interface Props {

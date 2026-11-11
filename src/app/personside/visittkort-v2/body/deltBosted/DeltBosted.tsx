@@ -1,5 +1,5 @@
+import type { DeltBosted } from 'src/models/person/persondata';
 import Infotegn from '../../../../../svg/Info';
-import type { DeltBosted } from '../../PersondataDomain';
 import Adresseinfo from '../AdresseInfo';
 import GyldighetsPeriode from '../GyldighetsPeriode';
 import VisittkortElement from '../VisittkortElement';

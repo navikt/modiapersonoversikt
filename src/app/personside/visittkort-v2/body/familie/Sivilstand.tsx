@@ -1,8 +1,8 @@
 import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import Personopplysninger from 'src/components/PersonLinje/Personopplysninger';
+import { type Sivilstand as SivilstandInterface, SivilstandType } from 'src/models/person/persondata';
 import HeartIkon from '../../../../../svg/Heart';
 import { formaterDato } from '../../../../../utils/string-utils';
-import { type Sivilstand as SivilstandInterface, SivilstandType } from '../../PersondataDomain';
 import { erPartner, hentAlderEllerDod, hentNavn } from '../../visittkort-utils';
 import VisittkortElement from '../VisittkortElement';
 import Diskresjonskode from './common/Diskresjonskode';

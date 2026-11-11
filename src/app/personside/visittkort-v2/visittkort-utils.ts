@@ -1,4 +1,3 @@
-import { ENDASH, formaterDato } from 'src/utils/string-utils';
 import {
     AdresseBeskyttelse,
     type Dodsdato,
@@ -10,7 +9,8 @@ import {
     type PersonMedAlderOgDodsdato,
     type Sivilstand,
     SivilstandType
-} from './PersondataDomain';
+} from 'src/models/person/persondata';
+import { ENDASH, formaterDato } from 'src/utils/string-utils';
 
 export function erDod(dodsdato: Array<LocalDate> | Array<Dodsdato>) {
     return dodsdato.isNotEmpty();

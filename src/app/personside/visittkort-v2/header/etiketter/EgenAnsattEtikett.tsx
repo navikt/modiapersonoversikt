@@ -1,5 +1,5 @@
 import EtikettBase from 'nav-frontend-etiketter';
-import { EgenAnsatt } from '../../PersondataDomain';
+import { EgenAnsatt } from 'src/models/person/persondata';
 
 interface Props {
     erEgenansatt: EgenAnsatt;

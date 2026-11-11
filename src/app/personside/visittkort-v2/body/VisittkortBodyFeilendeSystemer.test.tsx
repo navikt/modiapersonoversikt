@@ -1,8 +1,8 @@
 import { act } from '@testing-library/react';
+import { InformasjonElement } from 'src/models/person/persondata';
 import { aremark } from '../../../../mock/persondata/aremark';
 import { renderWithProviders } from '../../../../test/Testprovider';
 import { setupReactQueryMocks } from '../../../../test/testStore';
-import { InformasjonElement } from '../PersondataDomain';
 import VisittkortBody from './VisittkortBody';
 
 test('viser info om bruker i visittkortbody', async () => {
