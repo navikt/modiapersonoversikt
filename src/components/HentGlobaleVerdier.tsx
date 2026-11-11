@@ -5,7 +5,7 @@ import oppgaveBehandlerResource from '../rest/resources/oppgaveBehandlerResource
 import saksbehandlersEnheter from '../rest/resources/saksbehandlersEnheterResource';
 import { useInitializeLogger } from '../utils/logger/frontendLogger';
 
-function FetchSessionInfoOgLeggIRedux() {
+function HentGlobaleVerdier() {
     useInitializeLogger();
 
     innloggetSaksbehandler.usePrefetch();
@@ -17,4 +17,4 @@ function FetchSessionInfoOgLeggIRedux() {
     return null;
 }
 
-export default FetchSessionInfoOgLeggIRedux;
+export default HentGlobaleVerdier;
