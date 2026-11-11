@@ -1,3 +1,5 @@
+import type { Enhet } from 'src/models/enhet';
+
 export interface DecoratorPropsV3 {
     // Påkrevde props
     appName: string; // Navn på applikasjonen
@@ -29,14 +31,6 @@ export interface DecoratorPropsV3 {
 
 interface Markup {
     etterSokefelt?: string; // Gir muligheten for å sende inn egen HTML som blir en del av dekoratøren
-}
-
-export interface Enhet {
-    readonly enhetId: string;
-    readonly navn: string;
-    readonly type?: string | null;
-    readonly gruppeId?: string | null;
-    readonly oppgavebehandler?: boolean | null;
 }
 
 type Environment = 'q0' | 'q1' | 'q2' | 'q3' | 'q4' | 'prod' | 'local' | 'mock';
