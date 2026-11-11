@@ -84,12 +84,7 @@
         {
             "includes": [
                 "src/**",
-                "!src/app/personside/**",
-                "!src/app/routes/**",
-                "!src/app/PersonOppslagHandler/**",
-                "!src/app/LegacyAppContainer.tsx",
-                "!src/app/GlobalStyling.ts",
-                "!src/app/IeMacStyling.tsx",
+                "!src/app/**",
                 "!src/redux/**",
                 "!src/routes/person.tsx",
                 "!src/routes/person/**",
@@ -111,6 +106,8 @@
                                 "patterns": [
                                     {
                                         "group": [
+                                            "**/app",
+                                            "**/app/**",
                                             "**/personside",
                                             "**/personside/**",
                                             "**/app/routes",
