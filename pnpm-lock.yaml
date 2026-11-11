@@ -352,8 +352,8 @@ importers:
         specifier: ^8.72.0
         version: 8.72.0(eslint@10.14.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3)
       undici:
-        specifier: ^8.12.2
-        version: 8.12.2
+        specifier: ^8.12.4
+        version: 8.12.4
       vite-require:
         specifier: ^0.2.3
         version: 0.2.3
@@ -4349,8 +4349,8 @@ packages:
   undici-types@8.3.0:
     resolution: {integrity: sha512-j375ScV60dom+YkPFIfTLcOiPxkN/buHz5GobjLhixFuANaNs3C9l4GmrWqejgXWJ7BbJcFYpTEUkS1Ge8bpZQ==}
 
-  undici@8.12.2:
-    resolution: {integrity: sha512-XtuDWVdqTLr3NAxm2ly9/hU6kUsJOgGh1RASzMBbsw6aWCOaQzHdW+QQDfdERjfJ2V5vL5pRPa4RetO9UfivDg==}
+  undici@8.12.4:
+    resolution: {integrity: sha512-8Mx+uNKKER2bA4AdtedkqRbwUCIJFr2nJckXRe5yrDqzePqwLP7VNcctN8/XdmDSbF7mS+jJKIszlL+vbam1VA==}
     engines: {node: '>=22.19.0'}
 
   unplugin@2.3.5:
@@ -8329,7 +8329,7 @@ snapshots:
 
   undici-types@8.3.0: {}
 
-  undici@8.12.2: {}
+  undici@8.12.4: {}
 
   unplugin@2.3.5:
     dependencies:
