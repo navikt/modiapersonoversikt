@@ -18,12 +18,13 @@ import {
     SendNyMeldingStatus
 } from 'src/app/personside/dialogpanel/sendMelding/SendNyMeldingTypes';
 import { MeldingValidator } from 'src/app/personside/dialogpanel/sendMelding/validatorer';
-import useDraft, { type Draft } from 'src/app/personside/dialogpanel/use-draft';
 import { useAlertOnNavigation } from 'src/app/personside/dialogpanel/useAlertOnNavigation';
 import IfFeatureToggleOn from 'src/components/featureToggle/IfFeatureToggleOn';
 import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
 import { useValgtenhet } from 'src/context/valgtenhet-state';
+import useDraft from 'src/lib/hooks/useDraft';
 import { usePersonAtomValue } from 'src/lib/state/context';
+import type { Draft } from 'src/models/meldinger/draft';
 import { Meldingstype, type SendMeldingRequestV2, type Traad, TraadType } from 'src/models/meldinger/meldinger';
 import dialogResource from 'src/rest/resources/dialogResource';
 import journalsakResource from 'src/rest/resources/journalsakResource';
