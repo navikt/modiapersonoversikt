@@ -1,9 +1,9 @@
 import { Box, Button, List, VStack } from '@navikt/ds-react';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
-import type * as StandardTeksterType from 'src/app/personside/dialogpanel/sendMelding/standardTekster/domain.ts';
 import { standardTekstSokAtom } from 'src/components/melding/standardtekster/StandardTekster';
 import TekstListeElement from 'src/components/melding/standardtekster/TekstlisteElement';
+import type * as StandardTeksterType from 'src/lib/types/skrivestotte';
 
 function StandardtekstListe({ listeRef }: { listeRef: React.RefObject<HTMLDivElement | null> }) {
     const [visAntall, setVisAntall] = useState(50);

@@ -1,8 +1,8 @@
 import { Select } from '@navikt/ds-react';
 import { useAtom } from 'jotai';
-import { localeString } from 'src/app/personside/dialogpanel/sendMelding/standardTekster/domain';
-import type * as StandardTeksterType from 'src/app/personside/dialogpanel/sendMelding/standardTekster/domain.ts';
 import { standardTekstSokAtom } from 'src/components/melding/standardtekster/StandardTekster';
+import type * as StandardTeksterType from 'src/lib/types/skrivestotte';
+import { localeString } from 'src/lib/types/skrivestotte';
 
 const LocaleVelger = () => {
     const [value, setValue] = useAtom(standardTekstSokAtom);

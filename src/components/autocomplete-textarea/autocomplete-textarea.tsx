@@ -7,7 +7,10 @@ import { Textarea, type TextareaProps } from 'nav-frontend-skjema';
 import { Undertittel } from 'nav-frontend-typografi';
 import type * as React from 'react';
 import { useCallback, useState } from 'react';
+import type * as StandardTeksterModels from 'src/lib/types/skrivestotte';
+import { Locale } from 'src/lib/types/skrivestotte';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
+import { rapporterBruk } from 'src/utils/standardtekster';
 import styled from 'styled-components';
 import {
     type AutofullforData,
@@ -15,9 +18,6 @@ import {
     byggAutofullforMap,
     useAutoFullforData
 } from '../../app/personside/dialogpanel/sendMelding/autofullforUtils';
-import type * as StandardTeksterModels from '../../app/personside/dialogpanel/sendMelding/standardTekster/domain';
-import { Locale } from '../../app/personside/dialogpanel/sendMelding/standardTekster/domain';
-import { rapporterBruk } from '../../app/personside/dialogpanel/sendMelding/standardTekster/sokUtils';
 import skrivestotteResource from '../../rest/resources/skrivestotteResource';
 import { loggEvent } from '../../utils/logger/frontendLogger';
 
