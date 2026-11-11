@@ -82,6 +82,85 @@
             }
         },
         {
+            "includes": [
+                "src/**",
+                "!src/app/personside/**",
+                "!src/app/routes/**",
+                "!src/app/PersonOppslagHandler/**",
+                "!src/app/LegacyAppContainer.tsx",
+                "!src/app/GlobalStyling.ts",
+                "!src/app/IeMacStyling.tsx",
+                "!src/redux/**",
+                "!src/routes/person.tsx",
+                "!src/routes/person/**",
+                "!src/routes/saker.tsx",
+                "!src/routes/dokument.tsx",
+                "!src/routeTree.gen.ts",
+                "!src/components/autocomplete-textarea/**",
+                "!src/utils/print/MeldingerPrintMarkup.tsx",
+                "!src/rest/resources/dialogResource.tsx",
+                "!src/test/testStore.ts",
+                "!src/test/LegacyTestprovider.tsx"
+            ],
+            "linter": {
+                "rules": {
+                    "style": {
+                        "noRestrictedImports": {
+                            "level": "error",
+                            "options": {
+                                "patterns": [
+                                    {
+                                        "group": [
+                                            "**/personside",
+                                            "**/personside/**",
+                                            "**/app/routes",
+                                            "**/app/routes/**",
+                                            "**/routes/routing",
+                                            "**/routes/routing.*",
+                                            "**/PersonOppslagHandler",
+                                            "**/PersonOppslagHandler/**",
+                                            "**/LegacyAppContainer",
+                                            "**/LegacyAppContainer.*",
+                                            "**/GlobalStyling",
+                                            "**/GlobalStyling.*",
+                                            "**/IeMacStyling",
+                                            "**/IeMacStyling.*",
+                                            "**/redux",
+                                            "**/redux/**",
+                                            "react-redux",
+                                            "react-redux/**",
+                                            "redux-thunk",
+                                            "redux-thunk/**",
+                                            "redux-devtools-extension",
+                                            "redux-devtools-extension/**",
+                                            "**/routes/person",
+                                            "**/routes/person.*",
+                                            "**/routes/person/**",
+                                            "**/routes/saker",
+                                            "**/routes/saker.*",
+                                            "**/routes/dokument",
+                                            "**/routes/dokument.*",
+                                            "**/autocomplete-textarea",
+                                            "**/autocomplete-textarea/**",
+                                            "**/MeldingerPrintMarkup",
+                                            "**/MeldingerPrintMarkup.*",
+                                            "**/dialogResource",
+                                            "**/dialogResource.*",
+                                            "**/testStore",
+                                            "**/testStore.*",
+                                            "**/LegacyTestprovider",
+                                            "**/LegacyTestprovider.*"
+                                        ],
+                                        "message": "Ny og felles kode skal ikke importere legacy-kode. Bruk eller flytt funksjonaliteten til en felles modul."
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
             "includes": ["**/*.test.ts", "**/*.test.tsx", "**/setupTests.ts"],
             "javascript": {
                 "globals": [
