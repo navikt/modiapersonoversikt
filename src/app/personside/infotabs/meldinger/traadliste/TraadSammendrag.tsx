@@ -2,12 +2,13 @@ import { EtikettAdvarsel, EtikettFokus, EtikettSuksess } from 'nav-frontend-etik
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { UnmountClosed } from 'react-collapse';
 import { useAppState } from 'src/redux/useAppState';
+import { nyesteMelding } from 'src/utils/meldinger-utils';
 import styled from 'styled-components';
 import type { Melding, Traad } from '../../../../../models/meldinger/meldinger';
 import { Temagruppe } from '../../../../../models/temagrupper';
 import useTildelteOppgaver from '../../../../../utils/hooks/useTildelteOppgaver';
 import Meldingsikon from '../utils/Meldingsikon';
-import { erFeilsendt, getFormattertMeldingsDato, nyesteMelding, traadstittel } from '../utils/meldingerUtils';
+import { erFeilsendt, getFormattertMeldingsDato, traadstittel } from '../utils/meldingerUtils';
 
 const ContentStyle = styled.div`
     display: flex;

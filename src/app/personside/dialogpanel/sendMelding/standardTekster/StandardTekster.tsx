@@ -7,7 +7,7 @@ import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import * as React from 'react';
 import { type FormEvent, type ReactNode, useEffect, useRef, useState } from 'react';
 import type * as StandardTeksterModels from 'src/lib/types/skrivestotte';
-import { erGyldigValg, rapporterBruk, sokEtterTekster } from 'src/utils/standardtekster';
+import { autofullfor, erGyldigValg, rapporterBruk, sokEtterTekster } from 'src/utils/standardtekster';
 import styled from 'styled-components';
 import AriaNotification from '../../../../../components/AriaNotification';
 import LazySpinner from '../../../../../components/LazySpinner';
@@ -20,7 +20,7 @@ import useDebounce from '../../../../../utils/hooks/use-debounce';
 import useFieldState, { type FieldState } from '../../../../../utils/hooks/use-field-state';
 import { useHotkey } from '../../../../../utils/hooks/use-hotkey';
 import { modulo } from '../../../../../utils/math';
-import { type AutofullforData, autofullfor, byggAutofullforMap, useAutoFullforData } from '../autofullforUtils';
+import { type AutofullforData, byggAutofullforMap, useAutoFullforData } from '../autofullforUtils';
 import StandardTekstValg from './velgTekst/StandardTekstValg';
 
 interface Props {

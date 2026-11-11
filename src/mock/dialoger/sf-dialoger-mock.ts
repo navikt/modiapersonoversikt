@@ -1,11 +1,7 @@
 import { type DefaultBodyType, http } from 'msw';
 import type { AvsluttGosysOppgaveRequest, LukkTraadRequest } from 'src/generated/modiapersonoversikt-api';
+import { erChatMelding, erMeldingFraBruker, erMeldingstypeSamtalereferat } from 'src/utils/meldinger-utils';
 import { apiBaseUri } from '../../api/config';
-import {
-    erChatMelding,
-    erMeldingFraBruker,
-    erMeldingstypeSamtalereferat
-} from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
 import {
     type Melding,
     Meldingstype,

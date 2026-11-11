@@ -1,4 +1,5 @@
 import { Undertekst } from 'nav-frontend-typografi';
+import { nyesteMelding } from 'src/utils/meldinger-utils';
 import styled from 'styled-components';
 import { Meldingstype, type Traad } from '../../../../../models/meldinger/meldinger';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
@@ -7,7 +8,7 @@ import DialogIkon from '../../../../../svg/DialogIkon';
 import MonologIkon from '../../../../../svg/MonologIkon';
 import OppmoteIkon from '../../../../../svg/OppmoteIkon';
 import TelefonIkon from '../../../../../svg/TelefonIkon';
-import { erMonolog, erUbesvartHenvendelseFraBruker, nyesteMelding } from './meldingerUtils';
+import { erMonolog, erUbesvartHenvendelseFraBruker } from './meldingerUtils';
 
 interface MeldingsikonProps {
     traad: Traad;

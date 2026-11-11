@@ -1,12 +1,7 @@
 import { Box, Button, HGrid, HStack, VStack } from '@navikt/ds-react';
 import { atom, useAtom } from 'jotai';
 import { type DependencyList, type RefObject, useEffect, useRef } from 'react';
-import {
-    type AutofullforData,
-    autofullfor,
-    byggAutofullforMap,
-    useAutoFullforData
-} from 'src/components/melding/autocompleteUtils';
+import { type AutofullforData, byggAutofullforMap, useAutoFullforData } from 'src/components/melding/autocompleteUtils';
 import LocaleVelger from 'src/components/melding/standardtekster/LocaleVelger';
 import SokeFelt from 'src/components/melding/standardtekster/SokeFelt';
 import StandardtekstListe from 'src/components/melding/standardtekster/StandardTekstListe';
@@ -15,7 +10,7 @@ import { useStandardTekster } from 'src/lib/clients/skrivestotte';
 import type * as StandardTeksterType from 'src/lib/types/skrivestotte';
 import { Locale } from 'src/lib/types/skrivestotte';
 import { useHotkey } from 'src/utils/hooks/use-hotkey';
-import { erGyldigValg, rapporterBruk } from 'src/utils/standardtekster';
+import { autofullfor, erGyldigValg, rapporterBruk } from 'src/utils/standardtekster';
 
 type standardTekstSok = {
     filtrerteTekster: StandardTeksterType.Tekst[];

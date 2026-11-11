@@ -11,9 +11,9 @@ import { useStandardTekster } from 'src/lib/clients/skrivestotte';
 import { Locale, type Tekst } from 'src/lib/types/skrivestotte';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 import { loggEvent } from 'src/utils/logger/frontendLogger';
-import { rapporterBruk } from 'src/utils/standardtekster';
+import { autofullfor, rapporterBruk } from 'src/utils/standardtekster';
 import { rules } from './autocompleteRules';
-import { type AutofullforData, autofullfor, byggAutofullforMap, useAutoFullforData } from './autocompleteUtils';
+import { type AutofullforData, byggAutofullforMap, useAutoFullforData } from './autocompleteUtils';
 
 const SPACE = ' ';
 const ENTER = 'Enter';
