@@ -1,5 +1,5 @@
+import type { ForelderBarnRelasjon } from 'src/models/person/persondata';
 import { capitalizeName } from '../../../../../utils/string-utils';
-import type { ForelderBarnRelasjon } from '../../PersondataDomain';
 import { hentForeldre } from '../../visittkort-utils';
 import ForelderBarnRelasjonVisning from './ForelderBarnRelasjon';
 

@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { AdresseBeskyttelse, type KodeBeskrivelse } from '../../../PersondataDomain';
+import { AdresseBeskyttelse, type KodeBeskrivelse } from 'src/models/person/persondata';
 import Diskresjonskode from './Diskresjonskode';
 
 test('Viser ikke andre diskresjonskoder enn fortrolig adresse', () => {

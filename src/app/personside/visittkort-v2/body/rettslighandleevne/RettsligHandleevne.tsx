@@ -1,5 +1,5 @@
 import { Normaltekst } from 'nav-frontend-typografi';
-import type { RettsligHandleevne } from 'src/app/personside/visittkort-v2/PersondataDomain';
+import type { RettsligHandleevne } from 'src/models/person/persondata';
 import Utropstegn from 'src/svg/Utropstegn';
 import GyldighetsPeriode from '../GyldighetsPeriode';
 import VisittkortElement from '../VisittkortElement';

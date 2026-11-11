@@ -1,6 +1,6 @@
 import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import Personopplysninger from 'src/components/PersonLinje/Personopplysninger';
-import type { ForelderBarnRelasjon } from '../../PersondataDomain';
+import type { ForelderBarnRelasjon } from 'src/models/person/persondata';
 import { hentAlderEllerDod, hentNavn } from '../../visittkort-utils';
 import VisittkortElement from '../VisittkortElement';
 import BostedForRelasjon from './common/BostedForRelasjon';

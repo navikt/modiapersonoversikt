@@ -1,7 +1,7 @@
 import { Feilmelding } from 'nav-frontend-typografi';
+import type { KontaktInformasjon } from 'src/models/person/persondata';
 import EmailIkon from '../../../../../../svg/Email';
 import { formaterDato } from '../../../../../../utils/string-utils';
-import type { KontaktInformasjon } from '../../../PersondataDomain';
 import VisittkortElement from '../../VisittkortElement';
 import DigitalKontaktinformasjon from '../DigitalKontaktinformasjon';
 

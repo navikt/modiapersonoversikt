@@ -5,7 +5,7 @@ import Endringstekst from 'src/app/personside/visittkort-v2/body/Endringstekst';
 import GyldighetsPeriode from 'src/app/personside/visittkort-v2/body/GyldighetsPeriode';
 import VisittkortElement from 'src/app/personside/visittkort-v2/body/VisittkortElement';
 import { VisittkortGruppe } from 'src/app/personside/visittkort-v2/body/VisittkortStyles';
-import type { Person } from 'src/app/personside/visittkort-v2/PersondataDomain';
+import type { Person } from 'src/models/person/persondata';
 import { formaterDato } from 'src/utils/string-utils';
 
 interface Props {

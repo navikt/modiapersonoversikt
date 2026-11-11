@@ -1,8 +1,8 @@
 import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import { hentSkjulingsaarsakTekst } from 'src/components/PersonLinje/skjulingsaarsak';
+import { type Foreldreansvar, InformasjonElement, type NavnOgIdent } from 'src/models/person/persondata';
 import Infotegn from '../../../../../svg/Info';
 import { harFeilendeSystemer } from '../../harFeilendeSystemer';
-import { type Foreldreansvar, InformasjonElement, type NavnOgIdent } from '../../PersondataDomain';
 import { hentNavn } from '../../visittkort-utils';
 import VisittkortElement from '../VisittkortElement';
 import { VisittkortGruppe } from '../VisittkortStyles';

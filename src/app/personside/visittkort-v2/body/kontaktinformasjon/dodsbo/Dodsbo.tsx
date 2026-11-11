@@ -1,16 +1,16 @@
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import Personopplysninger from 'src/components/PersonLinje/Personopplysninger';
-import styled from 'styled-components';
-import LocationPin from '../../../../../../svg/LocationPin';
-import { capitalizeFirstCharacterAndLowercaseRest, formaterDato } from '../../../../../../utils/string-utils';
 import type {
     Adressat,
     AdvokatSomAdressat,
     Dodsbo,
     OrganisasjonSomAdressat,
     PersonSomAdressat
-} from '../../../PersondataDomain';
+} from 'src/models/person/persondata';
+import styled from 'styled-components';
+import LocationPin from '../../../../../../svg/LocationPin';
+import { capitalizeFirstCharacterAndLowercaseRest, formaterDato } from '../../../../../../utils/string-utils';
 import { hentNavn } from '../../../visittkort-utils';
 import Adresseinfo from '../../AdresseInfo';
 import Endringstekst from '../../Endringstekst';

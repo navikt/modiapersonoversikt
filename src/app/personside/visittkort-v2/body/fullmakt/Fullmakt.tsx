@@ -1,13 +1,13 @@
 import { ReadMore } from '@navikt/ds-react';
 import { Feilmelding, Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import Personopplysninger from 'src/components/PersonLinje/Personopplysninger';
+import { InformasjonElement, type Person } from 'src/models/person/persondata';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import Fullmaktlogo from '../../../../../svg/Utropstegn';
 import { formaterRettighetstemaer } from '../../../../../utils/fullmakt-utils';
 import { formaterMobiltelefonnummer } from '../../../../../utils/telefon-utils';
 import { harFeilendeSystemer } from '../../harFeilendeSystemer';
-import { InformasjonElement, type Person } from '../../PersondataDomain';
 import { hentNavn, hentPeriodeTekst } from '../../visittkort-utils';
 import VisittkortElement from '../VisittkortElement';
 import { VisittkortGruppe } from '../VisittkortStyles';
