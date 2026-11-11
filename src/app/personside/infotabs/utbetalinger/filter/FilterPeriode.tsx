@@ -1,7 +1,7 @@
 import { Radio } from 'nav-frontend-skjema';
 import { Element } from 'nav-frontend-typografi';
 import { useEffect, useState } from 'react';
-import { useOpenTab } from 'src/app/personside/infotabs/utils/useOpenTab';
+import { useOpenTab } from 'src/lib/hooks/useOpenTab';
 import { type FraTilDato, type PeriodeOptions, PeriodeValg } from 'src/redux/utbetalinger/types';
 import { filterType, trackFilterEndret } from 'src/utils/analytics';
 import styled from 'styled-components';

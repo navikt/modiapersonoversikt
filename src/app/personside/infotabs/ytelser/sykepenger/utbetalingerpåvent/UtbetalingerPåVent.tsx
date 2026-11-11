@@ -3,9 +3,9 @@ import { Ingress } from 'nav-frontend-typografi';
 import type { UtbetalingPaaVent } from 'src/models/ytelse/ytelse-utbetalinger';
 import { periodeEllerNull, prosentEllerNull } from 'src/utils/string-utils';
 import { StyledTable } from 'src/utils/table/StyledTable';
+import { utledUtbetalingPåVentÅrsak } from 'src/utils/utledUtbetalingerPåVentÅrsak';
 import styled from 'styled-components';
 import theme from '../../../../../../styles/personOversiktTheme';
-import { utledUtbetalingPåVentÅrsak } from './utledUtbetalingerPåVentÅrsak';
 
 interface Props {
     utbetalingerPaaVent: UtbetalingPaaVent[];

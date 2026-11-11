@@ -3,9 +3,10 @@ import Card from 'src/components/Card';
 import { BruttoTabell } from 'src/components/Utbetaling/Detail/BruttoTabell';
 import { SkattTabell } from 'src/components/Utbetaling/Detail/SkattTabell';
 import { TrekkTabell } from 'src/components/Utbetaling/Detail/TrekkTabell';
-import { fargePaBelop, formaterNOK, getYtelseTema } from 'src/components/Utbetaling/utils';
+import { fargePaBelop, getYtelseTema } from 'src/components/Utbetaling/utils';
 import { formaterPeriode } from 'src/components/ytelser/utils';
 import type { Ytelse } from 'src/generated/modiapersonoversikt-api';
+import { formaterNOK } from 'src/utils/string-utils';
 import { twMerge } from 'tailwind-merge';
 
 export const YtelseDetail = ({ ytelse }: { ytelse: Ytelse }) => (

@@ -1,6 +1,7 @@
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { createRef } from 'react';
-import { useAppDispatch } from 'src/redux/ThunkTypes';
+import { useDispatch } from 'react-redux';
+import { formaterNOK } from 'src/utils/string-utils';
 import styled from 'styled-components';
 import { Bold, FlexEnd, SpaceBetween } from '../../../../../components/common-styled-components';
 import PrintKnapp from '../../../../../components/PrintKnapp';
@@ -13,7 +14,7 @@ import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import usePrinter from '../../../../../utils/print/usePrinter';
 import { utbetalingerTest } from '../../dyplenkeTest/utils-dyplenker-test';
 import { UtbetalingTabellStyling } from '../utils/CommonStyling';
-import { formaterNOK, getGjeldendeDatoForUtbetaling, getNettoSumYtelser } from '../utils/utbetalinger-utils';
+import { getGjeldendeDatoForUtbetaling, getNettoSumYtelser } from '../utils/utbetalinger-utils';
 import DelUtbetaling from './DelUtbetaling';
 
 interface Props {
@@ -56,7 +57,7 @@ function SammensattUtbetaling(props: Props) {
     const printer = usePrinter();
     const print = printer.triggerPrint;
     const PrinterWrapper = printer.printerWrapper;
-    const dispatch = useAppDispatch();
+    const dispatch = useDispatch();
     const ekspanderYtelse = (ytelse: Ytelse) => dispatch(setEkspanderYtelse(ytelse, true));
 
     useOnMount(() => {

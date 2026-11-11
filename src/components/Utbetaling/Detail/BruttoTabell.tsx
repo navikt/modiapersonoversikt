@@ -1,7 +1,6 @@
 import { BodyShort, Heading, HStack, Table } from '@navikt/ds-react';
-import { formaterNOK } from 'src/components/Utbetaling/utils';
 import type { Ytelse } from 'src/generated/modiapersonoversikt-api';
-import { ENDASH } from 'src/utils/string-utils';
+import { ENDASH, formaterNOK } from 'src/utils/string-utils';
 
 export const BruttoTabell = ({ ytelse }: { ytelse: Ytelse }) => (
     <>

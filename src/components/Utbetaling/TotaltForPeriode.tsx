@@ -5,7 +5,6 @@ import usePrinter from 'src/components/Print/usePrinter';
 import type { YtelseOppsummering } from 'src/components/Utbetaling/utils';
 import {
     fargePaBelop,
-    formaterNOK,
     getAlleYtelseTyper,
     oppsummerYtelserPerType,
     summertBruttobelopFraUtbetalinger,
@@ -16,6 +15,7 @@ import {
 } from 'src/components/Utbetaling/utils';
 import { formaterPeriode } from 'src/components/ytelser/utils';
 import { formatterDato } from 'src/utils/date-utils';
+import { formaterNOK } from 'src/utils/string-utils';
 
 const YtelseOppsummeringTabell = ({ rader }: { rader: YtelseOppsummering[] }) => (
     <div className="overflow-x-auto print:overflow-visible">
