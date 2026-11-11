@@ -2,10 +2,10 @@ import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { Select } from 'nav-frontend-skjema';
 import { type ChangeEvent, useEffect } from 'react';
 import styled from 'styled-components';
-import LazySpinner from '../components/LazySpinner';
 import { useValgtenhet } from '../context/valgtenhet-state';
 import saksbehandlersEnheter from '../rest/resources/saksbehandlersEnheterResource';
 import theme from '../styles/personOversiktTheme';
+import LazySpinner from './LazySpinner';
 
 const Style = styled.div`
     display: flex;

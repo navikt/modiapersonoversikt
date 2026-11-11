@@ -1,9 +1,9 @@
 import { useEffect, useLayoutEffect, useRef } from 'react';
-import { NyModiaPortal } from 'src/app/internarbeidsflatedecorator/NyModiaPortal';
+import { NyModiaPortal } from 'src/components/Decorator/NyModiaPortal';
 import { OppstartNyModiaDialog } from 'src/components/NyModia/OppstartNyModiaDialog';
 import useOpenIntroduksjonsModal from 'src/components/NyModia/useHarSettNyModiaDialog';
+import OppdateringsloggContainer from 'src/components/Oppdateringslogg/OppdateringsloggContainer';
 import Personsok from 'src/components/personsok';
-import OppdateringsloggContainer from '../oppdateringslogg/OppdateringsloggContainer';
 import type { DecoratorPropsV3 } from './decoratorprops';
 import { useDecoratorConfig } from './useDecoratorConfig';
 
