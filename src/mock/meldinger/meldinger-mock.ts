@@ -1,8 +1,7 @@
 import { fakerNB_NO as faker } from '@faker-js/faker';
 import dayjs from 'dayjs';
 import navfaker from 'nav-faker';
-import { type AutofullforMap, autofullfor } from 'src/app/personside/dialogpanel/sendMelding/autofullforUtils';
-import { erMeldingFraNav, saksbehandlerTekst } from 'src/app/personside/infotabs/meldinger/utils/meldingerUtils';
+import type { AutofullforMap } from 'src/lib/types/skrivestotte';
 import {
     LestStatus,
     type Melding,
@@ -14,6 +13,8 @@ import {
 } from 'src/models/meldinger/meldinger';
 import { Temagruppe, TemaSamtalereferat } from 'src/models/temagrupper';
 import { backendDatoTidformat } from 'src/utils/date-utils';
+import { erMeldingFraNav, saksbehandlerTekst } from 'src/utils/meldinger-utils';
+import { autofullfor } from 'src/utils/standardtekster';
 import standardTeksterMock from '../standardTeksterMock';
 import { fyllRandomListe } from '../utils/mock-utils';
 import standardTraader from './standardTraader';

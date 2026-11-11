@@ -1,4 +1,4 @@
-import { saksbehandlerTekst } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
+import { saksbehandlerTekst } from 'src/utils/meldinger-utils';
 import { LestStatus, Meldingstype, type Traad, TraadType } from '../../models/meldinger/meldinger';
 import { Temagruppe } from '../../models/temagrupper';
 

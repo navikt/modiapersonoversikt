@@ -10,11 +10,10 @@ import { useCallback, useState } from 'react';
 import type * as StandardTeksterModels from 'src/lib/types/skrivestotte';
 import { Locale } from 'src/lib/types/skrivestotte';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
-import { rapporterBruk } from 'src/utils/standardtekster';
+import { autofullfor, rapporterBruk } from 'src/utils/standardtekster';
 import styled from 'styled-components';
 import {
     type AutofullforData,
-    autofullfor,
     byggAutofullforMap,
     useAutoFullforData
 } from '../../app/personside/dialogpanel/sendMelding/autofullforUtils';

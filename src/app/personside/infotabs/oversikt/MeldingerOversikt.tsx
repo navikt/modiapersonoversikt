@@ -2,6 +2,7 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
 import type { ReactNode } from 'react';
 import { trackingEvents } from 'src/utils/analytics';
+import { nyesteMelding } from 'src/utils/meldinger-utils';
 import styled from 'styled-components';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
@@ -14,7 +15,6 @@ import { datoSynkende } from '../../../../utils/date-utils';
 import { useInfotabsDyplenker } from '../dyplenker';
 import { meldingerTest } from '../dyplenkeTest/utils-dyplenker-test';
 import TraadSammendrag from '../meldinger/traadliste/TraadSammendrag';
-import { nyesteMelding } from '../meldinger/utils/meldingerUtils';
 import { meldingstypeTekst } from '../meldinger/utils/meldingstekster';
 
 const ListStyle = styled.ol`

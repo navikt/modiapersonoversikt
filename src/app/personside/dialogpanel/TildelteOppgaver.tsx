@@ -5,6 +5,7 @@ import { Knapp } from 'nav-frontend-knapper';
 import Panel from 'nav-frontend-paneler';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { createRef, useState } from 'react';
+import { nyesteMelding } from 'src/utils/meldinger-utils';
 import styled from 'styled-components';
 import { LenkeKnapp } from '../../../components/common-styled-components';
 import LazySpinner from '../../../components/LazySpinner';
@@ -14,7 +15,6 @@ import theme from '../../../styles/personOversiktTheme';
 import { useClickOutside } from '../../../utils/customHooks';
 import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
 import { loggError } from '../../../utils/logger/frontendLogger';
-import { nyesteMelding } from '../infotabs/meldinger/utils/meldingerUtils';
 import { meldingstypeTekst } from '../infotabs/meldinger/utils/meldingstekster';
 
 const Wrapper = styled.div`

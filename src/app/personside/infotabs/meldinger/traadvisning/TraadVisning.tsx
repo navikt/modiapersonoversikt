@@ -5,12 +5,7 @@ import Panel from 'nav-frontend-paneler';
 import { Normaltekst, UndertekstBold, Undertittel } from 'nav-frontend-typografi';
 import { useDispatch } from 'react-redux';
 import EnkeltMelding from 'src/app/personside/infotabs/meldinger/traadvisning/Enkeltmelding';
-import {
-    nyesteMelding,
-    saksbehandlerTekst,
-    traadKanBesvares,
-    traadstittel
-} from 'src/app/personside/infotabs/meldinger/utils/meldingerUtils';
+import { traadKanBesvares, traadstittel } from 'src/app/personside/infotabs/meldinger/utils/meldingerUtils';
 import { useDialogpanelState } from 'src/context/dialogpanel-state';
 import type { Traad } from 'src/models/meldinger/meldinger';
 import { setValgtTraadDialogpanel } from 'src/redux/oppgave/actions';
@@ -18,6 +13,7 @@ import { useAppState } from 'src/redux/useAppState';
 import theme from 'src/styles/personOversiktTheme';
 import { datoSynkende, formatterDato, formatterDatoTid } from 'src/utils/date-utils';
 import { loggEvent } from 'src/utils/logger/frontendLogger';
+import { nyesteMelding, saksbehandlerTekst } from 'src/utils/meldinger-utils';
 import type { Printer } from 'src/utils/print/usePrinter';
 import { formaterDato } from 'src/utils/string-utils';
 import styled from 'styled-components';
