@@ -1,7 +1,7 @@
 import { act } from '@testing-library/react';
 import { InformasjonElement } from 'src/models/person/persondata';
 import { aremark } from '../../../../mock/persondata/aremark';
-import { renderWithProviders } from '../../../../test/Testprovider';
+import { renderWithProviders } from '../../../../test/LegacyTestprovider';
 import { setupReactQueryMocks } from '../../../../test/testStore';
 import VisittkortBody from './VisittkortBody';
 

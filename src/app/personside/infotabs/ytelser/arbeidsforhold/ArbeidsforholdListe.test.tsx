@@ -1,6 +1,6 @@
 import { act } from '@testing-library/react';
 import { statiskSykepengerMock } from 'src/mock/ytelse/statiskSykepengerMock';
-import { renderWithProviders } from '../../../../../test/Testprovider';
+import { renderWithProviders } from '../../../../../test/LegacyTestprovider';
 import ArbeidsForholdListe from './ArbeidsforholdListe';
 
 test('ArbeidsforholdListe matcher snapshot', async () => {

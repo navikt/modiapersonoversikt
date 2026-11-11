@@ -1,11 +1,11 @@
 import { type ForelderBarnRelasjon, Kjonn } from 'src/models/person/persondata';
+import { harDiskresjonskode } from 'src/utils/persondata-utils';
 import DiskresjonskodeIkon from '../../../../../../svg/DiskresjonskodeKjonn';
 import Guttebarn from '../../../../../../svg/Guttebarn';
 import Jentebarn from '../../../../../../svg/Jentebarn';
 import Kvinne from '../../../../../../svg/Kvinne';
 import Mann from '../../../../../../svg/Mann';
 import UkjentKjonn from '../../../../../../svg/UkjentKjonn';
-import { harDiskresjonskode } from '../../../visittkort-utils';
 
 interface Props {
     relasjon: ForelderBarnRelasjon;

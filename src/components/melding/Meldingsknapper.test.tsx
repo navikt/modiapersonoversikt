@@ -1,7 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { createStore, Provider } from 'jotai';
-import { draftAtom, nyMeldingUnderArbeidAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
+import { nyMeldingUnderArbeidAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
+import { draftAtom } from 'src/lib/state/draft';
 import { type Traad, TraadType } from 'src/lib/types/modiapersonoversikt-api';
 import { referatResultatAtom } from './MeldingPanel';
 import { SkrivNyMeldingKnapp } from './SkrivNyMeldingKnapp';
