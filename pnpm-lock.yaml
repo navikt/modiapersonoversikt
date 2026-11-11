@@ -313,8 +313,8 @@ importers:
         specifier: ^21.0.3
         version: 21.0.3
       jest-styled-components:
-        specifier: ^7.4.0
-        version: 7.4.0(styled-components@6.6.0(css-to-react-native@3.2.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))
+        specifier: ^7.4.1
+        version: 7.4.1(styled-components@6.6.0(css-to-react-native@3.2.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))
       knip:
         specifier: ^6.41.0
         version: 6.41.0
@@ -3154,8 +3154,8 @@ packages:
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
 
-  jest-styled-components@7.4.0:
-    resolution: {integrity: sha512-VUkStCEG3ewwBTADMT9VyrZ5Pi5oPAzufcafyK6zREFeMv0fcU2LdYFpM5RZm78IrU+Fi6DhD+NVeiurVe3LKQ==}
+  jest-styled-components@7.4.1:
+    resolution: {integrity: sha512-g9XoVjRxAYp2m9U+OgxL3zGy+Cva48SWzV9bsmj+0Bg57PxE5qZwX7jKta3vjKVLjxyGegbwf0hLlvpfHh5UyQ==}
     engines: {node: '>= 12'}
     peerDependencies:
       styled-components: '>= 5'
@@ -7218,7 +7218,7 @@ snapshots:
 
   isexe@2.0.0: {}
 
-  jest-styled-components@7.4.0(styled-components@6.6.0(css-to-react-native@3.2.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)):
+  jest-styled-components@7.4.1(styled-components@6.6.0(css-to-react-native@3.2.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)):
     dependencies:
       '@adobe/css-tools': 4.5.0
       styled-components: 6.6.0(css-to-react-native@3.2.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
