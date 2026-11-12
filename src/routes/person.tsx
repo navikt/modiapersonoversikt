@@ -1,6 +1,7 @@
 import { createFileRoute, Navigate } from '@tanstack/react-router';
 import LegacyAppContainer from 'src/app/LegacyAppContainer';
 import PersonoversiktWrapper from 'src/app/personside/Personoversikt';
+import LegacyModiaGate from 'src/components/LegacyModiaGate';
 
 export const Route = createFileRoute('/person')({
     component: PersonLayout,
@@ -9,8 +10,10 @@ export const Route = createFileRoute('/person')({
 
 function PersonLayout() {
     return (
-        <LegacyAppContainer>
-            <PersonoversiktWrapper />
-        </LegacyAppContainer>
+        <LegacyModiaGate>
+            <LegacyAppContainer>
+                <PersonoversiktWrapper />
+            </LegacyAppContainer>
+        </LegacyModiaGate>
     );
 }
