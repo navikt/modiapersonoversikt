@@ -1,5 +1,5 @@
 import { Loader } from '@navikt/ds-react';
-import { useMatchRoute, useNavigate, useSearch } from '@tanstack/react-router';
+import { useNavigate, useSearch } from '@tanstack/react-router';
 import { type PropsWithChildren, useEffect, useRef, useState } from 'react';
 import type { OppgaveDto } from 'src/generated/modiapersonoversikt-api';
 import { useSetUserContext } from 'src/lib/clients/contextholder';
@@ -7,18 +7,14 @@ import { useOppgave } from 'src/lib/clients/modiapersonoversikt-api';
 import { useSettAktivBruker } from 'src/lib/hooks/useSettAktivBruker';
 import { INFOTABS } from 'src/models/infotabs';
 import { trackDyplenkeFraEksternKilde } from 'src/utils/analytics';
-import { erGyldigishFnr } from 'src/utils/fnr-utils';
 import { paths } from 'src/utils/paths';
 
 function HandleLegacyUrls({ children }: PropsWithChildren) {
-    const { oppgaveId, sokFnr, sokFnrCode, henvendelseId, behandlingsId } = useSearch({ strict: false });
+    const { oppgaveId, sokFnrCode, henvendelseId, behandlingsId } = useSearch({ strict: false });
 
-    const match = useMatchRoute();
-    const fnrMatch = match({ to: '/person/$fnr' });
-    const validFnr = fnrMatch && erGyldigishFnr(fnrMatch.fnr ?? '') ? fnrMatch.fnr : undefined;
     const settGjeldendeBruker = useSettAktivBruker();
     const navigate = useNavigate();
-    const [delayRender, setDelayRender] = useState(!!validFnr || !!oppgaveId);
+    const [delayRender, setDelayRender] = useState(!!oppgaveId);
     const { data: oppgaveData, isLoading } = useOppgave(oppgaveId);
     const hasHandled = useRef(false);
     const setUserContext = useSetUserContext();
@@ -42,7 +38,7 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
                 }
             );
         } else {
-            handleLegacyUrls(sokFnr ?? validFnr, traadId, oppgaveId, oppgaveData);
+            handleLegacyUrls(undefined, traadId, oppgaveId, oppgaveData);
             setDelayRender(false);
         }
     }, [isLoading, oppgaveData]);
