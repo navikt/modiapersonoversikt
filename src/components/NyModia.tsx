@@ -2,9 +2,13 @@ import { useLocation, useNavigate } from '@tanstack/react-router';
 import { atom, useAtom, useAtomValue } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import { useEffect } from 'react';
+import { aktivBrukerAtom, aktivBrukerLastetAtom } from 'src/lib/state/context';
 import { nesteMidnattOslo } from 'src/utils/date-utils';
+import { getNyModiaRedirect } from 'src/utils/legacyModiaNavigation';
 import { FeatureToggles } from './featureToggle/toggleIDs';
+import useDeaktiverGammelModia from './featureToggle/useDeaktiverGammelModia';
 import useFeatureToggle from './featureToggle/useFeatureToggle';
+import { toast } from './toasts';
 
 const nyModiaStorageAtom = atomWithStorage<number | null>('ny-modia-v2', null);
 
@@ -24,19 +28,37 @@ export const brukerHarValgtAtom = atom((get) => get(nyModiaStorageAtom) !== null
 
 export const useNavigateToNewOrOldModia = () => {
     const { isOn, pending } = useFeatureToggle(FeatureToggles.NyModiaKnapp);
+    const deaktivering = useDeaktiverGammelModia();
     const [nyModia, setNyModia] = useAtom(nyModiaAtom);
     const brukerHarValgt = useAtomValue(brukerHarValgtAtom);
+    const aktivBruker = useAtomValue(aktivBrukerAtom);
+    const aktivBrukerLastet = useAtomValue(aktivBrukerLastetAtom);
+    const deaktiveringPending = deaktivering.status === 'pending';
+    const gammelModiaDeaktivert = deaktivering.status !== 'pending' && deaktivering.isOn;
 
-    const { href } = useLocation();
+    const { href, pathname } = useLocation();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!pending && isOn && !brukerHarValgt) {
+        if (!deaktiveringPending && !gammelModiaDeaktivert && !pending && isOn && !brukerHarValgt) {
             setNyModia(true);
         }
-    }, [pending, isOn, brukerHarValgt, setNyModia]);
+    }, [deaktiveringPending, gammelModiaDeaktivert, pending, isOn, brukerHarValgt, setNyModia]);
 
     useEffect(() => {
+        if (deaktivering.status === 'error') {
+            toast.warning('Kunne ikke hente versjonsvalg. Ny Modia brukes.');
+        }
+    }, [deaktivering.status]);
+
+    useEffect(() => {
+        if (deaktiveringPending) return;
+        if (gammelModiaDeaktivert) {
+            if (pathname === '/' && aktivBrukerLastet) {
+                void navigate({ ...getNyModiaRedirect(pathname, {}, !!aktivBruker), replace: true });
+            }
+            return;
+        }
         if (pending) return;
         const nyModiaEnabled = isOn && nyModia;
 
@@ -47,5 +69,16 @@ export const useNavigateToNewOrOldModia = () => {
         } else if (!href.includes('/new') && nyModiaEnabled) {
             void navigate({ to: `/new/${href}` });
         }
-    }, [href, nyModia, isOn, pending, navigate]);
+    }, [
+        href,
+        pathname,
+        nyModia,
+        isOn,
+        pending,
+        navigate,
+        deaktiveringPending,
+        gammelModiaDeaktivert,
+        aktivBruker,
+        aktivBrukerLastet
+    ]);
 };

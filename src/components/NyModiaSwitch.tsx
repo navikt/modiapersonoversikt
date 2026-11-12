@@ -4,10 +4,13 @@ import { forwardRef, useCallback, useState } from 'react';
 import { nyModiaAtom } from 'src/components/NyModia';
 import { trackToggleNyModia } from 'src/utils/analytics';
 import { FeatureToggles } from './featureToggle/toggleIDs';
+import useDeaktiverGammelModia from './featureToggle/useDeaktiverGammelModia';
 import useFeatureToggle from './featureToggle/useFeatureToggle';
 
 export const NyModiaSwitch = forwardRef<HTMLInputElement>((_props, ref) => {
     const { isOn } = useFeatureToggle(FeatureToggles.NyModiaKnapp);
+    const deaktivering = useDeaktiverGammelModia();
+
     const [nyModia, setNyModia] = useAtom(nyModiaAtom);
 
     const [isChecked, setIsChecked] = useState(nyModia);
@@ -21,7 +24,7 @@ export const NyModiaSwitch = forwardRef<HTMLInputElement>((_props, ref) => {
         }, 200);
     }, [setNyModia, nyModia]);
 
-    if (!isOn) return;
+    if (!isOn || deaktivering.status === 'pending' || deaktivering.isOn) return null;
 
     return (
         <Box.New paddingInline="space-8">
