@@ -4,11 +4,12 @@ import {
     createRootRoute,
     createRoute,
     createRouter,
+    Navigate,
     Outlet,
     RouterProvider
 } from '@tanstack/react-router';
 import { act, cleanup, render, screen, waitFor } from '@testing-library/react';
-import { createStore, Provider } from 'jotai';
+import { createStore, Provider, useAtomValue } from 'jotai';
 import { HttpResponse, http } from 'msw';
 import { apiBaseUri } from 'src/api/config';
 import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
@@ -16,6 +17,7 @@ import { aktivBrukerAtom, aktivBrukerLastetAtom } from 'src/lib/state/context';
 import { server } from 'src/mock/node';
 import { aremark } from 'src/mock/persondata/aremark';
 import featuretoggles from 'src/rest/resources/featuretogglesResource';
+import HandleLegacyUrls from 'src/utils/HandleLegacyUrls';
 import { vi } from 'vitest';
 import LegacyModiaGate from './LegacyModiaGate';
 import { nyModiaAtom, useNavigateToNewOrOldModia } from './NyModia';
@@ -53,13 +55,27 @@ afterEach(() => {
     localStorage.removeItem('ny-modia-v2');
 });
 
-async function visRute(url: string, lastNyRute?: () => Promise<void>) {
+function VersjonsNavigasjon() {
+    useNavigateToNewOrOldModia();
+    return <Outlet />;
+}
+
+function NyMeldingsVisning() {
+    const aktivBruker = useAtomValue(aktivBrukerAtom);
+    return aktivBruker ? <div>Ny visning</div> : <Navigate to="/" />;
+}
+
+async function visRute(url: string, lastNyRute?: () => Promise<void>, handterLegacyUrls = false) {
     const root = createRootRoute({
         validateSearch: (search) => search,
-        component: () => {
-            useNavigateToNewOrOldModia();
-            return <Outlet />;
-        }
+        component: () =>
+            handterLegacyUrls ? (
+                <HandleLegacyUrls>
+                    <VersjonsNavigasjon />
+                </HandleLegacyUrls>
+            ) : (
+                <VersjonsNavigasjon />
+            )
     });
     const person = createRoute({
         getParentRoute: () => root,
@@ -99,7 +115,8 @@ async function visRute(url: string, lastNyRute?: () => Promise<void>) {
         createRoute({
             getParentRoute: () => root,
             path,
-            component: () => <div>Ny visning</div>,
+            component:
+                handterLegacyUrls && path === '/new/person/meldinger' ? NyMeldingsVisning : () => <div>Ny visning</div>,
             loader: path.startsWith('/new') ? lastNyRute : undefined
         })
     );
@@ -107,6 +124,7 @@ async function visRute(url: string, lastNyRute?: () => Promise<void>) {
         routeTree: root.addChildren([person.addChildren(childRoutes), ...standaloneRoutes, ...newRoutes]),
         history: createMemoryHistory({ initialEntries: [url] })
     });
+    if (handterLegacyUrls) vi.spyOn(router, 'navigate');
     await act(async () => {
         render(
             <Provider store={store}>
@@ -119,6 +137,31 @@ async function visRute(url: string, lastNyRute?: () => Promise<void>) {
     });
     return router;
 }
+
+it.each([
+    { deaktiver: false, harAktivBruker: true, maal: '/person/meldinger' },
+    { deaktiver: true, harAktivBruker: true, maal: '/new/person/meldinger' },
+    { deaktiver: false, harAktivBruker: false, maal: '/person/meldinger' },
+    { deaktiver: true, harAktivBruker: false, maal: '/new' }
+])(
+    'avslutter inngangslenken uten redirect-løkke med sperre $deaktiver og aktiv person $harAktivBruker',
+    async ({ deaktiver, harAktivBruker, maal }) => {
+        store.set(aktivBrukerAtom, harAktivBruker ? aremark.personIdent : undefined);
+        queryClient.setQueryData(featuretoggles.queryKey, toggles(deaktiver));
+        const preferanse = localStorage.getItem('ny-modia-v2');
+        const router = await visRute('/?henvendelseId=dialog-1', undefined, true);
+
+        await waitFor(() => {
+            expect(router.state.location.pathname).toBe(maal);
+            expect(router.state.isLoading).toBe(false);
+        });
+        expect(router.state.location.search).toEqual(maal === '/new' ? {} : { traadId: 'dialog-1' });
+        const navigasjoner = vi.mocked(router.navigate).mock.calls;
+        expect(navigasjoner.filter(([options]) => options.to === '/new/person/meldinger')).toHaveLength(1);
+        expect(navigasjoner.length).toBeLessThanOrEqual(5);
+        expect(localStorage.getItem('ny-modia-v2')).toBe(preferanse);
+    }
+);
 
 it.each([
     ['/person/oversikt', '/new/person/hjem', {}],
