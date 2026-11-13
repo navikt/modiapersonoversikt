@@ -82,7 +82,6 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
                 ws.close();
                 return '\u0000';
             }
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             const uuid: string = await response.json();
             return `${getWsUrl()}/api/draft/ws/${uuid}`;
         };
@@ -120,6 +119,7 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
 
     const update = useMemo(
         () =>
+            // eslint-disable-next-line react-compiler/react-compiler -- Lodash debounce kjører ikke callbacken når funksjonen opprettes.
             debounce((content: string) => {
                 setTimeoutVal(false);
                 setLastSent(new Date());

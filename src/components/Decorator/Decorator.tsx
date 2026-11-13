@@ -12,7 +12,9 @@ function InternarbeidsflateDecoratorElement(props: DecoratorPropsV3) {
 
     // Hold siste versjon av alle callbacks i én ref — handlers registreres én gang, men er alltid oppdaterte
     const propsRef = useRef(props);
-    propsRef.current = props;
+    useLayoutEffect(() => {
+        propsRef.current = props;
+    }, [props]);
 
     // Hotkeys kan inneholde funksjoner som ikke kan JSON-serialiseres — settes direkte som JS-property
     useEffect(() => {
