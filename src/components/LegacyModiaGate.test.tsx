@@ -168,6 +168,7 @@ it.each([
     ['/person/meldinger?traadId=dialog-1&ukjent=fjern', '/new/person/meldinger', { traadId: 'dialog-1' }],
     ['/person/oppfolging', '/new/person/oppfolging', {}],
     ['/person/utbetaling', '/new/person/utbetaling', {}],
+    ['/person/utbetaling/1735689600', '/new/person/utbetaling', {}],
     ['/person/ytelser', '/new/person/ytelser', {}],
     ['/person/varsler', '/new/person/varsler', {}],
     ['/person/saker', '/new/person/dokumenter', {}],
@@ -177,7 +178,10 @@ it.each([
         '/new/dokument',
         { dokument: 'dokument-1', journalpost: 'journalpost-1' }
     ],
-    ['/person/ukjent/sti', '/new/person/hjem', {}]
+    ['/person/ukjent/sti', '/new/person/hjem', {}],
+    ['/person/meldinger-arkiv', '/new/person/hjem', {}],
+    ['/person/ukjent/saker', '/new/person/hjem', {}],
+    ['/person/dokumenter?dokument=dokument-1', '/new/person/hjem', {}]
 ])('sperrer %s uten å montere gammel visning', async (url, maal, search) => {
     queryClient.setQueryData(featuretoggles.queryKey, toggles(true));
     const preferanse = localStorage.getItem('ny-modia-v2');
