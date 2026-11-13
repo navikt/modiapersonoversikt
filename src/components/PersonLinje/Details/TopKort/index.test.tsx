@@ -4,7 +4,8 @@ import {
     DodsboSkifteform,
     OppholdType,
     type PersonData,
-    PersonDataFeilendeSystemer
+    PersonDataFeilendeSystemer,
+    Skjulingsaarsak
 } from 'src/lib/types/modiapersonoversikt-api';
 import { createPersonData } from 'src/test/createPersonData';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
@@ -32,7 +33,7 @@ describe('TopKort', () => {
         person.dodsbo = [
             {
                 adressat: {
-                    personSomAdressat: { fnr: null, navn: [], skjulingsaarsak: 'MANGLER_TILGANG' }
+                    personSomAdressat: { fnr: null, navn: [], skjulingsaarsak: Skjulingsaarsak.MANGLER_TILGANG }
                 },
                 adresse: { linje1: 'Gateveien 1' },
                 skifteform: DodsboSkifteform.OFFENTLIG,
@@ -40,7 +41,7 @@ describe('TopKort', () => {
             },
             {
                 adressat: {
-                    personSomAdressat: { fnr: null, navn: [], skjulingsaarsak: 'UAVKLART' }
+                    personSomAdressat: { fnr: null, navn: [], skjulingsaarsak: Skjulingsaarsak.UAVKLART }
                 },
                 adresse: { linje1: 'Gateveien 2' },
                 skifteform: DodsboSkifteform.ANNET,

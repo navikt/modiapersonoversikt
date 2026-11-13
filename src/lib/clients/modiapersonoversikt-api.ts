@@ -69,6 +69,13 @@ export const useVarslerData = () => {
     });
 };
 
+export const useRepresentasjonsoppdrag = () => {
+    const aktivBruker = usePersonAtomValue();
+    return $api.useQuery('post', '/rest/person/representasjonsoppdrag', {
+        body: { fnr: aktivBruker }
+    });
+};
+
 export const useBaseUrls = () => {
     return $api.useQuery('get', '/rest/baseurls');
 };

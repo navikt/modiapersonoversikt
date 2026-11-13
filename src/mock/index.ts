@@ -43,6 +43,7 @@ import {
     getMockYtelserOgKontrakter
 } from './oppfolging-mock';
 import { hentPersondata } from './persondata/persondata';
+import { representasjonsoppdragMock } from './persondata/representasjonsoppdrag';
 import {
     mockPersonsokResponse,
     mockPersonsokResponseV4,
@@ -117,6 +118,15 @@ const persondataMock = http.post(
         randomDelay(),
         fodselsNummerErGyldigStatus,
         mockGeneratorMedFodselsnummerV2((fodselsnummer) => hentPersondata(fodselsnummer))
+    )
+);
+
+const representasjonsoppdragHandler = http.post(
+    `${apiBaseUri}/person/representasjonsoppdrag`,
+    withDelayedResponse(
+        randomDelay(),
+        fodselsNummerErGyldigStatus,
+        mockGeneratorMedFodselsnummerV2(() => representasjonsoppdragMock)
     )
 );
 
@@ -414,6 +424,7 @@ if (import.meta.env.MODE !== 'test') {
 export const handlers: (HttpHandler | WebSocketHandler)[] = [
     innloggetSaksbehandlerMock,
     persondataMock,
+    representasjonsoppdragHandler,
     ...tilgangsKontrollHandler,
     ...aktorIdMock,
     sakerOgDokumenterHandler,
