@@ -58,6 +58,7 @@ const toggles = (nyttTemaFilter: boolean): FeatureTogglesResponse => ({
     [FeatureToggles.JournalforUtenSvar]: false,
     [FeatureToggles.VisPromptMeldingSending]: false,
     [FeatureToggles.NyModiaKnapp]: false,
+    [FeatureToggles.DeaktiverGammelModia]: false,
     [FeatureToggles.InfotrygdSykepenger]: false,
     [FeatureToggles.SpokelseSykepenger]: false,
     [FeatureToggles.NyOversiktDesign]: false,

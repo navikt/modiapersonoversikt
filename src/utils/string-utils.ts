@@ -1,8 +1,11 @@
 import dayjs from 'dayjs';
-import { formaterNOK } from '../app/personside/infotabs/utbetalinger/utils/utbetalinger-utils';
 import type { Periode } from '../models/tid';
 
 export const ENDASH = '\u2013';
+
+export function formaterNOK(beløp: number): string {
+    return beløp.toLocaleString('no', { minimumFractionDigits: 2 });
+}
 
 export function removeWhitespace(input: string) {
     return input.replace(/ /g, '');

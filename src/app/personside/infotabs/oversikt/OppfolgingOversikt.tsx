@@ -1,13 +1,13 @@
 import dayjs from 'dayjs';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import { getUtbetalingerForSiste30DagerDatoer } from 'src/app/personside/infotabs/utbetalinger/utils/utbetalinger-utils';
 import { usePaths } from 'src/app/routes/routing';
 import { CenteredLazySpinner } from 'src/components/LazySpinner';
 import type { ArbeidsOppfolgingDto } from 'src/generated/modiapersonoversikt-api';
 import { useArbeidsoppfolging } from 'src/lib/clients/modiapersonoversikt-api';
 import type { OppfolgingsYtelse } from 'src/models/oppfolging';
 import { trackingEvents } from 'src/utils/analytics';
+import { getUtbetalingerForSiste30DagerDatoer } from 'src/utils/date-utils';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
 import oppfolgingResource from '../../../../rest/resources/oppfolgingResource';
 import theme from '../../../../styles/personOversiktTheme';

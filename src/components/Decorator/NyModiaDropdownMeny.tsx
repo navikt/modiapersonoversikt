@@ -2,10 +2,16 @@ import { SparklesIcon } from '@navikt/aksel-icons';
 import { ActionMenu } from '@navikt/ds-react';
 import { useSetAtom } from 'jotai';
 import { type KeyboardEvent, useRef, useState } from 'react';
+import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
+import useDeaktiverGammelModia from 'src/components/featureToggle/useDeaktiverGammelModia';
+import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 import { openIntroduksjonsModalAtom } from 'src/components/NyModia/useHarSettNyModiaDialog';
 import { NyModiaSwitch } from 'src/components/NyModiaSwitch';
 
 export const NyModiaDropdownMeny = () => {
+    const { isOn } = useFeatureToggle(FeatureToggles.NyModiaKnapp);
+    const deaktivering = useDeaktiverGammelModia();
+    const visVersjonsvalg = isOn && deaktivering.status === 'success' && !deaktivering.isOn;
     const opneIntroduksjonsModal = useSetAtom(openIntroduksjonsModalAtom);
     const ref = useRef<HTMLInputElement | null>(null);
     const [openedWithKeyboard, setOpenedWithKeyboard] = useState(false);
@@ -47,10 +53,14 @@ export const NyModiaDropdownMeny = () => {
                 </button>
             </ActionMenu.Trigger>
             <ActionMenu.Content onKeyDown={handleContentKeyDown}>
-                <ActionMenu.Group label="Velg versjon">
-                    <NyModiaSwitch ref={ref} />
-                </ActionMenu.Group>
-                <ActionMenu.Divider />
+                {visVersjonsvalg && (
+                    <>
+                        <ActionMenu.Group label="Velg versjon">
+                            <NyModiaSwitch ref={ref} />
+                        </ActionMenu.Group>
+                        <ActionMenu.Divider />
+                    </>
+                )}
                 <ActionMenu.Group label="Veiledning og tilbakemelding">
                     <ActionMenu.Item onClick={() => opneIntroduksjonsModal(true)}>Introduksjon</ActionMenu.Item>
                     <a

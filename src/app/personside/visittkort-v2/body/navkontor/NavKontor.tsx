@@ -5,13 +5,13 @@ import AdresseInfo from 'src/app/personside/visittkort-v2/body/AdresseInfo';
 import VisittkortElement from 'src/app/personside/visittkort-v2/body/VisittkortElement';
 import { VisittkortGruppe } from 'src/app/personside/visittkort-v2/body/VisittkortStyles';
 import { harFeilendeSystemer } from 'src/app/personside/visittkort-v2/harFeilendeSystemer';
+import { mapUgyldigGT } from 'src/app/personside/visittkort-v2/visittkort-utils';
+import EtikettGraa from 'src/components/EtikettGraa';
 import {
     type Enhet,
     InformasjonElement,
     type Publikumsmottak as PublikumsmottakInterface
-} from 'src/app/personside/visittkort-v2/PersondataDomain';
-import { mapUgyldigGT } from 'src/app/personside/visittkort-v2/visittkort-utils';
-import EtikettGraa from 'src/components/EtikettGraa';
+} from 'src/models/person/persondata';
 import baseurls from 'src/rest/resources/baseurlsResource';
 import NavLogo from 'src/svg/NavLogo';
 import { capitalizeName } from 'src/utils/string-utils';

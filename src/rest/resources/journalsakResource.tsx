@@ -2,7 +2,7 @@ import { type UseQueryResult, useQuery, useQueryClient } from '@tanstack/react-q
 import { usePersonAtomValue } from 'src/lib/state/context';
 import { type FetchError, post } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
-import type { Result } from '../../app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
+import type { Result } from '../../models/meldinger/journalforing';
 
 function url(): string {
     return `${apiBaseUri}/journalforing/saker/`;

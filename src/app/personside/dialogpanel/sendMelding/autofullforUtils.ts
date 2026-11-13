@@ -1,33 +1,18 @@
+import { type AutofullforMap, Locale } from 'src/lib/types/skrivestotte';
+import { Kjonn, type Data as PersonData } from 'src/models/person/persondata';
 import { useValgtenhet } from '../../../../context/valgtenhet-state';
 import innloggetSaksbehandler, {
     type InnloggetSaksbehandler
 } from '../../../../rest/resources/innloggetSaksbehandlerResource';
 import persondataResource from '../../../../rest/resources/persondataResource';
 import saksbehandlersEnheter, { type Enhet } from '../../../../rest/resources/saksbehandlersEnheterResource';
-import { loggEvent, loggWarning } from '../../../../utils/logger/frontendLogger';
 import { capitalizeName } from '../../../../utils/string-utils';
-import { Kjonn, type Data as PersonData } from '../../visittkort-v2/PersondataDomain';
 import { hentNavn } from '../../visittkort-v2/visittkort-utils';
-import { Locale } from './standardTekster/domain';
 
 export type AutofullforData = {
     enhet?: Enhet;
     person?: PersonData;
     saksbehandler?: InnloggetSaksbehandler;
-};
-
-export type AutofullforMap = {
-    'bruker.fnr': string;
-    'bruker.fornavn': string;
-    'bruker.etternavn': string;
-    'bruker.navn': string;
-    'bruker.navkontor': string;
-    'bruker.subjekt': string;
-    'bruker.objekt': string;
-    'saksbehandler.fornavn': string;
-    'saksbehandler.etternavn': string;
-    'saksbehandler.navn': string;
-    'saksbehandler.enhet': string;
 };
 
 const subjectPronomenMap = {
@@ -102,24 +87,6 @@ export function byggAutofullforMap(
         'saksbehandler.etternavn': saksbehandler?.etternavn || '[saksbehandler.etternavn]',
         'saksbehandler.navn': saksbehandler?.navn || '[saksbehandler.navn]'
     };
-}
-
-const isAutofullforKey = (key: string, autofullforMap: AutofullforMap): key is keyof AutofullforMap => {
-    const keys = Object.keys(autofullforMap);
-
-    return keys.includes(key);
-};
-
-export function autofullfor(tekst: string, autofullforMap: AutofullforMap): string {
-    return tekst.replace(/\[(.*?)\]/g, (_fullmatch, key: string) => {
-        if (!isAutofullforKey(key, autofullforMap)) {
-            loggWarning(new Error(`Standardtekster::autofullfor Fant ikke nøkkel: ${key}`));
-            loggEvent('manglendeNokkel', 'autofullfør', { nøkkel: key });
-            return '[ukjent nøkkel]';
-        }
-
-        return autofullforMap[key] || '[fant ingen verdi]';
-    });
 }
 
 export function useAutoFullforData(): AutofullforData | undefined {

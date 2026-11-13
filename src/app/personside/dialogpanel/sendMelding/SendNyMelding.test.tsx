@@ -1,6 +1,6 @@
 import { act } from '@testing-library/react';
 import { vi } from 'vitest';
-import { renderWithProviders } from '../../../../test/Testprovider';
+import { renderWithProviders } from '../../../../test/LegacyTestprovider';
 import { setupReactQueryMocks } from '../../../../test/testStore';
 import { OppgavelisteValg } from './SendNyMelding';
 import SendNyMeldingContainer from './SendNyMeldingContainer';

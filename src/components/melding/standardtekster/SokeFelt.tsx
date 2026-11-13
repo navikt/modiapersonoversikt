@@ -2,11 +2,11 @@ import { Search } from '@navikt/ds-react';
 import { useAtom } from 'jotai';
 import { debounce } from 'lodash';
 import { type RefObject, useState } from 'react';
-import { sokEtterTekster } from 'src/app/personside/dialogpanel/sendMelding/standardTekster/sokUtils';
 import { standardTekstSokAtom } from 'src/components/melding/standardtekster/StandardTekster';
 import skrivestotteResource from 'src/rest/resources/skrivestotteResource';
 import { useHotkey } from 'src/utils/hooks/use-hotkey';
 import { modulo } from 'src/utils/math';
+import { sokEtterTekster } from 'src/utils/standardtekster';
 
 const SokeFelt = ({ sokRef }: { sokRef: RefObject<HTMLDivElement | null> }) => {
     const { data } = skrivestotteResource.useFetch();

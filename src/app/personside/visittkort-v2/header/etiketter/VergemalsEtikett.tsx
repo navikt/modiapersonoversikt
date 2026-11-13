@@ -1,5 +1,5 @@
 import EtikettBase from 'nav-frontend-etiketter';
-import type { Verge } from '../../PersondataDomain';
+import type { Verge } from 'src/models/person/persondata';
 
 interface Props {
     vergemal: Verge[];

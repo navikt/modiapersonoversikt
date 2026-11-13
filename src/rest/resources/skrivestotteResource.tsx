@@ -1,6 +1,6 @@
 import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+import type { Tekster } from 'src/lib/types/skrivestotte';
 import { type FetchError, get } from '../../api/api';
-import type { Tekster } from '../../app/personside/dialogpanel/sendMelding/standardTekster/domain';
 
 const queryKey = ['skrivestotte'];
 

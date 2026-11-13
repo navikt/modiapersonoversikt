@@ -1,10 +1,9 @@
 import dayjs, { type Dayjs } from 'dayjs';
-import type { Periode } from 'src/models/tid';
 import type { Skatt, Trekk, Utbetaling, Ytelse, Ytelseskomponent } from 'src/models/utbetalinger';
 import { type FraTilDato, type PeriodeOptions, PeriodeValg } from 'src/redux/utbetalinger/types';
-import { datoVerbose, ISO_DATE_FORMAT } from 'src/utils/date-utils';
+import { datoVerbose, getUtbetalingerForSiste30DagerDatoer, ISO_DATE_FORMAT } from 'src/utils/date-utils';
 import { loggError } from 'src/utils/logger/frontendLogger';
-import { formaterDato } from 'src/utils/string-utils';
+import { formaterDato, formaterNOK } from 'src/utils/string-utils';
 
 export const utbetaltTilBruker = 'Bruker';
 
@@ -56,13 +55,6 @@ export const getFraDateFromPeriod = (periodeValg: PeriodeValg): FraTilDato => {
     }
 };
 
-export function getUtbetalingerForSiste30DagerDatoer() {
-    return {
-        fra: dayjs().subtract(30, 'day').startOf('day').toDate(),
-        til: dayjs().endOf('day').toDate()
-    };
-}
-
 export function getFraDateFromFilter(periode: PeriodeOptions): Date {
     switch (periode.radioValg) {
         case PeriodeValg.INNEVERENDE_AR:
@@ -109,10 +101,6 @@ export function getBruttoSumYtelser(ytelser: Ytelse[]): number {
 
 export function getTrekkSumYtelser(ytelser: Ytelse[]): number {
     return ytelser.reduce((acc: number, ytelse: Ytelse) => acc + ytelse.skattsum + ytelse.trekksum, 0);
-}
-
-export function formaterNOK(beløp: number): string {
-    return beløp.toLocaleString('no', { minimumFractionDigits: 2 });
 }
 
 export function filtrerBortUtbetalingerSomIkkeErUtbetalt(utbetaling: Utbetaling): boolean {
@@ -165,31 +153,6 @@ export function flatMapYtelser(utbetalinger?: Utbetaling[]): Ytelse[] {
         );
         return [];
     }
-}
-
-export function getPeriodeFromYtelser<T extends { periode?: { start: string; slutt: string } | null }>(
-    ytelser: T[]
-): Periode {
-    return (
-        ytelser.reduce<Periode | null>((acc, ytelse) => {
-            if (!ytelse.periode) {
-                return acc;
-            }
-            const fra = dayjs(ytelse.periode.start).isBefore(dayjs(ytelse.periode.slutt))
-                ? ytelse.periode.start
-                : ytelse.periode.slutt;
-            const til = dayjs(ytelse.periode.start).isAfter(dayjs(ytelse.periode.slutt))
-                ? ytelse.periode.start
-                : ytelse.periode.slutt;
-            if (!acc) {
-                return { fra, til };
-            }
-            return {
-                fra: dayjs(fra).isBefore(dayjs(acc.fra)) ? fra : acc.fra,
-                til: dayjs(til).isAfter(dayjs(acc.til)) ? til : acc.til
-            };
-        }, null) ?? { fra: dayjs().format(), til: dayjs(0).format() }
-    );
 }
 
 export function reduceUtbetlingerTilYtelser(utbetalinger: Utbetaling[]): Ytelse[] {

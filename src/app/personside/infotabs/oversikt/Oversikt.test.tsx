@@ -1,8 +1,9 @@
 import { act } from '@testing-library/react';
 import { vi } from 'vitest';
 import tildelteoppgaverResource from '../../../../rest/resources/tildelteoppgaverResource';
-import { renderWithProviders } from '../../../../test/Testprovider';
-import { mockReactQuery, setupReactQueryMocks } from '../../../../test/testStore';
+import { renderWithProviders } from '../../../../test/LegacyTestprovider';
+import { mockReactQuery } from '../../../../test/mockReactQuery';
+import { setupReactQueryMocks } from '../../../../test/testStore';
 import Oversikt from './Oversikt';
 
 test('Viser oversikt med alt innhold', async () => {

@@ -1,7 +1,7 @@
 import { type Faker, fakerNB_NO as faker } from '@faker-js/faker';
 import md5 from 'md5';
 import navfaker from 'nav-faker/dist/index';
-import type { Person } from '../../app/personside/visittkort-v2/PersondataDomain';
+import type { Person } from 'src/models/person/persondata';
 import type { Kodeverk } from '../../models/kodeverk';
 import type {
     Brukerinfo,

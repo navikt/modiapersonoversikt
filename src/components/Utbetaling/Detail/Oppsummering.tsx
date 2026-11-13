@@ -1,12 +1,8 @@
 import { BodyShort, Detail, Heading, HStack, VStack } from '@navikt/ds-react';
 import Card from 'src/components/Card';
-import {
-    fargePaBelop,
-    formaterNOK,
-    getBruttoSumYtelser,
-    getTrekkOgSkattSumYtelser
-} from 'src/components/Utbetaling/utils';
+import { fargePaBelop, getBruttoSumYtelser, getTrekkOgSkattSumYtelser } from 'src/components/Utbetaling/utils';
 import type { Utbetaling } from 'src/generated/modiapersonoversikt-api';
+import { formaterNOK } from 'src/utils/string-utils';
 
 export const Oppsummering = ({ utbetaling }: { utbetaling: Utbetaling }) => (
     <VStack gap="space-8">

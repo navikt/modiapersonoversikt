@@ -3,8 +3,9 @@ import { vi } from 'vitest';
 import { statiskTraadMock } from '../../../mock/meldinger/statiskTraadMock';
 import { aremark } from '../../../mock/persondata/aremark';
 import tildelteoppgaverResource from '../../../rest/resources/tildelteoppgaverResource';
-import { renderWithProviders } from '../../../test/Testprovider';
-import { mockReactQuery, setupReactQueryMocks } from '../../../test/testStore';
+import { renderWithProviders } from '../../../test/LegacyTestprovider';
+import { mockReactQuery } from '../../../test/mockReactQuery';
+import { setupReactQueryMocks } from '../../../test/testStore';
 import DialogPanel from './DialogPanel';
 
 beforeEach(() => {

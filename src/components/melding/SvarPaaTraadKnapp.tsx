@@ -3,7 +3,8 @@ import { BodyLong, Button, Dialog } from '@navikt/ds-react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useState } from 'react';
 import { traadKanBesvares } from 'src/components/Meldinger/List/utils';
-import { draftAtom, meldingPanelIsOpenAtom, nyMeldingUnderArbeidAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
+import { meldingPanelIsOpenAtom, nyMeldingUnderArbeidAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
+import { draftAtom } from 'src/lib/state/draft';
 import type { Traad } from 'src/lib/types/modiapersonoversikt-api';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
 

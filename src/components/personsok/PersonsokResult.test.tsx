@@ -10,8 +10,8 @@ import { onTestFinished, vi } from 'vitest';
 import { FOR_MANGE_TREFF_TEKST, MAKS_TREFF_ADVARSEL, PersonsokResult } from './PersonsokResult';
 import { lagTreffTekst, visningsintervall } from './utils';
 
-vi.mock('src/utils/customHooks', async (importOriginal) => ({
-    ...(await importOriginal<typeof import('src/utils/customHooks')>()),
+vi.mock('src/lib/hooks/useSettAktivBruker', async (importOriginal) => ({
+    ...(await importOriginal<typeof import('src/lib/hooks/useSettAktivBruker')>()),
     useSettAktivBruker: () => vi.fn()
 }));
 

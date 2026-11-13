@@ -1,5 +1,5 @@
 import { Normaltekst } from 'nav-frontend-typografi';
-import type { Adresse } from '../PersondataDomain';
+import type { Adresse } from 'src/models/person/persondata';
 
 function Adresseinfo({ adresse }: { adresse: Adresse }) {
     const coAdresse = adresse.coAdresse ? <Normaltekst>{adresse.coAdresse}</Normaltekst> : null;

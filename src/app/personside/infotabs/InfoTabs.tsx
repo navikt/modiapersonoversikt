@@ -3,15 +3,15 @@ import { guid } from 'nav-frontend-js-utils';
 import { useEffect, useRef } from 'react';
 import { MeldingsokProvider } from 'src/context/meldingsok';
 import { useVisittkortState } from 'src/context/visittkort-state';
+import { getOpenTabFromRouterPath, useOpenTab } from 'src/lib/hooks/useOpenTab';
+import { INFOTABS, type InfotabsType } from 'src/models/infotabs';
 import { trackFaneEndret } from 'src/utils/analytics';
 import styled from 'styled-components';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 import useKeepScroll from '../../../utils/hooks/useKeepScroll';
 import { personPaths } from '../../routes/routing';
 import HandleInfotabsHotkeys from './HandleInfotabsHotkeys';
-import { INFOTABS, type InfotabsType } from './InfoTabEnum';
 import TabKnapper from './TabKnapper';
-import { getOpenTabFromRouterPath, useOpenTab } from './utils/useOpenTab';
 
 const StyledArticle = styled.article`
   display: flex;

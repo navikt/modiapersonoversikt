@@ -1,4 +1,4 @@
-import { type JournalforingsSak, SakKategori } from './JournalforingPanel';
+import { type JournalforingsSak, SakKategori } from 'src/models/meldinger/journalforing';
 import { fordelSaker } from './VelgSak';
 
 function sak(sakstype: 'GEN' | 'FAG', temaKode: string, fagsystemSaksId?: string): JournalforingsSak {

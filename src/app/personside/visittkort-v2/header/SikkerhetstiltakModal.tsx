@@ -2,10 +2,10 @@ import KnappBase from 'nav-frontend-knapper';
 import RawModal from 'nav-frontend-modal';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { useState } from 'react';
+import type { Sikkerhetstiltak } from 'src/models/person/persondata';
 import styled from 'styled-components';
 import ErrorIkon from '../../../../svg/alvorlig-advarsel.svg';
 import GyldighetsPeriode from '../body/GyldighetsPeriode';
-import type { Sikkerhetstiltak } from '../PersondataDomain';
 
 const Modal = styled(RawModal)`
     text-align: center;

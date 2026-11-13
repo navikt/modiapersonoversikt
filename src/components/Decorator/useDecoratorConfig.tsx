@@ -2,7 +2,10 @@ import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useCallback, useRef } from 'react';
 import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
 import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
+import { DecoratorButtonId as OppdateringsloggButtonId } from 'src/components/Oppdateringslogg/OppdateringsloggContainer';
+import { useSettAktivBruker } from 'src/lib/hooks/useSettAktivBruker';
 import { aktivBrukerAtom, aktivBrukerLastetAtom, aktivEnhetAtom, aktivEnhetObjektAtom } from 'src/lib/state/context';
+import type { Enhet } from 'src/models/enhet';
 import {
     identifyEnhetOgTypeUmami,
     trackBrukerEndret,
@@ -10,14 +13,11 @@ import {
     trackGenereltUmamiEvent,
     trackingEvents
 } from 'src/utils/analytics';
-import { useOnMount, useSettAktivBruker } from 'src/utils/customHooks';
 import { getDomainFromHost, getEnvFromHost } from 'src/utils/environment';
-import { loggEvent } from 'src/utils/logger/frontendLogger';
 import { parseQueryString } from 'src/utils/url-utils';
 import config from '../../config';
 import bjelleIkon from '../../svg/bjelle.svg?raw';
-import { DecoratorButtonId as OppdateringsloggButtonId } from '../oppdateringslogg/OppdateringsloggContainer';
-import type { DecoratorPropsV3, Enhet, Hotkey } from './decoratorprops';
+import type { DecoratorPropsV3, Hotkey } from './decoratorprops';
 import { etterSokeFeltStyles } from './EtterSokeFeltStyles';
 
 export function useDecoratorConfig() {
@@ -27,13 +27,6 @@ export function useDecoratorConfig() {
 
     const isMountedEnhet = useRef(false);
     const isMountedBruker = useRef(false);
-
-    useOnMount(() => {
-        const { sokFnr } = parseQueryString<{ sokFnr?: string }>(window.location.search);
-        if (sokFnr) {
-            loggEvent('Oppslag', 'Puzzle');
-        }
-    });
 
     const handleSetEnhet = useCallback(
         (enhet: string, enhetValue?: Enhet) => {
@@ -94,10 +87,9 @@ function useConfigV3(
     settEnhet: (enhet: string, enhetValue?: Enhet) => void,
     onLinkClick?: (link: { text: string; url: string }) => void
 ): DecoratorPropsV3 {
-    const { sokFnr, userKey } = getFnrFraUrl();
+    const { userKey } = parseQueryString<{ userKey?: string }>(window.location.search);
     const fnr = useAtomValue(aktivBrukerAtom);
     const setContextLoaded = useSetAtom(aktivBrukerLastetAtom);
-    const onsketFnr = sokFnr ?? fnr;
     const environment = import.meta.env.PROD ? getEnvFromHost() : 'mock';
 
     const urlFormat = import.meta.env.PROD
@@ -111,7 +103,7 @@ function useConfigV3(
 
     return {
         appName: 'Modia personoversikt',
-        fnr: onsketFnr ?? undefined,
+        fnr: fnr ?? undefined,
         userKey: userKey ?? fnr ?? undefined,
         onFnrChanged: (fnr) => {
             if (fnr && fnr.length > 0) {
@@ -143,16 +135,6 @@ function useConfigV3(
         showSearchArea: true,
         fetchActiveUserOnMount: true,
         fetchActiveEnhetOnMount: true
-    };
-}
-
-function getFnrFraUrl() {
-    const location = window.location;
-    const queryParams = parseQueryString<{ sokFnr?: string; userKey?: string }>(location.search);
-
-    return {
-        sokFnr: queryParams.sokFnr ?? null,
-        userKey: queryParams.userKey ?? null
     };
 }
 

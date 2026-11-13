@@ -1,9 +1,9 @@
 import { BodyShort, Heading, HStack, VStack } from '@navikt/ds-react';
 import { useEffect, useRef } from 'react';
-import type { SakKategori } from 'src/app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import { usePiltasterIListe } from 'src/components/sakVelger/keyboardHooks';
 import type { Kategorier, Tema } from 'src/components/sakVelger/SakVelger';
 import type { JournalforingSak } from 'src/generated/modiapersonoversikt-api';
+import type { SakKategori } from 'src/models/meldinger/journalforing';
 import { formatterDatoMedMaanedsnavnOrNull } from 'src/utils/date-utils';
 import { twMerge } from 'tailwind-merge';
 

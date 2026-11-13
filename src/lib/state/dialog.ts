@@ -5,7 +5,6 @@ import { aktivEnhetObjektAtom } from 'src/lib/state/context';
 
 export const svarUnderArbeidAtom = atom<string | undefined>(undefined);
 export const nyMeldingUnderArbeidAtom = atom<boolean>(false);
-export const draftAtom = atom<string>('');
 export const overskridKontaktReservasjonAtom = atom<boolean>(false);
 export const meldingPanelIsOpenAtom = atom(
     (get) => get(svarUnderArbeidAtom) !== undefined || get(nyMeldingUnderArbeidAtom)

@@ -1,6 +1,6 @@
 import { Normaltekst } from 'nav-frontend-typografi';
-import type { AdresseBeskyttelse, KodeBeskrivelse } from '../../../PersondataDomain';
-import { harDiskresjonskode } from '../../../visittkort-utils';
+import type { AdresseBeskyttelse, KodeBeskrivelse } from 'src/models/person/persondata';
+import { harDiskresjonskode } from 'src/utils/persondata-utils';
 
 interface Props {
     adressebeskyttelse: KodeBeskrivelse<AdresseBeskyttelse>[];

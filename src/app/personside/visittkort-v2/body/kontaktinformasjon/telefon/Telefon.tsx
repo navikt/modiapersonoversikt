@@ -1,8 +1,8 @@
 import { Feilmelding } from 'nav-frontend-typografi';
+import type { KontaktInformasjon } from 'src/models/person/persondata';
 import PhoneIkon from '../../../../../../svg/Phone';
 import { formaterDato } from '../../../../../../utils/string-utils';
 import { formaterMobiltelefonnummer } from '../../../../../../utils/telefon-utils';
-import type { KontaktInformasjon } from '../../../PersondataDomain';
 import VisittkortElement from '../../VisittkortElement';
 import DigitalKontaktinformasjon from '../DigitalKontaktinformasjon';
 

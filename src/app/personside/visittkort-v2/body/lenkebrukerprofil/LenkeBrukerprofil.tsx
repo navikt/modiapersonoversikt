@@ -1,6 +1,6 @@
 import { Normaltekst } from 'nav-frontend-typografi';
+import useUrlNyPersonforvalter from 'src/lib/hooks/useUrlNyPersonforvalter';
 import styled from 'styled-components';
-import useUrlNyPersonforvalter from '../../../../brukerprofil/useUrlNyPersonforvalter';
 
 const PlaceBottomRight = styled.div`
     display: flex;

@@ -1,7 +1,6 @@
 import { useSearch } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai';
-import { getPeriodeFromYtelser } from 'src/app/personside/infotabs/utbetalinger/utils/utbetalinger-utils';
 import { getPeriodFromOption } from 'src/components/DateFilters/DatePeriodSelector';
 import { PeriodType } from 'src/components/DateFilters/types';
 import { type UtbetalingFilter, utbetalingFilterAtom } from 'src/components/Utbetaling/Filter';
@@ -9,7 +8,7 @@ import { errorPlaceholder, type QueryResult, responseErrorMessage } from 'src/co
 import { useUtbetalinger } from 'src/lib/clients/modiapersonoversikt-api';
 import type { Utbetaling, UtbetalingerResponseDto, Ytelse } from 'src/lib/types/modiapersonoversikt-api';
 import type { Periode } from 'src/models/tid';
-import { datoSynkende, datoVerbose, formatterDato } from 'src/utils/date-utils';
+import { datoSynkende, datoVerbose, formatterDato, getPeriodeFromYtelser } from 'src/utils/date-utils';
 import { type Group, groupBy } from 'src/utils/groupArray';
 
 const filterUtbetalinger = (utbetalinger: Utbetaling[], filters: UtbetalingFilter): Utbetaling[] => {
@@ -118,10 +117,6 @@ export const oppsummerYtelserPerType = (utbetalinger: Utbetaling[]): YtelseOppsu
             periode: ytelserMedPeriode.length > 0 ? getPeriodeFromYtelser(ytelserMedPeriode) : null
         };
     });
-};
-
-export const formaterNOK = (belop: number): string => {
-    return belop.toLocaleString('no', { minimumFractionDigits: 2 });
 };
 
 export const summertNettobelopFraUtbetalinger = (utbetalinger: Utbetaling[]): number => {

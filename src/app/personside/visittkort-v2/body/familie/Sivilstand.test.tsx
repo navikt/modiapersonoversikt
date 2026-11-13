@@ -1,6 +1,6 @@
 import { act } from '@testing-library/react';
 import { aremark } from '../../../../../mock/persondata/aremark';
-import { renderWithProviders } from '../../../../../test/Testprovider';
+import { renderWithProviders } from '../../../../../test/LegacyTestprovider';
 import SivilstandWrapper from './Sivilstand';
 
 test('viser sivilstand', async () => {

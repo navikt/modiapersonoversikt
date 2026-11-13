@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { NyModiaDropdownMeny } from 'src/app/internarbeidsflatedecorator/NyModiaDropdownMeny';
+import { NyModiaDropdownMeny } from 'src/components/Decorator/NyModiaDropdownMeny';
 import { FeatureToggles } from 'src/components/featureToggle/toggleIDs';
 import useFeatureToggle from 'src/components/featureToggle/useFeatureToggle';
 

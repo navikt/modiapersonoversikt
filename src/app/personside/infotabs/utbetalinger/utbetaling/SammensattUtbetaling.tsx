@@ -1,6 +1,7 @@
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { createRef } from 'react';
 import { useDispatch } from 'react-redux';
+import { formaterNOK } from 'src/utils/string-utils';
 import styled from 'styled-components';
 import { Bold, FlexEnd, SpaceBetween } from '../../../../../components/common-styled-components';
 import PrintKnapp from '../../../../../components/PrintKnapp';
@@ -13,7 +14,7 @@ import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import usePrinter from '../../../../../utils/print/usePrinter';
 import { utbetalingerTest } from '../../dyplenkeTest/utils-dyplenker-test';
 import { UtbetalingTabellStyling } from '../utils/CommonStyling';
-import { formaterNOK, getGjeldendeDatoForUtbetaling, getNettoSumYtelser } from '../utils/utbetalinger-utils';
+import { getGjeldendeDatoForUtbetaling, getNettoSumYtelser } from '../utils/utbetalinger-utils';
 import DelUtbetaling from './DelUtbetaling';
 
 interface Props {

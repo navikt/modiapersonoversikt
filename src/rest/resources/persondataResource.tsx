@@ -2,7 +2,7 @@ import { type UseQueryResult, useQuery } from '@tanstack/react-query';
 import { usePersonAtomValue } from 'src/lib/state/context';
 import { type FetchError, post } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
-import type { Data as Persondata } from '../../app/personside/visittkort-v2/PersondataDomain';
+import type { Data as Persondata } from '../../models/person/persondata';
 
 function queryKey(fnr: string) {
     return ['persondata', fnr];

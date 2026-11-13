@@ -1,6 +1,6 @@
 import { act } from '@testing-library/react';
 import { statiskSykepengerMock } from '../../../../mock/ytelse/statiskSykepengerMock';
-import { renderWithProviders } from '../../../../test/Testprovider';
+import { renderWithProviders } from '../../../../test/LegacyTestprovider';
 import { setupReactQueryMocks } from '../../../../test/testStore';
 import ValgtYtelse from './ValgtYtelse';
 

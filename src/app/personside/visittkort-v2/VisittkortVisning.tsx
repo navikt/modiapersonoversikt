@@ -1,16 +1,16 @@
 import { useEffect, useRef } from 'react';
 import { UnmountClosed } from 'react-collapse';
+import useUrlNyPersonforvalter from 'src/lib/hooks/useUrlNyPersonforvalter';
+import { InformasjonElement, type Data as Persondata } from 'src/models/person/persondata';
 import AriaNotification from '../../../components/AriaNotification';
 import { useVisittkortState } from '../../../context/visittkort-state';
 import { trackAccordionClosed, trackAccordionOpened } from '../../../utils/analytics';
 import { useGlobalHotkey } from '../../../utils/hooks/use-hotkey';
-import useUrlNyPersonforvalter from '../../brukerprofil/useUrlNyPersonforvalter';
 import VisittkortBody from './body/VisittkortBody';
 import { harFeilendeSystemer } from './harFeilendeSystemer';
 import EgenAnsattFeilendeSystemModal from './header/EgenAnsattFeilendeSystemModal';
 import SikkerhetstiltakModal from './header/SikkerhetstiltakModal';
 import VisittkortHeader from './header/VisittkortHeader';
-import { InformasjonElement, type Data as Persondata } from './PersondataDomain';
 
 interface Props {
     persondata: Persondata;

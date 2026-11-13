@@ -6,6 +6,9 @@ import { StrictMode } from 'react';
 import { createRouter } from './router';
 import { initializeObservability } from './utils/observability';
 
+// Keep shared styles after the router import to preserve the existing stylesheet order.
+import './styles/nav-frontend';
+
 const baseUrl = () => {
     if (import.meta.env.BASE_URL.endsWith('/')) {
         return import.meta.env.BASE_URL;

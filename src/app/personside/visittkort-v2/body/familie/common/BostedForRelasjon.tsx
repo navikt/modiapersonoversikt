@@ -1,4 +1,4 @@
-import type { ForelderBarnRelasjon } from '../../../PersondataDomain';
+import type { ForelderBarnRelasjon } from 'src/models/person/persondata';
 import { erDod } from '../../../visittkort-utils';
 
 interface Props {

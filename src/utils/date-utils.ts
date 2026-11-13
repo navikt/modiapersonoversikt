@@ -3,6 +3,7 @@ import 'dayjs/locale/nb';
 import isSameOrBeforePlugin from 'dayjs/plugin/isSameOrBefore';
 import timezonePlugin from 'dayjs/plugin/timezone';
 import utcPlugin from 'dayjs/plugin/utc';
+import type { Periode } from 'src/models/tid';
 import { loggError } from './logger/frontendLogger';
 
 dayjs.locale('nb');
@@ -18,6 +19,38 @@ const DATO_FORMAT = 'DD.MM.YYYY';
 const DATO_FORMAT_MANEDSNAVN = 'DD. MMM YYYY';
 const DATO_TID_FORMAT = 'DD.MM.YYYY HH:mm';
 const DATO_TID_MANEDSNANV_FORMAT = 'DD. MMM YYYY HH:mm';
+
+export function getUtbetalingerForSiste30DagerDatoer() {
+    return {
+        fra: dayjs().subtract(30, 'day').startOf('day').toDate(),
+        til: dayjs().endOf('day').toDate()
+    };
+}
+
+export function getPeriodeFromYtelser<T extends { periode?: { start: string; slutt: string } | null }>(
+    ytelser: T[]
+): Periode {
+    return (
+        ytelser.reduce<Periode | null>((acc, ytelse) => {
+            if (!ytelse.periode) {
+                return acc;
+            }
+            const fra = dayjs(ytelse.periode.start).isBefore(dayjs(ytelse.periode.slutt))
+                ? ytelse.periode.start
+                : ytelse.periode.slutt;
+            const til = dayjs(ytelse.periode.start).isAfter(dayjs(ytelse.periode.slutt))
+                ? ytelse.periode.start
+                : ytelse.periode.slutt;
+            if (!acc) {
+                return { fra, til };
+            }
+            return {
+                fra: dayjs(fra).isBefore(dayjs(acc.fra)) ? fra : acc.fra,
+                til: dayjs(til).isAfter(dayjs(acc.til)) ? til : acc.til
+            };
+        }, null) ?? { fra: dayjs().format(), til: dayjs(0).format() }
+    );
+}
 
 export function formatterDato(dato: string | Date) {
     return dayjs(dato).format(DATO_FORMAT);

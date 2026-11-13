@@ -1,16 +1,6 @@
 import { useMemo } from 'react';
-import { INFOTABS, type InfotabConfig } from '../personside/infotabs/InfoTabEnum';
-
-export const paths = {
-    personUri: '/person',
-    dokument: '/new/dokument',
-    sakerFullscreen: '/saker',
-    saksdokumentEgetVindu: '/dokument',
-    brukerprofil: '/brukerprofil',
-    basePath: '',
-    standaloneKomponenter: '/components',
-    landingPage: '/landingpage'
-} as const;
+import { INFOTABS, type InfotabConfig } from 'src/models/infotabs';
+import { paths } from 'src/utils/paths';
 
 /**
  * @deprecated use personPaths instead

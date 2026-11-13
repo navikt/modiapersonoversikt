@@ -1,5 +1,5 @@
+import { InformasjonElement, type Data as PersonData } from 'src/models/person/persondata';
 import { harFeilendeSystemer } from '../../harFeilendeSystemer';
-import { InformasjonElement, type Data as PersonData } from '../../PersondataDomain';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import Adresse from './adresse/Adresse';
 import Bankkonto from './bankkonto/Bankkonto';

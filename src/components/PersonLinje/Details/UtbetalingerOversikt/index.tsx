@@ -3,11 +3,12 @@ import { BodyShort, Box, Skeleton, Table, Tag, VStack } from '@navikt/ds-react';
 import { Link } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import type { ReactNode } from 'react';
-import { formaterNOK, getGjeldendeDatoForUtbetaling, utbetalingDatoComparator } from 'src/components/Utbetaling/utils';
+import { getGjeldendeDatoForUtbetaling, utbetalingDatoComparator } from 'src/components/Utbetaling/utils';
 import { errorPlaceholder, responseErrorMessage } from 'src/components/ytelser/utils';
 import type { Utbetaling } from 'src/generated/modiapersonoversikt-api';
 import { useUtbetalinger } from 'src/lib/clients/modiapersonoversikt-api';
 import { trackGenereltUmamiEvent, trackingEvents } from 'src/utils/analytics';
+import { formaterNOK } from 'src/utils/string-utils';
 import { SeksjonFeil } from '../components';
 
 const MAKS_ANTALL_RADER = 5;

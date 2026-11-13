@@ -1,6 +1,6 @@
 import { act } from '@testing-library/react';
 import { aremark } from 'src/mock/persondata/aremark';
-import { renderWithProviders } from 'src/test/Testprovider';
+import { renderWithProviders } from 'src/test/LegacyTestprovider';
 import { setupReactQueryMocks } from 'src/test/testStore';
 import VisittkortBody from './VisittkortBody';
 

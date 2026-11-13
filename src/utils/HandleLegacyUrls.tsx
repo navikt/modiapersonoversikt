@@ -1,24 +1,18 @@
 import { Loader } from '@navikt/ds-react';
-import { useMatchRoute, useNavigate, useSearch } from '@tanstack/react-router';
+import { useNavigate, useSearch } from '@tanstack/react-router';
 import { type PropsWithChildren, useEffect, useRef, useState } from 'react';
-import { INFOTABS } from 'src/app/personside/infotabs/InfoTabEnum';
-import { paths } from 'src/app/routes/routing';
 import type { OppgaveDto } from 'src/generated/modiapersonoversikt-api';
 import { useSetUserContext } from 'src/lib/clients/contextholder';
 import { useOppgave } from 'src/lib/clients/modiapersonoversikt-api';
+import { useSettAktivBruker } from 'src/lib/hooks/useSettAktivBruker';
 import { trackDyplenkeFraEksternKilde } from 'src/utils/analytics';
-import { useSettAktivBruker } from 'src/utils/customHooks';
-import { erGyldigishFnr } from 'src/utils/fnr-utils';
 
 function HandleLegacyUrls({ children }: PropsWithChildren) {
-    const { oppgaveId, sokFnr, sokFnrCode, henvendelseId, behandlingsId } = useSearch({ strict: false });
+    const { oppgaveId, sokFnrCode, henvendelseId, behandlingsId } = useSearch({ strict: false });
 
-    const match = useMatchRoute();
-    const fnrMatch = match({ to: '/person/$fnr' });
-    const validFnr = fnrMatch && erGyldigishFnr(fnrMatch.fnr ?? '') ? fnrMatch.fnr : undefined;
     const settGjeldendeBruker = useSettAktivBruker();
     const navigate = useNavigate();
-    const [delayRender, setDelayRender] = useState(!!validFnr || !!oppgaveId);
+    const [delayRender, setDelayRender] = useState(!!oppgaveId);
     const { data: oppgaveData, isLoading } = useOppgave(oppgaveId);
     const hasHandled = useRef(false);
     const setUserContext = useSetUserContext();
@@ -38,11 +32,12 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
                         const url = removeParamFromURL('sokFnrCode');
                         window.history.replaceState(null, '', url.toString());
                         handleLegacyUrls(res.aktivBruker, traadId, oppgaveId, oppgaveData);
+                        setDelayRender(false);
                     }
                 }
             );
         } else {
-            handleLegacyUrls(sokFnr ?? validFnr, traadId, oppgaveId, oppgaveData);
+            handleLegacyUrls(undefined, traadId, oppgaveId, oppgaveData);
             setDelayRender(false);
         }
     }, [isLoading, oppgaveData]);
@@ -65,7 +60,8 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
             setUserContext.mutate(
                 { fnr: oppgaveData.fnr, verdiType: 'FNR' },
                 {
-                    onSuccess: () => {
+                    onSuccess: (res) => {
+                        settGjeldendeBruker(res.aktivBruker, false);
                         navigerTilTraadOgApneSvar(oppgaveData.traadId);
                     }
                 }
@@ -73,19 +69,15 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
         } else if (fnr) {
             trackDyplenkeFraEksternKilde('kun fnr');
             settGjeldendeBruker(fnr, false);
-            navigate({
-                to: `${paths.personUri}/${INFOTABS.MELDINGER.path}`,
-                replace: true
-            });
+            navigerTilTraadOgApneSvar();
         }
     };
 
     const navigerTilTraadOgApneSvar = (traadId?: string | null) => {
-        const linkTilValgtHenvendelse = `${paths.personUri}/${INFOTABS.MELDINGER.path}` as const;
         const newQuery = { traadId: traadId ?? undefined };
 
         navigate({
-            to: linkTilValgtHenvendelse,
+            to: '/new/person/meldinger',
             search: newQuery,
             replace: true
         });

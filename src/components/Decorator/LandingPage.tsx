@@ -1,18 +1,13 @@
 import { useEffect, useLayoutEffect, useRef } from 'react';
-import { NyModiaPortal } from 'src/app/internarbeidsflatedecorator/NyModiaPortal';
-import { OppstartNyModiaDialog } from 'src/components/NyModia/OppstartNyModiaDialog';
-import useOpenIntroduksjonsModal from 'src/components/NyModia/useHarSettNyModiaDialog';
-import Personsok from 'src/components/personsok';
-import OppdateringsloggContainer from '../oppdateringslogg/OppdateringsloggContainer';
 import type { DecoratorPropsV3 } from './decoratorprops';
 import { useDecoratorConfig } from './useDecoratorConfig';
 
-function InternarbeidsflateDecoratorElement(props: DecoratorPropsV3) {
+function InternarbeidsflateDecoratorFullscreenElement(props: DecoratorPropsV3) {
     const ref = useRef<HTMLElement>(null);
-
-    // Hold siste versjon av alle callbacks i én ref — handlers registreres én gang, men er alltid oppdaterte
     const propsRef = useRef(props);
-    propsRef.current = props;
+    useLayoutEffect(() => {
+        propsRef.current = props;
+    }, [props]);
 
     // Hotkeys kan inneholde funksjoner som ikke kan JSON-serialiseres — settes direkte som JS-property
     useEffect(() => {
@@ -33,22 +28,17 @@ function InternarbeidsflateDecoratorElement(props: DecoratorPropsV3) {
         const onFnrChanged = (e: Event) => {
             propsRef.current.onFnrChanged?.((e as CustomEvent).detail.fnr);
         };
-        const onLinkClick = (e: Event) => {
-            propsRef.current.onLinkClick?.((e as CustomEvent).detail);
-        };
 
         el.addEventListener('enhet-changed', onEnhetChanged);
         el.addEventListener('fnr-changed', onFnrChanged);
-        el.addEventListener('link-click', onLinkClick);
         return () => {
             el.removeEventListener('enhet-changed', onEnhetChanged);
             el.removeEventListener('fnr-changed', onFnrChanged);
-            el.removeEventListener('link-click', onLinkClick);
         };
     }, []);
 
     return (
-        <internarbeidsflate-decorator
+        <internarbeidsflate-decorator-fullscreen
             ref={ref}
             app-name={props.appName}
             environment={props.environment}
@@ -57,8 +47,6 @@ function InternarbeidsflateDecoratorElement(props: DecoratorPropsV3) {
             enhet={props.enhet}
             user-key={props.userKey}
             proxy={props.proxy}
-            websocket-url={props.websocketUrl}
-            access-token={props.accessToken}
             show-enheter={String(props.showEnheter)}
             show-search-area={String(props.showSearchArea)}
             show-hotkeys={String(props.showHotkeys)}
@@ -74,19 +62,8 @@ function InternarbeidsflateDecoratorElement(props: DecoratorPropsV3) {
     );
 }
 
-function Decorator() {
+export function LandingPage() {
     const { configV3 } = useDecoratorConfig();
-    const [open] = useOpenIntroduksjonsModal();
 
-    return (
-        <nav aria-label="Navigasjon og søk">
-            <InternarbeidsflateDecoratorElement {...configV3} />
-            <Personsok />
-            <OppdateringsloggContainer />
-            <NyModiaPortal />
-            {open && <OppstartNyModiaDialog />}
-        </nav>
-    );
+    return <InternarbeidsflateDecoratorFullscreenElement {...configV3} />;
 }
-
-export default Decorator;

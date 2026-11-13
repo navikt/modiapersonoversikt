@@ -1,9 +1,9 @@
+import { Kjonn } from 'src/models/person/persondata';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import Kvinne from '../../../../svg/Kvinne';
 import Mann from '../../../../svg/Mann';
 import UkjentKjonn from '../../../../svg/UkjentKjonn';
-import { Kjonn } from '../PersondataDomain';
 
 const IkonDiv = styled.div`
     display: flex;

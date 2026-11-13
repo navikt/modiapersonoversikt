@@ -2,9 +2,8 @@ import { Bleed, Box, Button, ErrorMessage, HStack, VStack } from '@navikt/ds-rea
 import { useForm, useStore, type ValidationError } from '@tanstack/react-form';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useCallback, useMemo, useRef, useState } from 'react';
-import DraftStatus from 'src/app/personside/dialogpanel/DraftStatus';
-import useDraft, { type Draft, type DraftContext } from 'src/app/personside/dialogpanel/use-draft';
 import { AvbrytAlert } from 'src/components/melding/AvbrytAlert';
+import DraftStatus from 'src/components/melding/DraftStatus';
 import nyMeldingSchema, { maksLengdeMelding } from 'src/components/melding/nyMeldingSchema';
 import { Oppgaveliste } from 'src/components/melding/OppgavelisteOptions';
 import { SaksbehandlerNavnDialog } from 'src/components/melding/SaksbehandlerNavnDialog';
@@ -22,9 +21,11 @@ import {
     SendMeldingRequestV2TraadType
 } from 'src/generated/modiapersonoversikt-api';
 import { useSendMelding } from 'src/lib/clients/modiapersonoversikt-api';
+import useDraft from 'src/lib/hooks/useDraft';
 import { useSuspendingBrukernavn } from 'src/lib/hooks/useSuspendingBrukernavn';
 import { aktivEnhetAtom, usePersonAtomValue } from 'src/lib/state/context';
 import { nyMeldingUnderArbeidAtom, overskridKontaktReservasjonAtom, useDisableDialog } from 'src/lib/state/dialog';
+import type { Draft, DraftContext } from 'src/models/meldinger/draft';
 import type { Temagruppe } from 'src/models/temagrupper';
 import { trackGenereltUmamiEvent, trackingEvents, trackSendNyMelding } from 'src/utils/analytics';
 import useDynamicHeightTextArea from 'src/utils/hooks/use-dynamic-height-text-area';

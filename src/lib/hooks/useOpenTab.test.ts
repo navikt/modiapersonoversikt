@@ -1,5 +1,5 @@
-import { INFOTABS, type InfotabConfig } from './InfoTabEnum';
-import { getOpenTabFromRouterPath } from './utils/useOpenTab';
+import { INFOTABS, type InfotabConfig } from 'src/models/infotabs';
+import { getOpenTabFromRouterPath } from './useOpenTab';
 
 test('henter riktig tab fra routerpath', () => {
     const path = `http://localhost:7777${import.meta.env.BASE_URL}/person/1000000000/${INFOTABS.UTBETALING.path}/`;
