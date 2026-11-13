@@ -5,9 +5,7 @@ import type { OppgaveDto } from 'src/generated/modiapersonoversikt-api';
 import { useSetUserContext } from 'src/lib/clients/contextholder';
 import { useOppgave } from 'src/lib/clients/modiapersonoversikt-api';
 import { useSettAktivBruker } from 'src/lib/hooks/useSettAktivBruker';
-import { INFOTABS } from 'src/models/infotabs';
 import { trackDyplenkeFraEksternKilde } from 'src/utils/analytics';
-import { paths } from 'src/utils/paths';
 
 function HandleLegacyUrls({ children }: PropsWithChildren) {
     const { oppgaveId, sokFnrCode, henvendelseId, behandlingsId } = useSearch({ strict: false });
@@ -34,6 +32,7 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
                         const url = removeParamFromURL('sokFnrCode');
                         window.history.replaceState(null, '', url.toString());
                         handleLegacyUrls(res.aktivBruker, traadId, oppgaveId, oppgaveData);
+                        setDelayRender(false);
                     }
                 }
             );
@@ -61,7 +60,8 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
             setUserContext.mutate(
                 { fnr: oppgaveData.fnr, verdiType: 'FNR' },
                 {
-                    onSuccess: () => {
+                    onSuccess: (res) => {
+                        settGjeldendeBruker(res.aktivBruker, false);
                         navigerTilTraadOgApneSvar(oppgaveData.traadId);
                     }
                 }
@@ -69,19 +69,15 @@ function HandleLegacyUrls({ children }: PropsWithChildren) {
         } else if (fnr) {
             trackDyplenkeFraEksternKilde('kun fnr');
             settGjeldendeBruker(fnr, false);
-            navigate({
-                to: `${paths.personUri}/${INFOTABS.MELDINGER.path}`,
-                replace: true
-            });
+            navigerTilTraadOgApneSvar();
         }
     };
 
     const navigerTilTraadOgApneSvar = (traadId?: string | null) => {
-        const linkTilValgtHenvendelse = `${paths.personUri}/${INFOTABS.MELDINGER.path}` as const;
         const newQuery = { traadId: traadId ?? undefined };
 
         navigate({
-            to: linkTilValgtHenvendelse,
+            to: '/new/person/meldinger',
             search: newQuery,
             replace: true
         });

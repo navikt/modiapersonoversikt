@@ -1,5 +1,6 @@
 import { useNavigate } from '@tanstack/react-router';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
+import useDeaktiverGammelModia from 'src/components/featureToggle/useDeaktiverGammelModia';
 import { nyModiaAtom } from 'src/components/NyModia';
 import { aktivBrukerAtom } from 'src/lib/state/context';
 import { meldingPanelIsOpenAtom, nyMeldingUnderArbeidAtom, svarUnderArbeidAtom } from 'src/lib/state/dialog';
@@ -8,6 +9,8 @@ import { paths } from 'src/utils/paths';
 export function useSettAktivBruker() {
     const [currentFnr, setBruker] = useAtom(aktivBrukerAtom);
     const nyModia = useAtomValue(nyModiaAtom);
+    const deaktivering = useDeaktiverGammelModia();
+    const gammelModiaDeaktivert = deaktivering.status !== 'pending' && deaktivering.isOn;
     const navigate = useNavigate();
     const meldingPanelIsOpen = useAtomValue(meldingPanelIsOpenAtom);
     const setSvarUnderArbeid = useSetAtom(svarUnderArbeidAtom);
@@ -41,7 +44,7 @@ export function useSettAktivBruker() {
                 paths.landingPage
             ].some((path) => location.pathname.startsWith(path))
         ) {
-            navigate({ to: nyModia ? '/new/person' : paths.personUri }).finally(() => {
+            navigate({ to: nyModia || gammelModiaDeaktivert ? '/new/person/hjem' : paths.personUri }).finally(() => {
                 document.getElementById('personlinje-header')?.focus();
             });
         }
