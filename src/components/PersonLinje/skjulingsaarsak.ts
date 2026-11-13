@@ -1,4 +1,8 @@
-import type { Fullmektig, Tilgangsavslag } from 'src/lib/types/modiapersonoversikt-api';
+import {
+    type Fullmektig,
+    Skjulingsaarsak as SkjulingsaarsakKode,
+    type Tilgangsavslag
+} from 'src/lib/types/modiapersonoversikt-api';
 
 export type Skjulingsaarsak = NonNullable<Fullmektig['skjulingsaarsak']>;
 
@@ -11,9 +15,9 @@ export function hentSkjulingsaarsakTekst(aarsak: Skjulingsaarsak, avslag?: Tilga
     }
 
     switch (aarsak) {
-        case 'MANGLER_TILGANG':
+        case SkjulingsaarsakKode.MANGLER_TILGANG:
             return 'Personopplysninger skjult';
-        case 'UAVKLART':
+        case SkjulingsaarsakKode.UAVKLART:
             return 'Personopplysninger kunne ikke hentes';
     }
 }

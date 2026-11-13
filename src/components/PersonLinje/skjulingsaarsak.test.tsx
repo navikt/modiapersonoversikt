@@ -8,6 +8,7 @@ import {
     type PersonData,
     PersonDataFeilendeSystemer,
     SivilstandType,
+    Skjulingsaarsak,
     type Tilgangsavslag
 } from 'src/lib/types/modiapersonoversikt-api';
 import { createPersonData } from 'src/test/createPersonData';
@@ -25,7 +26,6 @@ import { Fullmakt } from './Details/Representasjon/Fullmakt';
 import Vergemal from './Details/Representasjon/Vergemal';
 import VergemalGammel from './Details/VergemalGammel';
 import Personopplysninger from './Personopplysninger';
-import type { Skjulingsaarsak } from './skjulingsaarsak';
 
 let person: PersonData;
 let feilendeSystemer: PersonDataFeilendeSystemer[];
@@ -59,12 +59,12 @@ function barn(
 }
 
 const aarsaker: [Skjulingsaarsak, string][] = [
-    ['MANGLER_TILGANG', 'Personopplysninger skjult'],
-    ['UAVKLART', 'Personopplysninger kunne ikke hentes']
+    [Skjulingsaarsak.MANGLER_TILGANG, 'Personopplysninger skjult'],
+    [Skjulingsaarsak.UAVKLART, 'Personopplysninger kunne ikke hentes']
 ];
 
 const detaljertAvslag: [Skjulingsaarsak, string, Tilgangsavslag] = [
-    'MANGLER_TILGANG',
+    Skjulingsaarsak.MANGLER_TILGANG,
     'Personopplysninger er skjult: Du har ikke tilgang til skjermet person',
     { title: 'AVVIST_SKJERMING', message: 'Du har ikke tilgang til skjermet person' }
 ];
@@ -271,7 +271,7 @@ it.each([
     [{ title: 'NY_AVSLAGSKODE', message: null }, 'Personopplysninger skjult']
 ])('viser meldingen eller generell årsak, aldri tittelen (%s)', (tilgangsavslag, tekst) => {
     render(
-        <Personopplysninger skjulingsaarsak="MANGLER_TILGANG" tilgangsavslag={tilgangsavslag}>
+        <Personopplysninger skjulingsaarsak={Skjulingsaarsak.MANGLER_TILGANG} tilgangsavslag={tilgangsavslag}>
             Skjult personprofil
         </Personopplysninger>
     );
@@ -283,14 +283,14 @@ it('skjuler tittelen og viser meldingen som tekst, ikke HTML', () => {
     const title = '<img src=x onerror=alert(1)>';
     const message = '<script>alert(2)</script>';
     const { container } = render(
-        <Personopplysninger skjulingsaarsak="MANGLER_TILGANG" tilgangsavslag={{ title, message }} />
+        <Personopplysninger skjulingsaarsak={Skjulingsaarsak.MANGLER_TILGANG} tilgangsavslag={{ title, message }} />
     );
     expect(screen.getByText(`Personopplysninger er skjult: ${message}`)).toBeVisible();
     expect(screen.queryByText(title, { exact: false })).not.toBeInTheDocument();
     expect(container.querySelector('img, script')).toBeNull();
 });
 
-it.each([null, 'UAVKLART'] as const)('bruker ikke avslagsdetaljer ved %s', (skjulingsaarsak) => {
+it.each([null, Skjulingsaarsak.UAVKLART] as const)('bruker ikke avslagsdetaljer ved %s', (skjulingsaarsak) => {
     render(
         <Personopplysninger skjulingsaarsak={skjulingsaarsak} tilgangsavslag={detaljertAvslag[2]}>
             Innebygd personnavn
@@ -307,8 +307,8 @@ it('beholder flere skjulte barn og tilgjengelige barn ved delvis tilgang', () =>
         <Barn
             harFeilendeSystem
             relasjoner={[
-                barn('MANGLER_TILGANG'),
-                barn('UAVKLART'),
+                barn(Skjulingsaarsak.MANGLER_TILGANG),
+                barn(Skjulingsaarsak.UAVKLART),
                 { ...barn(), alder: 10, navn: [{ fornavn: 'Test', etternavn: 'Barn' }] }
             ]}
         />

@@ -24,6 +24,7 @@ export function createPersonData(): PersonData {
         deltBosted: [],
         dodsbo: [],
         fullmektige: [],
+        fullmakt: [],
         vergemal: [],
         historiskeVergemal: [],
         tilrettelagtKommunikasjon: { talesprak: [], tegnsprak: [] },
