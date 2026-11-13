@@ -5,7 +5,9 @@ import { useDecoratorConfig } from './useDecoratorConfig';
 function InternarbeidsflateDecoratorFullscreenElement(props: DecoratorPropsV3) {
     const ref = useRef<HTMLElement>(null);
     const propsRef = useRef(props);
-    propsRef.current = props;
+    useLayoutEffect(() => {
+        propsRef.current = props;
+    }, [props]);
 
     // Hotkeys kan inneholde funksjoner som ikke kan JSON-serialiseres — settes direkte som JS-property
     useEffect(() => {
