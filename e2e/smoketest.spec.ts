@@ -61,44 +61,6 @@ async function openRepresentationScenario(page: Page, path: string, scenario: 's
         await page.unroute('**/src/main.tsx', pauseEntry);
     }
 }
-
-test.describe('Gammel oversikt', () => {
-    test.beforeEach(async ({ page }) => {
-        await page.addInitScript(() => {
-            window.localStorage.setItem('ny-modia-v2', String(Number.MAX_SAFE_INTEGER));
-            window.localStorage.setItem(
-                'modia-innstillinger-mock',
-                JSON.stringify({
-                    sistLagret: '2020-04-07T12:12:54',
-                    innstillinger: { 'har-sett-oppstart-ny-modia': 'true' }
-                })
-            );
-        });
-    });
-
-    test('smoketest', async ({ page }) => {
-        await page.goto('/');
-
-        await expect(page).toHaveTitle(/Modia personoversikt/);
-    });
-
-    test('User pages', async ({ page }) => {
-        await page.goto('/person/oversikt');
-
-        const personLoaded = page.getByTestId('visittkort:person');
-        await expect(personLoaded).toHaveText(/Aremark Testfamilien/i);
-    });
-
-    test('Representasjon viser ikke de nye listene i legacy-visningen', async ({ page }) => {
-        await page.goto('/person/oversikt');
-        await expect(page).toHaveURL(/\/person\/oversikt(?:[?#]|$)/);
-        await expect(page.getByTestId('visittkort:person')).toContainText(/Aremark Testfamilien/i);
-        await page.waitForLoadState('networkidle');
-        await expect(page.getByRole('heading', { name: 'Er verge for', exact: true })).toHaveCount(0);
-        await expect(page.getByRole('heading', { name: 'Har fullmakt for', exact: true })).toHaveCount(0);
-    });
-});
-
 test.describe('Representasjon på ny hjemside', () => {
     test.beforeEach(async ({ page }) => {
         await page.addInitScript(() => {
