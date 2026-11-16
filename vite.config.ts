@@ -1,5 +1,6 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import babel from '@rolldown/plugin-babel';
 import { TanStackRouterVite } from '@tanstack/router-plugin/vite';
 import react from '@vitejs/plugin-react';
 import type { IndexHtmlTransform, Plugin } from 'vite';
@@ -66,10 +67,9 @@ export default defineConfig({
     },
     plugins: [
         TanStackRouterVite(),
-        react({
-            babel: {
-                plugins: [['babel-plugin-react-compiler', reactCompilerConfig]]
-            }
+        react(),
+        babel({
+            plugins: [['babel-plugin-react-compiler', reactCompilerConfig]]
         }),
         vitePluginSvgr({
             include: '**/*.svg'
